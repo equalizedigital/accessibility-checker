@@ -1,0 +1,329 @@
+name: Build Accessibility Checker Plugin with Ref Param
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref_param:
+        description: "Ref param string to set in EDAC_REF_PARAM (optional)"
+        required: false
+        type: string
+  pull_request:
+    types: [labeled]
+  release:
+    types: [created, published]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  build-plugin:
+    name: Build plugin zip
+    runs-on: ubuntu-latest
+    # Run on release, manual, or PR when a specific label is added
+    if: |
+      github.event_name == 'release' ||
+      github.event_name == 'workflow_dispatch' ||
+      (github.event_name == 'pull_request' && (contains(github.event.pull_request.labels.*.name, 'gha-build') || contains(github.event.pull_request.labels.*.name, 'gha-build-all')))
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine mode and ref param for this run
+        id: setref
+        run: |
+          MODE="${{ github.event_name }}"
+          echo "mode=$MODE" >> $GITHUB_OUTPUT
+          # Manual run: take input if provided; else empty
+          if [ "$MODE" = "workflow_dispatch" ]; then
+            REF_INPUT="${{ github.event.inputs.ref_param }}"
+            echo "ref_param=${REF_INPUT}" >> $GITHUB_OUTPUT
+            # For manual mode: if ref is provided, skip primary build
+            if [ -n "$REF_INPUT" ]; then
+              echo "skip_primary=true" >> $GITHUB_OUTPUT
+            else
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            fi
+          # Release: use fixed ref 'woocommerce'
+          elif [ "$MODE" = "release" ]; then
+            echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
+            echo "skip_primary=false" >> $GITHUB_OUTPUT
+          # PR labeled: check which label
+          else
+            # Check if gha-build-all label is present (build both)
+            if echo "${{ github.event.pull_request.labels.*.name }}" | grep -q "gha-build-all"; then
+              echo "ref_param=woocommerce" >> $GITHUB_OUTPUT
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            else
+              # gha-build label (build primary only)
+              echo "ref_param=" >> $GITHUB_OUTPUT
+              echo "skip_primary=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+      - name: Show selected mode/ref
+        run: |
+          echo "Triggered on: $GITHUB_EVENT_NAME"
+          echo "Mode: ${{ steps.setref.outputs.mode }}"
+          echo "Head ref: ${{ github.head_ref }}"
+          echo "PR number: ${{ github.event.pull_request.number }}"
+          echo "Release tag: ${{ github.event.release.tag_name }}"
+          echo "Ref param: ${{ steps.setref.outputs.ref_param }}"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            node-${{ runner.os }}-
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+          coverage: none
+
+      - name: Install Composer dependencies
+        run: |
+          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
+
+      - name: Install npm dependencies
+        run: |
+          if [ -f package.json ]; then
+            if [ -d node_modules ]; then
+              echo "node_modules cache hit, skipping install"
+            else
+              npm ci --prefer-offline --no-audit
+            fi
+          else
+            echo "No package.json"
+          fi
+
+      - name: Extract plugin version and commit hash
+        id: version
+        run: |
+          VERSION=$(grep "Version:" accessibility-checker.php | head -1 | sed 's/.*Version:[[:space:]]*\([^ ]*\).*/\1/')
+          SHORT_SHA=$(git rev-parse --short HEAD)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "Plugin version: $VERSION"
+          echo "Short commit hash: $SHORT_SHA"
+
+      - name: Verify EDAC_REF_PARAM is empty before first build
+        if: steps.setref.outputs.skip_primary != 'true'
+        run: |
+          grep -n "define( 'EDAC_REF_PARAM', '' )" accessibility-checker.php || { echo "EDAC_REF_PARAM should be empty for first build"; exit 1; }
+
+      - name: Build primary dist zip (empty ref)
+        if: steps.setref.outputs.skip_primary != 'true'
+        run: |
+          echo "Building primary zip with empty ref..."
+          npm run dist
+          ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
+          if [ -z "$ZIP_PATH" ]; then
+            ZIP_PATH=$(ls -1 *.zip 2>/dev/null | head -n 1 || true)
+          fi
+          if [ -z "$ZIP_PATH" ]; then
+            echo "Error: Could not locate produced zip after npm run dist" >&2
+            exit 1
+          fi
+          mkdir -p builds
+
+          # Construct the new filename based on trigger mode
+          VERSION="${{ steps.version.outputs.version }}"
+          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
+
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            # PR: accessibility-checker-{version}-{prnumber}-{hash}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${{ github.event.pull_request.number }}-${SHORT_SHA}.zip"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            # Manual: accessibility-checker-{version}-{hash}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${SHORT_SHA}.zip"
+          elif [ "${{ github.event_name }}" = "release" ]; then
+            # Release: accessibility-checker-{version}.zip
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}.zip"
+          else
+            # Fallback
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${SHORT_SHA}.zip"
+          fi
+
+          mv "$ZIP_PATH" "builds/$PRIMARY_ZIP_NAME"
+          PRIMARY_ZIP_BASENAME="${PRIMARY_ZIP_NAME%.zip}"
+          unzip -q "builds/$PRIMARY_ZIP_NAME" -d "builds/$PRIMARY_ZIP_BASENAME"
+          PRIMARY_ZIP_FOLDER="builds/$PRIMARY_ZIP_BASENAME"
+          PRIMARY_ZIP_NAME_NO_EXT="${PRIMARY_ZIP_NAME%.zip}"
+          echo "PRIMARY_ZIP_PATH=builds/$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
+          echo "PRIMARY_ZIP_NAME=$PRIMARY_ZIP_NAME" >> $GITHUB_ENV
+          echo "PRIMARY_ZIP_NAME_NO_EXT=$PRIMARY_ZIP_NAME_NO_EXT" >> $GITHUB_ENV
+          echo "PRIMARY_ZIP_FOLDER=$PRIMARY_ZIP_FOLDER" >> $GITHUB_ENV
+          echo "Produced primary zip: builds/$PRIMARY_ZIP_NAME"
+          echo "Produced primary folder: $PRIMARY_ZIP_FOLDER"
+
+      - name: Upload primary build artifact
+        if: steps.setref.outputs.skip_primary != 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
+          path: ${{ env.PRIMARY_ZIP_FOLDER }}
+          if-no-files-found: error
+
+      - name: Check if ref build is needed
+        id: check_ref
+        run: |
+          MODE="${{ steps.setref.outputs.mode }}"
+          REF_VALUE="${{ steps.setref.outputs.ref_param }}"
+          # For manual: build ref if ref is provided
+          # For release: always build ref (woocommerce)
+          # For PR: never build ref
+          if [ "$MODE" = "workflow_dispatch" ] && [ -n "$REF_VALUE" ]; then
+            echo "need_ref_build=true" >> $GITHUB_OUTPUT
+            echo "Ref build needed with value: $REF_VALUE"
+          elif [ "$MODE" = "release" ] && [ -n "$REF_VALUE" ]; then
+            echo "need_ref_build=true" >> $GITHUB_OUTPUT
+            echo "Ref build needed with value: $REF_VALUE"
+          else
+            echo "need_ref_build=false" >> $GITHUB_OUTPUT
+            echo "No ref build needed (mode=$MODE, ref='$REF_VALUE')"
+          fi
+
+      - name: Update EDAC_REF_PARAM for second build
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          chmod +x ./scripts/update-ref-param.sh
+          ./scripts/update-ref-param.sh "${{ steps.setref.outputs.ref_param }}"
+
+      - name: Verify EDAC_REF_PARAM change
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          grep -n "EDAC_REF_PARAM" accessibility-checker.php || { echo "EDAC_REF_PARAM not found"; exit 1; }
+          echo "Updated EDAC_REF_PARAM contents:"
+          grep "EDAC_REF_PARAM" accessibility-checker.php
+
+      - name: Build ref dist zip (custom ref)
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        run: |
+          echo "Building ref zip with custom ref value..."
+          npm run dist
+          ZIP_PATH=$(ls -1 dist/*.zip build/*.zip 2>/dev/null | head -n 1 || true)
+          if [ -z "$ZIP_PATH" ]; then
+            ZIP_PATH=$(ls -1 *.zip 2>/dev/null | head -n 1 || true)
+          fi
+          if [ -z "$ZIP_PATH" ]; then
+            echo "Error: Could not locate produced zip after npm run dist" >&2
+            exit 1
+          fi
+          mkdir -p builds
+
+          VERSION="${{ steps.version.outputs.version }}"
+          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
+          REF_VALUE="${{ steps.setref.outputs.ref_param }}"
+
+          # Ref build naming: accessibility-checker-{version}-ref-{refvalue}-{hash}.zip
+          REF_ZIP_NAME="accessibility-checker-${VERSION}-ref-${REF_VALUE}-${SHORT_SHA}.zip"
+
+          mv "$ZIP_PATH" "builds/$REF_ZIP_NAME"
+          REF_ZIP_BASENAME="${REF_ZIP_NAME%.zip}"
+          unzip -q "builds/$REF_ZIP_NAME" -d "builds/$REF_ZIP_BASENAME"
+          REF_ZIP_FOLDER="builds/$REF_ZIP_BASENAME"
+          REF_ZIP_NAME_NO_EXT="${REF_ZIP_NAME%.zip}"
+          echo "REF_ZIP_PATH=builds/$REF_ZIP_NAME" >> $GITHUB_ENV
+          echo "REF_ZIP_NAME=$REF_ZIP_NAME" >> $GITHUB_ENV
+          echo "REF_ZIP_NAME_NO_EXT=$REF_ZIP_NAME_NO_EXT" >> $GITHUB_ENV
+          echo "REF_ZIP_FOLDER=$REF_ZIP_FOLDER" >> $GITHUB_ENV
+          echo "Produced ref zip: builds/$REF_ZIP_NAME"
+          echo "Produced ref folder: $REF_ZIP_FOLDER"
+
+      - name: Upload ref build artifact
+        if: steps.check_ref.outputs.need_ref_build == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.REF_ZIP_NAME_NO_EXT }}
+          path: ${{ env.REF_ZIP_FOLDER }}
+          if-no-files-found: error
+
+      - name: Upload to release (both zips)
+        if: github.event_name == 'release'
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.PRIMARY_ZIP_PATH }}
+            ${{ steps.check_ref.outputs.need_ref_build == 'true' && env.REF_ZIP_PATH || '' }}
+          fail_on_unmatched_files: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on PR with primary build details
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const runId = context.runId;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}`;
+            const primaryName = process.env.PRIMARY_ZIP_NAME_NO_EXT;
+
+            // Get the artifact ID for the download URL
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: runId,
+            });
+
+            const artifact = artifacts.data.artifacts.find(a => a.name === primaryName);
+            const downloadUrl = artifact
+              ? `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}/artifacts/${artifact.id}`
+              : runUrl;
+
+            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})`;
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body,
+            });
+
+      - name: Remove triggering label from PR
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const labels = context.payload.pull_request.labels.map(l => l.name);
+            const labelToRemove = labels.includes('gha-build-all') ? 'gha-build-all' : 'gha-build';
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                name: labelToRemove,
+              });
+              console.log(`Removed label '${labelToRemove}' from PR #${prNumber}`);
+            } catch (e) {
+              console.log(`Could not remove label '${labelToRemove}' from PR #${prNumber}: ${e.message}`);
+            }
+
+      - name: Summary
+        run: |
+          echo "=== Build Summary ==="
+          echo "Mode: ${{ steps.setref.outputs.mode }}"
+          echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
+          if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
+            echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
+          else
+            echo "Ref zip: Not built"
+          fi
+          if [ "${{ github.event_name }}" = "release" ]; then
+            echo "Uploaded to release: ${{ github.event.release.html_url }}"
+          fi

@@ -50,6 +50,7 @@ class Admin {
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
+		add_filter( 'edac_filter_generate_link_type_ref', [ $this, 'add_ref_param_to_links' ], 5, 1 );
 
 		$plugin_action_links = new Plugin_Action_Links();
 		$plugin_action_links->init_hooks();
@@ -95,5 +96,19 @@ class Admin {
 
 		$frontend_highlight = new Frontend_Highlight();
 		$frontend_highlight->init_hooks();
+	}
+
+	/**
+	 * Add ref param in links that are used through the plugin link helpers.
+	 *
+	 * @param string $ref Ref param.
+	 * @return string
+	 */
+	public function add_ref_param_to_links( string $ref ): string {
+		if ( defined( 'EDAC_REF_PARAM' ) && ! empty( EDAC_REF_PARAM ) ) {
+			return EDAC_REF_PARAM;
+		} else {
+			return $ref;
+		}
 	}
 }

@@ -234,6 +234,11 @@ function edac_get_post_type_label( string $post_type ): string {
  */
 function edac_get_valid_table_name( $table_name ) {
 	global $wpdb;
+	static $found_table_name;
+
+	if ( isset( $found_table_name ) ) {
+		return $found_table_name;
+	}
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
 	if ( ! preg_match( '/^[a-zA-Z0-9_\-]+$/', $table_name ) ) {
@@ -248,7 +253,8 @@ function edac_get_valid_table_name( $table_name ) {
 		return null;
 	}
 
-	return $table_name;
+	$found_table_name = $table_name;
+	return $found_table_name;
 }
 
 /**
@@ -256,89 +262,112 @@ function edac_get_valid_table_name( $table_name ) {
  *
  * @param string  $meetup meetup name.
  * @param integer $count number of meetups to return.
- * @return json
+ * @return array
  */
 function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 
 	if ( empty( $meetup ) || ! is_string( $meetup ) ) {
-		return;
+		return [];
 	}
 
 	// Min of 1 and max of 25.
 	$count = absint( max( 1, min( 25, $count ) ) );
 
-	$key    = '_upcoming_meetups__' . sanitize_title( $meetup ) . '__' . (int) $count;
-	$output = get_transient( $key );
+	// Sanitize meetup name for both cache key and GraphQL query to prevent injection.
+	$sanitized_meetup = sanitize_title( $meetup );
 
-	if ( false === $output ) {
-		$request_uri = 'https://api.meetup.com/gql-ext';
-		$query       = '
-		query Group {
-			groupByUrlname(urlname: "' . (string) $meetup . '") {
-				events(first: ' . (int) $count . ') {
-					totalCount
-					edges {
-						node {
-							dateTime
-							eventUrl
-							id
-							title
-						}
+	$key          = '_upcoming_meetups__' . $sanitized_meetup . '__' . (int) $count;
+	$stale_key    = $key . '__stale';
+	$cached_value = get_transient( $key );
+
+	if ( false !== $cached_value ) {
+		return is_array( $cached_value ) ? $cached_value : [];
+	}
+
+	$output = [];
+
+	$request_uri = 'https://api.meetup.com/gql-ext';
+	$query       = '
+	query Group {
+		groupByUrlname(urlname: "' . $sanitized_meetup . '") {
+			events(first: ' . (int) $count . ') {
+				totalCount
+				edges {
+					node {
+						dateTime
+						eventUrl
+						id
+						title
 					}
 				}
 			}
-		}';
-
-		// Make POST request with the GraphQL query.
-		$request = wp_remote_post(
-			$request_uri,
-			[
-				'headers' => [
-					'Content-Type' => 'application/json',
-				],
-				'body'    => wp_json_encode(
-					[
-						'query' => $query,
-					]
-				),
-			]
-		);
-
-		if ( is_wp_error( $request ) || 200 !== (int) wp_remote_retrieve_response_code( $request ) ) {
-			return;
 		}
+	}';
 
+	$request = wp_remote_post(
+		$request_uri,
+		[
+			'headers' => [
+				'Content-Type' => 'application/json',
+			],
+			'timeout' => 10, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- Timeout set for external request.
+			'body'    => wp_json_encode(
+				[
+					'query' => $query,
+				]
+			),
+		]
+	);
+
+	if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
 		$response_body = json_decode( wp_remote_retrieve_body( $request ) );
 
-		// Return early if we don't have the expected data.
-		if ( empty( $response_body ) || ! isset( $response_body->data->groupByUrlname->events->edges ) ) {
-			return;
+		$edges = $response_body->data->groupByUrlname->events->edges ?? null;
+
+		if ( is_array( $edges ) ) {
+			foreach ( $edges as $edge ) {
+				if ( ! isset( $edge->node ) ) {
+					continue;
+				}
+
+				$event = $edge->node;
+
+				// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
+				if ( empty( $event->title ) || empty( $event->dateTime ) || empty( $event->eventUrl ) || empty( $event->id ) ) {
+					continue;
+				}
+
+				$timestamp = strtotime( (string) $event->dateTime );
+				if ( false === $timestamp ) {
+					continue;
+				}
+
+				$event_data       = new stdClass();
+				$event_data->name = (string) $event->title;
+				$event_data->time = $timestamp * 1000; // Convert to milliseconds to match old format.
+				$event_data->link = (string) $event->eventUrl;
+				$event_data->id   = (string) $event->id;
+				// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase.
+
+				$output[] = $event_data;
+			}
 		}
-
-		// Transform the GraphQL response to match the format expected from old rest response.
-		$output = [];
-		foreach ( $response_body->data->groupByUrlname->events->edges as $edge ) {
-			$event = $edge->node;
-
-			// phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase -- GraphQL response uses camelCase.
-			$event_data       = new stdClass();
-			$event_data->name = $event->title;
-			$event_data->time = strtotime( $event->dateTime ) * 1000; // Convert to milliseconds to match old format.
-			$event_data->link = $event->eventUrl;
-			$event_data->id   = $event->id;
-			// phpcs:enable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase.
-
-			$output[] = $event_data;
-		}
-
-		if ( empty( $output ) ) {
-			return;
-		}
-
-		set_transient( $key, $output, DAY_IN_SECONDS );
 	}
 
-	return $output;
+	if ( ! empty( $output ) ) {
+		set_transient( $key, $output, DAY_IN_SECONDS );
+		update_option( $stale_key, $output, false );
+		return $output;
+	}
+
+	$stale_value = get_option( $stale_key );
+	if ( is_array( $stale_value ) && ! empty( $stale_value ) ) {
+		// Serve stale data for a short window while retrying upstream requests periodically.
+		set_transient( $key, $stale_value, HOUR_IN_SECONDS );
+		return $stale_value;
+	}
+
+	return [];
 }
 
 /**
@@ -347,14 +376,14 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
  * @param  string  $meetup meetup name.
  * @param  integer $count number of meetups to return.
  * @param  string  $heading heading level.
- * @return json
+ * @return string
  */
 function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 
 	$json = edac_get_upcoming_meetups_json( $meetup, $count );
 
 	if ( empty( $json ) ) {
-		return;
+		return '';
 	}
 
 	$html = '<ul class="edac-upcoming-meetup-list">';
@@ -365,7 +394,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 		$html .= '
 		<li class="edac-upcoming-meetup-item edac-mb-3">
 			<h' . esc_html( $heading ) . ' class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h' . esc_html( $heading ) . '>
-			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . ( (int) $event->time / 1000 ) . '</div>
+			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . (string) ( (int) $event->time / 1000 ) . '</div>
 			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
 		</li>';
 	}
@@ -853,4 +882,40 @@ function edac_is_virtual_page( $post_id ) {
  */
 function edac_is_pro() {
 	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
+}
+
+/**
+ * Get current timestamp in UTC for database storage.
+ *
+ * @since 1.35.0
+ * @return string MySQL datetime string in UTC.
+ */
+function edac_get_current_utc_datetime(): string {
+	return gmdate( 'Y-m-d H:i:s' );
+}
+
+/**
+ * Format a UTC datetime string for display in WordPress timezone.
+ *
+ * Uses the WordPress configured date and time format settings.
+ *
+ * @since 1.35.0
+ * @param string $utc_datetime MySQL datetime string in UTC format.
+ * @return string Formatted datetime string in WordPress timezone, or empty string if invalid.
+ */
+function edac_format_datetime_from_utc( string $utc_datetime ): string {
+	if ( ! $utc_datetime || '0000-00-00 00:00:00' === $utc_datetime ) {
+		return '';
+	}
+
+	$timestamp = strtotime( $utc_datetime . ' UTC' );
+	if ( false === $timestamp ) {
+		return '';
+	}
+
+	$date_format = get_option( 'date_format' );
+	$time_format = get_option( 'time_format' );
+	$format      = $date_format . ' ' . $time_format;
+
+	return wp_date( $format, $timestamp );
 }

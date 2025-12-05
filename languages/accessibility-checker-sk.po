@@ -2,18 +2,18 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.31.0\n"
+"Project-Id-Version: Accessibility Checker 1.35.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-09-04T18:22:49+00:00\n"
+"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
-"Language: sk\n"
+"Language: sk_SK\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #. Plugin Name of the plugin
@@ -23,6 +23,7 @@ msgstr ""
 #: includes/classes/class-admin-toolbar.php:53
 #: includes/options-page.php:45
 #: partials/welcome-page.php:24
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -172,27 +173,27 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Špeciálna ponuka na Čierny piatok! 🎉"
 
 #: admin/class-admin-notices.php:130
-msgid "Upgrade to a paid version of Accessibility Checker from November 25th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Aktualizujte na platenú verziu Accessibility Checker od 25. Novembra do 3. decembra a získajte 30% zľavu! Kompletné skenovanie stránky, správa o otvorených problémoch na celom webe, protokoly ignorovania a ďalšie."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
+msgstr "Inovujte na platenú verziu Accessibility Checker od 24. novembra do 3. decembra a získajte zľavu 30 %! Kompletné skenovanie stránok, správa otvorených problémov na celom webe, ignorovanie protokolov a ďalšie."
 
 #: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:218
+#: admin/class-admin-notices.php:221
 msgid "Ask a Pre-Sale Question"
 msgstr "Položiť predpredajnú otázku"
 
 #: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:222
 msgid "Upgrade Now"
 msgstr "Inovovať teraz"
 
 #: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:238
-#: admin/class-admin-notices.php:327
+#: admin/class-admin-notices.php:241
+#: admin/class-admin-notices.php:330
 #: admin/class-ajax.php:56
 #: admin/class-ajax.php:202
-#: admin/class-ajax.php:579
-#: admin/class-ajax.php:712
-#: admin/class-ajax.php:786
+#: admin/class-ajax.php:585
+#: admin/class-ajax.php:718
+#: admin/class-ajax.php:792
 #: admin/class-frontend-highlight.php:78
 #: admin/class-frontend-highlight.php:96
 #: admin/class-frontend-highlight.php:101
@@ -200,50 +201,50 @@ msgstr "Inovovať teraz"
 msgid "Permission Denied"
 msgstr "Prístup zamietnutý"
 
-#: admin/class-admin-notices.php:160
-#: admin/class-admin-notices.php:250
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:163
+#: admin/class-admin-notices.php:253
+#: admin/class-admin-notices.php:354
 msgid "Update option wasn't successful"
 msgstr "Aktualizácia možnosti nebola úspešná"
 
-#: admin/class-admin-notices.php:216
+#: admin/class-admin-notices.php:219
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Získajte 25 % zľavu na Accessibility Checker Pro pri príležitosti Svetového dňa povedomia o prístupnosti! 🎉"
 
-#: admin/class-admin-notices.php:217
+#: admin/class-admin-notices.php:220
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Použite kupón GAAD25 od 13. Do 21. mája a získajte prístup k skenovaniu celého webu a ďalším pro funkciám so špeciálnou zľavou. Nie ste si istí, či je inovácia pre vás tá správna voľba?"
 
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:305
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Ahojte! Ďakujeme, že používate Accessibility Checker ako súčasť vášho súboru nástrojov pre prístupnosť. Keďže ho už nejaký čas používate, napísali by ste, prosím, 5-hviezdičkovú recenziu Accessibility Checker v adresári pluginov WordPress? Pomôže to zvýšiť našu viditeľnosť, aby sa viac ľudí mohlo dozvedieť o dôležitosti webovej prístupnosti. Veľmi pekne ďakujeme!"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:308
 msgid "Write A Review"
 msgstr "Napísať recenziu"
 
-#: admin/class-admin-notices.php:306
+#: admin/class-admin-notices.php:309
 msgid "Remind Me In Two Weeks"
 msgstr "Pripomenúť o dva týždne"
 
-#: admin/class-admin-notices.php:307
+#: admin/class-admin-notices.php:310
 msgid "Never Ask Again"
 msgstr "Už sa nikdy nepýtať"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:337
 msgid "The review action value was not set"
 msgstr "Hodnota akcie pre recenziu nebola nastavená"
 
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:206
-#: admin/class-ajax.php:583
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:589
+#: admin/class-ajax.php:796
 msgid "The post ID was not set"
 msgstr "ID príspevku nebolo nastavené"
 
 #: admin/class-ajax.php:64
 #: admin/class-ajax.php:210
-#: admin/class-ajax.php:587
+#: admin/class-ajax.php:593
 msgid "You do not have permission to view this information for this post."
 msgstr "Nemáte povolenie na zobrazenie týchto informácií pre tento príspevok."
 
@@ -270,8 +271,7 @@ msgid "%s Error"
 msgid_plural "%s Errors"
 msgstr[0] "%s Chyba"
 msgstr[1] "%s Errors"
-msgstr[2] "%s Errors"
-msgstr[3] "%s Chýb"
+msgstr[2] "%s Chýb"
 
 #. translators: %s: Number of contrast errors
 #: admin/class-ajax.php:133
@@ -280,8 +280,7 @@ msgid "%s Contrast Error"
 msgid_plural "%s Contrast Errors"
 msgstr[0] "%s Chyba kontrastu"
 msgstr[1] "%s Contrast Errors"
-msgstr[2] "%s Contrast Errors"
-msgstr[3] "%s Chýb kontrastu"
+msgstr[2] "%s Chýb kontrastu"
 
 #. translators: %s: Number of warnings
 #: admin/class-ajax.php:139
@@ -290,8 +289,7 @@ msgid "%s Warning"
 msgid_plural "%s Warnings"
 msgstr[0] "%s Upozornenie"
 msgstr[1] "%s Warnings"
-msgstr[2] "%s Warnings"
-msgstr[3] "%s Upozornení"
+msgstr[2] "%s Upozornení"
 
 #. translators: %s: Number of ignored items
 #: admin/class-ajax.php:145
@@ -300,8 +298,7 @@ msgid "%s Ignored Item"
 msgid_plural "%s Ignored Items"
 msgstr[0] "%s Ignorovaná položka"
 msgstr[1] "%s Ignored Items"
-msgstr[2] "%s Ignored Items"
-msgstr[3] "%s Ignorovaných položiek"
+msgstr[2] "%s Ignorovaných položiek"
 
 #: admin/class-ajax.php:182
 msgid "No summary to return"
@@ -328,46 +325,54 @@ msgstr "Uložiť"
 msgid "Affected Code"
 msgstr "Ovplyvnený kód"
 
+#: admin/class-ajax.php:438
+msgid "Username:"
+msgstr "Používateľské meno:"
+
+#: admin/class-ajax.php:443
+msgid "Date:"
+msgstr "Dátum:"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:499
+#: admin/class-ajax.php:505
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Zobraziť problém s ID %d na webovej stránke, otvorí sa nové okno"
 
-#: admin/class-ajax.php:500
+#: admin/class-ajax.php:506
 msgid "View on page"
 msgstr "Zobraziť na stránke"
 
-#: admin/class-ajax.php:519
+#: admin/class-ajax.php:525
 msgid "Fix: "
 msgstr "Oprava: "
 
-#: admin/class-ajax.php:520
+#: admin/class-ajax.php:526
 msgid "Fix"
 msgstr "Opraviť"
 
-#: admin/class-ajax.php:543
+#: admin/class-ajax.php:549
 msgid "Your user account doesn't have permission to ignore this issue."
 msgstr "Váš používateľský účet nemá povolenie ignorovať tento problém."
 
-#: admin/class-ajax.php:560
+#: admin/class-ajax.php:566
 msgid "No details to return"
 msgstr "Žiadne podrobnosti na vrátenie"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:700
 msgid "No readability data to return"
 msgstr "Žiadne údaje o čitateľnosti na vrátenie"
 
-#: admin/class-ajax.php:746
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:752
+#: admin/class-ajax.php:773
 msgid "No ignore data to return"
 msgstr "Žiadne údaje o ignorovaní na vrátenie"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:800
 msgid "The summary was not set"
 msgstr "Súhrn nebol nastavený"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:804
 msgid "You do not have permission to edit this post."
 msgstr "Nemáte povolenie na úpravu tohto príspevku."
 
@@ -402,7 +407,7 @@ msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Zobraziť dokumentáciu Accessibility Checker (otvorí sa v novom okne)"
 
 #: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:309
+#: admin/class-widgets.php:313
 msgid "Documentation"
 msgstr "Dokumentácia"
 
@@ -464,32 +469,28 @@ msgid "Unique Error"
 msgid_plural "Unique Errors"
 msgstr[0] "Jedinečná chyba"
 msgstr[1] "Unique Errors"
-msgstr[2] "Unique Errors"
-msgstr[3] "Jedinečné chyby"
+msgstr[2] "Jedinečné chyby"
 
 #: admin/class-welcome-page.php:113
 msgid "Unique Color Contrast Error"
 msgid_plural "Unique Color Contrast Errors"
 msgstr[0] "Jedinečná chyba kontrastu farieb"
 msgstr[1] "Unique Color Contrast Errors"
-msgstr[2] "Unique Color Contrast Errors"
-msgstr[3] "Jedinečné chyby kontrastu farieb"
+msgstr[2] "Jedinečné chyby kontrastu farieb"
 
 #: admin/class-welcome-page.php:138
 msgid "Unique Warning"
 msgid_plural "Unique Warnings"
 msgstr[0] "Jedinečné upozornenie"
 msgstr[1] "Unique Warnings"
-msgstr[2] "Unique Warnings"
-msgstr[3] "Jedinečné upozornenia"
+msgstr[2] "Jedinečné upozornenia"
 
 #: admin/class-welcome-page.php:163
 msgid "Ignored Item"
 msgid_plural "Ignored Items"
 msgstr[0] "Ignorovaná položka"
 msgstr[1] "Ignored Items"
-msgstr[2] "Ignored Items"
-msgstr[3] "Ignorované položky"
+msgstr[2] "Ignorované položky"
 
 #: admin/class-welcome-page.php:180
 msgid "Average Issues Per Page"
@@ -617,32 +618,32 @@ msgstr "Kontrast"
 msgid "Warnings"
 msgstr "Upozornenia"
 
-#: admin/class-widgets.php:247
+#: admin/class-widgets.php:248
 msgid "Upgrade to Scan"
 msgstr "Prejdite na vyššiu verziu pre kontrolu"
 
-#: admin/class-widgets.php:276
+#: admin/class-widgets.php:277
 msgid "See More Reports"
 msgstr "Zobraziť viac reportov"
 
-#: admin/class-widgets.php:286
-#: partials/welcome-page.php:235
+#: admin/class-widgets.php:289
+#: partials/welcome-page.php:239
 msgid "Learn Accessibility"
 msgstr "Naučte sa o prístupnosti"
 
-#: admin/class-widgets.php:307
+#: admin/class-widgets.php:311
 msgid "Additional Resources"
 msgstr "Ďalšie zdroje"
 
-#: admin/class-widgets.php:308
+#: admin/class-widgets.php:312
 msgid "Blog (opens in a new window)"
 msgstr "Blog (otvorí sa v novom okne)"
 
-#: admin/class-widgets.php:308
+#: admin/class-widgets.php:312
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:309
+#: admin/class-widgets.php:313
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentácia (otvorí sa v novom okne)"
 
@@ -745,8 +746,7 @@ msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker naskenoval %s príspevok na problémy s prístupnosťou."
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[3] "Accessibility Checker naskenoval %s príspevkov na problémy s prístupnosťou."
+msgstr[2] "Accessibility Checker naskenoval %s príspevkov na problémy s prístupnosťou."
 
 #: admin/site-health/class-checks.php:196
 msgid "No post types selected for accessibility checking"
@@ -771,8 +771,7 @@ msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typu príspevku: %2$s."
 msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[3] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typov príspevkov: %2$s."
+msgstr[2] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typov príspevkov: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -920,8 +919,8 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získať Accessibility Checker Pro (otvorí sa v novom okne)"
 
 #: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:897
-#: includes/options-page.php:921
+#: includes/options-page.php:898
+#: includes/options-page.php:922
 msgid "Simplified Summary"
 msgstr "Zjednodušené zhrnutie"
 
@@ -2674,57 +2673,65 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Pochopenie smernice 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:101
+#: includes/classes/WPCLI/BootstrapCLI.php:109
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Nepodarilo sa zaregistrovať príkaz %1$s, pretože %2$s"
 
-#: includes/classes/WPCLI/Command/DeleteStats.php:61
+#: includes/classes/WPCLI/Command/CleanupOrphanedIssues.php:73
+msgid "Number of orphaned posts to process in one batch."
+msgstr "Počet osirotených príspevkov na spracovanie v jednej dávke."
+
+#: includes/classes/WPCLI/Command/CleanupOrphanedIssues.php:80
+msgid "Seconds to sleep between deletions (default: 0)."
+msgstr "Sekundy na spánok medzi odstráneniami (predvolené: 0)."
+
+#: includes/classes/WPCLI/Command/DeleteStats.php:72
 msgid "The ID of the post to delete stats for."
 msgstr "ID príspevku, pre ktorý sa majú odstrániť štatistiky."
 
-#: includes/classes/WPCLI/Command/DeleteStats.php:83
+#: includes/classes/WPCLI/Command/DeleteStats.php:94
 msgid "No Post ID provided."
 msgstr "Nebolo poskytnuté ID príspevku."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/DeleteStats.php:92
+#: includes/classes/WPCLI/Command/DeleteStats.php:103
 #, php-format
 msgid "Post ID %1$s does not exist."
 msgstr "ID príspevku %1$s neexistuje."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/DeleteStats.php:103
+#: includes/classes/WPCLI/Command/DeleteStats.php:114
 #, php-format
 msgid "Stats of %1$s deleted."
 msgstr "Štatistiky pre %1$s boli odstránené."
 
-#: includes/classes/WPCLI/Command/GetSiteStats.php:67
+#: includes/classes/WPCLI/Command/GetSiteStats.php:78
 msgid "Keys to show in the results. Defaults to all keys."
 msgstr "Kľúče, ktoré sa majú zobraziť vo výsledkoch. Predvolene všetky kľúče."
 
-#: includes/classes/WPCLI/Command/GetSiteStats.php:75
+#: includes/classes/WPCLI/Command/GetSiteStats.php:86
 msgid "Clear the cache before retrieving the stats (can be intensive)."
 msgstr "Vyčistiť vyrovnávaciu pamäť pred získaním štatistík (môže byť náročné)."
 
 #. translators: 1: a stat key that was requested but not found.
-#: includes/classes/WPCLI/Command/GetSiteStats.php:111
+#: includes/classes/WPCLI/Command/GetSiteStats.php:122
 #, php-format
 msgid "Stat key: %1$s not found in stats."
 msgstr "Štatistický kľúč: %1$s nebol nájdený v štatistikách."
 
-#: includes/classes/WPCLI/Command/GetStats.php:85
+#: includes/classes/WPCLI/Command/GetStats.php:96
 msgid "The ID of the post to get stats for."
 msgstr "ID príspevku, pre ktorý sa majú získať štatistiky."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/GetStats.php:126
+#: includes/classes/WPCLI/Command/GetStats.php:137
 #, php-format
 msgid "Post ID %1$d does not exist."
 msgstr "ID príspevku %1$d neexistuje."
 
 #. translators: 1: a post ID.
-#: includes/classes/WPCLI/Command/GetStats.php:142
+#: includes/classes/WPCLI/Command/GetStats.php:153
 #, php-format
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Buď príspevok ešte nebol skontrolovaný, alebo všetky testy prešli pre ID príspevku %1$d."
@@ -2741,12 +2748,12 @@ msgstr "trvalý odkaz na "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:341
+#: includes/helper-functions.php:392
 msgid "Attend Free"
 msgstr "Zúčastnite sa zadarmo"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:790
+#: includes/helper-functions.php:841
 #, php-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Zobraziť %s orientačný bod na webstránke, otvorí sa nové okno"
@@ -2812,12 +2819,12 @@ msgid "Simplified Summary Heading"
 msgstr "Zjednodušený nadpis súhrnu"
 
 #: includes/options-page.php:235
-#: includes/options-page.php:735
+#: includes/options-page.php:736
 msgid "Add Footer Accessibility Statement"
 msgstr "Pridať vyhlásenie o prístupnosti do pätičky"
 
 #: includes/options-page.php:244
-#: includes/options-page.php:758
+#: includes/options-page.php:759
 msgid "Include Link to Accessibility Policy"
 msgstr "Zahrnúť odkaz na pravidlá prístupnosti"
 
@@ -2960,31 +2967,31 @@ msgstr "Vždy"
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Mal by Accessibility Checker žiadať o zjednodušené zhrnutie iba vtedy, keď je úroveň čitateľnosti vášho príspevku alebo stránky nad 9. ročníkom, vždy o to žiadať bez ohľadu na úroveň čitateľnosti, alebo o to nikdy nežiadať bez ohľadu na úroveň čitateľnosti?"
 
-#: includes/options-page.php:660
+#: includes/options-page.php:661
 msgid "To check content other than posts and pages, please "
 msgstr "Na kontrolu iného obsahu ako príspevkov a stránok, prosím "
 
-#: includes/options-page.php:662
+#: includes/options-page.php:663
 msgid "upgrade to pro"
 msgstr "prejdite na Pro verziu"
 
-#: includes/options-page.php:663
+#: includes/options-page.php:664
 msgid " (opens in a new window)"
 msgstr " (otvorí sa v novom okne)"
 
-#: includes/options-page.php:668
+#: includes/options-page.php:669
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Vyberte, ktoré typy príspevkov by mali byť kontrolované počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné ignorované upozornenia, ktoré boli nastavené."
 
-#: includes/options-page.php:810
+#: includes/options-page.php:811
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Odstrániť všetky údaje Accessibility Checker pri odinštalovaní pluginu."
 
-#: includes/options-page.php:965
+#: includes/options-page.php:966
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Vyber, ktoré používateľské role majú oprávnenie ignorovať problémy."
 
-#: includes/options-page.php:998
+#: includes/options-page.php:999
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Nakonfiguruj, ktoré používateľské role majú prístup k špecifickým funkciám Accessibility Checker."
 
@@ -4520,8 +4527,33 @@ msgid "Close fixes modal"
 msgstr "Zatvoriť modálne okno s opravami"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Open details for %1$s, %2$s of %3$s"
+msgstr "Otvoriť podrobnosti pre %1$s, %2$s z %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
 msgstr "Preskenovať túto stránku"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Accessibility Checker Tools"
+msgstr "Nástroje Accessibility Checker"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Close"
+msgstr "Zavrieť"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Loading..."
+msgstr "Načítava sa..."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Previous"
+msgstr "Predchádzajúce"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Next"
+msgstr "Ďalšie"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Disable Page Styles"
@@ -4532,8 +4564,33 @@ msgid "Disable Styles"
 msgstr "Vypnúť štýly"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Prvok nie je viditeľný. Skúste zakázať štýly."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Prvok nie je zaostriteľný. Skúste zakázať štýly."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Prvok sa na stránke nenašiel."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Pri načítavaní problémov sa vyskytla chyba."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Fix issue: %s"
+msgstr "Opraviť problém: %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Fix Issue"
+msgstr "Opraviť problém"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Full Documentation"
+msgstr "Kompletná dokumentácia"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Show Code"
@@ -4564,16 +4621,14 @@ msgid "error"
 msgid_plural "errors"
 msgstr[0] "chyba"
 msgstr[1] "errors"
-msgstr[2] "errors"
-msgstr[3] "chyby"
+msgstr[2] "chyby"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "upozornenie"
 msgstr[1] "warnings"
-msgstr[2] "warnings"
-msgstr[3] "upozornenia"
+msgstr[2] "upozornenia"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4584,12 +4639,16 @@ msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "ignorovaný problém"
 msgstr[1] "ignored issues"
-msgstr[2] "ignored issues"
-msgstr[3] "ignorované problémy"
+msgstr[2] "ignorované problémy"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."
 msgstr "zistených."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Landmark: %s"
+msgstr "Orientácia: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."

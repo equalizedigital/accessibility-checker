@@ -248,7 +248,7 @@ class Summary_Generator {
 	 * @since 1.9.0
 	 */
 	private function update_issue_density( $summary ) {
-		$issue_density_array = get_post_meta( $this->post_id, '_edac_density_data' );
+		$issue_density_array = get_post_meta( $this->post_id, '_edac_density_data', false );
 
 		if (
 			(

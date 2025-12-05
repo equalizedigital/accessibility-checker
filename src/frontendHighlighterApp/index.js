@@ -4,7 +4,7 @@
 import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
-import { __, _n } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { hashString } from '../common/helpers';
@@ -286,7 +286,7 @@ class AccessibilityCheckerHighlight {
 		// Create the tooltip.
 		const tooltip = document.createElement( 'button' );
 		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
-		tooltip.setAttribute( 'aria-label', `Open details for ${ value.rule_title }, ${ index + 1 } of ${ totalItems }` );
+		tooltip.setAttribute( 'aria-label', sprintf( __( 'Open details for %1$s, %2$s of %3$s', 'accessibility-checker' ), value.rule_title, index + 1, totalItems ) );
 		tooltip.setAttribute( 'aria-expanded', 'false' );
 		tooltip.setAttribute( 'aria-haspopup', 'dialog' );
 
@@ -405,21 +405,21 @@ class AccessibilityCheckerHighlight {
 
 		const newElement = `
                         <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
-                                <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="Accessibility Checker Tools"></button>
+                                <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
                                 <div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
-                                <button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="Close">×</button>
+                                <button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
                                         <div class="edac-highlight-panel-description-content"></div>
                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
                                 </div>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-                                <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="Close">×</button>
-                                <div class="edac-highlight-panel-controls-title">Accessibility Checker</div>
-                                <div class="edac-highlight-panel-controls-summary">Loading...</div>
+                                <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
+                                <div class="edac-highlight-panel-controls-title">${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
+                                <div class="edac-highlight-panel-controls-summary">${ __( 'Loading...', 'accessibility-checker' ) }</div>
                                 <div class="edac-highlight-panel-controls-buttons ${ ! userCanEdit ? ' single_button' : '' }">
                                         <div>
-                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>Previous</button>
-                                                <button id="edac-highlight-next" disabled="true">Next<span aria-hidden="true"> »</span></button><br />
+                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>${ __( 'Previous', 'accessibility-checker' ) }</button>
+                                                <button id="edac-highlight-next" disabled="true">${ __( 'Next', 'accessibility-checker' ) }<span aria-hidden="true"> »</span></button><br />
                                         </div>
                                         <div>
                                                 ${ rescanButton }
@@ -521,17 +521,17 @@ class AccessibilityCheckerHighlight {
 				//issueElement.focus();
 
 				if ( ! this.checkVisibility( tooltip ) || ! this.checkVisibility( element ) ) {
-					this.currentIssueStatus = 'The element is not visible. Try disabling styles.';
+					this.currentIssueStatus = __( 'The element is not visible. Try disabling styles.', 'accessibility-checker' );
 					//TODO: console.log(`Element with id ${id} is not visible!`);
 				} else {
 					this.currentIssueStatus = null;
 				}
 			} else {
-				this.currentIssueStatus = 'The element is not focusable. Try disabling styles.';
+				this.currentIssueStatus = __( 'The element is not focusable. Try disabling styles.', 'accessibility-checker' );
 				//TODO: console.log(`Element with id ${id} is not focusable!`);
 			}
 		} else {
-			this.currentIssueStatus = 'The element was not found on the page.';
+			this.currentIssueStatus = __( 'The element was not found on the page.', 'accessibility-checker' );
 			//TODO: console.log(`Element with id ${id} not found in the document!`);
 		}
 
@@ -707,13 +707,13 @@ class AccessibilityCheckerHighlight {
  						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
  						aria-haspopup="true"
  						aria-controls="edac-highlight-panel-description-fix"
-						aria-label="Fix issue: ${ this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name }"> 						Fix Issue</button>`;
+						aria-label="${ sprintf( __( 'Fix issue: %s', 'accessibility-checker' ), this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name ) }"> 						${ __( 'Fix Issue', 'accessibility-checker' ) }</button>`;
 			} else {
 				content += ` <br />`;
 			}
 
 			// Get the link to the documentation
-			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">Full Documentation</a>`;
+			content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }">${ __( 'Full Documentation', 'accessibility-checker' ) }</a>`;
 
 			// Get the code button
 			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Code', 'accessibility-checker' ) }</button>`;
@@ -926,7 +926,7 @@ class AccessibilityCheckerHighlight {
 	countIgnored() {
 		let count = 0;
 		for ( const issue of this.issues ) {
-			if ( issue.ignored === 1 ) {
+			if ( issue.ignored === '1' ) {
 				count++;
 			}
 		}
@@ -955,7 +955,7 @@ class AccessibilityCheckerHighlight {
 			if ( warningCount >= 0 ) {
 				textContent += warningCount + ' ' + _n( 'warning', 'warnings', warningCount, 'accessibility-checker' ) + ', ';
 			}
-			if ( ignoredCount >= 0 ) {
+			if ( ignoredCount > 0 ) {
 				textContent += __( 'and', 'accessibility-checker' ) + ' ' + ignoredCount + ' ' + _n( 'ignored issue', 'ignored issues', ignoredCount, 'accessibility-checker' ) + ' ' + __( 'detected.', 'accessibility-checker' );
 			} else {
 				// Remove the trailing comma and add "detected."
@@ -1023,7 +1023,7 @@ class AccessibilityCheckerHighlight {
 				const landmarkType = this.getLandmarkType( landmarkElement );
 				const landmarkLabel = document.createElement( 'div' );
 				landmarkLabel.classList.add( 'edac-landmark-label' );
-				landmarkLabel.textContent = `Landmark: ${ landmarkType }`;
+				landmarkLabel.textContent = sprintf( __( 'Landmark: %s', 'accessibility-checker' ), landmarkType );
 				landmarkLabel.setAttribute( 'aria-hidden', 'true' );
 				landmarkLabel.style.cssText = `
 					position: absolute;
