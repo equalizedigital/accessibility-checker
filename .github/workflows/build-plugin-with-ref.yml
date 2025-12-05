@@ -138,7 +138,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-primary-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
-          path: ${{ env.PRIMARY_ZIP_PATH }}
+          path: ${{ env.PRIMARY_ZIP_FOLDER }}
           if-no-files-found: error
 
       - name: Check if ref build is needed
@@ -204,7 +204,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-ref-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
-          path: ${{ env.REF_ZIP_PATH }}
+          path: ${{ env.REF_ZIP_FOLDER }}
           if-no-files-found: error
 
       - name: Upload to release (both zips)
