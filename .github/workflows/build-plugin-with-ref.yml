@@ -114,7 +114,7 @@ jobs:
       - name: Extract plugin version and commit hash
         id: version
         run: |
-          VERSION=$(grep "^ \* Version:" accessibility-checker.php | sed 's/.*Version: \([^ ]*\).*/\1/')
+          VERSION=$(grep "Version:" accessibility-checker.php | head -1 | sed 's/.*Version:[[:space:]]*\([^ ]*\).*/\1/')
           SHORT_SHA=$(git rev-parse --short HEAD)
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
@@ -173,7 +173,7 @@ jobs:
         if: steps.setref.outputs.skip_primary != 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: accessibility-checker-primary-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
+          name: ${{ env.PRIMARY_ZIP_NAME }}
           path: ${{ env.PRIMARY_ZIP_FOLDER }}
           if-no-files-found: error
 
@@ -245,7 +245,7 @@ jobs:
         if: steps.check_ref.outputs.need_ref_build == 'true'
         uses: actions/upload-artifact@v4
         with:
-          name: accessibility-checker-ref-${{ github.event.pull_request.number || github.event.release.tag_name || 'manual' }}
+          name: ${{ env.REF_ZIP_NAME }}
           path: ${{ env.REF_ZIP_FOLDER }}
           if-no-files-found: error
 
