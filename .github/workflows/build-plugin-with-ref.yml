@@ -270,10 +270,11 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
-            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const primaryName = process.env.PRIMARY_ZIP_NAME;
-            const primaryPath = process.env.PRIMARY_ZIP_PATH;
-            const body = `✅ Accessibility Checker build (primary only)\n\n- Artifact: **${primaryName}**\n- Path: \`${primaryPath}\`\n- Workflow run: [View logs](${runUrl})`;
+            const runId = context.runId;
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}`;
+            const primaryName = process.env.PRIMARY_ZIP_NAME_NO_EXT;
+            const downloadUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}/attempts/1/download/${primaryName}`;
+            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
