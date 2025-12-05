@@ -94,7 +94,15 @@ jobs:
 
       - name: Install npm dependencies
         run: |
-          if [ -f package.json ]; then npm ci || npm install; else echo "No package.json"; fi
+          if [ -f package.json ]; then
+            if [ -d node_modules ]; then
+              echo "node_modules cache hit, skipping install"
+            else
+              npm ci --prefer-offline --no-audit
+            fi
+          else
+            echo "No package.json"
+          fi
 
       - name: Get short commit hash for PR builds
         if: github.event_name == 'pull_request'
