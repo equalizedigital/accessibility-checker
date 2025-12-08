@@ -18,17 +18,17 @@ class ActivationTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		parent::tearDown();
 		delete_transient( 'edac_activation_redirect' );
-		unset( $_GET['action'] );
-		unset( $_GET['activate-multi'] );
+		
+		// Reset $_GET superglobal.
+		$_GET = [];
 	}
 
 	/**
 	 * Test that activation sets the redirect transient when not in multi-activation
 	 */
 	public function test_activation_sets_transient_for_single_activation() {
-		// Ensure no multi-activation flags are set.
-		unset( $_GET['action'] );
-		unset( $_GET['activate-multi'] );
+		// Ensure clean state - no multi-activation flags are set.
+		$_GET = [];
 
 		// Call activation function.
 		edac_activation();
@@ -85,8 +85,9 @@ class ActivationTest extends WP_UnitTestCase {
 	 * Test that edac_is_multi_activation returns false for single activation
 	 */
 	public function test_is_multi_activation_returns_false_for_single_activation() {
-		unset( $_GET['action'] );
-		unset( $_GET['activate-multi'] );
+		// Ensure clean state.
+		$_GET = [];
+		
 		$this->assertFalse( edac_is_multi_activation() );
 	}
 

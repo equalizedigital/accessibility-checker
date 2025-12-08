@@ -76,13 +76,8 @@ function edac_activation_redirect() {
 	// Delete the transient so we don't redirect again.
 	delete_transient( 'edac_activation_redirect' );
 
-	// Don't redirect if activating multiple plugins.
+	// Don't redirect if activating multiple plugins (includes AJAX check).
 	if ( edac_is_multi_activation() ) {
-		return;
-	}
-
-	// Don't redirect on AJAX requests.
-	if ( wp_doing_ajax() ) {
 		return;
 	}
 
