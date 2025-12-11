@@ -76,6 +76,9 @@ class Admin {
 		$admin_footer_text = new Admin_Footer_Text();
 		$admin_footer_text->init();
 
+		$activation_redirect = new Activation_Redirect();
+		$activation_redirect->init();
+
 		$this->init_ajax();
 
 		$this->meta_boxes->init_hooks();

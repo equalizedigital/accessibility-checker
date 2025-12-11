@@ -1,0 +1,83 @@
+<?php
+/**
+ * Handles plugin activation redirect to welcome page.
+ *
+ * @package Accessibility_Checker\Admin
+ */
+
+namespace EDAC\Admin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+/**
+ * Class Activation_Redirect
+ *
+ * Handles redirecting to the welcome page after plugin activation.
+ *
+ * @since 1.35.0
+ */
+class Activation_Redirect {
+	/**
+	 * Initialize the activation redirect.
+	 *
+	 * @since 1.35.0
+	 */
+	public function init() {
+		add_action( 'admin_init', [ $this, 'maybe_redirect_to_welcome' ] );
+	}
+
+	/**
+	 * Redirect to welcome page after activation if conditions are met.
+	 *
+	 * This will only redirect if:
+	 * - The activation redirect transient is set
+	 * - We're not doing an AJAX request
+	 * - We're not in the network admin (multisite)
+	 * - We're not activating multiple plugins at once
+	 * - User has permission to access the welcome page
+	 *
+	 * @since 1.35.0
+	 * @return void
+	 */
+	public function maybe_redirect_to_welcome() {
+		// Check if the activation redirect transient exists.
+		if ( ! get_transient( 'edac_activation_redirect' ) ) {
+			return;
+		}
+
+		// Delete the transient immediately to prevent redirect loops.
+		delete_transient( 'edac_activation_redirect' );
+
+		// Don't redirect during AJAX requests.
+		if ( wp_doing_ajax() ) {
+			return;
+		}
+
+		// Don't redirect during REST API requests.
+		if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+			return;
+		}
+
+		// Don't redirect in network admin (multisite).
+		if ( is_network_admin() ) {
+			return;
+		}
+
+		// Don't redirect if multiple plugins are being activated at once.
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- We're checking $_GET, not processing form data.
+		if ( isset( $_GET['activate-multi'] ) ) {
+			return;
+		}
+
+		// Don't redirect if user doesn't have permission to see the welcome page.
+		if ( ! current_user_can( 'edit_posts' ) ) {
+			return;
+		}
+
+		// Perform the redirect to the welcome page.
+		wp_safe_redirect( admin_url( 'admin.php?page=accessibility_checker' ) );
+		exit;
+	}
+}
