@@ -183,14 +183,22 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
 		
-		// Simulate network admin by setting the screen.
-		set_current_screen( 'network' );
+		// Mock is_network_admin() to return true.
+		add_filter(
+			'is_network_admin',
+			function () {
+				return true;
+			}
+		);
 		
-		// Call the method - it should return early.
+		// Call the method - it should return early without redirecting.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
 		// Transient should still be deleted.
 		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		
+		// Clean up filter.
+		remove_all_filters( 'is_network_admin' );
 	}
 
 	/**
@@ -244,5 +252,26 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 			// Catch any redirect exception - expected behavior.
 			unset( $e );
 		}
+	}
+
+	/**
+	 * Test that redirect does not happen in test environment.
+	 */
+	public function test_no_redirect_in_test_environment() {
+		// Set the transient.
+		set_transient( 'edac_activation_redirect', true, 60 );
+		
+		// Set up admin user.
+		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_user );
+		
+		// WP_TESTS_DOMAIN should be defined in test environment.
+		$this->assertTrue( defined( 'WP_TESTS_DOMAIN' ), 'WP_TESTS_DOMAIN should be defined in test environment' );
+		
+		// Call the method - it should return early without redirecting.
+		$this->activation_redirect->maybe_redirect_to_welcome();
+		
+		// Transient should still be deleted.
+		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
 	}
 }

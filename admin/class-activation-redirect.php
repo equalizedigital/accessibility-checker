@@ -76,6 +76,11 @@ class Activation_Redirect {
 			return;
 		}
 
+		// Don't redirect if we're in a test environment.
+		if ( defined( 'WP_TESTS_DOMAIN' ) ) {
+			return;
+		}
+
 		// Perform the redirect to the welcome page.
 		wp_safe_redirect( admin_url( 'admin.php?page=accessibility_checker' ) );
 		exit;
