@@ -25,6 +25,19 @@ export default {
 			return true;
 		}
 
+		// Allow role="menuitem" with aria-expanded (for expandable menu items)
+		// See: https://wordpress.org/support/topic/improper-use-of-link-5/
+		const hasAriaExpanded = node.hasAttribute( 'aria-expanded' );
+		if (
+			role
+				.toLowerCase()
+				.split( /\s+/ )
+				.includes( 'menuitem' ) &&
+			hasAriaExpanded
+		) {
+			return true;
+		}
+
 		const trimmedHref = href ? href.trim() : '';
 
 		// Fail if href is missing, just '#', or contains invalid protocols
