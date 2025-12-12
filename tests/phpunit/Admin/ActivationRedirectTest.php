@@ -77,8 +77,8 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// If we get here without a redirect, the test passes.
-		$this->assertTrue( true );
+		// If we get here without a redirect and no transient, the test passes.
+		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
 	}
 
 	/**
