@@ -131,6 +131,11 @@ describe( 'Link Improper Rule', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'Passes with multiple roles including menuitem and aria-expanded',
+			html: '<a href="#" role="foo menuitem bar" aria-expanded="false">Multiple roles with menuitem</a>',
+			shouldPass: true,
+		},
+		{
 			name: 'Fails with role="menuitem" but no aria-expanded',
 			html: '<a href="#" role="menuitem">Menu without aria-expanded</a>',
 			shouldPass: false,
