@@ -27,7 +27,7 @@ export default {
 				const root = node.getRootNode ? node.getRootNode() : document;
 				const escapedId = ( typeof CSS !== 'undefined' && CSS.escape ) ? CSS.escape( node.id ) : node.id.replace( /([\\!"#$%&'()*+,./:;<=>?@[\]^`{|}~])/g, '\\$1' );
 				const labels = root.querySelectorAll( `label[for="${ escapedId }"]` );
-				
+
 				// Filter out completely hidden labels (display:none or visibility:hidden)
 				for ( let i = 0; i < labels.length; i++ ) {
 					const label = labels[ i ];
