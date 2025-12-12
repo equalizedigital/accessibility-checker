@@ -221,29 +221,18 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that the correct redirect URL is used.
-	 *
-	 * This test verifies the redirect would go to the correct URL,
-	 * but doesn't actually perform the redirect (which would exit).
+	 * Test that the correct redirect URL is returned.
 	 */
-	public function test_redirect_url_is_correct() {
-		// Set the transient.
-		set_transient( 'edac_activation_redirect', true, 60 );
+	public function test_get_welcome_page_url_returns_correct_url() {
+		$url = $this->activation_redirect->get_welcome_page_url();
 		
-		// Set up admin user.
-		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
-		wp_set_current_user( $admin_user );
+		// Verify the URL is properly formed and points to the welcome page.
+		$this->assertStringContainsString( 'admin.php?page=accessibility_checker', $url );
+		$this->assertStringContainsString( 'wp-admin', $url );
 		
-		// We can't test the actual redirect without exiting,
-		// but we can verify the URL would be correct.
+		// Verify it's a valid admin URL.
 		$expected_url = admin_url( 'admin.php?page=accessibility_checker' );
-		
-		// Verify the URL is properly formed.
-		$this->assertStringContainsString( 'admin.php?page=accessibility_checker', $expected_url );
-		$this->assertStringContainsString( 'wp-admin', $expected_url );
-		
-		// Clean up - call the function to delete the transient.
-		$this->activation_redirect->maybe_redirect_to_welcome();
+		$this->assertEquals( $expected_url, $url );
 	}
 
 	/**

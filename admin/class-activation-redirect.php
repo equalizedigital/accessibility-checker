@@ -29,6 +29,16 @@ class Activation_Redirect {
 	}
 
 	/**
+	 * Get the welcome page URL.
+	 *
+	 * @since 1.35.0
+	 * @return string The URL to the welcome page.
+	 */
+	public function get_welcome_page_url() {
+		return admin_url( 'admin.php?page=accessibility_checker' );
+	}
+
+	/**
 	 * Redirect to welcome page after activation if conditions are met.
 	 *
 	 * This will only redirect if:
@@ -82,7 +92,7 @@ class Activation_Redirect {
 		}
 
 		// Perform the redirect to the welcome page.
-		wp_safe_redirect( admin_url( 'admin.php?page=accessibility_checker' ) );
+		wp_safe_redirect( $this->get_welcome_page_url() );
 		exit;
 	}
 }
