@@ -51,7 +51,7 @@ class Activation_Redirect {
 	 * @since 1.35.0
 	 * @return void
 	 */
-	public function maybe_redirect_to_welcome() {
+	public function maybe_redirect_to_welcome(): void {
 		// Check if the activation redirect transient exists.
 		if ( ! get_transient( 'edac_activation_redirect' ) ) {
 			return;
