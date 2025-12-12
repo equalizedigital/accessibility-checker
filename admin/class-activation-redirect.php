@@ -19,6 +19,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.35.0
  */
 class Activation_Redirect {
+
+	/**
+	 * The page slug for the welcome page.
+	 *
+	 * @since 1.35.0
+	 * @var string
+	 */
+	const WELCOME_PAGE_SLUG = 'accessibility_checker';
+
 	/**
 	 * Initialize the activation redirect.
 	 *
@@ -35,7 +44,7 @@ class Activation_Redirect {
 	 * @return string The URL to the welcome page.
 	 */
 	public function get_welcome_page_url(): string {
-		return admin_url( 'admin.php?page=accessibility_checker' );
+		return admin_url( 'admin.php?page=' . self::WELCOME_PAGE_SLUG );
 	}
 
 	/**
