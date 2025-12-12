@@ -93,12 +93,7 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		wp_set_current_user( $admin_user );
 		
 		// Call the method.
-		try {
-			$this->activation_redirect->maybe_redirect_to_welcome();
-		} catch ( Exception $e ) {
-			// Catch any redirect exception - expected behavior.
-			unset( $e );
-		}
+		$this->activation_redirect->maybe_redirect_to_welcome();
 		
 		// Transient should be deleted.
 		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
@@ -248,12 +243,7 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'wp-admin', $expected_url );
 		
 		// Clean up - call the function to delete the transient.
-		try {
-			$this->activation_redirect->maybe_redirect_to_welcome();
-		} catch ( Exception $e ) {
-			// Catch any redirect exception - expected behavior.
-			unset( $e );
-		}
+		$this->activation_redirect->maybe_redirect_to_welcome();
 	}
 
 	/**
