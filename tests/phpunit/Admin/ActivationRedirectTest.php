@@ -43,6 +43,8 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Clean up transient and global state.
 		delete_transient( 'edac_activation_redirect' );
 		unset( $_GET['activate-multi'] );
+		remove_all_filters( 'wp_doing_ajax' );
+		remove_all_filters( 'is_network_admin' );
 		parent::tearDown();
 	}
 
