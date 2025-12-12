@@ -67,6 +67,8 @@ import hasSubheadingsIfLongContent from '../checks/has-subheadings-if-long-conte
 import imageAnimated from '../rules/img-animated';
 import imageAnimatedCheck from '../checks/img-animated-check';
 import alwaysFail from '../checks/always-fail';
+import formFieldMultipleLabels from '../rules/form-field-multiple-labels';
+import formFieldConflictingLabels from '../checks/form-field-conflicting-labels';
 
 // Define all the custom rules to be used.
 export const rulesArray = [
@@ -104,6 +106,7 @@ export const rulesArray = [
 	imageAnimated,
 	ariaHiddenValidation,
 	ariaBrokenReference,
+	formFieldMultipleLabels,
 ];
 
 // Define all the custom checks to be used.
@@ -148,6 +151,7 @@ export const checksArray = [
 	ariaLabelNotFoundCheck,
 	ariaDescribedByNotFoundCheck,
 	ariaOwnsNotFoundCheck,
+	formFieldConflictingLabels,
 ];
 
 // Define the standard axe core rules to be used.
@@ -159,7 +163,6 @@ export const standardRuleIdsArray = [
 	'tabindex',
 	'html-lang-valid',
 	'html-has-lang',
-	'form-field-multiple-labels',
 	'heading-order',
 	'frame-title',
 	'area-alt',

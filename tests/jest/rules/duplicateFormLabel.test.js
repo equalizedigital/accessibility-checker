@@ -1,5 +1,15 @@
 import axe from 'axe-core';
 
+beforeAll( async () => {
+	const ruleModule = await import( '../../../src/pageScanner/rules/form-field-multiple-labels.js' );
+	const checkModule = await import( '../../../src/pageScanner/checks/form-field-conflicting-labels.js' );
+
+	axe.configure( {
+		rules: [ ruleModule.default ],
+		checks: [ checkModule.default ],
+	} );
+} );
+
 // Reset the document between tests
 beforeEach( () => {
 	document.body.innerHTML = '';
@@ -101,6 +111,74 @@ describe( 'form-field-multiple-labels rule', () => {
 			`,
 			shouldPass: false,
 		},
+		{
+			name: 'should fail when form field has both wrapped label and aria-label',
+			html: `
+			<form>
+				<label>
+					Name
+					<input type="text" aria-label="Full name" />
+				</label>
+			</form>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when form field has both label[for] and aria-label',
+			html: `
+			<form>
+				<label for="input1">Name</label>
+				<input id="input1" type="text" aria-label="Full name" />
+			</form>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when form field has wrapped label and label[for]',
+			html: `
+			<form>
+				<label for="input1">First Name</label>
+				<label>
+					<input id="input1" type="text" />
+				</label>
+			</form>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when form field has label[for] and aria-labelledby',
+			html: `
+			<form>
+				<label for="input1">Name</label>
+				<div id="label2">Full Name</div>
+				<input id="input1" type="text" aria-labelledby="label2" />
+			</form>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when form field has wrapped label and aria-labelledby',
+			html: `
+			<form>
+				<div id="label1">Full Name</div>
+				<label>
+					Name
+					<input type="text" aria-labelledby="label1" />
+				</label>
+			</form>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when form field has aria-label and aria-labelledby',
+			html: `
+			<form>
+				<div id="label1">Full Name</div>
+				<input type="text" aria-label="Name" aria-labelledby="label1" />
+			</form>
+			`,
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( { name, html, shouldPass } ) => {
@@ -108,7 +186,7 @@ describe( 'form-field-multiple-labels rule', () => {
 			document.body.innerHTML = html;
 
 			const results = await axe.run( document.body, {
-				runOnly: [ 'form-field-multiple-labels' ],
+				runOnly: [ 'form_field_multiple_labels' ],
 			} );
 
 			const violations = [ ...results.violations, ...results.incomplete ];
