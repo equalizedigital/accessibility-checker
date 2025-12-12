@@ -34,7 +34,7 @@ class Activation_Redirect {
 	 * @since 1.35.0
 	 * @return string The URL to the welcome page.
 	 */
-	public function get_welcome_page_url() {
+	public function get_welcome_page_url(): string {
 		return admin_url( 'admin.php?page=accessibility_checker' );
 	}
 
