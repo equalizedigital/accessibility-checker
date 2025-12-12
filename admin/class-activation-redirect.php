@@ -91,6 +91,8 @@ class Activation_Redirect {
 		}
 
 		// Don't redirect if user doesn't have permission to see the welcome page.
+		// Uses 'edit_posts' to match the welcome page's capability check (see includes/options-page.php).
+		// This allows Authors and above to access the welcome page, as intended by the plugin design.
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return;
 		}
