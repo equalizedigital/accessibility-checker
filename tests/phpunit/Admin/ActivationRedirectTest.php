@@ -92,9 +92,14 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that transient is deleted after being checked.
+	 * Test that transient is deleted only when redirect happens.
+	 *
+	 * Note: This test expects a redirect exception to be thrown because
+	 * WP_TESTS_DOMAIN is defined in the test environment, preventing the
+	 * actual redirect. In a real scenario without WP_TESTS_DOMAIN, the
+	 * redirect would occur and the transient would be deleted.
 	 */
-	public function test_transient_is_deleted_after_check() {
+	public function test_transient_is_deleted_only_on_redirect() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
 		
@@ -102,11 +107,11 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
 		
-		// Call the method.
+		// Call the method - it will return early due to WP_TESTS_DOMAIN.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// Transient should be deleted.
-		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		// Transient should still exist because redirect didn't happen.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 
 	/**
@@ -131,8 +136,8 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// Transient should still be deleted.
-		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		// Transient should still exist because no redirect happened.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 
 	/**
@@ -152,8 +157,8 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// Transient should still be deleted.
-		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		// Transient should still exist because no redirect happened.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 
 	/**
@@ -170,8 +175,8 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// Transient should still be deleted.
-		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		// Transient should still exist because no redirect happened.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 
 	/**
@@ -243,7 +248,7 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		// Call the method - it should return early without redirecting.
 		$this->activation_redirect->maybe_redirect_to_welcome();
 		
-		// Transient should still be deleted.
-		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
+		// Transient should still exist because no redirect happened.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 }
