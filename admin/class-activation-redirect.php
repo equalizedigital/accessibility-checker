@@ -66,9 +66,6 @@ class Activation_Redirect {
 			return;
 		}
 
-		// Delete the transient immediately to prevent redirect loops.
-		delete_transient( 'edac_activation_redirect' );
-
 		// Don't redirect during AJAX requests.
 		if ( wp_doing_ajax() ) {
 			return;
@@ -101,6 +98,9 @@ class Activation_Redirect {
 		if ( defined( 'WP_TESTS_DOMAIN' ) ) {
 			return;
 		}
+
+		// Delete the transient to prevent redirect loops.
+		delete_transient( 'edac_activation_redirect' );
 
 		// Perform the redirect to the welcome page.
 		wp_safe_redirect( $this->get_welcome_page_url() );
