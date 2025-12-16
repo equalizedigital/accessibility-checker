@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
-Tested up to: 6.8
-Stable tag: 1.34.0
+Tested up to: 6.9
+Stable tag: 1.35.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -210,6 +210,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 10. Accessibility Checker automated fix settings.
 
 == Changelog ==
+2025-12-05 - version 1.35.0
+* Fix - Ignored issues no longer count in density scores.
+* Fix - Ignored issues count comparison and message logic in frontend highlighter.
+* Fix - Allow long translations to wrap in new window warning tooltip.
+* Fix - Improve sanitization that would prevent checkboxes saving on first attempt in some cases.
+* Fix - Dashboard widget to conditionally display upcoming meetups and improve meetup data handling.
+* Fix - Make highlighter controls translatable.
+* Tweak - Add better help article link for new window warning fix.
+* Tweak - Use WordPress data functions instead of server time for ignore date formatting.
+
 2025-10-22 - version 1.34.0
 * Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
 * Tweak - Use post type labels rather than slugs in views where applicable.
