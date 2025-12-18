@@ -5,7 +5,7 @@
  * @package Accessibility_Checker\Admin
  */
 
-namespace EDAC\Admin;
+namespace EqualizeDigital\AccessibilityChecker\Admin;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
