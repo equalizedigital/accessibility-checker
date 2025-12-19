@@ -65,6 +65,10 @@ class Connector {
 
 		// Admin-post handler for license activate/deactivate.
 		add_action( 'admin_post_edac_license', [ $this, 'handle_license_post' ] );
+
+		// Schedule periodic license checks.
+		add_action( 'admin_init', [ $this, 'check_license_cron' ] );
+		add_action( 'edacp_check_license_hook', [ $this, 'periodic_check_license' ] );
 	}
 
 	/**
@@ -165,7 +169,7 @@ class Connector {
 			self::API_ENDPOINT,
 			[
 				'timeout'   => 15,  // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
-				'sslverify' => false,
+				'sslverify' => self::verify_ssl(),
 				'body'      => $api_params,
 			]
 		);
@@ -212,7 +216,7 @@ class Connector {
 			self::API_ENDPOINT,
 			[
 				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
-				'sslverify' => false,
+				'sslverify' => self::verify_ssl(),
 				'body'      => $api_params,
 			]
 		);
@@ -228,5 +232,75 @@ class Connector {
 			delete_option( 'edac_license_status' );
 			delete_option( 'edac_license_error' );
 		}
+	}
+
+	/**
+	 * License check
+	 *
+	 * @return void
+	 */
+	public function periodic_check_license() {
+
+		if ( ! get_option( 'edac_license_key' ) ) {
+			return;
+		}
+
+		$license = trim( get_option( 'edac_license_key' ) );
+
+		$api_params = [
+			'edd_action'   => 'check_license',
+			'license'      => $license,
+			'item_id'      => self::PRODUCT_ID,
+			'item_name'    => rawurlencode( self::PRODUCT_NAME ),
+			'url'          => home_url(),
+			'environment'  => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
+			'edac_version' => defined( 'EDAC_VERSION' ) ? EDAC_VERSION : '0.0.0',
+			'wp_version'   => get_bloginfo( 'version' ),
+			'php_version'  => phpversion(),
+		];
+
+		// Call the custom API.
+		$response = wp_remote_post(
+			EDACP_STORE_URL,
+			[
+				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- 15 seconds is needed for now.
+				'sslverify' => self::verify_ssl(),
+				'body'      => $api_params,
+			]
+		);
+		if ( is_wp_error( $response ) ) {
+			// this is a silent failure, we should log this or flag it somehow.
+			return;
+		}
+
+		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+
+		if ( 'valid' !== $license_data->license ) {
+			update_option( 'edacp_license_status', $license_data->license );
+		}
+	}
+
+	/**
+	 * License check cron schedule
+	 *
+	 * @return void
+	 */
+	public function check_license_cron() {
+		if ( ! wp_next_scheduled( 'edacp_check_license_hook' ) ) {
+			wp_schedule_event( time(), 'daily', 'edacp_check_license_hook' );
+		}
+	}
+
+	/**
+	 * Determines whether to verify SSL for licensing requests.
+	 *
+	 * Can be disabled by returning `false` to the `edacp_verify_ssl_for_licensing` filter.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return bool Whether to verify SSL. Defaults to `true`.
+	 */
+	public static function verify_ssl() {
+		return (bool) apply_filters( 'edac_verify_ssl_for_licensing', true );
 	}
 }
