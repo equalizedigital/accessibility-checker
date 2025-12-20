@@ -69,6 +69,13 @@ class Connector {
 		// Schedule periodic license checks.
 		add_action( 'admin_init', [ $this, 'check_license_cron' ] );
 		add_action( 'edacp_check_license_hook', [ $this, 'periodic_check_license' ] );
+
+		// Handle JWT token registration.
+		add_action( 'admin_init', [ $this, 'handle_jwt_registration' ] );
+
+		// The admin-post handlers for register/unregister buttons.
+		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
+		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
 	}
 
 	/**
@@ -302,5 +309,368 @@ class Connector {
 	 */
 	public static function verify_ssl() {
 		return (bool) apply_filters( 'edac_verify_ssl_for_licensing', true );
+	}
+
+	/**
+	 * Handle the registration and unregistration of the JWT token for the site.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return void
+	 */
+	public function handle_jwt_registration() {
+		if ( ! is_admin() ) {
+			return;
+		}
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+		if ( ! isset( $_POST['edac_jwt_register_nonce'] ) ) {
+			return;
+		}
+		if ( ! wp_verify_nonce( sanitize_text_field( $_POST['edac_jwt_register_nonce'] ), 'edac_jwt_register_nonce' ) ) {
+			return;
+		}
+		if ( isset( $_POST['edac_jwt_register'] ) ) {
+			$this->handle_site_registration();
+			return;
+		}
+		if ( isset( $_POST['edac_jwt_unregister'] ) ) {
+			$this->handle_site_unregistration();
+			return;
+		}
+	}
+
+	/**
+	 * Handle admin-post for site registration (button on License page).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return void
+	 */
+	public function handle_jwt_register_post() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have permission to register this site.', 'accessibility-checker' ) );
+		}
+		check_admin_referer( 'edac_jwt_register', 'edac_jwt_register_nonce' );
+		$this->handle_site_registration();
+		$redirect = wp_get_referer();
+		if ( ! $redirect ) {
+			$redirect = admin_url();
+		}
+		wp_safe_redirect( $redirect );
+		exit;
+	}
+
+	/**
+	 * Handle admin-post for site unregistration (button on License page).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return void
+	 */
+	public function handle_jwt_unregister_post() {
+		if ( ! current_user_can( 'manage_options' ) ) {
+			wp_die( esc_html__( 'You do not have permission to unregister this site.', 'accessibility-checker' ) );
+		}
+		check_admin_referer( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' );
+		$this->handle_site_unregistration();
+		$redirect = wp_get_referer();
+		if ( ! $redirect ) {
+			$redirect = admin_url();
+		}
+		wp_safe_redirect( $redirect );
+		exit;
+	}
+
+	/**
+	 * Handle the site registration process including UI feedback.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return void
+	 */
+	private function handle_site_registration() {
+		$license_key = get_option( 'edac_license_key' );
+		if ( empty( $license_key ) ) {
+			add_action(
+				'admin_notices',
+				function () {
+					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html__( 'No license key found. Please activate a license before registering your site.', 'accessibility-checker' ) . '</p></div>';
+				}
+			);
+			return;
+		}
+		$site_url  = site_url();
+		$site_name = get_bloginfo( 'name' );
+
+		$response_data = self::register_site( $license_key, $site_url, $site_name, true, true );
+		if ( empty( $response_data['success'] ) ) {
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' );
+			add_action(
+				'admin_notices',
+				function () use ( $error_msg ) {
+					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $error_msg ) . '</p></div>';
+				}
+			);
+			return;
+		}
+		if ( isset( $response_data['data'] ) ) {
+			$data = $response_data['data'];
+			if ( ! empty( $data['jwt_token'] ) ) {
+				update_option( 'edac_jwt_token', $data['jwt_token'] );
+			}
+			if ( ! empty( $data['jwt_public_key'] ) ) {
+				update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
+			}
+			if ( ! empty( $data['site_id'] ) ) {
+				update_option( 'edac_site_id', $data['site_id'] );
+			}
+			if ( ! empty( $data['collection_interval_days'] ) ) {
+				update_option( 'edac_collection_interval_days', $data['collection_interval_days'] );
+			}
+			if ( ! empty( $data['next_collection'] ) ) {
+				update_option( 'edac_next_collection', $data['next_collection'] );
+			}
+			add_action(
+				'admin_notices',
+				function () {
+					echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Site registered successfully. Your site is now configured to use additional accessibility services.', 'accessibility-checker' ) . '</p></div>';
+				}
+			);
+		} else {
+			add_action(
+				'admin_notices',
+				function () {
+					echo '<div class="notice notice-warning is-dismissible"><p>' . esc_html__( 'Site registration completed, but the response data was not in the expected format. Some features may not work correctly.', 'accessibility-checker' ) . '</p></div>';
+				}
+			);
+		}
+	}
+
+	/**
+	 * Handle the site unregistration process including UI feedback.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return void
+	 */
+	private function handle_site_unregistration() {
+		$site_id     = get_option( 'edac_site_id' );
+		$jwt_token   = get_option( 'edac_jwt_token' );
+		$license_key = get_option( 'edac_license_key' );
+		if ( empty( $site_id ) || empty( $jwt_token ) || empty( $license_key ) ) {
+			add_action(
+				'admin_notices',
+				function () {
+					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html__( 'Unable to unregister site. Required registration data is missing.', 'accessibility-checker' ) . '</p></div>';
+				}
+			);
+			return;
+		}
+		$response_data = self::unregister_site( $jwt_token, get_site_url(), $license_key );
+		if ( empty( $response_data['success'] ) ) {
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
+			add_action(
+				'admin_notices',
+				function () use ( $error_msg ) {
+					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $error_msg ) . '</p></div>';
+				}
+			);
+			return;
+		}
+		delete_option( 'edac_jwt_token' );
+		delete_option( 'edac_jwt_public_key' );
+		delete_option( 'edac_site_id' );
+		delete_option( 'edac_collection_interval_days' );
+		delete_option( 'edac_next_collection' );
+		add_action(
+			'admin_notices',
+			function () {
+				echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Site unregistered successfully. Your site will no longer receive email reports.', 'accessibility-checker' ) . '</p></div>';
+			}
+		);
+	}
+
+	/**
+	 * Register a site with the MyDot API.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param string $license_key     The license key to register the site with.
+	 * @param string $site_url        The URL of the site to register.
+	 * @param string $site_name       The name of the site to register.
+	 * @param bool   $weekly_reports  Whether to enable weekly reports.
+	 * @param bool   $monthly_reports Whether to enable monthly reports.
+	 *
+	 * @return array The response data from the API.
+	 */
+	public static function register_site( $license_key, $site_url, $site_name, $weekly_reports = true, $monthly_reports = true ) {
+		if ( empty( $license_key ) ) {
+			return [
+				'success' => false,
+				'message' => __( 'No license key provided.', 'accessibility-checker' ),
+			];
+		}
+		$request_data = [
+			'site_url'        => $site_url,
+			'site_name'       => $site_name,
+			'license_key'     => $license_key,
+			'weekly_reports'  => $weekly_reports,
+			'monthly_reports' => $monthly_reports,
+		];
+		$response     = wp_remote_post(
+			self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/register-site',
+			[
+				'headers'     => [ 'Content-Type' => 'application/json' ],
+				'body'        => wp_json_encode( $request_data ),
+				'method'      => 'POST',
+				'data_format' => 'body',
+				'timeout'     => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
+				'sslverify'   => self::verify_ssl(),
+			]
+		);
+		if ( is_wp_error( $response ) ) {
+			return [
+				'success' => false,
+				'message' => $response->get_error_message(),
+			];
+		}
+		$response_code = wp_remote_retrieve_response_code( $response );
+		$response_body = wp_remote_retrieve_body( $response );
+		$response_data = json_decode( $response_body, true );
+		if ( 200 !== $response_code || empty( $response_body ) ) {
+			return [
+				'success' => false,
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' ) ),
+			];
+		}
+		return $response_data;
+	}
+
+	/**
+	 * Unregister a site from the MyDot API.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param string $jwt_token   The JWT token for authentication.
+	 * @param string $site_url    The URL of the site to unregister.
+	 * @param string $license_key The license key associated with the site.
+	 *
+	 * @return array The response data from the API.
+	 */
+	public static function unregister_site( $jwt_token, $site_url, $license_key ) {
+		if ( empty( $jwt_token ) || empty( $site_url ) || empty( $license_key ) ) {
+			return [
+				'success' => false,
+				'message' => __( 'Missing required parameters for unregistration.', 'accessibility-checker' ),
+			];
+		}
+		$request_data = [
+			'site_url'    => $site_url,
+			'license_key' => $license_key,
+		];
+		$response     = wp_remote_post(
+			self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/unregister-site',
+			[
+				'headers'     => [
+					'Content-Type'  => 'application/json',
+					'Authorization' => 'Bearer ' . $jwt_token,
+				],
+				'body'        => wp_json_encode( $request_data ),
+				'method'      => 'POST',
+				'data_format' => 'body',
+				'timeout'     => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
+				'sslverify'   => self::verify_ssl(),
+			]
+		);
+		if ( is_wp_error( $response ) ) {
+			return [
+				'success' => false,
+				'message' => $response->get_error_message(),
+			];
+		}
+		$response_code = wp_remote_retrieve_response_code( $response );
+		$response_body = wp_remote_retrieve_body( $response );
+		$response_data = json_decode( $response_body, true );
+		if ( 200 !== $response_code || empty( $response_body ) ) {
+			return [
+				'success' => false,
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' ) ),
+			];
+		}
+		return $response_data;
+	}
+
+	/**
+	 * Validate a JWT token using the stored public key.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param string $token The JWT token to validate.
+	 * @return bool True if the token is valid, false otherwise.
+	 */
+	public static function validate_jwt_token( $token ) {
+		if ( empty( $token ) ) {
+			return false;
+		}
+		$public_key = get_option( 'edac_jwt_public_key' );
+		if ( empty( $public_key ) ) {
+			return false;
+		}
+		$parts = explode( '.', $token );
+		if ( count( $parts ) !== 3 ) {
+			return false;
+		}
+		list( $header_b64, $payload_b64, $signature_b64 ) = $parts;
+		$header  = json_decode( base64_decode( strtr( $header_b64, '-_', '+/' ) ), true );
+		$payload = json_decode( base64_decode( strtr( $payload_b64, '-_', '+/' ) ), true );
+		if ( ! $header || ! $payload ) {
+			return false;
+		}
+		$message           = $header_b64 . '.' . $payload_b64;
+		$signature_decoded = base64_decode( strtr( $signature_b64, '-_', '+/' ) );
+		$algo              = $header['alg'] ?? 'RS256';
+		if ( 'RS256' !== $algo ) {
+			return false;
+		}
+		$public_key_resource = openssl_pkey_get_public( $public_key );
+		if ( ! $public_key_resource ) {
+			return false;
+		}
+		$verify_result = openssl_verify( $message, $signature_decoded, $public_key_resource, OPENSSL_ALGO_SHA256 );
+		if ( 1 !== $verify_result ) {
+			return false;
+		}
+		$current_time = time();
+		if ( isset( $payload['exp'] ) && $payload['exp'] < $current_time ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * Permission helper for validating JWT token in REST request.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param \WP_REST_Request $request The REST request object.
+	 * @return bool True if valid JWT token is present, false otherwise.
+	 */
+	public static function validate_jwt_token_in_request( $request ): bool {
+		if ( ! $request instanceof \WP_REST_Request ) {
+			return false;
+		}
+		// If token header provided, validate.
+		$auth_header = $request->get_header( 'Authorization' );
+		if ( ! empty( $auth_header ) ) {
+			$parts = explode( ' ', $auth_header );
+			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
+				if ( self::validate_jwt_token( $parts[1] ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
