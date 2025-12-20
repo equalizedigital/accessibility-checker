@@ -265,7 +265,7 @@ class Connector {
 
 		// Call the custom API.
 		$response = wp_remote_post(
-			EDACP_STORE_URL,
+			self::API_ENDPOINT,
 			[
 				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- 15 seconds is needed for now.
 				'sslverify' => self::verify_ssl(),
@@ -280,7 +280,7 @@ class Connector {
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( 'valid' !== $license_data->license ) {
-			update_option( 'edacp_license_status', $license_data->license );
+			update_option( 'edac_license_status', $license_data->license );
 		}
 	}
 
