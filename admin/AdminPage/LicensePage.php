@@ -125,8 +125,9 @@ class LicensePage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$license = get_option( 'edac_license_key' );
-		$status  = get_option( 'edac_license_status' );
+		$license   = get_option( 'edac_license_key' );
+		$status    = get_option( 'edac_license_status' );
+		$jwt_token = get_option( 'edac_jwt_token' );
 		?>
 		<h2><?php esc_html_e( 'License Settings', 'accessibility-checker' ); ?></h2>
 		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -181,6 +182,42 @@ class LicensePage implements PageInterface {
 				</tbody>
 			</table>
 		</form>
+
+		<?php if ( false !== $status && 'valid' === $status ) : ?>
+			<h3><?php esc_html_e( 'Site Registration', 'accessibility-checker' ); ?></h3>
+			<p><?php esc_html_e( 'Register this site to use additional accessibility services.', 'accessibility-checker' ); ?></p>
+
+			<?php if ( $jwt_token ) : ?>
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+					<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
+					<input type="hidden" name="action" value="edac_jwt_unregister" />
+					<p>
+						<input
+							type="submit"
+							class="button-secondary"
+							name="edac_jwt_unregister"
+							value="<?php esc_attr_e( 'Unregister Site', 'accessibility-checker' ); ?>"
+						/>
+						<span class="description" style="margin-left: 10px; color: green;">
+							<?php esc_html_e( 'Site is registered', 'accessibility-checker' ); ?>
+						</span>
+					</p>
+				</form>
+			<?php else : ?>
+				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+					<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
+					<input type="hidden" name="action" value="edac_jwt_register" />
+					<p>
+						<input
+							type="submit"
+							class="button-secondary"
+							name="edac_jwt_register"
+							value="<?php esc_attr_e( 'Register Site', 'accessibility-checker' ); ?>"
+						/>
+					</p>
+				</form>
+			<?php endif; ?>
+		<?php endif; ?>
 		<?php
 	}
 
