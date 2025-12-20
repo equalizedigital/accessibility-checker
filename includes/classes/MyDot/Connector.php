@@ -70,9 +70,6 @@ class Connector {
 		add_action( 'admin_init', [ $this, 'check_license_cron' ] );
 		add_action( 'edacp_check_license_hook', [ $this, 'periodic_check_license' ] );
 
-		// Handle JWT token registration.
-		add_action( 'admin_init', [ $this, 'handle_jwt_registration' ] );
-
 		// The admin-post handlers for register/unregister buttons.
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
@@ -309,36 +306,6 @@ class Connector {
 	 */
 	public static function verify_ssl() {
 		return (bool) apply_filters( 'edac_verify_ssl_for_licensing', true );
-	}
-
-	/**
-	 * Handle the registration and unregistration of the JWT token for the site.
-	 *
-	 * @since 1.xx.x
-	 *
-	 * @return void
-	 */
-	public function handle_jwt_registration() {
-		if ( ! is_admin() ) {
-			return;
-		}
-		if ( ! current_user_can( 'manage_options' ) ) {
-			return;
-		}
-		if ( ! isset( $_POST['edac_jwt_register_nonce'] ) ) {
-			return;
-		}
-		if ( ! wp_verify_nonce( sanitize_text_field( $_POST['edac_jwt_register_nonce'] ), 'edac_jwt_register_nonce' ) ) {
-			return;
-		}
-		if ( isset( $_POST['edac_jwt_register'] ) ) {
-			$this->handle_site_registration();
-			return;
-		}
-		if ( isset( $_POST['edac_jwt_unregister'] ) ) {
-			$this->handle_site_unregistration();
-			return;
-		}
 	}
 
 	/**
