@@ -120,6 +120,26 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="#" role="tab">Link with role of tab</a>',
 			shouldPass: true,
 		},
+		{
+			name: 'Passes with role="menuitem" and aria-expanded',
+			html: '<a href="#" role="menuitem" aria-haspopup="true" aria-expanded="false">Mega Menu</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with role="menuitem" and aria-expanded="true"',
+			html: '<a href="#" role="menuitem" aria-expanded="true">Expanded Menu</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with multiple roles including menuitem and aria-expanded',
+			html: '<a href="#" role="foo menuitem bar" aria-expanded="false">Multiple roles with menuitem</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Fails with role="menuitem" but no aria-expanded',
+			html: '<a href="#" role="menuitem">Menu without aria-expanded</a>',
+			shouldPass: false,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 
