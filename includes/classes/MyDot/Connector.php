@@ -241,6 +241,8 @@ class Connector {
 	/**
 	 * License check
 	 *
+	 * Also includes proactive JWT public key verification as part of key rotation strategy.
+	 *
 	 * @return void
 	 */
 	public function periodic_check_license() {
@@ -282,6 +284,10 @@ class Connector {
 		if ( 'valid' !== $license_data->license ) {
 			update_option( 'edac_license_status', $license_data->license );
 		}
+
+		// Verify and update JWT public key daily before validation fails.
+		// This ensures the site always has the latest key from the issuer without any downtime.
+		self::verify_and_update_public_key();
 	}
 
 	/**
@@ -570,7 +576,40 @@ class Connector {
 	}
 
 	/**
-	 * Validate a JWT token using the stored public key.
+	 * Get the expected issuer for JWT validation (RFC 8725).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string The issuer URL/identifier.
+	 */
+	public static function get_jwt_issuer() {
+		// strip the protocol for issuer comparison.
+		return apply_filters( 'edac_jwt_issuer', preg_replace( '#^https?://#', '', self::API_ENDPOINT ) );
+	}
+
+	/**
+	 * Get the expected audience for JWT validation (RFC 8725).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string The audience identifier (site URL or API endpoint identifier).
+	 */
+	public static function get_jwt_audience() {
+		// strip the protocol for audience comparison.
+		return apply_filters( 'edac_jwt_audience', preg_replace( '#^https?://#', '', home_url() ) );
+	}
+
+	/**
+	 * Validate a JWT token using the stored public key (RFC 8725 compliant).
+	 *
+	 * Validates:
+	 * - Token structure (3 parts separated by dots)
+	 * - Header algorithm (RS256)
+	 * - Signature using stored public key
+	 * - Token expiration (exp claim)
+	 * - Issuer (iss claim) per RFC 8725 to prevent token substitution attacks
+	 * - Audience (aud claim) per RFC 8725 to ensure token is for this recipient
+	 * - Not Before (nbf claim) if present
 	 *
 	 * @since 1.xx.x
 	 *
@@ -610,34 +649,180 @@ class Connector {
 			return false;
 		}
 		$current_time = time();
+		// Validate expiration (exp claim) - required by RFC 8725.
 		if ( isset( $payload['exp'] ) && $payload['exp'] < $current_time ) {
+			return false;
+		}
+		// RFC 8725: Validate issuer claim to prevent token substitution attacks.
+		if ( isset( $payload['iss'] ) ) {
+			$expected_iss = self::get_jwt_issuer();
+			if ( $payload['iss'] !== $expected_iss ) {
+				return false;
+			}
+		}
+		// RFC 8725: Validate audience claim - if issuer issues JWTs for multiple recipients,
+		// the JWT must contain an "aud" claim and must be validated.
+		if ( isset( $payload['aud'] ) ) {
+			$expected_aud = self::get_jwt_audience();
+			$token_aud    = $payload['aud'];
+			// aud can be a string or an array of strings per RFC 7519.
+			$aud_list = is_array( $token_aud ) ? $token_aud : [ $token_aud ];
+			if ( ! in_array( $expected_aud, $aud_list, true ) ) {
+				return false;
+			}
+		}
+		// RFC 8725: Validate not-before claim (nbf) if present.
+		if ( isset( $payload['nbf'] ) && $payload['nbf'] > $current_time ) {
 			return false;
 		}
 		return true;
 	}
 
 	/**
-	 * Permission helper for validating JWT token in REST request.
+	 * Validate JWT token with reactive fallback.
+	 *
+	 * If validation fails, attempt to refresh the public key from the issuer and retry.
+	 * This handles cases where the issuer rotated keys but the site's cron hasn't run yet.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param string $token The JWT token to validate.
+	 * @return bool True if valid (either on first try or after key refresh), false otherwise.
+	 */
+	public static function validate_jwt_token_with_fallback( $token ) {
+		// Try initial validation.
+		if ( self::validate_jwt_token( $token ) ) {
+			return true;
+		}
+
+		// Validation failed. Try to refresh the public key from the issuer.
+		if ( self::refresh_public_key_from_issuer() ) {
+			// Key was refreshed, retry validation with the new key.
+			return self::validate_jwt_token( $token );
+		}
+
+		// Still invalid after refresh attempt.
+		return false;
+	}
+
+	/**
+	 * Permission helper for validating JWT token in REST request with fallback (Option 2 + 3).
 	 *
 	 * @since 1.xx.x
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return bool True if valid JWT token is present, false otherwise.
 	 */
-	public static function validate_jwt_token_in_request( $request ): bool {
+	public static function validate_jwt_token_in_request_with_fallback( $request ) {
 		if ( ! $request instanceof \WP_REST_Request ) {
 			return false;
 		}
-		// If token header provided, validate.
+
+		// Extract the JWT token from the Authorization header.
 		$auth_header = $request->get_header( 'Authorization' );
 		if ( ! empty( $auth_header ) ) {
 			$parts = explode( ' ', $auth_header );
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
-				if ( self::validate_jwt_token( $parts[1] ) ) {
-					return true;
-				}
+				// Use the fallback validator which will refresh key if needed.
+				return self::validate_jwt_token_with_fallback( $parts[1] );
 			}
 		}
+
+		// No valid Bearer token found.
 		return false;
+	}
+
+	/**
+	 * Check if stored JWT public key needs to be updated from a fresh registration.
+	 *
+	 * Called after successful site registration to verify the stored key is current.
+	 * If the stored key doesn't match what the issuer sent, it's already been rotated.
+	 *
+	 * Uses a simple GET request since public keys don't require authentication.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return bool True if public key was updated or is current, false on error.
+	 */
+	public static function verify_and_update_public_key() {
+		$stored_key = get_option( 'edac_jwt_public_key' );
+
+		if ( empty( $stored_key ) ) {
+			return false;
+		}
+
+		// Make a lightweight GET request for the current public key.
+		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/public-key' );
+
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+			return false;
+		}
+
+		$data = json_decode( wp_remote_retrieve_body( $response ), true );
+
+		// If issuer returned a new public key, store it immediately.
+		if ( ! empty( $data['jwt_public_key'] ) && $data['jwt_public_key'] !== $stored_key ) {
+			update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
+			return true; // Key was updated.
+		}
+
+		return true; // Key is current.
+	}
+
+	/**
+	 * Attempt to update the public key from API on failed JWT validation.
+	 *
+	 * If JWT validation fails, this optional step re-requests the public key
+	 * from the issuer. Useful if the issuer rotated keys but the site hasn't
+	 * refreshed them yet.
+	 *
+	 * This is called AFTER a JWT fails validation, so only use as a fallback
+	 * to avoid constant API calls.
+	 *
+	 * Uses a simple GET request since public keys don't require authentication.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return bool True if key was retrieved and stored, false otherwise.
+	 */
+	public static function refresh_public_key_from_issuer() {
+		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/public-key' );
+
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
+			return false;
+		}
+
+		$data = json_decode( wp_remote_retrieve_body( $response ), true );
+		if ( ! empty( $data['jwt_public_key'] ) ) {
+			update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
+			return true;
+		}
+
+		return false;
+	}
+
+	/**
+	 * Perform a safe GET request compatible with VIP and non-VIP environments.
+	 *
+	 * Uses vip_safe_wp_remote_get() if available, otherwise falls back to wp_remote_get().
+	 *
+	 * @param string $url  The URL to request.
+	 * @param array  $args Optional request args.
+	 * @return array|\WP_Error Response array or WP_Error on failure.
+	 */
+	private static function safe_remote_get( string $url, array $args = [] ) {
+		$defaults = [
+			'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
+			'sslverify' => self::verify_ssl(),
+		];
+		$args     = wp_parse_args( $args, $defaults );
+
+		if ( function_exists( 'vip_safe_wp_remote_get' ) ) {
+			$timeout     = isset( $args['timeout'] ) ? (int) $args['timeout'] : 15;
+			$retry_count = isset( $args['retry'] ) ? (int) $args['retry'] : 3;
+			return vip_safe_wp_remote_get( $url, '', $timeout, $retry_count, $args );
+		}
+
+		return wp_remote_get( $url, $args ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- fallback for non-VIP environments.
 	}
 }

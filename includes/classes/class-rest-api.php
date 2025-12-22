@@ -105,7 +105,8 @@ class REST_Api {
 						'methods'             => 'GET',
 						'callback'            => [ $this, 'get_scans_stats' ],
 						'permission_callback' => function ( $request ) {
-							if ( Connector::validate_jwt_token_in_request( $request ) ) {
+							// Validator which handles key rotation.
+							if ( Connector::validate_jwt_token_in_request_with_fallback( $request ) ) {
 								return true;
 							}
 							return current_user_can( 'edit_posts' );
