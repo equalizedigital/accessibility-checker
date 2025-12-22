@@ -6,12 +6,12 @@
  */
 
 use PHPUnit\Framework\TestCase;
-use EDAC\Admin\Activation_Redirect;
+use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
 
 /**
  * Class Activation_Redirect_Test
  *
- * @covers \EDAC\Admin\Activation_Redirect
+ * @covers \EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect
  */
 class ActivationRedirectTest extends WP_UnitTestCase {
 

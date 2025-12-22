@@ -13,6 +13,7 @@ use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
+use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
 
 /**
  * Admin handling class.
