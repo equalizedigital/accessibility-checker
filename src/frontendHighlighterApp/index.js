@@ -8,6 +8,7 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { hashString } from '../common/helpers';
+import './webComponents';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -24,13 +25,14 @@ class AccessibilityCheckerHighlight {
 		this._isRescanning = false;
 
 		this.highlightPanel = this.addHighlightPanel();
-		this.nextButton = document.querySelector( '#edac-highlight-next' );
-		this.previousButton = document.querySelector( '#edac-highlight-previous' );
-		this.panelToggle = document.querySelector( '#edac-highlight-panel-toggle' );
-		this.closePanel = document.querySelector( '#edac-highlight-panel-controls-close' );
-		this.panelDescription = document.querySelector( '#edac-highlight-panel-description' );
-		this.panelControls = document.querySelector( '#edac-highlight-panel-controls' );
-		this.descriptionCloseButton = document.querySelector( '.edac-highlight-panel-description-close' );
+		// Access elements inside the shadow DOM
+		this.nextButton = this.highlightPanel.querySelector( '#edac-highlight-next' );
+		this.previousButton = this.highlightPanel.querySelector( '#edac-highlight-previous' );
+		this.panelToggle = this.highlightPanel.querySelector( '#edac-highlight-panel-toggle' );
+		this.closePanel = this.highlightPanel.querySelector( '#edac-highlight-panel-controls-close' );
+		this.panelDescription = this.highlightPanel.querySelector( '#edac-highlight-panel-description' );
+		this.panelControls = this.highlightPanel.querySelector( '#edac-highlight-panel-controls' );
+		this.descriptionCloseButton = this.highlightPanel.querySelector( '.edac-highlight-panel-description-close' );
 		this.issues = null;
 		this.fixes = null;
 		this.currentButtonIndex = null;
@@ -38,13 +40,16 @@ class AccessibilityCheckerHighlight {
 		this.landmarkParameter = this.get_url_parameter( 'edac_landmark' );
 		this.currentIssueStatus = null;
 		this.tooltips = [];
-		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
+
+		// Create focus trap with shadow DOM root
+		this.panelControlsFocusTrap = createFocusTrap( this.panelControls, {
 			clickOutsideDeactivates: true,
 			escapeDeactivates: () => {
 				this.panelClose();
 			},
 		} );
-		this.panelDescriptionFocusTrap = createFocusTrap( '#' + this.panelDescription.id, {
+
+		this.panelDescriptionFocusTrap = createFocusTrap( this.panelDescription, {
 			clickOutsideDeactivates: true,
 			escapeDeactivates: () => {
 				this.descriptionClose();
@@ -52,9 +57,9 @@ class AccessibilityCheckerHighlight {
 
 		} );
 
-		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
-		this.rescanButton = document.querySelector( '#edac-highlight-rescan' );
-		this.clearIssuesButton = document.querySelector( '#edac-highlight-clear-issues' );
+		this.disableStylesButton = this.highlightPanel.querySelector( '#edac-highlight-disable-styles' );
+		this.rescanButton = this.highlightPanel.querySelector( '#edac-highlight-rescan' );
+		this.clearIssuesButton = this.highlightPanel.querySelector( '#edac-highlight-clear-issues' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
 
@@ -264,7 +269,7 @@ class AccessibilityCheckerHighlight {
 			item.listeners.cleanup();
 		} );
 
-		const buttons = document.querySelectorAll( '.edac-highlight-btn' );
+		const buttons = document.querySelectorAll( 'edac-highlight-button' );
 		buttons.forEach( ( button ) => {
 			button.remove();
 		} );
@@ -283,12 +288,10 @@ class AccessibilityCheckerHighlight {
 	 */
 	/* eslint-disable no-unused-vars */
 	addTooltip( element, value, index, totalItems ) {
-		// Create the tooltip.
-		const tooltip = document.createElement( 'button' );
-		tooltip.classList = 'edac-highlight-btn edac-highlight-btn-' + value.rule_type;
+		// Create the web component tooltip.
+		const tooltip = document.createElement( 'edac-highlight-button' );
+		tooltip.setAttribute( 'rule-type', value.rule_type );
 		tooltip.setAttribute( 'aria-label', sprintf( __( 'Open details for %1$s, %2$s of %3$s', 'accessibility-checker' ), value.rule_title, index + 1, totalItems ) );
-		tooltip.setAttribute( 'aria-expanded', 'false' );
-		tooltip.setAttribute( 'aria-haspopup', 'dialog' );
 
 		//add data-id to the tooltip/button so we can find it later.
 		tooltip.dataset.id = value.id;
@@ -313,7 +316,7 @@ class AccessibilityCheckerHighlight {
 			const currentElementHash = tooltip.dataset.targetElement;
 			const currentCreationOrder = parseFloat( tooltip.dataset.creationOrder );
 
-			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
+			const existingTooltips = Array.from( document.querySelectorAll( 'edac-highlight-button' ) ).filter( ( btn ) => {
 				// Check if this tooltip targets the same element and was created before this one
 				return btn !== tooltip && btn.dataset.targetElement === currentElementHash && parseFloat( btn.dataset.creationOrder ) < currentCreationOrder;
 			} );
@@ -393,46 +396,16 @@ class AccessibilityCheckerHighlight {
 	 */
 	addHighlightPanel() {
 		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
-
 		const userCanEdit = edacFrontendHighlighterApp && edacFrontendHighlighterApp?.userCanEdit && edacFrontendHighlighterApp?.loggedIn;
-		const clearButtonMarkup = userCanEdit
-			? `<button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues">${ __( 'Clear Issues', 'accessibility-checker' ) }</button>`
-			: '';
 
-		const rescanButton = userCanEdit
-			? `<button id="edac-highlight-rescan" class="edac-highlight-rescan">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button>`
-			: '';
+		// Create the web component
+		const panel = document.createElement( 'edac-highlight-panel' );
+		panel.setAttribute( 'widget-position', widgetPosition );
+		panel.setAttribute( 'user-can-edit', userCanEdit ? 'true' : 'false' );
+		panel.id = 'edac-highlight-panel';
 
-		const newElement = `
-                        <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
-                                <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
-                                <div id="edac-highlight-panel-description" class="edac-highlight-panel-description" role="dialog" aria-labelledby="edac-highlight-panel-description-title" tabindex="0">
-                                <button class="edac-highlight-panel-description-close edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
-                                        <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
-                                        <div class="edac-highlight-panel-description-content"></div>
-                                        <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
-                                </div>
-                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
-                                <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
-                                <div class="edac-highlight-panel-controls-title">${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
-                                <div class="edac-highlight-panel-controls-summary">${ __( 'Loading...', 'accessibility-checker' ) }</div>
-                                <div class="edac-highlight-panel-controls-buttons ${ ! userCanEdit ? ' single_button' : '' }">
-                                        <div>
-                                                <button id="edac-highlight-previous" disabled="true"><span aria-hidden="true">« </span>${ __( 'Previous', 'accessibility-checker' ) }</button>
-                                                <button id="edac-highlight-next" disabled="true">${ __( 'Next', 'accessibility-checker' ) }<span aria-hidden="true"> »</span></button><br />
-                                        </div>
-                                        <div>
-                                                ${ rescanButton }
-                                                ${ clearButtonMarkup }
-                                                <button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button>
-                                        </div>
-                                </div>
-                        </div>
-                        </div>
-                `;
-
-		document.body.insertAdjacentHTML( 'afterbegin', newElement );
-		return document.getElementById( 'edac-highlight-panel' );
+		document.body.insertAdjacentElement( 'afterbegin', panel );
+		return panel;
 	}
 
 	/**
@@ -504,7 +477,10 @@ class AccessibilityCheckerHighlight {
 		const element = issue.element;
 
 		if ( tooltip && element ) {
-			tooltip.classList.add( 'edac-highlight-btn-selected' );
+			// Use the web component's setSelected method
+			if ( typeof tooltip.setSelected === 'function' ) {
+				tooltip.setSelected( true );
+			}
 			element.classList.add( 'edac-highlight-element-selected' );
 
 			if ( element.offsetWidth < 20 ) {
@@ -594,7 +570,7 @@ class AccessibilityCheckerHighlight {
 			}
 		).catch( ( err ) => {
 			// Output a message that says that there are no issues or that the issues could not be loaded.
-			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			const summary = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 			// Output result messaging in the panel instead of a popup notice.
 			if ( summary ) {
 				summary.textContent = __( 'An error occurred when loading the issues.', 'accessibility-checker' );
@@ -622,10 +598,12 @@ class AccessibilityCheckerHighlight {
 	 * This function removes the classes that indicates a button or element are selected
 	 */
 	removeSelectedClasses = () => {
-		//remove selected class from previously selected buttons
-		const selectedButtons = document.querySelectorAll( '.edac-highlight-btn-selected' );
+		//remove selected class from previously selected buttons (web components)
+		const selectedButtons = document.querySelectorAll( 'edac-highlight-button' );
 		selectedButtons.forEach( ( selectedButton ) => {
-			selectedButton.classList.remove( 'edac-highlight-btn-selected' );
+			if ( typeof selectedButton.setSelected === 'function' ) {
+				selectedButton.setSelected( false );
+			}
 		} );
 		//remove selected class from previously selected elements
 		const selectedElements = document.querySelectorAll( '.edac-highlight-element-selected' );
@@ -657,9 +635,9 @@ class AccessibilityCheckerHighlight {
 		const matchingObj = this.issues.find( ( obj ) => obj[ keyToSearch ] === searchTerm );
 
 		if ( matchingObj ) {
-			const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
-			const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
-			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
+			const descriptionTitle = this.highlightPanel.querySelector( '.edac-highlight-panel-description-title' );
+			const descriptionContent = this.highlightPanel.querySelector( '.edac-highlight-panel-description-content' );
+			const descriptionCode = this.highlightPanel.querySelector( '.edac-highlight-panel-description-code code' );
 
 			let content = '';
 
@@ -740,21 +718,21 @@ class AccessibilityCheckerHighlight {
 
 			// show fix settings button if available
 			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
-				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
+				this.fixSettingsButton = this.highlightPanel.querySelector( '.edac-fix-settings--button--open' );
 				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
 					this.showFixSettings( event );
 				} );
 				this.fixSettingsButton.display = 'block';
 
-				this.fixSettingsSaveButton = document.querySelector( '.edac-fix-settings--button--save' );
+				this.fixSettingsSaveButton = this.highlightPanel.querySelector( '.edac-fix-settings--button--save' );
 				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => {
 					saveFixSettings( event.target.closest( '.edac-fix-settings' ) );
 				} );
 			}
 
 			// set code button listener
-			this.codeContainer = document.querySelector( '.edac-highlight-panel-description-code' );
-			this.codeButton = document.querySelector( '.edac-highlight-panel-description-code-button' );
+			this.codeContainer = this.highlightPanel.querySelector( '.edac-highlight-panel-description-code' );
+			this.codeButton = this.highlightPanel.querySelector( '.edac-highlight-panel-description-code-button' );
 			this.codeButton.addEventListener( 'click', () => this.codeToggle() );
 
 			// close the code container each time the description is opened
@@ -940,7 +918,7 @@ class AccessibilityCheckerHighlight {
 		const errorCount = this.countIssues( 'error' );
 		const warningCount = this.countIssues( 'warning' );
 		const ignoredCount = this.countIgnored();
-		const div = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		const div = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 
 		let textContent = __( 'No issues detected.', 'accessibility-checker' );
 		if ( errorCount > 0 || warningCount > 0 || ignoredCount > 0 ) {
@@ -1198,7 +1176,7 @@ class AccessibilityCheckerHighlight {
 
 	runAccessibilityScanAndSave( densityMetrics ) {
 		const self = this;
-		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		const summary = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 		if ( summary ) {
 			summary.textContent = __( 'Scanning...', 'accessibility-checker' );
 			summary.classList.remove( 'edac-error' );
@@ -1286,7 +1264,7 @@ class AccessibilityCheckerHighlight {
 
 		// Validate required parameters
 		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
-			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+			const summary = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 			if ( summary ) {
 				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
 				summary.classList.add( 'edac-error' );
@@ -1296,7 +1274,7 @@ class AccessibilityCheckerHighlight {
 
 		this.clearIssuesButton.disabled = true;
 		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
-		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		const summary = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 
 		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
 			method: 'POST',
@@ -1337,7 +1315,7 @@ class AccessibilityCheckerHighlight {
 	 * @param {string} message
 	 */
 	showScanError( message ) {
-		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		const summary = this.highlightPanel.querySelector( '.edac-highlight-panel-controls-summary' );
 		if ( summary ) {
 			summary.textContent = message;
 			summary.classList.add( 'edac-error' );
