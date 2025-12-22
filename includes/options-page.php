@@ -413,7 +413,7 @@ function edac_full_site_scan_speed_cb() {
 			<?php foreach ( $speed_values as $value => $label ) : ?>
 				<option
 					value="<?php echo esc_attr( $value ); ?>"
-					<?php selected( $full_site_scan_speed, (int) $value, false ); ?>
+					<?php selected( $full_site_scan_speed, (int) $value ); ?>
 				>
 					<?php echo esc_html( $label ); ?>
 				</option>
