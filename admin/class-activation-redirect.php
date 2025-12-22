@@ -16,14 +16,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * Handles redirecting to the welcome page after plugin activation.
  *
- * @since 1.35.0
+ * @since 1.36.0
  */
 class Activation_Redirect {
 
 	/**
 	 * The page slug for the welcome page.
 	 *
-	 * @since 1.35.0
+	 * @since 1.36.0
 	 * @var string
 	 */
 	const WELCOME_PAGE_SLUG = 'accessibility_checker';
@@ -31,7 +31,7 @@ class Activation_Redirect {
 	/**
 	 * Initialize the activation redirect.
 	 *
-	 * @since 1.35.0
+	 * @since 1.36.0
 	 */
 	public function init(): void {
 		add_action( 'admin_init', [ $this, 'maybe_redirect_to_welcome' ] );
@@ -40,7 +40,7 @@ class Activation_Redirect {
 	/**
 	 * Get the welcome page URL.
 	 *
-	 * @since 1.35.0
+	 * @since 1.36.0
 	 * @return string The URL to the welcome page.
 	 */
 	public function get_welcome_page_url(): string {
@@ -57,7 +57,7 @@ class Activation_Redirect {
 	 * - We're not activating multiple plugins at once
 	 * - User has permission to access the welcome page
 	 *
-	 * @since 1.35.0
+	 * @since 1.36.0
 	 * @return void
 	 */
 	public function maybe_redirect_to_welcome(): void {
