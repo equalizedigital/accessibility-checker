@@ -74,3 +74,8 @@ jobs:
 
       - name: Lint against parse errors
         run: composer lint -- --checkstyle | cs2pr
+        continue-on-error: true
+
+      - name: Lint against parse errors (fallback without cs2pr)
+        if: failure()
+        run: composer lint
