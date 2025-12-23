@@ -8,7 +8,8 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { hashString } from '../common/helpers';
-import './webComponents';
+import './components/HighlightButton';
+import './components/HighlightPanel';
 
 class AccessibilityCheckerHighlight {
 	/**
