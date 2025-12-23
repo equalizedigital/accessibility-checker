@@ -121,38 +121,6 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
-	 * Compares two ancestry selector strings to determine DOM order.
-	 * Parses nth-child() values from the selectors to determine which element
-	 * appears first in the document.
-	 *
-	 * @param {string} ancestryA - First ancestry selector
-	 * @param {string} ancestryB - Second ancestry selector
-	 * @return {number} - Negative if A comes before B, positive if B comes before A, 0 if equal
-	 */
-	compareAncestry( ancestryA, ancestryB ) {
-		// Parse ancestry strings into parts
-		const partsA = ancestryA.split( ' > ' );
-		const partsB = ancestryB.split( ' > ' );
-
-		// Compare each level of the DOM tree
-		for ( let i = 0; i < Math.min( partsA.length, partsB.length ); i++ ) {
-			const matchA = partsA[ i ].match( /:nth-child\((\d+)\)/ );
-			const matchB = partsB[ i ].match( /:nth-child\((\d+)\)/ );
-
-			const nthA = matchA ? parseInt( matchA[ 1 ] ) : 0;
-			const nthB = matchB ? parseInt( matchB[ 1 ] ) : 0;
-
-			// If nth-child values differ, that determines the order
-			if ( nthA !== nthB ) {
-				return nthA - nthB;
-			}
-		}
-
-		// If all common parts are equal, shorter path comes first (parent before child)
-		return partsA.length - partsB.length;
-	}
-
-	/**
 	 * This function tries to find an element on the page that matches a given HTML snippet.
 	 * It first tries using the ancestry CSS selector (most reliable), then falls back to
 	 * comparing HTML. If a match is found, it adds a tooltip and returns the element.
@@ -630,7 +598,7 @@ class AccessibilityCheckerHighlight {
 					}
 				}.bind( this ) );
 
-				// Sort issues by DOM order using ancestry
+				// Sort issues by DOM order using native compareDocumentPosition
 				this.issues.sort( ( a, b ) => {
 					// If elements weren't found, push to end
 					if ( ! a.element && b.element ) {
@@ -643,20 +611,21 @@ class AccessibilityCheckerHighlight {
 						return 0;
 					}
 
-					// If both have ancestry, compare them
-					if ( a.ancestry && b.ancestry ) {
-						return this.compareAncestry( a.ancestry, b.ancestry );
-					}
+					// Use DOM compareDocumentPosition for accurate ordering
+					const position = a.element.compareDocumentPosition( b.element );
 
-					// If only one has ancestry, prioritize it
-					if ( a.ancestry && ! b.ancestry ) {
+					// DOCUMENT_POSITION_FOLLOWING (4) means b comes after a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_FOLLOWING ) {
 						return -1;
 					}
-					if ( ! a.ancestry && b.ancestry ) {
+					// DOCUMENT_POSITION_PRECEDING (2) means b comes before a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_PRECEDING ) {
 						return 1;
 					}
 
-					// No ancestry for either, maintain original order
+					// Elements are the same or in different documents
 					return 0;
 				} );
 
