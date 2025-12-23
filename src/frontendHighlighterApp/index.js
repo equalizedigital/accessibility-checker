@@ -121,19 +121,64 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
-	 * This function tries to find an element on the page that matches a given HTML snippet.
-	 * It parses the HTML snippet, and compares the outer HTML of the parsed element
-	 * with all elements present on the page. If a match is found, it
-	 * adds a tooltip, checks if the element is focusable, and then returns the element.
-	 * If no matching element is found, or if the parsed HTML snippet does not contain an element,
-	 * it returns null.
+	 * Compares two ancestry selector strings to determine DOM order.
+	 * Parses nth-child() values from the selectors to determine which element
+	 * appears first in the document.
 	 *
-	 * @param {Object} value - Object containing the HTML snippet to be matched.
+	 * @param {string} ancestryA - First ancestry selector
+	 * @param {string} ancestryB - Second ancestry selector
+	 * @return {number} - Negative if A comes before B, positive if B comes before A, 0 if equal
+	 */
+	compareAncestry( ancestryA, ancestryB ) {
+		// Parse ancestry strings into parts
+		const partsA = ancestryA.split( ' > ' );
+		const partsB = ancestryB.split( ' > ' );
+
+		// Compare each level of the DOM tree
+		for ( let i = 0; i < Math.min( partsA.length, partsB.length ); i++ ) {
+			const matchA = partsA[ i ].match( /:nth-child\((\d+)\)/ );
+			const matchB = partsB[ i ].match( /:nth-child\((\d+)\)/ );
+
+			const nthA = matchA ? parseInt( matchA[ 1 ] ) : 0;
+			const nthB = matchB ? parseInt( matchB[ 1 ] ) : 0;
+
+			// If nth-child values differ, that determines the order
+			if ( nthA !== nthB ) {
+				return nthA - nthB;
+			}
+		}
+
+		// If all common parts are equal, shorter path comes first (parent before child)
+		return partsA.length - partsB.length;
+	}
+
+	/**
+	 * This function tries to find an element on the page that matches a given HTML snippet.
+	 * It first tries using the ancestry CSS selector (most reliable), then falls back to
+	 * comparing HTML. If a match is found, it adds a tooltip and returns the element.
+	 * If no matching element is found, it returns null.
+	 *
+	 * @param {Object} value - Object containing the HTML snippet and selectors.
 	 * @param {number} index - Index of the element being searched.
 	 * @return {HTMLElement|null} - Returns the matching HTML element, or null if no match is found.
 	 */
 	findElement( value, index ) {
-		// Parse the HTML snippet
+		// Try ancestry selector first (most reliable)
+		if ( value.ancestry ) {
+			try {
+				const element = document.querySelector( value.ancestry );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Ancestry selector may be invalid, fall back to HTML matching
+			}
+		}
+
+		// Fall back to HTML matching
 		let htmlToFind = value.object;
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString( htmlToFind, 'text/html' );
@@ -584,6 +629,36 @@ class AccessibilityCheckerHighlight {
 						this.issues[ index ].element = element;
 					}
 				}.bind( this ) );
+
+				// Sort issues by DOM order using ancestry
+				this.issues.sort( ( a, b ) => {
+					// If elements weren't found, push to end
+					if ( ! a.element && b.element ) {
+						return 1;
+					}
+					if ( a.element && ! b.element ) {
+						return -1;
+					}
+					if ( ! a.element && ! b.element ) {
+						return 0;
+					}
+
+					// If both have ancestry, compare them
+					if ( a.ancestry && b.ancestry ) {
+						return this.compareAncestry( a.ancestry, b.ancestry );
+					}
+
+					// If only one has ancestry, prioritize it
+					if ( a.ancestry && ! b.ancestry ) {
+						return -1;
+					}
+					if ( ! a.ancestry && b.ancestry ) {
+						return 1;
+					}
+
+					// No ancestry for either, maintain original order
+					return 0;
+				} );
 
 				this.showIssueCount();
 
