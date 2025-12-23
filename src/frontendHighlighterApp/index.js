@@ -644,6 +644,21 @@ class AccessibilityCheckerHighlight {
 					return 0;
 				} );
 
+				// Update tooltip aria-labels to reflect sorted order
+				this.issues.forEach( ( issue, sortedIndex ) => {
+					if ( issue.tooltip ) {
+						issue.tooltip.setAttribute(
+							'aria-label',
+							sprintf(
+								__( 'Open details for %1$s, %2$s of %3$s', 'accessibility-checker' ),
+								issue.rule_title,
+								sortedIndex + 1,
+								this.issues.length
+							)
+						);
+					}
+				} );
+
 				this.showIssueCount();
 
 				if ( id !== undefined ) {
