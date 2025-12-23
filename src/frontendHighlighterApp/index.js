@@ -122,8 +122,8 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * This function tries to find an element on the page that matches a given HTML snippet.
-	 * It first tries using the ancestry CSS selector (most reliable), then falls back to
-	 * comparing HTML. If a match is found, it adds a tooltip and returns the element.
+	 * It tries multiple strategies in order: selector (most stable), ancestry (more specific),
+	 * and HTML matching (fallback). If a match is found, it adds a tooltip and returns the element.
 	 * If no matching element is found, it returns null.
 	 *
 	 * @param {Object} value - Object containing the HTML snippet and selectors.
@@ -131,7 +131,22 @@ class AccessibilityCheckerHighlight {
 	 * @return {HTMLElement|null} - Returns the matching HTML element, or null if no match is found.
 	 */
 	findElement( value, index ) {
-		// Try ancestry selector first (most reliable)
+		// Try selector first (most stable - IDs/classes don't change with DOM structure)
+		if ( value.selector ) {
+			try {
+				const element = document.querySelector( value.selector );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Selector may be invalid, fall back to ancestry
+			}
+		}
+
+		// Try ancestry selector (more specific than selector but less stable)
 		if ( value.ancestry ) {
 			try {
 				const element = document.querySelector( value.ancestry );
