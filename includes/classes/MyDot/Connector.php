@@ -786,15 +786,15 @@ class Connector {
 	 * @return bool True if key was retrieved and stored, false otherwise.
 	 */
 	public static function refresh_public_key_from_issuer() {
-		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/public-key' );
+		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/get-public-key' );
 
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return false;
 		}
 
 		$data = json_decode( wp_remote_retrieve_body( $response ), true );
-		if ( ! empty( $data['jwt_public_key'] ) ) {
-			update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
+		if ( ! empty( $data['public_key'] ) ) {
+			update_option( 'edac_jwt_public_key', $data['public_key'] );
 			return true;
 		}
 
