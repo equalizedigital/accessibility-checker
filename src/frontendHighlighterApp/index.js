@@ -122,18 +122,46 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * This function tries to find an element on the page that matches a given HTML snippet.
-	 * It parses the HTML snippet, and compares the outer HTML of the parsed element
-	 * with all elements present on the page. If a match is found, it
-	 * adds a tooltip, checks if the element is focusable, and then returns the element.
-	 * If no matching element is found, or if the parsed HTML snippet does not contain an element,
-	 * it returns null.
+	 * It tries multiple strategies in order: selector (most stable), ancestry (more specific),
+	 * and HTML matching (fallback). If a match is found, it adds a tooltip and returns the element.
+	 * If no matching element is found, it returns null.
 	 *
-	 * @param {Object} value - Object containing the HTML snippet to be matched.
+	 * @param {Object} value - Object containing the HTML snippet and selectors.
 	 * @param {number} index - Index of the element being searched.
 	 * @return {HTMLElement|null} - Returns the matching HTML element, or null if no match is found.
 	 */
 	findElement( value, index ) {
-		// Parse the HTML snippet
+		// Try selector first (most stable - IDs/classes don't change with DOM structure)
+		if ( value.selector ) {
+			try {
+				const element = document.querySelector( value.selector );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Selector may be invalid, fall back to ancestry
+			}
+		}
+
+		// Try ancestry selector (more specific than selector but less stable)
+		if ( value.ancestry ) {
+			try {
+				const element = document.querySelector( value.ancestry );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Ancestry selector may be invalid, fall back to HTML matching
+			}
+		}
+
+		// Fall back to HTML matching
 		let htmlToFind = value.object;
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString( htmlToFind, 'text/html' );
@@ -584,6 +612,52 @@ class AccessibilityCheckerHighlight {
 						this.issues[ index ].element = element;
 					}
 				}.bind( this ) );
+
+				// Sort issues by DOM order using native compareDocumentPosition
+				this.issues.sort( ( a, b ) => {
+					// If elements weren't found, push to end
+					if ( ! a.element && b.element ) {
+						return 1;
+					}
+					if ( a.element && ! b.element ) {
+						return -1;
+					}
+					if ( ! a.element && ! b.element ) {
+						return 0;
+					}
+
+					// Use DOM compareDocumentPosition for accurate ordering
+					const position = a.element.compareDocumentPosition( b.element );
+
+					// DOCUMENT_POSITION_FOLLOWING (4) means b comes after a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_FOLLOWING ) {
+						return -1;
+					}
+					// DOCUMENT_POSITION_PRECEDING (2) means b comes before a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_PRECEDING ) {
+						return 1;
+					}
+
+					// Elements are the same or in different documents
+					return 0;
+				} );
+
+				// Update tooltip aria-labels to reflect sorted order
+				this.issues.forEach( ( issue, sortedIndex ) => {
+					if ( issue.tooltip ) {
+						issue.tooltip.setAttribute(
+							'aria-label',
+							sprintf(
+								__( 'Open details for %1$s, %2$s of %3$s', 'accessibility-checker' ),
+								issue.rule_title,
+								sortedIndex + 1,
+								this.issues.length
+							)
+						);
+					}
+				} );
 
 				this.showIssueCount();
 
