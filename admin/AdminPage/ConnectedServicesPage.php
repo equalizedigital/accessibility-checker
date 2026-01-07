@@ -125,13 +125,17 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$license      = get_option( 'edac_license_key' );
-		$status       = get_option( 'edac_license_status' );
-		$jwt_token    = get_option( 'edac_jwt_token' );
-		$is_connected = ( 'valid' === $status && ! empty( $jwt_token ) );
+		$license             = get_option( 'edac_license_key' );
+		$status              = get_option( 'edac_license_status' );
+		$jwt_token           = get_option( 'edac_jwt_token' );
+		$is_connected        = ( 'valid' === $status && ! empty( $jwt_token ) );
+		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
+		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
+		$terms_link          = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'connected-services', 'terms', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>';
+		$privacy_link        = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'connected-services', 'privacy', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Privacy Policy', 'accessibility-checker' ) . '</a>';
 		?>
 		<h2><?php esc_html_e( 'Connected this site', 'accessibility-checker' ); ?></h2>
-		<?php if ( defined( 'EDACP_VERSION' ) ) : ?>
+		<?php if ( ! defined( 'EDACP_VERSION' ) ) : ?>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
 				<table class="form-table">
@@ -184,24 +188,26 @@ class ConnectedServicesPage implements PageInterface {
 					</tbody>
 				</table>
 			</form>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: link to my.equalizedigital.com dashboard */
-					esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
-					'<a href="https://my.equalizedigital.com/?utm_source=wpadmin" target="_blank">my.equalizedigital.com</a>'
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: link to create a free account */
-					esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
-					'<a href="https://my.equalizedigital.com/?utm_source=wpadmin" target="_blank">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>'
-				);
-				?>
-			</p>
+			<?php if ( ! $is_connected ) : ?>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: link to my.equalizedigital.com dashboard */
+						esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
+						wp_kses_post( $dashboard_link )
+					);
+					?>
+				</p>
+				<p>
+					<?php
+					printf(
+						/* translators: %s: link to create a free account */
+						esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
+						wp_kses_post( $create_account_link )
+					);
+					?>
+				</p>
+			<?php endif; ?>
 
 		<?php else : ?>
 			<p><?php esc_html_e( 'Get monthly accessibility email reports and access to additional services by connecting this site.', 'accessibility-checker' ); ?></p>
@@ -245,8 +251,8 @@ class ConnectedServicesPage implements PageInterface {
 			printf(
 				/* translators: %1$s: link to Terms of Service, %2$s: link to Privacy Policy */
 				esc_html__( 'By connecting this site, you agree to the Equalize Digital %1$s and %2$s.', 'accessibility-checker' ),
-				'<a href="https://equalizedigital.com/terms-of-service/?utm_source=wpadmin" target="_blank">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>',
-				'<a href="https://equalizedigital.com/privacy-policy/?utm_source=wpadmin" target="_blank">' . esc_html__( 'Privacy Policy', 'accessibility-checker' ) . '</a>'
+				wp_kses_post( $terms_link ),
+				wp_kses_post( $privacy_link )
 			);
 			?>
 		</p>
