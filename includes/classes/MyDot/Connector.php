@@ -289,8 +289,11 @@ class Connector {
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
-		if ( 'valid' !== $license_data->license ) {
+		if ( isset( $license_data->license ) ) {
 			update_option( 'edac_license_status', $license_data->license );
+			if ( 'valid' === $license_data->license ) {
+				delete_option( 'edac_license_error' );
+			}
 		}
 
 		// Verify and update JWT public key daily before validation fails.
