@@ -730,6 +730,7 @@ class Connector {
 
 		// Extract the JWT token from the Authorization header.
 		$auth_header = $request->get_header( 'Authorization' );
+		$parts       = null !== $auth_header ? explode( ' ', $auth_header ) : [];
 		if ( ! empty( $auth_header ) ) {
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
 				// Use the fallback validator which will refresh key if needed.
