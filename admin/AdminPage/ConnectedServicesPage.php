@@ -39,7 +39,7 @@ class ConnectedServicesPage implements PageInterface {
 	 *
 	 * @param string $settings_capability The capability required to view/edit license settings.
 	 */
-	public function __construct( $settings_capability ) {
+	public function __construct( $settings_capability = 'manage_options' ) {
 		$this->settings_capability = $settings_capability;
 	}
 
