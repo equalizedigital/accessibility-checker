@@ -296,11 +296,13 @@ class ConnectedServicesPage implements PageInterface {
 	private function get_error_message( $error_code, $license_url ) {
 		switch ( $error_code ) {
 			case 'expired':
+				$renew_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'renew', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Please renew your license', 'accessibility-checker' ) . '</a>';
 				return sprintf(
-				/* translators: %1$s: item name, %2$s: item name */
-					__( 'Your %1$s license has expired. <a href="https://my.equalizedigital.com/?utm_source=wpadmin" target="_blank">Please renew your license</a> to continue accessing additional features and services for %2$s.', 'accessibility-checker' ),
+				/* translators: %1$s: item name, %2$s: item name, %3$s: renew license link */
+					__( 'Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s.', 'accessibility-checker' ),
 					Connector::PRODUCT_NAME,
-					Connector::PRODUCT_NAME
+					Connector::PRODUCT_NAME,
+					wp_kses_post( $renew_link )
 				);
 
 			case 'disabled':
