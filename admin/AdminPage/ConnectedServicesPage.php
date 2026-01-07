@@ -134,7 +134,7 @@ class ConnectedServicesPage implements PageInterface {
 		$terms_link          = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'connected-services', 'terms', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>';
 		$privacy_link        = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'connected-services', 'privacy', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Privacy Policy', 'accessibility-checker' ) . '</a>';
 		?>
-		<h2><?php esc_html_e( 'Connected this site', 'accessibility-checker' ); ?></h2>
+		<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 		<?php if ( ! defined( 'EDACP_VERSION' ) ) : ?>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
