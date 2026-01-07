@@ -7,7 +7,7 @@
  * license status management.
  *
  * @package Accessibility_Checker
- * @since 1.34.0
+ * @since 1.x.x
  */
 
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
