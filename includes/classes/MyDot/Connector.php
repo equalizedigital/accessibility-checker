@@ -49,6 +49,11 @@ class Connector {
 	const PRODUCT_ID = 1666;
 
 	/**
+	 * TTL for transient-based admin notices (seconds).
+	 */
+	private const NOTICE_TRANSIENT_TTL = 60;
+
+	/**
 	 * Sets up the license page and handlers if EDACP is not active.
 	 *
 	 * @since 1.xx.x
@@ -70,6 +75,9 @@ class Connector {
 		// The admin-post handlers for register/unregister buttons.
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
+
+		// Display transient-based admin notices after redirects.
+		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
 	}
 
 	/**
@@ -377,11 +385,13 @@ class Connector {
 	private function handle_site_registration() {
 		$license_key = get_option( 'edac_license_key' );
 		if ( empty( $license_key ) ) {
-			add_action(
-				'admin_notices',
-				function () {
-					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html__( 'No license key found. Please activate a license before registering your site.', 'accessibility-checker' ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'error',
+					'message' => __( 'No license key found. Please activate a license before registering your site.', 'accessibility-checker' ),
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 			return;
 		}
@@ -391,11 +401,13 @@ class Connector {
 		$response_data = self::register_site( $license_key, $site_url, $site_name, true, true );
 		if ( empty( $response_data['success'] ) ) {
 			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' );
-			add_action(
-				'admin_notices',
-				function () use ( $error_msg ) {
-					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $error_msg ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'error',
+					'message' => $error_msg,
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 			return;
 		}
@@ -416,18 +428,22 @@ class Connector {
 			if ( ! empty( $data['next_collection'] ) ) {
 				update_option( 'edac_next_collection', $data['next_collection'] );
 			}
-			add_action(
-				'admin_notices',
-				function () {
-					echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Site registered successfully. Your site is now configured to use additional accessibility services.', 'accessibility-checker' ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'success',
+					'message' => __( 'Site registered successfully. Your site is now configured to use additional accessibility services.', 'accessibility-checker' ),
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 		} else {
-			add_action(
-				'admin_notices',
-				function () {
-					echo '<div class="notice notice-warning is-dismissible"><p>' . esc_html__( 'Site registration completed, but the response data was not in the expected format. Some features may not work correctly.', 'accessibility-checker' ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'warning',
+					'message' => __( 'Site registration completed, but the response data was not in the expected format. Some features may not work correctly.', 'accessibility-checker' ),
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 		}
 	}
@@ -837,5 +853,46 @@ class Connector {
 		}
 
 		return wp_remote_get( $url, $args ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- fallback for non-VIP environments.
+	}
+
+	/**
+	 * Display transient-based admin notices for the current user.
+	 */
+	public function display_admin_notices() {
+		$key    = $this->get_notice_transient_key();
+		$notice = get_transient( $key );
+
+		if ( empty( $notice['type'] ) || empty( $notice['message'] ) ) {
+			return;
+		}
+
+		delete_transient( $key );
+
+		$allowed_types = [ 'success', 'error', 'warning', 'info' ];
+		$type          = in_array( $notice['type'], $allowed_types, true ) ? $notice['type'] : 'info';
+		$message       = is_string( $notice['message'] ) ? $notice['message'] : '';
+
+		if ( '' === $message ) {
+			return;
+		}
+
+		printf(
+			'<div class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
+			esc_attr( $type ),
+			esc_html( $message )
+		);
+	}
+
+	/**
+	 * Build the transient key for connector notices.
+	 *
+	 * @param int|null $user_id Optional user ID; defaults to current user.
+	 *
+	 * @return string
+	 */
+	private function get_notice_transient_key( $user_id = null ) {
+		$user_id = null === $user_id ? get_current_user_id() : (int) $user_id;
+
+		return 'edac_connector_notice_' . absint( $user_id );
 	}
 }
