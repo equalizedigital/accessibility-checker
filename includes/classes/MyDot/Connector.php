@@ -65,7 +65,7 @@ class Connector {
 
 		// Schedule periodic license checks.
 		add_action( 'admin_init', [ $this, 'check_license_cron' ] );
-		add_action( 'edacp_check_license_hook', [ $this, 'periodic_check_license' ] );
+		add_action( 'edac_check_license_hook', [ $this, 'periodic_check_license' ] );
 
 		// The admin-post handlers for register/unregister buttons.
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
@@ -304,8 +304,8 @@ class Connector {
 	 * @return void
 	 */
 	public function check_license_cron() {
-		if ( ! wp_next_scheduled( 'edacp_check_license_hook' ) ) {
-			wp_schedule_event( time(), 'daily', 'edacp_check_license_hook' );
+		if ( ! wp_next_scheduled( 'edac_check_license_hook' ) ) {
+			wp_schedule_event( time(), 'daily', 'edac_check_license_hook' );
 		}
 	}
 
