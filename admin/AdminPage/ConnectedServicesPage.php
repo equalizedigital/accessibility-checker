@@ -1,8 +1,8 @@
 <?php
 /**
- * License Page and Notices for Accessibility Checker
+ * Connected Services Page and Notices for Accessibility Checker
  *
- * Handles the rendering and functionality of the license settings page
+ * Handles the rendering and functionality of the license/connected services settings page
  * in the WordPress admin, including form submission, error notices, and
  * license status management.
  *
@@ -15,13 +15,13 @@ namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 
 /**
- * Class LicensePage
+ * Class ConnectedServicesPage
  *
- * Manages license page display and functionality within the admin settings area.
+ * Manages connected services (license) page display and functionality within the admin settings area.
  *
  * @since 1.xx.x
  */
-class LicensePage implements PageInterface {
+class ConnectedServicesPage implements PageInterface {
 
 	/**
 	 * The capability required to access the settings page.
@@ -44,7 +44,7 @@ class LicensePage implements PageInterface {
 	}
 
 	/**
-	 * Register hooks to add the license page to the settings tabs
+	 * Register hooks to add the connected services page to the settings tabs
 	 * and handle license-related notices.
 	 *
 	 * @since 1.xx.x
@@ -52,13 +52,13 @@ class LicensePage implements PageInterface {
 	 * @return void
 	 */
 	public function add_page() {
-		// Add license tab to settings page.
+		// Add Connected Services tab to settings page.
 		add_filter(
 			'edac_filter_settings_tab_items',
-			[ $this, 'add_license_tab' ]
+			[ $this, 'add_connected_services_tab' ]
 		);
 
-		// Render license tab content when active.
+		// Render Connected Services tab content when active.
 		add_action(
 			'edac_settings_tab_content',
 			[ $this, 'maybe_render_tab_content' ]
@@ -73,26 +73,26 @@ class LicensePage implements PageInterface {
 	}
 
 	/**
-	 * Add license tab to settings tabs array.
+	 * Add Connected Services tab to settings tabs array.
 	 *
 	 * @since 1.xx.x
 	 *
 	 * @param array $tabs Array of registered settings tabs.
 	 *
-	 * @return array Modified tabs array with license tab added.
+	 * @return array Modified tabs array with Connected Services tab added.
 	 */
-	public function add_license_tab( $tabs ) {
+	public function add_connected_services_tab( $tabs ) {
 		$tabs[] = [
-			'slug'       => 'license',
-			'label'      => esc_html__( 'License', 'accessibility-checker' ),
-			'order'      => 99, // License is always last tab.
+			'slug'       => 'connected-services',
+			'label'      => esc_html__( 'Connected Services', 'accessibility-checker' ),
+			'order'      => 99, // Last tab.
 			'capability' => $this->settings_capability,
 		];
 		return $tabs;
 	}
 
 	/**
-	 * Conditionally render the license tab content if the current tab is 'license'.
+	 * Conditionally render the tab content if the current tab is 'connected-services'.
 	 *
 	 * @since 1.xx.x
 	 *
@@ -101,7 +101,7 @@ class LicensePage implements PageInterface {
 	 * @return void
 	 */
 	public function maybe_render_tab_content( $settings_tab ) {
-		if ( 'license' === $settings_tab ) {
+		if ( 'connected-services' === $settings_tab ) {
 			$this->render_page();
 		}
 	}
@@ -118,27 +118,29 @@ class LicensePage implements PageInterface {
 	}
 
 	/**
-	 * Render the license settings page content.
+	 * Render the connected services settings page content.
 	 *
 	 * @since 1.xx.x
 	 *
 	 * @return void
 	 */
 	public function render_page() {
-		$license   = get_option( 'edac_license_key' );
-		$status    = get_option( 'edac_license_status' );
-		$jwt_token = get_option( 'edac_jwt_token' );
+		$license      = get_option( 'edac_license_key' );
+		$status       = get_option( 'edac_license_status' );
+		$jwt_token    = get_option( 'edac_jwt_token' );
+		$is_connected = ( 'valid' === $status && ! empty( $jwt_token ) );
 		?>
-		<h2><?php esc_html_e( 'License Settings', 'accessibility-checker' ); ?></h2>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-			<?php settings_fields( 'edac_license' ); ?>
-			<table class="form-table">
-				<tbody>
-				<tr valign="top">
-					<th scope="row" valign="top">
-						<?php esc_html_e( 'License Key', 'accessibility-checker' ); ?>
-					</th>
-					<td>
+		<h2><?php esc_html_e( 'Connected this site', 'accessibility-checker' ); ?></h2>
+		<?php if ( defined( 'EDACP_VERSION' ) ) : ?>
+			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+				<?php settings_fields( 'edac_license' ); ?>
+				<table class="form-table">
+					<tbody>
+					<tr valign="top">
+						<th scope="row" valign="top">
+							<?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?>
+						</th>
+						<td>
 						<input
 							id="edac_license_key"
 							name="edac_license_key"
@@ -147,7 +149,7 @@ class LicensePage implements PageInterface {
 							value="<?php echo esc_attr( $license ); ?>"
 						/>
 						<label class="description" for="edac_license_key">
-							<?php if ( false !== $status && 'valid' === $status ) : ?>
+							<?php if ( $is_connected ) : ?>
 								<span style="color:green;"> <?php esc_html_e( 'active', 'accessibility-checker' ); ?></span>
 							<?php elseif ( false !== $status && 'expired' === $status ) : ?>
 								<span style="color:red;"> <?php esc_html_e( 'expired', 'accessibility-checker' ); ?></span>
@@ -162,62 +164,92 @@ class LicensePage implements PageInterface {
 					<td>
 						<input type="hidden" name="action" value="edac_license" />
 						<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-						<?php if ( false !== $status && 'valid' === $status ) : ?>
+						<?php if ( $is_connected ) : ?>
 							<input
 								type="submit"
 								class="button-primary"
 								name="edac_license_deactivate"
-								value="<?php esc_attr_e( 'Deactivate License', 'accessibility-checker' ); ?>"
+								value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
 							>
 						<?php else : ?>
 							<input
 								type="submit"
 								class="button-primary"
 								name="edac_license_activate"
-								value="<?php esc_attr_e( 'Activate License', 'accessibility-checker' ); ?>"
+								value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
 							/>
+						<?php endif; ?>
+					</td>
+					</tr>
+					</tbody>
+				</table>
+			</form>
+			<p>
+				<?php
+				printf(
+					/* translators: %s: link to my.equalizedigital.com dashboard */
+					esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
+					'<a href="https://my.equalizedigital.com/?utm_source=wpadmin" target="_blank">my.equalizedigital.com</a>'
+				);
+				?>
+			</p>
+			<p>
+				<?php
+				printf(
+					/* translators: %s: link to create a free account */
+					esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
+					'<a href="https://my.equalizedigital.com/?utm_source=wpadmin" target="_blank">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>'
+				);
+				?>
+			</p>
+
+		<?php else : ?>
+			<p><?php esc_html_e( 'Get monthly accessibility email reports and access to additional services by connecting this site.', 'accessibility-checker' ); ?></p>
+			<table class="form-table">
+				<tbody>
+				<tr valign="top">
+					<th scope="row" valign="top">
+						<?php esc_html_e( 'Connect site', 'accessibility-checker' ); ?>
+					</th>
+					<td>
+						<?php if ( $is_connected ) : ?>
+							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0;">
+								<input type="hidden" name="action" value="edac_jwt_unregister" />
+								<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
+								<input
+									type="submit"
+									class="button-primary"
+									name="edac_jwt_unregister"
+									value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
+								>
+							</form>
+						<?php else : ?>
+							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0;">
+								<input type="hidden" name="action" value="edac_jwt_register" />
+								<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
+								<input
+									type="submit"
+									class="button-primary"
+									name="edac_jwt_register"
+									value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
+								/>
+							</form>
 						<?php endif; ?>
 					</td>
 				</tr>
 				</tbody>
 			</table>
-		</form>
-
-		<?php if ( false !== $status && 'valid' === $status ) : ?>
-			<h3><?php esc_html_e( 'Site Registration', 'accessibility-checker' ); ?></h3>
-			<p><?php esc_html_e( 'Register this site to use additional accessibility services.', 'accessibility-checker' ); ?></p>
-
-			<?php if ( $jwt_token ) : ?>
-				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-					<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
-					<input type="hidden" name="action" value="edac_jwt_unregister" />
-					<p>
-						<input
-							type="submit"
-							class="button-secondary"
-							name="edac_jwt_unregister"
-							value="<?php esc_attr_e( 'Unregister Site', 'accessibility-checker' ); ?>"
-						/>
-						<span class="description" style="margin-left: 10px; color: green;">
-							<?php esc_html_e( 'Site is registered', 'accessibility-checker' ); ?>
-						</span>
-					</p>
-				</form>
-			<?php else : ?>
-				<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-					<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
-					<input type="hidden" name="action" value="edac_jwt_register" />
-					<p>
-						<input
-							type="submit"
-							class="button-secondary"
-							name="edac_jwt_register"
-							value="<?php esc_attr_e( 'Register Site', 'accessibility-checker' ); ?>"
-						/>
-					</p>
-				</form>
-			<?php endif; ?>
 		<?php endif; ?>
+		<p>
+			<?php
+			printf(
+				/* translators: %1$s: link to Terms of Service, %2$s: link to Privacy Policy */
+				esc_html__( 'By connecting this site, you agree to the Equalize Digital %1$s and %2$s.', 'accessibility-checker' ),
+				'<a href="https://equalizedigital.com/terms-of-service/?utm_source=wpadmin" target="_blank">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>',
+				'<a href="https://equalizedigital.com/privacy-policy/?utm_source=wpadmin" target="_blank">' . esc_html__( 'Privacy Policy', 'accessibility-checker' ) . '</a>'
+			);
+			?>
+		</p>
 		<?php
 	}
 
@@ -230,7 +262,7 @@ class LicensePage implements PageInterface {
 	 */
 	public function admin_notices() {
 		$error       = get_option( 'edac_license_error' );
-		$license_url = get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings&tab=license';
+		$license_url = get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings&tab=connected-services';
 		$message     = null;
 
 		if ( $error ) {

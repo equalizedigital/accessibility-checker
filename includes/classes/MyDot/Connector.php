@@ -10,6 +10,8 @@
 
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
 
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
+
 /**
  * Class Connector
  *
@@ -52,13 +54,8 @@ class Connector {
 	 * @since 1.xx.x
 	 */
 	public function init() {
-		// set up the license page file if EDACP is not active.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			return;
-		}
-
-		$license = new \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\LicensePage( 'administrator' );
-		$license->add_page();
+		$connected_services = new ConnectedServicesPage( 'administrator' );
+		$connected_services->add_page();
 
 		// Ensure the license options group is registered so options.php allows saves.
 		add_action( 'admin_init', [ $this, 'register_license_settings' ] );
@@ -194,6 +191,11 @@ class Connector {
 
 		delete_option( 'edac_license_error' );
 		update_option( 'edac_license_status', $license_data->license ?? '' );
+
+		// Automatically register the site after successful license activation.
+		if ( 'valid' === ( $license_data->license ?? '' ) ) {
+			$this->handle_site_registration();
+		}
 	}
 
 	/**
@@ -207,6 +209,12 @@ class Connector {
 		$license = trim( get_option( 'edac_license_key' ) );
 		if ( empty( $license ) ) {
 			return;
+		}
+
+		// Automatically unregister the site before deactivating the license.
+		$jwt_token = get_option( 'edac_jwt_token' );
+		if ( ! empty( $jwt_token ) ) {
+			$this->handle_site_unregistration();
 		}
 
 		$api_params = [
@@ -644,6 +652,7 @@ class Connector {
 		if ( ! $public_key_resource ) {
 			return false;
 		}
+
 		$verify_result = openssl_verify( $message, $signature_decoded, $public_key_resource, OPENSSL_ALGO_SHA256 );
 		if ( 1 !== $verify_result ) {
 			return false;
@@ -675,6 +684,7 @@ class Connector {
 		if ( isset( $payload['nbf'] ) && $payload['nbf'] > $current_time ) {
 			return false;
 		}
+
 		return true;
 	}
 
@@ -721,7 +731,6 @@ class Connector {
 		// Extract the JWT token from the Authorization header.
 		$auth_header = $request->get_header( 'Authorization' );
 		if ( ! empty( $auth_header ) ) {
-			$parts = explode( ' ', $auth_header );
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
 				// Use the fallback validator which will refresh key if needed.
 				return self::validate_jwt_token_with_fallback( $parts[1] );
