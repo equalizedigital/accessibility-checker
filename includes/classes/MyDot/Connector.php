@@ -272,11 +272,10 @@ class Connector {
 	 */
 	public function periodic_check_license() {
 
-		if ( ! get_option( 'edac_license_key' ) ) {
+		$license = trim( get_option( 'edac_license_key' ) );
+		if ( ! $license ) {
 			return;
 		}
-
-		$license = trim( get_option( 'edac_license_key' ) );
 
 		$api_params = [
 			'edd_action'   => 'check_license',
