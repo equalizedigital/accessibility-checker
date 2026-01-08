@@ -364,7 +364,7 @@ class Scans_Stats {
 			'cached_at',
 			'expires_at',
 			'cache_hit',
-			'top_posts_with_issues',
+			'top_pages_with_issues',
 		];
 
 		foreach ( $data as $key => $value ) {
