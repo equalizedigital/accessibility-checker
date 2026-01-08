@@ -76,8 +76,14 @@ class Connector {
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
 
-		// Display transient-based admin notices after redirects.
-		add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
+		add_action(
+			'in_admin_header',
+			function () {
+				// Display transient-backed admin notices after redirects.
+				add_action( 'admin_notices', [ $this, 'display_admin_notices' ] );
+			},
+			1000
+		);
 	}
 
 	/**
