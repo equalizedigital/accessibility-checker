@@ -76,6 +76,9 @@ class Connector {
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
 
+		// When license for pro is deactivated we should unregister the site to avoid orphaned registrations.
+		add_action( 'edacp_license_deactivated', [ $this, 'handle_site_unregistration' ] );
+
 		add_action(
 			'in_admin_header',
 			function () {
