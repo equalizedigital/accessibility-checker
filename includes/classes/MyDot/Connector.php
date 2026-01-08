@@ -342,6 +342,27 @@ class Connector {
 	}
 
 	/**
+	 * Get the active license key (pro or free).
+	 *
+	 * Checks for the pro license key first (if EDACP is active), then falls back
+	 * to the free license key. Returns an empty string if no key is found.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string The license key or empty string if none found.
+	 */
+	public static function get_license_key() {
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$pro_key = get_option( 'edacp_license_key' );
+			if ( ! empty( $pro_key ) ) {
+				return $pro_key;
+			}
+		}
+
+		return get_option( 'edac_license_key' );
+	}
+
+	/**
 	 * Handle admin-post for site registration (button on License page).
 	 *
 	 * @since 1.xx.x
@@ -391,7 +412,7 @@ class Connector {
 	 * @return void
 	 */
 	private function handle_site_registration() {
-		$license_key = get_option( 'edac_license_key' );
+		$license_key = self::get_license_key();
 		if ( empty( $license_key ) ) {
 			set_transient(
 				$this->get_notice_transient_key(),
@@ -466,7 +487,7 @@ class Connector {
 	private function handle_site_unregistration() {
 		$site_id     = get_option( 'edac_site_id' );
 		$jwt_token   = get_option( 'edac_jwt_token' );
-		$license_key = get_option( 'edac_license_key' );
+		$license_key = self::get_license_key();
 		if ( empty( $site_id ) || empty( $jwt_token ) || empty( $license_key ) ) {
 			add_action(
 				'admin_notices',
