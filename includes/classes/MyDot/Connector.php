@@ -37,7 +37,7 @@ class Connector {
 	 *
 	 * @var string
 	 */
-	const API_ENDPOINT = 'http://my.equalizedigital.local';
+	const API_ENDPOINT = 'http://my.equalizedigdev.wpengine.com';
 
 	/**
 	 * The product ID used in MyDot licensing system.
@@ -489,22 +489,26 @@ class Connector {
 		$jwt_token   = get_option( 'edac_jwt_token' );
 		$license_key = self::get_license_key();
 		if ( empty( $site_id ) || empty( $jwt_token ) || empty( $license_key ) ) {
-			add_action(
-				'admin_notices',
-				function () {
-					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html__( 'Unable to unregister site. Required registration data is missing.', 'accessibility-checker' ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'error',
+					'message' => __( 'Unable to unregister site. Required registration data is missing.', 'accessibility-checker' ),
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 			return;
 		}
 		$response_data = self::unregister_site( $jwt_token, get_site_url(), $license_key );
 		if ( empty( $response_data['success'] ) ) {
 			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
-			add_action(
-				'admin_notices',
-				function () use ( $error_msg ) {
-					echo '<div class="notice notice-error is-dismissible"><p>' . esc_html( $error_msg ) . '</p></div>';
-				}
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'error',
+					'message' => $error_msg,
+				],
+				self::NOTICE_TRANSIENT_TTL
 			);
 			return;
 		}
@@ -513,11 +517,13 @@ class Connector {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
-		add_action(
-			'admin_notices',
-			function () {
-				echo '<div class="notice notice-success is-dismissible"><p>' . esc_html__( 'Site unregistered successfully. Your site will no longer receive email reports.', 'accessibility-checker' ) . '</p></div>';
-			}
+		set_transient(
+			$this->get_notice_transient_key(),
+			[
+				'type'    => 'success',
+				'message' => __( 'Site unregistered successfully. Your site will no longer receive email reports.', 'accessibility-checker' ),
+			],
+			self::NOTICE_TRANSIENT_TTL
 		);
 	}
 
@@ -894,13 +900,11 @@ class Connector {
 		if ( empty( $notice['type'] ) || empty( $notice['message'] ) ) {
 			return;
 		}
-
 		delete_transient( $key );
 
 		$allowed_types = [ 'success', 'error', 'warning', 'info' ];
 		$type          = in_array( $notice['type'], $allowed_types, true ) ? $notice['type'] : 'info';
 		$message       = is_string( $notice['message'] ) ? $notice['message'] : '';
-
 		if ( '' === $message ) {
 			return;
 		}
