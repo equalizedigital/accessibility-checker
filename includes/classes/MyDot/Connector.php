@@ -59,7 +59,7 @@ class Connector {
 	 * @since 1.xx.x
 	 */
 	public function init() {
-		$connected_services = new ConnectedServicesPage( 'administrator' );
+		$connected_services = new ConnectedServicesPage( 'manage_options' );
 		$connected_services->add_page();
 
 		// Ensure the license options group is registered so options.php allows saves.
