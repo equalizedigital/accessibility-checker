@@ -482,30 +482,55 @@ class Scans_Stats {
 		global $wpdb;
 
 		$ac_table_name = $wpdb->prefix . 'accessibility_checker';
+		$siteid        = get_current_blog_id();
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct query for stats calculation.
-		$posts = $wpdb->get_results(
-			$wpdb->prepare(
-				'SELECT %i.ID, %i.post_title, COUNT(%i.id) as issue_count
-				FROM %i
-				INNER JOIN %i ON %i.ID = %i.postid
-				WHERE %i.ignre = 0 AND %i.ignre_global = 0
-				GROUP BY %i.ID
-				ORDER BY issue_count DESC
-				LIMIT %d',
-				$wpdb->posts,
-				$wpdb->posts,
-				$ac_table_name,
-				$wpdb->posts,
-				$ac_table_name,
-				$wpdb->posts,
-				$ac_table_name,
-				$ac_table_name,
-				$ac_table_name,
-				$wpdb->posts,
-				$limit
-			)
+		// Get scannable post types and statuses to match site scope.
+		$post_types    = Settings::get_scannable_post_types();
+		$post_statuses = Settings::get_scannable_post_statuses();
+
+		// Return empty array if no scannable content is configured.
+		if ( empty( $post_types ) || empty( $post_statuses ) ) {
+			return [];
+		}
+
+		// Build SQL-safe lists for IN clauses (these are sanitized by the helper).
+		$post_types_list    = Helpers::array_to_sql_safe_list( $post_types );
+		$post_statuses_list = Helpers::array_to_sql_safe_list( $post_statuses );
+
+		// Build the SQL query with siteid and post filters.
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- post_types_list and post_statuses_list are sanitized by Helpers::array_to_sql_safe_list().
+		$sql = $wpdb->prepare(
+			"SELECT %i.ID, %i.post_title, COUNT(%i.id) as issue_count
+			FROM %i
+			INNER JOIN %i ON %i.ID = %i.postid
+			WHERE %i.siteid = %d
+			AND %i.ignre = 0
+			AND %i.ignre_global = 0
+			AND %i.post_type IN({$post_types_list})
+			AND %i.post_status IN({$post_statuses_list})
+			GROUP BY %i.ID
+			ORDER BY issue_count DESC
+			LIMIT %d",
+			$wpdb->posts,
+			$wpdb->posts,
+			$ac_table_name,
+			$wpdb->posts,
+			$ac_table_name,
+			$wpdb->posts,
+			$ac_table_name,
+			$ac_table_name,
+			$siteid,
+			$ac_table_name,
+			$ac_table_name,
+			$wpdb->posts,
+			$wpdb->posts,
+			$wpdb->posts,
+			$limit
 		);
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Direct query for stats calculation, SQL is prepared above.
+		$posts = $wpdb->get_results( $sql );
 
 		$result = [];
 		if ( $posts ) {
