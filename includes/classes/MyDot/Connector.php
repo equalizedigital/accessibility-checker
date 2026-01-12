@@ -358,7 +358,7 @@ class Connector {
 		 *
 		 * @param string $default The default or environment-overridden API endpoint URL.
 		 */
-		return apply_filters( 'mydot_api_endpoint', self::API_ENDPOINT );
+		return apply_filters( 'edac_mydot_api_endpoint', self::API_ENDPOINT );
 	}
 
 	/**
@@ -744,6 +744,7 @@ class Connector {
 		if ( 'RS256' !== $algo ) {
 			return false;
 		}
+
 		$public_key_resource = openssl_pkey_get_public( $public_key );
 		if ( ! $public_key_resource ) {
 			return false;
