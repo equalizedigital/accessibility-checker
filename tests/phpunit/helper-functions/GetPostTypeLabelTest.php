@@ -3,7 +3,16 @@
  * Tests for the edac_get_post_type_label helper.
  *
  * @package Accessibility_Checker
- * @since 1.0.0
+ * @copyright 2025 Equalize Digital
+ * @license GPL-2.0+
+ * @since 1.37.0
+ */
+
+/**
+ * Tests for edac_get_post_type_label.
+ *
+ * @covers ::edac_get_post_type_label
+ * @since 1.37.0
  */
 class GetPostTypeLabelTest extends WP_UnitTestCase {
 
