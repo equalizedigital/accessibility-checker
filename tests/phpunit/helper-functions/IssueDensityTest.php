@@ -50,7 +50,7 @@ class IssueDensityTest extends WP_UnitTestCase {
 				'content_length' => 200,
 				'expected'       => 3.6,
 			],
-			'rounding to two decimals'    => [
+			'rounding to two decimals'   => [
 				'issue_count'    => 1,
 				'element_count'  => 3,
 				'content_length' => 7,
