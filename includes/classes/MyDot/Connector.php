@@ -703,6 +703,17 @@ class Connector {
 		if ( ! $header || ! $payload ) {
 			return false;
 		}
+
+		// Require that aud, iss and exp all exist.
+		if ( ! isset( $payload['aud'], $payload['iss'], $payload['exp'] ) ) {
+			return false;
+		}
+		// The exp should be numeric and an int.
+		if ( ! is_numeric( $payload['exp'] ) ) {
+			return false;
+		}
+		$exp = (int) $payload['exp'];
+
 		$message           = $header_b64 . '.' . $payload_b64;
 		$signature_decoded = base64_decode( strtr( $signature_b64, '-_', '+/' ) );
 		$algo              = $header['alg'] ?? 'RS256';
@@ -718,29 +729,29 @@ class Connector {
 		if ( 1 !== $verify_result ) {
 			return false;
 		}
+
 		$current_time = time();
 		// Validate expiration (exp claim) - required by RFC 8725.
-		if ( isset( $payload['exp'] ) && $payload['exp'] < $current_time ) {
+		if ( $exp < $current_time ) {
 			return false;
 		}
+
 		// RFC 8725: Validate issuer claim to prevent token substitution attacks.
-		if ( isset( $payload['iss'] ) ) {
-			$expected_iss = self::get_jwt_issuer();
-			if ( $payload['iss'] !== $expected_iss ) {
-				return false;
-			}
+		$expected_iss = self::get_jwt_issuer();
+		if ( $payload['iss'] !== $expected_iss ) {
+			return false;
 		}
+
 		// RFC 8725: Validate audience claim - if issuer issues JWTs for multiple recipients,
 		// the JWT must contain an "aud" claim and must be validated.
-		if ( isset( $payload['aud'] ) ) {
-			$expected_aud = self::get_jwt_audience();
-			$token_aud    = $payload['aud'];
-			// aud can be a string or an array of strings per RFC 7519.
-			$aud_list = is_array( $token_aud ) ? $token_aud : [ $token_aud ];
-			if ( ! in_array( $expected_aud, $aud_list, true ) ) {
-				return false;
-			}
+		$expected_aud = self::get_jwt_audience();
+		$token_aud    = $payload['aud'];
+		// aud can be a string or an array of strings per RFC 7519.
+		$aud_list = is_array( $token_aud ) ? $token_aud : [ $token_aud ];
+		if ( ! in_array( $expected_aud, $aud_list, true ) ) {
+			return false;
 		}
+
 		// RFC 8725: Validate not-before claim (nbf) if present.
 		if ( isset( $payload['nbf'] ) && $payload['nbf'] > $current_time ) {
 			return false;
