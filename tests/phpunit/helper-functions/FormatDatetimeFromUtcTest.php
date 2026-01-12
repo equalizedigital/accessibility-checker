@@ -83,10 +83,10 @@ class FormatDatetimeFromUtcTest extends WP_UnitTestCase {
 	 */
 	public function provider_valid_datetime_values(): array {
 		return [
-			'New York (DST)'        => [ 'America/New_York', '2024-07-01 12:00:00', '2024-07-01 08:00' ],
-			'New York (Standard)'   => [ 'America/New_York', '2024-01-01 12:00:00', '2024-01-01 07:00' ],
-			'London (DST)'          => [ 'Europe/London', '2024-07-01 12:00:00', '2024-07-01 13:00' ],
-			'London (Standard)'     => [ 'Europe/London', '2024-01-01 12:00:00', '2024-01-01 12:00' ],
+			'New York (DST)'      => [ 'America/New_York', '2024-07-01 12:00:00', '2024-07-01 08:00' ],
+			'New York (Standard)' => [ 'America/New_York', '2024-01-01 12:00:00', '2024-01-01 07:00' ],
+			'London (DST)'        => [ 'Europe/London', '2024-07-01 12:00:00', '2024-07-01 13:00' ],
+			'London (Standard)'   => [ 'Europe/London', '2024-01-01 12:00:00', '2024-01-01 12:00' ],
 		];
 	}
 
