@@ -1,12 +1,9 @@
 <?php
 /**
- * Class GetPostTypeLabelTest
+ * Tests for the edac_get_post_type_label helper.
  *
  * @package Accessibility_Checker
- */
-
-/**
- * Test case for edac_get_post_type_label.
+ * @since 1.0.0
  */
 class GetPostTypeLabelTest extends WP_UnitTestCase {
 
@@ -31,9 +28,28 @@ class GetPostTypeLabelTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_get_post_type_label function for unregistered post types.
+	 *
+	 * @dataProvider provider_unregistered_post_types
+	 *
+	 * @param string $post_type The post type slug to test.
+	 * @param string $expected  The expected label.
 	 */
-	public function test_edac_get_post_type_label_unregistered_post_type() {
-		$this->assertSame( 'Custom-type', edac_get_post_type_label( 'custom-type' ) );
+	public function test_edac_get_post_type_label_unregistered_post_type( $post_type, $expected ) {
+		$this->assertSame( $expected, edac_get_post_type_label( $post_type ) );
+	}
+
+	/**
+	 * Data provider for test_edac_get_post_type_label_unregistered_post_type.
+	 *
+	 * @return array
+	 */
+	public function provider_unregistered_post_types() {
+		return [
+			'standard slug'       => [ 'custom-type', 'Custom-type' ],
+			'slug with space'     => [ 'custom type', 'Customtype' ],
+			'slug with uppercase' => [ 'CustomType', 'Customtype' ],
+			'numeric slug'        => [ '123', '123' ],
+		];
 	}
 
 	/**
