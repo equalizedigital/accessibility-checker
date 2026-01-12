@@ -19,7 +19,7 @@ class GetPostTypeLabelTest extends WP_UnitTestCase {
 	/**
 	 * Tests the edac_get_post_type_label function for registered post types.
 	 */
-	public function test_edac_get_post_type_label_registered_post_type() {
+	public function test_edac_get_post_type_label_registered_post_type(): void {
 		register_post_type(
 			'edac_sample_type',
 			[
@@ -43,7 +43,7 @@ class GetPostTypeLabelTest extends WP_UnitTestCase {
 	 * @param string $post_type The post type slug to test.
 	 * @param string $expected  The expected label.
 	 */
-	public function test_edac_get_post_type_label_unregistered_post_type( $post_type, $expected ) {
+	public function test_edac_get_post_type_label_unregistered_post_type( string $post_type, string $expected ): void {
 		$this->assertSame( $expected, edac_get_post_type_label( $post_type ) );
 	}
 
@@ -52,7 +52,7 @@ class GetPostTypeLabelTest extends WP_UnitTestCase {
 	 *
 	 * @return array
 	 */
-	public function provider_unregistered_post_types() {
+	public function provider_unregistered_post_types(): array {
 		return [
 			'standard slug'       => [ 'custom-type', 'Custom-type' ],
 			'slug with space'     => [ 'custom type', 'Customtype' ],
@@ -64,7 +64,7 @@ class GetPostTypeLabelTest extends WP_UnitTestCase {
 	/**
 	 * Tests the edac_get_post_type_label function for empty input.
 	 */
-	public function test_edac_get_post_type_label_empty_input() {
+	public function test_edac_get_post_type_label_empty_input(): void {
 		$this->assertSame( '', edac_get_post_type_label( '' ) );
 	}
 }
