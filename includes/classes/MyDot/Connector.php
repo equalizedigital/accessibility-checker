@@ -735,8 +735,12 @@ class Connector {
 		$exp = (int) $payload['exp'];
 
 		$message           = $header_b64 . '.' . $payload_b64;
-		$signature_decoded = base64_decode( strtr( $signature_b64, '-_', '+/' ) );
-		$algo              = $header['alg'] ?? 'RS256';
+		$signature_decoded = self::base64url_decode_strict( $signature_b64 );
+		if ( false === $signature_decoded ) {
+			return false;
+		}
+
+		$algo = $header['alg'] ?? 'RS256';
 		if ( 'RS256' !== $algo ) {
 			return false;
 		}
