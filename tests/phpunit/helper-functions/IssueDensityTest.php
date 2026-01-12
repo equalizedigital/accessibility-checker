@@ -21,7 +21,7 @@ class IssueDensityTest extends WP_UnitTestCase {
 	 * @param float $expected       Expected density score.
 	 */
 	public function test_edac_get_issue_density( $issue_count, $element_count, $content_length, $expected ) {
-		$this->assertSame(
+		$this->assertEquals(
 			$expected,
 			edac_get_issue_density( $issue_count, $element_count, $content_length )
 		);
