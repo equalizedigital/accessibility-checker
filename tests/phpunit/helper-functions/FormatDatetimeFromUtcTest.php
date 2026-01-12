@@ -88,9 +88,9 @@ class FormatDatetimeFromUtcTest extends WP_UnitTestCase {
 	 */
 	public function provider_invalid_datetime_values(): array {
 		return [
-			'empty string'          => [ '' ],
-			'zero datetime'         => [ '0000-00-00 00:00:00' ],
-			'non-date string'       => [ 'not a date' ],
+			'empty string'           => [ '' ],
+			'zero datetime'          => [ '0000-00-00 00:00:00' ],
+			'non-date string'        => [ 'not a date' ],
 			'invalid month datetime' => [ '2024-13-01 00:00:00' ],
 		];
 	}
