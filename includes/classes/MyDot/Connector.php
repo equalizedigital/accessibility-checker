@@ -882,9 +882,9 @@ class Connector {
 		$args     = wp_parse_args( $args, $defaults );
 
 		if ( function_exists( 'vip_safe_wp_remote_get' ) ) {
-			$timeout     = isset( $args['timeout'] ) ? (int) $args['timeout'] : 15;
+			$timeout     = isset( $args['timeout'] ) ? (int) $args['timeout'] : 10;
 			$retry_count = isset( $args['retry'] ) ? (int) $args['retry'] : 3;
-			return vip_safe_wp_remote_get( $url, '', $timeout, $retry_count, $args );
+			return vip_safe_wp_remote_get( $url, '', 3, (int) $timeout, (int) $retry_count, $args );
 		}
 
 		return wp_remote_get( $url, $args ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.wp_remote_get_wp_remote_get -- fallback for non-VIP environments.
