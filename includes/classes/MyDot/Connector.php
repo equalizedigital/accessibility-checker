@@ -691,8 +691,15 @@ class Connector {
 			return false;
 		}
 		list( $header_b64, $payload_b64, $signature_b64 ) = $parts;
-		$header  = json_decode( base64_decode( strtr( $header_b64, '-_', '+/' ) ), true );
-		$payload = json_decode( base64_decode( strtr( $payload_b64, '-_', '+/' ) ), true );
+
+		$header_json  = self::base64url_decode_strict( $header_b64 );
+		$payload_json = self::base64url_decode_strict( $payload_b64 );
+		if ( false === $header_json || false === $payload_json ) {
+			return false;
+		}
+
+		$header  = json_decode( $header_json, true );
+		$payload = json_decode( $payload_json, true );
 		if ( ! $header || ! $payload ) {
 			return false;
 		}
@@ -927,5 +934,22 @@ class Connector {
 		$user_id = null === $user_id ? get_current_user_id() : (int) $user_id;
 
 		return 'edac_connector_notice_' . absint( $user_id );
+	}
+
+	/**
+	 * Strict Base64URL decode that returns false on invalid input.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param string $b64url The Base64URL encoded string.
+	 * @return string|false The decoded string, or false on failure.
+	 */
+	private static function base64url_decode_strict( string $b64url ) {
+		$b64 = strtr( $b64url, '-_', '+/' );
+		$pad = strlen( $b64 ) % 4;
+		if ( $pad ) {
+			$b64 .= str_repeat( '=', 4 - $pad );
+		}
+		return base64_decode( $b64, true );
 	}
 }
