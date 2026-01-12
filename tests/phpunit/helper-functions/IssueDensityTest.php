@@ -29,6 +29,8 @@ class IssueDensityTest extends WP_UnitTestCase {
 
 	/**
 	 * Data provider for test_edac_get_issue_density.
+	 *
+	 * @return array<string, array<string, int|float>>
 	 */
 	public function edac_get_issue_density_data() {
 		return [
