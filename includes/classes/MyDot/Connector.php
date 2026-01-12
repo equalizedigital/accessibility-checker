@@ -31,13 +31,13 @@ class Connector {
 	const PRODUCT_NAME = 'Accessibility Checker Free';
 
 	/**
-	 * The MyDot API endpoint for license validation.
+	 * The default MyDot API endpoint for license validation.
 	 *
 	 * @since 1.xx.x
 	 *
 	 * @var string
 	 */
-	const API_ENDPOINT = 'http://my.equalizedigdev.wpengine.com';
+	const API_ENDPOINT = 'https://my.equalizedigital.com';
 
 	/**
 	 * The product ID used in MyDot licensing system.
@@ -184,7 +184,7 @@ class Connector {
 		];
 
 		$response = wp_remote_post(
-			self::API_ENDPOINT,
+			self::get_api_endpoint(),
 			[
 				'timeout'   => 15,  // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
 				'sslverify' => self::verify_ssl(),
@@ -242,7 +242,7 @@ class Connector {
 		];
 
 		$response = wp_remote_post(
-			self::API_ENDPOINT,
+			self::get_api_endpoint(),
 			[
 				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
 				'sslverify' => self::verify_ssl(),
@@ -291,7 +291,7 @@ class Connector {
 
 		// Call the custom API.
 		$response = wp_remote_post(
-			self::API_ENDPOINT,
+			self::get_api_endpoint(),
 			[
 				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- 15 seconds is needed for now.
 				'sslverify' => self::verify_ssl(),
@@ -339,6 +339,26 @@ class Connector {
 	 */
 	public static function verify_ssl() {
 		return (bool) apply_filters( 'edac_verify_ssl_for_licensing', true );
+	}
+
+	/**
+	 * Get the MyDot API endpoint.
+	 *
+	 * Can be overridden by filtering the value with the `mydot_api_endpoint` filter.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string The API endpoint URL (with protocol). Defaults to `https://my.equalizedigital.com`.
+	 */
+	public static function get_api_endpoint() {
+		/**
+		 * Filters the MyDot API endpoint URL.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param string $default The default or environment-overridden API endpoint URL.
+		 */
+		return apply_filters( 'mydot_api_endpoint', self::API_ENDPOINT );
 	}
 
 	/**
@@ -555,7 +575,7 @@ class Connector {
 			'monthly_reports' => $monthly_reports,
 		];
 		$response     = wp_remote_post(
-			self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/register-site',
+			self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/register-site',
 			[
 				'headers'     => [ 'Content-Type' => 'application/json' ],
 				'body'        => wp_json_encode( $request_data ),
@@ -606,7 +626,7 @@ class Connector {
 			'license_key' => $license_key,
 		];
 		$response     = wp_remote_post(
-			self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/unregister-site',
+			self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/unregister-site',
 			[
 				'headers'     => [
 					'Content-Type'  => 'application/json',
@@ -646,7 +666,7 @@ class Connector {
 	 */
 	public static function get_jwt_issuer() {
 		// strip the protocol for issuer comparison.
-		return apply_filters( 'edac_jwt_issuer', preg_replace( '#^https?://#', '', self::API_ENDPOINT ) );
+		return apply_filters( 'edac_jwt_issuer', preg_replace( '#^https?://#', '', self::get_api_endpoint() ) );
 	}
 
 	/**
@@ -834,7 +854,7 @@ class Connector {
 		}
 
 		// Make a lightweight GET request for the current public key.
-		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/public-key' );
+		$response = self::safe_remote_get( self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/public-key' );
 
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return false;
@@ -868,7 +888,7 @@ class Connector {
 	 * @return bool True if key was retrieved and stored, false otherwise.
 	 */
 	public static function refresh_public_key_from_issuer() {
-		$response = self::safe_remote_get( self::API_ENDPOINT . '/wp-json/myed-email-reports/v1/get-public-key' );
+		$response = self::safe_remote_get( self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/get-public-key' );
 
 		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return false;
