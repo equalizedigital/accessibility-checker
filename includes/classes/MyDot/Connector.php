@@ -69,7 +69,7 @@ class Connector {
 		add_action( 'admin_post_edac_license', [ $this, 'handle_license_post' ] );
 
 		// Schedule periodic license checks.
-		add_action( 'admin_init', [ $this, 'check_license_cron' ] );
+		add_action( 'init', [ $this, 'check_license_cron' ] );
 		add_action( 'edac_check_license_hook', [ $this, 'periodic_check_license' ] );
 
 		// The admin-post handlers for register/unregister buttons.
