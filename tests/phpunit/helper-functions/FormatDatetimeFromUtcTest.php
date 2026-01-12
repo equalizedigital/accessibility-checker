@@ -59,15 +59,35 @@ class FormatDatetimeFromUtcTest extends WP_UnitTestCase {
 
 	/**
 	 * Tests the edac_format_datetime_from_utc function with valid input.
+	 *
+	 * @dataProvider provider_valid_datetime_values
+	 *
+	 * @param string $timezone        Timezone string.
+	 * @param string $input_datetime  UTC datetime string.
+	 * @param string $expected_output Expected formatted datetime string.
 	 */
-	public function test_edac_format_datetime_from_utc_formats_output(): void {
+	public function test_edac_format_datetime_from_utc_formats_output( string $timezone, string $input_datetime, string $expected_output ): void {
 		update_option( 'date_format', 'Y-m-d' );
 		update_option( 'time_format', 'H:i' );
-		update_option( 'timezone_string', 'America/New_York' );
+		update_option( 'timezone_string', $timezone );
 
-		$formatted = edac_format_datetime_from_utc( '2024-07-01 12:00:00' );
+		$formatted = edac_format_datetime_from_utc( $input_datetime );
 
-		$this->assertSame( '2024-07-01 08:00', $formatted );
+		$this->assertSame( $expected_output, $formatted );
+	}
+
+	/**
+	 * Data provider for valid datetime values.
+	 *
+	 * @return array<string, array<string>>
+	 */
+	public function provider_valid_datetime_values(): array {
+		return [
+			'New York (DST)'        => [ 'America/New_York', '2024-07-01 12:00:00', '2024-07-01 08:00' ],
+			'New York (Standard)'   => [ 'America/New_York', '2024-01-01 12:00:00', '2024-01-01 07:00' ],
+			'London (DST)'          => [ 'Europe/London', '2024-07-01 12:00:00', '2024-07-01 13:00' ],
+			'London (Standard)'     => [ 'Europe/London', '2024-01-01 12:00:00', '2024-01-01 12:00' ],
+		];
 	}
 
 	/**
