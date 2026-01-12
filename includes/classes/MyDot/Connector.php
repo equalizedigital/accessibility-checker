@@ -925,8 +925,8 @@ class Connector {
 		$args     = wp_parse_args( $args, $defaults );
 
 		if ( function_exists( 'vip_safe_wp_remote_get' ) ) {
-			$timeout     = isset( $args['timeout'] ) ? (int) $args['timeout'] : 10;
-			$retry_count = isset( $args['retry'] ) ? (int) $args['retry'] : 3;
+			$timeout     = isset( $args['timeout'] ) ? (int) $args['timeout'] : 5;
+			$retry_count = isset( $args['retry'] ) ? (int) $args['retry'] : 10;
 			return vip_safe_wp_remote_get( $url, '', 3, (int) $timeout, (int) $retry_count, $args );
 		}
 
