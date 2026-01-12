@@ -331,7 +331,7 @@ class Connector {
 	/**
 	 * Determines whether to verify SSL for licensing requests.
 	 *
-	 * Can be disabled by returning `false` to the `edacp_verify_ssl_for_licensing` filter.
+	 * Can be disabled by returning `false` to the `edac_verify_ssl_for_licensing` filter.
 	 *
 	 * @since 1.xx.x
 	 *
