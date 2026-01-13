@@ -125,8 +125,14 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$license             = get_option( 'edac_license_key' );
-		$status              = get_option( 'edac_license_status' );
+		// If pro plugin is enabled, check its license status instead.
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$license = get_option( 'edacp_license_key' );
+			$status  = get_option( 'edacp_license_status' );
+		} else {
+			$license = get_option( 'edac_license_key' );
+			$status  = get_option( 'edac_license_status' );
+		}
 		$site_id             = get_option( 'edac_site_id' );
 		$is_connected        = ( 'valid' === $status && ! empty( $site_id ) );
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
@@ -267,7 +273,12 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function admin_notices() {
-		$error       = get_option( 'edac_license_error' );
+		// If pro plugin is enabled, check its license error instead.
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$error = get_option( 'edacp_license_error' );
+		} else {
+			$error = get_option( 'edac_license_error' );
+		}
 		$license_url = get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings&tab=connected-services';
 		$message     = null;
 
