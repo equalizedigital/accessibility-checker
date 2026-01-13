@@ -268,9 +268,15 @@ class Connector {
 	 *
 	 * Also includes proactive JWT public key verification as part of key rotation strategy.
 	 *
+	 * Bails early if the pro plugin (EDACP) is enabled to let it handle license checking.
+	 *
 	 * @return void
 	 */
 	public function periodic_check_license() {
+		// If pro plugin is enabled, let it handle license checking.
+		if ( defined( 'EDACP_VERSION' ) ) {
+			return;
+		}
 
 		$license = trim( get_option( 'edac_license_key' ) );
 		if ( ! $license ) {
