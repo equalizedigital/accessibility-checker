@@ -127,8 +127,8 @@ class ConnectedServicesPage implements PageInterface {
 	public function render_page() {
 		$license             = get_option( 'edac_license_key' );
 		$status              = get_option( 'edac_license_status' );
-		$jwt_token           = get_option( 'edac_jwt_token' );
-		$is_connected        = ( 'valid' === $status && ! empty( $jwt_token ) );
+		$site_id             = get_option( 'edac_site_id' );
+		$is_connected        = ( 'valid' === $status && ! empty( $site_id ) );
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
 		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
 		$terms_link          = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'connected-services', 'terms', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>';
