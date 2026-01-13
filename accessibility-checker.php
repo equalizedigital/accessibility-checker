@@ -143,3 +143,10 @@ function edac_register_rules() {
 
 	return $default_rules;
 }
+
+add_filter(
+	'edac_mydot_api_endpoint',
+	function () {
+		return 'http://my.equalizedigdev.wpengine.com';
+	}
+);
