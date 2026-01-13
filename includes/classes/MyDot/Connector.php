@@ -229,8 +229,8 @@ class Connector {
 		}
 
 		// Automatically unregister the site before deactivating the license.
-		$jwt_token = get_option( 'edac_jwt_token' );
-		if ( ! empty( $jwt_token ) ) {
+		$site_id = get_option( 'edac_site_id' );
+		if ( ! empty( $site_id ) ) {
 			$this->handle_site_unregistration();
 		}
 
@@ -462,9 +462,6 @@ class Connector {
 		}
 		if ( isset( $response_data['data'] ) ) {
 			$data = $response_data['data'];
-			if ( ! empty( $data['jwt_token'] ) ) {
-				update_option( 'edac_jwt_token', $data['jwt_token'] );
-			}
 			if ( ! empty( $data['jwt_public_key'] ) ) {
 				update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
 			}
@@ -506,9 +503,8 @@ class Connector {
 	 */
 	private function handle_site_unregistration() {
 		$site_id     = get_option( 'edac_site_id' );
-		$jwt_token   = get_option( 'edac_jwt_token' );
 		$license_key = self::get_license_key();
-		if ( empty( $site_id ) || empty( $jwt_token ) || empty( $license_key ) ) {
+		if ( empty( $site_id ) || empty( $license_key ) ) {
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -519,7 +515,7 @@ class Connector {
 			);
 			return;
 		}
-		$response_data = self::unregister_site( $jwt_token, get_site_url(), $license_key );
+		$response_data = self::unregister_site( $site_id, get_site_url(), $license_key );
 		if ( empty( $response_data['success'] ) ) {
 			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
 			set_transient(
@@ -532,7 +528,6 @@ class Connector {
 			);
 			return;
 		}
-		delete_option( 'edac_jwt_token' );
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
@@ -608,14 +603,14 @@ class Connector {
 	 *
 	 * @since 1.xx.x
 	 *
-	 * @param string $jwt_token   The JWT token for authentication.
+	 * @param string $site_id     The site ID for the registered site.
 	 * @param string $site_url    The URL of the site to unregister.
 	 * @param string $license_key The license key associated with the site.
 	 *
 	 * @return array The response data from the API.
 	 */
-	public static function unregister_site( $jwt_token, $site_url, $license_key ) {
-		if ( empty( $jwt_token ) || empty( $site_url ) || empty( $license_key ) ) {
+	public static function unregister_site( $site_id, $site_url, $license_key ) {
+		if ( empty( $site_id ) || empty( $site_url ) || empty( $license_key ) ) {
 			return [
 				'success' => false,
 				'message' => __( 'Missing required parameters for unregistration.', 'accessibility-checker' ),
@@ -629,8 +624,7 @@ class Connector {
 			self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/unregister-site',
 			[
 				'headers'     => [
-					'Content-Type'  => 'application/json',
-					'Authorization' => 'Bearer ' . $jwt_token,
+					'Content-Type' => 'application/json',
 				],
 				'body'        => wp_json_encode( $request_data ),
 				'method'      => 'POST',
