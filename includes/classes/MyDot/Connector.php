@@ -623,6 +623,7 @@ class Connector {
 			];
 		}
 		$request_data = [
+			'site_id'     => $site_id,
 			'site_url'    => $site_url,
 			'license_key' => $license_key,
 		];
