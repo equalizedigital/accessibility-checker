@@ -507,7 +507,7 @@ class Connector {
 	 *
 	 * @return void
 	 */
-	private function handle_site_unregistration() {
+	public function handle_site_unregistration() {
 		$site_id     = get_option( 'edac_site_id' );
 		$license_key = self::get_license_key();
 		if ( empty( $site_id ) || empty( $license_key ) ) {
