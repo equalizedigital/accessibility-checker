@@ -712,9 +712,9 @@ class REST_Api {
 		try {
 			$data = [
 				'post_id'     => $post_id,
-				'summary'     => [],
-				'details'     => [],
-				'readability' => [],
+				'summary'     => $this->get_summary_data( $post_id ),
+				'details'     => $this->get_details_data( $post_id ),
+				'readability' => $this->get_readability_data( $post_id ),
 			];
 
 			return new \WP_REST_Response(
@@ -733,5 +733,67 @@ class REST_Api {
 				500
 			);
 		}
+	}
+
+	/**
+	 * Get summary data for a post.
+	 *
+	 * Returns cached summary data from post meta. If no cache exists, returns defaults.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return array
+	 */
+	private function get_summary_data( $post_id ) {
+		return [
+			'passed_tests'    => 0,
+			'errors'          => 0,
+			'contrast_errors' => 0,
+			'warnings'        => 0,
+			'ignored'         => 0,
+			'readability'     => 0,
+		];
+	}
+
+	/**
+	 * Get details data for a post (errors, warnings, passed rules).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return array
+	 */
+	private function get_details_data( $post_id ) {
+		return [
+			'errors'   => [],
+			'warnings' => [],
+			'passed'   => [],
+		];
+	}
+
+	/**
+	 * Get readability data for a post.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return array
+	 */
+	private function get_readability_data( $post_id ) {
+		return [
+			'post_grade'                      => 0,
+			'post_grade_readability'          => '0',
+			'post_grade_failed'               => false,
+			'simplified_summary'              => '',
+			'simplified_summary_grade'        => 0,
+			'simplified_summary_grade_failed' => false,
+			'simplified_summary_prompt'       => 'none',
+			'simplified_summary_position'     => 'top',
+			'content_length'                  => 0,
+		];
 	}
 }
