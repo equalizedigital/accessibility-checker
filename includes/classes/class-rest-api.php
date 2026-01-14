@@ -875,16 +875,49 @@ class REST_Api {
 	 * @return array
 	 */
 	private function get_readability_data( $post_id ) {
+		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', false );
+		$content_post                = get_post( $post_id );
+		$content                     = $content_post->post_content;
+		$content                     = apply_filters( 'the_content', $content );
+
+		/**
+		 * Filter the content used for reading grade readability analysis.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $content The content to be filtered.
+		 * @param int    $post_id The post ID.
+		 */
+		$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
+		$content = wp_filter_nohtml_kses( $content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		// Get readability metadata and determine if a simplified summary is required.
+		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
+		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
+		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
+		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+
+		$simplified_summary_grade = 0;
+		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+		}
+
+		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 );
+		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
+
 		return [
-			'post_grade'                      => 0,
-			'post_grade_readability'          => '0',
-			'post_grade_failed'               => false,
-			'simplified_summary'              => '',
-			'simplified_summary_grade'        => 0,
-			'simplified_summary_grade_failed' => false,
-			'simplified_summary_prompt'       => 'none',
-			'simplified_summary_position'     => 'top',
-			'content_length'                  => 0,
+			'post_grade'                      => $post_grade,
+			'post_grade_readability'          => $post_grade_readability,
+			'post_grade_failed'               => $post_grade_failed,
+			'simplified_summary'              => $simplified_summary,
+			'simplified_summary_grade'        => $simplified_summary_grade,
+			'simplified_summary_grade_failed' => $simplified_summary_grade_failed,
+			'simplified_summary_prompt'       => $simplified_summary_prompt,
+			'simplified_summary_position'     => $simplified_summary_position,
+			'content_length'                  => strlen( $content ),
 		];
 	}
 }
