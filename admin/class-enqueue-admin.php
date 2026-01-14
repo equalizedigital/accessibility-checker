@@ -51,7 +51,7 @@ class Enqueue_Admin {
 		global $pagenow;
 		$post_types        = Settings::get_scannable_post_types();
 		$has_post_types    = is_array( $post_types ) && count( $post_types );
-		$is_scannable_post = self::is_scannable_post_type( $post_types );
+		$is_scannable_post = Helpers::is_current_post_type_scannable( $post_types );
 		$page              = self::get_current_page_slug();
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
@@ -161,13 +161,13 @@ class Enqueue_Admin {
 			return;
 		}
 
-		if ( ! self::is_block_editor_context() ) {
+		if ( ! Helpers::is_block_editor() ) {
 			return;
 		}
 
 		// Check if this post type is scannable.
 		$post_types = Settings::get_scannable_post_types();
-		if ( ! self::is_scannable_post_type( $post_types ) ) {
+		if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
 			return;
 		}
 
@@ -233,36 +233,6 @@ class Enqueue_Admin {
 		$email_opt_in->enqueue_scripts();
 	}
 
-	/**
-	 * Determine if the current post type is scannable.
-	 *
-	 * @param array|null $post_types List of scannable post types (optional).
-	 * @return bool
-	 */
-	private static function is_scannable_post_type( array $post_types = [] ): bool {
-		if ( empty( $post_types ) ) {
-			$post_types = Settings::get_scannable_post_types();
-		}
-
-		$current_post_type = get_post_type();
-
-		return is_array( $post_types ) && in_array( $current_post_type, $post_types, true );
-	}
-
-	/**
-	 * Check whether the current screen is using the block editor.
-	 *
-	 * @return bool
-	 */
-	private static function is_block_editor_context(): bool {
-		if ( ! function_exists( 'get_current_screen' ) ) {
-			return false;
-		}
-
-		$screen = get_current_screen();
-
-		return $screen && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor();
-	}
 
 	/**
 	 * Gets the current admin page slug.
