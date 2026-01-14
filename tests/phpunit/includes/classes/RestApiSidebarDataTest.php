@@ -71,10 +71,6 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 	 */
 	protected function setUp(): void {
 		parent::setUp();
-		// Silence duplicate block registration notices triggered across tests.
-		$this->setExpectedIncorrectUsage( 'WP_Block_Bindings_Registry::register' );
-		$this->setExpectedIncorrectUsage( 'WP_Block_Type_Registry::register' );
-
 		do_action( 'init' );
 		do_action( 'rest_api_init' );
 		$this->server = rest_get_server();
