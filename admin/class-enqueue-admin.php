@@ -240,7 +240,7 @@ class Enqueue_Admin {
 	 * @return bool
 	 */
 	private static function is_scannable_post_type( array $post_types = [] ): bool {
-		if ( ! empty( $post_types ) ) {
+		if ( empty( $post_types ) ) {
 			$post_types = Settings::get_scannable_post_types();
 		}
 
