@@ -707,12 +707,215 @@ class REST_Api {
 	 * @return \WP_REST_Response
 	 */
 	public function get_sidebar_data( \WP_REST_Request $request ) {
-		return new \WP_REST_Response(
-			[
-				'success' => true,
-				'post_id' => (int) $request['id'],
-			],
-			200
-		);
+		$post_id = (int) $request['id'];
+
+		try {
+			$data = [
+				'post_id'     => $post_id,
+				'summary'     => $this->get_summary_data( $post_id ),
+				'details'     => $this->get_details_data( $post_id ),
+				'readability' => $this->get_readability_data( $post_id ),
+			];
+
+			return new \WP_REST_Response(
+				[
+					'success' => true,
+					'data'    => $data,
+				],
+				200
+			);
+		} catch ( \Exception $ex ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => $ex->getMessage(),
+				],
+				500
+			);
+		}
+	}
+
+	/**
+	 * Get summary data for a post.
+	 *
+	 * Returns cached summary data from post meta. If no cache exists, returns defaults.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @return array
+	 */
+	private function get_summary_data( $post_id ) {
+		// Get summary from post meta.
+		$summary = get_post_meta( $post_id, '_edac_summary', true );
+
+		// If summary doesn't exist or is invalid, return defaults.
+		if ( ! $summary || ! is_array( $summary ) ) {
+			$summary = [
+				'passed_tests'    => 0,
+				'errors'          => 0,
+				'contrast_errors' => 0,
+				'warnings'        => 0,
+				'ignored'         => 0,
+				'readability'     => 0,
+			];
+		}
+
+		return $summary;
+	}
+
+	/**
+	 * Get details data for a post (errors, warnings, passed rules).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @throws \Exception If the database table name is invalid.
+	 * @return array
+	 */
+	private function get_details_data( $post_id ) {
+		global $wpdb;
+		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$siteid     = get_current_blog_id();
+
+		if ( ! $table_name ) {
+			throw new \Exception( esc_html__( 'Invalid table name', 'accessibility-checker' ) );
+		}
+
+		$rules = edac_register_rules();
+		if ( ! $rules ) {
+			return [
+				'errors'   => [],
+				'warnings' => [],
+				'passed'   => [],
+			];
+		}
+
+		// If ANWW is active remove link_blank for details.
+		if ( defined( 'ANWW_VERSION' ) ) {
+			$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
+		}
+
+		$passed_rules  = [];
+		$error_rules   = edac_filter_by_value( $rules, 'rule_type', 'error' );
+		$warning_rules = edac_filter_by_value( $rules, 'rule_type', 'warning' );
+
+		// Process both error and warning rules.
+		$error_rules   = $this->process_rules_for_details( $error_rules, $post_id, $table_name, $siteid, $passed_rules );
+		$warning_rules = $this->process_rules_for_details( $warning_rules, $post_id, $table_name, $siteid, $passed_rules );
+
+		return [
+			'errors'   => array_values( $error_rules ),
+			'warnings' => array_values( $warning_rules ),
+			'passed'   => $passed_rules,
+		];
+	}
+
+	/**
+	 * Process rules and fetch issue details from the database.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param array  $rules         The rules to process.
+	 * @param int    $post_id       The post ID.
+	 * @param string $table_name    The database table name.
+	 * @param int    $siteid        The site/blog ID.
+	 * @param array  &$passed_rules Reference to passed rules array (populated by this method).
+	 *
+	 * @return array The processed rules with counts and details.
+	 */
+	private function process_rules_for_details( $rules, $post_id, $table_name, $siteid, &$passed_rules ) {
+		global $wpdb;
+
+		foreach ( $rules as $key => $rule ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$results = $wpdb->get_results(
+				$wpdb->prepare(
+					'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
+					$table_name,
+					$post_id,
+					$rule['slug'],
+					$siteid,
+					0
+				),
+				ARRAY_A
+			);
+			$count   = count( $results );
+
+			if ( $count ) {
+				$rules[ $key ]['count']   = $count;
+				$rules[ $key ]['details'] = $results;
+			} else {
+				$rule['count']  = 0;
+				$passed_rules[] = $rule;
+				unset( $rules[ $key ] );
+			}
+		}
+
+		return $rules;
+	}
+
+	/**
+	 * Get readability data for a post.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int $post_id The post ID.
+	 *
+	 * @throws \Exception If the post is not found.
+	 * @return array
+	 */
+	private function get_readability_data( $post_id ) {
+		$simplified_summary          = (string) get_post_meta( $post_id, '_edac_simplified_summary', true );
+		$simplified_summary_position = get_option( 'edac_simplified_summary_position', false );
+
+		$content_post = get_post( $post_id );
+		if ( ! $content_post ) {
+			throw new \Exception( esc_html__( 'Post not found', 'accessibility-checker' ) );
+		}
+
+		$content = $content_post->post_content;
+		$content = apply_filters( 'the_content', $content );
+
+		/**
+		 * Filter the content used for reading grade readability analysis.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param string $content The content to be filtered.
+		 * @param int    $post_id The post ID.
+		 */
+		$content = apply_filters( 'edac_filter_readability_content', $content, $post_id );
+		$content = wp_filter_nohtml_kses( $content );
+		$content = str_replace( ']]>', ']]&gt;', $content );
+
+		// Get readability metadata.
+		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
+		$post_grade_readability = isset( $edac_summary['readability'] ) ? $edac_summary['readability'] : 0;
+		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
+		$post_grade_failed      = $post_grade >= 9; // Treat Flesch-Kincaid grade 9+ (above roughly 8th-grade reading level recommended for plain language) as a readability failure.
+
+		$simplified_summary_grade = 0;
+		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
+			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+		}
+
+		$simplified_summary_grade_failed = $simplified_summary_grade >= 9;
+		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
+
+		return [
+			'post_grade'                      => $post_grade,
+			'post_grade_readability'          => $post_grade_readability,
+			'post_grade_failed'               => $post_grade_failed,
+			'simplified_summary'              => $simplified_summary,
+			'simplified_summary_grade'        => $simplified_summary_grade,
+			'simplified_summary_grade_failed' => $simplified_summary_grade_failed,
+			'simplified_summary_prompt'       => $simplified_summary_prompt,
+			'simplified_summary_position'     => $simplified_summary_position,
+			'content_length'                  => strlen( $content ),
+		];
 	}
 }
