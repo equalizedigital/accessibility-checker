@@ -803,7 +803,7 @@ class REST_Api {
 		$warning_rules = edac_remove_element_with_value( $rules, 'rule_type', 'error' );
 
 		// Process error rules.
-		if ( $error_rules ) {
+		if ( ! empty( $error_rules ) ) {
 			foreach ( $error_rules as $key => $error_rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				$results = $wpdb->get_results(
@@ -831,7 +831,7 @@ class REST_Api {
 		}
 
 		// Process warning rules.
-		if ( $warning_rules ) {
+		if ( ! empty( $warning_rules ) ) {
 			foreach ( $warning_rules as $key => $warning_rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 				$results = $wpdb->get_results(
