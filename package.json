@@ -11,14 +11,14 @@
     "dev": "npx webpack --watch --mode development",
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
     "dist:dotorg": "npm run dist:keep-build-folder",
-		"dist:keep-build-folder": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh --keep-build-folder",
+    "dist:keep-build-folder": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh --keep-build-folder",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
     "lint-staged-precommit": "lint-staged && npm run lint:js",
     "lint:php": "./vendor/bin/phpcs",
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
-		"test:php": "./scripts/setup-phpunit.sh",
+    "test:php": "./scripts/setup-phpunit.sh",
     "test:php:run": "docker compose exec phpunit vendor/bin/phpunit",
     "test:php:coverage": "docker compose exec phpunit vendor/bin/phpunit  --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html",
     "test:php:stop": "docker compose stop",
@@ -70,6 +70,7 @@
     "tabbable": "^6.1.2",
     "unique-selector": "^0.5.0",
     "webpack": "^5.96.1",
-    "webpack-cli": "^5.1.1"
+    "webpack-cli": "^5.1.1",
+    "@wordpress/i18n": "^6.10.0"
   }
 }
