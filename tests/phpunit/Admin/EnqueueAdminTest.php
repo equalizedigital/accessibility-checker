@@ -263,6 +263,15 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 			public function is_block_editor(): bool {
 				return $this->is_block_editor;
 			}
+
+			/**
+			 * Mock in_admin method.
+			 *
+			 * @return bool
+			 */
+			public function in_admin(): bool {
+				return true;
+			}
 		};
 	}
 }
