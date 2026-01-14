@@ -28,6 +28,7 @@ class Enqueue_Admin {
 	public static function enqueue() {
 		self::enqueue_styles();
 		self::maybe_enqueue_admin_and_editor_app_scripts();
+		self::maybe_enqueue_sidebar_script();
 		self::maybe_enqueue_email_opt_in_script();
 	}
 
@@ -147,6 +148,67 @@ class Enqueue_Admin {
 
 			}
 		}
+	}
+
+	/**
+	 * Enqueue the Gutenberg sidebar script.
+	 *
+	 * @return void
+	 */
+	public static function maybe_enqueue_sidebar_script() {
+		global $pagenow;
+
+		// Only load on post edit screens.
+		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow ) {
+			return;
+		}
+
+		// Check if this post type is scannable.
+		$post_types        = Settings::get_scannable_post_types();
+		$current_post_type = get_post_type();
+		if ( ! is_array( $post_types ) || ! in_array( $current_post_type, $post_types, true ) ) {
+			return;
+		}
+
+		// Enqueue the sidebar script with WordPress dependencies.
+		wp_enqueue_script(
+			'edac-sidebar',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/sidebar.bundle.js',
+			[
+				'wp-plugins',
+				'wp-edit-post',
+				'wp-element',
+				'wp-data',
+				'wp-i18n',
+				'wp-api-fetch',
+				'wp-components',
+			],
+			EDAC_VERSION,
+			false
+		);
+
+		// Set translations for the sidebar.
+		wp_set_script_translations( 'edac-sidebar', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+
+		// Localize script with necessary data.
+		wp_localize_script(
+			'edac-sidebar',
+			'edac_sidebar_app',
+			[
+				'gutenbergEnabled' => true,
+				'postID'           => get_the_ID(),
+				'edacApiUrl'       => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+			]
+		);
+
+		// Enqueue sidebar styles.
+		wp_enqueue_style(
+			'edac-sidebar',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/sidebar.css',
+			[],
+			EDAC_VERSION,
+			'all'
+		);
 	}
 
 	/**

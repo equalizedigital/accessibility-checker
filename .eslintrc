@@ -3,12 +3,28 @@
 	"env": {
 		"browser": true,
 		"node": false,
-		"jest": true,
+		"jest": true
 	},
 	"globals": {
 		"wp": true,
 		"jQuery": true,
 		"edac_script_vars": true,
 		"ajaxurl": true
-	}
+	},
+	"overrides": [
+		{
+			"files": [ "src/sidebar/**/*.js", "src/sidebar/**/*.jsx" ],
+			"plugins": [ "react" ],
+			"parserOptions": {
+				"ecmaVersion": 2021,
+				"sourceType": "module",
+				"ecmaFeatures": {
+					"jsx": true
+				}
+			},
+			"rules": {
+				"react/jsx-uses-vars": "error"
+			}
+		}
+	]
 }

@@ -17,6 +17,10 @@ module.exports = {
 		editorApp: [
 			'./src/editorApp/index.js',
 		],
+		sidebar: [
+			'./src/sidebar/index.js',
+			'./src/sidebar/sidebar.css',
+		],
 		frontendHighlighterApp: [
 			'./src/frontendHighlighterApp/index.js',
 			'./src/frontendHighlighterApp/sass/app.scss',
@@ -102,5 +106,12 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/plugins': [ 'wp', 'plugins' ],
+		'@wordpress/editor': [ 'wp', 'editor' ],
+		'@wordpress/edit-post': [ 'wp', 'editPost' ],
+		'@wordpress/element': [ 'wp', 'element' ],
+		'@wordpress/data': [ 'wp', 'data' ],
+		'@wordpress/api-fetch': [ 'wp', 'apiFetch' ],
+		'@wordpress/components': [ 'wp', 'components' ],
 	},
 };
