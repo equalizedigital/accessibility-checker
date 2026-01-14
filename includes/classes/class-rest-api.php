@@ -802,67 +802,59 @@ class REST_Api {
 		$error_rules   = edac_filter_by_value( $rules, 'rule_type', 'error' );
 		$warning_rules = edac_filter_by_value( $rules, 'rule_type', 'warning' );
 
-		// Process error rules.
-		if ( ! empty( $error_rules ) ) {
-			foreach ( $error_rules as $key => $error_rule ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$results = $wpdb->get_results(
-					$wpdb->prepare(
-						'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
-						$table_name,
-						$post_id,
-						$error_rule['slug'],
-						$siteid,
-						0
-					),
-					ARRAY_A
-				);
-				$count   = count( $results );
-
-				if ( $count ) {
-					$error_rules[ $key ]['count']   = $count;
-					$error_rules[ $key ]['details'] = $results;
-				} else {
-					$error_rule['count'] = 0;
-					$passed_rules[]      = $error_rule;
-					unset( $error_rules[ $key ] );
-				}
-			}
-		}
-
-		// Process warning rules.
-		if ( ! empty( $warning_rules ) ) {
-			foreach ( $warning_rules as $key => $warning_rule ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-				$results = $wpdb->get_results(
-					$wpdb->prepare(
-						'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
-						$table_name,
-						$post_id,
-						$warning_rule['slug'],
-						$siteid,
-						0
-					),
-					ARRAY_A
-				);
-				$count   = count( $results );
-
-				if ( $count ) {
-					$warning_rules[ $key ]['count']   = $count;
-					$warning_rules[ $key ]['details'] = $results;
-				} else {
-					$warning_rule['count'] = 0;
-					$passed_rules[]        = $warning_rule;
-					unset( $warning_rules[ $key ] );
-				}
-			}
-		}
+		// Process both error and warning rules.
+		$error_rules   = $this->process_rules_for_details( $error_rules, $post_id, $table_name, $siteid, $passed_rules );
+		$warning_rules = $this->process_rules_for_details( $warning_rules, $post_id, $table_name, $siteid, $passed_rules );
 
 		return [
 			'errors'   => array_values( $error_rules ),
 			'warnings' => array_values( $warning_rules ),
 			'passed'   => $passed_rules,
 		];
+	}
+
+	/**
+	 * Process rules and fetch issue details from the database.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param array $rules       The rules to process.
+	 * @param int   $post_id     The post ID.
+	 * @param string $table_name The database table name.
+	 * @param int   $siteid      The site/blog ID.
+	 * @param array &$passed_rules Reference to passed rules array (populated by this method).
+	 *
+	 * @return array The processed rules with counts and details.
+	 */
+	private function process_rules_for_details( $rules, $post_id, $table_name, $siteid, &$passed_rules ) {
+		global $wpdb;
+
+		foreach ( $rules as $key => $rule ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$results = $wpdb->get_results(
+				$wpdb->prepare(
+					'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
+					$table_name,
+					$post_id,
+					$rule['slug'],
+					$siteid,
+					0
+				),
+				ARRAY_A
+			);
+			$count = count( $results );
+
+			if ( $count ) {
+				$rules[ $key ]['count']   = $count;
+				$rules[ $key ]['details'] = $results;
+			} else {
+				$rule['count'] = 0;
+				$passed_rules[] = $rule;
+				unset( $rules[ $key ] );
+			}
+		}
+
+		return $rules;
 	}
 
 	/**
