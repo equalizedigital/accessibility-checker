@@ -893,11 +893,11 @@ class REST_Api {
 		$content = wp_filter_nohtml_kses( $content );
 		$content = str_replace( ']]>', ']]&gt;', $content );
 
-		// Get readability metadata and determine if a simplified summary is required.
+		// Get readability metadata.
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
-		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
+		$post_grade_readability = isset( $edac_summary['readability'] ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+		$post_grade_failed      = $post_grade >= 9; // Grade 9+ indicates readability issues (harder to read).
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -905,7 +905,7 @@ class REST_Api {
 			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
-		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 );
+		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
 		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
 
 		return [
