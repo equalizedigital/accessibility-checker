@@ -868,7 +868,7 @@ class REST_Api {
 	 * @return array
 	 */
 	private function get_readability_data( $post_id ) {
-		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
+		$simplified_summary          = (string) get_post_meta( $post_id, '_edac_simplified_summary', true );
 		$simplified_summary_position = get_option( 'edac_simplified_summary_position', false );
 
 		$content_post = get_post( $post_id );
