@@ -50,7 +50,8 @@ class Enqueue_Admin {
 
 		global $pagenow;
 		$post_types        = Settings::get_scannable_post_types();
-		$current_post_type = get_post_type();
+		$has_post_types    = is_array( $post_types ) && count( $post_types );
+		$is_scannable_post = self::is_scannable_post_type( $post_types );
 		$page              = self::get_current_page_slug();
 		$enabled_pages     = apply_filters(
 			'edac_filter_admin_scripts_slugs',
@@ -64,10 +65,9 @@ class Enqueue_Admin {
 
 		if (
 			(
-				is_array( $post_types ) &&
-				count( $post_types ) &&
+				$has_post_types &&
 				(
-					in_array( $current_post_type, $post_types, true ) ||
+					$is_scannable_post ||
 					in_array( $page, $enabled_pages, true )
 				)
 			) ||
@@ -94,9 +94,7 @@ class Enqueue_Admin {
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
 				// Is this posttype setup to be checked?
-				$post_types        = Settings::get_scannable_post_types();
-				$current_post_type = get_post_type();
-				$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
+				$active = $is_scannable_post;
 
 				$pro = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
 
@@ -164,9 +162,8 @@ class Enqueue_Admin {
 		}
 
 		// Check if this post type is scannable.
-		$post_types        = Settings::get_scannable_post_types();
-		$current_post_type = get_post_type();
-		if ( ! is_array( $post_types ) || ! in_array( $current_post_type, $post_types, true ) ) {
+		$post_types = Settings::get_scannable_post_types();
+		if ( ! self::is_scannable_post_type( $post_types ) ) {
 			return;
 		}
 
@@ -230,6 +227,22 @@ class Enqueue_Admin {
 
 		$email_opt_in = new Email_Opt_In();
 		$email_opt_in->enqueue_scripts();
+	}
+
+	/**
+	 * Determine if the current post type is scannable.
+	 *
+	 * @param array|null $post_types List of scannable post types (optional).
+	 * @return bool
+	 */
+	private static function is_scannable_post_type( array $post_types = null ): bool {
+		if ( null === $post_types ) {
+			$post_types = Settings::get_scannable_post_types();
+		}
+
+		$current_post_type = get_post_type();
+
+		return is_array( $post_types ) && in_array( $current_post_type, $post_types, true );
 	}
 
 	/**
