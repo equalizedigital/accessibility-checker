@@ -235,8 +235,8 @@ class Enqueue_Admin {
 	 * @param array|null $post_types List of scannable post types (optional).
 	 * @return bool
 	 */
-	private static function is_scannable_post_type( array $post_types = null ): bool {
-		if ( null === $post_types ) {
+	private static function is_scannable_post_type( array $post_types = [] ): bool {
+		if ( ! empty( $post_types ) ) {
 			$post_types = Settings::get_scannable_post_types();
 		}
 
