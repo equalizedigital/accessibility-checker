@@ -22,6 +22,13 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 	protected static $admin_id;
 
 	/**
+	 * Limited user ID (subscriber with edit_posts capability).
+	 *
+	 * @var int
+	 */
+	protected static $limited_id;
+
+	/**
 	 * Post ID used for tests.
 	 *
 	 * @var int
@@ -54,8 +61,13 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 		// Ensure plugin DB table exists for tests.
 		( new Update_Database() )->edac_update_database();
 
-		self::$admin_id = $factory->user->create( [ 'role' => 'administrator' ] );
-		self::$post_id  = $factory->post->create(
+		self::$admin_id   = $factory->user->create( [ 'role' => 'administrator' ] );
+		self::$limited_id = $factory->user->create( [ 'role' => 'subscriber' ] );
+		// Give limited user edit_posts but not edit_others_posts so they cannot edit admin's post.
+		$user = new \WP_User( self::$limited_id );
+		$user->add_cap( 'edit_posts' );
+
+		self::$post_id = $factory->post->create(
 			[
 				'post_type'    => 'post',
 				'post_status'  => 'publish',
@@ -268,6 +280,76 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'details', $data['data'] );
 		$this->assertArrayHasKey( 'readability', $data['data'] );
 		$this->assertSame( self::$post_id, $data['data']['post_id'] );
+	}
+
+	/**
+	 * Verify permissions for sidebar-data endpoint.
+	 */
+	public function test_get_sidebar_data_endpoint_permissions() {
+		$this->assertNotNull( $this->server );
+
+		// Admin can GET sidebar data for the post they own.
+		wp_set_current_user( self::$admin_id );
+		$request = new \WP_REST_Request( 'GET', '/accessibility-checker/v1/sidebar-data/' . self::$post_id );
+		$request->set_param( 'id', self::$post_id );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Admin should be allowed to access sidebar data for their post.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+
+		// Limited user cannot GET sidebar data for the admin-owned post.
+		wp_set_current_user( self::$limited_id );
+		$request2 = new \WP_REST_Request( 'GET', '/accessibility-checker/v1/sidebar-data/' . self::$post_id );
+		$request2->set_param( 'id', self::$post_id );
+		$response2 = $this->server->dispatch( $request2 );
+		$this->assertSame( 403, $response2->get_status(), 'Limited user must not be allowed to access sidebar data for another user\'s post.' );
+	}
+
+	/**
+	 * Verify that a limited user can access sidebar data for their own post.
+	 */
+	public function test_limited_user_can_access_own_post_sidebar_data() {
+		wp_set_current_user( self::$limited_id );
+		$own_post_id = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'draft',
+				'post_author' => self::$limited_id,
+			]
+		);
+
+		$request = new \WP_REST_Request( 'GET', '/accessibility-checker/v1/sidebar-data/' . $own_post_id );
+		$request->set_param( 'id', $own_post_id );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Limited user should be allowed to access sidebar data for their own post.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertArrayHasKey( 'data', $data );
+		$this->assertSame( $own_post_id, $data['data']['post_id'] );
+	}
+
+	/**
+	 * Verify sidebar-data endpoint returns proper HTTP status codes for different scenarios.
+	 */
+	public function test_get_sidebar_data_endpoint_status_codes() {
+		wp_set_current_user( self::$admin_id );
+
+		// 200 OK for successful request.
+		$request = new \WP_REST_Request( 'GET', '/accessibility-checker/v1/sidebar-data/' . self::$post_id );
+		$request->set_param( 'id', self::$post_id );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Should return 200 for successful request.' );
+
+		// 403 Forbidden when user lacks edit_post capability.
+		wp_set_current_user( self::$limited_id );
+		$request2 = new \WP_REST_Request( 'GET', '/accessibility-checker/v1/sidebar-data/' . self::$post_id );
+		$request2->set_param( 'id', self::$post_id );
+		$response2 = $this->server->dispatch( $request2 );
+		$this->assertSame( 403, $response2->get_status(), 'Should return 403 when user cannot edit post.' );
 	}
 
 	/**
