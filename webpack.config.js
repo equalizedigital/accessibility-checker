@@ -108,6 +108,7 @@ module.exports = {
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
 		'@wordpress/plugins': [ 'wp', 'plugins' ],
 		'@wordpress/editor': [ 'wp', 'editor' ],
+		'@wordpress/edit-post': [ 'wp', 'editPost' ],
 		'@wordpress/element': [ 'wp', 'element' ],
 		'@wordpress/data': [ 'wp', 'data' ],
 		'@wordpress/api-fetch': [ 'wp', 'apiFetch' ],
