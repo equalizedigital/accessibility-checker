@@ -161,6 +161,10 @@ class Enqueue_Admin {
 			return;
 		}
 
+		if ( ! self::is_block_editor_context() ) {
+			return;
+		}
+
 		// Check if this post type is scannable.
 		$post_types = Settings::get_scannable_post_types();
 		if ( ! self::is_scannable_post_type( $post_types ) ) {
@@ -243,6 +247,21 @@ class Enqueue_Admin {
 		$current_post_type = get_post_type();
 
 		return is_array( $post_types ) && in_array( $current_post_type, $post_types, true );
+	}
+
+	/**
+	 * Check whether the current screen is using the block editor.
+	 *
+	 * @return bool
+	 */
+	private static function is_block_editor_context(): bool {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return false;
+		}
+
+		$screen = get_current_screen();
+
+		return $screen && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor();
 	}
 
 	/**
