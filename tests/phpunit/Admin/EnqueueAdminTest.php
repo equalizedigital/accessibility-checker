@@ -192,7 +192,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->set_mock_screen( true );
 
-		$this->enqueue_admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
 
 		$this->assertTrue( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'edac-sidebar', 'enqueued' ) );
@@ -208,7 +208,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->set_mock_screen( false );
 
-		$this->enqueue_admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
 
 		$this->assertFalse( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertFalse( wp_style_is( 'edac-sidebar', 'enqueued' ) );
@@ -226,7 +226,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->set_mock_screen( true );
 
-		$this->enqueue_admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
 
 		$this->assertFalse( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertFalse( wp_style_is( 'edac-sidebar', 'enqueued' ) );
