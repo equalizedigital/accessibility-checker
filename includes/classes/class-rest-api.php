@@ -864,14 +864,20 @@ class REST_Api {
 	 *
 	 * @param int $post_id The post ID.
 	 *
+	 * @throws \Exception If the post is not found.
 	 * @return array
 	 */
 	private function get_readability_data( $post_id ) {
 		$simplified_summary          = get_post_meta( $post_id, '_edac_simplified_summary', true ) ? get_post_meta( $post_id, '_edac_simplified_summary', true ) : '';
 		$simplified_summary_position = get_option( 'edac_simplified_summary_position', false );
-		$content_post                = get_post( $post_id );
-		$content                     = $content_post->post_content;
-		$content                     = apply_filters( 'the_content', $content );
+
+		$content_post = get_post( $post_id );
+		if ( ! $content_post ) {
+			throw new \Exception( esc_html__( 'Post not found', 'accessibility-checker' ) );
+		}
+
+		$content = $content_post->post_content;
+		$content = apply_filters( 'the_content', $content );
 
 		/**
 		 * Filter the content used for reading grade readability analysis.
