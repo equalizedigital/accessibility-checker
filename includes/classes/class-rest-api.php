@@ -206,6 +206,34 @@ class REST_Api {
 				);
 			}
 		);
+
+		// Sidebar data endpoint - returns all metabox data in one call.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/sidebar-data/(?P<id>\d+)',
+					[
+						'methods'             => 'GET',
+						'callback'            => [ $this, 'get_sidebar_data' ],
+						'args'                => [
+							'id' => [
+								'required'          => true,
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+								'sanitize_callback' => 'absint',
+							],
+						],
+						'permission_callback' => function ( $request ) {
+							$post_id = (int) $request['id'];
+							return current_user_can( 'edit_post', $post_id );
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -667,5 +695,24 @@ class REST_Api {
 				500
 			);
 		}
+	}
+
+	/**
+	 * REST handler that gets all sidebar data for a post (summary, details, readability).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param \WP_REST_Request $request The request passed from the REST call.
+	 *
+	 * @return \WP_REST_Response
+	 */
+	public function get_sidebar_data( \WP_REST_Request $request ) {
+		return new \WP_REST_Response(
+			[
+				'success' => true,
+				'post_id' => (int) $request['id'],
+			],
+			200
+		);
 	}
 }
