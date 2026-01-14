@@ -750,7 +750,7 @@ class REST_Api {
 		// Get summary from post meta.
 		$summary = get_post_meta( $post_id, '_edac_summary', true );
 
-		// If summary exists, return defaults.
+		// If summary doesn't exist or is invalid, return defaults.
 		if ( ! $summary || ! is_array( $summary ) ) {
 			$summary = [
 				'passed_tests'    => 0,
@@ -818,11 +818,11 @@ class REST_Api {
 	 *
 	 * @since 1.xx.x
 	 *
-	 * @param array $rules       The rules to process.
-	 * @param int   $post_id     The post ID.
-	 * @param string $table_name The database table name.
-	 * @param int   $siteid      The site/blog ID.
-	 * @param array &$passed_rules Reference to passed rules array (populated by this method).
+	 * @param array  $rules         The rules to process.
+	 * @param int    $post_id       The post ID.
+	 * @param string $table_name    The database table name.
+	 * @param int    $siteid        The site/blog ID.
+	 * @param array  &$passed_rules Reference to passed rules array (populated by this method).
 	 *
 	 * @return array The processed rules with counts and details.
 	 */
@@ -842,13 +842,13 @@ class REST_Api {
 				),
 				ARRAY_A
 			);
-			$count = count( $results );
+			$count   = count( $results );
 
 			if ( $count ) {
 				$rules[ $key ]['count']   = $count;
 				$rules[ $key ]['details'] = $results;
 			} else {
-				$rule['count'] = 0;
+				$rule['count']  = 0;
 				$passed_rules[] = $rule;
 				unset( $rules[ $key ] );
 			}
