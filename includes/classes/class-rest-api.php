@@ -747,14 +747,22 @@ class REST_Api {
 	 * @return array
 	 */
 	private function get_summary_data( $post_id ) {
-		return [
-			'passed_tests'    => 0,
-			'errors'          => 0,
-			'contrast_errors' => 0,
-			'warnings'        => 0,
-			'ignored'         => 0,
-			'readability'     => 0,
-		];
+		// Get summary from post meta.
+		$summary = get_post_meta( $post_id, '_edac_summary', true );
+
+		// If summary exists, return defaults.
+		if ( ! $summary || ! is_array( $summary ) ) {
+			$summary = [
+				'passed_tests'    => 0,
+				'errors'          => 0,
+				'contrast_errors' => 0,
+				'warnings'        => 0,
+				'ignored'         => 0,
+				'readability'     => 0,
+			];
+		}
+
+		return $summary;
 	}
 
 	/**
