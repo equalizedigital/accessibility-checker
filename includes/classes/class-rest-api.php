@@ -707,12 +707,31 @@ class REST_Api {
 	 * @return \WP_REST_Response
 	 */
 	public function get_sidebar_data( \WP_REST_Request $request ) {
-		return new \WP_REST_Response(
-			[
-				'success' => true,
-				'post_id' => (int) $request['id'],
-			],
-			200
-		);
+		$post_id = (int) $request['id'];
+
+		try {
+			$data = [
+				'post_id'     => $post_id,
+				'summary'     => [],
+				'details'     => [],
+				'readability' => [],
+			];
+
+			return new \WP_REST_Response(
+				[
+					'success' => true,
+					'data'    => $data,
+				],
+				200
+			);
+		} catch ( \Exception $ex ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => $ex->getMessage(),
+				],
+				500
+			);
+		}
 	}
 }
