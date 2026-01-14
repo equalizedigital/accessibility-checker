@@ -772,13 +772,96 @@ class REST_Api {
 	 *
 	 * @param int $post_id The post ID.
 	 *
+	 * @throws \Exception If the database table name is invalid.
 	 * @return array
 	 */
 	private function get_details_data( $post_id ) {
+		global $wpdb;
+		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$siteid     = get_current_blog_id();
+
+		if ( ! $table_name ) {
+			throw new \Exception( esc_html__( 'Invalid table name', 'accessibility-checker' ) );
+		}
+
+		$rules = edac_register_rules();
+		if ( ! $rules ) {
+			return [
+				'errors'   => [],
+				'warnings' => [],
+				'passed'   => [],
+			];
+		}
+
+		// If ANWW is active remove link_blank for details.
+		if ( defined( 'ANWW_VERSION' ) ) {
+			$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
+		}
+
+		$passed_rules  = [];
+		$error_rules   = edac_remove_element_with_value( $rules, 'rule_type', 'warning' );
+		$warning_rules = edac_remove_element_with_value( $rules, 'rule_type', 'error' );
+
+		// Process error rules.
+		if ( $error_rules ) {
+			foreach ( $error_rules as $key => $error_rule ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$results = $wpdb->get_results(
+					$wpdb->prepare(
+						'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
+						$table_name,
+						$post_id,
+						$error_rule['slug'],
+						$siteid,
+						0
+					),
+					ARRAY_A
+				);
+				$count   = count( $results );
+
+				if ( $count ) {
+					$error_rules[ $key ]['count']   = $count;
+					$error_rules[ $key ]['details'] = $results;
+				} else {
+					$error_rule['count'] = 0;
+					$passed_rules[]      = $error_rule;
+					unset( $error_rules[ $key ] );
+				}
+			}
+		}
+
+		// Process warning rules.
+		if ( $warning_rules ) {
+			foreach ( $warning_rules as $key => $warning_rule ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+				$results = $wpdb->get_results(
+					$wpdb->prepare(
+						'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
+						$table_name,
+						$post_id,
+						$warning_rule['slug'],
+						$siteid,
+						0
+					),
+					ARRAY_A
+				);
+				$count   = count( $results );
+
+				if ( $count ) {
+					$warning_rules[ $key ]['count']   = $count;
+					$warning_rules[ $key ]['details'] = $results;
+				} else {
+					$warning_rule['count'] = 0;
+					$passed_rules[]        = $warning_rule;
+					unset( $warning_rules[ $key ] );
+				}
+			}
+		}
+
 		return [
-			'errors'   => [],
-			'warnings' => [],
-			'passed'   => [],
+			'errors'   => array_values( $error_rules ),
+			'warnings' => array_values( $warning_rules ),
+			'passed'   => $passed_rules,
 		];
 	}
 
