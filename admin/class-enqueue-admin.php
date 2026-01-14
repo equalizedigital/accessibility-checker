@@ -193,7 +193,7 @@ class Enqueue_Admin {
 		// Localize script with necessary data.
 		wp_localize_script(
 			'edac-sidebar',
-			'edac_editor_app',
+			'edac_sidebar_app',
 			[
 				'gutenbergEnabled' => true,
 				'postID'           => get_the_ID(),

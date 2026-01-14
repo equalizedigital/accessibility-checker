@@ -24,7 +24,7 @@ function AccessibilityCheckerSidebar() {
 }
 
 // Register the sidebar
-if ( window.edac_editor_app && window.edac_editor_app.gutenbergEnabled ) {
+if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 	registerPlugin( 'accessibility-checker', {
 		render: AccessibilityCheckerSidebar,
 	} );
