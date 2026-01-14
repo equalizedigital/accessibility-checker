@@ -799,8 +799,8 @@ class REST_Api {
 		}
 
 		$passed_rules  = [];
-		$error_rules   = edac_remove_element_with_value( $rules, 'rule_type', 'warning' );
-		$warning_rules = edac_remove_element_with_value( $rules, 'rule_type', 'error' );
+		$error_rules   = edac_filter_by_value( $rules, 'rule_type', 'error' );
+		$warning_rules = edac_filter_by_value( $rules, 'rule_type', 'warning' );
 
 		// Process error rules.
 		if ( ! empty( $error_rules ) ) {
