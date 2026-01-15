@@ -5,7 +5,10 @@
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
 import { useDispatch } from '@wordpress/data';
+import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+
+const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-checker-sidebar';
 
 /**
  * Quick access panel component
@@ -13,9 +16,9 @@ import { __ } from '@wordpress/i18n';
 const AccessibilityCheckerQuickAccess = () => {
 	const { openGeneralSidebar } = useDispatch( 'core/edit-post' );
 
-	const openAccessibilitySidebar = () => {
-		openGeneralSidebar( 'accessibility-checker/accessibility-checker-sidebar' );
-	};
+	const openAccessibilitySidebar = useCallback( () => {
+		openGeneralSidebar( ACCESSIBILITY_CHECKER_SIDEBAR_NAME );
+	}, [ openGeneralSidebar ] );
 
 	return (
 		<PluginDocumentSettingPanel
