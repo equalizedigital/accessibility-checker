@@ -91,13 +91,46 @@ class Purge_Post_Data {
 		 */
 		do_action( 'edac_before_delete_cpt_posts', $post_type );
 
+		$ac_table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$site_id       = get_current_blog_id();
+
+		// SQLite does not support multi-table DELETE syntax.
+		// We need to use separate DELETE statements instead.
+		if ( edac_is_sqlite() ) {
+			// First, delete from postmeta where post_id is in the accessibility_checker table.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM $wpdb->postmeta WHERE meta_key LIKE %s AND post_id IN (
+						SELECT postid FROM %i WHERE siteid = %d AND type = %s
+					)",
+					'_edac%',
+					$ac_table_name,
+					$site_id,
+					$post_type
+				)
+			);
+
+			// Then, delete from accessibility_checker table.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+			return $wpdb->query(
+				$wpdb->prepare(
+					'DELETE FROM %i WHERE siteid = %d AND type = %s',
+					$ac_table_name,
+					$site_id,
+					$post_type
+				)
+			);
+		}
+
+		// MySQL: Use multi-table DELETE for better performance.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		return $wpdb->query(
 			$wpdb->prepare(
 				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
-				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
+				$ac_table_name,
 				'_edac%',
-				get_current_blog_id(),
+				$site_id,
 				$post_type
 			)
 		);

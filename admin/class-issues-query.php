@@ -183,7 +183,13 @@ class Issues_Query {
 
 		global $wpdb;
 
-		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
+		// SQLite does not support COUNT(DISTINCT col1, col2) syntax.
+		// Use concatenation with a separator for cross-database compatibility.
+		if ( edac_is_sqlite() ) {
+			$this->query['select'] = "SELECT COUNT( DISTINCT rule || '|' || object ) ";
+		} else {
+			$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
+		}
 
 		$sql = $this->get_sql();
 
