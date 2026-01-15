@@ -6,11 +6,17 @@ import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
 import QuickAccessPanel from './components/QuickAccessPanel';
+import { useAccessibilityData } from './hooks/useAccessibilityData';
+
+const { select } = wp.data;
 
 /**
  * Main sidebar component
  */
 function AccessibilityCheckerSidebar() {
+	const postId = select( 'core/editor' ).getCurrentPostId();
+	const { data, loading, error } = useAccessibilityData( postId );
+
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
