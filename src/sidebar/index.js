@@ -5,6 +5,7 @@
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar } from '@wordpress/editor';
 import { __ } from '@wordpress/i18n';
+import AccessibilityCheckerQuickAccess from './components/AccessibilityCheckerQuickAccess';
 
 /**
  * Main sidebar component
@@ -27,6 +28,10 @@ function AccessibilityCheckerSidebar() {
 if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 	registerPlugin( 'accessibility-checker', {
 		render: AccessibilityCheckerSidebar,
+	} );
+
+	registerPlugin( 'accessibility-checker-quick-access', {
+		render: AccessibilityCheckerQuickAccess,
 	} );
 }
 

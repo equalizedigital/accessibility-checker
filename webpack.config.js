@@ -19,7 +19,7 @@ module.exports = {
 		],
 		sidebar: [
 			'./src/sidebar/index.js',
-			'./src/sidebar/sidebar.css',
+			'./src/sidebar/sass/sidebar.scss',
 		],
 		frontendHighlighterApp: [
 			'./src/frontendHighlighterApp/index.js',
