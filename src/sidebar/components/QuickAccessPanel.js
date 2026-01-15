@@ -4,7 +4,7 @@
 
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
-import { useDispatch } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import '../sass/components/quick-access-panel.scss';
@@ -15,11 +15,35 @@ const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-
  * Quick access panel component
  */
 const QuickAccessPanel = () => {
-	const { openGeneralSidebar } = useDispatch( 'core/edit-post' );
+	// Check if we're in the post editor context
+	const isPostEditor = useSelect(
+		( select ) => {
+			// Check if we have the editor store (available in both post and site editor)
+			const editorStore = select( 'core/editor' );
+			if ( ! editorStore ) {
+				return false;
+			}
+			// In post editor, we'll have a current post type
+			const postType = editorStore.getCurrentPostType?.();
+			return postType !== null && postType !== undefined;
+		},
+		[],
+	);
+
+	// Use the interface store instead of edit-post (modern approach for WP 6.6+)
+	const { enableComplementaryArea } = useDispatch( 'core/interface' );
 
 	const openAccessibilitySidebar = useCallback( () => {
-		openGeneralSidebar( ACCESSIBILITY_CHECKER_SIDEBAR_NAME );
-	}, [ openGeneralSidebar ] );
+		if ( isPostEditor && enableComplementaryArea ) {
+			// The complementary area for plugin sidebars uses this format
+			enableComplementaryArea( 'core/edit-post', ACCESSIBILITY_CHECKER_SIDEBAR_NAME );
+		}
+	}, [ isPostEditor, enableComplementaryArea ] );
+
+	// Don't render in FSE/site editor contexts
+	if ( ! isPostEditor ) {
+		return null;
+	}
 
 	return (
 		<PluginDocumentSettingPanel
