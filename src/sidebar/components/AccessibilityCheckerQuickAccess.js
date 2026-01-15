@@ -7,6 +7,7 @@ import { PanelRow, Button } from '@wordpress/components';
 import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import '../sass/components/accessibility-checker-quick-access.scss';
 
 const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-checker-sidebar';
 
@@ -27,16 +28,16 @@ const AccessibilityCheckerQuickAccess = () => {
 			initialOpen={ true }
 		>
 			<PanelRow>
-				<div style={ { width: '100%' } }>
 					<p>{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }</p>
 					<Button
 						variant="secondary"
 						onClick={ openAccessibilitySidebar }
-						style={ { width: '100%', justifyContent: 'center' } }
 					>
 						{ __( 'Open Accessibility Panel', 'accessibility-checker' ) }
 					</Button>
 				</div>
+				<p className="edac-quick-access-panel__description">
+					className="edac-quick-access-panel__button"
 			</PanelRow>
 		</PluginDocumentSettingPanel>
 	);
