@@ -1,6 +1,6 @@
 .edac-quick-access-panel {
 	&__container {
-		width: 100%;
+		flex-direction: column;
 	}
 
 	&__description {
