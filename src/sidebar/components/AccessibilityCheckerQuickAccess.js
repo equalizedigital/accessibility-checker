@@ -28,16 +28,16 @@ const AccessibilityCheckerQuickAccess = () => {
 			initialOpen
 		>
 			<PanelRow>
-					<p>{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }</p>
-					<Button
-						variant="secondary"
-						onClick={ openAccessibilitySidebar }
-					>
-						{ __( 'Open Accessibility Panel', 'accessibility-checker' ) }
-					</Button>
-				</div>
 				<p className="edac-quick-access-panel__description">
+					{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }
+				</p>
+				<Button
+					variant="secondary"
+					onClick={ openAccessibilitySidebar }
 					className="edac-quick-access-panel__button"
+				>
+					{ __( 'Open Accessibility Panel', 'accessibility-checker' ) }
+				</Button>
 			</PanelRow>
 		</PluginDocumentSettingPanel>
 	);
