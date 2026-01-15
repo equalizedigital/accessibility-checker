@@ -25,7 +25,7 @@ const AccessibilityCheckerQuickAccess = () => {
 		<PluginDocumentSettingPanel
 			name="accessibility-checker-quick-access"
 			title={ __( 'Accessibility Checker', 'accessibility-checker' ) }
-			initialOpen={ true }
+			initialOpen
 		>
 			<PanelRow>
 					<p>{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }</p>
