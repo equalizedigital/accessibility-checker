@@ -2,7 +2,7 @@
  * Accessibility Checker Quick Access Panel
  */
 
-import { __, _n } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
 import { useDispatch, useSelect } from '@wordpress/data';
@@ -66,29 +66,42 @@ const QuickAccessPanel = () => {
 			</p>
 		);
 	} else if ( errorCount > 0 || warningCount > 0 ) {
+		// Build translatable summary message
+		const errorText = _n(
+			'problem to address',
+			'problems to address',
+			errorCount,
+			'accessibility-checker',
+		);
+
+		let summaryText;
+		if ( warningCount > 0 ) {
+			const warningText = _n(
+				'issue that needs review',
+				'issues that need review',
+				warningCount,
+				'accessibility-checker',
+			);
+			summaryText = sprintf(
+				// translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+				__( 'You have %1$d %2$s and %3$d %4$s.', 'accessibility-checker' ),
+				errorCount,
+				errorText,
+				warningCount,
+				warningText,
+			);
+		} else {
+			summaryText = sprintf(
+				// translators: %1$d = number of errors, %2$s = error text
+				__( 'You have %1$d %2$s.', 'accessibility-checker' ),
+				errorCount,
+				errorText,
+			);
+		}
+
 		panelContent = (
 			<p className="edac-quick-access-panel__summary">
-				{ __( 'You have ', 'accessibility-checker' ) }
-				<strong>{ errorCount }</strong>
-				{ _n(
-					' problem to address',
-					' problems to address',
-					errorCount,
-					'accessibility-checker',
-				) }
-				{ ( warningCount > 0 ) && (
-					<>
-						{ __( ' and ', 'accessibility-checker' ) }
-						<strong>{ warningCount }</strong>
-						{ _n(
-							' issue that needs review',
-							' issues that need review',
-							warningCount,
-							'accessibility-checker',
-						) }
-					</>
-				) }
-				{ __( '.', 'accessibility-checker' ) }
+				{ summaryText }
 			</p>
 		);
 	} else {
