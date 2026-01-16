@@ -2,7 +2,7 @@
  * Custom hook for fetching accessibility data
  */
 
-import { useState, useEffect } from '@wordpress/element';
+import { useCallback, useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 
@@ -10,41 +10,61 @@ import apiFetch from '@wordpress/api-fetch';
  * Fetch accessibility data for a post
  *
  * @param {number} postId - The post ID to fetch data for
- * @return {Object} Object containing data, loading state, and error
+ * @return {Object} Object containing data, loading state, error, and refetch function
  */
 export const useAccessibilityData = ( postId ) => {
-	const [ data, setData ] = useState( null );
-	const [ loading, setLoading ] = useState( true );
-	const [ error, setError ] = useState( null );
+	const [ state, setState ] = useState( { data: null, loading: true, error: null } );
+	const isMountedRef = useRef( true );
+	const [ refetchTrigger, setRefetchTrigger ] = useState( 0 );
 
 	useEffect( () => {
+		return () => {
+			isMountedRef.current = false;
+		};
+	}, [] );
+
+	// Refetch function exposed to the provider
+	const refetch = useCallback( () => {
+		setRefetchTrigger( ( prev ) => prev + 1 );
+	}, [] );
+
+	// Fetch data whenever postId or refetchTrigger changes
+	useEffect( () => {
 		if ( ! postId ) {
-			setLoading( false );
+			setState( { data: null, loading: false, error: null } );
 			return;
 		}
 
-		setLoading( true );
-		setError( null );
+		setState( ( prev ) => ( { ...prev, loading: true, error: null } ) );
 
 		apiFetch( {
 			path: `/accessibility-checker/v1/sidebar-data/${ postId }`,
 			method: 'GET',
 		} )
 			.then( ( response ) => {
-				if ( response.success ) {
-					setData( response.data );
-				} else {
-					setError( response.message || __( 'Failed to load accessibility data', 'accessibility-checker' ) );
+				const newState = {
+					data: response.success ? response.data : null,
+					error: response.success ? null : ( response.message || __( 'Failed to load accessibility data', 'accessibility-checker' ) ),
+					loading: false,
+				};
+
+				if ( isMountedRef.current ) {
+					setState( newState );
 				}
 			} )
 			.catch( ( err ) => {
-				setError( err.message || __( 'Error loading accessibility data', 'accessibility-checker' ) );
-			} )
-			.finally( () => {
-				setLoading( false );
-			} );
-	}, [ postId ] );
+				const newState = {
+					data: null,
+					error: err.message || __( 'Error loading accessibility data', 'accessibility-checker' ),
+					loading: false,
+				};
 
-	return { data, loading, error };
+				if ( isMountedRef.current ) {
+					setState( newState );
+				}
+			} );
+	}, [ postId, refetchTrigger ] );
+
+	return { ...state, refetch };
 };
 

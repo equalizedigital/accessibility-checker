@@ -8,6 +8,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
+import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
 import '../sass/components/quick-access-panel.scss';
 
 const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-checker-sidebar';
