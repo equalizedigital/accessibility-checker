@@ -39,6 +39,56 @@ const QuickAccessPanel = () => {
 	const errorCount = data?.summary?.errors || 0;
 	const warningCount = data?.summary?.warnings || 0;
 
+	// Determine which content to display
+	let panelContent;
+	if ( loading ) {
+		panelContent = (
+			<p className="edac-quick-access-panel__loading">
+				<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+				{ __( 'Loading accessibility results...', 'accessibility-checker' ) }
+			</p>
+		);
+	} else if ( refreshing ) {
+		panelContent = (
+			<p className="edac-quick-access-panel__refreshing">
+				<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+				{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
+			</p>
+		);
+	} else if ( errorCount > 0 || warningCount > 0 ) {
+		panelContent = (
+			<p className="edac-quick-access-panel__summary">
+				{ __( 'You have ', 'accessibility-checker' ) }
+				<strong>{ errorCount }</strong>
+				{ _n(
+					' problem to address',
+					' problems to address',
+					errorCount,
+					'accessibility-checker',
+				) }
+				{ ( warningCount > 0 ) && (
+					<>
+						{ __( ' and ', 'accessibility-checker' ) }
+						<strong>{ warningCount }</strong>
+						{ _n(
+							' issue that needs review',
+							' issues that need review',
+							warningCount,
+							'accessibility-checker',
+						) }
+					</>
+				) }
+				{ __( '.', 'accessibility-checker' ) }
+			</p>
+		);
+	} else {
+		panelContent = (
+			<p className="edac-quick-access-panel__description">
+				{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }
+			</p>
+		);
+	}
+
 	return (
 		<PluginDocumentSettingPanel
 			name="accessibility-checker-quick-access"
@@ -46,41 +96,7 @@ const QuickAccessPanel = () => {
 			initialOpen
 		>
 			<PanelRow className="edac-quick-access-panel__container">
-				{ refreshing && (
-					<p className="edac-quick-access-panel__refreshing">
-						<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
-						{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
-					</p>
-				) }
-				{ ( ! loading ) && ( errorCount > 0 || warningCount > 0 ) ? (
-					<p className="edac-quick-access-panel__summary">
-						{ __( 'You have ', 'accessibility-checker' ) }
-						<strong>{ errorCount }</strong>
-						{ _n(
-							' problem to address',
-							' problems to address',
-							errorCount,
-							'accessibility-checker',
-						) }
-						{ ( warningCount > 0 ) && (
-							<>
-								{ __( ' and ', 'accessibility-checker' ) }
-								<strong>{ warningCount }</strong>
-								{ _n(
-									' issue that needs review',
-									' issues that need review',
-									warningCount,
-									'accessibility-checker',
-								) }
-							</>
-						) }
-						{ __( '.', 'accessibility-checker' ) }
-					</p>
-				) : (
-					<p className="edac-quick-access-panel__description">
-						{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }
-					</p>
-				)}
+				{ panelContent }
 				<Button
 					variant="secondary"
 					onClick={ openAccessibilitySidebar }
