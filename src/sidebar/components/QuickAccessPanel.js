@@ -4,7 +4,7 @@
 
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
-import { useSelect, useDispatch } from '@wordpress/data';
+import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
@@ -19,14 +19,13 @@ const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-
 const QuickAccessPanel = () => {
 	// Check if we're in the post editor context.
 	const isPostEditor = useIsPostEditor();
-	const { data, loading } = useAccessibilityDataContext();
+	const { data, loading, refreshing } = useAccessibilityDataContext();
 
 	// Use the interface store instead of edit-post.
 	const { enableComplementaryArea } = useDispatch( 'core/interface' );
 
 	const openAccessibilitySidebar = useCallback( () => {
 		if ( isPostEditor && enableComplementaryArea ) {
-			// The complementary area for plugin sidebars uses this format
 			enableComplementaryArea( 'core/edit-post', ACCESSIBILITY_CHECKER_SIDEBAR_NAME );
 		}
 	}, [ isPostEditor, enableComplementaryArea ] );
@@ -36,6 +35,10 @@ const QuickAccessPanel = () => {
 		return null;
 	}
 
+	// Calculate error and warning counts from data
+	const errorCount = data?.summary?.errors || 0;
+	const warningCount = data?.summary?.warnings || 0;
+
 	return (
 		<PluginDocumentSettingPanel
 			name="accessibility-checker-quick-access"
@@ -43,9 +46,37 @@ const QuickAccessPanel = () => {
 			initialOpen
 		>
 			<PanelRow className="edac-quick-access-panel__container">
-				<p className="edac-quick-access-panel__description">
-					{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }
-				</p>
+				{ refreshing && (
+					<p className="edac-quick-access-panel__refreshing">
+						<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+						{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
+					</p>
+				) }
+				{ ( ! loading ) && ( ! refreshing ) && ( errorCount > 0 || warningCount > 0 ) ? (
+					<p className="edac-quick-access-panel__summary">
+						{ __( 'You have ', 'accessibility-checker' ) }
+						<strong>{ errorCount }</strong>
+						{ errorCount === 1
+							? __( ' problem to address', 'accessibility-checker' )
+							: __( ' problems to address', 'accessibility-checker' )
+						}
+						{ ( warningCount > 0 ) && (
+							<>
+								{ __( ' and ', 'accessibility-checker' ) }
+								<strong>{ warningCount }</strong>
+								{ warningCount === 1
+									? __( ' issue that needs review', 'accessibility-checker' )
+									: __( ' issues that need review', 'accessibility-checker' )
+								}
+							</>
+						) }
+						{ __( '.', 'accessibility-checker' ) }
+					</p>
+				) : (
+					<p className="edac-quick-access-panel__description">
+						{ __( 'Check and fix accessibility issues in your content.', 'accessibility-checker' ) }
+					</p>
+				)}
 				<Button
 					variant="secondary"
 					onClick={ openAccessibilitySidebar }
@@ -59,4 +90,3 @@ const QuickAccessPanel = () => {
 };
 
 export default QuickAccessPanel;
-
