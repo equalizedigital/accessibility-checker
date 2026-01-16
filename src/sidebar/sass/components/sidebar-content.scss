@@ -1,0 +1,56 @@
+/**
+ * Sidebar Content Styles
+ */
+
+.edac-sidebar__content {
+	.edac-panel-body {
+		.edac-data-row {
+			width: 100%;
+
+			.edac-data-section {
+				margin-bottom: 12px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				.edac-data-section__label {
+					display: block;
+					margin-bottom: 4px;
+					font-weight: 600;
+				}
+
+				.edac-data-section__count {
+					font-size: 24px;
+					font-weight: bold;
+					margin-right: 8px;
+
+					&--errors {
+						color: #d63638;
+
+						&.edac-data-section__count--empty {
+							color: #50575e;
+						}
+					}
+
+					&--warnings {
+						color: #f0b849;
+
+						&.edac-data-section__count--empty {
+							color: #50575e;
+						}
+					}
+				}
+
+				.edac-data-section__description {
+					color: #50575e;
+				}
+			}
+		}
+
+		.edac-refreshing-message {
+			margin-bottom: 12px;
+		}
+	}
+}
+

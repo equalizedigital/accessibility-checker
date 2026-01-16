@@ -41,25 +41,26 @@ const SidebarContent = () => {
 				<PanelBody
 					title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
 					initialOpen={ true }
+					className="edac-panel-body"
 				>
-					<PanelRow>
+					<PanelRow className="edac-data-row">
 						{ refreshing && (
-							<p style={ { marginBottom: '12px' } }>
+							<p className="edac-refreshing-message">
 								<span className="edac-spinner">
 									<span className="spinner is-active" />
 								</span>
 								{ __( 'Updating...', 'accessibility-checker' ) }
 							</p>
 						) }
-						<div style={ { width: '100%' } }>
-							<div style={ { marginBottom: '12px' } }>
-								<strong style={ { display: 'block', marginBottom: '4px' } }>
+						<div>
+							<div className="edac-data-section">
+								<strong className="edac-data-section__label">
 									{ __( 'Errors', 'accessibility-checker' ) }
 								</strong>
-								<span style={ { fontSize: '24px', fontWeight: 'bold', color: errorCount > 0 ? '#d63638' : '#50575e' } }>
+								<span className={ `edac-data-section__count edac-data-section__count--errors ${ errorCount === 0 ? 'edac-data-section__count--empty' : '' }` }>
 									{ errorCount }
 								</span>
-								<span style={ { marginLeft: '8px', color: '#50575e' } }>
+								<span className="edac-data-section__description">
 									{ _n(
 										'problem to address',
 										'problems to address',
@@ -68,14 +69,14 @@ const SidebarContent = () => {
 									) }
 								</span>
 							</div>
-							<div>
-								<strong style={ { display: 'block', marginBottom: '4px' } }>
+							<div className="edac-data-section">
+								<strong className="edac-data-section__label">
 									{ __( 'Warnings', 'accessibility-checker' ) }
 								</strong>
-								<span style={ { fontSize: '24px', fontWeight: 'bold', color: warningCount > 0 ? '#f0b849' : '#50575e' } }>
+								<span className={ `edac-data-section__count edac-data-section__count--warnings ${ warningCount === 0 ? 'edac-data-section__count--empty' : '' }` }>
 									{ warningCount }
 								</span>
-								<span style={ { marginLeft: '8px', color: '#50575e' } }>
+								<span className="edac-data-section__description">
 									{ _n(
 										'issue that needs review',
 										'issues that need review',
