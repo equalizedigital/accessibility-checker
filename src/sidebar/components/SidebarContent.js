@@ -2,7 +2,7 @@
  * Accessibility Checker Sidebar Content Component
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, _n } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
 
@@ -59,10 +59,12 @@ const SidebarContent = () => {
 									{ errorCount }
 								</span>
 								<span style={ { marginLeft: '8px', color: '#50575e' } }>
-									{ errorCount === 1
-										? __( 'problem to address', 'accessibility-checker' )
-										: __( 'problems to address', 'accessibility-checker' )
-									}
+									{ _n(
+										'problem to address',
+										'problems to address',
+										errorCount,
+										'accessibility-checker',
+									) }
 								</span>
 							</div>
 							<div>
@@ -73,10 +75,12 @@ const SidebarContent = () => {
 									{ warningCount }
 								</span>
 								<span style={ { marginLeft: '8px', color: '#50575e' } }>
-									{ warningCount === 1
-										? __( 'issue that needs review', 'accessibility-checker' )
-										: __( 'issues that need review', 'accessibility-checker' )
-									}
+									{ _n(
+										'issue that needs review',
+										'issues that need review',
+										warningCount,
+										'accessibility-checker',
+									) }
 								</span>
 							</div>
 						</div>

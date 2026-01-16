@@ -2,11 +2,11 @@
  * Accessibility Checker Quick Access Panel
  */
 
+import { __, _n } from '@wordpress/i18n';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
 import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
-import { __ } from '@wordpress/i18n';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
 import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
 import '../sass/components/quick-access-panel.scss';
@@ -52,22 +52,26 @@ const QuickAccessPanel = () => {
 						{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
 					</p>
 				) }
-				{ ( ! loading ) && ( ! refreshing ) && ( errorCount > 0 || warningCount > 0 ) ? (
+				{ ( ! loading ) && ( errorCount > 0 || warningCount > 0 ) ? (
 					<p className="edac-quick-access-panel__summary">
 						{ __( 'You have ', 'accessibility-checker' ) }
 						<strong>{ errorCount }</strong>
-						{ errorCount === 1
-							? __( ' problem to address', 'accessibility-checker' )
-							: __( ' problems to address', 'accessibility-checker' )
-						}
+						{ _n(
+							' problem to address',
+							' problems to address',
+							errorCount,
+							'accessibility-checker',
+						) }
 						{ ( warningCount > 0 ) && (
 							<>
 								{ __( ' and ', 'accessibility-checker' ) }
 								<strong>{ warningCount }</strong>
-								{ warningCount === 1
-									? __( ' issue that needs review', 'accessibility-checker' )
-									: __( ' issues that need review', 'accessibility-checker' )
-								}
+								{ _n(
+									' issue that needs review',
+									' issues that need review',
+									warningCount,
+									'accessibility-checker',
+								) }
 							</>
 						) }
 						{ __( '.', 'accessibility-checker' ) }
