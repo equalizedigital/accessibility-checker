@@ -4,60 +4,81 @@
 
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginSidebar } from '@wordpress/editor';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
-import { AccessibilityDataProvider } from './context/AccessibilityDataContext';
+import { STORE_NAME } from './store/accessibility-checker-store';
 
 /**
- * Sidebar content wrapper with context
+ * Main sidebar component
  */
-function SidebarWithContext() {
+function AccessibilityCheckerSidebar() {
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
+	const { fetchData, refetchData } = useDispatch( STORE_NAME );
+	const previousPostIdRef = useRef( null );
+
+	// Fetch data only when postId changes and we haven't fetched it before
+	useEffect( () => {
+		if ( postId && postId !== previousPostIdRef.current ) {
+			previousPostIdRef.current = postId;
+			fetchData( postId );
+		}
+	}, [ postId, fetchData ] );
+
+	// Listen for scan save complete event and refetch data
+	useEffect( () => {
+		const handleScanSaveComplete = () => {
+			if ( postId ) {
+				refetchData( postId );
+			}
+		};
+
+		// Listen on both window and top for the event
+		window.addEventListener( 'edac_js_scan_save_complete', handleScanSaveComplete );
+		try {
+			top.addEventListener( 'edac_js_scan_save_complete', handleScanSaveComplete );
+		} catch ( e ) {
+			// Ignore if top is not accessible
+		}
+
+		return () => {
+			window.removeEventListener( 'edac_js_scan_save_complete', handleScanSaveComplete );
+			try {
+				top.removeEventListener( 'edac_js_scan_save_complete', handleScanSaveComplete );
+			} catch ( e ) {
+				// Ignore
+			}
+		};
+	}, [ postId, refetchData ] );
 
 	return (
-		<AccessibilityDataProvider postId={ postId }>
+		<PluginSidebar
+			name="accessibility-checker-sidebar"
+			title={ __( 'Accessibility', 'accessibility-checker' ) }
+			icon="universal-access"
+		>
 			<SidebarContent />
-		</AccessibilityDataProvider>
+		</PluginSidebar>
 	);
 }
 
 /**
- * Quick access panel wrapper with context
+ * Quick access panel wrapper component
  */
-function QuickAccessPanelWithContext() {
-	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
-
-	return (
-		<AccessibilityDataProvider postId={ postId }>
-			<QuickAccessPanel />
-		</AccessibilityDataProvider>
-	);
-}
-
-/**
- * Root component that renders both sidebar and quick access panel
- */
-function AccessibilityCheckerRoot() {
-	return (
-		<>
-			<PluginSidebar
-				name="accessibility-checker-sidebar"
-				title={ __( 'Accessibility', 'accessibility-checker' ) }
-				icon="universal-access"
-			>
-				<SidebarWithContext />
-			</PluginSidebar>
-			<QuickAccessPanelWithContext />
-		</>
-	);
+function QuickAccessPanelWrapper() {
+	return <QuickAccessPanel />;
 }
 
 // Register the combined component
 if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 	registerPlugin( 'accessibility-checker', {
-		render: AccessibilityCheckerRoot,
+		render: AccessibilityCheckerSidebar,
+	} );
+
+	registerPlugin( 'accessibility-checker-quick-access', {
+		render: QuickAccessPanelWrapper,
 	} );
 }
 

@@ -5,10 +5,10 @@
 import { __, _n } from '@wordpress/i18n';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
-import { useDispatch } from '@wordpress/data';
+import { useDispatch, useSelect } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
-import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
+import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import '../sass/components/spinner.scss';
 import '../sass/components/quick-access-panel.scss';
 
@@ -20,7 +20,12 @@ const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-
 const QuickAccessPanel = () => {
 	// Check if we're in the post editor context.
 	const isPostEditor = useIsPostEditor();
-	const { data, loading, refreshing } = useAccessibilityDataContext();
+
+	// Get postId from editor
+	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
+
+	// Get data from store
+	const { data, loading, refreshing } = useAccessibilityCheckerData( postId );
 
 	// Use the interface store instead of edit-post.
 	const { enableComplementaryArea } = useDispatch( 'core/interface' );
@@ -115,3 +120,4 @@ const QuickAccessPanel = () => {
 };
 
 export default QuickAccessPanel;
+

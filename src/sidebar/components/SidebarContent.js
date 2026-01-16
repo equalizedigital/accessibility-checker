@@ -4,7 +4,7 @@
 
 import { __, _n } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
-import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
+import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import '../sass/components/spinner.scss';
 
 /**
@@ -13,7 +13,7 @@ import '../sass/components/spinner.scss';
  * @return {JSX.Element} The sidebar content
  */
 const SidebarContent = () => {
-	const { loading, error, data, refreshing } = useAccessibilityDataContext();
+	const { loading, error, data, refreshing } = useAccessibilityCheckerData();
 
 	if ( loading ) {
 		return (
@@ -42,17 +42,15 @@ const SidebarContent = () => {
 					title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
 					initialOpen={ true }
 				>
-					{ refreshing && (
-						<PanelRow>
-							<p>
+					<PanelRow>
+						{ refreshing && (
+							<p style={ { marginBottom: '12px' } }>
 								<span className="edac-spinner">
 									<span className="spinner is-active" />
 								</span>
 								{ __( 'Updating...', 'accessibility-checker' ) }
 							</p>
-						</PanelRow>
-					) }
-					<PanelRow>
+						) }
 						<div style={ { width: '100%' } }>
 							<div style={ { marginBottom: '12px' } }>
 								<strong style={ { display: 'block', marginBottom: '4px' } }>
@@ -95,3 +93,4 @@ const SidebarContent = () => {
 };
 
 export default SidebarContent;
+
