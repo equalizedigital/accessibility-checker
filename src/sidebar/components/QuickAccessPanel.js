@@ -15,22 +15,11 @@ const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-
  * Quick access panel component
  */
 const QuickAccessPanel = () => {
-	// Check if we're in the post editor context
-	const isPostEditor = useSelect(
-		( select ) => {
-			// Check if we have the editor store (available in both post and site editor)
-			const editorStore = select( 'core/editor' );
-			if ( ! editorStore ) {
-				return false;
-			}
-			// In post editor, we'll have a current post type
-			const postType = editorStore.getCurrentPostType?.();
-			return postType !== null && postType !== undefined;
-		},
-		[],
-	);
+	// Check if we're in the post editor context.
+	const isPostEditor = useIsPostEditor();
+	const { data, loading } = useAccessibilityDataContext();
 
-	// Use the interface store instead of edit-post (modern approach for WP 6.6+)
+	// Use the interface store instead of edit-post.
 	const { enableComplementaryArea } = useDispatch( 'core/interface' );
 
 	const openAccessibilitySidebar = useCallback( () => {
@@ -40,7 +29,7 @@ const QuickAccessPanel = () => {
 		}
 	}, [ isPostEditor, enableComplementaryArea ] );
 
-	// Don't render in FSE/site editor contexts
+	// Don't render in FSE/site editor contexts.
 	if ( ! isPostEditor ) {
 		return null;
 	}
