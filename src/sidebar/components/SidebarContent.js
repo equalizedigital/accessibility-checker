@@ -3,6 +3,7 @@
  */
 
 import { __ } from '@wordpress/i18n';
+import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
 
 /**
@@ -11,7 +12,7 @@ import { useAccessibilityDataContext } from '../context/AccessibilityDataContext
  * @return {JSX.Element} The sidebar content
  */
 const SidebarContent = () => {
-	const { loading, error, data, postId } = useAccessibilityDataContext();
+	const { loading, error, data, refreshing } = useAccessibilityDataContext();
 
 	if ( loading ) {
 		return (
@@ -29,16 +30,59 @@ const SidebarContent = () => {
 		);
 	}
 
+	// Calculate error and warning counts from data
+	const errorCount = data?.summary?.errors || 0;
+	const warningCount = data?.summary?.warnings || 0;
+
 	return (
 		<div className="edac-sidebar__content">
-			<p>{ __( 'Sidebar content goes here', 'accessibility-checker' ) }</p>
-			<p><strong>Post ID:</strong> { postId }</p>
-			<p><strong>Data loaded:</strong> { data ? 'Yes' : 'No' }</p>
-			{ data && (
-				<pre style={ { fontSize: '11px', overflow: 'auto' } }>
-					{ JSON.stringify( data, null, 2 ) }
-				</pre>
-			) }
+			<Panel>
+				<PanelBody
+					title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
+					initialOpen={ true }
+				>
+					{ refreshing && (
+						<PanelRow>
+							<p>
+								<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+								{ __( 'Updating...', 'accessibility-checker' ) }
+							</p>
+						</PanelRow>
+					) }
+					<PanelRow>
+						<div style={ { width: '100%' } }>
+							<div style={ { marginBottom: '12px' } }>
+								<strong style={ { display: 'block', marginBottom: '4px' } }>
+									{ __( 'Errors', 'accessibility-checker' ) }
+								</strong>
+								<span style={ { fontSize: '24px', fontWeight: 'bold', color: errorCount > 0 ? '#d63638' : '#50575e' } }>
+									{ errorCount }
+								</span>
+								<span style={ { marginLeft: '8px', color: '#50575e' } }>
+									{ errorCount === 1
+										? __( 'problem to address', 'accessibility-checker' )
+										: __( 'problems to address', 'accessibility-checker' )
+									}
+								</span>
+							</div>
+							<div>
+								<strong style={ { display: 'block', marginBottom: '4px' } }>
+									{ __( 'Warnings', 'accessibility-checker' ) }
+								</strong>
+								<span style={ { fontSize: '24px', fontWeight: 'bold', color: warningCount > 0 ? '#f0b849' : '#50575e' } }>
+									{ warningCount }
+								</span>
+								<span style={ { marginLeft: '8px', color: '#50575e' } }>
+									{ warningCount === 1
+										? __( 'issue that needs review', 'accessibility-checker' )
+										: __( 'issues that need review', 'accessibility-checker' )
+									}
+								</span>
+							</div>
+						</div>
+					</PanelRow>
+				</PanelBody>
+			</Panel>
 		</div>
 	);
 };
