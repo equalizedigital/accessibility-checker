@@ -5,6 +5,7 @@
 import { __, _n } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
+import '../sass/components/spinner.scss';
 
 /**
  * Sidebar content component
@@ -44,7 +45,9 @@ const SidebarContent = () => {
 					{ refreshing && (
 						<PanelRow>
 							<p>
-								<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+								<span className="edac-spinner">
+									<span className="spinner is-active" />
+								</span>
 								{ __( 'Updating...', 'accessibility-checker' ) }
 							</p>
 						</PanelRow>

@@ -9,6 +9,7 @@ import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
 import { useAccessibilityDataContext } from '../context/AccessibilityDataContext';
+import '../sass/components/spinner.scss';
 import '../sass/components/quick-access-panel.scss';
 
 const ACCESSIBILITY_CHECKER_SIDEBAR_NAME = 'accessibility-checker/accessibility-checker-sidebar';
@@ -44,14 +45,18 @@ const QuickAccessPanel = () => {
 	if ( loading ) {
 		panelContent = (
 			<p className="edac-quick-access-panel__loading">
-				<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+				<span className="edac-spinner">
+					<span className="spinner is-active" />
+				</span>
 				{ __( 'Loading accessibility results...', 'accessibility-checker' ) }
 			</p>
 		);
 	} else if ( refreshing ) {
 		panelContent = (
 			<p className="edac-quick-access-panel__refreshing">
-				<span className="spinner is-active" style={ { float: 'none', margin: '0 8px 0 0' } } />
+				<span className="edac-spinner">
+					<span className="spinner is-active" />
+				</span>
 				{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
 			</p>
 		);
