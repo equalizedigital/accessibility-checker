@@ -211,7 +211,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
-2025-15-22 - version 1.36.0
+2025-12-15 - version 1.36.0
 * Fix - passed tests percentage logic now accounts times no posts are scanned
 * Fix - don't prevent scan speed saving when pro plugin is enabled.
 * Add - new trigger for invalid alt text - "an image".
