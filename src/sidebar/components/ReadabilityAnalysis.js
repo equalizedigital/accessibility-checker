@@ -4,6 +4,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { PanelBody, PanelRow } from '@wordpress/components';
+import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import '../sass/components/readability-analysis.scss';
 
 /**
@@ -12,6 +13,11 @@ import '../sass/components/readability-analysis.scss';
  * @return {JSX.Element} The readability analysis panel
  */
 const ReadabilityAnalysis = () => {
+	const { data } = useAccessibilityCheckerData();
+
+	// Extract readability data from the accessibility data.
+	const readabilityData = data?.readability || null;
+
 	return (
 		<PanelBody
 			title={ __( 'Readability Analysis', 'accessibility-checker' ) }
@@ -23,7 +29,7 @@ const ReadabilityAnalysis = () => {
 					<h3 className="edac-readability-section__heading">
 						{ __( 'Reading Level', 'accessibility-checker' ) }
 					</h3>
-					{/* Readability content will be added here */}
+					{ JSON.stringify( readabilityData ) }
 				</div>
 			</PanelRow>
 		</PanelBody>
