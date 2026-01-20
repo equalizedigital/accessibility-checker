@@ -5,7 +5,9 @@
 import { __, _n } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import ReadabilityAnalysis from './ReadabilityAnalysis';
 import '../sass/components/spinner.scss';
+import '../sass/components/sidebar-content.scss';
 
 /**
  * Sidebar content component
@@ -89,6 +91,7 @@ const SidebarContent = () => {
 					</PanelRow>
 				</PanelBody>
 			</Panel>
+			<ReadabilityAnalysis />
 		</div>
 	);
 };
