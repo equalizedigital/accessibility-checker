@@ -1,0 +1,21 @@
+@use './_variables' as *;
+
+/**
+ * Global Sidebar Styles
+ * Applied across all sidebar panels
+ */
+
+.edac-panel-body {
+	h3 {
+		font-size: $sidebar-h3-size;
+	}
+
+	p {
+		font-size: $sidebar-p-size;
+	}
+
+	a {
+		font-size: $sidebar-link-size;
+	}
+}
+
