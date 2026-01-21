@@ -1,3 +1,5 @@
+@use '../_variables' as *;
+
 /**
  * Icon Styles
  */
@@ -12,19 +14,23 @@
 	height: 24px;
 
 	&--success {
-		color: #007017;
+		color: $check-green;
 	}
 
 	&--warning {
-		color: #f0b849;
+		color: $warning-orange;
 	}
 
 	&--error {
-		color: #d63638;
+		color: $error-red;
+	}
+
+	&--info {
+		color: $info-grey;
 	}
 
 	svg {
 		stroke: currentColor;
+		fill: none;
 	}
 }
-
