@@ -99,15 +99,36 @@ const icons = {
  * @param {string}  props.className  - Additional CSS classes
  * @return {JSX.Element|null} The icon element
  */
-const Icon = ( { name = 'check', type = 'success', ariaHidden = true, ariaLabel, className = '' } ) => {
+const Icon = ( { name = 'check', type = '', ariaHidden = true, ariaLabel, className = '' } ) => {
 	const iconSvg = icons[ name ];
 
 	if ( ! iconSvg ) {
 		return null;
 	}
 
+	// Set default type if not provided.
+	let resolvedType = type;
+	if ( ! type ) {
+		switch ( name ) {
+			case 'check':
+				resolvedType = 'success';
+				break;
+			case 'warning':
+				resolvedType = 'warning';
+				break;
+			case 'error':
+				resolvedType = 'error';
+				break;
+			case 'info':
+				resolvedType = 'info';
+				break;
+			default:
+				resolvedType = '';
+		}
+	}
+
 	const baseClass = 'edac-icon';
-	const typeClass = type ? `edac-icon--${ type }` : '';
+	const typeClass = resolvedType ? `edac-icon--${ resolvedType }` : '';
 	const classes = [ baseClass, typeClass, className ].filter( Boolean ).join( ' ' );
 
 	const ariaProps = {
@@ -126,4 +147,3 @@ const Icon = ( { name = 'check', type = 'success', ariaHidden = true, ariaLabel,
 };
 
 export default Icon;
-
