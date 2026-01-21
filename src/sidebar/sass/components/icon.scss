@@ -1,0 +1,30 @@
+/**
+ * Icon Styles
+ */
+
+.edac-icon {
+	font-size: 20px;
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+
+	&--success {
+		color: #007017;
+	}
+
+	&--warning {
+		color: #f0b849;
+	}
+
+	&--error {
+		color: #d63638;
+	}
+
+	svg {
+		stroke: currentColor;
+	}
+}
+

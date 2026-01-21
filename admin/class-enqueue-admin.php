@@ -199,6 +199,7 @@ class Enqueue_Admin {
 				'gutenbergEnabled' => true,
 				'postID'           => get_the_ID(),
 				'edacApiUrl'       => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'nonce'            => wp_create_nonce( 'wp_rest' ),
 			]
 		);
 
