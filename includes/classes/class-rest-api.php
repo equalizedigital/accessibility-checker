@@ -234,6 +234,41 @@ class REST_Api {
 				);
 			}
 		);
+
+		// Simplified summary endpoint - saves the simplified summary text.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/simplified-summary/(?P<id>\d+)',
+					[
+						'methods'             => 'POST',
+						'callback'            => [ $this, 'save_simplified_summary' ],
+						'args'                => [
+							'id'      => [
+								'required'          => true,
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+								'sanitize_callback' => 'absint',
+							],
+							'summary' => [
+								'required'          => true,
+								'sanitize_callback' => 'sanitize_textarea_field',
+								'validate_callback' => function ( $param ) {
+									return is_string( $param );
+								},
+							],
+						],
+						'permission_callback' => function ( $request ) {
+							$post_id = (int) $request['id'];
+							return current_user_can( 'edit_post', $post_id );
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -917,5 +952,53 @@ class REST_Api {
 			'simplified_summary_position'     => $simplified_summary_position,
 			'content_length'                  => strlen( $content ),
 		];
+	}
+
+	/**
+	 * Save simplified summary for a post.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param \WP_REST_Request $request The REST request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function save_simplified_summary( \WP_REST_Request $request ) {
+		$post_id = (int) $request['id'];
+		$summary = sanitize_textarea_field( wp_unslash( $request['summary'] ) );
+
+		// Update the post meta with the simplified summary (matching AJAX behavior).
+		update_post_meta(
+			$post_id,
+			'_edac_simplified_summary',
+			$summary
+		);
+
+		// Retrieve the updated value to confirm (matching AJAX behavior).
+		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', true );
+		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
+
+		// Calculate the readability grade for the simplified summary.
+		// This is additional data for REST API clients (Gutenberg sidebar).
+		// The classic editor will get this from the separate readability AJAX call.
+		$simplified_summary_grade        = 0;
+		$simplified_summary_grade_failed = false;
+
+		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) && ! empty( $simplified_summary ) ) {
+			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
+			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+		}
+
+		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
+
+		// Return data structure that includes both AJAX-compatible data and additional REST metadata.
+		return new \WP_REST_Response(
+			[
+				'success'                         => true,
+				'summary'                         => $simplified_summary,
+				'simplified_summary_grade'        => $simplified_summary_grade,
+				'simplified_summary_grade_failed' => $simplified_summary_grade_failed,
+			],
+			200
+		);
 	}
 }
