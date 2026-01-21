@@ -2,13 +2,87 @@
  * Readability Analysis Styles
  */
 
+.edac-readability-row {
+	width: 100%;
+}
+
 .edac-readability-section {
 	width: 100%;
 
-	.edac-readability-section__heading {
+	.edac-readability-section__header {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		margin-bottom: 12px;
+	}
+
+
+	.edac-readability-section__title {
+		margin: 0;
+		font-size: 16px;
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	.edac-readability-section__message {
 		margin: 0 0 12px 0;
 		font-size: 14px;
+		color: #50575e;
+		line-height: 1.5;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.edac-readability-section__link {
+		color: #0073aa;
+		text-decoration: none;
+		font-size: 14px;
+
+		&:hover {
+			text-decoration: underline;
+			color: #005a87;
+		}
+	}
+
+	.edac-readability-section__subsection {
+		margin-top: 16px;
+		padding-top: 16px;
+		border-top: 1px solid #e0e0e0;
+
+		&:first-child {
+			margin-top: 0;
+			padding-top: 0;
+			border-top: none;
+		}
+	}
+
+	.edac-readability-section__subheading {
+		margin: 0 0 8px 0;
+		font-size: 14px;
 		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	.edac-readability-section__textarea {
+		width: 100%;
+		margin: 0 0 12px 0;
+		padding: 8px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+		font-size: 14px;
+		line-height: 1.5;
+
+		&:focus {
+			outline: none;
+			border-color: #0073aa;
+			box-shadow: 0 0 0 2px rgba( 0, 115, 170, 0.2 );
+		}
+	}
+
+	.edac-readability-section__save-button {
+		width: 100%;
 	}
 }
-
