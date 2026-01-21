@@ -248,25 +248,25 @@ const edacScriptVars = edac_script_vars;
 							const summary = jQuery( '#edac-readability-text' ).val();
 
 							jQuery.ajax( {
-								url: ajaxurl,
-								method: 'GET',
-								data: {
-									action: 'edac_update_simplified_summary',
-									post_id: postID,
-									summary,
-									nonce: edacScriptVars.nonce,
+								url: edacScriptVars.edacApiUrl + '/simplified-summary/' + postID,
+								method: 'POST',
+								headers: {
+									'X-WP-Nonce': edacScriptVars.restNonce,
 								},
+								contentType: 'application/json',
+								data: JSON.stringify( {
+									summary,
+								} ),
 							} ).done( function( doneResponse ) {
-								if ( true === doneResponse.success ) {
-									const doneResponseJSON = jQuery.parseJSON(
-										doneResponse.data
-									);
-
+								if ( doneResponse.success ) {
 									refreshSummaryAndReadability();
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
 								}
+							} ).fail( function( error ) {
+								// eslint-disable-next-line no-console
+								console.error( 'Failed to save simplified summary:', error );
 							} );
 						}
 					);
