@@ -52,7 +52,7 @@ const ReadabilityAnalysis = () => {
 				path: `/accessibility-checker/v1/simplified-summary/${ postId }`,
 				method: 'POST',
 				data: {
-					summary: summaryText || initialSummary,
+					summary: summaryText,
 				},
 			} );
 
@@ -156,7 +156,7 @@ const ReadabilityAnalysis = () => {
 				<>
 					<Icon name={getPanelIcon()} />
 					{ __( 'Readability Analysis', 'accessibility-checker' ) }
-					{ hasContent && postGrade > 0 && ` (${ gradeLabel })` }
+					{ hasContent && postGrade > 0 && ` (${ postGradeReadable })` }
 				</>
 			) }
 			initialOpen={ true }
@@ -292,7 +292,7 @@ const ReadabilityAnalysis = () => {
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
 									</h4>
 									<TextareaControl
-										value={ summaryText || initialSummary }
+										value={ summaryText }
 										onChange={ setSummaryText }
 										placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
 										rows={ 4 }
