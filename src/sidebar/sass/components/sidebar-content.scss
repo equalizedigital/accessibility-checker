@@ -3,6 +3,10 @@
  */
 
 .edac-sidebar__content {
+	.interface-complementary-area & h3 {
+		text-transform: none;
+	}
+
 	.edac-panel-body {
 		.edac-data-row {
 			width: 100%;
