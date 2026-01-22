@@ -4,7 +4,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import AccessibilityAnalysis from './AccessibilityAnalysis';
+import AccessibilityStatus from './AccessibilityStatus';
 import ReadabilityAnalysis from './ReadabilityAnalysis';
 import '../sass/components/sidebar-content.scss';
 
@@ -34,7 +34,7 @@ const SidebarContent = () => {
 
 	return (
 		<div className="edac-sidebar__content">
-			<AccessibilityAnalysis />
+			<AccessibilityStatus />
 			<ReadabilityAnalysis />
 		</div>
 	);
