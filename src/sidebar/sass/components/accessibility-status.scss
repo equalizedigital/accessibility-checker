@@ -1,0 +1,88 @@
+@use '../_variables' as *;
+
+/**
+ * Accessibility Status Component Styles
+ */
+
+.edac-accessibility-status {
+
+	.edac-status-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 12px;
+		width: 100%;
+		align-items: stretch;
+	}
+
+	.edac-status-card {
+		display: flex;
+		flex-direction: column;
+		gap: 4px;
+		height: 100%;
+
+		&__header {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 4px;
+		}
+
+		&__label {
+			font-size: $sidebar-p-size;
+			font-weight: 600;
+			color: #1e1e1e;
+
+			sup {
+				font-size: 0.7em;
+				vertical-align: super;
+			}
+		}
+
+		&__icon {
+			flex-shrink: 0;
+			font-size: 16px;
+
+			.edac-icon {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		&__value {
+			font-size: 32px;
+			font-weight: 700;
+			line-height: 1;
+			color: $info-grey;
+		}
+
+		&__meta {
+			font-size: 10px;
+			color: #666;
+			margin-top: 2px;
+		}
+	}
+
+	.edac-status-footer {
+		margin-top: 16px;
+		padding-top: 12px;
+		border-top: 1px solid #e0e0e0;
+
+		&__note {
+			margin: 0 0 8px 0;
+			font-size: 10px;
+			color: #666;
+			line-height: 1.4;
+		}
+
+		&__link {
+			font-size: $sidebar-link-size;
+			color: #0073aa;
+			text-decoration: none;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+}
+
