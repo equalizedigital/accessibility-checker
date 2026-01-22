@@ -39,11 +39,11 @@
 		margin-right: 8px;
 
 		&--errors {
-			color: #d63638;
+			color: $error-red;
 		}
 
 		&--warnings {
-			color: #f0b849;
+			color: $warning-orange;
 		}
 
 		&--empty {
@@ -83,7 +83,7 @@
 		margin: 0;
 		font-size: $sidebar-h3-size;
 		font-weight: 600;
-		color: #1e1e1e;
+		color: $info-grey;
 	}
 
 	&__message {
@@ -116,7 +116,7 @@
 		margin: 0 0 8px 0;
 		font-size: $sidebar-h3-size;
 		font-weight: 600;
-		color: #1e1e1e;
+		color: $info-grey;
 	}
 }
 
