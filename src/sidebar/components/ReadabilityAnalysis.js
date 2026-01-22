@@ -122,7 +122,7 @@ const ReadabilityAnalysis = () => {
 
 	const getGradeLabel = () => {
 		if ( postGradeReadable ) {
-			return postGradeReadable + ' grade';
+			return sprintf( __( '%s grade', 'accessibility-checker' ), postGradeReadable );
 		}
 		if ( postGrade ) {
 			return sprintf( __( '%dth grade', 'accessibility-checker' ), postGrade );
