@@ -82,6 +82,11 @@ const AccessibilityStatus = () => {
 						<div className="edac-status-card__value">
 							{ coveragePercent }%
 						</div>
+						<progress
+							className="edac-status-card__progress"
+							value={ coveragePercent }
+							max="100"
+						/>
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
 
