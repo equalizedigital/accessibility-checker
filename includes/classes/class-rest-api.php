@@ -864,20 +864,45 @@ class REST_Api {
 	private function process_rules_for_details( $rules, $post_id, $table_name, $siteid, &$passed_rules ) {
 		global $wpdb;
 
+		// Early return if no rules to process.
+		if ( empty( $rules ) ) {
+			return $rules;
+		}
+
+		// Extract rule slugs for IN clause.
+		$rule_slugs = array_column( $rules, 'slug' );
+
+		// Build a simple, escaped IN clause.
+		$safe_table    = esc_sql( $table_name );
+		$escaped_slugs = array_map( 'esc_sql', $rule_slugs );
+		$in_clause     = "'" . implode( "','", $escaped_slugs ) . "'";
+
+		// Direct SQL query (table and values already escaped).
+		$sql = "SELECT id, postid, object, ruletype, rule, ignre, ignre_user, ignre_date, ignre_comment\n"
+			. "FROM `{$safe_table}`\n"
+			. "WHERE postid = {$post_id}\n"
+			. "AND rule IN ( {$in_clause} )\n"
+			. "AND siteid = {$siteid}\n"
+			. 'AND ignre = 0';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		$all_results = $wpdb->get_results( $sql, ARRAY_A );
+
+		// Group results by rule slug.
+		$results_by_rule = [];
+		foreach ( $all_results as $result ) {
+			$rule_slug = $result['rule'];
+			if ( ! isset( $results_by_rule[ $rule_slug ] ) ) {
+				$results_by_rule[ $rule_slug ] = [];
+			}
+			$results_by_rule[ $rule_slug ][] = $result;
+		}
+
+		// Process each rule with its results.
 		foreach ( $rules as $key => $rule ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$results = $wpdb->get_results(
-				$wpdb->prepare(
-					'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
-					$table_name,
-					$post_id,
-					$rule['slug'],
-					$siteid,
-					0
-				),
-				ARRAY_A
-			);
-			$count   = count( $results );
+			$rule_slug = $rule['slug'];
+			$results   = $results_by_rule[ $rule_slug ] ?? [];
+			$count     = count( $results );
 
 			if ( $count ) {
 				$rules[ $key ]['count']   = $count;
