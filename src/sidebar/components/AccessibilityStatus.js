@@ -17,6 +17,8 @@ import '../sass/components/accessibility-status.scss';
 const AccessibilityStatus = () => {
 	const { data, refreshing } = useAccessibilityCheckerData();
 
+	const manuallyTestHelpUrl = window.edac_sidebar_app?.manuallyTestHelpUrl || 'https://equalizedigital.com/accessibility-checker/manual-testing/';
+
 	// Extract data from store
 	const summary = data?.summary || {};
 	const readability = data?.readability || {};
@@ -148,10 +150,10 @@ const AccessibilityStatus = () => {
 
 				<div className="edac-status-footer">
 					<p className="edac-status-footer__note">
-					* { __( 'True accessibility requires manual testing in addition to automated scans.', 'accessibility-checker' ) }
+						* { __( 'True accessibility requires manual testing in addition to automated scans.', 'accessibility-checker' ) }
 					</p>
 					<a
-						href="https://equalizedigital.com/accessibility-checker/manual-testing/"
+						href={ manuallyTestHelpUrl }
 						target="_blank"
 						rel="noopener noreferrer"
 						className="edac-status-footer__link"
