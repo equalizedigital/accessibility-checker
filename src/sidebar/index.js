@@ -53,6 +53,21 @@ function AccessibilityCheckerSidebar() {
 		};
 	}, [ postId, refetchData ] );
 
+	// Listen for metabox readability updates and refetch data
+	useEffect( () => {
+		const handleMetaboxReadabilityUpdate = () => {
+			if ( postId ) {
+				refetchData( postId );
+			}
+		};
+
+		window.addEventListener( 'edac-metabox-readability-updated', handleMetaboxReadabilityUpdate );
+
+		return () => {
+			window.removeEventListener( 'edac-metabox-readability-updated', handleMetaboxReadabilityUpdate );
+		};
+	}, [ postId, refetchData ] );
+
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"

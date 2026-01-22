@@ -234,6 +234,41 @@ class REST_Api {
 				);
 			}
 		);
+
+		// Simplified summary endpoint - saves the simplified summary text.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/simplified-summary/(?P<id>\d+)',
+					[
+						'methods'             => 'POST',
+						'callback'            => [ $this, 'save_simplified_summary' ],
+						'args'                => [
+							'id'      => [
+								'required'          => true,
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+								'sanitize_callback' => 'absint',
+							],
+							'summary' => [
+								'required'          => true,
+								'sanitize_callback' => 'sanitize_textarea_field',
+								'validate_callback' => function ( $param ) {
+									return is_string( $param );
+								},
+							],
+						],
+						'permission_callback' => function ( $request ) {
+							$post_id = (int) $request['id'];
+							return current_user_can( 'edit_post', $post_id );
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -829,20 +864,45 @@ class REST_Api {
 	private function process_rules_for_details( $rules, $post_id, $table_name, $siteid, &$passed_rules ) {
 		global $wpdb;
 
+		// Early return if no rules to process.
+		if ( empty( $rules ) ) {
+			return $rules;
+		}
+
+		// Extract rule slugs for IN clause.
+		$rule_slugs = array_column( $rules, 'slug' );
+
+		// Build a simple, escaped IN clause.
+		$safe_table    = esc_sql( $table_name );
+		$escaped_slugs = array_map( 'esc_sql', $rule_slugs );
+		$in_clause     = "'" . implode( "','", $escaped_slugs ) . "'";
+
+		// Direct SQL query (table and values already escaped).
+		$sql = "SELECT id, postid, object, ruletype, rule, ignre, ignre_user, ignre_date, ignre_comment\n"
+			. "FROM `{$safe_table}`\n"
+			. "WHERE postid = {$post_id}\n"
+			. "AND rule IN ( {$in_clause} )\n"
+			. "AND siteid = {$siteid}\n"
+			. 'AND ignre = 0';
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
+		$all_results = $wpdb->get_results( $sql, ARRAY_A );
+
+		// Group results by rule slug.
+		$results_by_rule = [];
+		foreach ( $all_results as $result ) {
+			$rule_slug = $result['rule'];
+			if ( ! isset( $results_by_rule[ $rule_slug ] ) ) {
+				$results_by_rule[ $rule_slug ] = [];
+			}
+			$results_by_rule[ $rule_slug ][] = $result;
+		}
+
+		// Process each rule with its results.
 		foreach ( $rules as $key => $rule ) {
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-			$results = $wpdb->get_results(
-				$wpdb->prepare(
-					'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment FROM %i where postid = %d and rule = %s and siteid = %d and ignre = %d',
-					$table_name,
-					$post_id,
-					$rule['slug'],
-					$siteid,
-					0
-				),
-				ARRAY_A
-			);
-			$count   = count( $results );
+			$rule_slug = $rule['slug'];
+			$results   = $results_by_rule[ $rule_slug ] ?? [];
+			$count     = count( $results );
 
 			if ( $count ) {
 				$rules[ $key ]['count']   = $count;
@@ -917,5 +977,53 @@ class REST_Api {
 			'simplified_summary_position'     => $simplified_summary_position,
 			'content_length'                  => strlen( $content ),
 		];
+	}
+
+	/**
+	 * Save simplified summary for a post.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param \WP_REST_Request $request The REST request object.
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function save_simplified_summary( \WP_REST_Request $request ) {
+		$post_id = (int) $request['id'];
+		$summary = sanitize_textarea_field( wp_unslash( $request['summary'] ) );
+
+		// Update the post meta with the simplified summary (matching AJAX behavior).
+		update_post_meta(
+			$post_id,
+			'_edac_simplified_summary',
+			$summary
+		);
+
+		// Get the complete readability data structure (same as the main readability endpoint).
+		try {
+			$readability_data = $this->get_readability_data( $post_id );
+
+			// Return data structure that matches the readability endpoint format.
+			return new \WP_REST_Response(
+				[
+					'success'                         => true,
+					'post_grade'                      => $readability_data['post_grade'],
+					'post_grade_readability'          => $readability_data['post_grade_readability'],
+					'post_grade_failed'               => $readability_data['post_grade_failed'],
+					'simplified_summary'              => $readability_data['simplified_summary'],
+					'simplified_summary_grade'        => $readability_data['simplified_summary_grade'],
+					'simplified_summary_grade_failed' => $readability_data['simplified_summary_grade_failed'],
+					'simplified_summary_prompt'       => $readability_data['simplified_summary_prompt'],
+					'simplified_summary_position'     => $readability_data['simplified_summary_position'],
+					'content_length'                  => $readability_data['content_length'],
+				],
+				200
+			);
+		} catch ( \Exception $e ) {
+			return new \WP_Error(
+				'readability_data_error',
+				$e->getMessage(),
+				[ 'status' => 500 ]
+			);
+		}
 	}
 }

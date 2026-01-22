@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import {
-	clearAllTabsAndPanelState, initFixButtonEventHandlers,
+	clearAllTabsAndPanelState,
+	initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
+
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
@@ -66,6 +68,11 @@ const edacScriptVars = edac_script_vars;
 	jQuery( window ).on( 'load', function() {
 		document.addEventListener( 'edac-cleared-issues', function() {
 			refreshTabDetails();
+		} );
+
+		// Listen for simplified summary save from Gutenberg sidebar
+		window.addEventListener( 'edac-simplified-summary-saved', function( event ) {
+			refreshSummaryAndReadability();
 		} );
 
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
@@ -248,25 +255,34 @@ const edacScriptVars = edac_script_vars;
 							const summary = jQuery( '#edac-readability-text' ).val();
 
 							jQuery.ajax( {
-								url: ajaxurl,
-								method: 'GET',
-								data: {
-									action: 'edac_update_simplified_summary',
-									post_id: postID,
-									summary,
-									nonce: edacScriptVars.nonce,
+								url: edacScriptVars.edacApiUrl + '/simplified-summary/' + postID,
+								method: 'POST',
+								headers: {
+									'X-WP-Nonce': edacScriptVars.restNonce,
 								},
+								contentType: 'application/json',
+								data: JSON.stringify( {
+									summary,
+								} ),
 							} ).done( function( doneResponse ) {
-								if ( true === doneResponse.success ) {
-									const doneResponseJSON = jQuery.parseJSON(
-										doneResponse.data
-									);
-
+								if ( doneResponse.success ) {
 									refreshSummaryAndReadability();
+
+									// Dispatch custom event to notify sidebar to refresh its data
+									const readabilityUpdatedEvent = new CustomEvent( 'edac-metabox-readability-updated', {
+										detail: {
+											postId: postID,
+											readabilityData: doneResponse,
+										},
+									} );
+									window.dispatchEvent( readabilityUpdatedEvent );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
 								}
+							} ).fail( function( error ) {
+								// eslint-disable-next-line no-console
+								console.error( 'Failed to save simplified summary:', error );
 							} );
 						}
 					);

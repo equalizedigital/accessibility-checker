@@ -1,0 +1,40 @@
+@use '../_variables' as *;
+
+/**
+ * Icon Styles
+ */
+
+.edac-icon {
+	font-size: 20px;
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 24px;
+	height: 24px;
+
+	&--success {
+		color: $check-green;
+	}
+
+	&--warning {
+		color: $warning-orange;
+	}
+
+	&--error {
+		color: $error-red;
+	}
+
+	&--info {
+		color: $info-grey;
+	}
+
+	svg {
+		stroke: currentColor;
+		fill: none;
+	}
+
+	.components-panel__body-title & {
+		margin-right: 4px;
+	}
+}

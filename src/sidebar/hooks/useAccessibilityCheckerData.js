@@ -24,7 +24,7 @@ export const useAccessibilityCheckerData = () => {
 		[],
 	);
 
-	const { refetchData } = useDispatch( STORE_NAME );
+	const { refetchData, updateReadabilityData } = useDispatch( STORE_NAME );
 
 	return {
 		data,
@@ -32,6 +32,7 @@ export const useAccessibilityCheckerData = () => {
 		error,
 		refreshing,
 		refetch: refetchData,
+		updateReadabilityData,
 	};
 };
 

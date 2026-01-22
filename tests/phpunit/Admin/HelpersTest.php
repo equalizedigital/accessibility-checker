@@ -117,12 +117,10 @@ class HelpersTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that is_block_editor returns false when get_current_screen is not available.
+	 * Test that is_block_editor returns false when not in block editor context.
 	 */
 	public function test_is_block_editor_returns_false_when_function_not_exists() {
-		// The function should exist in WordPress tests, so we verify it returns a value.
-		// This test documents expected behavior if the function doesn't exist.
-		$this->assertTrue( is_callable( 'get_current_screen' ) );
+		$this->assertFalse( Helpers::is_block_editor() );
 	}
 
 	/**

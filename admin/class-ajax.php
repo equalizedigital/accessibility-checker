@@ -33,7 +33,6 @@ class Ajax {
 		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
 		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
 		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
-		add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
@@ -773,48 +772,6 @@ class Ajax {
 			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 		}
 		wp_send_json_success( wp_json_encode( $data ) );
-	}
-
-	/**
-	 * Update simplified summary
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that the post ID was not specified
-	 *  - '-3' means that the summary was not specified
-	 *  - '-5' means that the user does not have permission to view this information for this post
-	 */
-	public function simplified_summary() {
-
-			// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! isset( $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! isset( $_REQUEST['summary'] ) ) {
-			wp_send_json_error( new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to edit this post.', 'accessibility-checker' ) ) );
-		}
-
-		$post_id = (int) $_REQUEST['post_id'];
-		update_post_meta(
-			$post_id,
-			'_edac_simplified_summary',
-			sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
-		);
-
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
-
-		wp_send_json_success( wp_json_encode( $simplified_summary ) );
 	}
 
 	/**
