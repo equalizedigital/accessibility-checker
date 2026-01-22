@@ -5,7 +5,7 @@
 import { __, _n, sprintf } from '@wordpress/i18n';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
 import { PanelRow, Button } from '@wordpress/components';
-import { useDispatch, useSelect } from '@wordpress/data';
+import { useDispatch } from '@wordpress/data';
 import { useCallback } from '@wordpress/element';
 import { useIsPostEditor } from '../hooks/useIsPostEditor';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
@@ -21,11 +21,8 @@ const QuickAccessPanel = () => {
 	// Check if we're in the post editor context.
 	const isPostEditor = useIsPostEditor();
 
-	// Get postId from editor
-	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
-
 	// Get data from store
-	const { data, loading, refreshing } = useAccessibilityCheckerData( postId );
+	const { data, loading, refreshing } = useAccessibilityCheckerData();
 
 	// Use the interface store instead of edit-post.
 	const { enableComplementaryArea } = useDispatch( 'core/interface' );
