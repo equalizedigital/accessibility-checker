@@ -973,32 +973,32 @@ class REST_Api {
 			$summary
 		);
 
-		// Retrieve the updated value to confirm (matching AJAX behavior).
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
+		// Get the complete readability data structure (same as the main readability endpoint).
+		try {
+			$readability_data = $this->get_readability_data( $post_id );
 
-		// Calculate the readability grade for the simplified summary.
-		// This is additional data for REST API clients (Gutenberg sidebar).
-		// The classic editor will get this from the separate readability AJAX call.
-		$simplified_summary_grade        = 0;
-		$simplified_summary_grade_failed = false;
-
-		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) && ! empty( $simplified_summary ) ) {
-			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			// Return data structure that matches the readability endpoint format.
+			return new \WP_REST_Response(
+				[
+					'success'                         => true,
+					'post_grade'                      => $readability_data['post_grade'],
+					'post_grade_readability'          => $readability_data['post_grade_readability'],
+					'post_grade_failed'               => $readability_data['post_grade_failed'],
+					'simplified_summary'              => $readability_data['simplified_summary'],
+					'simplified_summary_grade'        => $readability_data['simplified_summary_grade'],
+					'simplified_summary_grade_failed' => $readability_data['simplified_summary_grade_failed'],
+					'simplified_summary_prompt'       => $readability_data['simplified_summary_prompt'],
+					'simplified_summary_position'     => $readability_data['simplified_summary_position'],
+					'content_length'                  => $readability_data['content_length'],
+				],
+				200
+			);
+		} catch ( \Exception $e ) {
+			return new \WP_Error(
+				'readability_data_error',
+				$e->getMessage(),
+				[ 'status' => 500 ]
+			);
 		}
-
-		$simplified_summary_grade_failed = $simplified_summary_grade > 9;
-
-		// Return data structure that includes both AJAX-compatible data and additional REST metadata.
-		return new \WP_REST_Response(
-			[
-				'success'                         => true,
-				'summary'                         => $simplified_summary,
-				'simplified_summary_grade'        => $simplified_summary_grade,
-				'simplified_summary_grade_failed' => $simplified_summary_grade_failed,
-			],
-			200
-		);
 	}
 }
