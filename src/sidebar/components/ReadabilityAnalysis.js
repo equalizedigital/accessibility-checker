@@ -113,15 +113,11 @@ const ReadabilityAnalysis = () => {
 			return null;
 		}
 
-		if ( postGrade > 9 ) {
+		if ( postGrade >= 9 ) {
 			return 'above';
 		}
 
-		if ( postGrade < 9 ) {
-			return 'below';
-		}
-
-		return 'at';
+		return 'below';
 	};
 
 	const getGradeLabel = () => {
