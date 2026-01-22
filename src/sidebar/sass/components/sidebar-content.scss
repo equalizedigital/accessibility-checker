@@ -40,18 +40,20 @@
 
 		&--errors {
 			color: #d63638;
-
-			&--empty {
-				color: #50575e;
-			}
 		}
 
 		&--warnings {
 			color: #f0b849;
+		}
 
-			&--empty {
-				color: #50575e;
-			}
+		&--empty {
+			color: #50575e;
+		}
+
+		// Combined modifiers for when both error/warning and empty are present
+		&--errors#{&}--empty,
+		&--warnings#{&}--empty {
+			color: #50575e;
 		}
 	}
 
