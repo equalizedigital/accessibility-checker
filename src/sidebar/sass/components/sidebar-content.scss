@@ -8,55 +8,55 @@
 	.interface-complementary-area & h3 {
 		text-transform: none;
 	}
+}
 
-	.edac-panel-body {
-		.edac-data-row {
-			width: 100%;
+.edac-panel-body {
+	.edac-refreshing-message {
+		margin-bottom: 12px;
+	}
+}
 
-			.edac-data-section {
-				margin-bottom: 12px;
+.edac-data-row {
+	width: 100%;
+}
 
-				&:last-child {
-					margin-bottom: 0;
-				}
+.edac-data-section {
+	margin-bottom: 12px;
 
-				.edac-data-section__label {
-					display: block;
-					margin-bottom: 4px;
-					font-weight: 600;
-				}
+	&:last-child {
+		margin-bottom: 0;
+	}
 
-				.edac-data-section__count {
-					font-size: 24px;
-					font-weight: bold;
-					margin-right: 8px;
+	&__label {
+		display: block;
+		margin-bottom: 4px;
+		font-weight: 600;
+	}
 
-					&--errors {
-						color: #d63638;
+	&__count {
+		font-size: 24px;
+		font-weight: bold;
+		margin-right: 8px;
 
-						&.edac-data-section__count--empty {
-							color: #50575e;
-						}
-					}
+		&--errors {
+			color: #d63638;
 
-					&--warnings {
-						color: #f0b849;
-
-						&.edac-data-section__count--empty {
-							color: #50575e;
-						}
-					}
-				}
-
-				.edac-data-section__description {
-					color: #50575e;
-				}
+			&--empty {
+				color: #50575e;
 			}
 		}
 
-		.edac-refreshing-message {
-			margin-bottom: 12px;
+		&--warnings {
+			color: #f0b849;
+
+			&--empty {
+				color: #50575e;
+			}
 		}
+	}
+
+	&__description {
+		color: #50575e;
 	}
 }
 
@@ -65,10 +65,10 @@
  * Reusable across all sidebar panels
  */
 
-.edac-readability-row {
+.edac-panel-row {
 }
 
-.edac-readability-section {
+.edac-panel-section {
 
 	&__header {
 		display: flex;
@@ -84,7 +84,7 @@
 		color: #1e1e1e;
 	}
 
-	.edac-readability-section__message {
+	&__message {
 		margin: 0 0 4px 0;
 		font-size: $sidebar-p-size;
 		line-height: 1.5;
@@ -94,11 +94,11 @@
 		}
 	}
 
-	.edac-readability-section__link {
+	&__link {
 		font-size: $sidebar-link-size;
 	}
 
-	.edac-readability-section__subsection {
+	&__subsection {
 		margin-top: 16px;
 		padding-top: 12px;
 		border-top: 1px solid #e0e0e0;
@@ -110,7 +110,7 @@
 		}
 	}
 
-	.edac-readability-section__subheading {
+	&__subheading {
 		margin: 0 0 8px 0;
 		font-size: $sidebar-h3-size;
 		font-weight: 600;

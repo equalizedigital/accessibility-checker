@@ -160,7 +160,7 @@ const ReadabilityAnalysis = () => {
 				</>
 			) }
 			initialOpen={ true }
-			className="edac-panel-body"
+			className="edac-panel-body edac-readability-analysis-panel"
 		>
 			{ notice && (
 				<Notice
@@ -174,22 +174,22 @@ const ReadabilityAnalysis = () => {
 
 			{/* No Content Panel */}
 			{ ! hasContent && (
-				<PanelRow className="edac-readability-row">
-					<div className="edac-readability-section">
-						<div className="edac-readability-section__header">
+				<PanelRow className="edac-panel-row">
+					<div className="edac-panel-section">
+						<div className="edac-panel-section__header">
 							<Icon
 								name="warning"
 								type="warning"
 								ariaLabel={ __( 'Warning', 'accessibility-checker' ) }
 							/>
-							<h3 className="edac-readability-section__title">
+							<h3 className="edac-panel-section__title">
 								{ __( 'Not available', 'accessibility-checker' ) }
 							</h3>
 						</div>
-						<p className="edac-readability-section__message">
+						<p className="edac-panel-section__message">
 							{ __( 'This post does not contain enough content to calculate a reading level.', 'accessibility-checker' ) }
 						</p>
-						<a href="#" className="edac-readability-section__link">
+						<a href="#" className="edac-panel-section__link">
 							{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 						</a>
 					</div>
@@ -198,22 +198,22 @@ const ReadabilityAnalysis = () => {
 
 			{/* Not Enough Content Panel - when postGrade is 0 */}
 			{ hasContent && postGrade === 0 && (
-				<PanelRow className="edac-readability-row">
-					<div className="edac-readability-section">
-						<div className="edac-readability-section__header">
+				<PanelRow className="edac-panel-row">
+					<div className="edac-panel-section">
+						<div className="edac-panel-section__header">
 							<Icon
 								name="warning"
 								type="warning"
 								ariaLabel={ __( 'Warning', 'accessibility-checker' ) }
 							/>
-							<h3 className="edac-readability-section__title">
+							<h3 className="edac-panel-section__title">
 								{ __( 'Not available', 'accessibility-checker' ) }
 							</h3>
 						</div>
-						<p className="edac-readability-section__message">
+						<p className="edac-panel-section__message">
 							{ __( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) }
 						</p>
-						<a href="#" className="edac-readability-section__link">
+						<a href="#" className="edac-panel-section__link">
 							{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 						</a>
 					</div>
@@ -222,51 +222,51 @@ const ReadabilityAnalysis = () => {
 
 			{/* Reading Level Panel */}
 			{ hasContent && postGrade > 0 && readingLevelStatus && (
-				<PanelRow className="edac-readability-row">
-					<div className="edac-readability-section">
-						<div className="edac-readability-section__header">
-							<h3 className="edac-readability-section__title">{ __( 'Reading Level', 'accessibility-checker' ) }</h3>
+				<PanelRow className="edac-panel-row">
+					<div className="edac-panel-section">
+						<div className="edac-panel-section__header">
+							<h3 className="edac-panel-section__title">{ __( 'Reading Level', 'accessibility-checker' ) }</h3>
 						</div>
-						<p className="edac-readability-section__grade-display">
+						<p className="post-grade-display">
 							<Icon name={ getReadingLevelIcon() } />
 							{ gradeLabel }
 						</p>
 
-						<p className="edac-readability-section__message">
+						<p className="edac-panel-section__message">
 							{ readingLevelStatus === 'below'
 								? __( 'Content written at a 9th-grade reading level or below does not require a simplified summary.', 'accessibility-checker' )
 								: __( 'Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.', 'accessibility-checker' )
 							}
 						</p>
 						{ readingLevelStatus === 'below' && (
-							<a href="#" className="edac-readability-section__link">
+							<a href="#" className="edac-panel-section__link">
 								{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 							</a>
 						) }
 						{ readingLevelStatus !== 'below' && (
-							<a href="#" className="edac-readability-section__link">
+							<a href="#" className="edac-panel-section__link">
 								{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
 							</a>
 						) }
 
 						{ readingLevelStatus !== 'below' && (
 							<>
-								<div className="edac-readability-section__subsection">
-									<h4 className="edac-readability-section__subheading">
+								<div className="edac-panel-section__subsection">
+									<h4 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary Reading Level', 'accessibility-checker' ) }
 									</h4>
 									{ ! summaryText && (
-										<p className="edac-readability-section__message">
+										<p className="edac-panel-section__message">
 											{ __( 'Summary required', 'accessibility-checker' ) }
 										</p>
 									) }
 									{ summaryText && summaryGrade === 0 && (
-										<p className="edac-readability-section__message">
+										<p className="edac-panel-section__message">
 											{ __( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) }
 										</p>
 									) }
 									{ summaryText && summaryGrade > 0 && (
-										<p className="edac-readability-section__message">
+										<p className="edac-panel-section__message">
 											{ summaryGradeFailed
 												? __( 'Needs improvement, not above the 9th-grade reading level.', 'accessibility-checker' )
 												: __( 'Below the recommended 9th-grade reading level.', 'accessibility-checker' )
@@ -275,20 +275,20 @@ const ReadabilityAnalysis = () => {
 									) }
 								</div>
 
-								<div className="edac-readability-section__subsection">
-									<h4 className="edac-readability-section__subheading">
+								<div className="edac-panel-section__subsection">
+									<h4 className="edac-panel-section__subheading">
 										{ __( 'Placement', 'accessibility-checker' ) }
 									</h4>
-									<p className="edac-readability-section__message">
+									<p className="edac-panel-section__message">
 										{ __( 'Inserted after the content', 'accessibility-checker' ) }
 									</p>
-									<a href="#" className="edac-readability-section__link">
+									<a href="#" className="edac-panel-section__link">
 										{ __( 'Change in settings', 'accessibility-checker' ) }
 									</a>
 								</div>
 
-								<div className="edac-readability-section__subsection">
-									<h4 className="edac-readability-section__subheading">
+								<div className="edac-panel-section__subsection">
+									<h4 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
 									</h4>
 									<TextareaControl
@@ -296,13 +296,13 @@ const ReadabilityAnalysis = () => {
 										onChange={ setSummaryText }
 										placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
 										rows={ 4 }
-										className="edac-readability-section__textarea"
+										className="summary-textarea"
 									/>
 									<Button
 										variant="primary"
 										onClick={ handleSaveSummary }
 										disabled={ isSaving }
-										className="edac-readability-section__save-button"
+										className="edac-panel-section__save-button"
 									>
 										{ __( 'Save Summary', 'accessibility-checker' ) }
 									</Button>
