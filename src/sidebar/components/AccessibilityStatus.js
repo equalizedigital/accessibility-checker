@@ -32,6 +32,15 @@ const AccessibilityStatus = () => {
 	const needsSummary = postGrade >= 9;
 	const hasSummary = !! readability.simplified_summary;
 
+	// Determine status icon based on errors and warnings
+	let statusIconName = 'check';
+
+	if ( problems > 0 ) {
+		statusIconName = 'error';
+	} else if ( needsReview > 0 ) {
+		statusIconName = 'warning';
+	}
+
 	// Determine reading level display
 	let readingLevelText = __( 'Not available', 'accessibility-checker' );
 	let summaryStatus = '';
@@ -63,7 +72,15 @@ const AccessibilityStatus = () => {
 	return (
 		<Panel>
 			<PanelBody
-				title={ __( 'Accessibility Status', 'accessibility-checker' ) }
+				title={
+					<span className="edac-panel-title">
+						<Icon
+							name={ statusIconName }
+							className="edac-panel-title__icon"
+						/>
+						{ __( 'Accessibility Status', 'accessibility-checker' ) }
+					</span>
+				}
 				initialOpen={ true }
 				className="edac-panel-body edac-accessibility-status"
 			>
