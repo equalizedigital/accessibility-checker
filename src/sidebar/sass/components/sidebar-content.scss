@@ -1,3 +1,5 @@
+@use '../_variables' as *;
+
 /**
  * Sidebar Content Styles
  */
@@ -55,6 +57,64 @@
 		.edac-refreshing-message {
 			margin-bottom: 12px;
 		}
+	}
+}
+
+/**
+ * Generic Panel Section Styles
+ * Reusable across all sidebar panels
+ */
+
+.edac-readability-row {
+}
+
+.edac-readability-section {
+
+	&__header {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		margin-bottom: 4px;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: $sidebar-h3-size;
+		font-weight: 600;
+		color: #1e1e1e;
+	}
+
+	.edac-readability-section__message {
+		margin: 0 0 4px 0;
+		font-size: $sidebar-p-size;
+		line-height: 1.5;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	.edac-readability-section__link {
+		font-size: $sidebar-link-size;
+	}
+
+	.edac-readability-section__subsection {
+		margin-top: 16px;
+		padding-top: 12px;
+		border-top: 1px solid #e0e0e0;
+
+		&:first-child {
+			margin-top: 0;
+			padding-top: 0;
+			border-top: none;
+		}
+	}
+
+	.edac-readability-section__subheading {
+		margin: 0 0 8px 0;
+		font-size: $sidebar-h3-size;
+		font-weight: 600;
+		color: #1e1e1e;
 	}
 }
 
