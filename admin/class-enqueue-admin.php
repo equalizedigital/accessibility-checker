@@ -178,6 +178,7 @@ class Enqueue_Admin {
 			[
 				'wp-plugins',
 				'wp-edit-post',
+				'wp-editor',
 				'wp-element',
 				'wp-data',
 				'wp-i18n',
