@@ -21,10 +21,7 @@ const AccessibilityStatus = () => {
 	const summary = data?.summary || {};
 	const readability = data?.readability || {};
 
-	const passedTests = summary.passed_tests || 0;
-	const totalTests = passedTests + ( summary.errors || 0 ) + ( summary.warnings || 0 );
-	const coveragePercent = totalTests > 0 ? Math.round( ( passedTests / totalTests ) * 100 ) : 0;
-
+	const coveragePercent = summary.passed_tests || 0;
 	const problems = summary.errors || 0;
 	const needsReview = summary.warnings || 0;
 
