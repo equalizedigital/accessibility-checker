@@ -293,7 +293,7 @@ const ReadabilityAnalysis = () => {
 									{ summaryText && summaryGrade > 0 && (
 										<p className="edac-panel-section__message">
 											{ summaryGradeFailed
-												? __( 'Needs improvement, not above the 9th-grade reading level.', 'accessibility-checker' )
+												? __( 'Needs improvement, summary is above the 9th-grade reading level.', 'accessibility-checker' )
 												: __( 'Below the recommended 9th-grade reading level.', 'accessibility-checker' )
 											}
 										</p>
