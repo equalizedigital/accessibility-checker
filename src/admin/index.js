@@ -68,6 +68,11 @@ const edacScriptVars = edac_script_vars;
 			refreshTabDetails();
 		} );
 
+		// Listen for simplified summary save from Gutenberg sidebar
+		window.addEventListener( 'edac-simplified-summary-saved', function( event ) {
+			refreshSummaryAndReadability();
+		} );
+
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
@@ -260,6 +265,15 @@ const edacScriptVars = edac_script_vars;
 							} ).done( function( doneResponse ) {
 								if ( doneResponse.success ) {
 									refreshSummaryAndReadability();
+
+									// Dispatch custom event to notify sidebar to refresh its data
+									CustomEvent( 'edac-metabox-readability-updated', {
+										detail: {
+											postId: postID,
+											readabilityData: doneResponse,
+										},
+									} );
+									window.dispatchEvent( event );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );

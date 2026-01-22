@@ -17,7 +17,7 @@ import '../sass/components/readability-analysis.scss';
  * @return {JSX.Element} The readability analysis panel
  */
 const ReadabilityAnalysis = () => {
-	const { data } = useAccessibilityCheckerData();
+	const { data, updateReadabilityData } = useAccessibilityCheckerData();
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
 	const [ isSaving, setIsSaving ] = useState( false );
 	const [ summaryText, setSummaryText ] = useState( '' );
@@ -56,14 +56,38 @@ const ReadabilityAnalysis = () => {
 				},
 			} );
 
-			// Update the grade state with the response
+			// Update the grade state with the complete response data
 			if ( response.success ) {
 				setSummaryGrade( response.simplified_summary_grade || 0 );
 				setSummaryGradeFailed( response.simplified_summary_grade_failed || false );
+
+				// Update the data store with the complete readability data
+				updateReadabilityData( {
+					post_grade: response.post_grade,
+					post_grade_readability: response.post_grade_readability,
+					post_grade_failed: response.post_grade_failed,
+					simplified_summary: response.simplified_summary,
+					simplified_summary_grade: response.simplified_summary_grade,
+					simplified_summary_grade_failed: response.simplified_summary_grade_failed,
+					simplified_summary_prompt: response.simplified_summary_prompt,
+					simplified_summary_position: response.simplified_summary_position,
+					content_length: response.content_length,
+				} );
+
 				setNotice( {
 					type: 'success',
 					message: __( 'Simplified summary saved successfully.', 'accessibility-checker' ),
 				} );
+
+				// Dispatch custom event to trigger old metabox refresh
+				const event = new CustomEvent( 'edac-simplified-summary-saved', {
+					detail: {
+						postId,
+						summary: summaryText,
+						readabilityData: response,
+					},
+				} );
+				window.dispatchEvent( event );
 			} else {
 				setNotice( {
 					type: 'error',
@@ -301,7 +325,7 @@ const ReadabilityAnalysis = () => {
 									<Button
 										variant="primary"
 										onClick={ handleSaveSummary }
-										disabled={ isSaving }
+										disabled={ isSaving || summaryText === initialSummary }
 										className="edac-panel-section__save-button"
 									>
 										{ __( 'Save Summary', 'accessibility-checker' ) }
