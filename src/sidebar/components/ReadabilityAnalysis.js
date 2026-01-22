@@ -181,7 +181,7 @@ const ReadabilityAnalysis = () => {
 				</>
 			) }
 			initialOpen={ true }
-			className="edac-panel-body edac-readability-analysis-panel"
+			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
 		>
 			{ notice && (
 				<Notice

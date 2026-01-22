@@ -36,6 +36,14 @@ const AccessibilityStatus = () => {
 	let readingLevelText = __( 'Not available', 'accessibility-checker' );
 	let summaryStatus = '';
 
+	// Handle click on Reading Level card to scroll to ReadabilityAnalysis
+	const handleReadingLevelClick = () => {
+		const readabilityElement = document.querySelector( '.edac-readability-analysis' );
+		if ( readabilityElement ) {
+			readabilityElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+		}
+	};
+
 	if ( postGrade > 0 ) {
 		if ( postGradeReadable ) {
 			readingLevelText = sprintf( __( '%s', 'accessibility-checker' ), postGradeReadable );
@@ -126,7 +134,13 @@ const AccessibilityStatus = () => {
 					</div>
 
 					{/* Reading Level */}
-					<div className="edac-status-card">
+					<div
+						className="edac-status-card edac-status-card--clickable"
+						onClick={ handleReadingLevelClick }
+						role="button"
+						tabIndex={ 0 }
+						onKeyDown={ ( e ) => e.key === 'Enter' && handleReadingLevelClick() }
+					>
 						<div className="edac-status-card__header">
 							<span className="edac-status-card__label">
 								{ __( 'Reading Level', 'accessibility-checker' ) }
