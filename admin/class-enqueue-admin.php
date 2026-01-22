@@ -196,10 +196,12 @@ class Enqueue_Admin {
 			'edac-sidebar',
 			'edac_sidebar_app',
 			[
-				'gutenbergEnabled' => true,
-				'postID'           => get_the_ID(),
-				'edacApiUrl'       => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'nonce'            => wp_create_nonce( 'wp_rest' ),
+				'gutenbergEnabled'   => true,
+				'postID'             => get_the_ID(),
+				'edacApiUrl'         => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'nonce'              => wp_create_nonce( 'wp_rest' ),
+				'settingsUrl'        => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
+				'readabilityHelpUrl' => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
 			]
 		);
 

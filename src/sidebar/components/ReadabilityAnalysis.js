@@ -19,6 +19,7 @@ import '../sass/components/readability-analysis.scss';
 const ReadabilityAnalysis = () => {
 	const { data, updateReadabilityData } = useAccessibilityCheckerData();
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
+	const { settingsUrl, readabilityHelpUrl } = window?.edac_sidebar_app || {};
 	const [ isSaving, setIsSaving ] = useState( false );
 	const [ summaryText, setSummaryText ] = useState( '' );
 	const [ summaryGrade, setSummaryGrade ] = useState( 0 );
@@ -213,7 +214,7 @@ const ReadabilityAnalysis = () => {
 						<p className="edac-panel-section__message">
 							{ __( 'This post does not contain enough content to calculate a reading level.', 'accessibility-checker' ) }
 						</p>
-						<a href="#" className="edac-panel-section__link">
+						<a href={ settingsUrl || '#' } className="edac-panel-section__link">
 							{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 						</a>
 					</div>
@@ -237,7 +238,7 @@ const ReadabilityAnalysis = () => {
 						<p className="edac-panel-section__message">
 							{ __( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) }
 						</p>
-						<a href="#" className="edac-panel-section__link">
+						<a href={ settingsUrl || '#' } className="edac-panel-section__link">
 							{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 						</a>
 					</div>
@@ -263,12 +264,12 @@ const ReadabilityAnalysis = () => {
 							}
 						</p>
 						{ readingLevelStatus === 'below' && (
-							<a href="#" className="edac-panel-section__link">
+							<a href={ settingsUrl || '#' } className="edac-panel-section__link">
 								{ __( 'Adjust summary prompts in settings.', 'accessibility-checker' ) }
 							</a>
 						) }
 						{ readingLevelStatus !== 'below' && (
-							<a href="#" className="edac-panel-section__link">
+							<a href={ readabilityHelpUrl || '#' } className="edac-panel-section__link">
 								{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
 							</a>
 						) }
@@ -306,7 +307,7 @@ const ReadabilityAnalysis = () => {
 									<p className="edac-panel-section__message">
 										{ __( 'Inserted after the content', 'accessibility-checker' ) }
 									</p>
-									<a href="#" className="edac-panel-section__link">
+									<a href={ settingsUrl || '#' } className="edac-panel-section__link">
 										{ __( 'Change in settings', 'accessibility-checker' ) }
 									</a>
 								</div>
