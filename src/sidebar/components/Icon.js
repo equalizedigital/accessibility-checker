@@ -92,10 +92,10 @@ const icons = {
  * Icon component
  *
  * @param {Object}  props            - Component props
- * @param {string}  props.name       - Icon name (check, warning, error)
- * @param {string}  props.type       - Icon type for color (success, warning, error)
- * @param {boolean} props.ariaHidden - Hide from accessibility tree (default: true)
- * @param {string}  props.ariaLabel  - Accessible label for the icon
+ * @param {string}  props.name       - Icon name (check, warning, error, info)
+ * @param {string}  props.type       - Icon type for color (success, warning, error, info)
+ * @param {boolean} props.ariaHidden - Hide from accessibility tree (default: true, auto-set to false if ariaLabel provided)
+ * @param {string}  props.ariaLabel  - Accessible label for the icon (automatically sets ariaHidden to false)
  * @param {string}  props.className  - Additional CSS classes
  * @return {JSX.Element|null} The icon element
  */
@@ -131,8 +131,11 @@ const Icon = ( { name = 'check', type = '', ariaHidden = true, ariaLabel, classN
 	const typeClass = resolvedType ? `edac-icon--${ resolvedType }` : '';
 	const classes = [ baseClass, typeClass, className ].filter( Boolean ).join( ' ' );
 
+	// Auto-set ariaHidden to false if ariaLabel is provided, so the label is announced.
+	const resolvedAriaHidden = ariaLabel ? false : ariaHidden;
+
 	const ariaProps = {
-		'aria-hidden': ariaHidden,
+		'aria-hidden': resolvedAriaHidden,
 	};
 
 	if ( ariaLabel ) {
