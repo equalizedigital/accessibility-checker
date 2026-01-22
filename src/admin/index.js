@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import {
-	clearAllTabsAndPanelState, initFixButtonEventHandlers,
+	clearAllTabsAndPanelState,
+	initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
+
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
@@ -267,13 +269,13 @@ const edacScriptVars = edac_script_vars;
 									refreshSummaryAndReadability();
 
 									// Dispatch custom event to notify sidebar to refresh its data
-									CustomEvent( 'edac-metabox-readability-updated', {
+									const readabilityUpdatedEvent = new CustomEvent( 'edac-metabox-readability-updated', {
 										detail: {
 											postId: postID,
 											readabilityData: doneResponse,
 										},
 									} );
-									window.dispatchEvent( event );
+									window.dispatchEvent( readabilityUpdatedEvent );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
