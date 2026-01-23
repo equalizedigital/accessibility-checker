@@ -124,6 +124,10 @@ const AccessibilityStatus = () => {
 							className="edac-status-card__progress"
 							value={ coveragePercent }
 							max="100"
+							aria-label={ sprintf(
+								__( 'Coverage: %d percent', 'accessibility-checker' ),
+								coveragePercent,
+							) }
 						/>
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
