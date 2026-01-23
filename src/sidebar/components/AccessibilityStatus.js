@@ -115,7 +115,7 @@ const AccessibilityStatus = () => {
 								{ __( 'Coverage', 'accessibility-checker' ) }
 								<sup>*</sup>
 							</span>
-							<Icon name="info" type="info" className="edac-status-card__icon" />
+							<Icon name="info" className="edac-status-card__icon" />
 						</div>
 						<div className="edac-status-card__value">
 							{ coveragePercent }%
@@ -140,7 +140,6 @@ const AccessibilityStatus = () => {
 							</span>
 							<Icon
 								name={ problems > 0 ? 'error' : 'check' }
-								type={ problems > 0 ? 'error' : 'success' }
 								className="edac-status-card__icon"
 							/>
 						</div>
@@ -158,7 +157,6 @@ const AccessibilityStatus = () => {
 							</span>
 							<Icon
 								name={ needsReview > 0 ? 'warning' : 'check' }
-								type={ needsReview > 0 ? 'warning' : 'success' }
 								className="edac-status-card__icon"
 							/>
 						</div>
@@ -189,7 +187,6 @@ const AccessibilityStatus = () => {
 							</span>
 							<Icon
 								name={ needsSummary && ! hasSummary ? 'warning' : 'check' }
-								type={ needsSummary && ! hasSummary ? 'warning' : 'success' }
 								className="edac-status-card__icon"
 							/>
 						</div>
