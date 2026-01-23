@@ -233,20 +233,4 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Tweak - Add better help article link for new window warning fix.
 * Tweak - Use WordPress data functions instead of server time for ignore date formatting.
 
-2025-10-22 - version 1.34.0
-* Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
-* Tweak - Use post type labels rather than slugs in views where applicable.
-* Tweak - Prepare for sale event during Black Friday.
-
-2025-09-26 - version 1.33.0
-* Add - WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
-* Tweak - Made it easier to register custom commands through filter.
-
-2025-09-18 - version 1.32.0
-* Fix - Improved highlighter behavior to maintain original size and position of scanned elements.
-* Fix - Identify out-of-sequence headings.
-* Fix - Identify missing title attributes.
-* Fix - Correctly assess alternative text requirements for image map areas.
-* Tweak - Implemented additional security measures for input validation and data sanitization.
-
 Older versions can be found in the plugins `changelog.txt`.
