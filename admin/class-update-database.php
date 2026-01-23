@@ -74,9 +74,38 @@ class Update_Database {
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			dbDelta( $sql );
 
+			// Run migration for selector-based unique identifiers if upgrading from older versions.
+			if ( version_compare( $db_version, '1.0.5', '<' ) ) {
+				$this->migrate_to_selector_based_unique_id();
+			}       
 		}
 
 		// Update database version option.
 		update_option( 'edac_db_version', sanitize_text_field( EDAC_DB_VERSION ) );
+	}
+
+	/**
+	 * Migrate existing records to use selector-based unique identifiers.
+	 *
+	 * This migration handles records that were created before the selector field
+	 * was used as the unique identifier. Records with NULL selectors will have
+	 * a fallback identifier generated based on their ID to ensure uniqueness.
+	 *
+	 * @since 1.0.5
+	 * @return void
+	 */
+	private function migrate_to_selector_based_unique_id() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+		// Find records with NULL or empty selectors and update them with a fallback value.
+		// Using the record ID ensures each record has a unique selector for backward compatibility.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration query.
+		$wpdb->query(
+			$wpdb->prepare(
+				"UPDATE %i SET selector = CONCAT('legacy-id-', id) WHERE selector IS NULL OR selector = ''",
+				$table_name
+			)
+		);
 	}
 }

@@ -264,15 +264,7 @@ class REST_Api {
 	 *
 	 * @return string
 	 */
-	public function filter_js_validation_html( string $html, string $rule_id, array $violation ): string {
-		// Add the selector to the violation message as empty paragraphs are almost always
-		// duplicate html fragments. Adding the selector makes it unique, so it can be saved.
-		if ( 'empty_paragraph_tag' === $rule_id ) {
-			$html .= $violation['selector'][0]
-				? '// {{ ' . $violation['selector'][0] . ' }}'
-				: '';
-		}
-
+	public function filter_js_validation_html( string $html, string $rule_id, array $violation ): string { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed, VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- the variable was used previously and will be used in future most likely.
 		// Use just the opening <html> and closing </html> tag, prevents storing entire page as the affected code.
 		if ( 'html-has-lang' === $rule_id || 'document-title' === $rule_id ) {
 			$html = preg_replace( '/^.*(<html.*?>).*(<\/html>).*$/s', '$1...$2', $html );
