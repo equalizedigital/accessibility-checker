@@ -5,6 +5,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import { useEffect } from '@wordpress/element';
 import Icon from './Icon';
 import '../sass/components/spinner.scss';
 import '../sass/components/accessibility-status.scss';
@@ -15,7 +16,23 @@ import '../sass/components/accessibility-status.scss';
  * @return {JSX.Element} The accessibility status panel
  */
 const AccessibilityStatus = () => {
-	const { data, refreshing } = useAccessibilityCheckerData();
+	const { data, refreshing, refetch } = useAccessibilityCheckerData();
+
+	// Listen for ignore updates from the old metabox and refetch data
+	useEffect( () => {
+		const handleIgnoreUpdated = () => {
+			// Small delay so the ignore save can complete before we refetch.
+			window.setTimeout( () => {
+				refetch();
+			}, 300 );
+		};
+
+		window.addEventListener( 'edac-ignore-updated', handleIgnoreUpdated );
+
+		return () => {
+			window.removeEventListener( 'edac-ignore-updated', handleIgnoreUpdated );
+		};
+	}, [ refetch ] );
 
 	const manuallyTestHelpUrl = window.edac_sidebar_app?.manuallyTestHelpUrl || 'https://equalizedigital.com/accessibility-checker/manual-testing/';
 
