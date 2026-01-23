@@ -170,7 +170,14 @@ const AccessibilityStatus = () => {
 						onClick={ handleReadingLevelClick }
 						role="button"
 						tabIndex={ 0 }
-						onKeyDown={ ( e ) => e.key === 'Enter' && handleReadingLevelClick() }
+						onKeyDown={ ( e ) => {
+							if ( e.key === 'Enter' || e.key === ' ' ) {
+								if ( e.key === ' ' ) {
+									e.preventDefault();
+								}
+								handleReadingLevelClick();
+							}
+						} }
 					>
 						<div className="edac-status-card__header">
 							<span className="edac-status-card__label">
