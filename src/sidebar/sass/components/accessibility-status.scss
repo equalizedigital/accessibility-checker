@@ -118,16 +118,6 @@
 			color: $subtext-gray;
 			line-height: 1.4;
 		}
-
-		&__link {
-			font-size: $sidebar-link-size;
-			color: #0073aa;
-			text-decoration: none;
-
-			&:hover {
-				text-decoration: underline;
-			}
-		}
 	}
 }
 
