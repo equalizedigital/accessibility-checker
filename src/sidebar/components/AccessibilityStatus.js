@@ -5,7 +5,7 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import { useEffect } from '@wordpress/element';
+import { useCallback, useEffect } from '@wordpress/element';
 import Icon from './Icon';
 import '../sass/components/spinner.scss';
 import '../sass/components/accessibility-status.scss';
@@ -63,12 +63,12 @@ const AccessibilityStatus = () => {
 	let summaryStatus = '';
 
 	// Handle click on Reading Level card to scroll to ReadabilityAnalysis
-	const handleReadingLevelClick = () => {
+	const handleReadingLevelClick = useCallback( () => {
 		const readabilityElement = document.querySelector( '.edac-readability-analysis' );
 		if ( readabilityElement ) {
 			readabilityElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 		}
-	};
+	}, [] );
 
 	if ( postGrade > 0 ) {
 		if ( postGradeReadable ) {
