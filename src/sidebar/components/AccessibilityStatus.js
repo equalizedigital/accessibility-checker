@@ -72,7 +72,7 @@ const AccessibilityStatus = () => {
 
 	if ( postGrade > 0 ) {
 		if ( postGradeReadable ) {
-			readingLevelText = sprintf( __( '%s', 'accessibility-checker' ), postGradeReadable );
+			readingLevelText = postGradeReadable;
 		} else {
 			readingLevelText = sprintf( __( '%dth', 'accessibility-checker' ), postGrade );
 		}
