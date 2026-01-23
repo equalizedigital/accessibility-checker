@@ -442,6 +442,16 @@ const edacScriptVars = edac_script_vars;
 								countIgnore + ' Ignored Items'
 							);
 
+							// Dispatch event to notify sidebar that ignore action was completed
+							const event = new CustomEvent( 'edac-ignore-updated', {
+								detail: {
+									postId: parseInt( jQuery( '#post_ID' ).val() ),
+									action: data.action,
+									ruleId: data.rule_id,
+								},
+							} );
+							window.dispatchEvent( event );
+
 							// refresh page on ignore or unignore in pro
 							if (
 								jQuery( 'body' ).hasClass(

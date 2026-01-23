@@ -14,6 +14,8 @@ import { STORE_NAME } from '../store/accessibility-checker-store';
  * @return {Object} Object containing data, loading, error, refreshing states and refetch function
  */
 export const useAccessibilityCheckerData = () => {
+	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
+
 	const { data, loading, error, refreshing } = useSelect(
 		( select ) => ( {
 			data: select( STORE_NAME ).getData(),
@@ -26,12 +28,19 @@ export const useAccessibilityCheckerData = () => {
 
 	const { refetchData, updateReadabilityData } = useDispatch( STORE_NAME );
 
+	// Wrap refetchData to automatically include postId
+	const refetch = () => {
+		if ( postId ) {
+			refetchData( postId );
+		}
+	};
+
 	return {
 		data,
 		loading,
 		error,
 		refreshing,
-		refetch: refetchData,
+		refetch,
 		updateReadabilityData,
 	};
 };
