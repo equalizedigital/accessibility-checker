@@ -72,15 +72,12 @@ const AccessibilityStatus = () => {
 	return (
 		<Panel>
 			<PanelBody
-				title={
-					<span className="edac-panel-title">
-						<Icon
-							name={ statusIconName }
-							className="edac-panel-title__icon"
-						/>
+				title={ (
+					<>
+						<Icon name={ statusIconName } />
 						{ __( 'Accessibility Status', 'accessibility-checker' ) }
-					</span>
-				}
+					</>
+				) }
 				initialOpen={ true }
 				className="edac-panel-body edac-accessibility-status"
 			>
