@@ -449,6 +449,16 @@ class REST_Api {
 			 */
 			do_action( 'edac_validate_before_sending_rest_response', $post_id, 'js', $request );
 
+			/**
+			 * Fires after scan for activity logging.
+			 *
+			 * @since 1.36.0
+			 *
+			 * @param int    $post_id The post ID.
+			 * @param object $post    The post object.
+			 */
+			do_action( 'edac_after_post_scan', $post_id, $post );
+
 			return new \WP_REST_Response(
 				[
 					'success'   => true,

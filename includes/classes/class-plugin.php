@@ -12,6 +12,7 @@ use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+use EqualizeDigital\AccessibilityChecker\ActivityLog\Activity_Log_Handler;
 
 /**
  * Main plugin functionality class.
@@ -22,6 +23,10 @@ class Plugin {
 	 * Class constructor.
 	 */
 	public function __construct() {
+		// Initialize activity log handler globally (works in all contexts).
+		$activity_log_handler = new Activity_Log_Handler();
+		$activity_log_handler->init();
+
 		if ( \is_admin() ) {
 			$meta_boxes = new Meta_Boxes();
 			$admin      = new Admin( $meta_boxes );

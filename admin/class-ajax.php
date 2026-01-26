@@ -753,12 +753,35 @@ class Ajax {
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+
+			/**
+			 * Fires after ignoring issues for activity logging (batch operation).
+			 *
+			 * @since 1.36.0
+			 *
+			 * @param array  $ids           Array of issue IDs.
+			 * @param string $action        The action (enable or disable).
+			 * @param int    $ignore_global Whether this is a global ignore.
+			 * @param string $object        The object/HTML that was ignored.
+			 */
+			do_action( 'edac_after_ignore_issue', $ids, $action, $ignore_global, $object );
 		} else {
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
 			}
+
+			/**
+			 * Fires after ignoring issues for activity logging.
+			 *
+			 * @since 1.36.0
+			 *
+			 * @param array  $ids           Array of issue IDs.
+			 * @param string $action        The action (enable or disable).
+			 * @param int    $ignore_global Whether this is a global ignore.
+			 */
+			do_action( 'edac_after_ignore_issue', $ids, $action, $ignore_global );
 		}
 
 		$data = [
