@@ -215,6 +215,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Fix - Restrict global ignore management link and fix button label span closure.
 * Fix - Update database schema to use selector as unique identifier for issues.
 * Enhanced - Frontend issue matching with stable selectors and DOM ordering.
+* Improved - More accurate restoration of styles after deactivating them in frontend highlighter.
 
 2025-12-15 - version 1.36.0
 * Fix - passed tests percentage logic now accounts times no posts are scanned
