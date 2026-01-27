@@ -57,6 +57,7 @@ class AccessibilityCheckerHighlight {
 		this.clearIssuesButton = document.querySelector( '#edac-highlight-clear-issues' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
+		this.originalInlineStyles = [];
 
 		this.init();
 	}
@@ -857,8 +858,6 @@ class AccessibilityCheckerHighlight {
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
 		if ( ! document.querySelector( '#edac-app-css' ) ) {
-			//console.log( 'css is combined, so adding app.css to page.' );
-
 			const link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
@@ -868,23 +867,59 @@ class AccessibilityCheckerHighlight {
 			document.head.appendChild( link );
 		}
 
-		this.originalCss = Array.from( document.head.querySelectorAll( 'style[type="text/css"], style, link[rel="stylesheet"]' ) );
-
+		// Store inline styles with element references for restoration.
+		this.originalInlineStyles = [];
 		const elementsWithStyle = document.querySelectorAll( '*[style]:not([class^="edac"])' );
-		elementsWithStyle.forEach( function( element ) {
+		elementsWithStyle.forEach( ( element ) => {
+			this.originalInlineStyles.push( {
+				element,
+				style: element.getAttribute( 'style' ),
+			} );
 			element.removeAttribute( 'style' );
 		} );
 
-		this.originalCss = this.originalCss.filter( function( element ) {
-			if ( element.id === 'edac-app-css' || element.id === 'dashicons-css' ) {
-				return false;
-			}
-			return true;
-		} );
+		// Find all stylesheets in the entire document (head and body).
+		// Include: style elements, link[rel="stylesheet"], and link elements with .css href.
+		const styleElements = Array.from( document.querySelectorAll(
+			'style[type="text/css"], style, link[rel="stylesheet"], link[href$=".css"], link[href*=".css?"]'
+		) );
 
-		document.head.dataset.css = this.originalCss;
-		this.originalCss.forEach( function( element ) {
-			element.remove();
+		// Filter out our app CSS and dashicons, then store with position info.
+		this.originalCss = styleElements
+			.filter( ( element ) => element.id !== 'edac-app-css' && element.id !== 'dashicons-css' )
+			.map( ( element ) => {
+				// Store the parent and next sibling for position restoration.
+				const parent = element.parentNode;
+				let nextSibling = element.nextElementSibling;
+
+				// Find the next sibling that won't be removed (for position restoration).
+				while ( nextSibling ) {
+					// Check if this sibling will be preserved (not a stylesheet we're removing).
+					const isStyleElement = nextSibling.tagName === 'STYLE';
+					const isLinkStylesheet = nextSibling.tagName === 'LINK' && (
+						nextSibling.matches( '[rel="stylesheet"]' ) ||
+						nextSibling.matches( '[href$=".css"]' ) ||
+						nextSibling.matches( '[href*=".css?"]' )
+					);
+					const isPreserved = nextSibling.id === 'edac-app-css' || nextSibling.id === 'dashicons-css';
+
+					// If it's not a stylesheet we'll remove, or it's preserved, use it as reference.
+					if ( ( ! isStyleElement && ! isLinkStylesheet ) || isPreserved ) {
+						break;
+					}
+					nextSibling = nextSibling.nextElementSibling;
+				}
+
+				return {
+					element,
+					parent,
+					nextSibling,
+				};
+			} );
+
+		// Remove the stylesheets.
+		this.originalCss.forEach( ( item ) => {
+			item.element.remove();
 		} );
 
 		document.querySelector( 'body' ).classList.add( 'edac-app-disable-styles' );
@@ -897,16 +932,30 @@ class AccessibilityCheckerHighlight {
 	 * This function enables all styles on the page.
 	 */
 	enableStyles() {
-		this.originalCss.forEach( function( element ) {
-			if ( element.tagName === 'STYLE' ) {
-				document.head.appendChild( element.cloneNode( true ) );
+		// Restore stylesheets in their original order.
+		// Process in reverse so insertBefore places them correctly.
+		const reversedCss = [ ...this.originalCss ].reverse();
+
+		reversedCss.forEach( ( item ) => {
+			const parent = item.parent && item.parent.isConnected ? item.parent : document.head;
+
+			if ( item.nextSibling && item.nextSibling.parentNode === parent ) {
+				// Insert before the reference sibling to restore original position.
+				parent.insertBefore( item.element, item.nextSibling );
 			} else {
-				const newElement = document.createElement( 'link' );
-				newElement.rel = 'stylesheet';
-				newElement.href = element.href;
-				document.head.appendChild( newElement );
+				// Fallback: append to parent if reference sibling is no longer valid.
+				parent.appendChild( item.element );
 			}
 		} );
+
+		// Restore inline styles to their original elements.
+		if ( this.originalInlineStyles ) {
+			this.originalInlineStyles.forEach( ( item ) => {
+				if ( item.element && item.element.isConnected ) {
+					item.element.setAttribute( 'style', item.style );
+				}
+			} );
+		}
 
 		document.querySelector( 'body' ).classList.remove( 'edac-app-disable-styles' );
 
