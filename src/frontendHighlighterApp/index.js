@@ -878,43 +878,44 @@ class AccessibilityCheckerHighlight {
 			element.removeAttribute( 'style' );
 		} );
 
-		// Get all stylesheets and store with position information.
-		const allHeadChildren = Array.from( document.head.children );
-		this.originalCss = [];
+		// Find all stylesheets in the entire document (head and body).
+		// Include: style elements, link[rel="stylesheet"], and link elements with .css href.
+		const styleElements = Array.from( document.querySelectorAll(
+			'style[type="text/css"], style, link[rel="stylesheet"], link[href$=".css"], link[href*=".css?"]'
+		) );
 
-		allHeadChildren.forEach( ( element, index ) => {
-			const isStyle = element.tagName === 'STYLE';
-			const isStylesheet = element.tagName === 'LINK' && element.rel === 'stylesheet';
+		// Filter out our app CSS and dashicons, then store with position info.
+		this.originalCss = styleElements
+			.filter( ( element ) => element.id !== 'edac-app-css' && element.id !== 'dashicons-css' )
+			.map( ( element ) => {
+				// Store the parent and next sibling for position restoration.
+				const parent = element.parentNode;
+				let nextSibling = element.nextElementSibling;
 
-			if ( ! isStyle && ! isStylesheet ) {
-				return;
-			}
+				// Find the next sibling that won't be removed (for position restoration).
+				while ( nextSibling ) {
+					// Check if this sibling will be preserved (not a stylesheet we're removing).
+					const isStyleElement = nextSibling.tagName === 'STYLE';
+					const isLinkStylesheet = nextSibling.tagName === 'LINK' && (
+						nextSibling.matches( '[rel="stylesheet"]' ) ||
+						nextSibling.matches( '[href$=".css"]' ) ||
+						nextSibling.matches( '[href*=".css?"]' )
+					);
+					const isPreserved = nextSibling.id === 'edac-app-css' || nextSibling.id === 'dashicons-css';
 
-			// Skip our app CSS and dashicons.
-			if ( element.id === 'edac-app-css' || element.id === 'dashicons-css' ) {
-				return;
-			}
-
-			// Find the next sibling that won't be removed (for position restoration).
-			let nextSibling = element.nextElementSibling;
-			while ( nextSibling ) {
-				const isNextStyle = nextSibling.tagName === 'STYLE';
-				const isNextStylesheet = nextSibling.tagName === 'LINK' && nextSibling.rel === 'stylesheet';
-				const isPreserved = nextSibling.id === 'edac-app-css' || nextSibling.id === 'dashicons-css';
-
-				// Find a sibling that will remain in the DOM after removal.
-				if ( ( ! isNextStyle && ! isNextStylesheet ) || isPreserved ) {
-					break;
+					// If it's not a stylesheet we'll remove, or it's preserved, use it as reference.
+					if ( ( ! isStyleElement && ! isLinkStylesheet ) || isPreserved ) {
+						break;
+					}
+					nextSibling = nextSibling.nextElementSibling;
 				}
-				nextSibling = nextSibling.nextElementSibling;
-			}
 
-			this.originalCss.push( {
-				element,
-				nextSibling,
-				index,
+				return {
+					element,
+					parent,
+					nextSibling,
+				};
 			} );
-		} );
 
 		// Remove the stylesheets.
 		this.originalCss.forEach( ( item ) => {
@@ -932,27 +933,20 @@ class AccessibilityCheckerHighlight {
 	 */
 	enableStyles() {
 		// Restore stylesheets in their original order.
-		// Process in reverse to maintain correct insertion order when using insertBefore.
-		const sortedCss = [ ...this.originalCss ].sort( ( a, b ) => b.index - a.index );
+		// Process in reverse so insertBefore places them correctly.
+		const reversedCss = [ ...this.originalCss ].reverse();
 
-		sortedCss.forEach( ( item ) => {
-			if ( item.nextSibling && item.nextSibling.parentNode === document.head ) {
+		reversedCss.forEach( ( item ) => {
+			const parent = item.parent && item.parent.isConnected ? item.parent : document.head;
+
+			if ( item.nextSibling && item.nextSibling.parentNode === parent ) {
 				// Insert before the reference sibling to restore original position.
-				document.head.insertBefore( item.element, item.nextSibling );
+				parent.insertBefore( item.element, item.nextSibling );
 			} else {
-				// Fallback: append to head if reference sibling is no longer valid.
-				document.head.appendChild( item.element );
+				// Fallback: append to parent if reference sibling is no longer valid.
+				parent.appendChild( item.element );
 			}
 		} );
-
-		// Re-sort by original index and re-insert to ensure correct order.
-		this.originalCss
-			.sort( ( a, b ) => a.index - b.index )
-			.forEach( ( item ) => {
-				if ( item.nextSibling && item.nextSibling.parentNode === document.head ) {
-					document.head.insertBefore( item.element, item.nextSibling );
-				}
-			} );
 
 		// Restore inline styles to their original elements.
 		if ( this.originalInlineStyles ) {
