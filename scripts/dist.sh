@@ -1,61 +1,81 @@
 #!/bin/bash
 
-# Define the flag variable and set default value
-KEEP_BUILD_FOLDER=false
+# Reusable plugin slug (folder name and main file basename)
+SLUG="accessibility-checker"
+DIST_DIR="./dist"
+ZIP_NAME="${SLUG}.zip"
+EXTRACT_DIR="${DIST_DIR}/${SLUG}"
+MAIN_FILE="${EXTRACT_DIR}/${SLUG}.php"
 
-# Parse command-line options
-while getopts ":-:" opt; do
-  case $opt in
-    -)
-      case "${OPTARG}" in
-        keep-build-folder)
-          val="${!OPTIND}"; OPTIND=$(( $OPTIND + 1 ))
-          KEEP_BUILD_FOLDER=$val
-          ;;
-        *)
-          ;;
-      esac;;
-    *)
-      ;;
+# Flag default
+KEEP_BUILD_FOLDER=false
+SHOW_HELP=false
+
+# Parse boolean flags by presence
+for arg in "$@"; do
+  case "$arg" in
+    --keep-build-folder) KEEP_BUILD_FOLDER=true ;;
+    --help|-h) SHOW_HELP=true ;;
   esac
 done
 
-# Ensure ./dist directory exists, if not create it
-mkdir -p ./dist
+if [ "$SHOW_HELP" = true ]; then
+  echo "Usage: $0 [--keep-build-folder]"; exit 0; fi
 
-# Run the wp-scripts command that produces the zip
-npx wp-scripts plugin-zip
+echo "KEEP_BUILD_FOLDER=$KEEP_BUILD_FOLDER"
 
-# Always clear the dist/accessibility-checker folder before unzipping
-rm -rfd ./dist/accessibility-checker
+# Ensure dist directory exists
+mkdir -p "$DIST_DIR"
 
-# Unzip the zip into its own folder so we can repackage with some changes
-unzip accessibility-checker.zip -d ./dist/accessibility-checker
+# Build initial zip
+npx wp-scripts plugin-zip --no-root-folder || { echo "ERROR: wp-scripts plugin-zip failed"; exit 1; }
 
-# The plugin-zip commands includes package.json, which is not needed for the plugin, so remove it and the repo README
-rm ./dist/accessibility-checker/package.json
-rm ./dist/accessibility-checker/README.md
+# Clear previous extracted folder
+rm -rfd "${EXTRACT_DIR:?}"
 
-# Remove the unneeded (almost 1MB) tests folder for textstatistics package
-rm ./dist/accessibility-checker/vendor/davechild/textstatistics/tests -r
+# Unzip build into extract dir
+unzip "$ZIP_NAME" -d "$EXTRACT_DIR" > /dev/null || { echo "ERROR: unzip failed"; exit 1; }
 
-# Remove the original zip
-rm accessibility-checker.zip
+# Some systems plugin-zip might work different on and create an extra folder level
+if [ -d "${EXTRACT_DIR:?}/${SLUG:?}" ]; then
+  shopt -s dotglob nullglob
+  mv "${EXTRACT_DIR:?}/${SLUG:?}/"* "${EXTRACT_DIR:?}/"
+  rm -r "${EXTRACT_DIR:?}/${SLUG:?}"
+  shopt -u dotglob nullglob
+fi
 
-# Get the string at the end of the line starting with ' * Version:' from the main plugin file
-VERSION=$(grep " * Version:" ./dist/accessibility-checker/accessibility-checker.php | grep -o '[0-9.]*\(-[a-zA-Z0-9.]*\)*')
+# Remove unwanted files if they exist
+[ -f "$EXTRACT_DIR/package.json" ] && rm "$EXTRACT_DIR/package.json"
+[ -f "$EXTRACT_DIR/README.md" ] && rm "$EXTRACT_DIR/README.md"
+# This is a nearly 1mb test folder we don't need in production
+[ -d "$EXTRACT_DIR/vendor/davechild/textstatistics/tests" ] && rm -r "$EXTRACT_DIR/vendor/davechild/textstatistics/tests"
 
-# Move into the dist folder and zip the plugin's folder
-cd ./dist
-zip -r accessibility-checker-$VERSION.zip accessibility-checker
+# Remove original build zip
+rm "$ZIP_NAME"
 
-# Remove the po files from the zip file
-zip -d accessibility-checker-$VERSION.zip ./accessibility-checker/languages/*.po
+# Extract version from main plugin file header (first matching Version: line)
+if [ ! -f "$MAIN_FILE" ]; then
+  echo "ERROR: Main plugin file not found at $MAIN_FILE"; exit 1; fi
+VERSION=$(sed -n 's/^[[:space:]]*\*[[:space:]]*Version:[[:space:]]*\([0-9][0-9A-Za-z._-]*\).*/\1/p' "$MAIN_FILE" | head -n1)
+if [ -z "$VERSION" ]; then
+  echo "ERROR: Could not extract version from $MAIN_FILE"; grep -n "Version" "$MAIN_FILE" || true; exit 1; fi
 
-# Drop back into the original dir
+echo "Building plugin package for version: $VERSION"
+
+# Create final distributable zip
+cd "$DIST_DIR" || exit 1
+FINAL_ZIP="${SLUG}-${VERSION}.zip"
+zip -r "$FINAL_ZIP" "$SLUG" > /dev/null || { echo "ERROR: zip failed"; exit 1; }
+
+# Remove .po files (ignore errors if none)
+zip -d "$FINAL_ZIP" "${SLUG}/languages/*.po" > /dev/null || true
+
 cd ..
 
-# Skip this step if the 'keep-build-folder' flag is true
-if [ "$KEEP_BUILD_FOLDER" = false ] ; then
-  rm -r ./dist/accessibility-checker
+# Optionally clean extracted folder
+if [ "$KEEP_BUILD_FOLDER" = false ]; then
+  rm -r "${EXTRACT_DIR:?}"
 fi
+
+echo "Done: $FINAL_ZIP"
+
