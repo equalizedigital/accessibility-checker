@@ -85,7 +85,10 @@ class AccessibilityCheckerHighlight {
 			this.panelClose();
 			this.panelControlsFocusTrap.deactivate();
 			this.panelDescriptionFocusTrap.deactivate();
-			this.enableStyles();
+			// Only re-enable styles if they were disabled by the tool.
+			if ( this.stylesDisabled ) {
+				this.enableStyles();
+			}
 		} );
 
 		// Close description when close button is clicked
