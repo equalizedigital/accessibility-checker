@@ -7,7 +7,6 @@ import { isFocusable } from 'tabbable';
 import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
-import { hashString } from '../common/helpers';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -332,61 +331,71 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
-		tooltip.dataset.targetElement = hashString( element.outerHTML );
+		// Store a unique identifier for the target element
+		// Use a WeakMap-style unique identifier based on the actual element object
+		// This ensures that even if multiple elements have identical HTML, they get different identifiers
+		if ( ! element.__edacElementId ) {
+			element.__edacElementId = 'edac-' + Math.random().toString( 36 ).substr( 2, 9 );
+		}
+		tooltip.dataset.targetElement = element.__edacElementId;
 
 		// Add creation timestamp to track order of tooltip creation
 		tooltip.dataset.creationOrder = Date.now() + Math.random(); // Ensure uniqueness
 
 		const updatePosition = function() {
-			// Find existing tooltips for the same element that were created BEFORE this one
+			// Get the sorted index and element hash for this tooltip
+			const sortedIndex = parseInt( tooltip.dataset.sortedIndex || '0', 10 );
 			const currentElementHash = tooltip.dataset.targetElement;
-			const currentCreationOrder = parseFloat( tooltip.dataset.creationOrder );
 
-			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
-				// Check if this tooltip targets the same element and was created before this one
-				return btn !== tooltip && btn.dataset.targetElement === currentElementHash && parseFloat( btn.dataset.creationOrder ) < currentCreationOrder;
-			} );
+			// Calculate offset based on sorted position, not creation order
+			// Count how many tooltips for this same element have a LOWER sorted index
+			let tooltipOffset = 0;
+			const allTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) );
+			for ( const btn of allTooltips ) {
+				if ( btn === tooltip ) {
+					break; // Stop counting when we reach this tooltip
+				}
+				const btnSortedIndex = parseInt( btn.dataset.sortedIndex || '0', 10 );
+				// Count only tooltips for the same element that come before this one in sorted order
+				if ( btn.dataset.targetElement === currentElementHash && btnSortedIndex < sortedIndex ) {
+					tooltipOffset++;
+				}
+			}
 
-			// The offset should be the count of existing tooltips created before this one
-			const tooltipOffset = existingTooltips.length;
 			const TOOLTIP_GAP = 5; // Gap between tooltip buttons in pixels
 
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
-			} ).then( ( { x, y, middlewareData, placement } ) => {
+			} ).then( ( { x, y } ) => {
 				const elRect = element.getBoundingClientRect();
 				const elHeight = element.offsetHeight === undefined ? 0 : element.offsetHeight;
-				const elWidth = element.offsetWidth === undefined ? 0 : element.offsetWidth;
 				const tooltipHeight = tooltip.offsetHeight === undefined ? 0 : tooltip.offsetHeight;
 				const tooltipWidth = tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
-				let top = 0;
+				// Calculate the horizontal offset for stacking multiple tooltips on the same element
 				const left = tooltipOffset * ( tooltipWidth + TOOLTIP_GAP );
 
-				if ( tooltipHeight <= ( elHeight * .8 ) ) {
-					top = tooltipHeight;
+				// Start with the position from computePosition
+				const finalLeft = x + left;
+				let finalTop = y;
+
+				// Special handling for zero-height elements (like empty <p> tags)
+				// When an element has no height, computePosition may not calculate y correctly
+				// Use the element's bounding rect top position adjusted for tooltip height
+				if ( elHeight === 0 && elRect.height === 0 ) {
+					// Element has no visual height
+					// Position tooltip above where the element is in the document
+					finalTop = elRect.top + document.documentElement.scrollTop - tooltipHeight - 5;
 				}
 
-				if ( tooltipWidth >= ( elWidth * .8 ) ) {
-					top = 0;
-				}
-
-				if ( elRect.left < tooltipWidth ) {
-					x = 0;
-				}
-
-				if ( elRect.left > window.screen ) {
-					x = window.screen.width - tooltipWidth;
-				}
-
-				if ( elRect.top < tooltipHeight ) {
-					y = 0;
-				}
+				// Note: We do NOT clamp to viewport boundaries
+				// Tooltips should follow their elements even when outside viewport
+				// They'll become visible when scrolling to the element
 
 				Object.assign( tooltip.style, {
-					left: `${ x + left }px`,
-					top: `${ y + top }px`,
+					left: `${ finalLeft }px`,
+					top: `${ finalTop }px`,
 				} );
 			} );
 		};
@@ -641,13 +650,19 @@ class AccessibilityCheckerHighlight {
 						return 1;
 					}
 
-					// Elements are the same or in different documents
-					return 0;
+					// Elements are the same (or in different documents)
+					// When elements are the same, sort by issue ID for consistent ordering
+					// This ensures multiple issues on the same element appear in predictable order
+					const idA = parseInt( a.id, 10 );
+					const idB = parseInt( b.id, 10 );
+					return idA - idB;
 				} );
 
 				// Update tooltip aria-labels to reflect sorted order
 				this.issues.forEach( ( issue, sortedIndex ) => {
 					if ( issue.tooltip ) {
+						// Store the sorted index on the tooltip for debugging
+						issue.tooltip.dataset.sortedIndex = sortedIndex;
 						issue.tooltip.setAttribute(
 							'aria-label',
 							sprintf(
