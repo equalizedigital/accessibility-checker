@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
 Requires at least: 6.6
 Tested up to: 6.9
-Stable tag: 1.36.0
+Stable tag: 1.37.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -211,6 +211,15 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-01-23 - version 1.37.0
+* Fix - Duplicate markup on the page can now be properly identified as an issue.
+* Fix - Restrict global ignore management link and fix button label span closure.
+* Fix - Update database schema to use selector as unique identifier for issues.
+* Enhanced - Frontend issue matching with stable selectors and DOM ordering.
+* Enhanced - Better handling of frontend highlighter positioning.
+* Improved - More accurate restoration of styles after deactivating them in frontend highlighter.
+* Improved - When closing frontend highlighter it won't re-render unless needed.
+
 2025-12-15 - version 1.36.0
 * Fix - passed tests percentage logic now accounts times no posts are scanned
 * Fix - don't prevent scan speed saving when pro plugin is enabled.
@@ -227,21 +236,5 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Fix - Make highlighter controls translatable.
 * Tweak - Add better help article link for new window warning fix.
 * Tweak - Use WordPress data functions instead of server time for ignore date formatting.
-
-2025-10-22 - version 1.34.0
-* Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
-* Tweak - Use post type labels rather than slugs in views where applicable.
-* Tweak - Prepare for sale event during Black Friday.
-
-2025-09-26 - version 1.33.0
-* Add - WP-CLI commands can now be run with short names: `wp edac <command>` or using long name `wp accessibility-checker <command>`.
-* Tweak - Made it easier to register custom commands through filter.
-
-2025-09-18 - version 1.32.0
-* Fix - Improved highlighter behavior to maintain original size and position of scanned elements.
-* Fix - Identify out-of-sequence headings.
-* Fix - Identify missing title attributes.
-* Fix - Correctly assess alternative text requirements for image map areas.
-* Tweak - Implemented additional security measures for input validation and data sanitization.
 
 Older versions can be found in the plugins `changelog.txt`.
