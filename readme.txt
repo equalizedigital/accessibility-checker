@@ -212,10 +212,13 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 2026-01-23 - version 1.37.0
+* Fix - Duplicate markup on the page can now be properly identified as an issue.
 * Fix - Restrict global ignore management link and fix button label span closure.
 * Fix - Update database schema to use selector as unique identifier for issues.
 * Enhanced - Frontend issue matching with stable selectors and DOM ordering.
+* Enhanced - Better handling of frontend highlighter positioning.
 * Improved - More accurate restoration of styles after deactivating them in frontend highlighter.
+* Improved - When closing frontend highlighter it won't re-render unless needed.
 
 2025-12-15 - version 1.36.0
 * Fix - passed tests percentage logic now accounts times no posts are scanned
