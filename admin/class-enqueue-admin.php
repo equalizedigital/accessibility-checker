@@ -199,6 +199,8 @@ class Enqueue_Admin {
 			[
 				'gutenbergEnabled'    => true,
 				'postID'              => get_the_ID(),
+				'postPermalink'       => get_the_permalink( get_the_ID() ),
+				'highlightNonce'      => wp_create_nonce( 'edac_highlight' ),
 				'edacApiUrl'          => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 				'nonce'               => wp_create_nonce( 'wp_rest' ),
 				'settingsUrl'         => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
