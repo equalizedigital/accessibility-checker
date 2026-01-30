@@ -5,7 +5,7 @@
 import { __ } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow, Button } from '@wordpress/components';
 import { useState, useMemo } from '@wordpress/element';
-import { chevronUp, chevronDown } from '@wordpress/icons';
+import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import '../sass/components/accessibility-analysis.scss';
 
