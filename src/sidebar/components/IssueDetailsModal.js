@@ -112,6 +112,7 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 	const [ comment, setComment ] = useState( '' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
+	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
 
 	// Reset state when modal opens/closes or issue changes
 	useEffect( () => {
@@ -119,8 +120,10 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 			setComment( '' );
 			setError( null );
 			setIsSubmitting( false );
+			// Open dismiss panel if focusSection is 'dismiss'
+			setIsDismissPanelOpen( focusSection === 'dismiss' );
 		}
-	}, [ isOpen, issue?.id ] );
+	}, [ isOpen, issue?.id, focusSection ] );
 
 	// Focus the specified section when modal opens
 	useEffect( () => {
@@ -194,7 +197,8 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 				<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
 					<PanelBody
 						title={ __( 'Dismiss Issue', 'accessibility-checker' ) }
-						initialOpen={ focusSection === 'dismiss' }
+						opened={ isDismissPanelOpen }
+						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 					>
 						<TextareaControl
 							label={ __( 'Comment (optional)', 'accessibility-checker' ) }
