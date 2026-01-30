@@ -145,6 +145,8 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
+		border: 1px solid $outline-grey;
+    	border-radius: 8px;
 	}
 
 	&__issue-row {
@@ -154,7 +156,6 @@
 		padding: 4px 8px;
 		font-size: 12px;
 		border-bottom: 1px solid #ddd;
-		background: #fff;
 
 		&:last-child {
 			border-bottom: none;
@@ -244,10 +245,7 @@
 
 	&__rule-content {
 		padding: 0;
-		border: 1px solid #ddd;
-		border-radius: 2px;
-		margin-left: 8px;
-		margin-bottom: 16px;
+		margin: 0 16px 16px;
 		overflow: hidden;
 
 		&[aria-hidden="true"] {
