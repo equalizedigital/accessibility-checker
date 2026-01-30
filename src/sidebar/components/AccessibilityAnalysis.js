@@ -13,6 +13,73 @@ const TAB_PROBLEMS = 'problems';
 const TAB_WARNINGS = 'warnings';
 
 /**
+ * Single issue row with actions dropdown
+ *
+ * @param {Object}   props          - Component props.
+ * @param {Object}   props.issue    - Issue object.
+ * @param {Function} props.onAction - Action handler function.
+ */
+const IssueRow = ( { issue, onAction } ) => {
+	return (
+		<li className="edac-analysis__issue-row">
+			<button
+				type="button"
+				className="edac-analysis__issue-link"
+				onClick={ () => onAction( 'details', issue ) }
+			>
+				{ __( 'Issue', 'accessibility-checker' ) } #{ issue.id }
+			</button>
+			<DropdownMenu
+				icon={ moreVertical }
+				label={ __( 'Issue actions', 'accessibility-checker' ) }
+				className="edac-analysis__issue-menu"
+			>
+				{ ( { onClose } ) => (
+					<MenuGroup>
+						<MenuItem
+							icon={ seen }
+							onClick={ () => {
+								onAction( 'view', issue );
+								onClose();
+							} }
+						>
+							{ __( 'View on page', 'accessibility-checker' ) }
+						</MenuItem>
+						<MenuItem
+							icon={ code }
+							onClick={ () => {
+								onAction( 'code', issue );
+								onClose();
+							} }
+						>
+							{ __( 'Show code', 'accessibility-checker' ) }
+						</MenuItem>
+						<MenuItem
+							icon={ check }
+							onClick={ () => {
+								onAction( 'ignore', issue );
+								onClose();
+							} }
+						>
+							{ __( 'Not an Issue', 'accessibility-checker' ) }
+						</MenuItem>
+						<MenuItem
+							icon={ tool }
+							onClick={ () => {
+								onAction( 'fix', issue );
+								onClose();
+							} }
+						>
+							{ __( 'Apply fix', 'accessibility-checker' ) }
+						</MenuItem>
+					</MenuGroup>
+				) }
+			</DropdownMenu>
+		</li>
+	);
+};
+
+/**
  * Rule accordion - custom expandable section for each rule type
  *
  * @param {Object}   props            - Component props.
@@ -21,10 +88,19 @@ const TAB_WARNINGS = 'warnings';
  * @param {Function} props.onToggle   - Toggle handler function.
  */
 const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
+	const [ showIgnored, setShowIgnored ] = useState( false );
+
 	// Get issues from rule.details array
 	const issues = rule.details || [];
 	const activeIssues = issues.filter( ( issue ) => issue.ignre === '0' || issue.ignre === 0 );
-	const ignoredCount = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 ).length;
+	const ignoredIssues = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 );
+	const ignoredCount = ignoredIssues.length;
+
+	const handleIssueAction = ( action, issue ) => {
+		// eslint-disable-next-line no-console
+		console.log( `Action: ${ action }`, issue );
+		// TODO: Implement actual actions
+	};
 
 	return (
 		<div className="edac-analysis__rule">
@@ -47,17 +123,35 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				{ activeIssues.length > 0 && (
 					<ul className="edac-analysis__issue-list">
 						{ activeIssues.map( ( issue, index ) => (
-							<li key={ issue.id || index } className="edac-analysis__issue-item">
-								{ issue.title || __( 'Issue', 'accessibility-checker' ) }
-							</li>
+							<IssueRow
+								key={ issue.id || index }
+								issue={ issue }
+								onAction={ handleIssueAction }
+							/>
 						) ) }
 					</ul>
 				) }
 
 				{ ignoredCount > 0 && (
-					<p className="edac-analysis__ignored-notice">
-						{ __( 'Ignored issues:', 'accessibility-checker' ) } { ignoredCount }
-					</p>
+					<button
+						type="button"
+						onClick={ () => setShowIgnored( ! showIgnored ) }
+						className="edac-analysis__show-ignored"
+					>
+						{ __( 'Show issues marked "Not an Issue"', 'accessibility-checker' ) } ({ ignoredCount })
+					</button>
+				) }
+
+				{ showIgnored && ignoredIssues.length > 0 && (
+					<ul className="edac-analysis__issue-list edac-analysis__ignored-issues">
+						{ ignoredIssues.map( ( issue, index ) => (
+							<IssueRow
+								key={ issue.id || `ignored-${ index }` }
+								issue={ issue }
+								onAction={ handleIssueAction }
+							/>
+						) ) }
+					</ul>
 				) }
 			</div>
 		</div>
