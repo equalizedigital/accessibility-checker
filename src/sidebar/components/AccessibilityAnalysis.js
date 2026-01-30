@@ -3,14 +3,84 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { Panel, PanelBody, TabPanel, Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
-import { useState, useMemo } from '@wordpress/element';
+import { decodeEntities } from '@wordpress/html-entities';
+import { Panel, PanelBody, TabPanel, Button, DropdownMenu, MenuGroup, MenuItem, Modal } from '@wordpress/components';
+import { useState, useMemo, useEffect, useRef } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import '../sass/components/accessibility-analysis.scss';
 
 const TAB_PROBLEMS = 'problems';
 const TAB_WARNINGS = 'warnings';
+
+/**
+ * CodeMirror HTML viewer component
+ *
+ * @param {Object} props       - Component props.
+ * @param {string} props.value - HTML code to display.
+ */
+const CodeMirrorViewer = ( { value } ) => {
+	const textareaRef = useRef( null );
+	const editorRef = useRef( null );
+
+	useEffect( () => {
+		if ( ! textareaRef.current || ! window.wp?.codeEditor ) {
+			return;
+		}
+
+		// Initialize CodeMirror
+		const settings = window.wp.codeEditor.defaultSettings || {};
+		const editorSettings = {
+			...settings,
+			codemirror: {
+				...settings.codemirror,
+				mode: 'htmlmixed',
+				readOnly: true,
+				lineNumbers: true,
+				lineWrapping: true,
+			},
+		};
+
+		editorRef.current = window.wp.codeEditor.initialize( textareaRef.current, editorSettings );
+
+		// Cleanup on unmount
+		return () => {
+			if ( editorRef.current?.codemirror ) {
+				editorRef.current.codemirror.toTextArea();
+			}
+		};
+	}, [] );
+
+	// Update content when value changes
+	useEffect( () => {
+		if ( editorRef.current?.codemirror ) {
+			editorRef.current.codemirror.setValue( value || '' );
+		}
+	}, [ value ] );
+
+	return (
+		<textarea
+			ref={ textareaRef }
+			defaultValue={ value }
+			className="edac-analysis__code-textarea"
+		/>
+	);
+};
+
+/**
+ * Severity badge component
+ *
+ * @param {Object} props          - Component props.
+ * @param {string} props.severity - Severity level.
+ */
+const SeverityBadge = ( { severity } ) => {
+	const severityKey = typeof severity === 'string' ? severity.toLowerCase() : '';
+	return (
+		<span className={ `edac-analysis__badge edac-analysis__badge--${ severityKey }` }>
+			{ severity }
+		</span>
+	);
+};
 
 /**
  * Single issue row with actions dropdown
@@ -89,6 +159,7 @@ const IssueRow = ( { issue, onAction } ) => {
  */
 const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const [ showIgnored, setShowIgnored ] = useState( false );
+	const [ selectedIssue, setSelectedIssue ] = useState( null );
 
 	// Get issues from rule.details array
 	const issues = rule.details || [];
@@ -96,10 +167,25 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const ignoredIssues = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 );
 	const ignoredCount = ignoredIssues.length;
 
+	// Determine severity label
+	const severityRaw = rule?.severity;
+	const severity = typeof severityRaw === 'string'
+		? severityRaw
+		: ( severityRaw?.label || severityRaw?.value || '' );
+
 	const handleIssueAction = ( action, issue ) => {
 		// eslint-disable-next-line no-console
 		console.log( `Action: ${ action }`, issue );
 		// TODO: Implement actual actions
+
+		// handle the 'details' action that will open a modal and pass in the issue details
+		if ( action === 'details' ) {
+			setSelectedIssue( issue );
+		}
+	};
+
+	const closeModal = () => {
+		setSelectedIssue( null );
 	};
 
 	return (
@@ -114,6 +200,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				<span className="edac-analysis__rule-title">
 					{ rule.title } ({ rule.count || activeIssues.length })
 				</span>
+				{ severity && <SeverityBadge severity={ severity } /> }
 			</Button>
 
 			<div
@@ -154,6 +241,36 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 					</ul>
 				) }
 			</div>
+
+			{ selectedIssue && (
+				<Modal
+					title={ __( 'Issue Details', 'accessibility-checker' ) }
+					onRequestClose={ closeModal }
+					className="edac-analysis__issue-modal"
+				>
+					<div className="edac-analysis__issue-modal-content">
+						<p>
+							<strong>{ __( 'Issue ID:', 'accessibility-checker' ) }</strong> { selectedIssue.id }
+						</p>
+						{ selectedIssue.description && (
+							<p>
+								<strong>{ __( 'Description:', 'accessibility-checker' ) }</strong> { selectedIssue.description }
+							</p>
+						) }
+						{ selectedIssue.object && (
+							<div className="edac-analysis__code-wrapper">
+								<strong>{ __( 'Element:', 'accessibility-checker' ) }</strong>
+								<CodeMirrorViewer value={ decodeEntities( selectedIssue.object ) } />
+							</div>
+						) }
+					</div>
+					<div className="edac-analysis__issue-modal-footer">
+						<Button variant="secondary" onClick={ closeModal }>
+							{ __( 'Close', 'accessibility-checker' ) }
+						</Button>
+					</div>
+				</Modal>
+			) }
 		</div>
 	);
 };

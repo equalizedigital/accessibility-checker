@@ -215,6 +215,9 @@ class Enqueue_Admin {
 			EDAC_VERSION,
 			'all'
 		);
+
+		// Enqueue CodeMirror for HTML syntax highlighting in the issue modal.
+		wp_enqueue_code_editor( [ 'type' => 'text/html' ] );
 	}
 
 	/**
