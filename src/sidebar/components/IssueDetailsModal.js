@@ -64,12 +64,37 @@ const CodeMirrorViewer = ( { value } ) => {
 /**
  * Issue Details Modal
  *
- * @param {Object}   props         - Component props.
- * @param {Object}   props.issue   - Issue object to display.
- * @param {Function} props.onClose - Close handler function.
- * @param {boolean}  props.isOpen  - Whether modal is open.
+ * @param {Object}      props              - Component props.
+ * @param {Object}      props.issue        - Issue object to display.
+ * @param {Function}    props.onClose      - Close handler function.
+ * @param {boolean}     props.isOpen       - Whether modal is open.
+ * @param {string|null} props.focusSection - Section to focus on open (matches data-section attribute).
  */
-export const IssueDetailsModal = ( { issue, onClose, isOpen } ) => {
+export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection } ) => {
+	const modalRef = useRef( null );
+
+	// Focus the specified section when modal opens
+	useEffect( () => {
+		if ( ! isOpen || ! focusSection ) {
+			return;
+		}
+
+		// Use setTimeout to ensure the modal is fully rendered
+		const timeoutId = setTimeout( () => {
+			const section = modalRef.current?.querySelector( `[data-section="${ focusSection }"]` );
+			if ( section ) {
+				section.scrollIntoView( { behavior: 'smooth', block: 'center' } );
+				// Try to focus a focusable element within the section, or the section itself
+				const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
+				if ( focusable ) {
+					focusable.focus();
+				}
+			}
+		}, 100 );
+
+		return () => clearTimeout( timeoutId );
+	}, [ isOpen, focusSection ] );
+
 	if ( ! isOpen || ! issue ) {
 		return null;
 	}
@@ -80,17 +105,21 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen } ) => {
 			onRequestClose={ onClose }
 			className="edac-analysis__issue-modal"
 		>
-			<div className="edac-analysis__issue-modal-content">
-				<p>
-					<strong>{ __( 'Issue ID:', 'accessibility-checker' ) }</strong> { issue.id }
-				</p>
-				{ issue.description && (
+			<div className="edac-analysis__issue-modal-content" ref={ modalRef }>
+				<div data-section="issue-id">
 					<p>
-						<strong>{ __( 'Description:', 'accessibility-checker' ) }</strong> { issue.description }
+						<strong>{ __( 'Issue ID:', 'accessibility-checker' ) }</strong> { issue.id }
 					</p>
+				</div>
+				{ issue.description && (
+					<div data-section="description">
+						<p>
+							<strong>{ __( 'Description:', 'accessibility-checker' ) }</strong> { issue.description }
+						</p>
+					</div>
 				) }
 				{ issue.object && (
-					<div className="edac-analysis__code-wrapper">
+					<div className="edac-analysis__code-wrapper" data-section="code">
 						<strong>{ __( 'Element:', 'accessibility-checker' ) }</strong>
 						<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 					</div>

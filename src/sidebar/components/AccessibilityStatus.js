@@ -67,6 +67,11 @@ const AccessibilityStatus = () => {
 		const readabilityElement = document.querySelector( '.edac-readability-analysis' );
 		if ( readabilityElement ) {
 			readabilityElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+			// open the accordion
+			const accordionButton = readabilityElement.querySelector( '.edac-accordion__button' );
+			if ( accordionButton && readabilityElement.classList.contains( 'edac-accordion--closed' ) ) {
+				accordionButton.click();
+			}
 		}
 	}, [] );
 
@@ -108,29 +113,6 @@ const AccessibilityStatus = () => {
 				) }
 
 				<PanelRow className="edac-status-grid">
-					{/* Coverage */}
-					<div className="edac-status-card">
-						<div className="edac-status-card__header">
-							<span className="edac-status-card__label">
-								{ __( 'Coverage', 'accessibility-checker' ) }
-								<sup>*</sup>
-							</span>
-							<Icon name="info" className="edac-status-card__icon" />
-						</div>
-						<div className="edac-status-card__value">
-							{ coveragePercent }%
-						</div>
-						<progress
-							className="edac-status-card__progress"
-							value={ coveragePercent }
-							max="100"
-							aria-label={ sprintf(
-								__( 'Coverage: %d percent', 'accessibility-checker' ),
-								coveragePercent,
-							) }
-						/>
-						{/* Placeholder for 30-day trend - will be implemented later */}
-					</div>
 
 					{/* Problems (Errors) */}
 					<div className="edac-status-card">
@@ -165,7 +147,29 @@ const AccessibilityStatus = () => {
 						</div>
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
-
+					{/* Coverage */}
+					<div className="edac-status-card">
+						<div className="edac-status-card__header">
+							<span className="edac-status-card__label">
+								{ __( 'Coverage', 'accessibility-checker' ) }
+								<sup>*</sup>
+							</span>
+							<Icon name="info" className="edac-status-card__icon" />
+						</div>
+						<div className="edac-status-card__value">
+							{ coveragePercent }%
+						</div>
+						<progress
+							className="edac-status-card__progress"
+							value={ coveragePercent }
+							max="100"
+							aria-label={ sprintf(
+								__( 'Coverage: %d percent', 'accessibility-checker' ),
+								coveragePercent,
+							) }
+						/>
+						{/* Placeholder for 30-day trend - will be implemented later */}
+					</div>
 					{/* Reading Level */}
 					<div
 						className="edac-status-card edac-status-card--clickable"
