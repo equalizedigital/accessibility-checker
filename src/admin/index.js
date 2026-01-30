@@ -75,6 +75,15 @@ const edacScriptVars = edac_script_vars;
 			refreshSummaryAndReadability();
 		} );
 
+		// Listen for ignore updates from the Gutenberg sidebar modal
+		window.addEventListener( 'edac-ignore-updated', function( event ) {
+			// Small delay to ensure the database update is complete
+			window.setTimeout( function() {
+				refreshSummaryAndReadability();
+				edacDetailsAjax();
+			}, 300 );
+		} );
+
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
 		const refreshTabDetails = () => {
 			// reset to first meta box tab
