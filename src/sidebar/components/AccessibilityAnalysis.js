@@ -15,8 +15,9 @@ const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
 	const [ activeTab, setActiveTab ] = useState( TAB_PROBLEMS );
 
-	const problems = useMemo( () => data?.issues?.problems || [], [ data ] );
-	const warnings = useMemo( () => data?.issues?.warnings || [], [ data ] );
+	const details = data?.details || {};
+	const problems = useMemo( () => details.errors || [], [ details ] );
+	const warnings = useMemo( () => details.warnings || [], [ details ] );
 
 	// If we have no data (still loading) let parent loaders show.
 	if ( loading || error ) {
