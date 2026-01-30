@@ -4,7 +4,9 @@
 	// ==========================================
 
 	&-panel {
-		// ...existing outer wrapper...
+		.components-panel__body.is-opened {
+			padding-bottom: 0;
+		}
 	}
 
 	// ==========================================
@@ -236,6 +238,7 @@
 
 		&:last-child {
 			border-bottom: none;
+			margin-bottom: 0;
 		}
 	}
 
