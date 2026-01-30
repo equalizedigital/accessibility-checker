@@ -1,45 +1,114 @@
-.edac-analysis-panel {
-	.edac-analysis__tabs {
-		display: flex;
-		gap: 8px;
-		margin-bottom: 12px;
+.edac-analysis {
+	// ==========================================
+	// PANEL & LAYOUT
+	// ==========================================
+
+	&-panel {
+		// ...existing outer wrapper...
 	}
 
-	.edac-analysis__tab {
-		display: inline-flex;
-		align-items: center;
-		gap: 6px;
-		padding: 4px 10px;
-		border: 1px solid #e0e0e0;
-		border-radius: 4px;
-		background: #f8f8f8;
-		color: #1e1e1e;
-		&.is-pressed,
-		&[aria-selected="true"] {
-			background: #fff;
-			border-color: #0073aa;
-			color: #0073aa;
+	// ==========================================
+	// TABS SECTION
+	// ==========================================
+
+	&__tabs {
+		// TabPanel's tab list wrapper
+		.components-tab-panel__tabs {
+			display: flex;
+			margin-bottom: 0;
+			border-bottom: 1px solid #ddd;
+			margin-left: -16px;
+			margin-right: -16px;
+		}
+
+		// Individual tab buttons
+		.components-tab-panel__tabs-item {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			padding: 24px 16px;
+			border: none;
+			border-radius: 0;
+			border-left: 1px solid #ddd;
+			border-bottom: 2px solid transparent;
+			background: transparent;
+			color: #757575;
+			font-size: 13px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			position: relative;
+
+			// First tab has no left border
+			&:first-child {
+				border-left: none;
+			}
+
+			&:hover {
+				color: #1e1e1e;
+				background-color: #f9f9f9;
+			}
+
+			&.is-active,
+			&[aria-selected="true"] {
+				color: #0073aa;
+				border-bottom-color: #0073aa;
+				background-color: #f0f6fc;
+
+				&:hover {
+					color: #0073aa;
+					background-color: #e6f2fa;
+				}
+			}
+
+			// Override WordPress button pressed states (prevents black background)
+			&.is-pressed:not(:disabled),
+			&.is-pressed:hover:not(:disabled) {
+				color: #0073aa;
+				background-color: #f0f6fc;
+			}
+
+			// Remove default focus outline, add custom
+			&:focus {
+				box-shadow: none;
+				outline: 2px solid #0073aa;
+				outline-offset: -2px;
+			}
+
+			&:focus-visible::before {
+				box-shadow: none;
+			}
 		}
 	}
 
-	.edac-analysis__count {
+	&__tab {
+		// Additional styles for custom tab class if needed
+	}
+
+	&__count {
 		font-weight: 600;
-		color: inherit;
 	}
 
-	.edac-analysis__panel {
-		border: 1px solid #e0e0e0;
-		border-radius: 6px;
-		padding: 12px;
-		background: #fff;
+	// ==========================================
+	// PANELS & CONTENT
+	// ==========================================
+
+	&__panel {
+		display: flex;
+		flex-direction: column;
+		margin-left: -16px;
+		margin-right: -16px;
 	}
 
-	.edac-analysis__message {
-		margin: 0;
-		color: #444;
+	&__message {
+		margin: 8px 0;
+		color: #666;
+		font-size: 13px;
 	}
 
-	.edac-analysis__list {
+	&__list {
 		list-style: none;
 		margin: 0;
 		padding: 0;
@@ -48,41 +117,346 @@
 		gap: 8px;
 	}
 
-	.edac-analysis__item {
-		border: 1px solid #e0e0e0;
+	// ==========================================
+	// RULE GROUPS/ACCORDION
+	// ==========================================
+
+	&__group {
+		border: 1px solid #ddd;
 		border-radius: 4px;
-		padding: 8px 10px;
-		background: #fdfdfd;
+		background: #fff;
+		overflow: hidden;
+	}
+
+	&__group-button {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
 		gap: 8px;
-		flex-wrap: wrap;
-	}
-
-	.edac-analysis__item-title {
+		width: 100%;
+		padding: 12px;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-size: 13px;
 		font-weight: 600;
 		color: #1e1e1e;
+		text-align: left;
+
+		&:hover {
+			background-color: #f9f9f9;
+		}
 	}
 
-	.edac-analysis__badge {
+	&__group-icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		color: #666;
+		order: 10; // Move chevron to the right
+	}
+
+	&__group-title {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	&__group-count {
+		font-weight: 400;
+		color: #666;
+	}
+
+	// ==========================================
+	// BADGE/STATUS
+	// ==========================================
+
+	&__badge {
+		flex-shrink: 0;
 		display: inline-flex;
 		align-items: center;
-		padding: 2px 8px;
-		border-radius: 999px;
+		padding: 2px 10px;
+		border-radius: 12px;
 		font-size: 11px;
 		font-weight: 600;
+		white-space: nowrap;
 
-		&--critical { background: #fbeaea; color: #b80000; }
-		&--high { background: #fff4e5; color: #cf8402; }
-		&--medium { background: #eef6ff; color: #005c99; }
-		&--low { background: #f2f7f2; color: #2f7a2f; }
+		&--critical {
+			background: #fbeaea;
+			color: #b80000;
+			border: 1px solid #d9888b;
+		}
+
+		&--high {
+			background: #fff4e5;
+			color: #cf8402;
+			border: 1px solid #e5c4a3;
+		}
+
+		&--medium {
+			background: #eef6ff;
+			color: #005c99;
+			border: 1px solid #a6c9eb;
+		}
+
+		&--low {
+			background: #f2f7f2;
+			color: #2f7a2f;
+			border: 1px solid #a8cfaf;
+		}
 	}
 
-	.edac-analysis__link {
+	// ==========================================
+	// ISSUES LIST
+	// ==========================================
+
+	&__issues {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid #ddd;
+		background: #fafafa;
+	}
+
+	&__issue-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&__issue-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 4px 8px;
+		font-size: 12px;
+		border-bottom: 1px solid #ddd;
+		background: #fff;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	&__issue-link {
 		color: #0073aa;
 		text-decoration: none;
-		&:hover { text-decoration: underline; }
+		cursor: pointer;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__issue-text {
+		color: #666;
+	}
+
+	// ==========================================
+	// RULES & TOGGLE
+	// ==========================================
+
+	&__rules {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__rule {
+		border-bottom: 1px solid #e0e0e0;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	&__rule-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 12px 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+		text-align: left;
+		font-size: 13px;
+		font-weight: 500;
+		color: #1e1e1e;
+		min-height: auto;
+		height: auto;
+		box-shadow: none !important;
+
+		&:hover {
+			background-color: #f9f9f9;
+		}
+
+		&:focus {
+			outline: 2px solid #0073aa;
+			outline-offset: -2px;
+		}
+
+		&:focus-visible::before {
+			box-shadow: none;
+		}
+
+		// Override Gutenberg Button styles
+		&.components-button.has-icon.has-text.has-icon-right {
+			padding: 16px;
+		}
+
+		.components-button__icon {
+			margin-left: auto;
+		}
+	}
+
+	&__rule-title {
+		flex: 1;
+		font-weight: 500;
+		color: #1e1e1e;
+		margin-right: 8px;
+	}
+
+	&__rule-content {
+		padding: 0;
+		border: 1px solid #ddd;
+		border-radius: 2px;
+		margin-left: 8px;
+		overflow: hidden;
+
+		&[aria-hidden="true"] {
+			display: none;
+		}
+	}
+
+	// ==========================================
+	// IGNORED ISSUES
+	// ==========================================
+
+	&__show-ignored {
+		display: block;
+		margin-top: 12px;
+		padding: 0 12px;
+		background: none;
+		border: none;
+		color: #0073aa;
+		font-size: 13px;
+		cursor: pointer;
+		text-align: left;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__ignored-issues {
+		margin-top: 8px;
+		padding-top: 8px;
+		border-top: 1px dashed #ddd;
+	}
+
+	// ==========================================
+	// ISSUE MENU & MODAL
+	// ==========================================
+
+	&__issue-menu {
+		.components-button {
+			padding: 0;
+			min-width: auto;
+			height: auto;
+		}
+	}
+
+	&__modal-trigger {
+		margin-top: 16px;
+		width: 100%;
+		justify-content: center;
+	}
+
+	&__modal {
+		.components-modal__content {
+			padding: 16px 24px 24px;
+		}
+
+		.edac-analysis__modal-content {
+			margin-bottom: 16px;
+		}
+
+		.edac-analysis__modal-footer {
+			display: flex;
+			justify-content: flex-end;
+			gap: 8px;
+			padding-top: 16px;
+			border-top: 1px solid #ddd;
+		}
+	}
+
+	&__issue-modal {
+		.components-modal__content {
+			padding: 16px 24px 24px;
+		}
+
+		.edac-analysis__issue-modal-content {
+			margin-bottom: 16px;
+
+			p {
+				margin: 0 0 12px;
+				font-size: 13px;
+				line-height: 1.5;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			strong {
+				font-weight: 600;
+			}
+		}
+
+		.edac-analysis__code-block {
+			margin: 8px 0 0;
+			padding: 12px;
+			background: #f5f5f5;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-family: monospace;
+			font-size: 12px;
+			line-height: 1.4;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.edac-analysis__code-wrapper {
+			margin-top: 12px;
+
+			strong {
+				display: block;
+				margin-bottom: 8px;
+			}
+		}
+
+		.edac-analysis__code-textarea {
+			display: none; // Hidden, CodeMirror replaces it
+		}
+
+		.CodeMirror {
+			height: auto;
+			max-height: 300px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-size: 12px;
+		}
+
+		.edac-analysis__issue-modal-footer {
+			display: flex;
+			justify-content: flex-end;
+			gap: 8px;
+			padding-top: 16px;
+			border-top: 1px solid #ddd;
+		}
 	}
 }
+
 
