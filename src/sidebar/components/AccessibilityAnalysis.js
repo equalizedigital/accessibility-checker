@@ -3,16 +3,14 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { Panel, PanelBody, TabPanel, Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
+import { Panel, PanelBody, Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { useState, useMemo } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import AccessibilityAnalysisTabs from './AccessibilityAnalysisTabs';
 import IssueDetailsModal from './IssueDetailsModal';
 import '../sass/components/accessibility-analysis.scss';
 import '../sass/components/issue-details-modal.scss';
-
-const TAB_PROBLEMS = 'problems';
-const TAB_WARNINGS = 'warnings';
 
 /**
  * Severity badge component
@@ -206,10 +204,6 @@ const AccessibilityAnalysis = () => {
 	const problems = useMemo( () => details.errors || [], [ details ] );
 	const warnings = useMemo( () => details.warnings || [], [ details ] );
 
-	// Calculate totals
-	const totalProblems = problems.reduce( ( sum, rule ) => sum + ( rule.count || rule.details?.length || 0 ), 0 );
-	const totalWarnings = warnings.reduce( ( sum, rule ) => sum + ( rule.count || rule.details?.length || 0 ), 0 );
-
 	// If we have no data (still loading) let parent loaders show.
 	if ( loading || error ) {
 		return null;
@@ -222,78 +216,20 @@ const AccessibilityAnalysis = () => {
 		} ) );
 	};
 
-	const tabs = [
-		{
-			name: TAB_PROBLEMS,
-			title: (
-				<>
-					{ __( 'Problems', 'accessibility-checker' ) }
-					<span className="edac-analysis__count">{ totalProblems }</span>
-				</>
-			),
-			className: 'edac-analysis__tab',
-		},
-		{
-			name: TAB_WARNINGS,
-			title: (
-				<>
-					{ __( 'Needs Review', 'accessibility-checker' ) }
-					<span className="edac-analysis__count">{ totalWarnings }</span>
-				</>
-			),
-			className: 'edac-analysis__tab',
-		},
-	];
-
-	const renderTabContent = ( tab ) => {
-		const currentItems = tab.name === TAB_PROBLEMS ? problems : warnings;
-		const hasItems = currentItems.length > 0;
-
-		return (
-			<div className="edac-analysis__panel" role="tabpanel">
-				{ refreshing && (
-					<p className="edac-analysis__message">{ __( 'Updating accessibility data...', 'accessibility-checker' ) }</p>
-				) }
-				{ ! refreshing && hasItems && (
-					<div className="edac-analysis__rules">
-						{ currentItems.map( ( rule ) => {
-							const ruleId = rule.slug || rule.id || rule.title;
-							return (
-								<RuleAccordion
-									key={ ruleId }
-									rule={ rule }
-									isExpanded={ expandedRules[ ruleId ] || false }
-									onToggle={ () => toggleRule( ruleId ) }
-								/>
-							);
-						} ) }
-					</div>
-				) }
-				{ ! refreshing && ! hasItems && (
-					<p className="edac-analysis__message">
-						{ tab.name === TAB_PROBLEMS
-							? __( 'No problems found.', 'accessibility-checker' )
-							: __( 'No items to review.', 'accessibility-checker' ) }
-					</p>
-				) }
-			</div>
-		);
-	};
-
 	return (
 		<Panel className="edac-analysis-panel">
 			<PanelBody
 				title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
 				initialOpen={ false }
 			>
-				<TabPanel
-					className="edac-analysis__tabs"
-					tabs={ tabs }
-					initialTabName={ TAB_PROBLEMS }
-					selectOnMove={ false }
-				>
-					{ renderTabContent }
-				</TabPanel>
+				<AccessibilityAnalysisTabs
+					problems={ problems }
+					warnings={ warnings }
+					refreshing={ refreshing }
+					expandedRules={ expandedRules }
+					onToggleRule={ toggleRule }
+					RuleAccordion={ RuleAccordion }
+				/>
 			</PanelBody>
 		</Panel>
 	);

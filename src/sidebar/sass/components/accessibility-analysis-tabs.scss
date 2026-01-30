@@ -1,0 +1,85 @@
+.edac-analysis {
+	// ==========================================
+	// TABS SECTION
+	// ==========================================
+
+	&__tabs {
+		// TabPanel's tab list wrapper
+		.components-tab-panel__tabs {
+			display: flex;
+			margin-bottom: 0;
+			border-bottom: 1px solid #ddd;
+			margin-left: -16px;
+			margin-right: -16px;
+		}
+
+		// Individual tab buttons
+		.components-tab-panel__tabs-item {
+			flex: 1;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			padding: 24px 16px;
+			border: none;
+			border-radius: 0;
+			border-left: 1px solid #ddd;
+			border-bottom: 2px solid transparent;
+			background: transparent;
+			color: #757575;
+			font-size: 13px;
+			font-weight: 500;
+			cursor: pointer;
+			transition: all 0.15s ease;
+			position: relative;
+
+			// First tab has no left border
+			&:first-child {
+				border-left: none;
+			}
+
+			&:hover {
+				color: #1e1e1e;
+				background-color: #f9f9f9;
+			}
+
+			&.is-active,
+			&[aria-selected="true"] {
+				color: #0073aa;
+				border-bottom-color: #0073aa;
+				background-color: #f0f6fc;
+
+				&:hover {
+					color: #0073aa;
+					background-color: #e6f2fa;
+				}
+			}
+
+			// Override WordPress button pressed states (prevents black background)
+			&.is-pressed:not(:disabled),
+			&.is-pressed:hover:not(:disabled) {
+				color: #0073aa;
+				background-color: #f0f6fc;
+			}
+
+			// Remove default focus outline, add custom
+			&:focus {
+				box-shadow: none;
+				outline: 2px solid #0073aa;
+				outline-offset: -2px;
+			}
+
+			&:focus-visible::before {
+				box-shadow: none;
+			}
+		}
+	}
+
+	&__tab {
+		// Additional styles for custom tab class if needed
+	}
+
+	&__count {
+		font-weight: 600;
+	}
+}
