@@ -9,16 +9,41 @@ import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@
 import IssueDetailsModal from './IssueDetailsModal';
 
 /**
+ * Convert numeric severity to text label
+ *
+ * @param {number|string} severity - Severity value (1-4 or string).
+ * @return {string} Severity label.
+ */
+const getSeverityLabel = ( severity ) => {
+	// If already a string, return it
+	if ( typeof severity === 'string' ) {
+		return severity;
+	}
+
+	// Convert numeric severity to label
+	const severityMap = {
+		1: __( 'Critical', 'accessibility-checker' ),
+		2: __( 'High', 'accessibility-checker' ),
+		3: __( 'Medium', 'accessibility-checker' ),
+		4: __( 'Low', 'accessibility-checker' ),
+	};
+
+	return severityMap[ severity ] || '';
+};
+
+/**
  * Severity badge component
  *
- * @param {Object} props          - Component props.
- * @param {string} props.severity - Severity level.
+ * @param {Object}        props          - Component props.
+ * @param {number|string} props.severity - Severity level.
  */
 const SeverityBadge = ( { severity } ) => {
-	const severityKey = typeof severity === 'string' ? severity.toLowerCase() : '';
+	const severityLabel = getSeverityLabel( severity );
+	const severityKey = severityLabel.toLowerCase();
+
 	return (
 		<span className={ `edac-analysis__badge edac-analysis__badge--${ severityKey }` }>
-			{ severity }
+			{ severityLabel }
 		</span>
 	);
 };
@@ -108,11 +133,8 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const ignoredIssues = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 );
 	const ignoredCount = ignoredIssues.length;
 
-	// Determine severity label
-	const severityRaw = rule?.severity;
-	const severity = typeof severityRaw === 'string'
-		? severityRaw
-		: ( severityRaw?.label || severityRaw?.value || '' );
+	// Get severity from rule
+	const severity = rule?.severity;
 
 	const handleIssueAction = ( action, issue ) => {
 		// eslint-disable-next-line no-console
