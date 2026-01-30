@@ -6,7 +6,32 @@ import { __ } from '@wordpress/i18n';
 import { Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
+import { useSelect } from '@wordpress/data';
+import { store as editorStore } from '@wordpress/editor';
 import IssueDetailsModal from './IssueDetailsModal';
+
+/**
+ * Get the "View on page" URL for an issue
+ *
+ * @param {Object} issue    - The issue object containing id.
+ * @param {string} viewLink - The permalink or preview link.
+ * @return {string|null} The URL to view the issue on the frontend.
+ */
+const getViewOnPageUrl = ( issue, viewLink ) => {
+	const { highlightNonce } = window.edac_sidebar_app || {};
+
+	if ( ! viewLink ) {
+		return null;
+	}
+
+	const url = new URL( viewLink );
+	url.searchParams.set( 'edac', issue.id );
+	if ( highlightNonce ) {
+		url.searchParams.set( 'edac_nonce', highlightNonce );
+	}
+
+	return url.toString();
+};
 
 /**
  * Convert numeric severity to text label
@@ -127,6 +152,13 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const [ showIgnored, setShowIgnored ] = useState( false );
 	const [ selectedIssue, setSelectedIssue ] = useState( null );
 
+	// Get the appropriate view link from the editor store
+	// Use preview link for unpublished posts, permalink for published posts
+	const viewLink = useSelect( ( select ) => {
+		const { getEditedPostPreviewLink, getPermalink, isCurrentPostPublished } = select( editorStore );
+		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
+	}, [] );
+
 	// Get issues from rule.details array
 	const issues = rule.details || [];
 	const activeIssues = issues.filter( ( issue ) => issue.ignre === '0' || issue.ignre === 0 );
@@ -137,14 +169,24 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const severity = rule?.severity;
 
 	const handleIssueAction = ( action, issue ) => {
-		// eslint-disable-next-line no-console
-		console.log( `Action: ${ action }`, issue );
-		// TODO: Implement actual actions
+		// Handle the 'view' action to open the issue on the frontend
+		if ( action === 'view' ) {
+			const url = getViewOnPageUrl( issue, viewLink );
+			if ( url ) {
+				window.open( url, '_blank', 'noopener,noreferrer' );
+			}
+			return;
+		}
 
-		// handle the 'details' action that will open a modal and pass in the issue details
+		// Handle the 'details' action that will open a modal and pass in the issue details
 		if ( action === 'details' ) {
 			setSelectedIssue( issue );
+			return;
 		}
+
+		// eslint-disable-next-line no-console
+		console.log( `Action: ${ action }`, issue );
+		// TODO: Implement remaining actions (code, ignore, fix)
 	};
 
 	const closeModal = () => {
