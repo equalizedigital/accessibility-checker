@@ -151,6 +151,7 @@ const IssueRow = ( { issue, onAction } ) => {
 const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const [ showIgnored, setShowIgnored ] = useState( false );
 	const [ selectedIssue, setSelectedIssue ] = useState( null );
+	const [ focusSection, setFocusSection ] = useState( null );
 
 	// Get the appropriate view link from the editor store
 	// Use preview link for unpublished posts, permalink for published posts
@@ -178,19 +179,28 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 			return;
 		}
 
-		// Handle the 'details' action that will open a modal and pass in the issue details
+		// Handle the 'details' action that will open a modal
 		if ( action === 'details' ) {
+			setFocusSection( null );
+			setSelectedIssue( issue );
+			return;
+		}
+
+		// Handle the 'code' action to open modal with code section focused
+		if ( action === 'code' ) {
+			setFocusSection( 'code' );
 			setSelectedIssue( issue );
 			return;
 		}
 
 		// eslint-disable-next-line no-console
 		console.log( `Action: ${ action }`, issue );
-		// TODO: Implement remaining actions (code, ignore, fix)
+		// TODO: Implement remaining actions (ignore, fix)
 	};
 
 	const closeModal = () => {
 		setSelectedIssue( null );
+		setFocusSection( null );
 	};
 
 	return (
@@ -277,6 +287,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				issue={ selectedIssue }
 				onClose={ closeModal }
 				isOpen={ !! selectedIssue }
+				focusSection={ focusSection }
 			/>
 		</div>
 	);
