@@ -12,6 +12,58 @@ import '../sass/components/accessibility-analysis.scss';
 const TAB_PROBLEMS = 'problems';
 const TAB_WARNINGS = 'warnings';
 
+/**
+ * Rule accordion - custom expandable section for each rule type
+ *
+ * @param {Object}   props            - Component props.
+ * @param {Object}   props.rule       - Rule object.
+ * @param {boolean}  props.isExpanded - Whether accordion is expanded.
+ * @param {Function} props.onToggle   - Toggle handler function.
+ */
+const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
+	// Get issues from rule.details array
+	const issues = rule.details || [];
+	const activeIssues = issues.filter( ( issue ) => issue.ignre === '0' || issue.ignre === 0 );
+	const ignoredCount = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 ).length;
+
+	return (
+		<div className="edac-analysis__rule">
+			<Button
+				className="edac-analysis__rule-toggle"
+				onClick={ onToggle }
+				aria-expanded={ isExpanded }
+				icon={ isExpanded ? chevronUp : chevronDown }
+				iconPosition="right"
+			>
+				<span className="edac-analysis__rule-title">
+					{ rule.title } ({ rule.count || activeIssues.length })
+				</span>
+			</Button>
+
+			<div
+				className="edac-analysis__rule-content"
+				aria-hidden={ ! isExpanded }
+			>
+				{ activeIssues.length > 0 && (
+					<ul className="edac-analysis__issue-list">
+						{ activeIssues.map( ( issue, index ) => (
+							<li key={ issue.id || index } className="edac-analysis__issue-item">
+								{ issue.title || __( 'Issue', 'accessibility-checker' ) }
+							</li>
+						) ) }
+					</ul>
+				) }
+
+				{ ignoredCount > 0 && (
+					<p className="edac-analysis__ignored-notice">
+						{ __( 'Ignored issues:', 'accessibility-checker' ) } { ignoredCount }
+					</p>
+				) }
+			</div>
+		</div>
+	);
+};
+
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
 	const [ activeTab, setActiveTab ] = useState( TAB_PROBLEMS );
