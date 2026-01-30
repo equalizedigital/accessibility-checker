@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use '../_variables' as *;
+
 .edac-analysis {
 	// ==========================================
 	// PANEL & LAYOUT
@@ -95,6 +98,7 @@
 	// ==========================================
 
 	&__badge {
+		color: #1E1E1E;
 		flex-shrink: 0;
 		display: inline-flex;
 		align-items: center;
@@ -105,27 +109,23 @@
 		white-space: nowrap;
 
 		&--critical {
-			background: #fbeaea;
-			color: #b80000;
-			border: 1px solid #d9888b;
+			background: color.adjust( $severity-critical, $alpha: -0.9 );
+			border: 1px solid $severity-critical;
 		}
 
 		&--high {
-			background: #fff4e5;
-			color: #cf8402;
-			border: 1px solid #e5c4a3;
+			background: color.adjust( $severity-high, $alpha: -0.9 );
+			border: 1px solid $severity-high;
 		}
 
 		&--medium {
-			background: #eef6ff;
-			color: #005c99;
-			border: 1px solid #a6c9eb;
+			background: color.adjust( $severity-medium, $alpha: -0.9 );
+			border: 1px solid $severity-medium;
 		}
 
 		&--low {
-			background: #f2f7f2;
-			color: #2f7a2f;
-			border: 1px solid #a8cfaf;
+			background: color.adjust( $severity-low, $alpha: -0.9 );
+			border: 1px solid $severity-low;
 		}
 	}
 
