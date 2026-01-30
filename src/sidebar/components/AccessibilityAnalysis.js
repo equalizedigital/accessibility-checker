@@ -116,23 +116,19 @@ const AccessibilityAnalysis = () => {
 						<p className="edac-analysis__message">{ __( 'Updating accessibility data...', 'accessibility-checker' ) }</p>
 					) }
 					{ ! refreshing && hasItems && (
-						<ul className="edac-analysis__list">
-							{ currentItems.map( ( issue ) => (
-								<li key={ issue.id || issue.title } className="edac-analysis__item">
-									<div className="edac-analysis__item-title">{ issue.title || __( 'Issue', 'accessibility-checker' ) }</div>
-									{ issue.severity && (
-										<span className={`edac-analysis__badge edac-analysis__badge--${ issue.severity.toLowerCase() }`}>
-											{ issue.severity }
-										</span>
-									) }
-									{ issue.link && (
-										<a href={ issue.link } className="edac-analysis__link">
-											{ __( 'View on page', 'accessibility-checker' ) }
-										</a>
-									) }
-								</li>
-							) ) }
-						</ul>
+						<div className="edac-analysis__rules">
+							{ currentItems.map( ( rule ) => {
+								const ruleId = rule.slug || rule.id || rule.title;
+								return (
+									<RuleAccordion
+										key={ ruleId }
+										rule={ rule }
+										isExpanded={ expandedRules[ ruleId ] || false }
+										onToggle={ () => toggleRule( ruleId ) }
+									/>
+								);
+							} ) }
+						</div>
 					) }
 					{ ! refreshing && ! hasItems && (
 						<p className="edac-analysis__message">
