@@ -3,69 +3,16 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { decodeEntities } from '@wordpress/html-entities';
-import { Panel, PanelBody, TabPanel, Button, DropdownMenu, MenuGroup, MenuItem, Modal } from '@wordpress/components';
-import { useState, useMemo, useEffect, useRef } from '@wordpress/element';
+import { Panel, PanelBody, TabPanel, Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
+import { useState, useMemo } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import IssueDetailsModal from './IssueDetailsModal';
 import '../sass/components/accessibility-analysis.scss';
+import '../sass/components/issue-details-modal.scss';
 
 const TAB_PROBLEMS = 'problems';
 const TAB_WARNINGS = 'warnings';
-
-/**
- * CodeMirror HTML viewer component
- *
- * @param {Object} props       - Component props.
- * @param {string} props.value - HTML code to display.
- */
-const CodeMirrorViewer = ( { value } ) => {
-	const textareaRef = useRef( null );
-	const editorRef = useRef( null );
-
-	useEffect( () => {
-		if ( ! textareaRef.current || ! window.wp?.codeEditor ) {
-			return;
-		}
-
-		// Initialize CodeMirror
-		const settings = window.wp.codeEditor.defaultSettings || {};
-		const editorSettings = {
-			...settings,
-			codemirror: {
-				...settings.codemirror,
-				mode: 'htmlmixed',
-				readOnly: true,
-				lineNumbers: true,
-				lineWrapping: true,
-			},
-		};
-
-		editorRef.current = window.wp.codeEditor.initialize( textareaRef.current, editorSettings );
-
-		// Cleanup on unmount
-		return () => {
-			if ( editorRef.current?.codemirror ) {
-				editorRef.current.codemirror.toTextArea();
-			}
-		};
-	}, [] );
-
-	// Update content when value changes
-	useEffect( () => {
-		if ( editorRef.current?.codemirror ) {
-			editorRef.current.codemirror.setValue( value || '' );
-		}
-	}, [ value ] );
-
-	return (
-		<textarea
-			ref={ textareaRef }
-			defaultValue={ value }
-			className="edac-analysis__code-textarea"
-		/>
-	);
-};
 
 /**
  * Severity badge component
@@ -242,35 +189,11 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				) }
 			</div>
 
-			{ selectedIssue && (
-				<Modal
-					title={ __( 'Issue Details', 'accessibility-checker' ) }
-					onRequestClose={ closeModal }
-					className="edac-analysis__issue-modal"
-				>
-					<div className="edac-analysis__issue-modal-content">
-						<p>
-							<strong>{ __( 'Issue ID:', 'accessibility-checker' ) }</strong> { selectedIssue.id }
-						</p>
-						{ selectedIssue.description && (
-							<p>
-								<strong>{ __( 'Description:', 'accessibility-checker' ) }</strong> { selectedIssue.description }
-							</p>
-						) }
-						{ selectedIssue.object && (
-							<div className="edac-analysis__code-wrapper">
-								<strong>{ __( 'Element:', 'accessibility-checker' ) }</strong>
-								<CodeMirrorViewer value={ decodeEntities( selectedIssue.object ) } />
-							</div>
-						) }
-					</div>
-					<div className="edac-analysis__issue-modal-footer">
-						<Button variant="secondary" onClick={ closeModal }>
-							{ __( 'Close', 'accessibility-checker' ) }
-						</Button>
-					</div>
-				</Modal>
-			) }
+			<IssueDetailsModal
+				issue={ selectedIssue }
+				onClose={ closeModal }
+				isOpen={ !! selectedIssue }
+			/>
 		</div>
 	);
 };

@@ -327,6 +327,7 @@
 		border: 1px solid #ddd;
 		border-radius: 2px;
 		margin-left: 8px;
+		margin-bottom: 16px;
 		overflow: hidden;
 
 		&[aria-hidden="true"] {
@@ -359,109 +360,4 @@
 		padding-top: 8px;
 		border-top: 1px dashed #ddd;
 	}
-
-	// ==========================================
-	// ISSUE MENU & MODAL
-	// ==========================================
-
-	&__issue-menu {
-		.components-button {
-			padding: 0;
-			min-width: auto;
-			height: auto;
-		}
-	}
-
-	&__modal-trigger {
-		margin-top: 16px;
-		width: 100%;
-		justify-content: center;
-	}
-
-	&__modal {
-		.components-modal__content {
-			padding: 16px 24px 24px;
-		}
-
-		.edac-analysis__modal-content {
-			margin-bottom: 16px;
-		}
-
-		.edac-analysis__modal-footer {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			padding-top: 16px;
-			border-top: 1px solid #ddd;
-		}
-	}
-
-	&__issue-modal {
-		.components-modal__content {
-			padding: 16px 24px 24px;
-		}
-
-		.edac-analysis__issue-modal-content {
-			margin-bottom: 16px;
-
-			p {
-				margin: 0 0 12px;
-				font-size: 13px;
-				line-height: 1.5;
-
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-
-			strong {
-				font-weight: 600;
-			}
-		}
-
-		.edac-analysis__code-block {
-			margin: 8px 0 0;
-			padding: 12px;
-			background: #f5f5f5;
-			border: 1px solid #ddd;
-			border-radius: 4px;
-			font-family: monospace;
-			font-size: 12px;
-			line-height: 1.4;
-			overflow-x: auto;
-			white-space: pre-wrap;
-			word-break: break-all;
-		}
-
-		.edac-analysis__code-wrapper {
-			margin-top: 12px;
-
-			strong {
-				display: block;
-				margin-bottom: 8px;
-			}
-		}
-
-		.edac-analysis__code-textarea {
-			display: none; // Hidden, CodeMirror replaces it
-		}
-
-		.CodeMirror {
-			height: auto;
-			max-height: 300px;
-			border: 1px solid #ddd;
-			border-radius: 4px;
-			font-size: 12px;
-		}
-
-		.edac-analysis__issue-modal-footer {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			padding-top: 16px;
-			border-top: 1px solid #ddd;
-		}
-	}
 }
-
-
