@@ -193,9 +193,22 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 			return;
 		}
 
+		// Handle the 'ignore' action to open modal with dismiss section focused
+		if ( action === 'ignore' ) {
+			setFocusSection( 'dismiss' );
+			setSelectedIssue( issue );
+			return;
+		}
+
 		// eslint-disable-next-line no-console
 		console.log( `Action: ${ action }`, issue );
-		// TODO: Implement remaining actions (ignore, fix)
+		// TODO: Implement remaining actions (fix)
+	};
+
+	const handleIgnore = () => {
+		// Issue was ignored - trigger a page reload to refresh the data
+		// In the future, this could be improved to update state locally
+		window.location.reload();
 	};
 
 	const closeModal = () => {
@@ -288,6 +301,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				onClose={ closeModal }
 				isOpen={ !! selectedIssue }
 				focusSection={ focusSection }
+				onIgnore={ handleIgnore }
 			/>
 		</div>
 	);

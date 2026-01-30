@@ -4,8 +4,8 @@
 
 import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button } from '@wordpress/components';
-import { useRef, useEffect } from '@wordpress/element';
+import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner } from '@wordpress/components';
+import { useRef, useEffect, useState } from '@wordpress/element';
 
 /**
  * CodeMirror HTML viewer component
@@ -62,6 +62,42 @@ const CodeMirrorViewer = ( { value } ) => {
 };
 
 /**
+ * Dismiss an issue via AJAX
+ *
+ * @param {string} issueId - The issue ID to dismiss.
+ * @param {string} comment - Optional comment for the dismissal.
+ * @return {Promise} Promise that resolves with the response data.
+ */
+const dismissIssue = async ( issueId, comment = '' ) => {
+	const { ajaxUrl, ajaxNonce } = window.edac_sidebar_app || {};
+
+	if ( ! ajaxUrl || ! ajaxNonce ) {
+		throw new Error( __( 'Missing configuration', 'accessibility-checker' ) );
+	}
+
+	const formData = new FormData();
+	formData.append( 'action', 'edac_insert_ignore_data' );
+	formData.append( 'nonce', ajaxNonce );
+	formData.append( 'ids[]', issueId );
+	formData.append( 'ignore_action', 'enable' );
+	formData.append( 'ignore_type', 'Issue' );
+	formData.append( 'comment', comment );
+
+	const response = await fetch( ajaxUrl, {
+		method: 'POST',
+		body: formData,
+	} );
+
+	const data = await response.json();
+
+	if ( ! data.success ) {
+		throw new Error( data.data?.message || __( 'Failed to dismiss issue', 'accessibility-checker' ) );
+	}
+
+	return JSON.parse( data.data );
+};
+
+/**
  * Issue Details Modal
  *
  * @param {Object}      props              - Component props.
@@ -69,9 +105,22 @@ const CodeMirrorViewer = ( { value } ) => {
  * @param {Function}    props.onClose      - Close handler function.
  * @param {boolean}     props.isOpen       - Whether modal is open.
  * @param {string|null} props.focusSection - Section to focus on open (matches data-section attribute).
+ * @param {Function}    props.onIgnore     - Callback when issue is ignored.
  */
-export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection } ) => {
+export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgnore } ) => {
 	const modalRef = useRef( null );
+	const [ comment, setComment ] = useState( '' );
+	const [ isSubmitting, setIsSubmitting ] = useState( false );
+	const [ error, setError ] = useState( null );
+
+	// Reset state when modal opens/closes or issue changes
+	useEffect( () => {
+		if ( isOpen ) {
+			setComment( '' );
+			setError( null );
+			setIsSubmitting( false );
+		}
+	}, [ isOpen, issue?.id ] );
 
 	// Focus the specified section when modal opens
 	useEffect( () => {
@@ -99,6 +148,23 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection } ) =>
 		return null;
 	}
 
+	const handleDismiss = async () => {
+		setIsSubmitting( true );
+		setError( null );
+
+		try {
+			await dismissIssue( issue.id, comment );
+			if ( onIgnore ) {
+				onIgnore( issue );
+			}
+			onClose();
+		} catch ( err ) {
+			setError( err.message );
+		} finally {
+			setIsSubmitting( false );
+		}
+	};
+
 	return (
 		<Modal
 			title={ __( 'Issue Details', 'accessibility-checker' ) }
@@ -124,6 +190,40 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection } ) =>
 						<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 					</div>
 				) }
+
+				<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
+					<PanelBody
+						title={ __( 'Dismiss Issue', 'accessibility-checker' ) }
+						initialOpen={ focusSection === 'dismiss' }
+					>
+						<TextareaControl
+							label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+							help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
+							value={ comment }
+							onChange={ setComment }
+							rows={ 3 }
+							disabled={ isSubmitting }
+						/>
+						{ error && (
+							<p className="edac-analysis__error">{ error }</p>
+						) }
+						<Button
+							variant="secondary"
+							onClick={ handleDismiss }
+							disabled={ isSubmitting }
+							className="edac-analysis__dismiss-button"
+						>
+							{ isSubmitting ? (
+								<>
+									<Spinner />
+									{ __( 'Dismissing...', 'accessibility-checker' ) }
+								</>
+							) : (
+								__( 'Dismiss Issue', 'accessibility-checker' )
+							) }
+						</Button>
+					</PanelBody>
+				</Panel>
 			</div>
 			<div className="edac-analysis__issue-modal-footer">
 				<Button variant="secondary" onClick={ onClose }>

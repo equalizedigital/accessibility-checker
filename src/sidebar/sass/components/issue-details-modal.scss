@@ -75,6 +75,49 @@
 			font-size: 12px;
 		}
 
+		.edac-analysis__dismiss-panel {
+			margin-top: 16px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+
+			.components-panel__body {
+				border: none;
+			}
+
+			.components-panel__body-title {
+				margin-bottom: 0;
+
+				button {
+					padding: 12px 16px;
+					font-size: 13px;
+					font-weight: 600;
+				}
+			}
+
+			.components-panel__body-toggle {
+				&:hover {
+					background: #f5f5f5;
+				}
+			}
+		}
+
+		.edac-analysis__error {
+			margin: 8px 0;
+			padding: 8px 12px;
+			background: #fcf0f1;
+			border-left: 4px solid #d63638;
+			color: #d63638;
+			font-size: 13px;
+		}
+
+		.edac-analysis__dismiss-button {
+			margin-top: 12px;
+
+			.components-spinner {
+				margin-right: 8px;
+			}
+		}
+
 		.edac-analysis__issue-modal-footer {
 			display: flex;
 			justify-content: flex-end;
