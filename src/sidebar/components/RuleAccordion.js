@@ -171,15 +171,41 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				aria-hidden={ ! isExpanded }
 			>
 				{ activeIssues.length > 0 && (
-					<ul className="edac-analysis__issue-list">
-						{ activeIssues.map( ( issue, index ) => (
-							<IssueRow
-								key={ issue.id || index }
-								issue={ issue }
-								onAction={ handleIssueAction }
-							/>
-						) ) }
-					</ul>
+					<>
+						<p>
+							<strong>
+								{ __( 'WCAG:', 'accessibility-checker' ) }{' '}
+								{ rule?.wcag_url && rule?.wcag && rule?.wcag_title ? (
+									<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
+										{ rule.wcag } { rule.wcag_title }
+									</a>
+								) : (
+									rule?.wcag
+								) }
+							</strong>
+						</p>
+						<p
+							dangerouslySetInnerHTML={ {
+								__html: activeIssues.length > 1 ? rule.summary_plural : rule.summary,
+							} }
+						/>
+						{ rule?.info_url && (
+							<p>
+								<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
+									{ __( 'How to Fix', 'accessibility-checker' ) }
+								</a>
+							</p>
+						) }
+						<ul className="edac-analysis__issue-list">
+							{ activeIssues.map( ( issue, index ) => (
+								<IssueRow
+									key={ issue.id || index }
+									issue={ issue }
+									onAction={ handleIssueAction }
+								/>
+							) ) }
+						</ul>
+					</>
 				) }
 
 				{ ignoredCount > 0 && (
