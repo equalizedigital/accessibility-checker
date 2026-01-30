@@ -67,6 +67,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
 	const [ activeTab, setActiveTab ] = useState( TAB_PROBLEMS );
+	const [ expandedRules, setExpandedRules ] = useState( {} );
 
 	const details = data?.details || {};
 	const problems = useMemo( () => details.errors || [], [ details ] );
@@ -79,6 +80,13 @@ const AccessibilityAnalysis = () => {
 
 	const currentItems = activeTab === TAB_PROBLEMS ? problems : warnings;
 	const hasItems = currentItems.length > 0;
+
+	const toggleRule = ( ruleId ) => {
+		setExpandedRules( ( prev ) => ( {
+			...prev,
+			[ ruleId ]: ! prev[ ruleId ],
+		} ) );
+	};
 
 	return (
 		<Panel className="edac-analysis-panel">
