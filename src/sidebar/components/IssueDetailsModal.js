@@ -4,7 +4,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner } from '@wordpress/components';
+import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice } from '@wordpress/components';
 import { useRef, useEffect, useState } from '@wordpress/element';
 
 /**
@@ -98,6 +98,40 @@ const dismissIssue = async ( issueId, comment = '' ) => {
 };
 
 /**
+ * Un-dismiss (restore) an issue via AJAX
+ *
+ * @param {string} issueId - The issue ID to restore.
+ * @return {Promise} Promise that resolves with the response data.
+ */
+const undismissIssue = async ( issueId ) => {
+	const { ajaxUrl, ajaxNonce } = window.edac_sidebar_app || {};
+
+	if ( ! ajaxUrl || ! ajaxNonce ) {
+		throw new Error( __( 'Missing configuration', 'accessibility-checker' ) );
+	}
+
+	const formData = new FormData();
+	formData.append( 'action', 'edac_insert_ignore_data' );
+	formData.append( 'nonce', ajaxNonce );
+	formData.append( 'ids[]', issueId );
+	formData.append( 'ignore_action', 'disable' );
+	formData.append( 'ignore_type', 'Issue' );
+
+	const response = await fetch( ajaxUrl, {
+		method: 'POST',
+		body: formData,
+	} );
+
+	const data = await response.json();
+
+	if ( ! data.success ) {
+		throw new Error( data.data?.message || __( 'Failed to restore issue', 'accessibility-checker' ) );
+	}
+
+	return JSON.parse( data.data );
+};
+
+/**
  * Issue Details Modal
  *
  * @param {Object}      props              - Component props.
@@ -109,21 +143,44 @@ const dismissIssue = async ( issueId, comment = '' ) => {
  */
 export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgnore } ) => {
 	const modalRef = useRef( null );
+	const initializedIssueId = useRef( null );
+	const pendingRefetch = useRef( false );
 	const [ comment, setComment ] = useState( '' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
+	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
+	const [ isIgnored, setIsIgnored ] = useState( false );
 
-	// Reset state when modal opens/closes or issue changes
+	// Reset state only when modal opens with a NEW issue (different ID)
+	// Dispatch pending refetch event when modal closes
 	useEffect( () => {
-		if ( isOpen ) {
+		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
+			initializedIssueId.current = issue.id;
 			setComment( '' );
 			setError( null );
+			setSuccessNotice( null );
 			setIsSubmitting( false );
 			// Open dismiss panel if focusSection is 'dismiss'
 			setIsDismissPanelOpen( focusSection === 'dismiss' );
+			// Set initial ignored state from issue data
+			setIsIgnored( issue.ignre === '1' || issue.ignre === 1 );
 		}
-	}, [ isOpen, issue?.id, focusSection ] );
+		// When modal closes, dispatch pending refetch event if needed
+		if ( ! isOpen ) {
+			if ( pendingRefetch.current ) {
+				// Dispatch event to notify other components (sidebar status, old metabox)
+				const event = new CustomEvent( 'edac-ignore-updated', {
+					detail: {
+						pending: true,
+					},
+				} );
+				window.dispatchEvent( event );
+				pendingRefetch.current = false;
+			}
+			initializedIssueId.current = null;
+		}
+	}, [ isOpen, issue?.id, focusSection, issue?.ignre ] );
 
 	// Focus the specified section when modal opens
 	useEffect( () => {
@@ -154,13 +211,42 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 	const handleDismiss = async () => {
 		setIsSubmitting( true );
 		setError( null );
+		setSuccessNotice( null );
 
 		try {
 			await dismissIssue( issue.id, comment );
+			setIsIgnored( true );
+			setSuccessNotice( __( 'Issue dismissed successfully.', 'accessibility-checker' ) );
+
+			// Queue refetch for when modal closes (to avoid re-render closing the modal)
+			pendingRefetch.current = true;
+
 			if ( onIgnore ) {
-				onIgnore( issue );
+				onIgnore( issue, true );
 			}
-			onClose();
+		} catch ( err ) {
+			setError( err.message );
+		} finally {
+			setIsSubmitting( false );
+		}
+	};
+
+	const handleUndismiss = async () => {
+		setIsSubmitting( true );
+		setError( null );
+		setSuccessNotice( null );
+
+		try {
+			await undismissIssue( issue.id );
+			setIsIgnored( false );
+			setSuccessNotice( __( 'Issue restored successfully.', 'accessibility-checker' ) );
+
+			// Queue refetch for when modal closes (to avoid re-render closing the modal)
+			pendingRefetch.current = true;
+
+			if ( onIgnore ) {
+				onIgnore( issue, false );
+			}
 		} catch ( err ) {
 			setError( err.message );
 		} finally {
@@ -196,36 +282,76 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 
 				<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
 					<PanelBody
-						title={ __( 'Dismiss Issue', 'accessibility-checker' ) }
+						title={ isIgnored ? __( 'Issue Dismissed', 'accessibility-checker' ) : __( 'Dismiss Issue', 'accessibility-checker' ) }
 						opened={ isDismissPanelOpen }
 						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 					>
-						<TextareaControl
-							label={ __( 'Comment (optional)', 'accessibility-checker' ) }
-							help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
-							value={ comment }
-							onChange={ setComment }
-							rows={ 3 }
-							disabled={ isSubmitting }
-						/>
-						{ error && (
-							<p className="edac-analysis__error">{ error }</p>
+						{ successNotice && (
+							<Notice
+								status="success"
+								isDismissible={ true }
+								onRemove={ () => setSuccessNotice( null ) }
+							>
+								{ successNotice }
+							</Notice>
 						) }
-						<Button
-							variant="secondary"
-							onClick={ handleDismiss }
-							disabled={ isSubmitting }
-							className="edac-analysis__dismiss-button"
-						>
-							{ isSubmitting ? (
-								<>
-									<Spinner />
-									{ __( 'Dismissing...', 'accessibility-checker' ) }
-								</>
-							) : (
-								__( 'Dismiss Issue', 'accessibility-checker' )
-							) }
-						</Button>
+						{ error && (
+							<Notice
+								status="error"
+								isDismissible={ true }
+								onRemove={ () => setError( null ) }
+							>
+								{ error }
+							</Notice>
+						) }
+						{ isIgnored ? (
+							<>
+								<p className="edac-analysis__dismissed-info">
+									{ __( 'This issue has been dismissed and will not appear in active issues.', 'accessibility-checker' ) }
+								</p>
+								<Button
+									variant="secondary"
+									onClick={ handleUndismiss }
+									disabled={ isSubmitting }
+									className="edac-analysis__dismiss-button"
+								>
+									{ isSubmitting ? (
+										<>
+											<Spinner />
+											{ __( 'Restoring...', 'accessibility-checker' ) }
+										</>
+									) : (
+										__( 'Restore Issue', 'accessibility-checker' )
+									) }
+								</Button>
+							</>
+						) : (
+							<>
+								<TextareaControl
+									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+									help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
+									value={ comment }
+									onChange={ setComment }
+									rows={ 3 }
+									disabled={ isSubmitting }
+								/>
+								<Button
+									variant="secondary"
+									onClick={ handleDismiss }
+									disabled={ isSubmitting }
+									className="edac-analysis__dismiss-button"
+								>
+									{ isSubmitting ? (
+										<>
+											<Spinner />
+											{ __( 'Dismissing...', 'accessibility-checker' ) }
+										</>
+									) : (
+										__( 'Dismiss Issue', 'accessibility-checker' )
+									) }
+								</Button>
+							</>
+						) }
 					</PanelBody>
 				</Panel>
 			</div>

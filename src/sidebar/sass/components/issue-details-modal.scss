@@ -99,14 +99,18 @@
 					background: #f5f5f5;
 				}
 			}
+
+			.components-notice {
+				margin: 0 0 12px;
+			}
 		}
 
-		.edac-analysis__error {
-			margin: 8px 0;
+		.edac-analysis__dismissed-info {
+			margin: 0 0 12px;
 			padding: 8px 12px;
-			background: #fcf0f1;
-			border-left: 4px solid #d63638;
-			color: #d63638;
+			background: #f0f6fc;
+			border-left: 4px solid #0073aa;
+			color: #1e1e1e;
 			font-size: 13px;
 		}
 

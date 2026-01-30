@@ -204,11 +204,9 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 		console.log( `Action: ${ action }`, issue );
 		// TODO: Implement remaining actions (fix)
 	};
-
 	const handleIgnore = () => {
-		// Issue was ignored - trigger a page reload to refresh the data
-		// In the future, this could be improved to update state locally
-		window.location.reload();
+		// Issue was ignored - the AJAX call has already completed
+		// The modal will close automatically after successful dismissal
 	};
 
 	const closeModal = () => {
