@@ -68,15 +68,17 @@ const CodeMirrorViewer = ( { value } ) => {
  *
  * @param {string}  issueId - The issue ID to dismiss/restore.
  * @param {boolean} ignore  - True to dismiss, false to restore.
+ * @param {string}  reason  - The reason for dismissing the issue.
  * @param {string}  comment - Optional comment for the dismissal.
  * @return {Promise} Promise that resolves with the response data.
  */
-const toggleIssueIgnore = async ( issueId, ignore = true, comment = '' ) => {
+const toggleIssueIgnore = async ( issueId, ignore = true, reason = '', comment = '' ) => {
 	return apiFetch( {
 		path: `/accessibility-checker/v1/dismiss-issue/${ issueId }`,
 		method: 'POST',
 		data: {
 			action: ignore ? 'enable' : 'disable',
+			reason: ignore ? reason : '',
 			comment: ignore ? comment : '',
 		},
 	} );
@@ -182,7 +184,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 		setSuccessNotice( null );
 
 		try {
-			await toggleIssueIgnore( issue.id, ignore, ignore ? comment : '' );
+			await toggleIssueIgnore( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
 			setIsIgnored( ignore );
 			setSuccessNotice( ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
