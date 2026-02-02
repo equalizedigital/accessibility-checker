@@ -4,7 +4,7 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice } from '@wordpress/components';
+import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice, RadioControl } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import IssueImage, { extractImageUrls } from './IssueImage';
 
@@ -148,6 +148,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const initializedIssueId = useRef( null );
 	const pendingRefetch = useRef( false );
 	const [ comment, setComment ] = useState( '' );
+	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
@@ -160,6 +161,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
 			initializedIssueId.current = issue.id;
 			setComment( '' );
+			setDismissReason( 'false_positive' );
 			setError( null );
 			setSuccessNotice( null );
 			setIsSubmitting( false );
@@ -392,6 +394,28 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								</>
 							) : (
 								<>
+									<RadioControl
+										label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
+										selected={ dismissReason }
+										options={ [
+											{
+												label: __( 'False positive', 'accessibility-checker' ),
+												value: 'false_positive',
+												description: __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
+											},
+											{
+												label: __( 'Remediated', 'accessibility-checker' ),
+												value: 'remediated',
+												description: __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
+											},
+											{
+												label: __( 'Intentional', 'accessibility-checker' ),
+												value: 'intentional',
+												description: __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
+											},
+										] }
+										onChange={ setDismissReason }
+									/>
 									<TextareaControl
 										label={ __( 'Comment (optional)', 'accessibility-checker' ) }
 										help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
