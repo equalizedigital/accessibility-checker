@@ -2,8 +2,7 @@
  * Issue Details Modal Component
  */
 
-import { __ } from '@wordpress/i18n';
-import { decodeEntities } from '@wordpress/html-entities';
+import { __, sprintf } from '@wordpress/i18n';
 import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice } from '@wordpress/components';
 import { useRef, useEffect, useState } from '@wordpress/element';
 
@@ -263,7 +262,8 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 
 	return (
 		<Modal
-			title={ __( 'Issue Details', 'accessibility-checker' ) }
+			// translators: %s is the issue ID number
+			title={ sprintf( __( 'Issue #%s', 'accessibility-checker' ), issue.id ) }
 			onRequestClose={ onClose }
 			className="edac-analysis__issue-modal"
 		>
