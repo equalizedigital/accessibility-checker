@@ -1035,7 +1035,7 @@ class REST_Api {
 	 * Get WCAG URL from wcag number
 	 *
 	 * @param string $wcag_number The WCAG number (e.g., '1.1.1').
-	 * @return array The WCAG URL or null if not found.
+	 * @return array An array containing 'wcag_title' and 'wcag_url' keys. Both values will be empty strings if the WCAG number is not found.
 	 */
 	private function get_wcag_url_and_title_from_number( $wcag_number ) {
 		$wcag_data_to_return = [
