@@ -6,6 +6,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice, RadioControl } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
+import apiFetch from '@wordpress/api-fetch';
 import IssueImage, { extractImageUrls } from './IssueImage';
 
 /**
@@ -71,37 +72,14 @@ const CodeMirrorViewer = ( { value } ) => {
  * @return {Promise} Promise that resolves with the response data.
  */
 const toggleIssueIgnore = async ( issueId, ignore = true, comment = '' ) => {
-	const { restUrl, nonce } = window.edac_sidebar_app || {};
-
-	if ( ! restUrl ) {
-		throw new Error( __( 'Missing configuration', 'accessibility-checker' ) );
-	}
-
-	const headers = {
-		'Content-Type': 'application/json',
-	};
-
-	if ( nonce ) {
-		headers[ 'X-WP-Nonce' ] = nonce;
-	}
-
-	const response = await fetch( `${ restUrl }dismiss-issue/${ issueId }`, {
+	return apiFetch( {
+		path: `/accessibility-checker/v1/dismiss-issue/${ issueId }`,
 		method: 'POST',
-		credentials: 'same-origin',
-		headers,
-		body: JSON.stringify( {
+		data: {
 			action: ignore ? 'enable' : 'disable',
 			comment: ignore ? comment : '',
-		} ),
+		},
 	} );
-
-	const data = await response.json();
-
-	if ( ! response.ok ) {
-		throw new Error( data.message || __( ignore ? 'Failed to dismiss issue' : 'Failed to restore issue', 'accessibility-checker' ) );
-	}
-
-	return data;
 };
 
 /**
