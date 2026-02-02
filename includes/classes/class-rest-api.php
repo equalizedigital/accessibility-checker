@@ -295,6 +295,10 @@ class REST_Api {
 								},
 								'sanitize_callback' => 'sanitize_text_field',
 							],
+							'reason'        => [
+								'required'          => false,
+								'sanitize_callback' => 'sanitize_text_field',
+							],
 							'comment'       => [
 								'required'          => false,
 								'sanitize_callback' => 'sanitize_textarea_field',
@@ -1140,6 +1144,7 @@ class REST_Api {
 
 		$issue_id      = (int) $request['issue_id'];
 		$action        = $request->get_param( 'action' );
+		$reason        = $request->get_param( 'reason' ) ?? '';
 		$comment       = $request->get_param( 'comment' ) ?? '';
 		$ignore_global = $request->get_param( 'ignore_global' ) ?? 0;
 		$large_batch   = $request->get_param( 'largeBatch' ) ?? false;
@@ -1155,6 +1160,7 @@ class REST_Api {
 		$ignre_username       = $is_enabling && $ignre_user_info ? $ignre_user_info->user_login : '';
 		$ignre_date           = $is_enabling ? edac_get_current_utc_datetime() : null;
 		$ignre_date_formatted = $is_enabling ? edac_format_datetime_from_utc( $ignre_date ) : '';
+		$ignre_reason         = $is_enabling ? $reason : null;
 		$ignre_comment        = $is_enabling ? $comment : null;
 		$ignre_global         = $is_enabling ? (int) $ignore_global : 0;
 
@@ -1177,11 +1183,12 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
 			$result = $wpdb->query(
 				$wpdb->prepare(
-					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND object = %s',
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND object = %s',
 					$table_name,
 					$ignre,
 					$ignre_user,
 					$ignre_date,
+					$ignre_reason,
 					$ignre_comment,
 					$ignre_global,
 					$site_id,
@@ -1193,11 +1200,12 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
 			$result = $wpdb->query(
 				$wpdb->prepare(
-					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND id = %d',
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND id = %d',
 					$table_name,
 					$ignre,
 					$ignre_user,
 					$ignre_date,
+					$ignre_reason,
 					$ignre_comment,
 					$ignre_global,
 					$site_id,
@@ -1222,6 +1230,7 @@ class REST_Api {
 				'ignored'       => $is_enabling,
 				'user'          => $ignre_username,
 				'date'          => $ignre_date_formatted,
+				'reason'        => $ignre_reason,
 				'comment'       => $ignre_comment,
 				'ignore_global' => $ignre_global,
 				'large_batch'   => $large_batch,
