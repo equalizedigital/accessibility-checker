@@ -63,73 +63,45 @@ const CodeMirrorViewer = ( { value } ) => {
 };
 
 /**
- * Dismiss an issue via AJAX
+ * Toggle issue ignore status via REST API
  *
- * @param {string} issueId - The issue ID to dismiss.
- * @param {string} comment - Optional comment for the dismissal.
+ * @param {string}  issueId - The issue ID to dismiss/restore.
+ * @param {boolean} ignore  - True to dismiss, false to restore.
+ * @param {string}  comment - Optional comment for the dismissal.
  * @return {Promise} Promise that resolves with the response data.
  */
-const dismissIssue = async ( issueId, comment = '' ) => {
-	const { ajaxUrl, ajaxNonce } = window.edac_sidebar_app || {};
+const toggleIssueIgnore = async ( issueId, ignore = true, comment = '' ) => {
+	const { restUrl, nonce } = window.edac_sidebar_app || {};
 
-	if ( ! ajaxUrl || ! ajaxNonce ) {
+	if ( ! restUrl ) {
 		throw new Error( __( 'Missing configuration', 'accessibility-checker' ) );
 	}
 
-	const formData = new FormData();
-	formData.append( 'action', 'edac_insert_ignore_data' );
-	formData.append( 'nonce', ajaxNonce );
-	formData.append( 'ids[]', issueId );
-	formData.append( 'ignore_action', 'enable' );
-	formData.append( 'ignore_type', 'Issue' );
-	formData.append( 'comment', comment );
+	const headers = {
+		'Content-Type': 'application/json',
+	};
 
-	const response = await fetch( ajaxUrl, {
+	if ( nonce ) {
+		headers[ 'X-WP-Nonce' ] = nonce;
+	}
+
+	const response = await fetch( `${ restUrl }dismiss-issue/${ issueId }`, {
 		method: 'POST',
-		body: formData,
+		credentials: 'same-origin',
+		headers,
+		body: JSON.stringify( {
+			action: ignore ? 'enable' : 'disable',
+			comment: ignore ? comment : '',
+		} ),
 	} );
 
 	const data = await response.json();
 
-	if ( ! data.success ) {
-		throw new Error( data.data?.message || __( 'Failed to dismiss issue', 'accessibility-checker' ) );
+	if ( ! response.ok ) {
+		throw new Error( data.message || __( ignore ? 'Failed to dismiss issue' : 'Failed to restore issue', 'accessibility-checker' ) );
 	}
 
-	return JSON.parse( data.data );
-};
-
-/**
- * Un-dismiss (restore) an issue via AJAX
- *
- * @param {string} issueId - The issue ID to restore.
- * @return {Promise} Promise that resolves with the response data.
- */
-const undismissIssue = async ( issueId ) => {
-	const { ajaxUrl, ajaxNonce } = window.edac_sidebar_app || {};
-
-	if ( ! ajaxUrl || ! ajaxNonce ) {
-		throw new Error( __( 'Missing configuration', 'accessibility-checker' ) );
-	}
-
-	const formData = new FormData();
-	formData.append( 'action', 'edac_insert_ignore_data' );
-	formData.append( 'nonce', ajaxNonce );
-	formData.append( 'ids[]', issueId );
-	formData.append( 'ignore_action', 'disable' );
-	formData.append( 'ignore_type', 'Issue' );
-
-	const response = await fetch( ajaxUrl, {
-		method: 'POST',
-		body: formData,
-	} );
-
-	const data = await response.json();
-
-	if ( ! data.success ) {
-		throw new Error( data.data?.message || __( 'Failed to restore issue', 'accessibility-checker' ) );
-	}
-
-	return JSON.parse( data.data );
+	return data;
 };
 
 /**
@@ -226,44 +198,24 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 		return null;
 	}
 
-	const handleDismiss = async () => {
+	const handleToggleIgnore = async ( ignore ) => {
 		setIsSubmitting( true );
 		setError( null );
 		setSuccessNotice( null );
 
 		try {
-			await dismissIssue( issue.id, comment );
-			setIsIgnored( true );
-			setSuccessNotice( __( 'Issue dismissed successfully.', 'accessibility-checker' ) );
+			await toggleIssueIgnore( issue.id, ignore, ignore ? comment : '' );
+			setIsIgnored( ignore );
+			setSuccessNotice( ignore
+				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
+				: __( 'Issue restored successfully.', 'accessibility-checker' ),
+			);
 
 			// Queue refetch for when modal closes (to avoid re-render closing the modal)
 			pendingRefetch.current = true;
 
 			if ( onIgnore ) {
-				onIgnore( issue, true );
-			}
-		} catch ( err ) {
-			setError( err.message );
-		} finally {
-			setIsSubmitting( false );
-		}
-	};
-
-	const handleUndismiss = async () => {
-		setIsSubmitting( true );
-		setError( null );
-		setSuccessNotice( null );
-
-		try {
-			await undismissIssue( issue.id );
-			setIsIgnored( false );
-			setSuccessNotice( __( 'Issue restored successfully.', 'accessibility-checker' ) );
-
-			// Queue refetch for when modal closes (to avoid re-render closing the modal)
-			pendingRefetch.current = true;
-
-			if ( onIgnore ) {
-				onIgnore( issue, false );
+				onIgnore( issue, ignore );
 			}
 		} catch ( err ) {
 			setError( err.message );
@@ -378,7 +330,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 									</p>
 									<Button
 										variant="secondary"
-										onClick={ handleUndismiss }
+										onClick={ () => handleToggleIgnore( false ) }
 										disabled={ isSubmitting }
 										className="edac-analysis__dismiss-button"
 									>
@@ -426,7 +378,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 									/>
 									<Button
 										variant="secondary"
-										onClick={ handleDismiss }
+										onClick={ () => handleToggleIgnore( true ) }
 										disabled={ isSubmitting }
 										className="edac-analysis__dismiss-button"
 									>
