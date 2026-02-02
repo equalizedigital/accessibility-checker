@@ -3,8 +3,10 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
+import { decodeEntities } from '@wordpress/html-entities';
 import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice } from '@wordpress/components';
-import { useRef, useEffect, useState } from '@wordpress/element';
+import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
+import IssueImage, { extractImageUrls } from './IssueImage';
 
 /**
  * CodeMirror HTML viewer component
@@ -134,13 +136,14 @@ const undismissIssue = async ( issueId ) => {
  * Issue Details Modal
  *
  * @param {Object}      props              - Component props.
- * @param {Object}      props.issue        - Issue object to display.
+ * @param {Object}      props.issue        - Issue object to display (individual issue from details array).
+ * @param {Object}      props.rule         - Rule object containing metadata (title, summary, wcag, etc.).
  * @param {Function}    props.onClose      - Close handler function.
  * @param {boolean}     props.isOpen       - Whether modal is open.
  * @param {string|null} props.focusSection - Section to focus on open (matches data-section attribute).
  * @param {Function}    props.onIgnore     - Callback when issue is ignored.
  */
-export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgnore } ) => {
+export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection, onIgnore } ) => {
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
 	const pendingRefetch = useRef( false );
@@ -210,6 +213,13 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 		return () => cancelAnimationFrame( rafId );
 	}, [ isOpen, focusSection ] );
 
+	// Extract image URLs from the issue markup (must be before early return for hooks rules)
+	const imageUrls = useMemo( () => extractImageUrls( issue?.object ), [ issue?.object ] );
+
+	// Get the count of issues for this rule to determine singular/plural summary
+	const issueCount = rule?.details?.length || 1;
+	const summary = issueCount > 1 ? rule?.summary_plural : rule?.summary;
+
 	if ( ! isOpen || ! issue ) {
 		return null;
 	}
@@ -268,99 +278,154 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 			className="edac-analysis__issue-modal"
 		>
 			<div className="edac-analysis__issue-modal-content" ref={ modalRef }>
-				<div data-section="issue-id">
-					<p>
-						<strong>{ __( 'Issue ID:', 'accessibility-checker' ) }</strong> { issue.id }
-					</p>
-				</div>
-				{ issue.description && (
-					<div data-section="description">
-						<p>
-							<strong>{ __( 'Description:', 'accessibility-checker' ) }</strong> { issue.description }
-						</p>
-					</div>
-				) }
-				{ issue.object && (
-					<div className="edac-analysis__code-wrapper" data-section="code">
-						<strong>{ __( 'Element:', 'accessibility-checker' ) }</strong>
-						<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
-					</div>
-				) }
+				<div className="edac-analysis__issue-modal-left">
+					{ /* Rule Title */ }
+					{ rule?.title && (
+						<h2 className="edac-analysis__issue-title" data-section="title">
+							{ rule.title }
+						</h2>
+					) }
 
-				<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
-					<PanelBody
-						title={ isIgnored ? __( 'Issue Dismissed', 'accessibility-checker' ) : __( 'Dismiss Issue', 'accessibility-checker' ) }
-						opened={ isDismissPanelOpen }
-						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
-					>
-						{ successNotice && (
-							<Notice
-								status="success"
-								isDismissible={ true }
-								onRemove={ () => setSuccessNotice( null ) }
-							>
-								{ successNotice }
-							</Notice>
-						) }
-						{ error && (
-							<Notice
-								status="error"
-								isDismissible={ true }
-								onRemove={ () => setError( null ) }
-							>
-								{ error }
-							</Notice>
-						) }
-						{ isIgnored ? (
-							<>
-								<p className="edac-analysis__dismissed-info">
-									{ __( 'This issue has been dismissed and will not appear in active issues.', 'accessibility-checker' ) }
-								</p>
-								<Button
-									variant="secondary"
-									onClick={ handleUndismiss }
-									disabled={ isSubmitting }
-									className="edac-analysis__dismiss-button"
+					{ /* WCAG Reference */ }
+					{ rule?.wcag && (
+						<p className="edac-analysis__issue-wcag" data-section="wcag">
+							<strong>{ __( 'WCAG:', 'accessibility-checker' ) }</strong>{ ' ' }
+							{ rule.wcag_url ? (
+								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
+									{ rule.wcag } { rule.wcag_title }
+								</a>
+							) : (
+								<>{ rule.wcag } { rule.wcag_title }</>
+							) }
+						</p>
+					) }
+
+					{ /* Summary */ }
+					{ summary && (
+						<p
+							className="edac-analysis__issue-summary"
+							data-section="summary"
+							dangerouslySetInnerHTML={ { __html: summary } }
+						/>
+					) }
+
+					{ /* How to Fix Link */ }
+					{ rule?.info_url && (
+						<p className="edac-analysis__issue-help" data-section="help">
+							<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
+								{ __( 'How to Fix', 'accessibility-checker' ) }
+							</a>
+						</p>
+					) }
+
+					{ /* Affected Code */ }
+					{ issue.object && (
+						<div className="edac-analysis__code-wrapper" data-section="code">
+							<h3>{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
+							<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
+						</div>
+					) }
+
+					{ /* Image Preview - only show if markup contains images */ }
+					{ imageUrls.length > 0 && (
+						<div className="edac-analysis__image-wrapper" data-section="image">
+							<h3>{ __( 'Image', 'accessibility-checker' ) }</h3>
+							<IssueImage markup={ issue.object } />
+						</div>
+					) }
+
+					{ /* Fix Issue Panel - Placeholder */ }
+					<Panel className="edac-analysis__fix-panel" data-section="fix">
+						<PanelBody
+							title={ __( 'Fix Issue', 'accessibility-checker' ) }
+							initialOpen={ false }
+						>
+							<p>{ __( 'Fix options will go here.', 'accessibility-checker' ) }</p>
+						</PanelBody>
+					</Panel>
+
+					{ /* Dismiss Issue Panel */ }
+					<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
+						<PanelBody
+							title={ isIgnored ? __( 'Issue Dismissed', 'accessibility-checker' ) : __( 'Dismiss Issue', 'accessibility-checker' ) }
+							opened={ isDismissPanelOpen }
+							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
+						>
+							{ successNotice && (
+								<Notice
+									status="success"
+									isDismissible={ true }
+									onRemove={ () => setSuccessNotice( null ) }
 								>
-									{ isSubmitting ? (
-										<>
-											<Spinner />
-											{ __( 'Restoring...', 'accessibility-checker' ) }
-										</>
-									) : (
-										__( 'Restore Issue', 'accessibility-checker' )
-									) }
-								</Button>
-							</>
-						) : (
-							<>
-								<TextareaControl
-									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
-									help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
-									value={ comment }
-									onChange={ setComment }
-									rows={ 3 }
-									disabled={ isSubmitting }
-								/>
-								<Button
-									variant="secondary"
-									onClick={ handleDismiss }
-									disabled={ isSubmitting }
-									className="edac-analysis__dismiss-button"
+									{ successNotice }
+								</Notice>
+							) }
+							{ error && (
+								<Notice
+									status="error"
+									isDismissible={ true }
+									onRemove={ () => setError( null ) }
 								>
-									{ isSubmitting ? (
-										<>
-											<Spinner />
-											{ __( 'Dismissing...', 'accessibility-checker' ) }
-										</>
-									) : (
-										__( 'Dismiss Issue', 'accessibility-checker' )
-									) }
-								</Button>
-							</>
-						) }
-					</PanelBody>
-				</Panel>
+									{ error }
+								</Notice>
+							) }
+							{ isIgnored ? (
+								<>
+									<p className="edac-analysis__dismissed-info">
+										{ __( 'This issue has been dismissed and will not appear in active issues.', 'accessibility-checker' ) }
+									</p>
+									<Button
+										variant="secondary"
+										onClick={ handleUndismiss }
+										disabled={ isSubmitting }
+										className="edac-analysis__dismiss-button"
+									>
+										{ isSubmitting ? (
+											<>
+												<Spinner />
+												{ __( 'Restoring...', 'accessibility-checker' ) }
+											</>
+										) : (
+											__( 'Restore Issue', 'accessibility-checker' )
+										) }
+									</Button>
+								</>
+							) : (
+								<>
+									<TextareaControl
+										label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+										help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
+										value={ comment }
+										onChange={ setComment }
+										rows={ 3 }
+										disabled={ isSubmitting }
+									/>
+									<Button
+										variant="secondary"
+										onClick={ handleDismiss }
+										disabled={ isSubmitting }
+										className="edac-analysis__dismiss-button"
+									>
+										{ isSubmitting ? (
+											<>
+												<Spinner />
+												{ __( 'Dismissing...', 'accessibility-checker' ) }
+											</>
+										) : (
+											__( 'Dismiss Issue', 'accessibility-checker' )
+										) }
+									</Button>
+								</>
+							) }
+						</PanelBody>
+					</Panel>
+				</div>
+
+				<div className="edac-analysis__issue-modal-right">
+					<div className="edac-analysis__issue-modal-placeholder" data-section="sidebar">
+						<p>{ __( 'Type, Severity, Landmark, and View on Page button will go here.', 'accessibility-checker' ) }</p>
+					</div>
+				</div>
 			</div>
 			<div className="edac-analysis__issue-modal-footer">
 				<Button variant="secondary" onClick={ onClose }>

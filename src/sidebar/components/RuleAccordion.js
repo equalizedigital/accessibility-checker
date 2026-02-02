@@ -296,6 +296,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 
 			<IssueDetailsModal
 				issue={ selectedIssue }
+				rule={ rule }
 				onClose={ closeModal }
 				isOpen={ !! selectedIssue }
 				focusSection={ focusSection }
