@@ -188,20 +188,27 @@ export const IssueDetailsModal = ( { issue, onClose, isOpen, focusSection, onIgn
 			return;
 		}
 
-		// Use setTimeout to ensure the modal is fully rendered
-		const timeoutId = setTimeout( () => {
-			const section = modalRef.current?.querySelector( `[data-section="${ focusSection }"]` );
-			if ( section ) {
-				section.scrollIntoView( { behavior: 'smooth', block: 'center' } );
-				// Try to focus a focusable element within the section, or the section itself
-				const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
-				if ( focusable ) {
-					focusable.focus();
-				}
-			}
-		}, 100 );
+		// Use double requestAnimationFrame to ensure the DOM is fully painted and ready
+		let rafId;
+		const focusElement = () => {
+			rafId = requestAnimationFrame( () => {
+				rafId = requestAnimationFrame( () => {
+					const section = modalRef.current?.querySelector( `[data-section="${ focusSection }"]` );
+					if ( section ) {
+						section.scrollIntoView( { behavior: 'smooth', block: 'center' } );
+						// Try to focus a focusable element within the section, or the section itself
+						const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
+						if ( focusable ) {
+							focusable.focus();
+						}
+					}
+				} );
+			} );
+		};
 
-		return () => clearTimeout( timeoutId );
+		focusElement();
+
+		return () => cancelAnimationFrame( rafId );
 	}, [ isOpen, focusSection ] );
 
 	if ( ! isOpen || ! issue ) {
