@@ -1047,30 +1047,33 @@ class REST_Api {
 			return $wcag_data_to_return;
 		}
 
-		static $wcag_data = null;
+		static $wcag_lookup = null;
 
-		if ( null === $wcag_data ) {
+		if ( null === $wcag_lookup ) {
 			// Load the WCAG data file.
 			$wcag_file = EDAC_PLUGIN_DIR . 'includes/wcag.php';
 			if ( ! file_exists( $wcag_file ) ) {
+				$wcag_lookup = [];
 				return $wcag_data_to_return;
 			}
 
 			$wcag_data = include $wcag_file;
 			if ( ! is_array( $wcag_data ) ) {
+				$wcag_lookup = [];
 				return $wcag_data_to_return;
 			}
+
+			// Re-key the array by WCAG number for O(1) lookups.
+			$wcag_lookup = array_column( $wcag_data, null, 'number' );
 		}
 
-		// Find the WCAG entry with matching number.
-		foreach ( $wcag_data as $entry ) {
-			if ( isset( $entry['number'] ) && $entry['number'] === $wcag_number ) {
-				$wcag_data_to_return = [
-					'wcag_title' => $entry['title'],
-					'wcag_url'   => $entry['wcag_url'],
-				];
-				break;
-			}
+		// O(1) lookup by WCAG number.
+		if ( isset( $wcag_lookup[ $wcag_number ] ) ) {
+			$entry               = $wcag_lookup[ $wcag_number ];
+			$wcag_data_to_return = [
+				'wcag_title' => $entry['title'] ?? '',
+				'wcag_url'   => $entry['wcag_url'] ?? '',
+			];
 		}
 
 		return $wcag_data_to_return;
