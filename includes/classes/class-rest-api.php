@@ -907,6 +907,10 @@ class REST_Api {
 			if ( $count ) {
 				$rules[ $key ]['count']   = $count;
 				$rules[ $key ]['details'] = $results;
+				// Add WCAG URL based on wcag number.
+				if ( isset( $rule['wcag'] ) ) {
+					$rules[ $key ] += $this->get_wcag_url_and_title_from_number( $rule['wcag'] );
+				}
 			} else {
 				$rule['count']  = 0;
 				$passed_rules[] = $rule;
@@ -1025,5 +1029,53 @@ class REST_Api {
 				[ 'status' => 500 ]
 			);
 		}
+	}
+
+	/**
+	 * Get WCAG URL from wcag number
+	 *
+	 * @param string $wcag_number The WCAG number (e.g., '1.1.1').
+	 * @return array An array containing 'wcag_title' and 'wcag_url' keys. Both values will be empty strings if the WCAG number is not found.
+	 */
+	private function get_wcag_url_and_title_from_number( $wcag_number ) {
+		$wcag_data_to_return = [
+			'wcag_title' => '',
+			'wcag_url'   => '',
+		];
+
+		if ( ! $wcag_number ) {
+			return $wcag_data_to_return;
+		}
+
+		static $wcag_lookup = null;
+
+		if ( null === $wcag_lookup ) {
+			// Load the WCAG data file.
+			$wcag_file = EDAC_PLUGIN_DIR . 'includes/wcag.php';
+			if ( ! file_exists( $wcag_file ) ) {
+				$wcag_lookup = [];
+				return $wcag_data_to_return;
+			}
+
+			$wcag_data = include $wcag_file;
+			if ( ! is_array( $wcag_data ) ) {
+				$wcag_lookup = [];
+				return $wcag_data_to_return;
+			}
+
+			// Re-key the array by WCAG number for O(1) lookups.
+			$wcag_lookup = array_column( $wcag_data, null, 'number' );
+		}
+
+		// O(1) lookup by WCAG number.
+		if ( isset( $wcag_lookup[ $wcag_number ] ) ) {
+			$entry               = $wcag_lookup[ $wcag_number ];
+			$wcag_data_to_return = [
+				'wcag_title' => $entry['title'] ?? '',
+				'wcag_url'   => $entry['wcag_url'] ?? '',
+			];
+		}
+
+		return $wcag_data_to_return;
 	}
 }

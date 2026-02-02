@@ -78,11 +78,11 @@
 			overflow: hidden;
 			appearance: none;
 			-webkit-appearance: none;
-			background-color: #e0e0e0;
+			background-color: $outline-grey;
 
 			// Chrome, Edge, Safari
 			&::-webkit-progress-bar {
-				background-color: #e0e0e0;
+				background-color: $outline-grey;
 				border-radius: 3px;
 				overflow: hidden;
 			}
@@ -110,7 +110,7 @@
 	.edac-status-footer {
 		margin-top: 16px;
 		padding-top: 12px;
-		border-top: 1px solid #e0e0e0;
+		border-top: 1px solid $outline-grey;
 
 		&__note {
 			margin: 0 0 8px 0;

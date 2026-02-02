@@ -1,0 +1,281 @@
+@use 'sass:color';
+@use '../_variables' as *;
+
+.edac-analysis {
+	// ==========================================
+	// PANEL & LAYOUT
+	// ==========================================
+
+	&-panel {
+		.components-panel__body.is-opened {
+			padding-bottom: 0;
+		}
+	}
+
+	&__count {
+		font-weight: 600;
+	}
+
+	// ==========================================
+	// PANELS & CONTENT
+	// ==========================================
+
+	&__panel {
+		display: flex;
+		flex-direction: column;
+		margin-left: -16px;
+		margin-right: -16px;
+	}
+
+	&__message {
+		margin: 8px 0;
+		color: #666;
+		font-size: 13px;
+	}
+
+	&__list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
+
+	// ==========================================
+	// RULE GROUPS/ACCORDION
+	// ==========================================
+
+	&__group {
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		background: #fff;
+		overflow: hidden;
+	}
+
+	&__group-button {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 8px;
+		width: 100%;
+		padding: 12px;
+		border: none;
+		background: transparent;
+		cursor: pointer;
+		font-size: 13px;
+		font-weight: 600;
+		color: #1e1e1e;
+		text-align: left;
+
+		&:hover {
+			background-color: #f9f9f9;
+		}
+	}
+
+	&__group-icon {
+		flex-shrink: 0;
+		width: 20px;
+		height: 20px;
+		color: #666;
+		order: 10; // Move chevron to the right
+	}
+
+	&__group-title {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+	}
+
+	&__group-count {
+		font-weight: 400;
+		color: #666;
+	}
+
+	// ==========================================
+	// BADGE/STATUS
+	// ==========================================
+
+	&__badge {
+		color: #1E1E1E;
+		flex-shrink: 0;
+		display: inline-flex;
+		align-items: center;
+		padding: 2px 10px;
+		border-radius: 12px;
+		font-size: 11px;
+		font-weight: 600;
+		white-space: nowrap;
+
+		&--critical {
+			background: color.adjust( $severity-critical, $alpha: -0.9 );
+			border: 1px solid $severity-critical;
+		}
+
+		&--high {
+			background: color.adjust( $severity-high, $alpha: -0.9 );
+			border: 1px solid $severity-high;
+		}
+
+		&--medium {
+			background: color.adjust( $severity-medium, $alpha: -0.9 );
+			border: 1px solid $severity-medium;
+		}
+
+		&--low {
+			background: color.adjust( $severity-low, $alpha: -0.9 );
+			border: 1px solid $severity-low;
+		}
+	}
+
+	// ==========================================
+	// ISSUES LIST
+	// ==========================================
+
+	&__issues {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border-top: 1px solid #ddd;
+		background: #fafafa;
+	}
+
+	&__issue-list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		border: 1px solid $outline-grey;
+    	border-radius: 8px;
+	}
+
+	&__issue-row {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 4px 8px;
+		font-size: 12px;
+		border-bottom: 1px solid #ddd;
+
+		&:last-child {
+			border-bottom: none;
+			margin-bottom: 0;
+		}
+	}
+
+	&__issue-link {
+		color: #0073aa;
+		text-decoration: none;
+		cursor: pointer;
+		border: none;
+		background: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__issue-text {
+		color: #666;
+	}
+
+	// ==========================================
+	// RULES & TOGGLE
+	// ==========================================
+
+	&__rules {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__rule {
+		border-bottom: 1px solid $outline-grey;
+
+		&:last-child {
+			border-bottom: none;
+		}
+	}
+
+	&__rule-toggle {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+		padding: 12px 0;
+		background: none;
+		border: none;
+		cursor: pointer;
+		text-align: left;
+		font-size: 13px;
+		font-weight: 500;
+		color: #1e1e1e;
+		min-height: auto;
+		height: auto;
+		box-shadow: none !important;
+
+		&:hover {
+			background-color: #f9f9f9;
+		}
+
+		&:focus {
+			outline: 2px solid #0073aa;
+			outline-offset: -2px;
+		}
+
+		&:focus-visible::before {
+			box-shadow: none;
+		}
+
+		// Override Gutenberg Button styles
+		&.components-button.has-icon.has-text.has-icon-right {
+			padding: 16px;
+		}
+
+		.components-button__icon {
+			margin-left: auto;
+		}
+	}
+
+	&__rule-title {
+		flex: 1;
+		font-weight: 500;
+		color: #1e1e1e;
+		margin-right: 8px;
+	}
+
+	&__rule-content {
+		padding: 0;
+		margin: 0 16px 16px;
+		overflow: hidden;
+
+		&[aria-hidden="true"] {
+			display: none;
+		}
+	}
+
+	// ==========================================
+	// IGNORED ISSUES
+	// ==========================================
+
+	&__show-ignored {
+		display: block;
+		margin-top: 12px;
+		padding: 0 12px;
+		background: none;
+		border: none;
+		color: #0073aa;
+		font-size: 13px;
+		cursor: pointer;
+		text-align: left;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__ignored-issues {
+		margin-top: 8px;
+		padding-top: 8px;
+		border-top: 1px dashed #ddd;
+	}
+}

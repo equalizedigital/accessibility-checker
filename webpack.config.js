@@ -113,5 +113,9 @@ module.exports = {
 		'@wordpress/data': [ 'wp', 'data' ],
 		'@wordpress/api-fetch': [ 'wp', 'apiFetch' ],
 		'@wordpress/components': [ 'wp', 'components' ],
+		'@wordpress/block-editor': [ 'wp', 'blockEditor' ],
+		'@wordpress/rich-text': [ 'wp', 'richText' ],
+		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
+		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
 	},
 };
