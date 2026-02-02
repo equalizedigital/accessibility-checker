@@ -22,4 +22,8 @@ function edac_activation() {
 
 	// This is an add_option on purpose to not overwrite user settings on update.
 	add_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
+
+	// Set transient to trigger redirect to welcome page.
+	// This will be checked on admin_init and deleted after redirect.
+	set_transient( 'edac_activation_redirect', true, 60 );
 }

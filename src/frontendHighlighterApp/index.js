@@ -7,7 +7,6 @@ import { isFocusable } from 'tabbable';
 import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
-import { hashString } from '../common/helpers';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -57,6 +56,7 @@ class AccessibilityCheckerHighlight {
 		this.clearIssuesButton = document.querySelector( '#edac-highlight-clear-issues' );
 		this.stylesDisabled = false;
 		this.originalCss = [];
+		this.originalInlineStyles = [];
 
 		this.init();
 	}
@@ -85,7 +85,10 @@ class AccessibilityCheckerHighlight {
 			this.panelClose();
 			this.panelControlsFocusTrap.deactivate();
 			this.panelDescriptionFocusTrap.deactivate();
-			this.enableStyles();
+			// Only re-enable styles if they were disabled by the tool.
+			if ( this.stylesDisabled ) {
+				this.enableStyles();
+			}
 		} );
 
 		// Close description when close button is clicked
@@ -122,18 +125,46 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * This function tries to find an element on the page that matches a given HTML snippet.
-	 * It parses the HTML snippet, and compares the outer HTML of the parsed element
-	 * with all elements present on the page. If a match is found, it
-	 * adds a tooltip, checks if the element is focusable, and then returns the element.
-	 * If no matching element is found, or if the parsed HTML snippet does not contain an element,
-	 * it returns null.
+	 * It tries multiple strategies in order: selector (most stable), ancestry (more specific),
+	 * and HTML matching (fallback). If a match is found, it adds a tooltip and returns the element.
+	 * If no matching element is found, it returns null.
 	 *
-	 * @param {Object} value - Object containing the HTML snippet to be matched.
+	 * @param {Object} value - Object containing the HTML snippet and selectors.
 	 * @param {number} index - Index of the element being searched.
 	 * @return {HTMLElement|null} - Returns the matching HTML element, or null if no match is found.
 	 */
 	findElement( value, index ) {
-		// Parse the HTML snippet
+		// Try selector first (most stable - IDs/classes don't change with DOM structure)
+		if ( value.selector ) {
+			try {
+				const element = document.querySelector( value.selector );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Selector may be invalid, fall back to ancestry
+			}
+		}
+
+		// Try ancestry selector (more specific than selector but less stable)
+		if ( value.ancestry ) {
+			try {
+				const element = document.querySelector( value.ancestry );
+				if ( element ) {
+					const tooltip = this.addTooltip( element, value, index, this.issues.length );
+					this.issues[ index ].tooltip = tooltip.tooltip;
+					this.tooltips.push( tooltip );
+					return element;
+				}
+			} catch ( e ) {
+				// Ancestry selector may be invalid, fall back to HTML matching
+			}
+		}
+
+		// Fall back to HTML matching
 		let htmlToFind = value.object;
 		const parser = new DOMParser();
 		const parsedHtml = parser.parseFromString( htmlToFind, 'text/html' );
@@ -303,61 +334,71 @@ class AccessibilityCheckerHighlight {
 		// Add the tooltip to the page.
 		document.body.append( tooltip );
 
-		tooltip.dataset.targetElement = hashString( element.outerHTML );
+		// Store a unique identifier for the target element
+		// Use a WeakMap-style unique identifier based on the actual element object
+		// This ensures that even if multiple elements have identical HTML, they get different identifiers
+		if ( ! element.__edacElementId ) {
+			element.__edacElementId = 'edac-' + Math.random().toString( 36 ).substr( 2, 9 );
+		}
+		tooltip.dataset.targetElement = element.__edacElementId;
 
 		// Add creation timestamp to track order of tooltip creation
 		tooltip.dataset.creationOrder = Date.now() + Math.random(); // Ensure uniqueness
 
 		const updatePosition = function() {
-			// Find existing tooltips for the same element that were created BEFORE this one
+			// Get the sorted index and element hash for this tooltip
+			const sortedIndex = parseInt( tooltip.dataset.sortedIndex || '0', 10 );
 			const currentElementHash = tooltip.dataset.targetElement;
-			const currentCreationOrder = parseFloat( tooltip.dataset.creationOrder );
 
-			const existingTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) ).filter( ( btn ) => {
-				// Check if this tooltip targets the same element and was created before this one
-				return btn !== tooltip && btn.dataset.targetElement === currentElementHash && parseFloat( btn.dataset.creationOrder ) < currentCreationOrder;
-			} );
+			// Calculate offset based on sorted position, not creation order
+			// Count how many tooltips for this same element have a LOWER sorted index
+			let tooltipOffset = 0;
+			const allTooltips = Array.from( document.querySelectorAll( '.edac-highlight-btn' ) );
+			for ( const btn of allTooltips ) {
+				if ( btn === tooltip ) {
+					break; // Stop counting when we reach this tooltip
+				}
+				const btnSortedIndex = parseInt( btn.dataset.sortedIndex || '0', 10 );
+				// Count only tooltips for the same element that come before this one in sorted order
+				if ( btn.dataset.targetElement === currentElementHash && btnSortedIndex < sortedIndex ) {
+					tooltipOffset++;
+				}
+			}
 
-			// The offset should be the count of existing tooltips created before this one
-			const tooltipOffset = existingTooltips.length;
 			const TOOLTIP_GAP = 5; // Gap between tooltip buttons in pixels
 
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
-			} ).then( ( { x, y, middlewareData, placement } ) => {
+			} ).then( ( { x, y } ) => {
 				const elRect = element.getBoundingClientRect();
 				const elHeight = element.offsetHeight === undefined ? 0 : element.offsetHeight;
-				const elWidth = element.offsetWidth === undefined ? 0 : element.offsetWidth;
 				const tooltipHeight = tooltip.offsetHeight === undefined ? 0 : tooltip.offsetHeight;
 				const tooltipWidth = tooltip.offsetWidth === undefined ? 0 : tooltip.offsetWidth;
 
-				let top = 0;
+				// Calculate the horizontal offset for stacking multiple tooltips on the same element
 				const left = tooltipOffset * ( tooltipWidth + TOOLTIP_GAP );
 
-				if ( tooltipHeight <= ( elHeight * .8 ) ) {
-					top = tooltipHeight;
+				// Start with the position from computePosition
+				const finalLeft = x + left;
+				let finalTop = y;
+
+				// Special handling for zero-height elements (like empty <p> tags)
+				// When an element has no height, computePosition may not calculate y correctly
+				// Use the element's bounding rect top position adjusted for tooltip height
+				if ( elHeight === 0 && elRect.height === 0 ) {
+					// Element has no visual height
+					// Position tooltip above where the element is in the document
+					finalTop = elRect.top + document.documentElement.scrollTop - tooltipHeight - 5;
 				}
 
-				if ( tooltipWidth >= ( elWidth * .8 ) ) {
-					top = 0;
-				}
-
-				if ( elRect.left < tooltipWidth ) {
-					x = 0;
-				}
-
-				if ( elRect.left > window.screen ) {
-					x = window.screen.width - tooltipWidth;
-				}
-
-				if ( elRect.top < tooltipHeight ) {
-					y = 0;
-				}
+				// Note: We do NOT clamp to viewport boundaries
+				// Tooltips should follow their elements even when outside viewport
+				// They'll become visible when scrolling to the element
 
 				Object.assign( tooltip.style, {
-					left: `${ x + left }px`,
-					top: `${ y + top }px`,
+					left: `${ finalLeft }px`,
+					top: `${ finalTop }px`,
 				} );
 			} );
 		};
@@ -585,6 +626,58 @@ class AccessibilityCheckerHighlight {
 					}
 				}.bind( this ) );
 
+				// Sort issues by DOM order using native compareDocumentPosition
+				this.issues.sort( ( a, b ) => {
+					// If elements weren't found, push to end
+					if ( ! a.element && b.element ) {
+						return 1;
+					}
+					if ( a.element && ! b.element ) {
+						return -1;
+					}
+					if ( ! a.element && ! b.element ) {
+						return 0;
+					}
+
+					// Use DOM compareDocumentPosition for accurate ordering
+					const position = a.element.compareDocumentPosition( b.element );
+
+					// DOCUMENT_POSITION_FOLLOWING (4) means b comes after a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_FOLLOWING ) {
+						return -1;
+					}
+					// DOCUMENT_POSITION_PRECEDING (2) means b comes before a in DOM
+					// eslint-disable-next-line no-bitwise
+					if ( position & Node.DOCUMENT_POSITION_PRECEDING ) {
+						return 1;
+					}
+
+					// Elements are the same (or in different documents)
+					// When elements are the same, sort by issue ID for consistent ordering
+					// This ensures multiple issues on the same element appear in predictable order
+					const idA = parseInt( a.id, 10 );
+					const idB = parseInt( b.id, 10 );
+					return idA - idB;
+				} );
+
+				// Update tooltip aria-labels to reflect sorted order
+				this.issues.forEach( ( issue, sortedIndex ) => {
+					if ( issue.tooltip ) {
+						// Store the sorted index on the tooltip for debugging
+						issue.tooltip.dataset.sortedIndex = sortedIndex;
+						issue.tooltip.setAttribute(
+							'aria-label',
+							sprintf(
+								__( 'Open details for %1$s, %2$s of %3$s', 'accessibility-checker' ),
+								issue.rule_title,
+								sortedIndex + 1,
+								this.issues.length
+							)
+						);
+					}
+				} );
+
 				this.showIssueCount();
 
 				if ( id !== undefined ) {
@@ -783,8 +876,6 @@ class AccessibilityCheckerHighlight {
 		If not, then we assume the css has been combined, so we manually add it to the document.
 		*/
 		if ( ! document.querySelector( '#edac-app-css' ) ) {
-			//console.log( 'css is combined, so adding app.css to page.' );
-
 			const link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
 			link.id = 'edac-app-css';
@@ -794,23 +885,59 @@ class AccessibilityCheckerHighlight {
 			document.head.appendChild( link );
 		}
 
-		this.originalCss = Array.from( document.head.querySelectorAll( 'style[type="text/css"], style, link[rel="stylesheet"]' ) );
-
+		// Store inline styles with element references for restoration.
+		this.originalInlineStyles = [];
 		const elementsWithStyle = document.querySelectorAll( '*[style]:not([class^="edac"])' );
-		elementsWithStyle.forEach( function( element ) {
+		elementsWithStyle.forEach( ( element ) => {
+			this.originalInlineStyles.push( {
+				element,
+				style: element.getAttribute( 'style' ),
+			} );
 			element.removeAttribute( 'style' );
 		} );
 
-		this.originalCss = this.originalCss.filter( function( element ) {
-			if ( element.id === 'edac-app-css' || element.id === 'dashicons-css' ) {
-				return false;
-			}
-			return true;
-		} );
+		// Find all stylesheets in the entire document (head and body).
+		// Include: style elements, link[rel="stylesheet"], and link elements with .css href.
+		const styleElements = Array.from( document.querySelectorAll(
+			'style[type="text/css"], style, link[rel="stylesheet"], link[href$=".css"], link[href*=".css?"]'
+		) );
 
-		document.head.dataset.css = this.originalCss;
-		this.originalCss.forEach( function( element ) {
-			element.remove();
+		// Filter out our app CSS and dashicons, then store with position info.
+		this.originalCss = styleElements
+			.filter( ( element ) => element.id !== 'edac-app-css' && element.id !== 'dashicons-css' )
+			.map( ( element ) => {
+				// Store the parent and next sibling for position restoration.
+				const parent = element.parentNode;
+				let nextSibling = element.nextElementSibling;
+
+				// Find the next sibling that won't be removed (for position restoration).
+				while ( nextSibling ) {
+					// Check if this sibling will be preserved (not a stylesheet we're removing).
+					const isStyleElement = nextSibling.tagName === 'STYLE';
+					const isLinkStylesheet = nextSibling.tagName === 'LINK' && (
+						nextSibling.matches( '[rel="stylesheet"]' ) ||
+						nextSibling.matches( '[href$=".css"]' ) ||
+						nextSibling.matches( '[href*=".css?"]' )
+					);
+					const isPreserved = nextSibling.id === 'edac-app-css' || nextSibling.id === 'dashicons-css';
+
+					// If it's not a stylesheet we'll remove, or it's preserved, use it as reference.
+					if ( ( ! isStyleElement && ! isLinkStylesheet ) || isPreserved ) {
+						break;
+					}
+					nextSibling = nextSibling.nextElementSibling;
+				}
+
+				return {
+					element,
+					parent,
+					nextSibling,
+				};
+			} );
+
+		// Remove the stylesheets.
+		this.originalCss.forEach( ( item ) => {
+			item.element.remove();
 		} );
 
 		document.querySelector( 'body' ).classList.add( 'edac-app-disable-styles' );
@@ -823,16 +950,30 @@ class AccessibilityCheckerHighlight {
 	 * This function enables all styles on the page.
 	 */
 	enableStyles() {
-		this.originalCss.forEach( function( element ) {
-			if ( element.tagName === 'STYLE' ) {
-				document.head.appendChild( element.cloneNode( true ) );
+		// Restore stylesheets in their original order.
+		// Process in reverse so insertBefore places them correctly.
+		const reversedCss = [ ...this.originalCss ].reverse();
+
+		reversedCss.forEach( ( item ) => {
+			const parent = item.parent && item.parent.isConnected ? item.parent : document.head;
+
+			if ( item.nextSibling && item.nextSibling.parentNode === parent ) {
+				// Insert before the reference sibling to restore original position.
+				parent.insertBefore( item.element, item.nextSibling );
 			} else {
-				const newElement = document.createElement( 'link' );
-				newElement.rel = 'stylesheet';
-				newElement.href = element.href;
-				document.head.appendChild( newElement );
+				// Fallback: append to parent if reference sibling is no longer valid.
+				parent.appendChild( item.element );
 			}
 		} );
+
+		// Restore inline styles to their original elements.
+		if ( this.originalInlineStyles ) {
+			this.originalInlineStyles.forEach( ( item ) => {
+				if ( item.element && item.element.isConnected ) {
+					item.element.setAttribute( 'style', item.style );
+				}
+			} );
+		}
 
 		document.querySelector( 'body' ).classList.remove( 'edac-app-disable-styles' );
 

@@ -15,13 +15,18 @@ export default {
 		const href = node.getAttribute( 'href' );
 		const role = node.getAttribute( 'role' ) || '';
 
+		// Parse roles once for efficiency (DRY principle)
+		const roles = role.toLowerCase().split( /\s+/ );
+
 		// Allow roles of button or tab
-		if (
-			role
-				.toLowerCase()
-				.split( /\s+/ )
-				.some( ( r ) => [ 'button', 'tab' ].includes( r ) )
-		) {
+		if ( roles.some( ( r ) => [ 'button', 'tab' ].includes( r ) ) ) {
+			return true;
+		}
+
+		// Allow role="menuitem" with aria-expanded (for expandable menu items)
+		// See: https://wordpress.org/support/topic/improper-use-of-link-5/
+		const hasAriaExpanded = node.hasAttribute( 'aria-expanded' );
+		if ( roles.includes( 'menuitem' ) && hasAriaExpanded ) {
 			return true;
 		}
 

@@ -13,6 +13,7 @@ use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
+use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
 
 /**
  * Admin handling class.
@@ -75,6 +76,9 @@ class Admin {
 
 		$admin_footer_text = new Admin_Footer_Text();
 		$admin_footer_text->init();
+
+		$activation_redirect = new Activation_Redirect();
+		$activation_redirect->init();
 
 		$this->init_ajax();
 
