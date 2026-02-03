@@ -949,6 +949,11 @@ class REST_Api {
 			if ( ! isset( $results_by_rule[ $rule_slug ] ) ) {
 				$results_by_rule[ $rule_slug ] = [];
 			}
+			// If we have non-zero ignre_user then get the username.
+			if ( isset( $result['ignre_user'] ) && (int) $result['ignre_user'] > 0 ) {
+				$user_info                 = get_userdata( (int) $result['ignre_user'] );
+				$result['ignre_user_name'] = $user_info ? $user_info->user_login : __( 'Unknown', 'accessibility-checker' );
+			}
 			$results_by_rule[ $rule_slug ][] = $result;
 		}
 
