@@ -9,7 +9,7 @@ import { decodeEntities } from '@wordpress/html-entities';
 import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice, RadioControl } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import IssueImage, { extractImageUrls } from './IssueImage';
-import { toggleIssueIgnore } from '../api';
+import { toggleIssueDismiss } from '../api';
 
 /**
  * CodeMirror HTML viewer component

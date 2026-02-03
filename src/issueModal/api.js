@@ -13,12 +13,12 @@ import apiFetch from '@wordpress/api-fetch';
  * @param {string}  comment - Optional comment for the dismissal.
  * @return {Promise} Promise that resolves with the response data.
  */
-export const toggleIssueIgnore = async ( issueId, ignore = true, reason = '', comment = '' ) => {
+export const toggleIssueDismiss = async ( issueId, ignore = true, reason = '', comment = '' ) => {
 	return apiFetch( {
 		path: `/accessibility-checker/v1/dismiss-issue/${ issueId }`,
 		method: 'POST',
 		data: {
-			action: ignore ? 'ignore' : 'unignore',
+			action: ignore ? 'dismiss' : 'undismiss',
 			reason: ignore ? reason : '',
 			comment: ignore ? comment : '',
 		},

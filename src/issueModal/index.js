@@ -11,7 +11,7 @@ import { IssueDetailsModal } from './components/IssueDetailsModal';
 // Export the main component and utilities
 export { IssueDetailsModal, default } from './components/IssueDetailsModal';
 export { default as IssueImage, extractImageUrls } from './components/IssueImage';
-export { toggleIssueIgnore } from './api';
+export { toggleIssueDismiss } from './api';
 export { openIssueModal, closeIssueModal } from './global';
 
 // Import styles
