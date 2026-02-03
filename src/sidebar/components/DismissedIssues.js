@@ -1,0 +1,54 @@
+/**
+ * Dismissed Issues Panel
+ *
+ * Displays issues that have been dismissed.
+ */
+
+import { __ } from '@wordpress/i18n';
+import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import IssuesPanel from './IssuesPanel';
+
+const DismissedIssues = () => {
+	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
+
+	// If we have no data (still loading) let parent loaders show.
+	if ( loading || error ) {
+		return null;
+	}
+
+	const details = data?.details || {};
+	const allErrors = details.errors || [];
+	const allWarnings = details.warnings || [];
+
+	const tabs = [
+		{
+			name: 'dismissed-problems',
+			label: __( 'Dismissed Problems', 'accessibility-checker' ),
+			items: allErrors,
+		},
+		{
+			name: 'dismissed-warnings',
+			label: __( 'Dismissed Warnings', 'accessibility-checker' ),
+			items: allWarnings,
+		},
+	];
+
+	const emptyMessages = {
+		'dismissed-problems': __( 'No dismissed problems.', 'accessibility-checker' ),
+		'dismissed-warnings': __( 'No dismissed warnings.', 'accessibility-checker' ),
+	};
+
+	return (
+		<IssuesPanel
+			title={ __( 'Dismissed Issues', 'accessibility-checker' ) }
+			initialOpen={ false }
+			tabs={ tabs }
+			refreshing={ refreshing }
+			showIgnored={ true }
+			emptyMessages={ emptyMessages }
+			className="edac-dismissed-issues-panel"
+		/>
+	);
+};
+
+export default DismissedIssues;
