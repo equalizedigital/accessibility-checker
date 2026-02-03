@@ -3,16 +3,12 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { Panel, PanelBody } from '@wordpress/components';
-import { useState, useMemo } from '@wordpress/element';
+import { useMemo } from '@wordpress/element';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import AccessibilityAnalysisTabs from './AccessibilityAnalysisTabs';
-import RuleAccordion from './RuleAccordion';
-import '../sass/components/accessibility-analysis.scss';
+import IssuesPanel from './IssuesPanel';
 
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
-	const [ expandedRules, setExpandedRules ] = useState( {} );
 
 	const details = data?.details || {};
 	const problems = useMemo( () => details.errors || [], [ details ] );
@@ -23,29 +19,33 @@ const AccessibilityAnalysis = () => {
 		return null;
 	}
 
-	const toggleRule = ( ruleId ) => {
-		setExpandedRules( ( prev ) => ( {
-			...prev,
-			[ ruleId ]: ! prev[ ruleId ],
-		} ) );
+	const tabs = [
+		{
+			name: 'problems',
+			label: __( 'Problems', 'accessibility-checker' ),
+			items: problems,
+		},
+		{
+			name: 'warnings',
+			label: __( 'Needs Review', 'accessibility-checker' ),
+			items: warnings,
+		},
+	];
+
+	const emptyMessages = {
+		problems: __( 'No problems found.', 'accessibility-checker' ),
+		warnings: __( 'No items to review.', 'accessibility-checker' ),
 	};
 
 	return (
-		<Panel className="edac-analysis-panel">
-			<PanelBody
-				title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
-				initialOpen={ false }
-			>
-				<AccessibilityAnalysisTabs
-					problems={ problems }
-					warnings={ warnings }
-					refreshing={ refreshing }
-					expandedRules={ expandedRules }
-					onToggleRule={ toggleRule }
-					RuleAccordion={ RuleAccordion }
-				/>
-			</PanelBody>
-		</Panel>
+		<IssuesPanel
+			title={ __( 'Accessibility Analysis', 'accessibility-checker' ) }
+			initialOpen={ false }
+			tabs={ tabs }
+			refreshing={ refreshing }
+			showIgnored={ false }
+			emptyMessages={ emptyMessages }
+		/>
 	);
 };
 
