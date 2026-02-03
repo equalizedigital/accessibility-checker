@@ -250,15 +250,17 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</div>
 					) }
 
-					{ /* Fix Issue Panel - Placeholder */ }
-					<Panel className="edac-analysis__fix-panel" data-section="fix">
-						<PanelBody
-							title={ __( 'Fix Issue', 'accessibility-checker' ) }
-							initialOpen={ false }
-						>
-							<p>{ __( 'Fix options will go here.', 'accessibility-checker' ) }</p>
-						</PanelBody>
-					</Panel>
+					{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
+					{ rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
+						<Panel className="edac-analysis__fix-panel" data-section="fix">
+							<PanelBody
+								title={ __( 'Fix Issue', 'accessibility-checker' ) }
+								initialOpen={ false }
+							>
+								<p>{ __( 'Fix options will go here.', 'accessibility-checker' ) }</p>
+							</PanelBody>
+						</Panel>
+					) }
 
 					{ /* Dismiss Issue Panel */ }
 					<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">

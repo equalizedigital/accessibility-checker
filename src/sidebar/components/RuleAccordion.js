@@ -76,9 +76,10 @@ const SeverityBadge = ( { severity } ) => {
  *
  * @param {Object}   props          - Component props.
  * @param {Object}   props.issue    - Issue object.
+ * @param {Object}   props.rule     - Rule object (for accessing fixes, etc).
  * @param {Function} props.onAction - Action handler function.
  */
-const IssueRow = ( { issue, onAction } ) => {
+const IssueRow = ( { issue, rule, onAction } ) => {
 	return (
 		<li className="edac-analysis__issue-row">
 			<button
@@ -122,15 +123,17 @@ const IssueRow = ( { issue, onAction } ) => {
 						>
 							{ __( 'Not an Issue', 'accessibility-checker' ) }
 						</MenuItem>
-						<MenuItem
-							icon={ tool }
-							onClick={ () => {
-								onAction( 'fix', issue );
-								onClose();
-							} }
-						>
-							{ __( 'Apply fix', 'accessibility-checker' ) }
-						</MenuItem>
+						{ rule?.fixes?.length > 0 && (
+							<MenuItem
+								icon={ tool }
+								onClick={ () => {
+									onAction( 'fix', issue );
+									onClose();
+								} }
+							>
+								{ __( 'Apply fix', 'accessibility-checker' ) }
+							</MenuItem>
+						) }
 					</MenuGroup>
 				) }
 			</DropdownMenu>
@@ -257,6 +260,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 								<IssueRow
 									key={ issue.id || index }
 									issue={ issue }
+									rule={ rule }
 									onAction={ handleIssueAction }
 								/>
 							) ) }
