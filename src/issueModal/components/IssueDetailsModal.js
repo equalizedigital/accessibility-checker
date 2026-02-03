@@ -6,9 +6,10 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button, Panel, PanelBody, TextareaControl, Spinner, Notice, RadioControl } from '@wordpress/components';
+import { Modal, Button, Panel, PanelBody, Spinner, Notice, RadioControl } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import IssueImage, { extractImageUrls } from './IssueImage';
+import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 
 /**
@@ -165,7 +166,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 		setSuccessNotice( null );
 
 		try {
-			await toggleIssueIgnore( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
+			await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
 			setIsIgnored( ignore );
 			setSuccessNotice( ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
@@ -329,9 +330,9 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										] }
 										onChange={ setDismissReason }
 									/>
-									<TextareaControl
+									<RichTextarea
 										label={ __( 'Comment (optional)', 'accessibility-checker' ) }
-										help={ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }
+										help={ __( 'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.', 'accessibility-checker' ) }
 										value={ comment }
 										onChange={ setComment }
 										rows={ 3 }
