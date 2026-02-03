@@ -12,6 +12,7 @@ import { IssueDetailsModal } from './components/IssueDetailsModal';
 export { IssueDetailsModal, default } from './components/IssueDetailsModal';
 export { default as IssueImage, extractImageUrls } from './components/IssueImage';
 export { toggleIssueIgnore } from './api';
+export { openIssueModal, closeIssueModal } from './global';
 
 // Import styles
 import './sass/issue-modal.scss';
