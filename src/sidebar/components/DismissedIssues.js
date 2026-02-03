@@ -7,6 +7,7 @@
 import { __ } from '@wordpress/i18n';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
 import IssuesPanel from './IssuesPanel';
+import Icon from './Icon';
 
 const DismissedIssues = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
@@ -38,9 +39,17 @@ const DismissedIssues = () => {
 		'dismissed-warnings': __( 'No dismissed warnings.', 'accessibility-checker' ),
 	};
 
+	// Build title with info icon
+	const panelTitle = (
+		<>
+			<Icon name="info" />
+			{ __( 'Dismissed Issues', 'accessibility-checker' ) }
+		</>
+	);
+
 	return (
 		<IssuesPanel
-			title={ __( 'Dismissed Issues', 'accessibility-checker' ) }
+			title={ panelTitle }
 			initialOpen={ false }
 			tabs={ tabs }
 			refreshing={ refreshing }
