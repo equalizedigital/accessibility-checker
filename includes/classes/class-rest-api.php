@@ -291,7 +291,7 @@ class REST_Api {
 							'action'        => [
 								'required'          => true,
 								'validate_callback' => function ( $param ) {
-									return in_array( $param, [ 'enable', 'disable' ], true );
+									return in_array( $param, [ 'enable', 'disable', 'ignore', 'unignore' ], true );
 								},
 								'sanitize_callback' => 'sanitize_text_field',
 							],
