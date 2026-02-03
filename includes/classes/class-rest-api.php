@@ -1157,7 +1157,6 @@ class REST_Api {
 		$site_id    = get_current_blog_id();
 
 		// Set values based on action (matching AJAX endpoint behavior).
-		$is_enabling          = 'enable' === $action;
 		$ignre                = $is_enabling ? 1 : 0;
 		$ignre_user           = $is_enabling ? get_current_user_id() : null;
 		$ignre_user_info      = $is_enabling ? get_userdata( $ignre_user ) : null;
@@ -1167,6 +1166,7 @@ class REST_Api {
 		$ignre_reason         = $is_enabling ? $reason : null;
 		$ignre_comment        = $is_enabling ? $comment : null;
 		$ignre_global         = $is_enabling ? (int) $ignore_global : 0;
+		$is_enabling          = 'enable' || 'ignore' === $action; // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
 
 		// If largeBatch is set, update using the 'object' instead of ID.
 		// This handles cases where the same issue appears multiple times.
