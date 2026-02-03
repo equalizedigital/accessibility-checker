@@ -301,7 +301,21 @@ class REST_Api {
 							],
 							'comment'       => [
 								'required'          => false,
-								'sanitize_callback' => 'sanitize_textarea_field',
+								'sanitize_callback' => function ( $param ) {
+									// Allow basic tags, then store as HTML entities.
+									$allowed_html = [
+										'strong' => [],
+										'b'      => [],
+										'em'     => [],
+										'i'      => [],
+										'a'      => [
+											'href'   => true,
+											'target' => true,
+											'rel'    => true,
+										],
+									];
+									return esc_html( wp_kses( $param, $allowed_html ) );
+								},
 							],
 							'ignore_global' => [
 								'required'          => false,
