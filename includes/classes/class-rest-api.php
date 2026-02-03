@@ -1157,16 +1157,16 @@ class REST_Api {
 		$site_id    = get_current_blog_id();
 
 		// Set values based on action (matching AJAX endpoint behavior).
-		$ignre                = $is_enabling ? 1 : 0;
-		$ignre_user           = $is_enabling ? get_current_user_id() : null;
-		$ignre_user_info      = $is_enabling ? get_userdata( $ignre_user ) : null;
-		$ignre_username       = $is_enabling && $ignre_user_info ? $ignre_user_info->user_login : '';
-		$ignre_date           = $is_enabling ? edac_get_current_utc_datetime() : null;
-		$ignre_date_formatted = $is_enabling ? edac_format_datetime_from_utc( $ignre_date ) : '';
-		$ignre_reason         = $is_enabling ? $reason : null;
-		$ignre_comment        = $is_enabling ? $comment : null;
-		$ignre_global         = $is_enabling ? (int) $ignore_global : 0;
-		$is_enabling          = 'enable' || 'ignore' === $action; // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
+		$is_ignoring          = 'enable' || 'ignore' === $action; // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
+		$ignre                = $is_ignoring ? 1 : 0;
+		$ignre_user           = $is_ignoring ? get_current_user_id() : null;
+		$ignre_user_info      = $is_ignoring ? get_userdata( $ignre_user ) : null;
+		$ignre_username       = $is_ignoring && $ignre_user_info ? $ignre_user_info->user_login : '';
+		$ignre_date           = $is_ignoring ? edac_get_current_utc_datetime() : null;
+		$ignre_date_formatted = $is_ignoring ? edac_format_datetime_from_utc( $ignre_date ) : '';
+		$ignre_reason         = $is_ignoring ? $reason : null;
+		$ignre_comment        = $is_ignoring ? $comment : null;
+		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
 
 		// If largeBatch is set, update using the 'object' instead of ID.
 		// This handles cases where the same issue appears multiple times.
@@ -1231,7 +1231,7 @@ class REST_Api {
 				'success'       => true,
 				'issue_id'      => $issue_id,
 				'action'        => $action,
-				'ignored'       => $is_enabling,
+				'ignored'       => $is_ignoring,
 				'user'          => $ignre_username,
 				'date'          => $ignre_date_formatted,
 				'reason'        => $ignre_reason,
