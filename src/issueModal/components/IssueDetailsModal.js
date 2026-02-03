@@ -94,7 +94,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	useEffect( () => {
 		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
 			initializedIssueId.current = issue.id;
-			setComment( '' );
+			setComment( issue.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 			setDismissReason( 'false_positive' );
 			setError( null );
 			setSuccessNotice( null );
@@ -290,6 +290,14 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 									<p className="edac-analysis__dismissed-info">
 										{ __( 'This issue has been dismissed and will not appear in active issues.', 'accessibility-checker' ) }
 									</p>
+									{ issue?.ignre_comment && (
+										<div className="edac-analysis__dismissed-comment">
+											<strong>{ __( 'Ignore Comment:', 'accessibility-checker' ) }</strong>
+											<p
+												dangerouslySetInnerHTML={ { __html: decodeEntities( issue.ignre_comment ) } }
+											/>
+										</div>
+									) }
 									<Button
 										variant="secondary"
 										onClick={ () => handleToggleIgnore( false ) }

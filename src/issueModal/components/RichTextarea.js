@@ -27,6 +27,8 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const editorRef = useRef( null );
 	const linkButtonRef = useRef( null );
 	const isInitializedRef = useRef( false );
+	const lastValueRef = useRef( value );
+	const savedSelectionRef = useRef( null );
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
 
@@ -35,8 +37,46 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		if ( editorRef.current && ! isInitializedRef.current ) {
 			editorRef.current.innerHTML = value;
 			isInitializedRef.current = true;
+			lastValueRef.current = value;
 		}
 	}, [ value ] );
+
+	// Update content when external value changes and editor isn't focused
+	useEffect( () => {
+		if ( ! editorRef.current ) {
+			return;
+		}
+		if ( document.activeElement === editorRef.current ) {
+			return;
+		}
+		if ( value !== lastValueRef.current ) {
+			editorRef.current.innerHTML = value || '';
+			lastValueRef.current = value;
+		}
+	}, [ value ] );
+
+	const saveSelection = () => {
+		const selection = window.getSelection();
+		if ( selection.rangeCount > 0 ) {
+			savedSelectionRef.current = selection.getRangeAt( 0 );
+			return true;
+		}
+		return false;
+	};
+
+	const restoreSelection = () => {
+		const selection = window.getSelection();
+		if ( savedSelectionRef.current ) {
+			try {
+				selection.removeAllRanges();
+				selection.addRange( savedSelectionRef.current );
+				return true;
+			} catch ( e ) {
+				return false;
+			}
+		}
+		return false;
+	};
 
 	const applyFormatting = ( tag ) => {
 		document.execCommand( tag, false, null );
@@ -49,31 +89,32 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			return;
 		}
 
-		const selection = window.getSelection();
-		if ( selection.rangeCount === 0 ) {
-			return;
+		// Restore the selection before applying the link
+		if ( ! restoreSelection() ) {
+			editorRef.current?.focus();
 		}
 
-		const range = selection.getRangeAt( 0 );
-		const linkEl = document.createElement( 'a' );
-		linkEl.href = linkUrl;
-		linkEl.textContent = range.toString() || linkUrl;
-
-		try {
-			range.insertNode( linkEl );
-		} catch ( e ) {
-			document.execCommand( 'createLink', false, linkUrl );
-		}
+		// Use execCommand to create the link properly in contentEditable
+		document.execCommand( 'createLink', false, linkUrl );
 
 		setLinkUrl( '' );
 		setShowLinkPopover( false );
 		updateValue();
-		editorRef.current?.focus();
+	};
+
+	const handleLinkButtonClick = () => {
+		if ( ! showLinkPopover ) {
+			// Save selection before opening popover
+			saveSelection();
+		}
+		setShowLinkPopover( ! showLinkPopover );
 	};
 
 	const updateValue = () => {
 		if ( editorRef.current ) {
-			onChange( editorRef.current.innerHTML );
+			const nextValue = editorRef.current.innerHTML;
+			lastValueRef.current = nextValue;
+			onChange( nextValue );
 		}
 	};
 
@@ -117,7 +158,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					ref={ linkButtonRef }
 					icon={ link }
 					label={ __( 'Link', 'accessibility-checker' ) }
-					onClick={ () => setShowLinkPopover( ! showLinkPopover ) }
+					onClick={ handleLinkButtonClick }
 					disabled={ disabled }
 					size="small"
 					isPressed={ showLinkPopover }
