@@ -1170,8 +1170,9 @@ class REST_Api {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$site_id    = get_current_blog_id();
 
+		$allowed_ignore_actions = [ 'enable', 'ignore', 'dismiss' ];
 		// Set values based on action (matching AJAX endpoint behavior).
-		$is_ignoring          = 'enable' || 'ignore' === $action; // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
+		$is_ignoring          = in_array( $action, $allowed_ignore_actions, true ); // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
 		$ignre                = $is_ignoring ? 1 : 0;
 		$ignre_user           = $is_ignoring ? get_current_user_id() : null;
 		$ignre_user_info      = $is_ignoring ? get_userdata( $ignre_user ) : null;
