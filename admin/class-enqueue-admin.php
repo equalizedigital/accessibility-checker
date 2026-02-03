@@ -236,10 +236,6 @@ class Enqueue_Admin {
 			return;
 		}
 
-		if ( ! Helpers::is_block_editor() ) {
-			return;
-		}
-
 		// Check if this post type is scannable.
 		$post_types = Settings::get_scannable_post_types();
 		if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
