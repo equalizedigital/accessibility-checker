@@ -13,7 +13,7 @@
 	},
 	"overrides": [
 		{
-			"files": [ "src/sidebar/**/*.js", "src/sidebar/**/*.jsx" ],
+			"files": [ "src/sidebar/**/*.js", "src/sidebar/**/*.jsx", "src/issueModal/**/*.js", "src/issueModal/**/*.jsx" ],
 			"plugins": [ "react" ],
 			"parserOptions": {
 				"ecmaVersion": 2021,
