@@ -8,7 +8,6 @@ import { useState } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
-import IssueDetailsModal from './IssueDetailsModal';
 
 /**
  * Get the "View on page" URL for an issue
@@ -150,8 +149,6 @@ const IssueRow = ( { issue, onAction } ) => {
  */
 const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 	const [ showIgnored, setShowIgnored ] = useState( false );
-	const [ selectedIssue, setSelectedIssue ] = useState( null );
-	const [ focusSection, setFocusSection ] = useState( null );
 
 	// Get the appropriate view link from the editor store
 	// Use preview link for unpublished posts, permalink for published posts
@@ -179,39 +176,37 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 			return;
 		}
 
+		const openIssueModal = ( focusSection = null ) => {
+			if ( window.edacIssueModal?.open ) {
+				window.edacIssueModal.open( {
+					issue,
+					rule,
+					focusSection,
+				} );
+			}
+		};
+
 		// Handle the 'details' action that will open a modal
 		if ( action === 'details' ) {
-			setFocusSection( null );
-			setSelectedIssue( issue );
+			openIssueModal( null );
 			return;
 		}
 
 		// Handle the 'code' action to open modal with code section focused
 		if ( action === 'code' ) {
-			setFocusSection( 'code' );
-			setSelectedIssue( issue );
+			openIssueModal( 'code' );
 			return;
 		}
 
 		// Handle the 'ignore' action to open modal with dismiss section focused
 		if ( action === 'ignore' ) {
-			setFocusSection( 'dismiss' );
-			setSelectedIssue( issue );
+			openIssueModal( 'dismiss' );
 			return;
 		}
 
 		// eslint-disable-next-line no-console
 		console.log( `Action: ${ action }`, issue );
 		// TODO: Implement remaining actions (fix)
-	};
-	const handleIgnore = () => {
-		// Issue was ignored - the AJAX call has already completed
-		// The modal will close automatically after successful dismissal
-	};
-
-	const closeModal = () => {
-		setSelectedIssue( null );
-		setFocusSection( null );
 	};
 
 	return (
@@ -293,15 +288,6 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 					</ul>
 				) }
 			</div>
-
-			<IssueDetailsModal
-				issue={ selectedIssue }
-				rule={ rule }
-				onClose={ closeModal }
-				isOpen={ !! selectedIssue }
-				focusSection={ focusSection }
-				onIgnore={ handleIgnore }
-			/>
 		</div>
 	);
 };

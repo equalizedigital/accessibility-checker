@@ -9,7 +9,6 @@ import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerDat
 import AccessibilityAnalysisTabs from './AccessibilityAnalysisTabs';
 import RuleAccordion from './RuleAccordion';
 import '../sass/components/accessibility-analysis.scss';
-import '../sass/components/issue-details-modal.scss';
 
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
@@ -51,4 +50,3 @@ const AccessibilityAnalysis = () => {
 };
 
 export default AccessibilityAnalysis;
-
