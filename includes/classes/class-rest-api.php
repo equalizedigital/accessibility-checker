@@ -932,12 +932,11 @@ class REST_Api {
 		$in_clause     = "'" . implode( "','", $escaped_slugs ) . "'";
 
 		// Direct SQL query (table and values already escaped).
-		$sql = "SELECT id, postid, object, ruletype, rule, ignre, ignre_user, ignre_date, ignre_comment\n"
+		$sql = "SELECT *\n"
 			. "FROM `{$safe_table}`\n"
 			. "WHERE postid = {$post_id}\n"
 			. "AND rule IN ( {$in_clause} )\n"
-			. "AND siteid = {$siteid}\n"
-			. 'AND ignre = 0';
+			. "AND siteid = {$siteid}";
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$all_results = $wpdb->get_results( $sql, ARRAY_A );
