@@ -4,7 +4,6 @@
 
 import { __ } from '@wordpress/i18n';
 import { Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
-import { useState } from '@wordpress/element';
 import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
@@ -142,14 +141,13 @@ const IssueRow = ( { issue, onAction } ) => {
 /**
  * Rule accordion - custom expandable section for each rule type
  *
- * @param {Object}   props            - Component props.
- * @param {Object}   props.rule       - Rule object.
- * @param {boolean}  props.isExpanded - Whether accordion is expanded.
- * @param {Function} props.onToggle   - Toggle handler function.
+ * @param {Object}   props             - Component props.
+ * @param {Object}   props.rule        - Rule object.
+ * @param {boolean}  props.isExpanded  - Whether accordion is expanded.
+ * @param {boolean}  props.showIgnored - If true, show only ignored issues. If false, show only active issues.
+ * @param {Function} props.onToggle    - Toggle handler function.
  */
-const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
-	const [ showIgnored, setShowIgnored ] = useState( false );
-
+const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) => {
 	// Get the appropriate view link from the editor store
 	// Use preview link for unpublished posts, permalink for published posts
 	const viewLink = useSelect( ( select ) => {
@@ -157,11 +155,11 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
 	}, [] );
 
-	// Get issues from rule.details array
+	// Get issues from rule.details array and filter based on showIgnored flag
 	const issues = rule.details || [];
-	const activeIssues = issues.filter( ( issue ) => issue.ignre === '0' || issue.ignre === 0 );
-	const ignoredIssues = issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 );
-	const ignoredCount = ignoredIssues.length;
+	const displayedIssues = showIgnored
+		? issues.filter( ( issue ) => issue.ignre === '1' || issue.ignre === 1 )
+		: issues.filter( ( issue ) => issue.ignre === '0' || issue.ignre === 0 );
 
 	// Get severity from rule
 	const severity = rule?.severity;
@@ -219,7 +217,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				iconPosition="right"
 			>
 				<span className="edac-analysis__rule-title">
-					{ rule.title } ({ rule.count || activeIssues.length })
+					{ rule.title } ({ rule.count || displayedIssues.length })
 				</span>
 				{ severity && <SeverityBadge severity={ severity } /> }
 			</Button>
@@ -228,7 +226,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 				className="edac-analysis__rule-content"
 				aria-hidden={ ! isExpanded }
 			>
-				{ activeIssues.length > 0 && (
+				{ displayedIssues.length > 0 && (
 					<>
 						<p>
 							<strong>
@@ -244,7 +242,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 						</p>
 						<p
 							dangerouslySetInnerHTML={ {
-								__html: activeIssues.length > 1 ? rule.summary_plural : rule.summary,
+								__html: displayedIssues.length > 1 ? rule.summary_plural : rule.summary,
 							} }
 						/>
 						{ rule?.info_url && (
@@ -255,7 +253,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 							</p>
 						) }
 						<ul className="edac-analysis__issue-list">
-							{ activeIssues.map( ( issue, index ) => (
+							{ displayedIssues.map( ( issue, index ) => (
 								<IssueRow
 									key={ issue.id || index }
 									issue={ issue }
@@ -264,28 +262,6 @@ const RuleAccordion = ( { rule, isExpanded, onToggle } ) => {
 							) ) }
 						</ul>
 					</>
-				) }
-
-				{ ignoredCount > 0 && (
-					<button
-						type="button"
-						onClick={ () => setShowIgnored( ! showIgnored ) }
-						className="edac-analysis__show-ignored"
-					>
-						{ __( 'Show issues marked "Not an Issue"', 'accessibility-checker' ) } ({ ignoredCount })
-					</button>
-				) }
-
-				{ showIgnored && ignoredIssues.length > 0 && (
-					<ul className="edac-analysis__issue-list edac-analysis__ignored-issues">
-						{ ignoredIssues.map( ( issue, index ) => (
-							<IssueRow
-								key={ issue.id || `ignored-${ index }` }
-								issue={ issue }
-								onAction={ handleIssueAction }
-							/>
-						) ) }
-					</ul>
 				) }
 			</div>
 		</div>

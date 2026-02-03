@@ -2,7 +2,7 @@
  * Generic Issues Panel Component
  *
  * Reusable panel for displaying accessibility issues with tabs.
- * Can be configured for different contexts (e.g., active issues, ignored issues).
+ * Can be configured for different contexts (e.g., active issues, dismissed issues).
  */
 
 import { __ } from '@wordpress/i18n';
@@ -15,15 +15,13 @@ import '../sass/components/accessibility-analysis-tabs.scss';
 /**
  * Issues Panel Component
  *
- * @param {Object}   props               - Component props.
- * @param {string}   props.title         - Panel title.
- * @param {boolean}  props.initialOpen   - Whether panel is initially open.
- * @param {Array}    props.tabs          - Array of tab configurations.
- * @param {boolean}  props.refreshing    - Whether data is refreshing.
- * @param {boolean}  props.showIgnored   - If true, show only ignored issues. If false, show only non-ignored. If null/undefined, show all.
- * @param {Function} props.filterIssues  - Optional function to filter issues per tab.
- * @param {Object}   props.emptyMessages - Custom empty state messages per tab.
- * @param {string}   props.className     - Additional CSS class.
+ * @param {Object}  props             - Component props.
+ * @param {string}  props.title       - Panel title.
+ * @param {boolean} props.initialOpen - Whether panel is initially open.
+ * @param {Array}   props.tabs        - Array of tab configurations with rule items.
+ * @param {boolean} props.refreshing  - Whether data is refreshing.
+ * @param {boolean} props.showIgnored - If true, show only ignored issues. If false, show only non-ignored.
+ * @param {string}  props.className   - Additional CSS class.
  */
 const IssuesPanel = ( {
 	title,
@@ -31,8 +29,6 @@ const IssuesPanel = ( {
 	tabs = [],
 	refreshing = false,
 	showIgnored = null,
-	filterIssues = null,
-	emptyMessages = {},
 	className = '',
 } ) => {
 	const [ expandedRules, setExpandedRules ] = useState( {} );
@@ -44,13 +40,13 @@ const IssuesPanel = ( {
 		} ) );
 	};
 
-	// Filter items by ignored status if showIgnored is specified
-	const filterByIgnoredStatus = ( items ) => {
+	// Filter rules by their issues' ignored status
+	const filterRulesByIgnoredStatus = ( rules ) => {
 		if ( showIgnored === null || showIgnored === undefined ) {
-			return items;
+			return rules;
 		}
 
-		return items
+		return rules
 			.map( ( rule ) => {
 				// Filter details by ignored status
 				const filteredDetails = ( rule.details || [] ).filter( ( issue ) => {
@@ -74,42 +70,42 @@ const IssuesPanel = ( {
 
 	// Build tabs with counts
 	const tabsWithCounts = useMemo( () => {
-		return tabs.map( ( tab ) => {
-			let items = tab.items || [];
+		return tabs
+			.map( ( tab ) => {
+				let rules = tab.items || [];
 
-			// First apply ignored status filter if specified
-			items = filterByIgnoredStatus( items );
+				// Apply ignored status filter
+				rules = filterRulesByIgnoredStatus( rules );
 
-			// Then apply custom filter if provided
-			if ( filterIssues && tab.name ) {
-				items = filterIssues( items, tab.name );
-			}
+				const count = rules.reduce(
+					( sum, rule ) => sum + ( rule.details?.length || 0 ),
+					0,
+				);
 
-			const count = items.reduce(
-				( sum, rule ) => sum + ( rule.count || rule.details?.length || 0 ),
-				0,
-			);
+				return {
+					...tab,
+					rules,
+					count,
+					title: (
+						<>
+							{ tab.label }
+							<span className="edac-analysis__count">{ count }</span>
+						</>
+					),
+					className: 'edac-analysis__tab',
+				};
+			} )
+			.filter( ( tab ) => tab.rules.length > 0 );
+	}, [ tabs, showIgnored ] );
 
-			return {
-				...tab,
-				items,
-				count,
-				title: (
-					<>
-						{ tab.label }
-						<span className="edac-analysis__count">{ count }</span>
-					</>
-				),
-				className: 'edac-analysis__tab',
-			};
-		} );
-	}, [ tabs, showIgnored, filterIssues ] );
+	if ( tabsWithCounts.length === 0 ) {
+		return null;
+	}
 
 	const renderTabContent = ( tab ) => {
 		const currentTab = tabsWithCounts.find( ( t ) => t.name === tab.name );
-		const items = currentTab?.items || [];
-		const hasItems = items.length > 0;
-		const emptyMessage = emptyMessages[ tab.name ] || __( 'No items found.', 'accessibility-checker' );
+		const rules = currentTab?.rules || [];
+		const hasRules = rules.length > 0;
 
 		return (
 			<div className="edac-analysis__panel" role="tabpanel">
@@ -118,9 +114,9 @@ const IssuesPanel = ( {
 						{ __( 'Updating accessibility data...', 'accessibility-checker' ) }
 					</p>
 				) }
-				{ ! refreshing && hasItems && (
+				{ ! refreshing && hasRules && (
 					<div className="edac-analysis__rules">
-						{ items.map( ( rule ) => {
+						{ rules.map( ( rule ) => {
 							const ruleId = rule.slug || rule.id || rule.title;
 							return (
 								<RuleAccordion
@@ -128,13 +124,11 @@ const IssuesPanel = ( {
 									rule={ rule }
 									isExpanded={ expandedRules[ ruleId ] || false }
 									onToggle={ () => toggleRule( ruleId ) }
+									showIgnored={ showIgnored }
 								/>
 							);
 						} ) }
 					</div>
-				) }
-				{ ! refreshing && ! hasItems && (
-					<p className="edac-analysis__message">{ emptyMessage }</p>
 				) }
 			</div>
 		);
