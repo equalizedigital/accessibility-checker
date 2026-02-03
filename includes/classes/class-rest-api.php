@@ -330,8 +330,24 @@ class REST_Api {
 								},
 							],
 						],
-						'permission_callback' => function () {
-							return current_user_can( 'edit_posts' );
+						'permission_callback' => function ( $request ) {
+							global $wpdb;
+							$issue_id = isset( $request['issue_id'] ) ? (int) $request['issue_id'] : 0;
+							if ( $issue_id <= 0 ) {
+								return false;
+							}
+
+							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+							if ( ! $table_name ) {
+								return false;
+							}
+
+							// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
+							$post_id = (int) $wpdb->get_var(
+								$wpdb->prepare( 'SELECT postid FROM %i WHERE id = %d', $table_name, $issue_id )
+							);
+
+							return $post_id > 0 ? current_user_can( 'edit_post', $post_id ) : false;
 						},
 					]
 				);
