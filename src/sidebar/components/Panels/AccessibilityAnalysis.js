@@ -4,9 +4,9 @@
 
 import { __ } from '@wordpress/i18n';
 import { useMemo } from '@wordpress/element';
-import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import IssuesPanel from './IssuesPanel';
-import Icon from './Icon';
+import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
+import IssuesPanel from '../IssuesPanel';
+import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
@@ -20,7 +20,7 @@ const AccessibilityAnalysis = () => {
 		return null;
 	}
 
-	// Count total active (non-ignored) issues for icon display
+	// Count total active (non-ignored) issues for icon display.
 	const problemCount = useMemo( () => {
 		return problems.reduce( ( sum, rule ) => {
 			const activeIssues = ( rule.details || [] ).filter(
@@ -30,16 +30,7 @@ const AccessibilityAnalysis = () => {
 		}, 0 );
 	}, [ problems ] );
 
-	const warningCount = useMemo( () => {
-		return warnings.reduce( ( sum, rule ) => {
-			const activeIssues = ( rule.details || [] ).filter(
-				( issue ) => issue.ignre !== '1' && issue.ignre !== 1,
-			);
-			return sum + activeIssues.length;
-		}, 0 );
-	}, [ warnings ] );
-
-	// Determine which icon to show
+	// Determine which icon to show, error if any problems, warning otherwise.
 	let iconName = null;
 	if ( problemCount > 0 ) {
 		iconName = 'error';
@@ -65,17 +56,12 @@ const AccessibilityAnalysis = () => {
 		warnings: __( 'No items to review.', 'accessibility-checker' ),
 	};
 
-	// Build title with icon
-	const panelTitle = (
-		<>
-			{ iconName && <Icon name={ iconName } /> }
-			{ __( 'Accessibility Analysis', 'accessibility-checker' ) }
-		</>
-	);
-
 	return (
 		<IssuesPanel
-			title={ panelTitle }
+			title={ renderPanelTitleWithIcon(
+				iconName,
+				__( 'Accessibility Analysis', 'accessibility-checker' ),
+			) }
 			initialOpen={ false }
 			tabs={ tabs }
 			refreshing={ refreshing }

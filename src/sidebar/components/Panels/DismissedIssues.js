@@ -5,9 +5,9 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import IssuesPanel from './IssuesPanel';
-import Icon from './Icon';
+import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
+import IssuesPanel from '../IssuesPanel';
+import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 
 const DismissedIssues = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
@@ -40,11 +40,9 @@ const DismissedIssues = () => {
 	};
 
 	// Build title with info icon
-	const panelTitle = (
-		<>
-			<Icon name="info" />
-			{ __( 'Dismissed Issues', 'accessibility-checker' ) }
-		</>
+	const panelTitle = renderPanelTitleWithIcon(
+		'info',
+		__( 'Dismissed Issues', 'accessibility-checker' ),
 	);
 
 	return (
