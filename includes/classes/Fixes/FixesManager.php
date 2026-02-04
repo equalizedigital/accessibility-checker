@@ -288,11 +288,12 @@ class FixesManager {
 
 		// loop through body and find fixes for those items.
 		foreach ( $body as $rule_slug => $settings ) {
-			$fix        = $this->get_fix( $rule_slug );
-			$fix_fields = $fix->get_fields_array();
+			$fix = $this->get_fix( $rule_slug );
 			if ( ! $fix ) {
 				return new \WP_Error( 'edac_fix_not_found', esc_html__( 'Fix not found', 'accessibility-checker' ), [ 'status' => 404 ] );
 			}
+
+			$fix_fields = $fix->get_fields_array();
 
 			foreach ( $settings as $setting => $value ) {
 				$sanitizer = isset( $fix_fields[ $setting ]['sanitize_callback'] ) ? $fix_fields[ $setting ]['sanitize_callback'] : [ FixesPage::class, 'sanitize_' . $fix_fields[ $setting ]['type'] ];
