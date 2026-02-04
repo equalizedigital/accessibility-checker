@@ -999,6 +999,10 @@ class REST_Api {
 				if ( isset( $rule['wcag'] ) ) {
 					$rules[ $key ] += $this->get_wcag_url_and_title_from_number( $rule['wcag'] );
 				}
+				// Keep fixes in the returned data.
+				if ( ! isset( $rules[ $key ]['fixes'] ) && isset( $rule['fixes'] ) ) {
+					$rules[ $key ]['fixes'] = $rule['fixes'];
+				}
 			} else {
 				$rule['count']  = 0;
 				$passed_rules[] = $rule;
