@@ -108,6 +108,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
 	const pendingRefetch = useRef( false );
+	const pendingRescan = useRef( false );
 	const [ comment, setComment ] = useState( '' );
 	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -142,6 +143,15 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 				} );
 				window.dispatchEvent( event );
 				pendingRefetch.current = false;
+			}
+			if ( pendingRescan.current ) {
+				const rescanEvent = new CustomEvent( 'edac-fix-settings-saved', {
+					detail: {
+						success: true,
+					},
+				} );
+				document.dispatchEvent( rescanEvent );
+				pendingRescan.current = false;
 			}
 			initializedIssueId.current = null;
 		}
@@ -223,6 +233,10 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
 	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
+	const handleFixSettingsUpdated = () => {
+		pendingRescan.current = true;
+	};
+
 	return (
 		<Modal
 			// translators: %s is the issue ID number
@@ -292,6 +306,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						<FixPanel
 							rule={ rule }
 							issue={ issue }
+							onFixSettingsUpdated={ handleFixSettingsUpdated }
 						/>
 					) }
 
