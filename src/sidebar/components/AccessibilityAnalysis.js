@@ -43,7 +43,7 @@ const AccessibilityAnalysis = () => {
 	let iconName = null;
 	if ( problemCount > 0 ) {
 		iconName = 'error';
-	} else if ( warningCount > 0 ) {
+	} else {
 		iconName = 'warning';
 	}
 
