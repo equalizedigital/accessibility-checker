@@ -8,10 +8,36 @@ import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Modal, Button, Panel, PanelBody, Spinner, Notice, RadioControl } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
+import { useSelect } from '@wordpress/data';
+import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
 import RichTextarea from './RichTextarea';
 import FixPanel from './FixPanel';
 import { toggleIssueDismiss } from '../api';
+import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
+
+/**
+ * Get the "View on page" URL for an issue
+ *
+ * @param {Object} issue    - The issue object containing id.
+ * @param {string} viewLink - The permalink or preview link.
+ * @return {string|null} The URL to view the issue on the frontend.
+ */
+const getViewOnPageUrl = ( issue, viewLink ) => {
+	const { highlightNonce } = window.edac_sidebar_app || {};
+
+	if ( ! viewLink ) {
+		return null;
+	}
+
+	const url = new URL( viewLink );
+	url.searchParams.set( 'edac', issue.id );
+	if ( highlightNonce ) {
+		url.searchParams.set( 'edac_nonce', highlightNonce );
+	}
+
+	return url.toString();
+};
 
 /**
  * CodeMirror HTML viewer component
@@ -186,6 +212,16 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 			setIsSubmitting( false );
 		}
 	};
+
+	// Get the appropriate view link from the editor store
+	// Use preview link for unpublished posts, permalink for published posts
+	const viewLink = useSelect( ( select ) => {
+		const { getEditedPostPreviewLink, getPermalink, isCurrentPostPublished } = select( editorStore );
+		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
+	}, [] );
+
+	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
+	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
 	return (
 		<Modal
@@ -367,8 +403,51 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 				</div>
 
 				<div className="edac-analysis__issue-modal-right">
-					<div className="edac-analysis__issue-modal-placeholder" data-section="sidebar">
-						<p>{ __( 'Type, Severity, Landmark, and View on Page button will go here.', 'accessibility-checker' ) }</p>
+					<div className="edac-analysis__issue-sidebar" data-section="sidebar">
+						<h3 className="edac-analysis__issue-sidebar-title">
+							{ __( 'Issue Details', 'accessibility-checker' ) }
+						</h3>
+						<ul className="edac-analysis__issue-sidebar-list">
+							{ rule?.rule_type && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Type', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ rule.rule_type }
+									</span>
+								</li>
+							) }
+							{ severityLabel && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Severity', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ severityLabel }
+									</span>
+								</li>
+							) }
+							{ issue?.landmark && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Landmark', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ issue.landmark }
+									</span>
+								</li>
+							) }
+						</ul>
+						{ viewUrl && (
+							<Button
+								variant="secondary"
+								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
+								className="edac-analysis__issue-sidebar-button"
+							>
+								{ __( 'View on Page', 'accessibility-checker' ) }
+							</Button>
+						) }
 					</div>
 				</div>
 			</div>
