@@ -4,10 +4,10 @@
 
 import { __ } from '@wordpress/i18n';
 import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
-import AccessibilityStatus from './AccessibilityStatus';
-import AccessibilityAnalysis from './AccessibilityAnalysis';
-import DismissedIssues from './DismissedIssues';
-import ReadabilityAnalysis from './ReadabilityAnalysis';
+import AccessibilityStatus from './Panels/AccessibilityStatus';
+import AccessibilityAnalysis from './Panels/AccessibilityAnalysis';
+import DismissedIssues from './Panels/DismissedIssues';
+import ReadabilityAnalysis from './Panels/ReadabilityAnalysis';
 import '../sass/components/sidebar-content.scss';
 
 /**
