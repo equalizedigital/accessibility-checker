@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { Panel, PanelBody, Button, Spinner, Notice, ToggleControl, TextControl, TextareaControl } from '@wordpress/components';
-import { useState, useEffect, useCallback } from '@wordpress/element';
-import { external } from '@wordpress/icons';
+import { useState, useEffect, useCallback, memo } from '@wordpress/element';
+import { decodeEntities } from '@wordpress/html-entities';
 import apiFetch from '@wordpress/api-fetch';
 
 /**
@@ -19,6 +19,7 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 	const [ formValues, setFormValues ] = useState( {} );
 	const [ isSaving, setIsSaving ] = useState( false );
 	const [ notice, setNotice ] = useState( null );
+	const [ shouldNotifyParent, setShouldNotifyParent ] = useState( false );
 
 	useEffect( () => {
 		const fetchFixInfo = async () => {
@@ -27,16 +28,11 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 
 			try {
 				const path = `/edac/v1/fix-fields/${ slug }`;
-				// eslint-disable-next-line no-console
-				console.log( 'Fetching fix info from:', path );
 
 				const response = await apiFetch( {
 					path,
 					method: 'GET',
 				} );
-
-				// eslint-disable-next-line no-console
-				console.log( 'Fix response:', response );
 
 				if ( response.success ) {
 					setFixInfo( response );
@@ -57,8 +53,6 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 					}
 				}
 			} catch ( err ) {
-				// eslint-disable-next-line no-console
-				console.error( 'Fix fetch error:', err );
 				const errorMsg = err.message || `Error loading ${ slug } fix information.`;
 				setError( errorMsg );
 				if ( onError ) {
@@ -71,6 +65,16 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 
 		fetchFixInfo();
 	}, [ slug ] );
+
+	// Notify parent only after all local state has settled
+	useEffect( () => {
+		if ( shouldNotifyParent && ! isSaving ) {
+			if ( onFixSettingsUpdated ) {
+				onFixSettingsUpdated();
+			}
+			setShouldNotifyParent( false );
+		}
+	}, [ shouldNotifyParent, isSaving, onFixSettingsUpdated ] );
 
 	const handleFieldChange = ( key, value ) => {
 		setFormValues( ( prev ) => ( {
@@ -93,13 +97,14 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 					[ fixInfo.fix_slug ]: formValues,
 				},
 			} );
+
 			setNotice( {
 				status: 'success',
 				message: __( 'Fix settings saved.', 'accessibility-checker' ),
 			} );
-			if ( onFixSettingsUpdated ) {
-				onFixSettingsUpdated();
-			}
+			// Set flag to notify parent only after isSaving is set to false
+			setShouldNotifyParent( true );
+
 			setFixInfo( ( prev ) => {
 				if ( ! prev?.fields ) {
 					return prev;
@@ -127,30 +132,47 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 
 	const renderField = ( fieldKey, field ) => {
 		const value = formValues[ fieldKey ];
+		const decodedLabel = decodeEntities( field.label );
+
 		if ( field.type === 'checkbox' ) {
 			return (
-				<ToggleControl
-					label={ field.label }
-					checked={ !! value }
-					onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
-				/>
+				<div key={ fieldKey } className="edac-fix-field edac-fix-field--checkbox">
+					<label className="edac-fix-field__label" dangerouslySetInnerHTML={ { __html: decodedLabel } } />
+					<ToggleControl
+						checked={ !! value }
+						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
+					/>
+					{ field.description && (
+						<p className="edac-fix-field__description" dangerouslySetInnerHTML={ { __html: field.description } } />
+					) }
+				</div>
 			);
 		}
 		if ( field.type === 'textarea' ) {
 			return (
-				<TextareaControl
-					label={ field.label }
-					value={ value ?? '' }
-					onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
-				/>
+				<div key={ fieldKey } className="edac-fix-field edac-fix-field--textarea">
+					<label className="edac-fix-field__label" htmlFor={ fieldKey } dangerouslySetInnerHTML={ { __html: decodedLabel } } />
+					<TextareaControl
+						value={ value ?? '' }
+						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
+					/>
+					{ field.description && (
+						<p className="edac-fix-field__description" dangerouslySetInnerHTML={ { __html: field.description } } />
+					) }
+				</div>
 			);
 		}
 		return (
-			<TextControl
-				label={ field.label }
-				value={ value ?? '' }
-				onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
-			/>
+			<div key={ fieldKey } className="edac-fix-field edac-fix-field--text">
+				<label className="edac-fix-field__label" htmlFor={ fieldKey } dangerouslySetInnerHTML={ { __html: decodedLabel } } />
+				<TextControl
+					value={ value ?? '' }
+					onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
+				/>
+				{ field.description && (
+					<p className="edac-fix-field__description" dangerouslySetInnerHTML={ { __html: field.description } } />
+				) }
+			</div>
 		);
 	};
 
@@ -195,12 +217,7 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 			{ Object.keys( fixInfo.fields ).length > 0 && (
 				<div className="edac-fix-card__fields">
 					{ Object.entries( fixInfo.fields ).map( ( [ fieldKey, field ] ) => (
-						<div key={ fieldKey } className="edac-fix-card__field-item">
-							{ renderField( fieldKey, field ) }
-							{ field.description && (
-								<p className="edac-fix-card__field-description" dangerouslySetInnerHTML={ { __html: field.description } } />
-							) }
-						</div>
+						renderField( fieldKey, field )
 					) ) }
 				</div>
 			) }
@@ -225,10 +242,10 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 				</Button>
 				<Button
 					variant="secondary"
-					icon={ external }
 					href={ `${ settingsUrl }#${ fixInfo.fix_slug }` }
 					target="_blank"
 					rel="noopener noreferrer"
+					disabled={ isSaving }
 				>
 					{ __( 'Open Fix Settings', 'accessibility-checker' ) }
 				</Button>
@@ -236,6 +253,8 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 		</div>
 	);
 };
+
+const MemoizedFixCard = memo( FixCard );
 
 /**
  * FixPanel Component
@@ -258,6 +277,12 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 			return [ ...prev, errorMessage ];
 		} );
 	}, [] );
+
+	const memoizedOnFixSettingsUpdated = useCallback( () => {
+		if ( onFixSettingsUpdated ) {
+			onFixSettingsUpdated();
+		}
+	}, [ onFixSettingsUpdated ] );
 
 	const dismissError = ( index ) => {
 		setErrors( ( prev ) => prev.filter( ( _, i ) => i !== index ) );
@@ -285,16 +310,16 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 				) ) }
 
 				<p className="edac-fix-panel__intro">
-					{ __( 'This issue can be resolved by enabling one or more of the fixes below in Accessibility Checker settings.', 'accessibility-checker' ) }
+					{ __( 'This issue may be resolved by enabling one or more of the fixes below in Accessibility Checker settings.', 'accessibility-checker' ) }
 				</p>
 
 				<div className="edac-fix-panel__cards">
-					{ rule.fixes.map( ( fixSlug, index ) => (
-						<FixCard
-							key={ index }
+					{ rule.fixes.map( ( fixSlug ) => (
+						<MemoizedFixCard
+							key={ fixSlug }
 							slug={ fixSlug }
 							onError={ handleError }
-							onFixSettingsUpdated={ onFixSettingsUpdated }
+							onFixSettingsUpdated={ memoizedOnFixSettingsUpdated }
 						/>
 					) ) }
 				</div>
