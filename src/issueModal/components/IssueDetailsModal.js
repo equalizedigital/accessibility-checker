@@ -13,7 +13,7 @@ import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
 import RichTextarea from './RichTextarea';
 import FixPanel from './FixPanel';
-import { toggleIssueDismiss } from '../api';
+import DismissPanel from './DismissPanel';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { setPendingRescan, setPendingRefetch } from '../index';
 
@@ -108,27 +108,14 @@ const CodeMirrorViewer = ( { value } ) => {
 export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection, onIgnore } ) => {
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
-	const [ comment, setComment ] = useState( '' );
-	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
-	const [ isSubmitting, setIsSubmitting ] = useState( false );
-	const [ error, setError ] = useState( null );
-	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
-	const [ isIgnored, setIsIgnored ] = useState( false );
 
 	// Initialize state when modal opens with a NEW issue
 	useEffect( () => {
 		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
 			initializedIssueId.current = issue.id;
-			setComment( issue.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
-			setDismissReason( 'false_positive' );
-			setError( null );
-			setSuccessNotice( null );
-			setIsSubmitting( false );
 			// Open dismiss panel if focusSection is 'dismiss'
 			setIsDismissPanelOpen( focusSection === 'dismiss' );
-			// Set initial ignored state from issue data
-			setIsIgnored( issue.ignre === '1' || issue.ignre === 1 );
 		}
 	}, [ isOpen, issue?.id ] ); // ONLY depend on isOpen and issue.id, NOT focusSection
 
@@ -178,28 +165,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	if ( ! isOpen || ! issue ) {
 		return null;
 	}
-
-	const handleToggleIgnore = async ( ignore ) => {
-		setIsSubmitting( true );
-		setError( null );
-		setSuccessNotice( null );
-		try {
-			await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
-			setIsIgnored( ignore );
-			setSuccessNotice( ignore
-				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
-				: __( 'Issue restored successfully.', 'accessibility-checker' ),
-			);
-			setPendingRefetch( true );
-			if ( onIgnore ) {
-				onIgnore( issue, ignore );
-			}
-		} catch ( err ) {
-			setError( err.message );
-		} finally {
-			setIsSubmitting( false );
-		}
-	};
 
 	// Get the appropriate view link from the editor store
 	// Use preview link for unpublished posts, permalink for published posts
@@ -294,103 +259,12 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					) }
 
 					{ /* Dismiss Issue Panel */ }
-					<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
-						<PanelBody
-							title={ __( 'Dismiss Issue', 'accessibility-checker' ) }
-							opened={ isDismissPanelOpen }
-							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
-						>
-							{ successNotice && (
-								<Notice
-									status="success"
-									isDismissible={ true }
-									onRemove={ () => setSuccessNotice( null ) }
-								>
-									{ successNotice }
-								</Notice>
-							) }
-							{ error && (
-								<Notice
-									status="error"
-									isDismissible={ true }
-									onRemove={ () => setError( null ) }
-								>
-									{ error }
-								</Notice>
-							) }
-							{ isIgnored ? (
-								<>
-									<p className="edac-analysis__dismissed-info">
-										{ __( 'This issue has been dismissed and will not appear in active issues.', 'accessibility-checker' ) }
-									</p>
-									{ issue?.ignre_comment && (
-										<div className="edac-analysis__dismissed-comment">
-											<strong>{ __( 'Ignore Comment:', 'accessibility-checker' ) }</strong>
-											<p
-												dangerouslySetInnerHTML={ { __html: decodeEntities( issue.ignre_comment ) } }
-											/>
-										</div>
-									) }
-									<Button
-										variant="secondary"
-										onClick={ () => handleToggleIgnore( false ) }
-										disabled={ isSubmitting }
-										className="edac-analysis__dismiss-button"
-									>
-										{ isSubmitting ? (
-											<>
-												<Spinner />
-												{ __( 'Restoring...', 'accessibility-checker' ) }
-											</>
-										) : (
-											__( 'Restore Issue', 'accessibility-checker' )
-										) }
-									</Button>
-								</>
-							) : (
-								<>
-									<RadioControl
-										label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
-										selected={ dismissReason }
-										options={ [
-											{
-												label: __( 'False positive', 'accessibility-checker' ),
-												value: 'false_positive',
-												description: __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
-											},
-											{
-												label: __( 'Remediated', 'accessibility-checker' ),
-												value: 'remediated',
-												description: __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
-											},
-											{
-												label: __( 'Intentional', 'accessibility-checker' ),
-												value: 'intentional',
-												description: __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
-											},
-										] }
-										onChange={ setDismissReason }
-									/>
-									<RichTextarea
-										label={ __( 'Dismiss Comment', 'accessibility-checker' ) }
-										help={ __( 'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.', 'accessibility-checker' ) }
-										value={ comment }
-										onChange={ setComment }
-										rows={ 3 }
-										disabled={ isSubmitting }
-									/>
-									<Button
-										variant="secondary"
-										onClick={ () => handleToggleIgnore( true ) }
-										disabled={ isSubmitting }
-										className="edac-analysis__dismiss-button"
-									>
-										{ __( 'Dismiss Issue', 'accessibility-checker' ) }
-									</Button>
-								</>
-							) }
-						</PanelBody>
-					</Panel>
+					<DismissPanel
+						issue={ issue }
+						isOpen={ isDismissPanelOpen }
+						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
+						onIgnore={ onIgnore }
+					/>
 				</div>
 
 				<div className="edac-analysis__issue-modal-right">
