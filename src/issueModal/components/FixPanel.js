@@ -241,10 +241,12 @@ const MemoizedFixCard = memo( FixCard );
  *
  * Displays all available fixes for an issue.
  *
- * @param {Object} props      - Component props.
- * @param {Object} props.rule - Rule object containing fixes array.
+ * @param {Object}   props          - Component props.
+ * @param {Object}   props.rule     - Rule object containing fixes array.
+ * @param {boolean}  props.isOpen   - Whether the panel is open.
+ * @param {Function} props.onToggle - Callback when panel is toggled.
  */
-const FixPanel = ( { rule } ) => {
+const FixPanel = ( { rule, isOpen, onToggle } ) => {
 	const [ errors, setErrors ] = useState( [] );
 
 	const handleError = useCallback( ( errorMessage ) => {
@@ -266,37 +268,40 @@ const FixPanel = ( { rule } ) => {
 	}
 
 	return (
-		<Panel className="edac-analysis__fix-panel" data-section="fix">
-			<PanelBody
-				title={ __( 'Fix Issue', 'accessibility-checker' ) }
-				initialOpen={ false }
-			>
-				{ errors.map( ( error, index ) => (
-					<Notice
-						key={ index }
-						status="error"
-						isDismissible={ true }
-						onRemove={ () => dismissError( index ) }
-					>
-						{ error }
-					</Notice>
-				) ) }
-
-				<p className="edac-fix-panel__intro">
-					{ __( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ) }
-				</p>
-
-				<div className="edac-fix-panel__cards">
-					{ rule.fixes.map( ( fixSlug ) => (
-						<MemoizedFixCard
-							key={ fixSlug }
-							slug={ fixSlug }
-							onError={ handleError }
-						/>
+		<div className="edac-analysis__fix-panel" data-section="fix">
+			<Panel>
+				<PanelBody
+					title={ __( 'Fix Issue', 'accessibility-checker' ) }
+					opened={ isOpen }
+					onToggle={ onToggle }
+				>
+					{ errors.map( ( error, index ) => (
+						<Notice
+							key={ index }
+							status="error"
+							isDismissible={ true }
+							onRemove={ () => dismissError( index ) }
+						>
+							{ error }
+						</Notice>
 					) ) }
-				</div>
-			</PanelBody>
-		</Panel>
+
+					<p className="edac-fix-panel__intro">
+						{ __( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ) }
+					</p>
+
+					<div className="edac-fix-panel__cards">
+						{ rule.fixes.map( ( fixSlug ) => (
+							<MemoizedFixCard
+								key={ fixSlug }
+								slug={ fixSlug }
+								onError={ handleError }
+							/>
+						) ) }
+					</div>
+				</PanelBody>
+			</Panel>
+		</div>
 	);
 };
 

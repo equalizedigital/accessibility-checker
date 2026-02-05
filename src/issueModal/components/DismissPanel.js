@@ -55,127 +55,129 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	};
 
 	return (
-		<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
-			<PanelBody
-				title={
-					isIgnored
-						? __( 'Issue Dismissed', 'accessibility-checker' )
-						: __( 'Dismiss Issue', 'accessibility-checker' )
-				}
-				opened={ isOpen }
-				onToggle={ onToggle }
-			>
-				{ successNotice && (
-					<Notice
-						status="success"
-						isDismissible={ true }
-						onRemove={ () => setSuccessNotice( null ) }
-					>
-						{ successNotice }
-					</Notice>
-				) }
-				{ error && (
-					<Notice status="error" isDismissible={ true } onRemove={ () => setError( null ) }>
-						{ error }
-					</Notice>
-				) }
-				{ isIgnored ? (
-					<>
-						<p className="edac-analysis__dismissed-info">
-							{ __(
-								'This issue has been dismissed and will not appear in active issues.',
-								'accessibility-checker',
-							) }
-						</p>
-						{ issue?.ignre_comment && (
-							<div className="edac-analysis__dismissed-comment">
-								<strong>{ __( 'Ignore Comment:', 'accessibility-checker' ) }</strong>
-								<p
-									dangerouslySetInnerHTML={ {
-										__html: decodeEntities( issue.ignre_comment ),
-									} }
-								/>
-							</div>
-						) }
-						<Button
-							variant="secondary"
-							onClick={ () => handleToggleIgnore( false ) }
-							disabled={ isSubmitting }
-							className="edac-analysis__dismiss-button"
+		<div className="edac-analysis__dismiss-panel" data-section="dismiss">
+			<Panel>
+				<PanelBody
+					title={
+						isIgnored
+							? __( 'Issue Dismissed', 'accessibility-checker' )
+							: __( 'Dismiss Issue', 'accessibility-checker' )
+					}
+					opened={ isOpen }
+					onToggle={ onToggle }
+				>
+					{ successNotice && (
+						<Notice
+							status="success"
+							isDismissible={ true }
+							onRemove={ () => setSuccessNotice( null ) }
 						>
-							{ isSubmitting ? (
-								<>
-									<Spinner />
-									{ __( 'Restoring...', 'accessibility-checker' ) }
-								</>
-							) : (
-								__( 'Restore Issue', 'accessibility-checker' )
+							{ successNotice }
+						</Notice>
+					) }
+					{ error && (
+						<Notice status="error" isDismissible={ true } onRemove={ () => setError( null ) }>
+							{ error }
+						</Notice>
+					) }
+					{ isIgnored ? (
+						<>
+							<p className="edac-analysis__dismissed-info">
+								{ __(
+									'This issue has been dismissed and will not appear in active issues.',
+									'accessibility-checker',
+								) }
+							</p>
+							{ issue?.ignre_comment && (
+								<div className="edac-analysis__dismissed-comment">
+									<strong>{ __( 'Ignore Comment:', 'accessibility-checker' ) }</strong>
+									<p
+										dangerouslySetInnerHTML={ {
+											__html: decodeEntities( issue.ignre_comment ),
+										} }
+									/>
+								</div>
 							) }
-						</Button>
-					</>
-				) : (
-					<>
-						<RadioControl
-							label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
-							selected={ dismissReason }
-							options={ [
-								{
-									label: __( 'False positive', 'accessibility-checker' ),
-									value: 'false_positive',
-									description: __(
-										'The scanner flagged this, but it does not apply to this content.',
-										'accessibility-checker',
-									),
-								},
-								{
-									label: __( 'Remediated', 'accessibility-checker' ),
-									value: 'remediated',
-									description: __(
-										'The issue has been fixed, but the page has not been rescanned yet.',
-										'accessibility-checker',
-									),
-								},
-								{
-									label: __( 'Intentional', 'accessibility-checker' ),
-									value: 'intentional',
-									description: __(
-										'Reviewed and verified to meet accessibility requirements.',
-										'accessibility-checker',
-									),
-								},
-							] }
-							onChange={ setDismissReason }
-						/>
-						<RichTextarea
-							label={ __( 'Comment (optional)', 'accessibility-checker' ) }
-							help={ __(
-								'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.',
-								'accessibility-checker',
-							) }
-							value={ comment }
-							onChange={ setComment }
-							rows={ 3 }
-							disabled={ isSubmitting }
-						/>
-						<Button
-							variant="secondary"
-							onClick={ () => handleToggleIgnore( true ) }
-							disabled={ isSubmitting }
-							className="edac-analysis__dismiss-button"
-						>
-							{ isSubmitting ? (
-								<>
-									<Spinner />
-									{ __( 'Dismissing...', 'accessibility-checker' ) }
-								</>
-							) : (
-								__( 'Dismiss Issue', 'accessibility-checker' )
-							) }
-						</Button>
-					</>
-				) }
-			</PanelBody>
-		</Panel>
+							<Button
+								variant="secondary"
+								onClick={ () => handleToggleIgnore( false ) }
+								disabled={ isSubmitting }
+								className="edac-analysis__dismiss-button"
+							>
+								{ isSubmitting ? (
+									<>
+										<Spinner />
+										{ __( 'Restoring...', 'accessibility-checker' ) }
+									</>
+								) : (
+									__( 'Restore Issue', 'accessibility-checker' )
+								) }
+							</Button>
+						</>
+					) : (
+						<>
+							<RadioControl
+								label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
+								selected={ dismissReason }
+								options={ [
+									{
+										label: __( 'False positive', 'accessibility-checker' ),
+										value: 'false_positive',
+										description: __(
+											'The scanner flagged this, but it does not apply to this content.',
+											'accessibility-checker',
+										),
+									},
+									{
+										label: __( 'Remediated', 'accessibility-checker' ),
+										value: 'remediated',
+										description: __(
+											'The issue has been fixed, but the page has not been rescanned yet.',
+											'accessibility-checker',
+										),
+									},
+									{
+										label: __( 'Intentional', 'accessibility-checker' ),
+										value: 'intentional',
+										description: __(
+											'Reviewed and verified to meet accessibility requirements.',
+											'accessibility-checker',
+										),
+									},
+								] }
+								onChange={ setDismissReason }
+							/>
+							<RichTextarea
+								label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+								help={ __(
+									'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.',
+									'accessibility-checker',
+								) }
+								value={ comment }
+								onChange={ setComment }
+								rows={ 3 }
+								disabled={ isSubmitting }
+							/>
+							<Button
+								variant="secondary"
+								onClick={ () => handleToggleIgnore( true ) }
+								disabled={ isSubmitting }
+								className="edac-analysis__dismiss-button"
+							>
+								{ isSubmitting ? (
+									<>
+										<Spinner />
+										{ __( 'Dismissing...', 'accessibility-checker' ) }
+									</>
+								) : (
+									__( 'Dismiss Issue', 'accessibility-checker' )
+								) }
+							</Button>
+						</>
+					) }
+				</PanelBody>
+			</Panel>
+		</div>
 	);
 };
 
