@@ -309,11 +309,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					</div>
 				</div>
 			</div>
-			<div className="edac-analysis__issue-modal-footer">
-				<Button variant="secondary" onClick={ onClose }>
-					{ __( 'Close', 'accessibility-checker' ) }
-				</Button>
-			</div>
 		</Modal>
 	);
 };
