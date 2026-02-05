@@ -296,7 +296,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					{ /* Dismiss Issue Panel */ }
 					<Panel className="edac-analysis__dismiss-panel" data-section="dismiss">
 						<PanelBody
-							title={ isIgnored ? __( 'Issue Dismissed', 'accessibility-checker' ) : __( 'Dismiss Issue', 'accessibility-checker' ) }
+							title={ __( 'Dismiss Issue', 'accessibility-checker' ) }
 							opened={ isDismissPanelOpen }
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 						>
@@ -372,7 +372,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										onChange={ setDismissReason }
 									/>
 									<RichTextarea
-										label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+										label={ __( 'Dismiss Comment', 'accessibility-checker' ) }
 										help={ __( 'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.', 'accessibility-checker' ) }
 										value={ comment }
 										onChange={ setComment }
@@ -385,14 +385,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										disabled={ isSubmitting }
 										className="edac-analysis__dismiss-button"
 									>
-										{ isSubmitting ? (
-											<>
-												<Spinner />
-												{ __( 'Dismissing...', 'accessibility-checker' ) }
-											</>
-										) : (
-											__( 'Dismiss Issue', 'accessibility-checker' )
-										) }
+										{ __( 'Dismiss Issue', 'accessibility-checker' ) }
 									</Button>
 								</>
 							) }
