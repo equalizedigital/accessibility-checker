@@ -176,10 +176,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
 	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
-	const handleFixSettingsUpdated = () => {
-		setPendingRescan( true );
-	};
-
 	// Don't render if there's no issue data
 	if ( ! issue || ! rule ) {
 		return null;

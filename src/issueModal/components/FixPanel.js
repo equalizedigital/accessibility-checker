@@ -3,23 +3,22 @@ import { Panel, PanelBody, Button, Spinner, Notice, ToggleControl, TextControl, 
 import { useState, useEffect, useCallback, memo } from '@wordpress/element';
 import { decodeEntities } from '@wordpress/html-entities';
 import apiFetch from '@wordpress/api-fetch';
+import { setPendingRescan } from '../index';
 
 /**
  * Single Fix Card Component
  *
- * @param {Object}   props                      - Component props.
- * @param {string}   props.slug                 - Fix slug.
- * @param {Function} props.onError              - Error callback.
- * @param {Function} props.onFixSettingsUpdated - Callback when fix settings are updated.
+ * @param {Object}   props         - Component props.
+ * @param {string}   props.slug    - Fix slug.
+ * @param {Function} props.onError - Error callback.
  */
-const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
+const FixCard = ( { slug, onError } ) => {
 	const [ fixInfo, setFixInfo ] = useState( null );
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ error, setError ] = useState( null );
 	const [ formValues, setFormValues ] = useState( {} );
 	const [ isSaving, setIsSaving ] = useState( false );
 	const [ notice, setNotice ] = useState( null );
-	const [ shouldNotifyParent, setShouldNotifyParent ] = useState( false );
 
 	useEffect( () => {
 		const fetchFixInfo = async () => {
@@ -66,16 +65,6 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 		fetchFixInfo();
 	}, [ slug ] );
 
-	// Notify parent only after all local state has settled
-	useEffect( () => {
-		if ( shouldNotifyParent && ! isSaving ) {
-			if ( onFixSettingsUpdated ) {
-				onFixSettingsUpdated();
-			}
-			setShouldNotifyParent( false );
-		}
-	}, [ shouldNotifyParent, isSaving, onFixSettingsUpdated ] );
-
 	const handleFieldChange = ( key, value ) => {
 		setFormValues( ( prev ) => ( {
 			...prev,
@@ -102,8 +91,9 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 				status: 'success',
 				message: __( 'Fix settings saved.', 'accessibility-checker' ),
 			} );
-			// Set flag to notify parent only after isSaving is set to false
-			setShouldNotifyParent( true );
+
+			// Set pending rescan flag directly
+			setPendingRescan( true );
 
 			setFixInfo( ( prev ) => {
 				if ( ! prev?.fields ) {
@@ -251,11 +241,10 @@ const MemoizedFixCard = memo( FixCard );
  *
  * Displays all available fixes for an issue.
  *
- * @param {Object}   props                      - Component props.
- * @param {Object}   props.rule                 - Rule object containing fixes array.
- * @param {Function} props.onFixSettingsUpdated - Callback when any fix settings are updated, to allow parent to refresh data if needed.
+ * @param {Object} props      - Component props.
+ * @param {Object} props.rule - Rule object containing fixes array.
  */
-const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
+const FixPanel = ( { rule } ) => {
 	const [ errors, setErrors ] = useState( [] );
 
 	const handleError = useCallback( ( errorMessage ) => {
@@ -267,12 +256,6 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 			return [ ...prev, errorMessage ];
 		} );
 	}, [] );
-
-	const memoizedOnFixSettingsUpdated = useCallback( () => {
-		if ( onFixSettingsUpdated ) {
-			onFixSettingsUpdated();
-		}
-	}, [ onFixSettingsUpdated ] );
 
 	const dismissError = ( index ) => {
 		setErrors( ( prev ) => prev.filter( ( _, i ) => i !== index ) );
@@ -309,7 +292,6 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 							key={ fixSlug }
 							slug={ fixSlug }
 							onError={ handleError }
-							onFixSettingsUpdated={ memoizedOnFixSettingsUpdated }
 						/>
 					) ) }
 				</div>
