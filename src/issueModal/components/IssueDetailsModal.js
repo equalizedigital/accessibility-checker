@@ -1,7 +1,7 @@
 /**
  * Issue Details Modal Component
  *
- * Standalone version for use outside of the sidebar.
+ * Standalone version for use outside the sidebar.
  */
 
 import { __, sprintf } from '@wordpress/i18n';
@@ -15,6 +15,7 @@ import RichTextarea from './RichTextarea';
 import FixPanel from './FixPanel';
 import { toggleIssueDismiss } from '../api';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
+import { setPendingRescan, setPendingRefetch } from '../index';
 
 /**
  * Get the "View on page" URL for an issue
@@ -107,8 +108,6 @@ const CodeMirrorViewer = ( { value } ) => {
 export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection, onIgnore } ) => {
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
-	const pendingRefetch = useRef( false );
-	const pendingRescan = useRef( false );
 	const [ comment, setComment ] = useState( '' );
 	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -117,8 +116,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
 	const [ isIgnored, setIsIgnored ] = useState( false );
 
-	// Reset state only when modal opens with a NEW issue (different ID)
-	// Dispatch pending refetch event when modal closes
+	// Initialize state when modal opens with a NEW issue
 	useEffect( () => {
 		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
 			initializedIssueId.current = issue.id;
@@ -132,30 +130,14 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 			// Set initial ignored state from issue data
 			setIsIgnored( issue.ignre === '1' || issue.ignre === 1 );
 		}
-		// When modal closes, dispatch pending refetch event if needed
-		if ( ! isOpen ) {
-			if ( pendingRefetch.current ) {
-				// Dispatch event to notify other components (sidebar status, old metabox)
-				const event = new CustomEvent( 'edac-ignore-updated', {
-					detail: {
-						pending: true,
-					},
-				} );
-				window.dispatchEvent( event );
-				pendingRefetch.current = false;
-			}
-			if ( pendingRescan.current ) {
-				const rescanEvent = new CustomEvent( 'edac-fix-settings-saved', {
-					detail: {
-						success: true,
-					},
-				} );
-				document.dispatchEvent( rescanEvent );
-				pendingRescan.current = false;
-			}
-			initializedIssueId.current = null;
+	}, [ isOpen, issue?.id ] ); // ONLY depend on isOpen and issue.id, NOT focusSection
+
+	// Handle focus section changes separately
+	useEffect( () => {
+		if ( isOpen && focusSection === 'dismiss' ) {
+			setIsDismissPanelOpen( true );
 		}
-	}, [ isOpen, issue?.id, focusSection, issue?.ignre ] );
+	}, [ isOpen, focusSection ] );
 
 	// Focus the specified section when modal opens
 	useEffect( () => {
@@ -201,7 +183,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 		setIsSubmitting( true );
 		setError( null );
 		setSuccessNotice( null );
-
 		try {
 			await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
 			setIsIgnored( ignore );
@@ -209,10 +190,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 				: __( 'Issue restored successfully.', 'accessibility-checker' ),
 			);
-
-			// Queue refetch for when modal closes (to avoid re-render closing the modal)
-			pendingRefetch.current = true;
-
+			setPendingRefetch( true );
 			if ( onIgnore ) {
 				onIgnore( issue, ignore );
 			}
@@ -234,8 +212,13 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
 	const handleFixSettingsUpdated = () => {
-		pendingRescan.current = true;
+		setPendingRescan( true );
 	};
+
+	// Don't render if there's no issue data
+	if ( ! issue || ! rule ) {
+		return null;
+	}
 
 	return (
 		<Modal
@@ -302,7 +285,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					) }
 
 					{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
-					{ rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
+					{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
 						<FixPanel
 							rule={ rule }
 							issue={ issue }
