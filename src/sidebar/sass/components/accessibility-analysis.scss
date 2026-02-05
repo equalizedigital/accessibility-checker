@@ -147,6 +147,7 @@
 		padding: 0;
 		border: 1px solid $outline-grey;
     	border-radius: 8px;
+		background: #fff;
 	}
 
 	&__issue-row {
@@ -247,6 +248,7 @@
 		padding: 0;
 		margin: 0 16px 16px;
 		overflow: hidden;
+		background: #f9f9f9;
 
 		&[aria-hidden="true"] {
 			display: none;
