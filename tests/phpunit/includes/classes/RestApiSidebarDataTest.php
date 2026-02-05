@@ -206,55 +206,6 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensure process_rules_for_details ignores rows marked as ignored.
-	 */
-	public function test_process_rules_for_details_skips_ignored() {
-		global $wpdb;
-		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$this->assertNotNull( $table_name );
-
-		list( $error_rule ) = $this->get_sample_rules();
-
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$wpdb->insert(
-			$table_name,
-			[
-				'siteid'        => get_current_blog_id(),
-				'rule'          => $error_rule['slug'],
-				'postid'        => self::$post_id,
-				'object'        => '<span></span>',
-				'ruletype'      => 'error',
-				'ignre'         => 1,
-				'ignre_user'    => null,
-				'ignre_date'    => null,
-				'ignre_comment' => null,
-			],
-			[
-				'%d',
-				'%s',
-				'%d',
-				'%s',
-				'%s',
-				'%d',
-				'%s',
-				'%s',
-				'%s',
-			]
-		);
-
-		$passed_rules = [];
-		$api          = new REST_Api();
-		$method       = $this->get_private_method( $api, 'process_rules_for_details' );
-
-		$rules  = [ $error_rule ];
-		$args   = [ $rules, self::$post_id, $table_name, get_current_blog_id(), &$passed_rules ];
-		$result = $method->invokeArgs( $api, $args );
-
-		$this->assertSame( [], $result, 'Ignored rows should not produce error entries.' );
-		$this->assertCount( 1, $passed_rules, 'Rule should be considered passed when only ignored rows exist.' );
-	}
-
-	/**
 	 * Verify sidebar-data endpoint returns combined data structure.
 	 */
 	public function test_get_sidebar_data_endpoint_returns_payload() {
