@@ -299,7 +299,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</ul>
 						{ viewUrl && (
 							<Button
-								variant="secondary"
+								variant="primary"
 								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
 								className="edac-analysis__issue-sidebar-button"
 							>
