@@ -202,7 +202,6 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 		return null;
 	}
 
-	const settingsUrl = '/wp-admin/admin.php?page=accessibility_checker_settings';
 	const statusClass = fixInfo.enabled ? 'edac-fix-card--enabled' : 'edac-fix-card--disabled';
 
 	return (
@@ -238,16 +237,7 @@ const FixCard = ( { slug, onError, onFixSettingsUpdated } ) => {
 					onClick={ handleSave }
 					disabled={ isSaving }
 				>
-					{ isSaving ? __( 'Saving…', 'accessibility-checker' ) : __( 'Save Fix Settings', 'accessibility-checker' ) }
-				</Button>
-				<Button
-					variant="secondary"
-					href={ `${ settingsUrl }#${ fixInfo.fix_slug }` }
-					target="_blank"
-					rel="noopener noreferrer"
-					disabled={ isSaving }
-				>
-					{ __( 'Open Fix Settings', 'accessibility-checker' ) }
+					{ __( 'Save', 'accessibility-checker' ) }
 				</Button>
 			</div>
 		</div>
@@ -295,7 +285,7 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 	return (
 		<Panel className="edac-analysis__fix-panel" data-section="fix">
 			<PanelBody
-				title={ __( 'Available Fixes', 'accessibility-checker' ) }
+				title={ __( 'Fix Issue', 'accessibility-checker' ) }
 				initialOpen={ false }
 			>
 				{ errors.map( ( error, index ) => (
@@ -310,7 +300,7 @@ const FixPanel = ( { rule, onFixSettingsUpdated } ) => {
 				) ) }
 
 				<p className="edac-fix-panel__intro">
-					{ __( 'This issue may be resolved by enabling one or more of the fixes below in Accessibility Checker settings.', 'accessibility-checker' ) }
+					{ __( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ) }
 				</p>
 
 				<div className="edac-fix-panel__cards">
