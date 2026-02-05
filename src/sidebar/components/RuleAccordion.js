@@ -3,11 +3,12 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { Button, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
-import { chevronUp, chevronDown, moreVertical, seen, code, check, tool } from '@wordpress/icons';
+import { Button } from '@wordpress/components';
+import { chevronUp, chevronDown } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 import { getSeverityLabel } from '../utils/severityHelpers';
+import IssueRow from './IssueRow';
 
 /**
  * Get the "View on page" URL for an issue
@@ -46,76 +47,6 @@ const SeverityBadge = ( { severity } ) => {
 		<span className={ `edac-analysis__badge edac-analysis__badge--${ severityKey }` }>
 			{ severityLabel }
 		</span>
-	);
-};
-
-/**
- * Single issue row with actions dropdown
- *
- * @param {Object}   props          - Component props.
- * @param {Object}   props.issue    - Issue object.
- * @param {Object}   props.rule     - Rule object (for accessing fixes, etc).
- * @param {Function} props.onAction - Action handler function.
- */
-const IssueRow = ( { issue, rule, onAction } ) => {
-	return (
-		<li className="edac-analysis__issue-row">
-			<button
-				type="button"
-				className="edac-analysis__issue-link"
-				onClick={ () => onAction( 'details', issue ) }
-			>
-				{ __( 'Issue', 'accessibility-checker' ) } #{ issue.id }
-			</button>
-			<DropdownMenu
-				icon={ moreVertical }
-				label={ __( 'Issue actions', 'accessibility-checker' ) }
-				className="edac-analysis__issue-menu"
-			>
-				{ ( { onClose } ) => (
-					<MenuGroup>
-						<MenuItem
-							icon={ seen }
-							onClick={ () => {
-								onAction( 'view', issue );
-								onClose();
-							} }
-						>
-							{ __( 'View on page', 'accessibility-checker' ) }
-						</MenuItem>
-						<MenuItem
-							icon={ code }
-							onClick={ () => {
-								onAction( 'code', issue );
-								onClose();
-							} }
-						>
-							{ __( 'Show code', 'accessibility-checker' ) }
-						</MenuItem>
-						<MenuItem
-							icon={ check }
-							onClick={ () => {
-								onAction( 'ignore', issue );
-								onClose();
-							} }
-						>
-							{ __( 'Not an Issue', 'accessibility-checker' ) }
-						</MenuItem>
-						{ rule?.fixes?.length > 0 && (
-							<MenuItem
-								icon={ tool }
-								onClick={ () => {
-									onAction( 'fix', issue );
-									onClose();
-								} }
-							>
-								{ __( 'Apply fix', 'accessibility-checker' ) }
-							</MenuItem>
-						) }
-					</MenuGroup>
-				) }
-			</DropdownMenu>
-		</li>
 	);
 };
 
