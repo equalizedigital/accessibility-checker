@@ -165,27 +165,14 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 			}
 		};
 
-		// Handle the 'details' action that will open a modal
-		if ( action === 'details' ) {
-			openIssueModal( null );
+		const focusableSections = [ 'code', 'ignore', 'fix' ];
+
+		if ( action && focusableSections.includes( action ) ) {
+			openIssueModal( action );
 			return;
 		}
 
-		// Handle the 'code' action to open modal with code section focused
-		if ( action === 'code' ) {
-			openIssueModal( 'code' );
-			return;
-		}
-
-		// Handle the 'ignore' action to open modal with dismiss section focused
-		if ( action === 'ignore' ) {
-			openIssueModal( 'dismiss' );
-			return;
-		}
-
-		// eslint-disable-next-line no-console
-		console.log( `Action: ${ action }`, issue );
-		// TODO: Implement remaining actions (fix)
+		openIssueModal( null );
 	};
 
 	return (
