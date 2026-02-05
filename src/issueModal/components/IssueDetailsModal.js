@@ -6,16 +6,14 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button, Panel, PanelBody, Spinner, Notice, RadioControl } from '@wordpress/components';
+import { Modal, Button } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
-import RichTextarea from './RichTextarea';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
-import { setPendingRescan, setPendingRefetch } from '../index';
 
 /**
  * Get the "View on page" URL for an issue
@@ -250,7 +248,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						<FixPanel
 							rule={ rule }
 							issue={ issue }
-							onFixSettingsUpdated={ handleFixSettingsUpdated }
 						/>
 					) }
 
