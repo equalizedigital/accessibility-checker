@@ -107,20 +107,27 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
+	const [ isFixPanelOpen, setIsFixPanelOpen ] = useState( false );
 
 	// Initialize state when modal opens with a NEW issue
 	useEffect( () => {
 		if ( isOpen && issue && initializedIssueId.current !== issue.id ) {
 			initializedIssueId.current = issue.id;
 			// Open dismiss panel if focusSection is 'dismiss'
-			setIsDismissPanelOpen( focusSection === 'dismiss' );
+			const shouldOpenDismiss = focusSection === 'dismiss';
+			const shouldOpenFix = focusSection === 'fix';
+			setIsDismissPanelOpen( shouldOpenDismiss );
+			setIsFixPanelOpen( shouldOpenFix );
 		}
-	}, [ isOpen, issue?.id ] ); // ONLY depend on isOpen and issue.id, NOT focusSection
+	}, [ isOpen, issue?.id, focusSection ] );
 
 	// Handle focus section changes separately
 	useEffect( () => {
 		if ( isOpen && focusSection === 'dismiss' ) {
 			setIsDismissPanelOpen( true );
+		}
+		if ( isOpen && focusSection === 'fix' ) {
+			setIsFixPanelOpen( true );
 		}
 	}, [ isOpen, focusSection ] );
 
@@ -248,6 +255,8 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						<FixPanel
 							rule={ rule }
 							issue={ issue }
+							isOpen={ isFixPanelOpen }
+							onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
 						/>
 					) }
 
