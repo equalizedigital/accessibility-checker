@@ -8,6 +8,10 @@
 
 namespace EDAC\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Class that handles admin notices
  *
