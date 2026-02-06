@@ -7,6 +7,10 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Class that handles adding an upgrade promotion menu item.
  *
