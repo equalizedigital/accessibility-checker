@@ -5,6 +5,11 @@
  * @package Accessibility_Checker
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 // get the post type of the current editor page.
 $is_virtual_page = edac_is_virtual_page( get_the_ID() );
 
