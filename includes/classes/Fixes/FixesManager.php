@@ -24,6 +24,10 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\FocusOutlineFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Manager class for fixes.
  *
