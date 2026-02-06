@@ -4,11 +4,12 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
-import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useCallback, useEffect } from '@wordpress/element';
-import Icon from './Icon';
-import '../sass/components/spinner.scss';
-import '../sass/components/accessibility-status.scss';
+import Icon from '../Icon';
+import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
+import '../../sass/components/spinner.scss';
+import '../../sass/components/accessibility-status.scss';
 
 /**
  * Accessibility Status component
@@ -94,11 +95,9 @@ const AccessibilityStatus = () => {
 	return (
 		<Panel>
 			<PanelBody
-				title={ (
-					<>
-						<Icon name={ statusIconName } />
-						{ __( 'Accessibility Status', 'accessibility-checker' ) }
-					</>
+				title={ renderPanelTitleWithIcon(
+					statusIconName,
+					__( 'Accessibility Status', 'accessibility-checker' ),
 				) }
 				initialOpen={ true }
 				className="edac-panel-body edac-accessibility-status"

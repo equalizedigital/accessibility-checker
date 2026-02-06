@@ -269,6 +269,90 @@ class REST_Api {
 				);
 			}
 		);
+
+		// Dismiss/restore issue endpoint.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/dismiss-issue/(?P<issue_id>\d+)',
+					[
+						'methods'             => 'POST',
+						'callback'            => [ $this, 'dismiss_issue' ],
+						'args'                => [
+							'issue_id'      => [
+								'required'          => true,
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param );
+								},
+								'sanitize_callback' => 'absint',
+							],
+							'action'        => [
+								'required'          => true,
+								'validate_callback' => function ( $param ) {
+									return in_array( $param, [ 'enable', 'disable', 'dismiss', 'undismiss', 'ignore', 'unignore' ], true );
+								},
+								'sanitize_callback' => 'sanitize_text_field',
+							],
+							'reason'        => [
+								'required'          => false,
+								'sanitize_callback' => 'sanitize_text_field',
+							],
+							'comment'       => [
+								'required'          => false,
+								'sanitize_callback' => function ( $param ) {
+									// Allow basic tags, then store as HTML entities.
+									$allowed_html = [
+										'strong' => [],
+										'b'      => [],
+										'em'     => [],
+										'i'      => [],
+										'a'      => [
+											'href'   => true,
+											'target' => true,
+											'rel'    => true,
+										],
+									];
+									return esc_html( wp_kses( $param, $allowed_html ) );
+								},
+							],
+							'ignore_global' => [
+								'required'          => false,
+								'default'           => 0,
+								'sanitize_callback' => 'absint',
+							],
+							'largeBatch'    => [
+								'required'          => false,
+								'default'           => false,
+								'sanitize_callback' => function ( $param ) {
+									return filter_var( $param, FILTER_VALIDATE_BOOLEAN );
+								},
+							],
+						],
+						'permission_callback' => function ( $request ) {
+							global $wpdb;
+							$issue_id = isset( $request['issue_id'] ) ? (int) $request['issue_id'] : 0;
+							if ( $issue_id <= 0 ) {
+								return false;
+							}
+
+							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+							if ( ! $table_name ) {
+								return false;
+							}
+
+							// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
+							$post_id = (int) $wpdb->get_var(
+								$wpdb->prepare( 'SELECT postid FROM %i WHERE id = %d', $table_name, $issue_id )
+							);
+
+							return $post_id > 0 ? current_user_can( 'edit_post', $post_id ) : false;
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -878,12 +962,11 @@ class REST_Api {
 		$in_clause     = "'" . implode( "','", $escaped_slugs ) . "'";
 
 		// Direct SQL query (table and values already escaped).
-		$sql = "SELECT id, postid, object, ruletype, rule, ignre, ignre_user, ignre_date, ignre_comment\n"
+		$sql = "SELECT *\n"
 			. "FROM `{$safe_table}`\n"
 			. "WHERE postid = {$post_id}\n"
 			. "AND rule IN ( {$in_clause} )\n"
-			. "AND siteid = {$siteid}\n"
-			. 'AND ignre = 0';
+			. "AND siteid = {$siteid}";
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared
 		$all_results = $wpdb->get_results( $sql, ARRAY_A );
@@ -894,6 +977,11 @@ class REST_Api {
 			$rule_slug = $result['rule'];
 			if ( ! isset( $results_by_rule[ $rule_slug ] ) ) {
 				$results_by_rule[ $rule_slug ] = [];
+			}
+			// If we have non-zero ignre_user then get the username.
+			if ( isset( $result['ignre_user'] ) && (int) $result['ignre_user'] > 0 ) {
+				$user_info                 = get_userdata( (int) $result['ignre_user'] );
+				$result['ignre_user_name'] = $user_info ? $user_info->user_login : __( 'Unknown', 'accessibility-checker' );
 			}
 			$results_by_rule[ $rule_slug ][] = $result;
 		}
@@ -910,6 +998,10 @@ class REST_Api {
 				// Add WCAG URL based on wcag number.
 				if ( isset( $rule['wcag'] ) ) {
 					$rules[ $key ] += $this->get_wcag_url_and_title_from_number( $rule['wcag'] );
+				}
+				// Keep fixes in the returned data.
+				if ( ! isset( $rules[ $key ]['fixes'] ) && isset( $rule['fixes'] ) ) {
+					$rules[ $key ]['fixes'] = $rule['fixes'];
 				}
 			} else {
 				$rule['count']  = 0;
@@ -1077,5 +1169,112 @@ class REST_Api {
 		}
 
 		return $wcag_data_to_return;
+	}
+
+	/**
+	 * REST handler for dismissing or restoring an issue.
+	 *
+	 * @param \WP_REST_Request $request The request object.
+	 * @return \WP_REST_Response|\WP_Error Response object on success, WP_Error on failure.
+	 */
+	public function dismiss_issue( $request ) {
+		global $wpdb;
+
+		$issue_id      = (int) $request['issue_id'];
+		$action        = $request->get_param( 'action' );
+		$reason        = $request->get_param( 'reason' ) ?? '';
+		$comment       = $request->get_param( 'comment' ) ?? '';
+		$ignore_global = $request->get_param( 'ignore_global' ) ?? 0;
+		$large_batch   = $request->get_param( 'largeBatch' ) ?? false;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		$allowed_ignore_actions = [ 'enable', 'ignore', 'dismiss' ];
+		// Set values based on action (matching AJAX endpoint behavior).
+		$is_ignoring          = in_array( $action, $allowed_ignore_actions, true ); // old systems send 'enable' when ignoring. This handles both for back compat but 'enable' is very unclear and should be swapped.
+		$ignre                = $is_ignoring ? 1 : 0;
+		$ignre_user           = $is_ignoring ? get_current_user_id() : null;
+		$ignre_user_info      = $is_ignoring ? get_userdata( $ignre_user ) : null;
+		$ignre_username       = $is_ignoring && $ignre_user_info ? $ignre_user_info->user_login : '';
+		$ignre_date           = $is_ignoring ? edac_get_current_utc_datetime() : null;
+		$ignre_date_formatted = $is_ignoring ? edac_format_datetime_from_utc( $ignre_date ) : '';
+		$ignre_reason         = $is_ignoring ? $reason : null;
+		$ignre_comment        = $is_ignoring ? $comment : null;
+		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
+
+		// If largeBatch is set, update using the 'object' instead of ID.
+		// This handles cases where the same issue appears multiple times.
+		if ( $large_batch ) {
+			// Get the 'object' from the issue id.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $issue_id ) );
+
+			if ( ! $object ) {
+				return new \WP_Error(
+					'issue_not_found',
+					__( 'Issue not found.', 'accessibility-checker' ),
+					[ 'status' => 404 ]
+				);
+			}
+
+			// Update all issues with the same object.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
+			$result = $wpdb->query(
+				$wpdb->prepare(
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND object = %s',
+					$table_name,
+					$ignre,
+					$ignre_user,
+					$ignre_date,
+					$ignre_reason,
+					$ignre_comment,
+					$ignre_global,
+					$site_id,
+					$object
+				)
+			);
+		} else {
+			// Update single issue by ID.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
+			$result = $wpdb->query(
+				$wpdb->prepare(
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND id = %d',
+					$table_name,
+					$ignre,
+					$ignre_user,
+					$ignre_date,
+					$ignre_reason,
+					$ignre_comment,
+					$ignre_global,
+					$site_id,
+					$issue_id
+				)
+			);
+		}
+
+		if ( false === $result ) {
+			return new \WP_Error(
+				'database_error',
+				__( 'Failed to update the issue.', 'accessibility-checker' ),
+				[ 'status' => 500 ]
+			);
+		}
+
+		return new \WP_REST_Response(
+			[
+				'success'       => true,
+				'issue_id'      => $issue_id,
+				'action'        => $action,
+				'ignored'       => $is_ignoring,
+				'user'          => $ignre_username,
+				'date'          => $ignre_date_formatted,
+				'reason'        => $ignre_reason,
+				'comment'       => $ignre_comment,
+				'ignore_global' => $ignre_global,
+				'large_batch'   => $large_batch,
+			],
+			200
+		);
 	}
 }

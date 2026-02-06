@@ -21,6 +21,10 @@ module.exports = {
 			'./src/sidebar/index.js',
 			'./src/sidebar/sass/sidebar.scss',
 		],
+		issueModal: [
+			'./src/issueModal/index.js',
+			'./src/issueModal/sass/issue-modal.scss',
+		],
 		frontendHighlighterApp: [
 			'./src/frontendHighlighterApp/index.js',
 			'./src/frontendHighlighterApp/sass/app.scss',

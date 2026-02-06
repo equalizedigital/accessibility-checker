@@ -66,6 +66,7 @@ class Update_Database {
 				ignre_global mediumint(9) NOT NULL,
 				ignre_user bigint(20) NULL,
 				ignre_date timestamp NULL,
+				ignre_reason varchar(50) NULL,
 				ignre_comment mediumtext NULL,
 				PRIMARY KEY (id),
 				KEY postid_index (postid)

@@ -4,12 +4,13 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { PanelBody, PanelRow, TextareaControl, Button, Notice } from '@wordpress/components';
-import { useAccessibilityCheckerData } from '../hooks/useAccessibilityCheckerData';
+import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useSelect } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
-import Icon from './Icon';
-import '../sass/components/readability-analysis.scss';
+import Icon from '../Icon';
+import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
+import '../../sass/components/readability-analysis.scss';
 
 /**
  * Readability Analysis component
@@ -173,14 +174,11 @@ const ReadabilityAnalysis = () => {
 
 	return (
 		<PanelBody
-			title={ (
-				<>
-					<Icon name={getPanelIcon()} />
-					{ __( 'Readability Analysis', 'accessibility-checker' ) }
-					{ hasContent && postGrade > 0 && ` (${ postGradeReadable })` }
-				</>
+			title={ renderPanelTitleWithIcon(
+				getPanelIcon(),
+				__( 'Readability Analysis', 'accessibility-checker' ),
+				hasContent && postGrade > 0 ? ` (${ postGradeReadable })` : '',
 			) }
-			initialOpen={ true }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
 		>
 			{ notice && (
