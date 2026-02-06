@@ -7,7 +7,8 @@ import { Button } from '@wordpress/components';
 import { chevronUp, chevronDown } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
-import { getSeverityLabel } from '../utils/severityHelpers';
+import { getSeverityBadgeProps } from '../utils/badgeHelpers';
+import Badge from './Badge';
 import IssueRow from './IssueRow';
 
 /**
@@ -40,13 +41,17 @@ const getViewOnPageUrl = ( issue, viewLink ) => {
  * @param {number|string} props.severity - Severity level.
  */
 const SeverityBadge = ( { severity } ) => {
-	const severityLabel = getSeverityLabel( severity );
-	const severityKey = severityLabel.toLowerCase();
+	const badgeProps = getSeverityBadgeProps( severity );
+
+	if ( ! badgeProps ) {
+		return null;
+	}
 
 	return (
-		<span className={ `edac-analysis__badge edac-analysis__badge--${ severityKey }` }>
-			{ severityLabel }
-		</span>
+		<Badge
+			label={ badgeProps.label }
+			type={ badgeProps.type }
+		/>
 	);
 };
 
@@ -158,6 +163,7 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 									issue={ issue }
 									rule={ rule }
 									onAction={ handleIssueAction }
+									showIgnored={ showIgnored }
 								/>
 							) ) }
 						</ul>

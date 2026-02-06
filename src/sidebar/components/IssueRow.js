@@ -7,16 +7,18 @@
 import { __ } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { moreVertical, seen, code, check, tool } from '@wordpress/icons';
+import Badge from './Badge';
 
 /**
  * Single issue row with actions dropdown
  *
- * @param {Object}   props          - Component props.
- * @param {Object}   props.issue    - Issue object.
- * @param {Object}   props.rule     - Rule object (for accessing fixes, etc).
- * @param {Function} props.onAction - Action handler function.
+ * @param {Object}   props             - Component props.
+ * @param {Object}   props.issue       - Issue object.
+ * @param {Object}   props.rule        - Rule object (for accessing fixes, etc).
+ * @param {Function} props.onAction    - Action handler function.
+ * @param {boolean}  props.showIgnored - Whether showing dismissed issues.
  */
-const IssueRow = ( { issue, rule, onAction } ) => {
+const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 	return (
 		<li className="edac-analysis__issue-row">
 			<button
@@ -26,6 +28,13 @@ const IssueRow = ( { issue, rule, onAction } ) => {
 			>
 				{ __( 'Issue', 'accessibility-checker' ) } #{ issue.id }
 			</button>
+			{ showIgnored && issue?.ignre_reason && (
+				<Badge
+					label={ issue.ignre_reason }
+					type="info"
+					size="small"
+				/>
+			) }
 			<DropdownMenu
 				icon={ moreVertical }
 				label={ __( 'Issue actions', 'accessibility-checker' ) }
