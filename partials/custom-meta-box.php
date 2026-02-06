@@ -5,9 +5,8 @@
  * @package Accessibility_Checker
  */
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
 // get the post type of the current editor page.
