@@ -5,6 +5,11 @@
  * @package Accessibility_Checker
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 /**
  * Filter the settings tab items.
  *
