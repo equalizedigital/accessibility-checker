@@ -5,6 +5,11 @@
  * @package Accessibility_Checker
  */
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 ?>
 <div class="edac-pro-callout">
 	<img
