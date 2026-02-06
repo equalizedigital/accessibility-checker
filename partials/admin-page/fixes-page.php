@@ -5,7 +5,12 @@
  * @package Accessibility_Checker
  */
 
-	use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 ?>
 <div id="edac-fixes-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
