@@ -13,7 +13,9 @@ import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
+import Badge from '../../sidebar/components/Badge';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
+import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
 
 /**
  * Get the "View on page" URL for an issue
@@ -207,7 +209,18 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										{ __( 'Type', 'accessibility-checker' ) }
 									</span>
 									<span className="edac-analysis__issue-sidebar-value">
-										{ rule.rule_type }
+										{ ( () => {
+											const badgeProps = getRuleTypeBadgeProps( rule.rule_type );
+											return badgeProps ? (
+												<Badge
+													label={ badgeProps.label }
+													type={ badgeProps.type }
+													icon={ badgeProps.icon }
+												/>
+											) : (
+												rule.rule_type
+											);
+										} )() }
 									</span>
 								</li>
 							) }
@@ -217,7 +230,17 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										{ __( 'Severity', 'accessibility-checker' ) }
 									</span>
 									<span className="edac-analysis__issue-sidebar-value">
-										{ severityLabel }
+										{ ( () => {
+											const badgeProps = getSeverityBadgeProps( rule?.severity );
+											return badgeProps ? (
+												<Badge
+													label={ badgeProps.label }
+													type={ badgeProps.type }
+												/>
+											) : (
+												severityLabel
+											);
+										} )() }
 									</span>
 								</li>
 							) }
