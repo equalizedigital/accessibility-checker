@@ -194,6 +194,56 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 			className="edac-analysis__issue-modal"
 		>
 			<div className="edac-analysis__issue-modal-content" ref={ modalRef }>
+
+				<div className="edac-analysis__issue-modal-right">
+					<div className="edac-analysis__issue-sidebar" data-section="sidebar">
+						<h3 className="edac-analysis__issue-sidebar-title">
+							{ __( 'Issue Details', 'accessibility-checker' ) }
+						</h3>
+						<ul className="edac-analysis__issue-sidebar-list">
+							{ rule?.rule_type && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Type', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ rule.rule_type }
+									</span>
+								</li>
+							) }
+							{ severityLabel && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Severity', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ severityLabel }
+									</span>
+								</li>
+							) }
+							{ issue?.landmark && (
+								<li className="edac-analysis__issue-sidebar-item">
+									<span className="edac-analysis__issue-sidebar-label">
+										{ __( 'Landmark', 'accessibility-checker' ) }
+									</span>
+									<span className="edac-analysis__issue-sidebar-value">
+										{ issue.landmark }
+									</span>
+								</li>
+							) }
+						</ul>
+						{ viewUrl && (
+							<Button
+								variant="primary"
+								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
+								className="edac-analysis__issue-sidebar-button"
+							>
+								{ __( 'View on Page', 'accessibility-checker' ) }
+							</Button>
+						) }
+					</div>
+				</div>
+
 				<div className="edac-analysis__issue-modal-left">
 					{ /* Rule Title */ }
 					{ rule?.title && (
@@ -291,55 +341,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 						onIgnore={ onIgnore }
 					/>
-				</div>
-
-				<div className="edac-analysis__issue-modal-right">
-					<div className="edac-analysis__issue-sidebar" data-section="sidebar">
-						<h3 className="edac-analysis__issue-sidebar-title">
-							{ __( 'Issue Details', 'accessibility-checker' ) }
-						</h3>
-						<ul className="edac-analysis__issue-sidebar-list">
-							{ rule?.rule_type && (
-								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
-										{ __( 'Type', 'accessibility-checker' ) }
-									</span>
-									<span className="edac-analysis__issue-sidebar-value">
-										{ rule.rule_type }
-									</span>
-								</li>
-							) }
-							{ severityLabel && (
-								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
-										{ __( 'Severity', 'accessibility-checker' ) }
-									</span>
-									<span className="edac-analysis__issue-sidebar-value">
-										{ severityLabel }
-									</span>
-								</li>
-							) }
-							{ issue?.landmark && (
-								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
-										{ __( 'Landmark', 'accessibility-checker' ) }
-									</span>
-									<span className="edac-analysis__issue-sidebar-value">
-										{ issue.landmark }
-									</span>
-								</li>
-							) }
-						</ul>
-						{ viewUrl && (
-							<Button
-								variant="primary"
-								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
-								className="edac-analysis__issue-sidebar-button"
-							>
-								{ __( 'View on Page', 'accessibility-checker' ) }
-							</Button>
-						) }
-					</div>
 				</div>
 			</div>
 		</Modal>

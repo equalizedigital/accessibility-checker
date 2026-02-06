@@ -37,6 +37,7 @@
 
 		.edac-analysis__issue-modal-content {
 			display: flex;
+			flex-direction: row-reverse;
 			gap: 24px;
 			margin-bottom: 16px;
 
@@ -287,14 +288,6 @@
 					margin-bottom: 0;
 				}
 			}
-		}
-
-		.edac-analysis__issue-modal-footer {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			padding-top: 16px;
-			border-top: 1px solid #ddd;
 		}
 	}
 }
