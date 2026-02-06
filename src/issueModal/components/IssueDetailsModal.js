@@ -250,7 +250,26 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										{ __( 'Landmark', 'accessibility-checker' ) }
 									</span>
 									<span className="edac-analysis__issue-sidebar-value">
-										{ issue.landmark }
+										{ issue.landmark_selector && viewLink ? (
+											<a
+												href={ ( () => {
+													const url = new URL( viewLink );
+													url.searchParams.set( 'edac_landmark', btoa( issue.landmark_selector ) );
+													url.searchParams.set( 'edac_nonce', window.edac_sidebar_app?.highlightNonce || '' );
+													return url.toString();
+												} )() }
+												target="_blank"
+												rel="noopener noreferrer"
+												aria-label={ sprintf(
+													__( 'View %s landmark on website, opens a new window', 'accessibility-checker' ),
+													issue.landmark,
+												) }
+											>
+												{ issue.landmark }
+											</a>
+										) : (
+											issue.landmark
+										) }
 									</span>
 								</li>
 							) }
