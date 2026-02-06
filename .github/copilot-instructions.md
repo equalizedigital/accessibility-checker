@@ -48,7 +48,7 @@ This is a WordPress plugin called "Accessibility Checker" developed by Equalize 
 
 ### Dependency Management
 
-**IMPORTANT: Do not commit lock files unless you have added or updated packages.**
+**IMPORTANT: Do not commit lock files unless you have added, updated, or removed packages.**
 
 Only commit `composer.lock` and `package-lock.json` when:
 - Adding a new package/dependency
