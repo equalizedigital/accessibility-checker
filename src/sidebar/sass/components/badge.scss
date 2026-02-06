@@ -1,0 +1,88 @@
+@use 'sass:color';
+@use '../_variables' as *;
+
+/**
+ * Badge Styles
+ */
+
+.edac-badge {
+	color: #1E1E1E;
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	padding: 2px 10px;
+	border-radius: 12px;
+	font-size: 11px;
+	font-weight: 600;
+	white-space: nowrap;
+
+	&__label {
+		line-height: 1;
+	}
+
+	// Size variants
+	&--small {
+		padding: 2px 8px;
+		font-size: 11px;
+		border-radius: 8px;
+	}
+
+	// Severity level variants
+	&--severity-critical {
+		background: color.adjust( $severity-critical, $alpha: -0.9 );
+		border: 1px solid $severity-critical;
+	}
+
+	&--severity-high {
+		background: color.adjust( $severity-high, $alpha: -0.9 );
+		border: 1px solid $severity-high;
+	}
+
+	&--severity-medium {
+		background: color.adjust( $severity-medium, $alpha: -0.9 );
+		border: 1px solid $severity-medium;
+	}
+
+	&--severity-low {
+		background: color.adjust( $severity-low, $alpha: -0.9 );
+		border: 1px solid $severity-low;
+	}
+
+	// Type variants (for error/warning types)
+	&--error {
+		background: color.adjust( $error-red, $alpha: -0.9 );
+		border: 1px solid $error-red;
+
+		.edac-icon {
+			color: $error-red;
+		}
+	}
+
+	&--warning {
+		background: color.adjust( $warning-orange, $alpha: -0.9 );
+		border: 1px solid $warning-orange;
+
+		.edac-icon {
+			color: $warning-orange;
+		}
+	}
+
+	&--success {
+		background: color.adjust( $check-green, $alpha: -0.9 );
+		border: 1px solid $check-green;
+
+		.edac-icon {
+			color: $check-green;
+		}
+	}
+
+	&--info {
+		background: color.adjust( $info-grey, $alpha: -0.9 );
+		border: 1px solid $info-grey;
+
+		.edac-icon {
+			color: $info-grey;
+		}
+	}
+}
