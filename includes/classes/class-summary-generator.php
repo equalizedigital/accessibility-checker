@@ -164,17 +164,16 @@ class Summary_Generator {
 	private function count_warnings() {
 		global $wpdb;
 
-		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
-		$warnings_where      = 'WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+		$warnings_parameters = [ $wpdb->prefix . 'accessibility_checker', get_current_blog_id(), $this->post_id, 'warning', 0 ];
+		$warnings_query      = 'SELECT count(*) FROM %i WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
 		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $warnings_parameters, 'link_blank' );
-			$warnings_where .= ' and rule != %s';
+			$warnings_query .= ' and rule != %s';
 		}
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 		$warnings_count = $wpdb->get_var(
 			$wpdb->prepare(
-				// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-				'SELECT count(*) FROM ' . $wpdb->prefix . 'accessibility_checker ' . $warnings_where,
+				$warnings_query,
 				$warnings_parameters
 			)
 		);
@@ -193,18 +192,17 @@ class Summary_Generator {
 	private function count_ignored() {
 		global $wpdb;
 
-		$ignored_parameters = [ get_current_blog_id(), $this->post_id, 1 ];
-		$ignored_where      = 'WHERE siteid = %d and postid = %d and ignre = %d';
+		$ignored_parameters = [ $wpdb->prefix . 'accessibility_checker', get_current_blog_id(), $this->post_id, 1 ];
+		$ignored_query      = 'SELECT count(*) FROM %i WHERE siteid = %d and postid = %d and ignre = %d';
 		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $ignored_parameters, 'link_blank' );
-			$ignored_where .= ' and rule != %s';
+			$ignored_query .= ' and rule != %s';
 		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 		$ignored_count = $wpdb->get_var(
 			$wpdb->prepare(
-				// phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared , WordPress.DB.PreparedSQLPlaceholders.UnfinishedPrepare
-				"SELECT count(*) FROM {$wpdb->prefix}accessibility_checker $ignored_where",
+				$ignored_query,
 				$ignored_parameters
 			)
 		);
