@@ -11,7 +11,7 @@ use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 // Deprecated constants.

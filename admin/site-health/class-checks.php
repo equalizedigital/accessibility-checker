@@ -12,7 +12,7 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

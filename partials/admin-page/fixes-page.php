@@ -8,7 +8,7 @@
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 ?>

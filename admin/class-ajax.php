@@ -13,7 +13,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

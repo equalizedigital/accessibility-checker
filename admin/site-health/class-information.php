@@ -9,7 +9,7 @@
 namespace EDAC\Admin\SiteHealth;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

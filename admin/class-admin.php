@@ -16,7 +16,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**
