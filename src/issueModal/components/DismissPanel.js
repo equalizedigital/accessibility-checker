@@ -137,8 +137,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 										),
 									},
 									{
-										label: __( 'Intentional', 'accessibility-checker' ),
-										value: 'intentional',
+										label: __( 'Confirmed accessible', 'accessibility-checker' ),
+										value: 'accessible',
 										description: __(
 											'Reviewed and verified to meet accessibility requirements.',
 											'accessibility-checker',
