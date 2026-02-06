@@ -17,7 +17,7 @@ jobs:
   integration:
     runs-on: ubuntu-latest
     env:
-      COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.PUBLIC_REPO_ACCESS }}"}}'
+      COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}"}}'
 
     strategy:
       fail-fast: false
@@ -63,12 +63,12 @@ jobs:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: none
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
 
       - name: Configure Composer to use PAT
-        run: composer config --global --auth github-oauth.github.com ${{ secrets.PUBLIC_REPO_ACCESS }}
+        run: composer config --global --auth github-oauth.github.com ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
 
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
@@ -84,9 +84,9 @@ jobs:
           composer-options: "yoast/wp-test-utils --with-dependencies"
           # Bust the cache at least once a month - output format: YYYY-MM-DD.
           custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-3)) days" "+%F")
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
         run: |
