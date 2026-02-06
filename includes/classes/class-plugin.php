@@ -14,7 +14,7 @@ use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

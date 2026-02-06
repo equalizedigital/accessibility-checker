@@ -8,7 +8,7 @@
 use EDAC\Admin\Accessibility_Statement;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

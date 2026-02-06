@@ -12,7 +12,7 @@ use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**

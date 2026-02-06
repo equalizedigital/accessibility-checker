@@ -11,7 +11,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+	exit;
 }
 
 /**
