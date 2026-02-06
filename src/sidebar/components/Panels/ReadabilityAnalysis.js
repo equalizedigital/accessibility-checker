@@ -179,7 +179,6 @@ const ReadabilityAnalysis = () => {
 				__( 'Readability Analysis', 'accessibility-checker' ),
 				hasContent && postGrade > 0 ? ` (${ postGradeReadable })` : '',
 			) }
-			initialOpen={ true }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
 		>
 			{ notice && (
