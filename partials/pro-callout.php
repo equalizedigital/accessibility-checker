@@ -5,6 +5,10 @@
  * @package Accessibility_Checker
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 ?>
 <div class="edac-pro-callout">
 	<img

@@ -7,6 +7,10 @@
 
 namespace EDAC\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Plugin Row Meta handling class.
  *

@@ -7,6 +7,10 @@
 
 namespace EDAC\Inc;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Class that handles admin toolbar menu items for Accessibility Checker.
  *

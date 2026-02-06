@@ -5,6 +5,10 @@
  * @package Accessibility_Checker
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // get the post type of the current editor page.
 $is_virtual_page = edac_is_virtual_page( get_the_ID() );
 

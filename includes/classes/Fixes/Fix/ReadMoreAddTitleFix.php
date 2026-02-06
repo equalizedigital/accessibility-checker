@@ -10,6 +10,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Allows the user to add the post title to their read more links.
  *

@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Fix for adding file size and type to linked files.
  *

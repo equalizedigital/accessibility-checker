@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Adds underlines to all non-navigation links.
  *

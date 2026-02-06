@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Trys to ensure there is a meta viewport tag with the correct scalable value.
  *

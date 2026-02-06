@@ -10,6 +10,10 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Purge_Post_Data;
 use EDAC\Admin\Post_Save;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Deprecated constants.
 if ( ! defined( 'EDAC_ANWW_ACTIVE' ) ) {
 	/**

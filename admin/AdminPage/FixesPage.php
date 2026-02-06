@@ -7,6 +7,10 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Registers the Fixes page and it's settings.
  *
