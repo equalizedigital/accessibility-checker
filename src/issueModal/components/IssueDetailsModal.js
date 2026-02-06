@@ -6,7 +6,7 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Modal, Button } from '@wordpress/components';
+import { Modal, Button, PanelBody } from '@wordpress/components';
 import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
@@ -319,27 +319,32 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 					{ /* How to Fix - Show detailed info for Pro, or just link for Free */ }
 					{ window.edac_editor_app?.pro === '1' ? (
-						<>
-							{ rule?.why_it_matters && (
-								<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
-									<h3>{ __( 'Why It Matters', 'accessibility-checker' ) }</h3>
-									<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
-								</div>
-							) }
-							{ rule?.how_to_fix && (
-								<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
-									<h3>{ __( 'How to Fix', 'accessibility-checker' ) }</h3>
-									<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
-								</div>
-							) }
-							{ rule?.info_url && (
-								<p className="edac-analysis__issue-help" data-section="help">
-									<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
-										{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
-									</a>
-								</p>
-							) }
-						</>
+						<div className="edac-analysis__issue-help-accordion">
+							<PanelBody
+								title={ __( 'Show explanation', 'accessibility-checker' ) }
+								initialOpen={ true }
+							>
+								{ rule?.why_it_matters && (
+									<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
+										<h4>{ __( 'Why It Matters', 'accessibility-checker' ) }</h4>
+										<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
+									</div>
+								) }
+								{ rule?.how_to_fix && (
+									<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
+										<h4>{ __( 'How to Fix', 'accessibility-checker' ) }</h4>
+										<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
+									</div>
+								) }
+								{ rule?.info_url && (
+									<p className="edac-analysis__issue-help" data-section="help">
+										<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
+											{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
+										</a>
+									</p>
+								) }
+							</PanelBody>
+						</div>
 					) : (
 						rule?.info_url && (
 							<p className="edac-analysis__issue-help" data-section="help">
