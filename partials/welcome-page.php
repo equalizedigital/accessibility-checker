@@ -7,6 +7,11 @@
 
 use EDAC\Admin\Welcome_Page;
 
+// If this file is called directly, abort.
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
 ?>
 
 <div class="wrap edac-welcome-container">
