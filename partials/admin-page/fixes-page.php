@@ -7,9 +7,8 @@
 
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
 
-// If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
 }
 
 ?>
