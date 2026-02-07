@@ -68,7 +68,7 @@ npm run dist           # Build production + create .zip for distribution
 
 ### PHP Structure
 
-- **`includes/classes/`** — PSR-4 autoloaded classes under `EqualizeDigital\AccessibilityChecker\`
+- **`includes/classes/`** — Houses most of the plugin's classes. It uses a mixed autoloading strategy: newer classes follow PSR-4 under the `EqualizeDigital\AccessibilityChecker\` namespace, while some core classes are loaded via classmap.
   - `Plugin.php` — Main bootstrap, registers hooks, loads components
   - `Rules/` — Accessibility rule system: `RuleRegistry` loads rules, each rule implements `RuleInterface`
   - `Fixes/` — Fix system: `FixesManager` (singleton) manages fixes, each implements `FixInterface`
