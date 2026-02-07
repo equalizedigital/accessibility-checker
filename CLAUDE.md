@@ -74,7 +74,7 @@ npm run dist           # Build production + create .zip for distribution
   - `Fixes/` — Fix system: `FixesManager` (singleton) manages fixes, each implements `FixInterface`
   - `Admin/` — Admin-specific classes
   - `WPCLI/` — WP-CLI command classes
-- **`admin/`** — Legacy admin classes under `EqualizeDigital\AccessibilityChecker\Admin\` namespace (WordPress-style filenames like `class-admin.php`)
+- **`admin/`** — Admin-area classes under the `EqualizeDigital\AccessibilityChecker\Admin\` namespace. These files follow the WordPress naming convention (e.g., `class-admin.php`).
 - **`partials/`** — PHP template files for admin pages, meta boxes, settings
 - **`includes/`** — Legacy procedural code: `activation.php`, `deactivation.php`, `helper-functions.php`
 
