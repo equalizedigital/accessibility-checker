@@ -131,43 +131,17 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 				aria-hidden={ ! isExpanded }
 			>
 				{ displayedIssues.length > 0 && (
-					<>
-						<p>
-							<strong>
-								{ __( 'WCAG:', 'accessibility-checker' ) }{' '}
-								{ rule?.wcag_url && rule?.wcag && rule?.wcag_title ? (
-									<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
-										{ rule.wcag } { rule.wcag_title }
-									</a>
-								) : (
-									rule?.wcag
-								) }
-							</strong>
-						</p>
-						<p
-							dangerouslySetInnerHTML={ {
-								__html: displayedIssues.length > 1 ? rule.summary_plural : rule.summary,
-							} }
-						/>
-						{ rule?.info_url && (
-							<p>
-								<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
-									{ __( 'How to Fix', 'accessibility-checker' ) }
-								</a>
-							</p>
-						) }
-						<ul className="edac-analysis__issue-list">
-							{ displayedIssues.map( ( issue, index ) => (
-								<IssueRow
-									key={ issue.id || index }
-									issue={ issue }
-									rule={ rule }
-									onAction={ handleIssueAction }
-									showIgnored={ showIgnored }
-								/>
-							) ) }
-						</ul>
-					</>
+					<ul className="edac-analysis__issue-list">
+						{ displayedIssues.map( ( issue, index ) => (
+							<IssueRow
+								key={ issue.id || index }
+								issue={ issue }
+								rule={ rule }
+								onAction={ handleIssueAction }
+								showIgnored={ showIgnored }
+							/>
+						) ) }
+					</ul>
 				) }
 			</div>
 		</div>
