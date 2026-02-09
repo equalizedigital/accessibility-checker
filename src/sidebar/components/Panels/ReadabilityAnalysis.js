@@ -180,6 +180,7 @@ const ReadabilityAnalysis = () => {
 				hasContent && postGrade > 0 ? ` (${ postGradeReadable })` : '',
 			) }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
+			initialOpen={ false }
 		>
 			{ notice && (
 				<Notice
