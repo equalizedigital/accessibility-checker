@@ -296,18 +296,6 @@ const ReadabilityAnalysis = () => {
 
 								<div className="edac-panel-section__subsection">
 									<h4 className="edac-panel-section__subheading">
-										{ __( 'Placement', 'accessibility-checker' ) }
-									</h4>
-									<p className="edac-panel-section__message">
-										{ __( 'Inserted after the content', 'accessibility-checker' ) }
-									</p>
-									<a href={ settingsUrl || '#' } className="edac-panel-section__link">
-										{ __( 'Change in settings', 'accessibility-checker' ) }
-									</a>
-								</div>
-
-								<div className="edac-panel-section__subsection">
-									<h4 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
 									</h4>
 									<TextareaControl
