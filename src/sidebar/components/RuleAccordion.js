@@ -2,7 +2,6 @@
  * Rule Accordion Component
  */
 
-import { __ } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { chevronUp, chevronDown } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
