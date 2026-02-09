@@ -71,7 +71,7 @@ function AccessibilityCheckerSidebar() {
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
-			title={ __( 'Accessibility', 'accessibility-checker' ) }
+			title={ __( 'Accessibility Checker', 'accessibility-checker' ) }
 			icon="universal-access"
 		>
 			<SidebarContent />
