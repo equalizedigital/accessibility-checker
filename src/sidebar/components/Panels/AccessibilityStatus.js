@@ -35,8 +35,6 @@ const AccessibilityStatus = () => {
 		};
 	}, [ refetch ] );
 
-	const manuallyTestHelpUrl = window.edac_sidebar_app?.manuallyTestHelpUrl || 'https://equalizedigital.com/accessibility-checker/manual-testing/';
-
 	// Extract data from store
 	const summary = data?.summary || {};
 	const readability = data?.readability || {};
@@ -146,12 +144,11 @@ const AccessibilityStatus = () => {
 						</div>
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
-					{/* Coverage */}
+					{/* Passed Checks */}
 					<div className="edac-status-card">
 						<div className="edac-status-card__header">
 							<span className="edac-status-card__label">
-								{ __( 'Coverage', 'accessibility-checker' ) }
-								<sup>*</sup>
+								{ __( 'Passed Checks', 'accessibility-checker' ) }
 							</span>
 							<Icon name="info" className="edac-status-card__icon" />
 						</div>
@@ -163,7 +160,7 @@ const AccessibilityStatus = () => {
 							value={ coveragePercent }
 							max="100"
 							aria-label={ sprintf(
-								__( 'Coverage: %d percent', 'accessibility-checker' ),
+								__( 'Passed Checks: %d percent', 'accessibility-checker' ),
 								coveragePercent,
 							) }
 						/>
@@ -203,20 +200,6 @@ const AccessibilityStatus = () => {
 						) }
 					</div>
 				</PanelRow>
-
-				<div className="edac-status-footer">
-					<p className="edac-status-footer__note">
-						* { __( 'True accessibility requires manual testing in addition to automated scans.', 'accessibility-checker' ) }
-					</p>
-					<a
-						href={ manuallyTestHelpUrl }
-						target="_blank"
-						rel="noopener noreferrer"
-						className="edac-status-footer__link"
-					>
-						{ __( 'Learn how to manually test for accessibility', 'accessibility-checker' ) }
-					</a>
-				</div>
 			</PanelBody>
 		</Panel>
 	);
