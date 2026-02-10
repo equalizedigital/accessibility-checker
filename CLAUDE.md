@@ -9,9 +9,10 @@ Accessibility Checker is a WordPress plugin by Equalize Digital that provides in
 - **PHP minimum**: 7.4
 - **WordPress minimum**: 6.2
 - **Text domain**: `accessibility-checker`
-- **Namespaces**: `EqualizeDigital\AccessibilityChecker` (PSR-4) and `EDAC` (legacy)
-- **Constants prefix**: `EDAC_`
+- **Namespaces**: `EqualizeDigital\AccessibilityChecker` (PSR-4, newer classes) and `EDAC\Inc` (legacy classmap). Both map to `includes/classes/`. The main `Plugin` class is at `EDAC\Inc\Plugin`.
+- **Constants prefix**: `EDAC_` (free), `EDACP_` (pro-related, backwards compatibility)
 - **Hook/filter prefix**: `edac_`
+- **Pro version**: Gated by the `EDAC_KEY_VALID` constant (checks `edacp_license_status` option). Pro-specific options use the `edacp_` prefix.
 
 ## Commands
 
@@ -50,6 +51,9 @@ docker compose exec phpunit vendor/bin/phpunit --filter test_method_name
 # PHP tests without Docker (if WP test suite is available locally):
 composer test
 
+# PHP test coverage (container must be running):
+npm run test:php:coverage
+
 # JavaScript tests
 npm run test:jest
 ```
@@ -57,26 +61,32 @@ npm run test:jest
 ### Distribution
 
 ```bash
-npm run dist           # Build production + create .zip for distribution
+npm run dist                    # Build production + create .zip for distribution
+npm run dist:keep-build-folder  # Same but preserves the build folder
+npm run dist:dotorg             # Alias for dist:keep-build-folder (WordPress.org releases)
 ```
 
 ## Architecture
 
 ### Plugin Bootstrap
 
-`accessibility-checker.php` defines constants (`EDAC_VERSION`, `EDAC_PLUGIN_DIR`, etc.) and loads the `Plugin` class which bootstraps everything. The Plugin class separates admin vs frontend initialization via `is_admin()`.
+`accessibility-checker.php` defines constants (`EDAC_VERSION`, `EDAC_DB_VERSION`, `EDAC_PLUGIN_DIR`, `EDAC_KEY_VALID`, etc.), loads Composer autoload, instantiates `EDAC\Inc\Plugin`, and requires legacy procedural files. The Plugin class separates admin vs frontend initialization via `is_admin()`.
 
 ### PHP Structure
 
-- **`includes/classes/`** — Houses most of the plugin's classes. It uses a mixed autoloading strategy: newer classes follow PSR-4 under the `EqualizeDigital\AccessibilityChecker\` namespace, while some core classes are loaded via classmap.
-  - `Plugin.php` — Main bootstrap, registers hooks, loads components
-  - `Rules/` — Accessibility rule system: `RuleRegistry` loads rules, each rule implements `RuleInterface`
-  - `Fixes/` — Fix system: `FixesManager` (singleton) manages fixes, each implements `FixInterface`
-  - `Admin/` — Admin-specific classes
-  - `WPCLI/` — WP-CLI command classes
-- **`admin/`** — Admin-area classes under the `EqualizeDigital\AccessibilityChecker\Admin\` namespace. These files follow the WordPress naming convention (e.g., `class-admin.php`).
+- **`includes/classes/`** — Houses most of the plugin's classes. Uses a mixed autoloading strategy: newer classes follow PSR-4 under `EqualizeDigital\AccessibilityChecker\`, while legacy core classes use classmap under `EDAC\Inc`. Both are configured in `composer.json` and map to the same directory.
+  - `class-plugin.php` — Main bootstrap (`EDAC\Inc\Plugin`), registers hooks, loads components
+  - `Rules/` — Accessibility rule system: `RuleRegistry` loads ~43 rules from `Rules/Rule/`, each implements `RuleInterface`
+  - `Fixes/` — Fix system: `FixesManager` (singleton) manages ~15 fixes from `Fixes/Fix/`, each implements `FixInterface`
+  - `Admin/` — Contains `Updates/` subnamespace
+  - `Tokens/` — Token handling infrastructure
+  - `WPCLI/` — WP-CLI commands via `BootstrapCLI.php` and `Command/` subdirectory (`CleanupOrphanedIssues`, `DeleteStats`, `GetSiteStats`, `GetStats`)
+- **`admin/`** — Admin-area classes under `EqualizeDigital\AccessibilityChecker\Admin\`. Mixed naming: legacy files use `class-*.php` (WordPress style), newer use PSR-4 CamelCase.
+  - `AdminPage/` — Fixes settings page with `FixesSettingType/` system (Checkbox, Text)
+  - `site-health/` — WordPress Site Health integration (free/pro checks, audit history, information)
+  - `opt-in/` — Email opt-in system
 - **`partials/`** — PHP template files for admin pages, meta boxes, settings
-- **`includes/`** — Legacy procedural code: `activation.php`, `deactivation.php`, `helper-functions.php`
+- **`includes/`** — Legacy procedural code: `activation.php`, `deactivation.php`, `helper-functions.php`, `options-page.php`
 
 ### JavaScript / React Structure
 
@@ -89,9 +99,10 @@ Webpack bundles from `src/` into `build/`. Each entry point is a separate bundle
 - **`src/frontendHighlighterApp/`** — Frontend issue highlighting overlay
 - **`src/pageScanner/`** — Page scanning engine
 - **`src/frontendFixes/`** — Client-side accessibility fixes
+- **`src/emailOptIn/`** — Email opt-in modal and styles
 - **`src/common/`** — Shared utilities
 
-WordPress packages (`@wordpress/i18n`, `@wordpress/element`, `@wordpress/data`, etc.) are externalized — they come from the WP runtime, not bundled.
+WordPress packages (`@wordpress/i18n`, `@wordpress/element`, `@wordpress/data`, etc.) are externalized — they come from the WP runtime, not bundled. Only `@wordpress/i18n` is listed in webpack externals.
 
 ### Key Patterns
 
@@ -135,6 +146,16 @@ public function init() {
 - **Indentation**: Tabs (per WordPress standards and .editorconfig).
 - **i18n**: All user-facing strings must use `accessibility-checker` text domain. JS uses `wp.i18n` functions (`__`, `_n`, `_x`, `_nx`).
 - **Pre-commit**: Husky runs lint-staged (phpcs on PHP files) before commits.
+
+## CI/CD (GitHub Actions)
+
+Workflows in `.github/workflows/`:
+
+- **Testing**: `phpunit.yml` (PHP 8.1/8.2, MySQL 8.0), `jest-tests.yml`
+- **Code quality**: `cs.yml` (code style), `lint-php.yml`, `lint-js.yml`, `security.yml`
+- **Coverage**: `code-coverage-and-coveralls.yml`
+- **Deployment**: `deploy-on-release-to-dot-org.yml` (WordPress.org), `deploy-on-release-to-instawp.yml`, `deploy-on-release-to-woocommerce.yml`
+- **Utilities**: `make-pot.yml` (translations), `verify-hooks-docs.yml`, `backport-to-develop.yml`, `wp-version-checker.yml`, `build-plugin-with-ref.yml`
 
 ## Workflow Notes
 
