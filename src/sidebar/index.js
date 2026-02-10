@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
 import { STORE_NAME } from './store/accessibility-checker-store';
+import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-icon.svg';
 
 /**
  * Main sidebar component
@@ -72,7 +73,7 @@ function AccessibilityCheckerSidebar() {
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
 			title={ __( 'Accessibility Checker', 'accessibility-checker' ) }
-			icon="universal-access"
+			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>
 			<SidebarContent />
 		</PluginSidebar>
