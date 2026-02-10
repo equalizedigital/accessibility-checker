@@ -198,16 +198,15 @@ class Enqueue_Admin {
 			'edac-sidebar',
 			'edac_sidebar_app',
 			[
-				'gutenbergEnabled'    => true,
-				'postID'              => get_the_ID(),
-				'highlightNonce'      => wp_create_nonce( 'edac_highlight' ),
-				'ajaxNonce'           => wp_create_nonce( 'ajax-nonce' ),
-				'ajaxUrl'             => admin_url( 'admin-ajax.php' ),
-				'edacApiUrl'          => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'settingsUrl'         => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
-				'canManageSettings'   => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
-				'readabilityHelpUrl'  => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
-				'manuallyTestHelpUrl' => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help4280', 'wordpress-general', 'content-analysis-sidebar', false ) ),
+				'gutenbergEnabled'   => true,
+				'postID'             => get_the_ID(),
+				'highlightNonce'     => wp_create_nonce( 'edac_highlight' ),
+				'ajaxNonce'          => wp_create_nonce( 'ajax-nonce' ),
+				'ajaxUrl'            => admin_url( 'admin-ajax.php' ),
+				'edacApiUrl'         => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'settingsUrl'        => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
+				'canManageSettings'  => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
+				'readabilityHelpUrl' => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
 			]
 		);
 
