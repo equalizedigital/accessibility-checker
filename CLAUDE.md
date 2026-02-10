@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Accessibility Checker is a WordPress plugin by Equalize Digital that provides in-post accessibility scanning and WCAG compliance auditing. Powered by axe-core with custom rules. Has a free version on WordPress.org and a Pro version with additional features.
 
 - **PHP minimum**: 7.4
-- **WordPress minimum**: 6.2
+- **WordPress minimum**: 6.6
 - **Text domain**: `accessibility-checker`
 - **Namespaces**: `EqualizeDigital\AccessibilityChecker` (PSR-4, newer classes) and `EDAC\Inc` (legacy classmap). Both map to `includes/classes/`. The main `Plugin` class is at `EDAC\Inc\Plugin`.
 - **Constants prefix**: `EDAC_` (free), `EDACP_` (pro-related, backwards compatibility)
@@ -92,8 +92,6 @@ npm run dist:dotorg             # Alias for dist:keep-build-folder (WordPress.or
 
 Webpack bundles from `src/` into `build/`. Each entry point is a separate bundle:
 
-- **`src/sidebar/`** — Gutenberg sidebar panel (React, uses `@wordpress/data` store)
-- **`src/issueModal/`** — Issue details modal (React)
 - **`src/admin/`** — Admin page JavaScript + SCSS
 - **`src/editorApp/`** — Block editor integration
 - **`src/frontendHighlighterApp/`** — Frontend issue highlighting overlay
@@ -118,7 +116,7 @@ public function init() {
 }
 ```
 
-**Rule/Fix registration**: Rules loaded via `RuleRegistry::load_rules()`, filterable via `edac_filter_register_rules`. Fixes registered via `FixesManager::register_fixes()`. Both fire on `plugins_loaded` at priority 20.
+**Rule/Fix registration**: Rules loaded on-demand via `edac_register_rules()` which calls `RuleRegistry::load_rules()`, filterable via `edac_filter_register_rules`. Fixes registered via `FixesManager::register_fixes()` which fires on `plugins_loaded` at priority 20.
 
 **Naming conventions**:
 - New PHP classes: `ClassName.php` (CamelCase)
@@ -131,7 +129,7 @@ public function init() {
 
 - **PHPUnit**: Tests in `tests/phpunit/`, config in `phpunit.xml.dist`, bootstrap in `tests/bootstrap.php`. Runs in Docker (MySQL 5.7 + WordPress test suite).
 - **Jest**: Tests in `tests/jest/`, config in `tests/jest/jest.config.js`, jsdom environment.
-- **E2E**: Cypress tests in `tests/e2e/`.
+- **E2E**: No E2E test suite currently exists. Cypress-based tests may be added in a future `tests/e2e/` directory.
 
 ### Docker Test Environment
 
