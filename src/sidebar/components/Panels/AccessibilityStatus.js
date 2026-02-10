@@ -58,7 +58,7 @@ const AccessibilityStatus = () => {
 	}
 
 	// Determine reading level display
-	let readingLevelText = __( 'Not available', 'accessibility-checker' );
+	let readingLevelText = __( 'N/A', 'accessibility-checker' );
 	let summaryStatus = '';
 
 	// Handle click on Reading Level card to scroll to ReadabilityAnalysis
