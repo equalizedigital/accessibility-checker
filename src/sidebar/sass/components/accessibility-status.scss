@@ -9,7 +9,7 @@
 	.edac-status-grid {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
-		gap: 12px;
+		gap: 8px;
 		width: 100%;
 		align-items: stretch;
 	}
@@ -17,8 +17,11 @@
 	.edac-status-card {
 		display: flex;
 		flex-direction: column;
-		gap: 4px;
+		gap: 0;
 		height: 100%;
+		border: solid 1px $outline-grey;
+		border-radius: 5px;
+		padding: 5px;
 
 		&--clickable {
 			cursor: pointer;
@@ -39,7 +42,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: space-between;
-			gap: 4px;
+			gap: 1px;
 		}
 
 		&__label {

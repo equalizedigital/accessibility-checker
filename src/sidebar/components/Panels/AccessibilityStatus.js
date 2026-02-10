@@ -146,29 +146,6 @@ const AccessibilityStatus = () => {
 						</div>
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
-					{/* Coverage */}
-					<div className="edac-status-card">
-						<div className="edac-status-card__header">
-							<span className="edac-status-card__label">
-								{ __( 'Coverage', 'accessibility-checker' ) }
-								<sup>*</sup>
-							</span>
-							<Icon name="info" className="edac-status-card__icon" />
-						</div>
-						<div className="edac-status-card__value">
-							{ coveragePercent }%
-						</div>
-						<progress
-							className="edac-status-card__progress"
-							value={ coveragePercent }
-							max="100"
-							aria-label={ sprintf(
-								__( 'Coverage: %d percent', 'accessibility-checker' ),
-								coveragePercent,
-							) }
-						/>
-						{/* Placeholder for 30-day trend - will be implemented later */}
-					</div>
 					{/* Reading Level */}
 					<div
 						className="edac-status-card edac-status-card--clickable"
@@ -201,6 +178,19 @@ const AccessibilityStatus = () => {
 								{ summaryStatus }
 							</div>
 						) }
+					</div>
+					{/* Passed Checks (Coverage) */}
+					<div className="edac-status-card">
+						<div className="edac-status-card__header">
+							<span className="edac-status-card__label">
+								{ __( 'Passed Checks', 'accessibility-checker' ) }
+							</span>
+							<Icon name="info" className="edac-status-card__icon" />
+						</div>
+						<div className="edac-status-card__value">
+							{ coveragePercent }%
+						</div>
+						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
 				</PanelRow>
 
