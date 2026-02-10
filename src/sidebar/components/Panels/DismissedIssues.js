@@ -24,19 +24,19 @@ const DismissedIssues = () => {
 	const tabs = [
 		{
 			name: 'dismissed-problems',
-			label: __( 'Dismissed Problems', 'accessibility-checker' ),
+			label: __( 'Problems', 'accessibility-checker' ),
 			items: allErrors,
 		},
 		{
 			name: 'dismissed-warnings',
-			label: __( 'Dismissed Warnings', 'accessibility-checker' ),
+			label: __( 'Needs Review', 'accessibility-checker' ),
 			items: allWarnings,
 		},
 	];
 
 	const emptyMessages = {
 		'dismissed-problems': __( 'No dismissed problems.', 'accessibility-checker' ),
-		'dismissed-warnings': __( 'No dismissed warnings.', 'accessibility-checker' ),
+		'dismissed-warnings': __( 'No dismissed items to review.', 'accessibility-checker' ),
 	};
 
 	// Build title with info icon

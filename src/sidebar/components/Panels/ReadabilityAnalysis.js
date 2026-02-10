@@ -180,6 +180,7 @@ const ReadabilityAnalysis = () => {
 				hasContent && postGrade > 0 ? ` (${ postGradeReadable })` : '',
 			) }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
+			initialOpen={ false }
 		>
 			{ notice && (
 				<Notice
@@ -292,18 +293,6 @@ const ReadabilityAnalysis = () => {
 											}
 										</p>
 									) }
-								</div>
-
-								<div className="edac-panel-section__subsection">
-									<h4 className="edac-panel-section__subheading">
-										{ __( 'Placement', 'accessibility-checker' ) }
-									</h4>
-									<p className="edac-panel-section__message">
-										{ __( 'Inserted after the content', 'accessibility-checker' ) }
-									</p>
-									<a href={ settingsUrl || '#' } className="edac-panel-section__link">
-										{ __( 'Change in settings', 'accessibility-checker' ) }
-									</a>
 								</div>
 
 								<div className="edac-panel-section__subsection">

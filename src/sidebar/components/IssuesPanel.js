@@ -89,7 +89,7 @@ const IssuesPanel = ( {
 					title: (
 						<>
 							{ tab.label }
-							<span className="edac-analysis__count">{ count }</span>
+							<span className="edac-analysis__count">({ count })</span>
 						</>
 					),
 					className: 'edac-analysis__tab',

@@ -67,7 +67,9 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 								onClose();
 							} }
 						>
-							{ __( 'Not an Issue', 'accessibility-checker' ) }
+							{ showIgnored
+								? __( 'Reopen issue', 'accessibility-checker' )
+								: __( 'Dismiss issue', 'accessibility-checker' ) }
 						</MenuItem>
 						{ rule?.fixes?.length > 0 && (
 							<MenuItem
