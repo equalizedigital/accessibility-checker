@@ -90,9 +90,15 @@ module.exports = {
 				test: /\.css$/i,
 				use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
 			},
-			// loader for images and icons (required if css references image files)
+			// SVG loader: import as React component
 			{
-				test: /\.(svg|png|jpg|gif)$/,
+				test: /\.svg$/,
+				issuer: /\.[jt]sx?$/,
+				use: [ '@svgr/webpack' ],
+			},
+			// loader for images (required if css references image files)
+			{
+				test: /\.(png|jpg|gif)$/,
 				type: 'asset/resource',
 				generator: {
 					filename: './img/[name][ext]',
