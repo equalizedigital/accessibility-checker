@@ -40,7 +40,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 			setSuccessNotice(
 				ignore
 					? __( 'Issue dismissed successfully.', 'accessibility-checker' )
-					: __( 'Issue restored successfully.', 'accessibility-checker' ),
+					: __( 'Issue reopened successfully.', 'accessibility-checker' ),
 			);
 			setPendingRefetch( true );
 
@@ -107,10 +107,10 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 								{ isSubmitting ? (
 									<>
 										<Spinner />
-										{ __( 'Restoring...', 'accessibility-checker' ) }
+										{ __( 'Reopening...', 'accessibility-checker' ) }
 									</>
 								) : (
-									__( 'Restore Issue', 'accessibility-checker' )
+									__( 'Reopen Issue', 'accessibility-checker' )
 								) }
 							</Button>
 						</>
