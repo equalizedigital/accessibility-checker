@@ -35,8 +35,6 @@ const AccessibilityStatus = () => {
 		};
 	}, [ refetch ] );
 
-	const manuallyTestHelpUrl = window.edac_sidebar_app?.manuallyTestHelpUrl || 'https://equalizedigital.com/accessibility-checker/manual-testing/';
-
 	// Extract data from store
 	const summary = data?.summary || {};
 	const readability = data?.readability || {};
@@ -193,20 +191,6 @@ const AccessibilityStatus = () => {
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
 				</PanelRow>
-
-				<div className="edac-status-footer">
-					<p className="edac-status-footer__note">
-						* { __( 'True accessibility requires manual testing in addition to automated scans.', 'accessibility-checker' ) }
-					</p>
-					<a
-						href={ manuallyTestHelpUrl }
-						target="_blank"
-						rel="noopener noreferrer"
-						className="edac-status-footer__link"
-					>
-						{ __( 'Learn how to manually test for accessibility', 'accessibility-checker' ) }
-					</a>
-				</div>
 			</PanelBody>
 		</Panel>
 	);
