@@ -17,7 +17,7 @@
 	.edac-status-card {
 		display: flex;
 		flex-direction: column;
-		gap: 0px;
+    gap: 0;
 		height: 100%;
 		border: solid 1px $outline-grey;
 		border-radius: 5px;
