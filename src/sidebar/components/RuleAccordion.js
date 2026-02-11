@@ -2,6 +2,7 @@
  * Rule Accordion Component
  */
 
+import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { chevronUp, chevronDown } from '@wordpress/icons';
 import { useSelect } from '@wordpress/data';
@@ -120,7 +121,13 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 				iconPosition="right"
 			>
 				<span className="edac-analysis__rule-title">
-					{ rule.title } ({ rule.count || displayedIssues.length })
+					{ rule.title }{ ' ' }
+					<span aria-hidden="true">
+						({ rule.count || displayedIssues.length })
+					</span>
+					<span className="screen-reader-text">
+						, { sprintf( __( '%d total', 'accessibility-checker' ), rule.count || displayedIssues.length ) }
+					</span>
 				</span>
 				{ severity && <SeverityBadge severity={ severity } /> }
 			</Button>
