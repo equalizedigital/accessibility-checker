@@ -2,7 +2,7 @@
  * Accessibility Analysis Panel (Problems / Needs Review)
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { useMemo } from '@wordpress/element';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import IssuesPanel from '../IssuesPanel';
@@ -29,6 +29,19 @@ const AccessibilityAnalysis = () => {
 			return sum + activeIssues.length;
 		}, 0 );
 	}, [ problems ] );
+
+	// Count total active (non-ignored) warnings.
+	const warningCount = useMemo( () => {
+		return warnings.reduce( ( sum, rule ) => {
+			const activeIssues = ( rule.details || [] ).filter(
+				( issue ) => issue.ignre !== '1' && issue.ignre !== 1,
+			);
+			return sum + activeIssues.length;
+		}, 0 );
+	}, [ warnings ] );
+
+	// Calculate total issue count (problems + warnings).
+	const totalIssueCount = problemCount + warningCount;
 
 	// Determine which icon to show, error if any problems, warning otherwise.
 	let iconName = null;
@@ -61,6 +74,8 @@ const AccessibilityAnalysis = () => {
 			title={ renderPanelTitleWithIcon(
 				iconName,
 				__( 'Accessibility Analysis', 'accessibility-checker' ),
+				totalIssueCount > 0 ? ` (${ totalIssueCount })` : '',
+				totalIssueCount > 0 ? sprintf( __( '%d total issues', 'accessibility-checker' ), totalIssueCount ) : '',
 			) }
 			initialOpen={ false }
 			tabs={ tabs }
