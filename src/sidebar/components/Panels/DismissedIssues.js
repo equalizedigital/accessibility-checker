@@ -10,6 +10,14 @@ import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityChecker
 import IssuesPanel from '../IssuesPanel';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 
+// Count dismissed (ignored) issues across a set of rules.
+const countDismissedIssues = ( rules = [] ) => rules.reduce( ( sum, rule ) => {
+	const dismissedIssues = ( rule?.details || [] ).filter(
+		( issue ) => issue.ignre === '1' || issue.ignre === 1,
+	);
+	return sum + dismissedIssues.length;
+}, 0 );
+
 const DismissedIssues = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
 
@@ -23,23 +31,9 @@ const DismissedIssues = () => {
 	const allWarnings = details.warnings || [];
 
 	// Count dismissed (ignored) issues
-	const dismissedProblemsCount = useMemo( () => {
-		return allErrors.reduce( ( sum, rule ) => {
-			const dismissedIssues = ( rule.details || [] ).filter(
-				( issue ) => issue.ignre === '1' || issue.ignre === 1,
-			);
-			return sum + dismissedIssues.length;
-		}, 0 );
-	}, [ allErrors ] );
+	const dismissedProblemsCount = useMemo( () => countDismissedIssues( allErrors ), [ allErrors ] );
 
-	const dismissedWarningsCount = useMemo( () => {
-		return allWarnings.reduce( ( sum, rule ) => {
-			const dismissedIssues = ( rule.details || [] ).filter(
-				( issue ) => issue.ignre === '1' || issue.ignre === 1,
-			);
-			return sum + dismissedIssues.length;
-		}, 0 );
-	}, [ allWarnings ] );
+	const dismissedWarningsCount = useMemo( () => countDismissedIssues( allWarnings ), [ allWarnings ] );
 
 	// Calculate total dismissed issue count
 	const totalDismissedCount = dismissedProblemsCount + dismissedWarningsCount;
