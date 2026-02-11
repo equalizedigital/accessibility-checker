@@ -67,6 +67,7 @@ const AccessibilityAnalysis = () => {
 			refreshing={ refreshing }
 			showIgnored={ false }
 			emptyMessages={ emptyMessages }
+			className="edac-accessibility-analysis"
 		/>
 	);
 };

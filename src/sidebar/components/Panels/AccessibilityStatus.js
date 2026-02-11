@@ -61,16 +61,56 @@ const AccessibilityStatus = () => {
 	let readingLevelText = __( 'N/A', 'accessibility-checker' );
 	let summaryStatus = '';
 
+	// Handles clicking a status card to scroll to the analysis panel and open a specific tab.
+	const handleAnalysisCardClick = useCallback( ( tabName ) => {
+		const analysisElement = document.querySelector( '.edac-accessibility-analysis' );
+		if ( ! analysisElement ) {
+			return;
+		}
+
+		analysisElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+
+		// Open the panel if it's closed.
+		const panelButton = analysisElement.querySelector( '.components-panel__body-toggle' );
+		if ( panelButton && panelButton.getAttribute( 'aria-expanded' ) === 'false' ) {
+			panelButton.click();
+		}
+
+		// The timeout gives the panel time to open before we try to click the tab.
+		// This can be brittle and might fail on slow devices.
+		setTimeout( () => {
+			const tabButton = analysisElement.querySelector( `button[id$='-${ tabName }']` );
+			if ( tabButton ) {
+				tabButton.click();
+				tabButton.focus();
+			}
+		}, 100 );
+	}, [] );
+
+	const handleProblemsClick = useCallback( () => {
+		handleAnalysisCardClick( 'problems' );
+	}, [ handleAnalysisCardClick ] );
+
+	const handleNeedsReviewClick = useCallback( () => {
+		handleAnalysisCardClick( 'warnings' );
+	}, [ handleAnalysisCardClick ] );
+
 	// Handle click on Reading Level card to scroll to ReadabilityAnalysis
 	const handleReadingLevelClick = useCallback( () => {
 		const readabilityElement = document.querySelector( '.edac-readability-analysis' );
 		if ( readabilityElement ) {
 			readabilityElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
-			// open the accordion
-			const accordionButton = readabilityElement.querySelector( '.edac-accordion__button' );
-			if ( accordionButton && readabilityElement.classList.contains( 'edac-accordion--closed' ) ) {
-				accordionButton.click();
+			// Open the panel if closed
+			const panelButton = readabilityElement.querySelector( '.components-panel__body-toggle' );
+			if ( panelButton && panelButton.getAttribute( 'aria-expanded' ) === 'false' ) {
+				panelButton.click();
 			}
+			// Focus the panel
+			setTimeout( () => {
+				if ( panelButton ) {
+					panelButton.focus();
+				}
+			}, 100 );
 		}
 	}, [] );
 
@@ -112,7 +152,24 @@ const AccessibilityStatus = () => {
 				<PanelRow className="edac-status-grid">
 
 					{/* Problems (Errors) */}
-					<div className="edac-status-card">
+					<div
+						className="edac-status-card edac-status-card--clickable"
+						onClick={ handleProblemsClick }
+						role="button"
+						tabIndex={ 0 }
+						aria-label={ sprintf(
+							__( 'View %d problems in Accessibility Analysis', 'accessibility-checker' ),
+							problems,
+						) }
+						onKeyDown={ ( e ) => {
+							if ( e.key === 'Enter' || e.key === ' ' ) {
+								if ( e.key === ' ' ) {
+									e.preventDefault();
+								}
+								handleProblemsClick();
+							}
+						} }
+					>
 						<div className="edac-status-card__header">
 							<span className="edac-status-card__label">
 								{ __( 'Problems', 'accessibility-checker' ) }
@@ -129,7 +186,24 @@ const AccessibilityStatus = () => {
 					</div>
 
 					{/* Needs Review (Warnings) */}
-					<div className="edac-status-card">
+					<div
+						className="edac-status-card edac-status-card--clickable"
+						onClick={ handleNeedsReviewClick }
+						role="button"
+						tabIndex={ 0 }
+						aria-label={ sprintf(
+							__( 'View %d items needing review in Accessibility Analysis', 'accessibility-checker' ),
+							needsReview,
+						) }
+						onKeyDown={ ( e ) => {
+							if ( e.key === 'Enter' || e.key === ' ' ) {
+								if ( e.key === ' ' ) {
+									e.preventDefault();
+								}
+								handleNeedsReviewClick();
+							}
+						} }
+					>
 						<div className="edac-status-card__header">
 							<span className="edac-status-card__label">
 								{ __( 'Needs Review', 'accessibility-checker' ) }
@@ -150,6 +224,10 @@ const AccessibilityStatus = () => {
 						onClick={ handleReadingLevelClick }
 						role="button"
 						tabIndex={ 0 }
+						aria-label={ sprintf(
+							__( 'View reading level details: %s', 'accessibility-checker' ),
+							readingLevelText,
+						) }
 						onKeyDown={ ( e ) => {
 							if ( e.key === 'Enter' || e.key === ' ' ) {
 								if ( e.key === ' ' ) {
