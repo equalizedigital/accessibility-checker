@@ -5,7 +5,7 @@
  * Can be configured for different contexts (e.g., active issues, dismissed issues).
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, TabPanel } from '@wordpress/components';
 import { useState, useMemo } from '@wordpress/element';
 import RuleAccordion from './RuleAccordion';
@@ -89,7 +89,12 @@ const IssuesPanel = ( {
 					title: (
 						<>
 							{ tab.label }
-							<span className="edac-analysis__count">({ count })</span>
+							<span className="edac-analysis__count" aria-hidden="true">
+								({ count })
+							</span>
+							<span className="screen-reader-text">
+								, { sprintf( __( '%d total', 'accessibility-checker' ), count ) }
+							</span>
 						</>
 					),
 					className: 'edac-analysis__tab',

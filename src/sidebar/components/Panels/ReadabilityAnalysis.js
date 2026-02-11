@@ -134,6 +134,12 @@ const ReadabilityAnalysis = () => {
 	const readingLevelStatus = getReadingLevelStatus();
 	const gradeLabel = getGradeLabel();
 
+	// Build screen reader text for accordion title (grade only when available)
+	let srOnlyTitle = '';
+	if ( hasContent && postGrade > 0 && readingLevelStatus ) {
+		srOnlyTitle = gradeLabel;
+	}
+
 	// Determine the correct icon for the PanelBody title based on the overall status
 	const getPanelIcon = () => {
 		if ( ! hasContent || postGrade === 0 || postGrade === undefined || postGrade === null ) {
@@ -178,6 +184,7 @@ const ReadabilityAnalysis = () => {
 				getPanelIcon(),
 				__( 'Readability Analysis', 'accessibility-checker' ),
 				hasContent && postGrade > 0 ? ` (${ postGradeReadable })` : '',
+				srOnlyTitle,
 			) }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
 			initialOpen={ false }
