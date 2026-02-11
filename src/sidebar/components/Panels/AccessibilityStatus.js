@@ -61,47 +61,39 @@ const AccessibilityStatus = () => {
 	let readingLevelText = __( 'N/A', 'accessibility-checker' );
 	let summaryStatus = '';
 
-	// Handle click on Problems card to scroll to AccessibilityAnalysis and open Problems tab
-	const handleProblemsClick = useCallback( () => {
+	// Handles clicking a status card to scroll to the analysis panel and open a specific tab.
+	const handleAnalysisCardClick = useCallback( ( tabName ) => {
 		const analysisElement = document.querySelector( '.edac-accessibility-analysis' );
-		if ( analysisElement ) {
-			analysisElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
-			// Open the panel if closed
-			const panelButton = analysisElement.querySelector( '.components-panel__body-toggle' );
-			if ( panelButton && panelButton.getAttribute( 'aria-expanded' ) === 'false' ) {
-				panelButton.click();
-			}
-			// Click the Problems tab
-			setTimeout( () => {
-				const problemsTab = analysisElement.querySelector( 'button[id$="-problems"]' );
-				if ( problemsTab ) {
-					problemsTab.click();
-					problemsTab.focus();
-				}
-			}, 100 );
+		if ( ! analysisElement ) {
+			return;
 		}
+
+		analysisElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+
+		// Open the panel if it's closed.
+		const panelButton = analysisElement.querySelector( '.components-panel__body-toggle' );
+		if ( panelButton && panelButton.getAttribute( 'aria-expanded' ) === 'false' ) {
+			panelButton.click();
+		}
+
+		// The timeout gives the panel time to open before we try to click the tab.
+		// This can be brittle and might fail on slow devices.
+		setTimeout( () => {
+			const tabButton = analysisElement.querySelector( `button[id$='-${ tabName }']` );
+			if ( tabButton ) {
+				tabButton.click();
+				tabButton.focus();
+			}
+		}, 100 );
 	}, [] );
 
-	// Handle click on Needs Review card to scroll to AccessibilityAnalysis and open Needs Review tab
+	const handleProblemsClick = useCallback( () => {
+		handleAnalysisCardClick( 'problems' );
+	}, [ handleAnalysisCardClick ] );
+
 	const handleNeedsReviewClick = useCallback( () => {
-		const analysisElement = document.querySelector( '.edac-accessibility-analysis' );
-		if ( analysisElement ) {
-			analysisElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
-			// Open the panel if closed
-			const panelButton = analysisElement.querySelector( '.components-panel__body-toggle' );
-			if ( panelButton && panelButton.getAttribute( 'aria-expanded' ) === 'false' ) {
-				panelButton.click();
-			}
-			// Click the Needs Review tab
-			setTimeout( () => {
-				const needsReviewTab = analysisElement.querySelector( 'button[id$="-warnings"]' );
-				if ( needsReviewTab ) {
-					needsReviewTab.click();
-					needsReviewTab.focus();
-				}
-			}, 100 );
-		}
-	}, [] );
+		handleAnalysisCardClick( 'warnings' );
+	}, [ handleAnalysisCardClick ] );
 
 	// Handle click on Reading Level card to scroll to ReadabilityAnalysis
 	const handleReadingLevelClick = useCallback( () => {
