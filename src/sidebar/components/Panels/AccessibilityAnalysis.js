@@ -8,6 +8,14 @@ import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityChecker
 import IssuesPanel from '../IssuesPanel';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 
+// Count active (non-ignored) issues in a set of rules.
+const countActiveIssues = ( rules = [] ) => rules.reduce( ( sum, rule ) => {
+	const activeIssues = ( rule?.details || [] ).filter(
+		( issue ) => issue.ignre !== '1' && issue.ignre !== 1,
+	);
+	return sum + activeIssues.length;
+}, 0 );
+
 const AccessibilityAnalysis = () => {
 	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
 
@@ -21,24 +29,10 @@ const AccessibilityAnalysis = () => {
 	}
 
 	// Count total active (non-ignored) issues for icon display.
-	const problemCount = useMemo( () => {
-		return problems.reduce( ( sum, rule ) => {
-			const activeIssues = ( rule.details || [] ).filter(
-				( issue ) => issue.ignre !== '1' && issue.ignre !== 1,
-			);
-			return sum + activeIssues.length;
-		}, 0 );
-	}, [ problems ] );
+	const problemCount = useMemo( () => countActiveIssues( problems ), [ problems ] );
 
 	// Count total active (non-ignored) warnings.
-	const warningCount = useMemo( () => {
-		return warnings.reduce( ( sum, rule ) => {
-			const activeIssues = ( rule.details || [] ).filter(
-				( issue ) => issue.ignre !== '1' && issue.ignre !== 1,
-			);
-			return sum + activeIssues.length;
-		}, 0 );
-	}, [ warnings ] );
+	const warningCount = useMemo( () => countActiveIssues( warnings ), [ warnings ] );
 
 	// Calculate total issue count (problems + warnings).
 	const totalIssueCount = problemCount + warningCount;
