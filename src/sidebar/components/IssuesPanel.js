@@ -105,6 +105,12 @@ const IssuesPanel = ( {
 		} );
 	}, [ tabs, showIgnored ] );
 
+	// Prefer the first non-empty tab as the initial selection
+	const initialTab = useMemo( () => {
+		const nonEmptyTab = tabsWithCounts.find( ( tab ) => tab.count > 0 );
+		return nonEmptyTab?.name || tabsWithCounts[ 0 ]?.name;
+	}, [ tabsWithCounts ] );
+
 	const renderTabContent = ( tab ) => {
 		const currentTab = tabsWithCounts.find( ( t ) => t.name === tab.name );
 		const rules = currentTab?.rules || [];
@@ -151,7 +157,7 @@ const IssuesPanel = ( {
 					<TabPanel
 						className="edac-analysis__tabs"
 						tabs={ tabsWithCounts }
-						initialTabName={ tabsWithCounts[ 0 ]?.name }
+						initialTabName={ initialTab }
 						selectOnMove={ false }
 					>
 						{ renderTabContent }
