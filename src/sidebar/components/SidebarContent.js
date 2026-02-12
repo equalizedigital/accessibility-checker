@@ -16,9 +16,10 @@ import '../sass/components/sidebar-content.scss';
  * @return {JSX.Element} The sidebar content
  */
 const SidebarContent = () => {
-	const { loading, error } = useAccessibilityCheckerData();
+	const { loading, initialLoad, error, data } = useAccessibilityCheckerData();
 
-	if ( loading ) {
+	// Only show loading spinner on initial load
+	if ( loading && initialLoad ) {
 		return (
 			<div className="edac-sidebar__loading">
 				<p>{ __( 'Loading accessibility data...', 'accessibility-checker' ) }</p>
@@ -34,14 +35,20 @@ const SidebarContent = () => {
 		);
 	}
 
-	return (
-		<div className="edac-sidebar__content">
-			<AccessibilityStatus />
-			<AccessibilityAnalysis />
-			<DismissedIssues />
-			<ReadabilityAnalysis />
-		</div>
-	);
+	// Show content if we have data, even during background refresh
+	if ( data ) {
+		return (
+			<div className="edac-sidebar__content">
+				<AccessibilityStatus />
+				<AccessibilityAnalysis />
+				<DismissedIssues />
+				<ReadabilityAnalysis />
+			</div>
+		);
+	}
+
+	// No data yet and not loading
+	return null;
 };
 
 export default SidebarContent;

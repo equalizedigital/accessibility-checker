@@ -6,6 +6,8 @@ import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useCallback, useEffect } from '@wordpress/element';
+import { useSelect, useDispatch } from '@wordpress/data';
+import { STORE_NAME } from '../../store/accessibility-checker-store';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 import '../../sass/components/spinner.scss';
@@ -17,7 +19,25 @@ import '../../sass/components/accessibility-status.scss';
  * @return {JSX.Element} The accessibility status panel
  */
 const AccessibilityStatus = () => {
-	const { data, refreshing, refetch } = useAccessibilityCheckerData();
+	const { data, refetch } = useAccessibilityCheckerData();
+
+	// Panel ID for state persistence
+	const panelId = 'accessibility-status';
+
+	// Get panel expanded state from store
+	const isPanelExpanded = useSelect( ( select ) => {
+		const expanded = select( STORE_NAME ).isExpandedPanel( panelId );
+		// Default to true if undefined (accessibility status should be open by default)
+		// Only return false if explicitly set to false
+		return expanded !== false;
+	}, [ panelId ] );
+
+	const { setExpandedPanel } = useDispatch( STORE_NAME );
+
+	// Handle panel toggle
+	const handlePanelToggle = () => {
+		setExpandedPanel( panelId, ! isPanelExpanded );
+	};
 
 	// Listen for ignore updates from the old metabox and refetch data
 	useEffect( () => {
@@ -138,17 +158,10 @@ const AccessibilityStatus = () => {
 					__( 'Accessibility Status', 'accessibility-checker' ),
 				) }
 				initialOpen={ true }
+				opened={ isPanelExpanded }
+				onToggle={ handlePanelToggle }
 				className="edac-panel-body edac-accessibility-status"
 			>
-				{ refreshing && (
-					<p className="edac-refreshing-message">
-						<span className="edac-spinner">
-							<span className="spinner is-active" />
-						</span>
-						{ __( 'Updating...', 'accessibility-checker' ) }
-					</p>
-				) }
-
 				<PanelRow className="edac-status-grid">
 
 					{/* Problems (Errors) */}

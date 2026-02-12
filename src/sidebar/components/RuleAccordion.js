@@ -5,9 +5,12 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { Button } from '@wordpress/components';
 import { chevronUp, chevronDown } from '@wordpress/icons';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
+import { useRef, useEffect } from '@wordpress/element';
 import { getSeverityBadgeProps } from '../utils/badgeHelpers';
+import { restoreFocusWithFallback } from '../utils/focusHelpers';
+import { STORE_NAME } from '../store/accessibility-checker-store';
 import Badge from './Badge';
 import IssueRow from './IssueRow';
 
@@ -60,17 +63,59 @@ const SeverityBadge = ( { severity } ) => {
  *
  * @param {Object}   props             - Component props.
  * @param {Object}   props.rule        - Rule object.
- * @param {boolean}  props.isExpanded  - Whether accordion is expanded.
+ * @param {boolean}  props.isExpanded  - Whether accordion is expanded (controlled from parent).
  * @param {boolean}  props.showIgnored - If true, show only ignored issues. If false, show only active issues.
- * @param {Function} props.onToggle    - Toggle handler function.
+ * @param {Function} props.onToggle    - Toggle handler function (called from parent).
  */
 const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) => {
+	const buttonRef = useRef( null );
+	const ruleId = `${ rule.slug }_${ showIgnored ? 'ignored' : 'active' }`;
+
 	// Get the appropriate view link from the editor store
 	// Use preview link for unpublished posts, permalink for published posts
 	const viewLink = useSelect( ( select ) => {
 		const { getEditedPostPreviewLink, getPermalink, isCurrentPostPublished } = select( editorStore );
 		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
 	}, [] );
+
+	// Track background refresh state and last focused issue from store
+	const { backgroundRefresh, lastFocusedIssue } = useSelect( ( select ) => ( {
+		backgroundRefresh: select( STORE_NAME ).isBackgroundRefresh(),
+		lastFocusedIssue: select( STORE_NAME ).getLastFocusedIssue(),
+	} ), [] );
+
+	const { setExpandedRule, setLastFocusedIssue } = useDispatch( STORE_NAME );
+
+	// Track previous background refresh state
+	const prevBackgroundRefresh = useRef( backgroundRefresh );
+
+	// Restore focus after background refresh completes
+	useEffect( () => {
+		// If background refresh just completed and this rule was last focused
+		if ( prevBackgroundRefresh.current && ! backgroundRefresh && lastFocusedIssue === ruleId ) {
+			// Restore focus with fallback to parent panel if this rule no longer exists
+			restoreFocusWithFallback( {
+				primaryRef: buttonRef,
+				fallbackSelector: '.edac-analysis__panel, .edac-panel-body',
+				context: `rule accordion: ${ ruleId }`,
+			} );
+		}
+		prevBackgroundRefresh.current = backgroundRefresh;
+	}, [ backgroundRefresh, lastFocusedIssue, ruleId ] );
+
+	// Handle toggle and track in store
+	const handleToggle = () => {
+		const newExpandedState = ! isExpanded;
+		setExpandedRule( ruleId, newExpandedState );
+		if ( onToggle ) {
+			onToggle();
+		}
+	};
+
+	// Handle focus event to track this rule as last focused
+	const handleFocus = () => {
+		setLastFocusedIssue( ruleId );
+	};
 
 	// Get issues from rule.details array and filter based on showIgnored flag
 	const issues = rule.details || [];
@@ -114,8 +159,10 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 	return (
 		<div className="edac-analysis__rule">
 			<Button
+				ref={ buttonRef }
 				className="edac-analysis__rule-toggle"
-				onClick={ onToggle }
+				onClick={ handleToggle }
+				onFocus={ handleFocus }
 				aria-expanded={ isExpanded }
 				icon={ isExpanded ? chevronUp : chevronDown }
 				iconPosition="right"

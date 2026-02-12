@@ -7,6 +7,7 @@ import { PluginSidebar } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
+import { Spinner } from '@wordpress/components';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
 import { STORE_NAME } from './store/accessibility-checker-store';
@@ -17,6 +18,7 @@ import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-
  */
 function AccessibilityCheckerSidebar() {
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
+	const backgroundRefresh = useSelect( ( select ) => select( STORE_NAME ).isBackgroundRefresh(), [] );
 	const { fetchData, refetchData } = useDispatch( STORE_NAME );
 	const previousPostIdRef = useRef( null );
 
@@ -72,7 +74,12 @@ function AccessibilityCheckerSidebar() {
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
-			title={ __( 'Accessibility Checker', 'accessibility-checker' ) }
+			title={
+				<>
+					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
+					{ backgroundRefresh && <Spinner style={ { marginLeft: '8px' } } /> }
+				</>
+			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>
 			<SidebarContent />

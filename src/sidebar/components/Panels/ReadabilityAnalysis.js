@@ -5,9 +5,10 @@
 import { __, sprintf } from '@wordpress/i18n';
 import { PanelBody, PanelRow, TextareaControl, Button, Notice } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
-import { useSelect } from '@wordpress/data';
+import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import { STORE_NAME } from '../../store/accessibility-checker-store';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 import '../../sass/components/readability-analysis.scss';
@@ -26,6 +27,18 @@ const ReadabilityAnalysis = () => {
 	const [ summaryGrade, setSummaryGrade ] = useState( 0 );
 	const [ summaryGradeFailed, setSummaryGradeFailed ] = useState( false );
 	const [ notice, setNotice ] = useState( null );
+
+	// Panel ID for state persistence
+	const panelId = 'readability-analysis';
+
+	// Get panel expanded state from store
+	const isPanelExpanded = useSelect( ( select ) => select( STORE_NAME ).isExpandedPanel( panelId ), [ panelId ] );
+	const { setExpandedPanel } = useDispatch( STORE_NAME );
+
+	// Handle panel toggle
+	const handlePanelToggle = () => {
+		setExpandedPanel( panelId, ! isPanelExpanded );
+	};
 
 	// Extract readability data from the accessibility data.
 	const readabilityData = data?.readability || null;
@@ -188,6 +201,8 @@ const ReadabilityAnalysis = () => {
 			) }
 			className="edac-panel-body edac-readability-analysis-panel edac-readability-analysis"
 			initialOpen={ false }
+			opened={ isPanelExpanded }
+			onToggle={ handlePanelToggle }
 		>
 			{ notice && (
 				<Notice
