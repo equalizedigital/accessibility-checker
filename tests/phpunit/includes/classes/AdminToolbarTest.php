@@ -5,7 +5,6 @@
  * @package Accessibility_Checker\Tests
  */
 
-use PHPUnit\Framework\TestCase;
 use EDAC\Inc\Admin_Toolbar;
 
 /**
@@ -13,7 +12,7 @@ use EDAC\Inc\Admin_Toolbar;
  *
  * @covers \EDAC\Inc\Admin_Toolbar
  */
-class Admin_Toolbar_Test extends TestCase {
+class Admin_Toolbar_Test extends WP_UnitTestCase {
 	/**
 	 * Test instantiation of Admin_Toolbar class.
 	 */
@@ -35,19 +34,10 @@ class Admin_Toolbar_Test extends TestCase {
 	 * Test add_toolbar_items() does not add menu for non-admin user.
 	 */
 	public function test_add_toolbar_items_for_non_admin_user() {
-		$toolbar = new Admin_Toolbar();
-		// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
-		if ( ! function_exists( 'current_user_can' ) ) {
-			/**
-			 * Mock current_user_can for testing.
-			 *
-			 * @param string $cap Capability.
-			 * @return bool
-			 */
-			function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return false;
-			}
-		}
+		$user_id = $this->factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $user_id );
+
+		$toolbar  = new Admin_Toolbar();
 		$mock_bar = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'add_menu' ] )
 			->getMock();
@@ -56,29 +46,59 @@ class Admin_Toolbar_Test extends TestCase {
 	}
 
 	/**
-	 * Test add_toolbar_items() adds menu for admin user.
-	 *
-	 * This test is skipped if current_user_can cannot be reliably mocked.
+	 * Test add_toolbar_items() adds menus for admin user.
 	 */
-	public function test_add_toolbar_items_for_admin_user() {
-		if ( function_exists( 'current_user_can' ) ) {
-			$this->markTestSkipped( 'Cannot reliably mock current_user_can in this environment.' );
-		}
-		$toolbar = new Admin_Toolbar();
-		/**
-		 * Mock current_user_can for testing.
-		 *
-		 * @param string $cap Capability.
-		 * @return bool
-		 */
-		function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-			return true;
-		}
+	public function test_add_toolbar_items_adds_menus_for_admin_user() {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+
+		$toolbar     = new Admin_Toolbar();
+		$added_items = [];
+
 		$mock_bar = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'add_menu' ] )
 			->getMock();
-		$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
+		$mock_bar->expects( $this->atLeastOnce() )
+			->method( 'add_menu' )
+			->willReturnCallback(
+				function ( $item ) use ( &$added_items ) {
+					$added_items[] = $item;
+				}
+			);
+
 		$toolbar->add_toolbar_items( $mock_bar );
+
+		$ids = array_column( $added_items, 'id' );
+		$this->assertContains( 'accessibility-checker', $ids );
+		$this->assertContains( 'accessibility-checker-settings', $ids );
+		$this->assertContains( 'accessibility-checker-fixes', $ids );
+	}
+
+	/**
+	 * Test add_toolbar_items() includes Get Pro submenu when pro is not installed.
+	 */
+	public function test_add_toolbar_items_includes_get_pro_submenu() {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+
+		$toolbar     = new Admin_Toolbar();
+		$added_items = [];
+
+		$mock_bar = $this->getMockBuilder( stdClass::class )
+			->addMethods( [ 'add_menu' ] )
+			->getMock();
+		$mock_bar->expects( $this->atLeastOnce() )
+			->method( 'add_menu' )
+			->willReturnCallback(
+				function ( $item ) use ( &$added_items ) {
+					$added_items[] = $item;
+				}
+			);
+
+		$toolbar->add_toolbar_items( $mock_bar );
+
+		$ids = array_column( $added_items, 'id' );
+		$this->assertContains( 'accessibility-checker-pro', $ids );
 	}
 
 	/**

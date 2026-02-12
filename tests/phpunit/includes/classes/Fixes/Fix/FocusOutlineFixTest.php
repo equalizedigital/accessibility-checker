@@ -80,9 +80,40 @@ class FocusOutlineFixTest extends WP_UnitTestCase {
 	 */
 	public function test_run_adds_css_when_enabled() {
 		update_option( 'edac_fix_focus_outline', true );
-		
+
 		$this->fix->run();
-		
+
 		$this->assertTrue( has_action( 'wp_head', [ $this->fix, 'css' ] ) !== false );
+	}
+
+	/**
+	 * Test that the section callback outputs the expected description.
+	 *
+	 * @return void
+	 */
+	public function test_focus_outline_section_callback_outputs_description() {
+		ob_start();
+		$this->fix->focus_outline_section_callback();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( '<p>', $output );
+		$this->assertStringContainsString( 'focus outlines', $output );
+	}
+
+	/**
+	 * Test that the css method outputs the expected focus outline styles.
+	 *
+	 * @return void
+	 */
+	public function test_css_outputs_focus_outline_style() {
+		ob_start();
+		$this->fix->css();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( '<style id="edac-fix-focus-outline">', $output );
+		$this->assertStringContainsString( ':focus', $output );
+		$this->assertStringContainsString( 'outline: revert !important', $output );
+		$this->assertStringContainsString( 'outline-offset: revert !important', $output );
+		$this->assertStringContainsString( '</style>', $output );
 	}
 }

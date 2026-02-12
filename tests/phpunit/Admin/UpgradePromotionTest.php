@@ -34,10 +34,10 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Remove any filters added during tests.
 		remove_all_filters( 'edac_is_sale_time' );
 		remove_all_filters( 'edac_filter_settings_capability' );
-		
+
 		// Note: Constants like EDACP_VERSION can't be undefined in PHP once defined.
 		// In a real implementation, dependency injection would be used to avoid this testing issue.
-		
+
 		parent::tearDown();
 	}
 
@@ -59,17 +59,17 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		remove_all_actions( 'admin_menu' );
 		remove_all_actions( 'admin_head' );
 		remove_all_actions( 'admin_init' );
-		
+
 		// Call init.
 		$this->upgrade_promotion->init();
-		
+
 		// Check that the admin_menu action was added and get the priority.
 		$priority = has_action( 'admin_menu', [ $this->upgrade_promotion, 'add_menu_item' ] );
-		
+
 		// has_action returns false if not found, or the priority (integer) if found.
 		$this->assertNotFalse( $priority, 'admin_menu action was not added' );
 		$this->assertIsInt( $priority, 'Priority should be an integer' );
-		
+
 		// Check priority is 999.
 		$this->assertEquals(
 			999,
@@ -132,9 +132,9 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	public function test_allow_redirect_host_adds_domain() {
 		$initial_hosts  = [ 'wordpress.org', 'example.com' ];
 		$expected_hosts = array_merge( $initial_hosts, [ 'equalizedigital.com' ] );
-		
+
 		$result = $this->upgrade_promotion->allow_redirect_host( $initial_hosts );
-		
+
 		$this->assertEquals( $expected_hosts, $result, 'allow_redirect_host should add equalizedigital.com to hosts array' );
 		$this->assertContains( 'equalizedigital.com', $result, 'allow_redirect_host should add equalizedigital.com to hosts array' );
 	}
@@ -156,18 +156,18 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Create a user without manage_options capability.
 		$user_id = $this->factory()->user->create( [ 'role' => 'subscriber' ] );
 		wp_set_current_user( $user_id );
-		
+
 		// Mock the global submenu to check if anything was added.
 		global $submenu;
 		$original_submenu = $submenu;
 		$submenu          = [];
-		
+
 		// Call add_menu_item.
 		$this->upgrade_promotion->add_menu_item();
-		
+
 		// Check that no submenu was added.
 		$this->assertEmpty( $submenu, 'Menu was added for user without proper capability' );
-		
+
 		// Restore original submenu.
 		$submenu = $original_submenu;
 	}
@@ -179,21 +179,21 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Create an admin user.
 		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
-		
+
 		// Ensure pro version is not active (no constants defined).
 		// Constants can't be undefined, so we assume clean state.
-		
+
 		// Mock the global submenu.
 		global $submenu;
 		$original_submenu = $submenu;
 		$submenu          = [];
-		
+
 		// Call add_menu_item.
 		$this->upgrade_promotion->add_menu_item();
-		
+
 		// Check that submenu was added to accessibility_checker.
 		$this->assertNotEmpty( $submenu, 'No submenu was added' );
-		
+
 		// Restore original submenu.
 		$submenu = $original_submenu;
 	}
@@ -206,13 +206,13 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		$reflection = new ReflectionClass( $this->upgrade_promotion );
 		$method     = $reflection->getMethod( 'is_sale_time' );
 		$method->setAccessible( true );
-		
+
 		$this->assertFalse( $method->invoke( $this->upgrade_promotion ), 'Default sale time should be false' );
-		
+
 		// Test with filter returning true.
 		add_filter( 'edac_is_sale_time', '__return_true' );
 		$this->assertTrue( $method->invoke( $this->upgrade_promotion ), 'Sale time filter should return true' );
-		
+
 		// Test with filter returning false.
 		remove_filter( 'edac_is_sale_time', '__return_true' );
 		add_filter( 'edac_is_sale_time', '__return_false' );
@@ -226,20 +226,20 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Create an admin user.
 		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
-		
+
 		global $submenu;
 		$original_submenu = $submenu;
-		
+
 		// Test normal state (no sale).
 		add_filter( 'edac_is_sale_time', '__return_false' );
 		$submenu = [];
-		
+
 		$this->upgrade_promotion->add_menu_item();
-		
+
 		// Check that the normal menu label is used.
 		$this->assertNotEmpty( $submenu, 'No submenu was added for normal state' );
 		$this->assertArrayHasKey( 'accessibility_checker', $submenu, 'accessibility_checker submenu not found' );
-		
+
 		$menu_items   = $submenu['accessibility_checker'];
 		$upgrade_item = null;
 		foreach ( $menu_items as $item ) {
@@ -248,21 +248,21 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 				break;
 			}
 		}
-		
+
 		$this->assertNotNull( $upgrade_item, 'Upgrade menu item not found in normal state' );
 		$this->assertEquals( 'Upgrade to Pro', $upgrade_item[0], 'Normal state menu label is incorrect' );
-		
+
 		// Test sale state.
 		remove_filter( 'edac_is_sale_time', '__return_false' );
 		add_filter( 'edac_is_sale_time', '__return_true' );
 		$submenu = [];
-		
+
 		$this->upgrade_promotion->add_menu_item();
-		
+
 		// Check that the sale menu label is used.
 		$this->assertNotEmpty( $submenu, 'No submenu was added for sale state' );
 		$this->assertArrayHasKey( 'accessibility_checker', $submenu, 'accessibility_checker submenu not found in sale state' );
-		
+
 		$menu_items   = $submenu['accessibility_checker'];
 		$upgrade_item = null;
 		foreach ( $menu_items as $item ) {
@@ -271,10 +271,10 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 				break;
 			}
 		}
-		
+
 		$this->assertNotNull( $upgrade_item, 'Upgrade menu item not found in sale state' );
 		$this->assertEquals( 'Upgrade Sale Now', $upgrade_item[0], 'Sale state menu label is incorrect' );
-		
+
 		// Restore original submenu.
 		$submenu = $original_submenu;
 	}
@@ -286,10 +286,10 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		$reflection = new ReflectionClass( $this->upgrade_promotion );
 		$method     = $reflection->getMethod( 'is_pro_active' );
 		$method->setAccessible( true );
-		
+
 		// Test when pro is not active (default state).
 		$this->assertFalse( $method->invoke( $this->upgrade_promotion ), 'Pro should not be active by default' );
-		
+
 		// Note: We can't easily test the true case since constants can't be undefined once defined,
 		// and defining them here would affect other tests. In a real scenario, you might use
 		// dependency injection or make the constants configurable for testing.
@@ -302,14 +302,14 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Create an admin user for proper capability check.
 		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
-		
+
 		// Test on a non-accessibility checker page.
 		set_current_screen( 'dashboard' );
 		ob_start();
 		$this->upgrade_promotion->add_menu_styling();
 		$output = ob_get_clean();
 		$this->assertEmpty( $output, 'Styling should not be added on non-plugin pages' );
-		
+
 		// Test on an accessibility checker page.
 		set_current_screen( 'toplevel_page_accessibility_checker' );
 		ob_start();
@@ -333,7 +333,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 			'get_current_screen',
 			'apply_filters',
 		];
-		
+
 		foreach ( $required_functions as $function ) {
 			$this->assertTrue(
 				function_exists( $function ),
@@ -343,22 +343,72 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that maybe_handle_redirect returns early when page is not set.
+	 */
+	public function test_maybe_handle_redirect_returns_early_when_page_not_set() {
+		unset( $_GET['page'] );
+
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		// If we reach here without exception, the early return worked.
+		$this->assertTrue( true );
+	}
+
+	/**
+	 * Test that maybe_handle_redirect returns early when on wrong page.
+	 */
+	public function test_maybe_handle_redirect_returns_early_when_wrong_page() {
+		$_GET['page'] = 'some_other_page';
+
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertTrue( true );
+
+		unset( $_GET['page'] );
+	}
+
+	/**
+	 * Test that maybe_handle_redirect returns early without proper capability.
+	 */
+	public function test_maybe_handle_redirect_returns_early_without_capability() {
+		$_GET['page'] = 'accessibility_checker_upgrade';
+
+		$subscriber = $this->factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $subscriber );
+
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertTrue( true );
+
+		unset( $_GET['page'] );
+	}
+
+	/**
+	 * Test that dummy_page_callback calls wp_die.
+	 */
+	public function test_dummy_page_callback_calls_wp_die() {
+		$this->expectException( 'WPDieException' );
+
+		$this->upgrade_promotion->dummy_page_callback();
+	}
+
+	/**
 	 * Test class namespace and structure.
 	 */
 	public function test_class_namespace_and_structure() {
 		$reflection = new ReflectionClass( $this->upgrade_promotion );
-		
+
 		// Test namespace.
 		$this->assertEquals(
 			'EqualizeDigital\AccessibilityChecker\Admin',
 			$reflection->getNamespaceName(),
 			'Class should be in the correct namespace'
 		);
-		
+
 		// Test that all expected methods are public/private as intended.
 		$public_methods  = [ 'init', 'add_menu_item', 'add_menu_styling', 'allow_redirect_host', 'maybe_handle_redirect', 'dummy_page_callback' ];
 		$private_methods = [ 'is_pro_active', 'is_sale_time' ];
-		
+
 		foreach ( $public_methods as $method_name ) {
 			$method = $reflection->getMethod( $method_name );
 			$this->assertTrue(
@@ -366,7 +416,7 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 				"Method {$method_name} should be public"
 			);
 		}
-		
+
 		foreach ( $private_methods as $method_name ) {
 			$method = $reflection->getMethod( $method_name );
 			$this->assertTrue(

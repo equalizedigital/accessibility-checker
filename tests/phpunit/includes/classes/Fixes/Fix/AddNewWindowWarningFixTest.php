@@ -70,9 +70,42 @@ class AddNewWindowWarningFixTest extends WP_UnitTestCase {
 	 */
 	public function test_run_adds_styles_when_enabled() {
 		update_option( 'edac_fix_new_window_warning', true );
-		
+
 		$this->fix->run();
-		
+
 		$this->assertTrue( has_action( 'wp_head', [ $this->fix, 'add_styles' ] ) !== false );
+	}
+
+	/**
+	 * Test that add_styles outputs the expected CSS.
+	 *
+	 * @return void
+	 */
+	public function test_add_styles_outputs_css() {
+		ob_start();
+		$this->fix->add_styles();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( '<style id="edac-nww">', $output );
+		$this->assertStringContainsString( '@font-face', $output );
+		$this->assertStringContainsString( "font-family: 'anww'", $output );
+		$this->assertStringContainsString( '.edac-nww-external-link-icon', $output );
+		$this->assertStringContainsString( '</style>', $output );
+	}
+
+	/**
+	 * Test that add_styles includes the correct font URLs.
+	 *
+	 * @return void
+	 */
+	public function test_add_styles_includes_font_urls() {
+		ob_start();
+		$this->fix->add_styles();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'assets/fonts/anww.eot', $output );
+		$this->assertStringContainsString( 'assets/fonts/anww.ttf', $output );
+		$this->assertStringContainsString( 'assets/fonts/anww.woff', $output );
+		$this->assertStringContainsString( 'assets/fonts/anww.svg', $output );
 	}
 }

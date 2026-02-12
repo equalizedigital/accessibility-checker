@@ -81,10 +81,71 @@ class HTMLLangAndDirFixTest extends WP_UnitTestCase {
 	public function test_html_lang_dir_modification() {
 		update_option( 'edac_fix_add_lang_and_dir', true );
 		$this->fix->run();
-		
+
 		// Test frontend data filter.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$this->assertArrayHasKey( 'lang_and_dir', $data );
 		$this->assertTrue( $data['lang_and_dir']['enabled'] );
+	}
+
+	/**
+	 * Test that get_fancyname returns expected string.
+	 *
+	 * @return void
+	 */
+	public function test_get_fancyname_returns_expected_string() {
+		$fancyname = HTMLLangAndDirFix::get_fancyname();
+
+		$this->assertIsString( $fancyname );
+		$this->assertNotEmpty( $fancyname );
+		$this->assertStringContainsString( 'Page Language', $fancyname );
+	}
+
+	/**
+	 * Test that maybe_add_lang_and_dir adds both attributes when missing.
+	 *
+	 * @return void
+	 */
+	public function test_maybe_add_lang_and_dir_adds_both_when_missing() {
+		$result = $this->fix->maybe_add_lang_and_dir( '' );
+
+		$this->assertStringContainsString( 'lang="', $result );
+		$this->assertStringContainsString( 'dir="', $result );
+	}
+
+	/**
+	 * Test that maybe_add_lang_and_dir skips lang when already present.
+	 *
+	 * @return void
+	 */
+	public function test_maybe_add_lang_and_dir_skips_lang_when_already_present() {
+		$result = $this->fix->maybe_add_lang_and_dir( 'lang="en-US"' );
+
+		$this->assertEquals( 1, substr_count( $result, 'lang=' ) );
+		$this->assertStringContainsString( 'dir="', $result );
+	}
+
+	/**
+	 * Test that maybe_add_lang_and_dir skips dir when already present.
+	 *
+	 * @return void
+	 */
+	public function test_maybe_add_lang_and_dir_skips_dir_when_already_present() {
+		$result = $this->fix->maybe_add_lang_and_dir( 'dir="ltr"' );
+
+		$this->assertStringContainsString( 'lang="', $result );
+		$this->assertEquals( 1, substr_count( $result, 'dir=' ) );
+	}
+
+	/**
+	 * Test that maybe_add_lang_and_dir leaves output unchanged when both present.
+	 *
+	 * @return void
+	 */
+	public function test_maybe_add_lang_and_dir_unchanged_when_both_present() {
+		$input  = 'lang="en-US" dir="ltr"';
+		$result = $this->fix->maybe_add_lang_and_dir( $input );
+
+		$this->assertEquals( $input, $result );
 	}
 }

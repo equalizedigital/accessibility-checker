@@ -28,10 +28,10 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->activation_redirect = new Activation_Redirect();
-		
+
 		// Clear any existing transients.
 		delete_transient( 'edac_activation_redirect' );
-		
+
 		// Clear any $_GET parameters.
 		unset( $_GET['activate-multi'] );
 
@@ -79,14 +79,14 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_no_redirect_without_transient() {
 		// Ensure transient doesn't exist.
 		delete_transient( 'edac_activation_redirect' );
-		
+
 		// Set up admin user.
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
-		
+
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// If we get here without a redirect and no transient, the test passes.
 		$this->assertFalse( get_transient( 'edac_activation_redirect' ) );
 	}
@@ -102,14 +102,14 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_transient_is_deleted_only_on_redirect() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
-		
+
 		// Set up admin user.
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
-		
+
 		// Call the method - it will return early due to WP_TESTS_DOMAIN.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// Transient should still exist because redirect didn't happen.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
@@ -120,11 +120,11 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_no_redirect_during_ajax() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
-		
+
 		// Set up admin user.
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
-		
+
 		// Simulate AJAX request.
 		add_filter(
 			'wp_doing_ajax',
@@ -132,10 +132,10 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 				return true;
 			}
 		);
-		
+
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// Transient should still exist because no redirect happened.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
@@ -146,17 +146,17 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_no_redirect_during_bulk_activation() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
-		
+
 		// Set up admin user.
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
-		
+
 		// Simulate bulk activation.
 		$_GET['activate-multi'] = 'true';
-		
+
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// Transient should still exist because no redirect happened.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
@@ -167,15 +167,37 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_no_redirect_without_proper_capability() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
-		
+
 		// Set up subscriber user (no edit_posts capability).
 		$subscriber = $this->factory->user->create( [ 'role' => 'subscriber' ] );
 		wp_set_current_user( $subscriber );
-		
+
 		// Call the method - it should return early.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// Transient should still exist because no redirect happened.
+		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
+	}
+
+	/**
+	 * Test that redirect does not happen during REST API requests.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 */
+	public function test_no_redirect_during_rest_request() {
+		if ( ! defined( 'REST_REQUEST' ) ) {
+			define( 'REST_REQUEST', true );
+		}
+
+		set_transient( 'edac_activation_redirect', true, 60 );
+
+		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_user );
+
+		$this->activation_redirect->maybe_redirect_to_welcome();
+
+		// Transient should still exist because redirect didn't happen.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
 
@@ -200,18 +222,18 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_activation_sets_transient() {
 		// Ensure transient doesn't exist initially.
 		delete_transient( 'edac_activation_redirect' );
-		
+
 		// Mock the Accessibility_Statement class since it's required by activation.
 		if ( ! class_exists( 'EDAC\Admin\Accessibility_Statement' ) ) {
 			require_once EDAC_PLUGIN_DIR . 'admin/class-accessibility-statement.php';
 		}
-		
+
 		// Run the activation function.
 		edac_activation();
-		
+
 		// Check that the transient was set.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
-		
+
 		// Clean up.
 		delete_transient( 'edac_activation_redirect' );
 	}
@@ -221,11 +243,11 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	 */
 	public function test_get_welcome_page_url_returns_correct_url() {
 		$url = $this->activation_redirect->get_welcome_page_url();
-		
+
 		// Verify the URL is properly formed and points to the welcome page.
 		$this->assertStringContainsString( 'admin.php?page=accessibility_checker', $url );
 		$this->assertStringContainsString( 'wp-admin', $url );
-		
+
 		// Verify it's a valid admin URL.
 		$expected_url = admin_url( 'admin.php?page=accessibility_checker' );
 		$this->assertEquals( $expected_url, $url );
@@ -237,17 +259,17 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 	public function test_no_redirect_in_test_environment() {
 		// Set the transient.
 		set_transient( 'edac_activation_redirect', true, 60 );
-		
+
 		// Set up admin user.
 		$admin_user = $this->factory->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_user );
-		
+
 		// WP_TESTS_DOMAIN should be defined in test environment.
 		$this->assertTrue( defined( 'WP_TESTS_DOMAIN' ), 'WP_TESTS_DOMAIN should be defined in test environment' );
-		
+
 		// Call the method - it should return early without redirecting.
 		$this->activation_redirect->maybe_redirect_to_welcome();
-		
+
 		// Transient should still exist because no redirect happened.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
 	}
