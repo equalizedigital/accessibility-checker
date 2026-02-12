@@ -16,17 +16,26 @@ import { STORE_NAME } from '../store/accessibility-checker-store';
 export const useAccessibilityCheckerData = () => {
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
 
-	const { data, loading, error, refreshing } = useSelect(
+	const { data, loading, error, refreshing, initialLoad, backgroundRefresh } = useSelect(
 		( select ) => ( {
 			data: select( STORE_NAME ).getData(),
 			loading: select( STORE_NAME ).isLoading(),
 			error: select( STORE_NAME ).getError(),
 			refreshing: select( STORE_NAME ).isRefreshing(),
+			initialLoad: select( STORE_NAME ).isInitialLoad(),
+			backgroundRefresh: select( STORE_NAME ).isBackgroundRefresh(),
 		} ),
 		[],
 	);
 
-	const { refetchData, updateReadabilityData } = useDispatch( STORE_NAME );
+	const {
+		refetchData,
+		updateReadabilityData,
+		setExpandedPanel,
+		setActiveTab,
+		setExpandedRule,
+		setLastFocusedIssue,
+	} = useDispatch( STORE_NAME );
 
 	// Wrap refetchData to automatically include postId
 	const refetch = () => {
@@ -40,8 +49,14 @@ export const useAccessibilityCheckerData = () => {
 		loading,
 		error,
 		refreshing,
+		initialLoad,
+		backgroundRefresh,
 		refetch,
 		updateReadabilityData,
+		setExpandedPanel,
+		setActiveTab,
+		setExpandedRule,
+		setLastFocusedIssue,
 	};
 };
 
