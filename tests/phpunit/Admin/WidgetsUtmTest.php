@@ -10,7 +10,7 @@ use EDAC\Admin\Widgets;
 /**
  * Tests for widget upgrade-link UTM keys.
  */
-class WidgetsUtmTest extends WP_UnitTestCase {
+class edac_WidgetsUtmTest extends WP_UnitTestCase {
 
 	/**
 	 * Set up options needed for widget rendering.
