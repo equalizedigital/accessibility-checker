@@ -178,9 +178,6 @@ const IssuesPanel = ( {
 		prevBackgroundRefresh.current = backgroundRefresh;
 	}, [ backgroundRefresh, lastFocusedIssue, tabsWithCounts, showIgnored, className, panelId, activeTabName ] );
 
-	if ( tabsWithCounts.length === 0 ) {
-		return null;
-	}
 	// Prefer the first non-empty tab as the initial selection
 	const initialTab = useMemo( () => {
 		const nonEmptyTab = tabsWithCounts.find( ( tab ) => tab.count > 0 );
