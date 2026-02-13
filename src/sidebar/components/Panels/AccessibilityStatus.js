@@ -26,13 +26,24 @@ const AccessibilityStatus = () => {
 
 	// Get panel expanded state from store
 	const isPanelExpanded = useSelect( ( select ) => {
-		const expanded = select( STORE_NAME ).isExpandedPanel( panelId );
-		// Default to true if undefined (accessibility status should be open by default)
-		// Only return false if explicitly set to false
-		return expanded !== false;
+		return select( STORE_NAME ).isExpandedPanel( panelId );
 	}, [ panelId ] );
 
+	// Get UI state to check if panel has been explicitly set
+	const uiState = useSelect( ( select ) => {
+		return select( STORE_NAME ).getUIState();
+	}, [] );
+
 	const { setExpandedPanel } = useDispatch( STORE_NAME );
+
+	// Initialize panel to open on first mount if not set in store
+	useEffect( () => {
+		// Check if the panel state has never been set
+		// We want to ensure it's explicitly set so the controlled component works properly
+		if ( uiState.expandedPanels[ panelId ] === undefined ) {
+			setExpandedPanel( panelId, true );
+		}
+	}, [ panelId, setExpandedPanel, uiState.expandedPanels ] );
 
 	// Handle panel toggle
 	const handlePanelToggle = () => {
