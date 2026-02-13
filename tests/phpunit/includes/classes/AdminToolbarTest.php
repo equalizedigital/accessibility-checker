@@ -94,6 +94,7 @@ class Admin_Toolbar_Test extends TestCase {
 		$this->assertNotEmpty( $items );
 		$this->assertArrayHasKey( 'id', $items[0] );
 	}
+
 	/**
 	 * Test pro menu link uses the expected UTM content parameter key.
 	 */
@@ -120,5 +121,4 @@ class Admin_Toolbar_Test extends TestCase {
 		$this->assertStringContainsString( 'utm_content=admin-toolbar', $pro_item['href'] );
 		$this->assertStringNotContainsString( 'utm-content=admin-toolbar', $pro_item['href'] );
 	}
-
 }
