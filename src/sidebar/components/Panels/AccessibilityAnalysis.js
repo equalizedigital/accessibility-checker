@@ -17,7 +17,7 @@ const countActiveIssues = ( rules = [] ) => rules.reduce( ( sum, rule ) => {
 }, 0 );
 
 const AccessibilityAnalysis = () => {
-	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
+	const { data, loading, error } = useAccessibilityCheckerData();
 
 	const details = data?.details || {};
 	const problems = useMemo( () => details.errors || [], [ details ] );
@@ -60,6 +60,7 @@ const AccessibilityAnalysis = () => {
 
 	return (
 		<IssuesPanel
+			panelId="accessibility-analysis"
 			title={ renderPanelTitleWithIcon(
 				iconName,
 				__( 'Accessibility Analysis', 'accessibility-checker' ),
@@ -68,7 +69,6 @@ const AccessibilityAnalysis = () => {
 			) }
 			initialOpen={ false }
 			tabs={ tabs }
-			refreshing={ refreshing }
 			showIgnored={ false }
 			className="edac-accessibility-analysis"
 		/>

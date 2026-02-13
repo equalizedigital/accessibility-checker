@@ -19,7 +19,7 @@ const countDismissedIssues = ( rules = [] ) => rules.reduce( ( sum, rule ) => {
 }, 0 );
 
 const DismissedIssues = () => {
-	const { data, loading, error, refreshing } = useAccessibilityCheckerData();
+	const { data, loading, error } = useAccessibilityCheckerData();
 
 	// If we have no data (still loading) let parent loaders show.
 	if ( loading || error ) {
@@ -61,10 +61,10 @@ const DismissedIssues = () => {
 
 	return (
 		<IssuesPanel
+			panelId="dismissed-issues"
 			title={ panelTitle }
 			initialOpen={ false }
 			tabs={ tabs }
-			refreshing={ refreshing }
 			showIgnored={ true }
 			className="edac-dismissed-issues-panel"
 		/>
