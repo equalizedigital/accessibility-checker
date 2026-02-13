@@ -233,7 +233,7 @@ const IssuesPanel = ( {
 				<TabPanel
 					className="edac-analysis__tabs"
 					tabs={ tabsWithCounts }
-					initialTabName={ activeTabName || tabsWithCounts[ 0 ]?.name }
+					initialTabName={ activeTabName || initialTab }
 					onSelect={ ( tabName ) => setActiveTab( panelId, tabName ) }
 					selectOnMove={ false }
 				>
