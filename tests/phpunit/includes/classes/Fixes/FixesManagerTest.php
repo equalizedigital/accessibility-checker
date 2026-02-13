@@ -115,4 +115,22 @@ class FixesManagerTest extends WP_UnitTestCase {
 
 		$this->assertEquals( $expected, $fixes_manager->get_fixes_settings() );
 	}
+
+	/**
+	 * Test that the read more fix is loaded by default.
+	 *
+	 * @return void
+	 */
+	public function test_load_fixes_includes_read_more_fix() {
+		$fixes_manager = FixesManager::get_instance();
+		$reflection    = new ReflectionClass( $fixes_manager );
+		$load_fixes    = $reflection->getMethod( 'load_fixes' );
+		$load_fixes->setAccessible( true );
+		$load_fixes->invoke( $fixes_manager );
+
+		$this->assertInstanceOf(
+			'EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix',
+			$fixes_manager->get_fix( 'read_more' )
+		);
+	}
 }
