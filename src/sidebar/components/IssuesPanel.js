@@ -147,38 +147,16 @@ const IssuesPanel = ( {
 			}
 
 			// Check if the lastFocusedIssue suffix matches this panel's type
-			// This tells us if the user was interacting with THIS panel before refresh
 			const expectedSuffix = showIgnored ? '_ignored' : '_active';
 			const focusedRuleWasInThisPanel = lastFocusedIssue.endsWith( expectedSuffix );
 
-			// Only handle focus restoration if:
-			// 1. The rule no longer exists in this panel, AND
-			// 2. The user was interacting with this panel (based on suffix match)
-			// This prevents other panels from stealing focus
 			if ( ! focusedRuleExistsInThisPanel && focusedRuleWasInThisPanel ) {
 				// Determine which tab the user was in - use active tab state
 				const currentActiveTab = activeTabName || tabsWithCounts[ 0 ]?.name;
-				const currentTab = tabsWithCounts.find( ( t ) => t.name === currentActiveTab );
-
-				// Fallback priority:
-				// 1. First rule in the current tab (if rules exist)
-				// 2. Current tab button (stay in the same tab)
-				// 3. Panel header button
 
 				// Use requestAnimationFrame to ensure DOM has updated
 				requestAnimationFrame( () => {
-					// Try to focus first rule in the current tab
-					if ( currentTab && currentTab.rules.length > 0 ) {
-						const firstRuleButton = document.querySelector(
-							`.${ className.split( ' ' )[ 0 ] } .edac-analysis__panel[role="tabpanel"]:not([hidden]) .edac-analysis__rule-toggle`,
-						);
-						if ( firstRuleButton ) {
-							firstRuleButton.focus();
-							return;
-						}
-					}
-
-					// No rules in current tab, focus the tab button to keep user in same context
+					// Focus the tab button to keep user in same tab context
 					const tabButton = document.querySelector(
 						`.${ className.split( ' ' )[ 0 ] } .edac-analysis__tabs button[id$="-${ currentActiveTab }"]`,
 					);
