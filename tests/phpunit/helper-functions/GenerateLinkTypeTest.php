@@ -14,6 +14,7 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 	 * Ensure software telemetry uses EDAC_KEY_VALID, not EDACP_KEY_VALID.
 	 *
 	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_software_param_uses_edac_key_valid_constant() {
 		if ( ! function_exists( 'edac_generate_link_type' ) ) {
