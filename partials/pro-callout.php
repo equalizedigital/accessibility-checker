@@ -5,6 +5,10 @@
  * @package Accessibility_Checker
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div class="edac-pro-callout">
 	<img

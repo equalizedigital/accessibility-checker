@@ -12,6 +12,10 @@ use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles ajax requests.
  */

@@ -7,6 +7,10 @@
 
 namespace EDAC\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles widgets
  */

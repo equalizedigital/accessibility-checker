@@ -7,6 +7,10 @@
 
 use EDAC\Admin\Welcome_Page;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <div class="wrap edac-welcome-container">

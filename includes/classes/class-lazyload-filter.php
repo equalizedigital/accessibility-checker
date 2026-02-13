@@ -7,6 +7,10 @@
 
 namespace EDAC\Inc;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * A class that handles lazyload filter.
  * This class allows for disabling lazyload when highlighting elements.

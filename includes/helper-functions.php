@@ -7,6 +7,10 @@
 
 use EDAC\Admin\Settings;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Compare strings
  *

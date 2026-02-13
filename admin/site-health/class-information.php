@@ -8,6 +8,10 @@
 
 namespace EDAC\Admin\SiteHealth;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles site health info.
  */

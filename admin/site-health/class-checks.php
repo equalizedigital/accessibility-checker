@@ -11,6 +11,10 @@ namespace EDAC\Admin\SiteHealth;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Adds Site Health tests for Accessibility Checker.
  *
