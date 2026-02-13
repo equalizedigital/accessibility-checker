@@ -39,7 +39,7 @@ const QuickAccessPanel = () => {
 	}
 
 	// Calculate error and warning counts from data
-	const errorCount = data?.summary?.errors || 0;
+	const errorCount = ( data?.summary?.errors || 0 ) + ( data?.summary?.contrast_errors || 0 );
 	const warningCount = data?.summary?.warnings || 0;
 
 	// Determine which content to display
