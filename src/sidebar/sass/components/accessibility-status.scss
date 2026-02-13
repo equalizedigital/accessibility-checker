@@ -48,6 +48,7 @@
 
 		&__label {
 			font-size: $sidebar-p-size;
+			line-height: 1;
 			font-weight: 600;
 			color: $info-grey;
 
@@ -60,6 +61,7 @@
 		&__icon {
 			flex-shrink: 0;
 			font-size: 16px;
+			margin: -2.5px -2.5px 0 0;
 
 			.edac-icon {
 				width: 16px;
