@@ -64,6 +64,21 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that proUrl tracking uses the expected utm_content key format.
+	 *
+	 * @return void
+	 */
+	public function testLocalizedProUrlUsesUtmContentKey() {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
+		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
 	 * Test that the base script and editor script is enqueued in the editor for an existing page.
 	 *
 	 * @return void
