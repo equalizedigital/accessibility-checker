@@ -94,4 +94,31 @@ class Admin_Toolbar_Test extends TestCase {
 		$this->assertNotEmpty( $items );
 		$this->assertArrayHasKey( 'id', $items[0] );
 	}
+
+	/**
+	 * Test pro menu link uses the expected UTM content parameter key.
+	 */
+	public function test_get_default_menu_items_pro_link_uses_utm_content() {
+		if ( ! function_exists( 'edac_generate_link_type' ) ) {
+			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
+		}
+
+		$reflection = new \ReflectionClass( Admin_Toolbar::class );
+		$method     = $reflection->getMethod( 'get_default_menu_items' );
+		$method->setAccessible( true );
+		$toolbar = new Admin_Toolbar();
+		$items   = $method->invoke( $toolbar );
+
+		$pro_item = null;
+		foreach ( $items as $item ) {
+			if ( 'accessibility-checker-pro' === $item['id'] ) {
+				$pro_item = $item;
+				break;
+			}
+		}
+
+		$this->assertNotNull( $pro_item );
+		$this->assertStringContainsString( 'utm_content=admin-toolbar', $pro_item['href'] );
+		$this->assertStringNotContainsString( 'utm-content=admin-toolbar', $pro_item['href'] );
+	}
 }
