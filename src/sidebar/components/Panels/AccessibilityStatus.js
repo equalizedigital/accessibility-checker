@@ -71,7 +71,7 @@ const AccessibilityStatus = () => {
 	const readability = data?.readability || {};
 
 	const coveragePercent = summary.passed_tests || 0;
-	const problems = summary.errors || 0;
+	const problems = ( summary.errors || 0 ) + ( summary.contrast_errors || 0 );
 	const needsReview = summary.warnings || 0;
 
 	const postGrade = readability.post_grade || 0;
