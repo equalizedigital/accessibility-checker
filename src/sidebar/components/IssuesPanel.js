@@ -10,7 +10,6 @@ import { Panel, PanelBody, TabPanel } from '@wordpress/components';
 import { useState, useMemo, useEffect, useRef } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { STORE_NAME } from '../store/accessibility-checker-store';
-import { restoreFocusWithFallback } from '../utils/focusHelpers';
 import RuleAccordion from './RuleAccordion';
 import '../sass/components/accessibility-analysis.scss';
 import '../sass/components/accessibility-analysis-tabs.scss';
@@ -132,8 +131,9 @@ const IssuesPanel = ( {
 	useEffect( () => {
 		// If background refresh just completed and there was a focused issue
 		if ( prevBackgroundRefresh.current && ! backgroundRefresh && lastFocusedIssue ) {
-			let focusedRuleExists = false;
+			let focusedRuleExistsInThisPanel = false;
 
+			// Check if the focused rule currently exists in this panel
 			for ( const tab of tabsWithCounts ) {
 				const ruleExists = tab.rules.some( ( rule ) => {
 					const ruleId = `${ rule.slug }_${ showIgnored ? 'ignored' : 'active' }`;
@@ -141,37 +141,62 @@ const IssuesPanel = ( {
 				} );
 
 				if ( ruleExists ) {
-					focusedRuleExists = true;
+					focusedRuleExistsInThisPanel = true;
 					break;
 				}
 			}
 
-			// If the rule doesn't exist anymore, restore focus within the same panel/tab
-			if ( ! focusedRuleExists ) {
-				// Try to determine which tab the user was in by checking the active tab
+			// Check if the lastFocusedIssue suffix matches this panel's type
+			// This tells us if the user was interacting with THIS panel before refresh
+			const expectedSuffix = showIgnored ? '_ignored' : '_active';
+			const focusedRuleWasInThisPanel = lastFocusedIssue.endsWith( expectedSuffix );
+
+			// Only handle focus restoration if:
+			// 1. The rule no longer exists in this panel, AND
+			// 2. The user was interacting with this panel (based on suffix match)
+			// This prevents other panels from stealing focus
+			if ( ! focusedRuleExistsInThisPanel && focusedRuleWasInThisPanel ) {
+				// Determine which tab the user was in - use active tab state
 				const currentActiveTab = activeTabName || tabsWithCounts[ 0 ]?.name;
 				const currentTab = tabsWithCounts.find( ( t ) => t.name === currentActiveTab );
 
-				// Build a more specific fallback selector for this panel and tab
-				// Use the panel's unique className to ensure we don't leak to other panels
-				const panelClass = className.split( ' ' )[ 0 ];
+				// Fallback priority:
+				// 1. First rule in the current tab (if rules exist)
+				// 2. Current tab button (stay in the same tab)
+				// 3. Panel header button
 
-				// Priority: 1) Rules container in current tab panel, 2) Tab button
-				// The .edac-analysis__rules container holds the actual rule accordions
-				const rulesContainerSelector = `.${ panelClass } .edac-analysis__rules`;
-				const tabButtonSelector = `.${ panelClass } .edac-analysis__tabs button[id$="-${ currentActiveTab }"]`;
+				// Use requestAnimationFrame to ensure DOM has updated
+				requestAnimationFrame( () => {
+					// Try to focus first rule in the current tab
+					if ( currentTab && currentTab.rules.length > 0 ) {
+						const firstRuleButton = document.querySelector(
+							`.${ className.split( ' ' )[ 0 ] } .edac-analysis__panel[role="tabpanel"]:not([hidden]) .edac-analysis__rule-toggle`,
+						);
+						if ( firstRuleButton ) {
+							firstRuleButton.focus();
+							return;
+						}
+					}
 
-				const fallbackSelector = currentTab && currentTab.rules.length > 0
-					? rulesContainerSelector // Focus first rule in visible tab
-					: tabButtonSelector; // No rules left, focus the tab button
+					// No rules in current tab, focus the tab button to keep user in same context
+					const tabButton = document.querySelector(
+						`.${ className.split( ' ' )[ 0 ] } .edac-analysis__tabs button[id$="-${ currentActiveTab }"]`,
+					);
+					if ( tabButton ) {
+						tabButton.focus();
+						return;
+					}
 
-				restoreFocusWithFallback( {
-					primaryRef: null, // No primary target since rule is gone
-					fallbackSelector,
-					context: `panel: ${ panelId }, tab: ${ currentActiveTab } (rule no longer exists)`,
+					// As a last resort, focus the panel header
+					const panelHeader = document.querySelector(
+						`.${ className.split( ' ' )[ 0 ] } .components-panel__body-toggle`,
+					);
+					if ( panelHeader ) {
+						panelHeader.focus();
+					}
 				} );
 			}
-			// If rule still exists, RuleAccordion will handle its own focus restoration
+			// If rule still exists in this panel, RuleAccordion will handle its own focus restoration
 		}
 		prevBackgroundRefresh.current = backgroundRefresh;
 	}, [ backgroundRefresh, lastFocusedIssue, tabsWithCounts, showIgnored, className, panelId, activeTabName ] );
