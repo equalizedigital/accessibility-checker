@@ -70,42 +70,46 @@ const IssuesPanel = ( {
 
 	// Build tabs with counts
 	const tabsWithCounts = useMemo( () => {
-		return tabs
-			.map( ( tab ) => {
-				let rules = tab.items || [];
+		return tabs.map( ( tab ) => {
+			let rules = tab.items || [];
 
-				// Apply ignored status filter
-				rules = filterRulesByIgnoredStatus( rules );
+			// Apply ignored status filter
+			rules = filterRulesByIgnoredStatus( rules );
 
-				const count = rules.reduce(
-					( sum, rule ) => sum + ( rule.details?.length || 0 ),
-					0,
-				);
+			const count = rules.reduce(
+				( sum, rule ) => sum + ( rule.details?.length || 0 ),
+				0,
+			);
 
-				return {
-					...tab,
-					rules,
-					count,
-					title: (
-						<>
-							{ tab.label }
-							<span className="edac-analysis__count" aria-hidden="true">
-								({ count })
-							</span>
-							<span className="screen-reader-text">
-								, { sprintf( __( '%d total', 'accessibility-checker' ), count ) }
-							</span>
-						</>
-					),
-					className: 'edac-analysis__tab',
-				};
-			} )
-			.filter( ( tab ) => tab.rules.length > 0 );
+			return {
+				...tab,
+				rules,
+				count,
+				title: (
+					<>
+						{ tab.label }
+						{ count > 0 && (
+							<>
+								<span className="edac-analysis__count" aria-hidden="true">
+									({ count })
+								</span>
+								<span className="screen-reader-text">
+									, { sprintf( __( '%d total', 'accessibility-checker' ), count ) }
+								</span>
+							</>
+						) }
+					</>
+				),
+				className: 'edac-analysis__tab',
+			};
+		} );
 	}, [ tabs, showIgnored ] );
 
-	if ( tabsWithCounts.length === 0 ) {
-		return null;
-	}
+	// Prefer the first non-empty tab as the initial selection
+	const initialTab = useMemo( () => {
+		const nonEmptyTab = tabsWithCounts.find( ( tab ) => tab.count > 0 );
+		return nonEmptyTab?.name || tabsWithCounts[ 0 ]?.name;
+	}, [ tabsWithCounts ] );
 
 	const renderTabContent = ( tab ) => {
 		const currentTab = tabsWithCounts.find( ( t ) => t.name === tab.name );
@@ -135,6 +139,13 @@ const IssuesPanel = ( {
 						} ) }
 					</div>
 				) }
+				{ ! refreshing && ! hasRules && (
+					<p className="edac-analysis__message">
+						{ showIgnored
+							? __( 'No dismissed issues.', 'accessibility-checker' )
+							: __( 'No issues found.', 'accessibility-checker' ) }
+					</p>
+				) }
 			</div>
 		);
 	};
@@ -142,14 +153,16 @@ const IssuesPanel = ( {
 	return (
 		<Panel className={ `edac-analysis-panel ${ className }` }>
 			<PanelBody title={ title } initialOpen={ initialOpen }>
-				<TabPanel
-					className="edac-analysis__tabs"
-					tabs={ tabsWithCounts }
-					initialTabName={ tabsWithCounts[ 0 ]?.name }
-					selectOnMove={ false }
-				>
-					{ renderTabContent }
-				</TabPanel>
+				{ tabsWithCounts.length > 0 && (
+					<TabPanel
+						className="edac-analysis__tabs"
+						tabs={ tabsWithCounts }
+						initialTabName={ initialTab }
+						selectOnMove={ false }
+					>
+						{ renderTabContent }
+					</TabPanel>
+				) }
 			</PanelBody>
 		</Panel>
 	);
