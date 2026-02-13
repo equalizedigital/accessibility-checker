@@ -122,8 +122,7 @@ const IssuesPanel = ( {
 					),
 					className: 'edac-analysis__tab',
 				};
-			} )
-			.filter( ( tab ) => tab.rules.length > 0 );
+			} );
 	}, [ tabs, showIgnored ] );
 
 	// Handle focus restoration when background refresh completes
