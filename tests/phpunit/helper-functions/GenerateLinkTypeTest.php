@@ -19,6 +19,7 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 		}
 
 		$errors = [];
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Intentional in tests to verify warning-free execution.
 		set_error_handler(
 			function ( $errno, $errstr ) use ( &$errors ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 				$errors[] = $errstr;
@@ -43,6 +44,7 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 		}
 
 		$errors = [];
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Intentional in tests to verify warning-free execution.
 		set_error_handler(
 			function ( $errno, $errstr ) use ( &$errors ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
 				$errors[] = $errstr;
