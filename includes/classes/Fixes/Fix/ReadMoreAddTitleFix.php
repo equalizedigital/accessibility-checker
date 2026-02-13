@@ -145,7 +145,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 		global $id;
 
 		// If the $text already contains the title, we won't add it again.
-		if ( str_contains( strtolower( $text ), strtolower( get_the_title( $id ) ) ) ) {
+		if ( false !== stripos( $text, get_the_title( $id ) ) ) {
 			return $link;
 		}
 
@@ -170,7 +170,7 @@ class ReadMoreAddTitleFix implements FixInterface {
 
 			// If the last part of the excerpt contains the post title, we won't add it again.
 			$exceprt_fragment = strtolower( substr( $excerpt, ( -100 - strlen( $post_title ) ) ) );
-			if ( str_contains( $exceprt_fragment, strtolower( $post_title ) ) ) {
+			if ( false !== stripos( $exceprt_fragment, $post_title ) ) {
 				return $excerpt;
 			}
 
