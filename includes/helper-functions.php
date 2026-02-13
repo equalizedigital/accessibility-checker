@@ -631,7 +631,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'php_version'      => PHP_VERSION,
 		'platform'         => 'wordpress',
 		'platform_version' => $GLOBALS['wp_version'],
-		'software'         => defined( 'EDACP_KEY_VALID' ) && EDACP_KEY_VALID ? 'pro' : 'free',
+		'software'         => defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ? 'pro' : 'free',
 		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
 		'days_active'      => $days_active,
 	];
