@@ -182,6 +182,11 @@ const IssuesPanel = ( {
 	if ( tabsWithCounts.length === 0 ) {
 		return null;
 	}
+	// Prefer the first non-empty tab as the initial selection
+	const initialTab = useMemo( () => {
+		const nonEmptyTab = tabsWithCounts.find( ( tab ) => tab.count > 0 );
+		return nonEmptyTab?.name || tabsWithCounts[ 0 ]?.name;
+	}, [ tabsWithCounts ] );
 
 	const renderTabContent = ( tab ) => {
 		const currentTab = tabsWithCounts.find( ( t ) => t.name === tab.name );
@@ -205,6 +210,13 @@ const IssuesPanel = ( {
 							);
 						} ) }
 					</div>
+				) }
+				{ ! hasRules && (
+					<p className="edac-analysis__message">
+						{ showIgnored
+							? __( 'No dismissed issues.', 'accessibility-checker' )
+							: __( 'No issues found.', 'accessibility-checker' ) }
+					</p>
 				) }
 			</div>
 		);

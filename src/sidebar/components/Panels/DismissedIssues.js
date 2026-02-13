@@ -51,11 +51,6 @@ const DismissedIssues = () => {
 		},
 	];
 
-	const emptyMessages = {
-		'dismissed-problems': __( 'No dismissed problems.', 'accessibility-checker' ),
-		'dismissed-warnings': __( 'No dismissed items to review.', 'accessibility-checker' ),
-	};
-
 	// Build title with info icon
 	const panelTitle = renderPanelTitleWithIcon(
 		'info',
@@ -71,7 +66,6 @@ const DismissedIssues = () => {
 			initialOpen={ false }
 			tabs={ tabs }
 			showIgnored={ true }
-			emptyMessages={ emptyMessages }
 			className="edac-dismissed-issues-panel"
 		/>
 	);

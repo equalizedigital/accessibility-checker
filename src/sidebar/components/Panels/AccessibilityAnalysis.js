@@ -58,11 +58,6 @@ const AccessibilityAnalysis = () => {
 		},
 	];
 
-	const emptyMessages = {
-		problems: __( 'No problems found.', 'accessibility-checker' ),
-		warnings: __( 'No items to review.', 'accessibility-checker' ),
-	};
-
 	return (
 		<IssuesPanel
 			panelId="accessibility-analysis"
@@ -75,7 +70,6 @@ const AccessibilityAnalysis = () => {
 			initialOpen={ false }
 			tabs={ tabs }
 			showIgnored={ false }
-			emptyMessages={ emptyMessages }
 			className="edac-accessibility-analysis"
 		/>
 	);
