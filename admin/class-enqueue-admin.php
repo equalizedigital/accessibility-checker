@@ -69,7 +69,7 @@ class Enqueue_Admin {
 					in_array( $current_post_type, $post_types, true ) ||
 					in_array( $page, $enabled_pages, true )
 				)
-			) ||
+			) &&
 			'site-editor.php' !== $pagenow
 		) {
 
