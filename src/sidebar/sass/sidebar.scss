@@ -19,3 +19,23 @@
 	}
 }
 
+/**
+ * WordPress Component Overrides
+ * Styles for WordPress core components used in the sidebar
+ */
+
+.components-panel {
+	&__body {
+		&-title {
+			margin-bottom: 0 !important;
+		}
+
+		&.is-opened &-title {
+			border-bottom: 1px solid $outline-grey;
+		}
+	}
+
+	&__row {
+		padding-top: 16px;
+	}
+}

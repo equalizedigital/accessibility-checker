@@ -10,8 +10,9 @@
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 8px;
-		width: 100%;
+		width: calc(100% + 16px);
 		align-items: stretch;
+		margin: -8px -8px -7px -8px;
 	}
 
 	.edac-status-card {
@@ -21,7 +22,7 @@
 		height: 100%;
 		border: solid 1px $outline-grey;
 		border-radius: 5px;
-		padding: 5px;
+		padding: 8px;
 
 		&--clickable {
 			cursor: pointer;
@@ -40,7 +41,7 @@
 
 		&__header {
 			display: flex;
-			align-items: center;
+			align-items: flex-start;
 			justify-content: space-between;
 			gap: 1px;
 		}
@@ -68,7 +69,7 @@
 
 		&__value {
 			font-size: 32px;
-			font-weight: 700;
+			font-weight: 600;
 			line-height: 1;
 			color: $info-grey;
 		}
