@@ -21,7 +21,6 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\LinkUnderline;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MetaViewportScalableFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\FocusOutlineFix;
-use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ReadMoreAddTitleFix;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 if ( ! defined( 'ABSPATH' ) ) {
