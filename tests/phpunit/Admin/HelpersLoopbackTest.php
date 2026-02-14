@@ -143,6 +143,27 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that dns_get_record failures do not emit warnings.
+	 */
+	public function test_dns_get_record_failure_does_not_emit_warning() {
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Required to assert warning-free behavior.
+		set_error_handler(
+			function () {
+				throw new \RuntimeException( 'warning_emitted' );
+			}
+		);
+
+		try {
+			$result = Helpers::is_domain_loopback( '' );
+			$this->assertIsBool( $result );
+		} catch ( \RuntimeException $exception ) {
+			$this->fail( 'dns_get_record emitted a warning.' );
+		} finally {
+			restore_error_handler();
+		}
+	}
+
+	/**
 	 * Test IPv6 loopback detection (if supported).
 	 */
 	public function test_ipv6_loopback_detection() {

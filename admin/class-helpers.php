@@ -167,10 +167,14 @@ class Helpers {
 			return false;
 		}
 
+		if ( ! is_array( $records ) ) {
+			return false;
+		}
+
 		foreach ( $records as $record ) {
 
 			// Do ipv6 check.
-			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] ) {
+			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] && ! empty( $record['ipv6'] ) ) {
 
 				// Normalize the IPv6 address for comparison.
 				$normalized_ipv6 = inet_pton( $record['ipv6'] );
