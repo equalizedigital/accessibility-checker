@@ -631,9 +631,9 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 	} catch ( Exception $e ) {
 		$activation_date = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 	}
-		$interval       = $date_now->diff( $activation_date );
-		$days_active    = $interval->days;
-		$query_defaults = [
+	$interval       = $date_now->diff( $activation_date );
+	$days_active    = $interval->days;
+	$query_defaults = [
 		'utm_source'       => 'accessibility-checker',
 		'utm_medium'       => 'software',
 		'utm_campaign'     => 'wordpress-general',
