@@ -65,6 +65,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
 	}

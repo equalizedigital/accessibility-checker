@@ -63,6 +63,7 @@ class WidgetsTest extends WP_UnitTestCase {
 		$widgets->render_dashboard_scan_summary();
 		$output = ob_get_clean();
 
+		$this->assertIsString( $output );
 		$this->assertStringContainsString( 'utm_campaign=dashboard-widget', $output );
 		$this->assertStringContainsString( 'utm_content=upgrade-to-edacp', $output );
 		$this->assertStringNotContainsString( 'utm-campaign=dashboard-widget', $output );

@@ -31,6 +31,7 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 		);
 		$output = ob_get_clean();
 
+		$this->assertIsString( $output );
 		$this->assertStringContainsString( 'utm_campaign=fix-description', $output );
 		$this->assertStringContainsString( 'utm_content=edac_fix_test_text', $output );
 		$this->assertStringNotContainsString( 'utm-campaign=fix-description', $output );
@@ -56,6 +57,7 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 		);
 		$output = ob_get_clean();
 
+		$this->assertIsString( $output );
 		$this->assertStringContainsString( 'utm_campaign=fix-description', $output );
 		$this->assertStringContainsString( 'utm_content=edac_fix_test_checkbox', $output );
 		$this->assertStringNotContainsString( 'utm-campaign=fix-description', $output );
