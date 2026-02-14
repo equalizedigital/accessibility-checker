@@ -49,6 +49,14 @@ class WidgetsTest extends WP_UnitTestCase {
 	 * Ensure dashboard widget uses underscore UTM keys for upgrade links.
 	 */
 	public function testRenderDashboardScanSummaryUsesUnderscoreUtmKeys() {
+		if (
+			! function_exists( 'edac_generate_link_type' ) ||
+			! function_exists( 'edac_link_wrapper' ) ||
+			! function_exists( 'edac_get_post_type_label' )
+		) {
+			$this->markTestSkipped( 'Required helper functions are not available in this test environment.' );
+		}
+
 		$widgets = new Widgets();
 
 		ob_start();

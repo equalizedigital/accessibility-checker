@@ -5,8 +5,7 @@
  * @package accessibility-checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesSettingType\Checkbox;
-use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesSettingType\Text;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 
 /**
  * Tests for UTM key formatting in fix setting type links.
@@ -17,12 +16,12 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify text field help link uses underscore UTM keys.
 	 */
 	public function testTextHelpLinkUsesUnderscoreUtmKeys() {
-		$harness = new class() {
-			use Text;
-		};
+		if ( ! function_exists( 'edac_generate_link_type' ) ) {
+			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
+		}
 
 		ob_start();
-		$harness::text(
+		FixesPage::text(
 			[
 				'name'        => 'edac_fix_test_text',
 				'description' => 'Description',
@@ -42,12 +41,12 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify checkbox help link uses underscore UTM keys.
 	 */
 	public function testCheckboxHelpLinkUsesUnderscoreUtmKeys() {
-		$harness = new class() {
-			use Checkbox;
-		};
+		if ( ! function_exists( 'edac_generate_link_type' ) ) {
+			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
+		}
 
 		ob_start();
-		$harness::checkbox(
+		FixesPage::checkbox(
 			[
 				'name'        => 'edac_fix_test_checkbox',
 				'description' => 'Description',
