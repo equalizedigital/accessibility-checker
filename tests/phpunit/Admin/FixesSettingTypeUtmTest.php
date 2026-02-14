@@ -9,14 +9,6 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesSettingType\Checkb
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesSettingType\Text;
 
 /**
- * Test harness for static trait methods.
- */
-class FixesSettingTypeUtmHarness {
-	use Text;
-	use Checkbox;
-}
-
-/**
  * Tests for UTM key formatting in fix setting type links.
  */
 class FixesSettingTypeUtmTest extends WP_UnitTestCase {
@@ -25,8 +17,12 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify text field help link uses underscore UTM keys.
 	 */
 	public function testTextHelpLinkUsesUnderscoreUtmKeys() {
+		$harness = new class() {
+			use Text;
+		};
+
 		ob_start();
-		FixesSettingTypeUtmHarness::text(
+		$harness::text(
 			[
 				'name'        => 'edac_fix_test_text',
 				'description' => 'Description',
@@ -46,8 +42,12 @@ class FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify checkbox help link uses underscore UTM keys.
 	 */
 	public function testCheckboxHelpLinkUsesUnderscoreUtmKeys() {
+		$harness = new class() {
+			use Checkbox;
+		};
+
 		ob_start();
-		FixesSettingTypeUtmHarness::checkbox(
+		$harness::checkbox(
 			[
 				'name'        => 'edac_fix_test_checkbox',
 				'description' => 'Description',
