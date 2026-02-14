@@ -233,11 +233,11 @@ class Widgets {
 
 			} else {
 
-				$non_scannable_post_type_pro_link = edac_generate_link_type(
-					[
+					$non_scannable_post_type_pro_link = edac_generate_link_type(
+						[
 							'utm_campaign' => 'dashboard-widget',
 							'utm_content'  => 'upgrade-to-edacp',
-					],
+						],
 					'pro',
 					[
 						'post_type' => $post_type,
