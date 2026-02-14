@@ -531,15 +531,27 @@ class AccessibilityCheckerHighlight {
 	 * @param {string} id - The ID of the element.
 	 */
 
-	showIssue = ( id ) => {
+	showIssue( id ) {
 		this.removeSelectedClasses();
 
 		if ( id === undefined ) {
 			return;
 		}
 
+		if ( ! Array.isArray( this.issues ) ) {
+			this.currentButtonIndex = -1;
+			this.currentIssueStatus = __( 'The element was not found on the page.', 'accessibility-checker' );
+			this.descriptionOpen( id );
+			return;
+		}
+
 		const issue = this.issues.find( ( i ) => i.id === id );
 		this.currentButtonIndex = this.issues.findIndex( ( i ) => i.id === id );
+		if ( ! issue ) {
+			this.currentIssueStatus = __( 'The element was not found on the page.', 'accessibility-checker' );
+			this.descriptionOpen( id );
+			return;
+		}
 
 		const tooltip = issue.tooltip;
 		const element = issue.element;
@@ -577,7 +589,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		this.descriptionOpen( id );
-	};
+	}
 
 	/**
 	 * This function checks if a given element is visible on the page.
@@ -1485,6 +1497,8 @@ class AccessibilityCheckerHighlight {
 		}
 	}
 }
+
+export { AccessibilityCheckerHighlight };
 
 // Some systems (Cloudflare Rocket Loader) defers scripts for performance but that can
 // cause some DOMContentLoaded events to be missed. This is flag tracks if it run so we
