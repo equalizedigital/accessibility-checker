@@ -57,10 +57,16 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testEnqueueBaseScriptInAdminNonEditorPage() {
+		global $wp_scripts;
+
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+
+		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
+		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
 	}
 
 	/**
