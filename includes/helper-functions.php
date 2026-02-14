@@ -620,10 +620,14 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		$args = [];
 	}
 
-	$date_now = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	$date_now       = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	$activation_raw = get_option( 'edac_activation_date', '' );
+	if ( ! is_string( $activation_raw ) || '' === $activation_raw ) {
+		$activation_raw = gmdate( 'Y-m-d H:i:s' );
+	}
+
 	try {
-		$activation_raw  = get_option( 'edac_activation_date', '' );
-		$activation_date = new DateTime( $activation_raw ? $activation_raw : gmdate( 'Y-m-d H:i:s' ) );
+		$activation_date = new DateTime( $activation_raw );
 	} catch ( Exception $e ) {
 		$activation_date = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
 	}
