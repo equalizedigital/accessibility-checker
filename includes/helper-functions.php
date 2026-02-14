@@ -620,8 +620,13 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		$args = [];
 	}
 
-	$date_now        = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
-	$activation_date = new DateTime( get_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) ) );
+	$date_now = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	try {
+		$activation_raw  = get_option( 'edac_activation_date', '' );
+		$activation_date = new DateTime( $activation_raw ? $activation_raw : gmdate( 'Y-m-d H:i:s' ) );
+	} catch ( Exception $e ) {
+		$activation_date = new DateTime( gmdate( 'Y-m-d H:i:s' ) );
+	}
 	$interval        = $date_now->diff( $activation_date );
 	$days_active     = $interval->days;
 	$query_defaults  = [
