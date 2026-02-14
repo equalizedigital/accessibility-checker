@@ -122,6 +122,7 @@
 		padding: 0 8px;
 		font-size: 12px;
 		border-bottom: 1px solid #ddd;
+		margin-bottom: 0;
 
 		&:last-child {
 			border-bottom: none;
@@ -212,9 +213,10 @@
 
 	&__rule-content {
 		padding: 0;
-		margin: 0 16px 16px;
+		padding: 8px 8px 9px 8px;
 		overflow: hidden;
 		background: #f9f9f9;
+		border-top: 1px solid $outline-grey;
 
 		&[aria-hidden="true"] {
 			display: none;
