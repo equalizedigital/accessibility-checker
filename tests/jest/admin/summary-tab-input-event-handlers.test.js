@@ -58,12 +58,18 @@ describe( 'initSummaryTabKeyboardAndClickHandlers', () => {
 
 	it( 'wraps ArrowRight from last tab to first tab without throwing', () => {
 		const tabs = document.querySelectorAll( '.edac-tab button' );
+		const firstTab = tabs[ 0 ];
 		const lastTab = tabs[ tabs.length - 1 ];
+
+		// Activate the last tab to test a state change
+		lastTab.click();
 
 		expect( () => {
 			lastTab.dispatchEvent( new KeyboardEvent( 'keydown', { key: 'ArrowRight', keyCode: 39, bubbles: true } ) );
 		} ).not.toThrow();
 
-		expect( tabs[ 0 ].classList.contains( 'active' ) ).toBe( true );
+		// The first tab should now be active, and the last tab should be inactive
+		expect( firstTab.classList.contains( 'active' ) ).toBe( true );
+		expect( lastTab.classList.contains( 'active' ) ).toBe( false );
 	} );
 } );
