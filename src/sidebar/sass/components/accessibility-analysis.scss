@@ -187,7 +187,7 @@
 		}
 
 		&:focus:not(:disabled) {
-			outline: 2px solid #0073aa !important;
+			outline: 2px solid #0073aa;
 			outline-offset: -2px;
 		}
 
