@@ -186,8 +186,8 @@
 			background-color: #f9f9f9;
 		}
 
-		&:focus {
-			outline: 2px solid #0073aa;
+		&:focus:not(:disabled) {
+			outline: 2px solid #0073aa !important;
 			outline-offset: -2px;
 		}
 
