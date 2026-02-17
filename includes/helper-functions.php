@@ -644,15 +644,15 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 
 	$query_args = array_merge( $query_defaults, $query_args );
 
-		switch ( $type ) {
-			case 'help':
-				$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
+	switch ( $type ) {
+		case 'help':
+			$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
+			break;
+		case 'custom': // phpcs:ignore -- intentially only breaking inside the condition because if it's not set we want to hit default.
+			if ( ! empty( $args['base_link'] ) ) {
+				$base_link = $args['base_link'];
 				break;
-			case 'custom': // phpcs:ignore -- intentially only breaking inside the condition because if it's not set we want to hit default.
-				if ( ! empty( $args['base_link'] ) ) {
-					$base_link = $args['base_link'];
-					break;
-				}
+			}
 		case 'pro':
 		default:
 			$base_link = 'https://equalizedigital.com/accessibility-checker/pricing/';
