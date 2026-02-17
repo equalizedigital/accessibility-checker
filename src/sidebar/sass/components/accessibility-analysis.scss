@@ -132,8 +132,7 @@
 	}
 
 	&__issue-link {
-		color: #0073aa;
-		text-decoration: none;
+		color: $info-blue;
 		cursor: pointer;
 		border: none;
 		background: none;
@@ -187,7 +186,7 @@
 		}
 
 		&:focus:not(:disabled) {
-			outline: 2px solid #0073aa;
+			outline: 2px solid $info-blue;
 			outline-offset: -2px;
 		}
 
@@ -234,7 +233,7 @@
 		padding: 0 12px;
 		background: none;
 		border: none;
-		color: #0073aa;
+		color: $info-blue;
 		font-size: 13px;
 		cursor: pointer;
 		text-align: left;
