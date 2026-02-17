@@ -28,7 +28,7 @@ function edac_user_can_ignore() {
 
 	$user              = wp_get_current_user();
 	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : [];
-	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
+	$ignore_user_roles = get_option( 'edacp_ignore_user_roles', [] );
 
 	// Check if user has any of the allowed roles.
 	if ( $user_roles && $ignore_user_roles ) {
