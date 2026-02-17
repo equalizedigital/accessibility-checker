@@ -20,13 +20,14 @@ jobs:
             const STALE_DAYS = 30;
             const staleDate = new Date(Date.now() - STALE_DAYS * 24 * 60 * 60 * 1000);
 
-            const { data: prs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'automated-bug-fix',
+            // Use Search API to find PRs with the label
+            // pulls.list doesn't support labels parameter
+            const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open label:automated-bug-fix`;
+            const { data: searchResults } = await github.rest.search.issuesAndPullRequests({
+              q: searchQuery,
               per_page: 100
             });
+            const prs = searchResults.items;
 
             for (const pr of prs) {
               const createdAt = new Date(pr.created_at);

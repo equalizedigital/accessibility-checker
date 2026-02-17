@@ -68,14 +68,14 @@ jobs:
               per_page: 100
             });
 
-            // Also check for any PRs with the bot label
-            const { data: labeledPrs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              labels: 'automated-bug-fix',
+            // Also check for any PRs with the bot label using Search API
+            // pulls.list doesn't support labels parameter, so we use search
+            const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open label:automated-bug-fix`;
+            const { data: searchResults } = await github.rest.search.issuesAndPullRequests({
+              q: searchQuery,
               per_page: 100
             });
+            const labeledPrs = searchResults.items;
 
             const allOpenPrs = [...prs, ...labeledPrs];
             const uniquePrs = [...new Map(allOpenPrs.map(pr => [pr.number, pr])).values()];
@@ -248,14 +248,13 @@ jobs:
               const dateStr = date.toISOString().split('T')[0];
 
               // Count existing automated PRs to get sequence number
-              const { data: allAutomatedPrs } = await github.rest.pulls.list({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                state: 'all',
-                labels: 'automated-bug-fix',
+              // Use Search API because pulls.list doesn't support labels parameter
+              const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:pr label:automated-bug-fix`;
+              const { data: searchResults } = await github.rest.search.issuesAndPullRequests({
+                q: searchQuery,
                 per_page: 100
               });
-              const sequenceNum = allAutomatedPrs.length;
+              const sequenceNum = searchResults.total_count;
 
               // Update title with timestamp
               const newTitle = `${newPr.title} - Auto-detected ${dateStr}`;
