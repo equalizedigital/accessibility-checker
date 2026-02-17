@@ -36,16 +36,17 @@ jobs:
               // Only close if both created AND last updated over STALE_DAYS ago
               if (createdAt < staleDate && updatedAt < staleDate) {
                 // Check if there are recent comments or review activity
+                // Use 'since' parameter to let server filter comments, avoiding pagination issues
                 const { data: comments } = await github.rest.issues.listComments({
                   owner: context.repo.owner,
                   repo: context.repo.repo,
                   issue_number: pr.number,
+                  since: staleDate.toISOString(),
                   per_page: 100
                 });
 
-                const hasRecentActivity = comments.some(comment =>
-                  new Date(comment.created_at) > staleDate
-                );
+                // If any comments were returned, there's recent activity
+                const hasRecentActivity = comments.length > 0;
 
                 if (!hasRecentActivity) {
                   // Add stale label before closing
