@@ -48,10 +48,11 @@ instructions: |
   - Memory leaks
   - Deprecated function usage
   - Incorrect hook usage
+  - Type mismatches that don't cause errors yet
 
   **LOW** (fix only if nothing else):
   - Code style inconsistencies that could lead to bugs
-  - Missing type hints that could prevent errors
+  - Missing type hints that could prevent future errors
   - Unclear variable names causing confusion
   - PHP notices (less severe than warnings)
 
