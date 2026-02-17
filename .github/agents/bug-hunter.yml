@@ -38,8 +38,8 @@ instructions: |
   - CSRF vulnerabilities (missing nonces)
   - Missing capability checks
   - Path traversal vulnerabilities
-  - Input validation failures
-  - Fatal errors or PHP warnings
+  - Input validation failures leading to security issues
+  - Unhandled exceptions that could expose sensitive data
 
   **MEDIUM** (fix if no high):
   - Logic errors causing incorrect behavior
