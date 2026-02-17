@@ -169,9 +169,15 @@ jobs:
                - Exit gracefully without creating PR
 
             ## Priority Areas (that aren't in open PRs)
+            **Critical/High Priority**:
             - Security vulnerabilities (XSS, SQLi, CSRF)
-            - Fatal errors or warnings
+            - Fatal errors (application crashes)
+            - Authentication/authorization issues
+
+            **Medium Priority**:
             - Logic errors in recently changed code
+            - PHP warnings (deprecated functions, undefined variables)
+            - Performance issues
             - Missing input validation/sanitization
 
           base-branch: develop
