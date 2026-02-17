@@ -75,7 +75,6 @@ instructions: |
     * Ensure all tests pass after the fix
     * Fix any test failures before creating PR
   - Use branch name: `copilot/automated-bug-fix/{short-description-of-bug-fixed}`
-  - Include timestamp in PR title and description
   - **Only create PR if all tests pass**
 
   ## Test-Driven Bug Fix Workflow
