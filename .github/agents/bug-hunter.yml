@@ -32,6 +32,7 @@ instructions: |
   - Privilege escalation
   - Arbitrary file upload
   - Remote code execution
+  - Fatal PHP errors (application crashes)
 
   **HIGH** (fix if no critical):
   - CSRF vulnerabilities (missing nonces)
@@ -42,6 +43,7 @@ instructions: |
 
   **MEDIUM** (fix if no high):
   - Logic errors causing incorrect behavior
+  - PHP warnings (deprecated functions, undefined variables, etc.)
   - Performance issues (N+1 queries, inefficient loops)
   - Memory leaks
   - Deprecated function usage
@@ -51,6 +53,7 @@ instructions: |
   - Code style inconsistencies that could lead to bugs
   - Missing type hints that could prevent errors
   - Unclear variable names causing confusion
+  - PHP notices (less severe than warnings)
 
   ## Coding Standards
   - Follow WordPress coding standards (WPCS)
