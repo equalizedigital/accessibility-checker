@@ -10,6 +10,7 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -46,6 +47,9 @@ class Plugin {
 		$cleanup->init_hooks();
 
 		$this->register_fixes_manager();
+
+		$connector = new Connector();
+		$connector->init();
 
 		// When WP CLI is enabled, load the CLI commands.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {

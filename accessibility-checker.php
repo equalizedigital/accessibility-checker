@@ -143,3 +143,11 @@ function edac_register_rules() {
 
 	return $default_rules;
 }
+
+// Note: This is for dev/testing purposes only. Do not use in production.
+add_filter(
+	'edac_mydot_api_endpoint',
+	function () {
+		return 'http://my.equalizedigdev.wpengine.com';
+	}
+);
