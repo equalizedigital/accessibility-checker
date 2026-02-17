@@ -160,9 +160,10 @@ jobs:
 
                  Co-authored-by: ${{ steps.coauthor.outputs.name }} <${{ steps.coauthor.outputs.email }}>
                  ```
-               - Create PR with label `automated-bug-fix`
+               - **Create DRAFT PR** with label `automated-bug-fix`
                - Title format: `fix: [bug description] - Auto-detected YYYY-MM-DD`
                - In description, explicitly state: "Automated bug fix #X on YYYY-MM-DD"
+               - PR should be created as draft for human review before marking ready
 
             4. **If No New Bugs**:
                - Log: "No new bugs found. X bugs already in open PRs."

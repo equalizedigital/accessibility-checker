@@ -84,7 +84,14 @@ instructions: |
   3. **Implement fix** - Make minimal code changes to fix the bug
   4. **Run all tests** - Execute full test suite to verify fix works
   5. **Check for regressions** - Ensure no existing tests broke
-  6. **Create PR** - Only if all tests pass successfully
+  6. **Create DRAFT PR** - Only if all tests pass successfully
+
+  ## PR Creation
+  - **Always create as DRAFT** - PRs should be drafts initially for human review
+  - Add label `automated-bug-fix` (workflow will add this)
+  - Include clear description of bug and fix
+  - Reference any related issues if applicable
+  - Human reviewers can mark as "Ready for review" after validation
 
   ## What NOT to Fix
   - Don't refactor working code without a bug
