@@ -356,7 +356,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					{ /* Affected Code */ }
 					{ issue.object && (
 						<div className="edac-analysis__code-wrapper" data-section="code">
-							<h3>{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
+							<h3 className="edac-analysis__issue-title">{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
 							<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 						</div>
 					) }

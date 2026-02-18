@@ -11,6 +11,19 @@
 .edac-analysis {
 	&__issue-modal {
 
+
+		h1 {
+			font-size: 26px;
+		}
+
+		h2 {
+			font-size: 20px;
+		}
+
+		h3 {
+			font-size: 17px;
+		}
+
 		.components-modal__header {
 			padding: 12px 24px 0;
 		}
@@ -30,9 +43,7 @@
 			padding-top: 16px;
 			border-top: 1px solid #ddd;
 		}
-	}
 
-	&__issue-modal {
 		// The className prop on Modal is applied to .components-modal__frame
 		// so we use &.components-modal__frame to match .edac-analysis__issue-modal.components-modal__frame
 		&.components-modal__frame {
@@ -134,7 +145,7 @@
 
 		.edac-analysis__issue-title {
 			margin: 0 0 8px;
-			font-size: 18px;
+			font-size: 20px;
 			font-weight: 600;
 			line-height: 1.3;
 		}
@@ -145,10 +156,10 @@
 
 			a {
 				color: #0073aa;
-				text-decoration: none;
+				text-decoration: underline;
 
 				&:hover {
-					text-decoration: underline;
+					text-decoration: none;
 				}
 			}
 		}
@@ -198,12 +209,23 @@
 			.components-panel__body-title {
 				margin: 0;
 
+				&:hover,
+				&:focus {
+					background: transparent;
+				}
+
 				button {
 					padding: 0;
 					width: auto;
 					flex-direction: row-reverse;
 					text-decoration: underline;
 					color: $info-blue;
+
+					&:hover,
+					&:focus {
+						background: transparent;
+						text-decoration: none;
+					}
 
 					span > svg {
 						position: initial;
@@ -270,12 +292,6 @@
 
 		.edac-analysis__image-wrapper {
 			margin: 16px 0;
-
-			h3 {
-				margin: 0 0 8px;
-				font-size: 14px;
-				font-weight: 600;
-			}
 		}
 
 		.edac-analysis__fix-panel,
@@ -334,12 +350,6 @@
 				content: '';
 				display: table;
 				clear: both;
-			}
-
-			h3 {
-				margin: 0 0 8px;
-				font-size: 14px;
-				font-weight: 600;
 			}
 		}
 
