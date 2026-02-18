@@ -11,8 +11,13 @@
 .edac-analysis {
 	&__issue-modal {
 
+		.components-modal__header {
+			padding: 12px 24px 0;
+		}
+
 		.components-modal__content {
 			padding: 16px 24px 24px;
+			margin-top: 60px; // Override top margin with smaller size for the fixed header
 		}
 
 		.edac-analysis__modal-content {
