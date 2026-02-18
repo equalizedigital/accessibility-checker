@@ -169,24 +169,20 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const issueCount = rule?.details?.length || 1;
 	const summary = issueCount > 1 ? rule?.summary_plural : rule?.summary;
 
-	if ( ! isOpen || ! issue ) {
-		return null;
-	}
-
-	// Get the appropriate view link from the editor store
+	// Get the appropriate view link from the editor store (must be before early return for hooks rules)
 	// Use preview link for unpublished posts, permalink for published posts
 	const viewLink = useSelect( ( select ) => {
 		const { getEditedPostPreviewLink, getPermalink, isCurrentPostPublished } = select( editorStore );
 		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
 	}, [] );
 
-	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
-	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
-
-	// Don't render if there's no issue data
-	if ( ! issue || ! rule ) {
+	// Don't render if modal is not open or no issue data
+	if ( ! isOpen || ! issue || ! rule ) {
 		return null;
 	}
+
+	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
+	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
 	return (
 		<Modal
@@ -199,15 +195,15 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 				<div className="edac-analysis__issue-modal-right">
 					<div className="edac-analysis__issue-sidebar" data-section="sidebar">
-						<h3 className="edac-analysis__issue-sidebar-title">
+						<h2 className="screen-reader-text">
 							{ __( 'Issue Details', 'accessibility-checker' ) }
-						</h3>
+						</h2>
 						<ul className="edac-analysis__issue-sidebar-list">
 							{ rule?.rule_type && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Type', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ ( () => {
 											const badgeProps = getRuleTypeBadgeProps( rule.rule_type );
@@ -226,9 +222,9 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							) }
 							{ severityLabel && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Severity', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ ( () => {
 											const badgeProps = getSeverityBadgeProps( rule?.severity );
@@ -246,9 +242,9 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							) }
 							{ issue?.landmark && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Landmark', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ issue.landmark_selector && viewLink ? (
 											<a
@@ -322,27 +318,29 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						<div className="edac-analysis__issue-help-accordion">
 							<PanelBody
 								title={ __( 'Show explanation', 'accessibility-checker' ) }
-								initialOpen={ true }
+								initialOpen={ false }
 							>
-								{ rule?.why_it_matters && (
-									<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
-										<h4>{ __( 'Why It Matters', 'accessibility-checker' ) }</h4>
-										<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
-									</div>
-								) }
-								{ rule?.how_to_fix && (
-									<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
-										<h4>{ __( 'How to Fix', 'accessibility-checker' ) }</h4>
-										<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
-									</div>
-								) }
-								{ rule?.info_url && (
-									<p className="edac-analysis__issue-help" data-section="help">
-										<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
-											{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
-										</a>
-									</p>
-								) }
+								<div className="edac-analysis__issue-help-accordion-content">
+									{ rule?.why_it_matters && (
+										<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
+											<h3 className="edac-analysis__issue-title--small">{ __( 'Why It Matters', 'accessibility-checker' ) }</h3>
+											<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
+										</div>
+									) }
+									{ rule?.how_to_fix && (
+										<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
+											<h3 className="edac-analysis__issue-title--small">{ __( 'How to Fix', 'accessibility-checker' ) }</h3>
+											<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
+										</div>
+									) }
+									{ rule?.info_url && (
+										<p className="edac-analysis__issue-help" data-section="help">
+											<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
+												{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
+											</a>
+										</p>
+									) }
+								</div>
 							</PanelBody>
 						</div>
 					) : (
@@ -355,10 +353,12 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						)
 					) }
 
+					<hr aria-hidden="true" />
+
 					{ /* Affected Code */ }
 					{ issue.object && (
 						<div className="edac-analysis__code-wrapper" data-section="code">
-							<h3>{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
+							<h3 className="edac-analysis__issue-title">{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
 							<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 						</div>
 					) }
@@ -371,23 +371,26 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</div>
 					) }
 
-					{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
-					{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
-						<FixPanel
-							rule={ rule }
-							issue={ issue }
-							isOpen={ isFixPanelOpen }
-							onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
-						/>
-					) }
+					<div className="edac-analysis__issue-panels" data-section="actions">
 
-					{ /* Dismiss Issue Panel */ }
-					<DismissPanel
-						issue={ issue }
-						isOpen={ isDismissPanelOpen }
-						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
-						onIgnore={ onIgnore }
-					/>
+						{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
+						{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
+							<FixPanel
+								rule={ rule }
+								issue={ issue }
+								isOpen={ isFixPanelOpen }
+								onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
+							/>
+						) }
+
+						{ /* Dismiss Issue Panel */ }
+						<DismissPanel
+							issue={ issue }
+							isOpen={ isDismissPanelOpen }
+							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
+							onIgnore={ onIgnore }
+						/>
+					</div>
 				</div>
 			</div>
 		</Modal>

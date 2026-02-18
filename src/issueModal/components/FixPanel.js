@@ -275,29 +275,31 @@ const FixPanel = ( { rule, isOpen, onToggle } ) => {
 					opened={ isOpen }
 					onToggle={ onToggle }
 				>
-					{ errors.map( ( error, index ) => (
-						<Notice
-							key={ index }
-							status="error"
-							isDismissible={ true }
-							onRemove={ () => dismissError( index ) }
-						>
-							{ error }
-						</Notice>
-					) ) }
-
-					<p className="edac-fix-panel__intro">
-						{ __( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ) }
-					</p>
-
-					<div className="edac-fix-panel__cards">
-						{ rule.fixes.map( ( fixSlug ) => (
-							<MemoizedFixCard
-								key={ fixSlug }
-								slug={ fixSlug }
-								onError={ handleError }
-							/>
+					<div className="edac-analysis__panel-content">
+						{ errors.map( ( error, index ) => (
+							<Notice
+								key={ index }
+								status="error"
+								isDismissible={ true }
+								onRemove={ () => dismissError( index ) }
+							>
+								{ error }
+							</Notice>
 						) ) }
+
+						<p className="edac-fix-panel__intro">
+							{ __( 'These settings enable global fixes across your entire site.', 'accessibility-checker' ) }
+						</p>
+
+						<div className="edac-fix-panel__cards">
+							{ rule.fixes.map( ( fixSlug ) => (
+								<MemoizedFixCard
+									key={ fixSlug }
+									slug={ fixSlug }
+									onError={ handleError }
+								/>
+							) ) }
+						</div>
 					</div>
 				</PanelBody>
 			</Panel>
