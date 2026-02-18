@@ -8,6 +8,7 @@ import { __ } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import Badge from './Badge';
+import { getDismissReasonLabel } from '../utils/dismissHelpers';
 
 /**
  * Single issue row with actions dropdown
@@ -30,7 +31,7 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 			</button>
 			{ showIgnored && issue?.ignre_reason && (
 				<Badge
-					label={ issue.ignre_reason }
+					label={ getDismissReasonLabel( issue.ignre_reason ) }
 					type="info"
 					size="small"
 				/>
