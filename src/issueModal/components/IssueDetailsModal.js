@@ -169,24 +169,20 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const issueCount = rule?.details?.length || 1;
 	const summary = issueCount > 1 ? rule?.summary_plural : rule?.summary;
 
-	if ( ! isOpen || ! issue ) {
-		return null;
-	}
-
-	// Get the appropriate view link from the editor store
+	// Get the appropriate view link from the editor store (must be before early return for hooks rules)
 	// Use preview link for unpublished posts, permalink for published posts
 	const viewLink = useSelect( ( select ) => {
 		const { getEditedPostPreviewLink, getPermalink, isCurrentPostPublished } = select( editorStore );
 		return isCurrentPostPublished() ? getPermalink() : getEditedPostPreviewLink();
 	}, [] );
 
-	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
-	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
-
-	// Don't render if there's no issue data
-	if ( ! issue || ! rule ) {
+	// Don't render if modal is not open or no issue data
+	if ( ! isOpen || ! issue || ! rule ) {
 		return null;
 	}
+
+	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
+	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
 
 	return (
 		<Modal
