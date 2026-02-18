@@ -9,7 +9,8 @@
 @use '../../sidebar/sass/variables' as *;
 
 .edac-analysis {
-	&__modal {
+	&__issue-modal {
+
 		.components-modal__content {
 			padding: 16px 24px 24px;
 		}
