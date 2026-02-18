@@ -66,7 +66,7 @@
 		cursor: pointer;
 		font-size: 13px;
 		font-weight: 600;
-		color: #1e1e1e;
+		color: $info-grey;
 		text-align: left;
 
 		&:hover {
@@ -132,8 +132,7 @@
 	}
 
 	&__issue-link {
-		color: #0073aa;
-		text-decoration: none;
+		color: $info-blue;
 		cursor: pointer;
 		border: none;
 		background: none;
@@ -177,17 +176,17 @@
 		text-align: left;
 		font-size: 13px;
 		font-weight: 500;
-		color: #1e1e1e;
+		color: $info-grey;
 		min-height: auto;
 		height: auto;
 		box-shadow: none !important;
 
 		&:hover {
-			background-color: #f9f9f9;
+			background-color: #f0f0f0;
 		}
 
-		&:focus {
-			outline: 2px solid #0073aa;
+		&:focus:not(:disabled) {
+			outline: 2px solid $info-blue;
 			outline-offset: -2px;
 		}
 
@@ -197,6 +196,7 @@
 
 		// Override Gutenberg Button styles
 		&.components-button.has-icon.has-text.has-icon-right {
+			color: $info-grey;
 			padding: 16px;
 		}
 
@@ -208,7 +208,7 @@
 	&__rule-title {
 		flex: 1;
 		font-weight: 500;
-		color: #1e1e1e;
+		color: $info-grey;
 		margin-right: 8px;
 	}
 
@@ -233,7 +233,7 @@
 		padding: 0 12px;
 		background: none;
 		border: none;
-		color: #0073aa;
+		color: $info-blue;
 		font-size: 13px;
 		cursor: pointer;
 		text-align: left;
