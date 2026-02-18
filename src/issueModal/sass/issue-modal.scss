@@ -273,15 +273,10 @@
 
 		.edac-analysis__fix-panel,
 		.edac-analysis__dismiss-panel {
-			margin-top: 16px;
 
 			.components-panel {
 				border: none;
 				margin: 0 -24px 0;
-			}
-
-			.components-panel__body {
-				border: none;
 			}
 
 			.components-panel__body-title {
@@ -291,7 +286,29 @@
 					padding: 12px 24px;
 					font-size: 20px;
 					font-weight: 600;
+				}
+			}
+
+			.components-panel__body.is-opened {
+				.components-panel__body-title button {
+					border-bottom: 1px solid $outline-grey;
+				}
+			}
+		}
+
+		// Panel borders - all panels get bottom border, only first gets top border
+		.edac-analysis__issue-panels {
+			> :first-child {
+				margin-top: 16px;
+
+				.components-panel__body {
 					border-top: 1px solid $outline-grey;
+					border-bottom: 1px solid $outline-grey;
+				}
+			}
+
+			> :not(:first-child) {
+				.components-panel__body {
 					border-bottom: 1px solid $outline-grey;
 				}
 			}
