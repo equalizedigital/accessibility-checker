@@ -27,14 +27,6 @@
 			margin-bottom: 16px;
 		}
 
-		.edac-analysis__modal-footer {
-			display: flex;
-			justify-content: flex-end;
-			gap: 8px;
-			padding-top: 16px;
-			border-top: 1px solid #ddd;
-		}
-
 		// The className prop on Modal is applied to .components-modal__frame
 		// so we use &.components-modal__frame to match .edac-analysis__issue-modal.components-modal__frame
 		&.components-modal__frame {
@@ -42,15 +34,14 @@
 			max-width: 80%;
 
 			.components-modal__content {
-				padding: 16px 24px 24px;
+				padding: 0;
+				border-top: $outline-grey 1px solid;
 			}
 		}
 
 		.edac-analysis__issue-modal-content {
 			display: flex;
 			flex-direction: row-reverse;
-			gap: 24px;
-			margin-bottom: 16px;
 
 			p {
 				margin: 0 0 12px;
@@ -69,7 +60,7 @@
 
 		.edac-analysis__issue-modal-left {
 			flex: 1;
-			min-width: 0;
+			padding: 24px;
 		}
 
 		.edac-analysis__issue-modal-right {
@@ -79,9 +70,9 @@
 
 		.edac-analysis__issue-sidebar {
 			padding: 12px;
-			border: 1px solid #ddd;
-			border-radius: 6px;
+			border-left: 1px solid $outline-grey;
 			background: #fafafa;
+			height: 100%;
 		}
 
 		.edac-analysis__issue-sidebar-list {
