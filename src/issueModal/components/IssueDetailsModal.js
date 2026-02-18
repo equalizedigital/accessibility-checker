@@ -195,15 +195,15 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 				<div className="edac-analysis__issue-modal-right">
 					<div className="edac-analysis__issue-sidebar" data-section="sidebar">
-						<h3 className="edac-analysis__issue-sidebar-title">
+						<h2 className="screen-reader-text">
 							{ __( 'Issue Details', 'accessibility-checker' ) }
-						</h3>
+						</h2>
 						<ul className="edac-analysis__issue-sidebar-list">
 							{ rule?.rule_type && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Type', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ ( () => {
 											const badgeProps = getRuleTypeBadgeProps( rule.rule_type );
@@ -222,9 +222,9 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							) }
 							{ severityLabel && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Severity', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ ( () => {
 											const badgeProps = getSeverityBadgeProps( rule?.severity );
@@ -242,9 +242,9 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							) }
 							{ issue?.landmark && (
 								<li className="edac-analysis__issue-sidebar-item">
-									<span className="edac-analysis__issue-sidebar-label">
+									<h3 className="edac-analysis__issue-sidebar-label">
 										{ __( 'Landmark', 'accessibility-checker' ) }
-									</span>
+									</h3>
 									<span className="edac-analysis__issue-sidebar-value">
 										{ issue.landmark_selector && viewLink ? (
 											<a
@@ -352,6 +352,8 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							</p>
 						)
 					) }
+
+					<hr aria-hidden="true" />
 
 					{ /* Affected Code */ }
 					{ issue.object && (
