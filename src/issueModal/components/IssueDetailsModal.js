@@ -323,13 +323,13 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								<div class="edac_analysis__issue-help-accordion-content">
 									{ rule?.why_it_matters && (
 										<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
-											<h4>{ __( 'Why It Matters', 'accessibility-checker' ) }</h4>
+											<h3>{ __( 'Why It Matters', 'accessibility-checker' ) }</h3>
 											<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
 										</div>
 									) }
 									{ rule?.how_to_fix && (
 										<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
-											<h4>{ __( 'How to Fix', 'accessibility-checker' ) }</h4>
+											<h3>{ __( 'How to Fix', 'accessibility-checker' ) }</h3>
 											<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
 										</div>
 									) }
