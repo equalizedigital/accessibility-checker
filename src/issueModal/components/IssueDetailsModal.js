@@ -371,23 +371,26 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</div>
 					) }
 
-					{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
-					{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
-						<FixPanel
-							rule={ rule }
-							issue={ issue }
-							isOpen={ isFixPanelOpen }
-							onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
-						/>
-					) }
+					<div className="edac-analysis__issue-panels" data-section="actions">
 
-					{ /* Dismiss Issue Panel */ }
-					<DismissPanel
-						issue={ issue }
-						isOpen={ isDismissPanelOpen }
-						onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
-						onIgnore={ onIgnore }
-					/>
+						{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
+						{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
+							<FixPanel
+								rule={ rule }
+								issue={ issue }
+								isOpen={ isFixPanelOpen }
+								onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
+							/>
+						) }
+
+						{ /* Dismiss Issue Panel */ }
+						<DismissPanel
+							issue={ issue }
+							isOpen={ isDismissPanelOpen }
+							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
+							onIgnore={ onIgnore }
+						/>
+					</div>
 				</div>
 			</div>
 		</Modal>
