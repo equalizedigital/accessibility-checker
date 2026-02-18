@@ -11,6 +11,7 @@ import { useState } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
+import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
 
 /**
  * Dismiss Panel Component
@@ -119,32 +120,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 							<RadioControl
 								label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
 								selected={ dismissReason }
-								options={ [
-									{
-										label: __( 'False positive', 'accessibility-checker' ),
-										value: 'false_positive',
-										description: __(
-											'The scanner flagged this, but it does not apply to this content.',
-											'accessibility-checker',
-										),
-									},
-									{
-										label: __( 'Remediated', 'accessibility-checker' ),
-										value: 'remediated',
-										description: __(
-											'The issue has been fixed, but the page has not been rescanned yet.',
-											'accessibility-checker',
-										),
-									},
-									{
-										label: __( 'Confirmed accessible', 'accessibility-checker' ),
-										value: 'accessible',
-										description: __(
-											'Reviewed and verified to meet accessibility requirements.',
-											'accessibility-checker',
-										),
-									},
-								] }
+								options={ getDismissReasonOptions() }
 								onChange={ setDismissReason }
 							/>
 							<RichTextarea
