@@ -322,7 +322,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						<div className="edac-analysis__issue-help-accordion">
 							<PanelBody
 								title={ __( 'Show explanation', 'accessibility-checker' ) }
-								initialOpen={ true }
+								initialOpen={ false }
 							>
 								{ rule?.why_it_matters && (
 									<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
