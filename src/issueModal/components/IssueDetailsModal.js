@@ -263,6 +263,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 												) }
 											>
 												{ issue.landmark }
+												<ExternalLinkIcon showScreenReaderText={ false } />
 											</a>
 										) : (
 											issue.landmark
@@ -298,7 +299,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							{ rule.wcag_url ? (
 								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
 									{ rule.wcag } { rule.wcag_title }
-									<ExternalLinkIcon />
+									<ExternalLinkIcon showScreenReaderText={ true } />
 								</a>
 							) : (
 								<>{ rule.wcag } { rule.wcag_title }</>
