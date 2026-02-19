@@ -14,6 +14,7 @@ import IssueImage, { extractImageUrls } from './IssueImage';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
 import Badge from '../../sidebar/components/Badge';
+import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
 
@@ -297,6 +298,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							{ rule.wcag_url ? (
 								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
 									{ rule.wcag } { rule.wcag_title }
+									<ExternalLinkIcon />
 								</a>
 							) : (
 								<>{ rule.wcag } { rule.wcag_title }</>
