@@ -195,4 +195,28 @@ class FilterByValueTest extends WP_UnitTestCase {
 			],
 		];
 	}
+
+	/**
+	 * Test edac_filter_by_value handles missing index without warnings.
+	 */
+	public function test_edac_filter_by_value_missing_index_does_not_warn() {
+		$items = [
+			[
+				'id' => 1,
+			],
+		];
+
+		$handler = function () {
+			throw new RuntimeException( 'Unexpected PHP warning raised during filter_by_value test.' );
+		};
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Test intentionally converts warnings to exceptions.
+		set_error_handler( $handler );
+
+		try {
+			$this->assertSame( [], edac_filter_by_value( $items, 'status', 'active' ) );
+		} finally {
+			restore_error_handler();
+		}
+	}
 }
