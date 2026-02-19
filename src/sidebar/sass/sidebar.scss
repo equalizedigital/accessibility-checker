@@ -30,8 +30,8 @@
 			margin-bottom: 0 !important;
 		}
 
-		&.is-opened &-title {
-			border-bottom: 1px solid $outline-grey;
+		&-title:has([aria-expanded="true"]) {
+			border-bottom: 1px solid $outline-grey !important;
 		}
 	}
 

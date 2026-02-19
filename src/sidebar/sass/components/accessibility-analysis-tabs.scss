@@ -1,3 +1,6 @@
+@use 'sass:color';
+@use '../_variables' as *;
+
 .edac-analysis {
 	// ==========================================
 	// TABS SECTION
@@ -20,14 +23,14 @@
 			align-items: center;
 			justify-content: center;
 			gap: 6px;
-			padding: 24px 16px;
+			padding: 24px 8px;
 			border: none;
 			border-radius: 0;
 			border-left: 1px solid #ddd;
 			border-bottom: 2px solid transparent;
 			background: transparent;
 			color: #757575;
-			font-size: 13px;
+			font-size: $sidebar-font-size-large;
 			font-weight: 500;
 			cursor: pointer;
 			transition: all 0.15s ease;

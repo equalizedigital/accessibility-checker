@@ -31,7 +31,7 @@
 		margin: 8px 0;
 		padding: 16px;
 		color: #666;
-		font-size: 13px;
+		font-size: $sidebar-font-size-medium;
 	}
 
 	&__list {
@@ -64,7 +64,7 @@
 		border: none;
 		background: transparent;
 		cursor: pointer;
-		font-size: 13px;
+		font-size: $sidebar-font-size-large;
 		font-weight: 600;
 		color: $info-grey;
 		text-align: left;
@@ -121,7 +121,7 @@
 		align-items: center;
 		justify-content: space-between;
 		padding: 0 8px;
-		font-size: 12px;
+		font-size: $sidebar-font-size-medium;
 		border-bottom: 1px solid #ddd;
 		margin-bottom: 0;
 
@@ -174,7 +174,7 @@
 		border: none;
 		cursor: pointer;
 		text-align: left;
-		font-size: 13px;
+		font-size: $sidebar-font-size-large;
 		font-weight: 500;
 		color: $info-grey;
 		min-height: auto;
@@ -234,7 +234,7 @@
 		background: none;
 		border: none;
 		color: $info-blue;
-		font-size: 13px;
+		font-size: $sidebar-font-size-large;
 		cursor: pointer;
 		text-align: left;
 
