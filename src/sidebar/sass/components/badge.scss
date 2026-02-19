@@ -10,9 +10,9 @@
 	flex-shrink: 0;
 	display: inline-flex;
 	align-items: center;
-	gap: 6px;
+	gap: 4px;
 	padding: 4px 10px;
-	border-radius: 12px;
+	border-radius: 20px;
 	font-size: $sidebar-font-size-small;
 	font-weight: 400;
 	white-space: nowrap;
@@ -27,6 +27,16 @@
 		padding: 3px 4px;
 		font-size: $sidebar-font-size-xsmall;
 		border-radius: 4px;
+	}
+
+	&--large {
+		font-size: $sidebar-font-size-medium;
+
+		.edac-icon {
+			width: 20px;
+			height: 20px;
+			font-size: 20px;
+		}
 	}
 
 	// Severity level variants
@@ -52,7 +62,6 @@
 
 	// Type variants (for error/warning types)
 	&--error {
-		background: color.adjust( $error-red, $alpha: -0.9 );
 		border: 1px solid $error-red;
 
 		.edac-icon {
@@ -61,12 +70,16 @@
 	}
 
 	&--warning {
-		background: color.adjust( $warning-orange, $alpha: -0.9 );
 		border: 1px solid $warning-orange;
 
 		.edac-icon {
 			color: $warning-orange;
 		}
+	}
+
+	&--error, &--warning {
+		background: transparent;
+		padding: 2px 10px;
 	}
 
 	&--success {

@@ -213,6 +213,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 													label={ badgeProps.label }
 													type={ badgeProps.type }
 													icon={ badgeProps.icon }
+													size="large"
 												/>
 											) : (
 												rule.rule_type
@@ -233,6 +234,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 												<Badge
 													label={ badgeProps.label }
 													type={ badgeProps.type }
+													size="large"
 												/>
 											) : (
 												severityLabel
@@ -278,7 +280,8 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
 								className="edac-analysis__issue-sidebar-button"
 							>
-								{ __( 'View on Page', 'accessibility-checker' ) }
+								{ __( 'View on page', 'accessibility-checker' ) }
+								<ExternalLinkIcon />
 							</Button>
 						) }
 					</div>
@@ -299,7 +302,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							{ rule.wcag_url ? (
 								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
 									{ rule.wcag } { rule.wcag_title }
-									<ExternalLinkIcon showScreenReaderText={ true } />
+									<ExternalLinkIcon />
 								</a>
 							) : (
 								<>{ rule.wcag } { rule.wcag_title }</>
@@ -340,6 +343,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										<p className="edac-analysis__issue-help" data-section="help">
 											<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
 												{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
+												<ExternalLinkIcon />
 											</a>
 										</p>
 									) }
@@ -351,6 +355,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							<p className="edac-analysis__issue-help" data-section="help">
 								<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
 									{ __( 'How to Fix', 'accessibility-checker' ) }
+									<ExternalLinkIcon />
 								</a>
 							</p>
 						)
