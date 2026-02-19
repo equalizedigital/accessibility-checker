@@ -276,12 +276,14 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</ul>
 						{ viewUrl && (
 							<Button
-								variant="primary"
+								variant="secondary"
 								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
 								className="edac-analysis__issue-sidebar-button"
 							>
 								{ __( 'View on page', 'accessibility-checker' ) }
-								<ExternalLinkIcon />
+								<span style={ { marginLeft: '0.5em' } }>
+									<ExternalLinkIcon showScreenReaderText={ false } />
+								</span>
 							</Button>
 						) }
 					</div>
