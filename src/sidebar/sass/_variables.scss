@@ -14,7 +14,12 @@ $severity-medium: #F1C500;
 $severity-low: #015798;
 
 // Typography variables
-$sidebar-h3-size: 0.8125rem; // 13px
-$sidebar-p-size: 0.6875rem; // 11px
-$sidebar-link-size: 0.6875rem; // 11px
+$sidebar-font-size-large: 0.8125rem; // 13px
+$sidebar-font-size-medium: 0.75rem; // 12px
+$sidebar-font-size-small: 0.6875rem; // 11px
+$sidebar-font-size-xsmall: 0.625rem; // 10px
 
+// Component-specific typography variables
+$sidebar-h3-size: $sidebar-font-size-large;
+$sidebar-p-size: $sidebar-font-size-small;
+$sidebar-link-size: $sidebar-font-size-small;
