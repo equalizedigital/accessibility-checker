@@ -238,10 +238,10 @@ function edac_get_post_type_label( string $post_type ): string {
  */
 function edac_get_valid_table_name( $table_name ) {
 	global $wpdb;
-	static $found_table_name;
+	static $found_table_names = [];
 
-	if ( isset( $found_table_name ) ) {
-		return $found_table_name;
+	if ( isset( $found_table_names[ $table_name ] ) ) {
+		return $found_table_names[ $table_name ];
 	}
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
@@ -257,8 +257,8 @@ function edac_get_valid_table_name( $table_name ) {
 		return null;
 	}
 
-	$found_table_name = $table_name;
-	return $found_table_name;
+	$found_table_names[ $table_name ] = $table_name;
+	return $table_name;
 }
 
 /**
