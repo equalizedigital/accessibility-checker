@@ -152,10 +152,10 @@
 
 			a {
 				color: #0073aa;
-				text-decoration: none;
+				text-decoration: underline;
 
 				&:hover {
-					text-decoration: underline;
+					text-decoration: none;
 				}
 			}
 		}
@@ -189,6 +189,7 @@
 					flex-direction: row-reverse;
 					text-decoration: underline;
 					color: $info-blue;
+					font-weight: 400;
 
 					&:hover,
 					&:focus {
@@ -250,10 +251,10 @@
 
 				a {
 					color: #0073aa;
-					text-decoration: none;
+					text-decoration: underline;
 
 					&:hover {
-						text-decoration: underline;
+						text-decoration: none;
 					}
 				}
 			}

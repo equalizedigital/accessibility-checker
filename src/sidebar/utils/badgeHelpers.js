@@ -21,12 +21,12 @@ export const getRuleTypeBadgeProps = ( ruleType ) => {
 	// Map rule types to badge properties
 	const typeMap = {
 		error: {
-			label: __( 'Error', 'accessibility-checker' ),
+			label: __( 'Problem', 'accessibility-checker' ),
 			type: 'error',
 			icon: 'error',
 		},
 		warning: {
-			label: __( 'Warning', 'accessibility-checker' ),
+			label: __( 'Needs Review', 'accessibility-checker' ),
 			type: 'warning',
 			icon: 'warning',
 		},
