@@ -14,6 +14,7 @@ import IssueImage, { extractImageUrls } from './IssueImage';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
 import Badge from '../../sidebar/components/Badge';
+import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
 
@@ -212,6 +213,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 													label={ badgeProps.label }
 													type={ badgeProps.type }
 													icon={ badgeProps.icon }
+													size="large"
 												/>
 											) : (
 												rule.rule_type
@@ -232,6 +234,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 												<Badge
 													label={ badgeProps.label }
 													type={ badgeProps.type }
+													size="large"
 												/>
 											) : (
 												severityLabel
@@ -262,6 +265,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 												) }
 											>
 												{ issue.landmark }
+												<ExternalLinkIcon showScreenReaderText={ false } />
 											</a>
 										) : (
 											issue.landmark
@@ -272,11 +276,14 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						</ul>
 						{ viewUrl && (
 							<Button
-								variant="primary"
+								variant="secondary"
 								onClick={ () => window.open( viewUrl, '_blank', 'noopener,noreferrer' ) }
 								className="edac-analysis__issue-sidebar-button"
 							>
-								{ __( 'View on Page', 'accessibility-checker' ) }
+								{ __( 'View on page', 'accessibility-checker' ) }
+								<span style={ { marginLeft: '0.5em' } }>
+									<ExternalLinkIcon showScreenReaderText={ false } />
+								</span>
 							</Button>
 						) }
 					</div>
@@ -297,6 +304,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							{ rule.wcag_url ? (
 								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
 									{ rule.wcag } { rule.wcag_title }
+									<ExternalLinkIcon />
 								</a>
 							) : (
 								<>{ rule.wcag } { rule.wcag_title }</>
@@ -323,13 +331,13 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								<div className="edac-analysis__issue-help-accordion-content">
 									{ rule?.why_it_matters && (
 										<div className="edac-analysis__issue-why-it-matters" data-section="why-it-matters">
-											<h3 className="edac-analysis__issue-title--small">{ __( 'Why It Matters', 'accessibility-checker' ) }</h3>
+											<h3>{ __( 'Why It Matters', 'accessibility-checker' ) }</h3>
 											<p dangerouslySetInnerHTML={ { __html: rule.why_it_matters } } />
 										</div>
 									) }
 									{ rule?.how_to_fix && (
 										<div className="edac-analysis__issue-how-to-fix" data-section="how-to-fix">
-											<h3 className="edac-analysis__issue-title--small">{ __( 'How to Fix', 'accessibility-checker' ) }</h3>
+											<h3>{ __( 'How to Fix', 'accessibility-checker' ) }</h3>
 											<p dangerouslySetInnerHTML={ { __html: rule.how_to_fix } } />
 										</div>
 									) }
@@ -337,6 +345,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 										<p className="edac-analysis__issue-help" data-section="help">
 											<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
 												{ __( 'More Detailed Documentation', 'accessibility-checker' ) }
+												<ExternalLinkIcon />
 											</a>
 										</p>
 									) }
@@ -348,6 +357,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							<p className="edac-analysis__issue-help" data-section="help">
 								<a href={ rule.info_url } target="_blank" rel="noopener noreferrer">
 									{ __( 'How to Fix', 'accessibility-checker' ) }
+									<ExternalLinkIcon />
 								</a>
 							</p>
 						)
@@ -358,7 +368,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					{ /* Affected Code */ }
 					{ issue.object && (
 						<div className="edac-analysis__code-wrapper" data-section="code">
-							<h3 className="edac-analysis__issue-title">{ __( 'Affected Code', 'accessibility-checker' ) }</h3>
+							<h2 className="edac-analysis__issue-title">{ __( 'Affected Code', 'accessibility-checker' ) }</h2>
 							<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 						</div>
 					) }
@@ -366,7 +376,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					{ /* Image Preview - only show if markup contains images */ }
 					{ imageUrls.length > 0 && (
 						<div className="edac-analysis__image-wrapper" data-section="image">
-							<h3>{ __( 'Image', 'accessibility-checker' ) }</h3>
+							<h2>{ __( 'Image', 'accessibility-checker' ) }</h2>
 							<IssueImage markup={ issue.object } />
 						</div>
 					) }
