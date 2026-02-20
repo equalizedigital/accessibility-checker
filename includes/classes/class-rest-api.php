@@ -908,6 +908,14 @@ class REST_Api {
 			];
 		}
 
+		if ( current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+			foreach ( $rules as $rule_key => $rule ) {
+				if ( isset( $rule['fixes'] ) ) {
+					unset( $rules[ $rule_key ]['fixes'] );
+				}
+			}
+		}
+
 		// If ANWW is active remove link_blank for details.
 		if ( defined( 'ANWW_VERSION' ) ) {
 			$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
@@ -999,10 +1007,6 @@ class REST_Api {
 				// Add WCAG URL based on wcag number.
 				if ( isset( $rule['wcag'] ) ) {
 					$rules[ $key ] += $this->get_wcag_url_and_title_from_number( $rule['wcag'] );
-				}
-				// Keep fixes in the returned data.
-				if ( ! isset( $rules[ $key ]['fixes'] ) && isset( $rule['fixes'] ) ) {
-					$rules[ $key ]['fixes'] = $rule['fixes'];
 				}
 			} else {
 				$rule['count']  = 0;
@@ -1280,3 +1284,4 @@ class REST_Api {
 		);
 	}
 }
+
