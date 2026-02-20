@@ -1,4 +1,4 @@
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { Panel, PanelBody, Button, Spinner, Notice, ToggleControl, TextControl, TextareaControl } from '@wordpress/components';
 import { useState, useEffect, useCallback, memo } from '@wordpress/element';
 import { decodeEntities } from '@wordpress/html-entities';
@@ -196,40 +196,51 @@ const FixCard = ( { slug, onError } ) => {
 
 	return (
 		<div className={ `edac-fix-card ${ statusClass }` }>
-			<div className="edac-fix-card__header">
-				<h4 className="edac-fix-card__title">{ fixInfo.fix_name }</h4>
-				<span className={ `edac-fix-card__status edac-fix-card__status--${ fixInfo.enabled ? 'enabled' : 'disabled' }` }>
-					{ fixInfo.enabled ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) }
-				</span>
-			</div>
 
-			{ Object.keys( fixInfo.fields ).length > 0 && (
-				<div className="edac-fix-card__fields">
-					{ Object.entries( fixInfo.fields ).map( ( [ fieldKey, field ] ) => (
-						renderField( fieldKey, field )
-					) ) }
+			<form
+				onSubmit={ ( e ) => {
+					e.preventDefault();
+					handleSave();
+				} }
+			>
+				<div className="edac-fix-card__header">
+					<h3 className="edac-fix-card__title">{ fixInfo.fix_name }</h3>
 				</div>
-			) }
+				{ Object.keys( fixInfo.fields ).length > 0 && (
+					<div className="edac-fix-card__fields">
+						{ Object.entries( fixInfo.fields ).map( ( [ fieldKey, field ] ) => (
+							renderField( fieldKey, field )
+						) ) }
+					</div>
+				) }
 
-			{ notice && (
-				<Notice
-					status={ notice.status }
-					isDismissible={ true }
-					onRemove={ () => setNotice( null ) }
-				>
-					{ notice.message }
-				</Notice>
-			) }
+				{ notice && (
+					<Notice
+						status={ notice.status }
+						isDismissible={ true }
+						onRemove={ () => setNotice( null ) }
+					>
+						{ notice.message }
+					</Notice>
+				) }
 
-			<div className="edac-fix-card__actions">
-				<Button
-					variant="primary"
-					onClick={ handleSave }
-					disabled={ isSaving }
-				>
-					{ __( 'Save', 'accessibility-checker' ) }
-				</Button>
-			</div>
+				<div className="edac-fix-card__actions">
+					<Button
+						variant="primary"
+						type="submit"
+						disabled={ isSaving }
+						aria-label={
+							sprintf(
+								/* translators: %s: fix name */
+								__( 'Save fix for: %s', 'accessibility-checker' ),
+								fixInfo.fix_name,
+							)
+						}
+					>
+						{ __( 'Save', 'accessibility-checker' ) }
+					</Button>
+				</div>
+			</form>
 		</div>
 	);
 };
