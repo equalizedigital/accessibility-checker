@@ -50,6 +50,7 @@ const ReadabilityAnalysis = () => {
 	// Initialize summary text from readability data
 	const initialSummary = readabilityData?.simplified_summary || '';
 	const initialSummaryGrade = readabilityData?.simplified_summary_grade || 0;
+	const initialSummaryGradeReadable = readabilityData?.simplified_summary_grade_readability || '';
 	const initialSummaryGradeFailed = Boolean( readabilityData?.simplified_summary_grade_failed );
 
 	// Update textarea when initial summary changes
@@ -83,6 +84,7 @@ const ReadabilityAnalysis = () => {
 					post_grade_failed: response.post_grade_failed,
 					simplified_summary: response.simplified_summary,
 					simplified_summary_grade: response.simplified_summary_grade,
+					simplified_summary_grade_readability: response.simplified_summary_grade_readability,
 					simplified_summary_grade_failed: response.simplified_summary_grade_failed,
 					simplified_summary_prompt: response.simplified_summary_prompt,
 					simplified_summary_position: response.simplified_summary_position,
@@ -144,8 +146,19 @@ const ReadabilityAnalysis = () => {
 		return __( 'Not available', 'accessibility-checker' );
 	};
 
+	const getSummaryGradeLabel = () => {
+		if ( initialSummaryGradeReadable ) {
+			return sprintf( __( '%s grade', 'accessibility-checker' ), initialSummaryGradeReadable );
+		}
+		if ( summaryGrade ) {
+			return sprintf( __( '%dth grade', 'accessibility-checker' ), summaryGrade );
+		}
+		return __( 'Not available', 'accessibility-checker' );
+	};
+
 	const readingLevelStatus = getReadingLevelStatus();
 	const gradeLabel = getGradeLabel();
+	const summaryGradeLabel = getSummaryGradeLabel();
 
 	// Build screen reader text for accordion title (grade only when available)
 	let srOnlyTitle = '';
@@ -182,6 +195,14 @@ const ReadabilityAnalysis = () => {
 		}
 		if ( summaryText && summaryGrade > 0 && ! summaryGradeFailed ) {
 			return 'info';
+		}
+		return 'warning';
+	};
+
+	// Determine the correct icon for the simplified summary reading level
+	const getSummaryGradeIcon = () => {
+		if ( summaryGrade > 0 && ! summaryGradeFailed ) {
+			return 'check';
 		}
 		return 'warning';
 	};
@@ -308,12 +329,18 @@ const ReadabilityAnalysis = () => {
 										</p>
 									) }
 									{ summaryText && summaryGrade > 0 && (
-										<p className="edac-panel-section__message">
-											{ summaryGradeFailed
-												? __( 'Needs improvement, summary is above the 9th-grade reading level.', 'accessibility-checker' )
-												: __( 'Below the recommended 9th-grade reading level.', 'accessibility-checker' )
-											}
-										</p>
+										<>
+											<p className="post-grade-display">
+												<Icon name={ getSummaryGradeIcon() } />
+												{ summaryGradeLabel }
+											</p>
+											<p className="edac-panel-section__message">
+												{ summaryGradeFailed
+													? __( 'Needs improvement, summary is above the 9th-grade reading level.', 'accessibility-checker' )
+													: __( 'Below the recommended 9th-grade reading level.', 'accessibility-checker' )
+												}
+											</p>
+										</>
 									) }
 								</div>
 
