@@ -432,7 +432,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					<div className="edac-analysis__issue-panels" data-section="actions">
 
 						{ /* Fix Issue Panel - Only show if fixes are available and user has permission */ }
-						{ isOpen && rule?.fixes?.length > 0 && ( window.edac_sidebar_app?.userCanFix || window.edac_sidebar_app?.canManageSettings ) && (
+						{ isOpen && rule?.fixes?.length > 0 && window.edac_sidebar_app?.canManageSettings && (
 							<FixPanel
 								rule={ rule }
 								issue={ issue }
