@@ -141,7 +141,12 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 								</Button>
 							</>
 						) : (
-							<>
+							<form
+								onSubmit={ ( e ) => {
+									e.preventDefault();
+									handleToggleIgnore( true );
+								} }
+							>
 								<RadioControl
 									label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
 									selected={ dismissReason }
@@ -161,7 +166,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 								/>
 								<Button
 									variant="secondary"
-									onClick={ () => handleToggleIgnore( true ) }
+									type="submit"
 									disabled={ isSubmitting }
 									className="edac-analysis__dismiss-button"
 								>
@@ -174,7 +179,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 										__( 'Dismiss Issue', 'accessibility-checker' )
 									) }
 								</Button>
-							</>
+							</form>
 						) }
 					</div>
 				</PanelBody>
