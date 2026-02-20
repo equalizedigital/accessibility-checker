@@ -24,11 +24,13 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  */
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
-	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
+	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
+	const dismissReasonOptions = getDismissReasonOptions();
+	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 
 	const handleToggleIgnore = async ( ignore ) => {
 		setIsSubmitting( true );
@@ -36,13 +38,34 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 		setSuccessNotice( null );
 
 		try {
-			await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
+			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
 			setIsIgnored( ignore );
 			setSuccessNotice(
 				ignore
 					? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 					: __( 'Issue reopened successfully.', 'accessibility-checker' ),
 			);
+			// Keep local issue fields in sync so UI reflects reason/comment immediately.
+			// Use the same keys as both the details processor and dismiss response.
+			if ( ignore && response && response.success ) {
+				issue.ignre = '1';
+				issue.user = response.user || response.ignre_user_name || '';
+				issue.ignre_user_name = response.ignre_user_name || response.user || '';
+				issue.ignre_date = response.ignre_date || '';
+				issue.ignre_reason = response.ignre_reason || response.reason || dismissReason;
+				issue.ignre_comment = response.ignre_comment || response.comment || comment;
+			} else if ( ! ignore ) {
+				issue.ignre = '0';
+				issue.user = '';
+				issue.ignre_user_name = '';
+				issue.ignre_date = '';
+				// Update the reason and comment states from the issue before clearing them.
+				// This preserves the values in the form so users can easily re-dismiss.
+				setDismissReason( issue.ignre_reason || dismissReason );
+				setComment( issue.ignre_comment ? decodeEntities( issue.ignre_comment ) : comment );
+				issue.ignre_reason = '';
+				issue.ignre_comment = '';
+			}
 			setPendingRefetch( true );
 
 			if ( onIgnore ) {
@@ -100,6 +123,28 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 										/>
 									</div>
 								) }
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_reason ) && (
+									<div className="edac-analysis__dismissed-meta">
+										{ issue?.ignre_reason && dismissReasonLabel && (
+											<p>
+												<strong>{ __( 'Dismissed as:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ dismissReasonLabel }
+											</p>
+										) }
+										{ ( issue?.ignre_user_name || issue?.user ) && (
+											<p>
+												<strong>{ __( 'Dismissed by:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ decodeEntities( issue.ignre_user_name || issue.user ) }
+											</p>
+										) }
+										{ issue?.ignre_date && (
+											<p>
+												<strong>{ __( 'Dismissed on:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ decodeEntities( issue.ignre_date ) }
+											</p>
+										) }
+									</div>
+								) }
 								<Button
 									variant="secondary"
 									onClick={ () => handleToggleIgnore( false ) }
@@ -117,7 +162,12 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 								</Button>
 							</>
 						) : (
-							<>
+							<form
+								onSubmit={ ( e ) => {
+									e.preventDefault();
+									handleToggleIgnore( true );
+								} }
+							>
 								<RadioControl
 									label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
 									selected={ dismissReason }
@@ -137,7 +187,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 								/>
 								<Button
 									variant="secondary"
-									onClick={ () => handleToggleIgnore( true ) }
+									type="submit"
 									disabled={ isSubmitting }
 									className="edac-analysis__dismiss-button"
 								>
@@ -150,7 +200,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 										__( 'Dismiss Issue', 'accessibility-checker' )
 									) }
 								</Button>
-							</>
+							</form>
 						) }
 					</div>
 				</PanelBody>
