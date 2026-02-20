@@ -45,6 +45,26 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 					? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 					: __( 'Issue reopened successfully.', 'accessibility-checker' ),
 			);
+			// Keep local issue fields in sync so UI reflects reason/comment immediately.
+			// Use the same keys as both the details processor and dismiss response.
+			if ( ignore && response && response.success ) {
+				issue.ignre = '1';
+				issue.user = response.user || response.ignre_user_name || '';
+				issue.ignre_user_name = response.ignre_user_name || response.user || '';
+				issue.ignre_date = response.ignre_date || '';
+				issue.ignre_reason = response.ignre_reason || response.reason || dismissReason;
+				issue.ignre_comment = response.ignre_comment || response.comment || comment;
+			} else if ( ! ignore ) {
+				issue.ignre = '0';
+				issue.user = '';
+				issue.ignre_user_name = '';
+				issue.ignre_date = '';
+				// update the reason and comment states before clearing them from the data.
+				setDismissReason( response.ignre_reason || response.reason || dismissReason );
+				setComment( response.ignre_comment || response.comment || comment );
+				issue.ignre_reason = '';
+				issue.ignre_comment = '';
+			}
 			setPendingRefetch( true );
 
 			if ( onIgnore ) {
