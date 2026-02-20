@@ -127,14 +127,12 @@ const FixCard = ( { slug, onError } ) => {
 		if ( field.type === 'checkbox' ) {
 			return (
 				<div key={ fieldKey } className="edac-fix-field edac-fix-field--checkbox">
-					<label className="edac-fix-field__label" dangerouslySetInnerHTML={ { __html: decodedLabel } } />
 					<ToggleControl
+						label={ decodedLabel }
+						help={ field.description ? decodeEntities( field.description ) : undefined }
 						checked={ !! value }
 						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
 					/>
-					{ field.description && (
-						<p className="edac-fix-field__description" dangerouslySetInnerHTML={ { __html: field.description } } />
-					) }
 				</div>
 			);
 		}
@@ -197,10 +195,7 @@ const FixCard = ( { slug, onError } ) => {
 	return (
 		<div className={ `edac-fix-card ${ statusClass }` }>
 			<div className="edac-fix-card__header">
-				<h4 className="edac-fix-card__title">{ fixInfo.fix_name }</h4>
-				<span className={ `edac-fix-card__status edac-fix-card__status--${ fixInfo.enabled ? 'enabled' : 'disabled' }` }>
-					{ fixInfo.enabled ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) }
-				</span>
+				<h3 className="edac-fix-card__title">{ fixInfo.fix_name }</h3>
 			</div>
 
 			{ Object.keys( fixInfo.fields ).length > 0 && (
@@ -226,6 +221,7 @@ const FixCard = ( { slug, onError } ) => {
 					variant="primary"
 					onClick={ handleSave }
 					disabled={ isSaving }
+					aria-label={ __( `Save ${ fixInfo.fix_name } settings`, 'accessibility-checker' ) }
 				>
 					{ __( 'Save', 'accessibility-checker' ) }
 				</Button>
