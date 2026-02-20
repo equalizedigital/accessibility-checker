@@ -136,12 +136,13 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 			return;
 		}
 
-		const openIssueModal = ( focusSection = null ) => {
+		const openIssueModal = ( focusSection = null, autoAction = null ) => {
 			if ( window.edacIssueModal?.open ) {
 				window.edacIssueModal.open( {
 					issue,
 					rule,
 					focusSection,
+					autoAction,
 				} );
 			}
 		};
@@ -149,7 +150,11 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 		const focusableSections = [ 'code', 'ignore', 'fix' ];
 
 		if ( action && focusableSections.includes( action ) ) {
-			openIssueModal( action );
+			// Map 'ignore' action to 'dismiss' section for modal focus
+			const focusSection = action === 'ignore' ? 'dismiss' : action;
+			// If action is 'ignore' and issue is already dismissed, auto-trigger restore
+			const autoAction = action === 'ignore' && ( issue.ignre === '1' || issue.ignre === 1 ) ? 'restore' : null;
+			openIssueModal( focusSection, autoAction );
 			return;
 		}
 

@@ -49,6 +49,7 @@ const defaultState = {
 	issue: null,
 	rule: null,
 	focusSection: null,
+	autoAction: null,
 	onIgnore: null,
 };
 
@@ -98,7 +99,7 @@ const handleClose = () => {
 	}, 0 );
 };
 
-const openIssueModal = ( { issue, rule, focusSection = null, onIgnore = null } ) => {
+const openIssueModal = ( { issue, rule, focusSection = null, autoAction = null, onIgnore = null } ) => {
 	isClosing = false;
 	modalState = {
 		...modalState,
@@ -106,6 +107,7 @@ const openIssueModal = ( { issue, rule, focusSection = null, onIgnore = null } )
 		issue,
 		rule,
 		focusSection,
+		autoAction,
 		onIgnore,
 	};
 	renderModal();
