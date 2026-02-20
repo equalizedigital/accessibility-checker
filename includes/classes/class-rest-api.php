@@ -908,7 +908,7 @@ class REST_Api {
 			];
 		}
 
-		if ( current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+		if ( ! current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
 			foreach ( $rules as $rule_key => $rule ) {
 				if ( isset( $rule['fixes'] ) ) {
 					unset( $rules[ $rule_key ]['fixes'] );
