@@ -24,7 +24,7 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  */
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
-	const [ dismissReason, setDismissReason ] = useState( 'false_positive' );
+	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
@@ -59,9 +59,10 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 				issue.user = '';
 				issue.ignre_user_name = '';
 				issue.ignre_date = '';
-				// update the reason and comment states before clearing them from the data.
-				setDismissReason( response.ignre_reason || response.reason || dismissReason );
-				setComment( response.ignre_comment || response.comment || comment );
+				// Update the reason and comment states from the issue before clearing them.
+				// This preserves the values in the form so users can easily re-dismiss.
+				setDismissReason( issue.ignre_reason || dismissReason );
+				setComment( issue.ignre_comment ? decodeEntities( issue.ignre_comment ) : comment );
 				issue.ignre_reason = '';
 				issue.ignre_comment = '';
 			}
