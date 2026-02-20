@@ -29,6 +29,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
+	const dismissReasonOptions = getDismissReasonOptions();
+	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 
 	const handleToggleIgnore = async ( ignore ) => {
 		setIsSubmitting( true );
@@ -36,7 +38,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 		setSuccessNotice( null );
 
 		try {
-			await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
+			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
 			setIsIgnored( ignore );
 			setSuccessNotice(
 				ignore
@@ -98,6 +100,28 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 												__html: decodeEntities( issue.ignre_comment ),
 											} }
 										/>
+									</div>
+								) }
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_reason ) && (
+									<div className="edac-analysis__dismissed-meta">
+										{ issue?.ignre_reason && dismissReasonLabel && (
+											<p>
+												<strong>{ __( 'Dismissed as:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ dismissReasonLabel }
+											</p>
+										) }
+										{ ( issue?.ignre_user_name || issue?.user ) && (
+											<p>
+												<strong>{ __( 'Dismissed by:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ decodeEntities( issue.ignre_user_name || issue.user ) }
+											</p>
+										) }
+										{ issue?.ignre_date && (
+											<p>
+												<strong>{ __( 'Dismissed on:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ decodeEntities( issue.ignre_date ) }
+											</p>
+										) }
 									</div>
 								) }
 								<Button
