@@ -127,14 +127,12 @@ const FixCard = ( { slug, onError } ) => {
 		if ( field.type === 'checkbox' ) {
 			return (
 				<div key={ fieldKey } className="edac-fix-field edac-fix-field--checkbox">
-					<label className="edac-fix-field__label" dangerouslySetInnerHTML={ { __html: decodedLabel } } />
 					<ToggleControl
+						label={ decodedLabel }
+						help={ field.description ? decodeEntities( field.description ) : undefined }
 						checked={ !! value }
 						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
 					/>
-					{ field.description && (
-						<p className="edac-fix-field__description" dangerouslySetInnerHTML={ { __html: field.description } } />
-					) }
 				</div>
 			);
 		}
@@ -196,6 +194,9 @@ const FixCard = ( { slug, onError } ) => {
 
 	return (
 		<div className={ `edac-fix-card ${ statusClass }` }>
+			<div className="edac-fix-card__header">
+				<h3 className="edac-fix-card__title">{ fixInfo.fix_name }</h3>
+			</div>
 
 			<form
 				onSubmit={ ( e ) => {
