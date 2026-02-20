@@ -908,6 +908,14 @@ class REST_Api {
 			];
 		}
 
+		if ( current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) {
+			foreach ( $rules as $rule_key => $rule ) {
+				if ( isset( $rule['fixes'] ) ) {
+					unset( $rules[ $rule_key ]['fixes'] );
+				}
+			}
+		}
+
 		// If ANWW is active remove link_blank for details.
 		if ( defined( 'ANWW_VERSION' ) ) {
 			$rules = edac_remove_element_with_value( $rules, 'slug', 'link_blank' );
@@ -943,6 +951,7 @@ class REST_Api {
 	 */
 	private function process_rules_for_details( $rules, $post_id, $table_name, $siteid, &$passed_rules ) {
 		global $wpdb;
+		static $user_cache = [];
 
 		// Early return if no rules to process.
 		if ( empty( $rules ) ) {
@@ -976,8 +985,12 @@ class REST_Api {
 			}
 			// If we have non-zero ignre_user then get the username.
 			if ( isset( $result['ignre_user'] ) && (int) $result['ignre_user'] > 0 ) {
-				$user_info                 = get_userdata( (int) $result['ignre_user'] );
-				$result['ignre_user_name'] = $user_info ? $user_info->user_login : __( 'Unknown', 'accessibility-checker' );
+				$user_id = (int) $result['ignre_user'];
+				if ( ! array_key_exists( $user_id, $user_cache ) ) {
+					$user_info              = get_userdata( $user_id );
+					$user_cache[ $user_id ] = $user_info ? $user_info->user_login : __( 'Unknown', 'accessibility-checker' );
+				}
+				$result['ignre_user_name'] = $user_cache[ $user_id ];
 			}
 			$results_by_rule[ $rule_slug ][] = $result;
 		}
@@ -994,10 +1007,6 @@ class REST_Api {
 				// Add WCAG URL based on wcag number.
 				if ( isset( $rule['wcag'] ) ) {
 					$rules[ $key ] += $this->get_wcag_url_and_title_from_number( $rule['wcag'] );
-				}
-				// Keep fixes in the returned data.
-				if ( ! isset( $rules[ $key ]['fixes'] ) && isset( $rule['fixes'] ) ) {
-					$rules[ $key ]['fixes'] = $rule['fixes'];
 				}
 			} else {
 				$rule['count']  = 0;
@@ -1259,18 +1268,20 @@ class REST_Api {
 
 		return new \WP_REST_Response(
 			[
-				'success'       => true,
-				'issue_id'      => $issue_id,
-				'action'        => $action,
-				'ignored'       => $is_ignoring,
-				'user'          => $ignre_username,
-				'date'          => $ignre_date_formatted,
-				'reason'        => $ignre_reason,
-				'comment'       => $ignre_comment,
-				'ignore_global' => $ignre_global,
-				'large_batch'   => $large_batch,
+				'success'         => true,
+				'issue_id'        => $issue_id,
+				'action'          => $action,
+				'ignre'           => $is_ignoring,
+				'ignre_global'    => $ignre_global,
+				'ignre_user'      => $ignre_user,
+				'ignre_user_name' => $ignre_username,
+				'ignre_date'      => $ignre_date_formatted,
+				'ignre_reason'    => $ignre_reason,
+				'ignre_comment'   => $ignre_comment,
+				'large_batch'     => $large_batch,
 			],
 			200
 		);
 	}
 }
+

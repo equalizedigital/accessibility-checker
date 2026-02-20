@@ -296,11 +296,20 @@
 				.components-panel__body-title button {
 					border-bottom: 1px solid $outline-grey;
 				}
+
 			}
 		}
 
 		// Panel borders - all panels get bottom border, only first gets top border
 		.edac-analysis__issue-panels {
+
+			.components-panel__body {
+				&.is-opened {
+					.edac-analysis__panel-content {
+						padding: 16px 8px 0;
+					}
+				}
+			}
 
 			> :first-child {
 				margin-top: 16px;
@@ -366,15 +375,6 @@
 			border: 1px solid #ddd;
 			border-radius: 4px;
 			font-size: 12px;
-		}
-
-		.edac-analysis__dismissed-info {
-			margin: 0 0 12px;
-			padding: 8px 12px;
-			background: #f0f6fc;
-			border-left: 4px solid #0073aa;
-			color: #1e1e1e;
-			font-size: 13px;
 		}
 
 		.edac-analysis__dismiss-button {
