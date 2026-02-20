@@ -186,6 +186,10 @@ function edac_post_types() {
 	 */
 	$post_types = apply_filters( 'edac_filter_post_types', [ 'post', 'page' ] );
 
+	if ( ! is_array( $post_types ) ) {
+		$post_types = [ $post_types ];
+	}
+
 	// remove duplicates.
 	$post_types = array_unique( $post_types );
 
