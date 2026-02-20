@@ -1284,4 +1284,3 @@ class REST_Api {
 		);
 	}
 }
-
