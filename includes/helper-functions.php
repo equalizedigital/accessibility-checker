@@ -631,7 +631,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'php_version'      => PHP_VERSION,
 		'platform'         => 'wordpress',
 		'platform_version' => $GLOBALS['wp_version'],
-		'software'         => defined( 'EDACP_KEY_VALID' ) && EDACP_KEY_VALID ? 'pro' : 'free',
+		'software'         => edac_is_pro() ? 'pro' : 'free',
 		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
 		'days_active'      => $days_active,
 	];
@@ -649,7 +649,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 			$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
 			break;
 		case 'custom': // phpcs:ignore -- intentially only breaking inside the condition because if it's not set we want to hit default.
-			if ( $args['base_link'] ) {
+			if ( ! empty( $args['base_link'] ) ) {
 				$base_link = $args['base_link'];
 				break;
 			}
