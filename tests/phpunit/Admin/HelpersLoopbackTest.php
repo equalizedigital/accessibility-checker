@@ -242,4 +242,65 @@ class HelpersLoopbackTest extends WP_UnitTestCase {
 		// Should complete within a reasonable time (5 seconds).
 		$this->assertLessThan( 5.0, $execution_time, 'Method took too long to execute multiple calls' );
 	}
+
+	/**
+	 * Test that the result is cached in a transient after the first call.
+	 */
+	public function test_result_is_cached_in_transient() {
+		$domain    = 'localhost';
+		$cache_key = 'edac_loopback_' . md5( sanitize_text_field( $domain ) );
+
+		// Clear any existing transient.
+		delete_transient( $cache_key );
+
+		// First call performs the DNS lookup and stores the result.
+		$result = Helpers::is_domain_loopback( $domain );
+		$this->assertTrue( $result );
+
+		// The transient should now be set with an integer value.
+		$cached = get_transient( $cache_key );
+		$this->assertNotFalse( $cached, 'Transient should be set after first call.' );
+		$this->assertSame( 1, (int) $cached );
+	}
+
+	/**
+	 * Test that a non-loopback result is also cached correctly.
+	 */
+	public function test_non_loopback_result_is_cached() {
+		$domain    = '8.8.8.8';
+		$cache_key = 'edac_loopback_' . md5( sanitize_text_field( $domain ) );
+
+		// Clear any existing transient.
+		delete_transient( $cache_key );
+
+		// First call performs the DNS lookup.
+		$result = Helpers::is_domain_loopback( $domain );
+		$this->assertFalse( $result );
+
+		// The transient should be set with 0 (not false) so a cache miss can
+		// be distinguished from a cached false result.
+		$cached = get_transient( $cache_key );
+		$this->assertNotFalse( $cached, 'Transient should be set even for non-loopback domains.' );
+		$this->assertSame( 0, (int) $cached );
+	}
+
+	/**
+	 * Test that a cached result is returned without re-doing the DNS lookup.
+	 */
+	public function test_cached_result_is_returned() {
+		$domain    = '127.0.0.1';
+		$cache_key = 'edac_loopback_' . md5( sanitize_text_field( $domain ) );
+
+		// Pre-seed the transient with a value opposite to the real DNS answer.
+		// If the cache is respected, this value will be returned as-is.
+		set_transient( $cache_key, 0, HOUR_IN_SECONDS );
+
+		$result = Helpers::is_domain_loopback( $domain );
+
+		// The seeded value (0 / false) should be returned from cache.
+		$this->assertFalse( $result );
+
+		// Clean up.
+		delete_transient( $cache_key );
+	}
 }
