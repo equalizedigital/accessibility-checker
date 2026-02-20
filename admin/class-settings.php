@@ -25,10 +25,16 @@ class Settings {
 		 *
 		 * @param array $scannable_post_statuses List of scannable post statuses.
 		 */
-		return apply_filters(
+		$statuses = apply_filters(
 			'edac_scannable_post_statuses',
 			[ 'publish', 'future', 'draft', 'pending', 'private' ]
 		);
+
+		if ( ! is_array( $statuses ) ) {
+			$statuses = [ $statuses ];
+		}
+
+		return $statuses;
 	}
 
 
