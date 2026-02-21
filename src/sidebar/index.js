@@ -88,18 +88,11 @@ function AccessibilityCheckerSidebar() {
 							<MenuGroup>
 								<MenuItem
 									onClick={ () => {
-										onClose();
-									} }
-								>
-									{ __( 'Scan', 'accessibility-checker' ) }
-								</MenuItem>
-								<MenuItem
-									onClick={ () => {
 										document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: true } } ) );
 										onClose();
 									} }
 								>
-									{ __( 'Rescan', 'accessibility-checker' ) }
+									{ __( 'Scan', 'accessibility-checker' ) }
 								</MenuItem>
 								<MenuItem
 									onClick={ () => {
