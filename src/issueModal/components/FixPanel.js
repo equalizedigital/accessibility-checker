@@ -194,9 +194,6 @@ const FixCard = ( { slug, onError } ) => {
 
 	return (
 		<div className={ `edac-fix-card ${ statusClass }` }>
-			<div className="edac-fix-card__header">
-				<h3 className="edac-fix-card__title">{ fixInfo.fix_name }</h3>
-			</div>
 
 			<form
 				onSubmit={ ( e ) => {
