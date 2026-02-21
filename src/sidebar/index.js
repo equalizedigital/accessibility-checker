@@ -7,7 +7,8 @@ import { PluginSidebar } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner } from '@wordpress/components';
+import { Spinner, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
+import { moreVertical } from '@wordpress/icons';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
 import { STORE_NAME } from './store/accessibility-checker-store';
@@ -78,6 +79,37 @@ function AccessibilityCheckerSidebar() {
 				<>
 					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
 					{ backgroundRefresh && <Spinner style={ { marginLeft: '8px' } } /> }
+					<DropdownMenu
+						icon={ moreVertical }
+						label={ __( 'Sidebar actions', 'accessibility-checker' ) }
+						className="edac-sidebar-title-menu"
+					>
+						{ ( { onClose } ) => (
+							<MenuGroup>
+								<MenuItem
+									onClick={ () => {
+										onClose();
+									} }
+								>
+									{ __( 'Scan', 'accessibility-checker' ) }
+								</MenuItem>
+								<MenuItem
+									onClick={ () => {
+										onClose();
+									} }
+								>
+									{ __( 'Rescan', 'accessibility-checker' ) }
+								</MenuItem>
+								<MenuItem
+									onClick={ () => {
+										onClose();
+									} }
+								>
+									{ __( 'Refresh', 'accessibility-checker' ) }
+								</MenuItem>
+							</MenuGroup>
+						) }
+					</DropdownMenu>
 				</>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
@@ -104,4 +136,3 @@ if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 		render: QuickAccessPanelWrapper,
 	} );
 }
-
