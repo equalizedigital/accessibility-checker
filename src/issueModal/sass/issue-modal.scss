@@ -300,6 +300,26 @@
 			}
 		}
 
+		.edac-analysis__dismiss-panel {
+			margin-top: 16px;
+
+			.components-base-control__label {
+				font-size: $modal-font-size-small;
+				margin-bottom: .75em;
+				text-transform: none;
+			}
+
+			.components-radio-control__option {
+				border: solid 1px #e0e0e0;
+				border-radius: 5px;
+				padding: 16px;
+			}
+
+			.components-radio-control__group-wrapper {
+				margin-bottom: 24px;
+			}
+		}
+
 		// Panel borders - all panels get bottom border, only first gets top border
 		.edac-analysis__issue-panels {
 

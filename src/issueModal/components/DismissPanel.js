@@ -186,7 +186,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 									disabled={ isSubmitting }
 								/>
 								<Button
-									variant="secondary"
+									variant="primary"
 									type="submit"
 									disabled={ isSubmitting }
 									className="edac-analysis__dismiss-button"
