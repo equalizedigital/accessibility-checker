@@ -95,6 +95,7 @@ function AccessibilityCheckerSidebar() {
 								</MenuItem>
 								<MenuItem
 									onClick={ () => {
+										document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: true } } ) );
 										onClose();
 									} }
 								>
