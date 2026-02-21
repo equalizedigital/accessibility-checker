@@ -102,6 +102,9 @@ function AccessibilityCheckerSidebar() {
 								</MenuItem>
 								<MenuItem
 									onClick={ () => {
+										if ( postId ) {
+											refetchData( postId );
+										}
 										onClose();
 									} }
 								>
