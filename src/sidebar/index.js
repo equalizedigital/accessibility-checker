@@ -8,6 +8,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import { Spinner, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
+import apiFetch from '@wordpress/api-fetch';
 import { moreVertical } from '@wordpress/icons';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
@@ -72,6 +73,21 @@ function AccessibilityCheckerSidebar() {
 		};
 	}, [ postId, refetchData ] );
 
+	// Listen for clear issues from classic metabox and refetch data
+	useEffect( () => {
+		const handleClearedIssues = () => {
+			if ( postId ) {
+				refetchData( postId );
+			}
+		};
+
+		document.addEventListener( 'edac-cleared-issues', handleClearedIssues );
+
+		return () => {
+			document.removeEventListener( 'edac-cleared-issues', handleClearedIssues );
+		};
+	}, [ postId, refetchData ] );
+
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
@@ -103,6 +119,45 @@ function AccessibilityCheckerSidebar() {
 									} }
 								>
 									{ __( 'Refresh', 'accessibility-checker' ) }
+								</MenuItem>
+								<MenuItem
+									onClick={ async () => {
+										if ( ! postId ) {
+											onClose();
+											return;
+										}
+
+										// eslint-disable-next-line no-alert -- Use a confirm dialog to match classic metabox behavior.
+										if ( ! confirm( __( 'This will clear all issues for this post. You can rescan the page with the "Scan" action. A fresh scan of the post content will happen next time the post is saved as well. Do you want to continue?', 'accessibility-checker' ) ) ) {
+											onClose();
+											return;
+										}
+
+										try {
+											const response = await apiFetch( {
+												path: `/accessibility-checker/v1/clear-issues/${ postId }`,
+												method: 'POST',
+												data: {
+													id: postId,
+													flush: true,
+												},
+											} );
+
+											if ( response?.success ) {
+												document.dispatchEvent( new Event( 'edac-cleared-issues' ) );
+												if ( postId ) {
+													refetchData( postId );
+												}
+											}
+										} catch ( error ) {
+											// eslint-disable-next-line no-console
+											console.warn( 'Failed to clear issues:', error?.message || error );
+										} finally {
+											onClose();
+										}
+									} }
+								>
+									{ __( 'Clear Issues', 'accessibility-checker' ) }
 								</MenuItem>
 							</MenuGroup>
 						) }
