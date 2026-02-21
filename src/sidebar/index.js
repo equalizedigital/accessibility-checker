@@ -7,11 +7,10 @@ import { PluginSidebar } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner, DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
-import apiFetch from '@wordpress/api-fetch';
-import { moreVertical } from '@wordpress/icons';
+import { Spinner } from '@wordpress/components';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
+import SidebarTitleMenu from './components/SidebarTitleMenu';
 import { STORE_NAME } from './store/accessibility-checker-store';
 import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-icon.svg';
 
@@ -95,73 +94,10 @@ function AccessibilityCheckerSidebar() {
 				<span className="edac-sidebar__title">
 					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
 					{ backgroundRefresh && <Spinner className="edac-sidebar__title-spinner" /> }
-					<DropdownMenu
-						icon={ moreVertical }
-						label={ __( 'Sidebar actions', 'accessibility-checker' ) }
-						className="edac-sidebar__title-menu"
-					>
-						{ ( { onClose } ) => (
-							<MenuGroup>
-								<MenuItem
-									onClick={ () => {
-										document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: true } } ) );
-										onClose();
-									} }
-								>
-									{ __( 'Scan', 'accessibility-checker' ) }
-								</MenuItem>
-								<MenuItem
-									onClick={ () => {
-										if ( postId ) {
-											refetchData( postId );
-										}
-										onClose();
-									} }
-								>
-									{ __( 'Refresh', 'accessibility-checker' ) }
-								</MenuItem>
-								<MenuItem
-									onClick={ async () => {
-										if ( ! postId ) {
-											onClose();
-											return;
-										}
-
-										// eslint-disable-next-line no-alert -- Use a confirm dialog to match classic metabox behavior.
-										if ( ! confirm( __( 'This will clear all issues for this post. You can rescan the page with the "Scan" action. A fresh scan of the post content will happen next time the post is saved as well. Do you want to continue?', 'accessibility-checker' ) ) ) {
-											onClose();
-											return;
-										}
-
-										try {
-											const response = await apiFetch( {
-												path: `/accessibility-checker/v1/clear-issues/${ postId }`,
-												method: 'POST',
-												data: {
-													id: postId,
-													flush: true,
-												},
-											} );
-
-											if ( response?.success ) {
-												document.dispatchEvent( new Event( 'edac-cleared-issues' ) );
-												if ( postId ) {
-													refetchData( postId );
-												}
-											}
-										} catch ( error ) {
-											// eslint-disable-next-line no-console
-											console.warn( 'Failed to clear issues:', error?.message || error );
-										} finally {
-											onClose();
-										}
-									} }
-								>
-									{ __( 'Clear Issues', 'accessibility-checker' ) }
-								</MenuItem>
-							</MenuGroup>
-						) }
-					</DropdownMenu>
+					<SidebarTitleMenu
+						postId={ postId }
+						refetchData={ refetchData }
+					/>
 				</span>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
