@@ -109,9 +109,10 @@ const CodeMirrorViewer = ( { value } ) => {
  * @param {Function}    props.onClose      - Close handler function.
  * @param {boolean}     props.isOpen       - Whether modal is open.
  * @param {string|null} props.focusSection - Section to focus on open (matches data-section attribute).
+ * @param {string|null} props.autoAction   - Auto action to perform (e.g., 'restore').
  * @param {Function}    props.onIgnore     - Callback when issue is ignored.
  */
-export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection, onIgnore } ) => {
+export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection, autoAction, onIgnore } ) => {
 	const modalRef = useRef( null );
 	const initializedIssueId = useRef( null );
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
@@ -153,10 +154,25 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					const section = modalRef.current?.querySelector( `[data-section="${ focusSection }"]` );
 					if ( section ) {
 						section.scrollIntoView( { behavior: 'smooth', block: 'center' } );
-						// Try to focus a focusable element within the section, or the section itself
-						const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
-						if ( focusable ) {
-							focusable.focus();
+
+						// For dismiss and fix sections, click the PanelBody toggle if it's closed
+						if ( focusSection === 'dismiss' || focusSection === 'fix' ) {
+							const panelButton = section.querySelector( '.components-panel__body-toggle' );
+							if ( panelButton ) {
+								// Check if panel is closed (aria-expanded="false")
+								const isExpanded = panelButton.getAttribute( 'aria-expanded' ) === 'true';
+								if ( ! isExpanded ) {
+									panelButton.click();
+								}
+								// Focus on the panel button
+								panelButton.focus();
+							}
+						} else {
+							// For other sections, find and focus the first focusable element
+							const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
+							if ( focusable ) {
+								focusable.focus();
+							}
 						}
 					}
 				} );
@@ -167,6 +183,38 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 		return () => cancelAnimationFrame( rafId );
 	}, [ isOpen, focusSection ] );
+
+	// Auto-trigger actions like restore when specified
+	useEffect( () => {
+		if ( ! isOpen || ! autoAction ) {
+			return;
+		}
+
+		// Use triple requestAnimationFrame to ensure the panel is opened, focused, and rendered
+		let rafId;
+		const performAutoAction = () => {
+			rafId = requestAnimationFrame( () => {
+				rafId = requestAnimationFrame( () => {
+					rafId = requestAnimationFrame( () => {
+						if ( autoAction === 'restore' ) {
+							// Find and click the restore/reopen button in the dismiss panel
+							const dismissSection = modalRef.current?.querySelector( '[data-section="dismiss"]' );
+							if ( dismissSection ) {
+								const restoreButton = dismissSection.querySelector( '.edac-analysis__dismiss-button' );
+								if ( restoreButton && ! restoreButton.disabled ) {
+									restoreButton.click();
+								}
+							}
+						}
+					} );
+				} );
+			} );
+		};
+
+		performAutoAction();
+
+		return () => cancelAnimationFrame( rafId );
+	}, [ isOpen, autoAction ] );
 
 	// Extract image URLs from the issue markup (must be before early return for hooks rules)
 	const imageUrls = useMemo( () => extractImageUrls( issue?.object ), [ issue?.object ] );
