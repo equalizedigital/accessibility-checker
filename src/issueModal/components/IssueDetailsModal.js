@@ -66,6 +66,11 @@ const CodeMirrorViewer = ( { value } ) => {
 				readOnly: true,
 				lineNumbers: true,
 				lineWrapping: true,
+				// Disable tab handling so it doesn't capture tab key
+				extraKeys: {
+					Tab: false,
+					'Shift-Tab': false,
+				},
 			},
 		};
 
