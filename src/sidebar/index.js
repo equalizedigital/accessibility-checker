@@ -76,13 +76,13 @@ function AccessibilityCheckerSidebar() {
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
 			title={
-				<>
+				<span className="edac-sidebar__title">
 					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
-					{ backgroundRefresh && <Spinner style={ { marginLeft: '8px' } } /> }
+					{ backgroundRefresh && <Spinner className="edac-sidebar__title-spinner" /> }
 					<DropdownMenu
 						icon={ moreVertical }
 						label={ __( 'Sidebar actions', 'accessibility-checker' ) }
-						className="edac-sidebar-title-menu"
+						className="edac-sidebar__title-menu"
 					>
 						{ ( { onClose } ) => (
 							<MenuGroup>
@@ -110,7 +110,7 @@ function AccessibilityCheckerSidebar() {
 							</MenuGroup>
 						) }
 					</DropdownMenu>
-				</>
+				</span>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>
