@@ -1064,19 +1064,21 @@ class REST_Api {
 			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
-		$simplified_summary_grade_failed = $simplified_summary_grade >= 9;
-		$simplified_summary_prompt       = get_option( 'edac_simplified_summary_prompt' );
+		$simplified_summary_grade_failed      = $simplified_summary_grade >= 9;
+		$simplified_summary_grade_readability = edac_ordinal( $simplified_summary_grade );
+		$simplified_summary_prompt            = get_option( 'edac_simplified_summary_prompt' );
 
 		return [
-			'post_grade'                      => $post_grade,
-			'post_grade_readability'          => $post_grade_readability,
-			'post_grade_failed'               => $post_grade_failed,
-			'simplified_summary'              => $simplified_summary,
-			'simplified_summary_grade'        => $simplified_summary_grade,
-			'simplified_summary_grade_failed' => $simplified_summary_grade_failed,
-			'simplified_summary_prompt'       => $simplified_summary_prompt,
-			'simplified_summary_position'     => $simplified_summary_position,
-			'content_length'                  => strlen( $content ),
+			'post_grade'                           => $post_grade,
+			'post_grade_readability'               => $post_grade_readability,
+			'post_grade_failed'                    => $post_grade_failed,
+			'simplified_summary'                   => $simplified_summary,
+			'simplified_summary_grade'             => $simplified_summary_grade,
+			'simplified_summary_grade_readability' => $simplified_summary_grade_readability,
+			'simplified_summary_grade_failed'      => $simplified_summary_grade_failed,
+			'simplified_summary_prompt'            => $simplified_summary_prompt,
+			'simplified_summary_position'          => $simplified_summary_position,
+			'content_length'                       => strlen( $content ),
 		];
 	}
 
@@ -1106,16 +1108,17 @@ class REST_Api {
 			// Return data structure that matches the readability endpoint format.
 			return new \WP_REST_Response(
 				[
-					'success'                         => true,
-					'post_grade'                      => $readability_data['post_grade'],
-					'post_grade_readability'          => $readability_data['post_grade_readability'],
-					'post_grade_failed'               => $readability_data['post_grade_failed'],
-					'simplified_summary'              => $readability_data['simplified_summary'],
-					'simplified_summary_grade'        => $readability_data['simplified_summary_grade'],
-					'simplified_summary_grade_failed' => $readability_data['simplified_summary_grade_failed'],
-					'simplified_summary_prompt'       => $readability_data['simplified_summary_prompt'],
-					'simplified_summary_position'     => $readability_data['simplified_summary_position'],
-					'content_length'                  => $readability_data['content_length'],
+					'success'                              => true,
+					'post_grade'                           => $readability_data['post_grade'],
+					'post_grade_readability'               => $readability_data['post_grade_readability'],
+					'post_grade_failed'                    => $readability_data['post_grade_failed'],
+					'simplified_summary'                   => $readability_data['simplified_summary'],
+					'simplified_summary_grade'             => $readability_data['simplified_summary_grade'],
+					'simplified_summary_grade_readability' => $readability_data['simplified_summary_grade_readability'],
+					'simplified_summary_grade_failed'      => $readability_data['simplified_summary_grade_failed'],
+					'simplified_summary_prompt'            => $readability_data['simplified_summary_prompt'],
+					'simplified_summary_position'          => $readability_data['simplified_summary_position'],
+					'content_length'                       => $readability_data['content_length'],
 				],
 				200
 			);
