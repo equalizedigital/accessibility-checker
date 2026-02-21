@@ -36,7 +36,6 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 
 			if ( response?.success ) {
 				document.dispatchEvent( new Event( 'edac-cleared-issues' ) );
-				refetchData( postId );
 			}
 		} catch ( error ) {
 			// eslint-disable-next-line no-console
