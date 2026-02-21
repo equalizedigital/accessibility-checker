@@ -82,7 +82,7 @@ const handleClose = () => {
 	}
 
 	if ( pendingRescan ) {
-		const rescanEvent = new CustomEvent( 'edac-fix-settings-saved', {
+		const rescanEvent = new CustomEvent( 'edac-scan-requested', {
 			detail: { success: true },
 		} );
 		document.dispatchEvent( rescanEvent );

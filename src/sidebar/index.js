@@ -10,6 +10,7 @@ import { __ } from '@wordpress/i18n';
 import { Spinner } from '@wordpress/components';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
+import SidebarTitleMenu from './components/SidebarTitleMenu';
 import { STORE_NAME } from './store/accessibility-checker-store';
 import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-icon.svg';
 
@@ -71,14 +72,33 @@ function AccessibilityCheckerSidebar() {
 		};
 	}, [ postId, refetchData ] );
 
+	// Listen for clear issues from classic metabox and refetch data
+	useEffect( () => {
+		const handleClearedIssues = () => {
+			if ( postId ) {
+				refetchData( postId );
+			}
+		};
+
+		document.addEventListener( 'edac-cleared-issues', handleClearedIssues );
+
+		return () => {
+			document.removeEventListener( 'edac-cleared-issues', handleClearedIssues );
+		};
+	}, [ postId, refetchData ] );
+
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
 			title={
-				<>
+				<span className="edac-sidebar__title">
 					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
-					{ backgroundRefresh && <Spinner style={ { marginLeft: '8px' } } /> }
-				</>
+					{ backgroundRefresh && <Spinner className="edac-sidebar__title-spinner" /> }
+					<SidebarTitleMenu
+						postId={ postId }
+						refetchData={ refetchData }
+					/>
+				</span>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>
@@ -104,4 +124,3 @@ if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 		render: QuickAccessPanelWrapper,
 	} );
 }
-
