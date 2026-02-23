@@ -91,7 +91,7 @@ class BootstrapCLITest extends WP_UnitTestCase {
 
 		try {
 			$bootstrap_cli->register();
-			$this->assertTrue( true );
+			$this->addToAssertionCount( 1 ); // If we reach this point without an exception, the test has passed.
 		} catch ( Exception $exception ) {
 			$this->fail( 'Register should ignore non-array filter output.' );
 		} finally {
