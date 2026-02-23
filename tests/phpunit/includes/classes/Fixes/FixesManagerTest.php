@@ -115,4 +115,25 @@ class FixesManagerTest extends WP_UnitTestCase {
 
 		$this->assertEquals( $expected, $fixes_manager->get_fixes_settings() );
 	}
+
+	/**
+	 * Test that scalar filter output does not trigger warnings during registration.
+	 *
+	 * @return void
+	 */
+	public function test_register_fixes_handles_scalar_filter_output() {
+		add_filter(
+			'edac_filter_fixes',
+			static function () {
+				return 123;
+			}
+		);
+
+		$fixes_manager = FixesManager::get_instance();
+
+		$fixes_manager->register_fixes();
+		remove_all_filters( 'edac_filter_fixes' );
+
+		$this->assertEmpty( $fixes_manager->get_fixes_settings() );
+	}
 }
