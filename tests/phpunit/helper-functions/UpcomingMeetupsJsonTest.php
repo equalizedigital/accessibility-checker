@@ -36,8 +36,8 @@ class UpcomingMeetupsJsonTest extends WP_UnitTestCase {
 
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Needed to convert warnings into test failures.
 		set_error_handler(
-			function () {
-				throw new \RuntimeException( 'PHP warning triggered while parsing meetup response.' );
+			function ( $severity, $message, $file, $line ) {
+				throw new \ErrorException( $message, 0, $severity, $file, $line ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped,  -- This is just rethrowing the error as an exception for testing purposes.
 			}
 		);
 
