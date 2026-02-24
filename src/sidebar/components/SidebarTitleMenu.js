@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
-import { moreVertical } from '@wordpress/icons';
+import { moreVertical, search, update, trash } from '@wordpress/icons';
 
 const SidebarTitleMenu = ( { postId, refetchData } ) => {
 	const handleScan = () => {
@@ -52,6 +52,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 			{ ( { onClose } ) => (
 				<MenuGroup>
 					<MenuItem
+						icon={ search }
 						onClick={ () => {
 							handleScan();
 							onClose();
@@ -60,6 +61,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 						{ __( 'Scan', 'accessibility-checker' ) }
 					</MenuItem>
 					<MenuItem
+						icon={ update }
 						onClick={ () => {
 							handleRefresh();
 							onClose();
@@ -68,6 +70,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 						{ __( 'Refresh', 'accessibility-checker' ) }
 					</MenuItem>
 					<MenuItem
+						icon={ trash }
 						onClick={ async () => {
 							await handleClearIssues();
 							onClose();
