@@ -395,6 +395,11 @@
 			border: 1px solid #ddd;
 			border-radius: 4px;
 			font-size: 12px;
+
+			&-focused {
+				outline: 2px solid;
+				outline-offset: 2px;
+			}
 		}
 
 		.edac-analysis__dismiss-button {
