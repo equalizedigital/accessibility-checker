@@ -153,8 +153,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 				rafId = requestAnimationFrame( () => {
 					const section = modalRef.current?.querySelector( `[data-section="${ focusSection }"]` );
 					if ( section ) {
-						section.scrollIntoView( { behavior: 'smooth', block: 'center' } );
-
 						// For dismiss and fix sections, click the PanelBody toggle if it's closed
 						if ( focusSection === 'dismiss' || focusSection === 'fix' ) {
 							const panelButton = section.querySelector( '.components-panel__body-toggle' );
@@ -164,11 +162,22 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								if ( ! isExpanded ) {
 									panelButton.click();
 								}
-								// Focus on the panel button
-								panelButton.focus();
+								// Delay scroll and focus until after the panel has expanded
+								setTimeout( () => {
+									section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+									panelButton.focus();
+								}, 150 );
+							}
+						} else if ( focusSection === 'code' ) {
+							// For the code section, scroll to top and focus the heading
+							section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+							const heading = section.querySelector( 'h2' );
+							if ( heading ) {
+								heading.focus();
 							}
 						} else {
 							// For other sections, find and focus the first focusable element
+							section.scrollIntoView( { behavior: 'smooth', block: 'start' } );
 							const focusable = section.querySelector( 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])' );
 							if ( focusable ) {
 								focusable.focus();
@@ -421,7 +430,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					{ /* Affected Code */ }
 					{ issue.object && (
 						<div className="edac-analysis__code-wrapper" data-section="code">
-							<h2 className="edac-analysis__issue-title">{ __( 'Affected Code', 'accessibility-checker' ) }</h2>
+							<h2 className="edac-analysis__issue-title" tabIndex="-1">{ __( 'Affected Code', 'accessibility-checker' ) }</h2>
 							<CodeMirrorViewer value={ decodeEntities( issue.object ) } />
 						</div>
 					) }
