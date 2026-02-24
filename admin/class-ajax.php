@@ -98,12 +98,16 @@ class Ajax {
 
 		$html['content'] .= '<ul class="edac-summary-grid">';
 
-			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
+			$html['content'] .= '<li class="edac-summary-total">';
 
-				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+				$html['content'] .= '<span class="screen-reader-text">' . $summary['passed_tests'] . '% Passed Checks</span>';
+
+				$html['content'] .= edac_icon( 'info', '', true );
+
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+						<div class="edac-panel-number-label">Passed Checks<sup>*</sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -111,9 +115,9 @@ class Ajax {
 					</div>
 				</div>';
 
-				$html['content'] .= '<div class="edac-summary-total-mobile">
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-mobile">
 					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
 					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
@@ -126,39 +130,47 @@ class Ajax {
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
-				/* translators: %s: Number of errors */
-				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+				_n( 'Problem', 'Problems', $summary['errors'], 'accessibility-checker' ),
+				$summary['errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
 				$summary['contrast_errors'],
-				/* translators: %s: Number of contrast errors */
-				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+				_n( 'Contrast Problem', 'Contrast Problems', $summary['contrast_errors'], 'accessibility-checker' ),
+				$summary['contrast_errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
 				$summary['warnings'],
-				/* translators: %s: Number of warnings */
-				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+				_n( 'Needs Review', 'Needs Review', $summary['warnings'], 'accessibility-checker' ),
+				$summary['warnings'] > 0 ? 'warning' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
 				$summary['ignored'],
-				/* translators: %s: Number of ignored items */
-				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+				_n( 'Dismissed Issue', 'Dismissed Issues', $summary['ignored'], 'accessibility-checker' ),
+				'dismissed'
 			) . '
 
 		</ul>
 		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
 			<div class="edac-summary-readability-level">
-				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability-icon-navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				<div>' . edac_icon(
+			edac_get_readability_panel_icon(
+				(int) $summary['content_grade'] > 0,
+				(int) $summary['content_grade'],
+				(int) $summary['content_grade'] > 9,
+				$simplified_summary,
+				$simplified_summary_grade,
+				$simplified_summary_grade_failed
+			)
+		) . '</div>
+				<div class="edac-panel-number">
 					' . $summary['readability'] . '
 				</div>
-				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+				<div class="edac-panel-number-label">Reading Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>

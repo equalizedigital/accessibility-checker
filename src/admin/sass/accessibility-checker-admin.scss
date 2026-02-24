@@ -1,6 +1,7 @@
 @use "sass:meta";
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
+@use "../../sidebar/sass/variables" as sidebar-variables;
 
 .failed-text-color {
   color: variables.$color-red;
@@ -60,20 +61,21 @@
   }
 
   #edac-tabs {
-    margin: 15px 0;
+    margin: 15px 0 0;
 
-	.edac-tabs-and-rescan-container {
-		display: flex;
+    .edac-tabs-and-rescan-container {
+      display: flex;
+      gap: 10px;
 
-		#edac-clear-issues-button {
-			margin-left: auto;
-			margin-top: 1em;
-			margin-bottom: 1em;
-		}
-	}
+      #edac-clear-issues-button {
+        margin-left: auto;
+        //margin-bottom: 1em;
+      }
+    }
 
     .edac-tabs {
       margin-bottom: 0;
+      margin-top: 0;
       position: relative;
       z-index: 2;
     }
@@ -85,7 +87,7 @@
 
       > button {
         width: 100%;
-        padding: 12px 18px;
+        padding: 16px 18px;
         display: inline-block;
         background-color: variables.$color-gray-lightest;
         border: solid 1px variables.$color-gray-light;
@@ -98,19 +100,19 @@
           width: auto;
         }
 
-		&:hover,
-		&:focus {
-      color: variables.$color-black;
-      cursor: pointer;
-		}
+        &:hover,
+        &:focus {
+          color: variables.$color-black;
+          cursor: pointer;
+        }
 
-    &:focus-visible {
-      outline: 2px solid variables.$color-blue;
-      outline-offset: 2px;
-    }
+        &:focus-visible {
+          outline: 2px solid variables.$color-blue;
+          outline-offset: 2px;
+        }
 
         &.active {
-          padding: 14px 18px;
+          padding: 18px 18px;
           color: variables.$color-white;
           background-color: variables.$color-blue;
         }
@@ -128,6 +130,7 @@
       &-number {
         font-size: 48px;
         line-height: 48px;
+        font-weight: 600;
       }
 
       &-number-label {
@@ -150,6 +153,20 @@
 
     .edac-summary {
 
+      .edac-icon {
+        width: 37px;
+        height: 37px;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: block;
+
+        svg {
+          width: 37px;
+          height: 37px;
+        }
+      }
+
       &-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -157,6 +174,10 @@
 
         @include helpers.breakpoint(lg) {
           grid-template-columns: 2fr 1.5fr 1.5fr;
+        }
+
+        li {
+          border-radius: 10px;
         }
 
         > li {
@@ -184,10 +205,11 @@
       }
 
       &-total {
-        background-color: variables.$color-gray-lightest;
+        background-color: variables.$color-white;
         box-shadow: inset 0 0 0 1px variables.$color-gray-light;
         padding: 15px;
         text-align: center;
+        position: relative;
         $progress-circle-size: 250px;
         $progress-bar-width: 14px;
 
@@ -196,7 +218,7 @@
         }
 
         &-mobile {
-		  width: 100%;
+          width: 100%;
           color: variables.$color-dark-gray;
 
           @include helpers.breakpoint(xs) {
@@ -214,14 +236,13 @@
             span {
               display: block;
               height: $progress-bar-width * 2;
-              background-color: variables.$color-green;
+              background-color: variables.$color-blue;
             }
           }
         }
 
         &-progress-circle {
-		  margin: auto;
-
+          margin: auto;
           font-size: 20px;
           position: relative;
           padding: 0;
@@ -252,7 +273,7 @@
             border-radius: 50%;
             width: $progress-circle-size - ($progress-bar-width * 2);
             height: $progress-circle-size - ($progress-bar-width * 2);
-            background-color: variables.$color-gray-lightest;
+            background-color: variables.$color-white;
             content: " ";
           }
 
@@ -262,7 +283,7 @@
             width: $progress-circle-size;
             text-align: center;
             display: block;
-            color: variables.$color-dark-gray;
+            color: sidebar-variables.$info-grey;
             z-index: 2;
 
             div:first-child {
@@ -292,15 +313,15 @@
 
         .value-bar {
           /*This is an overlayed square, that is made round with the border radius,
-					 then it is cut to display only the left half, then rotated clockwise
-					 to escape the outer clipping path.*/
+           then it is cut to display only the left half, then rotated clockwise
+           to escape the outer clipping path.*/
           position: absolute;
           /*needed for clipping*/
           clip: rect(0, calc( $progress-circle-size / 2 ), $progress-circle-size, 0);
           width: $progress-circle-size;
           height: $progress-circle-size;
           border-radius: 50%;
-          border: $progress-bar-width solid variables.$color-green;
+          border: $progress-bar-width solid variables.$color-blue;
           /*The border is 0.35 but making it larger removes visual artifacts */
           /*background-color: #4D642D;*/
           /* for debug */
@@ -316,8 +337,8 @@
           clip: rect(0,
               $progress-circle-size,
               $progress-circle-size,
-			  calc( $progress-circle-size / 2 ) );
-          background-color: variables.$color-green;
+              calc( $progress-circle-size / 2 ) );
+          background-color: variables.$color-blue;
           border-radius: 50%;
           width: $progress-circle-size;
           height: $progress-circle-size;
@@ -347,6 +368,9 @@
         background-position: 10px 10px;
         background-repeat: no-repeat;
         background-size: 30px auto;
+        color: sidebar-variables.$info-grey;
+        border: solid 1px variables.$color-gray-light;
+        position: relative;
 
         @include helpers.breakpoint(xs) {
           padding-top: 50px;
@@ -360,69 +384,49 @@
       }
 
       &-errors {
-        color: variables.$color-white;
-        background-color: variables.$color-green;
-        background-image: url("../images/error-icon-white.png");
-
         &.has-errors {
-          background-color: variables.$color-red;
         }
       }
 
       &-contrast {
-        color: variables.$color-white;
-        background-color: variables.$color-green;
-        background-image: url("../images/contrast-icon-white.png");
-
         &.has-errors {
-          background-color: variables.$color-red;
         }
       }
 
       &-warnings {
-        color: variables.$color-white;
-        background-color: variables.$color-green;
-        background-image: url("../images/warning-icon-white.png");
 
         &.has-errors {
-          color: variables.$color-blue-dark;
-          background-color: variables.$color-yellow;
-          background-image: url("../images/warning-icon-navy.png");
         }
       }
 
       &-ignored {
-        color: variables.$color-white;
-        background-color: variables.$color-blue-dark;
-        background-image: url("../images/ignore-icon-white.png");
       }
 
       &-readability {
         width: 100%;
-        background-color: variables.$color-gray-lightest;
         box-shadow: inset 0 0 0 1px variables.$color-gray-light;
         clear: both;
-        padding: 10px;
+        padding: 14px;
+        border-radius: 10px;
 
         @include helpers.breakpoint(lg) {
-          display: grid;
-          grid-template-columns: calc(50% - 15px) auto;
-        }
-
-        @include helpers.breakpoint(xl) {
-          grid-template-columns: calc(40% - 15px) auto;
+          display: flex;
+          gap: 14px;
+          align-items: center;
         }
 
         &-level {
           color: variables.$color-red;
-          display: grid;
-          grid-template-columns: auto;
+          display: flex;
           align-items: center;
-          padding-top: 5px;
+          gap: 14px;
           margin-bottom: 15px;
+          padding-right: 14px;
 
-          @include helpers.breakpoint(xs) {
-            grid-template-columns: auto 100px auto;
+          .edac-icon {
+            position: relative;
+            top: auto;
+            left: auto;
           }
 
           @include helpers.breakpoint(lg) {
@@ -430,24 +434,10 @@
             margin-bottom: 0;
           }
 
-          img {
-            display: block;
-            margin: auto;
-
-            @include helpers.breakpoint(xs) {
-              margin-right: 10px;
-              float: right;
-            }
-
-            @include helpers.breakpoint(lg) {
-              margin-right: 20px;
-            }
-          }
-
           .edac-panel-number {
+            color: sidebar-variables.$info-grey;
             text-align: center;
             margin-bottom: 0;
-            margin-right: 10px;
 
             @include helpers.breakpoint(xs) {
               text-align: right;
@@ -455,6 +445,7 @@
           }
 
           .edac-panel-number-label {
+            color: sidebar-variables.$info-grey;
             text-align: center;
             margin-bottom: 0;
 
@@ -473,17 +464,10 @@
         }
 
         &-summary {
-          display: grid;
-          grid-template-columns: 33px auto;
-          grid-column-gap: 10px;
           font-size: 16px;
           align-items: center;
           padding-left: 0;
           text-align: left;
-
-          @include helpers.breakpoint(lg) {
-            padding-left: 27px;
-          }
 
           &-icon {
             width: 33px;
@@ -496,8 +480,6 @@
               background-image: url("../images/checkmark-icon-green.png");
             }
           }
-
-          &-text {}
 
           img {
             display: block;
@@ -668,7 +650,6 @@
                   width: 18px;
                   height: auto;
                   display: inline-block;
-                  //margin: 0 2px 0 3px;
                   margin: 0 5px 0 0px;
 
                   path {
@@ -782,8 +763,6 @@
             margin-bottom: 0;
           }
 
-          &-description {}
-
           &-icon {
             background-color: #fff;
             color: variables.$color-white;
@@ -801,14 +780,6 @@
           }
         }
       }
-
-      &-grade-level {}
-
-      &-summary-grade-level {}
-
-      &-summary-position {}
-
-      &-yoast {}
 
       &-simplified-summary {
         width: 100%;
@@ -910,20 +881,20 @@
       grid-template-columns: minmax(200px, auto) 1fr;
     }
 
-	&-version {
-		display: block;
-		font-size: 12px;
-		margin-top: 6px;
-	}
+  &-version {
+    display: block;
+    font-size: 12px;
+    margin-top: 6px;
+  }
 
     &-left {
       grid-row: 1;
     }
 
-	&-left,
-	&-notices {
-		grid-column: 1 / -1;
-	}
+  &-left,
+  &-notices {
+    grid-column: 1 / -1;
+  }
 
     &-right {
       grid-column: 2 / 3;
@@ -1064,9 +1035,9 @@
     }
 
     &--wrapper {
-		position: relative;
-		z-index: 1;
-		display: inline;
+      position: relative;
+      z-index: 1;
+      display: inline;
     }
 
     &:after {
@@ -1078,7 +1049,6 @@
       bottom: -8px;
       right: -8px;
       background: #f3cd1e;
-      //border: 3px solid #f3cd1e;
     }
 
     &:hover,
@@ -1111,7 +1081,6 @@
   }
 
   &-review {
-
     font-weight: 600;
 
     &:after {
@@ -1131,9 +1100,6 @@
     margin-top: 5px;
   }
 }
-
-
-
 
 .edac-hidden {
   display: none !important;
@@ -1178,7 +1144,6 @@
 
 .edac-flex-container {
   display: flex;
-
 }
 
 .edac-cols {
@@ -1186,7 +1151,6 @@
   flex-direction: row;
   justify-content: space-between;
   gap: 1rem;
-
 
   .edac-cols-header {
     display: flex;
@@ -1205,12 +1169,7 @@
       .edac-cols-right {
         text-align: center;
       }
-
     }
-
-
-
-
   }
 }
 
@@ -1299,18 +1258,10 @@
         padding: 0;
         background-color: transparent;
         border: none;
-
       }
-
     }
-
   }
-
 }
-
-
-
-
 
 #edac_dashboard_scan_summary {
 
@@ -1319,7 +1270,6 @@
   }
 
   .edac-summary {
-
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -1330,13 +1280,10 @@
       width: 100%;
 
       &-label {
-
         flex: 1;
-
         font-size: variables.$font-size-medium;
       }
     }
-
 
     &-passed {
 
@@ -1358,7 +1305,6 @@
         border-radius: 50%;
         margin: auto;
 
-
         .edac-progress-percentage {
           margin: 0 .5rem;
           font-size: variables.$font-size-x-large;
@@ -1369,9 +1315,7 @@
           font-size: variables.$font-size-small;
         }
       }
-
     }
-
 
     &-info {
 
@@ -1427,7 +1371,6 @@
             &.has-errors {
               background-color: variables.$color-red;
             }
-
           }
 
           &-contrast {
@@ -1437,7 +1380,6 @@
             &.has-errors {
               background-color: variables.$color-red;
             }
-
           }
 
           &-warning {
@@ -1449,33 +1391,21 @@
                 background-size: 1rem 1rem;
                 color: variables.$color-blue-dark;
             }
-
           }
 
           &-label {
             line-height: 2rem;
             margin-left: calc(1rem + 10px);
             font-size: variables.$font-size-small;
-
           }
 
           &-number {
             margin-left: calc(.3rem);
             font-size: variables.$font-size-small;
-
           }
-
-
         }
-
-
-
       }
-
-
     }
-
-
   }
 
   .edac-summary-notice {
@@ -1518,7 +1448,6 @@
     &-item-link {
       text-decoration: revert;
     }
-
   }
 
   .edac-widget-footer-link-list-spacer {
@@ -1526,9 +1455,7 @@
     padding: 0;
     margin: 0;
   }
-
 }
-
 
 .edac-welcome-container {
 
@@ -1546,14 +1473,11 @@
       font-size: 1em;
       line-height: 1.25em;
     }
-
   }
 
   @media screen and (max-width: variables.$large-screen-width ) {
 
     >.edac-cols {
-      //gap: 0;
-
       flex-direction: column !important;
 
       .edac-cols-right {
@@ -1565,12 +1489,8 @@
       .edac-welcome-aside>div {
         width: unset;
       }
-
     }
-
   }
-
-
 
   section {
     border-bottom: 1px solid #e2e4e7;
@@ -1581,16 +1501,13 @@
     display: grid;
     justify-items: stretch;
 
-
     .edac-welcome-header-right {
       text-align: right;
 
       img {
         width: 200px;
       }
-
     }
-
 
     @media screen and (max-width: variables.$small-screen-width ) {
       display: flex;
@@ -1598,27 +1515,21 @@
       text-align: center;
 
       .edac-welcome-header-left {
-		order: 2;
-	  }
+        order: 2;
+      }
 
       .edac-welcome-header-right {
         text-align: center;
-		  order: 3;
+        order: 3;
       }
 
       .edac-welcome-header-notices {
         order: 1
       }
     }
-
-
   }
 
-
-
-
   #edac_welcome_page_summary {
-
 
     .edac-modal-container {
       background-image: url("../images/welcome-screenshot-standard.png");
@@ -1633,16 +1544,11 @@
       @media screen and (max-width: variables.$small-screen-width ) {
         background-image: url("../images/welcome-screenshot-small.png");
       }
-
     }
-
-
-
 
     h3 {
       font-weight: bold;
     }
-
 
     .edac-welcome-grid-container {
       display: grid;
@@ -1689,7 +1595,6 @@
         margin: 0 1rem 0 1rem;
       }
     }
-
 
     .edac-welcome-grid-item {
       text-align: center;
@@ -1741,7 +1646,6 @@
       grid-area: 3 / 4 / 4 / 5;
     }
 
-
     @media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
       .edac-welcome-grid-container {
         display: grid;
@@ -1772,9 +1676,7 @@
       .edac-welcome-grid-c11 {
         grid-area: 4 / 3 / 5 / 4;
       }
-
     }
-
 
     @media screen and (max-width: variables.$small-screen-width ) {
 
@@ -1782,9 +1684,7 @@
         display: flex;
         flex-direction: column;
       }
-
     }
-
 
     .edac-stat-label {
       font-size: variables.$font-size-medium;
@@ -1807,7 +1707,6 @@
         line-height: variables.$font-size-x-large;
       }
     }
-
 
     .has-errors {
       color: variables.$color-white;
@@ -1845,7 +1744,6 @@
       background-repeat: no-repeat;
     }
 
-
     .has-warning {
       color: variables.$color-blue-dark;
       background-color: variables.$color-yellow;
@@ -1854,7 +1752,6 @@
       background-position: 5px 10px;
       background-repeat: no-repeat;
     }
-
 
     .has-no-warning {
       color: variables.$color-white;
@@ -1888,7 +1785,6 @@
       display: none;
     }
 
-
     .edac-modal-container {
       min-height: 300px;
     }
@@ -1898,35 +1794,24 @@
       border: solid 1px variables.$color-gray-light;
       padding: 0 1rem;
     }
-
   }
-
 
   .edac-pro-callout {
     position: relative;
-    /* Add relative positioning */
     padding: 1rem;
   }
 
-
   .edac-pro-callout-icon {
     position: absolute;
-    /* Position the icon absolutely */
     top: -25px;
-    /* Position at the top of the .edac-pro-callout */
     left: 50%;
-    /* Center horizontally within .edac-pro-callout */
     transform: translateX(-50%);
-    /* Adjust horizontal positioning */
     max-width: 50px;
   }
-
-
 
   .edac-support-section {
     .edac-flex-container {
       gap: 1rem;
-
 
       @media screen and (max-width: variables.$medium-screen-width ) {
         flex-direction: column;
@@ -1936,16 +1821,12 @@
         flex-direction: column;
       }
 
-
       .edac-flex-item {
         padding: 1rem;
       }
     }
   }
-
-
 }
-
 
 #edac_welcome_page_summary>section {
   position: relative;
@@ -1960,48 +1841,47 @@
     top: 0;
     z-index: 9;
   }
-
 }
 
 #edac-fixes-page {
-	.edac-fix {
-		&--hidden {
-			display: none;
-		}
+  .edac-fix {
+    &--hidden {
+      display: none;
+    }
 
-		&--disabled {
-			opacity: 0.75;
-		}
+    &--disabled {
+      opacity: 0.75;
+    }
 
-		&--upsell-link {
-			background: #f3cd1e;
-			padding: 4px 8px;
-			border-radius: 18px;
-			color: #072446;
-			display: inline-block;
-			font-size: 0.75rem;
-			text-decoration: none;
-			line-height: 1;
-		}
+    &--upsell-link {
+      background: #f3cd1e;
+      padding: 4px 8px;
+      border-radius: 18px;
+      color: #072446;
+      display: inline-block;
+      font-size: 0.75rem;
+      text-decoration: none;
+      line-height: 1;
+    }
 
-		&--upsell-link:hover {
-			text-decoration: underline;
-		}
-	}
+    &--upsell-link:hover {
+      text-decoration: underline;
+    }
+  }
 
-	.edac-notice {
-		&--accessibility-ready-conflict {
-			font-style: italic;
-			font-weight: 600;
-		}
-	}
+  .edac-notice {
+    &--accessibility-ready-conflict {
+      font-style: italic;
+      font-weight: 600;
+    }
+  }
 }
 
 @include meta.load-css("../../common/sass/fix-settings");
 
 .edac-dashicon-muted {
-	color: variables.$color-gray;
-	text-decoration: none;
+  color: variables.$color-gray;
+  text-decoration: none;
 }
 
 .edac-plugin-action-links {
