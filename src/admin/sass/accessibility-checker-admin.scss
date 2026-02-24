@@ -61,14 +61,13 @@
   }
 
   #edac-tabs {
-    margin: 15px 0;
+    margin: 15px 0 0;
 
     .edac-tabs-and-rescan-container {
       display: flex;
 
       #edac-clear-issues-button {
         margin-left: auto;
-        margin-top: 1em;
         margin-bottom: 1em;
       }
     }
@@ -235,7 +234,7 @@
             span {
               display: block;
               height: $progress-bar-width * 2;
-              background-color: variables.$color-green;
+              background-color: variables.$color-blue;
             }
           }
         }
