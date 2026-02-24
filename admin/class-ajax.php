@@ -734,6 +734,13 @@ class Ajax {
 	/**
 	 * Insert ignore data into database
 	 *
+	 * Note: There is a new dismiss-issue rest endpoint that covers this functionality
+	 * now and should be used going forward. This ajax was updated to support dismiss
+	 * reasons to align with the new endpoint and allow other things to continue to
+	 * work here gracefully.
+	 *
+	 * This should be removed in a future release.
+	 *
 	 * @return void
 	 *
 	 *  - '-1' means that nonce could not be varified
@@ -765,6 +772,7 @@ class Ajax {
 		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
 		$ignre_date_formatted = ( 'enable' === $action ) ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
+		$ignre_reason         = ( 'enable' === $action && isset( $_REQUEST['reason'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['reason'] ) ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
@@ -780,12 +788,12 @@ class Ajax {
 				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
 		} else {
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $id ) );
 			}
 		}
 
