@@ -2,10 +2,13 @@ import { __ } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 import { useRef, useCallback } from '@wordpress/element';
+import { useDispatch } from '@wordpress/data';
 import { moreVertical, search, update, trash } from '@wordpress/icons';
+import { STORE_NAME } from '../store/accessibility-checker-store';
 
 const SidebarTitleMenu = ( { postId, refetchData } ) => {
 	const menuRef = useRef( null );
+	const { setLastFocusedIssue } = useDispatch( STORE_NAME );
 
 	/**
 	 * Close the dropdown and return focus to the toggle button.
@@ -13,6 +16,10 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 	 * @param {Function} onClose - The dropdown's onClose callback.
 	 */
 	const closeAndRestoreFocus = useCallback( ( onClose ) => {
+		// Clear the last focused issue so the background-refresh focus
+		// restoration doesn't steal focus from the menu button.
+		setLastFocusedIssue( null );
+
 		onClose();
 		// Allow the dropdown to fully close before restoring focus.
 		requestAnimationFrame( () => {
@@ -21,7 +28,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 				toggleButton.focus();
 			}
 		} );
-	}, [] );
+	}, [ setLastFocusedIssue ] );
 
 	const handleScan = () => {
 		document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: true } } ) );
