@@ -152,6 +152,20 @@
 
     .edac-summary {
 
+      .edac-icon {
+        width: 37px;
+        height: 37px;
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: block;
+
+        svg {
+          width: 37px;
+          height: 37px;
+        }
+      }
+
       &-grid {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
@@ -200,14 +214,6 @@
 
         @include helpers.breakpoint(xs) {
           padding: 25px;
-        }
-
-        svg {
-          width: 37px;
-          height: 37px;
-          position: absolute;
-          top: 14px;
-          left: 14px;
         }
 
         &-mobile {
@@ -365,14 +371,6 @@
         border: solid 1px variables.$color-gray-light;
         position: relative;
 
-        svg {
-          width: 37px;
-          height: 37px;
-          position: absolute;
-          top: 14px;
-          left: 14px;
-        }
-
         @include helpers.breakpoint(xs) {
           padding-top: 50px;
           height: 175px;
@@ -424,17 +422,15 @@
           margin-bottom: 15px;
           padding-right: 14px;
 
-          @include helpers.breakpoint(xs) {
+          .edac-icon {
+            position: relative;
+            top: auto;
+            left: auto;
           }
 
           @include helpers.breakpoint(lg) {
             border-right: solid 3px variables.$color-gray-light;
             margin-bottom: 0;
-          }
-
-          svg {
-            width: 37px;
-            height: 37px;
           }
 
           .edac-panel-number {
