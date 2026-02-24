@@ -98,14 +98,14 @@ class Ajax {
 
 		$html['content'] .= '<ul class="edac-summary-grid">';
 
-			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
+			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Checks">';
 
 				$html['content'] .= '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 7.5V10.625M17.5 10C17.5 10.9849 17.306 11.9602 16.9291 12.8701C16.5522 13.7801 15.9997 14.6069 15.3033 15.3033C14.6069 15.9997 13.7801 16.5522 12.8701 16.9291C11.9602 17.306 10.9849 17.5 10 17.5C9.01509 17.5 8.03982 17.306 7.12987 16.9291C6.21993 16.5522 5.39314 15.9997 4.6967 15.3033C4.00026 14.6069 3.44781 13.7801 3.0709 12.8701C2.69399 11.9602 2.5 10.9849 2.5 10C2.5 8.01088 3.29018 6.10322 4.6967 4.6967C6.10322 3.29018 8.01088 2.5 10 2.5C11.9891 2.5 13.8968 3.29018 15.3033 4.6967C16.7098 6.10322 17.5 8.01088 17.5 10ZM10 13.125H10.0067V13.1317H10V13.125Z" stroke="#970C0C" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
 
 				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+						<div class="edac-panel-number-label">Passed Checks<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -128,26 +128,22 @@ class Ajax {
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
-				/* translators: %s: Number of errors */
-				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+				_n( 'Problem', 'Problems', $summary['errors'], 'accessibility-checker' )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
 				$summary['contrast_errors'],
-				/* translators: %s: Number of contrast errors */
-				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+				_n( 'Contrast Problem', 'Contrast Problems', $summary['contrast_errors'], 'accessibility-checker' )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
 				$summary['warnings'],
-				/* translators: %s: Number of warnings */
-				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+				_n( 'Needs Review', 'Needs Review', $summary['warnings'], 'accessibility-checker' )
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
 				$summary['ignored'],
-				/* translators: %s: Number of ignored items */
-				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+				_n( 'Dismissed Issue', 'Dismissed Issues', $summary['ignored'], 'accessibility-checker' )
 			) . '
 
 		</ul>
