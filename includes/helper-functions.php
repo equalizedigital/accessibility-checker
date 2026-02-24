@@ -330,7 +330,10 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 	if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
 		$response_body = json_decode( wp_remote_retrieve_body( $request ) );
 
-		$edges = $response_body->data->groupByUrlname->events->edges ?? null;
+		$edges = null;
+		if ( is_object( $response_body ) && isset( $response_body->data->groupByUrlname->events->edges ) ) {
+			$edges = $response_body->data->groupByUrlname->events->edges;
+		}
 
 		if ( is_array( $edges ) ) {
 			foreach ( $edges as $edge ) {
