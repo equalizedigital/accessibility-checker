@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
+use EqualizeDigital\AccessibilityChecker\Admin\Dismiss_Reasons;
 
 /**
  * Class that initializes and handles enqueueing styles and scripts for the admin.
@@ -207,6 +208,7 @@ class Enqueue_Admin {
 				'settingsUrl'        => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
 				'canManageSettings'  => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
 				'readabilityHelpUrl' => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
+				'dismissReasons'     => Dismiss_Reasons::get_reasons(),
 			]
 		);
 

@@ -1,47 +1,28 @@
 /**
  * Dismiss reason helper utilities
+ *
+ * Dismiss reasons are defined in PHP (Dismiss_Reasons::get_reasons()) and
+ * localized to window.edac_sidebar_app.dismissReasons so that the same
+ * translatable strings are shared between the sidebar, issue modal, and
+ * classic metabox.
  */
 
-import { __ } from '@wordpress/i18n';
-
 /**
- * Dismiss reason data as an object keyed by value
+ * Dismiss reason data as an object keyed by value.
  *
- * Provides quick lookup of dismiss reason data without filtering.
- * Use this when you need to access a specific reason's label or description.
+ * Reads from the PHP-localized data at runtime. Falls back to
+ * empty objects so callers never get undefined.
  *
  * @type {Object<string, {label: string, description: string}>}
  */
-export const DISMISS_REASONS = {
-	false_positive: {
-		label: __( 'False positive', 'accessibility-checker' ),
-		description: __(
-			'The scanner flagged this, but it does not apply to this content.',
-			'accessibility-checker',
-		),
-	},
-	remediated: {
-		label: __( 'Remediated', 'accessibility-checker' ),
-		description: __(
-			'The issue has been fixed, but the page has not been rescanned yet.',
-			'accessibility-checker',
-		),
-	},
-	accessible: {
-		label: __( 'Confirmed accessible', 'accessibility-checker' ),
-		description: __(
-			'Reviewed and verified to meet accessibility requirements.',
-			'accessibility-checker',
-		),
-	},
-};
+export const DISMISS_REASONS = window.edac_sidebar_app?.dismissReasons ?? {};
 
 /**
  * Get dismiss reason options for RadioControl
  *
  * Returns an array of dismiss reason options with labels and descriptions
  * that can be used in RadioControl or similar components.
- * Dynamically generated from DISMISS_REASONS constant to reduce duplication.
+ * Dynamically generated from DISMISS_REASONS to reduce duplication.
  *
  * @return {Array} Array of dismiss reason option objects.
  */
