@@ -10,6 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\Dismiss_Reasons;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -310,7 +311,7 @@ class Ajax {
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_reason, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -451,6 +452,7 @@ class Ajax {
 						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
 						$ignore_comment_disabled = $ignore ? 'disabled' : '';
 						$ignore_global           = (int) $row['ignre_global'];
+						$ignore_reason           = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
 						// check for images and svgs in object code.
 						$media      = edac_parse_html_for_media( $row['object'] );
@@ -539,6 +541,29 @@ class Ajax {
 
 						$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
 						$html .= '</div>';
+
+						// Dismiss reason radio group.
+						if ( true === $ignore_permission ) {
+							$dismiss_reasons = Dismiss_Reasons::get_reasons();
+							$html           .= '<fieldset class="edac-details-rule-records-record-ignore-reason">';
+							$html           .= '<legend>' . esc_html__( 'Dismiss issue as:', 'accessibility-checker' ) . '</legend>';
+							foreach ( $dismiss_reasons as $reason_value => $reason_data ) {
+								$radio_id       = 'edac-ignore-reason-' . $id . '-' . $reason_value;
+								$description_id = $radio_id . '-description';
+								$checked        = ( $ignore_reason === $reason_value ) ? ' checked' : '';
+								// Default to the first option when not yet dismissed.
+								if ( ! $ignore && '' === $ignore_reason && array_key_first( $dismiss_reasons ) === $reason_value ) {
+									$checked = ' checked';
+								}
+								$disabled_attr = $ignore ? ' disabled' : '';
+								$html         .= '<div class="edac-ignore-reason-option">';
+								$html         .= '<input type="radio" id="' . esc_attr( $radio_id ) . '" name="edac-ignore-reason-' . $id . '" value="' . esc_attr( $reason_value ) . '" class="edac-details-rule-records-record-ignore-reason-input" aria-describedby="' . esc_attr( $description_id ) . '"' . $checked . $disabled_attr . ' />';
+								$html         .= '<label for="' . esc_attr( $radio_id ) . '">' . esc_html( $reason_data['label'] ) . '</label>';
+								$html         .= '<p class="edac-ignore-reason-description" id="' . esc_attr( $description_id ) . '">' . esc_html( $reason_data['description'] ) . '</p>';
+								$html         .= '</div>';
+							}
+							$html .= '</fieldset>';
+						}
 
 						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
 						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
