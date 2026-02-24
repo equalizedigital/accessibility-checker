@@ -65,15 +65,17 @@
 
     .edac-tabs-and-rescan-container {
       display: flex;
+      gap: 10px;
 
       #edac-clear-issues-button {
         margin-left: auto;
-        margin-bottom: 1em;
+        //margin-bottom: 1em;
       }
     }
 
     .edac-tabs {
       margin-bottom: 0;
+      margin-top: 0;
       position: relative;
       z-index: 2;
     }
@@ -85,7 +87,7 @@
 
       > button {
         width: 100%;
-        padding: 12px 18px;
+        padding: 16px 18px;
         display: inline-block;
         background-color: variables.$color-gray-lightest;
         border: solid 1px variables.$color-gray-light;
@@ -110,7 +112,7 @@
         }
 
         &.active {
-          padding: 14px 18px;
+          padding: 18px 18px;
           color: variables.$color-white;
           background-color: variables.$color-blue;
         }
