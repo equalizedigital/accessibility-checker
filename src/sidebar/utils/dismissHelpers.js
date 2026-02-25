@@ -1,7 +1,7 @@
 /**
  * Dismiss reason helper utilities
  *
- * Dismiss reasons are defined in PHP (Dismiss_Reasons::get_reasons()) and
+ * Dismiss reasons are defined in PHP (IgnoreUI::get_reasons()) and
  * localized to window.edac_sidebar_app.dismissReasons so that the same
  * translatable strings are shared between the sidebar, issue modal, and
  * classic metabox.

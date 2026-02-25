@@ -75,8 +75,11 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 			if ( onIgnore ) {
 				onIgnore( issue, ignore );
 			}
+
+			return true;
 		} catch ( err ) {
 			setError( err.message );
+			return false;
 		} finally {
 			setIsSubmitting( false );
 		}
@@ -229,24 +232,26 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 											) }
 											renderContent={ ( { onClose } ) => (
 												<div className="edac-analysis__dismiss-dropdown-content">
+													{ issue?.can_dismiss_globally && (
+														<Button
+															variant="tertiary"
+															type="button"
+															onClick={ () => {
+																onClose();
+																handleToggleIgnore( true, true );
+															} }
+														>
+															{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+														</Button>
+													) }
 													<Button
 														variant="tertiary"
 														type="button"
 														onClick={ () => {
 															onClose();
-															handleToggleIgnore( true, true );
-														} }
-													>
-														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
-													</Button>
-													<Button
-														variant="tertiary"
-														type="button"
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, false ).then( () => {
+															handleToggleIgnore( true, false ).then( ( success ) => {
 																// close the entire modal after dismissing.
-																if ( onCloseModal ) {
+																if ( success && onCloseModal ) {
 																	onCloseModal();
 																}
 															} );

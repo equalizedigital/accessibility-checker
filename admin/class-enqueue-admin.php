@@ -90,7 +90,7 @@ class Enqueue_Admin {
 					'edacApiUrl'         => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 					'restNonce'          => wp_create_nonce( 'wp_rest' ),
 					'proUrl'             => esc_url_raw( edac_generate_link_type( [ 'utm-content' => '__name__' ] ) ),
-					'hasDismissEndpoint' => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ), // Can safely remove once the legacy edac_insert_ignore_data AJAX endpoint is removed.
+					'hasDismissEndpoint' => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),
 				]
 			);
 
