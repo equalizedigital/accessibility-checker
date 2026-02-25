@@ -127,7 +127,7 @@ class IgnoreUI {
 				$html .= '<a href="' . admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) . '" class="edac-details-rule-records-record-ignore-global">' . __( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>';
 			}
 		} elseif ( true === $ignore_permission ) {
-				$html .= '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $issue_id . '" data-action="' . $ignore_action . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
+				$html .= '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $issue_id . '" data-action="' . esc_attr( $ignore_action ) . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
 		}
 
 		// No permission message.
