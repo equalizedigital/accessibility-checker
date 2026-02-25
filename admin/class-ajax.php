@@ -99,12 +99,16 @@ class Ajax {
 
 		$html['content'] .= '<ul class="edac-summary-grid">';
 
-			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
+			$html['content'] .= '<li class="edac-summary-total">';
 
-				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+				$html['content'] .= '<span class="screen-reader-text">' . $summary['passed_tests'] . '% Passed Checks</span>';
+
+				$html['content'] .= edac_icon( 'info', '', true );
+
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+						<div class="edac-panel-number-label">Passed Checks<sup>*</sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -112,9 +116,9 @@ class Ajax {
 					</div>
 				</div>';
 
-				$html['content'] .= '<div class="edac-summary-total-mobile">
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-mobile">
 					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
 					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
@@ -127,39 +131,47 @@ class Ajax {
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
-				/* translators: %s: Number of errors */
-				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+				_n( 'Problem', 'Problems', $summary['errors'], 'accessibility-checker' ),
+				$summary['errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
 				$summary['contrast_errors'],
-				/* translators: %s: Number of contrast errors */
-				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+				_n( 'Contrast Problem', 'Contrast Problems', $summary['contrast_errors'], 'accessibility-checker' ),
+				$summary['contrast_errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
 				$summary['warnings'],
-				/* translators: %s: Number of warnings */
-				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+				_n( 'Needs Review', 'Needs Review', $summary['warnings'], 'accessibility-checker' ),
+				$summary['warnings'] > 0 ? 'warning' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
 				$summary['ignored'],
-				/* translators: %s: Number of ignored items */
-				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+				_n( 'Dismissed Issue', 'Dismissed Issues', $summary['ignored'], 'accessibility-checker' ),
+				'dismissed'
 			) . '
 
 		</ul>
 		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
 			<div class="edac-summary-readability-level">
-				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability-icon-navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				<div>' . edac_icon(
+			edac_get_readability_panel_icon(
+				(int) $summary['content_grade'] > 0,
+				(int) $summary['content_grade'],
+				(int) $summary['content_grade'] > 9,
+				$simplified_summary,
+				$simplified_summary_grade,
+				$simplified_summary_grade_failed
+			)
+		) . '</div>
+				<div class="edac-panel-number">
 					' . $summary['readability'] . '
 				</div>
-				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+				<div class="edac-panel-number-label">Reading Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
@@ -269,29 +281,28 @@ class Ajax {
 			}
 		}
 
-		// sort error rules by count.
-		usort(
-			$error_rules,
-			function ( $a, $b ) {
-
-				return strcmp( $b['count'], $a['count'] );
+		// shared comparator: sort by severity (ascending, 1=critical first), then count (descending).
+		$sort_by_severity_then_count = function ( $a, $b ) {
+			$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+			$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+			if ( $severity_a !== $severity_b ) {
+				return $severity_a - $severity_b;
 			}
-		);
+			return (int) $b['count'] - (int) $a['count'];
+		};
 
-		// sort warning rules by count.
-		usort(
-			$warning_rules,
-			function ( $a, $b ) {
+		usort( $error_rules, $sort_by_severity_then_count );
+		usort( $warning_rules, $sort_by_severity_then_count );
 
-				return strcmp( $b['count'], $a['count'] );
-			}
-		);
-
-		// sort passed rules array by title.
+		// sort passed rules array by severity (ascending, 1=critical first), then title.
 		usort(
 			$passed_rules,
 			function ( $a, $b ) {
-
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
 				return strcmp( $b['title'], $a['title'] );
 			}
 		);
@@ -308,6 +319,25 @@ class Ajax {
 			 * @allowed bool True if allowed, false if not
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+
+			$severity_map = [
+				1 => [
+					'label' => __( 'Critical', 'accessibility-checker' ),
+					'class' => 'severity-critical',
+				],
+				2 => [
+					'label' => __( 'High', 'accessibility-checker' ),
+					'class' => 'severity-high',
+				],
+				3 => [
+					'label' => __( 'Medium', 'accessibility-checker' ),
+					'class' => 'severity-medium',
+				],
+				4 => [
+					'label' => __( 'Low', 'accessibility-checker' ),
+					'class' => 'severity-low',
+				],
+			];
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
@@ -330,20 +360,29 @@ class Ajax {
 
 				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
+				$severity_badge = '';
+				if ( ! empty( $rule['severity'] ) && isset( $severity_map[ (int) $rule['severity'] ] ) ) {
+					$sev            = $severity_map[ (int) $rule['severity'] ];
+					$severity_badge = '<span class="edac-badge edac-badge--' . esc_attr( $sev['class'] ) . '"><span class="edac-badge__label">' . esc_html( $sev['label'] ) . '</span></span>';
+				}
+
 				$html .= '<div class="edac-details-rule">';
 
 				$html .= '<div class="edac-details-rule-title">';
 
+				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
+
 				$html .= '<h3>';
-				$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
-				$html .= esc_html( $rule['title'] );
+				$html .= edac_icon( $icon_name );
+				$html .= ' ' . esc_html( $rule['title'] );
+				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
 				if ( $count_ignored > 0 ) {
-					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
+					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' ' . esc_html( _n( 'Dismissed Issue', 'Dismissed Issues', $count_ignored, 'accessibility-checker' ) ) . '</span>';
 				}
+				$html .= $severity_badge;
 				$html .= '</h3>';
 				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
-
 				$html .= '</div>';
 
 				if ( $results ) {
