@@ -2,6 +2,7 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 @use "../../sidebar/sass/variables" as sidebar-variables;
+@use "../../sidebar/sass/components/badge";
 
 .failed-text-color {
   color: variables.$color-red;
@@ -515,6 +516,10 @@
             font-size: 16px;
             font-weight: normal;
             margin: 0;
+          }
+
+          .edac-badge {
+            margin-left: 0;
           }
 
           &:hover {

@@ -340,6 +340,30 @@ class Ajax {
 
 				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
+				$severity_badge = '';
+				$severity_map   = [
+					1 => [
+						'label' => __( 'Critical', 'accessibility-checker' ),
+						'class' => 'severity-critical',
+					],
+					2 => [
+						'label' => __( 'High', 'accessibility-checker' ),
+						'class' => 'severity-high',
+					],
+					3 => [
+						'label' => __( 'Medium', 'accessibility-checker' ),
+						'class' => 'severity-medium',
+					],
+					4 => [
+						'label' => __( 'Low', 'accessibility-checker' ),
+						'class' => 'severity-low',
+					],
+				];
+				if ( ! empty( $rule['severity'] ) && isset( $severity_map[ (int) $rule['severity'] ] ) ) {
+					$sev            = $severity_map[ (int) $rule['severity'] ];
+					$severity_badge = '<span class="edac-badge edac-badge--' . esc_attr( $sev['class'] ) . '"><span class="edac-badge__label">' . esc_html( $sev['label'] ) . '</span></span>';
+				}
+
 				$html .= '<div class="edac-details-rule">';
 
 				$html .= '<div class="edac-details-rule-title">';
@@ -353,10 +377,10 @@ class Ajax {
 				if ( $count_ignored > 0 ) {
 					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' ' . esc_html( _n( 'Dismissed Issue', 'Dismissed Issues', $count_ignored, 'accessibility-checker' ) ) . '</span>';
 				}
+				$html .= $severity_badge;
 				$html .= '</h3>';
 				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
-
 				$html .= '</div>';
 
 				if ( $results ) {
