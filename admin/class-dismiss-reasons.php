@@ -1,11 +1,13 @@
 <?php
 /**
- * Class file for dismiss reasons constants.
+ * Backwards-compatibility wrapper for the Dismiss_Reasons class.
  *
- * Provides the canonical list of dismiss reasons used across
- * the sidebar, issue modal, and classic metabox.
+ * This class has been renamed to IgnoreUI. This file is kept so that
+ * code referencing the old class name (e.g. in the pro plugin) continues
+ * to work without changes.
  *
- * @package Accessibility_Checker
+ * @deprecated Use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI instead.
+ * @package    Accessibility_Checker
  */
 
 namespace EqualizeDigital\AccessibilityChecker\Admin;
@@ -15,29 +17,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class that defines dismiss reason options.
+ * Backwards-compat alias — extends the renamed IgnoreUI class.
+ *
+ * @deprecated Use IgnoreUI directly.
  */
-class Dismiss_Reasons {
-
-	/**
-	 * Get the dismiss reasons with translatable labels and descriptions.
-	 *
-	 * @return array<string, array{label: string, description: string}>
-	 */
-	public static function get_reasons(): array {
-		return [
-			'false_positive' => [
-				'label'       => __( 'False positive', 'accessibility-checker' ),
-				'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
-			],
-			'remediated'     => [
-				'label'       => __( 'Remediated', 'accessibility-checker' ),
-				'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
-			],
-			'accessible'     => [
-				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
-				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
-			],
-		];
-	}
-}
+class Dismiss_Reasons extends IgnoreUI {}
