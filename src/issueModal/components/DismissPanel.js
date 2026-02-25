@@ -247,9 +247,9 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 														type="button"
 														onClick={ () => {
 															onClose();
-															handleToggleIgnore( true, false ).then( ( success ) => {
+															handleToggleIgnore( true, false ).then( () => {
 																// close the entire modal after dismissing.
-																if ( success && onCloseModal ) {
+																if ( onCloseModal ) {
 																	onCloseModal();
 																}
 															} );
