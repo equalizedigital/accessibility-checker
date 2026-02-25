@@ -10,7 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
-use EqualizeDigital\AccessibilityChecker\Admin\Dismiss_Reasons;
+use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
