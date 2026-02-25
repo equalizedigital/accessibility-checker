@@ -319,6 +319,25 @@ class Ajax {
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
 
+			$severity_map = [
+				1 => [
+					'label' => __( 'Critical', 'accessibility-checker' ),
+					'class' => 'severity-critical',
+				],
+				2 => [
+					'label' => __( 'High', 'accessibility-checker' ),
+					'class' => 'severity-high',
+				],
+				3 => [
+					'label' => __( 'Medium', 'accessibility-checker' ),
+					'class' => 'severity-medium',
+				],
+				4 => [
+					'label' => __( 'Low', 'accessibility-checker' ),
+					'class' => 'severity-low',
+				],
+			];
+
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$results       = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
@@ -340,24 +359,6 @@ class Ajax {
 				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
 				$severity_badge = '';
-				$severity_map   = [
-					1 => [
-						'label' => __( 'Critical', 'accessibility-checker' ),
-						'class' => 'severity-critical',
-					],
-					2 => [
-						'label' => __( 'High', 'accessibility-checker' ),
-						'class' => 'severity-high',
-					],
-					3 => [
-						'label' => __( 'Medium', 'accessibility-checker' ),
-						'class' => 'severity-medium',
-					],
-					4 => [
-						'label' => __( 'Low', 'accessibility-checker' ),
-						'class' => 'severity-low',
-					],
-				];
 				if ( ! empty( $rule['severity'] ) && isset( $severity_map[ (int) $rule['severity'] ] ) ) {
 					$sev            = $severity_map[ (int) $rule['severity'] ];
 					$severity_badge = '<span class="edac-badge edac-badge--' . esc_attr( $sev['class'] ) . '"><span class="edac-badge__label">' . esc_html( $sev['label'] ) . '</span></span>';
