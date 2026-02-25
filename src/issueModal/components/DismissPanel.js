@@ -6,7 +6,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Panel, PanelBody, Button, Spinner, Notice, RadioControl } from '@wordpress/components';
+import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, CheckboxControl } from '@wordpress/components';
 import { useState } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
@@ -25,10 +25,12 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
+	const [ ignoreGlobal, setIgnoreGlobal ] = useState( issue?.ignre_global === 1 || issue?.ignre_global === '1' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
+	const isPro = window.edac_editor_app?.pro === '1';
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 
@@ -38,7 +40,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 		setSuccessNotice( null );
 
 		try {
-			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '' );
+			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore && ignoreGlobal );
 			setIsIgnored( ignore );
 			setSuccessNotice(
 				ignore
@@ -54,6 +56,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 				issue.ignre_date = response.ignre_date || '';
 				issue.ignre_reason = response.ignre_reason || response.reason || dismissReason;
 				issue.ignre_comment = response.ignre_comment || response.comment || comment;
+				issue.ignre_global = response.ignre_global ?? ( ignoreGlobal ? 1 : 0 );
 			} else if ( ! ignore ) {
 				issue.ignre = '0';
 				issue.user = '';
@@ -123,12 +126,18 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 										/>
 									</div>
 								) }
-								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_reason ) && (
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_reason || issue?.ignre_global ) && (
 									<div className="edac-analysis__dismissed-meta">
 										{ issue?.ignre_reason && dismissReasonLabel && (
 											<p>
 												<strong>{ __( 'Dismissed as:', 'accessibility-checker' ) }</strong>{ ' ' }
 												{ dismissReasonLabel }
+											</p>
+										) }
+										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
+											<p>
+												<strong>{ __( 'Globally ignored:', 'accessibility-checker' ) }</strong>{ ' ' }
+												{ __( 'Yes — dismissed across all pages', 'accessibility-checker' ) }
 											</p>
 										) }
 										{ ( issue?.ignre_user_name || issue?.user ) && (
@@ -174,6 +183,14 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 									options={ getDismissReasonOptions() }
 									onChange={ setDismissReason }
 								/>
+								{ isPro && (
+									<CheckboxControl
+										label={ __( 'Ignore globally across all pages', 'accessibility-checker' ) }
+										help={ __( 'Dismisses all instances of this exact issue across every page on the site.', 'accessibility-checker' ) }
+										checked={ ignoreGlobal }
+										onChange={ setIgnoreGlobal }
+									/>
+								) }
 								<RichTextarea
 									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
 									help={ __(
