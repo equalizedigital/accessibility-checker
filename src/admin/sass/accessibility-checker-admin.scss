@@ -512,7 +512,7 @@
 
           h3 {
             display: flex;
-            gap: 5px;
+            gap: 10px;
             font-size: 16px;
             font-weight: normal;
             margin: 0;
@@ -551,6 +551,10 @@
               transform: rotate(180deg);
             }
           }
+        }
+
+        &-count {
+          margin-left: -5px;
         }
 
         &-count-ignore {
@@ -1324,7 +1328,6 @@
 
         &-label {
           font-size: variables.$font-size-small;
-
         }
 
         &-number {

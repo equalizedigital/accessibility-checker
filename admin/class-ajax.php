@@ -280,29 +280,41 @@ class Ajax {
 			}
 		}
 
-		// sort error rules by count.
+		// sort error rules by severity (ascending, 1=critical first), then count (descending).
 		usort(
 			$error_rules,
 			function ( $a, $b ) {
-
-				return strcmp( $b['count'], $a['count'] );
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
+				return (int) $b['count'] - (int) $a['count'];
 			}
 		);
 
-		// sort warning rules by count.
+		// sort warning rules by severity (ascending, 1=critical first), then count (descending).
 		usort(
 			$warning_rules,
 			function ( $a, $b ) {
-
-				return strcmp( $b['count'], $a['count'] );
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
+				return (int) $b['count'] - (int) $a['count'];
 			}
 		);
 
-		// sort passed rules array by title.
+		// sort passed rules array by severity (ascending, 1=critical first), then title.
 		usort(
 			$passed_rules,
 			function ( $a, $b ) {
-
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
 				return strcmp( $b['title'], $a['title'] );
 			}
 		);
