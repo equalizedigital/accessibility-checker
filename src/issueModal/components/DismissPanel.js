@@ -232,18 +232,16 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 											) }
 											renderContent={ ( { onClose } ) => (
 												<div className="edac-analysis__dismiss-dropdown-content">
-													{ issue?.can_dismiss_globally && (
-														<Button
-															variant="tertiary"
-															type="button"
-															onClick={ () => {
-																onClose();
-																handleToggleIgnore( true, true );
-															} }
-														>
-															{ __( 'Dismiss Globally', 'accessibility-checker' ) }
-														</Button>
-													) }
+													<Button
+														variant="tertiary"
+														type="button"
+														onClick={ () => {
+															onClose();
+															handleToggleIgnore( true, true );
+														} }
+													>
+														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+													</Button>
 													<Button
 														variant="tertiary"
 														type="button"
