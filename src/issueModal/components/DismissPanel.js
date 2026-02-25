@@ -17,13 +17,14 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
 /**
  * Dismiss Panel Component
  *
- * @param {Object}   props          - Component props.
- * @param {Object}   props.issue    - The issue object.
- * @param {boolean}  props.isOpen   - Whether the panel is open.
- * @param {Function} props.onToggle - Callback when panel is toggled.
- * @param {Function} props.onIgnore - Callback when issue is dismissed/restored.
+ * @param {Object}   props              - Component props.
+ * @param {Object}   props.issue        - The issue object.
+ * @param {boolean}  props.isOpen       - Whether the panel is open.
+ * @param {Function} props.onToggle     - Callback when panel is toggled.
+ * @param {Function} props.onIgnore     - Callback when issue is dismissed/restored.
+ * @param {Function} props.onCloseModal - Callback to close the parent modal.
  */
-const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
+const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -237,6 +238,20 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 														} }
 													>
 														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+													</Button>
+													<Button
+														variant="tertiary"
+														type="button"
+														onClick={ () => {
+															onClose();
+															handleToggleIgnore( true, false ).then( () => {
+																// close the entire modal after dismissing.
+																if ( onCloseModal ) {
+																	onCloseModal();
+																}
+															} );
+														} }>
+														{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
 													</Button>
 												</div>
 											) }
