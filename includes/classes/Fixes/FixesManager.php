@@ -144,7 +144,13 @@ class FixesManager {
 				AddNewWindowWarningFix::class,
 			]
 		);
+		if ( ! is_array( $fixes ) ) {
+			$fixes = is_string( $fixes ) ? [ $fixes ] : [];
+		}
 		foreach ( $fixes as $fix ) {
+			if ( ! is_string( $fix ) ) {
+				continue;
+			}
 			if ( is_subclass_of( $fix, '\EqualizeDigital\AccessibilityChecker\Fixes\FixInterface' ) ) {
 				if ( ! isset( $this->fixes[ $fix::get_slug() ] ) ) {
 					$this->fixes[ $fix::get_slug() ] = ( new $fix() );

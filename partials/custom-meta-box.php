@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // get the post type of the current editor page.
-$is_virtual_page = edac_is_virtual_page( get_the_ID() );
+$edac_is_virtual_page = edac_is_virtual_page( get_the_ID() );
 
 ?>
 <div id="edac-tabs">
@@ -38,7 +38,7 @@ $is_virtual_page = edac_is_virtual_page( get_the_ID() );
 					<?php esc_html_e( 'Accessibility Analysis', 'accessibility-checker' ); ?>
 				</button>
 			</li>
-			<li class="edac-tab" <?php echo $is_virtual_page ? 'style="display: none;"' : ''; ?>>
+			<li class="edac-tab" <?php echo $edac_is_virtual_page ? 'style="display: none;"' : ''; ?>>
 				<button
 					role="tab"
 					aria-selected="false"

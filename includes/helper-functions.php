@@ -186,6 +186,10 @@ function edac_post_types() {
 	 */
 	$post_types = apply_filters( 'edac_filter_post_types', [ 'post', 'page' ] );
 
+	if ( ! is_array( $post_types ) ) {
+		$post_types = [ $post_types ];
+	}
+
 	// remove duplicates.
 	$post_types = array_unique( $post_types );
 
@@ -326,7 +330,10 @@ function edac_get_upcoming_meetups_json( $meetup, $count = 5 ) {
 	if ( ! is_wp_error( $request ) && 200 === (int) wp_remote_retrieve_response_code( $request ) ) {
 		$response_body = json_decode( wp_remote_retrieve_body( $request ) );
 
-		$edges = $response_body->data->groupByUrlname->events->edges ?? null;
+		$edges = null;
+		if ( is_object( $response_body ) && isset( $response_body->data->groupByUrlname->events->edges ) ) {
+			$edges = $response_body->data->groupByUrlname->events->edges;
+		}
 
 		if ( is_array( $edges ) ) {
 			foreach ( $edges as $edge ) {
@@ -634,7 +641,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 		'php_version'      => PHP_VERSION,
 		'platform'         => 'wordpress',
 		'platform_version' => $GLOBALS['wp_version'],
-		'software'         => defined( 'EDACP_KEY_VALID' ) && EDACP_KEY_VALID ? 'pro' : 'free',
+		'software'         => edac_is_pro() ? 'pro' : 'free',
 		'software_version' => defined( 'EDACP_VERSION' ) ? EDACP_VERSION : EDAC_VERSION,
 		'days_active'      => $days_active,
 	];
@@ -652,7 +659,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 			$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
 			break;
 		case 'custom': // phpcs:ignore -- intentially only breaking inside the condition because if it's not set we want to hit default.
-			if ( $args['base_link'] ) {
+			if ( ! empty( $args['base_link'] ) ) {
 				$base_link = $args['base_link'];
 				break;
 			}
