@@ -27,6 +27,16 @@ class Purge_Post_Data {
 	public static function delete_post( int $post_id ) {
 		global $wpdb;
 
+		/**
+		 * Fires before clearing issues for activity logging.
+		 * Note: This also fires from the REST API clear endpoint.
+		 *
+		 * @since 1.36.0
+		 *
+		 * @param int $post_id The post ID.
+		 */
+		do_action( 'edac_before_clear_issues', $post_id );
+
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		$wpdb->query(
 			$wpdb->prepare(

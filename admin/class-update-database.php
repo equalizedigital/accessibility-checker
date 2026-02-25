@@ -84,6 +84,9 @@ class Update_Database {
 			}       
 		}
 
+		// Create activity log table.
+		$this->create_activity_log_table();
+
 		// Update database version option.
 		update_option( 'edac_db_version', sanitize_text_field( EDAC_DB_VERSION ) );
 	}
@@ -111,5 +114,38 @@ class Update_Database {
 				$table_name
 			)
 		);
+	}
+
+	/**
+	 * Create activity log table.
+	 *
+	 * @since 1.0.6
+	 * @return void
+	 */
+	private function create_activity_log_table() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker_activity_log';
+
+		$charset_collate = $wpdb->get_charset_collate();
+		$sql             = "CREATE TABLE $table_name (
+			id bigint(20) NOT NULL AUTO_INCREMENT,
+			user_id bigint(20) NOT NULL,
+			created timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+			action varchar(50) NOT NULL,
+			message text NOT NULL,
+			post_id bigint(20) NULL,
+			issue_id bigint(20) NULL,
+			rule_type varchar(20) NULL,
+			siteid bigint(20) NOT NULL,
+			PRIMARY KEY (id),
+			KEY user_id_index (user_id),
+			KEY action_index (action),
+			KEY created_index (created),
+			KEY post_id_index (post_id),
+			KEY siteid_index (siteid)
+		) $charset_collate;";
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $sql );
 	}
 }
