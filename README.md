@@ -57,7 +57,7 @@ npm run test:jest
 
 The PHP tests are a little more involved because they **require** a local WordPress installation. A Docker-based setup is included to make running them straightforward.
 
-Docker and Docker Compose must be installed and running. The build script uses Docker Compose v2 style commands (e.g., docker compose vs docker-compose).
+Docker and Docker Compose must be installed and running. The build script uses Docker Compose v2 style commands (e.g., `docker compose` instead of `docker-compose`).
 
 Start the containers to run the tests and stop them when you are finished development.
 
