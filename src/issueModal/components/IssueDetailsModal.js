@@ -461,6 +461,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							isOpen={ isDismissPanelOpen }
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 							onIgnore={ onIgnore }
+							onCloseModal={ onClose }
 						/>
 					</div>
 				</div>
