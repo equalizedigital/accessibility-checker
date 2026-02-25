@@ -6,7 +6,8 @@
 
 import { __ } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, CheckboxControl } from '@wordpress/components';
+import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
+import { chevronDown } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
@@ -25,7 +26,6 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
-	const [ ignoreGlobal, setIgnoreGlobal ] = useState( issue?.ignre_global === 1 || issue?.ignre_global === '1' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
@@ -34,13 +34,13 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 
-	const handleToggleIgnore = async ( ignore ) => {
+	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
 		setIsSubmitting( true );
 		setError( null );
 		setSuccessNotice( null );
 
 		try {
-			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore && ignoreGlobal );
+			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore && isGlobal );
 			setIsIgnored( ignore );
 			setSuccessNotice(
 				ignore
@@ -56,7 +56,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 				issue.ignre_date = response.ignre_date || '';
 				issue.ignre_reason = response.ignre_reason || response.reason || dismissReason;
 				issue.ignre_comment = response.ignre_comment || response.comment || comment;
-				issue.ignre_global = response.ignre_global ?? ( ignoreGlobal ? 1 : 0 );
+				issue.ignre_global = response.ignre_global ?? ( isGlobal ? 1 : 0 );
 			} else if ( ! ignore ) {
 				issue.ignre = '0';
 				issue.user = '';
@@ -80,6 +80,15 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 			setIsSubmitting( false );
 		}
 	};
+
+	const dismissButtonLabel = isSubmitting ? (
+		<>
+			<Spinner />
+			{ __( 'Dismissing...', 'accessibility-checker' ) }
+		</>
+	) : (
+		__( 'Dismiss Issue', 'accessibility-checker' )
+	);
 
 	return (
 		<div className="edac-analysis__dismiss-panel" data-section="dismiss">
@@ -183,14 +192,6 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 									options={ getDismissReasonOptions() }
 									onChange={ setDismissReason }
 								/>
-								{ isPro && (
-									<CheckboxControl
-										label={ __( 'Ignore globally across all pages', 'accessibility-checker' ) }
-										help={ __( 'Dismisses all instances of this exact issue across every page on the site.', 'accessibility-checker' ) }
-										checked={ ignoreGlobal }
-										onChange={ setIgnoreGlobal }
-									/>
-								) }
 								<RichTextarea
 									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
 									help={ __(
@@ -202,21 +203,55 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore } ) => {
 									rows={ 3 }
 									disabled={ isSubmitting }
 								/>
-								<Button
-									variant="primary"
-									type="submit"
-									disabled={ isSubmitting }
-									className="edac-analysis__dismiss-button"
-								>
-									{ isSubmitting ? (
-										<>
-											<Spinner />
-											{ __( 'Dismissing...', 'accessibility-checker' ) }
-										</>
-									) : (
-										__( 'Dismiss Issue', 'accessibility-checker' )
-									) }
-								</Button>
+								{ isPro ? (
+									<div className="edac-analysis__dismiss-split-button">
+										<Button
+											variant="primary"
+											type="submit"
+											disabled={ isSubmitting }
+											className="edac-analysis__dismiss-button"
+										>
+											{ dismissButtonLabel }
+										</Button>
+										<Dropdown
+											renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
+												<Button
+													variant="primary"
+													type="button"
+													icon={ chevronDown }
+													onClick={ onDropdownToggle }
+													aria-expanded={ isDropdownOpen }
+													aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
+													disabled={ isSubmitting }
+													className="edac-analysis__dismiss-dropdown-toggle"
+												/>
+											) }
+											renderContent={ ( { onClose } ) => (
+												<div className="edac-analysis__dismiss-dropdown-content">
+													<Button
+														variant="tertiary"
+														type="button"
+														onClick={ () => {
+															onClose();
+															handleToggleIgnore( true, true );
+														} }
+													>
+														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+													</Button>
+												</div>
+											) }
+										/>
+									</div>
+								) : (
+									<Button
+										variant="primary"
+										type="submit"
+										disabled={ isSubmitting }
+										className="edac-analysis__dismiss-button"
+									>
+										{ dismissButtonLabel }
+									</Button>
+								) }
 							</form>
 						) }
 					</div>
