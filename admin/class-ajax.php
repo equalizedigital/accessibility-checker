@@ -10,6 +10,7 @@ namespace EDAC\Admin;
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -340,8 +341,9 @@ class Ajax {
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results       = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
-				$count_classes = ( 0 !== $rule['count'] ) ? ' active' : '';
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_reason, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
+				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
 				$count_ignored = 0;
 				$ignores       = array_column( $results, 'ignre' );
@@ -469,26 +471,12 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id               = (int) $row['id'];
-						$ignore           = (int) $row['ignre'];
-						$ignore_class     = $ignore ? ' active' : '';
-						$ignore_label     = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user      = (int) $row['ignre_user'];
-						$ignore_user_info = get_userdata( $ignore_user );
-						$ignore_username  = is_object( $ignore_user_info )
-							? '<strong>' . esc_html__( 'Username:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_user_info->user_login )
-							: '';
-
-						$ignore_date_text        = $row['ignre_date'] ? edac_format_datetime_from_utc( $row['ignre_date'] ) : '';
-						$ignore_date             = $ignore_date_text
-						? '<strong>' . esc_html__( 'Date:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_date_text )
-						: '';
-						$ignore_comment          = esc_html( $row['ignre_comment'] );
-						$ignore_action           = $ignore ? 'disable' : 'enable';
-						$ignore_type             = $rule['rule_type'];
-						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
-						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = (int) $row['ignre_global'];
+						$id            = (int) $row['id'];
+						$ignore        = (int) $row['ignre'];
+						$ignore_class  = $ignore ? ' active' : '';
+						$ignore_label  = $ignore ? 'Ignored' : 'Ignore';
+						$ignore_global = (int) $row['ignre_global'];
+						$ignore_reason = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
 						// check for images and svgs in object code.
 						$media      = edac_parse_html_for_media( $row['object'] );
@@ -570,26 +558,19 @@ class Ajax {
 
 						$html .= '</div>';
 
-						$html .= '<div id="edac-details-rule-records-record-ignore-' . $row['id'] . '" class="edac-details-rule-records-record-ignore">';
-
-						$html .= '<div class="edac-details-rule-records-record-ignore-info">';
-						$html .= '<span class="edac-details-rule-records-record-ignore-info-user">' . $ignore_username . '</span>';
-
-						$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
-						$html .= '</div>';
-
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
-
-						if ( $ignore_global && edac_is_pro() ) {
-							$html .= ( true === $ignore_permission ) ? '<a href="' . admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) . '" class="edac-details-rule-records-record-ignore-global">' . __( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>' : '';
-						} else {
-							$html .= ( true === $ignore_permission ) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $id . '" data-action="' . $ignore_action . '" data-type="' . $ignore_type . '">' . EDAC_SVG_IGNORE_ICON . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . $ignore_submit_label . '</span></button>' : '';
-						}
-
-						$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
-
-						$html .= '</div>';
+						$html .= IgnoreUI::render_ignore_panel(
+							[
+								'issue_id'          => $id,
+								'is_ignored'        => (bool) $ignore,
+								'ignore_user'       => (int) $row['ignre_user'],
+								'ignore_date'       => $row['ignre_date'] ?? '',
+								'ignore_comment'    => $row['ignre_comment'] ?? '',
+								'ignore_reason'     => $ignore_reason,
+								'ignore_global'     => $ignore_global,
+								'ignore_type'       => $rule['rule_type'],
+								'ignore_permission' => $ignore_permission,
+							]
+						);
 
 						$html .= '</div>';
 
@@ -747,6 +728,13 @@ class Ajax {
 	/**
 	 * Insert ignore data into database
 	 *
+	 * Note: There is a new dismiss-issue rest endpoint that covers this functionality
+	 * now and should be used going forward. This ajax was updated to support dismiss
+	 * reasons to align with the new endpoint and allow other things to continue to
+	 * work here gracefully.
+	 *
+	 * This should be removed in a future release.
+	 *
 	 * @return void
 	 *
 	 *  - '-1' means that nonce could not be varified
@@ -778,6 +766,7 @@ class Ajax {
 		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
 		$ignre_date_formatted = ( 'enable' === $action ) ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
+		$ignre_reason         = ( 'enable' === $action && isset( $_REQUEST['reason'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['reason'] ) ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
@@ -793,12 +782,12 @@ class Ajax {
 				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
 		} else {
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $id ) );
 			}
 		}
 
