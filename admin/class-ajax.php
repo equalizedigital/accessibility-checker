@@ -280,29 +280,28 @@ class Ajax {
 			}
 		}
 
-		// sort error rules by count.
-		usort(
-			$error_rules,
-			function ( $a, $b ) {
-
-				return strcmp( $b['count'], $a['count'] );
+		// shared comparator: sort by severity (ascending, 1=critical first), then count (descending).
+		$sort_by_severity_then_count = function ( $a, $b ) {
+			$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+			$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+			if ( $severity_a !== $severity_b ) {
+				return $severity_a - $severity_b;
 			}
-		);
+			return (int) $b['count'] - (int) $a['count'];
+		};
 
-		// sort warning rules by count.
-		usort(
-			$warning_rules,
-			function ( $a, $b ) {
+		usort( $error_rules, $sort_by_severity_then_count );
+		usort( $warning_rules, $sort_by_severity_then_count );
 
-				return strcmp( $b['count'], $a['count'] );
-			}
-		);
-
-		// sort passed rules array by title.
+		// sort passed rules array by severity (ascending, 1=critical first), then title.
 		usort(
 			$passed_rules,
 			function ( $a, $b ) {
-
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
 				return strcmp( $b['title'], $a['title'] );
 			}
 		);
@@ -320,11 +319,29 @@ class Ajax {
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
 
+			$severity_map = [
+				1 => [
+					'label' => __( 'Critical', 'accessibility-checker' ),
+					'class' => 'severity-critical',
+				],
+				2 => [
+					'label' => __( 'High', 'accessibility-checker' ),
+					'class' => 'severity-high',
+				],
+				3 => [
+					'label' => __( 'Medium', 'accessibility-checker' ),
+					'class' => 'severity-medium',
+				],
+				4 => [
+					'label' => __( 'Low', 'accessibility-checker' ),
+					'class' => 'severity-low',
+				],
+			];
+
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
-				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
-				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
+				$results       = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$count_classes = ( 0 !== $rule['count'] ) ? ' active' : '';
 
 				$count_ignored = 0;
 				$ignores       = array_column( $results, 'ignre' );
@@ -341,20 +358,29 @@ class Ajax {
 
 				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
+				$severity_badge = '';
+				if ( ! empty( $rule['severity'] ) && isset( $severity_map[ (int) $rule['severity'] ] ) ) {
+					$sev            = $severity_map[ (int) $rule['severity'] ];
+					$severity_badge = '<span class="edac-badge edac-badge--' . esc_attr( $sev['class'] ) . '"><span class="edac-badge__label">' . esc_html( $sev['label'] ) . '</span></span>';
+				}
+
 				$html .= '<div class="edac-details-rule">';
 
 				$html .= '<div class="edac-details-rule-title">';
 
+				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
+
 				$html .= '<h3>';
-				$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
-				$html .= esc_html( $rule['title'] );
+				$html .= edac_icon( $icon_name );
+				$html .= ' ' . esc_html( $rule['title'] );
+				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
 				if ( $count_ignored > 0 ) {
-					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
+					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' ' . esc_html( _n( 'Dismissed Issue', 'Dismissed Issues', $count_ignored, 'accessibility-checker' ) ) . '</span>';
 				}
+				$html .= $severity_badge;
 				$html .= '</h3>';
 				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
-
 				$html .= '</div>';
 
 				if ( $results ) {
