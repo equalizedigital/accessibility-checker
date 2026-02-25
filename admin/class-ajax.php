@@ -432,27 +432,12 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id               = (int) $row['id'];
-						$ignore           = (int) $row['ignre'];
-						$ignore_class     = $ignore ? ' active' : '';
-						$ignore_label     = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user      = (int) $row['ignre_user'];
-						$ignore_user_info = get_userdata( $ignore_user );
-						$ignore_username  = is_object( $ignore_user_info )
-							? '<strong>' . esc_html__( 'Username:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_user_info->user_login )
-							: '';
-
-						$ignore_date_text        = $row['ignre_date'] ? edac_format_datetime_from_utc( $row['ignre_date'] ) : '';
-						$ignore_date             = $ignore_date_text
-						? '<strong>' . esc_html__( 'Date:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_date_text )
-						: '';
-						$ignore_comment          = esc_html( $row['ignre_comment'] );
-						$ignore_action           = $ignore ? 'disable' : 'enable';
-						$ignore_type             = $rule['rule_type'];
-						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
-						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = (int) $row['ignre_global'];
-						$ignore_reason           = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
+						$id            = (int) $row['id'];
+						$ignore        = (int) $row['ignre'];
+						$ignore_class  = $ignore ? ' active' : '';
+						$ignore_label  = $ignore ? 'Ignored' : 'Ignore';
+						$ignore_global = (int) $row['ignre_global'];
+						$ignore_reason = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
 						// check for images and svgs in object code.
 						$media      = edac_parse_html_for_media( $row['object'] );
@@ -534,49 +519,19 @@ class Ajax {
 
 						$html .= '</div>';
 
-						$html .= '<div id="edac-details-rule-records-record-ignore-' . $row['id'] . '" class="edac-details-rule-records-record-ignore">';
-
-						$html .= '<div class="edac-details-rule-records-record-ignore-info">';
-						$html .= '<span class="edac-details-rule-records-record-ignore-info-user">' . $ignore_username . '</span>';
-
-						$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
-						$html .= '</div>';
-
-						// Dismiss reason radio group.
-						if ( true === $ignore_permission ) {
-							$dismiss_reasons = Dismiss_Reasons::get_reasons();
-							$html           .= '<fieldset class="edac-details-rule-records-record-ignore-reason">';
-							$html           .= '<legend>' . esc_html__( 'Dismiss issue as:', 'accessibility-checker' ) . '</legend>';
-							foreach ( $dismiss_reasons as $reason_value => $reason_data ) {
-								$radio_id       = 'edac-ignore-reason-' . $id . '-' . $reason_value;
-								$description_id = $radio_id . '-description';
-								$checked        = ( $ignore_reason === $reason_value ) ? ' checked' : '';
-								// Default to the first option when not yet dismissed.
-								if ( ! $ignore && '' === $ignore_reason && array_key_first( $dismiss_reasons ) === $reason_value ) {
-									$checked = ' checked';
-								}
-								$disabled_attr = $ignore ? ' disabled' : '';
-								$html         .= '<div class="edac-ignore-reason-option">';
-								$html         .= '<input type="radio" id="' . esc_attr( $radio_id ) . '" name="edac-ignore-reason-' . $id . '" value="' . esc_attr( $reason_value ) . '" class="edac-details-rule-records-record-ignore-reason-input" aria-describedby="' . esc_attr( $description_id ) . '"' . $checked . $disabled_attr . ' />';
-								$html         .= '<label for="' . esc_attr( $radio_id ) . '">' . esc_html( $reason_data['label'] ) . '</label>';
-								$html         .= '<p class="edac-ignore-reason-description" id="' . esc_attr( $description_id ) . '">' . esc_html( $reason_data['description'] ) . '</p>';
-								$html         .= '</div>';
-							}
-							$html .= '</fieldset>';
-						}
-
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
-
-						if ( $ignore_global && edac_is_pro() ) {
-							$html .= ( true === $ignore_permission ) ? '<a href="' . admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) . '" class="edac-details-rule-records-record-ignore-global">' . __( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>' : '';
-						} else {
-							$html .= ( true === $ignore_permission ) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $id . '" data-action="' . $ignore_action . '" data-type="' . $ignore_type . '">' . EDAC_SVG_IGNORE_ICON . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . $ignore_submit_label . '</span></button>' : '';
-						}
-
-						$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
-
-						$html .= '</div>';
+						$html .= IgnoreUI::render_ignore_panel(
+							[
+								'issue_id'          => $id,
+								'is_ignored'        => (bool) $ignore,
+								'ignore_user'       => (int) $row['ignre_user'],
+								'ignore_date'       => $row['ignre_date'] ?? '',
+								'ignore_comment'    => $row['ignre_comment'] ?? '',
+								'ignore_reason'     => $ignore_reason,
+								'ignore_global'     => $ignore_global,
+								'ignore_type'       => $rule['rule_type'],
+								'ignore_permission' => $ignore_permission,
+							]
+						);
 
 						$html .= '</div>';
 
