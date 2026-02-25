@@ -500,6 +500,9 @@
 
       &-rule {
         &-title {
+          display: flex;
+          align-items: center;
+          gap: 10px;
           padding: 10px;
           background-color: variables.$color-white;
           text-align: left;
@@ -507,9 +510,11 @@
           border-bottom: solid 1px variables.$color-gray-light;
 
           h3 {
+            display: flex;
+            gap: 5px;
             font-size: 16px;
             font-weight: normal;
-            display: inline;
+            margin: 0;
           }
 
           &:hover {
@@ -517,10 +522,10 @@
           }
 
           &-arrow {
-            float: right;
             background: none;
             border: none;
             border-radius: 0;
+            margin-left: auto;
 
             &:hover,
             &:focus {
@@ -543,51 +548,19 @@
           }
         }
 
-        &-count {
-          width: 20px;
-          height: 20px;
-          font-size: 12px;
-          line-height: 20px;
-          text-align: center;
-          color: variables.$color-white;
-          background-color: variables.$color-green;
-          border-radius: 50%;
-          display: inline-block;
-          margin-right: 5px;
-
-          &-passed {
-            background-color: variables.$color-green;
-          }
-        }
-
         &-count-ignore {
-          color: variables.$color-white;
-          background-color: variables.$color-blue-dark;
-          padding: 5px 10px;
+          color: sidebar-variables.$info-grey;
+          background-color: transparent;
+          padding: 5px;
           border-radius: 4px;
           font-size: 13px;
           line-height: 13px;
-          margin-left: 10px;
-          display: inline-block;
-        }
-
-        &-count-error {
-          &.active {
-            background-color: variables.$color-red;
-          }
-        }
-
-        &-count-warning {
-          &.active {
-            color: variables.$color-blue-dark;
-            background-color: variables.$color-orange;
-          }
+          border: solid 1px sidebar-variables.$outline-grey;
         }
 
         &-information {
           color: variables.$color-gray;
           text-decoration: none;
-          margin-left: 10px;
 
           &:hover,
           &:focus {

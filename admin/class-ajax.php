@@ -323,7 +323,6 @@ class Ajax {
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
-				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
 				$count_ignored = 0;
@@ -345,11 +344,14 @@ class Ajax {
 
 				$html .= '<div class="edac-details-rule-title">';
 
+				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
+
 				$html .= '<h3>';
-				$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
-				$html .= esc_html( $rule['title'] );
+				$html .= edac_icon( $icon_name );
+				$html .= ' ' . esc_html( $rule['title'] );
+				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
 				if ( $count_ignored > 0 ) {
-					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
+					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' ' . esc_html( _n( 'Dismissed Issue', 'Dismissed Issues', $count_ignored, 'accessibility-checker' ) ) . '</span>';
 				}
 				$html .= '</h3>';
 				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
