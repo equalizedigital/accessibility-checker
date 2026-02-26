@@ -746,18 +746,23 @@
           }
 
           &-icon {
-            background-color: #fff;
-            color: variables.$color-white;
             position: absolute;
             left: 0;
 
-            &.dashicons-saved {
-              background-color: variables.$color-green;
-              border-radius: 50%;
+            &.edac-icon--success {
+              color: sidebar-variables.$check-green;
             }
 
-            &.dashicons-no-alt {
-              background-color: variables.$color-red;
+            &.edac-icon--error {
+              color: sidebar-variables.$error-red;
+            }
+
+            &.edac-icon--warning {
+              color: sidebar-variables.$warning-orange;
+            }
+
+            &.edac-icon--info {
+              color: sidebar-variables.$info-grey;
             }
           }
         }
