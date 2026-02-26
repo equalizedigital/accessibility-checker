@@ -131,7 +131,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 								</p>
 								{ issue?.ignre_comment && (
 									<div className="edac-analysis__dismissed-comment">
-										<strong>{ __( 'Ignore Comment:', 'accessibility-checker' ) }</strong>
+										<strong>{ __( 'Comment:', 'accessibility-checker' ) }</strong>
 										<p
 											dangerouslySetInnerHTML={ {
 												__html: decodeEntities( issue.ignre_comment ),
@@ -149,7 +149,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 										) }
 										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
 											<p>
-												<strong>{ __( 'Globally ignored:', 'accessibility-checker' ) }</strong>{ ' ' }
+												<strong>{ __( 'Globally dismissed:', 'accessibility-checker' ) }</strong>{ ' ' }
 												{ __( 'Yes — dismissed across all pages', 'accessibility-checker' ) }
 											</p>
 										) }
