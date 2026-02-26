@@ -100,6 +100,15 @@ const IssuesPanel = ( {
 				// Apply ignored status filter
 				rules = filterRulesByIgnoredStatus( rules );
 
+				// Sort rules by severity ascending (1=Critical … 4=Low), then by issue count descending
+				rules = [ ...rules ].sort( ( a, b ) => {
+					const severityDiff = ( a.severity ?? Infinity ) - ( b.severity ?? Infinity );
+					if ( severityDiff !== 0 ) {
+						return severityDiff;
+					}
+					return ( b.details?.length ?? 0 ) - ( a.details?.length ?? 0 );
+				} );
+
 				const count = rules.reduce(
 					( sum, rule ) => sum + ( rule.details?.length || 0 ),
 					0,
