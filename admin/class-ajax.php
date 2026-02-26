@@ -653,7 +653,7 @@ class Ajax {
 		$html .= '<ul class="edac-readability-list">';
 
 		$html .= '<li class="edac-readability-list-item edac-readability-grade-level">
-		' . edac_icon( ( $post_grade_failed && $simplified_summary && ! $simplified_summary_grade_failed ) ? 'info' : ( ( $post_grade_failed || 0 === $post_grade ) ? 'warning' : 'check' ), '', true, '', 'edac-readability-list-item-icon' ) . '
+		' . edac_icon( ( $post_grade_failed && $simplified_summary && $simplified_summary_grade > 0 && ! $simplified_summary_grade_failed ) ? 'info' : ( ( $post_grade_failed || 0 === $post_grade ) ? 'warning' : 'check' ), '', true, '', 'edac-readability-list-item-icon' ) . '
 		<h3 class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></h3>';
 		if ( $post_grade_failed ) {
 			$html .= '<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
