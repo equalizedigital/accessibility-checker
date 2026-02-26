@@ -4,17 +4,8 @@
 @use "../../sidebar/sass/variables" as sidebar-variables;
 @use "../../sidebar/sass/components/badge";
 
-.failed-text-color {
-  color: variables.$color-red;
-}
-
-.passed-text-color {
-  color: variables.$color-green;
-}
-
 #edac-meta-box {
   font-size: 14px;
-  color: variables.$color-gray;
 
   p {
     font-size: 14px;
@@ -33,24 +24,8 @@
   }
 
   textarea {
-    margin-bottom: 15px;
+    margin-bottom: 1em;
     border: solid 1px #dddddd;
-  }
-
-  input[type="submit"] {
-    color: variables.$color-white;
-    background-color: variables.$color-green;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 30px;
-    font-size: 13px;
-    margin-bottom: 25px;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      background-color: variables.$color-green;
-    }
   }
 
   button {
@@ -735,14 +710,14 @@
       &-list {
         margin-top: 0;
         position: relative;
-        margin-bottom: 50px;
+        margin-bottom: 1em;
 
         &-item {
           padding-left: 30px;
 
           &-title {
             font-size: 16px;
-            margin-bottom: 0;
+            margin: 0;
           }
 
           &-icon {

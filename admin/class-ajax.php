@@ -654,7 +654,7 @@ class Ajax {
 
 		$html .= '<li class="edac-readability-list-item edac-readability-grade-level">
 		' . edac_icon( ( $post_grade_failed && $simplified_summary && ! $simplified_summary_grade_failed ) ? 'info' : ( ( $post_grade_failed || 0 === $post_grade ) ? 'warning' : 'check' ), '', true, '', 'edac-readability-list-item-icon' ) . '
-		<p class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></p>';
+		<h3 class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></h3>';
 		if ( $post_grade_failed ) {
 			$html .= '<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
 		} elseif ( 0 === $post_grade ) {
@@ -669,7 +669,7 @@ class Ajax {
 			if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
 				$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 				' . edac_icon( $simplified_summary_grade_failed ? 'warning' : 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . edac_ordinal( $simplified_summary_grade ) . '</strong></p>
+					<h3 class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . edac_ordinal( $simplified_summary_grade ) . '</strong></h3>
 					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
 				</li>';
 			}
@@ -679,7 +679,7 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
+					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
 						<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
@@ -688,7 +688,7 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 				' . edac_icon( 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<p class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</p>
+					<h3 class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</h3>
 						<p class="edac-readability-list-item-description">Set where the Simplified Summary is inserted into the content on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
@@ -712,11 +712,11 @@ class Ajax {
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<input type="submit" value="Submit">
+				<p><input type="submit" class="button button-primary" value="Save Summary"></p>
 			</form>';
 		}
 
-		$html .= edac_icon( 'info' ) . '<a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
 
 		if ( ! $html ) {
 			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );
