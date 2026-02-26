@@ -4,17 +4,8 @@
 @use "../../sidebar/sass/variables" as sidebar-variables;
 @use "../../sidebar/sass/components/badge";
 
-.failed-text-color {
-  color: variables.$color-red;
-}
-
-.passed-text-color {
-  color: variables.$color-green;
-}
-
 #edac-meta-box {
   font-size: 14px;
-  color: variables.$color-gray;
 
   p {
     font-size: 14px;
@@ -33,24 +24,8 @@
   }
 
   textarea {
-    margin-bottom: 15px;
+    margin-bottom: 1em;
     border: solid 1px #dddddd;
-  }
-
-  input[type="submit"] {
-    color: variables.$color-white;
-    background-color: variables.$color-green;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 30px;
-    font-size: 13px;
-    margin-bottom: 25px;
-
-    &:hover,
-    &:focus {
-      cursor: pointer;
-      background-color: variables.$color-green;
-    }
   }
 
   button {
@@ -136,19 +111,6 @@
 
       &-number-label {
         font-size: 16px;
-      }
-
-      &.edac-panel-loading {
-        &:before {
-          content: "";
-          position: absolute;
-          z-index: 9;
-          top: 0;
-          right: 0;
-          bottom: 0;
-          left: 0;
-          background-color: rgba(variables.$color-white, 0.5);
-        }
       }
     }
 
@@ -735,29 +697,34 @@
       &-list {
         margin-top: 0;
         position: relative;
-        margin-bottom: 50px;
+        margin-bottom: 1em;
 
         &-item {
           padding-left: 30px;
 
           &-title {
             font-size: 16px;
-            margin-bottom: 0;
+            margin: 0;
           }
 
           &-icon {
-            background-color: #fff;
-            color: variables.$color-white;
             position: absolute;
             left: 0;
 
-            &.dashicons-saved {
-              background-color: variables.$color-green;
-              border-radius: 50%;
+            &.edac-icon--success {
+              color: sidebar-variables.$check-green;
             }
 
-            &.dashicons-no-alt {
-              background-color: variables.$color-red;
+            &.edac-icon--error {
+              color: sidebar-variables.$error-red;
+            }
+
+            &.edac-icon--warning {
+              color: sidebar-variables.$warning-orange;
+            }
+
+            &.edac-icon--info {
+              color: sidebar-variables.$info-grey;
             }
           }
         }
