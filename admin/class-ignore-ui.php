@@ -94,10 +94,9 @@ class IgnoreUI {
 
 		$ignore_action       = $is_ignored ? 'disable' : 'enable';
 		$ignore_submit_label = $is_ignored
-			? __( 'Stop Ignoring', 'accessibility-checker' )
-			// translators: %s is the rule type (error or warning).
-			: sprintf( __( 'Ignore This %s', 'accessibility-checker' ), $ignore_type );
-		$comment_disabled = $is_ignored ? 'disabled' : '';
+			? __( 'Reopen Issue', 'accessibility-checker' )
+			: __( 'Dismiss Issue', 'accessibility-checker' );
+		$comment_disabled    = $is_ignored ? 'disabled' : '';
 
 		$ignore_icon = defined( 'EDAC_SVG_IGNORE_ICON' ) ? EDAC_SVG_IGNORE_ICON : '';
 
@@ -124,15 +123,15 @@ class IgnoreUI {
 		// Submit button or manage link.
 		if ( $ignore_global && function_exists( 'edac_is_pro' ) && edac_is_pro() ) {
 			if ( true === $ignore_permission ) {
-				$html .= '<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) ) . '" class="edac-details-rule-records-record-ignore-global">' . esc_html__( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>';
+				$html .= '<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) ) . '" class="edac-details-rule-records-record-ignore-global button button-primary">' . esc_html__( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>';
 			}
 		} elseif ( true === $ignore_permission ) {
-				$html .= '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $issue_id . '" data-action="' . esc_attr( $ignore_action ) . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
+				$html .= '<button class="edac-details-rule-records-record-ignore-submit button button-primary" data-id="' . $issue_id . '" data-action="' . esc_attr( $ignore_action ) . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
 		}
 
 		// No permission message.
 		if ( false === $ignore_permission && ! $is_ignored ) {
-			$html .= esc_html__( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' );
+			$html .= esc_html__( 'Your user account doesn\'t have permission to dismiss this issue.', 'accessibility-checker' );
 		}
 
 		$html .= '</div>';

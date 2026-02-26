@@ -474,7 +474,7 @@ class Ajax {
 						$id            = (int) $row['id'];
 						$ignore        = (int) $row['ignre'];
 						$ignore_class  = $ignore ? ' active' : '';
-						$ignore_label  = $ignore ? 'Ignored' : 'Ignore';
+						$ignore_label  = $ignore ? 'Dismissed' : 'Dismiss';
 						$ignore_global = (int) $row['ignre_global'];
 						$ignore_reason = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
