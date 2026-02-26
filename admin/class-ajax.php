@@ -697,7 +697,7 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
+					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
 						<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
