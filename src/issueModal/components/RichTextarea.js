@@ -175,7 +175,15 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 								placeholder={ __( 'https://example.com', 'accessibility-checker' ) }
 								value={ linkUrl }
 								onChange={ ( e ) => setLinkUrl( e.target.value ) }
-								onKeyPress={ ( e ) => e.key === 'Enter' && handleAddLink() }
+								onKeyDown={ ( e ) => {
+									if ( e.key === 'Escape' ) {
+										e.stopPropagation();
+										setShowLinkPopover( false );
+										linkButtonRef.current?.focus();
+									} else if ( e.key === 'Enter' ) {
+										handleAddLink();
+									}
+								} }
 								className="edac-rich-textarea-link-input"
 								autoFocus
 							/>
