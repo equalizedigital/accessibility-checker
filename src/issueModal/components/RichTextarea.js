@@ -31,6 +31,8 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const savedSelectionRef = useRef( null );
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
+	const linkButtonMouseDownRef = useRef( false );
+	const popoverRef = useRef( null );
 
 	// Initialize content only once
 	useEffect( () => {
@@ -84,8 +86,28 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		updateValue();
 	};
 
+	const isValidUrl = ( url ) => {
+		const trimmed = url.trim();
+		// Block dangerous protocols like javascript:, data:, vbscript:, etc.
+		const allowedProtocols = /^(https?:|mailto:)/i;
+		// Also allow protocol-relative URLs and relative paths.
+		if ( /^\/[^/]/.test( trimmed ) || /^\/\//.test( trimmed ) ) {
+			return true;
+		}
+		// If it has a protocol, it must be in the allowed list.
+		if ( /^[a-z][a-z0-9+.-]*:/i.test( trimmed ) ) {
+			return allowedProtocols.test( trimmed );
+		}
+		// No protocol — treat as a relative URL or bare domain (safe).
+		return true;
+	};
+
 	const handleAddLink = () => {
 		if ( ! linkUrl.trim() ) {
+			return;
+		}
+
+		if ( ! isValidUrl( linkUrl ) ) {
 			return;
 		}
 
@@ -159,23 +181,58 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					icon={ link }
 					label={ __( 'Link', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
+					onMouseDown={ () => {
+						// Only set this flag when the popover is already open, so
+						// the Popover's onClose handler can yield to the button's
+						// onClick toggle instead of closing it a second time.
+						if ( showLinkPopover ) {
+							linkButtonMouseDownRef.current = true;
+						}
+					} }
 					disabled={ disabled }
 					size="small"
-					isPressed={ showLinkPopover }
+					aria-expanded={ showLinkPopover }
 				/>
 				{ showLinkPopover && linkButtonRef.current && (
 					<Popover
 						anchor={ linkButtonRef.current }
-						onClose={ () => setShowLinkPopover( false ) }
+						onClose={ () => {
+							// If the close was triggered by clicking the link button itself,
+							// let the button's onClick toggle handler manage the state instead.
+							if ( linkButtonMouseDownRef.current ) {
+								linkButtonMouseDownRef.current = false;
+								return;
+							}
+							setShowLinkPopover( false );
+							// Only restore focus to the link button when focus is still
+							// inside the popover (e.g., keyboard/Escape close). If the
+							// user clicked outside, focus has already moved to their target
+							// and we should not steal it back.
+							if ( popoverRef.current?.contains( document.activeElement ) ) {
+								linkButtonRef.current?.focus();
+							}
+						} }
 						placement="bottom"
 					>
-						<div className="edac-rich-textarea-link-popover">
+						<div ref={ popoverRef } className="edac-rich-textarea-link-popover">
 							<input
+								id="edac-link-input"
 								type="url"
 								placeholder={ __( 'https://example.com', 'accessibility-checker' ) }
+								aria-label={ __( 'Link URL', 'accessibility-checker' ) }
 								value={ linkUrl }
 								onChange={ ( e ) => setLinkUrl( e.target.value ) }
-								onKeyPress={ ( e ) => e.key === 'Enter' && handleAddLink() }
+								onKeyDown={ ( e ) => {
+									if ( e.key === 'Escape' ) {
+										e.stopPropagation();
+										linkButtonMouseDownRef.current = false;
+										setShowLinkPopover( false );
+										linkButtonRef.current?.focus();
+									} else if ( e.key === 'Enter' ) {
+										e.preventDefault();
+										handleAddLink();
+									}
+								} }
 								className="edac-rich-textarea-link-input"
 								autoFocus
 							/>
