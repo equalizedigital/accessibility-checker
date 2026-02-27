@@ -643,22 +643,9 @@
               }
 
               &-submit {
-                color: variables.$color-white;
-                border: none;
-                border-radius: 5px;
-                padding: 5px 10px;
-                text-transform: capitalize;
                 display: flex;
                 align-items: center;
                 overflow: hidden;
-
-                &[data-action="enable"] {
-                  background-color: variables.$color-red;
-                }
-
-                &[data-action="disable"] {
-                  background-color: variables.$color-green;
-                }
 
                 &:hover {
                   cursor: pointer;
@@ -674,16 +661,6 @@
                     fill: variables.$color-white;
                   }
                 }
-              }
-
-              &-global {
-                color: variables.$color-white;
-                background-color: variables.$color-blue-dark;
-                border: none;
-                border-radius: 5px;
-                padding: 5px 10px;
-                text-transform: capitalize;
-                text-decoration: none;
               }
             }
           }

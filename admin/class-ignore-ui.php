@@ -123,7 +123,7 @@ class IgnoreUI {
 		// Submit button or manage link.
 		if ( $ignore_global && function_exists( 'edac_is_pro' ) && edac_is_pro() ) {
 			if ( true === $ignore_permission ) {
-				$html .= '<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) ) . '" class="edac-details-rule-records-record-ignore-global button button-primary">' . esc_html__( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>';
+				$html .= '<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) ) . '" class="edac-details-rule-records-record-ignore-global button button-primary">' . esc_html__( 'Manage Globally Dismissed', 'accessibility-checker' ) . '</a>';
 			}
 		} elseif ( true === $ignore_permission ) {
 				$html .= '<button class="edac-details-rule-records-record-ignore-submit button button-primary" data-id="' . $issue_id . '" data-action="' . esc_attr( $ignore_action ) . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
