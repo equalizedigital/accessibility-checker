@@ -31,6 +31,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const savedSelectionRef = useRef( null );
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
+	const linkButtonMouseDownRef = useRef( false );
 
 	// Initialize content only once
 	useEffect( () => {
@@ -159,6 +160,9 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					icon={ link }
 					label={ __( 'Link', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
+					onMouseDown={ () => {
+						linkButtonMouseDownRef.current = true;
+					} }
 					disabled={ disabled }
 					size="small"
 					aria-expanded={ showLinkPopover }
@@ -167,6 +171,12 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					<Popover
 						anchor={ linkButtonRef.current }
 						onClose={ () => {
+							// If the close was triggered by clicking the link button itself,
+							// let the button's onClick toggle handler manage the state instead.
+							if ( linkButtonMouseDownRef.current ) {
+								linkButtonMouseDownRef.current = false;
+								return;
+							}
 							setShowLinkPopover( false );
 							linkButtonRef.current?.focus();
 						} }
