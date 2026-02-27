@@ -128,8 +128,8 @@ const FixCard = ( { slug, onError } ) => {
 			return (
 				<div key={ fieldKey } className="edac-fix-field edac-fix-field--checkbox">
 					<ToggleControl
-						label={ decodedLabel }
-						help={ field.description ? decodeEntities( field.description ) : undefined }
+						label={ <span dangerouslySetInnerHTML={ { __html: field.label } } /> }
+						help={ field.description ? <span dangerouslySetInnerHTML={ { __html: field.description } } /> : undefined }
 						checked={ !! value }
 						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
 					/>
