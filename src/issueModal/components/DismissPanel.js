@@ -207,31 +207,31 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 									rows={ 3 }
 									disabled={ isSubmitting }
 								/>
-								{ isPro ? (
-									<div className="edac-analysis__dismiss-split-button">
-										<Button
-											variant="primary"
-											type="submit"
-											disabled={ isSubmitting }
-											className="edac-analysis__dismiss-button"
-										>
-											{ dismissButtonLabel }
-										</Button>
-										<Dropdown
-											renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
-												<Button
-													variant="primary"
-													type="button"
-													icon={ chevronDown }
-													onClick={ onDropdownToggle }
-													aria-expanded={ isDropdownOpen }
-													aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
-													disabled={ isSubmitting }
-													className="edac-analysis__dismiss-dropdown-toggle"
-												/>
-											) }
-											renderContent={ ( { onClose } ) => (
-												<div className="edac-analysis__dismiss-dropdown-content">
+								<div className="edac-analysis__dismiss-split-button">
+									<Button
+										variant="primary"
+										type="submit"
+										disabled={ isSubmitting }
+										className="edac-analysis__dismiss-button"
+									>
+										{ dismissButtonLabel }
+									</Button>
+									<Dropdown
+										renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
+											<Button
+												variant="primary"
+												type="button"
+												icon={ chevronDown }
+												onClick={ onDropdownToggle }
+												aria-expanded={ isDropdownOpen }
+												aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
+												disabled={ isSubmitting }
+												className="edac-analysis__dismiss-dropdown-toggle"
+											/>
+										) }
+										renderContent={ ( { onClose } ) => (
+											<div className="edac-analysis__dismiss-dropdown-content">
+												{ isPro && (
 													<Button
 														variant="tertiary"
 														type="button"
@@ -242,34 +242,25 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 													>
 														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
 													</Button>
-													<Button
-														variant="tertiary"
-														type="button"
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, false ).then( () => {
-																// close the entire modal after dismissing.
-																if ( onCloseModal ) {
-																	onCloseModal();
-																}
-															} );
-														} }>
-														{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
-													</Button>
-												</div>
-											) }
-										/>
-									</div>
-								) : (
-									<Button
-										variant="primary"
-										type="submit"
-										disabled={ isSubmitting }
-										className="edac-analysis__dismiss-button"
-									>
-										{ dismissButtonLabel }
-									</Button>
-								) }
+												) }
+												<Button
+													variant="tertiary"
+													type="button"
+													onClick={ () => {
+														onClose();
+														handleToggleIgnore( true, false ).then( () => {
+															// close the entire modal after dismissing.
+															if ( onCloseModal ) {
+																onCloseModal();
+															}
+														} );
+													} }>
+													{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
+												</Button>
+											</div>
+										) }
+									/>
+								</div>
 							</form>
 						) }
 					</div>
