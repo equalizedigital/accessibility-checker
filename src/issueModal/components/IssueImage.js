@@ -59,6 +59,15 @@ const extractImageUrls = ( markup ) => {
 		}
 	}
 
+	// Match inline <svg> elements and convert to data URIs
+	const svgRegex = /<svg[\s\S]*?<\/svg>/gi;
+	while ( ( match = svgRegex.exec( decodedMarkup ) ) !== null ) {
+		if ( match[ 0 ] ) {
+			const dataUri = 'data:image/svg+xml,' + encodeURIComponent( match[ 0 ] );
+			urls.push( dataUri );
+		}
+	}
+
 	return urls;
 };
 
