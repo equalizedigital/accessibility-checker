@@ -85,8 +85,28 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		updateValue();
 	};
 
+	const isValidUrl = ( url ) => {
+		const trimmed = url.trim();
+		// Block dangerous protocols like javascript:, data:, vbscript:, etc.
+		const allowedProtocols = /^(https?:|mailto:)/i;
+		// Also allow protocol-relative URLs and relative paths.
+		if ( /^\/[^/]/.test( trimmed ) || /^\/\//.test( trimmed ) ) {
+			return true;
+		}
+		// If it has a protocol, it must be in the allowed list.
+		if ( /^[a-z][a-z0-9+.-]*:/i.test( trimmed ) ) {
+			return allowedProtocols.test( trimmed );
+		}
+		// No protocol — treat as a relative URL or bare domain (safe).
+		return true;
+	};
+
 	const handleAddLink = () => {
 		if ( ! linkUrl.trim() ) {
+			return;
+		}
+
+		if ( ! isValidUrl( linkUrl ) ) {
 			return;
 		}
 
