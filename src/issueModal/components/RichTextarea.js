@@ -166,7 +166,10 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				{ showLinkPopover && linkButtonRef.current && (
 					<Popover
 						anchor={ linkButtonRef.current }
-						onClose={ () => setShowLinkPopover( false ) }
+						onClose={ () => {
+							setShowLinkPopover( false );
+							linkButtonRef.current?.focus();
+						} }
 						placement="bottom"
 					>
 						<div className="edac-rich-textarea-link-popover">
