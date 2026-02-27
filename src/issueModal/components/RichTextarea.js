@@ -184,6 +184,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 										setShowLinkPopover( false );
 										linkButtonRef.current?.focus();
 									} else if ( e.key === 'Enter' ) {
+										e.preventDefault();
 										handleAddLink();
 									}
 								} }
