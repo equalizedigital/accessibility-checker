@@ -667,9 +667,9 @@ class Ajax {
 		if ( $post_grade_failed ) {
 
 			if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
-				if ( $simplified_summary_grade === 0 ) {
+				if ( 0 === $simplified_summary_grade ) {
 					$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
-					' . edac_icon( 'error', '', true, '', 'edac-readability-list-item-icon' ) . '
+					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
 						<h3 class="edac-readability-list-item-title">' . sprintf(
 							/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
 							esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
