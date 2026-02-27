@@ -32,6 +32,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
 	const linkButtonMouseDownRef = useRef( false );
+	const popoverRef = useRef( null );
 
 	// Initialize content only once
 	useEffect( () => {
@@ -181,7 +182,12 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					label={ __( 'Link', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
 					onMouseDown={ () => {
-						linkButtonMouseDownRef.current = true;
+						// Only set this flag when the popover is already open, so
+						// the Popover's onClose handler can yield to the button's
+						// onClick toggle instead of closing it a second time.
+						if ( showLinkPopover ) {
+							linkButtonMouseDownRef.current = true;
+						}
 					} }
 					disabled={ disabled }
 					size="small"
@@ -198,11 +204,17 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 								return;
 							}
 							setShowLinkPopover( false );
-							linkButtonRef.current?.focus();
+							// Only restore focus to the link button when focus is still
+							// inside the popover (e.g., keyboard/Escape close). If the
+							// user clicked outside, focus has already moved to their target
+							// and we should not steal it back.
+							if ( popoverRef.current?.contains( document.activeElement ) ) {
+								linkButtonRef.current?.focus();
+							}
 						} }
 						placement="bottom"
 					>
-						<div className="edac-rich-textarea-link-popover">
+						<div ref={ popoverRef } className="edac-rich-textarea-link-popover">
 							<input
 								id="edac-link-input"
 								type="url"
@@ -213,6 +225,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 								onKeyDown={ ( e ) => {
 									if ( e.key === 'Escape' ) {
 										e.stopPropagation();
+										linkButtonMouseDownRef.current = false;
 										setShowLinkPopover( false );
 										linkButtonRef.current?.focus();
 									} else if ( e.key === 'Enter' ) {
