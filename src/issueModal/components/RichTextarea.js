@@ -174,8 +174,10 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					>
 						<div className="edac-rich-textarea-link-popover">
 							<input
+								id="edac-link-input"
 								type="url"
 								placeholder={ __( 'https://example.com', 'accessibility-checker' ) }
+								aria-label={ __( 'Link URL', 'accessibility-checker' ) }
 								value={ linkUrl }
 								onChange={ ( e ) => setLinkUrl( e.target.value ) }
 								onKeyDown={ ( e ) => {
