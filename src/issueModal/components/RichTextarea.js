@@ -161,7 +161,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					onClick={ handleLinkButtonClick }
 					disabled={ disabled }
 					size="small"
-					isPressed={ showLinkPopover }
+					aria-expanded={ showLinkPopover }
 				/>
 				{ showLinkPopover && linkButtonRef.current && (
 					<Popover
