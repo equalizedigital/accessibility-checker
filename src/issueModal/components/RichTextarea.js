@@ -182,7 +182,12 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					label={ __( 'Link', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
 					onMouseDown={ () => {
-						linkButtonMouseDownRef.current = true;
+						// Only set this flag when the popover is already open, so
+						// the Popover's onClose handler can yield to the button's
+						// onClick toggle instead of closing it a second time.
+						if ( showLinkPopover ) {
+							linkButtonMouseDownRef.current = true;
+						}
 					} }
 					disabled={ disabled }
 					size="small"
@@ -220,6 +225,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 								onKeyDown={ ( e ) => {
 									if ( e.key === 'Escape' ) {
 										e.stopPropagation();
+										linkButtonMouseDownRef.current = false;
 										setShowLinkPopover( false );
 										linkButtonRef.current?.focus();
 									} else if ( e.key === 'Enter' ) {
