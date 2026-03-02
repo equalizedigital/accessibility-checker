@@ -6,7 +6,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { Button, Popover } from '@wordpress/components';
-import { useRef, useState, useEffect, useCallback } from '@wordpress/element';
+import { useRef, useState, useEffect } from '@wordpress/element';
 import { formatBold, formatItalic, link } from '@wordpress/icons';
 import './rich-textarea.scss';
 
@@ -34,17 +34,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const [ isBold, setIsBold ] = useState( false );
 	const [ isItalic, setIsItalic ] = useState( false );
 
-	/**
-	 * Query the browser for the current bold/italic state at the caret
-	 * and update our React state to keep the toolbar buttons in sync.
-	 */
-	const updateFormattingState = useCallback( () => {
-		setIsBold( document.queryCommandState( 'bold' ) );
-		setIsItalic( document.queryCommandState( 'italic' ) );
-	}, [] );
-
-	// Keep formatting state in sync as the user moves the cursor / changes selection.
-	// Also persist the selection so toolbar clicks can restore it after focus moves.
+	// Persist the selection so toolbar clicks can restore it after focus moves.
 	useEffect( () => {
 		const onSelectionChange = () => {
 			if (
@@ -52,13 +42,12 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				editorRef.current?.contains( document.activeElement )
 			) {
 				saveSelection();
-				updateFormattingState();
 			}
 		};
 
 		document.addEventListener( 'selectionchange', onSelectionChange );
 		return () => document.removeEventListener( 'selectionchange', onSelectionChange );
-	}, [ updateFormattingState ] );
+	}, [] );
 
 	// Initialize content only once
 	useEffect( () => {
@@ -120,15 +109,31 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 
 		document.execCommand( tag, false, null );
 
-		// When text was selected, collapse selection to the end so the
-		// format toggle doesn't stay pressed for subsequent typing.
-		if ( hasSelection && selection.rangeCount > 0 ) {
-			selection.collapseToEnd();
+		if ( hasSelection ) {
+			// Text was selected — formatting was applied to the selection only.
+			// Collapse to end and force the pressed state off so the button
+			// doesn't stay toggled on for subsequent typing.
+			if ( selection.rangeCount > 0 ) {
+				selection.collapseToEnd();
+			}
+			if ( tag === 'bold' ) {
+				setIsBold( false );
+			}
+			if ( tag === 'italic' ) {
+				setIsItalic( false );
+			}
+		} else {
+			// No selection — this is a toggle for future typing.
+			if ( tag === 'bold' ) {
+				setIsBold( ( prev ) => ! prev );
+			}
+			if ( tag === 'italic' ) {
+				setIsItalic( ( prev ) => ! prev );
+			}
 		}
 
 		// Re-save the current selection so subsequent toolbar clicks work.
 		saveSelection();
-		updateFormattingState();
 		updateValue();
 	};
 
@@ -167,7 +172,18 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	};
 
 	const handleInput = () => {
+		// After typing, turn off any active formatting toggle — the format
+		// has been consumed by the typed character(s).
+		setIsBold( false );
+		setIsItalic( false );
 		updateValue();
+	};
+
+	// When the user clicks within the editor to reposition the caret,
+	// sync the pressed state with the formatting at the new position.
+	const handleMouseUp = () => {
+		setIsBold( document.queryCommandState( 'bold' ) );
+		setIsItalic( document.queryCommandState( 'italic' ) );
 	};
 
 	const handleKeyDown = ( e ) => {
@@ -250,6 +266,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				suppressContentEditableWarning
 				onInput={ handleInput }
 				onKeyDown={ handleKeyDown }
+				onMouseUp={ handleMouseUp }
 				onBlur={ updateValue }
 				className="edac-rich-textarea"
 				style={ { minHeight: `${ rows * 24 }px` } }
