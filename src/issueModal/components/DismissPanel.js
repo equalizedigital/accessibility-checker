@@ -4,7 +4,7 @@
  * Handles dismissing and restoring issues with comments and reasons.
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
 import { chevronDown } from '@wordpress/icons';
@@ -94,15 +94,21 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 		__( 'Dismiss Issue', 'accessibility-checker' )
 	);
 
+	let panelTitle;
+	if ( isIgnored ) {
+		// translators: %s: dismiss reason label e.g. "False Positive"
+		panelTitle = dismissReasonLabel
+			? sprintf( __( 'Issue Dismissed — %s', 'accessibility-checker' ), dismissReasonLabel )
+			: __( 'Issue Dismissed', 'accessibility-checker' );
+	} else {
+		panelTitle = __( 'Dismiss Issue', 'accessibility-checker' );
+	}
+
 	return (
 		<div className="edac-analysis__dismiss-panel" data-section="dismiss">
 			<Panel>
 				<PanelBody
-					title={
-						isIgnored
-							? __( 'Issue Dismissed', 'accessibility-checker' )
-							: __( 'Dismiss Issue', 'accessibility-checker' )
-					}
+					title={ panelTitle }
 					opened={ isOpen }
 					onToggle={ onToggle }
 				>
@@ -123,65 +129,59 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 						) }
 						{ isIgnored ? (
 							<>
-								<p className="edac-analysis__dismissed-info">
-									{ __(
-										'This issue has been dismissed and will not appear in active issues.',
-										'accessibility-checker',
-									) }
-								</p>
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_global ) && (
+									<dl className="edac-analysis__dismissed-meta">
+
+										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
+											<>
+												<dt>{ __( 'Scope:', 'accessibility-checker' ) }</dt>
+												<dd>{ __( 'All pages', 'accessibility-checker' ) }</dd>
+											</>
+										) }
+										{ ( issue?.ignre_user_name || issue?.user ) && (
+											<>
+												<dt>{ __( 'By:', 'accessibility-checker' ) }</dt>
+												<dd>{ decodeEntities( issue.ignre_user_name || issue.user ) }</dd>
+											</>
+										) }
+										{ issue?.ignre_date && (
+											<>
+												<dt>{ __( 'On:', 'accessibility-checker' ) }</dt>
+												<dd>{ decodeEntities( issue.ignre_date ) }</dd>
+											</>
+										) }
+									</dl>
+								) }
 								{ issue?.ignre_comment && (
 									<div className="edac-analysis__dismissed-comment">
-										<strong>{ __( 'Comment:', 'accessibility-checker' ) }</strong>
-										<p
+										<p className="edac-analysis__dismissed-comment-label">
+											{ __( 'Reason for dismissal:', 'accessibility-checker' ) }
+										</p>
+										<div
+											className="edac-analysis__dismissed-comment-body"
 											dangerouslySetInnerHTML={ {
 												__html: decodeEntities( issue.ignre_comment ),
 											} }
 										/>
 									</div>
 								) }
-								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_reason || issue?.ignre_global ) && (
-									<div className="edac-analysis__dismissed-meta">
-										{ issue?.ignre_reason && dismissReasonLabel && (
-											<p>
-												<strong>{ __( 'Dismissed as:', 'accessibility-checker' ) }</strong>{ ' ' }
-												{ dismissReasonLabel }
-											</p>
+								<div className="edac-analysis__dismissed-actions">
+									<Button
+										variant="secondary"
+										onClick={ () => handleToggleIgnore( false ) }
+										disabled={ isSubmitting }
+										className="edac-analysis__dismiss-button"
+									>
+										{ isSubmitting ? (
+											<>
+												<Spinner />
+												{ __( 'Reopening...', 'accessibility-checker' ) }
+											</>
+										) : (
+											__( 'Reopen Issue', 'accessibility-checker' )
 										) }
-										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
-											<p>
-												<strong>{ __( 'Globally dismissed:', 'accessibility-checker' ) }</strong>{ ' ' }
-												{ __( 'Yes — dismissed across all pages', 'accessibility-checker' ) }
-											</p>
-										) }
-										{ ( issue?.ignre_user_name || issue?.user ) && (
-											<p>
-												<strong>{ __( 'Dismissed by:', 'accessibility-checker' ) }</strong>{ ' ' }
-												{ decodeEntities( issue.ignre_user_name || issue.user ) }
-											</p>
-										) }
-										{ issue?.ignre_date && (
-											<p>
-												<strong>{ __( 'Dismissed on:', 'accessibility-checker' ) }</strong>{ ' ' }
-												{ decodeEntities( issue.ignre_date ) }
-											</p>
-										) }
-									</div>
-								) }
-								<Button
-									variant="secondary"
-									onClick={ () => handleToggleIgnore( false ) }
-									disabled={ isSubmitting }
-									className="edac-analysis__dismiss-button"
-								>
-									{ isSubmitting ? (
-										<>
-											<Spinner />
-											{ __( 'Reopening...', 'accessibility-checker' ) }
-										</>
-									) : (
-										__( 'Reopen Issue', 'accessibility-checker' )
-									) }
-								</Button>
+									</Button>
+								</div>
 							</>
 						) : (
 							<form
