@@ -90,7 +90,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			return;
 		}
 		const onKeyDownCapture = ( e ) => {
-			if ( ( e.ctrlKey || e.metaKey ) && ( e.key === 'b' || e.key === 'i' || e.key === 'u' || e.key === 'k' ) ) {
+if ( ( e.ctrlKey || e.metaKey ) && ( FORMATTING_SHORTCUTS[ e.key ] || e.key === 'k' ) ) {
 				e.stopImmediatePropagation();
 			}
 		};
