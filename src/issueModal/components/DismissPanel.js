@@ -6,7 +6,8 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
+import { Panel, PanelBody, Button, Spinner, RadioControl, Dropdown } from '@wordpress/components';
+import { Notice } from '@wordpress/ui';
 import { chevronDown } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
@@ -94,6 +95,36 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 		__( 'Dismiss Issue', 'accessibility-checker' )
 	);
 
+	// Notice action configuration for reusable dismiss button.
+	const noticeActions = [
+		{
+			label: __( 'Dismiss notice', 'accessibility-checker' ),
+			onClick: ( noticeType ) => {
+				if ( noticeType === 'success' ) {
+					setSuccessNotice( null );
+				} else if ( noticeType === 'error' ) {
+					setError( null );
+				}
+			},
+		},
+	];
+
+	// Helper function to render a notice.
+	const renderNotice = ( message, status, noticeType ) => (
+		<Notice
+			status={ status }
+			onDismiss={ () => noticeActions[ 0 ].onClick( noticeType ) }
+			actions={ [
+				{
+					label: noticeActions[ 0 ].label,
+					onClick: () => noticeActions[ 0 ].onClick( noticeType ),
+				},
+			] }
+		>
+			{ message }
+		</Notice>
+	);
+
 	let panelTitle;
 	if ( isIgnored ) {
 		// translators: %s: dismiss reason label e.g. "False Positive"
@@ -113,20 +144,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 					onToggle={ onToggle }
 				>
 					<div className="edac-analysis__panel-content">
-						{ successNotice && (
-							<Notice
-								status="success"
-								isDismissible={ true }
-								onRemove={ () => setSuccessNotice( null ) }
-							>
-								{ successNotice }
-							</Notice>
-						) }
-						{ error && (
-							<Notice status="error" isDismissible={ true } onRemove={ () => setError( null ) }>
-								{ error }
-							</Notice>
-						) }
+						{ successNotice && renderNotice( successNotice, 'success', 'success' ) }
+						{ error && renderNotice( error, 'error', 'error' ) }
 						{ isIgnored ? (
 							<>
 								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_global ) && (
