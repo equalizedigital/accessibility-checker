@@ -402,6 +402,46 @@
 			}
 		}
 
+		.edac-analysis__dismissed-comment {
+			margin-top: 16px;
+
+			&-label {
+				font-weight: 600;
+				margin: 0 0 4px;
+			}
+		}
+
+		.edac-analysis__dismissed-meta {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 6px 16px;
+			margin: 0 0 0;
+			padding: 0;
+			list-style: none;
+
+			dt {
+				font-weight: 600;
+			}
+
+			dd {
+				font-size: 13px;
+				color: #1e1e1e;
+				margin: 0;
+				padding: 0;
+				word-break: break-word;
+			}
+		}
+
+		.edac-analysis__dismissed-actions {
+			margin-top: 20px;
+			padding-top: 16px;
+			border-top: 1px solid $outline-grey;
+
+			.edac-analysis__dismiss-button {
+				margin-top: 0;
+			}
+		}
+
 		.edac-analysis__dismiss-button {
 			margin-top: 12px;
 
