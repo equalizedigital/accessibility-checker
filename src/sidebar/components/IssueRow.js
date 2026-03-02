@@ -26,6 +26,7 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 				type="button"
 				className="edac-analysis__issue-link"
 				onClick={ () => onAction( 'details', issue ) }
+				aria-haspopup="dialog"
 			>
 				{ __( 'Issue', 'accessibility-checker' ) } #{ issue.id }
 			</button>
