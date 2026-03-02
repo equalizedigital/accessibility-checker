@@ -73,7 +73,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 		<div ref={ menuRef } className="edac-sidebar__title-menu-wrapper">
 			<DropdownMenu
 				icon={ moreVertical }
-				label={ __( 'Sidebar actions', 'accessibility-checker' ) }
+				label={ __( 'Accessibility Checker Actions', 'accessibility-checker' ) }
 				className="edac-sidebar__title-menu"
 			>
 				{ ( { onClose } ) => (
