@@ -212,7 +212,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	return (
 		<div className="edac-rich-textarea-wrapper">
 			{ label && (
-				<label className="edac-rich-textarea-label">{ label }</label>
+				<label id="dismiss-comment-title" className="edac-rich-textarea-label">{ label }</label>
 			) }
 
 			<div className="edac-rich-textarea-toolbar">
@@ -300,6 +300,8 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			<div
 				ref={ editorRef }
 				contentEditable={ ! disabled }
+				aria-labelledby="dismiss-comment-title"
+				aria-describedby="dismiss-comment-helptext"
 				suppressContentEditableWarning
 				onInput={ updateValue }
 				onKeyDown={ handleKeyDown }
@@ -309,7 +311,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			/>
 
 			{ help && (
-				<p className="edac-rich-textarea-help">{ help }</p>
+				<p id="dismiss-comment-helptext" className="edac-rich-textarea-help">{ help }</p>
 			) }
 		</div>
 	);
