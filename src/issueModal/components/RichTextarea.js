@@ -144,10 +144,22 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			if ( sel.rangeCount > 0 ) {
 				sel.collapseToEnd();
 			}
+			// The caret is now inside the formatted element. Toggle the
+			// command once more so subsequent typing exits the format.
 			document.execCommand( command, false, null );
+
+			// Clear all toggle states — we're done formatting a selection.
+			setPressed( { bold: false, italic: false, underline: false } );
 			updateValue();
 		} else {
-			setPressed( ( prev ) => ( { ...prev, [ command ]: ! prev[ command ] } ) );
+			// Toggle mode — read the browser's actual state for every
+			// format so all buttons stay in sync. The browser may have
+			// implicitly changed state for other commands.
+			setPressed( {
+				bold: document.queryCommandState( 'bold' ),
+				italic: document.queryCommandState( 'italic' ),
+				underline: document.queryCommandState( 'underline' ),
+			} );
 		}
 	};
 
