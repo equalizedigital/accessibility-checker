@@ -74,9 +74,11 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				editorRef.current?.contains( document.activeElement )
 			) {
 				saveSelection();
-				setIsBold( document.queryCommandState( 'bold' ) );
-				setIsItalic( document.queryCommandState( 'italic' ) );
-				setIsUnderline( document.queryCommandState( 'underline' ) );
+				Object.entries( FORMAT_SETTERS ).forEach(
+					( [ command, setter ] ) => {
+						setter( document.queryCommandState( command ) );
+					}
+				);
 			}
 		};
 		document.addEventListener( 'selectionchange', onSelectionChange );
