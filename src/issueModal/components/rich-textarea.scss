@@ -25,6 +25,21 @@
 		&:not(:last-child) {
 			margin-right: 2px;
 		}
+
+		&.is-pressed {
+			background-color: #1e1e1e;
+			color: #fff;
+			border-color: #1e1e1e;
+
+			&:hover:not(:disabled) {
+				background-color: #333;
+				color: #fff;
+			}
+
+			svg {
+				fill: currentColor;
+			}
+		}
 	}
 }
 
@@ -60,6 +75,10 @@
 
 	em {
 		font-style: italic;
+	}
+
+	u {
+		text-decoration: underline;
 	}
 
 	a {
