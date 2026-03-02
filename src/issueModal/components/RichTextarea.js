@@ -74,6 +74,9 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				editorRef.current?.contains( document.activeElement )
 			) {
 				saveSelection();
+				setIsBold( document.queryCommandState( 'bold' ) );
+				setIsItalic( document.queryCommandState( 'italic' ) );
+				setIsUnderline( document.queryCommandState( 'underline' ) );
 			}
 		};
 		document.addEventListener( 'selectionchange', onSelectionChange );
@@ -90,8 +93,9 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			return;
 		}
 		const onKeyDownCapture = ( e ) => {
-if ( ( e.ctrlKey || e.metaKey ) && ( FORMATTING_SHORTCUTS[ e.key ] || e.key === 'k' ) ) {
-				e.stopImmediatePropagation();
+			const key = e.key.toLowerCase();
+			if ( ( e.ctrlKey || e.metaKey ) && ( FORMATTING_SHORTCUTS[ key ] || key === 'k' ) ) {
+				e.preventDefault();
 			}
 		};
 		editor.addEventListener( 'keydown', onKeyDownCapture, true );
@@ -256,7 +260,8 @@ if ( ( e.ctrlKey || e.metaKey ) && ( FORMATTING_SHORTCUTS[ e.key ] || e.key === 
 			return;
 		}
 
-		const command = FORMATTING_SHORTCUTS[ e.key ];
+		const key = e.key.toLowerCase();
+		const command = FORMATTING_SHORTCUTS[ key ];
 		if ( command ) {
 			e.preventDefault();
 			e.stopPropagation();
@@ -264,7 +269,7 @@ if ( ( e.ctrlKey || e.metaKey ) && ( FORMATTING_SHORTCUTS[ e.key ] || e.key === 
 			return;
 		}
 
-		if ( e.key === 'k' ) {
+		if ( key === 'k' ) {
 			e.preventDefault();
 			e.stopPropagation();
 			saveSelection();
