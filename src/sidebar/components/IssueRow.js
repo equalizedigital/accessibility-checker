@@ -39,7 +39,7 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 			) }
 			<DropdownMenu
 				icon={ moreVertical }
-label={ issue?.id ? sprintf( __( 'Issue actions for %s', 'accessibility-checker' ), issue.id ) : __( 'Issue actions', 'accessibility-checker' ) }
+				label={ issue?.id ? sprintf( __( 'Issue actions for %s', 'accessibility-checker' ), issue.id ) : __( 'Issue actions', 'accessibility-checker' ) }
 				className="edac-analysis__issue-menu"
 			>
 				{ ( { onClose } ) => (
