@@ -77,7 +77,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				Object.entries( FORMAT_SETTERS ).forEach(
 					( [ command, setter ] ) => {
 						setter( document.queryCommandState( command ) );
-					}
+					},
 				);
 			}
 		};
