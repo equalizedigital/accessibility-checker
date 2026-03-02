@@ -171,13 +171,16 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	};
 
 	const handleKeyDown = ( e ) => {
-		// Allow standard keyboard shortcuts
 		if ( ( e.ctrlKey || e.metaKey ) && e.key === 'b' ) {
 			e.preventDefault();
 			applyFormatting( 'bold' );
 		} else if ( ( e.ctrlKey || e.metaKey ) && e.key === 'i' ) {
 			e.preventDefault();
 			applyFormatting( 'italic' );
+		} else if ( ( e.ctrlKey || e.metaKey ) && e.key === 'k' ) {
+			e.preventDefault();
+			saveSelection();
+			setShowLinkPopover( ( prev ) => ! prev );
 		}
 	};
 
@@ -207,7 +210,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				<Button
 					ref={ linkButtonRef }
 					icon={ link }
-					label={ __( 'Link', 'accessibility-checker' ) }
+					label={ __( 'Link (Ctrl+K)', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
 					disabled={ disabled }
 					size="small"
