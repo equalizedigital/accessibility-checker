@@ -6,7 +6,7 @@
 
 import { __ } from '@wordpress/i18n';
 import { Button, Popover } from '@wordpress/components';
-import { useRef, useState, useEffect } from '@wordpress/element';
+import { useRef, useState, useEffect, useCallback } from '@wordpress/element';
 import { formatBold, formatItalic, link } from '@wordpress/icons';
 import './rich-textarea.scss';
 
@@ -31,6 +31,34 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const savedSelectionRef = useRef( null );
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
+	const [ isBold, setIsBold ] = useState( false );
+	const [ isItalic, setIsItalic ] = useState( false );
+
+	/**
+	 * Query the browser for the current bold/italic state at the caret
+	 * and update our React state to keep the toolbar buttons in sync.
+	 */
+	const updateFormattingState = useCallback( () => {
+		setIsBold( document.queryCommandState( 'bold' ) );
+		setIsItalic( document.queryCommandState( 'italic' ) );
+	}, [] );
+
+	// Keep formatting state in sync as the user moves the cursor / changes selection.
+	// Also persist the selection so toolbar clicks can restore it after focus moves.
+	useEffect( () => {
+		const onSelectionChange = () => {
+			if (
+				document.activeElement === editorRef.current ||
+				editorRef.current?.contains( document.activeElement )
+			) {
+				saveSelection();
+				updateFormattingState();
+			}
+		};
+
+		document.addEventListener( 'selectionchange', onSelectionChange );
+		return () => document.removeEventListener( 'selectionchange', onSelectionChange );
+	}, [ updateFormattingState ] );
 
 	// Initialize content only once
 	useEffect( () => {
@@ -146,6 +174,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					onClick={ () => applyFormatting( 'bold' ) }
 					disabled={ disabled }
 					size="small"
+					isPressed={ isBold }
 				/>
 				<Button
 					icon={ formatItalic }
@@ -153,6 +182,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					onClick={ () => applyFormatting( 'italic' ) }
 					disabled={ disabled }
 					size="small"
+					isPressed={ isItalic }
 				/>
 				<Button
 					ref={ linkButtonRef }
