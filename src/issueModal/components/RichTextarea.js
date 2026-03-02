@@ -49,6 +49,24 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		return () => document.removeEventListener( 'selectionchange', onSelectionChange );
 	}, [] );
 
+	// Capture-phase native listener to intercept formatting shortcuts before
+	// browser extensions or other global listeners can steal them.
+	useEffect( () => {
+		const editor = editorRef.current;
+		if ( ! editor ) {
+			return;
+		}
+
+		const onKeyDownCapture = ( e ) => {
+			if ( ( e.ctrlKey || e.metaKey ) && ( e.key === 'b' || e.key === 'i' || e.key === 'k' ) ) {
+				e.stopImmediatePropagation();
+			}
+		};
+
+		editor.addEventListener( 'keydown', onKeyDownCapture, true );
+		return () => editor.removeEventListener( 'keydown', onKeyDownCapture, true );
+	}, [] );
+
 	// Initialize content only once
 	useEffect( () => {
 		if ( editorRef.current && ! isInitializedRef.current ) {
@@ -110,31 +128,29 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		document.execCommand( tag, false, null );
 
 		if ( hasSelection ) {
-			// Text was selected — formatting was applied to the selection only.
-			// Collapse to end and force the pressed state off so the button
-			// doesn't stay toggled on for subsequent typing.
+			// Text was selected — formatting applied to selection only.
 			if ( selection.rangeCount > 0 ) {
 				selection.collapseToEnd();
 			}
-			if ( tag === 'bold' ) {
-				setIsBold( false );
-			}
-			if ( tag === 'italic' ) {
-				setIsItalic( false );
-			}
+			// The caret is now inside the formatted element (e.g. <strong>)
+			// so the browser still considers future typing to be in that
+			// format. Toggle the command again to turn it off.
+			document.execCommand( tag, false, null );
+
+			saveSelection();
+			updateValue();
 		} else {
-			// No selection — this is a toggle for future typing.
+			// No selection — toggle format mode for future typing.
+			// Don't call updateValue() here — no DOM change has happened yet
+			// and triggering a re-render can reset the browser's format toggle.
 			if ( tag === 'bold' ) {
 				setIsBold( ( prev ) => ! prev );
 			}
 			if ( tag === 'italic' ) {
 				setIsItalic( ( prev ) => ! prev );
 			}
+			saveSelection();
 		}
-
-		// Re-save the current selection so subsequent toolbar clicks work.
-		saveSelection();
-		updateValue();
 	};
 
 	const handleAddLink = () => {
@@ -172,29 +188,21 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	};
 
 	const handleInput = () => {
-		// After typing, turn off any active formatting toggle — the format
-		// has been consumed by the typed character(s).
-		setIsBold( false );
-		setIsItalic( false );
 		updateValue();
-	};
-
-	// When the user clicks within the editor to reposition the caret,
-	// sync the pressed state with the formatting at the new position.
-	const handleMouseUp = () => {
-		setIsBold( document.queryCommandState( 'bold' ) );
-		setIsItalic( document.queryCommandState( 'italic' ) );
 	};
 
 	const handleKeyDown = ( e ) => {
 		if ( ( e.ctrlKey || e.metaKey ) && e.key === 'b' ) {
 			e.preventDefault();
+			e.stopPropagation();
 			applyFormatting( 'bold' );
 		} else if ( ( e.ctrlKey || e.metaKey ) && e.key === 'i' ) {
 			e.preventDefault();
+			e.stopPropagation();
 			applyFormatting( 'italic' );
 		} else if ( ( e.ctrlKey || e.metaKey ) && e.key === 'k' ) {
 			e.preventDefault();
+			e.stopPropagation();
 			saveSelection();
 			setShowLinkPopover( ( prev ) => ! prev );
 		}
@@ -266,7 +274,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				suppressContentEditableWarning
 				onInput={ handleInput }
 				onKeyDown={ handleKeyDown }
-				onMouseUp={ handleMouseUp }
 				onBlur={ updateValue }
 				className="edac-rich-textarea"
 				style={ { minHeight: `${ rows * 24 }px` } }
