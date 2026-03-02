@@ -1,7 +1,7 @@
 /**
  * Rich Text Textarea Component
  *
- * Supports basic HTML formatting: bold, italic, and links.
+ * Supports basic HTML formatting: bold, italic, underline, and links.
  */
 
 import { __ } from '@wordpress/i18n';
@@ -11,9 +11,25 @@ import { formatBold, formatItalic, link } from '@wordpress/icons';
 import './rich-textarea.scss';
 
 /**
+ * WordPress doesn't ship a formatUnderline icon, so we define one inline.
+ */
+const formatUnderline = (
+	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+		<path d="M7 18v1.5h10V18H7zM5.5 4v6.5c0 3.6 2.9 6.5 6.5 6.5s6.5-2.9 6.5-6.5V4H17v6.5c0 2.8-2.2 5-5 5s-5-2.2-5-5V4H5.5z" />
+	</svg>
+);
+
+/**
+ * Formatting button definitions.
+ */
+const FORMAT_BUTTONS = [
+	{ command: 'bold', icon: formatBold, label: __( 'Bold (Ctrl+B)', 'accessibility-checker' ), shortcutKey: 'b' },
+	{ command: 'italic', icon: formatItalic, label: __( 'Italic (Ctrl+I)', 'accessibility-checker' ), shortcutKey: 'i' },
+	{ command: 'underline', icon: formatUnderline, label: __( 'Underline (Ctrl+U)', 'accessibility-checker' ), shortcutKey: 'u' },
+];
+
+/**
  * Rich Text Textarea Component
- *
- * Supports basic HTML formatting: bold, italic, and links.
  *
  * @param {Object}   props          - Component props.
  * @param {string}   props.value    - Current text value (HTML string).
@@ -29,12 +45,15 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const isInitializedRef = useRef( false );
 	const lastValueRef = useRef( value );
 	const savedSelectionRef = useRef( null );
-	const [ linkUrl, setLinkUrl ] = useState( '' );
-	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
 	const linkButtonMouseDownRef = useRef( false );
 	const popoverRef = useRef( null );
 
-	// Initialize content only once
+	const [ linkUrl, setLinkUrl ] = useState( '' );
+	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
+
+	// Pressed state for formatting toggle mode (no selection).
+	const [ pressed, setPressed ] = useState( { bold: false, italic: false, underline: false } );
+
 	useEffect( () => {
 		if ( editorRef.current && ! isInitializedRef.current ) {
 			editorRef.current.innerHTML = value;
@@ -43,7 +62,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	}, [ value ] );
 
-	// Update content when external value changes and editor isn't focused
 	useEffect( () => {
 		if ( ! editorRef.current ) {
 			return;
@@ -57,68 +75,104 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	}, [ value ] );
 
+	useEffect( () => {
+		const editor = editorRef.current;
+		if ( ! editor ) {
+			return;
+		}
+		const guard = ( e ) => {
+			if ( ( e.ctrlKey || e.metaKey ) && [ 'b', 'i', 'u', 'k' ].includes( e.key ) ) {
+				e.stopImmediatePropagation();
+			}
+		};
+		editor.addEventListener( 'keydown', guard, true );
+		return () => editor.removeEventListener( 'keydown', guard, true );
+	}, [] );
+
+	// ── Selection helpers ──────────────────────────────────────────────
+
 	const saveSelection = () => {
-		const selection = window.getSelection();
-		if ( selection.rangeCount > 0 ) {
-			savedSelectionRef.current = selection.getRangeAt( 0 );
+		const sel = window.getSelection();
+		if ( sel.rangeCount > 0 ) {
+			savedSelectionRef.current = sel.getRangeAt( 0 );
 			return true;
 		}
 		return false;
 	};
 
 	const restoreSelection = () => {
-		const selection = window.getSelection();
+		const sel = window.getSelection();
 		if ( savedSelectionRef.current ) {
 			try {
-				selection.removeAllRanges();
-				selection.addRange( savedSelectionRef.current );
+				sel.removeAllRanges();
+				sel.addRange( savedSelectionRef.current );
 				return true;
-			} catch ( e ) {
+			} catch {
 				return false;
 			}
 		}
 		return false;
 	};
 
-	const applyFormatting = ( tag ) => {
-		document.execCommand( tag, false, null );
-		editorRef.current?.focus();
-		updateValue();
+	const updateValue = () => {
+		if ( editorRef.current ) {
+			const next = editorRef.current.innerHTML;
+			lastValueRef.current = next;
+			onChange( next );
+		}
 	};
+
+	/**
+	 * Apply formatting. The editor still has focus because formatting
+	 * buttons use onMouseDown + preventDefault to keep it.
+	 *
+	 * - **Text selected:** format it, then exit the format context so
+	 *   subsequent typing is plain.
+	 * - **No selection:** toggle format mode for future typing and flip
+	 *   the toolbar button's pressed state.
+	 *
+	 * @param {string} command execCommand name ('bold' | 'italic' | 'underline').
+	 */
+	const applyFormatting = ( command ) => {
+		const sel = window.getSelection();
+		const hasTextSelected = sel && ! sel.isCollapsed;
+
+		document.execCommand( command, false, null );
+
+		if ( hasTextSelected ) {
+			// Collapse to end so the user can keep typing.
+			if ( sel.rangeCount > 0 ) {
+				sel.collapseToEnd();
+			}
+			document.execCommand( command, false, null );
+			updateValue();
+		} else {
+			setPressed( ( prev ) => ( { ...prev, [ command ]: ! prev[ command ] } ) );
+		}
+	};
+
+	// ── Link handling ──────────────────────────────────────────────────
 
 	const isValidUrl = ( url ) => {
 		const trimmed = url.trim();
-		// Block dangerous protocols like javascript:, data:, vbscript:, etc.
 		const allowedProtocols = /^(https?:|mailto:)/i;
-		// Also allow protocol-relative URLs and relative paths.
 		if ( /^\/[^/]/.test( trimmed ) || /^\/\//.test( trimmed ) ) {
 			return true;
 		}
-		// If it has a protocol, it must be in the allowed list.
 		if ( /^[a-z][a-z0-9+.-]*:/i.test( trimmed ) ) {
 			return allowedProtocols.test( trimmed );
 		}
-		// No protocol — treat as a relative URL or bare domain (safe).
 		return true;
 	};
 
 	const handleAddLink = () => {
-		if ( ! linkUrl.trim() ) {
+		if ( ! linkUrl.trim() || ! isValidUrl( linkUrl ) ) {
 			return;
 		}
-
-		if ( ! isValidUrl( linkUrl ) ) {
-			return;
-		}
-
-		// Restore the selection before applying the link
 		if ( ! restoreSelection() ) {
 			editorRef.current?.focus();
 		}
-
-		// Use execCommand to create the link properly in contentEditable
 		document.execCommand( 'createLink', false, linkUrl );
-
 		setLinkUrl( '' );
 		setShowLinkPopover( false );
 		updateValue();
@@ -126,32 +180,31 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 
 	const handleLinkButtonClick = () => {
 		if ( ! showLinkPopover ) {
-			// Save selection before opening popover
 			saveSelection();
 		}
 		setShowLinkPopover( ! showLinkPopover );
 	};
 
-	const updateValue = () => {
-		if ( editorRef.current ) {
-			const nextValue = editorRef.current.innerHTML;
-			lastValueRef.current = nextValue;
-			onChange( nextValue );
-		}
-	};
-
-	const handleInput = () => {
-		updateValue();
-	};
-
 	const handleKeyDown = ( e ) => {
-		// Allow standard keyboard shortcuts
-		if ( ( e.ctrlKey || e.metaKey ) && e.key === 'b' ) {
+		if ( ! ( e.ctrlKey || e.metaKey ) ) {
+			return;
+		}
+
+		// Formatting shortcuts.
+		const btn = FORMAT_BUTTONS.find( ( b ) => b.shortcutKey === e.key );
+		if ( btn ) {
 			e.preventDefault();
-			applyFormatting( 'bold' );
-		} else if ( ( e.ctrlKey || e.metaKey ) && e.key === 'i' ) {
+			e.stopPropagation();
+			applyFormatting( btn.command );
+			return;
+		}
+
+		// Link shortcut.
+		if ( e.key === 'k' ) {
 			e.preventDefault();
-			applyFormatting( 'italic' );
+			e.stopPropagation();
+			saveSelection();
+			setShowLinkPopover( ( prev ) => ! prev );
 		}
 	};
 
@@ -162,29 +215,30 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			) }
 
 			<div className="edac-rich-textarea-toolbar">
-				<Button
-					icon={ formatBold }
-					label={ __( 'Bold (Ctrl+B)', 'accessibility-checker' ) }
-					onClick={ () => applyFormatting( 'bold' ) }
-					disabled={ disabled }
-					size="small"
-				/>
-				<Button
-					icon={ formatItalic }
-					label={ __( 'Italic (Ctrl+I)', 'accessibility-checker' ) }
-					onClick={ () => applyFormatting( 'italic' ) }
-					disabled={ disabled }
-					size="small"
-				/>
+				{ FORMAT_BUTTONS.map( ( { command, icon, label: btnLabel } ) => (
+					<Button
+						key={ command }
+						icon={ icon }
+						label={ btnLabel }
+						disabled={ disabled }
+						size="small"
+						isPressed={ pressed[ command ] }
+						onMouseDown={ ( e ) => {
+							// Prevent the button from stealing focus from the
+							// editor so execCommand always has the right context.
+							e.preventDefault();
+							applyFormatting( command );
+						} }
+					/>
+				) ) }
 				<Button
 					ref={ linkButtonRef }
 					icon={ link }
-					label={ __( 'Link', 'accessibility-checker' ) }
+					label={ __( 'Link (Ctrl+K)', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
 					onMouseDown={ () => {
-						// Only set this flag when the popover is already open, so
-						// the Popover's onClose handler can yield to the button's
-						// onClick toggle instead of closing it a second time.
+						// When the popover is open, flag that the close came
+						// from this button so onClose can yield to onClick.
 						if ( showLinkPopover ) {
 							linkButtonMouseDownRef.current = true;
 						}
@@ -197,17 +251,11 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					<Popover
 						anchor={ linkButtonRef.current }
 						onClose={ () => {
-							// If the close was triggered by clicking the link button itself,
-							// let the button's onClick toggle handler manage the state instead.
 							if ( linkButtonMouseDownRef.current ) {
 								linkButtonMouseDownRef.current = false;
 								return;
 							}
 							setShowLinkPopover( false );
-							// Only restore focus to the link button when focus is still
-							// inside the popover (e.g., keyboard/Escape close). If the
-							// user clicked outside, focus has already moved to their target
-							// and we should not steal it back.
 							if ( popoverRef.current?.contains( document.activeElement ) ) {
 								linkButtonRef.current?.focus();
 							}
@@ -252,7 +300,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				ref={ editorRef }
 				contentEditable={ ! disabled }
 				suppressContentEditableWarning
-				onInput={ handleInput }
+				onInput={ updateValue }
 				onKeyDown={ handleKeyDown }
 				onBlur={ updateValue }
 				className="edac-rich-textarea"
