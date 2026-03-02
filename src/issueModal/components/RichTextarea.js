@@ -246,7 +246,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				<Button
 					ref={ linkButtonRef }
 					icon={ link }
-					label={ __( 'Link URL (Ctrl+K)', 'accessibility-checker' ) }
+					label={ __( 'Link (Ctrl+K)', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
 					onMouseDown={ () => {
 						// When the popover is open, flag that the close came
