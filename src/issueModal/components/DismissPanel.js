@@ -198,10 +198,12 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 								/>
 								<RichTextarea
 									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+									labelId="edac-dismiss-comment-label"
 									help={ __(
 										'Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.',
 										'accessibility-checker',
 									) }
+									helpId="edac-dismiss-comment-helptext"
 									value={ comment }
 									onChange={ setComment }
 									rows={ 3 }

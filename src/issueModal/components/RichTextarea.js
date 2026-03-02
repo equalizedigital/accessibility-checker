@@ -25,11 +25,13 @@ const FORMAT_BUTTONS = [
  * @param {string}   props.value    - Current text value (HTML string).
  * @param {Function} props.onChange - Change handler.
  * @param {string}   props.label    - Field label.
+ * @param {string}   props.labelId  - ID for aria-labelledby (optional, used if label exists).
  * @param {string}   props.help     - Help text.
+ * @param {string}   props.helpId   - ID for aria-describedby (optional, used if help exists).
  * @param {number}   props.rows     - Number of rows.
  * @param {boolean}  props.disabled - Whether field is disabled.
  */
-export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled = false } ) => {
+export const RichTextarea = ( { value, onChange, label, labelId, help, helpId, rows = 3, disabled = false } ) => {
 	const editorRef = useRef( null );
 	const linkButtonRef = useRef( null );
 	const isInitializedRef = useRef( false );
@@ -209,10 +211,19 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	};
 
+	// Build aria attributes for the contenteditable div.
+	const ariaAttrs = {};
+	if ( label && labelId ) {
+		ariaAttrs[ 'aria-labelledby' ] = labelId;
+	}
+	if ( help && helpId ) {
+		ariaAttrs[ 'aria-describedby' ] = helpId;
+	}
+
 	return (
 		<div className="edac-rich-textarea-wrapper">
 			{ label && (
-				<label className="edac-rich-textarea-label">{ label }</label>
+				<label id={ labelId } className="edac-rich-textarea-label">{ label }</label>
 			) }
 
 			<div className="edac-rich-textarea-toolbar">
@@ -306,10 +317,11 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 				onBlur={ updateValue }
 				className="edac-rich-textarea"
 				style={ { minHeight: `${ rows * 24 }px` } }
+				{ ...ariaAttrs }
 			/>
 
 			{ help && (
-				<p className="edac-rich-textarea-help">{ help }</p>
+				<p id={ helpId } className="edac-rich-textarea-help">{ help }</p>
 			) }
 		</div>
 	);
