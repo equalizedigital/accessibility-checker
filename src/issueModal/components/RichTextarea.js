@@ -107,8 +107,28 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	};
 
 	const applyFormatting = ( tag ) => {
+		// Only restore focus and selection when the editor doesn't have focus
+		// (i.e. when called from a toolbar button click). Keyboard shortcuts
+		// fire from within the editor where focus and selection are already correct.
+		if ( document.activeElement !== editorRef.current ) {
+			editorRef.current?.focus();
+			restoreSelection();
+		}
+
+		const selection = window.getSelection();
+		const hasSelection = selection && ! selection.isCollapsed;
+
 		document.execCommand( tag, false, null );
-		editorRef.current?.focus();
+
+		// When text was selected, collapse selection to the end so the
+		// format toggle doesn't stay pressed for subsequent typing.
+		if ( hasSelection && selection.rangeCount > 0 ) {
+			selection.collapseToEnd();
+		}
+
+		// Re-save the current selection so subsequent toolbar clicks work.
+		saveSelection();
+		updateFormattingState();
 		updateValue();
 	};
 
