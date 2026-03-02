@@ -11,21 +11,11 @@ import { formatBold, formatItalic, link } from '@wordpress/icons';
 import './rich-textarea.scss';
 
 /**
- * WordPress doesn't ship a formatUnderline icon, so we define one inline.
- */
-const formatUnderline = (
-	<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-		<path d="M7 18v1.5h10V18H7zM5.5 4v6.5c0 3.6 2.9 6.5 6.5 6.5s6.5-2.9 6.5-6.5V4H17v6.5c0 2.8-2.2 5-5 5s-5-2.2-5-5V4H5.5z" />
-	</svg>
-);
-
-/**
  * Formatting button definitions.
  */
 const FORMAT_BUTTONS = [
 	{ command: 'bold', icon: formatBold, label: __( 'Bold (Ctrl+B)', 'accessibility-checker' ), shortcutKey: 'b' },
 	{ command: 'italic', icon: formatItalic, label: __( 'Italic (Ctrl+I)', 'accessibility-checker' ), shortcutKey: 'i' },
-	{ command: 'underline', icon: formatUnderline, label: __( 'Underline (Ctrl+U)', 'accessibility-checker' ), shortcutKey: 'u' },
 ];
 
 /**
@@ -52,7 +42,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
 
 	// Pressed state for formatting toggle mode (no selection).
-	const [ pressed, setPressed ] = useState( { bold: false, italic: false, underline: false } );
+	const [ pressed, setPressed ] = useState( { bold: false, italic: false } );
 
 	useEffect( () => {
 		if ( editorRef.current && ! isInitializedRef.current ) {
@@ -81,7 +71,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			return;
 		}
 		const guard = ( e ) => {
-			if ( ( e.ctrlKey || e.metaKey ) && [ 'b', 'i', 'u', 'k' ].includes( e.key ) ) {
+			if ( ( e.ctrlKey || e.metaKey ) && [ 'b', 'i', 'k' ].includes( e.key ) ) {
 				e.stopImmediatePropagation();
 			}
 		};
@@ -131,7 +121,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 	 * - **No selection:** toggle format mode for future typing and flip
 	 *   the toolbar button's pressed state.
 	 *
-	 * @param {string} command execCommand name ('bold' | 'italic' | 'underline').
+	 * @param {string} command execCommand name ('bold' | 'italic').
 	 */
 	const applyFormatting = ( command ) => {
 		const sel = window.getSelection();
@@ -149,7 +139,7 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			document.execCommand( command, false, null );
 
 			// Clear all toggle states — we're done formatting a selection.
-			setPressed( { bold: false, italic: false, underline: false } );
+			setPressed( { bold: false, italic: false } );
 			updateValue();
 		} else {
 			// Toggle mode — read the browser's actual state for every
@@ -158,7 +148,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 			setPressed( {
 				bold: document.queryCommandState( 'bold' ),
 				italic: document.queryCommandState( 'italic' ),
-				underline: document.queryCommandState( 'underline' ),
 			} );
 		}
 	};
