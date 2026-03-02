@@ -30,6 +30,15 @@ const QuickAccessPanel = () => {
 	const openAccessibilitySidebar = useCallback( () => {
 		if ( isPostEditor && enableComplementaryArea ) {
 			enableComplementaryArea( 'core/edit-post', ACCESSIBILITY_CHECKER_SIDEBAR_NAME );
+			// once opened, focus on the first panel header.
+			requestAnimationFrame( () => {
+				const firstFocusable = document
+					.getElementById( ACCESSIBILITY_CHECKER_SIDEBAR_NAME.replace( '/', ':' ) )
+					?.querySelector( '.edac-panel-body button' );
+				if ( firstFocusable ) {
+					firstFocusable.focus();
+				}
+			} );
 		}
 	}, [ isPostEditor, enableComplementaryArea ] );
 

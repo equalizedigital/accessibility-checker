@@ -50,6 +50,8 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 
 	const [ linkUrl, setLinkUrl ] = useState( '' );
 	const [ showLinkPopover, setShowLinkPopover ] = useState( false );
+	const linkButtonMouseDownRef = useRef( false );
+	const popoverRef = useRef( null );
 	const [ isBold, setIsBold ] = useState( false );
 	const [ isItalic, setIsItalic ] = useState( false );
 	const [ isUnderline, setIsUnderline ] = useState( false );
@@ -84,10 +86,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		document.addEventListener( 'selectionchange', onSelectionChange );
 		return () => document.removeEventListener( 'selectionchange', onSelectionChange );
 	}, [] );
-
-	// ── Capture-phase shortcut guard ───────────────────────────────────
-	// Intercept formatting shortcuts on the native capture phase before
-	// browser extensions or other global listeners can steal them.
 
 	useEffect( () => {
 		const editor = editorRef.current;
@@ -129,12 +127,10 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	}, [ value ] );
 
-	// ── Helpers ────────────────────────────────────────────────────────
-
 	const saveSelection = () => {
-		const sel = window.getSelection();
-		if ( sel.rangeCount > 0 ) {
-			savedSelectionRef.current = sel.getRangeAt( 0 );
+		const selection = window.getSelection();
+		if ( selection.rangeCount > 0 ) {
+			savedSelectionRef.current = selection.getRangeAt( 0 );
 			return true;
 		}
 		return false;
@@ -230,8 +226,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	};
 
-	// ── Link handling ──────────────────────────────────────────────────
-
 	const handleAddLink = () => {
 		if ( ! linkUrl.trim() || ! isValidUrl( linkUrl ) ) {
 			return;
@@ -279,8 +273,6 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 		}
 	};
 
-	// ── Render ─────────────────────────────────────────────────────────
-
 	return (
 		<div className="edac-rich-textarea-wrapper">
 			{ label && (
@@ -317,23 +309,58 @@ export const RichTextarea = ( { value, onChange, label, help, rows = 3, disabled
 					icon={ link }
 					label={ __( 'Link (Ctrl+K)', 'accessibility-checker' ) }
 					onClick={ handleLinkButtonClick }
+					onMouseDown={ () => {
+						// Only set this flag when the popover is already open, so
+						// the Popover's onClose handler can yield to the button's
+						// onClick toggle instead of closing it a second time.
+						if ( showLinkPopover ) {
+							linkButtonMouseDownRef.current = true;
+						}
+					} }
 					disabled={ disabled }
 					size="small"
-					isPressed={ showLinkPopover }
+					aria-expanded={ showLinkPopover }
 				/>
 				{ showLinkPopover && linkButtonRef.current && (
 					<Popover
 						anchor={ linkButtonRef.current }
-						onClose={ () => setShowLinkPopover( false ) }
+						onClose={ () => {
+							// If the close was triggered by clicking the link button itself,
+							// let the button's onClick toggle handler manage the state instead.
+							if ( linkButtonMouseDownRef.current ) {
+								linkButtonMouseDownRef.current = false;
+								return;
+							}
+							setShowLinkPopover( false );
+							// Only restore focus to the link button when focus is still
+							// inside the popover (e.g., keyboard/Escape close). If the
+							// user clicked outside, focus has already moved to their target
+							// and we should not steal it back.
+							if ( popoverRef.current?.contains( document.activeElement ) ) {
+								linkButtonRef.current?.focus();
+							}
+						} }
 						placement="bottom"
 					>
-						<div className="edac-rich-textarea-link-popover">
+						<div ref={ popoverRef } className="edac-rich-textarea-link-popover">
 							<input
+								id="edac-link-input"
 								type="url"
 								placeholder={ __( 'https://example.com', 'accessibility-checker' ) }
+								aria-label={ __( 'Link URL', 'accessibility-checker' ) }
 								value={ linkUrl }
 								onChange={ ( e ) => setLinkUrl( e.target.value ) }
-								onKeyDown={ ( e ) => e.key === 'Enter' && handleAddLink() }
+								onKeyDown={ ( e ) => {
+									if ( e.key === 'Escape' ) {
+										e.stopPropagation();
+										linkButtonMouseDownRef.current = false;
+										setShowLinkPopover( false );
+										linkButtonRef.current?.focus();
+									} else if ( e.key === 'Enter' ) {
+										e.preventDefault();
+										handleAddLink();
+									}
+								} }
 								className="edac-rich-textarea-link-input"
 								autoFocus
 							/>
