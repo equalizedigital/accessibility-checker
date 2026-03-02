@@ -4,7 +4,7 @@
  * Displays a single issue with action menu.
  */
 
-import { __ } from '@wordpress/i18n';
+import { __, sprintf } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import Badge from './Badge';
@@ -39,7 +39,7 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 			) }
 			<DropdownMenu
 				icon={ moreVertical }
-				label={ __( 'Issue actions', 'accessibility-checker' ) }
+				label={ issue?.id ? sprintf( __( 'Issue actions for %s', 'accessibility-checker' ), issue.id ) : __( 'Issue actions', 'accessibility-checker' ) }
 				className="edac-analysis__issue-menu"
 			>
 				{ ( { onClose } ) => (
