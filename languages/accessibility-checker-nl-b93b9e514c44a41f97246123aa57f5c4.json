@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Sluit reparaties-modal"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Het element is niet zichtbaar. Probeer stijlen uit te schakelen."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Het element is niet focusseerbaar. Probeer stijlen uit te schakelen."
+            ],
+            "The element was not found on the page.": [
+                "Het element is niet gevonden op de pagina."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Open details voor %1$s, %2$s van %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Stijlen uitschakelen"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Het element is niet zichtbaar. Probeer stijlen uit te schakelen."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Het element is niet focusseerbaar. Probeer stijlen uit te schakelen."
-            ],
-            "The element was not found on the page.": [
-                "Het element is niet gevonden op de pagina."
             ],
             "An error occurred when loading the issues.": [
                 "Er is een fout opgetreden bij het laden van de problemen."

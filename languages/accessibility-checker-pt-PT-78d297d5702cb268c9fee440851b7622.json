@@ -1,0 +1,176 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/issueModal.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pt_PT",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Problem": [
+                "Problema",
+                "Problemas"
+            ],
+            "Needs Review": [
+                "Precisa de revis\u00e3o",
+                "Precisa de revis\u00e3o"
+            ],
+            "Critical": [
+                "Cr\u00edtico"
+            ],
+            "High": [
+                "Alto"
+            ],
+            "Medium": [
+                "M\u00e9dio"
+            ],
+            "Low": [
+                "Baixo"
+            ],
+            "These settings enable global fixes across your entire site.": [
+                "Estas defini\u00e7\u00f5es ativam corre\u00e7\u00f5es globais em todo o seu site."
+            ],
+            "Save": [
+                "Guardar"
+            ],
+            "Affected Code": [
+                "C\u00f3digo afetado"
+            ],
+            "View on page": [
+                "Ver na p\u00e1gina"
+            ],
+            "Reopen Issue": [
+                "Reabrir problema"
+            ],
+            "Dismiss Issue": [
+                "Ignorar problema"
+            ],
+            "Dismiss issue as:": [
+                "Ignorar problema como:"
+            ],
+            "View %s landmark on website, opens a new window": [
+                "Ver %s marco no site, abre uma nova janela"
+            ],
+            "Fix Issue": [
+                "Corrigir problema"
+            ],
+            "Issue related image": [
+                "Imagem relacionada com o problema"
+            ],
+            "Fix settings saved.": [
+                "Defini\u00e7\u00f5es de corre\u00e7\u00e3o guardadas."
+            ],
+            "Failed to save fix settings.": [
+                "Falha ao guardar as defini\u00e7\u00f5es de corre\u00e7\u00e3o."
+            ],
+            "Loading fix information...": [
+                "A carregar informa\u00e7\u00f5es de corre\u00e7\u00e3o..."
+            ],
+            "Save fix for: %s": [
+                "Guardar corre\u00e7\u00e3o para: %s"
+            ],
+            "Bold (Ctrl+B)": [
+                "Negrito (ctrl+b)"
+            ],
+            "Italic (Ctrl+I)": [
+                "It\u00e1lico (ctrl+i)"
+            ],
+            "Link (Ctrl+K)": [
+                "Liga\u00e7\u00e3o (ctrl+k)"
+            ],
+            "https:\/\/example.com": [
+                "https:\/\/example.com"
+            ],
+            "Link URL": [
+                "URL da liga\u00e7\u00e3o"
+            ],
+            "Add": [
+                "Adicionar"
+            ],
+            "Issue dismissed successfully.": [
+                "Problema ignorado com sucesso."
+            ],
+            "Issue reopened successfully.": [
+                "Problema reaberto com sucesso."
+            ],
+            "Dismissing...": [
+                "A ignorar..."
+            ],
+            "Issue Dismissed \u2014 %s": [
+                "Problema Ignorado \u2014 %s"
+            ],
+            "Issue Dismissed": [
+                "Problema ignorado"
+            ],
+            "Scope:": [
+                "\u00c2mbito:"
+            ],
+            "All pages": [
+                "Todas as p\u00e1ginas"
+            ],
+            "By:": [
+                "Por:"
+            ],
+            "On:": [
+                "Em:"
+            ],
+            "Reason for dismissal:": [
+                "Motivo para ignorar:"
+            ],
+            "Reopening...": [
+                "A reabrir..."
+            ],
+            "Comment (optional)": [
+                "Coment\u00e1rio (opcional)"
+            ],
+            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
+                "Adicione uma nota a explicar por que motivo este problema est\u00e1 a ser ignorado. Suporta negrito, it\u00e1lico e liga\u00e7\u00f5es."
+            ],
+            "More dismiss options": [
+                "Mais op\u00e7\u00f5es para ignorar"
+            ],
+            "Dismiss Globally": [
+                "Ignorar globalmente"
+            ],
+            "Dismiss & Close Modal": [
+                "Ignorar e Fechar Modal"
+            ],
+            "Issue #%s": [
+                "Problema n.\u00ba %s"
+            ],
+            "Issue Details": [
+                "Detalhes do problema"
+            ],
+            "Type": [
+                "Tipo"
+            ],
+            "Severity": [
+                "Gravidade"
+            ],
+            "Landmark": [
+                "Marco"
+            ],
+            "WCAG:": [
+                "WCAG:"
+            ],
+            "Show explanation": [
+                "Mostrar explica\u00e7\u00e3o"
+            ],
+            "Why It Matters": [
+                "Por que \u00e9 importante"
+            ],
+            "How to Fix": [
+                "Como corrigir"
+            ],
+            "More Detailed Documentation": [
+                "Documenta\u00e7\u00e3o mais detalhada"
+            ],
+            "Image": [
+                "Imagem"
+            ]
+        }
+    }
+}

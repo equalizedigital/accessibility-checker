@@ -1,0 +1,176 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/issueModal.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Problem": [
+                "Problem",
+                "Problem"
+            ],
+            "Needs Review": [
+                "Beh\u00f6ver granskas",
+                "Beh\u00f6ver granskas"
+            ],
+            "Critical": [
+                "Kritisk"
+            ],
+            "High": [
+                "H\u00f6g"
+            ],
+            "Medium": [
+                "Medel"
+            ],
+            "Low": [
+                "L\u00e5g"
+            ],
+            "These settings enable global fixes across your entire site.": [
+                "Dessa inst\u00e4llningar aktiverar globala korrigeringar \u00f6ver hela din webbplats."
+            ],
+            "Save": [
+                "Spara"
+            ],
+            "Affected Code": [
+                "P\u00e5verkad kod"
+            ],
+            "View on page": [
+                "Visa p\u00e5 sidan"
+            ],
+            "Reopen Issue": [
+                "\u00c5ter\u00f6ppna \u00e4rende"
+            ],
+            "Dismiss Issue": [
+                "Avf\u00e4rda \u00e4rende"
+            ],
+            "Dismiss issue as:": [
+                "Avf\u00e4rda \u00e4rende som:"
+            ],
+            "View %s landmark on website, opens a new window": [
+                "Visa %s landm\u00e4rke p\u00e5 webbplatsen, \u00f6ppnar ett nytt f\u00f6nster"
+            ],
+            "Fix Issue": [
+                "\u00c5tg\u00e4rda problem"
+            ],
+            "Issue related image": [
+                "Bild relaterad till \u00e4rendet"
+            ],
+            "Fix settings saved.": [
+                "Fixinst\u00e4llningar sparade."
+            ],
+            "Failed to save fix settings.": [
+                "Kunde inte spara fixinst\u00e4llningar."
+            ],
+            "Loading fix information...": [
+                "Laddar fixinformation..."
+            ],
+            "Save fix for: %s": [
+                "Spara fix f\u00f6r: %s"
+            ],
+            "Bold (Ctrl+B)": [
+                "Fet (ctrl+b)"
+            ],
+            "Italic (Ctrl+I)": [
+                "Kursiv (ctrl+i)"
+            ],
+            "Link (Ctrl+K)": [
+                "L\u00e4nk (ctrl+k)"
+            ],
+            "https:\/\/example.com": [
+                "https:\/\/example.com"
+            ],
+            "Link URL": [
+                "L\u00e4nk URL"
+            ],
+            "Add": [
+                "L\u00e4gg till"
+            ],
+            "Issue dismissed successfully.": [
+                "\u00c4rendet avf\u00e4rdades framg\u00e5ngsrikt."
+            ],
+            "Issue reopened successfully.": [
+                "\u00c4rendet \u00e5ter\u00f6ppnades framg\u00e5ngsrikt."
+            ],
+            "Dismissing...": [
+                "Avf\u00e4rdar..."
+            ],
+            "Issue Dismissed \u2014 %s": [
+                "\u00c4rendet avf\u00e4rdat \u2014 %s"
+            ],
+            "Issue Dismissed": [
+                "\u00c4rendet avf\u00e4rdat"
+            ],
+            "Scope:": [
+                "Omfattning:"
+            ],
+            "All pages": [
+                "Alla sidor"
+            ],
+            "By:": [
+                "Av:"
+            ],
+            "On:": [
+                "P\u00e5:"
+            ],
+            "Reason for dismissal:": [
+                "Anledning till avf\u00e4rdande:"
+            ],
+            "Reopening...": [
+                "\u00c5ter\u00f6ppnar..."
+            ],
+            "Comment (optional)": [
+                "Kommentar (valfritt)"
+            ],
+            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
+                "L\u00e4gg till en anteckning som f\u00f6rklarar varf\u00f6r detta \u00e4rende avf\u00e4rdas. St\u00f6der fetstil, kursiv stil och l\u00e4nkar."
+            ],
+            "More dismiss options": [
+                "Fler avf\u00e4rdningsalternativ"
+            ],
+            "Dismiss Globally": [
+                "Avf\u00e4rda globalt"
+            ],
+            "Dismiss & Close Modal": [
+                "Avf\u00e4rda och st\u00e4ng modal"
+            ],
+            "Issue #%s": [
+                "\u00c4rende #%s"
+            ],
+            "Issue Details": [
+                "\u00c4rendedetaljer"
+            ],
+            "Type": [
+                "Typ"
+            ],
+            "Severity": [
+                "Allvarlighetsgrad"
+            ],
+            "Landmark": [
+                "Landm\u00e4rke"
+            ],
+            "WCAG:": [
+                "WCAG:"
+            ],
+            "Show explanation": [
+                "Visa f\u00f6rklaring"
+            ],
+            "Why It Matters": [
+                "Varf\u00f6r det \u00e4r viktigt"
+            ],
+            "How to Fix": [
+                "Hur man \u00e5tg\u00e4rdar"
+            ],
+            "More Detailed Documentation": [
+                "Mer detaljerad dokumentation"
+            ],
+            "Image": [
+                "Bild"
+            ]
+        }
+    }
+}

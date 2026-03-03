@@ -1,0 +1,225 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ro_RO",
+                "plural-forms": "nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2);"
+            },
+            "Accessibility Checker": [
+                "Verificator de Accesibilitate"
+            ],
+            "Needs Review": [
+                "Necesit\u0103 revizuire",
+                "Necesit\u0103 revizuire",
+                "Necesit\u0103 revizuire"
+            ],
+            "Critical": [
+                "Critic"
+            ],
+            "High": [
+                "Ridicat"
+            ],
+            "Medium": [
+                "Mediu"
+            ],
+            "Low": [
+                "Sc\u0103zut"
+            ],
+            "View on page": [
+                "Vizualiza\u021bi pe pagin\u0103"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "Con\u021binut insuficient pentru a determina un nivel de citire precis."
+            ],
+            "Simplified Summary": [
+                "Rezumat simplificat"
+            ],
+            "Reading Level": [
+                "Nivel de citire"
+            ],
+            "Accessibility Status": [
+                "Stare accesibilitate"
+            ],
+            "Accessibility Analysis": [
+                "Analiza accesibilit\u0103\u021bii"
+            ],
+            "Readability Analysis": [
+                "Analiza lizibilit\u0103\u021bii"
+            ],
+            "Clear Issues": [
+                "\u0218terge problemele"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "Aceasta va \u0219terge toate problemele pentru aceast\u0103 postare. Va fi necesar\u0103 o salvare pentru a declan\u0219a o nou\u0103 scanare a con\u021binutului post\u0103rii. Dori\u021bi s\u0103 continua\u021bi?"
+            ],
+            "Failed to load accessibility data": [
+                "Nu s-au putut \u00eenc\u0103rca datele de accesibilitate"
+            ],
+            "Error loading accessibility data": [
+                "Eroare la \u00eenc\u0103rcarea datelor de accesibilitate"
+            ],
+            "Loading accessibility results...": [
+                "Se \u00eencarc\u0103 rezultatele accesibilit\u0103\u021bii..."
+            ],
+            "Updating accessibility data...": [
+                "Se actualizeaz\u0103 datele de accesibilitate..."
+            ],
+            "problem to address": [
+                "problem\u0103 de rezolvat",
+                "probleme de rezolvat",
+                "probleme de rezolvat"
+            ],
+            "issue that needs review": [
+                "problem\u0103 care necesit\u0103 revizuire",
+                "probleme care necesit\u0103 revizuire",
+                "probleme care necesit\u0103 revizuire"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "Ave\u021bi %1$d %2$s \u0219i %3$d %4$s."
+            ],
+            "You have %1$d %2$s.": [
+                "Ave\u021bi %1$d %2$s."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "Verifica\u021bi \u0219i remedia\u021bi problemele de accesibilitate din con\u021binutul dvs."
+            ],
+            "Open Accessibility Panel": [
+                "Deschide\u021bi panoul de accesibilitate"
+            ],
+            "N\/A": [
+                "N\/A"
+            ],
+            "%dth": [
+                "al %d-lea"
+            ],
+            "Summary provided": [
+                "Rezumat furnizat"
+            ],
+            "Summary required": [
+                "Rezumat necesar"
+            ],
+            "Summary not required": [
+                "Rezumat nu este necesar"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "Vizualiza\u021bi %d probleme \u00een Analiza Accesibilit\u0103\u021bii"
+            ],
+            "Problems": [
+                "Probleme"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "Vizualiza\u021bi %d elemente care necesit\u0103 revizuire \u00een Analiza Accesibilit\u0103\u021bii"
+            ],
+            "View reading level details: %s": [
+                "Vizualiza\u021bi detaliile nivelului de citire: %s"
+            ],
+            "Passed Checks": [
+                "Verific\u0103ri trecute"
+            ],
+            "Issue": [
+                "Problem\u0103"
+            ],
+            "Issue actions for %s": [
+                "Ac\u021biuni problem\u0103 pentru %s"
+            ],
+            "Issue actions": [
+                "Ac\u021biuni problem\u0103"
+            ],
+            "Show code": [
+                "Arat\u0103 codul"
+            ],
+            "Reopen issue": [
+                "Redeschide\u021bi problema"
+            ],
+            "Dismiss issue": [
+                "Ignora\u021bi problema"
+            ],
+            "Apply fix": [
+                "Aplica\u021bi remedierea"
+            ],
+            "%d total": [
+                "%d total"
+            ],
+            "No dismissed issues.": [
+                "Nicio problem\u0103 ignorat\u0103."
+            ],
+            "No issues found.": [
+                "Nu s-au g\u0103sit probleme."
+            ],
+            "%d total issues": [
+                "%d probleme \u00een total"
+            ],
+            "Dismissed Issues": [
+                "Probleme ignorate"
+            ],
+            "Simplified summary saved successfully.": [
+                "Rezumatul simplificat a fost salvat cu succes."
+            ],
+            "Failed to save summary. Please try again.": [
+                "Nu s-a putut salva rezumatul. V\u0103 rug\u0103m s\u0103 \u00eencerca\u021bi din nou."
+            ],
+            "An error occurred while saving the summary.": [
+                "A ap\u0103rut o eroare la salvarea rezumatului."
+            ],
+            "%s grade": [
+                "clasa %s"
+            ],
+            "%dth grade": [
+                "clasa a %d-a"
+            ],
+            "Not available": [
+                "Indisponibil"
+            ],
+            "Warning": [
+                "Avertisment"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "Aceast\u0103 postare nu con\u021bine suficient con\u021binut pentru a calcula un nivel de citire."
+            ],
+            "Adjust summary prompts in settings.": [
+                "Ajusta\u021bi solicit\u0103rile de rezumat \u00een set\u0103ri."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "Con\u021binutul la sau sub nivelul de citire al clasei a IX-a nu necesit\u0103 un rezumat simplificat."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "Con\u021binutul peste nivelul de citire al clasei a IX-a necesit\u0103 un rezumat simplificat pentru a \u00eendeplini ghidul WCAG AAA."
+            ],
+            "Learn more about readability requirements.": [
+                "Afla\u021bi mai multe despre cerin\u021bele de lizibilitate."
+            ],
+            "Simplified Summary Reading Level": [
+                "Nivel de citire al rezumatului simplificat"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "Necesit\u0103 \u00eembun\u0103t\u0103\u021biri, rezumatul este peste nivelul de citire al clasei a IX-a."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "Sub nivelul de citire recomandat al clasei a IX-a."
+            ],
+            "Enter simplified summary...": [
+                "Introduce\u021bi rezumatul simplificat..."
+            ],
+            "Save Summary": [
+                "Salva\u021bi rezumatul"
+            ],
+            "Loading accessibility data...": [
+                "Se \u00eencarc\u0103 datele de accesibilitate..."
+            ],
+            "Accessibility Checker actions": [
+                "Ac\u021biuni Accessibility Checker"
+            ],
+            "Scan": [
+                "Scaneaz\u0103"
+            ],
+            "Refresh": [
+                "Re\u00eemprosp\u0103teaz\u0103"
+            ]
+        }
+    }
+}

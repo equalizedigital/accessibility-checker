@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Sulje korjausikkuna"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elementti ei ole n\u00e4kyviss\u00e4. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elementti ei ole fokusoitavissa. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
+            ],
+            "The element was not found on the page.": [
+                "Elementti\u00e4 ei l\u00f6ytynyt sivulta."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Avaa tiedot kohteille %1$s, %2$s\/%3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Poista tyylit k\u00e4yt\u00f6st\u00e4"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Elementti ei ole n\u00e4kyviss\u00e4. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Elementti ei ole fokusoitavissa. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
-            ],
-            "The element was not found on the page.": [
-                "Elementti\u00e4 ei l\u00f6ytynyt sivulta."
             ],
             "An error occurred when loading the issues.": [
                 "Virhe ongelmien lataamisessa."

@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Korrektur-Modal schlie\u00dfen"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Das Element ist nicht sichtbar. Versuchen Sie, die Stile zu deaktivieren."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Das Element ist nicht fokussierbar. Versuchen Sie, die Stile zu deaktivieren."
+            ],
+            "The element was not found on the page.": [
+                "Das Element wurde auf der Seite nicht gefunden."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Details \u00f6ffnen f\u00fcr %1$s, %2$s von %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Stile deaktivieren"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Das Element ist nicht sichtbar. Versuchen Sie, die Stile zu deaktivieren."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Das Element ist nicht fokussierbar. Versuchen Sie, die Stile zu deaktivieren."
-            ],
-            "The element was not found on the page.": [
-                "Das Element wurde auf der Seite nicht gefunden."
             ],
             "An error occurred when loading the issues.": [
                 "Beim Laden der Probleme ist ein Fehler aufgetreten."

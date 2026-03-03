@@ -10,14 +10,14 @@
                 "lang": "es_ES",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
-            "opens a new window": [
-                "abre una nueva ventana"
-            ],
             "EDAC: Did not find a matching target ID on the page for the skip link.": [
                 "EDAC: No se encontr\u00f3 un ID de destino coincidente en la p\u00e1gina para el enlace de salto."
             ],
             "EDAC: Error updating history for skip link.": [
                 "EDAC: Error al actualizar el historial para el enlace de salto."
+            ],
+            "opens a new window": [
+                "abre una nueva ventana"
             ]
         }
     }

@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "\u05e1\u05d2\u05d5\u05e8 \u05d7\u05dc\u05d5\u05df \u05ea\u05d9\u05e7\u05d5\u05e0\u05d9\u05dd"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05d0\u05d9\u05e0\u05d5 \u05d2\u05dc\u05d5\u05d9. \u05e0\u05e1\u05d4 \u05dc\u05d4\u05e9\u05d1\u05d9\u05ea \u05e1\u05d2\u05e0\u05d5\u05e0\u05d5\u05ea."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05d0\u05d9\u05e0\u05d5 \u05e0\u05d9\u05ea\u05df \u05dc\u05de\u05d9\u05e7\u05d5\u05d3. \u05e0\u05e1\u05d4 \u05dc\u05d4\u05e9\u05d1\u05d9\u05ea \u05e1\u05d2\u05e0\u05d5\u05e0\u05d5\u05ea."
+            ],
+            "The element was not found on the page.": [
+                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0 \u05d1\u05d3\u05e3."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "\u05e4\u05ea\u05d7 \u05e4\u05e8\u05d8\u05d9\u05dd \u05e2\u05d1\u05d5\u05e8 %1$s, %2$s \u05de\u05ea\u05d5\u05da %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "\u05d4\u05e9\u05d1\u05ea \u05e1\u05d2\u05e0\u05d5\u05e0\u05d5\u05ea"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05d0\u05d9\u05e0\u05d5 \u05d2\u05dc\u05d5\u05d9. \u05e0\u05e1\u05d4 \u05dc\u05d4\u05e9\u05d1\u05d9\u05ea \u05e1\u05d2\u05e0\u05d5\u05e0\u05d5\u05ea."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05d0\u05d9\u05e0\u05d5 \u05e0\u05d9\u05ea\u05df \u05dc\u05de\u05d9\u05e7\u05d5\u05d3. \u05e0\u05e1\u05d4 \u05dc\u05d4\u05e9\u05d1\u05d9\u05ea \u05e1\u05d2\u05e0\u05d5\u05e0\u05d5\u05ea."
-            ],
-            "The element was not found on the page.": [
-                "\u05d4\u05e8\u05db\u05d9\u05d1 \u05dc\u05d0 \u05e0\u05de\u05e6\u05d0 \u05d1\u05d3\u05e3."
             ],
             "An error occurred when loading the issues.": [
                 "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05d8\u05e2\u05d9\u05e0\u05ea \u05d4\u05d1\u05e2\u05d9\u05d5\u05ea."

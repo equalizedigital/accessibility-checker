@@ -10,14 +10,14 @@
                 "lang": "de_DE",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
-            "opens a new window": [
-                "\u00f6ffnet ein neues Fenster"
-            ],
             "EDAC: Did not find a matching target ID on the page for the skip link.": [
                 "EDAC: Keine passende Ziel-ID auf der Seite f\u00fcr den Skip-Link gefunden."
             ],
             "EDAC: Error updating history for skip link.": [
                 "EDAC: Fehler beim Aktualisieren des Verlaufs f\u00fcr Skip-Link."
+            ],
+            "opens a new window": [
+                "\u00f6ffnet ein neues Fenster"
             ]
         }
     }
