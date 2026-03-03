@@ -31,7 +31,6 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
-	const isPro = window.edac_editor_app?.pro === '1';
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 
@@ -233,18 +232,6 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 										) }
 										renderContent={ ( { onClose } ) => (
 											<div className="edac-analysis__dismiss-dropdown-content">
-												{ isPro && (
-													<Button
-														variant="tertiary"
-														type="button"
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, true );
-														} }
-													>
-														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
-													</Button>
-												) }
 												<Button
 													variant="tertiary"
 													type="button"
@@ -256,7 +243,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 																onCloseModal();
 															}
 														} );
-													} }>
+													} }
+												>
 													{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
 												</Button>
 											</div>
