@@ -670,21 +670,25 @@ class Ajax {
 				if ( 0 === $simplified_summary_grade ) {
 					$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
-						<h3 class="edac-readability-list-item-title">' . sprintf(
+						<h3 class="edac-readability-list-item-title">' .
+						sprintf(
 							/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
 							esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
 							'<strong class="failed-text-color">' . esc_html__( 'None', 'accessibility-checker' ) . '</strong>'
-						) . '</h3>
+						)
+						. '</h3>
 						<p class="edac-readability-list-item-description">' . esc_html__( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) . '</p>
 					</li>';
 				} else {
 					$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
 				' . edac_icon( $simplified_summary_grade_failed ? 'warning' : 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<h3 class="edac-readability-list-item-title">' . sprintf(
-						/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
-						esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
-						'<strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . esc_html( edac_ordinal( $simplified_summary_grade ) ) . '</strong>'
-					) . '</h3>
+					<h3 class="edac-readability-list-item-title">' .
+						sprintf(
+							/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
+							esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
+							'<strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . esc_html( edac_ordinal( $simplified_summary_grade ) ) . '</strong>'
+						)
+					. '</h3>
 					<p class="edac-readability-list-item-description">' . ( ( $simplified_summary_grade_failed )
 						? esc_html__( 'Your simplified summary has a reading level above 9th grade.', 'accessibility-checker' )
 						: esc_html__( 'Your simplified summary has a reading level at or below 9th grade.', 'accessibility-checker' )
