@@ -76,7 +76,7 @@ const AccessibilityStatus = () => {
 
 	const postGrade = readability.post_grade || 0;
 	const postGradeReadable = readability.post_grade_readability || '';
-	const needsSummary = postGrade > 9;
+	const needsSummary = !! readability.post_grade_failed;
 	const hasSummary = !! readability.simplified_summary;
 
 	// Determine status icon based on errors and warnings
