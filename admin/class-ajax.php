@@ -686,8 +686,8 @@ class Ajax {
 						'<strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . esc_html( edac_ordinal( $simplified_summary_grade ) ) . '</strong>'
 					) . '</h3>
 					<p class="edac-readability-list-item-description">' . ( ( $simplified_summary_grade_failed )
-						? esc_html__( 'Your simplified summary has a reading level higher than 9th grade.', 'accessibility-checker' )
-						: esc_html__( 'Your simplified summary has a reading level lower than 9th grade.', 'accessibility-checker' )
+						? esc_html__( 'Your simplified summary has a reading level above 9th grade.', 'accessibility-checker' )
+						: esc_html__( 'Your simplified summary has a reading level at or below 9th grade.', 'accessibility-checker' )
 					) . '</p>
 				</li>';
 				}
