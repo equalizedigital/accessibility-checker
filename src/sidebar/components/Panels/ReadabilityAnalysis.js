@@ -129,7 +129,7 @@ const ReadabilityAnalysis = () => {
 			return null;
 		}
 
-		if ( postGrade >= 9 ) {
+		if ( readabilityData?.post_grade_failed ) {
 			return 'above';
 		}
 
@@ -297,7 +297,7 @@ const ReadabilityAnalysis = () => {
 
 						<p className="edac-panel-section__message">
 							{ readingLevelStatus === 'below'
-								? __( 'Content written at a 9th-grade reading level or below does not require a simplified summary.', 'accessibility-checker' )
+								? __( 'Content at or below a 9th-grade reading level does not require a simplified summary.', 'accessibility-checker' )
 								: __( 'Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.', 'accessibility-checker' )
 							}
 						</p>
