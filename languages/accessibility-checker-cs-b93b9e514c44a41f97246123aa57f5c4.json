@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Zav\u0159\u00edt mod\u00e1ln\u00ed okno oprav"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Prvek nen\u00ed viditeln\u00fd. Zkuste zak\u00e1zat styly."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Prvek nen\u00ed fokusovateln\u00fd. Zkuste zak\u00e1zat styly."
+            ],
+            "The element was not found on the page.": [
+                "Prvek nebyl na str\u00e1nce nalezen."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Otev\u0159\u00edt podrobnosti pro %1$s, %2$s z %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Zak\u00e1zat styly"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Prvek nen\u00ed viditeln\u00fd. Zkuste zak\u00e1zat styly."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Prvek nen\u00ed fokusovateln\u00fd. Zkuste zak\u00e1zat styly."
-            ],
-            "The element was not found on the page.": [
-                "Prvek nebyl na str\u00e1nce nalezen."
             ],
             "An error occurred when loading the issues.": [
                 "P\u0159i na\u010d\u00edt\u00e1n\u00ed probl\u00e9m\u016f do\u0161lo k chyb\u011b."

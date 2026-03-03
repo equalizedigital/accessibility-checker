@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "\u00cenchide modalul de remedieri"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elementul nu este vizibil. \u00cencerca\u021bi s\u0103 dezactiva\u021bi stilurile."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elementul nu este focusabil. \u00cencerca\u021bi s\u0103 dezactiva\u021bi stilurile."
+            ],
+            "The element was not found on the page.": [
+                "Elementul nu a fost g\u0103sit pe pagin\u0103."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Deschide\u021bi detalii pentru %1$s, %2$s din %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Dezactiveaz\u0103 stilurile"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Elementul nu este vizibil. \u00cencerca\u021bi s\u0103 dezactiva\u021bi stilurile."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Elementul nu este focusabil. \u00cencerca\u021bi s\u0103 dezactiva\u021bi stilurile."
-            ],
-            "The element was not found on the page.": [
-                "Elementul nu a fost g\u0103sit pe pagin\u0103."
             ],
             "An error occurred when loading the issues.": [
                 "A ap\u0103rut o eroare la \u00eenc\u0103rcarea problemelor."

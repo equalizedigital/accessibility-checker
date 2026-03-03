@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Tutup modal perbaikan"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elemen tidak terlihat. Coba nonaktifkan gaya."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elemen tidak dapat difokuskan. Coba nonaktifkan gaya."
+            ],
+            "The element was not found on the page.": [
+                "Elemen tidak ditemukan di halaman."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Buka detail untuk %1$s, %2$s dari %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Nonaktifkan gaya"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Elemen tidak terlihat. Coba nonaktifkan gaya."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Elemen tidak dapat difokuskan. Coba nonaktifkan gaya."
-            ],
-            "The element was not found on the page.": [
-                "Elemen tidak ditemukan di halaman."
             ],
             "An error occurred when loading the issues.": [
                 "Terjadi kesalahan saat memuat masalah."

@@ -1,0 +1,174 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/issueModal.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "zh_CN",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Problem": [
+                "\u95ee\u9898"
+            ],
+            "Needs Review": [
+                "\u9700\u8981\u5ba1\u67e5"
+            ],
+            "Critical": [
+                "\u4e25\u91cd"
+            ],
+            "High": [
+                "\u9ad8"
+            ],
+            "Medium": [
+                "\u4e2d"
+            ],
+            "Low": [
+                "\u4f4e"
+            ],
+            "These settings enable global fixes across your entire site.": [
+                "\u8fd9\u4e9b\u8bbe\u7f6e\u53ef\u5bf9\u6574\u4e2a\u7f51\u7ad9\u8fdb\u884c\u5168\u5c40\u4fee\u590d\u3002"
+            ],
+            "Save": [
+                "\u8282\u7701"
+            ],
+            "Affected Code": [
+                "\u53d7\u5f71\u54cd\u7684\u4ee3\u7801"
+            ],
+            "View on page": [
+                "\u5728\u9875\u9762\u4e0a\u67e5\u770b"
+            ],
+            "Reopen Issue": [
+                "\u91cd\u65b0\u6253\u5f00\u95ee\u9898"
+            ],
+            "Dismiss Issue": [
+                "\u5ffd\u7565\u95ee\u9898"
+            ],
+            "Dismiss issue as:": [
+                "\u5ffd\u7565\u95ee\u9898\u4e3a\uff1a"
+            ],
+            "View %s landmark on website, opens a new window": [
+                "\u5728\u7f51\u7ad9\u4e0a\u67e5\u770b %s \u5730\u6807\uff0c\u5c06\u5728\u65b0\u7a97\u53e3\u4e2d\u6253\u5f00"
+            ],
+            "Fix Issue": [
+                "\u4fee\u590d\u95ee\u9898"
+            ],
+            "Issue related image": [
+                "\u95ee\u9898\u76f8\u5173\u56fe\u7247"
+            ],
+            "Fix settings saved.": [
+                "\u4fee\u590d\u8bbe\u7f6e\u5df2\u4fdd\u5b58\u3002"
+            ],
+            "Failed to save fix settings.": [
+                "\u672a\u80fd\u4fdd\u5b58\u4fee\u590d\u8bbe\u7f6e\u3002"
+            ],
+            "Loading fix information...": [
+                "\u6b63\u5728\u52a0\u8f7d\u4fee\u590d\u4fe1\u606f..."
+            ],
+            "Save fix for: %s": [
+                "\u4fdd\u5b58\u4fee\u590d\uff1a%s"
+            ],
+            "Bold (Ctrl+B)": [
+                "\u7c97\u4f53 (Ctrl+B)"
+            ],
+            "Italic (Ctrl+I)": [
+                "\u659c\u4f53 (Ctrl+I)"
+            ],
+            "Link (Ctrl+K)": [
+                "\u94fe\u63a5 (Ctrl+K)"
+            ],
+            "https:\/\/example.com": [
+                "https:\/\/example.com"
+            ],
+            "Link URL": [
+                "\u94fe\u63a5 URL"
+            ],
+            "Add": [
+                "\u6dfb\u52a0"
+            ],
+            "Issue dismissed successfully.": [
+                "\u95ee\u9898\u5df2\u6210\u529f\u5ffd\u7565\u3002"
+            ],
+            "Issue reopened successfully.": [
+                "\u95ee\u9898\u5df2\u6210\u529f\u91cd\u65b0\u6253\u5f00\u3002"
+            ],
+            "Dismissing...": [
+                "\u6b63\u5728\u5ffd\u7565..."
+            ],
+            "Issue Dismissed \u2014 %s": [
+                "\u95ee\u9898\u5df2\u5ffd\u7565 \u2014 %s"
+            ],
+            "Issue Dismissed": [
+                "\u95ee\u9898\u5df2\u5ffd\u7565"
+            ],
+            "Scope:": [
+                "\u8303\u56f4\uff1a"
+            ],
+            "All pages": [
+                "\u6240\u6709\u9875\u9762"
+            ],
+            "By:": [
+                "\u7531\uff1a"
+            ],
+            "On:": [
+                "\u4e8e\uff1a"
+            ],
+            "Reason for dismissal:": [
+                "\u5ffd\u7565\u539f\u56e0\uff1a"
+            ],
+            "Reopening...": [
+                "\u6b63\u5728\u91cd\u65b0\u6253\u5f00..."
+            ],
+            "Comment (optional)": [
+                "\u8bc4\u8bba\uff08\u53ef\u9009\uff09"
+            ],
+            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
+                "\u6dfb\u52a0\u8bf4\u660e\u6b64\u95ee\u9898\u4e3a\u4f55\u88ab\u5ffd\u7565\u7684\u5907\u6ce8\u3002\u652f\u6301\u7c97\u4f53\u3001\u659c\u4f53\u548c\u94fe\u63a5\u3002"
+            ],
+            "More dismiss options": [
+                "\u66f4\u591a\u5ffd\u7565\u9009\u9879"
+            ],
+            "Dismiss Globally": [
+                "\u5168\u5c40\u5ffd\u7565"
+            ],
+            "Dismiss & Close Modal": [
+                "\u5ffd\u7565\u5e76\u5173\u95ed\u6a21\u6001\u6846"
+            ],
+            "Issue #%s": [
+                "\u95ee\u9898 #%s"
+            ],
+            "Issue Details": [
+                "\u95ee\u9898\u8be6\u60c5"
+            ],
+            "Type": [
+                "\u7c7b\u578b"
+            ],
+            "Severity": [
+                "\u4e25\u91cd\u6027"
+            ],
+            "Landmark": [
+                "\u5730\u6807"
+            ],
+            "WCAG:": [
+                "WCAG\uff1a"
+            ],
+            "Show explanation": [
+                "\u663e\u793a\u89e3\u91ca"
+            ],
+            "Why It Matters": [
+                "\u91cd\u8981\u6027"
+            ],
+            "How to Fix": [
+                "\u5982\u4f55\u4fee\u590d"
+            ],
+            "More Detailed Documentation": [
+                "\u66f4\u8be6\u7ec6\u7684\u6587\u6863"
+            ],
+            "Image": [
+                "\u56fe\u7247"
+            ]
+        }
+    }
+}

@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Luk rettelsesvindue"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elementet er ikke synligt. Pr\u00f8v at deaktivere typografier."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elementet kan ikke fokuseres. Pr\u00f8v at deaktivere typografier."
+            ],
+            "The element was not found on the page.": [
+                "Elementet blev ikke fundet p\u00e5 siden."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "\u00c5bn detaljer for %1$s, %2$s af %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Deaktiv\u00e9r stilarter"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Elementet er ikke synligt. Pr\u00f8v at deaktivere typografier."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Elementet kan ikke fokuseres. Pr\u00f8v at deaktivere typografier."
-            ],
-            "The element was not found on the page.": [
-                "Elementet blev ikke fundet p\u00e5 siden."
             ],
             "An error occurred when loading the issues.": [
                 "Der opstod en fejl under indl\u00e6sning af problemerne."

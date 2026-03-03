@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Fermer la fen\u00eatre modale des corrections"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "L'\u00e9l\u00e9ment n'est pas visible. Essayez de d\u00e9sactiver les styles."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "L'\u00e9l\u00e9ment n'est pas focusable. Essayez de d\u00e9sactiver les styles."
+            ],
+            "The element was not found on the page.": [
+                "L'\u00e9l\u00e9ment n'a pas \u00e9t\u00e9 trouv\u00e9 sur la page."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Ouvrir les d\u00e9tails pour %1$s, %2$s sur %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "D\u00e9sactiver les styles"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "L'\u00e9l\u00e9ment n'est pas visible. Essayez de d\u00e9sactiver les styles."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "L'\u00e9l\u00e9ment n'est pas focusable. Essayez de d\u00e9sactiver les styles."
-            ],
-            "The element was not found on the page.": [
-                "L'\u00e9l\u00e9ment n'a pas \u00e9t\u00e9 trouv\u00e9 sur la page."
             ],
             "An error occurred when loading the issues.": [
                 "Une erreur s'est produite lors du chargement des probl\u00e8mes."

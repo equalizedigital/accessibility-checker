@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "\u5173\u95ed\u4fee\u590d\u6a21\u6001\u6846"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "\u5143\u7d20\u4e0d\u53ef\u89c1\u3002\u8bf7\u5c1d\u8bd5\u7981\u7528\u6837\u5f0f\u3002"
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "\u5143\u7d20\u4e0d\u53ef\u805a\u7126\u3002\u8bf7\u5c1d\u8bd5\u7981\u7528\u6837\u5f0f\u3002"
+            ],
+            "The element was not found on the page.": [
+                "\u672a\u5728\u9875\u9762\u4e0a\u627e\u5230\u8be5\u5143\u7d20\u3002"
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "\u6253\u5f00 %1$s\u3001%2$s\uff08\u5171 %3$s\uff09\u7684\u8be6\u7ec6\u4fe1\u606f"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "\u7981\u7528\u6837\u5f0f"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "\u5143\u7d20\u4e0d\u53ef\u89c1\u3002\u8bf7\u5c1d\u8bd5\u7981\u7528\u6837\u5f0f\u3002"
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "\u5143\u7d20\u4e0d\u53ef\u805a\u7126\u3002\u8bf7\u5c1d\u8bd5\u7981\u7528\u6837\u5f0f\u3002"
-            ],
-            "The element was not found on the page.": [
-                "\u672a\u5728\u9875\u9762\u4e0a\u627e\u5230\u8be5\u5143\u7d20\u3002"
             ],
             "An error occurred when loading the issues.": [
                 "\u52a0\u8f7d\u95ee\u9898\u65f6\u53d1\u751f\u9519\u8bef\u3002"

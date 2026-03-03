@@ -10,14 +10,14 @@
                 "lang": "da_DK",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
-            "opens a new window": [
-                "\u00e5bner et nyt vindue"
-            ],
             "EDAC: Did not find a matching target ID on the page for the skip link.": [
                 "EDAC: Fandt ikke et matchende m\u00e5l-ID p\u00e5 siden for spring over-linket."
             ],
             "EDAC: Error updating history for skip link.": [
                 "EDAC: Fejl ved opdatering af historik for spring over-link."
+            ],
+            "opens a new window": [
+                "\u00e5bner et nyt vindue"
             ]
         }
     }

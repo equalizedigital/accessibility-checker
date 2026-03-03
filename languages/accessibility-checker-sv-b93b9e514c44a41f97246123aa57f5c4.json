@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "St\u00e4ng \u00e5tg\u00e4rdsmodal"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elementet \u00e4r inte synligt. F\u00f6rs\u00f6k att inaktivera stilar."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elementet \u00e4r inte fokuserbart. F\u00f6rs\u00f6k att inaktivera stilar."
+            ],
+            "The element was not found on the page.": [
+                "Elementet hittades inte p\u00e5 sidan."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "\u00d6ppna detaljer f\u00f6r %1$s, %2$s av %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Inaktivera stilar"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Elementet \u00e4r inte synligt. F\u00f6rs\u00f6k att inaktivera stilar."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Elementet \u00e4r inte fokuserbart. F\u00f6rs\u00f6k att inaktivera stilar."
-            ],
-            "The element was not found on the page.": [
-                "Elementet hittades inte p\u00e5 sidan."
             ],
             "An error occurred when loading the issues.": [
                 "Ett fel uppstod n\u00e4r problemen skulle laddas."

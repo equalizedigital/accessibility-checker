@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Chiudi la finestra modale delle correzioni"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "L'elemento non \u00e8 visibile. Prova a disabilitare gli stili."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "L'elemento non \u00e8 selezionabile. Prova a disabilitare gli stili."
+            ],
+            "The element was not found on the page.": [
+                "L'elemento non \u00e8 stato trovato sulla pagina."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Apri i dettagli per %1$s, %2$s di %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Disattiva stili"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "L'elemento non \u00e8 visibile. Prova a disabilitare gli stili."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "L'elemento non \u00e8 selezionabile. Prova a disabilitare gli stili."
-            ],
-            "The element was not found on the page.": [
-                "L'elemento non \u00e8 stato trovato sulla pagina."
             ],
             "An error occurred when loading the issues.": [
                 "Si \u00e8 verificato un errore durante il caricamento dei problemi."

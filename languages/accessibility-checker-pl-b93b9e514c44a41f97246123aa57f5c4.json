@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Zamknij modal poprawek"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Element nie jest widoczny. Spr\u00f3buj wy\u0142\u0105czy\u0107 style."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Element nie jest mo\u017cliwy do ustawienia fokusu. Spr\u00f3buj wy\u0142\u0105czy\u0107 style."
+            ],
+            "The element was not found on the page.": [
+                "Element nie zosta\u0142 znaleziony na stronie."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "Otw\u00f3rz szczeg\u00f3\u0142y dla %1$s, %2$s z %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "Wy\u0142\u0105cz style"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Element nie jest widoczny. Spr\u00f3buj wy\u0142\u0105czy\u0107 style."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Element nie jest mo\u017cliwy do ustawienia fokusu. Spr\u00f3buj wy\u0142\u0105czy\u0107 style."
-            ],
-            "The element was not found on the page.": [
-                "Element nie zosta\u0142 znaleziony na stronie."
             ],
             "An error occurred when loading the issues.": [
                 "Wyst\u0105pi\u0142 b\u0142\u0105d podczas \u0142adowania problem\u00f3w."

@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "\uc218\uc815 \ubaa8\ub2ec \ub2eb\uae30"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "\uc694\uc18c\uac00 \ubcf4\uc774\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uc2a4\ud0c0\uc77c\uc744 \ube44\ud65c\uc131\ud654\ud574 \ubcf4\uc138\uc694."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "\uc694\uc18c\uc5d0 \ud3ec\ucee4\uc2a4\ub97c \ub9de\ucd9c \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uc2a4\ud0c0\uc77c\uc744 \ube44\ud65c\uc131\ud654\ud574 \ubcf4\uc138\uc694."
+            ],
+            "The element was not found on the page.": [
+                "\ud398\uc774\uc9c0\uc5d0\uc11c \uc694\uc18c\ub97c \ucc3e\uc744 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "%1$s, %2$s\/%3$s\uc5d0 \ub300\ud55c \uc138\ubd80 \uc815\ubcf4 \uc5f4\uae30"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "\uc2a4\ud0c0\uc77c \ube44\ud65c\uc131\ud654"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "\uc694\uc18c\uac00 \ubcf4\uc774\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4. \uc2a4\ud0c0\uc77c\uc744 \ube44\ud65c\uc131\ud654\ud574 \ubcf4\uc138\uc694."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "\uc694\uc18c\uc5d0 \ud3ec\ucee4\uc2a4\ub97c \ub9de\ucd9c \uc218 \uc5c6\uc2b5\ub2c8\ub2e4. \uc2a4\ud0c0\uc77c\uc744 \ube44\ud65c\uc131\ud654\ud574 \ubcf4\uc138\uc694."
-            ],
-            "The element was not found on the page.": [
-                "\ud398\uc774\uc9c0\uc5d0\uc11c \uc694\uc18c\ub97c \ucc3e\uc744 \uc218 \uc5c6\uc2b5\ub2c8\ub2e4."
             ],
             "An error occurred when loading the issues.": [
                 "\ubb38\uc81c\ub97c \ubd88\ub7ec\uc624\ub294 \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."

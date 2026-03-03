@@ -52,6 +52,15 @@
             "Close fixes modal": [
                 "Jav\u00edt\u00e1sok mod\u00e1lis bez\u00e1r\u00e1sa"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Az elem nem l\u00e1that\u00f3. Pr\u00f3b\u00e1lja meg letiltani a st\u00edlusokat."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Az elem nem f\u00f3kusz\u00e1lhat\u00f3. Pr\u00f3b\u00e1lja meg letiltani a st\u00edlusokat."
+            ],
+            "The element was not found on the page.": [
+                "Az elem nem tal\u00e1lhat\u00f3 az oldalon."
+            ],
             "Open details for %1$s, %2$s of %3$s": [
                 "R\u00e9szletek megnyit\u00e1sa: %1$s, %2$s \/ %3$s"
             ],
@@ -78,15 +87,6 @@
             ],
             "Disable Styles": [
                 "St\u00edlusok kikapcsol\u00e1sa"
-            ],
-            "The element is not visible. Try disabling styles.": [
-                "Az elem nem l\u00e1that\u00f3. Pr\u00f3b\u00e1lja meg letiltani a st\u00edlusokat."
-            ],
-            "The element is not focusable. Try disabling styles.": [
-                "Az elem nem f\u00f3kusz\u00e1lhat\u00f3. Pr\u00f3b\u00e1lja meg letiltani a st\u00edlusokat."
-            ],
-            "The element was not found on the page.": [
-                "Az elem nem tal\u00e1lhat\u00f3 az oldalon."
             ],
             "An error occurred when loading the issues.": [
                 "Hiba t\u00f6rt\u00e9nt a probl\u00e9m\u00e1k bet\u00f6lt\u00e9sekor."

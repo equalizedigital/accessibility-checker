@@ -1,0 +1,222 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "pt_PT",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
+            "Needs Review": [
+                "Precisa de revis\u00e3o",
+                "Precisa de revis\u00e3o"
+            ],
+            "Critical": [
+                "Cr\u00edtico"
+            ],
+            "High": [
+                "Alto"
+            ],
+            "Medium": [
+                "M\u00e9dio"
+            ],
+            "Low": [
+                "Baixo"
+            ],
+            "View on page": [
+                "Ver na p\u00e1gina"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "Conte\u00fado insuficiente para determinar um n\u00edvel de leitura preciso."
+            ],
+            "Simplified Summary": [
+                "Resumo simplificado"
+            ],
+            "Reading Level": [
+                "N\u00edvel de leitura"
+            ],
+            "Accessibility Status": [
+                "Estado de acessibilidade"
+            ],
+            "Accessibility Analysis": [
+                "An\u00e1lise de acessibilidade"
+            ],
+            "Readability Analysis": [
+                "An\u00e1lise de legibilidade"
+            ],
+            "Clear Issues": [
+                "Limpar problemas"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "Isto ir\u00e1 limpar todos os problemas desta publica\u00e7\u00e3o. Ser\u00e1 necess\u00e1rio guardar para acionar uma nova an\u00e1lise do conte\u00fado da publica\u00e7\u00e3o. Deseja continuar?"
+            ],
+            "Failed to load accessibility data": [
+                "Falha ao carregar dados de acessibilidade"
+            ],
+            "Error loading accessibility data": [
+                "Erro ao carregar dados de acessibilidade"
+            ],
+            "Loading accessibility results...": [
+                "A carregar resultados de acessibilidade..."
+            ],
+            "Updating accessibility data...": [
+                "A atualizar dados de acessibilidade..."
+            ],
+            "problem to address": [
+                "problema a resolver",
+                "problemas a resolver"
+            ],
+            "issue that needs review": [
+                "problema que precisa de revis\u00e3o",
+                "problemas que precisam de revis\u00e3o"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "Tem %1$d %2$s e %3$d %4$s."
+            ],
+            "You have %1$d %2$s.": [
+                "Tem %1$d %2$s."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "Verifique e corrija problemas de acessibilidade no seu conte\u00fado."
+            ],
+            "Open Accessibility Panel": [
+                "Abrir painel de acessibilidade"
+            ],
+            "N\/A": [
+                "N\/D"
+            ],
+            "%dth": [
+                "%d.\u00ba"
+            ],
+            "Summary provided": [
+                "Resumo fornecido"
+            ],
+            "Summary required": [
+                "Resumo obrigat\u00f3rio"
+            ],
+            "Summary not required": [
+                "Resumo n\u00e3o obrigat\u00f3rio"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "Ver %d problemas na An\u00e1lise de Acessibilidade"
+            ],
+            "Problems": [
+                "Problemas"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "Ver %d itens que precisam de revis\u00e3o na An\u00e1lise de Acessibilidade"
+            ],
+            "View reading level details: %s": [
+                "Ver detalhes do n\u00edvel de leitura: %s"
+            ],
+            "Passed Checks": [
+                "Verifica\u00e7\u00f5es aprovadas"
+            ],
+            "Issue": [
+                "Problema"
+            ],
+            "Issue actions for %s": [
+                "A\u00e7\u00f5es do problema para %s"
+            ],
+            "Issue actions": [
+                "A\u00e7\u00f5es do problema"
+            ],
+            "Show code": [
+                "Mostrar c\u00f3digo"
+            ],
+            "Reopen issue": [
+                "Reabrir problema"
+            ],
+            "Dismiss issue": [
+                "Ignorar problema"
+            ],
+            "Apply fix": [
+                "Aplicar corre\u00e7\u00e3o"
+            ],
+            "%d total": [
+                "%d total"
+            ],
+            "No dismissed issues.": [
+                "Nenhum problema ignorado."
+            ],
+            "No issues found.": [
+                "Nenhum problema encontrado."
+            ],
+            "%d total issues": [
+                "%d problemas no total"
+            ],
+            "Dismissed Issues": [
+                "Problemas ignorados"
+            ],
+            "Simplified summary saved successfully.": [
+                "Resumo simplificado guardado com sucesso."
+            ],
+            "Failed to save summary. Please try again.": [
+                "Falha ao guardar o resumo. Tente novamente."
+            ],
+            "An error occurred while saving the summary.": [
+                "Ocorreu um erro ao guardar o resumo."
+            ],
+            "%s grade": [
+                "%s.\u00ba ano"
+            ],
+            "%dth grade": [
+                "%d.\u00ba ano"
+            ],
+            "Not available": [
+                "N\u00e3o dispon\u00edvel"
+            ],
+            "Warning": [
+                "Aviso"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "Esta publica\u00e7\u00e3o n\u00e3o cont\u00e9m conte\u00fado suficiente para calcular um n\u00edvel de leitura."
+            ],
+            "Adjust summary prompts in settings.": [
+                "Ajustar avisos de resumo nas defini\u00e7\u00f5es."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "O conte\u00fado com um n\u00edvel de leitura igual ou inferior ao 9.\u00ba ano n\u00e3o requer um resumo simplificado."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "O conte\u00fado com um n\u00edvel de leitura acima do 9.\u00ba ano requer um resumo simplificado para cumprir as diretrizes WCAG AAA."
+            ],
+            "Learn more about readability requirements.": [
+                "Saiba mais sobre os requisitos de legibilidade."
+            ],
+            "Simplified Summary Reading Level": [
+                "N\u00edvel de leitura do resumo simplificado"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "Precisa de melhorias, o resumo est\u00e1 acima do n\u00edvel de leitura do 9.\u00ba ano."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "Abaixo do n\u00edvel de leitura recomendado do 9.\u00ba ano."
+            ],
+            "Enter simplified summary...": [
+                "Introduzir resumo simplificado..."
+            ],
+            "Save Summary": [
+                "Guardar resumo"
+            ],
+            "Loading accessibility data...": [
+                "A carregar dados de acessibilidade..."
+            ],
+            "Accessibility Checker actions": [
+                "A\u00e7\u00f5es do Accessibility Checker"
+            ],
+            "Scan": [
+                "Verificar"
+            ],
+            "Refresh": [
+                "Atualizar"
+            ]
+        }
+    }
+}
