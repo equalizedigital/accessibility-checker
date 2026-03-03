@@ -4,7 +4,7 @@
  * Plain text input using a textarea element.
  */
 
-import './rich-textarea.scss';
+import '../sass/rich-textarea.scss';
 
 /**
  * Rich Text Textarea Component
