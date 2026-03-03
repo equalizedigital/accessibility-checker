@@ -29,8 +29,9 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		update_option( 'edac_post_types', [ 'post', 'page' ] );
 
-		global $wp_scripts;
+		global $wp_scripts, $wp_styles;
 		$wp_scripts = new \WP_Scripts();
+		$wp_styles  = new \WP_Styles();
 
 		$this->enqueue_admin = new Enqueue_Admin();
 	}
@@ -45,8 +46,8 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		delete_option( 'edac_post_types' );
 
-		global $wp_scripts;
-		unset( $wp_scripts );
+		global $wp_scripts, $wp_styles;
+		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -194,5 +195,98 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringContainsString( 'preview=true', $localized_data );
+	}
+
+	/**
+	 * Test that the sidebar assets enqueue only in the block editor for scannable post types.
+	 */
+	public function testSidebarScriptEnqueuesInBlockEditorForScannablePost() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+
+		$this->assertTrue( wp_script_is( 'edac-sidebar', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sidebar assets do not enqueue when not in the block editor.
+	 */
+	public function testSidebarScriptDoesNotEnqueueInClassicEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( false );
+
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+
+		$this->assertFalse( wp_script_is( 'edac-sidebar', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sidebar assets do not enqueue for non-scannable post types.
+	 */
+	public function testSidebarScriptDoesNotEnqueueForNonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+
+		$this->assertFalse( wp_script_is( 'edac-sidebar', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+	}
+
+	/**
+	 * Helper to set a mock current screen with block editor context.
+	 *
+	 * @param bool $is_block_editor Whether the screen should behave as block editor.
+	 */
+	private function set_mock_screen( bool $is_block_editor ): void {
+		$GLOBALS['current_screen'] = new class( $is_block_editor ) {
+			/**
+			 * True or false whether the screen is block editor.
+			 *
+			 * @var bool
+			 */
+			private $is_block_editor;
+
+			/**
+			 * Constructor.
+			 *
+			 * @param bool $is_block_editor Whether the screen should behave as block editor.
+			 */
+			public function __construct( bool $is_block_editor ) {
+				$this->is_block_editor = $is_block_editor;
+			}
+
+			/**
+			 * Mock is_block_editor method.
+			 *
+			 * @return bool
+			 */
+			public function is_block_editor(): bool {
+				return $this->is_block_editor;
+			}
+
+			/**
+			 * Mock in_admin method.
+			 *
+			 * @return bool
+			 */
+			public function in_admin(): bool {
+				return true;
+			}
+		};
 	}
 }

@@ -282,6 +282,24 @@ class FixesManager {
 				},
 			]
 		);
+
+		register_rest_route(
+			'edac/v1',
+			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)',
+			[
+				'methods'             => 'GET',
+				'callback'            => [ $this, 'get_fix_fields' ],
+				'args'                => [
+					'slug' => [
+						'required'          => true,
+						'sanitize_callback' => 'sanitize_text_field',
+					],
+				],
+				'permission_callback' => function () {
+					return current_user_can( 'edit_posts' );
+				},
+			]
+		);
 	}
 
 	/**
@@ -297,11 +315,12 @@ class FixesManager {
 
 		// loop through body and find fixes for those items.
 		foreach ( $body as $rule_slug => $settings ) {
-			$fix        = $this->get_fix( $rule_slug );
-			$fix_fields = $fix->get_fields_array();
+			$fix = $this->get_fix( $rule_slug );
 			if ( ! $fix ) {
 				return new \WP_Error( 'edac_fix_not_found', esc_html__( 'Fix not found', 'accessibility-checker' ), [ 'status' => 404 ] );
 			}
+
+			$fix_fields = $fix->get_fields_array();
 
 			foreach ( $settings as $setting => $value ) {
 				$sanitizer = isset( $fix_fields[ $setting ]['sanitize_callback'] ) ? $fix_fields[ $setting ]['sanitize_callback'] : [ FixesPage::class, 'sanitize_' . $fix_fields[ $setting ]['type'] ];
@@ -313,6 +332,59 @@ class FixesManager {
 			}
 		}
 
-		return rest_ensure_response( [ 'enabled' => $enabled ] );
+		return rest_ensure_response( [ 'success' => true ] );
+	}
+
+	/**
+	 * Get fix fields and information for a specific fix.
+	 *
+	 * Returns the fix name, description, enabled status, and configuration fields.
+	 *
+	 * @param \WP_REST_Request $request The REST request.
+	 *
+	 * @return \WP_REST_Response|\WP_Error
+	 */
+	public function get_fix_fields( \WP_REST_Request $request ) {
+		$fix_slug = sanitize_text_field( $request['slug'] );
+
+		// Get the fix instance.
+		$fix = $this->get_fix( $fix_slug );
+
+		if ( ! $fix ) {
+			return new \WP_Error(
+				'fix_not_found',
+				__( 'Fix not found.', 'accessibility-checker' ),
+				[ 'status' => 404 ]
+			);
+		}
+
+		// Get the fix's fields array.
+		$fields = $fix->get_fields_array();
+
+		// Check if the fix is enabled.
+		$option_key = 'edac_fix_' . $fix_slug;
+		$enabled    = (bool) get_option( $option_key, false );
+
+		// Build a simplified fields array for display in the modal.
+		$display_fields = [];
+		foreach ( $fields as $field_key => $field ) {
+			$display_fields[ $field_key ] = [
+				'label'       => isset( $field['label'] ) ? wp_kses_post( $field['label'] ) : '',
+				'description' => isset( $field['description'] ) ? wp_kses_post( $field['description'] ) : '',
+				'type'        => isset( $field['type'] ) ? sanitize_text_field( $field['type'] ) : 'text',
+				'value'       => get_option( $field_key, $field['default'] ?? '' ),
+			];
+		}
+
+		return new \WP_REST_Response(
+			[
+				'success'  => true,
+				'fix_slug' => $fix_slug,
+				'fix_name' => $fix::get_nicename(),
+				'enabled'  => $enabled,
+				'fields'   => $display_fields,
+			],
+			200
+		);
 	}
 }

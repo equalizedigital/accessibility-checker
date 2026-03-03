@@ -1,0 +1,499 @@
+/**
+ * Issue Modal Styles
+ *
+ * Standalone styles for the issue details modal component.
+ */
+
+// Import badge styles since we use the Badge component
+@use '../../sidebar/sass/components/badge';
+@use '../../sidebar/sass/variables' as *;
+
+.edac-analysis {
+	&__issue-modal {
+
+		h2 {
+			font-size: $modal-font-size-medium;
+			font-weight: 600;
+			margin: $modal-font-size-medium 0;
+		}
+
+		h3 {
+			font-size:$modal-font-size-small;
+			font-weight: 600;
+		}
+
+		.components-modal__header {
+			height: 60px;
+			padding: 0px 24px 0;
+
+			&-heading {
+				font-size: $modal-font-size-large;
+			}
+		}
+
+		.components-modal__content {
+			padding: 16px 24px 24px;
+			margin-top: 60px;
+		}
+
+		.edac-analysis__modal-content {
+			margin-bottom: 16px;
+		}
+
+		// The className prop on Modal is applied to .components-modal__frame
+		// so we use &.components-modal__frame to match .edac-analysis__issue-modal.components-modal__frame
+		&.components-modal__frame {
+			width: 890px;
+			max-width: 80%;
+
+			.components-modal__content {
+				padding: 0;
+				border-top: $outline-grey 1px solid;
+			}
+		}
+
+		.edac-analysis__issue-modal-content {
+			display: flex;
+			flex-direction: row-reverse;
+
+			p {
+				margin: 0 0 12px;
+				font-size: 13px;
+				line-height: 1.5;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+
+			strong {
+				font-weight: 600;
+			}
+		}
+
+		.edac-analysis__issue-modal-left {
+			flex: 1;
+			padding: 24px;
+		}
+
+		.edac-analysis__issue-modal-right {
+			width: 200px;
+			flex-shrink: 0;
+		}
+
+		.edac-analysis__issue-sidebar {
+			padding: 24px;
+			border-left: 1px solid $outline-grey;
+			background: #fafafa;
+			height: 100%;
+		}
+
+		.edac-analysis__issue-sidebar-list {
+			list-style: none;
+			margin: 0 0 17px;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 15px;
+		}
+
+		.edac-analysis__issue-sidebar-item {
+			display: flex;
+			flex-direction: column;
+			gap: 4px;
+		}
+
+		.edac-analysis__issue-sidebar-label {
+			font-size: 14px;
+			margin: 0;
+		}
+
+		.edac-analysis__issue-sidebar-value {
+			font-size: 13px;
+			color: #1e1e1e;
+			word-break: break-word;
+		}
+
+		.edac-analysis__issue-sidebar-button {
+			width: 100%;
+			justify-content: center;
+		}
+
+		.edac-analysis__issue-title {
+			margin-top: 0 !important;
+		}
+
+		.edac-analysis__issue-wcag {
+			margin: 0 0 8px;
+			font-size: 13px;
+
+			a {
+				color: #0073aa;
+				text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+
+		.edac-analysis__issue-summary {
+			margin: 0 0 12px;
+			font-size: 13px;
+			line-height: 1.5;
+
+			code {
+				background: #f0f0f0;
+				padding: 2px 4px;
+				border-radius: 3px;
+				font-size: 12px;
+			}
+		}
+
+		.edac-analysis__issue-help {
+			margin: 0 0 16px;
+			font-size: 13px;
+
+			a {
+				color: #0073aa;
+				text-decoration: underline;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+
+		.edac-analysis__issue-help-accordion {
+
+			margin-bottom: 21px;
+
+			.components-panel__body {
+				border: none;
+				padding: 0;
+
+				&.is-opened {
+					padding: 0;
+
+					.components-panel__body-title {
+						margin: 0 0 16px;
+					}
+				}
+			}
+
+			.components-panel__body-title {
+				margin: 0;
+
+				&:hover,
+				&:focus {
+					background: transparent;
+				}
+
+				button {
+					padding: 0;
+					width: auto;
+					flex-direction: row-reverse;
+					text-decoration: underline;
+					color: $info-blue;
+					font-weight: 400;
+
+					&:hover,
+					&:focus {
+						background: transparent;
+						text-decoration: none;
+					}
+
+					span > svg {
+						position: initial;
+						transform: unset;
+						fill: $info-blue;
+						vertical-align: bottom;
+					}
+				}
+			}
+
+			.components-panel__body-toggle {
+				&:hover {
+					background: #f5f5f5;
+				}
+			}
+
+			.components-panel__row {
+				padding: 0 16px 16px;
+			}
+
+			// Sections inside the accordion
+			.edac-analysis__issue-why-it-matters,
+			.edac-analysis__issue-how-to-fix {
+				margin-bottom: 16px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+
+				h4 {
+					margin: 0 0 8px;
+					font-size: 13px;
+					font-weight: 600;
+					color: #1e1e1e;
+				}
+
+				p {
+					margin: 0;
+					font-size: 13px;
+					line-height: 1.5;
+
+					code {
+						background: #f0f0f0;
+						padding: 2px 4px;
+						border-radius: 3px;
+						font-size: 12px;
+					}
+				}
+			}
+
+			.edac-analysis__issue-help {
+				margin: 0;
+
+				a {
+					color: #0073aa;
+					text-decoration: underline;
+
+					&:hover {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		.edac-analysis__image-wrapper {
+			margin: 16px 0;
+		}
+
+		.edac-analysis__fix-panel,
+		.edac-analysis__dismiss-panel {
+
+			.components-panel {
+				border: none;
+				margin: 0 -24px 0;
+			}
+
+			.edac-analysis__panel-content {
+				padding: 24px 8px 8px;
+			}
+
+			.components-panel__body-title {
+				margin-bottom: 0;
+
+				button {
+					padding: 12px 24px;
+					font-size: 20px;
+					font-weight: 600;
+				}
+			}
+
+			.components-panel__body.is-opened {
+				.components-panel__body-title button {
+					border-bottom: 1px solid $outline-grey;
+				}
+
+			}
+		}
+
+		.edac-analysis__dismiss-panel {
+			margin-top: 16px;
+
+			.components-base-control__label {
+				font-size: $modal-font-size-small;
+				margin-bottom: .75em;
+				text-transform: none;
+			}
+
+			.components-radio-control__option {
+				border: 1px solid $outline-grey;
+				border-radius: 4px;
+				padding: 16px;
+			}
+
+			.components-radio-control__group-wrapper {
+				margin-bottom: 24px;
+			}
+		}
+
+		// Panel borders - all panels get bottom border, only first gets top border
+		.edac-analysis__issue-panels {
+
+			.components-panel__body {
+				&.is-opened {
+					.edac-analysis__panel-content {
+						padding: 16px 8px 0;
+					}
+				}
+			}
+
+			> :first-child {
+				margin-top: 16px;
+
+				.components-panel__body {
+					border-top: 1px solid $outline-grey;
+					border-bottom: 1px solid $outline-grey;
+				}
+			}
+
+			> :not(:first-child) {
+				.components-panel__body {
+					border-bottom: 1px solid $outline-grey;
+				}
+			}
+
+			.components-panel__row {
+				padding: 0 16px 16px;
+			}
+
+			.components-panel__body-toggle {
+
+				&:hover {
+					background: #f5f5f5;
+				}
+			}
+
+			.components-notice {
+				margin: 0 0 12px;
+			}
+		}
+
+		.edac-analysis__code-block {
+			margin: 8px 0 0;
+			padding: 12px;
+			background: #f5f5f5;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-family: monospace;
+			font-size: 12px;
+			line-height: 1.4;
+			overflow-x: auto;
+			white-space: pre-wrap;
+			word-break: break-all;
+		}
+
+		.edac-analysis__code-wrapper {
+			margin-top: 16px;
+
+			&::after {
+				content: '';
+				display: table;
+				clear: both;
+			}
+		}
+
+		.edac-analysis__code-textarea {
+			display: none; // Hidden, CodeMirror replaces it
+		}
+
+		.CodeMirror {
+			height: 100px;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			font-size: 12px;
+
+			&-focused {
+				outline: 2px solid;
+				outline-offset: 2px;
+			}
+		}
+
+		.edac-analysis__dismissed-comment {
+			margin-top: 16px;
+
+			&-label {
+				font-weight: 600;
+				margin: 0 0 4px;
+			}
+		}
+
+		.edac-analysis__dismissed-meta {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			gap: 6px 16px;
+			margin: 0 0 0;
+			padding: 0;
+			list-style: none;
+
+			dt {
+				font-weight: 600;
+			}
+
+			dd {
+				font-size: 13px;
+				color: #1e1e1e;
+				margin: 0;
+				padding: 0;
+				word-break: break-word;
+			}
+		}
+
+		.edac-analysis__dismissed-actions {
+			margin-top: 20px;
+			padding-top: 16px;
+			border-top: 1px solid $outline-grey;
+
+			.edac-analysis__dismiss-button {
+				margin-top: 0;
+			}
+		}
+
+		.edac-analysis__dismiss-button {
+			margin-top: 12px;
+
+			.components-spinner {
+				margin-right: 8px;
+			}
+		}
+
+		.edac-analysis__dismiss-split-button {
+			display: flex;
+			align-items: flex-end;
+
+			.edac-analysis__dismiss-button {
+				border-radius: 2px 0 0 2px;
+			}
+
+			.edac-analysis__dismiss-dropdown-toggle {
+				border-radius: 0 2px 2px 0;
+				margin-left: 2px;
+			}
+		}
+
+		.edac-analysis__issue-modal-placeholder {
+			padding: 16px;
+			background: #f5f5f5;
+			border: 2px dashed #ddd;
+			border-radius: 4px;
+			color: #757575;
+			font-size: 13px;
+			text-align: center;
+		}
+
+		.edac-analysis__issue-image {
+			margin-top: 16px;
+
+			&-item {
+				max-width: 100%;
+				height: auto;
+				border: 1px solid #ddd;
+				border-radius: 4px;
+				margin-bottom: 8px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		.edac-fix-card {
+			&:not(:last-child) {
+				margin-bottom: 24px;
+			}
+		}
+	}
+}

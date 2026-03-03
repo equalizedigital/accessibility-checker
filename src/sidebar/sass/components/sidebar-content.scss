@@ -1,0 +1,122 @@
+@use '../_variables' as *;
+
+/**
+ * Sidebar Content Styles
+ */
+
+.edac-sidebar__content {
+	.interface-complementary-area & h3 {
+		text-transform: none;
+	}
+}
+
+.edac-panel-body {
+	.edac-refreshing-message {
+		margin-bottom: 12px;
+	}
+}
+
+.edac-data-row {
+	width: 100%;
+}
+
+.edac-data-section {
+	margin-bottom: 12px;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
+
+	&__label {
+		display: block;
+		margin-bottom: 4px;
+		font-weight: 600;
+	}
+
+	&__count {
+		font-size: 24px;
+		font-weight: bold;
+		margin-right: 8px;
+
+		&--errors {
+			color: $error-red;
+		}
+
+		&--warnings {
+			color: $warning-orange;
+		}
+
+		&--empty {
+			color: #50575e;
+		}
+
+		// Combined modifiers for when both error/warning and empty are present
+		&--errors#{&}--empty,
+		&--warnings#{&}--empty {
+			color: #50575e;
+		}
+	}
+
+	&__description {
+		color: #50575e;
+	}
+}
+
+/**
+ * Generic Panel Section Styles
+ * Reusable across all sidebar panels
+ */
+
+.edac-panel-row {
+}
+
+.edac-panel-section {
+
+	&__header {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		margin-bottom: 4px;
+	}
+
+	&__title {
+		margin: 0;
+		font-size: $sidebar-h3-size;
+		font-weight: 600;
+		color: $info-grey;
+	}
+
+	&__message {
+		margin: 0 0 4px 0;
+		font-size: $sidebar-p-size;
+		line-height: 1.5;
+
+		&:last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	&__link {
+		font-size: $sidebar-link-size;
+	}
+
+	&__subsection {
+		margin-top: 16px;
+		padding-top: 12px;
+		border-top: 1px solid $outline-grey;
+
+		&:first-child {
+			margin-top: 0;
+			padding-top: 0;
+			border-top: none;
+		}
+	}
+
+	&__subheading {
+		margin: 0 0 8px 0;
+		font-size: $sidebar-h3-size;
+		font-weight: 600;
+		color: $info-grey;
+	}
+}
+

@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
 
 import {
-	clearAllTabsAndPanelState, initFixButtonEventHandlers,
+	clearAllTabsAndPanelState,
+	initFixButtonEventHandlers,
 	initSummaryTabKeyboardAndClickHandlers,
 } from './summary/summary-tab-input-event-handlers';
+
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
@@ -66,6 +68,20 @@ const edacScriptVars = edac_script_vars;
 	jQuery( window ).on( 'load', function() {
 		document.addEventListener( 'edac-cleared-issues', function() {
 			refreshTabDetails();
+		} );
+
+		// Listen for simplified summary save from Gutenberg sidebar
+		window.addEventListener( 'edac-simplified-summary-saved', function( event ) {
+			refreshSummaryAndReadability();
+		} );
+
+		// Listen for ignore updates from the Gutenberg sidebar modal
+		window.addEventListener( 'edac-ignore-updated', function( event ) {
+			// Small delay to ensure the database update is complete
+			window.setTimeout( function() {
+				refreshSummaryAndReadability();
+				edacDetailsAjax();
+			}, 300 );
 		} );
 
 		// Allow other js to trigger a tab refresh through an event listener. Refactor.
@@ -248,25 +264,34 @@ const edacScriptVars = edac_script_vars;
 							const summary = jQuery( '#edac-readability-text' ).val();
 
 							jQuery.ajax( {
-								url: ajaxurl,
-								method: 'GET',
-								data: {
-									action: 'edac_update_simplified_summary',
-									post_id: postID,
-									summary,
-									nonce: edacScriptVars.nonce,
+								url: edacScriptVars.edacApiUrl + '/simplified-summary/' + postID,
+								method: 'POST',
+								headers: {
+									'X-WP-Nonce': edacScriptVars.restNonce,
 								},
+								contentType: 'application/json',
+								data: JSON.stringify( {
+									summary,
+								} ),
 							} ).done( function( doneResponse ) {
-								if ( true === doneResponse.success ) {
-									const doneResponseJSON = jQuery.parseJSON(
-										doneResponse.data
-									);
-
+								if ( doneResponse.success ) {
 									refreshSummaryAndReadability();
+
+									// Dispatch custom event to notify sidebar to refresh its data
+									const readabilityUpdatedEvent = new CustomEvent( 'edac-metabox-readability-updated', {
+										detail: {
+											postId: postID,
+											readabilityData: doneResponse,
+										},
+									} );
+									window.dispatchEvent( readabilityUpdatedEvent );
 								} else {
 									// eslint-disable-next-line no-console
 									console.log( doneResponse );
 								}
+							} ).fail( function( error ) {
+								// eslint-disable-next-line no-console
+								console.error( 'Failed to save simplified summary:', error );
 							} );
 						}
 					);
@@ -285,47 +310,49 @@ const edacScriptVars = edac_script_vars;
 				function( e ) {
 					e.preventDefault();
 
-					const ids = [ jQuery( this ).attr( 'data-id' ) ];
+					const issueId = jQuery( this ).attr( 'data-id' );
 					const ignoreAction = jQuery( this ).attr( 'data-action' );
 					const ignoreType = jQuery( this ).attr( 'data-type' );
 					const comment = jQuery(
 						'.edac-details-rule-records-record-ignore-comment',
 						jQuery( this ).parent()
 					).val();
+					const reason = jQuery(
+						'input.edac-details-rule-records-record-ignore-reason-input:checked',
+						jQuery( this ).parent()
+					).val() || '';
+
+					// Map legacy actions to REST endpoint actions.
+					const restAction = ignoreAction === 'enable' ? 'dismiss' : 'undismiss';
 
 					jQuery.ajax( {
-						url: ajaxurl,
-						method: 'GET',
-						data: {
-							action: 'edac_insert_ignore_data',
-							ids,
-							comment,
-							ignore_action: ignoreAction,
-							ignore_type: ignoreType,
-							nonce: edacScriptVars.nonce,
+						url: edacScriptVars.edacApiUrl + '/dismiss-issue/' + issueId,
+						method: 'POST',
+						headers: {
+							'X-WP-Nonce': edacScriptVars.restNonce,
 						},
-					} ).done( function( response ) {
-						if ( true === response.success ) {
-							const data = jQuery.parseJSON( response.data );
-
+						contentType: 'application/json',
+						data: JSON.stringify( {
+							action: restAction,
+							reason,
+							comment,
+						} ),
+					} ).done( function( data ) {
+						if ( true === data.success ) {
 							const record =
-								'#edac-details-rule-records-record-' +
-								data.ids[ 0 ];
-							const doneIgnoreAction =
-								data.action === 'enable' ? 'disable' : 'enable';
-							const doneCommentDisabled =
-								data.action === 'enable' ? true : false;
-							const doneActionsIgnoreLabel =
-								data.action === 'enable' ? 'Ignored' : 'Ignore';
-							const ignoreSubmitLabel =
-								data.action === 'enable'
-									? 'Stop Ignoring'
-									: 'Ignore This ' + data.type;
-							const username = data.user
-								? '<strong>Username:</strong> ' + data.user
+								'#edac-details-rule-records-record-' + issueId;
+							const isDismissed = data.ignre === true || data.ignre === 1;
+							const doneIgnoreAction = isDismissed ? 'disable' : 'enable';
+							const doneCommentDisabled = isDismissed;
+							const doneActionsIgnoreLabel = isDismissed ? 'Ignored' : 'Ignore';
+							const ignoreSubmitLabel = isDismissed
+								? 'Stop Ignoring'
+								: 'Ignore This ' + ignoreType;
+							const username = data.ignre_user_name
+								? '<strong>Username:</strong> ' + data.ignre_user_name
 								: '';
-							const date = data.date
-								? '<strong>Date:</strong> ' + data.date
+							const date = data.ignre_date
+								? '<strong>Date:</strong> ' + data.ignre_date
 								: '';
 
 							jQuery(
@@ -336,7 +363,12 @@ const edacScriptVars = edac_script_vars;
 								record +
 									' .edac-details-rule-records-record-ignore-comment'
 							).attr( 'disabled', doneCommentDisabled );
-							if ( data.action !== 'enable' ) {
+							// Disable/enable the dismiss reason radios.
+							jQuery(
+								record +
+									' .edac-details-rule-records-record-ignore-reason-input'
+							).attr( 'disabled', doneCommentDisabled );
+							if ( ! isDismissed ) {
 								jQuery(
 									record +
 										' .edac-details-rule-records-record-ignore-comment'
@@ -348,7 +380,7 @@ const edacScriptVars = edac_script_vars;
 							).toggleClass( 'active' );
 							jQuery(
 								".edac-details-rule-records-record-actions-ignore[data-id='" +
-									ids[ 0 ] +
+									issueId +
 									"']"
 							).toggleClass( 'active' ); // pro
 							jQuery(
@@ -357,7 +389,7 @@ const edacScriptVars = edac_script_vars;
 							).html( doneActionsIgnoreLabel );
 							jQuery(
 								".edac-details-rule-records-record-actions-ignore[data-id='" +
-									ids[ 0 ] +
+									issueId +
 									"'] .edac-details-rule-records-record-actions-ignore-label"
 							).html( doneActionsIgnoreLabel ); // pro
 							jQuery(
@@ -379,9 +411,9 @@ const edacScriptVars = edac_script_vars;
 							let count = parseInt(
 								jQuery( '.edac-details-rule-count', rule ).html()
 							);
-							if ( data.action === 'enable' ) {
+							if ( isDismissed ) {
 								count--;
-							} else if ( data.action === 'disable' ) {
+							} else {
 								count++;
 							}
 							if ( count === 0 ) {
@@ -404,10 +436,9 @@ const edacScriptVars = edac_script_vars;
 									rule
 								).html()
 							);
-							//console.log(countIgnore);
-							if ( data.action === 'enable' ) {
+							if ( isDismissed ) {
 								countIgnore++;
-							} else if ( data.action === 'disable' ) {
+							} else {
 								countIgnore--;
 							}
 							if ( countIgnore === 0 ) {
@@ -426,6 +457,16 @@ const edacScriptVars = edac_script_vars;
 								countIgnore + ' Ignored Items'
 							);
 
+							// Dispatch event to notify sidebar that ignore action was completed
+							const event = new CustomEvent( 'edac-ignore-updated', {
+								detail: {
+									postId: parseInt( jQuery( '#post_ID' ).val() ),
+									action: data.action,
+									ruleId: data.rule_id,
+								},
+							} );
+							window.dispatchEvent( event );
+
 							// refresh page on ignore or unignore in pro
 							if (
 								jQuery( 'body' ).hasClass(
@@ -442,7 +483,7 @@ const edacScriptVars = edac_script_vars;
 							}
 						} else {
 							// eslint-disable-next-line no-console
-							console.log( response );
+							console.log( data );
 						}
 					} );
 				}
