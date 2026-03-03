@@ -10,7 +10,7 @@ import '../sass/rich-textarea.scss';
  * Rich Text Textarea Component
  *
  * @param {Object}   props          - Component props.
- * @param {string}   props.value    - Current text value (HTML string).
+ * @param {string}   props.value    - Current text value.
  * @param {Function} props.onChange - Change handler.
  * @param {string}   props.label    - Field label.
  * @param {string}   props.labelId  - ID for aria-labelledby (optional, used if label exists).
