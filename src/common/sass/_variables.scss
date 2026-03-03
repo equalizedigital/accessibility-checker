@@ -15,7 +15,7 @@ $color-red: #b30f0f;
 $color-green: #006600;
 $color-yellow: #f3cd1e;
 $color-blue-dark: #072446;
-$color-blue: #3273aa;
+$color-blue: var(--wp-admin-theme-color);
 $color-orange: #f3cd1e;
 
 $font-size-xxx-large: 3rem;

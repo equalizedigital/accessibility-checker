@@ -2,7 +2,9 @@
 $check-green: #006600;
 $warning-orange: #CF8402;
 $error-red: #970C0C;
-$info-blue: #0073AA;
+$info-blue: var(--wp-admin-theme-color);
+$info-blue-tint-lightest: color-mix(in srgb, var(--wp-admin-theme-color) 4%, #ffffff);
+$info-blue-tint-light: color-mix(in srgb, var(--wp-admin-theme-color) 8%, #ffffff);
 $info-grey: #1E1E1E;
 $subtext-gray: #595959;
 $outline-grey: #E0E0E0;
