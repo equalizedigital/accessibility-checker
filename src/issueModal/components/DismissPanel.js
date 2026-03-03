@@ -157,12 +157,9 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 										<p className="edac-analysis__dismissed-comment-label">
 											{ __( 'Reason for dismissal:', 'accessibility-checker' ) }
 										</p>
-										<div
-											className="edac-analysis__dismissed-comment-body"
-											dangerouslySetInnerHTML={ {
-												__html: decodeEntities( issue.ignre_comment ),
-											} }
-										/>
+										<div className="edac-analysis__dismissed-comment-body">
+											{ issue.ignre_comment }
+										</div>
 									</div>
 								) }
 								<div className="edac-analysis__dismissed-actions">
