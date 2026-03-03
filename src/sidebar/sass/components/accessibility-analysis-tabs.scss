@@ -25,10 +25,9 @@
 			padding: 24px 8px;
 			border: none;
 			border-radius: 0;
-			border-left: 1px solid #ddd;
-			border-bottom: 2px solid transparent;
+			border-left: 1px solid $outline-grey;
 			background: transparent;
-			color: #757575;
+			color: $subtext-gray;
 			font-size: $sidebar-font-size-large;
 			font-weight: 500;
 			cursor: pointer;
@@ -41,33 +40,32 @@
 			}
 
 			&:hover {
-				color: #1e1e1e;
-				background-color: #f9f9f9;
+				color: $info-grey;
+				background-color: $info-blue-tint-lightest;
 			}
 
 			&.is-active,
 			&[aria-selected="true"] {
-				color: #0073aa;
-				border-bottom-color: #0073aa;
-				background-color: #f0f6fc;
+				color: $info-blue;
+				background-color: $info-blue-tint-lightest;
 
 				&:hover {
-					color: #0073aa;
-					background-color: #e6f2fa;
+					color: $info-blue;
+					background-color: $info-blue-tint-light;
 				}
 			}
 
 			// Override WordPress button pressed states (prevents black background)
 			&.is-pressed:not(:disabled),
 			&.is-pressed:hover:not(:disabled) {
-				color: #0073aa;
-				background-color: #f0f6fc;
+				color: $info-blue;
+				background-color: $info-blue-tint-lightest;
 			}
 
 			// Remove default focus outline, add custom
 			&:focus {
 				box-shadow: none;
-				outline: 2px solid #0073aa;
+				outline: 2px solid $info-blue;
 				outline-offset: -2px;
 			}
 
@@ -78,7 +76,6 @@
 	}
 
 	&__tab {
-		// Additional styles for custom tab class if needed
 	}
 
 	&__count {
