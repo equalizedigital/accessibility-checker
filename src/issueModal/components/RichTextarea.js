@@ -1,10 +1,9 @@
 /**
  * Rich Text Textarea Component
  *
- * Plain text input using a contenteditable element.
+ * Plain text input using a textarea element.
  */
 
-import { useRef, useEffect } from '@wordpress/element';
 import './rich-textarea.scss';
 
 /**
@@ -21,40 +20,7 @@ import './rich-textarea.scss';
  * @param {boolean}  props.disabled - Whether field is disabled.
  */
 export const RichTextarea = ( { value, onChange, label, labelId, help, helpId, rows = 3, disabled = false } ) => {
-	const editorRef = useRef( null );
-	const isInitializedRef = useRef( false );
-	const lastValueRef = useRef( value );
-
-	useEffect( () => {
-		if ( editorRef.current && ! isInitializedRef.current ) {
-			editorRef.current.innerHTML = value;
-			isInitializedRef.current = true;
-			lastValueRef.current = value;
-		}
-	}, [ value ] );
-
-	useEffect( () => {
-		if ( ! editorRef.current ) {
-			return;
-		}
-		if ( document.activeElement === editorRef.current ) {
-			return;
-		}
-		if ( value !== lastValueRef.current ) {
-			editorRef.current.innerHTML = value || '';
-			lastValueRef.current = value;
-		}
-	}, [ value ] );
-
-	const updateValue = () => {
-		if ( editorRef.current ) {
-			const next = editorRef.current.innerHTML;
-			lastValueRef.current = next;
-			onChange( next );
-		}
-	};
-
-	// Build aria attributes for the contenteditable div.
+	// Build aria attributes for the textarea.
 	const ariaAttrs = {};
 	if ( label && labelId ) {
 		ariaAttrs[ 'aria-labelledby' ] = labelId;
@@ -69,14 +35,12 @@ export const RichTextarea = ( { value, onChange, label, labelId, help, helpId, r
 				<label id={ labelId } className="edac-rich-textarea-label">{ label }</label>
 			) }
 
-			<div
-				ref={ editorRef }
-				contentEditable={ ! disabled }
-				suppressContentEditableWarning
-				onInput={ updateValue }
-				onBlur={ updateValue }
+			<textarea
+				value={ value || '' }
+				onChange={ ( e ) => onChange( e.target.value ) }
+				rows={ rows }
+				disabled={ disabled }
 				className="edac-rich-textarea"
-				style={ { minHeight: `${ rows * 24 }px` } }
 				{ ...ariaAttrs }
 			/>
 
