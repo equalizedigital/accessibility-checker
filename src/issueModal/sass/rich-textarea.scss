@@ -1,0 +1,43 @@
+@use '../../sidebar/sass/variables' as *;
+
+.edac-rich-textarea-label {
+	display: block;
+	margin-bottom: .75em;
+	font-weight: 500;
+	font-size: $modal-font-size-small;
+	color: #1e1e1e;
+}
+
+.edac-rich-textarea {
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px;
+	margin-bottom: .75em;
+	border: 1px solid #e0e0e0;
+	border-radius: 4px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.6;
+	min-height: 100px;
+	max-height: 300px;
+	overflow-y: auto;
+	resize: vertical;
+
+	&:focus {
+		border-color: #0073aa;
+		box-shadow: 0 0 0 1px #0073aa;
+		outline: none;
+	}
+
+	&:disabled {
+		background-color: #f5f5f5;
+		color: #666;
+		cursor: not-allowed;
+	}
+}
+
+.edac-rich-textarea-help {
+	margin: 0;
+	font-size: 12px;
+	color: #666;
+}
