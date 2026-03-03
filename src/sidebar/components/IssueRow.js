@@ -43,7 +43,7 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 				className="edac-analysis__issue-menu"
 			>
 				{ ( { onClose } ) => (
-					<MenuGroup>
+					<MenuGroup className="edac-sidebar-menu-group">
 						<MenuItem
 							icon={ seen }
 							onClick={ () => {
