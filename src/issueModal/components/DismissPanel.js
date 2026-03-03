@@ -13,6 +13,7 @@ import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
 import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
+import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 
 /**
  * Dismiss Panel Component
@@ -180,8 +181,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 								) }
 								{ isGloballyDismissed ? (
 									<div className="edac-analysis__dismissed-actions">
-										<p className="edac-analysis__dismissed-comment-label">
-											{ __( 'This issue was dismissed globally and cannot be reopened here.', 'accessibility-checker' ) }
+										<p>
+											{ __( 'This issue was dismissed globally. Manage Global Dismissals to reopen it.', 'accessibility-checker' ) }
 										</p>
 										<Button
 											variant="secondary"
@@ -189,8 +190,12 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 											target="_blank"
 											rel="noreferrer noopener"
 											className="edac-analysis__dismiss-button"
+											onClick={ () => setPendingRefetch( true ) }
 										>
-											{ __( 'Manage Globally Dismissed', 'accessibility-checker' ) }
+											{ __( 'Manage Global Dismissals', 'accessibility-checker' ) }
+											<span style={ { marginLeft: '0.5rem' } }>
+												<ExternalLinkIcon />
+											</span>
 										</Button>
 									</div>
 								) : (
