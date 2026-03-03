@@ -77,7 +77,7 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 				className="edac-sidebar__title-menu"
 			>
 				{ ( { onClose } ) => (
-					<MenuGroup>
+					<MenuGroup className="edac-sidebar-menu-group">
 						<MenuItem
 							icon={ search }
 							onClick={ () => {

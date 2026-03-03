@@ -167,9 +167,7 @@
 	&__rule-toggle {
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
 		width: 100%;
-		padding: 12px 0;
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -195,9 +193,13 @@
 		}
 
 		// Override Gutenberg Button styles
-		&.components-button.has-icon.has-text.has-icon-right {
+		&.components-button.has-icon.has-text {
 			color: $info-grey;
 			padding: 16px;
+
+			svg {
+				max-width: 24px;
+			}
 		}
 
 		.components-button__icon {
