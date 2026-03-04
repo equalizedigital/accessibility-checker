@@ -47,7 +47,7 @@ class Upgrade_Promotion {
 	 */
 	public function add_menu_item(): void {
 		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
-
+		
 		// Only show to users who can manage options and don't have pro version.
 		if ( ! current_user_can( $required_capability ) ) {
 			return;
@@ -82,15 +82,6 @@ class Upgrade_Promotion {
 	 * @return void
 	 */
 	public function dummy_page_callback(): void {
-		// If we're in QIT test environment, show a simple page instead of failing.
-		if ( $this->is_qit_environment() ) {
-			echo '<div class="wrap">';
-			echo '<h1>' . esc_html__( 'Upgrade to Pro', 'accessibility-checker' ) . '</h1>';
-			echo '<p>' . esc_html__( 'This page redirects to the upgrade information.', 'accessibility-checker' ) . '</p>';
-			echo '</div>';
-			return;
-		}
-
 		// This should never be reached due to redirect in admin_init.
 		wp_die( esc_html__( 'Unable to redirect to upgrade page.', 'accessibility-checker' ) );
 	}
@@ -108,25 +99,20 @@ class Upgrade_Promotion {
 			return;
 		}
 
-		// Skip redirect in WooCommerce QIT test environment.
-		if ( $this->is_qit_environment() ) {
-			return;
-		}
-
 		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
-
+		
 		// Only redirect if user has capability and pro is not active.
 		if ( ! current_user_can( $required_capability ) || $this->is_pro_active() ) {
 			return;
 		}
 
-		$upgrade_url = edac_link_wrapper(
+		$upgrade_url = edac_link_wrapper( 
 			self::UPGRADE_URL,
 			'admin-menu-promotion',
 			'menu-upgrade-to-pro',
 			false
 		);
-
+		
 		// Add the domain to allowed hosts before redirecting.
 		add_filter( 'allowed_redirect_hosts', [ $this, 'allow_redirect_host' ] );
 		if ( wp_safe_redirect( $upgrade_url ) ) {
@@ -162,7 +148,7 @@ class Upgrade_Promotion {
 		}
 
 		$required_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
-
+		
 		// Only add styling if user can see the menu and pro is not active.
 		if ( ! current_user_can( $required_capability ) ) {
 			return;
@@ -179,7 +165,7 @@ class Upgrade_Promotion {
 				color: #f3cd1e !important;
 				font-weight: 600 !important;
 			}
-
+			
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:hover,
 			#adminmenu .wp-submenu a[href$="accessibility_checker_upgrade"]:focus {
 				color: #f3cd1e !important;
@@ -219,33 +205,5 @@ class Upgrade_Promotion {
 		 * @param bool $is_sale_time Whether it's currently sale time. Default false.
 		 */
 		return apply_filters( 'edac_is_sale_time', false );
-	}
-
-	/**
-	 * Check if we're running in WooCommerce QIT test environment.
-	 *
-	 * @since 1.27.0
-	 *
-	 * @return bool
-	 */
-	private function is_qit_environment(): bool {
-		// Check for QIT-specific environment variables or constants.
-		if ( defined( 'QIT_ENVIRONMENT' ) || defined( 'WOOCOMMERCE_QIT' ) ) {
-			return true;
-		}
-
-		// Check for environment variable.
-		if ( getenv( 'QIT_ENVIRONMENT' ) || getenv( 'WOOCOMMERCE_QIT' ) ) {
-			return true;
-		}
-
-		// Check if the QIT plugin or tools are active.
-		if ( defined( 'WP_CLI' ) && defined( 'WP_PLUGIN_DIR' ) ) {
-			if ( file_exists( WP_PLUGIN_DIR . '/woocommerce-qit-cli' ) ) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 }
