@@ -50,8 +50,17 @@ const ReadabilityAnalysis = () => {
 	// Initialize summary text from readability data
 	const initialSummary = readabilityData?.simplified_summary || '';
 	const initialSummaryGrade = readabilityData?.simplified_summary_grade || 0;
-	const initialSummaryGradeReadable = readabilityData?.simplified_summary_grade_readability || '';
 	const initialSummaryGradeFailed = Boolean( readabilityData?.simplified_summary_grade_failed );
+	const rawPostGradeFailed = readabilityData?.post_grade_failed;
+	const isPostGradeFailed = rawPostGradeFailed === true || rawPostGradeFailed === 1 || rawPostGradeFailed === '1' || rawPostGradeFailed === 'true';
+
+	// Respect setting-driven prompt mode from localized sidebar config.
+	const rawPromptSetting = window?.edac_sidebar_app?.simplifiedSummaryPrompt ?? '';
+	const promptSetting = String( rawPromptSetting ).toLowerCase();
+	const alwaysPromptSummary = promptSetting === 'always';
+
+	// Show summary input when setting is "always", otherwise use grade-based requirement.
+	const requiresSummary = alwaysPromptSummary || isPostGradeFailed;
 
 	// Update textarea when initial summary changes
 	useEffect( () => {
@@ -147,8 +156,8 @@ const ReadabilityAnalysis = () => {
 	};
 
 	const getSummaryGradeLabel = () => {
-		if ( initialSummaryGradeReadable ) {
-			return sprintf( __( '%s grade', 'accessibility-checker' ), initialSummaryGradeReadable );
+		if ( readabilityData?.simplified_summary_grade_readability ) {
+			return sprintf( __( '%s grade', 'accessibility-checker' ), readabilityData.simplified_summary_grade_readability );
 		}
 		if ( summaryGrade ) {
 			return sprintf( __( '%dth grade', 'accessibility-checker' ), summaryGrade );
@@ -312,7 +321,7 @@ const ReadabilityAnalysis = () => {
 							</a>
 						) }
 
-						{ readingLevelStatus !== 'below' && (
+						{ ( readingLevelStatus !== 'below' || requiresSummary ) && (
 							<>
 								<div className="edac-panel-section__subsection">
 									<h4 className="edac-panel-section__subheading">
@@ -366,6 +375,44 @@ const ReadabilityAnalysis = () => {
 								</div>
 							</>
 						) }
+					</div>
+				</PanelRow>
+			) }
+
+			{/* Fallback summary panel when requiresSummary is true but no reading level panel */}
+			{ requiresSummary && ! ( hasContent && postGrade > 0 && readingLevelStatus ) && (
+				<PanelRow className="edac-panel-row">
+					<div className="edac-panel-section">
+						<div className="edac-panel-section__header">
+							<h3 className="edac-panel-section__title">{ __( 'Simplified Summary', 'accessibility-checker' ) }</h3>
+						</div>
+						<p className="edac-panel-section__message">
+							{ __( 'A simplified summary is required for this content.', 'accessibility-checker' ) }
+						</p>
+						<a href={ readabilityHelpUrl || '#' } className="edac-panel-section__link">
+							{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
+						</a>
+
+						<div className="edac-panel-section__subsection">
+							<h4 className="edac-panel-section__subheading">
+								{ __( 'Simplified Summary', 'accessibility-checker' ) }
+							</h4>
+							<TextareaControl
+								value={ summaryText }
+								onChange={ setSummaryText }
+								placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
+								rows={ 4 }
+								className="summary-textarea"
+							/>
+							<Button
+								variant="primary"
+								onClick={ handleSaveSummary }
+								disabled={ isSaving || summaryText === initialSummary }
+								className="edac-panel-section__save-button"
+							>
+								{ __( 'Save Summary', 'accessibility-checker' ) }
+							</Button>
+						</div>
 					</div>
 				</PanelRow>
 			) }
