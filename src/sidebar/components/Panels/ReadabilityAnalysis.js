@@ -3,7 +3,7 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { PanelBody, PanelRow, TextareaControl, Button, Notice } from '@wordpress/components';
+import { PanelBody, PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
@@ -367,9 +367,9 @@ const ReadabilityAnalysis = () => {
 									<Button
 										variant="primary"
 										onClick={ handleSaveSummary }
-										disabled={ isSaving || summaryText === initialSummary }
 										className="edac-panel-section__save-button"
 									>
+										{ isSaving && <Spinner /> }
 										{ __( 'Save Summary', 'accessibility-checker' ) }
 									</Button>
 								</div>
@@ -407,9 +407,9 @@ const ReadabilityAnalysis = () => {
 							<Button
 								variant="primary"
 								onClick={ handleSaveSummary }
-								disabled={ isSaving || summaryText === initialSummary }
 								className="edac-panel-section__save-button"
 							>
+								{ isSaving && <Spinner /> }
 								{ __( 'Save Summary', 'accessibility-checker' ) }
 							</Button>
 						</div>
