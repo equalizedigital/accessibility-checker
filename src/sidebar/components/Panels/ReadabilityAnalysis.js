@@ -236,13 +236,15 @@ const ReadabilityAnalysis = () => {
 			onToggle={ handlePanelToggle }
 		>
 			{ notice && (
-				<Notice
-					status={ notice.type }
-					isDismissible={ true }
-					onRemove={ () => setNotice( null ) }
-				>
-					{ notice.message }
-				</Notice>
+				<div style={ { marginTop: '16px' } }>
+					<Notice
+						status={ notice.type }
+						isDismissible={ true }
+						onRemove={ () => setNotice( null ) }
+					>
+						{ notice.message }
+					</Notice>
+				</div>
 			) }
 
 			{/* No Content Panel */}
