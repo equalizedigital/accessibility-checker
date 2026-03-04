@@ -1,0 +1,222 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
+            "Needs Review": [
+                "Beh\u00f6ver granskas",
+                "Beh\u00f6ver granskas"
+            ],
+            "Critical": [
+                "Kritisk"
+            ],
+            "High": [
+                "H\u00f6g"
+            ],
+            "Medium": [
+                "Medel"
+            ],
+            "Low": [
+                "L\u00e5g"
+            ],
+            "View on page": [
+                "Visa p\u00e5 sidan"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "Inte tillr\u00e4ckligt med inneh\u00e5ll f\u00f6r att fastst\u00e4lla en korrekt l\u00e4sbarhetsniv\u00e5."
+            ],
+            "Simplified Summary": [
+                "F\u00f6renklad sammanfattning"
+            ],
+            "Reading Level": [
+                "L\u00e4sniv\u00e5"
+            ],
+            "Accessibility Status": [
+                "Tillg\u00e4nglighetsstatus"
+            ],
+            "Accessibility Analysis": [
+                "Tillg\u00e4nglighetsanalys"
+            ],
+            "Readability Analysis": [
+                "L\u00e4sbarhetsanalys"
+            ],
+            "Clear Issues": [
+                "Rensa problem"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "Detta kommer att rensa alla problem f\u00f6r detta inl\u00e4gg. En sparning kr\u00e4vs f\u00f6r att utl\u00f6sa en ny skanning av inl\u00e4ggets inneh\u00e5ll. Vill du forts\u00e4tta?"
+            ],
+            "Failed to load accessibility data": [
+                "Kunde inte ladda tillg\u00e4nglighetsdata"
+            ],
+            "Error loading accessibility data": [
+                "Fel vid laddning av tillg\u00e4nglighetsdata"
+            ],
+            "Loading accessibility results...": [
+                "Laddar tillg\u00e4nglighetsresultat..."
+            ],
+            "Updating accessibility data...": [
+                "Uppdaterar tillg\u00e4nglighetsdata..."
+            ],
+            "problem to address": [
+                "problem att \u00e5tg\u00e4rda",
+                "problem att \u00e5tg\u00e4rda"
+            ],
+            "issue that needs review": [
+                "\u00e4rende som beh\u00f6ver granskas",
+                "\u00e4renden som beh\u00f6ver granskas"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "Du har %1$d %2$s och %3$d %4$s."
+            ],
+            "You have %1$d %2$s.": [
+                "Du har %1$d %2$s."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "Kontrollera och \u00e5tg\u00e4rda tillg\u00e4nglighetsproblem i ditt inneh\u00e5ll."
+            ],
+            "Open Accessibility Panel": [
+                "\u00d6ppna tillg\u00e4nglighetspanelen"
+            ],
+            "N\/A": [
+                "Ej till\u00e4mpligt"
+            ],
+            "%dth": [
+                "%d:e"
+            ],
+            "Summary provided": [
+                "Sammanfattning tillhandah\u00e5llen"
+            ],
+            "Summary required": [
+                "Sammanfattning kr\u00e4vs"
+            ],
+            "Summary not required": [
+                "Sammanfattning kr\u00e4vs ej"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "Visa %d problem i tillg\u00e4nglighetsanalysen"
+            ],
+            "Problems": [
+                "Problem"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "Visa %d objekt som beh\u00f6ver granskas i tillg\u00e4nglighetsanalysen"
+            ],
+            "View reading level details: %s": [
+                "Visa l\u00e4sbarhetsdetaljer: %s"
+            ],
+            "Passed Checks": [
+                "Godk\u00e4nda kontroller"
+            ],
+            "Issue": [
+                "\u00c4rende"
+            ],
+            "Issue actions for %s": [
+                "\u00c4rende\u00e5tg\u00e4rder f\u00f6r %s"
+            ],
+            "Issue actions": [
+                "\u00c4rende\u00e5tg\u00e4rder"
+            ],
+            "Show code": [
+                "Visa kod"
+            ],
+            "Reopen issue": [
+                "\u00c5ter\u00f6ppna \u00e4rende"
+            ],
+            "Dismiss issue": [
+                "Avf\u00e4rda \u00e4rende"
+            ],
+            "Apply fix": [
+                "Till\u00e4mpa fix"
+            ],
+            "%d total": [
+                "%d totalt"
+            ],
+            "No dismissed issues.": [
+                "Inga avf\u00e4rdade \u00e4renden."
+            ],
+            "No issues found.": [
+                "Inga \u00e4renden hittades."
+            ],
+            "%d total issues": [
+                "%d totalt antal \u00e4renden"
+            ],
+            "Dismissed Issues": [
+                "Avf\u00e4rdade \u00e4renden"
+            ],
+            "Simplified summary saved successfully.": [
+                "F\u00f6renklad sammanfattning sparades framg\u00e5ngsrikt."
+            ],
+            "Failed to save summary. Please try again.": [
+                "Kunde inte spara sammanfattningen. F\u00f6rs\u00f6k igen."
+            ],
+            "An error occurred while saving the summary.": [
+                "Ett fel uppstod n\u00e4r sammanfattningen skulle sparas."
+            ],
+            "%s grade": [
+                "%s klass"
+            ],
+            "%dth grade": [
+                "%d:e klass"
+            ],
+            "Not available": [
+                "Inte tillg\u00e4nglig"
+            ],
+            "Warning": [
+                "Varning"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "Detta inl\u00e4gg inneh\u00e5ller inte tillr\u00e4ckligt med inneh\u00e5ll f\u00f6r att ber\u00e4kna en l\u00e4sbarhetsniv\u00e5."
+            ],
+            "Adjust summary prompts in settings.": [
+                "Justera sammanfattningsprompter i inst\u00e4llningarna."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "Inneh\u00e5ll p\u00e5 eller under en l\u00e4sbarhetsniv\u00e5 f\u00f6r \u00e5rskurs 9 kr\u00e4ver ingen f\u00f6renklad sammanfattning."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "Inneh\u00e5ll \u00f6ver en l\u00e4sbarhetsniv\u00e5 f\u00f6r \u00e5rskurs 9 kr\u00e4ver en f\u00f6renklad sammanfattning f\u00f6r att uppfylla WCAG AAA-riktlinjerna."
+            ],
+            "Learn more about readability requirements.": [
+                "L\u00e4s mer om l\u00e4sbarhetskrav."
+            ],
+            "Simplified Summary Reading Level": [
+                "F\u00f6renklad sammanfattning l\u00e4sbarhetsniv\u00e5"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "Beh\u00f6ver f\u00f6rb\u00e4ttras, sammanfattningen \u00e4r \u00f6ver l\u00e4sbarhetsniv\u00e5n f\u00f6r \u00e5rskurs 9."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "Under den rekommenderade l\u00e4sbarhetsniv\u00e5n f\u00f6r \u00e5rskurs 9."
+            ],
+            "Enter simplified summary...": [
+                "Ange f\u00f6renklad sammanfattning..."
+            ],
+            "Save Summary": [
+                "Spara sammanfattning"
+            ],
+            "Loading accessibility data...": [
+                "Laddar tillg\u00e4nglighetsdata..."
+            ],
+            "Accessibility Checker actions": [
+                "\u00c5tg\u00e4rder f\u00f6r tillg\u00e4nglighetskontroll"
+            ],
+            "Scan": [
+                "Skanna"
+            ],
+            "Refresh": [
+                "Uppdatera"
+            ]
+        }
+    }
+}

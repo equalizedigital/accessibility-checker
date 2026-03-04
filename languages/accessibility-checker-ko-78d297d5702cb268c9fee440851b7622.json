@@ -1,0 +1,174 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/issueModal.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ko_KR",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Problem": [
+                "\ubb38\uc81c"
+            ],
+            "Needs Review": [
+                "\uac80\ud1a0 \ud544\uc694"
+            ],
+            "Critical": [
+                "\uc2ec\uac01"
+            ],
+            "High": [
+                "\ub192\uc74c"
+            ],
+            "Medium": [
+                "\uc911\uac04"
+            ],
+            "Low": [
+                "\ub0ae\uc74c"
+            ],
+            "These settings enable global fixes across your entire site.": [
+                "\uc774 \uc124\uc815\uc740 \uc804\uccb4 \uc0ac\uc774\ud2b8\uc5d0 \uac78\uccd0 \uc804\uc5ed \uc218\uc815\uc744 \ud65c\uc131\ud654\ud569\ub2c8\ub2e4."
+            ],
+            "Save": [
+                "\uc800\uc7a5"
+            ],
+            "Affected Code": [
+                "\uc601\ud5a5\uc744 \ubc1b\ub294 \ucf54\ub4dc"
+            ],
+            "View on page": [
+                "\ud398\uc774\uc9c0\uc5d0\uc11c \ubcf4\uae30"
+            ],
+            "Reopen Issue": [
+                "\ubb38\uc81c \ub2e4\uc2dc \uc5f4\uae30"
+            ],
+            "Dismiss Issue": [
+                "\ubb38\uc81c \ud574\uc81c"
+            ],
+            "Dismiss issue as:": [
+                "\ub2e4\uc74c\uc73c\ub85c \ubb38\uc81c \ud574\uc81c:"
+            ],
+            "View %s landmark on website, opens a new window": [
+                "\uc6f9\uc0ac\uc774\ud2b8\uc5d0\uc11c %s \ub79c\ub4dc\ub9c8\ud06c \ubcf4\uae30, \uc0c8 \ucc3d\uc5d0\uc11c \uc5f4\ub9bc"
+            ],
+            "Fix Issue": [
+                "\ubb38\uc81c \ud574\uacb0"
+            ],
+            "Issue related image": [
+                "\ubb38\uc81c \uad00\ub828 \uc774\ubbf8\uc9c0"
+            ],
+            "Fix settings saved.": [
+                "\uc218\uc815 \uc124\uc815\uc774 \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4."
+            ],
+            "Failed to save fix settings.": [
+                "\uc218\uc815 \uc124\uc815\uc744 \uc800\uc7a5\ud558\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4."
+            ],
+            "Loading fix information...": [
+                "\uc218\uc815 \uc815\ubcf4 \ub85c\ub4dc \uc911..."
+            ],
+            "Save fix for: %s": [
+                "%s\uc5d0 \ub300\ud55c \uc218\uc815 \uc0ac\ud56d \uc800\uc7a5"
+            ],
+            "Bold (Ctrl+B)": [
+                "\uad75\uac8c (ctrl+b)"
+            ],
+            "Italic (Ctrl+I)": [
+                "\uae30\uc6b8\uc784\uaf34 (ctrl+i)"
+            ],
+            "Link (Ctrl+K)": [
+                "\ub9c1\ud06c (ctrl+k)"
+            ],
+            "https:\/\/example.com": [
+                "https:\/\/example.com"
+            ],
+            "Link URL": [
+                "\ub9c1\ud06c URL"
+            ],
+            "Add": [
+                "\ucd94\uac00"
+            ],
+            "Issue dismissed successfully.": [
+                "\ubb38\uc81c\uac00 \uc131\uacf5\uc801\uc73c\ub85c \ud574\uc81c\ub418\uc5c8\uc2b5\ub2c8\ub2e4."
+            ],
+            "Issue reopened successfully.": [
+                "\ubb38\uc81c\uac00 \uc131\uacf5\uc801\uc73c\ub85c \ub2e4\uc2dc \uc5f4\ub838\uc2b5\ub2c8\ub2e4."
+            ],
+            "Dismissing...": [
+                "\ud574\uc81c \uc911..."
+            ],
+            "Issue Dismissed \u2014 %s": [
+                "\ubb38\uc81c \ud574\uc81c\ub428 \u2014 %s"
+            ],
+            "Issue Dismissed": [
+                "\ubb38\uc81c \ud574\uc81c\ub428"
+            ],
+            "Scope:": [
+                "\ubc94\uc704:"
+            ],
+            "All pages": [
+                "\ubaa8\ub4e0 \ud398\uc774\uc9c0"
+            ],
+            "By:": [
+                "\uc791\uc131\uc790:"
+            ],
+            "On:": [
+                "\ub0a0\uc9dc:"
+            ],
+            "Reason for dismissal:": [
+                "\ud574\uc81c \uc0ac\uc720:"
+            ],
+            "Reopening...": [
+                "\ub2e4\uc2dc \uc5ec\ub294 \uc911..."
+            ],
+            "Comment (optional)": [
+                "\ub313\uae00 (\uc120\ud0dd \uc0ac\ud56d)"
+            ],
+            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
+                "\uc774 \ubb38\uc81c\uac00 \ud574\uc81c\ub418\ub294 \uc774\uc720\ub97c \uc124\uba85\ud558\ub294 \uba54\ubaa8\ub97c \ucd94\uac00\ud569\ub2c8\ub2e4. \uad75\uac8c, \uae30\uc6b8\uc784\uaf34, \ub9c1\ud06c\ub97c \uc9c0\uc6d0\ud569\ub2c8\ub2e4."
+            ],
+            "More dismiss options": [
+                "\ub354 \ub9ce\uc740 \ud574\uc81c \uc635\uc158"
+            ],
+            "Dismiss Globally": [
+                "\uc804\uc5ed\uc801\uc73c\ub85c \ud574\uc81c"
+            ],
+            "Dismiss & Close Modal": [
+                "\ud574\uc81c \ubc0f \ubaa8\ub2ec \ub2eb\uae30"
+            ],
+            "Issue #%s": [
+                "\ubb38\uc81c #%s"
+            ],
+            "Issue Details": [
+                "\ubb38\uc81c \uc138\ubd80 \uc815\ubcf4"
+            ],
+            "Type": [
+                "\uc720\ud615"
+            ],
+            "Severity": [
+                "\uc2ec\uac01\ub3c4"
+            ],
+            "Landmark": [
+                "\ub79c\ub4dc\ub9c8\ud06c"
+            ],
+            "WCAG:": [
+                "WCAG:"
+            ],
+            "Show explanation": [
+                "\uc124\uba85 \ubcf4\uae30"
+            ],
+            "Why It Matters": [
+                "\uc911\uc694\ud55c \uc774\uc720"
+            ],
+            "How to Fix": [
+                "\ud574\uacb0 \ubc29\ubc95"
+            ],
+            "More Detailed Documentation": [
+                "\ub354 \uc790\uc138\ud55c \ubb38\uc11c"
+            ],
+            "Image": [
+                "\uc774\ubbf8\uc9c0"
+            ]
+        }
+    }
+}

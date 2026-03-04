@@ -9,6 +9,10 @@ namespace EDAC\Admin;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles admin notices
  */

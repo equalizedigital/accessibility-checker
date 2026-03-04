@@ -7,6 +7,10 @@
 
 namespace EDAC\Admin;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles widgets
  */
@@ -59,8 +63,8 @@ class Widgets {
 			) {
 				$pro_modal_link = edac_generate_link_type(
 					[
-						'utm-campaign' => 'dashboard-widget',
-						'utm-content'  => 'upgrade-to-edacp',
+						'utm_campaign' => 'dashboard-widget',
+						'utm_content'  => 'upgrade-to-edacp',
 					],
 				);
 				$pro_modal_html = '
@@ -231,8 +235,8 @@ class Widgets {
 
 				$non_scannable_post_type_pro_link = edac_generate_link_type(
 					[
-						'utm-campaign' => 'dashboard-widget',
-						'utm-content'  => 'upgrade-to-edacp',
+						'utm_campaign' => 'dashboard-widget',
+						'utm_content'  => 'upgrade-to-edacp',
 					],
 					'pro',
 					[

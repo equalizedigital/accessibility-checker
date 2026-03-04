@@ -5,6 +5,10 @@
  * @package Accessibility_Checker
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 <div class="edac-pro-callout">
 	<img
@@ -35,8 +39,8 @@
 			echo esc_url(
 				edac_generate_link_type(
 					[
-						'utm-campaign' => 'pro-callout',
-						'utm-content'  => 'get-pro',
+						'utm_campaign' => 'pro-callout',
+						'utm_content'  => 'get-pro',
 					]
 				)
 			);
@@ -58,5 +62,4 @@
 		</a>
 	<?php endif; ?>
 </div>
-
 

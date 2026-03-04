@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Equalize Digital
+# Copyright (C) 2026 Equalize Digital
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.35.0\n"
+"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,12 +18,13 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:51
-#: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:45
-#: partials/welcome-page.php:24
+#: admin/class-meta-boxes.php:43
+#: includes/classes/class-accessibility-statement.php:55
+#: includes/classes/class-admin-toolbar.php:57
+#: includes/options-page.php:49
+#: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Trình kiểm tra khả năng tiếp cận"
 
@@ -47,18 +48,18 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/FixesPage.php:71
+#: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:82
-#: includes/classes/class-admin-toolbar.php:102
+#: includes/classes/class-admin-toolbar.php:106
 msgid "Fixes"
 msgstr "Sửa lỗi"
 
-#: admin/AdminPage/FixesPage.php:138
+#: admin/AdminPage/FixesPage.php:142
 msgid "General Fixes"
 msgstr "Sửa lỗi chung"
 
-#: admin/AdminPage/FixesPage.php:212
+#: admin/AdminPage/FixesPage.php:220
 msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
 msgstr "Những sửa đổi này giúp cải thiện khả năng tiếp cận bằng cách điều chỉnh các phần tử HTML và hành vi trên trang web của bạn."
 
@@ -70,13 +71,13 @@ msgstr "Nâng cấp lên bản Pro để mở khóa tính năng này, mở trong
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:55
+#: admin/class-plugin-action-links.php:59
 #: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Nâng cấp lên bản Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:340
+#: admin/class-ajax.php:384
 msgid "Opens in a new window."
 msgstr "Mở trong cửa sổ mới."
 
@@ -168,266 +169,360 @@ msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở 
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
 
-#: admin/class-admin-notices.php:129
+#: admin/class-admin-notices.php:133
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:130
+#: admin/class-admin-notices.php:134
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 24 tháng 11 đến ngày 3 tháng 12 để được giảm giá 30%! Quét toàn bộ trang web, báo cáo các vấn đề mở trên toàn trang web, bỏ qua nhật ký và hơn thế nữa."
 
-#: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:135
+#: admin/class-admin-notices.php:225
 msgid "Ask a Pre-Sale Question"
 msgstr "Đặt câu hỏi trước khi mua"
 
-#: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:136
+#: admin/class-admin-notices.php:226
 msgid "Upgrade Now"
 msgstr "Nâng cấp ngay"
 
-#: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:241
-#: admin/class-admin-notices.php:330
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:202
-#: admin/class-ajax.php:585
-#: admin/class-ajax.php:718
-#: admin/class-ajax.php:792
-#: admin/class-frontend-highlight.php:78
-#: admin/class-frontend-highlight.php:96
-#: admin/class-frontend-highlight.php:101
+#: admin/class-admin-notices.php:155
+#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:334
+#: admin/class-ajax.php:60
+#: admin/class-ajax.php:218
+#: admin/class-ajax.php:607
+#: admin/class-ajax.php:770
+#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
+#: admin/class-frontend-highlight.php:109
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:354
+#: admin/class-admin-notices.php:167
+#: admin/class-admin-notices.php:257
+#: admin/class-admin-notices.php:358
 msgid "Update option wasn't successful"
 msgstr "Cập nhật tùy chọn không thành công"
 
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:223
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân Ngày Nhận thức Khả năng Tiếp cận Toàn cầu! 🎉"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:224
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:309
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ kiểm tra khả năng tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết đánh giá 5 sao cho Accessibility Checker trên thư mục plugin WordPress được không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người có thể biết về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
 
-#: admin/class-admin-notices.php:308
+#: admin/class-admin-notices.php:312
 msgid "Write A Review"
 msgstr "Viết đánh giá"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:313
 msgid "Remind Me In Two Weeks"
 msgstr "Nhắc tôi sau hai tuần"
 
-#: admin/class-admin-notices.php:310
+#: admin/class-admin-notices.php:314
 msgid "Never Ask Again"
 msgstr "Không bao giờ hỏi lại"
 
-#: admin/class-admin-notices.php:337
+#: admin/class-admin-notices.php:341
 msgid "The review action value was not set"
 msgstr "Giá trị hành động đánh giá không được thiết lập"
 
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:206
-#: admin/class-ajax.php:589
-#: admin/class-ajax.php:796
+#: admin/class-ajax.php:64
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:611
 msgid "The post ID was not set"
 msgstr "ID bài viết chưa được thiết lập"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:593
+#: admin/class-ajax.php:68
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:615
 msgid "You do not have permission to view this information for this post."
 msgstr "Bạn không có quyền xem thông tin này cho bài viết này."
 
-#: admin/class-ajax.php:83
+#: admin/class-ajax.php:87
 msgid "A Simplified summary has not been included for this content."
 msgstr "Bản tóm tắt đơn giản hóa chưa được bao gồm cho nội dung này."
 
-#: admin/class-ajax.php:86
+#: admin/class-ajax.php:90
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Nội dung của bạn có trình độ đọc ở mức lớp 9 hoặc thấp hơn và không cần bản tóm tắt đơn giản hóa."
 
-#: admin/class-ajax.php:89
+#: admin/class-ajax.php:93
 msgid "The reading level of the simplified summary is too high."
 msgstr "Trình độ đọc của bản tóm tắt đơn giản hóa quá cao."
 
-#: admin/class-ajax.php:91
+#: admin/class-ajax.php:95
 msgid "A simplified summary has been included for this content."
 msgstr "Bản tóm tắt đơn giản hóa đã được bao gồm cho nội dung này."
 
-#. translators: %s: Number of errors
-#: admin/class-ajax.php:127
-#, php-format
-msgid "%s Error"
-msgid_plural "%s Errors"
-msgstr[0] "%s Lỗi"
+#: admin/class-ajax.php:134
+#: build/issueModal.bundle.js:2
+msgid "Problem"
+msgid_plural "Problems"
+msgstr[0] "Vấn đề"
 
-#. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:133
-#, php-format
-msgid "%s Contrast Error"
-msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Lỗi tương phản"
+#: admin/class-ajax.php:140
+msgid "Contrast Problem"
+msgid_plural "Contrast Problems"
+msgstr[0] "Vấn đề về độ tương phản"
 
-#. translators: %s: Number of warnings
-#: admin/class-ajax.php:139
-#, php-format
-msgid "%s Warning"
-msgid_plural "%s Warnings"
-msgstr[0] "%s Cảnh báo"
+#: admin/class-ajax.php:146
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Needs Review"
+msgid_plural "Needs Review"
+msgstr[0] "Cần xem xét"
 
-#. translators: %s: Number of ignored items
-#: admin/class-ajax.php:145
-#, php-format
-msgid "%s Ignored Item"
-msgid_plural "%s Ignored Items"
-msgstr[0] "%s Mục bị bỏ qua"
+#: admin/class-ajax.php:152
+#: admin/class-ajax.php:380
+msgid "Dismissed Issue"
+msgid_plural "Dismissed Issues"
+msgstr[0] "Các vấn đề đã bị bỏ qua"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:198
 msgid "No summary to return"
 msgstr "Không có bản tóm tắt để trả về"
 
-#: admin/class-ajax.php:221
+#: admin/class-ajax.php:237
+#: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Tên bảng không hợp lệ"
 
-#: admin/class-ajax.php:365
+#: admin/class-ajax.php:325
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Nghiêm trọng"
+
+#: admin/class-ajax.php:329
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Cao"
+
+#: admin/class-ajax.php:333
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Trung bình"
+
+#: admin/class-ajax.php:337
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Thấp"
+
+#: admin/class-ajax.php:378
+msgid " total"
+msgstr " tổng cộng"
+
+#: admin/class-ajax.php:408
+#: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
 
-#: admin/class-ajax.php:366
+#: admin/class-ajax.php:409
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ trang web cần được thực hiện để thấy các sửa đổi được phản ánh trong báo cáo."
 
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:437
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Lưu"
 
-#: admin/class-ajax.php:416
+#: admin/class-ajax.php:459
+#: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
-#: admin/class-ajax.php:438
-msgid "Username:"
-msgstr "Tên người dùng:"
-
-#: admin/class-ajax.php:443
-msgid "Date:"
-msgstr "Ngày:"
-
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:505
+#: admin/class-ajax.php:534
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:535
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Xem trên trang"
 
-#: admin/class-ajax.php:525
+#: admin/class-ajax.php:554
 msgid "Fix: "
 msgstr "Sửa: "
 
-#: admin/class-ajax.php:526
+#: admin/class-ajax.php:555
 msgid "Fix"
 msgstr "Sửa"
 
-#: admin/class-ajax.php:549
-msgid "Your user account doesn't have permission to ignore this issue."
-msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua vấn đề này."
-
-#: admin/class-ajax.php:566
+#: admin/class-ajax.php:588
 msgid "No details to return"
 msgstr "Không có chi tiết để trả về"
 
-#: admin/class-ajax.php:700
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:676
+#: admin/class-ajax.php:688
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Mức độ đọc tóm tắt đơn giản: %s"
+
+#: admin/class-ajax.php:677
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "Không có"
+
+#: admin/class-ajax.php:680
+#: build/sidebar.bundle.js:2
+msgid "Not enough content to determine an accurate reading level."
+msgstr "Không đủ nội dung để xác định mức độ đọc chính xác."
+
+#: admin/class-ajax.php:693
+msgid "Your simplified summary has a reading level above 9th grade."
+msgstr "Tóm tắt đơn giản của bạn có mức độ đọc trên lớp 9."
+
+#: admin/class-ajax.php:694
+msgid "Your simplified summary has a reading level at or below 9th grade."
+msgstr "Tóm tắt đơn giản của bạn có mức độ đọc từ lớp 9 trở xuống."
+
+#: admin/class-ajax.php:745
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-ajax.php:752
-#: admin/class-ajax.php:773
+#: admin/class-ajax.php:805
+#: admin/class-ajax.php:826
 msgid "No ignore data to return"
 msgstr "Không có dữ liệu bỏ qua để trả về"
 
-#: admin/class-ajax.php:800
-msgid "The summary was not set"
-msgstr "Bản tóm tắt chưa được thiết lập"
-
-#: admin/class-ajax.php:804
-msgid "You do not have permission to edit this post."
-msgstr "Bạn không có quyền chỉnh sửa bài viết này."
-
-#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Giá trị id chưa được thiết lập"
 
-#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:93
+#: includes/classes/class-rest-api.php:1037
 msgid "Post not found"
 msgstr "Không tìm thấy bài viết"
 
-#: admin/class-frontend-highlight.php:111
+#: admin/class-frontend-highlight.php:115
 msgid "Issue query returned no results"
 msgstr "Truy vấn vấn đề không trả về kết quả nào"
 
-#: admin/class-frontend-highlight.php:155
+#: admin/class-frontend-highlight.php:162
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
-#: admin/class-plugin-action-links.php:48
-#: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:68
+#: admin/class-ignore-ui.php:31
+msgid "False positive"
+msgstr "Dương tính giả"
+
+#: admin/class-ignore-ui.php:32
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Trình quét đã gắn cờ mục này, nhưng nó không áp dụng cho nội dung này."
+
+#: admin/class-ignore-ui.php:35
+msgid "Remediated"
+msgstr "Đã khắc phục"
+
+#: admin/class-ignore-ui.php:36
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Sự cố đã được khắc phục, nhưng trang chưa được quét lại."
+
+#: admin/class-ignore-ui.php:39
+msgid "Confirmed accessible"
+msgstr "Đã xác nhận có thể truy cập"
+
+#: admin/class-ignore-ui.php:40
+msgid "Reviewed and verified to meet accessibility requirements."
+msgstr "Đã xem xét và xác minh đáp ứng các yêu cầu về khả năng truy cập."
+
+#: admin/class-ignore-ui.php:82
+msgid "Username:"
+msgstr "Tên người dùng:"
+
+#: admin/class-ignore-ui.php:92
+msgid "Date:"
+msgstr "Ngày:"
+
+#: admin/class-ignore-ui.php:97
+#: build/issueModal.bundle.js:2
+msgid "Reopen Issue"
+msgstr "Mở lại sự cố"
+
+#: admin/class-ignore-ui.php:98
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Issue"
+msgstr "Bỏ qua sự cố"
+
+#: admin/class-ignore-ui.php:119
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
+msgid "Comment"
+msgstr "Bình luận"
+
+#: admin/class-ignore-ui.php:126
+msgid "Manage Globally Dismissed"
+msgstr "Quản lý các mục bị bỏ qua trên toàn cầu"
+
+#: admin/class-ignore-ui.php:134
+msgid "Your user account doesn't have permission to dismiss this issue."
+msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua sự cố này."
+
+#: admin/class-ignore-ui.php:156
+#: build/issueModal.bundle.js:2
+msgid "Dismiss issue as:"
+msgstr "Bỏ qua sự cố dưới dạng:"
+
+#: admin/class-plugin-action-links.php:52
+#: includes/classes/class-admin-toolbar.php:98
+#: includes/options-page.php:72
 msgid "Settings"
 msgstr "Cài đặt"
 
-#: admin/class-plugin-action-links.php:60
+#: admin/class-plugin-action-links.php:64
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Tải Accessibility Checker Pro, mở trong cửa sổ mới"
 
-#: admin/class-plugin-row-meta.php:53
+#: admin/class-plugin-row-meta.php:57
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Xem Tài liệu Accessibility Checker (mở trong cửa sổ mới)"
 
-#: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:313
+#: admin/class-plugin-row-meta.php:58
+#: admin/class-widgets.php:317
 msgid "Documentation"
 msgstr "Tài liệu"
 
-#: admin/class-plugin-row-meta.php:59
+#: admin/class-plugin-row-meta.php:63
 msgid "Get support for Accessibility Checker (opens in new window)"
 msgstr "Nhận hỗ trợ cho Accessibility Checker (mở trong cửa sổ mới)"
 
-#: admin/class-plugin-row-meta.php:60
+#: admin/class-plugin-row-meta.php:64
 msgid "Support"
 msgstr "Hỗ trợ"
 
-#: admin/class-plugin-row-meta.php:65
+#: admin/class-plugin-row-meta.php:69
 msgid "Rate Accessibility Checker plugin (opens in new window)"
 msgstr "Đánh giá plugin Accessibility Checker (mở trong cửa sổ mới)"
 
-#: admin/class-plugin-row-meta.php:66
+#: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Đánh giá plugin"
 
-#: admin/class-upgrade-promotion.php:58
+#: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Nâng cấp lên bản pro"
 
-#: admin/class-upgrade-promotion.php:60
+#: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
 msgstr "Khuyến mãi nâng cấp đang diễn ra"
 
-#: admin/class-upgrade-promotion.php:82
+#: admin/class-upgrade-promotion.php:86
 msgid "Unable to redirect to upgrade page."
 msgstr "Không thể chuyển hướng đến trang nâng cấp."
 
@@ -452,7 +547,7 @@ msgid "See History"
 msgstr "Xem lịch sử"
 
 #: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:98
+#: admin/class-widgets.php:102
 msgid "Passed Tests"
 msgstr "Các bài kiểm tra đã vượt qua"
 
@@ -485,12 +580,12 @@ msgid "Average Issue Density"
 msgstr "Mật độ vấn đề trung bình"
 
 #: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:105
+#: admin/class-widgets.php:109
 msgid "Report Last Updated:"
 msgstr "Báo cáo cập nhật lần cuối:"
 
 #: admin/class-welcome-page.php:216
-#: includes/options-page.php:606
+#: includes/options-page.php:610
 msgid "Never"
 msgstr "Chưa bao giờ"
 
@@ -533,130 +628,130 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Mở khóa báo cáo khả năng tiếp cận chi tiết"
 
 #: admin/class-welcome-page.php:304
-#: admin/class-widgets.php:71
+#: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Bắt đầu quét toàn bộ trang web của bạn để tìm các vấn đề về khả năng tiếp cận, nhận báo cáo toàn trang web, và tuân thủ nhanh hơn các hướng dẫn về khả năng tiếp cận."
 
 #: admin/class-welcome-page.php:308
-#: admin/class-widgets.php:73
+#: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Nâng cấp Accessibility Checker"
 
-#: admin/class-widgets.php:69
+#: admin/class-widgets.php:73
 msgid "close ad"
 msgstr "đóng quảng cáo"
 
-#: admin/class-widgets.php:70
+#: admin/class-widgets.php:74
 msgid "Get Detailed Accessibility Reports"
 msgstr "Nhận báo cáo khả năng tiếp cận chi tiết"
 
-#: admin/class-widgets.php:88
+#: admin/class-widgets.php:92
 msgid "Full Site Accessibility Status"
 msgstr "Trạng thái khả năng tiếp cận toàn trang web"
 
-#: admin/class-widgets.php:113
+#: admin/class-widgets.php:117
 msgid "URLs Scanned:"
 msgstr "URL đã quét:"
 
-#: admin/class-widgets.php:121
+#: admin/class-widgets.php:125
 msgid "Errors:"
 msgstr "Lỗi:"
 
-#: admin/class-widgets.php:125
+#: admin/class-widgets.php:129
 msgid "Color Contrast Errors:"
 msgstr "Lỗi tương phản màu sắc:"
 
-#: admin/class-widgets.php:129
+#: admin/class-widgets.php:133
 msgid "Warnings:"
 msgstr "Cảnh báo:"
 
-#: admin/class-widgets.php:144
+#: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Trang web của bạn có các vấn đề về khả năng tiếp cận cần được giải quyết càng sớm càng tốt để đảm bảo tuân thủ các hướng dẫn về khả năng tiếp cận."
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Tuyệt vời! Accessibility Checker không tìm thấy bất kỳ vấn đề nào về khả năng tiếp cận trong nội dung đã kiểm tra. Một số vấn đề không thể được phát hiện bởi các công cụ tự động, vì vậy đừng quên"
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "manually test your site"
 msgstr "kiểm tra trang web của bạn thủ công"
 
-#: admin/class-widgets.php:162
+#: admin/class-widgets.php:166
 msgid "Issues By Post Type"
 msgstr "Vấn đề theo loại bài viết"
 
-#: admin/class-widgets.php:169
+#: admin/class-widgets.php:173
 msgid "Post Type"
 msgstr "Loại bài viết"
 
-#: admin/class-widgets.php:172
+#: admin/class-widgets.php:176
 msgid "Errors"
 msgstr "Lỗi"
 
-#: admin/class-widgets.php:175
+#: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Tương phản"
 
-#: admin/class-widgets.php:178
+#: admin/class-widgets.php:182
 msgid "Warnings"
 msgstr "Cảnh báo"
 
-#: admin/class-widgets.php:248
+#: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Nâng cấp để quét"
 
-#: admin/class-widgets.php:277
+#: admin/class-widgets.php:281
 msgid "See More Reports"
 msgstr "Xem thêm báo cáo"
 
-#: admin/class-widgets.php:289
-#: partials/welcome-page.php:239
+#: admin/class-widgets.php:293
+#: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Học về khả năng tiếp cận"
 
-#: admin/class-widgets.php:311
+#: admin/class-widgets.php:315
 msgid "Additional Resources"
 msgstr "Tài nguyên bổ sung"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog (opens in a new window)"
 msgstr "Blog (mở trong cửa sổ mới)"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:313
+#: admin/class-widgets.php:317
 msgid "Documentation (opens in a new window)"
 msgstr "Tài liệu (mở trong cửa sổ mới)"
 
-#: admin/opt-in/class-email-opt-in.php:115
+#: admin/opt-in/class-email-opt-in.php:119
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Sự kiện & tin tức về khả năng tiếp cận trong hộp thư của bạn"
 
-#: admin/opt-in/class-email-opt-in.php:121
+#: admin/opt-in/class-email-opt-in.php:125
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
 msgstr "Đăng ký vào danh sách email của Equalize Digital để nhận được quyền truy cập vào các hội thảo trực tuyến và tài nguyên đào tạo miễn phí về khả năng tiếp cận."
 
-#: admin/opt-in/class-email-opt-in.php:127
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Email*"
 msgstr "Email*"
 
-#: admin/opt-in/class-email-opt-in.php:131
+#: admin/opt-in/class-email-opt-in.php:135
 msgid "Type your email"
 msgstr "Nhập email của bạn"
 
-#: admin/opt-in/class-email-opt-in.php:139
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "First Name"
 msgstr "Tên"
 
-#: admin/opt-in/class-email-opt-in.php:143
+#: admin/opt-in/class-email-opt-in.php:147
 msgid "Type your first name"
 msgstr "Nhập tên của bạn"
 
 #. translators: 1: link to privacy policy page. 2: link close tag.
-#: admin/opt-in/class-email-opt-in.php:153
+#: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Bằng cách đăng ký, bạn đồng ý nhận email theo %1$sChính sách Quyền riêng tư%2$s của chúng tôi."
@@ -665,89 +760,89 @@ msgstr "Bằng cách đăng ký, bạn đồng ý nhận email theo %1$sChính s
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Lịch sử kiểm tra"
 
-#: admin/site-health/class-checks.php:44
+#: admin/site-health/class-checks.php:48
 msgid "Accessibility issues"
 msgstr "Vấn đề về khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:49
+#: admin/site-health/class-checks.php:53
 msgid "Content checked for accessibility"
 msgstr "Nội dung đã được kiểm tra khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:54
+#: admin/site-health/class-checks.php:58
 msgid "Post types configured for accessibility checks"
 msgstr "Các loại bài viết đã được cấu hình cho việc kiểm tra khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:69
+#: admin/site-health/class-checks.php:73
 msgid "Accessibility"
 msgstr "Khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:96
+#: admin/site-health/class-checks.php:100
 msgid "View Issues"
 msgstr "Xem vấn đề"
 
-#: admin/site-health/class-checks.php:103
+#: admin/site-health/class-checks.php:107
 msgid "View Accessibility Checker"
 msgstr "Xem Accessibility Checker"
 
-#: admin/site-health/class-checks.php:122
+#: admin/site-health/class-checks.php:126
 msgid "Accessibility issues detected"
 msgstr "Đã phát hiện vấn đề về khả năng tiếp cận"
 
 #. translators: 1: error count, 2: warning count.
-#: admin/site-health/class-checks.php:125
+#: admin/site-health/class-checks.php:129
 #, php-format
 msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
 msgstr "Accessibility Checker đã phát hiện %1$s lỗi và %2$s cảnh báo."
 
-#: admin/site-health/class-checks.php:141
+#: admin/site-health/class-checks.php:145
 msgid "No accessibility issues detected"
 msgstr "Không phát hiện vấn đề về khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:142
+#: admin/site-health/class-checks.php:146
 msgid "Accessibility Checker has not found any issues in scanned content."
 msgstr "Accessibility Checker không tìm thấy vấn đề nào trong nội dung đã quét."
 
-#: admin/site-health/class-checks.php:160
+#: admin/site-health/class-checks.php:164
 msgid "Content has not been checked"
 msgstr "Nội dung chưa được kiểm tra"
 
-#: admin/site-health/class-checks.php:161
+#: admin/site-health/class-checks.php:165
 msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
 msgstr "Chưa có bài viết nào được quét. Chạy quét toàn bộ trang web để bắt đầu kiểm tra nội dung của bạn về các vấn đề khả năng tiếp cận."
 
-#: admin/site-health/class-checks.php:165
+#: admin/site-health/class-checks.php:169
 msgid "Start full site scan"
 msgstr "Bắt đầu quét toàn bộ trang web"
 
-#: admin/site-health/class-checks.php:174
+#: admin/site-health/class-checks.php:178
 msgid "Content is being checked for accessibility"
 msgstr "Nội dung đang được kiểm tra khả năng tiếp cận"
 
 #. translators: %s is the number of posts scanned.
-#: admin/site-health/class-checks.php:177
+#: admin/site-health/class-checks.php:181
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker đã quét %s bài viết về vấn đề khả năng tiếp cận."
 
-#: admin/site-health/class-checks.php:196
+#: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
 msgstr "Không có loại bài viết nào được chọn để kiểm tra khả năng tiếp cận"
 
-#: admin/site-health/class-checks.php:197
+#: admin/site-health/class-checks.php:201
 msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
 msgstr "Accessibility Checker không thể quét bất kỳ nội dung nào vì không có loại bài viết nào được chọn. Nếu không cấu hình loại bài viết, sẽ không phát hiện được vấn đề về khả năng tiếp cận."
 
-#: admin/site-health/class-checks.php:201
+#: admin/site-health/class-checks.php:205
 msgid "Configure post types"
 msgstr "Cấu hình loại bài viết"
 
-#: admin/site-health/class-checks.php:213
+#: admin/site-health/class-checks.php:217
 msgid "Post types are configured for accessibility checking"
 msgstr "Các loại bài viết đã được cấu hình để kiểm tra khả năng tiếp cận"
 
 #. translators: 1: number of post types, 2: comma-separated list of post type names.
-#: admin/site-health/class-checks.php:216
+#: admin/site-health/class-checks.php:220
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
@@ -799,7 +894,7 @@ msgid "Disabled"
 msgstr "Đã tắt"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:199
+#: includes/options-page.php:203
 msgid "Delete Data"
 msgstr "Xóa dữ liệu"
 
@@ -856,407 +951,372 @@ msgid "Simplified Sum Heading"
 msgstr "Tiêu đề tóm tắt đơn giản hóa"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:190
+#: includes/options-page.php:194
 msgid "Ignore Permissions"
 msgstr "Quyền bỏ qua"
-
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "Không có"
 
 #: admin/site-health/class-pro.php:78
 msgid "Ignores DB Table Count"
 msgstr "Số lượng Bảng DB bỏ qua"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
-#: includes/classes/class-accessibility-statement.php:45
+#: includes/classes/class-accessibility-statement.php:49
 #, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Trình %1$s sử dụng %2$s để theo dõi khả năng truy cập của trang web của chúng tôi."
 
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:54
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (mở trong cửa sổ mới)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:63
 #, php-format
 msgid "Read our %s"
 msgstr "Đọc %s của chúng tôi"
 
-#: includes/classes/class-accessibility-statement.php:60
+#: includes/classes/class-accessibility-statement.php:64
 msgid "Accessibility Policy"
 msgstr "Chính sách về khả năng truy cập"
 
-#: includes/classes/class-admin-toolbar.php:115
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
+#: includes/classes/class-admin-toolbar.php:119
+#: partials/pro-callout.php:51
+#: partials/welcome-page.php:219
 msgid "Get Accessibility Checker Pro"
 msgstr "Nhận Accessibility Checker Pro"
 
-#: includes/classes/class-admin-toolbar.php:120
+#: includes/classes/class-admin-toolbar.php:124
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Nhận Accessibility Checker Pro (mở trong cửa sổ mới)"
 
-#: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:898
-#: includes/options-page.php:922
+#: includes/classes/class-rest-api.php:991
+msgid "Unknown"
+msgstr "Không xác định"
+
+#: includes/classes/class-rest-api.php:1224
+msgid "Issue not found."
+msgstr "Không tìm thấy sự cố."
+
+#: includes/classes/class-rest-api.php:1267
+msgid "Failed to update the issue."
+msgstr "Không thể cập nhật sự cố."
+
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:902
+#: includes/options-page.php:926
+#: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Tóm tắt đơn giản"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
 msgstr "Thêm kích thước & loại vào liên kết tệp"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:54
 msgid "Add Context to Linked Files"
 msgstr "Thêm ngữ cảnh cho các tệp được liên kết"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:87
 msgid "Add File Size & Type To Links"
 msgstr "Thêm kích thước & loại tệp vào liên kết"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:89
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Thêm kích thước và loại tệp vào các liên kết tệp có thể kích hoạt tải xuống."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:45
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:54
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:77
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:100
 msgid "Label Form Fields"
 msgstr "Gắn nhãn cho các trường biểu mẫu"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:103
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Thêm nhãn cho các trường biểu mẫu chưa có nhãn nếu có thể xác định mục đích của trường."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:134
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Cố gắng thêm nhãn cho các trường biểu mẫu còn thiếu. Lưu ý: Bạn có thể cần thêm kiểu tùy chỉnh nhắm vào lớp %1$s nếu việc thêm nhãn ảnh hưởng đến bố cục biểu mẫu của bạn."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:45
 msgid "Add Missing or Empty Page Titles"
 msgstr "Thêm tiêu đề trang bị thiếu hoặc trống"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:54
 msgid "Set Page HTML Titles"
 msgstr "Đặt tiêu đề HTML cho trang"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:88
 msgid "Add Missing Page Title"
 msgstr "Thêm tiêu đề trang bị thiếu"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:91
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Thêm thẻ %1$s vào trang nếu nó bị thiếu hoặc trống."
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:38
 msgid "Add warning when link opens new tab/window"
 msgstr "Thêm cảnh báo khi liên kết mở tab/cửa sổ mới"
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:72
 msgid "Add Label To Links That Open A New Tab/Window"
 msgstr "Thêm nhãn cho các liên kết mở tab/cửa sổ mới"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:77
 #, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Thêm nhãn và biểu tượng cho các liên kết có %1$s thông báo cho người dùng rằng chúng sẽ mở một tab/cửa sổ mới. %2$sLưu ý: Cài đặt này sẽ không có tác dụng nếu tính năng \"Chặn Liên kết Mở Cửa sổ Mới\" được bật.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
 msgstr "Chặn Tải lên PDF"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:83
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Hạn chế tải lên PDF đối với người dùng không có khả năng %1$s (mặc định cho phép đối với quản trị viên)."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:38
 msgid "Add Labels to Comment and Search Forms"
 msgstr "Thêm nhãn cho biểu mẫu bình luận và tìm kiếm"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:47
 msgid "Label Comment/Search Fields"
 msgstr "Gắn nhãn cho trường bình luận/tìm kiếm"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:70
 msgid "Comment and Search Form Labels"
 msgstr "Nhãn biểu mẫu bình luận và tìm kiếm"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:71
 msgid "Add missing labels to WordPress comment and search forms."
 msgstr "Thêm nhãn còn thiếu cho biểu mẫu bình luận và tìm kiếm WordPress."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:94
 msgid "Label Comment Form"
 msgstr "Gắn nhãn biểu mẫu bình luận"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:97
 msgid "Add missing labels to the WordPress comment form."
 msgstr "Thêm nhãn còn thiếu cho biểu mẫu bình luận WordPress."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:105
 msgid "Label Search Form"
 msgstr "Gắn nhãn biểu mẫu tìm kiếm"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:108
 msgid "Add a missing label to the WordPress search form."
 msgstr "Thêm nhãn còn thiếu cho biểu mẫu tìm kiếm WordPress."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
-msgid "Comment"
-msgstr "Bình luận"
-
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:147
 msgid "Name"
 msgstr "Tên"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:152
 msgid "Email"
 msgstr "Email"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:157
 msgid "Website"
 msgstr "Trang web"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:181
 msgid "Search …"
 msgstr "Tìm kiếm …"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:186
 msgid "Search for:"
 msgstr "Tìm kiếm:"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:188
 msgid "Search"
 msgstr "Tìm kiếm"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Cài đặt để thêm nhãn còn thiếu vào biểu mẫu bình luận và tìm kiếm của WordPress."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
 msgstr "Thêm đường viền khi được focus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:60
 msgid "Focus Outline"
 msgstr "Đường viền khi focus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:61
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:87
 msgid "Add an outline to elements when they receive keyboard focus."
 msgstr "Thêm đường viền cho các phần tử khi chúng được focus bằng bàn phím."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:85
 msgid "Add Focus Outline"
 msgstr "Thêm đường viền khi focus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:116
 msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
 msgstr "Các cài đặt liên quan đến việc nâng cao đường viền khi focus để cải thiện khả năng truy cập bằng bàn phím."
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:37
 msgid "Add lang & dir Attributes"
 msgstr "Thêm thuộc tính lang & dir"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:46
 msgid "Set Page Language"
 msgstr "Đặt ngôn ngữ trang"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:80
 msgid "Add \"lang\" & \"dir\" Attributes"
 msgstr "Thêm thuộc tính \"lang\" & \"dir\""
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:83
 #, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Thêm thuộc tính ngôn ngữ trang web (%1$s) và hướng văn bản (%2$s) vào phần tử %3$s."
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+#: includes/classes/Fixes/Fix/LinkUnderline.php:37
 msgid "Add Underlines to all non-nav Links"
 msgstr "Thêm gạch chân cho tất cả liên kết không phải điều hướng"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+#: includes/classes/Fixes/Fix/LinkUnderline.php:46
 msgid "Underline Links"
 msgstr "Gạch chân liên kết"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+#: includes/classes/Fixes/Fix/LinkUnderline.php:80
 msgid "Force Link Underline"
 msgstr "Bắt buộc gạch chân liên kết"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+#: includes/classes/Fixes/Fix/LinkUnderline.php:82
 msgid "Ensure that non-navigation links are underlined."
 msgstr "Đảm bảo rằng các liên kết không phải điều hướng được gạch chân."
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:38
 msgid "Make Meta Viewport Tag Scalable"
 msgstr "Làm cho thẻ meta viewport có thể điều chỉnh tỷ lệ"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
-msgid "Ensure scalable viewport"
-msgstr "Đảm bảo viewport có thể điều chỉnh tỷ lệ"
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
-msgid "Make sure that the viewport tag on the page allows scaling."
-msgstr "Đảm bảo rằng thẻ viewport trên trang cho phép điều chỉnh tỷ lệ."
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:71
 msgid "Make Viewport Scalable"
 msgstr "Làm cho viewport có thể điều chỉnh tỷ lệ"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:74
 msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
 msgstr "Đảm bảo thẻ viewport cho phép điều chỉnh tỷ lệ, nâng cao khả năng truy cập trên thiết bị di động."
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:38
 msgid "Prevent Links Opening New Windows"
 msgstr "Ngăn liên kết mở cửa sổ mới"
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:72
 msgid "Block Links Opening New Windows"
 msgstr "Chặn liên kết mở cửa sổ mới"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:77
 #, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Ngăn liên kết mở trong cửa sổ hoặc tab mới bằng cách xóa %1$s."
 
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
-msgid "Add \"Read\" Link with Post Title"
-msgstr "Thêm liên kết \"Đọc\" với tiêu đề bài viết"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
-msgid "Add Title to Read More Link"
-msgstr "Thêm tiêu đề vào liên kết đọc thêm"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
-msgid "Read More links"
-msgstr "Liên kết Đọc thêm"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
-msgid "Add the post title and links "
-msgstr "Thêm tiêu đề bài viết và liên kết "
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
-msgid "Add Post Title To \"Read More\""
-msgstr "Thêm tiêu đề bài viết vào \"Đọc thêm\""
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
-msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
-msgstr "Thêm tiêu đề bài viết vào liên kết \"Đọc thêm\" trong danh sách bài viết khi giao diện của bạn hiển thị những liên kết đó."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
-msgid "For Screen Readers Only"
-msgstr "Chỉ dành cho trình đọc màn hình"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
-msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
-msgstr "Làm cho tiêu đề bài viết được thêm vào liên kết \"Đọc thêm\" chỉ hiển thị với trình đọc màn hình."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
-msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
-msgstr "Sửa đổi này thêm tiêu đề bài viết vào liên kết \"Đọc thêm\" trong danh sách bài viết tại khối \"Thêm\" và trong các đoạn trích."
-
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:37
 msgid "Prefer Accessible Label Attribute"
 msgstr "Ưu tiên thuộc tính nhãn có thể truy cập"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:46
 msgid "Remove Unnecessary Title Attributes"
 msgstr "Loại bỏ thuộc tính tiêu đề không cần thiết"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:80
 msgid "Remove Title Attributes"
 msgstr "Loại bỏ thuộc tính tiêu đề"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:83
 #, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Loại bỏ thuộc tính %1$s khỏi các phần tử đã có tên có thể truy cập ưu tiên."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:38
 msgid "Add Skip Links"
 msgstr "Thêm liên kết bỏ qua"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:61
 msgid "Skip Link"
 msgstr "Liên kết bỏ qua"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:85
 msgid "Enable Skip Link"
 msgstr "Bật liên kết bỏ qua"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:88
 msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
 msgstr "Thêm liên kết bỏ qua vào tất cả các trang của trang web, cho phép người dùng bỏ qua trực tiếp đến nội dung chính."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:96
 msgid "Main Content Target (required)"
 msgstr "Mục tiêu nội dung chính (bắt buộc)"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:99
 msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
 msgstr "Xác định ID của (các) khu vực nội dung chính được nhắm mục tiêu bởi liên kết bỏ qua. Nhập nhiều ID cách nhau bằng dấu phẩy; hệ thống sẽ duyệt qua danh sách để tìm ID phù hợp cho mỗi trang."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:108
 msgid "Navigation Target"
 msgstr "Mục tiêu điều hướng"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:111
 msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
 msgstr "Đặt thuộc tính ID của phần tử điều hướng. Điều này hữu ích nếu điều hướng chính của bạn chứa các hành động mà hầu hết khách truy cập trang web muốn thực hiện như tính năng đăng nhập hoặc tìm kiếm."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Nếu giao diện của bạn chưa thêm liên kết bỏ qua cho phép người dùng bàn phím bỏ qua phần điều hướng và nhanh chóng chuyển đến nội dung chính, hãy bật liên kết bỏ qua tại đây. %1$sTìm hiểu thêm về liên kết bỏ qua.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
 msgid "Skip to content"
 msgstr "Bỏ qua đến nội dung"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
 msgid "Skip to navigation"
 msgstr "Bỏ qua đến điều hướng"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:33
+#: includes/classes/Fixes/Fix/TabindexFix.php:37
 msgid "Remove Tabindex from Focusable Elements"
 msgstr "Loại bỏ tabindex khỏi các phần tử có thể focus"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:67
+#: includes/classes/Fixes/Fix/TabindexFix.php:71
 msgid "Remove Tab Index"
 msgstr "Loại bỏ chỉ mục tab"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/TabindexFix.php:70
+#: includes/classes/Fixes/Fix/TabindexFix.php:74
 #, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Loại bỏ thuộc tính %1$s khỏi các phần tử có thể focus."
 
-#: includes/classes/Fixes/FixesManager.php:241
+#: includes/classes/Fixes/FixesManager.php:250
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Lưu ý: Cài đặt này không được khuyến nghị cho các giao diện đã sẵn sàng cho khả năng truy cập."
 
-#: includes/classes/Fixes/FixesManager.php:294
+#: includes/classes/Fixes/FixesManager.php:320
 msgid "Fix not found"
 msgstr "Không tìm thấy sửa đổi"
+
+#: includes/classes/Fixes/FixesManager.php:356
+msgid "Fix not found."
+msgstr "Không tìm thấy bản sửa lỗi."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -1299,18 +1359,18 @@ msgid "Hard of hearing"
 msgstr "Người khó nghe"
 
 #: includes/classes/Rules/AffectedDisabilities.php:70
-#: includes/wcag.php:52
-#: includes/wcag.php:85
-#: includes/wcag.php:118
-#: includes/wcag.php:151
-#: includes/wcag.php:251
-#: includes/wcag.php:269
-#: includes/wcag.php:1661
-#: includes/wcag.php:1695
-#: includes/wcag.php:1728
-#: includes/wcag.php:1748
-#: includes/wcag.php:1767
-#: includes/wcag.php:1786
+#: includes/wcag.php:56
+#: includes/wcag.php:89
+#: includes/wcag.php:122
+#: includes/wcag.php:155
+#: includes/wcag.php:255
+#: includes/wcag.php:273
+#: includes/wcag.php:1665
+#: includes/wcag.php:1699
+#: includes/wcag.php:1732
+#: includes/wcag.php:1752
+#: includes/wcag.php:1771
+#: includes/wcag.php:1790
 msgid "Language learners"
 msgstr "Người học ngôn ngữ"
 
@@ -2653,7 +2713,7 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Hiểu về Hướng dẫn 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:109
+#: includes/classes/WPCLI/BootstrapCLI.php:113
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Không thể đăng ký lệnh %1$s vì %2$s"
@@ -2716,1713 +2776,1719 @@ msgstr "ID bài viết %1$d không tồn tại."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Hoặc bài viết chưa được quét hoặc tất cả kiểm tra đã đạt với ID bài viết %1$d."
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:31
 msgid "permalink of "
 msgstr "đường dẫn tĩnh của "
 
-#: includes/helper-functions.php:28
+#: includes/helper-functions.php:32
 msgid "permalink to "
 msgstr "đường dẫn tĩnh đến "
 
-#: includes/helper-functions.php:29
+#: includes/helper-functions.php:33
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:392
+#: includes/helper-functions.php:403
 msgid "Attend Free"
 msgstr "Tham gia miễn phí"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:841
-#, php-format
+#: includes/helper-functions.php:855
+#: build/issueModal.bundle.js:2
+#, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Xem %s điểm mốc trên trang web, mở cửa sổ mới"
 
-#: includes/options-page.php:44
+#: includes/options-page.php:48
 msgid "Welcome to Accessibility Checker"
 msgstr "Chào mừng đến với Accessibility Checker"
 
-#: includes/options-page.php:67
+#: includes/options-page.php:71
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
-#: includes/options-page.php:111
+#: includes/options-page.php:115
 msgid "Scan Settings"
 msgstr "Cài đặt quét"
 
-#: includes/options-page.php:118
+#: includes/options-page.php:122
 msgid "Permissions"
 msgstr "Quyền hạn"
 
-#: includes/options-page.php:125
+#: includes/options-page.php:129
 msgid "Simplified Summary Settings"
 msgstr "Cài đặt tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:132
+#: includes/options-page.php:136
 msgid "Footer Accessibility Statement"
 msgstr "Tuyên bố khả năng truy cập ở chân trang"
 
-#: includes/options-page.php:139
+#: includes/options-page.php:143
 msgid "Frontend Accessibility Checker"
 msgstr "Trình kiểm tra khả năng tiếp cận giao diện người dùng"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:150
 msgid "System Settings"
 msgstr "Cài đặt hệ thống"
 
-#: includes/options-page.php:154
+#: includes/options-page.php:158
 msgid "Post Types To Be Checked"
 msgstr "Các loại bài viết cần kiểm tra"
 
-#: includes/options-page.php:163
+#: includes/options-page.php:167
 msgid "Scan Speed"
 msgstr "Tốc độ quét"
 
-#: includes/options-page.php:172
+#: includes/options-page.php:176
 msgid "Archive Scanning"
 msgstr "Quét lưu trữ"
 
-#: includes/options-page.php:181
+#: includes/options-page.php:185
 msgid "Taxonomy Scanning"
 msgstr "Quét phân loại"
 
-#: includes/options-page.php:208
+#: includes/options-page.php:212
 msgid "Prompt for Simplified Summary"
 msgstr "Nhắc nhở tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:217
+#: includes/options-page.php:221
 msgid "Simplified Summary Position"
 msgstr "Vị trí tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:226
+#: includes/options-page.php:230
 msgid "Simplified Summary Heading"
 msgstr "Tiêu đề tóm tắt đơn giản"
 
-#: includes/options-page.php:235
-#: includes/options-page.php:736
+#: includes/options-page.php:239
+#: includes/options-page.php:740
 msgid "Add Footer Accessibility Statement"
 msgstr "Thêm tuyên bố khả năng truy cập ở chân trang"
 
-#: includes/options-page.php:244
-#: includes/options-page.php:759
+#: includes/options-page.php:248
+#: includes/options-page.php:763
 msgid "Include Link to Accessibility Policy"
 msgstr "Bao gồm liên kết đến chính sách khả năng truy cập"
 
-#: includes/options-page.php:253
+#: includes/options-page.php:257
 msgid "Accessibility Policy page"
 msgstr "Trang chính sách khả năng truy cập"
 
-#: includes/options-page.php:262
+#: includes/options-page.php:266
 msgid "Accessibility Statement Preview"
 msgstr "Xem trước tuyên bố khả năng truy cập"
 
-#: includes/options-page.php:271
+#: includes/options-page.php:275
 msgid "Frontend Accessibility Checker Position"
 msgstr "Vị trí trình kiểm tra khả năng tiếp cận giao diện người dùng"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:324
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Cấu hình các loại nội dung cần được kiểm tra về vấn đề khả năng tiếp cận."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:325
+#: includes/options-page.php:329
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Nhiều tính năng hơn và hỗ trợ qua email có sẵn với %1$s."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:337
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:333
-#: partials/welcome-page.php:21
+#: includes/options-page.php:337
+#: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:347
+#: includes/options-page.php:351
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Sử dụng các cài đặt dưới đây để cấu hình trình kiểm tra khả năng tiếp cận phía giao diện người dùng."
 
-#: includes/options-page.php:357
+#: includes/options-page.php:361
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Hướng dẫn Khả năng Tiếp cận Nội dung Web (WCAG) ở cấp độ AAA yêu cầu bất kỳ nội dung nào có trình độ đọc trên lớp 9 phải có một phiên bản thay thế dễ đọc hơn. Văn bản tóm tắt đơn giản hóa được thêm vào trong tab khả năng đọc trong hộp meta của Accessibility Checker trên màn hình chỉnh sửa của mỗi bài viết hoặc trang."
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu."
 
-#: includes/options-page.php:376
+#: includes/options-page.php:380
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Bạn có đang nghĩ \"Wow, plugin này thật tuyệt vời\" và nó có đang giúp bạn làm cho trang web của mình dễ tiếp cận hơn không? Chia sẻ nỗ lực của bạn để làm cho trang web dễ tiếp cận hơn với khách hàng và cho họ biết bạn đang sử dụng Accessibility Checker để đảm bảo rằng mọi người đều có thể sử dụng trang web của bạn. Thêm một liên kết và tuyên bố nhỏ chỉ bằng văn bản ở chân trang của trang web của bạn."
 
-#: includes/options-page.php:385
+#: includes/options-page.php:389
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Cấu hình cài đặt cấp hệ thống cho plugin Accessibility Checker."
 
-#: includes/options-page.php:399
+#: includes/options-page.php:403
 msgid "Fast"
 msgstr "Nhanh"
 
-#: includes/options-page.php:400
+#: includes/options-page.php:404
 msgid "Normal"
 msgstr "Bình thường"
 
-#: includes/options-page.php:401
+#: includes/options-page.php:405
 msgid "Slow"
 msgstr "Chậm"
 
-#: includes/options-page.php:402
+#: includes/options-page.php:406
 msgid "Slowest"
 msgstr "Chậm nhất"
 
-#: includes/options-page.php:424
+#: includes/options-page.php:428
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Quét nhanh hơn sẽ tiêu tốn nhiều tài nguyên hơn và có thể gây tải nặng cho trang web của bạn."
 
-#: includes/options-page.php:450
+#: includes/options-page.php:454
 msgid "Enable scanning of archive pages"
 msgstr "Bật quét các trang lưu trữ"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:458
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Chọn xem các trang lưu trữ có nên được bao gồm trong quét toàn bộ trang web hay không. Theo mặc định, phương pháp lấy mẫu được sử dụng để chọn các thuật ngữ phân loại cho dữ liệu lưu trữ."
 
-#: includes/options-page.php:480
+#: includes/options-page.php:484
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Quét tất cả các thuật ngữ phân loại thay vì chỉ một mẫu"
 
-#: includes/options-page.php:484
+#: includes/options-page.php:488
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Kiểm tra tất cả các trang lưu trữ thuật ngữ phân loại thay vì một mẫu đại diện. Điều này yêu cầu quét trang lưu trữ phải được bật và có thể thêm một số lượng lớn URL vào danh sách quét."
 
-#: includes/options-page.php:513
+#: includes/options-page.php:517
 msgid "Before the content"
 msgstr "Trước nội dung"
 
-#: includes/options-page.php:518
+#: includes/options-page.php:522
 msgid "After the content"
 msgstr "Sau nội dung"
 
-#: includes/options-page.php:523
+#: includes/options-page.php:527
 msgid "Insert manually"
 msgstr "Chèn thủ công"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:531
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Sử dụng chức năng này để thêm thủ công bản tóm tắt đơn giản hóa vào giao diện của bạn trong vòng lặp."
 
-#: includes/options-page.php:529
+#: includes/options-page.php:533
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Hàm này có thể nhận ID bài viết làm tham số tùy chọn."
 
-#: includes/options-page.php:532
+#: includes/options-page.php:536
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Đặt vị trí bạn muốn các bản tóm tắt đơn giản hóa xuất hiện liên quan đến nội dung của bạn nếu được điền."
 
-#: includes/options-page.php:547
+#: includes/options-page.php:551
 msgid "Bottom Right Corner (default)"
 msgstr "Góc dưới bên phải (mặc định)"
 
-#: includes/options-page.php:552
+#: includes/options-page.php:556
 msgid "Bottom Left Corner"
 msgstr "Góc dưới bên trái"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:560
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Đặt vị trí bạn muốn trình kiểm tra khả năng tiếp cận phía giao diện người dùng xuất hiện trên trang."
 
-#: includes/options-page.php:596
+#: includes/options-page.php:600
 msgid "When Required"
 msgstr "Khi cần thiết"
 
-#: includes/options-page.php:601
+#: includes/options-page.php:605
 msgid "Always"
 msgstr "Luôn luôn"
 
-#: includes/options-page.php:609
+#: includes/options-page.php:613
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker chỉ nên yêu cầu tóm tắt đơn giản khi trình độ đọc của bài viết hoặc trang của bạn trên lớp 9, luôn yêu cầu nó bất kể trình độ đọc, hoặc không bao giờ yêu cầu nó bất kể trình độ đọc?"
 
-#: includes/options-page.php:661
+#: includes/options-page.php:665
 msgid "To check content other than posts and pages, please "
 msgstr "Để kiểm tra nội dung khác ngoài bài viết và trang, vui lòng "
 
-#: includes/options-page.php:663
+#: includes/options-page.php:667
 msgid "upgrade to pro"
 msgstr "nâng cấp lên pro"
 
-#: includes/options-page.php:664
+#: includes/options-page.php:668
 msgid " (opens in a new window)"
 msgstr " (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:669
+#: includes/options-page.php:673
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Chọn loại bài viết nào cần được kiểm tra trong quá trình quét. Lưu ý, việc xóa một loại bài viết đã chọn trước đó sẽ xóa thông tin đã quét và mọi cảnh báo bị bỏ qua tùy chỉnh đã được thiết lập."
 
-#: includes/options-page.php:811
+#: includes/options-page.php:815
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Xóa tất cả dữ liệu Accessibility Checker khi gỡ cài đặt plugin."
 
-#: includes/options-page.php:966
+#: includes/options-page.php:970
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Chọn vai trò người dùng nào có quyền bỏ qua các vấn đề."
 
-#: includes/options-page.php:999
+#: includes/options-page.php:1003
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Cấu hình vai trò người dùng nào có quyền truy cập vào các tính năng cụ thể của Accessibility Checker."
 
-#: includes/wcag.php:11
+#: includes/wcag.php:15
 msgid "Non-text Content"
 msgstr "Nội dung phi văn bản"
 
-#: includes/wcag.php:12
+#: includes/wcag.php:16
 msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
 msgstr "Tất cả nội dung phi văn bản phải có một phương án thay thế bằng văn bản phục vụ cùng mục đích, trừ khi nó thuộc các trường hợp ngoại lệ cụ thể như các điều khiển, phương tiện truyền thông, bài kiểm tra, nội dung cảm giác, CAPTCHA hoặc các yếu tố trang trí. Mỗi loại phải tuân theo hướng dẫn cụ thể để đảm bảo khả năng tiếp cận mà không ảnh hưởng đến trải nghiệm người dùng."
 
-#: includes/wcag.php:15
+#: includes/wcag.php:19
 msgid "1.1 Text Alternatives"
 msgstr "1.1 phương án thay thế bằng văn bản"
 
-#: includes/wcag.php:16
-#: includes/wcag.php:49
-#: includes/wcag.php:82
-#: includes/wcag.php:115
-#: includes/wcag.php:148
-#: includes/wcag.php:181
-#: includes/wcag.php:213
-#: includes/wcag.php:230
-#: includes/wcag.php:247
-#: includes/wcag.php:266
-#: includes/wcag.php:284
-#: includes/wcag.php:319
-#: includes/wcag.php:353
-#: includes/wcag.php:386
-#: includes/wcag.php:413
-#: includes/wcag.php:441
-#: includes/wcag.php:459
-#: includes/wcag.php:492
-#: includes/wcag.php:520
-#: includes/wcag.php:547
-#: includes/wcag.php:575
-#: includes/wcag.php:604
-#: includes/wcag.php:638
-#: includes/wcag.php:671
-#: includes/wcag.php:703
-#: includes/wcag.php:735
-#: includes/wcag.php:753
-#: includes/wcag.php:770
-#: includes/wcag.php:788
+#: includes/wcag.php:20
+#: includes/wcag.php:53
+#: includes/wcag.php:86
+#: includes/wcag.php:119
+#: includes/wcag.php:152
+#: includes/wcag.php:185
+#: includes/wcag.php:217
+#: includes/wcag.php:234
+#: includes/wcag.php:251
+#: includes/wcag.php:270
+#: includes/wcag.php:288
+#: includes/wcag.php:323
+#: includes/wcag.php:357
+#: includes/wcag.php:390
+#: includes/wcag.php:417
+#: includes/wcag.php:445
+#: includes/wcag.php:463
+#: includes/wcag.php:496
+#: includes/wcag.php:524
+#: includes/wcag.php:551
+#: includes/wcag.php:579
+#: includes/wcag.php:608
+#: includes/wcag.php:642
+#: includes/wcag.php:675
+#: includes/wcag.php:707
+#: includes/wcag.php:739
+#: includes/wcag.php:757
+#: includes/wcag.php:774
+#: includes/wcag.php:792
 msgid "Perceivable"
 msgstr "Có thể nhận thức được"
 
-#: includes/wcag.php:18
-#: includes/wcag.php:288
-#: includes/wcag.php:1533
-#: includes/wcag.php:2200
-#: includes/wcag.php:2234
+#: includes/wcag.php:22
+#: includes/wcag.php:292
+#: includes/wcag.php:1537
+#: includes/wcag.php:2204
+#: includes/wcag.php:2238
 msgid "People with dexterity impairments using voice control"
 msgstr "Người khuyết tật vận động sử dụng điều khiển bằng giọng nói"
 
-#: includes/wcag.php:19
-#: includes/wcag.php:289
-#: includes/wcag.php:323
+#: includes/wcag.php:23
+#: includes/wcag.php:293
+#: includes/wcag.php:327
+#: includes/wcag.php:448
+#: includes/wcag.php:898
+#: includes/wcag.php:927
+#: includes/wcag.php:961
+#: includes/wcag.php:995
+#: includes/wcag.php:1015
+#: includes/wcag.php:1034
+#: includes/wcag.php:1053
+#: includes/wcag.php:1137
+#: includes/wcag.php:1171
+#: includes/wcag.php:1241
+#: includes/wcag.php:1308
+#: includes/wcag.php:1342
+#: includes/wcag.php:1376
+#: includes/wcag.php:1461
+#: includes/wcag.php:1480
+#: includes/wcag.php:1510
+#: includes/wcag.php:1666
+#: includes/wcag.php:1700
+#: includes/wcag.php:1810
+#: includes/wcag.php:1846
+#: includes/wcag.php:1881
+#: includes/wcag.php:1912
+#: includes/wcag.php:1944
+#: includes/wcag.php:1980
+#: includes/wcag.php:2014
+#: includes/wcag.php:2048
+#: includes/wcag.php:2082
+#: includes/wcag.php:2116
+#: includes/wcag.php:2135
+#: includes/wcag.php:2206
+#: includes/wcag.php:2240
+#: includes/wcag.php:2271
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "Người dùng trình đọc màn hình (người mù/thị lực kém và người có sự khác biệt về thần kinh)"
+
+#: includes/wcag.php:48
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "Âm thanh và video chỉ có sẵn"
+
+#: includes/wcag.php:49
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "Đối với nội dung chỉ có âm thanh và chỉ có video đã ghi sẵn, phải cung cấp một phương án thay thế bằng văn bản trình bày thông tin tương đương. Điều này đảm bảo người dùng không thể nghe hoặc nhìn thấy phương tiện vẫn có thể truy cập nội dung của nó thông qua văn bản."
+
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:184
+#: includes/wcag.php:216
+#: includes/wcag.php:233
+#: includes/wcag.php:250
+#: includes/wcag.php:269
+msgid "1.2 Time-based Media"
+msgstr "1.2 phương tiện dựa trên thời gian"
+
+#: includes/wcag.php:55
+#: includes/wcag.php:88
+#: includes/wcag.php:121
+#: includes/wcag.php:154
+#: includes/wcag.php:219
+#: includes/wcag.php:253
+#: includes/wcag.php:272
+#: includes/wcag.php:360
+#: includes/wcag.php:611
+#: includes/wcag.php:759
+msgid "Deaf and hard of hearing people"
+msgstr "Người điếc và khiếm thính"
+
+#: includes/wcag.php:81
+msgid "Captions (Prerecorded)"
+msgstr "Phụ đề (đã ghi sẵn)"
+
+#: includes/wcag.php:82
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "Phải cung cấp phụ đề cho tất cả nội dung âm thanh đã ghi sẵn trong phương tiện đồng bộ—chẳng hạn như video có âm thanh và hình ảnh phát cùng nhau—để người dùng điếc hoặc khiếm thính có thể truy cập thông tin được nói và âm thanh quan trọng."
+
+#: includes/wcag.php:114
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "Mô tả âm thanh hoặc phương tiện thay thế (đã ghi sẵn)"
+
+#: includes/wcag.php:115
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "Đối với nội dung video đã ghi sẵn có âm thanh (phương tiện đồng bộ), phải cung cấp một mô tả âm thanh—hoặc một bản ghi văn bản bao gồm các chi tiết hình ảnh—để đảm bảo người dùng mù hoặc thị lực kém có thể hiểu thông tin hình ảnh quan trọng không được nói đến."
+
+#: includes/wcag.php:147
+msgid "Captions (Live)"
+msgstr "Phụ đề (trực tiếp)"
+
+#: includes/wcag.php:148
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "Đối với tất cả nội dung video trực tiếp có âm thanh, phải cung cấp phụ đề theo thời gian thực để người dùng điếc hoặc khiếm thính có thể truy cập thông tin được nói khi nó diễn ra."
+
+#: includes/wcag.php:180
+msgid "Audio Description (Prerecorded)"
+msgstr "Mô tả âm thanh (đã ghi sẵn)"
+
+#: includes/wcag.php:181
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "Đối với video đã ghi sẵn có âm thanh, phải cung cấp mô tả âm thanh về nội dung hình ảnh quan trọng, cho phép người dùng mù hoặc thị lực kém hiểu thông tin hình ảnh không được mô tả trong âm thanh chính."
+
+#: includes/wcag.php:187
+#: includes/wcag.php:236
+#: includes/wcag.php:359
+#: includes/wcag.php:465
+#: includes/wcag.php:581
+#: includes/wcag.php:610
+#: includes/wcag.php:709
+#: includes/wcag.php:794
+#: includes/wcag.php:811
+#: includes/wcag.php:845
+#: includes/wcag.php:879
+msgid "Blind and low vision people"
+msgstr "Người mù và thị lực kém"
+
+#: includes/wcag.php:212
+msgid "Sign Language (Prerecorded)"
+msgstr "Ngôn ngữ ký hiệu (đã ghi sẵn)"
+
+#: includes/wcag.php:213
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "Phải cung cấp bản diễn giải bằng ngôn ngữ ký hiệu cho tất cả nội dung âm thanh đã ghi sẵn trong phương tiện đồng bộ, đảm bảo rằng người dùng khiếm thính và sử dụng ngôn ngữ ký hiệu có thể hiểu đầy đủ nội dung được nói."
+
+#: includes/wcag.php:229
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "Mô tả âm thanh mở rộng (đã ghi sẵn)"
+
+#: includes/wcag.php:230
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "Đối với tất cả nội dung đa phương tiện đã ghi sẵn, phải cung cấp mô tả âm thanh mở rộng khi cần thiết - nghĩa là video được tạm dừng để chèn thêm mô tả - để người dùng khiếm thị hoặc thị lực kém có thể hiểu được các chi tiết hình ảnh quan trọng mà không thể mô tả trong các khoảng dừng tự nhiên của âm thanh."
+
+#: includes/wcag.php:246
+msgid "Media Alternative (Prerecorded)"
+msgstr "Phương tiện thay thế (đã ghi sẵn)"
+
+#: includes/wcag.php:247
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "Đối với phương tiện đồng bộ đã ghi sẵn, một phương án thay thế bằng văn bản đầy đủ (như bản ghi) được cung cấp, cung cấp tất cả thông tin trong cả video và âm thanh, để người dùng không thể nhìn hoặc nghe nội dung vẫn có thể truy cập được."
+
+#: includes/wcag.php:254
+msgid "Deaf-blind people"
+msgstr "Người khiếm thính-khiếm thị"
+
+#: includes/wcag.php:265
+msgid "Audio-only (Live)"
+msgstr "Chỉ có âm thanh (trực tiếp)"
+
+#: includes/wcag.php:266
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "Đối với nội dung chỉ có âm thanh trực tiếp, một phương án thay thế bằng văn bản được cung cấp theo thời gian thực để những người không thể nghe âm thanh vẫn có thể truy cập thông tin."
+
+#: includes/wcag.php:283
+msgid "Info and Relationships"
+msgstr "Thông tin và mối quan hệ"
+
+#: includes/wcag.php:284
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "Thông tin, cấu trúc và mối quan hệ trong nội dung được xác định theo chương trình hoặc có sẵn dưới dạng văn bản, để các công nghệ hỗ trợ có thể trình bày chúng cho người dùng."
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+#: includes/wcag.php:356
+#: includes/wcag.php:389
+#: includes/wcag.php:416
 #: includes/wcag.php:444
-#: includes/wcag.php:894
+msgid "1.3 Adaptable"
+msgstr "1.3 có thể điều chỉnh"
+
+#: includes/wcag.php:290
+#: includes/wcag.php:325
+#: includes/wcag.php:812
+#: includes/wcag.php:846
+#: includes/wcag.php:880
+#: includes/wcag.php:1188
+#: includes/wcag.php:1205
+#: includes/wcag.php:1222
+#: includes/wcag.php:1273
+#: includes/wcag.php:1408
+#: includes/wcag.php:1478
+#: includes/wcag.php:1508
+#: includes/wcag.php:1628
+#: includes/wcag.php:1808
+#: includes/wcag.php:1843
+#: includes/wcag.php:1941
+msgid "People who rely on keyboard control"
+msgstr "Những người phụ thuộc vào điều khiển bàn phím"
+
+#: includes/wcag.php:291
+#: includes/wcag.php:326
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "Những người có sự khác biệt về nhận thức xem giao diện bằng bố cục đã được điều chỉnh"
+
+#: includes/wcag.php:318
+msgid "Meaningful Sequence"
+msgstr "Trình tự có ý nghĩa"
+
+#: includes/wcag.php:319
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "Nội dung được trình bày theo thứ tự có ý nghĩa để thứ tự đọc hoặc điều hướng không gây nhầm lẫn cho người dùng khi sử dụng công nghệ hỗ trợ."
+
+#: includes/wcag.php:352
+msgid "Sensory Characteristics"
+msgstr "Đặc điểm cảm giác"
+
+#: includes/wcag.php:353
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "Hướng dẫn không chỉ dựa vào các đặc điểm cảm giác như hình dạng, màu sắc, kích thước hoặc âm thanh, để mọi người đều có thể hiểu được."
+
+#: includes/wcag.php:385
+msgid "Orientation"
+msgstr "Hướng"
+
+#: includes/wcag.php:386
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "Nội dung không giới hạn chế xem và vận hành ở một hướng hiển thị duy nhất, chẳng hạn như dọc hoặc ngang, trừ khi một hướng cụ thể là cần thiết."
+
+#: includes/wcag.php:392
+#: includes/wcag.php:1169
+#: includes/wcag.php:1307
+#: includes/wcag.php:1340
+#: includes/wcag.php:1374
+#: includes/wcag.php:1442
+#: includes/wcag.php:1460
+#: includes/wcag.php:1507
+#: includes/wcag.php:1611
+#: includes/wcag.php:1731
+#: includes/wcag.php:1751
+#: includes/wcag.php:1770
+#: includes/wcag.php:1789
+#: includes/wcag.php:1879
+#: includes/wcag.php:1910
+#: includes/wcag.php:1961
+#: includes/wcag.php:1978
+#: includes/wcag.php:2012
+#: includes/wcag.php:2046
+#: includes/wcag.php:2080
+#: includes/wcag.php:2114
+#: includes/wcag.php:2133
+#: includes/wcag.php:2152
+msgid "All people including those who do not identify as disabled"
+msgstr "Tất cả mọi người bao gồm cả những người không xác định là người khuyết tật"
+
+#: includes/wcag.php:412
+msgid "Identify Input Purpose"
+msgstr "Xác định mục đích đầu vào"
+
+#: includes/wcag.php:413
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "Mục đích của các trường nhập liệu thu thập thông tin về người dùng có thể được xác định theo chương trình, để trình duyệt và công nghệ hỗ trợ có thể giúp người dùng điền vào."
+
+#: includes/wcag.php:419
+#: includes/wcag.php:447
+#: includes/wcag.php:1170
+#: includes/wcag.php:1239
+#: includes/wcag.php:1375
+#: includes/wcag.php:1443
+#: includes/wcag.php:2170
+#: includes/wcag.php:2187
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "Người có khuyết tật về nhận thức hoặc trí nhớ ngắn hạn hạn chế hoặc khuyết tật đọc"
+
+#: includes/wcag.php:420
+#: includes/wcag.php:813
+#: includes/wcag.php:847
+#: includes/wcag.php:881
+#: includes/wcag.php:926
+#: includes/wcag.php:994
+#: includes/wcag.php:1014
+#: includes/wcag.php:1033
+#: includes/wcag.php:1052
+#: includes/wcag.php:1136
+#: includes/wcag.php:1274
+#: includes/wcag.php:1409
+#: includes/wcag.php:1479
+#: includes/wcag.php:1509
+#: includes/wcag.php:1564
+#: includes/wcag.php:1809
+#: includes/wcag.php:1845
+#: includes/wcag.php:1943
+msgid "People with dexterity and mobility impairments"
+msgstr "Người có khuyết tật về khéo léo và vận động"
+
+#: includes/wcag.php:440
+msgid "Identify Purpose"
+msgstr "Xác định mục đích"
+
+#: includes/wcag.php:441
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "Mục đích của các thành phần giao diện người dùng, biểu tượng và vùng có thể được xác định theo chương trình, để công nghệ hỗ trợ có thể điều chỉnh trải nghiệm cho người dùng."
+
+#: includes/wcag.php:458
+msgid "Use of Color"
+msgstr "Sử dụng màu sắc"
+
+#: includes/wcag.php:459
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "Màu sắc không được sử dụng như cách duy nhất để truyền đạt thông tin, chỉ ra một hành động, nhắc nhở phản hồi hoặc phân biệt một yếu tố trực quan."
+
+#: includes/wcag.php:462
+#: includes/wcag.php:495
+#: includes/wcag.php:523
+#: includes/wcag.php:550
+#: includes/wcag.php:578
+#: includes/wcag.php:607
+#: includes/wcag.php:641
+#: includes/wcag.php:674
+#: includes/wcag.php:706
+#: includes/wcag.php:738
+#: includes/wcag.php:756
+#: includes/wcag.php:773
+#: includes/wcag.php:791
+msgid "1.4 Distinguishable"
+msgstr "1.4 có thể phân biệt"
+
+#: includes/wcag.php:466
+msgid "Color blind people"
+msgstr "Người mù màu"
+
+#: includes/wcag.php:491
+msgid "Reflow"
+msgstr "Sắp xếp lại"
+
+#: includes/wcag.php:492
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "Nội dung có thể được xem mà không cần cuộn theo nhiều hơn một hướng, để người dùng có thể dễ dàng đọc và tương tác trên màn hình nhỏ hoặc khi phóng to."
+
+#: includes/wcag.php:498
+#: includes/wcag.php:1645
+msgid "People on mobile devices"
+msgstr "Người dùng thiết bị di động"
+
+#: includes/wcag.php:499
+#: includes/wcag.php:526
+#: includes/wcag.php:554
+#: includes/wcag.php:645
+#: includes/wcag.php:677
+#: includes/wcag.php:742
+#: includes/wcag.php:777
+#: includes/wcag.php:1275
+#: includes/wcag.php:1410
+#: includes/wcag.php:1593
+#: includes/wcag.php:1647
+msgid "People with low vision"
+msgstr "Người có thị lực kém"
+
+#: includes/wcag.php:519
+msgid "Non-text Contrast"
+msgstr "Độ tương phản phi văn bản"
+
+#: includes/wcag.php:520
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "Thông tin trực quan cần thiết để nhận dạng các thành phần giao diện người dùng và đối tượng đồ họa có tỷ lệ tương phản ít nhất là 3:1 so với màu sắc liền kề."
+
+#: includes/wcag.php:546
+msgid "Text Spacing"
+msgstr "Khoảng cách văn bản"
+
+#: includes/wcag.php:547
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "Người dùng có thể ghi đè khoảng cách văn bản để cải thiện khả năng đọc mà không bị mất nội dung hoặc chức năng."
+
+#: includes/wcag.php:553
+#: includes/wcag.php:776
+#: includes/wcag.php:1733
+#: includes/wcag.php:1753
+#: includes/wcag.php:1772
+#: includes/wcag.php:1791
+#: includes/wcag.php:1844
+#: includes/wcag.php:1880
+#: includes/wcag.php:1911
+#: includes/wcag.php:1942
+#: includes/wcag.php:1979
+#: includes/wcag.php:2013
+#: includes/wcag.php:2047
+#: includes/wcag.php:2081
+#: includes/wcag.php:2115
+#: includes/wcag.php:2134
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "Người có khuyết tật về nhận thức và khuyết tật đọc"
+
+#: includes/wcag.php:574
+msgid "Content on Hover or Focus"
+msgstr "Nội dung khi di chuột hoặc tập trung"
+
+#: includes/wcag.php:575
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "Nếu nội dung bổ sung xuất hiện khi di chuột hoặc tập trung, người dùng có thể bỏ qua nó, di chuyển con trỏ qua nó, và nó vẫn hiển thị cho đến khi bị bỏ qua hoặc tập trung được di chuyển."
+
+#: includes/wcag.php:582
+#: includes/wcag.php:960
+#: includes/wcag.php:1341
+msgid "People with cognitive disabilities"
+msgstr "Người có khuyết tật về nhận thức"
+
+#: includes/wcag.php:583
+#: includes/wcag.php:1646
+msgid "People with dexterity impairments"
+msgstr "Người có khuyết tật về khéo léo"
+
+#: includes/wcag.php:603
+msgid "Audio Control"
+msgstr "Điều khiển âm thanh"
+
+#: includes/wcag.php:604
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "Nếu âm thanh tự động phát trong hơn 3 giây, người dùng phải có khả năng tạm dừng, dừng hoặc điều chỉnh âm lượng độc lập với âm lượng hệ thống."
+
+#: includes/wcag.php:612
+#: includes/wcag.php:959
+#: includes/wcag.php:1013
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "Người có ADD hoặc khó tập trung vào nội dung mà không bị phân tâm"
+
+#: includes/wcag.php:637
+msgid "Contrast (Minimum)"
+msgstr "Độ tương phản (tối thiểu)"
+
+#: includes/wcag.php:638
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "Văn bản và hình ảnh của văn bản phải có tỷ lệ tương phản ít nhất là 4,5:1, ngoại trừ văn bản lớn, văn bản ngẫu nhiên hoặc logo."
+
+#: includes/wcag.php:644
+#: includes/wcag.php:741
+msgid "People on mobile devices in a sunny environment"
+msgstr "Người dùng thiết bị di động trong môi trường nắng"
+
+#: includes/wcag.php:670
+msgid "Resize text"
+msgstr "Thay đổi kích thước văn bản"
+
+#: includes/wcag.php:671
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "Văn bản có thể được thay đổi kích thước lên đến 200% mà không bị mất nội dung hoặc chức năng, để người có thị lực kém có thể đọc dễ dàng hơn."
+
+#: includes/wcag.php:702
+msgid "Images of Text"
+msgstr "Hình ảnh của văn bản"
+
+#: includes/wcag.php:703
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "Nếu có thể tạo ra cùng một hình thức trình bày bằng văn bản đơn thuần, đừng sử dụng hình ảnh chứa văn bản trừ khi cho mục đích trang trí hoặc thiết yếu."
+
+#: includes/wcag.php:734
+msgid "Contrast (Enhanced)"
+msgstr "Độ tương phản (nâng cao)"
+
+#: includes/wcag.php:735
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "Văn bản và hình ảnh chứa văn bản phải có tỷ lệ tương phản ít nhất 7:1, ngoại trừ văn bản cỡ lớn, văn bản ngẫu nhiên hoặc logo."
+
+#: includes/wcag.php:752
+msgid "Low or No Background Audio"
+msgstr "Âm thanh nền thấp hoặc không có"
+
+#: includes/wcag.php:753
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "Đối với nội dung chỉ có âm thanh được ghi sẵn, âm thanh nền hoặc thấp, có thể tắt, hoặc không có, để giọng nói dễ hiểu hơn."
+
+#: includes/wcag.php:769
+msgid "Visual Presentation"
+msgstr "Trình bày trực quan"
+
+#: includes/wcag.php:770
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "Người dùng có thể chọn cách hiển thị các khối văn bản, như màu nền và chữ, chiều rộng và khoảng cách dòng, để việc đọc dễ dàng hơn."
+
+#: includes/wcag.php:787
+msgid "Images of Text (No Exception)"
+msgstr "Hình ảnh chứa văn bản (không ngoại lệ)"
+
+#: includes/wcag.php:788
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "Hình ảnh chứa văn bản chỉ được sử dụng cho mục đích trang trí thuần túy hoặc khi cách trình bày văn bản cụ thể là thiết yếu, không có ngoại lệ."
+
+#: includes/wcag.php:804
+msgid "Keyboard"
+msgstr "Bàn phím"
+
+#: includes/wcag.php:805
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "Tất cả chức năng đều có thể sử dụng bằng bàn phím, để người dùng không thể sử dụng chuột vẫn có thể điều khiển nội dung."
+
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:895
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 Có thể truy cập bằng bàn phím"
+
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:896
 #: includes/wcag.php:923
 #: includes/wcag.php:957
 #: includes/wcag.php:991
-#: includes/wcag.php:1011
+#: includes/wcag.php:1010
 #: includes/wcag.php:1030
 #: includes/wcag.php:1049
-#: includes/wcag.php:1133
+#: includes/wcag.php:1068
+#: includes/wcag.php:1100
+#: includes/wcag.php:1117
+#: includes/wcag.php:1134
 #: includes/wcag.php:1167
+#: includes/wcag.php:1186
+#: includes/wcag.php:1203
+#: includes/wcag.php:1220
 #: includes/wcag.php:1237
-#: includes/wcag.php:1304
+#: includes/wcag.php:1271
+#: includes/wcag.php:1305
 #: includes/wcag.php:1338
 #: includes/wcag.php:1372
-#: includes/wcag.php:1457
+#: includes/wcag.php:1406
+#: includes/wcag.php:1440
+#: includes/wcag.php:1458
 #: includes/wcag.php:1476
-#: includes/wcag.php:1506
+#: includes/wcag.php:1505
+#: includes/wcag.php:1535
+#: includes/wcag.php:1562
+#: includes/wcag.php:1589
+#: includes/wcag.php:1609
+#: includes/wcag.php:1626
+#: includes/wcag.php:1643
+msgid "Operable"
+msgstr "Có thể vận hành"
+
+#: includes/wcag.php:838
+msgid "No Keyboard Trap"
+msgstr "Không bị kẹt bàn phím"
+
+#: includes/wcag.php:839
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "Người dùng bàn phím có thể di chuyển đến và ra khỏi tất cả các phần của nội dung mà không bị mắc kẹt."
+
+#: includes/wcag.php:872
+msgid "Keyboard (No Exception)"
+msgstr "Bàn phím (không ngoại lệ)"
+
+#: includes/wcag.php:873
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "Tất cả chức năng đều có thể sử dụng từ giao diện bàn phím, không có ngoại lệ."
+
+#: includes/wcag.php:891
+msgid "Character Key Shortcuts"
+msgstr "Phím tắt ký tự"
+
+#: includes/wcag.php:892
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "Nếu phím tắt chỉ sử dụng chữ cái, số hoặc dấu câu, người dùng có thể tắt nó, thay đổi nó, hoặc nó chỉ hoạt động khi phần tử đó được tập trung."
+
+#: includes/wcag.php:918
+msgid "Timing Adjustable"
+msgstr "Thời gian có thể điều chỉnh"
+
+#: includes/wcag.php:919
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "Nếu có giới hạn thời gian, người dùng có thể tắt, điều chỉnh hoặc kéo dài nó trừ khi giới hạn thời gian là thiết yếu."
+
+#: includes/wcag.php:922
+#: includes/wcag.php:956
+#: includes/wcag.php:990
+#: includes/wcag.php:1009
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+msgid "2.2 Enough Time"
+msgstr "2.2 Đủ thời gian"
+
+#: includes/wcag.php:925
+#: includes/wcag.php:993
+#: includes/wcag.php:1012
+#: includes/wcag.php:1032
+#: includes/wcag.php:1051
+msgid "People who need more time to react"
+msgstr "Những người cần thêm thời gian để phản ứng"
+
+#: includes/wcag.php:952
+msgid "Pause, Stop, Hide"
+msgstr "Tạm dừng, dừng, ẩn"
+
+#: includes/wcag.php:953
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "Người dùng có thể tạm dừng, dừng hoặc ẩn thông tin di chuyển, nhấp nháy, cuộn hoặc tự động cập nhật bắt đầu tự động và kéo dài hơn năm giây."
+
+#: includes/wcag.php:986
+msgid "No Timing"
+msgstr "Không có thời gian"
+
+#: includes/wcag.php:987
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "Nếu một phần tử yêu cầu phản hồi trong một thời gian cụ thể, người dùng có thể tắt bộ đếm thời gian, điều chỉnh giới hạn thời gian, hoặc thời gian không phải là yếu tố thiết yếu."
+
+#: includes/wcag.php:1005
+msgid "Interruptions"
+msgstr "Gián đoạn"
+
+#: includes/wcag.php:1006
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "Người dùng không bị gián đoạn bởi những thay đổi nội dung bất ngờ và có thể kiểm soát các gián đoạn như nội dung tự động cập nhật."
+
+#: includes/wcag.php:1025
+msgid "Re-authenticating"
+msgstr "Xác thực lại"
+
+#: includes/wcag.php:1026
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "Nếu người dùng bị đăng xuất do không hoạt động, họ được thông báo trước khi phiên làm việc hết hạn và có thể tiếp tục phiên mà không mất dữ liệu."
+
+#: includes/wcag.php:1044
+msgid "Timeouts"
+msgstr "Hết thời gian"
+
+#: includes/wcag.php:1045
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "Người dùng được cảnh báo về việc sắp hết thời gian và có thể yêu cầu thêm thời gian hoặc lưu công việc của họ trước khi hết thời gian."
+
+#: includes/wcag.php:1063
+msgid "Three Flashes or Below Threshold"
+msgstr "Ba lần nhấp nháy hoặc dưới ngưỡng"
+
+#: includes/wcag.php:1064
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "Nội dung không nhấp nháy quá ba lần trong bất kỳ khoảng thời gian một giây nào, giảm nguy cơ co giật cho người bị động kinh nhạy cảm với ánh sáng."
+
+#: includes/wcag.php:1067
+#: includes/wcag.php:1099
+#: includes/wcag.php:1116
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 Co giật và phản ứng thể chất"
+
+#: includes/wcag.php:1070
+#: includes/wcag.php:1102
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "Người bị động kinh nhạy cảm với ánh sáng và các rối loạn co giật nhạy cảm với ánh sáng khác"
+
+#: includes/wcag.php:1095
+msgid "Three Flashes"
+msgstr "Ba lần nhấp nháy"
+
+#: includes/wcag.php:1096
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "Không có phần nào của nội dung nhấp nháy quá ba lần mỗi giây, không có ngoại lệ."
+
+#: includes/wcag.php:1112
+msgid "Animation from Interactions"
+msgstr "Hoạt ảnh từ tương tác"
+
+#: includes/wcag.php:1113
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "Người dùng có thể tắt hoạt ảnh không thiết yếu được kích hoạt bởi tương tác, giúp những người nhạy cảm với chuyển động."
+
+#: includes/wcag.php:1119
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "Người mắc các rối loạn tiền đình (tai trong) khi chuyển động có thể gây chóng mặt/đau đầu và buồn nôn"
+
+#: includes/wcag.php:1129
+msgid "Bypass Blocks"
+msgstr "Bỏ qua các khối"
+
+#: includes/wcag.php:1130
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "Có sẵn cách để bỏ qua các khối nội dung lặp lại, như menu điều hướng, để người dùng có thể nhanh chóng đến nội dung chính."
+
+#: includes/wcag.php:1133
+#: includes/wcag.php:1166
+#: includes/wcag.php:1185
+#: includes/wcag.php:1202
+#: includes/wcag.php:1219
+#: includes/wcag.php:1236
+#: includes/wcag.php:1270
+#: includes/wcag.php:1304
+#: includes/wcag.php:1337
+#: includes/wcag.php:1371
+#: includes/wcag.php:1405
+#: includes/wcag.php:1439
+#: includes/wcag.php:1457
+msgid "2.4 Navigable"
+msgstr "2.4 Có thể điều hướng"
+
+#: includes/wcag.php:1162
+msgid "Section Headings"
+msgstr "Tiêu đề phần"
+
+#: includes/wcag.php:1163
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "Tiêu đề phần được sử dụng để tổ chức nội dung, giúp dễ hiểu và điều hướng hơn."
+
+#: includes/wcag.php:1181
+msgid "Focus Not Obscured (Minimum)"
+msgstr "Trọng tâm không bị che khuất (tối thiểu)"
+
+#: includes/wcag.php:1182
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "Khi một phần tử nhận trọng tâm bàn phím, nó ít nhất phải được nhìn thấy một phần và không bị che khuất bởi nội dung khác."
+
+#: includes/wcag.php:1198
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "Trọng tâm không bị che khuất (nâng cao)"
+
+#: includes/wcag.php:1199
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "Khi một phần tử nhận trọng tâm bàn phím, nó phải hoàn toàn hiển thị và không bị che khuất bởi nội dung khác."
+
+#: includes/wcag.php:1215
+msgid "Focus Appearance"
+msgstr "Hiển thị trọng tâm"
+
+#: includes/wcag.php:1216
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "Chỉ báo trọng tâm hiển thị cho các phần tử tương tác phải rõ ràng và đáp ứng yêu cầu tối thiểu về kích thước và độ tương phản."
+
+#: includes/wcag.php:1232
+msgid "Page Titled"
+msgstr "Tiêu đề trang"
+
+#: includes/wcag.php:1233
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "Các trang web có tiêu đề mô tả giúp người dùng hiểu chủ đề hoặc mục đích của trang."
+
+#: includes/wcag.php:1240
+#: includes/wcag.php:2153
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "Những người bị khuyết tật vận động nặng phải dựa vào âm thanh để điều hướng web"
+
+#: includes/wcag.php:1266
+msgid "Focus Order"
+msgstr "Thứ tự tập trung"
+
+#: includes/wcag.php:1267
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "Khi điều hướng bằng bàn phím, trọng tâm di chuyển theo thứ tự hợp lý, giữ nguyên ý nghĩa và khả năng vận hành."
+
+#: includes/wcag.php:1300
+msgid "Link Purpose (In Context)"
+msgstr "Mục đích của liên kết (trong ngữ cảnh)"
+
+#: includes/wcag.php:1301
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "Mục đích của mỗi liên kết được thể hiện rõ ràng từ văn bản liên kết và ngữ cảnh xuất hiện, để người dùng biết liên kết sẽ dẫn họ đến đâu."
+
+#: includes/wcag.php:1333
+msgid "Multiple Ways"
+msgstr "Nhiều cách"
+
+#: includes/wcag.php:1334
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "Có nhiều hơn một cách để định vị một trang web trong một tập hợp các trang web, trừ khi trang web là kết quả của một truy vấn."
+
+#: includes/wcag.php:1367
+msgid "Headings and Labels"
+msgstr "Tiêu đề và nhãn"
+
+#: includes/wcag.php:1368
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "Tiêu đề và nhãn mô tả chủ đề hoặc mục đích của nội dung, và không mơ hồ hoặc gây hiểu nhầm."
+
+#: includes/wcag.php:1401
+msgid "Focus Visible"
+msgstr "Trọng tâm hiển thị"
+
+#: includes/wcag.php:1402
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "Có thể nhìn thấy khi một phần tử được tập trung bằng bàn phím, để người dùng điều hướng bằng bàn phím có thể thấy phần tử nào đang hoạt động."
+
+#: includes/wcag.php:1435
+msgid "Location"
+msgstr "Vị trí"
+
+#: includes/wcag.php:1436
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "Người dùng được thông báo về vị trí của họ trong một tập hợp các trang web, chẳng hạn như thông qua điều hướng breadcrumb hoặc tiêu đề trang rõ ràng."
+
+#: includes/wcag.php:1453
+msgid "Link Purpose (Link Only)"
+msgstr "Mục đích của liên kết (chỉ liên kết)"
+
+#: includes/wcag.php:1454
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "Mục đích của mỗi liên kết có thể được xác định chỉ bằng văn bản liên kết, mà không cần thêm ngữ cảnh."
+
+#: includes/wcag.php:1471
+msgid "Pointer Gestures"
+msgstr "Cử chỉ con trỏ"
+
+#: includes/wcag.php:1472
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "Đối với chức năng có thể được thực hiện bằng cử chỉ con trỏ, ít nhất một trong những điều sau đây là đúng: cử chỉ có thể được thực hiện bằng cách chạm đơn giản, cử chỉ có thể được thực hiện bằng một ngón tay, hoặc cử chỉ có thể được thực hiện bằng lệnh thoại."
+
+#: includes/wcag.php:1475
+#: includes/wcag.php:1504
+#: includes/wcag.php:1534
+#: includes/wcag.php:1561
+#: includes/wcag.php:1588
+#: includes/wcag.php:1608
+#: includes/wcag.php:1625
+#: includes/wcag.php:1642
+msgid "2.5 Input Modalities"
+msgstr "2.5 phương thức nhập liệu"
+
+#: includes/wcag.php:1500
+msgid "Pointer Cancellation"
+msgstr "Hủy con trỏ"
+
+#: includes/wcag.php:1501
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "Đối với các hành động yêu cầu cử chỉ con trỏ, người dùng có thể hủy hành động bằng cách di chuyển con trỏ đi trước khi hành động hoàn tất."
+
+#: includes/wcag.php:1530
+msgid "Label in Name"
+msgstr "Nhãn trong tên"
+
+#: includes/wcag.php:1531
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "Tên của các thành phần giao diện người dùng bao gồm nhãn văn bản mô tả mục đích của chúng, để các công nghệ hỗ trợ có thể truyền đạt thông tin này cho người dùng."
+
+#: includes/wcag.php:1557
+msgid "Motion Actuation"
+msgstr "Kích hoạt bằng chuyển động"
+
+#: includes/wcag.php:1558
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "Chức năng có thể được thực hiện bằng cử chỉ chuyển động cũng có thể được thực hiện bằng cách chạm hoặc nhấp đơn giản, để người dùng không thể thực hiện cử chỉ chuyển động vẫn có thể sử dụng chức năng."
+
+#: includes/wcag.php:1584
+msgid "Target Size"
+msgstr "Kích thước mục tiêu"
+
+#: includes/wcag.php:1585
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "Kích thước của mục tiêu cho cử chỉ con trỏ đủ lớn để dễ dàng kích hoạt, ngay cả đối với người dùng có khả năng khéo léo hạn chế."
+
+#: includes/wcag.php:1591
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "Những người sử dụng thiết bị di động trong môi trường có rung lắc (như phương tiện giao thông công cộng)"
+
+#: includes/wcag.php:1592
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "Những người bị khuyết tật về khả năng khéo léo và vận động bao gồm run tay"
+
+#: includes/wcag.php:1594
+#: includes/wcag.php:1648
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "Những người có ngón tay to hoặc đang vận hành thiết bị chỉ bằng một phần ngón tay hoặc khớp ngón tay"
+
+#: includes/wcag.php:1604
+msgid "Concurrent Input Mechanisms"
+msgstr "Cơ chế nhập liệu đồng thời"
+
+#: includes/wcag.php:1605
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "Nếu một cơ chế nhập liệu yêu cầu một tư thế hoặc chuyển động cụ thể, một cơ chế nhập liệu thay thế có sẵn mà không có cùng yêu cầu."
+
+#: includes/wcag.php:1621
+msgid "Dragging Movements"
+msgstr "Chuyển động kéo"
+
+#: includes/wcag.php:1622
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "Đối với chức năng yêu cầu chuyển động kéo, hành động cũng có thể được hoàn thành bằng các hành động đơn giản hơn, để người dùng có khả năng khéo léo hạn chế vẫn có thể sử dụng chức năng."
+
+#: includes/wcag.php:1638
+msgid "Target Size (Minimum)"
+msgstr "Kích thước mục tiêu (tối thiểu)"
+
+#: includes/wcag.php:1639
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "Kích thước mục tiêu cho bất kỳ phần tử tương tác nào ít nhất là 44x44 pixel, để có thể dễ dàng kích hoạt bởi người dùng với các khả năng khác nhau."
+
+#: includes/wcag.php:1658
+msgid "Language of Page"
+msgstr "Ngôn ngữ của trang"
+
+#: includes/wcag.php:1659
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "Ngôn ngữ mặc định của mỗi trang web được xác định theo chương trình, để các công nghệ hỗ trợ có thể sử dụng cài đặt ngôn ngữ chính xác."
+
 #: includes/wcag.php:1662
 #: includes/wcag.php:1696
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "3.1 Readable"
+msgstr "3.1 có thể đọc được"
+
+#: includes/wcag.php:1663
+#: includes/wcag.php:1697
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
 #: includes/wcag.php:1806
-#: includes/wcag.php:1842
+#: includes/wcag.php:1841
 #: includes/wcag.php:1877
 #: includes/wcag.php:1908
-#: includes/wcag.php:1940
+#: includes/wcag.php:1939
+#: includes/wcag.php:1959
 #: includes/wcag.php:1976
 #: includes/wcag.php:2010
 #: includes/wcag.php:2044
 #: includes/wcag.php:2078
 #: includes/wcag.php:2112
 #: includes/wcag.php:2131
-#: includes/wcag.php:2202
-#: includes/wcag.php:2236
-#: includes/wcag.php:2267
-msgid "Screen reader users (blind/low vision and neurodivergent people)"
-msgstr "Người dùng trình đọc màn hình (người mù/thị lực kém và người có sự khác biệt về thần kinh)"
+#: includes/wcag.php:2150
+#: includes/wcag.php:2168
+#: includes/wcag.php:2185
+msgid "Understandable"
+msgstr "Dễ hiểu"
 
-#: includes/wcag.php:44
-msgid "Prerecorded Audio-only and Video-only"
-msgstr "Âm thanh và video chỉ có sẵn"
+#: includes/wcag.php:1692
+msgid "Language of Parts"
+msgstr "Ngôn ngữ của các phần"
 
-#: includes/wcag.php:45
-msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
-msgstr "Đối với nội dung chỉ có âm thanh và chỉ có video đã ghi sẵn, phải cung cấp một phương án thay thế bằng văn bản trình bày thông tin tương đương. Điều này đảm bảo người dùng không thể nghe hoặc nhìn thấy phương tiện vẫn có thể truy cập nội dung của nó thông qua văn bản."
+#: includes/wcag.php:1693
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "Ngôn ngữ của từng phần nội dung có thể được xác định theo chương trình, để các công nghệ hỗ trợ có thể cung cấp hỗ trợ ngôn ngữ phù hợp."
 
-#: includes/wcag.php:48
-#: includes/wcag.php:81
-#: includes/wcag.php:114
-#: includes/wcag.php:147
-#: includes/wcag.php:180
-#: includes/wcag.php:212
-#: includes/wcag.php:229
-#: includes/wcag.php:246
-#: includes/wcag.php:265
-msgid "1.2 Time-based Media"
-msgstr "1.2 phương tiện dựa trên thời gian"
+#: includes/wcag.php:1724
+msgid "Unusual Words"
+msgstr "Từ không thông dụng"
 
-#: includes/wcag.php:51
-#: includes/wcag.php:84
-#: includes/wcag.php:117
-#: includes/wcag.php:150
-#: includes/wcag.php:215
-#: includes/wcag.php:249
-#: includes/wcag.php:268
-#: includes/wcag.php:356
-#: includes/wcag.php:607
-#: includes/wcag.php:755
-msgid "Deaf and hard of hearing people"
-msgstr "Người điếc và khiếm thính"
+#: includes/wcag.php:1725
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "Các từ không thông dụng hoặc hiếm gặp được định nghĩa hoặc giải thích, để người dùng có khuyết tật về nhận thức hoặc không quen thuộc với ngôn ngữ có thể hiểu được."
 
-#: includes/wcag.php:77
-msgid "Captions (Prerecorded)"
-msgstr "Phụ đề (đã ghi sẵn)"
+#: includes/wcag.php:1744
+msgid "Abbreviations"
+msgstr "Từ viết tắt"
 
-#: includes/wcag.php:78
-msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
-msgstr "Phải cung cấp phụ đề cho tất cả nội dung âm thanh đã ghi sẵn trong phương tiện đồng bộ—chẳng hạn như video có âm thanh và hình ảnh phát cùng nhau—để người dùng điếc hoặc khiếm thính có thể truy cập thông tin được nói và âm thanh quan trọng."
+#: includes/wcag.php:1745
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "Các từ viết tắt và từ viết tắt được định nghĩa lần đầu tiên khi chúng được sử dụng, để người dùng có thể hiểu ý nghĩa của chúng."
 
-#: includes/wcag.php:110
-msgid "Audio Description or Media Alternative (Prerecorded)"
-msgstr "Mô tả âm thanh hoặc phương tiện thay thế (đã ghi sẵn)"
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Trình độ đọc"
 
-#: includes/wcag.php:111
-msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
-msgstr "Đối với nội dung video đã ghi sẵn có âm thanh (phương tiện đồng bộ), phải cung cấp một mô tả âm thanh—hoặc một bản ghi văn bản bao gồm các chi tiết hình ảnh—để đảm bảo người dùng mù hoặc thị lực kém có thể hiểu thông tin hình ảnh quan trọng không được nói đến."
+#: includes/wcag.php:1764
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "Nội dung được viết bằng ngôn ngữ rõ ràng và đơn giản, và không yêu cầu kiến thức chuyên môn để hiểu."
 
-#: includes/wcag.php:143
-msgid "Captions (Live)"
-msgstr "Phụ đề (trực tiếp)"
+#: includes/wcag.php:1782
+msgid "Pronunciation"
+msgstr "Cách phát âm"
 
-#: includes/wcag.php:144
-msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
-msgstr "Đối với tất cả nội dung video trực tiếp có âm thanh, phải cung cấp phụ đề theo thời gian thực để người dùng điếc hoặc khiếm thính có thể truy cập thông tin được nói khi nó diễn ra."
+#: includes/wcag.php:1783
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "Có sẵn hướng dẫn phát âm cho các từ không thông dụng hoặc khó, để người dùng có thể hiểu cách đọc chúng."
 
-#: includes/wcag.php:176
-msgid "Audio Description (Prerecorded)"
-msgstr "Mô tả âm thanh (đã ghi sẵn)"
+#: includes/wcag.php:1801
+msgid "On Focus"
+msgstr "Khi tập trung"
 
-#: includes/wcag.php:177
-msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
-msgstr "Đối với video đã ghi sẵn có âm thanh, phải cung cấp mô tả âm thanh về nội dung hình ảnh quan trọng, cho phép người dùng mù hoặc thị lực kém hiểu thông tin hình ảnh không được mô tả trong âm thanh chính."
+#: includes/wcag.php:1802
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "Khi một phần tử nhận được sự tập trung, nó không gây ra những thay đổi bất ngờ có thể gây nhầm lẫn cho người dùng, và rõ ràng cách tương tác với phần tử đó."
 
-#: includes/wcag.php:183
-#: includes/wcag.php:232
-#: includes/wcag.php:355
-#: includes/wcag.php:461
-#: includes/wcag.php:577
-#: includes/wcag.php:606
-#: includes/wcag.php:705
-#: includes/wcag.php:790
-#: includes/wcag.php:807
-#: includes/wcag.php:841
-#: includes/wcag.php:875
-msgid "Blind and low vision people"
-msgstr "Người mù và thị lực kém"
-
-#: includes/wcag.php:208
-msgid "Sign Language (Prerecorded)"
-msgstr "Ngôn ngữ ký hiệu (đã ghi sẵn)"
-
-#: includes/wcag.php:209
-msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
-msgstr "Phải cung cấp bản diễn giải bằng ngôn ngữ ký hiệu cho tất cả nội dung âm thanh đã ghi sẵn trong phương tiện đồng bộ, đảm bảo rằng người dùng khiếm thính và sử dụng ngôn ngữ ký hiệu có thể hiểu đầy đủ nội dung được nói."
-
-#: includes/wcag.php:225
-msgid "Extended Audio Description (Prerecorded)"
-msgstr "Mô tả âm thanh mở rộng (đã ghi sẵn)"
-
-#: includes/wcag.php:226
-msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
-msgstr "Đối với tất cả nội dung đa phương tiện đã ghi sẵn, phải cung cấp mô tả âm thanh mở rộng khi cần thiết - nghĩa là video được tạm dừng để chèn thêm mô tả - để người dùng khiếm thị hoặc thị lực kém có thể hiểu được các chi tiết hình ảnh quan trọng mà không thể mô tả trong các khoảng dừng tự nhiên của âm thanh."
-
-#: includes/wcag.php:242
-msgid "Media Alternative (Prerecorded)"
-msgstr "Phương tiện thay thế (đã ghi sẵn)"
-
-#: includes/wcag.php:243
-msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
-msgstr "Đối với phương tiện đồng bộ đã ghi sẵn, một phương án thay thế bằng văn bản đầy đủ (như bản ghi) được cung cấp, cung cấp tất cả thông tin trong cả video và âm thanh, để người dùng không thể nhìn hoặc nghe nội dung vẫn có thể truy cập được."
-
-#: includes/wcag.php:250
-msgid "Deaf-blind people"
-msgstr "Người khiếm thính-khiếm thị"
-
-#: includes/wcag.php:261
-msgid "Audio-only (Live)"
-msgstr "Chỉ có âm thanh (trực tiếp)"
-
-#: includes/wcag.php:262
-msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
-msgstr "Đối với nội dung chỉ có âm thanh trực tiếp, một phương án thay thế bằng văn bản được cung cấp theo thời gian thực để những người không thể nghe âm thanh vẫn có thể truy cập thông tin."
-
-#: includes/wcag.php:279
-msgid "Info and Relationships"
-msgstr "Thông tin và mối quan hệ"
-
-#: includes/wcag.php:280
-msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
-msgstr "Thông tin, cấu trúc và mối quan hệ trong nội dung được xác định theo chương trình hoặc có sẵn dưới dạng văn bản, để các công nghệ hỗ trợ có thể trình bày chúng cho người dùng."
-
-#: includes/wcag.php:283
-#: includes/wcag.php:318
-#: includes/wcag.php:352
-#: includes/wcag.php:385
-#: includes/wcag.php:412
-#: includes/wcag.php:440
-msgid "1.3 Adaptable"
-msgstr "1.3 có thể điều chỉnh"
-
-#: includes/wcag.php:286
-#: includes/wcag.php:321
-#: includes/wcag.php:808
-#: includes/wcag.php:842
-#: includes/wcag.php:876
-#: includes/wcag.php:1184
-#: includes/wcag.php:1201
-#: includes/wcag.php:1218
-#: includes/wcag.php:1269
-#: includes/wcag.php:1404
-#: includes/wcag.php:1474
-#: includes/wcag.php:1504
-#: includes/wcag.php:1624
-#: includes/wcag.php:1804
-#: includes/wcag.php:1839
-#: includes/wcag.php:1937
-msgid "People who rely on keyboard control"
-msgstr "Những người phụ thuộc vào điều khiển bàn phím"
-
-#: includes/wcag.php:287
-#: includes/wcag.php:322
-msgid "People with cognitive differences who view interfaces using an adapted layout"
-msgstr "Những người có sự khác biệt về nhận thức xem giao diện bằng bố cục đã được điều chỉnh"
-
-#: includes/wcag.php:314
-msgid "Meaningful Sequence"
-msgstr "Trình tự có ý nghĩa"
-
-#: includes/wcag.php:315
-msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
-msgstr "Nội dung được trình bày theo thứ tự có ý nghĩa để thứ tự đọc hoặc điều hướng không gây nhầm lẫn cho người dùng khi sử dụng công nghệ hỗ trợ."
-
-#: includes/wcag.php:348
-msgid "Sensory Characteristics"
-msgstr "Đặc điểm cảm giác"
-
-#: includes/wcag.php:349
-msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
-msgstr "Hướng dẫn không chỉ dựa vào các đặc điểm cảm giác như hình dạng, màu sắc, kích thước hoặc âm thanh, để mọi người đều có thể hiểu được."
-
-#: includes/wcag.php:381
-msgid "Orientation"
-msgstr "Hướng"
-
-#: includes/wcag.php:382
-msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
-msgstr "Nội dung không giới hạn chế xem và vận hành ở một hướng hiển thị duy nhất, chẳng hạn như dọc hoặc ngang, trừ khi một hướng cụ thể là cần thiết."
-
-#: includes/wcag.php:388
-#: includes/wcag.php:1165
-#: includes/wcag.php:1303
-#: includes/wcag.php:1336
-#: includes/wcag.php:1370
-#: includes/wcag.php:1438
-#: includes/wcag.php:1456
-#: includes/wcag.php:1503
-#: includes/wcag.php:1607
-#: includes/wcag.php:1727
-#: includes/wcag.php:1747
-#: includes/wcag.php:1766
-#: includes/wcag.php:1785
-#: includes/wcag.php:1875
-#: includes/wcag.php:1906
-#: includes/wcag.php:1957
-#: includes/wcag.php:1974
-#: includes/wcag.php:2008
-#: includes/wcag.php:2042
-#: includes/wcag.php:2076
-#: includes/wcag.php:2110
-#: includes/wcag.php:2129
-#: includes/wcag.php:2148
-msgid "All people including those who do not identify as disabled"
-msgstr "Tất cả mọi người bao gồm cả những người không xác định là người khuyết tật"
-
-#: includes/wcag.php:408
-msgid "Identify Input Purpose"
-msgstr "Xác định mục đích đầu vào"
-
-#: includes/wcag.php:409
-msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
-msgstr "Mục đích của các trường nhập liệu thu thập thông tin về người dùng có thể được xác định theo chương trình, để trình duyệt và công nghệ hỗ trợ có thể giúp người dùng điền vào."
-
-#: includes/wcag.php:415
-#: includes/wcag.php:443
-#: includes/wcag.php:1166
-#: includes/wcag.php:1235
-#: includes/wcag.php:1371
-#: includes/wcag.php:1439
-#: includes/wcag.php:2166
-#: includes/wcag.php:2183
-msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
-msgstr "Người có khuyết tật về nhận thức hoặc trí nhớ ngắn hạn hạn chế hoặc khuyết tật đọc"
-
-#: includes/wcag.php:416
-#: includes/wcag.php:809
-#: includes/wcag.php:843
-#: includes/wcag.php:877
-#: includes/wcag.php:922
-#: includes/wcag.php:990
-#: includes/wcag.php:1010
-#: includes/wcag.php:1029
-#: includes/wcag.php:1048
-#: includes/wcag.php:1132
-#: includes/wcag.php:1270
-#: includes/wcag.php:1405
-#: includes/wcag.php:1475
-#: includes/wcag.php:1505
-#: includes/wcag.php:1560
 #: includes/wcag.php:1805
-#: includes/wcag.php:1841
-#: includes/wcag.php:1939
-msgid "People with dexterity and mobility impairments"
-msgstr "Người có khuyết tật về khéo léo và vận động"
-
-#: includes/wcag.php:436
-msgid "Identify Purpose"
-msgstr "Xác định mục đích"
-
-#: includes/wcag.php:437
-msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
-msgstr "Mục đích của các thành phần giao diện người dùng, biểu tượng và vùng có thể được xác định theo chương trình, để công nghệ hỗ trợ có thể điều chỉnh trải nghiệm cho người dùng."
-
-#: includes/wcag.php:454
-msgid "Use of Color"
-msgstr "Sử dụng màu sắc"
-
-#: includes/wcag.php:455
-msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
-msgstr "Màu sắc không được sử dụng như cách duy nhất để truyền đạt thông tin, chỉ ra một hành động, nhắc nhở phản hồi hoặc phân biệt một yếu tố trực quan."
-
-#: includes/wcag.php:458
-#: includes/wcag.php:491
-#: includes/wcag.php:519
-#: includes/wcag.php:546
-#: includes/wcag.php:574
-#: includes/wcag.php:603
-#: includes/wcag.php:637
-#: includes/wcag.php:670
-#: includes/wcag.php:702
-#: includes/wcag.php:734
-#: includes/wcag.php:752
-#: includes/wcag.php:769
-#: includes/wcag.php:787
-msgid "1.4 Distinguishable"
-msgstr "1.4 có thể phân biệt"
-
-#: includes/wcag.php:462
-msgid "Color blind people"
-msgstr "Người mù màu"
-
-#: includes/wcag.php:487
-msgid "Reflow"
-msgstr "Sắp xếp lại"
-
-#: includes/wcag.php:488
-msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
-msgstr "Nội dung có thể được xem mà không cần cuộn theo nhiều hơn một hướng, để người dùng có thể dễ dàng đọc và tương tác trên màn hình nhỏ hoặc khi phóng to."
-
-#: includes/wcag.php:494
-#: includes/wcag.php:1641
-msgid "People on mobile devices"
-msgstr "Người dùng thiết bị di động"
-
-#: includes/wcag.php:495
-#: includes/wcag.php:522
-#: includes/wcag.php:550
-#: includes/wcag.php:641
-#: includes/wcag.php:673
-#: includes/wcag.php:738
-#: includes/wcag.php:773
-#: includes/wcag.php:1271
-#: includes/wcag.php:1406
-#: includes/wcag.php:1589
-#: includes/wcag.php:1643
-msgid "People with low vision"
-msgstr "Người có thị lực kém"
-
-#: includes/wcag.php:515
-msgid "Non-text Contrast"
-msgstr "Độ tương phản phi văn bản"
-
-#: includes/wcag.php:516
-msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
-msgstr "Thông tin trực quan cần thiết để nhận dạng các thành phần giao diện người dùng và đối tượng đồ họa có tỷ lệ tương phản ít nhất là 3:1 so với màu sắc liền kề."
-
-#: includes/wcag.php:542
-msgid "Text Spacing"
-msgstr "Khoảng cách văn bản"
-
-#: includes/wcag.php:543
-msgid "Users can override text spacing to improve readability without losing content or functionality."
-msgstr "Người dùng có thể ghi đè khoảng cách văn bản để cải thiện khả năng đọc mà không bị mất nội dung hoặc chức năng."
-
-#: includes/wcag.php:549
-#: includes/wcag.php:772
-#: includes/wcag.php:1729
-#: includes/wcag.php:1749
-#: includes/wcag.php:1768
-#: includes/wcag.php:1787
 #: includes/wcag.php:1840
 #: includes/wcag.php:1876
 #: includes/wcag.php:1907
 #: includes/wcag.php:1938
+#: includes/wcag.php:1958
+msgid "3.2 Predictable"
+msgstr "3.2 có thể dự đoán được"
+
+#: includes/wcag.php:1836
+msgid "On Input"
+msgstr "Khi nhập"
+
+#: includes/wcag.php:1837
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "Khi một trường nhập liệu nhận dữ liệu, nó không gây ra những thay đổi bất ngờ có thể làm người dùng bối rối, và rõ ràng về cách dữ liệu sẽ được sử dụng."
+
+#: includes/wcag.php:1872
+msgid "Consistent Navigation"
+msgstr "Điều hướng nhất quán"
+
+#: includes/wcag.php:1873
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "Các cơ chế điều hướng nhất quán trên toàn bộ trang web, để người dùng có thể di chuyển qua trang web một cách dễ dự đoán."
+
+#: includes/wcag.php:1903
+msgid "Consistent Identification"
+msgstr "Nhận dạng nhất quán"
+
+#: includes/wcag.php:1904
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "Các thành phần có cùng chức năng trong một tập hợp các trang web được nhận dạng một cách nhất quán, để người dùng có thể dễ dàng nhận ra chúng."
+
+#: includes/wcag.php:1934
+msgid "Change on Request"
+msgstr "Thay đổi theo yêu cầu"
+
+#: includes/wcag.php:1935
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "Những thay đổi về nội dung hoặc ngữ cảnh xảy ra do đầu vào của người dùng không xảy ra bất ngờ, và người dùng được thông báo về mọi thay đổi."
+
+#: includes/wcag.php:1954
+msgid "Consistent Help"
+msgstr "Trợ giúp nhất quán"
+
+#: includes/wcag.php:1955
+#: includes/wcag.php:2108
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "Trợ giúp và tài liệu hướng dẫn có sẵn và dễ tìm, để người dùng có thể nhận được hỗ trợ khi cần."
+
+#: includes/wcag.php:1971
+msgid "Error Identification"
+msgstr "Nhận dạng lỗi"
+
+#: includes/wcag.php:1972
+#: includes/wcag.php:2040
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "Nếu phát hiện lỗi nhập liệu và biết các gợi ý để sửa chữa, thì các gợi ý đó sẽ được cung cấp cho người dùng."
+
 #: includes/wcag.php:1975
 #: includes/wcag.php:2009
 #: includes/wcag.php:2043
 #: includes/wcag.php:2077
 #: includes/wcag.php:2111
 #: includes/wcag.php:2130
-msgid "People with cognitive disabilities and reading disabilities"
-msgstr "Người có khuyết tật về nhận thức và khuyết tật đọc"
-
-#: includes/wcag.php:570
-msgid "Content on Hover or Focus"
-msgstr "Nội dung khi di chuột hoặc tập trung"
-
-#: includes/wcag.php:571
-msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
-msgstr "Nếu nội dung bổ sung xuất hiện khi di chuột hoặc tập trung, người dùng có thể bỏ qua nó, di chuyển con trỏ qua nó, và nó vẫn hiển thị cho đến khi bị bỏ qua hoặc tập trung được di chuyển."
-
-#: includes/wcag.php:578
-#: includes/wcag.php:956
-#: includes/wcag.php:1337
-msgid "People with cognitive disabilities"
-msgstr "Người có khuyết tật về nhận thức"
-
-#: includes/wcag.php:579
-#: includes/wcag.php:1642
-msgid "People with dexterity impairments"
-msgstr "Người có khuyết tật về khéo léo"
-
-#: includes/wcag.php:599
-msgid "Audio Control"
-msgstr "Điều khiển âm thanh"
-
-#: includes/wcag.php:600
-msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
-msgstr "Nếu âm thanh tự động phát trong hơn 3 giây, người dùng phải có khả năng tạm dừng, dừng hoặc điều chỉnh âm lượng độc lập với âm lượng hệ thống."
-
-#: includes/wcag.php:608
-#: includes/wcag.php:955
-#: includes/wcag.php:1009
-msgid "People with ADD or difficulty focusing on content without distraction"
-msgstr "Người có ADD hoặc khó tập trung vào nội dung mà không bị phân tâm"
-
-#: includes/wcag.php:633
-msgid "Contrast (Minimum)"
-msgstr "Độ tương phản (tối thiểu)"
-
-#: includes/wcag.php:634
-msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
-msgstr "Văn bản và hình ảnh của văn bản phải có tỷ lệ tương phản ít nhất là 4,5:1, ngoại trừ văn bản lớn, văn bản ngẫu nhiên hoặc logo."
-
-#: includes/wcag.php:640
-#: includes/wcag.php:737
-msgid "People on mobile devices in a sunny environment"
-msgstr "Người dùng thiết bị di động trong môi trường nắng"
-
-#: includes/wcag.php:666
-msgid "Resize text"
-msgstr "Thay đổi kích thước văn bản"
-
-#: includes/wcag.php:667
-msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
-msgstr "Văn bản có thể được thay đổi kích thước lên đến 200% mà không bị mất nội dung hoặc chức năng, để người có thị lực kém có thể đọc dễ dàng hơn."
-
-#: includes/wcag.php:698
-msgid "Images of Text"
-msgstr "Hình ảnh của văn bản"
-
-#: includes/wcag.php:699
-msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
-msgstr "Nếu có thể tạo ra cùng một hình thức trình bày bằng văn bản đơn thuần, đừng sử dụng hình ảnh chứa văn bản trừ khi cho mục đích trang trí hoặc thiết yếu."
-
-#: includes/wcag.php:730
-msgid "Contrast (Enhanced)"
-msgstr "Độ tương phản (nâng cao)"
-
-#: includes/wcag.php:731
-msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
-msgstr "Văn bản và hình ảnh chứa văn bản phải có tỷ lệ tương phản ít nhất 7:1, ngoại trừ văn bản cỡ lớn, văn bản ngẫu nhiên hoặc logo."
-
-#: includes/wcag.php:748
-msgid "Low or No Background Audio"
-msgstr "Âm thanh nền thấp hoặc không có"
-
-#: includes/wcag.php:749
-msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
-msgstr "Đối với nội dung chỉ có âm thanh được ghi sẵn, âm thanh nền hoặc thấp, có thể tắt, hoặc không có, để giọng nói dễ hiểu hơn."
-
-#: includes/wcag.php:765
-msgid "Visual Presentation"
-msgstr "Trình bày trực quan"
-
-#: includes/wcag.php:766
-msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
-msgstr "Người dùng có thể chọn cách hiển thị các khối văn bản, như màu nền và chữ, chiều rộng và khoảng cách dòng, để việc đọc dễ dàng hơn."
-
-#: includes/wcag.php:783
-msgid "Images of Text (No Exception)"
-msgstr "Hình ảnh chứa văn bản (không ngoại lệ)"
-
-#: includes/wcag.php:784
-msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
-msgstr "Hình ảnh chứa văn bản chỉ được sử dụng cho mục đích trang trí thuần túy hoặc khi cách trình bày văn bản cụ thể là thiết yếu, không có ngoại lệ."
-
-#: includes/wcag.php:800
-msgid "Keyboard"
-msgstr "Bàn phím"
-
-#: includes/wcag.php:801
-msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
-msgstr "Tất cả chức năng đều có thể sử dụng bằng bàn phím, để người dùng không thể sử dụng chuột vẫn có thể điều khiển nội dung."
-
-#: includes/wcag.php:804
-#: includes/wcag.php:838
-#: includes/wcag.php:872
-#: includes/wcag.php:891
-msgid "2.1 Keyboard Accessible"
-msgstr "2.1 Có thể truy cập bằng bàn phím"
-
-#: includes/wcag.php:805
-#: includes/wcag.php:839
-#: includes/wcag.php:873
-#: includes/wcag.php:892
-#: includes/wcag.php:919
-#: includes/wcag.php:953
-#: includes/wcag.php:987
-#: includes/wcag.php:1006
-#: includes/wcag.php:1026
-#: includes/wcag.php:1045
-#: includes/wcag.php:1064
-#: includes/wcag.php:1096
-#: includes/wcag.php:1113
-#: includes/wcag.php:1130
-#: includes/wcag.php:1163
-#: includes/wcag.php:1182
-#: includes/wcag.php:1199
-#: includes/wcag.php:1216
-#: includes/wcag.php:1233
-#: includes/wcag.php:1267
-#: includes/wcag.php:1301
-#: includes/wcag.php:1334
-#: includes/wcag.php:1368
-#: includes/wcag.php:1402
-#: includes/wcag.php:1436
-#: includes/wcag.php:1454
-#: includes/wcag.php:1472
-#: includes/wcag.php:1501
-#: includes/wcag.php:1531
-#: includes/wcag.php:1558
-#: includes/wcag.php:1585
-#: includes/wcag.php:1605
-#: includes/wcag.php:1622
-#: includes/wcag.php:1639
-msgid "Operable"
-msgstr "Có thể vận hành"
-
-#: includes/wcag.php:834
-msgid "No Keyboard Trap"
-msgstr "Không bị kẹt bàn phím"
-
-#: includes/wcag.php:835
-msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
-msgstr "Người dùng bàn phím có thể di chuyển đến và ra khỏi tất cả các phần của nội dung mà không bị mắc kẹt."
-
-#: includes/wcag.php:868
-msgid "Keyboard (No Exception)"
-msgstr "Bàn phím (không ngoại lệ)"
-
-#: includes/wcag.php:869
-msgid "All functionality is available from a keyboard interface, with no exceptions."
-msgstr "Tất cả chức năng đều có thể sử dụng từ giao diện bàn phím, không có ngoại lệ."
-
-#: includes/wcag.php:887
-msgid "Character Key Shortcuts"
-msgstr "Phím tắt ký tự"
-
-#: includes/wcag.php:888
-msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
-msgstr "Nếu phím tắt chỉ sử dụng chữ cái, số hoặc dấu câu, người dùng có thể tắt nó, thay đổi nó, hoặc nó chỉ hoạt động khi phần tử đó được tập trung."
-
-#: includes/wcag.php:914
-msgid "Timing Adjustable"
-msgstr "Thời gian có thể điều chỉnh"
-
-#: includes/wcag.php:915
-msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
-msgstr "Nếu có giới hạn thời gian, người dùng có thể tắt, điều chỉnh hoặc kéo dài nó trừ khi giới hạn thời gian là thiết yếu."
-
-#: includes/wcag.php:918
-#: includes/wcag.php:952
-#: includes/wcag.php:986
-#: includes/wcag.php:1005
-#: includes/wcag.php:1025
-#: includes/wcag.php:1044
-msgid "2.2 Enough Time"
-msgstr "2.2 Đủ thời gian"
-
-#: includes/wcag.php:921
-#: includes/wcag.php:989
-#: includes/wcag.php:1008
-#: includes/wcag.php:1028
-#: includes/wcag.php:1047
-msgid "People who need more time to react"
-msgstr "Những người cần thêm thời gian để phản ứng"
-
-#: includes/wcag.php:948
-msgid "Pause, Stop, Hide"
-msgstr "Tạm dừng, dừng, ẩn"
-
-#: includes/wcag.php:949
-msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
-msgstr "Người dùng có thể tạm dừng, dừng hoặc ẩn thông tin di chuyển, nhấp nháy, cuộn hoặc tự động cập nhật bắt đầu tự động và kéo dài hơn năm giây."
-
-#: includes/wcag.php:982
-msgid "No Timing"
-msgstr "Không có thời gian"
-
-#: includes/wcag.php:983
-msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
-msgstr "Nếu một phần tử yêu cầu phản hồi trong một thời gian cụ thể, người dùng có thể tắt bộ đếm thời gian, điều chỉnh giới hạn thời gian, hoặc thời gian không phải là yếu tố thiết yếu."
-
-#: includes/wcag.php:1001
-msgid "Interruptions"
-msgstr "Gián đoạn"
-
-#: includes/wcag.php:1002
-msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
-msgstr "Người dùng không bị gián đoạn bởi những thay đổi nội dung bất ngờ và có thể kiểm soát các gián đoạn như nội dung tự động cập nhật."
-
-#: includes/wcag.php:1021
-msgid "Re-authenticating"
-msgstr "Xác thực lại"
-
-#: includes/wcag.php:1022
-msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
-msgstr "Nếu người dùng bị đăng xuất do không hoạt động, họ được thông báo trước khi phiên làm việc hết hạn và có thể tiếp tục phiên mà không mất dữ liệu."
-
-#: includes/wcag.php:1040
-msgid "Timeouts"
-msgstr "Hết thời gian"
-
-#: includes/wcag.php:1041
-msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
-msgstr "Người dùng được cảnh báo về việc sắp hết thời gian và có thể yêu cầu thêm thời gian hoặc lưu công việc của họ trước khi hết thời gian."
-
-#: includes/wcag.php:1059
-msgid "Three Flashes or Below Threshold"
-msgstr "Ba lần nhấp nháy hoặc dưới ngưỡng"
-
-#: includes/wcag.php:1060
-msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
-msgstr "Nội dung không nhấp nháy quá ba lần trong bất kỳ khoảng thời gian một giây nào, giảm nguy cơ co giật cho người bị động kinh nhạy cảm với ánh sáng."
-
-#: includes/wcag.php:1063
-#: includes/wcag.php:1095
-#: includes/wcag.php:1112
-msgid "2.3 Seizures and Physical Reactions"
-msgstr "2.3 Co giật và phản ứng thể chất"
-
-#: includes/wcag.php:1066
-#: includes/wcag.php:1098
-msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
-msgstr "Người bị động kinh nhạy cảm với ánh sáng và các rối loạn co giật nhạy cảm với ánh sáng khác"
-
-#: includes/wcag.php:1091
-msgid "Three Flashes"
-msgstr "Ba lần nhấp nháy"
-
-#: includes/wcag.php:1092
-msgid "No part of the content flashes more than three times per second, with no exceptions."
-msgstr "Không có phần nào của nội dung nhấp nháy quá ba lần mỗi giây, không có ngoại lệ."
-
-#: includes/wcag.php:1108
-msgid "Animation from Interactions"
-msgstr "Hoạt ảnh từ tương tác"
-
-#: includes/wcag.php:1109
-msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
-msgstr "Người dùng có thể tắt hoạt ảnh không thiết yếu được kích hoạt bởi tương tác, giúp những người nhạy cảm với chuyển động."
-
-#: includes/wcag.php:1115
-msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
-msgstr "Người mắc các rối loạn tiền đình (tai trong) khi chuyển động có thể gây chóng mặt/đau đầu và buồn nôn"
-
-#: includes/wcag.php:1125
-msgid "Bypass Blocks"
-msgstr "Bỏ qua các khối"
-
-#: includes/wcag.php:1126
-msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
-msgstr "Có sẵn cách để bỏ qua các khối nội dung lặp lại, như menu điều hướng, để người dùng có thể nhanh chóng đến nội dung chính."
-
-#: includes/wcag.php:1129
-#: includes/wcag.php:1162
-#: includes/wcag.php:1181
-#: includes/wcag.php:1198
-#: includes/wcag.php:1215
-#: includes/wcag.php:1232
-#: includes/wcag.php:1266
-#: includes/wcag.php:1300
-#: includes/wcag.php:1333
-#: includes/wcag.php:1367
-#: includes/wcag.php:1401
-#: includes/wcag.php:1435
-#: includes/wcag.php:1453
-msgid "2.4 Navigable"
-msgstr "2.4 Có thể điều hướng"
-
-#: includes/wcag.php:1158
-msgid "Section Headings"
-msgstr "Tiêu đề phần"
-
-#: includes/wcag.php:1159
-msgid "Section headings are used to organize content, making it easier to understand and navigate."
-msgstr "Tiêu đề phần được sử dụng để tổ chức nội dung, giúp dễ hiểu và điều hướng hơn."
-
-#: includes/wcag.php:1177
-msgid "Focus Not Obscured (Minimum)"
-msgstr "Trọng tâm không bị che khuất (tối thiểu)"
-
-#: includes/wcag.php:1178
-msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
-msgstr "Khi một phần tử nhận trọng tâm bàn phím, nó ít nhất phải được nhìn thấy một phần và không bị che khuất bởi nội dung khác."
-
-#: includes/wcag.php:1194
-msgid "Focus Not Obscured (Enhanced)"
-msgstr "Trọng tâm không bị che khuất (nâng cao)"
-
-#: includes/wcag.php:1195
-msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
-msgstr "Khi một phần tử nhận trọng tâm bàn phím, nó phải hoàn toàn hiển thị và không bị che khuất bởi nội dung khác."
-
-#: includes/wcag.php:1211
-msgid "Focus Appearance"
-msgstr "Hiển thị trọng tâm"
-
-#: includes/wcag.php:1212
-msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
-msgstr "Chỉ báo trọng tâm hiển thị cho các phần tử tương tác phải rõ ràng và đáp ứng yêu cầu tối thiểu về kích thước và độ tương phản."
-
-#: includes/wcag.php:1228
-msgid "Page Titled"
-msgstr "Tiêu đề trang"
-
-#: includes/wcag.php:1229
-msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
-msgstr "Các trang web có tiêu đề mô tả giúp người dùng hiểu chủ đề hoặc mục đích của trang."
-
-#: includes/wcag.php:1236
 #: includes/wcag.php:2149
-msgid "People with severe mobility impairments relying on audio to navigate the web"
-msgstr "Những người bị khuyết tật vận động nặng phải dựa vào âm thanh để điều hướng web"
-
-#: includes/wcag.php:1262
-msgid "Focus Order"
-msgstr "Thứ tự tập trung"
-
-#: includes/wcag.php:1263
-msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
-msgstr "Khi điều hướng bằng bàn phím, trọng tâm di chuyển theo thứ tự hợp lý, giữ nguyên ý nghĩa và khả năng vận hành."
-
-#: includes/wcag.php:1296
-msgid "Link Purpose (In Context)"
-msgstr "Mục đích của liên kết (trong ngữ cảnh)"
-
-#: includes/wcag.php:1297
-msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
-msgstr "Mục đích của mỗi liên kết được thể hiện rõ ràng từ văn bản liên kết và ngữ cảnh xuất hiện, để người dùng biết liên kết sẽ dẫn họ đến đâu."
-
-#: includes/wcag.php:1329
-msgid "Multiple Ways"
-msgstr "Nhiều cách"
-
-#: includes/wcag.php:1330
-msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
-msgstr "Có nhiều hơn một cách để định vị một trang web trong một tập hợp các trang web, trừ khi trang web là kết quả của một truy vấn."
-
-#: includes/wcag.php:1363
-msgid "Headings and Labels"
-msgstr "Tiêu đề và nhãn"
-
-#: includes/wcag.php:1364
-msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
-msgstr "Tiêu đề và nhãn mô tả chủ đề hoặc mục đích của nội dung, và không mơ hồ hoặc gây hiểu nhầm."
-
-#: includes/wcag.php:1397
-msgid "Focus Visible"
-msgstr "Trọng tâm hiển thị"
-
-#: includes/wcag.php:1398
-msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
-msgstr "Có thể nhìn thấy khi một phần tử được tập trung bằng bàn phím, để người dùng điều hướng bằng bàn phím có thể thấy phần tử nào đang hoạt động."
-
-#: includes/wcag.php:1431
-msgid "Location"
-msgstr "Vị trí"
-
-#: includes/wcag.php:1432
-msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
-msgstr "Người dùng được thông báo về vị trí của họ trong một tập hợp các trang web, chẳng hạn như thông qua điều hướng breadcrumb hoặc tiêu đề trang rõ ràng."
-
-#: includes/wcag.php:1449
-msgid "Link Purpose (Link Only)"
-msgstr "Mục đích của liên kết (chỉ liên kết)"
-
-#: includes/wcag.php:1450
-msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
-msgstr "Mục đích của mỗi liên kết có thể được xác định chỉ bằng văn bản liên kết, mà không cần thêm ngữ cảnh."
-
-#: includes/wcag.php:1467
-msgid "Pointer Gestures"
-msgstr "Cử chỉ con trỏ"
-
-#: includes/wcag.php:1468
-msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
-msgstr "Đối với chức năng có thể được thực hiện bằng cử chỉ con trỏ, ít nhất một trong những điều sau đây là đúng: cử chỉ có thể được thực hiện bằng cách chạm đơn giản, cử chỉ có thể được thực hiện bằng một ngón tay, hoặc cử chỉ có thể được thực hiện bằng lệnh thoại."
-
-#: includes/wcag.php:1471
-#: includes/wcag.php:1500
-#: includes/wcag.php:1530
-#: includes/wcag.php:1557
-#: includes/wcag.php:1584
-#: includes/wcag.php:1604
-#: includes/wcag.php:1621
-#: includes/wcag.php:1638
-msgid "2.5 Input Modalities"
-msgstr "2.5 phương thức nhập liệu"
-
-#: includes/wcag.php:1496
-msgid "Pointer Cancellation"
-msgstr "Hủy con trỏ"
-
-#: includes/wcag.php:1497
-msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
-msgstr "Đối với các hành động yêu cầu cử chỉ con trỏ, người dùng có thể hủy hành động bằng cách di chuyển con trỏ đi trước khi hành động hoàn tất."
-
-#: includes/wcag.php:1526
-msgid "Label in Name"
-msgstr "Nhãn trong tên"
-
-#: includes/wcag.php:1527
-msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
-msgstr "Tên của các thành phần giao diện người dùng bao gồm nhãn văn bản mô tả mục đích của chúng, để các công nghệ hỗ trợ có thể truyền đạt thông tin này cho người dùng."
-
-#: includes/wcag.php:1553
-msgid "Motion Actuation"
-msgstr "Kích hoạt bằng chuyển động"
-
-#: includes/wcag.php:1554
-msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
-msgstr "Chức năng có thể được thực hiện bằng cử chỉ chuyển động cũng có thể được thực hiện bằng cách chạm hoặc nhấp đơn giản, để người dùng không thể thực hiện cử chỉ chuyển động vẫn có thể sử dụng chức năng."
-
-#: includes/wcag.php:1580
-msgid "Target Size"
-msgstr "Kích thước mục tiêu"
-
-#: includes/wcag.php:1581
-msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
-msgstr "Kích thước của mục tiêu cho cử chỉ con trỏ đủ lớn để dễ dàng kích hoạt, ngay cả đối với người dùng có khả năng khéo léo hạn chế."
-
-#: includes/wcag.php:1587
-msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
-msgstr "Những người sử dụng thiết bị di động trong môi trường có rung lắc (như phương tiện giao thông công cộng)"
-
-#: includes/wcag.php:1588
-msgid "People with dexterity and mobility impairments including hand tremors"
-msgstr "Những người bị khuyết tật về khả năng khéo léo và vận động bao gồm run tay"
-
-#: includes/wcag.php:1590
-#: includes/wcag.php:1644
-msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
-msgstr "Những người có ngón tay to hoặc đang vận hành thiết bị chỉ bằng một phần ngón tay hoặc khớp ngón tay"
-
-#: includes/wcag.php:1600
-msgid "Concurrent Input Mechanisms"
-msgstr "Cơ chế nhập liệu đồng thời"
-
-#: includes/wcag.php:1601
-msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
-msgstr "Nếu một cơ chế nhập liệu yêu cầu một tư thế hoặc chuyển động cụ thể, một cơ chế nhập liệu thay thế có sẵn mà không có cùng yêu cầu."
-
-#: includes/wcag.php:1617
-msgid "Dragging Movements"
-msgstr "Chuyển động kéo"
-
-#: includes/wcag.php:1618
-msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
-msgstr "Đối với chức năng yêu cầu chuyển động kéo, hành động cũng có thể được hoàn thành bằng các hành động đơn giản hơn, để người dùng có khả năng khéo léo hạn chế vẫn có thể sử dụng chức năng."
-
-#: includes/wcag.php:1634
-msgid "Target Size (Minimum)"
-msgstr "Kích thước mục tiêu (tối thiểu)"
-
-#: includes/wcag.php:1635
-msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
-msgstr "Kích thước mục tiêu cho bất kỳ phần tử tương tác nào ít nhất là 44x44 pixel, để có thể dễ dàng kích hoạt bởi người dùng với các khả năng khác nhau."
-
-#: includes/wcag.php:1654
-msgid "Language of Page"
-msgstr "Ngôn ngữ của trang"
-
-#: includes/wcag.php:1655
-msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
-msgstr "Ngôn ngữ mặc định của mỗi trang web được xác định theo chương trình, để các công nghệ hỗ trợ có thể sử dụng cài đặt ngôn ngữ chính xác."
-
-#: includes/wcag.php:1658
-#: includes/wcag.php:1692
-#: includes/wcag.php:1724
-#: includes/wcag.php:1744
-#: includes/wcag.php:1763
-#: includes/wcag.php:1782
-msgid "3.1 Readable"
-msgstr "3.1 có thể đọc được"
-
-#: includes/wcag.php:1659
-#: includes/wcag.php:1693
-#: includes/wcag.php:1725
-#: includes/wcag.php:1745
-#: includes/wcag.php:1764
-#: includes/wcag.php:1783
-#: includes/wcag.php:1802
-#: includes/wcag.php:1837
-#: includes/wcag.php:1873
-#: includes/wcag.php:1904
-#: includes/wcag.php:1935
-#: includes/wcag.php:1955
-#: includes/wcag.php:1972
-#: includes/wcag.php:2006
-#: includes/wcag.php:2040
-#: includes/wcag.php:2074
-#: includes/wcag.php:2108
-#: includes/wcag.php:2127
-#: includes/wcag.php:2146
-#: includes/wcag.php:2164
-#: includes/wcag.php:2181
-msgid "Understandable"
-msgstr "Dễ hiểu"
-
-#: includes/wcag.php:1688
-msgid "Language of Parts"
-msgstr "Ngôn ngữ của các phần"
-
-#: includes/wcag.php:1689
-msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
-msgstr "Ngôn ngữ của từng phần nội dung có thể được xác định theo chương trình, để các công nghệ hỗ trợ có thể cung cấp hỗ trợ ngôn ngữ phù hợp."
-
-#: includes/wcag.php:1720
-msgid "Unusual Words"
-msgstr "Từ không thông dụng"
-
-#: includes/wcag.php:1721
-msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
-msgstr "Các từ không thông dụng hoặc hiếm gặp được định nghĩa hoặc giải thích, để người dùng có khuyết tật về nhận thức hoặc không quen thuộc với ngôn ngữ có thể hiểu được."
-
-#: includes/wcag.php:1740
-msgid "Abbreviations"
-msgstr "Từ viết tắt"
-
-#: includes/wcag.php:1741
-msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
-msgstr "Các từ viết tắt và từ viết tắt được định nghĩa lần đầu tiên khi chúng được sử dụng, để người dùng có thể hiểu ý nghĩa của chúng."
-
-#: includes/wcag.php:1759
-msgid "Reading Level"
-msgstr "Trình độ đọc"
-
-#: includes/wcag.php:1760
-msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
-msgstr "Nội dung được viết bằng ngôn ngữ rõ ràng và đơn giản, và không yêu cầu kiến thức chuyên môn để hiểu."
-
-#: includes/wcag.php:1778
-msgid "Pronunciation"
-msgstr "Cách phát âm"
-
-#: includes/wcag.php:1779
-msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
-msgstr "Có sẵn hướng dẫn phát âm cho các từ không thông dụng hoặc khó, để người dùng có thể hiểu cách đọc chúng."
-
-#: includes/wcag.php:1797
-msgid "On Focus"
-msgstr "Khi tập trung"
-
-#: includes/wcag.php:1798
-msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
-msgstr "Khi một phần tử nhận được sự tập trung, nó không gây ra những thay đổi bất ngờ có thể gây nhầm lẫn cho người dùng, và rõ ràng cách tương tác với phần tử đó."
-
-#: includes/wcag.php:1801
-#: includes/wcag.php:1836
-#: includes/wcag.php:1872
-#: includes/wcag.php:1903
-#: includes/wcag.php:1934
-#: includes/wcag.php:1954
-msgid "3.2 Predictable"
-msgstr "3.2 có thể dự đoán được"
-
-#: includes/wcag.php:1832
-msgid "On Input"
-msgstr "Khi nhập"
-
-#: includes/wcag.php:1833
-msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
-msgstr "Khi một trường nhập liệu nhận dữ liệu, nó không gây ra những thay đổi bất ngờ có thể làm người dùng bối rối, và rõ ràng về cách dữ liệu sẽ được sử dụng."
-
-#: includes/wcag.php:1868
-msgid "Consistent Navigation"
-msgstr "Điều hướng nhất quán"
-
-#: includes/wcag.php:1869
-msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
-msgstr "Các cơ chế điều hướng nhất quán trên toàn bộ trang web, để người dùng có thể di chuyển qua trang web một cách dễ dự đoán."
-
-#: includes/wcag.php:1899
-msgid "Consistent Identification"
-msgstr "Nhận dạng nhất quán"
-
-#: includes/wcag.php:1900
-msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
-msgstr "Các thành phần có cùng chức năng trong một tập hợp các trang web được nhận dạng một cách nhất quán, để người dùng có thể dễ dàng nhận ra chúng."
-
-#: includes/wcag.php:1930
-msgid "Change on Request"
-msgstr "Thay đổi theo yêu cầu"
-
-#: includes/wcag.php:1931
-msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
-msgstr "Những thay đổi về nội dung hoặc ngữ cảnh xảy ra do đầu vào của người dùng không xảy ra bất ngờ, và người dùng được thông báo về mọi thay đổi."
-
-#: includes/wcag.php:1950
-msgid "Consistent Help"
-msgstr "Trợ giúp nhất quán"
-
-#: includes/wcag.php:1951
-#: includes/wcag.php:2104
-msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
-msgstr "Trợ giúp và tài liệu hướng dẫn có sẵn và dễ tìm, để người dùng có thể nhận được hỗ trợ khi cần."
-
-#: includes/wcag.php:1967
-msgid "Error Identification"
-msgstr "Nhận dạng lỗi"
-
-#: includes/wcag.php:1968
-#: includes/wcag.php:2036
-msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
-msgstr "Nếu phát hiện lỗi nhập liệu và biết các gợi ý để sửa chữa, thì các gợi ý đó sẽ được cung cấp cho người dùng."
-
-#: includes/wcag.php:1971
-#: includes/wcag.php:2005
-#: includes/wcag.php:2039
-#: includes/wcag.php:2073
-#: includes/wcag.php:2107
-#: includes/wcag.php:2126
-#: includes/wcag.php:2145
-#: includes/wcag.php:2163
-#: includes/wcag.php:2180
+#: includes/wcag.php:2167
+#: includes/wcag.php:2184
 msgid "3.3 Input Assistance"
 msgstr "3.3 hỗ trợ nhập liệu"
 
-#: includes/wcag.php:2001
+#: includes/wcag.php:2005
 msgid "Labels or Instructions"
 msgstr "Nhãn hoặc hướng dẫn"
 
-#: includes/wcag.php:2002
+#: includes/wcag.php:2006
 msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
 msgstr "Nhãn hoặc hướng dẫn được cung cấp khi một trường nhập liệu yêu cầu người dùng nhập thông tin, để người dùng biết cần thông tin gì."
 
-#: includes/wcag.php:2035
+#: includes/wcag.php:2039
 msgid "Error Suggestion"
 msgstr "Gợi ý lỗi"
 
-#: includes/wcag.php:2069
+#: includes/wcag.php:2073
 msgid "Error Prevention (Legal, Financial, Data)"
 msgstr "Ngăn chặn lỗi (pháp lý, tài chính, dữ liệu)"
 
-#: includes/wcag.php:2070
-#: includes/wcag.php:2123
+#: includes/wcag.php:2074
+#: includes/wcag.php:2127
 msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
 msgstr "Đối với các trang web yêu cầu người dùng nhập liệu, người dùng được cảnh báo về lỗi và có thể sửa chúng trước khi hoàn tất việc gửi."
 
-#: includes/wcag.php:2103
+#: includes/wcag.php:2107
 msgid "Help"
 msgstr "Trợ giúp"
 
-#: includes/wcag.php:2122
+#: includes/wcag.php:2126
 msgid "Error Prevention (All)"
 msgstr "Ngăn chặn lỗi (tất cả)"
 
-#: includes/wcag.php:2141
+#: includes/wcag.php:2145
 msgid "Redundant Entry"
 msgstr "Nhập liệu trùng lặp"
 
-#: includes/wcag.php:2142
+#: includes/wcag.php:2146
 msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
 msgstr "Người dùng không bị yêu cầu nhập cùng một thông tin nhiều lần, giảm nguy cơ lỗi và tiết kiệm thời gian."
 
-#: includes/wcag.php:2159
+#: includes/wcag.php:2163
 msgid "Accessible Authentication (Minimum)"
 msgstr "Xác thực có thể truy cập (tối thiểu)"
 
-#: includes/wcag.php:2160
+#: includes/wcag.php:2164
 msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
 msgstr "Quy trình xác thực không dựa vào các bài kiểm tra chức năng nhận thức như ghi nhớ mật khẩu hoặc giải câu đố, trừ khi có một phương án thay thế được cung cấp."
 
-#: includes/wcag.php:2176
+#: includes/wcag.php:2180
 msgid "Accessible Authentication (Enhanced)"
 msgstr "Xác thực có thể truy cập (nâng cao)"
 
-#: includes/wcag.php:2177
+#: includes/wcag.php:2181
 msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
 msgstr "Các phương pháp xác thực nâng cao được cung cấp mà không dựa vào các bài kiểm tra chức năng nhận thức, chẳng hạn như ghi nhớ mật khẩu, và không yêu cầu kiểm tra chức năng nhận thức."
 
-#: includes/wcag.php:2193
+#: includes/wcag.php:2197
 msgid "Parsing"
 msgstr "Phân tích cú pháp"
 
-#: includes/wcag.php:2194
+#: includes/wcag.php:2198
 msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
 msgstr "Nội dung được mã hóa để các công nghệ hỗ trợ có thể diễn giải chính xác và trình bày cho người dùng."
 
-#: includes/wcag.php:2197
-#: includes/wcag.php:2231
-#: includes/wcag.php:2264
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+#: includes/wcag.php:2268
 msgid "4.1 Compatible"
 msgstr "4.1 tương thích"
 
-#: includes/wcag.php:2198
-#: includes/wcag.php:2232
-#: includes/wcag.php:2265
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2269
 msgid "Robust"
 msgstr "Mạnh mẽ"
 
-#: includes/wcag.php:2201
-#: includes/wcag.php:2235
+#: includes/wcag.php:2205
+#: includes/wcag.php:2239
 msgid "People with low vision using screen magnifiers"
 msgstr "Người khiếm thị sử dụng công cụ phóng to màn hình"
 
-#: includes/wcag.php:2227
+#: includes/wcag.php:2231
 msgid "Name, Role, Value"
 msgstr "Tên, vai trò, giá trị"
 
-#: includes/wcag.php:2228
+#: includes/wcag.php:2232
 msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
 msgstr "Các thành phần giao diện người dùng có tên, vai trò và giá trị có thể được xác định theo chương trình, để các công nghệ hỗ trợ có thể truyền đạt chúng cho người dùng."
 
-#: includes/wcag.php:2260
+#: includes/wcag.php:2264
 msgid "Status Messages"
 msgstr "Thông báo trạng thái"
 
-#: includes/wcag.php:2261
+#: includes/wcag.php:2265
 msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
 msgstr "Thông báo trạng thái được xác định theo chương trình để các công nghệ hỗ trợ có thể thông báo cho người dùng về những thay đổi quan trọng, chẳng hạn như lỗi biểu mẫu hoặc cập nhật."
 
-#: includes/wcag.php:2286
+#: includes/wcag.php:2290
 msgid "Best Practice"
 msgstr "Thực hành tốt nhất"
 
-#: includes/wcag.php:2287
+#: includes/wcag.php:2291
 msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
 msgstr "Một cải tiến về khả năng sử dụng hoặc quy ước nâng cao khả năng truy cập nhưng không bắt buộc để tuân thủ WCAG."
 
-#: includes/wcag.php:2301
+#: includes/wcag.php:2305
 msgid "Non-WCAG Accessibility Issue"
 msgstr "Vấn đề về khả năng truy cập không thuộc WCAG"
 
-#: includes/wcag.php:2302
+#: includes/wcag.php:2306
 msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
 msgstr "Một vấn đề ảnh hưởng đến người dùng khuyết tật nhưng không ánh xạ trực tiếp đến tiêu chí thành công WCAG hiện tại."
 
-#: includes/wcag.php:2316
+#: includes/wcag.php:2320
 msgid "Manual Testing Needed (Multiple Success Criteria)"
 msgstr "Cần kiểm tra thủ công (nhiều tiêu chí thành công)"
 
-#: includes/wcag.php:2317
+#: includes/wcag.php:2321
 msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
 msgstr "Được sử dụng cho tài liệu, phương tiện truyền thông và nội dung không thể quét khác cần kiểm tra thủ công và có khả năng không đáp ứng nhiều tiêu chí thành công WCAG."
 
-#: partials/admin-page/fixes-page.php:14
+#: partials/admin-page/fixes-page.php:18
 msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
 msgstr "Đã lưu cài đặt. Để xác nhận và phản ánh những cập nhật này trong thống kê trang web của bạn, vui lòng quét lại trang web. Nếu bạn đang sử dụng plugin bộ nhớ đệm, hãy đảm bảo xóa bộ nhớ đệm để áp dụng chính xác các sửa đổi đã cập nhật."
 
-#: partials/admin-page/fixes-page.php:22
+#: partials/admin-page/fixes-page.php:26
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Plugin Cảnh báo Cửa sổ Mới về Khả năng Tiếp cận đã được cài đặt. Phần sửa lỗi cho các liên kết mở trong cửa sổ mới được bao gồm ở đây sẽ ghi đè chức năng của nó. Bạn có thể an toàn gỡ bỏ plugin và sử dụng các sửa đổi này thay thế."
 
-#: partials/custom-meta-box.php:13
+#: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Bảng điều khiển vấn đề của Accessibility Checker"
 
-#: partials/custom-meta-box.php:24
-msgid "Summary"
-msgstr "Tóm tắt"
+#: partials/custom-meta-box.php:28
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Status"
+msgstr "Trạng thái khả năng truy cập"
 
-#: partials/custom-meta-box.php:34
-msgid "Details"
-msgstr "Chi tiết"
+#: partials/custom-meta-box.php:38
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Analysis"
+msgstr "Phân tích khả năng truy cập"
 
-#: partials/custom-meta-box.php:44
-msgid "Readability"
-msgstr "Khả năng đọc"
+#: partials/custom-meta-box.php:48
+#: build/sidebar.bundle.js:2
+msgid "Readability Analysis"
+msgstr "Phân tích khả năng đọc"
 
-#: partials/custom-meta-box.php:53
+#: partials/custom-meta-box.php:57
 msgid "Delete all currently found issues"
 msgstr "Xóa tất cả các vấn đề hiện đang được tìm thấy"
 
-#: partials/custom-meta-box.php:55
+#: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Clear Issues"
 msgstr "Xóa vấn đề"
 
-#: partials/pro-callout.php:13
-#: partials/welcome-page.php:199
+#: partials/pro-callout.php:17
+#: partials/welcome-page.php:203
 msgid "Equalize Digital Logo"
 msgstr "Logo Equalize Digital"
 
-#: partials/pro-callout.php:16
-#: partials/welcome-page.php:200
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:204
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Nâng cấp lên Accessibility Checker Pro"
 
-#: partials/pro-callout.php:20
-#: partials/welcome-page.php:203
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:207
 msgid "Scan all post types"
 msgstr "Quét tất cả các loại bài viết"
 
-#: partials/pro-callout.php:21
-#: partials/welcome-page.php:204
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:208
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Cột quản trị để xem nhanh trạng thái khả năng tiếp cận"
 
-#: partials/pro-callout.php:22
-#: partials/welcome-page.php:205
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:209
 msgid "Centralized list of all open issues"
 msgstr "Danh sách tập trung tất cả các vấn đề đang mở"
 
-#: partials/pro-callout.php:23
-#: partials/welcome-page.php:206
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:210
 msgid "Ignore log"
 msgstr "Nhật ký bỏ qua"
 
-#: partials/pro-callout.php:24
-#: partials/welcome-page.php:207
+#: partials/pro-callout.php:28
+#: partials/welcome-page.php:211
 msgid "Rename simplified summary"
 msgstr "Đổi tên tóm tắt đơn giản hóa"
 
-#: partials/pro-callout.php:25
-#: partials/welcome-page.php:208
+#: partials/pro-callout.php:29
+#: partials/welcome-page.php:212
 msgid "User restrictions on ignoring issues"
 msgstr "Hạn chế người dùng khi bỏ qua vấn đề"
 
-#: partials/pro-callout.php:26
-#: partials/welcome-page.php:209
+#: partials/pro-callout.php:30
+#: partials/welcome-page.php:213
 msgid "Email support"
 msgstr "Hỗ trợ qua email"
 
-#: partials/pro-callout.php:27
-#: partials/welcome-page.php:210
+#: partials/pro-callout.php:31
+#: partials/welcome-page.php:214
 msgid "...and more"
 msgstr "...và nhiều hơn nữa"
 
-#: partials/pro-callout.php:57
-#: partials/welcome-page.php:223
+#: partials/pro-callout.php:61
+#: partials/welcome-page.php:227
 msgid "Or activate your license key here."
 msgstr "Hoặc kích hoạt mã giấy phép của bạn tại đây."
 
-#: partials/settings-page.php:20
+#: partials/settings-page.php:24
 msgid "General"
 msgstr "Chung"
 
-#: partials/welcome-page.php:31
+#: partials/welcome-page.php:35
 msgid "version"
 msgstr "phiên bản"
 
-#: partials/welcome-page.php:40
+#: partials/welcome-page.php:44
 msgid "Link to Equalize Digital Website"
 msgstr "Liên kết đến Trang web của Equalize Digital"
 
-#: partials/welcome-page.php:49
+#: partials/welcome-page.php:53
 msgid "Quick Start Guide"
 msgstr "Hướng dẫn nhanh"
 
-#: partials/welcome-page.php:50
+#: partials/welcome-page.php:54
 msgid "Follow these steps to get started checking your content:"
 msgstr "Làm theo các bước sau để bắt đầu kiểm tra nội dung của bạn:"
 
 #. translators: %s: path to settings page.
-#: partials/welcome-page.php:57
+#: partials/welcome-page.php:61
 #, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Trên <a href=\"%s\">Trang Cài đặt</a>, chọn loại bài viết bạn muốn quét."
 
-#: partials/welcome-page.php:64
+#: partials/welcome-page.php:68
 msgid "Go to the edit screen for the post you want to check."
 msgstr "Đi đến màn hình chỉnh sửa cho bài viết bạn muốn kiểm tra."
 
-#: partials/welcome-page.php:65
+#: partials/welcome-page.php:69
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
 msgstr "Tìm hộp meta của Accessibility Checker bên dưới nội dung của bạn. Nếu sử dụng trình tạo trang giao diện người dùng, bạn phải truy cập màn hình chỉnh sửa phía sau để xem kết quả của Accessibility Checker."
 
-#: partials/welcome-page.php:66
+#: partials/welcome-page.php:70
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
 msgstr "Nếu có lỗi hoặc cảnh báo trên bài viết của bạn, hãy mở tab chi tiết trong Accessibility Checker để biết thêm thông tin."
 
-#: partials/welcome-page.php:67
+#: partials/welcome-page.php:71
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
 msgstr "Mở rộng từng vấn đề để xem mã, hoặc nhấp vào \"xem trên trang\" nếu bạn cần trợ giúp tìm phần tử cần sửa."
 
-#: partials/welcome-page.php:68
+#: partials/welcome-page.php:72
 msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
 msgstr "Nếu bạn không biết một lỗi hoặc cảnh báo nghĩa là gì, nhấp vào biểu tượng \"i\" để đọc tài liệu và cách khắc phục."
 
-#: partials/welcome-page.php:69
+#: partials/welcome-page.php:73
 msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
 msgstr "Nếu một vấn đề là dương tính giả và phần tử đó có thể truy cập được, bạn có thể loại bỏ vấn đề khỏi báo cáo bằng tính năng \"Bỏ qua\"."
 
-#: partials/welcome-page.php:70
+#: partials/welcome-page.php:74
 msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
 msgstr "Sau khi sửa từng vấn đề, cập nhật bài viết để xem báo cáo khả năng tiếp cận thay đổi. Mục tiêu của bạn là đưa mỗi trang đến trạng thái 100% Đã Vượt qua Kiểm tra."
 
-#: partials/welcome-page.php:74
+#: partials/welcome-page.php:78
 msgid "Watch a video of Accessibility Checker in use."
 msgstr "Xem video về cách sử dụng Accessibility Checker."
 
-#: partials/welcome-page.php:80
+#: partials/welcome-page.php:84
 msgid "Documentation and FAQs"
 msgstr "Tài liệu và Câu hỏi thường gặp"
 
-#: partials/welcome-page.php:84
+#: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Tại sao chúng tôi nói 100% Đã Vượt qua Kiểm tra, Không phải 100% Có thể Tiếp cận?"
 
-#: partials/welcome-page.php:84
-#: partials/welcome-page.php:89
-#: partials/welcome-page.php:94
-#: partials/welcome-page.php:99
-#: partials/welcome-page.php:104
-#: partials/welcome-page.php:109
-#: partials/welcome-page.php:114
-#: partials/welcome-page.php:120
-#: partials/welcome-page.php:216
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
 msgid "(opens in a new window)"
 msgstr "(mở trong cửa sổ mới)"
 
-#: partials/welcome-page.php:89
+#: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
 msgstr "Cách kiểm tra thủ công trang web của bạn về khả năng tiếp cận"
 
-#: partials/welcome-page.php:94
+#: partials/welcome-page.php:98
 msgid "When to Ignore Accessibility Errors"
 msgstr "Khi nào nên bỏ qua lỗi khả năng tiếp cận"
 
-#: partials/welcome-page.php:99
+#: partials/welcome-page.php:103
 msgid "What to do if a Plugin You’re Using has Accessibility Errors"
 msgstr "Phải làm gì nếu Plugin bạn đang sử dụng có Lỗi Khả năng Tiếp cận"
 
-#: partials/welcome-page.php:104
+#: partials/welcome-page.php:108
 msgid "What to do if there are Accessibility Errors in Your Theme"
 msgstr "Phải làm gì nếu có Lỗi Khả năng Tiếp cận trong Chủ đề của bạn"
 
-#: partials/welcome-page.php:109
+#: partials/welcome-page.php:113
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
 msgstr "Tôi có thể thuê Equalize Digital để khắc phục các vấn đề về khả năng tiếp cận trên trang web của tôi không?"
 
-#: partials/welcome-page.php:114
+#: partials/welcome-page.php:118
 msgid "Additional Resources for Learning About Accessibility"
 msgstr "Tài nguyên bổ sung để học về khả năng tiếp cận"
 
-#: partials/welcome-page.php:120
+#: partials/welcome-page.php:124
 msgid "Read Full Documentation"
 msgstr "Đọc tài liệu đầy đủ"
 
-#: partials/welcome-page.php:127
+#: partials/welcome-page.php:131
 msgid "Support Information"
 msgstr "Thông tin hỗ trợ"
 
-#: partials/welcome-page.php:133
+#: partials/welcome-page.php:137
 msgid "Plugin Support"
 msgstr "Hỗ trợ plugin"
 
-#: partials/welcome-page.php:135
+#: partials/welcome-page.php:139
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
 msgstr "Những người sở hữu giấy phép hoạt động của các gói Accessibility Checker trả phí được hỗ trợ email không giới hạn về cách sử dụng và xử lý sự cố plugin."
 
-#: partials/welcome-page.php:138
+#: partials/welcome-page.php:142
 msgid "Open Support Ticket"
 msgstr "Mở ticket hỗ trợ"
 
-#: partials/welcome-page.php:145
+#: partials/welcome-page.php:149
 msgid "Free Plugin Support"
 msgstr "Hỗ trợ plugin miễn phí"
 
-#: partials/welcome-page.php:147
+#: partials/welcome-page.php:151
 msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
 msgstr "Hỗ trợ plugin miễn phí có sẵn thông qua diễn đàn WordPress.org. Bạn sẽ cần tạo một tài khoản sau đó có thể mở một chủ đề hỗ trợ mới."
 
-#: partials/welcome-page.php:150
+#: partials/welcome-page.php:154
 msgid "Go to Support Forum"
 msgstr "Đi đến diễn đàn hỗ trợ"
 
-#: partials/welcome-page.php:157
+#: partials/welcome-page.php:161
 msgid "Office Hours"
 msgstr "Giờ làm việc"
 
-#: partials/welcome-page.php:159
+#: partials/welcome-page.php:163
 msgid "Open Q&A on Zoom every other week to help you remediate your website."
 msgstr "Hỏi đáp mở trên Zoom hai tuần một lần để giúp bạn khắc phục trang web của mình."
 
-#: partials/welcome-page.php:161
+#: partials/welcome-page.php:165
 msgid "Included in Small Business and Agency plans"
 msgstr "Được bao gồm trong các gói Doanh nghiệp Nhỏ và Đại lý"
 
-#: partials/welcome-page.php:166
+#: partials/welcome-page.php:170
 msgid "Register for Office Hours"
 msgstr "Đăng ký giờ làm việc"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:176
 msgid "Auditing and Remediation"
 msgstr "Kiểm toán và khắc phục"
 
-#: partials/welcome-page.php:174
+#: partials/welcome-page.php:178
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Nhận trợ giúp để làm cho trang web của bạn có thể truy cập được. Kiểm toán chuyên gia, kiểm tra người dùng và hỗ trợ phát triển. Có sẵn thư xác nhận tuân thủ."
 
-#: partials/welcome-page.php:178
+#: partials/welcome-page.php:182
 msgid "Get Remediation Help"
 msgstr "Nhận trợ giúp khắc phục"
 
@@ -4454,6 +4520,7 @@ msgstr "Cài đặt sửa lỗi"
 
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Điều này sẽ xóa tất cả các vấn đề cho bài viết này. Cần phải lưu để kích hoạt quét mới nội dung bài viết. Bạn có muốn tiếp tục không?"
 
@@ -4490,11 +4557,6 @@ msgid "Sorry, your submission failed. Please try again."
 msgstr "Rất tiếc, gửi không thành công. Vui lòng thử lại."
 
 #: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "mở cửa sổ mới"
-
-#: build/frontendFixes.bundle.js:1
 msgid "EDAC: Did not find a matching target ID on the page for the skip link."
 msgstr "EDAC: Không tìm thấy ID mục tiêu phù hợp trên trang cho liên kết bỏ qua."
 
@@ -4502,9 +4564,26 @@ msgstr "EDAC: Không tìm thấy ID mục tiêu phù hợp trên trang cho liên
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Lỗi khi cập nhật lịch sử cho liên kết bỏ qua."
 
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "mở cửa sổ mới"
+
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Đóng cửa sổ sửa lỗi"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Phần tử không hiển thị. Thử tắt kiểu."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Phần tử không thể lấy tiêu điểm. Thử tắt kiểu."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Không tìm thấy phần tử trên trang."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4544,18 +4623,6 @@ msgid "Disable Styles"
 msgstr "Tắt kiểu"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not visible. Try disabling styles."
-msgstr "Phần tử không hiển thị. Thử tắt kiểu."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not focusable. Try disabling styles."
-msgstr "Phần tử không thể lấy tiêu điểm. Thử tắt kiểu."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element was not found on the page."
-msgstr "Không tìm thấy phần tử trên trang."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Đã xảy ra lỗi khi tải các vấn đề."
 
@@ -4565,6 +4632,7 @@ msgid "Fix issue: %s"
 msgstr "Khắc phục sự cố: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Khắc phục sự cố"
 
@@ -4651,6 +4719,137 @@ msgstr "Lỗi khi lưu kết quả quét."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error: Missing required parameters."
 msgstr "Lỗi: Thiếu các tham số bắt buộc."
+
+#: build/issueModal.bundle.js:2
+msgid "Issue related image"
+msgstr "Hình ảnh liên quan đến sự cố"
+
+#: build/issueModal.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Đã lưu cài đặt sửa lỗi."
+
+#: build/issueModal.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Không thể lưu cài đặt sửa lỗi."
+
+#: build/issueModal.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Đang tải thông tin sửa lỗi..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Lưu bản sửa lỗi cho: %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Đã bỏ qua sự cố thành công."
+
+#: build/issueModal.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Đã mở lại sự cố thành công."
+
+#: build/issueModal.bundle.js:2
+msgid "Dismissing..."
+msgstr "Đang bỏ qua..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Sự cố đã bị bỏ qua — %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Sự cố đã bị bỏ qua"
+
+#: build/issueModal.bundle.js:2
+msgid "Scope:"
+msgstr "Phạm vi:"
+
+#: build/issueModal.bundle.js:2
+msgid "All pages"
+msgstr "Tất cả các trang"
+
+#: build/issueModal.bundle.js:2
+msgid "By:"
+msgstr "Bởi:"
+
+#: build/issueModal.bundle.js:2
+msgid "On:"
+msgstr "Vào:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Lý do bỏ qua:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reopening..."
+msgstr "Đang mở lại..."
+
+#: build/issueModal.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Bình luận (tùy chọn)"
+
+#: build/issueModal.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Thêm ghi chú giải thích lý do bỏ qua vấn đề này."
+
+#: build/issueModal.bundle.js:2
+msgid "More dismiss options"
+msgstr "Thêm tùy chọn bỏ qua"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Bỏ qua toàn cầu"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Bỏ qua & Đóng hộp thoại"
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue #%s"
+msgstr "Sự cố #%s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Details"
+msgstr "Chi tiết sự cố"
+
+#: build/issueModal.bundle.js:2
+msgid "Type"
+msgstr "Loại"
+
+#: build/issueModal.bundle.js:2
+msgid "Severity"
+msgstr "Mức độ nghiêm trọng"
+
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Điểm mốc"
+
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Hiển thị giải thích"
+
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Tại sao nó quan trọng"
+
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Cách khắc phục"
+
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Tài liệu chi tiết hơn"
+
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Hình ảnh"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -4739,3 +4938,228 @@ msgstr "tiếp tục đọc"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "tìm hiểu thêm"
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to load accessibility data"
+msgstr "Không thể tải dữ liệu khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+msgid "Error loading accessibility data"
+msgstr "Lỗi khi tải dữ liệu khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility results..."
+msgstr "Đang tải kết quả khả năng truy cập..."
+
+#: build/sidebar.bundle.js:2
+msgid "Updating accessibility data..."
+msgstr "Đang cập nhật dữ liệu khả năng truy cập..."
+
+#: build/sidebar.bundle.js:2
+msgid "problem to address"
+msgid_plural "problems to address"
+msgstr[0] "vấn đề cần giải quyết"
+
+#: build/sidebar.bundle.js:2
+msgid "issue that needs review"
+msgid_plural "issues that need review"
+msgstr[0] "vấn đề cần xem xét"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s and %3$d %4$s."
+msgstr "Bạn có %1$d %2$s và %3$d %4$s."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s."
+msgstr "Bạn có %1$d %2$s."
+
+#: build/sidebar.bundle.js:2
+msgid "Check and fix accessibility issues in your content."
+msgstr "Kiểm tra và khắc phục các vấn đề về khả năng truy cập trong nội dung của bạn."
+
+#: build/sidebar.bundle.js:2
+msgid "Open Accessibility Panel"
+msgstr "Mở bảng điều khiển khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "Không áp dụng"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth"
+msgstr "%d"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary provided"
+msgstr "Đã cung cấp tóm tắt"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary required"
+msgstr "Yêu cầu tóm tắt"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary not required"
+msgstr "Không yêu cầu tóm tắt"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d problems in Accessibility Analysis"
+msgstr "Xem %d vấn đề trong Phân tích khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Vấn đề"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d items needing review in Accessibility Analysis"
+msgstr "Xem %d mục cần xem xét trong Phân tích khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %s"
+msgstr "Xem chi tiết mức độ đọc: %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Đã vượt qua các kiểm tra"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue"
+msgstr "Sự cố"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "Issue actions for %s"
+msgstr "Hành động sự cố cho %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue actions"
+msgstr "Hành động sự cố"
+
+#: build/sidebar.bundle.js:2
+msgid "Show code"
+msgstr "Hiển thị mã"
+
+#: build/sidebar.bundle.js:2
+msgid "Reopen issue"
+msgstr "Mở lại sự cố"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismiss issue"
+msgstr "Bỏ qua sự cố"
+
+#: build/sidebar.bundle.js:2
+msgid "Apply fix"
+msgstr "Áp dụng bản sửa lỗi"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total"
+msgstr "Tổng cộng %d"
+
+#: build/sidebar.bundle.js:2
+msgid "No dismissed issues."
+msgstr "Không có sự cố nào bị bỏ qua."
+
+#: build/sidebar.bundle.js:2
+msgid "No issues found."
+msgstr "Không tìm thấy sự cố nào."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total issues"
+msgstr "Tổng cộng %d sự cố"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismissed Issues"
+msgstr "Các sự cố đã bị bỏ qua"
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified summary saved successfully."
+msgstr "Đã lưu tóm tắt đơn giản thành công."
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to save summary. Please try again."
+msgstr "Không thể lưu tóm tắt. Vui lòng thử lại."
+
+#: build/sidebar.bundle.js:2
+msgid "An error occurred while saving the summary."
+msgstr "Đã xảy ra lỗi khi lưu tóm tắt."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%s grade"
+msgstr "lớp %s"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth grade"
+msgstr "lớp %d"
+
+#: build/sidebar.bundle.js:2
+msgid "Not available"
+msgstr "Không có sẵn"
+
+#: build/sidebar.bundle.js:2
+msgid "Warning"
+msgstr "Cảnh báo"
+
+#: build/sidebar.bundle.js:2
+msgid "This post does not contain enough content to calculate a reading level."
+msgstr "Bài đăng này không chứa đủ nội dung để tính toán mức độ đọc."
+
+#: build/sidebar.bundle.js:2
+msgid "Adjust summary prompts in settings."
+msgstr "Điều chỉnh lời nhắc tóm tắt trong cài đặt."
+
+#: build/sidebar.bundle.js:2
+msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
+msgstr "Nội dung có mức độ đọc từ lớp 9 trở xuống không yêu cầu tóm tắt đơn giản."
+
+#: build/sidebar.bundle.js:2
+msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
+msgstr "Nội dung có mức độ đọc trên lớp 9 yêu cầu tóm tắt đơn giản để đáp ứng hướng dẫn WCAG AAA."
+
+#: build/sidebar.bundle.js:2
+msgid "Learn more about readability requirements."
+msgstr "Tìm hiểu thêm về các yêu cầu về khả năng đọc."
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary Reading Level"
+msgstr "Mức độ đọc tóm tắt đơn giản"
+
+#: build/sidebar.bundle.js:2
+msgid "Needs improvement, summary is above the 9th-grade reading level."
+msgstr "Cần cải thiện, tóm tắt có mức độ đọc trên lớp 9."
+
+#: build/sidebar.bundle.js:2
+msgid "Below the recommended 9th-grade reading level."
+msgstr "Dưới mức độ đọc lớp 9 được khuyến nghị."
+
+#: build/sidebar.bundle.js:2
+msgid "Enter simplified summary..."
+msgstr "Nhập tóm tắt đơn giản..."
+
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Lưu tóm tắt"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility data..."
+msgstr "Đang tải dữ liệu khả năng truy cập..."
+
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Checker actions"
+msgstr "Hành động của Accessibility Checker"
+
+#: build/sidebar.bundle.js:2
+msgid "Scan"
+msgstr "Quét"
+
+#: build/sidebar.bundle.js:2
+msgid "Refresh"
+msgstr "Làm mới"

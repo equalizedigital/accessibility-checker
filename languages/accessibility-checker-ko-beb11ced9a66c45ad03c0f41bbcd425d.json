@@ -1,0 +1,219 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "ko_KR",
+                "plural-forms": "nplurals=1; plural=0;"
+            },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
+            "Needs Review": [
+                "\uac80\ud1a0 \ud544\uc694"
+            ],
+            "Critical": [
+                "\uc2ec\uac01"
+            ],
+            "High": [
+                "\ub192\uc74c"
+            ],
+            "Medium": [
+                "\uc911\uac04"
+            ],
+            "Low": [
+                "\ub0ae\uc74c"
+            ],
+            "View on page": [
+                "\ud398\uc774\uc9c0\uc5d0\uc11c \ubcf4\uae30"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "\uc815\ud655\ud55c \uc77d\uae30 \uc218\uc900\uc744 \uacb0\uc815\ud558\uae30\uc5d0 \ucda9\ubd84\ud55c \ucf58\ud150\uce20\uac00 \uc5c6\uc2b5\ub2c8\ub2e4."
+            ],
+            "Simplified Summary": [
+                "\uac04\ub2e8\ud55c \uc694\uc57d"
+            ],
+            "Reading Level": [
+                "\uc77d\uae30 \uc218\uc900"
+            ],
+            "Accessibility Status": [
+                "\uc811\uadfc\uc131 \uc0c1\ud0dc"
+            ],
+            "Accessibility Analysis": [
+                "\uc811\uadfc\uc131 \ubd84\uc11d"
+            ],
+            "Readability Analysis": [
+                "\uac00\ub3c5\uc131 \ubd84\uc11d"
+            ],
+            "Clear Issues": [
+                "\uc774\uc288 \uc9c0\uc6b0\uae30"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "\uc774 \uc791\uc5c5\uc740 \uc774 \uac8c\uc2dc\ubb3c\uc758 \ubaa8\ub4e0 \uc774\uc288\ub97c \uc9c0\uc6c1\ub2c8\ub2e4. \uac8c\uc2dc\ubb3c \ub0b4\uc6a9\uc758 \uc0c8\ub85c\uc6b4 \uc2a4\uce94\uc744 \ud2b8\ub9ac\uac70\ud558\ub824\uba74 \uc800\uc7a5\uc774 \ud544\uc694\ud569\ub2c8\ub2e4. \uacc4\uc18d\ud558\uc2dc\uaca0\uc2b5\ub2c8\uae4c?"
+            ],
+            "Failed to load accessibility data": [
+                "\uc811\uadfc\uc131 \ub370\uc774\ud130\ub97c \ub85c\ub4dc\ud558\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4."
+            ],
+            "Error loading accessibility data": [
+                "\uc811\uadfc\uc131 \ub370\uc774\ud130 \ub85c\ub4dc \uc624\ub958"
+            ],
+            "Loading accessibility results...": [
+                "\uc811\uadfc\uc131 \uacb0\uacfc \ub85c\ub4dc \uc911..."
+            ],
+            "Updating accessibility data...": [
+                "\uc811\uadfc\uc131 \ub370\uc774\ud130 \uc5c5\ub370\uc774\ud2b8 \uc911..."
+            ],
+            "problem to address": [
+                "\ud574\uacb0\ud574\uc57c \ud560 \ubb38\uc81c"
+            ],
+            "issue that needs review": [
+                "\uac80\ud1a0\uac00 \ud544\uc694\ud55c \ubb38\uc81c"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "%1$d %2$s \ubc0f %3$d %4$s\uc774 \uc788\uc2b5\ub2c8\ub2e4."
+            ],
+            "You have %1$d %2$s.": [
+                "%1$d %2$s\uc774 \uc788\uc2b5\ub2c8\ub2e4."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "\ucf58\ud150\uce20\uc758 \uc811\uadfc\uc131 \ubb38\uc81c\ub97c \ud655\uc778\ud558\uace0 \uc218\uc815\ud569\ub2c8\ub2e4."
+            ],
+            "Open Accessibility Panel": [
+                "\uc811\uadfc\uc131 \ud328\ub110 \uc5f4\uae30"
+            ],
+            "N\/A": [
+                "\ud574\ub2f9 \uc5c6\uc74c"
+            ],
+            "%dth": [
+                "%d\ubc88\uc9f8"
+            ],
+            "Summary provided": [
+                "\uc694\uc57d \uc81c\uacf5\ub428"
+            ],
+            "Summary required": [
+                "\uc694\uc57d \ud544\uc694"
+            ],
+            "Summary not required": [
+                "\uc694\uc57d \ubd88\ud544\uc694"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "\uc811\uadfc\uc131 \ubd84\uc11d\uc5d0\uc11c %d\uac1c\uc758 \ubb38\uc81c \ubcf4\uae30"
+            ],
+            "Problems": [
+                "\ubb38\uc81c"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "\uc811\uadfc\uc131 \ubd84\uc11d\uc5d0\uc11c \uac80\ud1a0\uac00 \ud544\uc694\ud55c %d\uac1c \ud56d\ubaa9 \ubcf4\uae30"
+            ],
+            "View reading level details: %s": [
+                "\uc77d\uae30 \uc218\uc900 \uc138\ubd80 \uc815\ubcf4 \ubcf4\uae30: %s"
+            ],
+            "Passed Checks": [
+                "\ud1b5\uacfc\ub41c \uac80\uc0ac"
+            ],
+            "Issue": [
+                "\ubb38\uc81c"
+            ],
+            "Issue actions for %s": [
+                "%s\uc5d0 \ub300\ud55c \ubb38\uc81c \uc791\uc5c5"
+            ],
+            "Issue actions": [
+                "\ubb38\uc81c \uc791\uc5c5"
+            ],
+            "Show code": [
+                "\ucf54\ub4dc \ubcf4\uae30"
+            ],
+            "Reopen issue": [
+                "\ubb38\uc81c \ub2e4\uc2dc \uc5f4\uae30"
+            ],
+            "Dismiss issue": [
+                "\ubb38\uc81c \ud574\uc81c"
+            ],
+            "Apply fix": [
+                "\uc218\uc815 \uc801\uc6a9"
+            ],
+            "%d total": [
+                "\ucd1d %d\uac1c"
+            ],
+            "No dismissed issues.": [
+                "\ud574\uc81c\ub41c \ubb38\uc81c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4."
+            ],
+            "No issues found.": [
+                "\ubb38\uc81c\uac00 \uc5c6\uc2b5\ub2c8\ub2e4."
+            ],
+            "%d total issues": [
+                "\ucd1d %d\uac1c\uc758 \ubb38\uc81c"
+            ],
+            "Dismissed Issues": [
+                "\ud574\uc81c\ub41c \ubb38\uc81c"
+            ],
+            "Simplified summary saved successfully.": [
+                "\uac04\uc18c\ud654\ub41c \uc694\uc57d\uc774 \uc131\uacf5\uc801\uc73c\ub85c \uc800\uc7a5\ub418\uc5c8\uc2b5\ub2c8\ub2e4."
+            ],
+            "Failed to save summary. Please try again.": [
+                "\uc694\uc57d\uc744 \uc800\uc7a5\ud558\uc9c0 \ubabb\ud588\uc2b5\ub2c8\ub2e4. \ub2e4\uc2dc \uc2dc\ub3c4\ud574 \uc8fc\uc138\uc694."
+            ],
+            "An error occurred while saving the summary.": [
+                "\uc694\uc57d \uc800\uc7a5 \uc911 \uc624\ub958\uac00 \ubc1c\uc0dd\ud588\uc2b5\ub2c8\ub2e4."
+            ],
+            "%s grade": [
+                "%s\ud559\ub144"
+            ],
+            "%dth grade": [
+                "%d\ud559\ub144"
+            ],
+            "Not available": [
+                "\uc0ac\uc6a9 \ubd88\uac00"
+            ],
+            "Warning": [
+                "\uacbd\uace0"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "\uc774 \uac8c\uc2dc\ubb3c\uc740 \uc77d\uae30 \uc218\uc900\uc744 \uacc4\uc0b0\ud558\uae30\uc5d0 \ucda9\ubd84\ud55c \ucf58\ud150\uce20\ub97c \ud3ec\ud568\ud558\uace0 \uc788\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4."
+            ],
+            "Adjust summary prompts in settings.": [
+                "\uc124\uc815\uc5d0\uc11c \uc694\uc57d \ud504\ub86c\ud504\ud2b8\ub97c \uc870\uc815\ud569\ub2c8\ub2e4."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "9\ud559\ub144 \uc774\ud558\uc758 \uc77d\uae30 \uc218\uc900\uc744 \uac00\uc9c4 \ucf58\ud150\uce20\ub294 \uac04\uc18c\ud654\ub41c \uc694\uc57d\uc774 \ud544\uc694\ud558\uc9c0 \uc54a\uc2b5\ub2c8\ub2e4."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "9\ud559\ub144 \uc774\uc0c1\uc758 \uc77d\uae30 \uc218\uc900\uc744 \uac00\uc9c4 \ucf58\ud150\uce20\ub294 WCAG AAA \uc9c0\uce68\uc744 \ucda9\uc871\ud558\uae30 \uc704\ud574 \uac04\uc18c\ud654\ub41c \uc694\uc57d\uc774 \ud544\uc694\ud569\ub2c8\ub2e4."
+            ],
+            "Learn more about readability requirements.": [
+                "\uac00\ub3c5\uc131 \uc694\uad6c \uc0ac\ud56d\uc5d0 \ub300\ud574 \uc790\uc138\ud788 \uc54c\uc544\ubcf4\uae30"
+            ],
+            "Simplified Summary Reading Level": [
+                "\uac04\uc18c\ud654\ub41c \uc694\uc57d \uc77d\uae30 \uc218\uc900"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "\uac1c\uc120 \ud544\uc694, \uc694\uc57d\uc774 9\ud559\ub144 \uc77d\uae30 \uc218\uc900 \uc774\uc0c1\uc785\ub2c8\ub2e4."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "\uad8c\uc7a5 9\ud559\ub144 \uc77d\uae30 \uc218\uc900 \uc774\ud558\uc785\ub2c8\ub2e4."
+            ],
+            "Enter simplified summary...": [
+                "\uac04\uc18c\ud654\ub41c \uc694\uc57d \uc785\ub825..."
+            ],
+            "Save Summary": [
+                "\uc694\uc57d \uc800\uc7a5"
+            ],
+            "Loading accessibility data...": [
+                "\uc811\uadfc\uc131 \ub370\uc774\ud130 \ub85c\ub4dc \uc911..."
+            ],
+            "Accessibility Checker actions": [
+                "Accessibility Checker \uc791\uc5c5"
+            ],
+            "Scan": [
+                "\uc2a4\uce94"
+            ],
+            "Refresh": [
+                "\uc0c8\ub85c \uace0\uce68"
+            ]
+        }
+    }
+}

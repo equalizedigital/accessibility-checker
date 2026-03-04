@@ -46,7 +46,24 @@ This is a WordPress plugin called "Accessibility Checker" developed by Equalize 
 
 ## Development Workflow
 
-Commit lock files (`composer.lock`, `package-lock.json`) only when adding or updating packages. Run `composer install` and `npm install` to get dependencies matching the lock file.
+### Dependency Management
+
+**IMPORTANT: Do not commit lock files unless you have added, updated, or removed packages.**
+
+Only commit `composer.lock` and `package-lock.json` when:
+- Adding a new package/dependency
+- Updating an existing package/dependency
+- Removing a package/dependency
+
+If you only modified PHP or JavaScript code without touching `composer.json` or `package.json`, do NOT commit these lock files.
+
+To install dependencies matching existing lock files, run:
+```bash
+composer install
+npm install
+```
+
+### Code Quality & Testing
 
 Code should always be linted by phpcs and eslint before committing. Tests should be added for new functionality. Tests should also be added for any bug fixes. Use the following commands to run tests and linting:
 

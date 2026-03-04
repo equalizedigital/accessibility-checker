@@ -1,0 +1,67 @@
+@use './_variables' as *;
+
+/**
+ * Global Sidebar Styles
+ * Applied across all sidebar panels
+ */
+
+.edac-panel-body {
+	h3 {
+		font-size: $sidebar-h3-size;
+	}
+
+	p {
+		font-size: $sidebar-p-size;
+	}
+
+	a {
+		font-size: $sidebar-link-size;
+	}
+}
+
+/**
+ * WordPress Component Overrides
+ * Styles for WordPress core components used in the sidebar
+ */
+
+.edac-sidebar__content .components-panel {
+	&__body {
+		&-title {
+			margin-bottom: 0 !important;
+		}
+
+		&-title:has([aria-expanded="true"]) {
+			border-bottom: 1px solid $outline-grey !important;
+		}
+	}
+
+	&__row {
+		padding-top: 16px;
+	}
+}
+
+.components-panel__header-title:has(.edac-sidebar__title) {
+	display: flex;
+	width: 100%;
+}
+
+.interface-complementary-area-header__title:has(.edac-sidebar__title) {
+	width: 100%;
+}
+
+.edac-sidebar__title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.edac-sidebar__title-spinner {
+	margin-left: 8px;
+}
+
+.edac-sidebar__title-menu {
+	margin-left: auto;
+}

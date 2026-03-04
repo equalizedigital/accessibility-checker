@@ -5,6 +5,10 @@
  * @package Accessibility_Checker
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 return [
 	[
 		'number'               => '1.1.1',

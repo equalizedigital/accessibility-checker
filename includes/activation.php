@@ -7,6 +7,10 @@
 
 use EDAC\Admin\Accessibility_Statement;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Activation
  *

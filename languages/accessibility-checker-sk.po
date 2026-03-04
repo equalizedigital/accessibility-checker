@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Equalize Digital
+# Copyright (C) 2026 Equalize Digital
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.35.0\n"
+"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,12 +18,13 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:51
-#: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:45
-#: partials/welcome-page.php:24
+#: admin/class-meta-boxes.php:43
+#: includes/classes/class-accessibility-statement.php:55
+#: includes/classes/class-admin-toolbar.php:57
+#: includes/options-page.php:49
+#: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -47,18 +48,18 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/FixesPage.php:71
+#: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:82
-#: includes/classes/class-admin-toolbar.php:102
+#: includes/classes/class-admin-toolbar.php:106
 msgid "Fixes"
 msgstr "Opravy"
 
-#: admin/AdminPage/FixesPage.php:138
+#: admin/AdminPage/FixesPage.php:142
 msgid "General Fixes"
 msgstr "Všeobecné opravy"
 
-#: admin/AdminPage/FixesPage.php:212
+#: admin/AdminPage/FixesPage.php:220
 msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
 msgstr "Tieto opravy pomáhajú zlepšiť prístupnosť úpravou HTML prvkov a správania na vašej stránke."
 
@@ -70,13 +71,13 @@ msgstr "Získajte Pro verziu pre odomknutie tejto funkcie, otvára sa v novom ok
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:55
+#: admin/class-plugin-action-links.php:59
 #: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Získať pro verziu"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:340
+#: admin/class-ajax.php:384
 msgid "Opens in a new window."
 msgstr "Otvára sa v novom okne."
 
@@ -168,274 +169,368 @@ msgstr "Chcete využiť Accessibility Checker ešte viac? %1$sOdomknite Pro funk
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odomknite Pro funkcie (otvorí sa v novom okne)"
 
-#: admin/class-admin-notices.php:129
+#: admin/class-admin-notices.php:133
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Špeciálna ponuka na Čierny piatok! 🎉"
 
-#: admin/class-admin-notices.php:130
+#: admin/class-admin-notices.php:134
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Inovujte na platenú verziu Accessibility Checker od 24. novembra do 3. decembra a získajte zľavu 30 %! Kompletné skenovanie stránok, správa otvorených problémov na celom webe, ignorovanie protokolov a ďalšie."
 
-#: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:135
+#: admin/class-admin-notices.php:225
 msgid "Ask a Pre-Sale Question"
 msgstr "Položiť predpredajnú otázku"
 
-#: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:136
+#: admin/class-admin-notices.php:226
 msgid "Upgrade Now"
 msgstr "Inovovať teraz"
 
-#: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:241
-#: admin/class-admin-notices.php:330
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:202
-#: admin/class-ajax.php:585
-#: admin/class-ajax.php:718
-#: admin/class-ajax.php:792
-#: admin/class-frontend-highlight.php:78
-#: admin/class-frontend-highlight.php:96
-#: admin/class-frontend-highlight.php:101
+#: admin/class-admin-notices.php:155
+#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:334
+#: admin/class-ajax.php:60
+#: admin/class-ajax.php:218
+#: admin/class-ajax.php:607
+#: admin/class-ajax.php:770
+#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
+#: admin/class-frontend-highlight.php:109
 msgid "Permission Denied"
 msgstr "Prístup zamietnutý"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:354
+#: admin/class-admin-notices.php:167
+#: admin/class-admin-notices.php:257
+#: admin/class-admin-notices.php:358
 msgid "Update option wasn't successful"
 msgstr "Aktualizácia možnosti nebola úspešná"
 
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:223
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Získajte 25 % zľavu na Accessibility Checker Pro pri príležitosti Svetového dňa povedomia o prístupnosti! 🎉"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:224
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Použite kupón GAAD25 od 13. Do 21. mája a získajte prístup k skenovaniu celého webu a ďalším pro funkciám so špeciálnou zľavou. Nie ste si istí, či je inovácia pre vás tá správna voľba?"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:309
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Ahojte! Ďakujeme, že používate Accessibility Checker ako súčasť vášho súboru nástrojov pre prístupnosť. Keďže ho už nejaký čas používate, napísali by ste, prosím, 5-hviezdičkovú recenziu Accessibility Checker v adresári pluginov WordPress? Pomôže to zvýšiť našu viditeľnosť, aby sa viac ľudí mohlo dozvedieť o dôležitosti webovej prístupnosti. Veľmi pekne ďakujeme!"
 
-#: admin/class-admin-notices.php:308
+#: admin/class-admin-notices.php:312
 msgid "Write A Review"
 msgstr "Napísať recenziu"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:313
 msgid "Remind Me In Two Weeks"
 msgstr "Pripomenúť o dva týždne"
 
-#: admin/class-admin-notices.php:310
+#: admin/class-admin-notices.php:314
 msgid "Never Ask Again"
 msgstr "Už sa nikdy nepýtať"
 
-#: admin/class-admin-notices.php:337
+#: admin/class-admin-notices.php:341
 msgid "The review action value was not set"
 msgstr "Hodnota akcie pre recenziu nebola nastavená"
 
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:206
-#: admin/class-ajax.php:589
-#: admin/class-ajax.php:796
+#: admin/class-ajax.php:64
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:611
 msgid "The post ID was not set"
 msgstr "ID príspevku nebolo nastavené"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:593
+#: admin/class-ajax.php:68
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:615
 msgid "You do not have permission to view this information for this post."
 msgstr "Nemáte povolenie na zobrazenie týchto informácií pre tento príspevok."
 
-#: admin/class-ajax.php:83
+#: admin/class-ajax.php:87
 msgid "A Simplified summary has not been included for this content."
 msgstr "K tomuto obsahu nebol pridaný zjednodušený súhrn."
 
-#: admin/class-ajax.php:86
+#: admin/class-ajax.php:90
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Váš obsah má úroveň čítania na úrovni 9. ročníka alebo nižšej a nevyžaduje zjednodušený súhrn."
 
-#: admin/class-ajax.php:89
+#: admin/class-ajax.php:93
 msgid "The reading level of the simplified summary is too high."
 msgstr "Úroveň čítania zjednodušeného súhrnu je príliš vysoká."
 
-#: admin/class-ajax.php:91
+#: admin/class-ajax.php:95
 msgid "A simplified summary has been included for this content."
 msgstr "K tomuto obsahu bol pridaný zjednodušený súhrn."
 
-#. translators: %s: Number of errors
-#: admin/class-ajax.php:127
-#, php-format
-msgid "%s Error"
-msgid_plural "%s Errors"
-msgstr[0] "%s Chyba"
-msgstr[1] "%s Errors"
-msgstr[2] "%s Chýb"
+#: admin/class-ajax.php:134
+#: build/issueModal.bundle.js:2
+msgid "Problem"
+msgid_plural "Problems"
+msgstr[0] "Problém"
+msgstr[1] "Problémy"
+msgstr[2] "Problémy"
 
-#. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:133
-#, php-format
-msgid "%s Contrast Error"
-msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Chyba kontrastu"
-msgstr[1] "%s Contrast Errors"
-msgstr[2] "%s Chýb kontrastu"
+#: admin/class-ajax.php:140
+msgid "Contrast Problem"
+msgid_plural "Contrast Problems"
+msgstr[0] "Problém s kontrastom"
+msgstr[1] "Problémy s kontrastom"
+msgstr[2] "Problémy s kontrastom"
 
-#. translators: %s: Number of warnings
-#: admin/class-ajax.php:139
-#, php-format
-msgid "%s Warning"
-msgid_plural "%s Warnings"
-msgstr[0] "%s Upozornenie"
-msgstr[1] "%s Warnings"
-msgstr[2] "%s Upozornení"
+#: admin/class-ajax.php:146
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Needs Review"
+msgid_plural "Needs Review"
+msgstr[0] "Vyžaduje kontrolu"
+msgstr[1] "Vyžaduje kontrolu"
+msgstr[2] "Vyžaduje kontrolu"
 
-#. translators: %s: Number of ignored items
-#: admin/class-ajax.php:145
-#, php-format
-msgid "%s Ignored Item"
-msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ignorovaná položka"
-msgstr[1] "%s Ignored Items"
-msgstr[2] "%s Ignorovaných položiek"
+#: admin/class-ajax.php:152
+#: admin/class-ajax.php:380
+msgid "Dismissed Issue"
+msgid_plural "Dismissed Issues"
+msgstr[0] "Zrušený problém"
+msgstr[1] "Zrušené problémy"
+msgstr[2] "Zrušené problémy"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:198
 msgid "No summary to return"
 msgstr "Žiadny súhrn na vrátenie"
 
-#: admin/class-ajax.php:221
+#: admin/class-ajax.php:237
+#: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Neplatný názov tabuľky"
 
-#: admin/class-ajax.php:365
+#: admin/class-ajax.php:325
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Kritické"
+
+#: admin/class-ajax.php:329
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Vysoké"
+
+#: admin/class-ajax.php:333
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Stredné"
+
+#: admin/class-ajax.php:337
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Nízke"
+
+#: admin/class-ajax.php:378
+msgid " total"
+msgstr " spolu"
+
+#: admin/class-ajax.php:408
+#: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Tieto nastavenia umožňujú globálne opravy na celom vašom webe."
 
-#: admin/class-ajax.php:366
+#: admin/class-ajax.php:409
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Stránky môže byť potrebné znovu uložiť alebo spustiť úplnú kontrolu webu, aby sa opravy prejavili v reportoch."
 
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:437
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Uložiť"
 
-#: admin/class-ajax.php:416
+#: admin/class-ajax.php:459
+#: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Ovplyvnený kód"
 
-#: admin/class-ajax.php:438
-msgid "Username:"
-msgstr "Používateľské meno:"
-
-#: admin/class-ajax.php:443
-msgid "Date:"
-msgstr "Dátum:"
-
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:505
+#: admin/class-ajax.php:534
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Zobraziť problém s ID %d na webovej stránke, otvorí sa nové okno"
 
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:535
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Zobraziť na stránke"
 
-#: admin/class-ajax.php:525
+#: admin/class-ajax.php:554
 msgid "Fix: "
 msgstr "Oprava: "
 
-#: admin/class-ajax.php:526
+#: admin/class-ajax.php:555
 msgid "Fix"
 msgstr "Opraviť"
 
-#: admin/class-ajax.php:549
-msgid "Your user account doesn't have permission to ignore this issue."
-msgstr "Váš používateľský účet nemá povolenie ignorovať tento problém."
-
-#: admin/class-ajax.php:566
+#: admin/class-ajax.php:588
 msgid "No details to return"
 msgstr "Žiadne podrobnosti na vrátenie"
 
-#: admin/class-ajax.php:700
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:676
+#: admin/class-ajax.php:688
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Zjednodušená úroveň čítania súhrnu: %s"
+
+#: admin/class-ajax.php:677
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "Žiadne"
+
+#: admin/class-ajax.php:680
+#: build/sidebar.bundle.js:2
+msgid "Not enough content to determine an accurate reading level."
+msgstr "Nedostatok obsahu na určenie presnej úrovne čítania."
+
+#: admin/class-ajax.php:693
+msgid "Your simplified summary has a reading level above 9th grade."
+msgstr "Váš zjednodušený súhrn má úroveň čítania nad 9. ročník."
+
+#: admin/class-ajax.php:694
+msgid "Your simplified summary has a reading level at or below 9th grade."
+msgstr "Váš zjednodušený súhrn má úroveň čítania na alebo pod 9. ročníkom."
+
+#: admin/class-ajax.php:745
 msgid "No readability data to return"
 msgstr "Žiadne údaje o čitateľnosti na vrátenie"
 
-#: admin/class-ajax.php:752
-#: admin/class-ajax.php:773
+#: admin/class-ajax.php:805
+#: admin/class-ajax.php:826
 msgid "No ignore data to return"
 msgstr "Žiadne údaje o ignorovaní na vrátenie"
 
-#: admin/class-ajax.php:800
-msgid "The summary was not set"
-msgstr "Súhrn nebol nastavený"
-
-#: admin/class-ajax.php:804
-msgid "You do not have permission to edit this post."
-msgstr "Nemáte povolenie na úpravu tohto príspevku."
-
-#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Hodnota id nebola nastavená"
 
-#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:93
+#: includes/classes/class-rest-api.php:1037
 msgid "Post not found"
 msgstr "Príspevok sa nenašiel"
 
-#: admin/class-frontend-highlight.php:111
+#: admin/class-frontend-highlight.php:115
 msgid "Issue query returned no results"
 msgstr "Dopyt na problém nevrátil žiadne výsledky"
 
-#: admin/class-frontend-highlight.php:155
+#: admin/class-frontend-highlight.php:162
 msgid "Object query returned no results"
 msgstr "Dopyt na objekt nevrátil žiadne výsledky"
 
-#: admin/class-plugin-action-links.php:48
-#: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:68
+#: admin/class-ignore-ui.php:31
+msgid "False positive"
+msgstr "Falošne pozitívne"
+
+#: admin/class-ignore-ui.php:32
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Skener to označil, ale netýka sa to tohto obsahu."
+
+#: admin/class-ignore-ui.php:35
+msgid "Remediated"
+msgstr "Opravené"
+
+#: admin/class-ignore-ui.php:36
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Problém bol opravený, ale stránka ešte nebola znova skenovaná."
+
+#: admin/class-ignore-ui.php:39
+msgid "Confirmed accessible"
+msgstr "Potvrdené ako prístupné"
+
+#: admin/class-ignore-ui.php:40
+msgid "Reviewed and verified to meet accessibility requirements."
+msgstr "Skontrolované a overené, že spĺňa požiadavky na prístupnosť."
+
+#: admin/class-ignore-ui.php:82
+msgid "Username:"
+msgstr "Používateľské meno:"
+
+#: admin/class-ignore-ui.php:92
+msgid "Date:"
+msgstr "Dátum:"
+
+#: admin/class-ignore-ui.php:97
+#: build/issueModal.bundle.js:2
+msgid "Reopen Issue"
+msgstr "Znova otvoriť problém"
+
+#: admin/class-ignore-ui.php:98
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Issue"
+msgstr "Zrušiť problém"
+
+#: admin/class-ignore-ui.php:119
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
+msgid "Comment"
+msgstr "Komentár"
+
+#: admin/class-ignore-ui.php:126
+msgid "Manage Globally Dismissed"
+msgstr "Spravovať globálne zrušené"
+
+#: admin/class-ignore-ui.php:134
+msgid "Your user account doesn't have permission to dismiss this issue."
+msgstr "Váš používateľský účet nemá povolenie na zrušenie tohto problému."
+
+#: admin/class-ignore-ui.php:156
+#: build/issueModal.bundle.js:2
+msgid "Dismiss issue as:"
+msgstr "Zrušiť problém ako:"
+
+#: admin/class-plugin-action-links.php:52
+#: includes/classes/class-admin-toolbar.php:98
+#: includes/options-page.php:72
 msgid "Settings"
 msgstr "Nastavenia"
 
-#: admin/class-plugin-action-links.php:60
+#: admin/class-plugin-action-links.php:64
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Získať Accessibility Checker Pro, otvorí sa v novom okne"
 
-#: admin/class-plugin-row-meta.php:53
+#: admin/class-plugin-row-meta.php:57
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Zobraziť dokumentáciu Accessibility Checker (otvorí sa v novom okne)"
 
-#: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:313
+#: admin/class-plugin-row-meta.php:58
+#: admin/class-widgets.php:317
 msgid "Documentation"
 msgstr "Dokumentácia"
 
-#: admin/class-plugin-row-meta.php:59
+#: admin/class-plugin-row-meta.php:63
 msgid "Get support for Accessibility Checker (opens in new window)"
 msgstr "Získať podporu pre Accessibility Checker (otvorí sa v novom okne)"
 
-#: admin/class-plugin-row-meta.php:60
+#: admin/class-plugin-row-meta.php:64
 msgid "Support"
 msgstr "Podpora"
 
-#: admin/class-plugin-row-meta.php:65
+#: admin/class-plugin-row-meta.php:69
 msgid "Rate Accessibility Checker plugin (opens in new window)"
 msgstr "Ohodnotiť plugin Accessibility Checker (otvorí sa v novom okne)"
 
-#: admin/class-plugin-row-meta.php:66
+#: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Ohodnotiť plugin"
 
-#: admin/class-upgrade-promotion.php:58
+#: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Prejsť na pro verziu"
 
-#: admin/class-upgrade-promotion.php:60
+#: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
 msgstr "Akcia na vylepšenie práve teraz"
 
-#: admin/class-upgrade-promotion.php:82
+#: admin/class-upgrade-promotion.php:86
 msgid "Unable to redirect to upgrade page."
 msgstr "Nie je možné presmerovať na stránku vylepšenia."
 
@@ -460,7 +555,7 @@ msgid "See History"
 msgstr "Zobraziť históriu"
 
 #: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:98
+#: admin/class-widgets.php:102
 msgid "Passed Tests"
 msgstr "Úspešné testy"
 
@@ -501,12 +596,12 @@ msgid "Average Issue Density"
 msgstr "Priemerná hustota problémov"
 
 #: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:105
+#: admin/class-widgets.php:109
 msgid "Report Last Updated:"
 msgstr "Report naposledy aktualizovaný:"
 
 #: admin/class-welcome-page.php:216
-#: includes/options-page.php:606
+#: includes/options-page.php:610
 msgid "Never"
 msgstr "Nikdy"
 
@@ -549,130 +644,130 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Odomknite podrobné reporty o prístupnosti"
 
 #: admin/class-welcome-page.php:304
-#: admin/class-widgets.php:71
+#: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Začnite kontrolovať celý svoj web na problémy s prístupnosťou, získajte reporty pre celý web a rýchlejšie dosiahnite súlad so smernicami o prístupnosti."
 
 #: admin/class-welcome-page.php:308
-#: admin/class-widgets.php:73
+#: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Aktualizovať Accessibility Checker"
 
-#: admin/class-widgets.php:69
+#: admin/class-widgets.php:73
 msgid "close ad"
 msgstr "zavrieť reklamu"
 
-#: admin/class-widgets.php:70
+#: admin/class-widgets.php:74
 msgid "Get Detailed Accessibility Reports"
 msgstr "Získajte podrobné reporty o prístupnosti"
 
-#: admin/class-widgets.php:88
+#: admin/class-widgets.php:92
 msgid "Full Site Accessibility Status"
 msgstr "Stav prístupnosti celého webu"
 
-#: admin/class-widgets.php:113
+#: admin/class-widgets.php:117
 msgid "URLs Scanned:"
 msgstr "Skontrolované URL adresy:"
 
-#: admin/class-widgets.php:121
+#: admin/class-widgets.php:125
 msgid "Errors:"
 msgstr "Chyby:"
 
-#: admin/class-widgets.php:125
+#: admin/class-widgets.php:129
 msgid "Color Contrast Errors:"
 msgstr "Chyby kontrastu farieb:"
 
-#: admin/class-widgets.php:129
+#: admin/class-widgets.php:133
 msgid "Warnings:"
 msgstr "Upozornenia:"
 
-#: admin/class-widgets.php:144
+#: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Váš web má problémy s prístupnosťou, ktoré by mali byť čo najskôr riešené, aby bol zabezpečený súlad so smernicami o prístupnosti."
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Výborne! Accessibility Checker nenašiel žiadne problémy s prístupnosťou v testovanom obsahu. Niektoré problémy nemožno nájsť automatizovanými nástrojmi, preto nezabudnite"
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "manually test your site"
 msgstr "manuálne otestovať váš web"
 
-#: admin/class-widgets.php:162
+#: admin/class-widgets.php:166
 msgid "Issues By Post Type"
 msgstr "Problémy podľa typu príspevku"
 
-#: admin/class-widgets.php:169
+#: admin/class-widgets.php:173
 msgid "Post Type"
 msgstr "Typ príspevku"
 
-#: admin/class-widgets.php:172
+#: admin/class-widgets.php:176
 msgid "Errors"
 msgstr "Chyby"
 
-#: admin/class-widgets.php:175
+#: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: admin/class-widgets.php:178
+#: admin/class-widgets.php:182
 msgid "Warnings"
 msgstr "Upozornenia"
 
-#: admin/class-widgets.php:248
+#: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Prejdite na vyššiu verziu pre kontrolu"
 
-#: admin/class-widgets.php:277
+#: admin/class-widgets.php:281
 msgid "See More Reports"
 msgstr "Zobraziť viac reportov"
 
-#: admin/class-widgets.php:289
-#: partials/welcome-page.php:239
+#: admin/class-widgets.php:293
+#: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Naučte sa o prístupnosti"
 
-#: admin/class-widgets.php:311
+#: admin/class-widgets.php:315
 msgid "Additional Resources"
 msgstr "Ďalšie zdroje"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog (opens in a new window)"
 msgstr "Blog (otvorí sa v novom okne)"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:313
+#: admin/class-widgets.php:317
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentácia (otvorí sa v novom okne)"
 
-#: admin/opt-in/class-email-opt-in.php:115
+#: admin/opt-in/class-email-opt-in.php:119
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Udalosti a novinky o prístupnosti vo vašej e-mailovej schránke"
 
-#: admin/opt-in/class-email-opt-in.php:121
+#: admin/opt-in/class-email-opt-in.php:125
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
 msgstr "Prihláste sa na odber e-mailového zoznamu Equalize Digital, aby ste získali prístup k bezplatným webinárom o prístupnosti a školiacim materiálom."
 
-#: admin/opt-in/class-email-opt-in.php:127
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Email*"
 msgstr "E-mail*"
 
-#: admin/opt-in/class-email-opt-in.php:131
+#: admin/opt-in/class-email-opt-in.php:135
 msgid "Type your email"
 msgstr "Zadajte svoj e-mail"
 
-#: admin/opt-in/class-email-opt-in.php:139
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "First Name"
 msgstr "Meno"
 
-#: admin/opt-in/class-email-opt-in.php:143
+#: admin/opt-in/class-email-opt-in.php:147
 msgid "Type your first name"
 msgstr "Zadajte svoje meno"
 
 #. translators: 1: link to privacy policy page. 2: link close tag.
-#: admin/opt-in/class-email-opt-in.php:153
+#: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Prihlásením sa na odber súhlasíte s prijímaním e-mailov v súlade s našimi %1$sZásadami ochrany osobných údajov%2$s."
@@ -681,66 +776,66 @@ msgstr "Prihlásením sa na odber súhlasíte s prijímaním e-mailov v súlade 
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; História auditov"
 
-#: admin/site-health/class-checks.php:44
+#: admin/site-health/class-checks.php:48
 msgid "Accessibility issues"
 msgstr "Problémy s prístupnosťou"
 
-#: admin/site-health/class-checks.php:49
+#: admin/site-health/class-checks.php:53
 msgid "Content checked for accessibility"
 msgstr "Obsah skontrolovaný na prístupnosť"
 
-#: admin/site-health/class-checks.php:54
+#: admin/site-health/class-checks.php:58
 msgid "Post types configured for accessibility checks"
 msgstr "Typy príspevkov nakonfigurované pre kontroly prístupnosti"
 
-#: admin/site-health/class-checks.php:69
+#: admin/site-health/class-checks.php:73
 msgid "Accessibility"
 msgstr "Prístupnosť"
 
-#: admin/site-health/class-checks.php:96
+#: admin/site-health/class-checks.php:100
 msgid "View Issues"
 msgstr "Zobraziť problémy"
 
-#: admin/site-health/class-checks.php:103
+#: admin/site-health/class-checks.php:107
 msgid "View Accessibility Checker"
 msgstr "Zobraziť Accessibility Checker"
 
-#: admin/site-health/class-checks.php:122
+#: admin/site-health/class-checks.php:126
 msgid "Accessibility issues detected"
 msgstr "Zistené problémy s prístupnosťou"
 
 #. translators: 1: error count, 2: warning count.
-#: admin/site-health/class-checks.php:125
+#: admin/site-health/class-checks.php:129
 #, php-format
 msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
 msgstr "Accessibility Checker zistil %1$s chýb a %2$s upozornení."
 
-#: admin/site-health/class-checks.php:141
+#: admin/site-health/class-checks.php:145
 msgid "No accessibility issues detected"
 msgstr "Neboli zistené žiadne problémy s prístupnosťou"
 
-#: admin/site-health/class-checks.php:142
+#: admin/site-health/class-checks.php:146
 msgid "Accessibility Checker has not found any issues in scanned content."
 msgstr "Accessibility Checker nenašiel žiadne problémy v skenovanom obsahu."
 
-#: admin/site-health/class-checks.php:160
+#: admin/site-health/class-checks.php:164
 msgid "Content has not been checked"
 msgstr "Obsah nebol skontrolovaný"
 
-#: admin/site-health/class-checks.php:161
+#: admin/site-health/class-checks.php:165
 msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
 msgstr "Zatiaľ neboli naskenované žiadne príspevky. Spustite skenovanie celého webu, aby ste začali kontrolovať svoj obsah na problémy s prístupnosťou."
 
-#: admin/site-health/class-checks.php:165
+#: admin/site-health/class-checks.php:169
 msgid "Start full site scan"
 msgstr "Spustiť skenovanie celého webu"
 
-#: admin/site-health/class-checks.php:174
+#: admin/site-health/class-checks.php:178
 msgid "Content is being checked for accessibility"
 msgstr "Obsah sa kontroluje na prístupnosť"
 
 #. translators: %s is the number of posts scanned.
-#: admin/site-health/class-checks.php:177
+#: admin/site-health/class-checks.php:181
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
@@ -748,24 +843,24 @@ msgstr[0] "Accessibility Checker naskenoval %s príspevok na problémy s prístu
 msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[2] "Accessibility Checker naskenoval %s príspevkov na problémy s prístupnosťou."
 
-#: admin/site-health/class-checks.php:196
+#: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
 msgstr "Nie sú vybrané žiadne typy príspevkov na kontrolu prístupnosti"
 
-#: admin/site-health/class-checks.php:197
+#: admin/site-health/class-checks.php:201
 msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
 msgstr "Accessibility Checker nemôže skenovať žiadny obsah, pretože neboli vybrané žiadne typy príspevkov. Bez nakonfigurovaných typov príspevkov nebudú zistené žiadne problémy s prístupnosťou."
 
-#: admin/site-health/class-checks.php:201
+#: admin/site-health/class-checks.php:205
 msgid "Configure post types"
 msgstr "Konfigurovať typy príspevkov"
 
-#: admin/site-health/class-checks.php:213
+#: admin/site-health/class-checks.php:217
 msgid "Post types are configured for accessibility checking"
 msgstr "Typy príspevkov sú nakonfigurované na kontrolu prístupnosti"
 
 #. translators: 1: number of post types, 2: comma-separated list of post type names.
-#: admin/site-health/class-checks.php:216
+#: admin/site-health/class-checks.php:220
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
@@ -819,7 +914,7 @@ msgid "Disabled"
 msgstr "Zakázané"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:199
+#: includes/options-page.php:203
 msgid "Delete Data"
 msgstr "Vymazať údaje"
 
@@ -876,407 +971,372 @@ msgid "Simplified Sum Heading"
 msgstr "Nadpis zjednodušeného súhrnu"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:190
+#: includes/options-page.php:194
 msgid "Ignore Permissions"
 msgstr "Povolenia na ignorovanie"
-
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "Žiadne"
 
 #: admin/site-health/class-pro.php:78
 msgid "Ignores DB Table Count"
 msgstr "Počet DB tabuliek ignorovaných položiek"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
-#: includes/classes/class-accessibility-statement.php:45
+#: includes/classes/class-accessibility-statement.php:49
 #, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Na monitorovanie prístupnosti našej webovej stránky používa %1$s %2$s."
 
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:54
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (otvorí sa v novom okne)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:63
 #, php-format
 msgid "Read our %s"
 msgstr "Prečítajte si naše %s"
 
-#: includes/classes/class-accessibility-statement.php:60
+#: includes/classes/class-accessibility-statement.php:64
 msgid "Accessibility Policy"
 msgstr "Zásady prístupnosti"
 
-#: includes/classes/class-admin-toolbar.php:115
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
+#: includes/classes/class-admin-toolbar.php:119
+#: partials/pro-callout.php:51
+#: partials/welcome-page.php:219
 msgid "Get Accessibility Checker Pro"
 msgstr "Získajte Accessibility Checker Pro"
 
-#: includes/classes/class-admin-toolbar.php:120
+#: includes/classes/class-admin-toolbar.php:124
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získať Accessibility Checker Pro (otvorí sa v novom okne)"
 
-#: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:898
-#: includes/options-page.php:922
+#: includes/classes/class-rest-api.php:991
+msgid "Unknown"
+msgstr "Neznáme"
+
+#: includes/classes/class-rest-api.php:1224
+msgid "Issue not found."
+msgstr "Problém nebol nájdený."
+
+#: includes/classes/class-rest-api.php:1267
+msgid "Failed to update the issue."
+msgstr "Nepodarilo sa aktualizovať problém."
+
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:902
+#: includes/options-page.php:926
+#: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Zjednodušené zhrnutie"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
 msgstr "Pridať veľkosť a typ k odkazom na súbory"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:54
 msgid "Add Context to Linked Files"
 msgstr "Pridať kontext k odkazovaným súborom"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:87
 msgid "Add File Size & Type To Links"
 msgstr "Pridať veľkosť a typ súboru k odkazom"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:89
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Pridajte veľkosť a typ súboru k odkazovaným súborom, ktoré môžu spustiť sťahovanie."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:45
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Pridať označenia k neoznačeným poliam formulára"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:54
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:77
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:100
 msgid "Label Form Fields"
 msgstr "Označiť polia formulára"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:103
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Pridajte označenia k neoznačeným poliam formulára, ak je možné určiť účel poľa."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:134
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Pokúste sa pridať označenia k poliam formulára, ktorým chýbajú. Poznámka: Možno budete musieť pridať vlastné štýly cielené na triedu %1$s, ak pridanie označení ovplyvní rozloženie vašich formulárov."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:45
 msgid "Add Missing or Empty Page Titles"
 msgstr "Pridať chýbajúce alebo prázdne titulky stránok"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:54
 msgid "Set Page HTML Titles"
 msgstr "Nastaviť HTML titulky stránok"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:88
 msgid "Add Missing Page Title"
 msgstr "Pridať chýbajúci titulok stránky"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:91
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Pridajte tag %1$s na stránku, ak chýba alebo je prázdny."
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:38
 msgid "Add warning when link opens new tab/window"
 msgstr "Pridať upozornenie, keď sa odkaz otvorí v novej karte/okne"
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:72
 msgid "Add Label To Links That Open A New Tab/Window"
 msgstr "Pridať označenie k odkazom, ktoré sa otvárajú v novej karte/okne"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:77
 #, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Pridajte označenie a ikonu k odkazom s %1$s, ktoré informujú používateľov, že sa otvoria v novej karte/okne. %2$sPoznámka: Toto nastavenie nebude mať žiadny účinok, ak je povolená oprava „Blokovať odkazy otvárajúce nové okná“.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
 msgstr "Blokovať nahrávania PDF"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:83
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Obmedziť nahrávania PDF pre používateľov bez oprávnenia %1$s (predvolene povolené pre administrátorov)."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:38
 msgid "Add Labels to Comment and Search Forms"
 msgstr "Pridať označenia k formulárom pre komentáre a vyhľadávanie"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:47
 msgid "Label Comment/Search Fields"
 msgstr "Označiť polia pre komentáre/vyhľadávanie"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:70
 msgid "Comment and Search Form Labels"
 msgstr "Označenia formulárov pre komentáre a vyhľadávanie"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:71
 msgid "Add missing labels to WordPress comment and search forms."
 msgstr "Pridať chýbajúce označenia k formulárom pre komentáre a vyhľadávanie vo WordPresse."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:94
 msgid "Label Comment Form"
 msgstr "Označiť formulár pre komentáre"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:97
 msgid "Add missing labels to the WordPress comment form."
 msgstr "Pridať chýbajúce označenia k formuláru pre komentáre vo WordPresse."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:105
 msgid "Label Search Form"
 msgstr "Označiť formulár pre vyhľadávanie"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:108
 msgid "Add a missing label to the WordPress search form."
 msgstr "Pridať chýbajúce označenie k formuláru pre vyhľadávanie vo WordPresse."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
-msgid "Comment"
-msgstr "Komentár"
-
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:147
 msgid "Name"
 msgstr "Meno"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:152
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:157
 msgid "Website"
 msgstr "Webová stránka"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:181
 msgid "Search …"
 msgstr "Hľadať …"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:186
 msgid "Search for:"
 msgstr "Hľadať:"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:188
 msgid "Search"
 msgstr "Hľadať"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Nastavenia pre pridanie chýbajúcich popisov k formulárom pre komentáre a vyhľadávanie vo WordPresse."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
 msgstr "Pridať zvýraznenie fokusu"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:60
 msgid "Focus Outline"
 msgstr "Zvýraznenie fokusu"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:61
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:87
 msgid "Add an outline to elements when they receive keyboard focus."
 msgstr "Pridať obrys prvkom pri získaní fokusu klávesnicou."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:85
 msgid "Add Focus Outline"
 msgstr "Pridať zvýraznenie fokusu"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:116
 msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
 msgstr "Nastavenia súvisiace so zlepšením zvýraznenia fokusu pre lepšiu prístupnosť pomocou klávesnice."
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:37
 msgid "Add lang & dir Attributes"
 msgstr "Pridať atribúty lang a dir"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:46
 msgid "Set Page Language"
 msgstr "Nastaviť jazyk stránky"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:80
 msgid "Add \"lang\" & \"dir\" Attributes"
 msgstr "Pridať atribúty „lang“ a „dir“"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:83
 #, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Pridať atribúty jazyka stránky (%1$s) a smeru textu (%2$s) k prvku %3$s."
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+#: includes/classes/Fixes/Fix/LinkUnderline.php:37
 msgid "Add Underlines to all non-nav Links"
 msgstr "Pridať podčiarknutie všetkým odkazom mimo navigácie"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+#: includes/classes/Fixes/Fix/LinkUnderline.php:46
 msgid "Underline Links"
 msgstr "Podčiarknuť odkazy"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+#: includes/classes/Fixes/Fix/LinkUnderline.php:80
 msgid "Force Link Underline"
 msgstr "Vynútiť podčiarknutie odkazov"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+#: includes/classes/Fixes/Fix/LinkUnderline.php:82
 msgid "Ensure that non-navigation links are underlined."
 msgstr "Zabezpečiť, aby odkazy mimo navigácie boli podčiarknuté."
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:38
 msgid "Make Meta Viewport Tag Scalable"
 msgstr "Povoliť škálovanie v meta tagu pre viewport"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
-msgid "Ensure scalable viewport"
-msgstr "Zabezpečiť škálovateľný viewport"
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
-msgid "Make sure that the viewport tag on the page allows scaling."
-msgstr "Zabezpečiť, aby tag viewport na stránke umožňoval škálovanie."
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:71
 msgid "Make Viewport Scalable"
 msgstr "Povoliť škálovanie viewportu"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:74
 msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
 msgstr "Zabezpečiť, aby tag viewport umožňoval škálovanie, čím sa zlepší prístupnosť na mobilných zariadeniach."
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:38
 msgid "Prevent Links Opening New Windows"
 msgstr "Zabrániť odkazom otvárať nové okná"
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:72
 msgid "Block Links Opening New Windows"
 msgstr "Blokovať odkazy otvárajúce nové okná"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:77
 #, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Zabrániť odkazom otvárať sa v novom okne alebo karte odstránením %1$s."
 
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
-msgid "Add \"Read\" Link with Post Title"
-msgstr "Pridať odkaz „Čítať“ s názvom príspevku"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
-msgid "Add Title to Read More Link"
-msgstr "Pridať názov k odkazu čítať viac"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
-msgid "Read More links"
-msgstr "Odkazy Čítať viac"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
-msgid "Add the post title and links "
-msgstr "Pridať názov príspevku a odkazy "
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
-msgid "Add Post Title To \"Read More\""
-msgstr "Pridať názov príspevku k „Čítať viac“"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
-msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
-msgstr "Pridať názov príspevku k odkazom „Čítať viac“ v zoznamoch príspevkov, keď ich vaša téma zobrazuje."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
-msgid "For Screen Readers Only"
-msgstr "Len pre čítačky obrazovky"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
-msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
-msgstr "Názov príspevku pridaný k odkazom „Čítať viac“ bude viditeľný len pre čítačky obrazovky."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
-msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
-msgstr "Táto úprava pridáva názov príspevku k odkazom „Čítať viac“ v zoznamoch príspevkov pri bloku „Viac“ a v úryvkoch."
-
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:37
 msgid "Prefer Accessible Label Attribute"
 msgstr "Uprednostniť prístupný atribút label"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:46
 msgid "Remove Unnecessary Title Attributes"
 msgstr "Odstrániť nepotrebné atribúty title"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:80
 msgid "Remove Title Attributes"
 msgstr "Odstrániť atribúty title"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:83
 #, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Odstrániť atribúty %1$s z prvkov, ktoré už majú preferovaný prístupný názov."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:38
 msgid "Add Skip Links"
 msgstr "Pridať preskočenie odkazov"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:61
 msgid "Skip Link"
 msgstr "Preskočiť odkaz"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:85
 msgid "Enable Skip Link"
 msgstr "Povoliť preskočenie odkazu"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:88
 msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
 msgstr "Pridať odkaz na preskočenie na všetky stránky webu, umožňujúci používateľom preskočiť priamo na hlavný obsah."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:96
 msgid "Main Content Target (required)"
 msgstr "Cieľ hlavného obsahu (povinné)"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:99
 msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
 msgstr "Definujte ID hlavnej oblasti obsahu, na ktorú majú odkazy na preskočenie smerovať. Zadajte viacero ID oddelených čiarkami; systém postupne prejde zoznamom, aby našiel vhodný pre každú stránku."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:108
 msgid "Navigation Target"
 msgstr "Cieľ navigácie"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:111
 msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
 msgstr "Nastavte atribút ID pre navigačný prvok. Je to užitočné, ak vaša hlavná navigácia obsahuje akcie, ktoré väčšina návštevníkov stránky chce vykonať, ako napríklad prihlásenie alebo vyhľadávanie."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Ak vaša téma už nepridáva odkaz na preskočenie, ktorý umožňuje používateľom klávesnice obísť navigáciu a rýchlo prejsť na hlavný obsah, povoľte tu odkazy na preskočenie. %1$sDozvedieť sa viac o odkazoch na preskočenie.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
 msgid "Skip to content"
 msgstr "Preskočiť na obsah"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
 msgid "Skip to navigation"
 msgstr "Preskočiť na navigáciu"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:33
+#: includes/classes/Fixes/Fix/TabindexFix.php:37
 msgid "Remove Tabindex from Focusable Elements"
 msgstr "Odstrániť tabindex z interaktívnych prvkov"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:67
+#: includes/classes/Fixes/Fix/TabindexFix.php:71
 msgid "Remove Tab Index"
 msgstr "Odstrániť tab index"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/TabindexFix.php:70
+#: includes/classes/Fixes/Fix/TabindexFix.php:74
 #, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Odstrániť atribút %1$s z interaktívnych prvkov."
 
-#: includes/classes/Fixes/FixesManager.php:241
+#: includes/classes/Fixes/FixesManager.php:250
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Poznámka: Toto nastavenie sa neodporúča pre témy, ktoré sú už prístupné."
 
-#: includes/classes/Fixes/FixesManager.php:294
+#: includes/classes/Fixes/FixesManager.php:320
 msgid "Fix not found"
 msgstr "Úprava nebola nájdená"
+
+#: includes/classes/Fixes/FixesManager.php:356
+msgid "Fix not found."
+msgstr "Oprava nebola nájdená."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -1319,18 +1379,18 @@ msgid "Hard of hearing"
 msgstr "Nedoslýchaví"
 
 #: includes/classes/Rules/AffectedDisabilities.php:70
-#: includes/wcag.php:52
-#: includes/wcag.php:85
-#: includes/wcag.php:118
-#: includes/wcag.php:151
-#: includes/wcag.php:251
-#: includes/wcag.php:269
-#: includes/wcag.php:1661
-#: includes/wcag.php:1695
-#: includes/wcag.php:1728
-#: includes/wcag.php:1748
-#: includes/wcag.php:1767
-#: includes/wcag.php:1786
+#: includes/wcag.php:56
+#: includes/wcag.php:89
+#: includes/wcag.php:122
+#: includes/wcag.php:155
+#: includes/wcag.php:255
+#: includes/wcag.php:273
+#: includes/wcag.php:1665
+#: includes/wcag.php:1699
+#: includes/wcag.php:1732
+#: includes/wcag.php:1752
+#: includes/wcag.php:1771
+#: includes/wcag.php:1790
 msgid "Language learners"
 msgstr "Študenti jazykov"
 
@@ -2673,7 +2733,7 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Pochopenie smernice 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:109
+#: includes/classes/WPCLI/BootstrapCLI.php:113
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Nepodarilo sa zaregistrovať príkaz %1$s, pretože %2$s"
@@ -2736,1713 +2796,1719 @@ msgstr "ID príspevku %1$d neexistuje."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Buď príspevok ešte nebol skontrolovaný, alebo všetky testy prešli pre ID príspevku %1$d."
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:31
 msgid "permalink of "
 msgstr "trvalý odkaz na "
 
-#: includes/helper-functions.php:28
+#: includes/helper-functions.php:32
 msgid "permalink to "
 msgstr "trvalý odkaz na "
 
-#: includes/helper-functions.php:29
+#: includes/helper-functions.php:33
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:392
+#: includes/helper-functions.php:403
 msgid "Attend Free"
 msgstr "Zúčastnite sa zadarmo"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:841
-#, php-format
+#: includes/helper-functions.php:855
+#: build/issueModal.bundle.js:2
+#, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Zobraziť %s orientačný bod na webstránke, otvorí sa nové okno"
 
-#: includes/options-page.php:44
+#: includes/options-page.php:48
 msgid "Welcome to Accessibility Checker"
 msgstr "Vitajte v Accessibility Checker"
 
-#: includes/options-page.php:67
+#: includes/options-page.php:71
 msgid "Accessibility Checker Settings"
 msgstr "Nastavenia Accessibility Checker"
 
-#: includes/options-page.php:111
+#: includes/options-page.php:115
 msgid "Scan Settings"
 msgstr "Nastavenia skenovania"
 
-#: includes/options-page.php:118
+#: includes/options-page.php:122
 msgid "Permissions"
 msgstr "Oprávnenia"
 
-#: includes/options-page.php:125
+#: includes/options-page.php:129
 msgid "Simplified Summary Settings"
 msgstr "Nastavenia zjednodušeného súhrnu"
 
-#: includes/options-page.php:132
+#: includes/options-page.php:136
 msgid "Footer Accessibility Statement"
 msgstr "Vyhlásenie o prístupnosti v pätičke"
 
-#: includes/options-page.php:139
+#: includes/options-page.php:143
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker pre frontend"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:150
 msgid "System Settings"
 msgstr "Systémové nastavenia"
 
-#: includes/options-page.php:154
+#: includes/options-page.php:158
 msgid "Post Types To Be Checked"
 msgstr "Typy príspevkov na kontrolu"
 
-#: includes/options-page.php:163
+#: includes/options-page.php:167
 msgid "Scan Speed"
 msgstr "Rýchlosť skenovania"
 
-#: includes/options-page.php:172
+#: includes/options-page.php:176
 msgid "Archive Scanning"
 msgstr "Skenovanie archívu"
 
-#: includes/options-page.php:181
+#: includes/options-page.php:185
 msgid "Taxonomy Scanning"
 msgstr "Skenovanie taxonómie"
 
-#: includes/options-page.php:208
+#: includes/options-page.php:212
 msgid "Prompt for Simplified Summary"
 msgstr "Výzva na zjednodušený súhrn"
 
-#: includes/options-page.php:217
+#: includes/options-page.php:221
 msgid "Simplified Summary Position"
 msgstr "Pozícia zjednodušeného súhrnu"
 
-#: includes/options-page.php:226
+#: includes/options-page.php:230
 msgid "Simplified Summary Heading"
 msgstr "Zjednodušený nadpis súhrnu"
 
-#: includes/options-page.php:235
-#: includes/options-page.php:736
+#: includes/options-page.php:239
+#: includes/options-page.php:740
 msgid "Add Footer Accessibility Statement"
 msgstr "Pridať vyhlásenie o prístupnosti do pätičky"
 
-#: includes/options-page.php:244
-#: includes/options-page.php:759
+#: includes/options-page.php:248
+#: includes/options-page.php:763
 msgid "Include Link to Accessibility Policy"
 msgstr "Zahrnúť odkaz na pravidlá prístupnosti"
 
-#: includes/options-page.php:253
+#: includes/options-page.php:257
 msgid "Accessibility Policy page"
 msgstr "Stránka pravidiel prístupnosti"
 
-#: includes/options-page.php:262
+#: includes/options-page.php:266
 msgid "Accessibility Statement Preview"
 msgstr "Náhľad vyhlásenia o prístupnosti"
 
-#: includes/options-page.php:271
+#: includes/options-page.php:275
 msgid "Frontend Accessibility Checker Position"
 msgstr "Pozícia Accessibility Checker pre frontend"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:324
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Nakonfiguruj typy obsahu, ktoré by mali byť kontrolované na problémy s prístupnosťou."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:325
+#: includes/options-page.php:329
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Viac funkcií a e-mailová podpora sú dostupné s %1$s."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:337
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (otvorí sa v novom okne)"
 
-#: includes/options-page.php:333
-#: partials/welcome-page.php:21
+#: includes/options-page.php:337
+#: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:347
+#: includes/options-page.php:351
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Použite nasledujúce nastavenia na konfiguráciu kontroly prístupnosti na frontende."
 
-#: includes/options-page.php:357
+#: includes/options-page.php:361
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Smernice pre prístupnosť webového obsahu (WCAG) na úrovni AAA vyžadujú, aby akýkoľvek obsah s úrovňou čitateľnosti nad 9. Ročník mal alternatívu, ktorú je ľahšie čítať. Zjednodušený súhrnný text sa pridáva na karte čitateľnosti v meta boxe Accessibility Checker na obrazovke úprav každého príspevku alebo stránky."
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť (otvorí sa v novom okne)"
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť."
 
-#: includes/options-page.php:376
+#: includes/options-page.php:380
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Myslíte si „Wow, tento plugin je úžasný“ a pomáha vám urobiť vašu webovú stránku prístupnejšou? Podeľte sa o svoje úsilie spraviť vašu webovú stránku prístupnejšou so svojimi zákazníkmi a dajte im vedieť, že používate Accessibility Checker, aby ste sa uistili, že všetci ľudia môžu používať vašu webovú stránku. Pridajte malý textový odkaz a vyhlásenie v pätičke vašej webovej stránky."
 
-#: includes/options-page.php:385
+#: includes/options-page.php:389
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Nakonfiguruj systémové nastavenia pre plugin Accessibility Checker."
 
-#: includes/options-page.php:399
+#: includes/options-page.php:403
 msgid "Fast"
 msgstr "Rýchle"
 
-#: includes/options-page.php:400
+#: includes/options-page.php:404
 msgid "Normal"
 msgstr "Normálne"
 
-#: includes/options-page.php:401
+#: includes/options-page.php:405
 msgid "Slow"
 msgstr "Pomalé"
 
-#: includes/options-page.php:402
+#: includes/options-page.php:406
 msgid "Slowest"
 msgstr "Najpomalšie"
 
-#: includes/options-page.php:424
+#: includes/options-page.php:428
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Rýchlejšie skenovania sú náročnejšie na zdroje a môžu spôsobiť vysoké zaťaženie tvojej webovej stránky."
 
-#: includes/options-page.php:450
+#: includes/options-page.php:454
 msgid "Enable scanning of archive pages"
 msgstr "Povoliť skenovanie archívnych stránok"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:458
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Vyberte, či majú byť archívne stránky zahrnuté do úplných skenovaní stránky. Predvolene sa na výber taxonómií pre archívne údaje používa metóda vzorkovania."
 
-#: includes/options-page.php:480
+#: includes/options-page.php:484
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skenovať všetky taxonomické termíny namiesto len vzorky"
 
-#: includes/options-page.php:484
+#: includes/options-page.php:488
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Skontrolovať všetky archívne stránky taxonómií namiesto reprezentatívnej vzorky. Toto vyžaduje, aby bolo skenovanie archívnych stránok povolené, a môže pridať veľké množstvo URL adries do zoznamu skenovania."
 
-#: includes/options-page.php:513
+#: includes/options-page.php:517
 msgid "Before the content"
 msgstr "Pred obsahom"
 
-#: includes/options-page.php:518
+#: includes/options-page.php:522
 msgid "After the content"
 msgstr "Za obsahom"
 
-#: includes/options-page.php:523
+#: includes/options-page.php:527
 msgid "Insert manually"
 msgstr "Vložiť manuálne"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:531
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Použite túto funkciu na manuálne pridanie zjednodušeného súhrnu do vašej témy v rámci slučky."
 
-#: includes/options-page.php:529
+#: includes/options-page.php:533
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcia voliteľne prijíma ID príspevku ako parameter."
 
-#: includes/options-page.php:532
+#: includes/options-page.php:536
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nastavte, kde by sa mali zobraziť zjednodušené súhrny vo vzťahu k vášmu obsahu, ak sú vyplnené."
 
-#: includes/options-page.php:547
+#: includes/options-page.php:551
 msgid "Bottom Right Corner (default)"
 msgstr "Pravý dolný roh (predvolené)"
 
-#: includes/options-page.php:552
+#: includes/options-page.php:556
 msgid "Bottom Left Corner"
 msgstr "Ľavý dolný roh"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:560
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nastavte, kde by sa mala na stránke zobraziť kontrola prístupnosti na frontende."
 
-#: includes/options-page.php:596
+#: includes/options-page.php:600
 msgid "When Required"
 msgstr "Keď je to potrebné"
 
-#: includes/options-page.php:601
+#: includes/options-page.php:605
 msgid "Always"
 msgstr "Vždy"
 
-#: includes/options-page.php:609
+#: includes/options-page.php:613
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Mal by Accessibility Checker žiadať o zjednodušené zhrnutie iba vtedy, keď je úroveň čitateľnosti vášho príspevku alebo stránky nad 9. ročníkom, vždy o to žiadať bez ohľadu na úroveň čitateľnosti, alebo o to nikdy nežiadať bez ohľadu na úroveň čitateľnosti?"
 
-#: includes/options-page.php:661
+#: includes/options-page.php:665
 msgid "To check content other than posts and pages, please "
 msgstr "Na kontrolu iného obsahu ako príspevkov a stránok, prosím "
 
-#: includes/options-page.php:663
+#: includes/options-page.php:667
 msgid "upgrade to pro"
 msgstr "prejdite na Pro verziu"
 
-#: includes/options-page.php:664
+#: includes/options-page.php:668
 msgid " (opens in a new window)"
 msgstr " (otvorí sa v novom okne)"
 
-#: includes/options-page.php:669
+#: includes/options-page.php:673
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Vyberte, ktoré typy príspevkov by mali byť kontrolované počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné ignorované upozornenia, ktoré boli nastavené."
 
-#: includes/options-page.php:811
+#: includes/options-page.php:815
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Odstrániť všetky údaje Accessibility Checker pri odinštalovaní pluginu."
 
-#: includes/options-page.php:966
+#: includes/options-page.php:970
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Vyber, ktoré používateľské role majú oprávnenie ignorovať problémy."
 
-#: includes/options-page.php:999
+#: includes/options-page.php:1003
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Nakonfiguruj, ktoré používateľské role majú prístup k špecifickým funkciám Accessibility Checker."
 
-#: includes/wcag.php:11
+#: includes/wcag.php:15
 msgid "Non-text Content"
 msgstr "Netextový obsah"
 
-#: includes/wcag.php:12
+#: includes/wcag.php:16
 msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
 msgstr "Všetok netextový obsah musí mať textovú alternatívu, ktorá slúži rovnakému účelu, pokiaľ nespadá do špecifických výnimiek ako ovládacie prvky, médiá, testy, zmyslový obsah, CAPTCHA alebo dekoratívne prvky. Každý typ musí dodržiavať špecifické pokyny na zabezpečenie prístupnosti bez zasahovania do používateľského zážitku."
 
-#: includes/wcag.php:15
+#: includes/wcag.php:19
 msgid "1.1 Text Alternatives"
 msgstr "1.1 textové alternatívy"
 
-#: includes/wcag.php:16
-#: includes/wcag.php:49
-#: includes/wcag.php:82
-#: includes/wcag.php:115
-#: includes/wcag.php:148
-#: includes/wcag.php:181
-#: includes/wcag.php:213
-#: includes/wcag.php:230
-#: includes/wcag.php:247
-#: includes/wcag.php:266
-#: includes/wcag.php:284
-#: includes/wcag.php:319
-#: includes/wcag.php:353
-#: includes/wcag.php:386
-#: includes/wcag.php:413
-#: includes/wcag.php:441
-#: includes/wcag.php:459
-#: includes/wcag.php:492
-#: includes/wcag.php:520
-#: includes/wcag.php:547
-#: includes/wcag.php:575
-#: includes/wcag.php:604
-#: includes/wcag.php:638
-#: includes/wcag.php:671
-#: includes/wcag.php:703
-#: includes/wcag.php:735
-#: includes/wcag.php:753
-#: includes/wcag.php:770
-#: includes/wcag.php:788
+#: includes/wcag.php:20
+#: includes/wcag.php:53
+#: includes/wcag.php:86
+#: includes/wcag.php:119
+#: includes/wcag.php:152
+#: includes/wcag.php:185
+#: includes/wcag.php:217
+#: includes/wcag.php:234
+#: includes/wcag.php:251
+#: includes/wcag.php:270
+#: includes/wcag.php:288
+#: includes/wcag.php:323
+#: includes/wcag.php:357
+#: includes/wcag.php:390
+#: includes/wcag.php:417
+#: includes/wcag.php:445
+#: includes/wcag.php:463
+#: includes/wcag.php:496
+#: includes/wcag.php:524
+#: includes/wcag.php:551
+#: includes/wcag.php:579
+#: includes/wcag.php:608
+#: includes/wcag.php:642
+#: includes/wcag.php:675
+#: includes/wcag.php:707
+#: includes/wcag.php:739
+#: includes/wcag.php:757
+#: includes/wcag.php:774
+#: includes/wcag.php:792
 msgid "Perceivable"
 msgstr "Vnímateľné"
 
-#: includes/wcag.php:18
-#: includes/wcag.php:288
-#: includes/wcag.php:1533
-#: includes/wcag.php:2200
-#: includes/wcag.php:2234
+#: includes/wcag.php:22
+#: includes/wcag.php:292
+#: includes/wcag.php:1537
+#: includes/wcag.php:2204
+#: includes/wcag.php:2238
 msgid "People with dexterity impairments using voice control"
 msgstr "Ľudia s poruchami zručnosti používajúci hlasové ovládanie"
 
-#: includes/wcag.php:19
-#: includes/wcag.php:289
-#: includes/wcag.php:323
+#: includes/wcag.php:23
+#: includes/wcag.php:293
+#: includes/wcag.php:327
+#: includes/wcag.php:448
+#: includes/wcag.php:898
+#: includes/wcag.php:927
+#: includes/wcag.php:961
+#: includes/wcag.php:995
+#: includes/wcag.php:1015
+#: includes/wcag.php:1034
+#: includes/wcag.php:1053
+#: includes/wcag.php:1137
+#: includes/wcag.php:1171
+#: includes/wcag.php:1241
+#: includes/wcag.php:1308
+#: includes/wcag.php:1342
+#: includes/wcag.php:1376
+#: includes/wcag.php:1461
+#: includes/wcag.php:1480
+#: includes/wcag.php:1510
+#: includes/wcag.php:1666
+#: includes/wcag.php:1700
+#: includes/wcag.php:1810
+#: includes/wcag.php:1846
+#: includes/wcag.php:1881
+#: includes/wcag.php:1912
+#: includes/wcag.php:1944
+#: includes/wcag.php:1980
+#: includes/wcag.php:2014
+#: includes/wcag.php:2048
+#: includes/wcag.php:2082
+#: includes/wcag.php:2116
+#: includes/wcag.php:2135
+#: includes/wcag.php:2206
+#: includes/wcag.php:2240
+#: includes/wcag.php:2271
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "Používatelia čítačiek obrazovky (nevidiaci/slabozrakí a neurodivergentní ľudia)"
+
+#: includes/wcag.php:48
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "Vopred nahraný len zvuk a len video"
+
+#: includes/wcag.php:49
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "Pre vopred nahraný obsah, ktorý je len zvukový alebo len video, musí byť poskytnutá textová alternatíva, ktorá prezentuje ekvivalentné informácie. Tým sa zabezpečí, že používatelia, ktorí nemôžu počuť alebo vidieť médiá, môžu stále pristupovať k ich obsahu prostredníctvom textu."
+
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:184
+#: includes/wcag.php:216
+#: includes/wcag.php:233
+#: includes/wcag.php:250
+#: includes/wcag.php:269
+msgid "1.2 Time-based Media"
+msgstr "1.2 časovo založené médiá"
+
+#: includes/wcag.php:55
+#: includes/wcag.php:88
+#: includes/wcag.php:121
+#: includes/wcag.php:154
+#: includes/wcag.php:219
+#: includes/wcag.php:253
+#: includes/wcag.php:272
+#: includes/wcag.php:360
+#: includes/wcag.php:611
+#: includes/wcag.php:759
+msgid "Deaf and hard of hearing people"
+msgstr "Nepočujúci a nedoslýchaví ľudia"
+
+#: includes/wcag.php:81
+msgid "Captions (Prerecorded)"
+msgstr "Titulky (vopred nahrané)"
+
+#: includes/wcag.php:82
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "Titulky musia byť poskytnuté pre všetok vopred nahraný zvukový obsah v synchronizovaných médiách - ako sú videá, kde zvuk a vizuály hrajú spolu - aby používatelia, ktorí sú nepočujúci alebo nedoslýchaví, mohli pristupovať k hovoreným informáciám a dôležitým zvukom."
+
+#: includes/wcag.php:114
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "Zvukový popis alebo alternatíva médií (vopred nahraná)"
+
+#: includes/wcag.php:115
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "Pre vopred nahraný video obsah so zvukom (synchronizované médiá) musí byť poskytnutý zvukový popis - alebo písomný prepis, ktorý zahŕňa vizuálne detaily - aby sa zabezpečilo, že používatelia, ktorí sú nevidiaci alebo majú slabý zrak, môžu porozumieť dôležitým vizuálnym informáciám, ktoré nie sú vyslovené."
+
+#: includes/wcag.php:147
+msgid "Captions (Live)"
+msgstr "Titulky (naživo)"
+
+#: includes/wcag.php:148
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "Pre všetok živý video obsah, ktorý zahŕňa zvuk, musia byť poskytnuté titulky v reálnom čase, aby používatelia, ktorí sú nepočujúci alebo nedoslýchaví, mohli pristupovať k hovoreným informáciám, keď sa dejú."
+
+#: includes/wcag.php:180
+msgid "Audio Description (Prerecorded)"
+msgstr "Zvukový popis (vopred nahratý)"
+
+#: includes/wcag.php:181
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "Pre vopred nahraté video so zvukom musí byť poskytnutý zvukový popis dôležitého vizuálneho obsahu, čo umožňuje nevidiacim používateľom alebo používateľom so zrakovým postihnutím porozumieť vizuálnym informáciám, ktoré nie sú opísané v hlavnom zvuku."
+
+#: includes/wcag.php:187
+#: includes/wcag.php:236
+#: includes/wcag.php:359
+#: includes/wcag.php:465
+#: includes/wcag.php:581
+#: includes/wcag.php:610
+#: includes/wcag.php:709
+#: includes/wcag.php:794
+#: includes/wcag.php:811
+#: includes/wcag.php:845
+#: includes/wcag.php:879
+msgid "Blind and low vision people"
+msgstr "Nevidiaci ľudia a ľudia so zrakovým postihnutím"
+
+#: includes/wcag.php:212
+msgid "Sign Language (Prerecorded)"
+msgstr "Posunková reč (vopred nahratá)"
+
+#: includes/wcag.php:213
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "Pre všetok vopred nahratý zvukový obsah v synchronizovaných médiách musí byť poskytnutý preklad do posunkovej reči, aby sa zabezpečilo, že nepočujúci používatelia, ktorí používajú posunkovú reč, môžu plne porozumieť hovorenému obsahu."
+
+#: includes/wcag.php:229
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "Rozšírený zvukový popis (vopred nahratý)"
+
+#: includes/wcag.php:230
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "Pre všetok vopred nahratý multimediálny obsah musia byť v prípade potreby poskytnuté rozšírené zvukové popisy - čo znamená, že video je pozastavené, aby sa vložili dodatočné popisy - aby nevidiaci používatelia alebo používatelia so zrakovým postihnutím mohli porozumieť dôležitým vizuálnym detailom, ktoré nemožno opísať počas prirodzených prestávok vo zvuku."
+
+#: includes/wcag.php:246
+msgid "Media Alternative (Prerecorded)"
+msgstr "Alternatíva médií (vopred nahratá)"
+
+#: includes/wcag.php:247
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "Pre vopred nahraté synchronizované médiá je poskytnutá úplná textová alternatíva (napríklad prepis), ktorá poskytuje všetky informácie z video aj zvukovej stopy, takže používatelia, ktorí nemôžu vidieť alebo počuť obsah, k nemu stále môžu pristupovať."
+
+#: includes/wcag.php:254
+msgid "Deaf-blind people"
+msgstr "Hluchoslepí ľudia"
+
+#: includes/wcag.php:265
+msgid "Audio-only (Live)"
+msgstr "Iba zvuk (naživo)"
+
+#: includes/wcag.php:266
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "Pre živý obsah, ktorý je iba zvukový, sa v reálnom čase poskytuje textová alternatíva, aby ľudia, ktorí nemôžu počuť zvuk, mali stále prístup k informáciám."
+
+#: includes/wcag.php:283
+msgid "Info and Relationships"
+msgstr "Informácie a vzťahy"
+
+#: includes/wcag.php:284
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "Informácie, štruktúra a vzťahy v obsahu sú programovo určené alebo dostupné v texte, takže asistenčné technológie ich môžu prezentovať používateľom."
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+#: includes/wcag.php:356
+#: includes/wcag.php:389
+#: includes/wcag.php:416
 #: includes/wcag.php:444
-#: includes/wcag.php:894
+msgid "1.3 Adaptable"
+msgstr "1.3 prispôsobiteľné"
+
+#: includes/wcag.php:290
+#: includes/wcag.php:325
+#: includes/wcag.php:812
+#: includes/wcag.php:846
+#: includes/wcag.php:880
+#: includes/wcag.php:1188
+#: includes/wcag.php:1205
+#: includes/wcag.php:1222
+#: includes/wcag.php:1273
+#: includes/wcag.php:1408
+#: includes/wcag.php:1478
+#: includes/wcag.php:1508
+#: includes/wcag.php:1628
+#: includes/wcag.php:1808
+#: includes/wcag.php:1843
+#: includes/wcag.php:1941
+msgid "People who rely on keyboard control"
+msgstr "Ľudia, ktorí sa spoliehajú na ovládanie klávesnicou"
+
+#: includes/wcag.php:291
+#: includes/wcag.php:326
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "Ľudia s kognitívnymi rozdielmi, ktorí prezerajú rozhrania pomocou prispôsobeného rozloženia"
+
+#: includes/wcag.php:318
+msgid "Meaningful Sequence"
+msgstr "Zmysluplné poradie"
+
+#: includes/wcag.php:319
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "Obsah je prezentovaný v zmysluplnom poradí, aby poradie čítania alebo navigácie nemiatlo používateľov pri používaní asistenčných technológií."
+
+#: includes/wcag.php:352
+msgid "Sensory Characteristics"
+msgstr "Zmyslové charakteristiky"
+
+#: includes/wcag.php:353
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "Pokyny sa nespoliehajú len na zmyslové charakteristiky, ako sú tvar, farba, veľkosť alebo zvuk, aby im každý mohol porozumieť."
+
+#: includes/wcag.php:385
+msgid "Orientation"
+msgstr "Orientácia"
+
+#: includes/wcag.php:386
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "Obsah neobmedzuje svoje zobrazenie a ovládanie na jedinú orientáciu displeja, ako je portrét alebo krajina, pokiaľ nie je konkrétna orientácia nevyhnutná."
+
+#: includes/wcag.php:392
+#: includes/wcag.php:1169
+#: includes/wcag.php:1307
+#: includes/wcag.php:1340
+#: includes/wcag.php:1374
+#: includes/wcag.php:1442
+#: includes/wcag.php:1460
+#: includes/wcag.php:1507
+#: includes/wcag.php:1611
+#: includes/wcag.php:1731
+#: includes/wcag.php:1751
+#: includes/wcag.php:1770
+#: includes/wcag.php:1789
+#: includes/wcag.php:1879
+#: includes/wcag.php:1910
+#: includes/wcag.php:1961
+#: includes/wcag.php:1978
+#: includes/wcag.php:2012
+#: includes/wcag.php:2046
+#: includes/wcag.php:2080
+#: includes/wcag.php:2114
+#: includes/wcag.php:2133
+#: includes/wcag.php:2152
+msgid "All people including those who do not identify as disabled"
+msgstr "Všetci ľudia vrátane tých, ktorí sa neidentifikujú ako zdravotne postihnutí"
+
+#: includes/wcag.php:412
+msgid "Identify Input Purpose"
+msgstr "Identifikácia účelu vstupu"
+
+#: includes/wcag.php:413
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "Účel vstupných polí, ktoré zhromažďujú informácie o používateľovi, môže byť programovo určený, takže prehliadače a asistenčné technológie môžu pomôcť používateľom pri ich vypĺňaní."
+
+#: includes/wcag.php:419
+#: includes/wcag.php:447
+#: includes/wcag.php:1170
+#: includes/wcag.php:1239
+#: includes/wcag.php:1375
+#: includes/wcag.php:1443
+#: includes/wcag.php:2170
+#: includes/wcag.php:2187
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "Ľudia s kognitívnymi poruchami alebo obmedzenou krátkodobou pamäťou alebo poruchami čítania"
+
+#: includes/wcag.php:420
+#: includes/wcag.php:813
+#: includes/wcag.php:847
+#: includes/wcag.php:881
+#: includes/wcag.php:926
+#: includes/wcag.php:994
+#: includes/wcag.php:1014
+#: includes/wcag.php:1033
+#: includes/wcag.php:1052
+#: includes/wcag.php:1136
+#: includes/wcag.php:1274
+#: includes/wcag.php:1409
+#: includes/wcag.php:1479
+#: includes/wcag.php:1509
+#: includes/wcag.php:1564
+#: includes/wcag.php:1809
+#: includes/wcag.php:1845
+#: includes/wcag.php:1943
+msgid "People with dexterity and mobility impairments"
+msgstr "Ľudia s poruchami zručnosti a mobility"
+
+#: includes/wcag.php:440
+msgid "Identify Purpose"
+msgstr "Identifikácia účelu"
+
+#: includes/wcag.php:441
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "Účel komponentov používateľského rozhrania, ikon a oblastí môže byť programovo určený, takže asistenčné technológie môžu prispôsobiť zážitok pre používateľov."
+
+#: includes/wcag.php:458
+msgid "Use of Color"
+msgstr "Použitie farieb"
+
+#: includes/wcag.php:459
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "Farba sa nepoužíva ako jediný spôsob na sprostredkovanie informácií, označenie akcie, vyvolanie odpovede alebo rozlíšenie vizuálneho prvku."
+
+#: includes/wcag.php:462
+#: includes/wcag.php:495
+#: includes/wcag.php:523
+#: includes/wcag.php:550
+#: includes/wcag.php:578
+#: includes/wcag.php:607
+#: includes/wcag.php:641
+#: includes/wcag.php:674
+#: includes/wcag.php:706
+#: includes/wcag.php:738
+#: includes/wcag.php:756
+#: includes/wcag.php:773
+#: includes/wcag.php:791
+msgid "1.4 Distinguishable"
+msgstr "1.4 rozlíšiteľné"
+
+#: includes/wcag.php:466
+msgid "Color blind people"
+msgstr "Ľudia s farbosleposťou"
+
+#: includes/wcag.php:491
+msgid "Reflow"
+msgstr "Prispôsobenie toku"
+
+#: includes/wcag.php:492
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "Obsah je možné zobraziť bez posúvania vo viac ako jednom smere, takže používatelia ho môžu ľahko čítať a interagovať s ním na malých obrazovkách alebo pri priblížení."
+
+#: includes/wcag.php:498
+#: includes/wcag.php:1645
+msgid "People on mobile devices"
+msgstr "Ľudia na mobilných zariadeniach"
+
+#: includes/wcag.php:499
+#: includes/wcag.php:526
+#: includes/wcag.php:554
+#: includes/wcag.php:645
+#: includes/wcag.php:677
+#: includes/wcag.php:742
+#: includes/wcag.php:777
+#: includes/wcag.php:1275
+#: includes/wcag.php:1410
+#: includes/wcag.php:1593
+#: includes/wcag.php:1647
+msgid "People with low vision"
+msgstr "Ľudia so zrakovým postihnutím"
+
+#: includes/wcag.php:519
+msgid "Non-text Contrast"
+msgstr "Kontrast netextových prvkov"
+
+#: includes/wcag.php:520
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "Vizuálne informácie potrebné na identifikáciu komponentov používateľského rozhrania a grafických objektov majú kontrastný pomer aspoň 3:1 voči susedným farbám."
+
+#: includes/wcag.php:546
+msgid "Text Spacing"
+msgstr "Rozostupy textu"
+
+#: includes/wcag.php:547
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "Používatelia môžu prepísať rozostupy textu na zlepšenie čitateľnosti bez straty obsahu alebo funkčnosti."
+
+#: includes/wcag.php:553
+#: includes/wcag.php:776
+#: includes/wcag.php:1733
+#: includes/wcag.php:1753
+#: includes/wcag.php:1772
+#: includes/wcag.php:1791
+#: includes/wcag.php:1844
+#: includes/wcag.php:1880
+#: includes/wcag.php:1911
+#: includes/wcag.php:1942
+#: includes/wcag.php:1979
+#: includes/wcag.php:2013
+#: includes/wcag.php:2047
+#: includes/wcag.php:2081
+#: includes/wcag.php:2115
+#: includes/wcag.php:2134
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "Ľudia s kognitívnymi poruchami a poruchami čítania"
+
+#: includes/wcag.php:574
+msgid "Content on Hover or Focus"
+msgstr "Obsah pri prejdení myšou alebo zameraní"
+
+#: includes/wcag.php:575
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "Ak sa pri prejdení myšou alebo zameraní objaví ďalší obsah, používatelia ho môžu odmietnuť, presunúť nad neho kurzor a zostane viditeľný, kým ho neodmietnu alebo nepresunú zameranie."
+
+#: includes/wcag.php:582
+#: includes/wcag.php:960
+#: includes/wcag.php:1341
+msgid "People with cognitive disabilities"
+msgstr "Ľudia s kognitívnymi poruchami"
+
+#: includes/wcag.php:583
+#: includes/wcag.php:1646
+msgid "People with dexterity impairments"
+msgstr "Ľudia s poruchami zručnosti"
+
+#: includes/wcag.php:603
+msgid "Audio Control"
+msgstr "Ovládanie zvuku"
+
+#: includes/wcag.php:604
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "Ak sa zvuk prehráva automaticky dlhšie ako 3 sekundy, používatelia musia mať možnosť pozastaviť, zastaviť alebo ovládať hlasitosť nezávisle od systémovej hlasitosti."
+
+#: includes/wcag.php:612
+#: includes/wcag.php:959
+#: includes/wcag.php:1013
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "Ľudia s ADD alebo ťažkosťami sústrediť sa na obsah bez rozptýlenia"
+
+#: includes/wcag.php:637
+msgid "Contrast (Minimum)"
+msgstr "Kontrast (minimálny)"
+
+#: includes/wcag.php:638
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "Text a obrázky textu musia mať kontrastný pomer aspoň 4,5:1, s výnimkou veľkého textu, náhodného textu alebo logotypov."
+
+#: includes/wcag.php:644
+#: includes/wcag.php:741
+msgid "People on mobile devices in a sunny environment"
+msgstr "Ľudia na mobilných zariadeniach v slnečnom prostredí"
+
+#: includes/wcag.php:670
+msgid "Resize text"
+msgstr "Zmeniť veľkosť textu"
+
+#: includes/wcag.php:671
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "Text je možné zväčšiť až o 200 % bez straty obsahu alebo funkčnosti, takže ľudia so slabým zrakom ho môžu ľahšie čítať."
+
+#: includes/wcag.php:702
+msgid "Images of Text"
+msgstr "Obrázky textu"
+
+#: includes/wcag.php:703
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "Ak je možné dosiahnuť rovnakú vizuálnu prezentáciu len pomocou textu, nepoužívaj obrázky textu, okrem dekoratívnych alebo nevyhnutných účelov."
+
+#: includes/wcag.php:734
+msgid "Contrast (Enhanced)"
+msgstr "Kontrast (vylepšený)"
+
+#: includes/wcag.php:735
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "Text a obrázky textu musia mať kontrastný pomer aspoň 7:1, s výnimkou veľkého textu, náhodného textu alebo logotypov."
+
+#: includes/wcag.php:752
+msgid "Low or No Background Audio"
+msgstr "Nízke alebo žiadne zvuky na pozadí"
+
+#: includes/wcag.php:753
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "Pri vopred nahranom obsahu len so zvukom sú zvuky na pozadí buď nízke, dajú sa vypnúť, alebo nie sú prítomné, takže reč je ľahšie zrozumiteľná."
+
+#: includes/wcag.php:769
+msgid "Visual Presentation"
+msgstr "Vizuálna prezentácia"
+
+#: includes/wcag.php:770
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "Používatelia si môžu vybrať, ako sa zobrazujú bloky textu, napríklad farby popredia a pozadia, šírku a riadkovanie, aby bolo čítanie jednoduchšie."
+
+#: includes/wcag.php:787
+msgid "Images of Text (No Exception)"
+msgstr "Obrázky textu (bez výnimky)"
+
+#: includes/wcag.php:788
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "Obrázky textu sa používajú len na čistú dekoráciu alebo tam, kde je konkrétna prezentácia textu nevyhnutná, bez výnimiek."
+
+#: includes/wcag.php:804
+msgid "Keyboard"
+msgstr "Klávesnica"
+
+#: includes/wcag.php:805
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "Všetky funkcie sú dostupné pomocou klávesnice, takže používatelia, ktorí nemôžu používať myš, môžu stále ovládať obsah."
+
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:895
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 prístupné cez klávesnicu"
+
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:896
 #: includes/wcag.php:923
 #: includes/wcag.php:957
 #: includes/wcag.php:991
-#: includes/wcag.php:1011
+#: includes/wcag.php:1010
 #: includes/wcag.php:1030
 #: includes/wcag.php:1049
-#: includes/wcag.php:1133
+#: includes/wcag.php:1068
+#: includes/wcag.php:1100
+#: includes/wcag.php:1117
+#: includes/wcag.php:1134
 #: includes/wcag.php:1167
+#: includes/wcag.php:1186
+#: includes/wcag.php:1203
+#: includes/wcag.php:1220
 #: includes/wcag.php:1237
-#: includes/wcag.php:1304
+#: includes/wcag.php:1271
+#: includes/wcag.php:1305
 #: includes/wcag.php:1338
 #: includes/wcag.php:1372
-#: includes/wcag.php:1457
+#: includes/wcag.php:1406
+#: includes/wcag.php:1440
+#: includes/wcag.php:1458
 #: includes/wcag.php:1476
-#: includes/wcag.php:1506
+#: includes/wcag.php:1505
+#: includes/wcag.php:1535
+#: includes/wcag.php:1562
+#: includes/wcag.php:1589
+#: includes/wcag.php:1609
+#: includes/wcag.php:1626
+#: includes/wcag.php:1643
+msgid "Operable"
+msgstr "Ovládateľné"
+
+#: includes/wcag.php:838
+msgid "No Keyboard Trap"
+msgstr "Žiadna pasca klávesnice"
+
+#: includes/wcag.php:839
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "Používatelia klávesnice sa môžu pohybovať ku všetkým častiam obsahu a od nich bez toho, aby uviazli."
+
+#: includes/wcag.php:872
+msgid "Keyboard (No Exception)"
+msgstr "Klávesnica (bez výnimky)"
+
+#: includes/wcag.php:873
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "Všetky funkcie sú dostupné cez rozhranie klávesnice, bez výnimiek."
+
+#: includes/wcag.php:891
+msgid "Character Key Shortcuts"
+msgstr "Klávesové skratky znakov"
+
+#: includes/wcag.php:892
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "Ak klávesová skratka používa len písmená, čísla alebo interpunkciu, používatelia ju môžu vypnúť, zmeniť, alebo funguje len vtedy, keď má prvok fokus."
+
+#: includes/wcag.php:918
+msgid "Timing Adjustable"
+msgstr "Nastaviteľný časový limit"
+
+#: includes/wcag.php:919
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "Ak je nastavený časový limit, používatelia ho môžu vypnúť, upraviť alebo predĺžiť, pokiaľ časový limit nie je nevyhnutný."
+
+#: includes/wcag.php:922
+#: includes/wcag.php:956
+#: includes/wcag.php:990
+#: includes/wcag.php:1009
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+msgid "2.2 Enough Time"
+msgstr "2.2 dostatok času"
+
+#: includes/wcag.php:925
+#: includes/wcag.php:993
+#: includes/wcag.php:1012
+#: includes/wcag.php:1032
+#: includes/wcag.php:1051
+msgid "People who need more time to react"
+msgstr "Ľudia, ktorí potrebujú viac času na reakciu"
+
+#: includes/wcag.php:952
+msgid "Pause, Stop, Hide"
+msgstr "Pozastaviť, zastaviť, skryť"
+
+#: includes/wcag.php:953
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "Používatelia môžu pozastaviť, zastaviť alebo skryť pohybujúce sa, blikajúce, posúvajúce sa alebo automaticky sa aktualizujúce informácie, ktoré sa spustia automaticky a trvajú dlhšie ako päť sekúnd."
+
+#: includes/wcag.php:986
+msgid "No Timing"
+msgstr "Žiadny časový limit"
+
+#: includes/wcag.php:987
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "Ak prvok vyžaduje odpoveď v konkrétnom čase, používatelia môžu vypnúť časovač, upraviť časový limit, alebo časovanie nie je nevyhnutné."
+
+#: includes/wcag.php:1005
+msgid "Interruptions"
+msgstr "Prerušenia"
+
+#: includes/wcag.php:1006
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "Používatelia nie sú rušení neočakávanými zmenami obsahu a môžu ovládať prerušenia, ako napríklad automaticky sa aktualizujúci obsah."
+
+#: includes/wcag.php:1025
+msgid "Re-authenticating"
+msgstr "Opätovné overenie"
+
+#: includes/wcag.php:1026
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "Ak sú používatelia odhlásení z dôvodu nečinnosti, sú upozornení pred vypršaním relácie a môžu pokračovať v relácii bez straty údajov."
+
+#: includes/wcag.php:1044
+msgid "Timeouts"
+msgstr "Časové limity"
+
+#: includes/wcag.php:1045
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "Používatelia sú upozornení na blížiace sa časové limity a môžu požiadať o viac času alebo uložiť svoju prácu pred vypršaním času."
+
+#: includes/wcag.php:1063
+msgid "Three Flashes or Below Threshold"
+msgstr "Tri záblesky alebo pod prahovou hodnotou"
+
+#: includes/wcag.php:1064
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "Obsah nebliká viac ako trikrát za sekundu, čím sa znižuje riziko záchvatov pre ľudí s fotosenzitívnou epilepsiou."
+
+#: includes/wcag.php:1067
+#: includes/wcag.php:1099
+#: includes/wcag.php:1116
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 záchvaty a fyzické reakcie"
+
+#: includes/wcag.php:1070
+#: includes/wcag.php:1102
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "Ľudia s fotosenzitívnou epilepsiou a inými fotosenzitívnymi záchvatovými poruchami"
+
+#: includes/wcag.php:1095
+msgid "Three Flashes"
+msgstr "Tri záblesky"
+
+#: includes/wcag.php:1096
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "Žiadna časť obsahu nebliká viac ako trikrát za sekundu, bez výnimiek."
+
+#: includes/wcag.php:1112
+msgid "Animation from Interactions"
+msgstr "Animácia z interakcií"
+
+#: includes/wcag.php:1113
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "Používatelia môžu vypnúť nepodstatné animácie spustené interakciami, čo pomáha tým, ktorí sú citliví na pohyb."
+
+#: includes/wcag.php:1119
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "Ľudia s vestibulárnym (vnútorné ucho) ochorením, kde pohyb môže spôsobiť závrate/bolesti hlavy a nevoľnosť"
+
+#: includes/wcag.php:1129
+msgid "Bypass Blocks"
+msgstr "Preskočenie blokov"
+
+#: includes/wcag.php:1130
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "Je k dispozícii spôsob, ako preskočiť opakujúce sa bloky obsahu, ako sú navigačné menu, aby sa používatelia mohli rýchlo dostať k hlavnému obsahu."
+
+#: includes/wcag.php:1133
+#: includes/wcag.php:1166
+#: includes/wcag.php:1185
+#: includes/wcag.php:1202
+#: includes/wcag.php:1219
+#: includes/wcag.php:1236
+#: includes/wcag.php:1270
+#: includes/wcag.php:1304
+#: includes/wcag.php:1337
+#: includes/wcag.php:1371
+#: includes/wcag.php:1405
+#: includes/wcag.php:1439
+#: includes/wcag.php:1457
+msgid "2.4 Navigable"
+msgstr "2.4 navigovateľné"
+
+#: includes/wcag.php:1162
+msgid "Section Headings"
+msgstr "Nadpisy sekcií"
+
+#: includes/wcag.php:1163
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "Na organizáciu obsahu sa používajú nadpisy sekcií, čo uľahčuje jeho pochopenie a navigáciu."
+
+#: includes/wcag.php:1181
+msgid "Focus Not Obscured (Minimum)"
+msgstr "Fokus nie je zakrytý (minimum)"
+
+#: includes/wcag.php:1182
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "Keď prvok získa fokus klávesnice, je aspoň čiastočne viditeľný a nie je skrytý iným obsahom."
+
+#: includes/wcag.php:1198
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "Fokus nie je zakrytý (vylepšené)"
+
+#: includes/wcag.php:1199
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "Keď prvok získa fokus klávesnice, je úplne viditeľný a nie je skrytý iným obsahom."
+
+#: includes/wcag.php:1215
+msgid "Focus Appearance"
+msgstr "Vzhľad fokusu"
+
+#: includes/wcag.php:1216
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "Viditeľný indikátor fokusu pre interaktívne prvky je jasne viditeľný a spĺňa minimálne požiadavky na veľkosť a kontrast."
+
+#: includes/wcag.php:1232
+msgid "Page Titled"
+msgstr "Názov stránky"
+
+#: includes/wcag.php:1233
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "Webové stránky majú popisné názvy, ktoré pomáhajú používateľom pochopiť tému alebo účel stránky."
+
+#: includes/wcag.php:1240
+#: includes/wcag.php:2153
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "Ľudia s ťažkým telesným postihnutím, ktorí sa pri navigácii na webe spoliehajú na zvuk"
+
+#: includes/wcag.php:1266
+msgid "Focus Order"
+msgstr "Poradie zamerania"
+
+#: includes/wcag.php:1267
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "Pri navigácii pomocou klávesnice sa zameranie presúva v logickom poradí, ktoré zachováva význam a ovládateľnosť."
+
+#: includes/wcag.php:1300
+msgid "Link Purpose (In Context)"
+msgstr "Účel odkazu (v kontexte)"
+
+#: includes/wcag.php:1301
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "Účel každého odkazu je jasný z textu odkazu a kontextu, v ktorom sa nachádza, takže používatelia vedia, kam ich odkaz zavedie."
+
+#: includes/wcag.php:1333
+msgid "Multiple Ways"
+msgstr "Viacero spôsobov"
+
+#: includes/wcag.php:1334
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "K dispozícii je viac ako jeden spôsob, ako nájsť webovú stránku v rámci súboru webových stránok, okrem prípadov, keď je webová stránka výsledkom vyhľadávania."
+
+#: includes/wcag.php:1367
+msgid "Headings and Labels"
+msgstr "Nadpisy a označenia"
+
+#: includes/wcag.php:1368
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "Nadpisy a označenia popisujú tému alebo účel obsahu a nie sú nejednoznačné ani zavádzajúce."
+
+#: includes/wcag.php:1401
+msgid "Focus Visible"
+msgstr "Viditeľné zameranie"
+
+#: includes/wcag.php:1402
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "Je viditeľné, keď má prvok zameranie klávesnice, takže používatelia navigujúci pomocou klávesnice vidia, ktorý prvok je aktívny."
+
+#: includes/wcag.php:1435
+msgid "Location"
+msgstr "Umiestnenie"
+
+#: includes/wcag.php:1436
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "Používatelia sú informovaní o svojom umiestnení v rámci súboru webových stránok, napríklad prostredníctvom navigácie pomocou drobčekovej navigácie alebo jasného názvu stránky."
+
+#: includes/wcag.php:1453
+msgid "Link Purpose (Link Only)"
+msgstr "Účel odkazu (len odkaz)"
+
+#: includes/wcag.php:1454
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "Účel každého odkazu je možné určiť len z textu odkazu bez potreby ďalšieho kontextu."
+
+#: includes/wcag.php:1471
+msgid "Pointer Gestures"
+msgstr "Gestá ukazovateľa"
+
+#: includes/wcag.php:1472
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "Pre funkcie, ktoré je možné ovládať gestom ukazovateľa, platí aspoň jedno z nasledujúcich: gesto je možné vykonať jednoduchým ťuknutím, gesto je možné vykonať jedným prstom alebo gesto je možné vykonať hlasovým príkazom."
+
+#: includes/wcag.php:1475
+#: includes/wcag.php:1504
+#: includes/wcag.php:1534
+#: includes/wcag.php:1561
+#: includes/wcag.php:1588
+#: includes/wcag.php:1608
+#: includes/wcag.php:1625
+#: includes/wcag.php:1642
+msgid "2.5 Input Modalities"
+msgstr "2.5 vstupné modality"
+
+#: includes/wcag.php:1500
+msgid "Pointer Cancellation"
+msgstr "Zrušenie ukazovateľa"
+
+#: includes/wcag.php:1501
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "Pri akciách, ktoré vyžadujú gesto ukazovateľa, môže používateľ akciu zrušiť presunutím ukazovateľa pred dokončením akcie."
+
+#: includes/wcag.php:1530
+msgid "Label in Name"
+msgstr "Označenie v názve"
+
+#: includes/wcag.php:1531
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "Názov komponentov používateľského rozhrania obsahuje textové označenia, ktoré popisujú ich účel, takže asistenčné technológie môžu tieto informácie sprostredkovať používateľom."
+
+#: includes/wcag.php:1557
+msgid "Motion Actuation"
+msgstr "Aktivácia pohybom"
+
+#: includes/wcag.php:1558
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "Funkcie, ktoré je možné ovládať gestom pohybu, je možné ovládať aj jednoduchým dotykom alebo kliknutím, takže používatelia, ktorí nemôžu vykonávať gestá pohybu, môžu tieto funkcie stále používať."
+
+#: includes/wcag.php:1584
+msgid "Target Size"
+msgstr "Veľkosť cieľa"
+
+#: includes/wcag.php:1585
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "Veľkosť cieľa pre gestá ukazovateľa je dostatočne veľká na to, aby sa dala ľahko aktivovať, a to aj používateľmi s obmedzenou zručnosťou."
+
+#: includes/wcag.php:1591
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "Ľudia používajúci mobilné zariadenie v prostredí, kde sú vystavení otrasom (napríklad vo verejnej doprave)"
+
+#: includes/wcag.php:1592
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "Ľudia s poruchami zručnosti a mobility vrátane trasenia rúk"
+
+#: includes/wcag.php:1594
+#: includes/wcag.php:1648
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "Ľudia s veľkými prstami alebo tí, ktorí ovládajú zariadenie len časťou prsta alebo kĺbom"
+
+#: includes/wcag.php:1604
+msgid "Concurrent Input Mechanisms"
+msgstr "Súbežné vstupné mechanizmy"
+
+#: includes/wcag.php:1605
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "Ak vstupný mechanizmus vyžaduje špecifickú polohu alebo pohyb, je k dispozícii alternatívny vstupný mechanizmus, ktorý nemá rovnakú požiadavku."
+
+#: includes/wcag.php:1621
+msgid "Dragging Movements"
+msgstr "Pohyby ťahania"
+
+#: includes/wcag.php:1622
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "Pri funkciách, ktoré vyžadujú pohyby ťahania, je možné akciu dokončiť aj jednoduchšími úkonmi, takže používatelia s obmedzenou zručnosťou môžu tieto funkcie stále používať."
+
+#: includes/wcag.php:1638
+msgid "Target Size (Minimum)"
+msgstr "Veľkosť cieľa (minimum)"
+
+#: includes/wcag.php:1639
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "Veľkosť cieľa pre akýkoľvek interaktívny prvok je aspoň 44x44 pixelov, takže ho môžu ľahko aktivovať používatelia s rôznymi schopnosťami."
+
+#: includes/wcag.php:1658
+msgid "Language of Page"
+msgstr "Jazyk stránky"
+
+#: includes/wcag.php:1659
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "Predvolený jazyk každej webovej stránky je programovo určený, takže asistenčné technológie môžu používať správne jazykové nastavenia."
+
 #: includes/wcag.php:1662
 #: includes/wcag.php:1696
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "3.1 Readable"
+msgstr "3.1 čitateľné"
+
+#: includes/wcag.php:1663
+#: includes/wcag.php:1697
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
 #: includes/wcag.php:1806
-#: includes/wcag.php:1842
+#: includes/wcag.php:1841
 #: includes/wcag.php:1877
 #: includes/wcag.php:1908
-#: includes/wcag.php:1940
+#: includes/wcag.php:1939
+#: includes/wcag.php:1959
 #: includes/wcag.php:1976
 #: includes/wcag.php:2010
 #: includes/wcag.php:2044
 #: includes/wcag.php:2078
 #: includes/wcag.php:2112
 #: includes/wcag.php:2131
-#: includes/wcag.php:2202
-#: includes/wcag.php:2236
-#: includes/wcag.php:2267
-msgid "Screen reader users (blind/low vision and neurodivergent people)"
-msgstr "Používatelia čítačiek obrazovky (nevidiaci/slabozrakí a neurodivergentní ľudia)"
+#: includes/wcag.php:2150
+#: includes/wcag.php:2168
+#: includes/wcag.php:2185
+msgid "Understandable"
+msgstr "Zrozumiteľné"
 
-#: includes/wcag.php:44
-msgid "Prerecorded Audio-only and Video-only"
-msgstr "Vopred nahraný len zvuk a len video"
+#: includes/wcag.php:1692
+msgid "Language of Parts"
+msgstr "Jazyk častí"
 
-#: includes/wcag.php:45
-msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
-msgstr "Pre vopred nahraný obsah, ktorý je len zvukový alebo len video, musí byť poskytnutá textová alternatíva, ktorá prezentuje ekvivalentné informácie. Tým sa zabezpečí, že používatelia, ktorí nemôžu počuť alebo vidieť médiá, môžu stále pristupovať k ich obsahu prostredníctvom textu."
+#: includes/wcag.php:1693
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "Jazyk každej časti obsahu je možné programovo určiť, takže asistenčné technológie môžu poskytnúť vhodnú jazykovú podporu."
 
-#: includes/wcag.php:48
-#: includes/wcag.php:81
-#: includes/wcag.php:114
-#: includes/wcag.php:147
-#: includes/wcag.php:180
-#: includes/wcag.php:212
-#: includes/wcag.php:229
-#: includes/wcag.php:246
-#: includes/wcag.php:265
-msgid "1.2 Time-based Media"
-msgstr "1.2 časovo založené médiá"
+#: includes/wcag.php:1724
+msgid "Unusual Words"
+msgstr "Neobvyklé slová"
 
-#: includes/wcag.php:51
-#: includes/wcag.php:84
-#: includes/wcag.php:117
-#: includes/wcag.php:150
-#: includes/wcag.php:215
-#: includes/wcag.php:249
-#: includes/wcag.php:268
-#: includes/wcag.php:356
-#: includes/wcag.php:607
-#: includes/wcag.php:755
-msgid "Deaf and hard of hearing people"
-msgstr "Nepočujúci a nedoslýchaví ľudia"
+#: includes/wcag.php:1725
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "Neobvyklé alebo zriedkavé slová sú definované alebo vysvetlené, takže používatelia s kognitívnymi poruchami alebo tí, ktorí neovládajú jazyk, im môžu porozumieť."
 
-#: includes/wcag.php:77
-msgid "Captions (Prerecorded)"
-msgstr "Titulky (vopred nahrané)"
+#: includes/wcag.php:1744
+msgid "Abbreviations"
+msgstr "Skratky"
 
-#: includes/wcag.php:78
-msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
-msgstr "Titulky musia byť poskytnuté pre všetok vopred nahraný zvukový obsah v synchronizovaných médiách - ako sú videá, kde zvuk a vizuály hrajú spolu - aby používatelia, ktorí sú nepočujúci alebo nedoslýchaví, mohli pristupovať k hovoreným informáciám a dôležitým zvukom."
+#: includes/wcag.php:1745
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "Skratky a akronymy sú definované pri ich prvom použití, takže používatelia môžu pochopiť ich význam."
 
-#: includes/wcag.php:110
-msgid "Audio Description or Media Alternative (Prerecorded)"
-msgstr "Zvukový popis alebo alternatíva médií (vopred nahraná)"
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Úroveň čítania"
 
-#: includes/wcag.php:111
-msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
-msgstr "Pre vopred nahraný video obsah so zvukom (synchronizované médiá) musí byť poskytnutý zvukový popis - alebo písomný prepis, ktorý zahŕňa vizuálne detaily - aby sa zabezpečilo, že používatelia, ktorí sú nevidiaci alebo majú slabý zrak, môžu porozumieť dôležitým vizuálnym informáciám, ktoré nie sú vyslovené."
+#: includes/wcag.php:1764
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "Obsah je napísaný jasným a jednoduchým jazykom a nevyžaduje špecializované znalosti na jeho pochopenie."
 
-#: includes/wcag.php:143
-msgid "Captions (Live)"
-msgstr "Titulky (naživo)"
+#: includes/wcag.php:1782
+msgid "Pronunciation"
+msgstr "Výslovnosť"
 
-#: includes/wcag.php:144
-msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
-msgstr "Pre všetok živý video obsah, ktorý zahŕňa zvuk, musia byť poskytnuté titulky v reálnom čase, aby používatelia, ktorí sú nepočujúci alebo nedoslýchaví, mohli pristupovať k hovoreným informáciám, keď sa dejú."
+#: includes/wcag.php:1783
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "Pre neobvyklé alebo ťažké slová je k dispozícii sprievodca výslovnosťou, takže používatelia vedia, ako ich vysloviť."
 
-#: includes/wcag.php:176
-msgid "Audio Description (Prerecorded)"
-msgstr "Zvukový popis (vopred nahratý)"
+#: includes/wcag.php:1801
+msgid "On Focus"
+msgstr "Pri zameraní"
 
-#: includes/wcag.php:177
-msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
-msgstr "Pre vopred nahraté video so zvukom musí byť poskytnutý zvukový popis dôležitého vizuálneho obsahu, čo umožňuje nevidiacim používateľom alebo používateľom so zrakovým postihnutím porozumieť vizuálnym informáciám, ktoré nie sú opísané v hlavnom zvuku."
+#: includes/wcag.php:1802
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "Keď prvok získa zameranie, nespôsobí to neočakávané zmeny, ktoré by mohli používateľa zmiasť, a je jasné, ako s prvkom interagovať."
 
-#: includes/wcag.php:183
-#: includes/wcag.php:232
-#: includes/wcag.php:355
-#: includes/wcag.php:461
-#: includes/wcag.php:577
-#: includes/wcag.php:606
-#: includes/wcag.php:705
-#: includes/wcag.php:790
-#: includes/wcag.php:807
-#: includes/wcag.php:841
-#: includes/wcag.php:875
-msgid "Blind and low vision people"
-msgstr "Nevidiaci ľudia a ľudia so zrakovým postihnutím"
-
-#: includes/wcag.php:208
-msgid "Sign Language (Prerecorded)"
-msgstr "Posunková reč (vopred nahratá)"
-
-#: includes/wcag.php:209
-msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
-msgstr "Pre všetok vopred nahratý zvukový obsah v synchronizovaných médiách musí byť poskytnutý preklad do posunkovej reči, aby sa zabezpečilo, že nepočujúci používatelia, ktorí používajú posunkovú reč, môžu plne porozumieť hovorenému obsahu."
-
-#: includes/wcag.php:225
-msgid "Extended Audio Description (Prerecorded)"
-msgstr "Rozšírený zvukový popis (vopred nahratý)"
-
-#: includes/wcag.php:226
-msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
-msgstr "Pre všetok vopred nahratý multimediálny obsah musia byť v prípade potreby poskytnuté rozšírené zvukové popisy - čo znamená, že video je pozastavené, aby sa vložili dodatočné popisy - aby nevidiaci používatelia alebo používatelia so zrakovým postihnutím mohli porozumieť dôležitým vizuálnym detailom, ktoré nemožno opísať počas prirodzených prestávok vo zvuku."
-
-#: includes/wcag.php:242
-msgid "Media Alternative (Prerecorded)"
-msgstr "Alternatíva médií (vopred nahratá)"
-
-#: includes/wcag.php:243
-msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
-msgstr "Pre vopred nahraté synchronizované médiá je poskytnutá úplná textová alternatíva (napríklad prepis), ktorá poskytuje všetky informácie z video aj zvukovej stopy, takže používatelia, ktorí nemôžu vidieť alebo počuť obsah, k nemu stále môžu pristupovať."
-
-#: includes/wcag.php:250
-msgid "Deaf-blind people"
-msgstr "Hluchoslepí ľudia"
-
-#: includes/wcag.php:261
-msgid "Audio-only (Live)"
-msgstr "Iba zvuk (naživo)"
-
-#: includes/wcag.php:262
-msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
-msgstr "Pre živý obsah, ktorý je iba zvukový, sa v reálnom čase poskytuje textová alternatíva, aby ľudia, ktorí nemôžu počuť zvuk, mali stále prístup k informáciám."
-
-#: includes/wcag.php:279
-msgid "Info and Relationships"
-msgstr "Informácie a vzťahy"
-
-#: includes/wcag.php:280
-msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
-msgstr "Informácie, štruktúra a vzťahy v obsahu sú programovo určené alebo dostupné v texte, takže asistenčné technológie ich môžu prezentovať používateľom."
-
-#: includes/wcag.php:283
-#: includes/wcag.php:318
-#: includes/wcag.php:352
-#: includes/wcag.php:385
-#: includes/wcag.php:412
-#: includes/wcag.php:440
-msgid "1.3 Adaptable"
-msgstr "1.3 prispôsobiteľné"
-
-#: includes/wcag.php:286
-#: includes/wcag.php:321
-#: includes/wcag.php:808
-#: includes/wcag.php:842
-#: includes/wcag.php:876
-#: includes/wcag.php:1184
-#: includes/wcag.php:1201
-#: includes/wcag.php:1218
-#: includes/wcag.php:1269
-#: includes/wcag.php:1404
-#: includes/wcag.php:1474
-#: includes/wcag.php:1504
-#: includes/wcag.php:1624
-#: includes/wcag.php:1804
-#: includes/wcag.php:1839
-#: includes/wcag.php:1937
-msgid "People who rely on keyboard control"
-msgstr "Ľudia, ktorí sa spoliehajú na ovládanie klávesnicou"
-
-#: includes/wcag.php:287
-#: includes/wcag.php:322
-msgid "People with cognitive differences who view interfaces using an adapted layout"
-msgstr "Ľudia s kognitívnymi rozdielmi, ktorí prezerajú rozhrania pomocou prispôsobeného rozloženia"
-
-#: includes/wcag.php:314
-msgid "Meaningful Sequence"
-msgstr "Zmysluplné poradie"
-
-#: includes/wcag.php:315
-msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
-msgstr "Obsah je prezentovaný v zmysluplnom poradí, aby poradie čítania alebo navigácie nemiatlo používateľov pri používaní asistenčných technológií."
-
-#: includes/wcag.php:348
-msgid "Sensory Characteristics"
-msgstr "Zmyslové charakteristiky"
-
-#: includes/wcag.php:349
-msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
-msgstr "Pokyny sa nespoliehajú len na zmyslové charakteristiky, ako sú tvar, farba, veľkosť alebo zvuk, aby im každý mohol porozumieť."
-
-#: includes/wcag.php:381
-msgid "Orientation"
-msgstr "Orientácia"
-
-#: includes/wcag.php:382
-msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
-msgstr "Obsah neobmedzuje svoje zobrazenie a ovládanie na jedinú orientáciu displeja, ako je portrét alebo krajina, pokiaľ nie je konkrétna orientácia nevyhnutná."
-
-#: includes/wcag.php:388
-#: includes/wcag.php:1165
-#: includes/wcag.php:1303
-#: includes/wcag.php:1336
-#: includes/wcag.php:1370
-#: includes/wcag.php:1438
-#: includes/wcag.php:1456
-#: includes/wcag.php:1503
-#: includes/wcag.php:1607
-#: includes/wcag.php:1727
-#: includes/wcag.php:1747
-#: includes/wcag.php:1766
-#: includes/wcag.php:1785
-#: includes/wcag.php:1875
-#: includes/wcag.php:1906
-#: includes/wcag.php:1957
-#: includes/wcag.php:1974
-#: includes/wcag.php:2008
-#: includes/wcag.php:2042
-#: includes/wcag.php:2076
-#: includes/wcag.php:2110
-#: includes/wcag.php:2129
-#: includes/wcag.php:2148
-msgid "All people including those who do not identify as disabled"
-msgstr "Všetci ľudia vrátane tých, ktorí sa neidentifikujú ako zdravotne postihnutí"
-
-#: includes/wcag.php:408
-msgid "Identify Input Purpose"
-msgstr "Identifikácia účelu vstupu"
-
-#: includes/wcag.php:409
-msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
-msgstr "Účel vstupných polí, ktoré zhromažďujú informácie o používateľovi, môže byť programovo určený, takže prehliadače a asistenčné technológie môžu pomôcť používateľom pri ich vypĺňaní."
-
-#: includes/wcag.php:415
-#: includes/wcag.php:443
-#: includes/wcag.php:1166
-#: includes/wcag.php:1235
-#: includes/wcag.php:1371
-#: includes/wcag.php:1439
-#: includes/wcag.php:2166
-#: includes/wcag.php:2183
-msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
-msgstr "Ľudia s kognitívnymi poruchami alebo obmedzenou krátkodobou pamäťou alebo poruchami čítania"
-
-#: includes/wcag.php:416
-#: includes/wcag.php:809
-#: includes/wcag.php:843
-#: includes/wcag.php:877
-#: includes/wcag.php:922
-#: includes/wcag.php:990
-#: includes/wcag.php:1010
-#: includes/wcag.php:1029
-#: includes/wcag.php:1048
-#: includes/wcag.php:1132
-#: includes/wcag.php:1270
-#: includes/wcag.php:1405
-#: includes/wcag.php:1475
-#: includes/wcag.php:1505
-#: includes/wcag.php:1560
 #: includes/wcag.php:1805
-#: includes/wcag.php:1841
-#: includes/wcag.php:1939
-msgid "People with dexterity and mobility impairments"
-msgstr "Ľudia s poruchami zručnosti a mobility"
-
-#: includes/wcag.php:436
-msgid "Identify Purpose"
-msgstr "Identifikácia účelu"
-
-#: includes/wcag.php:437
-msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
-msgstr "Účel komponentov používateľského rozhrania, ikon a oblastí môže byť programovo určený, takže asistenčné technológie môžu prispôsobiť zážitok pre používateľov."
-
-#: includes/wcag.php:454
-msgid "Use of Color"
-msgstr "Použitie farieb"
-
-#: includes/wcag.php:455
-msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
-msgstr "Farba sa nepoužíva ako jediný spôsob na sprostredkovanie informácií, označenie akcie, vyvolanie odpovede alebo rozlíšenie vizuálneho prvku."
-
-#: includes/wcag.php:458
-#: includes/wcag.php:491
-#: includes/wcag.php:519
-#: includes/wcag.php:546
-#: includes/wcag.php:574
-#: includes/wcag.php:603
-#: includes/wcag.php:637
-#: includes/wcag.php:670
-#: includes/wcag.php:702
-#: includes/wcag.php:734
-#: includes/wcag.php:752
-#: includes/wcag.php:769
-#: includes/wcag.php:787
-msgid "1.4 Distinguishable"
-msgstr "1.4 rozlíšiteľné"
-
-#: includes/wcag.php:462
-msgid "Color blind people"
-msgstr "Ľudia s farbosleposťou"
-
-#: includes/wcag.php:487
-msgid "Reflow"
-msgstr "Prispôsobenie toku"
-
-#: includes/wcag.php:488
-msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
-msgstr "Obsah je možné zobraziť bez posúvania vo viac ako jednom smere, takže používatelia ho môžu ľahko čítať a interagovať s ním na malých obrazovkách alebo pri priblížení."
-
-#: includes/wcag.php:494
-#: includes/wcag.php:1641
-msgid "People on mobile devices"
-msgstr "Ľudia na mobilných zariadeniach"
-
-#: includes/wcag.php:495
-#: includes/wcag.php:522
-#: includes/wcag.php:550
-#: includes/wcag.php:641
-#: includes/wcag.php:673
-#: includes/wcag.php:738
-#: includes/wcag.php:773
-#: includes/wcag.php:1271
-#: includes/wcag.php:1406
-#: includes/wcag.php:1589
-#: includes/wcag.php:1643
-msgid "People with low vision"
-msgstr "Ľudia so zrakovým postihnutím"
-
-#: includes/wcag.php:515
-msgid "Non-text Contrast"
-msgstr "Kontrast netextových prvkov"
-
-#: includes/wcag.php:516
-msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
-msgstr "Vizuálne informácie potrebné na identifikáciu komponentov používateľského rozhrania a grafických objektov majú kontrastný pomer aspoň 3:1 voči susedným farbám."
-
-#: includes/wcag.php:542
-msgid "Text Spacing"
-msgstr "Rozostupy textu"
-
-#: includes/wcag.php:543
-msgid "Users can override text spacing to improve readability without losing content or functionality."
-msgstr "Používatelia môžu prepísať rozostupy textu na zlepšenie čitateľnosti bez straty obsahu alebo funkčnosti."
-
-#: includes/wcag.php:549
-#: includes/wcag.php:772
-#: includes/wcag.php:1729
-#: includes/wcag.php:1749
-#: includes/wcag.php:1768
-#: includes/wcag.php:1787
 #: includes/wcag.php:1840
 #: includes/wcag.php:1876
 #: includes/wcag.php:1907
 #: includes/wcag.php:1938
+#: includes/wcag.php:1958
+msgid "3.2 Predictable"
+msgstr "3.2 predvídateľné"
+
+#: includes/wcag.php:1836
+msgid "On Input"
+msgstr "Pri vstupe"
+
+#: includes/wcag.php:1837
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "Keď vstupné pole prijme údaje, nespôsobí to neočakávané zmeny, ktoré by mohli zmiasť používateľa, a je jasné, ako budú údaje použité."
+
+#: includes/wcag.php:1872
+msgid "Consistent Navigation"
+msgstr "Konzistentná navigácia"
+
+#: includes/wcag.php:1873
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "Navigačné mechanizmy sú konzistentné v rámci celého webu, takže používatelia sa môžu predvídateľne pohybovať po stránke."
+
+#: includes/wcag.php:1903
+msgid "Consistent Identification"
+msgstr "Konzistentná identifikácia"
+
+#: includes/wcag.php:1904
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "Komponenty, ktoré majú rovnakú funkčnosť v rámci súboru webových stránok, sú identifikované konzistentne, takže ich používatelia ľahko rozpoznajú."
+
+#: includes/wcag.php:1934
+msgid "Change on Request"
+msgstr "Zmena na požiadanie"
+
+#: includes/wcag.php:1935
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "Zmeny v obsahu alebo kontexte, ktoré nastanú v dôsledku vstupu používateľa, sa nedejú neočakávane a používatelia sú o akýchkoľvek zmenách informovaní."
+
+#: includes/wcag.php:1954
+msgid "Consistent Help"
+msgstr "Konzistentná pomoc"
+
+#: includes/wcag.php:1955
+#: includes/wcag.php:2108
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "Pomoc a dokumentácia sú k dispozícii a ľahko sa dajú nájsť, takže používatelia môžu získať pomoc, keď ju potrebujú."
+
+#: includes/wcag.php:1971
+msgid "Error Identification"
+msgstr "Identifikácia chyby"
+
+#: includes/wcag.php:1972
+#: includes/wcag.php:2040
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "Ak je zistená chyba vstupu a sú známe návrhy na opravu, tieto návrhy sú poskytnuté používateľovi."
+
 #: includes/wcag.php:1975
 #: includes/wcag.php:2009
 #: includes/wcag.php:2043
 #: includes/wcag.php:2077
 #: includes/wcag.php:2111
 #: includes/wcag.php:2130
-msgid "People with cognitive disabilities and reading disabilities"
-msgstr "Ľudia s kognitívnymi poruchami a poruchami čítania"
-
-#: includes/wcag.php:570
-msgid "Content on Hover or Focus"
-msgstr "Obsah pri prejdení myšou alebo zameraní"
-
-#: includes/wcag.php:571
-msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
-msgstr "Ak sa pri prejdení myšou alebo zameraní objaví ďalší obsah, používatelia ho môžu odmietnuť, presunúť nad neho kurzor a zostane viditeľný, kým ho neodmietnu alebo nepresunú zameranie."
-
-#: includes/wcag.php:578
-#: includes/wcag.php:956
-#: includes/wcag.php:1337
-msgid "People with cognitive disabilities"
-msgstr "Ľudia s kognitívnymi poruchami"
-
-#: includes/wcag.php:579
-#: includes/wcag.php:1642
-msgid "People with dexterity impairments"
-msgstr "Ľudia s poruchami zručnosti"
-
-#: includes/wcag.php:599
-msgid "Audio Control"
-msgstr "Ovládanie zvuku"
-
-#: includes/wcag.php:600
-msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
-msgstr "Ak sa zvuk prehráva automaticky dlhšie ako 3 sekundy, používatelia musia mať možnosť pozastaviť, zastaviť alebo ovládať hlasitosť nezávisle od systémovej hlasitosti."
-
-#: includes/wcag.php:608
-#: includes/wcag.php:955
-#: includes/wcag.php:1009
-msgid "People with ADD or difficulty focusing on content without distraction"
-msgstr "Ľudia s ADD alebo ťažkosťami sústrediť sa na obsah bez rozptýlenia"
-
-#: includes/wcag.php:633
-msgid "Contrast (Minimum)"
-msgstr "Kontrast (minimálny)"
-
-#: includes/wcag.php:634
-msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
-msgstr "Text a obrázky textu musia mať kontrastný pomer aspoň 4,5:1, s výnimkou veľkého textu, náhodného textu alebo logotypov."
-
-#: includes/wcag.php:640
-#: includes/wcag.php:737
-msgid "People on mobile devices in a sunny environment"
-msgstr "Ľudia na mobilných zariadeniach v slnečnom prostredí"
-
-#: includes/wcag.php:666
-msgid "Resize text"
-msgstr "Zmeniť veľkosť textu"
-
-#: includes/wcag.php:667
-msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
-msgstr "Text je možné zväčšiť až o 200 % bez straty obsahu alebo funkčnosti, takže ľudia so slabým zrakom ho môžu ľahšie čítať."
-
-#: includes/wcag.php:698
-msgid "Images of Text"
-msgstr "Obrázky textu"
-
-#: includes/wcag.php:699
-msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
-msgstr "Ak je možné dosiahnuť rovnakú vizuálnu prezentáciu len pomocou textu, nepoužívaj obrázky textu, okrem dekoratívnych alebo nevyhnutných účelov."
-
-#: includes/wcag.php:730
-msgid "Contrast (Enhanced)"
-msgstr "Kontrast (vylepšený)"
-
-#: includes/wcag.php:731
-msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
-msgstr "Text a obrázky textu musia mať kontrastný pomer aspoň 7:1, s výnimkou veľkého textu, náhodného textu alebo logotypov."
-
-#: includes/wcag.php:748
-msgid "Low or No Background Audio"
-msgstr "Nízke alebo žiadne zvuky na pozadí"
-
-#: includes/wcag.php:749
-msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
-msgstr "Pri vopred nahranom obsahu len so zvukom sú zvuky na pozadí buď nízke, dajú sa vypnúť, alebo nie sú prítomné, takže reč je ľahšie zrozumiteľná."
-
-#: includes/wcag.php:765
-msgid "Visual Presentation"
-msgstr "Vizuálna prezentácia"
-
-#: includes/wcag.php:766
-msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
-msgstr "Používatelia si môžu vybrať, ako sa zobrazujú bloky textu, napríklad farby popredia a pozadia, šírku a riadkovanie, aby bolo čítanie jednoduchšie."
-
-#: includes/wcag.php:783
-msgid "Images of Text (No Exception)"
-msgstr "Obrázky textu (bez výnimky)"
-
-#: includes/wcag.php:784
-msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
-msgstr "Obrázky textu sa používajú len na čistú dekoráciu alebo tam, kde je konkrétna prezentácia textu nevyhnutná, bez výnimiek."
-
-#: includes/wcag.php:800
-msgid "Keyboard"
-msgstr "Klávesnica"
-
-#: includes/wcag.php:801
-msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
-msgstr "Všetky funkcie sú dostupné pomocou klávesnice, takže používatelia, ktorí nemôžu používať myš, môžu stále ovládať obsah."
-
-#: includes/wcag.php:804
-#: includes/wcag.php:838
-#: includes/wcag.php:872
-#: includes/wcag.php:891
-msgid "2.1 Keyboard Accessible"
-msgstr "2.1 prístupné cez klávesnicu"
-
-#: includes/wcag.php:805
-#: includes/wcag.php:839
-#: includes/wcag.php:873
-#: includes/wcag.php:892
-#: includes/wcag.php:919
-#: includes/wcag.php:953
-#: includes/wcag.php:987
-#: includes/wcag.php:1006
-#: includes/wcag.php:1026
-#: includes/wcag.php:1045
-#: includes/wcag.php:1064
-#: includes/wcag.php:1096
-#: includes/wcag.php:1113
-#: includes/wcag.php:1130
-#: includes/wcag.php:1163
-#: includes/wcag.php:1182
-#: includes/wcag.php:1199
-#: includes/wcag.php:1216
-#: includes/wcag.php:1233
-#: includes/wcag.php:1267
-#: includes/wcag.php:1301
-#: includes/wcag.php:1334
-#: includes/wcag.php:1368
-#: includes/wcag.php:1402
-#: includes/wcag.php:1436
-#: includes/wcag.php:1454
-#: includes/wcag.php:1472
-#: includes/wcag.php:1501
-#: includes/wcag.php:1531
-#: includes/wcag.php:1558
-#: includes/wcag.php:1585
-#: includes/wcag.php:1605
-#: includes/wcag.php:1622
-#: includes/wcag.php:1639
-msgid "Operable"
-msgstr "Ovládateľné"
-
-#: includes/wcag.php:834
-msgid "No Keyboard Trap"
-msgstr "Žiadna pasca klávesnice"
-
-#: includes/wcag.php:835
-msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
-msgstr "Používatelia klávesnice sa môžu pohybovať ku všetkým častiam obsahu a od nich bez toho, aby uviazli."
-
-#: includes/wcag.php:868
-msgid "Keyboard (No Exception)"
-msgstr "Klávesnica (bez výnimky)"
-
-#: includes/wcag.php:869
-msgid "All functionality is available from a keyboard interface, with no exceptions."
-msgstr "Všetky funkcie sú dostupné cez rozhranie klávesnice, bez výnimiek."
-
-#: includes/wcag.php:887
-msgid "Character Key Shortcuts"
-msgstr "Klávesové skratky znakov"
-
-#: includes/wcag.php:888
-msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
-msgstr "Ak klávesová skratka používa len písmená, čísla alebo interpunkciu, používatelia ju môžu vypnúť, zmeniť, alebo funguje len vtedy, keď má prvok fokus."
-
-#: includes/wcag.php:914
-msgid "Timing Adjustable"
-msgstr "Nastaviteľný časový limit"
-
-#: includes/wcag.php:915
-msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
-msgstr "Ak je nastavený časový limit, používatelia ho môžu vypnúť, upraviť alebo predĺžiť, pokiaľ časový limit nie je nevyhnutný."
-
-#: includes/wcag.php:918
-#: includes/wcag.php:952
-#: includes/wcag.php:986
-#: includes/wcag.php:1005
-#: includes/wcag.php:1025
-#: includes/wcag.php:1044
-msgid "2.2 Enough Time"
-msgstr "2.2 dostatok času"
-
-#: includes/wcag.php:921
-#: includes/wcag.php:989
-#: includes/wcag.php:1008
-#: includes/wcag.php:1028
-#: includes/wcag.php:1047
-msgid "People who need more time to react"
-msgstr "Ľudia, ktorí potrebujú viac času na reakciu"
-
-#: includes/wcag.php:948
-msgid "Pause, Stop, Hide"
-msgstr "Pozastaviť, zastaviť, skryť"
-
-#: includes/wcag.php:949
-msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
-msgstr "Používatelia môžu pozastaviť, zastaviť alebo skryť pohybujúce sa, blikajúce, posúvajúce sa alebo automaticky sa aktualizujúce informácie, ktoré sa spustia automaticky a trvajú dlhšie ako päť sekúnd."
-
-#: includes/wcag.php:982
-msgid "No Timing"
-msgstr "Žiadny časový limit"
-
-#: includes/wcag.php:983
-msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
-msgstr "Ak prvok vyžaduje odpoveď v konkrétnom čase, používatelia môžu vypnúť časovač, upraviť časový limit, alebo časovanie nie je nevyhnutné."
-
-#: includes/wcag.php:1001
-msgid "Interruptions"
-msgstr "Prerušenia"
-
-#: includes/wcag.php:1002
-msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
-msgstr "Používatelia nie sú rušení neočakávanými zmenami obsahu a môžu ovládať prerušenia, ako napríklad automaticky sa aktualizujúci obsah."
-
-#: includes/wcag.php:1021
-msgid "Re-authenticating"
-msgstr "Opätovné overenie"
-
-#: includes/wcag.php:1022
-msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
-msgstr "Ak sú používatelia odhlásení z dôvodu nečinnosti, sú upozornení pred vypršaním relácie a môžu pokračovať v relácii bez straty údajov."
-
-#: includes/wcag.php:1040
-msgid "Timeouts"
-msgstr "Časové limity"
-
-#: includes/wcag.php:1041
-msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
-msgstr "Používatelia sú upozornení na blížiace sa časové limity a môžu požiadať o viac času alebo uložiť svoju prácu pred vypršaním času."
-
-#: includes/wcag.php:1059
-msgid "Three Flashes or Below Threshold"
-msgstr "Tri záblesky alebo pod prahovou hodnotou"
-
-#: includes/wcag.php:1060
-msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
-msgstr "Obsah nebliká viac ako trikrát za sekundu, čím sa znižuje riziko záchvatov pre ľudí s fotosenzitívnou epilepsiou."
-
-#: includes/wcag.php:1063
-#: includes/wcag.php:1095
-#: includes/wcag.php:1112
-msgid "2.3 Seizures and Physical Reactions"
-msgstr "2.3 záchvaty a fyzické reakcie"
-
-#: includes/wcag.php:1066
-#: includes/wcag.php:1098
-msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
-msgstr "Ľudia s fotosenzitívnou epilepsiou a inými fotosenzitívnymi záchvatovými poruchami"
-
-#: includes/wcag.php:1091
-msgid "Three Flashes"
-msgstr "Tri záblesky"
-
-#: includes/wcag.php:1092
-msgid "No part of the content flashes more than three times per second, with no exceptions."
-msgstr "Žiadna časť obsahu nebliká viac ako trikrát za sekundu, bez výnimiek."
-
-#: includes/wcag.php:1108
-msgid "Animation from Interactions"
-msgstr "Animácia z interakcií"
-
-#: includes/wcag.php:1109
-msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
-msgstr "Používatelia môžu vypnúť nepodstatné animácie spustené interakciami, čo pomáha tým, ktorí sú citliví na pohyb."
-
-#: includes/wcag.php:1115
-msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
-msgstr "Ľudia s vestibulárnym (vnútorné ucho) ochorením, kde pohyb môže spôsobiť závrate/bolesti hlavy a nevoľnosť"
-
-#: includes/wcag.php:1125
-msgid "Bypass Blocks"
-msgstr "Preskočenie blokov"
-
-#: includes/wcag.php:1126
-msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
-msgstr "Je k dispozícii spôsob, ako preskočiť opakujúce sa bloky obsahu, ako sú navigačné menu, aby sa používatelia mohli rýchlo dostať k hlavnému obsahu."
-
-#: includes/wcag.php:1129
-#: includes/wcag.php:1162
-#: includes/wcag.php:1181
-#: includes/wcag.php:1198
-#: includes/wcag.php:1215
-#: includes/wcag.php:1232
-#: includes/wcag.php:1266
-#: includes/wcag.php:1300
-#: includes/wcag.php:1333
-#: includes/wcag.php:1367
-#: includes/wcag.php:1401
-#: includes/wcag.php:1435
-#: includes/wcag.php:1453
-msgid "2.4 Navigable"
-msgstr "2.4 navigovateľné"
-
-#: includes/wcag.php:1158
-msgid "Section Headings"
-msgstr "Nadpisy sekcií"
-
-#: includes/wcag.php:1159
-msgid "Section headings are used to organize content, making it easier to understand and navigate."
-msgstr "Na organizáciu obsahu sa používajú nadpisy sekcií, čo uľahčuje jeho pochopenie a navigáciu."
-
-#: includes/wcag.php:1177
-msgid "Focus Not Obscured (Minimum)"
-msgstr "Fokus nie je zakrytý (minimum)"
-
-#: includes/wcag.php:1178
-msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
-msgstr "Keď prvok získa fokus klávesnice, je aspoň čiastočne viditeľný a nie je skrytý iným obsahom."
-
-#: includes/wcag.php:1194
-msgid "Focus Not Obscured (Enhanced)"
-msgstr "Fokus nie je zakrytý (vylepšené)"
-
-#: includes/wcag.php:1195
-msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
-msgstr "Keď prvok získa fokus klávesnice, je úplne viditeľný a nie je skrytý iným obsahom."
-
-#: includes/wcag.php:1211
-msgid "Focus Appearance"
-msgstr "Vzhľad fokusu"
-
-#: includes/wcag.php:1212
-msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
-msgstr "Viditeľný indikátor fokusu pre interaktívne prvky je jasne viditeľný a spĺňa minimálne požiadavky na veľkosť a kontrast."
-
-#: includes/wcag.php:1228
-msgid "Page Titled"
-msgstr "Názov stránky"
-
-#: includes/wcag.php:1229
-msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
-msgstr "Webové stránky majú popisné názvy, ktoré pomáhajú používateľom pochopiť tému alebo účel stránky."
-
-#: includes/wcag.php:1236
 #: includes/wcag.php:2149
-msgid "People with severe mobility impairments relying on audio to navigate the web"
-msgstr "Ľudia s ťažkým telesným postihnutím, ktorí sa pri navigácii na webe spoliehajú na zvuk"
-
-#: includes/wcag.php:1262
-msgid "Focus Order"
-msgstr "Poradie zamerania"
-
-#: includes/wcag.php:1263
-msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
-msgstr "Pri navigácii pomocou klávesnice sa zameranie presúva v logickom poradí, ktoré zachováva význam a ovládateľnosť."
-
-#: includes/wcag.php:1296
-msgid "Link Purpose (In Context)"
-msgstr "Účel odkazu (v kontexte)"
-
-#: includes/wcag.php:1297
-msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
-msgstr "Účel každého odkazu je jasný z textu odkazu a kontextu, v ktorom sa nachádza, takže používatelia vedia, kam ich odkaz zavedie."
-
-#: includes/wcag.php:1329
-msgid "Multiple Ways"
-msgstr "Viacero spôsobov"
-
-#: includes/wcag.php:1330
-msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
-msgstr "K dispozícii je viac ako jeden spôsob, ako nájsť webovú stránku v rámci súboru webových stránok, okrem prípadov, keď je webová stránka výsledkom vyhľadávania."
-
-#: includes/wcag.php:1363
-msgid "Headings and Labels"
-msgstr "Nadpisy a označenia"
-
-#: includes/wcag.php:1364
-msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
-msgstr "Nadpisy a označenia popisujú tému alebo účel obsahu a nie sú nejednoznačné ani zavádzajúce."
-
-#: includes/wcag.php:1397
-msgid "Focus Visible"
-msgstr "Viditeľné zameranie"
-
-#: includes/wcag.php:1398
-msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
-msgstr "Je viditeľné, keď má prvok zameranie klávesnice, takže používatelia navigujúci pomocou klávesnice vidia, ktorý prvok je aktívny."
-
-#: includes/wcag.php:1431
-msgid "Location"
-msgstr "Umiestnenie"
-
-#: includes/wcag.php:1432
-msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
-msgstr "Používatelia sú informovaní o svojom umiestnení v rámci súboru webových stránok, napríklad prostredníctvom navigácie pomocou drobčekovej navigácie alebo jasného názvu stránky."
-
-#: includes/wcag.php:1449
-msgid "Link Purpose (Link Only)"
-msgstr "Účel odkazu (len odkaz)"
-
-#: includes/wcag.php:1450
-msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
-msgstr "Účel každého odkazu je možné určiť len z textu odkazu bez potreby ďalšieho kontextu."
-
-#: includes/wcag.php:1467
-msgid "Pointer Gestures"
-msgstr "Gestá ukazovateľa"
-
-#: includes/wcag.php:1468
-msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
-msgstr "Pre funkcie, ktoré je možné ovládať gestom ukazovateľa, platí aspoň jedno z nasledujúcich: gesto je možné vykonať jednoduchým ťuknutím, gesto je možné vykonať jedným prstom alebo gesto je možné vykonať hlasovým príkazom."
-
-#: includes/wcag.php:1471
-#: includes/wcag.php:1500
-#: includes/wcag.php:1530
-#: includes/wcag.php:1557
-#: includes/wcag.php:1584
-#: includes/wcag.php:1604
-#: includes/wcag.php:1621
-#: includes/wcag.php:1638
-msgid "2.5 Input Modalities"
-msgstr "2.5 vstupné modality"
-
-#: includes/wcag.php:1496
-msgid "Pointer Cancellation"
-msgstr "Zrušenie ukazovateľa"
-
-#: includes/wcag.php:1497
-msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
-msgstr "Pri akciách, ktoré vyžadujú gesto ukazovateľa, môže používateľ akciu zrušiť presunutím ukazovateľa pred dokončením akcie."
-
-#: includes/wcag.php:1526
-msgid "Label in Name"
-msgstr "Označenie v názve"
-
-#: includes/wcag.php:1527
-msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
-msgstr "Názov komponentov používateľského rozhrania obsahuje textové označenia, ktoré popisujú ich účel, takže asistenčné technológie môžu tieto informácie sprostredkovať používateľom."
-
-#: includes/wcag.php:1553
-msgid "Motion Actuation"
-msgstr "Aktivácia pohybom"
-
-#: includes/wcag.php:1554
-msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
-msgstr "Funkcie, ktoré je možné ovládať gestom pohybu, je možné ovládať aj jednoduchým dotykom alebo kliknutím, takže používatelia, ktorí nemôžu vykonávať gestá pohybu, môžu tieto funkcie stále používať."
-
-#: includes/wcag.php:1580
-msgid "Target Size"
-msgstr "Veľkosť cieľa"
-
-#: includes/wcag.php:1581
-msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
-msgstr "Veľkosť cieľa pre gestá ukazovateľa je dostatočne veľká na to, aby sa dala ľahko aktivovať, a to aj používateľmi s obmedzenou zručnosťou."
-
-#: includes/wcag.php:1587
-msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
-msgstr "Ľudia používajúci mobilné zariadenie v prostredí, kde sú vystavení otrasom (napríklad vo verejnej doprave)"
-
-#: includes/wcag.php:1588
-msgid "People with dexterity and mobility impairments including hand tremors"
-msgstr "Ľudia s poruchami zručnosti a mobility vrátane trasenia rúk"
-
-#: includes/wcag.php:1590
-#: includes/wcag.php:1644
-msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
-msgstr "Ľudia s veľkými prstami alebo tí, ktorí ovládajú zariadenie len časťou prsta alebo kĺbom"
-
-#: includes/wcag.php:1600
-msgid "Concurrent Input Mechanisms"
-msgstr "Súbežné vstupné mechanizmy"
-
-#: includes/wcag.php:1601
-msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
-msgstr "Ak vstupný mechanizmus vyžaduje špecifickú polohu alebo pohyb, je k dispozícii alternatívny vstupný mechanizmus, ktorý nemá rovnakú požiadavku."
-
-#: includes/wcag.php:1617
-msgid "Dragging Movements"
-msgstr "Pohyby ťahania"
-
-#: includes/wcag.php:1618
-msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
-msgstr "Pri funkciách, ktoré vyžadujú pohyby ťahania, je možné akciu dokončiť aj jednoduchšími úkonmi, takže používatelia s obmedzenou zručnosťou môžu tieto funkcie stále používať."
-
-#: includes/wcag.php:1634
-msgid "Target Size (Minimum)"
-msgstr "Veľkosť cieľa (minimum)"
-
-#: includes/wcag.php:1635
-msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
-msgstr "Veľkosť cieľa pre akýkoľvek interaktívny prvok je aspoň 44x44 pixelov, takže ho môžu ľahko aktivovať používatelia s rôznymi schopnosťami."
-
-#: includes/wcag.php:1654
-msgid "Language of Page"
-msgstr "Jazyk stránky"
-
-#: includes/wcag.php:1655
-msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
-msgstr "Predvolený jazyk každej webovej stránky je programovo určený, takže asistenčné technológie môžu používať správne jazykové nastavenia."
-
-#: includes/wcag.php:1658
-#: includes/wcag.php:1692
-#: includes/wcag.php:1724
-#: includes/wcag.php:1744
-#: includes/wcag.php:1763
-#: includes/wcag.php:1782
-msgid "3.1 Readable"
-msgstr "3.1 čitateľné"
-
-#: includes/wcag.php:1659
-#: includes/wcag.php:1693
-#: includes/wcag.php:1725
-#: includes/wcag.php:1745
-#: includes/wcag.php:1764
-#: includes/wcag.php:1783
-#: includes/wcag.php:1802
-#: includes/wcag.php:1837
-#: includes/wcag.php:1873
-#: includes/wcag.php:1904
-#: includes/wcag.php:1935
-#: includes/wcag.php:1955
-#: includes/wcag.php:1972
-#: includes/wcag.php:2006
-#: includes/wcag.php:2040
-#: includes/wcag.php:2074
-#: includes/wcag.php:2108
-#: includes/wcag.php:2127
-#: includes/wcag.php:2146
-#: includes/wcag.php:2164
-#: includes/wcag.php:2181
-msgid "Understandable"
-msgstr "Zrozumiteľné"
-
-#: includes/wcag.php:1688
-msgid "Language of Parts"
-msgstr "Jazyk častí"
-
-#: includes/wcag.php:1689
-msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
-msgstr "Jazyk každej časti obsahu je možné programovo určiť, takže asistenčné technológie môžu poskytnúť vhodnú jazykovú podporu."
-
-#: includes/wcag.php:1720
-msgid "Unusual Words"
-msgstr "Neobvyklé slová"
-
-#: includes/wcag.php:1721
-msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
-msgstr "Neobvyklé alebo zriedkavé slová sú definované alebo vysvetlené, takže používatelia s kognitívnymi poruchami alebo tí, ktorí neovládajú jazyk, im môžu porozumieť."
-
-#: includes/wcag.php:1740
-msgid "Abbreviations"
-msgstr "Skratky"
-
-#: includes/wcag.php:1741
-msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
-msgstr "Skratky a akronymy sú definované pri ich prvom použití, takže používatelia môžu pochopiť ich význam."
-
-#: includes/wcag.php:1759
-msgid "Reading Level"
-msgstr "Úroveň čítania"
-
-#: includes/wcag.php:1760
-msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
-msgstr "Obsah je napísaný jasným a jednoduchým jazykom a nevyžaduje špecializované znalosti na jeho pochopenie."
-
-#: includes/wcag.php:1778
-msgid "Pronunciation"
-msgstr "Výslovnosť"
-
-#: includes/wcag.php:1779
-msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
-msgstr "Pre neobvyklé alebo ťažké slová je k dispozícii sprievodca výslovnosťou, takže používatelia vedia, ako ich vysloviť."
-
-#: includes/wcag.php:1797
-msgid "On Focus"
-msgstr "Pri zameraní"
-
-#: includes/wcag.php:1798
-msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
-msgstr "Keď prvok získa zameranie, nespôsobí to neočakávané zmeny, ktoré by mohli používateľa zmiasť, a je jasné, ako s prvkom interagovať."
-
-#: includes/wcag.php:1801
-#: includes/wcag.php:1836
-#: includes/wcag.php:1872
-#: includes/wcag.php:1903
-#: includes/wcag.php:1934
-#: includes/wcag.php:1954
-msgid "3.2 Predictable"
-msgstr "3.2 predvídateľné"
-
-#: includes/wcag.php:1832
-msgid "On Input"
-msgstr "Pri vstupe"
-
-#: includes/wcag.php:1833
-msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
-msgstr "Keď vstupné pole prijme údaje, nespôsobí to neočakávané zmeny, ktoré by mohli zmiasť používateľa, a je jasné, ako budú údaje použité."
-
-#: includes/wcag.php:1868
-msgid "Consistent Navigation"
-msgstr "Konzistentná navigácia"
-
-#: includes/wcag.php:1869
-msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
-msgstr "Navigačné mechanizmy sú konzistentné v rámci celého webu, takže používatelia sa môžu predvídateľne pohybovať po stránke."
-
-#: includes/wcag.php:1899
-msgid "Consistent Identification"
-msgstr "Konzistentná identifikácia"
-
-#: includes/wcag.php:1900
-msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
-msgstr "Komponenty, ktoré majú rovnakú funkčnosť v rámci súboru webových stránok, sú identifikované konzistentne, takže ich používatelia ľahko rozpoznajú."
-
-#: includes/wcag.php:1930
-msgid "Change on Request"
-msgstr "Zmena na požiadanie"
-
-#: includes/wcag.php:1931
-msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
-msgstr "Zmeny v obsahu alebo kontexte, ktoré nastanú v dôsledku vstupu používateľa, sa nedejú neočakávane a používatelia sú o akýchkoľvek zmenách informovaní."
-
-#: includes/wcag.php:1950
-msgid "Consistent Help"
-msgstr "Konzistentná pomoc"
-
-#: includes/wcag.php:1951
-#: includes/wcag.php:2104
-msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
-msgstr "Pomoc a dokumentácia sú k dispozícii a ľahko sa dajú nájsť, takže používatelia môžu získať pomoc, keď ju potrebujú."
-
-#: includes/wcag.php:1967
-msgid "Error Identification"
-msgstr "Identifikácia chyby"
-
-#: includes/wcag.php:1968
-#: includes/wcag.php:2036
-msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
-msgstr "Ak je zistená chyba vstupu a sú známe návrhy na opravu, tieto návrhy sú poskytnuté používateľovi."
-
-#: includes/wcag.php:1971
-#: includes/wcag.php:2005
-#: includes/wcag.php:2039
-#: includes/wcag.php:2073
-#: includes/wcag.php:2107
-#: includes/wcag.php:2126
-#: includes/wcag.php:2145
-#: includes/wcag.php:2163
-#: includes/wcag.php:2180
+#: includes/wcag.php:2167
+#: includes/wcag.php:2184
 msgid "3.3 Input Assistance"
 msgstr "3.3 pomoc pri vstupe"
 
-#: includes/wcag.php:2001
+#: includes/wcag.php:2005
 msgid "Labels or Instructions"
 msgstr "Štítky alebo inštrukcie"
 
-#: includes/wcag.php:2002
+#: includes/wcag.php:2006
 msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
 msgstr "Štítky alebo inštrukcie sú poskytnuté, keď vstupné pole vyžaduje vstup od používateľa, takže používatelia vedia, aké informácie sú potrebné."
 
-#: includes/wcag.php:2035
+#: includes/wcag.php:2039
 msgid "Error Suggestion"
 msgstr "Návrh opravy chyby"
 
-#: includes/wcag.php:2069
+#: includes/wcag.php:2073
 msgid "Error Prevention (Legal, Financial, Data)"
 msgstr "Prevencia chýb (právne, finančné, dátové)"
 
-#: includes/wcag.php:2070
-#: includes/wcag.php:2123
+#: includes/wcag.php:2074
+#: includes/wcag.php:2127
 msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
 msgstr "Pri webových stránkach, ktoré vyžadujú vstup od používateľa, sú používatelia upozornení na chyby a môžu ich opraviť pred finalizáciou odoslania."
 
-#: includes/wcag.php:2103
+#: includes/wcag.php:2107
 msgid "Help"
 msgstr "Pomoc"
 
-#: includes/wcag.php:2122
+#: includes/wcag.php:2126
 msgid "Error Prevention (All)"
 msgstr "Prevencia chýb (všetky)"
 
-#: includes/wcag.php:2141
+#: includes/wcag.php:2145
 msgid "Redundant Entry"
 msgstr "Redundantné zadávanie"
 
-#: includes/wcag.php:2142
+#: includes/wcag.php:2146
 msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
 msgstr "Od používateľov sa nevyžaduje zadávať rovnaké informácie viackrát, čím sa znižuje riziko chýb a šetrí sa čas."
 
-#: includes/wcag.php:2159
+#: includes/wcag.php:2163
 msgid "Accessible Authentication (Minimum)"
 msgstr "Prístupná autentifikácia (minimálna)"
 
-#: includes/wcag.php:2160
+#: includes/wcag.php:2164
 msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
 msgstr "Autentifikačné procesy sa nespoliehajú na testy kognitívnych funkcií, ako je zapamätanie si hesla alebo riešenie hádanky, pokiaľ nie je poskytnutá alternatíva."
 
-#: includes/wcag.php:2176
+#: includes/wcag.php:2180
 msgid "Accessible Authentication (Enhanced)"
 msgstr "Prístupná autentifikácia (rozšírená)"
 
-#: includes/wcag.php:2177
+#: includes/wcag.php:2181
 msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
 msgstr "Sú poskytnuté rozšírené metódy autentifikácie, ktoré sa nespoliehajú na testy kognitívnych funkcií, ako je zapamätanie si hesiel, a nevyžadujú test kognitívnych funkcií."
 
-#: includes/wcag.php:2193
+#: includes/wcag.php:2197
 msgid "Parsing"
 msgstr "Parsovanie"
 
-#: includes/wcag.php:2194
+#: includes/wcag.php:2198
 msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
 msgstr "Obsah je kódovaný tak, aby ho asistenčné technológie mohli presne interpretovať a prezentovať používateľom."
 
-#: includes/wcag.php:2197
-#: includes/wcag.php:2231
-#: includes/wcag.php:2264
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+#: includes/wcag.php:2268
 msgid "4.1 Compatible"
 msgstr "4.1 kompatibilné"
 
-#: includes/wcag.php:2198
-#: includes/wcag.php:2232
-#: includes/wcag.php:2265
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2269
 msgid "Robust"
 msgstr "Robustné"
 
-#: includes/wcag.php:2201
-#: includes/wcag.php:2235
+#: includes/wcag.php:2205
+#: includes/wcag.php:2239
 msgid "People with low vision using screen magnifiers"
 msgstr "Ľudia so slabým zrakom používajúci lupy obrazovky"
 
-#: includes/wcag.php:2227
+#: includes/wcag.php:2231
 msgid "Name, Role, Value"
 msgstr "Názov, rola, hodnota"
 
-#: includes/wcag.php:2228
+#: includes/wcag.php:2232
 msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
 msgstr "Komponenty používateľského rozhrania majú názvy, roly a hodnoty, ktoré možno programovo určiť, takže asistenčné technológie ich môžu komunikovať používateľom."
 
-#: includes/wcag.php:2260
+#: includes/wcag.php:2264
 msgid "Status Messages"
 msgstr "Stavové správy"
 
-#: includes/wcag.php:2261
+#: includes/wcag.php:2265
 msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
 msgstr "Stavové správy sú programovo určené tak, aby asistenčné technológie mohli informovať používateľov o dôležitých zmenách, ako sú chyby vo formulároch alebo aktualizácie."
 
-#: includes/wcag.php:2286
+#: includes/wcag.php:2290
 msgid "Best Practice"
 msgstr "Osvedčené postupy"
 
-#: includes/wcag.php:2287
+#: includes/wcag.php:2291
 msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
 msgstr "Zlepšenie použiteľnosti alebo konvencia, ktorá zvyšuje prístupnosť, ale nie je vyžadovaná pre súlad s WCAG."
 
-#: includes/wcag.php:2301
+#: includes/wcag.php:2305
 msgid "Non-WCAG Accessibility Issue"
 msgstr "Problém s prístupnosťou mimo WCAG"
 
-#: includes/wcag.php:2302
+#: includes/wcag.php:2306
 msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
 msgstr "Problém, ktorý ovplyvňuje používateľov so zdravotným postihnutím, ale priamo nezodpovedá súčasnému kritériu úspešnosti WCAG."
 
-#: includes/wcag.php:2316
+#: includes/wcag.php:2320
 msgid "Manual Testing Needed (Multiple Success Criteria)"
 msgstr "Potrebné manuálne testovanie (viacero kritérií úspešnosti)"
 
-#: includes/wcag.php:2317
+#: includes/wcag.php:2321
 msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
 msgstr "Používa sa pre dokumenty, médiá a iný neskenovaný obsah, ktorý vyžaduje manuálne testovanie a pravdepodobne nesplní viaceré kritériá úspešnosti WCAG."
 
-#: partials/admin-page/fixes-page.php:14
+#: partials/admin-page/fixes-page.php:18
 msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
 msgstr "Nastavenia boli uložené. Na potvrdenie a zohľadnenie týchto aktualizácií v štatistikách vašej stránky znovu naskenujte svoju stránku. Ak používate plugin pre cachovanie, nezabudnite vymazať cache, aby sa správne aplikovali aktualizované opravy."
 
-#: partials/admin-page/fixes-page.php:22
+#: partials/admin-page/fixes-page.php:26
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Plugin Accessibility New Window Warnings je nainštalovaný. Oprava pre odkazy otvárajúce sa v novom okne, ktorá je tu zahrnutá, prepíše jeho funkčnosť. Môžete bezpečne odstrániť tento plugin a namiesto neho použiť tieto opravy."
 
-#: partials/custom-meta-box.php:13
+#: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Panely problémov Accessibility Checker"
 
-#: partials/custom-meta-box.php:24
-msgid "Summary"
-msgstr "Zhrnutie"
+#: partials/custom-meta-box.php:28
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Status"
+msgstr "Stav prístupnosti"
 
-#: partials/custom-meta-box.php:34
-msgid "Details"
-msgstr "Podrobnosti"
+#: partials/custom-meta-box.php:38
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Analysis"
+msgstr "Analýza prístupnosti"
 
-#: partials/custom-meta-box.php:44
-msgid "Readability"
-msgstr "Čitateľnosť"
+#: partials/custom-meta-box.php:48
+#: build/sidebar.bundle.js:2
+msgid "Readability Analysis"
+msgstr "Analýza čitateľnosti"
 
-#: partials/custom-meta-box.php:53
+#: partials/custom-meta-box.php:57
 msgid "Delete all currently found issues"
 msgstr "Odstrániť všetky aktuálne nájdené problémy"
 
-#: partials/custom-meta-box.php:55
+#: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Clear Issues"
 msgstr "Vymazať problémy"
 
-#: partials/pro-callout.php:13
-#: partials/welcome-page.php:199
+#: partials/pro-callout.php:17
+#: partials/welcome-page.php:203
 msgid "Equalize Digital Logo"
 msgstr "Logo Equalize Digital"
 
-#: partials/pro-callout.php:16
-#: partials/welcome-page.php:200
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:204
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Aktualizujte na Accessibility Checker Pro"
 
-#: partials/pro-callout.php:20
-#: partials/welcome-page.php:203
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:207
 msgid "Scan all post types"
 msgstr "Skenovať všetky typy príspevkov"
 
-#: partials/pro-callout.php:21
-#: partials/welcome-page.php:204
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:208
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Stĺpce v administrácii na rýchle zobrazenie stavu prístupnosti"
 
-#: partials/pro-callout.php:22
-#: partials/welcome-page.php:205
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:209
 msgid "Centralized list of all open issues"
 msgstr "Centralizovaný zoznam všetkých otvorených problémov"
 
-#: partials/pro-callout.php:23
-#: partials/welcome-page.php:206
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:210
 msgid "Ignore log"
 msgstr "Záznam ignorovaných problémov"
 
-#: partials/pro-callout.php:24
-#: partials/welcome-page.php:207
+#: partials/pro-callout.php:28
+#: partials/welcome-page.php:211
 msgid "Rename simplified summary"
 msgstr "Premenovať zjednodušené zhrnutie"
 
-#: partials/pro-callout.php:25
-#: partials/welcome-page.php:208
+#: partials/pro-callout.php:29
+#: partials/welcome-page.php:212
 msgid "User restrictions on ignoring issues"
 msgstr "Obmedzenia používateľov pri ignorovaní problémov"
 
-#: partials/pro-callout.php:26
-#: partials/welcome-page.php:209
+#: partials/pro-callout.php:30
+#: partials/welcome-page.php:213
 msgid "Email support"
 msgstr "E-mailová podpora"
 
-#: partials/pro-callout.php:27
-#: partials/welcome-page.php:210
+#: partials/pro-callout.php:31
+#: partials/welcome-page.php:214
 msgid "...and more"
 msgstr "...a ďalšie"
 
-#: partials/pro-callout.php:57
-#: partials/welcome-page.php:223
+#: partials/pro-callout.php:61
+#: partials/welcome-page.php:227
 msgid "Or activate your license key here."
 msgstr "Alebo tu aktivujte váš licenčný kľúč."
 
-#: partials/settings-page.php:20
+#: partials/settings-page.php:24
 msgid "General"
 msgstr "Všeobecné"
 
-#: partials/welcome-page.php:31
+#: partials/welcome-page.php:35
 msgid "version"
 msgstr "verzia"
 
-#: partials/welcome-page.php:40
+#: partials/welcome-page.php:44
 msgid "Link to Equalize Digital Website"
 msgstr "Odkaz na webovú stránku Equalize Digital"
 
-#: partials/welcome-page.php:49
+#: partials/welcome-page.php:53
 msgid "Quick Start Guide"
 msgstr "Príručka pre rýchly štart"
 
-#: partials/welcome-page.php:50
+#: partials/welcome-page.php:54
 msgid "Follow these steps to get started checking your content:"
 msgstr "Postupujte podľa týchto krokov, aby ste začali kontrolovať váš obsah:"
 
 #. translators: %s: path to settings page.
-#: partials/welcome-page.php:57
+#: partials/welcome-page.php:61
 #, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Na <a href=\"%s\">stránke Nastavenia</a> vyberte typy príspevkov, ktoré chcete skenovať."
 
-#: partials/welcome-page.php:64
+#: partials/welcome-page.php:68
 msgid "Go to the edit screen for the post you want to check."
 msgstr "Prejdite na obrazovku úprav príspevku, ktorý chcete skontrolovať."
 
-#: partials/welcome-page.php:65
+#: partials/welcome-page.php:69
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
 msgstr "Nájdite meta box Accessibility Checker pod vaším obsahom. Ak používate editor stránok na frontende, musíte navštíviť obrazovku úprav na backende, aby ste videli výsledky Accessibility Checker."
 
-#: partials/welcome-page.php:66
+#: partials/welcome-page.php:70
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
 msgstr "Ak sú na vašom príspevku prítomné chyby alebo upozornenia, otvorte kartu detailov v Accessibility Checker pre viac informácií."
 
-#: partials/welcome-page.php:67
+#: partials/welcome-page.php:71
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
 msgstr "Rozbaľte každý problém, aby ste videli kód, alebo kliknite na „zobraziť na stránke“, ak potrebujete pomoc s nájdením prvku, ktorý treba opraviť."
 
-#: partials/welcome-page.php:68
+#: partials/welcome-page.php:72
 msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
 msgstr "Ak neviete, čo chyba alebo upozornenie znamená, kliknite na ikonu „i“, aby ste si prečítali dokumentáciu a spôsob opravy."
 
-#: partials/welcome-page.php:69
+#: partials/welcome-page.php:73
 msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
 msgstr "Ak je problém falošne pozitívny a prvok je prístupný, môžete odstrániť problémy zo správ pomocou funkcie „Ignorovať“."
 
-#: partials/welcome-page.php:70
+#: partials/welcome-page.php:74
 msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
 msgstr "Po oprave každého problému aktualizujte príspevok, aby ste videli zmenu v správe o prístupnosti. Vaším cieľom je dosiahnuť, aby každá stránka uvádzala 100% úspešných testov."
 
-#: partials/welcome-page.php:74
+#: partials/welcome-page.php:78
 msgid "Watch a video of Accessibility Checker in use."
 msgstr "Pozrite si video o používaní Accessibility Checker."
 
-#: partials/welcome-page.php:80
+#: partials/welcome-page.php:84
 msgid "Documentation and FAQs"
 msgstr "Dokumentácia a často kladené otázky"
 
-#: partials/welcome-page.php:84
+#: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Prečo hovoríme o 100% úspešných testoch, nie o 100% prístupnosti?"
 
-#: partials/welcome-page.php:84
-#: partials/welcome-page.php:89
-#: partials/welcome-page.php:94
-#: partials/welcome-page.php:99
-#: partials/welcome-page.php:104
-#: partials/welcome-page.php:109
-#: partials/welcome-page.php:114
-#: partials/welcome-page.php:120
-#: partials/welcome-page.php:216
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
 msgid "(opens in a new window)"
 msgstr "(otvorí sa v novom okne)"
 
-#: partials/welcome-page.php:89
+#: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
 msgstr "Ako manuálne skontrolovať prístupnosť vašej webovej stránky"
 
-#: partials/welcome-page.php:94
+#: partials/welcome-page.php:98
 msgid "When to Ignore Accessibility Errors"
 msgstr "Kedy ignorovať chyby prístupnosti"
 
-#: partials/welcome-page.php:99
+#: partials/welcome-page.php:103
 msgid "What to do if a Plugin You’re Using has Accessibility Errors"
 msgstr "Čo robiť, ak plugin, ktorý používate, má chyby prístupnosti"
 
-#: partials/welcome-page.php:104
+#: partials/welcome-page.php:108
 msgid "What to do if there are Accessibility Errors in Your Theme"
 msgstr "Čo robiť, ak sú chyby prístupnosti vo vašej téme"
 
-#: partials/welcome-page.php:109
+#: partials/welcome-page.php:113
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
 msgstr "Môžem si najať Equalize Digital na opravu problémov s prístupnosťou na mojej webovej stránke?"
 
-#: partials/welcome-page.php:114
+#: partials/welcome-page.php:118
 msgid "Additional Resources for Learning About Accessibility"
 msgstr "Ďalšie zdroje pre vzdelávanie o prístupnosti"
 
-#: partials/welcome-page.php:120
+#: partials/welcome-page.php:124
 msgid "Read Full Documentation"
 msgstr "Prečítať úplnú dokumentáciu"
 
-#: partials/welcome-page.php:127
+#: partials/welcome-page.php:131
 msgid "Support Information"
 msgstr "Informácie o podpore"
 
-#: partials/welcome-page.php:133
+#: partials/welcome-page.php:137
 msgid "Plugin Support"
 msgstr "Podpora pluginu"
 
-#: partials/welcome-page.php:135
+#: partials/welcome-page.php:139
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
 msgstr "Aktívni držitelia licencie platených plánov Accessibility Checker získavajú neobmedzenú e-mailovú podporu pri používaní pluginu a riešení problémov."
 
-#: partials/welcome-page.php:138
+#: partials/welcome-page.php:142
 msgid "Open Support Ticket"
 msgstr "Otvoriť ticket podpory"
 
-#: partials/welcome-page.php:145
+#: partials/welcome-page.php:149
 msgid "Free Plugin Support"
 msgstr "Bezplatná podpora pluginu"
 
-#: partials/welcome-page.php:147
+#: partials/welcome-page.php:151
 msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
 msgstr "Bezplatná podpora pluginu je k dispozícii prostredníctvom fór WordPress.org. Budete si musieť vytvoriť účet a potom môžete otvoriť nové vlákno podpory."
 
-#: partials/welcome-page.php:150
+#: partials/welcome-page.php:154
 msgid "Go to Support Forum"
 msgstr "Prejsť na fórum podpory"
 
-#: partials/welcome-page.php:157
+#: partials/welcome-page.php:161
 msgid "Office Hours"
 msgstr "Konzultačné hodiny"
 
-#: partials/welcome-page.php:159
+#: partials/welcome-page.php:163
 msgid "Open Q&A on Zoom every other week to help you remediate your website."
 msgstr "Otvorená otázka a odpoveď na Zoome každý druhý týždeň, aby vám pomohla napraviť vašu webovú stránku."
 
-#: partials/welcome-page.php:161
+#: partials/welcome-page.php:165
 msgid "Included in Small Business and Agency plans"
 msgstr "Zahrnuté v plánoch pre malé podniky a agentúry"
 
-#: partials/welcome-page.php:166
+#: partials/welcome-page.php:170
 msgid "Register for Office Hours"
 msgstr "Zaregistrovať sa na konzultačné hodiny"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:176
 msgid "Auditing and Remediation"
 msgstr "Audit a náprava"
 
-#: partials/welcome-page.php:174
+#: partials/welcome-page.php:178
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Získajte pomoc pri sprístupňovaní vašej webovej stránky. Expertný audit, testovanie používateľmi a podpora vývojárov. K dispozícii sú aj listy o zhode."
 
-#: partials/welcome-page.php:178
+#: partials/welcome-page.php:182
 msgid "Get Remediation Help"
 msgstr "Získať pomoc s nápravou"
 
@@ -4474,6 +4540,7 @@ msgstr "Nastavenia opravy"
 
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Týmto sa vymažú všetky problémy pre tento príspevok. Bude potrebné uloženie na spustenie nového skenovania obsahu príspevku. Chcete pokračovať?"
 
@@ -4510,11 +4577,6 @@ msgid "Sorry, your submission failed. Please try again."
 msgstr "Prepáčte, vaše odoslanie zlyhalo. Skúste to znova, prosím."
 
 #: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "otvorí sa v novom okne"
-
-#: build/frontendFixes.bundle.js:1
 msgid "EDAC: Did not find a matching target ID on the page for the skip link."
 msgstr "EDAC: Na stránke sa nenašlo zodpovedajúce cieľové ID pre odkaz na preskočenie."
 
@@ -4522,9 +4584,26 @@ msgstr "EDAC: Na stránke sa nenašlo zodpovedajúce cieľové ID pre odkaz na p
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Chyba pri aktualizácii histórie pre odkaz na preskočenie."
 
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "otvorí sa v novom okne"
+
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Zatvoriť modálne okno s opravami"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Prvok nie je viditeľný. Skúste zakázať štýly."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Prvok nie je zaostriteľný. Skúste zakázať štýly."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Prvok sa na stránke nenašiel."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4564,18 +4643,6 @@ msgid "Disable Styles"
 msgstr "Vypnúť štýly"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not visible. Try disabling styles."
-msgstr "Prvok nie je viditeľný. Skúste zakázať štýly."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not focusable. Try disabling styles."
-msgstr "Prvok nie je zaostriteľný. Skúste zakázať štýly."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element was not found on the page."
-msgstr "Prvok sa na stránke nenašiel."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Pri načítavaní problémov sa vyskytla chyba."
 
@@ -4585,6 +4652,7 @@ msgid "Fix issue: %s"
 msgstr "Opraviť problém: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Opraviť problém"
 
@@ -4678,6 +4746,137 @@ msgstr "Chyba pri ukladaní výsledkov skenovania."
 msgid "Error: Missing required parameters."
 msgstr "Chyba: Chýbajú povinné parametre."
 
+#: build/issueModal.bundle.js:2
+msgid "Issue related image"
+msgstr "Obrázok súvisiaci s problémom"
+
+#: build/issueModal.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Nastavenia opravy uložené."
+
+#: build/issueModal.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Nepodarilo sa uložiť nastavenia opravy."
+
+#: build/issueModal.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Načítavam informácie o oprave..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Uložiť opravu pre: %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Problém úspešne zrušený."
+
+#: build/issueModal.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Problém úspešne znova otvorený."
+
+#: build/issueModal.bundle.js:2
+msgid "Dismissing..."
+msgstr "Zrušenie..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Problém zrušený — %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Problém zrušený"
+
+#: build/issueModal.bundle.js:2
+msgid "Scope:"
+msgstr "Rozsah:"
+
+#: build/issueModal.bundle.js:2
+msgid "All pages"
+msgstr "Všetky stránky"
+
+#: build/issueModal.bundle.js:2
+msgid "By:"
+msgstr "Od:"
+
+#: build/issueModal.bundle.js:2
+msgid "On:"
+msgstr "Dňa:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Dôvod zrušenia:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reopening..."
+msgstr "Znova otváram..."
+
+#: build/issueModal.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Komentár (voliteľné)"
+
+#: build/issueModal.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Pridajte poznámku vysvetľujúcu, prečo sa tento problém zamieta."
+
+#: build/issueModal.bundle.js:2
+msgid "More dismiss options"
+msgstr "Ďalšie možnosti zrušenia"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Zrušiť globálne"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Zrušiť a zavrieť modálne okno"
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue #%s"
+msgstr "Problém č. %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Details"
+msgstr "Podrobnosti problému"
+
+#: build/issueModal.bundle.js:2
+msgid "Type"
+msgstr "Typ"
+
+#: build/issueModal.bundle.js:2
+msgid "Severity"
+msgstr "Závažnosť"
+
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Orientácia"
+
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Zobraziť vysvetlenie"
+
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Prečo je to dôležité"
+
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Ako opraviť"
+
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Podrobnejšia dokumentácia"
+
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Obrázok"
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "nové okno"
@@ -4765,3 +4964,232 @@ msgstr "pokračovať v čítaní"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "dozvedieť sa viac"
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to load accessibility data"
+msgstr "Nepodarilo sa načítať údaje o prístupnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Error loading accessibility data"
+msgstr "Chyba pri načítaní údajov o prístupnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility results..."
+msgstr "Načítavam výsledky prístupnosti..."
+
+#: build/sidebar.bundle.js:2
+msgid "Updating accessibility data..."
+msgstr "Aktualizujem údaje o prístupnosti..."
+
+#: build/sidebar.bundle.js:2
+msgid "problem to address"
+msgid_plural "problems to address"
+msgstr[0] "problém na riešenie"
+msgstr[1] "problémy na riešenie"
+msgstr[2] "problémy na riešenie"
+
+#: build/sidebar.bundle.js:2
+msgid "issue that needs review"
+msgid_plural "issues that need review"
+msgstr[0] "problém, ktorý si vyžaduje kontrolu"
+msgstr[1] "problémy, ktoré si vyžadujú kontrolu"
+msgstr[2] "problémy, ktoré si vyžadujú kontrolu"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s and %3$d %4$s."
+msgstr "Máte %1$d %2$s a %3$d %4$s."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s."
+msgstr "Máte %1$d %2$s."
+
+#: build/sidebar.bundle.js:2
+msgid "Check and fix accessibility issues in your content."
+msgstr "Skontrolujte a opravte problémy s prístupnosťou vo vašom obsahu."
+
+#: build/sidebar.bundle.js:2
+msgid "Open Accessibility Panel"
+msgstr "Otvoriť panel prístupnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "N/A"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth"
+msgstr "%d."
+
+#: build/sidebar.bundle.js:2
+msgid "Summary provided"
+msgstr "Súhrn poskytnutý"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary required"
+msgstr "Súhrn vyžadovaný"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary not required"
+msgstr "Súhrn nevyžadovaný"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d problems in Accessibility Analysis"
+msgstr "Zobraziť %d problémov v analýze prístupnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Problémy"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d items needing review in Accessibility Analysis"
+msgstr "Zobraziť %d položiek vyžadujúcich kontrolu v analýze prístupnosti"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %s"
+msgstr "Zobraziť podrobnosti úrovne čítania: %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Prešlo kontrolami"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue"
+msgstr "Problém"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "Issue actions for %s"
+msgstr "Akcie problému pre %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue actions"
+msgstr "Akcie problému"
+
+#: build/sidebar.bundle.js:2
+msgid "Show code"
+msgstr "Zobraziť kód"
+
+#: build/sidebar.bundle.js:2
+msgid "Reopen issue"
+msgstr "Znova otvoriť problém"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismiss issue"
+msgstr "Zrušiť problém"
+
+#: build/sidebar.bundle.js:2
+msgid "Apply fix"
+msgstr "Použiť opravu"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total"
+msgstr "%d celkom"
+
+#: build/sidebar.bundle.js:2
+msgid "No dismissed issues."
+msgstr "Žiadne zrušené problémy."
+
+#: build/sidebar.bundle.js:2
+msgid "No issues found."
+msgstr "Nenašli sa žiadne problémy."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total issues"
+msgstr "Spolu %d problémov"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismissed Issues"
+msgstr "Zrušené problémy"
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified summary saved successfully."
+msgstr "Zjednodušený súhrn úspešne uložený."
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to save summary. Please try again."
+msgstr "Nepodarilo sa uložiť súhrn. Skúste to znova."
+
+#: build/sidebar.bundle.js:2
+msgid "An error occurred while saving the summary."
+msgstr "Pri ukladaní súhrnu sa vyskytla chyba."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%s grade"
+msgstr "%s ročník"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth grade"
+msgstr "%d. ročník"
+
+#: build/sidebar.bundle.js:2
+msgid "Not available"
+msgstr "Nie je k dispozícii"
+
+#: build/sidebar.bundle.js:2
+msgid "Warning"
+msgstr "Upozornenie"
+
+#: build/sidebar.bundle.js:2
+msgid "This post does not contain enough content to calculate a reading level."
+msgstr "Tento príspevok neobsahuje dostatok obsahu na výpočet úrovne čítania."
+
+#: build/sidebar.bundle.js:2
+msgid "Adjust summary prompts in settings."
+msgstr "Upravte výzvy súhrnu v nastaveniach."
+
+#: build/sidebar.bundle.js:2
+msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
+msgstr "Obsah na alebo pod úrovňou čítania 9. ročníka nevyžaduje zjednodušený súhrn."
+
+#: build/sidebar.bundle.js:2
+msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
+msgstr "Obsah nad úrovňou čítania 9. ročníka vyžaduje zjednodušený súhrn, aby spĺňal pokyny WCAG AAA."
+
+#: build/sidebar.bundle.js:2
+msgid "Learn more about readability requirements."
+msgstr "Zistite viac o požiadavkách na čitateľnosť."
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary Reading Level"
+msgstr "Zjednodušená úroveň čítania súhrnu"
+
+#: build/sidebar.bundle.js:2
+msgid "Needs improvement, summary is above the 9th-grade reading level."
+msgstr "Potrebuje zlepšenie, súhrn je nad úrovňou čítania 9. ročníka."
+
+#: build/sidebar.bundle.js:2
+msgid "Below the recommended 9th-grade reading level."
+msgstr "Pod odporúčanou úrovňou čítania 9. ročníka."
+
+#: build/sidebar.bundle.js:2
+msgid "Enter simplified summary..."
+msgstr "Zadajte zjednodušený súhrn..."
+
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Uložiť súhrn"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility data..."
+msgstr "Načítavam údaje o prístupnosti..."
+
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Checker actions"
+msgstr "Akcie nástroja Accessibility Checker"
+
+#: build/sidebar.bundle.js:2
+msgid "Scan"
+msgstr "Skenovať"
+
+#: build/sidebar.bundle.js:2
+msgid "Refresh"
+msgstr "Obnoviť"

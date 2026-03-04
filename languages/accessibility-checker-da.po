@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Equalize Digital
+# Copyright (C) 2026 Equalize Digital
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.35.0\n"
+"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,12 +18,13 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:51
-#: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:45
-#: partials/welcome-page.php:24
+#: admin/class-meta-boxes.php:43
+#: includes/classes/class-accessibility-statement.php:55
+#: includes/classes/class-admin-toolbar.php:57
+#: includes/options-page.php:49
+#: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -47,18 +48,18 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/FixesPage.php:71
+#: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:82
-#: includes/classes/class-admin-toolbar.php:102
+#: includes/classes/class-admin-toolbar.php:106
 msgid "Fixes"
 msgstr "Rettelser"
 
-#: admin/AdminPage/FixesPage.php:138
+#: admin/AdminPage/FixesPage.php:142
 msgid "General Fixes"
 msgstr "Generelle rettelser"
 
-#: admin/AdminPage/FixesPage.php:212
+#: admin/AdminPage/FixesPage.php:220
 msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
 msgstr "Disse rettelser hjælper med at forbedre tilgængeligheden ved at ændre HTML-elementer og adfærd på dit websted."
 
@@ -70,13 +71,13 @@ msgstr "Få Pro for at låse op for denne funktion, åbnes i et nyt vindue."
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:55
+#: admin/class-plugin-action-links.php:59
 #: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Få Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:340
+#: admin/class-ajax.php:384
 msgid "Opens in a new window."
 msgstr "Åbnes i et nyt vindue."
 
@@ -168,270 +169,364 @@ msgstr "Vil du gøre mere med Accessibility Checker? %1$sLås op for Pro-funktio
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Lås op for Pro-funktioner (åbner i et nyt vindue)"
 
-#: admin/class-admin-notices.php:129
+#: admin/class-admin-notices.php:133
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Black Friday-tilbud! 🎉"
 
-#: admin/class-admin-notices.php:130
+#: admin/class-admin-notices.php:134
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Opgrader til en betalt version af Accessibility Checker fra den 24. november til den 3. december, og få 30 % rabat! Fuld scanning af webstedet, rapport over åbne problemer på hele webstedet, ignoreringslogfiler og mere."
 
-#: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:135
+#: admin/class-admin-notices.php:225
 msgid "Ask a Pre-Sale Question"
 msgstr "Stil et spørgsmål før køb"
 
-#: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:136
+#: admin/class-admin-notices.php:226
 msgid "Upgrade Now"
 msgstr "Opgrader nu"
 
-#: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:241
-#: admin/class-admin-notices.php:330
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:202
-#: admin/class-ajax.php:585
-#: admin/class-ajax.php:718
-#: admin/class-ajax.php:792
-#: admin/class-frontend-highlight.php:78
-#: admin/class-frontend-highlight.php:96
-#: admin/class-frontend-highlight.php:101
+#: admin/class-admin-notices.php:155
+#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:334
+#: admin/class-ajax.php:60
+#: admin/class-ajax.php:218
+#: admin/class-ajax.php:607
+#: admin/class-ajax.php:770
+#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
+#: admin/class-frontend-highlight.php:109
 msgid "Permission Denied"
 msgstr "Adgang nægtet"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:354
+#: admin/class-admin-notices.php:167
+#: admin/class-admin-notices.php:257
+#: admin/class-admin-notices.php:358
 msgid "Update option wasn't successful"
 msgstr "Opdatering af indstilling lykkedes ikke"
 
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:223
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Få 25 % rabat på Accessibility Checker Pro i anledning af Global Accessibility Awareness Day! 🎉"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:224
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Brug rabatkoden GAAD25 fra 13. Maj til 21. maj for at få adgang til fuldstændig webstedsskanning og andre professionelle funktioner til en særlig rabat. Er du ikke sikker på, om opgradering er det rigtige for dig?"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:309
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hej! Tak fordi du bruger Accessibility Checker som en del af dit tilgængelighedsværktøjssæt. Da du har brugt det i et stykke tid, vil du venligst skrive en 5-stjernet anmeldelse af Accessibility Checker i WordPress-plugin-biblioteket? Dette vil hjælpe med at øge vores synlighed, så flere mennesker kan lære om vigtigheden af webtilgængelighed. Mange tak!"
 
-#: admin/class-admin-notices.php:308
+#: admin/class-admin-notices.php:312
 msgid "Write A Review"
 msgstr "Skriv en anmeldelse"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:313
 msgid "Remind Me In Two Weeks"
 msgstr "Påmind mig om to uger"
 
-#: admin/class-admin-notices.php:310
+#: admin/class-admin-notices.php:314
 msgid "Never Ask Again"
 msgstr "Spørg aldrig igen"
 
-#: admin/class-admin-notices.php:337
+#: admin/class-admin-notices.php:341
 msgid "The review action value was not set"
 msgstr "Anmeldelseshandlingsværdien blev ikke indstillet"
 
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:206
-#: admin/class-ajax.php:589
-#: admin/class-ajax.php:796
+#: admin/class-ajax.php:64
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:611
 msgid "The post ID was not set"
 msgstr "Post-ID'et blev ikke indstillet"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:593
+#: admin/class-ajax.php:68
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:615
 msgid "You do not have permission to view this information for this post."
 msgstr "Du har ikke tilladelse til at se disse oplysninger for dette indlæg."
 
-#: admin/class-ajax.php:83
+#: admin/class-ajax.php:87
 msgid "A Simplified summary has not been included for this content."
 msgstr "Der er ikke inkluderet et forenklet resumé for dette indhold."
 
-#: admin/class-ajax.php:86
+#: admin/class-ajax.php:90
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Dit indhold har et læseniveau på eller under 9. klasse og kræver ikke et forenklet resumé."
 
-#: admin/class-ajax.php:89
+#: admin/class-ajax.php:93
 msgid "The reading level of the simplified summary is too high."
 msgstr "Læseniveauet for det forenklede resumé er for højt."
 
-#: admin/class-ajax.php:91
+#: admin/class-ajax.php:95
 msgid "A simplified summary has been included for this content."
 msgstr "Der er inkluderet et forenklet resumé for dette indhold."
 
-#. translators: %s: Number of errors
-#: admin/class-ajax.php:127
-#, php-format
-msgid "%s Error"
-msgid_plural "%s Errors"
-msgstr[0] "%s Fejl"
-msgstr[1] "%s Fejl"
+#: admin/class-ajax.php:134
+#: build/issueModal.bundle.js:2
+msgid "Problem"
+msgid_plural "Problems"
+msgstr[0] "Problem"
+msgstr[1] "Problemer"
 
-#. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:133
-#, php-format
-msgid "%s Contrast Error"
-msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Kontrastfejl"
-msgstr[1] "%s Kontrastfejl"
+#: admin/class-ajax.php:140
+msgid "Contrast Problem"
+msgid_plural "Contrast Problems"
+msgstr[0] "Kontrastproblem"
+msgstr[1] "Kontrastproblemer"
 
-#. translators: %s: Number of warnings
-#: admin/class-ajax.php:139
-#, php-format
-msgid "%s Warning"
-msgid_plural "%s Warnings"
-msgstr[0] "%s Advarsel"
-msgstr[1] "%s Advarsler"
+#: admin/class-ajax.php:146
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Needs Review"
+msgid_plural "Needs Review"
+msgstr[0] "Skal gennemgås"
+msgstr[1] "Skal gennemgås"
 
-#. translators: %s: Number of ignored items
-#: admin/class-ajax.php:145
-#, php-format
-msgid "%s Ignored Item"
-msgid_plural "%s Ignored Items"
-msgstr[0] "%s Ignoreret element"
-msgstr[1] "%s Ignorerede elementer"
+#: admin/class-ajax.php:152
+#: admin/class-ajax.php:380
+msgid "Dismissed Issue"
+msgid_plural "Dismissed Issues"
+msgstr[0] "Afvist problem"
+msgstr[1] "Afviste problemer"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:198
 msgid "No summary to return"
 msgstr "Intet resumé at returnere"
 
-#: admin/class-ajax.php:221
+#: admin/class-ajax.php:237
+#: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Ugyldigt tabelnavn"
 
-#: admin/class-ajax.php:365
+#: admin/class-ajax.php:325
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Kritisk"
+
+#: admin/class-ajax.php:329
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Høj"
+
+#: admin/class-ajax.php:333
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Medium"
+
+#: admin/class-ajax.php:337
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Lav"
+
+#: admin/class-ajax.php:378
+msgid " total"
+msgstr " i alt"
+
+#: admin/class-ajax.php:408
+#: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Disse indstillinger aktiverer globale rettelser på tværs af hele din hjemmeside."
 
-#: admin/class-ajax.php:366
+#: admin/class-ajax.php:409
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Sider skal muligvis gemmes igen, eller en fuld hjemmesidescanning skal køres for at se rettelser afspejlet i rapporter."
 
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:437
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Gem"
 
-#: admin/class-ajax.php:416
+#: admin/class-ajax.php:459
+#: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Berørt kode"
 
-#: admin/class-ajax.php:438
-msgid "Username:"
-msgstr "Brugernavn:"
-
-#: admin/class-ajax.php:443
-msgid "Date:"
-msgstr "Dato:"
-
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:505
+#: admin/class-ajax.php:534
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Se Problem-ID %d på hjemmesiden, åbner et nyt vindue"
 
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:535
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Se på siden"
 
-#: admin/class-ajax.php:525
+#: admin/class-ajax.php:554
 msgid "Fix: "
 msgstr "Ret: "
 
-#: admin/class-ajax.php:526
+#: admin/class-ajax.php:555
 msgid "Fix"
 msgstr "Ret"
 
-#: admin/class-ajax.php:549
-msgid "Your user account doesn't have permission to ignore this issue."
-msgstr "Din brugerkonto har ikke tilladelse til at ignorere dette problem."
-
-#: admin/class-ajax.php:566
+#: admin/class-ajax.php:588
 msgid "No details to return"
 msgstr "Ingen detaljer at returnere"
 
-#: admin/class-ajax.php:700
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:676
+#: admin/class-ajax.php:688
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Forenklet resumé læsekarakter: %s"
+
+#: admin/class-ajax.php:677
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "Ingen"
+
+#: admin/class-ajax.php:680
+#: build/sidebar.bundle.js:2
+msgid "Not enough content to determine an accurate reading level."
+msgstr "Ikke nok indhold til at bestemme et nøjagtigt læseniveau."
+
+#: admin/class-ajax.php:693
+msgid "Your simplified summary has a reading level above 9th grade."
+msgstr "Dit forenklede resumé har et læseniveau over 9. klasse."
+
+#: admin/class-ajax.php:694
+msgid "Your simplified summary has a reading level at or below 9th grade."
+msgstr "Dit forenklede resumé har et læseniveau på eller under 9. klasse."
+
+#: admin/class-ajax.php:745
 msgid "No readability data to return"
 msgstr "Ingen læsbarhedsdata at returnere"
 
-#: admin/class-ajax.php:752
-#: admin/class-ajax.php:773
+#: admin/class-ajax.php:805
+#: admin/class-ajax.php:826
 msgid "No ignore data to return"
 msgstr "Ingen ignorer-data at returnere"
 
-#: admin/class-ajax.php:800
-msgid "The summary was not set"
-msgstr "Resuméet blev ikke indstillet"
-
-#: admin/class-ajax.php:804
-msgid "You do not have permission to edit this post."
-msgstr "Du har ikke tilladelse til at redigere dette indlæg."
-
-#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "ID-værdien blev ikke indstillet"
 
-#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:93
+#: includes/classes/class-rest-api.php:1037
 msgid "Post not found"
 msgstr "Indlæg ikke fundet"
 
-#: admin/class-frontend-highlight.php:111
+#: admin/class-frontend-highlight.php:115
 msgid "Issue query returned no results"
 msgstr "Problemforespørgsel returnerede ingen resultater"
 
-#: admin/class-frontend-highlight.php:155
+#: admin/class-frontend-highlight.php:162
 msgid "Object query returned no results"
 msgstr "Objektforespørgsel returnerede ingen resultater"
 
-#: admin/class-plugin-action-links.php:48
-#: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:68
+#: admin/class-ignore-ui.php:31
+msgid "False positive"
+msgstr "Falsk positiv"
+
+#: admin/class-ignore-ui.php:32
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Scanneren markerede dette, men det gælder ikke for dette indhold."
+
+#: admin/class-ignore-ui.php:35
+msgid "Remediated"
+msgstr "Udbedret"
+
+#: admin/class-ignore-ui.php:36
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Problemet er blevet løst, men siden er endnu ikke blevet genscannet."
+
+#: admin/class-ignore-ui.php:39
+msgid "Confirmed accessible"
+msgstr "Bekræftet tilgængelig"
+
+#: admin/class-ignore-ui.php:40
+msgid "Reviewed and verified to meet accessibility requirements."
+msgstr "Gennemgået og verificeret til at opfylde tilgængelighedskrav."
+
+#: admin/class-ignore-ui.php:82
+msgid "Username:"
+msgstr "Brugernavn:"
+
+#: admin/class-ignore-ui.php:92
+msgid "Date:"
+msgstr "Dato:"
+
+#: admin/class-ignore-ui.php:97
+#: build/issueModal.bundle.js:2
+msgid "Reopen Issue"
+msgstr "Genåbn problem"
+
+#: admin/class-ignore-ui.php:98
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Issue"
+msgstr "Afvis problem"
+
+#: admin/class-ignore-ui.php:119
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
+msgid "Comment"
+msgstr "Kommentar"
+
+#: admin/class-ignore-ui.php:126
+msgid "Manage Globally Dismissed"
+msgstr "Administrer globalt afviste"
+
+#: admin/class-ignore-ui.php:134
+msgid "Your user account doesn't have permission to dismiss this issue."
+msgstr "Din brugerkonto har ikke tilladelse til at afvise dette problem."
+
+#: admin/class-ignore-ui.php:156
+#: build/issueModal.bundle.js:2
+msgid "Dismiss issue as:"
+msgstr "Afvis problem som:"
+
+#: admin/class-plugin-action-links.php:52
+#: includes/classes/class-admin-toolbar.php:98
+#: includes/options-page.php:72
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: admin/class-plugin-action-links.php:60
+#: admin/class-plugin-action-links.php:64
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Hent Accessibility Checker Pro, åbner i nyt vindue"
 
-#: admin/class-plugin-row-meta.php:53
+#: admin/class-plugin-row-meta.php:57
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Se dokumentationen for Accessibility Checker (åbnes i nyt vindue)"
 
-#: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:313
+#: admin/class-plugin-row-meta.php:58
+#: admin/class-widgets.php:317
 msgid "Documentation"
 msgstr "Dokumentation"
 
-#: admin/class-plugin-row-meta.php:59
+#: admin/class-plugin-row-meta.php:63
 msgid "Get support for Accessibility Checker (opens in new window)"
 msgstr "Få support til Accessibility Checker (åbnes i nyt vindue)"
 
-#: admin/class-plugin-row-meta.php:60
+#: admin/class-plugin-row-meta.php:64
 msgid "Support"
 msgstr "Support"
 
-#: admin/class-plugin-row-meta.php:65
+#: admin/class-plugin-row-meta.php:69
 msgid "Rate Accessibility Checker plugin (opens in new window)"
 msgstr "Bedøm Accessibility Checker-plugin (åbnes i nyt vindue)"
 
-#: admin/class-plugin-row-meta.php:66
+#: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Bedøm plugin"
 
-#: admin/class-upgrade-promotion.php:58
+#: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Opgrader til pro"
 
-#: admin/class-upgrade-promotion.php:60
+#: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
 msgstr "Opgraderingssalg nu"
 
-#: admin/class-upgrade-promotion.php:82
+#: admin/class-upgrade-promotion.php:86
 msgid "Unable to redirect to upgrade page."
 msgstr "Kan ikke omdirigere til opgraderingssiden."
 
@@ -456,7 +551,7 @@ msgid "See History"
 msgstr "Se historik"
 
 #: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:98
+#: admin/class-widgets.php:102
 msgid "Passed Tests"
 msgstr "Beståede tests"
 
@@ -493,12 +588,12 @@ msgid "Average Issue Density"
 msgstr "Gennemsnitlig problemtæthed"
 
 #: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:105
+#: admin/class-widgets.php:109
 msgid "Report Last Updated:"
 msgstr "Rapport sidst opdateret:"
 
 #: admin/class-welcome-page.php:216
-#: includes/options-page.php:606
+#: includes/options-page.php:610
 msgid "Never"
 msgstr "Aldrig"
 
@@ -541,130 +636,130 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Lås op for detaljerede tilgængelighedsrapporter"
 
 #: admin/class-welcome-page.php:304
-#: admin/class-widgets.php:71
+#: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Start scanning af hele din hjemmeside for tilgængelighedsproblemer, få rapporter for hele hjemmesiden, og bliv hurtigere kompatibel med tilgængelighedsretningslinjer."
 
 #: admin/class-welcome-page.php:308
-#: admin/class-widgets.php:73
+#: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Opgrader Accessibility Checker"
 
-#: admin/class-widgets.php:69
+#: admin/class-widgets.php:73
 msgid "close ad"
 msgstr "luk annonce"
 
-#: admin/class-widgets.php:70
+#: admin/class-widgets.php:74
 msgid "Get Detailed Accessibility Reports"
 msgstr "Få detaljerede tilgængelighedsrapporter"
 
-#: admin/class-widgets.php:88
+#: admin/class-widgets.php:92
 msgid "Full Site Accessibility Status"
 msgstr "Fuld hjemmesidetilgængelighedsstatus"
 
-#: admin/class-widgets.php:113
+#: admin/class-widgets.php:117
 msgid "URLs Scanned:"
 msgstr "Scannede URL'er:"
 
-#: admin/class-widgets.php:121
+#: admin/class-widgets.php:125
 msgid "Errors:"
 msgstr "Fejl:"
 
-#: admin/class-widgets.php:125
+#: admin/class-widgets.php:129
 msgid "Color Contrast Errors:"
 msgstr "Farvekontrastfejl:"
 
-#: admin/class-widgets.php:129
+#: admin/class-widgets.php:133
 msgid "Warnings:"
 msgstr "Advarsler:"
 
-#: admin/class-widgets.php:144
+#: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Din hjemmeside har tilgængelighedsproblemer, der bør håndteres så hurtigt som muligt for at sikre overholdelse af tilgængelighedsretningslinjer."
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Godt gået! Accessibility Checker kan ikke finde nogen tilgængelighedsproblemer i det testede indhold. Nogle problemer kan ikke opdages af automatiserede værktøjer, så glem ikke at"
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "manually test your site"
 msgstr "teste din hjemmeside manuelt"
 
-#: admin/class-widgets.php:162
+#: admin/class-widgets.php:166
 msgid "Issues By Post Type"
 msgstr "Problemer efter indlægstype"
 
-#: admin/class-widgets.php:169
+#: admin/class-widgets.php:173
 msgid "Post Type"
 msgstr "Indlægstype"
 
-#: admin/class-widgets.php:172
+#: admin/class-widgets.php:176
 msgid "Errors"
 msgstr "Fejl"
 
-#: admin/class-widgets.php:175
+#: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: admin/class-widgets.php:178
+#: admin/class-widgets.php:182
 msgid "Warnings"
 msgstr "Advarsler"
 
-#: admin/class-widgets.php:248
+#: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Opgrader for at scanne"
 
-#: admin/class-widgets.php:277
+#: admin/class-widgets.php:281
 msgid "See More Reports"
 msgstr "Se flere rapporter"
 
-#: admin/class-widgets.php:289
-#: partials/welcome-page.php:239
+#: admin/class-widgets.php:293
+#: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Lær om tilgængelighed"
 
-#: admin/class-widgets.php:311
+#: admin/class-widgets.php:315
 msgid "Additional Resources"
 msgstr "Yderligere ressourcer"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog (opens in a new window)"
 msgstr "Blog (åbner i et nyt vindue)"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:313
+#: admin/class-widgets.php:317
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentation (åbner i et nyt vindue)"
 
-#: admin/opt-in/class-email-opt-in.php:115
+#: admin/opt-in/class-email-opt-in.php:119
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Tilgængelighedsbegivenheder og nyheder i din indbakke"
 
-#: admin/opt-in/class-email-opt-in.php:121
+#: admin/opt-in/class-email-opt-in.php:125
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
 msgstr "Abonnér på Equalize Digitals e-mailliste for at få adgang til gratis tilgængelighedswebinarer og træningsressourcer."
 
-#: admin/opt-in/class-email-opt-in.php:127
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Email*"
 msgstr "E-mail*"
 
-#: admin/opt-in/class-email-opt-in.php:131
+#: admin/opt-in/class-email-opt-in.php:135
 msgid "Type your email"
 msgstr "Skriv din e-mail"
 
-#: admin/opt-in/class-email-opt-in.php:139
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "First Name"
 msgstr "Fornavn"
 
-#: admin/opt-in/class-email-opt-in.php:143
+#: admin/opt-in/class-email-opt-in.php:147
 msgid "Type your first name"
 msgstr "Skriv dit fornavn"
 
 #. translators: 1: link to privacy policy page. 2: link close tag.
-#: admin/opt-in/class-email-opt-in.php:153
+#: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Ved at abonnere giver du samtykke til at modtage e-mails i overensstemmelse med vores %1$sPrivatlivspolitik%2$s."
@@ -673,90 +768,90 @@ msgstr "Ved at abonnere giver du samtykke til at modtage e-mails i overensstemme
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Revisionshistorik"
 
-#: admin/site-health/class-checks.php:44
+#: admin/site-health/class-checks.php:48
 msgid "Accessibility issues"
 msgstr "Tilgængelighedsproblemer"
 
-#: admin/site-health/class-checks.php:49
+#: admin/site-health/class-checks.php:53
 msgid "Content checked for accessibility"
 msgstr "Indhold kontrolleret for tilgængelighed"
 
-#: admin/site-health/class-checks.php:54
+#: admin/site-health/class-checks.php:58
 msgid "Post types configured for accessibility checks"
 msgstr "Indholdstyper konfigureret til tilgængelighedskontrol"
 
-#: admin/site-health/class-checks.php:69
+#: admin/site-health/class-checks.php:73
 msgid "Accessibility"
 msgstr "Tilgængelighed"
 
-#: admin/site-health/class-checks.php:96
+#: admin/site-health/class-checks.php:100
 msgid "View Issues"
 msgstr "Se problemer"
 
-#: admin/site-health/class-checks.php:103
+#: admin/site-health/class-checks.php:107
 msgid "View Accessibility Checker"
 msgstr "Se Accessibility Checker"
 
-#: admin/site-health/class-checks.php:122
+#: admin/site-health/class-checks.php:126
 msgid "Accessibility issues detected"
 msgstr "Tilgængelighedsproblemer opdaget"
 
 #. translators: 1: error count, 2: warning count.
-#: admin/site-health/class-checks.php:125
+#: admin/site-health/class-checks.php:129
 #, php-format
 msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
 msgstr "Accessibility Checker har registreret %1$s fejl og %2$s advarsler."
 
-#: admin/site-health/class-checks.php:141
+#: admin/site-health/class-checks.php:145
 msgid "No accessibility issues detected"
 msgstr "Ingen tilgængelighedsproblemer opdaget"
 
-#: admin/site-health/class-checks.php:142
+#: admin/site-health/class-checks.php:146
 msgid "Accessibility Checker has not found any issues in scanned content."
 msgstr "Accessibility Checker har ikke fundet nogen problemer i det scannede indhold."
 
-#: admin/site-health/class-checks.php:160
+#: admin/site-health/class-checks.php:164
 msgid "Content has not been checked"
 msgstr "Indholdet er ikke blevet kontrolleret"
 
-#: admin/site-health/class-checks.php:161
+#: admin/site-health/class-checks.php:165
 msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
 msgstr "Ingen indlæg er blevet scannet endnu. Kør en fuld scanning af webstedet for at begynde at kontrollere dit indhold for tilgængelighedsproblemer."
 
-#: admin/site-health/class-checks.php:165
+#: admin/site-health/class-checks.php:169
 msgid "Start full site scan"
 msgstr "Start fuld scanning af webstedet"
 
-#: admin/site-health/class-checks.php:174
+#: admin/site-health/class-checks.php:178
 msgid "Content is being checked for accessibility"
 msgstr "Indholdet bliver kontrolleret for tilgængelighed"
 
 #. translators: %s is the number of posts scanned.
-#: admin/site-health/class-checks.php:177
+#: admin/site-health/class-checks.php:181
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker har scannet %s indlæg for tilgængelighedsproblemer."
 msgstr[1] "Accessibility Checker har scannet %s indlæg for tilgængelighedsproblemer."
 
-#: admin/site-health/class-checks.php:196
+#: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
 msgstr "Ingen indholdstyper valgt til tilgængelighedskontrol"
 
-#: admin/site-health/class-checks.php:197
+#: admin/site-health/class-checks.php:201
 msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
 msgstr "Accessibility Checker kan ikke scanne noget indhold, fordi der ikke er valgt nogen indholdstyper. Uden konfigurerede indholdstyper vil ingen tilgængelighedsproblemer blive opdaget."
 
-#: admin/site-health/class-checks.php:201
+#: admin/site-health/class-checks.php:205
 msgid "Configure post types"
 msgstr "Konfigurer indholdstyper"
 
-#: admin/site-health/class-checks.php:213
+#: admin/site-health/class-checks.php:217
 msgid "Post types are configured for accessibility checking"
 msgstr "Indholdstyper er konfigureret til tilgængelighedskontrol"
 
 #. translators: 1: number of post types, 2: comma-separated list of post type names.
-#: admin/site-health/class-checks.php:216
+#: admin/site-health/class-checks.php:220
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
@@ -809,7 +904,7 @@ msgid "Disabled"
 msgstr "Deaktiveret"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:199
+#: includes/options-page.php:203
 msgid "Delete Data"
 msgstr "Slet data"
 
@@ -866,407 +961,372 @@ msgid "Simplified Sum Heading"
 msgstr "Forenklet resumé-overskrift"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:190
+#: includes/options-page.php:194
 msgid "Ignore Permissions"
 msgstr "Ignorér-tilladelser"
-
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "Ingen"
 
 #: admin/site-health/class-pro.php:78
 msgid "Ignores DB Table Count"
 msgstr "Ignorér DB-tabelantal"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
-#: includes/classes/class-accessibility-statement.php:45
+#: includes/classes/class-accessibility-statement.php:49
 #, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "%1$s bruger %2$s til at overvåge vores websides tilgængelighed."
 
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:54
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (åbner i et nyt vindue)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:63
 #, php-format
 msgid "Read our %s"
 msgstr "Læs vores %s"
 
-#: includes/classes/class-accessibility-statement.php:60
+#: includes/classes/class-accessibility-statement.php:64
 msgid "Accessibility Policy"
 msgstr "Tilgængelighedspolitik"
 
-#: includes/classes/class-admin-toolbar.php:115
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
+#: includes/classes/class-admin-toolbar.php:119
+#: partials/pro-callout.php:51
+#: partials/welcome-page.php:219
 msgid "Get Accessibility Checker Pro"
 msgstr "Få Accessibility Checker Pro"
 
-#: includes/classes/class-admin-toolbar.php:120
+#: includes/classes/class-admin-toolbar.php:124
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Få Accessibility Checker Pro (åbner i et nyt vindue)"
 
-#: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:898
-#: includes/options-page.php:922
+#: includes/classes/class-rest-api.php:991
+msgid "Unknown"
+msgstr "Ukendt"
+
+#: includes/classes/class-rest-api.php:1224
+msgid "Issue not found."
+msgstr "Problem ikke fundet."
+
+#: includes/classes/class-rest-api.php:1267
+msgid "Failed to update the issue."
+msgstr "Kunne ikke opdatere problemet."
+
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:902
+#: includes/options-page.php:926
+#: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Forenklet resumé"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
 msgstr "Tilføj størrelse og type til fillinks"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:54
 msgid "Add Context to Linked Files"
 msgstr "Tilføj kontekst til linkede filer"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:87
 msgid "Add File Size & Type To Links"
 msgstr "Tilføj filstørrelse og -type til links"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:89
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Tilføj filstørrelse og -type til linkede filer, der kan udløse en download."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:45
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Tilføj etiketter til formularfelter uden etiketter"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:54
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:77
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:100
 msgid "Label Form Fields"
 msgstr "Etiket formularfelter"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:103
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Tilføj etiketter til formularfelter uden etiketter, hvis feltets formål kan bestemmes."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:134
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Forsøg at tilføje etiketter til formularfelter, der mangler dem. Bemærk: Du skal muligvis tilføje brugerdefinerede stilarter, der målretter %1$s-klassen, hvis tilføjelse af etiketter påvirker dit formularlayout."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:45
 msgid "Add Missing or Empty Page Titles"
 msgstr "Tilføj manglende eller tomme sidetitler"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:54
 msgid "Set Page HTML Titles"
 msgstr "Indstil HTML-sidetitler"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:88
 msgid "Add Missing Page Title"
 msgstr "Tilføj manglende sidetitel"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:91
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Tilføj en %1$s-tag til siden, hvis den mangler eller er tom."
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:38
 msgid "Add warning when link opens new tab/window"
 msgstr "Tilføj advarsel, når link åbner ny fane/vindue"
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:72
 msgid "Add Label To Links That Open A New Tab/Window"
 msgstr "Tilføj etiket til links, der åbner en ny fane/vindue"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:77
 #, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Tilføj en etiket og et ikon til links med %1$s, der informerer brugerne om, at de vil åbne en ny fane/vindue. %2$sBemærk: Denne indstilling vil ikke have nogen effekt, hvis rettelsen »Bloker links, der åbner nye vinduer« er aktiveret.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
 msgstr "Bloker PDF-uploads"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:83
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Begræns PDF-uploads for brugere uden %1$s-rettigheden (tilladt for administratorer som standard)."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:38
 msgid "Add Labels to Comment and Search Forms"
 msgstr "Tilføj etiketter til kommentar- og søgeformularer"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:47
 msgid "Label Comment/Search Fields"
 msgstr "Etiket kommentar-/søgefelter"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:70
 msgid "Comment and Search Form Labels"
 msgstr "Kommentar- og søgeformularetiketter"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:71
 msgid "Add missing labels to WordPress comment and search forms."
 msgstr "Tilføj manglende etiketter til WordPress-kommentar- og søgeformularer."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:94
 msgid "Label Comment Form"
 msgstr "Etiket kommentarformular"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:97
 msgid "Add missing labels to the WordPress comment form."
 msgstr "Tilføj manglende etiketter til WordPress-kommentarformularen."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:105
 msgid "Label Search Form"
 msgstr "Etiket søgeformular"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:108
 msgid "Add a missing label to the WordPress search form."
 msgstr "Tilføj en manglende etiket til WordPress-søgeformularen."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
-msgid "Comment"
-msgstr "Kommentar"
-
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:147
 msgid "Name"
 msgstr "Navn"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:152
 msgid "Email"
 msgstr "E-mail"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:157
 msgid "Website"
 msgstr "Hjemmeside"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:181
 msgid "Search …"
 msgstr "Søg …"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:186
 msgid "Search for:"
 msgstr "Søg efter:"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:188
 msgid "Search"
 msgstr "Søg"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Indstillinger for at tilføje manglende etiketter til WordPress-kommentar- og søgeformularer."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
 msgstr "Tilføj fokusoversigter"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:60
 msgid "Focus Outline"
 msgstr "Fokusoversigt"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:61
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:87
 msgid "Add an outline to elements when they receive keyboard focus."
 msgstr "Tilføj en oversigt til elementer, når de modtager tastaturfokus."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:85
 msgid "Add Focus Outline"
 msgstr "Tilføj fokusoversigt"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:116
 msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
 msgstr "Indstillinger relateret til forbedring af fokusoversigter for bedre tastaturtilgængelighed."
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:37
 msgid "Add lang & dir Attributes"
 msgstr "Tilføj lang- og dir-attributter"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:46
 msgid "Set Page Language"
 msgstr "Indstil sidesprog"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:80
 msgid "Add \"lang\" & \"dir\" Attributes"
 msgstr "Tilføj »lang«- og »dir«-attributter"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:83
 #, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Tilføj webstedets sprog (%1$s) og tekstretning (%2$s) attributter til %3$s-elementet."
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+#: includes/classes/Fixes/Fix/LinkUnderline.php:37
 msgid "Add Underlines to all non-nav Links"
 msgstr "Tilføj understregninger til alle ikke-navigations-links"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+#: includes/classes/Fixes/Fix/LinkUnderline.php:46
 msgid "Underline Links"
 msgstr "Understreg links"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+#: includes/classes/Fixes/Fix/LinkUnderline.php:80
 msgid "Force Link Underline"
 msgstr "Tving linkunderstregning"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+#: includes/classes/Fixes/Fix/LinkUnderline.php:82
 msgid "Ensure that non-navigation links are underlined."
 msgstr "Sørg for, at ikke-navigations-links er understreget."
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:38
 msgid "Make Meta Viewport Tag Scalable"
 msgstr "Gør meta viewport-tag skalerbart"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
-msgid "Ensure scalable viewport"
-msgstr "Sikr skalerbar viewport"
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
-msgid "Make sure that the viewport tag on the page allows scaling."
-msgstr "Sørg for, at viewport-tagget på siden tillader skalering."
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:71
 msgid "Make Viewport Scalable"
 msgstr "Gør viewport skalerbar"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:74
 msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
 msgstr "Sørg for, at viewport-tagget tillader skalering, hvilket forbedrer tilgængeligheden på mobile enheder."
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:38
 msgid "Prevent Links Opening New Windows"
 msgstr "Forhindre links i at åbne nye vinduer"
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:72
 msgid "Block Links Opening New Windows"
 msgstr "Bloker links, der åbner nye vinduer"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:77
 #, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Forhindre links i at åbne i et nyt vindue eller fane ved at fjerne %1$s."
 
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
-msgid "Add \"Read\" Link with Post Title"
-msgstr "Tilføj »Læs«-link med indlægstitel"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
-msgid "Add Title to Read More Link"
-msgstr "Tilføj titel til læs mere-link"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
-msgid "Read More links"
-msgstr "Læs mere-links"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
-msgid "Add the post title and links "
-msgstr "Tilføj indlægstitlen og links "
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
-msgid "Add Post Title To \"Read More\""
-msgstr "Tilføj indlægstitel til »Læs mere«"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
-msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
-msgstr "Tilføj indlægstitlen til »Læs mere«-links i indlægslister, når dit tema viser disse links."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
-msgid "For Screen Readers Only"
-msgstr "Kun for skærmlæsere"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
-msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
-msgstr "Gør indlægstitlen tilføjet til »Læs mere«-links kun synlig for skærmlæsere."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
-msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
-msgstr "Denne rettelse tilføjer indlægstitlen til »Læs mere«-links i indlægslister ved »Mere«-blokken og i uddrag."
-
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:37
 msgid "Prefer Accessible Label Attribute"
 msgstr "Foretræk tilgængelig etiket-attribut"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:46
 msgid "Remove Unnecessary Title Attributes"
 msgstr "Fjern unødvendige title-attributter"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:80
 msgid "Remove Title Attributes"
 msgstr "Fjern title-attributter"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:83
 #, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Fjern %1$s-attributter fra elementer, der allerede har et foretrukket tilgængeligt navn."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:38
 msgid "Add Skip Links"
 msgstr "Tilføj springover-links"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:61
 msgid "Skip Link"
 msgstr "Springover-link"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:85
 msgid "Enable Skip Link"
 msgstr "Aktivér springover-link"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:88
 msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
 msgstr "Tilføj et springover-link til alle webstedets sider, så brugere kan springe direkte til hovedindholdet."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:96
 msgid "Main Content Target (required)"
 msgstr "Mål for hovedindhold (påkrævet)"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:99
 msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
 msgstr "Definer ID'et/ID'erne for hovedindholdområdet/områderne, der skal målrettes af springover-links. Indtast flere ID'er adskilt af kommaer; systemet vil gennemgå listen for at finde det passende for hver side."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:108
 msgid "Navigation Target"
 msgstr "Navigationsmål"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:111
 msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
 msgstr "Indstil ID-attributten for navigationselementet. Dette er nyttigt, hvis din hovednavigation indeholder handlinger, som de fleste besøgende på webstedet ønsker at foretage, såsom login eller søgefunktioner."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Hvis dit tema ikke allerede tilføjer et springover-link, der giver tastaturbrugere mulighed for at springe over navigationen og hurtigt hoppe til hovedindholdet, skal du aktivere springover-links her. %1$sLær mere om springover-links.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
 msgid "Skip to content"
 msgstr "Spring til indhold"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
 msgid "Skip to navigation"
 msgstr "Spring til navigation"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:33
+#: includes/classes/Fixes/Fix/TabindexFix.php:37
 msgid "Remove Tabindex from Focusable Elements"
 msgstr "Fjern tabindex fra fokuserbare elementer"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:67
+#: includes/classes/Fixes/Fix/TabindexFix.php:71
 msgid "Remove Tab Index"
 msgstr "Fjern tabuleringsindeks"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/TabindexFix.php:70
+#: includes/classes/Fixes/Fix/TabindexFix.php:74
 #, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Fjern %1$s-attributten fra fokuserbare elementer."
 
-#: includes/classes/Fixes/FixesManager.php:241
+#: includes/classes/Fixes/FixesManager.php:250
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Bemærk: Denne indstilling anbefales ikke for temaer, der allerede er tilgængelighedsparate."
 
-#: includes/classes/Fixes/FixesManager.php:294
+#: includes/classes/Fixes/FixesManager.php:320
 msgid "Fix not found"
 msgstr "Rettelse ikke fundet"
+
+#: includes/classes/Fixes/FixesManager.php:356
+msgid "Fix not found."
+msgstr "Løsning ikke fundet."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -1309,18 +1369,18 @@ msgid "Hard of hearing"
 msgstr "Hørehæmmede"
 
 #: includes/classes/Rules/AffectedDisabilities.php:70
-#: includes/wcag.php:52
-#: includes/wcag.php:85
-#: includes/wcag.php:118
-#: includes/wcag.php:151
-#: includes/wcag.php:251
-#: includes/wcag.php:269
-#: includes/wcag.php:1661
-#: includes/wcag.php:1695
-#: includes/wcag.php:1728
-#: includes/wcag.php:1748
-#: includes/wcag.php:1767
-#: includes/wcag.php:1786
+#: includes/wcag.php:56
+#: includes/wcag.php:89
+#: includes/wcag.php:122
+#: includes/wcag.php:155
+#: includes/wcag.php:255
+#: includes/wcag.php:273
+#: includes/wcag.php:1665
+#: includes/wcag.php:1699
+#: includes/wcag.php:1732
+#: includes/wcag.php:1752
+#: includes/wcag.php:1771
+#: includes/wcag.php:1790
 msgid "Language learners"
 msgstr "Sprogindlærere"
 
@@ -2663,7 +2723,7 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Forståelse af retningslinje 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:109
+#: includes/classes/WPCLI/BootstrapCLI.php:113
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Kunne ikke registrere kommandoen %1$s fordi %2$s"
@@ -2726,1713 +2786,1719 @@ msgstr "Indlægs-ID %1$d eksisterer ikke."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Enten er indlægget endnu ikke scannet, eller alle tests er bestået for indlægs-ID %1$d."
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:31
 msgid "permalink of "
 msgstr "permalink til "
 
-#: includes/helper-functions.php:28
+#: includes/helper-functions.php:32
 msgid "permalink to "
 msgstr "permalink til "
 
-#: includes/helper-functions.php:29
+#: includes/helper-functions.php:33
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:392
+#: includes/helper-functions.php:403
 msgid "Attend Free"
 msgstr "Deltag gratis"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:841
-#, php-format
+#: includes/helper-functions.php:855
+#: build/issueModal.bundle.js:2
+#, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Se %s landmærke på hjemmesiden, åbner et nyt vindue"
 
-#: includes/options-page.php:44
+#: includes/options-page.php:48
 msgid "Welcome to Accessibility Checker"
 msgstr "Velkommen til Accessibility Checker"
 
-#: includes/options-page.php:67
+#: includes/options-page.php:71
 msgid "Accessibility Checker Settings"
 msgstr "Indstillinger for Accessibility Checker"
 
-#: includes/options-page.php:111
+#: includes/options-page.php:115
 msgid "Scan Settings"
 msgstr "Scanningsindstillinger"
 
-#: includes/options-page.php:118
+#: includes/options-page.php:122
 msgid "Permissions"
 msgstr "Tilladelser"
 
-#: includes/options-page.php:125
+#: includes/options-page.php:129
 msgid "Simplified Summary Settings"
 msgstr "Indstillinger for forenklet resumé"
 
-#: includes/options-page.php:132
+#: includes/options-page.php:136
 msgid "Footer Accessibility Statement"
 msgstr "Tilgængelighedserklæring i sidefod"
 
-#: includes/options-page.php:139
+#: includes/options-page.php:143
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:150
 msgid "System Settings"
 msgstr "Systemindstillinger"
 
-#: includes/options-page.php:154
+#: includes/options-page.php:158
 msgid "Post Types To Be Checked"
 msgstr "Indlægstyper, der skal kontrolleres"
 
-#: includes/options-page.php:163
+#: includes/options-page.php:167
 msgid "Scan Speed"
 msgstr "Scanningshastighed"
 
-#: includes/options-page.php:172
+#: includes/options-page.php:176
 msgid "Archive Scanning"
 msgstr "Arkivscanning"
 
-#: includes/options-page.php:181
+#: includes/options-page.php:185
 msgid "Taxonomy Scanning"
 msgstr "Taksonomi-scanning"
 
-#: includes/options-page.php:208
+#: includes/options-page.php:212
 msgid "Prompt for Simplified Summary"
 msgstr "Prompt for forenklet resumé"
 
-#: includes/options-page.php:217
+#: includes/options-page.php:221
 msgid "Simplified Summary Position"
 msgstr "Placering af forenklet resumé"
 
-#: includes/options-page.php:226
+#: includes/options-page.php:230
 msgid "Simplified Summary Heading"
 msgstr "Forenklet overskrift for sammendrag"
 
-#: includes/options-page.php:235
-#: includes/options-page.php:736
+#: includes/options-page.php:239
+#: includes/options-page.php:740
 msgid "Add Footer Accessibility Statement"
 msgstr "Tilføj tilgængelighedserklæring i sidefod"
 
-#: includes/options-page.php:244
-#: includes/options-page.php:759
+#: includes/options-page.php:248
+#: includes/options-page.php:763
 msgid "Include Link to Accessibility Policy"
 msgstr "Inkluder link til tilgængelighedspolitik"
 
-#: includes/options-page.php:253
+#: includes/options-page.php:257
 msgid "Accessibility Policy page"
 msgstr "Side for tilgængelighedspolitik"
 
-#: includes/options-page.php:262
+#: includes/options-page.php:266
 msgid "Accessibility Statement Preview"
 msgstr "Forhåndsvisning af tilgængelighedserklæring"
 
-#: includes/options-page.php:271
+#: includes/options-page.php:275
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker-position"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:324
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfigurer de typer af indhold, der skal kontrolleres for tilgængelighedsproblemer."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:325
+#: includes/options-page.php:329
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Flere funktioner og e-mail-support er tilgængelige med %1$s."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:337
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (åbnes i et nyt vindue)"
 
-#: includes/options-page.php:333
-#: partials/welcome-page.php:21
+#: includes/options-page.php:337
+#: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:347
+#: includes/options-page.php:351
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Brug indstillingerne nedenfor til at konfigurere tilgængelighedstjekkeren på frontend."
 
-#: includes/options-page.php:357
+#: includes/options-page.php:361
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Retningslinjerne for Webtilgængelighed (WCAG) på AAA-niveau kræver, at alt indhold med et læseniveau over 9. Klasse skal have et alternativ, der er lettere at læse. Forenklet opsummeringstekst tilføjes på læsbarhedsfanen i Accessibility Checker-metaboksen på hver posts eller sides redigeringsskærm."
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Lær mere om forenklede resuméer og læsbarhedskrav (åbner i et nyt vindue)"
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Lær mere om forenklede resuméer og læsbarhedskrav."
 
-#: includes/options-page.php:376
+#: includes/options-page.php:380
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Tænker du »Wow, dette plugin er fantastisk«, og hjælper det dig med at gøre din hjemmeside mere tilgængelig? Del dine bestræbelser på at gøre din hjemmeside mere tilgængelig med dine kunder, og lad dem vide, at du bruger Accessibility Checker til at sikre, at alle mennesker kan bruge din hjemmeside. Tilføj et lille tekstlink og en erklæring i sidefoden på din hjemmeside."
 
-#: includes/options-page.php:385
+#: includes/options-page.php:389
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfigurer systemindstillinger for Accessibility Checker-pluginet."
 
-#: includes/options-page.php:399
+#: includes/options-page.php:403
 msgid "Fast"
 msgstr "Hurtig"
 
-#: includes/options-page.php:400
+#: includes/options-page.php:404
 msgid "Normal"
 msgstr "Normal"
 
-#: includes/options-page.php:401
+#: includes/options-page.php:405
 msgid "Slow"
 msgstr "Langsom"
 
-#: includes/options-page.php:402
+#: includes/options-page.php:406
 msgid "Slowest"
 msgstr "Langsomst"
 
-#: includes/options-page.php:424
+#: includes/options-page.php:428
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Hurtigere scanninger er mere ressourcekrævende og kan belaste dit websted meget."
 
-#: includes/options-page.php:450
+#: includes/options-page.php:454
 msgid "Enable scanning of archive pages"
 msgstr "Aktivér scanning af arkivsider"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:458
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Vælg, om arkivsider skal inkluderes i komplette webstedscanninger. Som standard bruges en stikprøvemetode til at vælge taksonomitermer for arkivdata."
 
-#: includes/options-page.php:480
+#: includes/options-page.php:484
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scan alle taksonomivilkår i stedet for kun en stikprøve"
 
-#: includes/options-page.php:484
+#: includes/options-page.php:488
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Tjek alle taksonomitermers arkivsider i stedet for en repræsentativ stikprøve. Dette kræver, at arkivsidescanningen er aktiveret og kan tilføje et stort antal URL'er til scanningslisten."
 
-#: includes/options-page.php:513
+#: includes/options-page.php:517
 msgid "Before the content"
 msgstr "Før indholdet"
 
-#: includes/options-page.php:518
+#: includes/options-page.php:522
 msgid "After the content"
 msgstr "Efter indholdet"
 
-#: includes/options-page.php:523
+#: includes/options-page.php:527
 msgid "Insert manually"
 msgstr "Indsæt manuelt"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:531
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Brug denne funktion til manuelt at tilføje det forenklede resumé til dit tema inden for loopet."
 
-#: includes/options-page.php:529
+#: includes/options-page.php:533
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funktionen accepterer valgfrit post-ID'et som en parameter."
 
-#: includes/options-page.php:532
+#: includes/options-page.php:536
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Indstil, hvor du ønsker, at forenklede resuméer skal vises i forhold til dit indhold, hvis de er udfyldt."
 
-#: includes/options-page.php:547
+#: includes/options-page.php:551
 msgid "Bottom Right Corner (default)"
 msgstr "Nederste højre hjørne (standard)"
 
-#: includes/options-page.php:552
+#: includes/options-page.php:556
 msgid "Bottom Left Corner"
 msgstr "Nederste venstre hjørne"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:560
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Indstil, hvor du ønsker, at frontend-tilgængelighedstjekkeren skal vises på siden."
 
-#: includes/options-page.php:596
+#: includes/options-page.php:600
 msgid "When Required"
 msgstr "Når det kræves"
 
-#: includes/options-page.php:601
+#: includes/options-page.php:605
 msgid "Always"
 msgstr "Altid"
 
-#: includes/options-page.php:609
+#: includes/options-page.php:613
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Skal Accessibility Checker kun bede om en forenklet opsummering, når læseniveauet for dit indlæg eller din side er over 9. klasse, altid bede om det uanset læseniveau, eller aldrig bede om det uanset læseniveau?"
 
-#: includes/options-page.php:661
+#: includes/options-page.php:665
 msgid "To check content other than posts and pages, please "
 msgstr "For at tjekke andet indhold end indlæg og sider, venligst "
 
-#: includes/options-page.php:663
+#: includes/options-page.php:667
 msgid "upgrade to pro"
 msgstr "opgrader til pro"
 
-#: includes/options-page.php:664
+#: includes/options-page.php:668
 msgid " (opens in a new window)"
 msgstr " (åbner i et nyt vindue)"
 
-#: includes/options-page.php:669
+#: includes/options-page.php:673
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Vælg hvilke indholdstyper, der skal kontrolleres under en scanning. Bemærk venligst, at fjernelse af en tidligere valgt indholdstype vil fjerne dens scannede information og eventuelle brugerdefinerede ignorerede advarsler, der er blevet oprettet."
 
-#: includes/options-page.php:811
+#: includes/options-page.php:815
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Slet alle Accessibility Checker-data, når plugin'et afinstalleres."
 
-#: includes/options-page.php:966
+#: includes/options-page.php:970
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Vælg hvilke brugerroller der har tilladelse til at ignorere problemer."
 
-#: includes/options-page.php:999
+#: includes/options-page.php:1003
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Konfigurer hvilke brugerroller der har adgang til specifikke Accessibility Checker-funktioner."
 
-#: includes/wcag.php:11
+#: includes/wcag.php:15
 msgid "Non-text Content"
 msgstr "Ikke-tekstbaseret indhold"
 
-#: includes/wcag.php:12
+#: includes/wcag.php:16
 msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
 msgstr "Alt ikke-tekstbaseret indhold skal have et tekstalternativ, der tjener samme formål, medmindre det falder ind under specifikke undtagelser som kontroller, medier, tests, sensorisk indhold, CAPTCHA eller dekorative elementer. Hver type skal følge specifikke retningslinjer for at sikre tilgængelighed uden at forstyrre brugeroplevelsen."
 
-#: includes/wcag.php:15
+#: includes/wcag.php:19
 msgid "1.1 Text Alternatives"
 msgstr "1.1 tekstalternativer"
 
-#: includes/wcag.php:16
-#: includes/wcag.php:49
-#: includes/wcag.php:82
-#: includes/wcag.php:115
-#: includes/wcag.php:148
-#: includes/wcag.php:181
-#: includes/wcag.php:213
-#: includes/wcag.php:230
-#: includes/wcag.php:247
-#: includes/wcag.php:266
-#: includes/wcag.php:284
-#: includes/wcag.php:319
-#: includes/wcag.php:353
-#: includes/wcag.php:386
-#: includes/wcag.php:413
-#: includes/wcag.php:441
-#: includes/wcag.php:459
-#: includes/wcag.php:492
-#: includes/wcag.php:520
-#: includes/wcag.php:547
-#: includes/wcag.php:575
-#: includes/wcag.php:604
-#: includes/wcag.php:638
-#: includes/wcag.php:671
-#: includes/wcag.php:703
-#: includes/wcag.php:735
-#: includes/wcag.php:753
-#: includes/wcag.php:770
-#: includes/wcag.php:788
+#: includes/wcag.php:20
+#: includes/wcag.php:53
+#: includes/wcag.php:86
+#: includes/wcag.php:119
+#: includes/wcag.php:152
+#: includes/wcag.php:185
+#: includes/wcag.php:217
+#: includes/wcag.php:234
+#: includes/wcag.php:251
+#: includes/wcag.php:270
+#: includes/wcag.php:288
+#: includes/wcag.php:323
+#: includes/wcag.php:357
+#: includes/wcag.php:390
+#: includes/wcag.php:417
+#: includes/wcag.php:445
+#: includes/wcag.php:463
+#: includes/wcag.php:496
+#: includes/wcag.php:524
+#: includes/wcag.php:551
+#: includes/wcag.php:579
+#: includes/wcag.php:608
+#: includes/wcag.php:642
+#: includes/wcag.php:675
+#: includes/wcag.php:707
+#: includes/wcag.php:739
+#: includes/wcag.php:757
+#: includes/wcag.php:774
+#: includes/wcag.php:792
 msgid "Perceivable"
 msgstr "Opfattelig"
 
-#: includes/wcag.php:18
-#: includes/wcag.php:288
-#: includes/wcag.php:1533
-#: includes/wcag.php:2200
-#: includes/wcag.php:2234
+#: includes/wcag.php:22
+#: includes/wcag.php:292
+#: includes/wcag.php:1537
+#: includes/wcag.php:2204
+#: includes/wcag.php:2238
 msgid "People with dexterity impairments using voice control"
 msgstr "Personer med motoriske udfordringer, der bruger stemmestyring"
 
-#: includes/wcag.php:19
-#: includes/wcag.php:289
-#: includes/wcag.php:323
+#: includes/wcag.php:23
+#: includes/wcag.php:293
+#: includes/wcag.php:327
+#: includes/wcag.php:448
+#: includes/wcag.php:898
+#: includes/wcag.php:927
+#: includes/wcag.php:961
+#: includes/wcag.php:995
+#: includes/wcag.php:1015
+#: includes/wcag.php:1034
+#: includes/wcag.php:1053
+#: includes/wcag.php:1137
+#: includes/wcag.php:1171
+#: includes/wcag.php:1241
+#: includes/wcag.php:1308
+#: includes/wcag.php:1342
+#: includes/wcag.php:1376
+#: includes/wcag.php:1461
+#: includes/wcag.php:1480
+#: includes/wcag.php:1510
+#: includes/wcag.php:1666
+#: includes/wcag.php:1700
+#: includes/wcag.php:1810
+#: includes/wcag.php:1846
+#: includes/wcag.php:1881
+#: includes/wcag.php:1912
+#: includes/wcag.php:1944
+#: includes/wcag.php:1980
+#: includes/wcag.php:2014
+#: includes/wcag.php:2048
+#: includes/wcag.php:2082
+#: includes/wcag.php:2116
+#: includes/wcag.php:2135
+#: includes/wcag.php:2206
+#: includes/wcag.php:2240
+#: includes/wcag.php:2271
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "Skærmlæserbrugere (blinde/svagtseende og neurodivergente personer)"
+
+#: includes/wcag.php:48
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "Forudindspillet lyd-kun og video-kun"
+
+#: includes/wcag.php:49
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "For forudindspillet lyd-kun og video-kun indhold skal der gives et tekstalternativ, der præsenterer tilsvarende information. Dette sikrer, at brugere, der ikke kan høre eller se mediet, stadig kan få adgang til dets indhold gennem tekst."
+
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:184
+#: includes/wcag.php:216
+#: includes/wcag.php:233
+#: includes/wcag.php:250
+#: includes/wcag.php:269
+msgid "1.2 Time-based Media"
+msgstr "1.2 tidsbaserede medier"
+
+#: includes/wcag.php:55
+#: includes/wcag.php:88
+#: includes/wcag.php:121
+#: includes/wcag.php:154
+#: includes/wcag.php:219
+#: includes/wcag.php:253
+#: includes/wcag.php:272
+#: includes/wcag.php:360
+#: includes/wcag.php:611
+#: includes/wcag.php:759
+msgid "Deaf and hard of hearing people"
+msgstr "Døve og hørehæmmede personer"
+
+#: includes/wcag.php:81
+msgid "Captions (Prerecorded)"
+msgstr "Undertekster (forudindspillet)"
+
+#: includes/wcag.php:82
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "Der skal gives undertekster til alt forudindspillet lydindhold i synkroniserede medier - såsom videoer, hvor lyd og billeder afspilles sammen - så brugere, der er døve eller hørehæmmede, kan få adgang til den talte information og vigtige lyde."
+
+#: includes/wcag.php:114
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "Lydbeskrivelse eller mediealternativ (forudindspillet)"
+
+#: includes/wcag.php:115
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "For forudindspillet videoindhold med lyd (synkroniserede medier) skal der gives en lydbeskrivelse - eller en skriftlig transskription, der inkluderer visuelle detaljer - for at sikre, at brugere, der er blinde eller har nedsat syn, kan forstå vigtig visuel information, der ikke bliver talt."
+
+#: includes/wcag.php:147
+msgid "Captions (Live)"
+msgstr "Undertekster (live)"
+
+#: includes/wcag.php:148
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "For alt live videoindhold, der inkluderer lyd, skal der gives undertekster i realtid, så brugere, der er døve eller hørehæmmede, kan få adgang til den talte information, mens det sker."
+
+#: includes/wcag.php:180
+msgid "Audio Description (Prerecorded)"
+msgstr "Lydbeskrivelse (forudindspillet)"
+
+#: includes/wcag.php:181
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "For forudindspillet video med lyd skal der gives en lydbeskrivelse af vigtigt visuelt indhold, så brugere, der er blinde eller har nedsat syn, kan forstå visuel information, der ikke er beskrevet i hovedlydsporet."
+
+#: includes/wcag.php:187
+#: includes/wcag.php:236
+#: includes/wcag.php:359
+#: includes/wcag.php:465
+#: includes/wcag.php:581
+#: includes/wcag.php:610
+#: includes/wcag.php:709
+#: includes/wcag.php:794
+#: includes/wcag.php:811
+#: includes/wcag.php:845
+#: includes/wcag.php:879
+msgid "Blind and low vision people"
+msgstr "Blinde og svagtseende personer"
+
+#: includes/wcag.php:212
+msgid "Sign Language (Prerecorded)"
+msgstr "Tegnsprog (forudindspillet)"
+
+#: includes/wcag.php:213
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "Der skal gives en tegnsprogstolkning for alt forudindspillet lydindhold i synkroniserede medier, så brugere, der er døve og bruger tegnsprog, fuldt ud kan forstå det talte indhold."
+
+#: includes/wcag.php:229
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "Udvidet lydbeskrivelse (forudindspillet)"
+
+#: includes/wcag.php:230
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "For alt forudindspillet multimedieindhold skal der gives udvidede lydbeskrivelser, når det er nødvendigt - hvilket betyder, at videoen sættes på pause for at indsætte yderligere beskrivelser - så brugere, der er blinde eller har nedsat syn, kan forstå vigtige visuelle detaljer, der ikke kan beskrives under de naturlige pauser i lyden."
+
+#: includes/wcag.php:246
+msgid "Media Alternative (Prerecorded)"
+msgstr "Mediealternativ (forudindspillet)"
+
+#: includes/wcag.php:247
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "For forudindspillet synkroniserede medier gives et fuldt tekstalternativ (såsom et transskript), der giver al information fra både video- og lydspor, så brugere, der ikke kan se eller høre indholdet, stadig kan få adgang til det."
+
+#: includes/wcag.php:254
+msgid "Deaf-blind people"
+msgstr "Døvblinde personer"
+
+#: includes/wcag.php:265
+msgid "Audio-only (Live)"
+msgstr "Kun lyd (live)"
+
+#: includes/wcag.php:266
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "For live indhold med kun lyd gives et tekstalternativ i realtid, så personer, der ikke kan høre lyden, stadig kan få adgang til informationen."
+
+#: includes/wcag.php:283
+msgid "Info and Relationships"
+msgstr "Info og relationer"
+
+#: includes/wcag.php:284
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "Information, struktur og relationer i indhold er programmatisk bestemt eller tilgængelige i tekst, så hjælpeteknologier kan præsentere dem for brugerne."
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+#: includes/wcag.php:356
+#: includes/wcag.php:389
+#: includes/wcag.php:416
 #: includes/wcag.php:444
-#: includes/wcag.php:894
+msgid "1.3 Adaptable"
+msgstr "1.3 tilpasningsdygtig"
+
+#: includes/wcag.php:290
+#: includes/wcag.php:325
+#: includes/wcag.php:812
+#: includes/wcag.php:846
+#: includes/wcag.php:880
+#: includes/wcag.php:1188
+#: includes/wcag.php:1205
+#: includes/wcag.php:1222
+#: includes/wcag.php:1273
+#: includes/wcag.php:1408
+#: includes/wcag.php:1478
+#: includes/wcag.php:1508
+#: includes/wcag.php:1628
+#: includes/wcag.php:1808
+#: includes/wcag.php:1843
+#: includes/wcag.php:1941
+msgid "People who rely on keyboard control"
+msgstr "Personer, der er afhængige af tastaturkontrol"
+
+#: includes/wcag.php:291
+#: includes/wcag.php:326
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "Personer med kognitive forskelle, der ser grænseflader ved hjælp af et tilpasset layout"
+
+#: includes/wcag.php:318
+msgid "Meaningful Sequence"
+msgstr "Meningsfuld rækkefølge"
+
+#: includes/wcag.php:319
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "Indhold præsenteres i en meningsfuld rækkefølge, så læse- eller navigationsrækkefølgen ikke forvirrer brugere, når de bruger hjælpeteknologi."
+
+#: includes/wcag.php:352
+msgid "Sensory Characteristics"
+msgstr "Sensoriske karakteristika"
+
+#: includes/wcag.php:353
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "Instruktioner afhænger ikke kun af sensoriske karakteristika som form, farve, størrelse eller lyd, så alle kan forstå dem."
+
+#: includes/wcag.php:385
+msgid "Orientation"
+msgstr "Orientering"
+
+#: includes/wcag.php:386
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "Indhold begrænser ikke sin visning og betjening til en enkelt skærmretning, såsom portræt eller landskab, medmindre en bestemt retning er afgørende."
+
+#: includes/wcag.php:392
+#: includes/wcag.php:1169
+#: includes/wcag.php:1307
+#: includes/wcag.php:1340
+#: includes/wcag.php:1374
+#: includes/wcag.php:1442
+#: includes/wcag.php:1460
+#: includes/wcag.php:1507
+#: includes/wcag.php:1611
+#: includes/wcag.php:1731
+#: includes/wcag.php:1751
+#: includes/wcag.php:1770
+#: includes/wcag.php:1789
+#: includes/wcag.php:1879
+#: includes/wcag.php:1910
+#: includes/wcag.php:1961
+#: includes/wcag.php:1978
+#: includes/wcag.php:2012
+#: includes/wcag.php:2046
+#: includes/wcag.php:2080
+#: includes/wcag.php:2114
+#: includes/wcag.php:2133
+#: includes/wcag.php:2152
+msgid "All people including those who do not identify as disabled"
+msgstr "Alle mennesker, inklusive dem, der ikke identificerer sig som handicappede"
+
+#: includes/wcag.php:412
+msgid "Identify Input Purpose"
+msgstr "Identificer inputformål"
+
+#: includes/wcag.php:413
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "Formålet med inputfelter, der indsamler information om brugeren, kan programmatisk bestemmes, så browsere og hjælpeteknologier kan hjælpe brugere med at udfylde dem."
+
+#: includes/wcag.php:419
+#: includes/wcag.php:447
+#: includes/wcag.php:1170
+#: includes/wcag.php:1239
+#: includes/wcag.php:1375
+#: includes/wcag.php:1443
+#: includes/wcag.php:2170
+#: includes/wcag.php:2187
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "Personer med kognitive handicap eller begrænset korttidshukommelse eller læsehandicap"
+
+#: includes/wcag.php:420
+#: includes/wcag.php:813
+#: includes/wcag.php:847
+#: includes/wcag.php:881
+#: includes/wcag.php:926
+#: includes/wcag.php:994
+#: includes/wcag.php:1014
+#: includes/wcag.php:1033
+#: includes/wcag.php:1052
+#: includes/wcag.php:1136
+#: includes/wcag.php:1274
+#: includes/wcag.php:1409
+#: includes/wcag.php:1479
+#: includes/wcag.php:1509
+#: includes/wcag.php:1564
+#: includes/wcag.php:1809
+#: includes/wcag.php:1845
+#: includes/wcag.php:1943
+msgid "People with dexterity and mobility impairments"
+msgstr "Personer med bevægelseshandicap"
+
+#: includes/wcag.php:440
+msgid "Identify Purpose"
+msgstr "Identificer formål"
+
+#: includes/wcag.php:441
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "Formålet med brugergrænsefladekomponenter, ikoner og regioner kan programmatisk bestemmes, så hjælpeteknologier kan tilpasse oplevelsen for brugerne."
+
+#: includes/wcag.php:458
+msgid "Use of Color"
+msgstr "Brug af farve"
+
+#: includes/wcag.php:459
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "Farve bruges ikke som den eneste måde at formidle information, angive en handling, opfordre til en reaktion eller skelne et visuelt element."
+
+#: includes/wcag.php:462
+#: includes/wcag.php:495
+#: includes/wcag.php:523
+#: includes/wcag.php:550
+#: includes/wcag.php:578
+#: includes/wcag.php:607
+#: includes/wcag.php:641
+#: includes/wcag.php:674
+#: includes/wcag.php:706
+#: includes/wcag.php:738
+#: includes/wcag.php:756
+#: includes/wcag.php:773
+#: includes/wcag.php:791
+msgid "1.4 Distinguishable"
+msgstr "1.4 adskillelig"
+
+#: includes/wcag.php:466
+msgid "Color blind people"
+msgstr "Farveblinde personer"
+
+#: includes/wcag.php:491
+msgid "Reflow"
+msgstr "Ombrydning"
+
+#: includes/wcag.php:492
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "Indhold kan ses uden at scrolle i mere end én retning, så brugere nemt kan læse og interagere med det på små skærme eller når der er zoomet ind."
+
+#: includes/wcag.php:498
+#: includes/wcag.php:1645
+msgid "People on mobile devices"
+msgstr "Personer på mobile enheder"
+
+#: includes/wcag.php:499
+#: includes/wcag.php:526
+#: includes/wcag.php:554
+#: includes/wcag.php:645
+#: includes/wcag.php:677
+#: includes/wcag.php:742
+#: includes/wcag.php:777
+#: includes/wcag.php:1275
+#: includes/wcag.php:1410
+#: includes/wcag.php:1593
+#: includes/wcag.php:1647
+msgid "People with low vision"
+msgstr "Personer med nedsat syn"
+
+#: includes/wcag.php:519
+msgid "Non-text Contrast"
+msgstr "Ikke-tekst kontrast"
+
+#: includes/wcag.php:520
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "Visuel information, der er nødvendig for at identificere brugergrænsefladekomponenter og grafiske objekter, har et kontrastforhold på mindst 3:1 i forhold til tilstødende farver."
+
+#: includes/wcag.php:546
+msgid "Text Spacing"
+msgstr "Tekstafstand"
+
+#: includes/wcag.php:547
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "Brugere kan tilsidesætte tekstafstand for at forbedre læsbarheden uden at miste indhold eller funktionalitet."
+
+#: includes/wcag.php:553
+#: includes/wcag.php:776
+#: includes/wcag.php:1733
+#: includes/wcag.php:1753
+#: includes/wcag.php:1772
+#: includes/wcag.php:1791
+#: includes/wcag.php:1844
+#: includes/wcag.php:1880
+#: includes/wcag.php:1911
+#: includes/wcag.php:1942
+#: includes/wcag.php:1979
+#: includes/wcag.php:2013
+#: includes/wcag.php:2047
+#: includes/wcag.php:2081
+#: includes/wcag.php:2115
+#: includes/wcag.php:2134
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "Personer med kognitive handicap og læsehandicap"
+
+#: includes/wcag.php:574
+msgid "Content on Hover or Focus"
+msgstr "Indhold ved hover eller fokus"
+
+#: includes/wcag.php:575
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "Hvis ekstra indhold vises ved hover eller fokus, kan brugere afvise det, flytte deres markør over det, og det forbliver synligt, indtil det afvises eller fokus flyttes."
+
+#: includes/wcag.php:582
+#: includes/wcag.php:960
+#: includes/wcag.php:1341
+msgid "People with cognitive disabilities"
+msgstr "Personer med kognitive handicap"
+
+#: includes/wcag.php:583
+#: includes/wcag.php:1646
+msgid "People with dexterity impairments"
+msgstr "Personer med bevægelseshandicap"
+
+#: includes/wcag.php:603
+msgid "Audio Control"
+msgstr "Lydkontrol"
+
+#: includes/wcag.php:604
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "Hvis lyd afspilles automatisk i mere end 3 sekunder, skal brugere kunne sætte på pause, stoppe eller kontrollere lydstyrken uafhængigt af systemets lydstyrke."
+
+#: includes/wcag.php:612
+#: includes/wcag.php:959
+#: includes/wcag.php:1013
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "Personer med ADD eller problemer med at fokusere på indhold uden distraktion"
+
+#: includes/wcag.php:637
+msgid "Contrast (Minimum)"
+msgstr "Kontrast (minimum)"
+
+#: includes/wcag.php:638
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "Tekst og billeder af tekst skal have et kontrastforhold på mindst 4,5:1, undtagen for stor tekst, tilfældig tekst eller logoer."
+
+#: includes/wcag.php:644
+#: includes/wcag.php:741
+msgid "People on mobile devices in a sunny environment"
+msgstr "Folk på mobile enheder i et solrigt miljø"
+
+#: includes/wcag.php:670
+msgid "Resize text"
+msgstr "Ændre tekststørrelse"
+
+#: includes/wcag.php:671
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "Tekst kan forstørres op til 200% uden tab af indhold eller funktionalitet, så personer med nedsat syn kan læse den lettere."
+
+#: includes/wcag.php:702
+msgid "Images of Text"
+msgstr "Tekstbilleder"
+
+#: includes/wcag.php:703
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "Hvis den samme visuelle præsentation kan laves ved hjælp af tekst alene, brug ikke tekstbilleder undtagen til dekorative eller essentielle formål."
+
+#: includes/wcag.php:734
+msgid "Contrast (Enhanced)"
+msgstr "Kontrast (forbedret)"
+
+#: includes/wcag.php:735
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "Tekst og tekstbilleder skal have et kontrastforhold på mindst 7:1, undtagen for stor tekst, tilfældig tekst eller logoer."
+
+#: includes/wcag.php:752
+msgid "Low or No Background Audio"
+msgstr "Lav eller ingen baggrundsaudio"
+
+#: includes/wcag.php:753
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "For forudindspillet lydindhold alene er baggrundslyde enten lave, kan slås fra eller er ikke til stede, så tale er lettere at forstå."
+
+#: includes/wcag.php:769
+msgid "Visual Presentation"
+msgstr "Visuel præsentation"
+
+#: includes/wcag.php:770
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "Brugere kan vælge, hvordan tekstblokke præsenteres, såsom forgrunds- og baggrundsfarver, bredde og linjeafstand, for at gøre læsning lettere."
+
+#: includes/wcag.php:787
+msgid "Images of Text (No Exception)"
+msgstr "Tekstbilleder (ingen undtagelse)"
+
+#: includes/wcag.php:788
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "Tekstbilleder bruges kun til ren dekoration eller hvor en bestemt præsentation af tekst er essentiel, uden undtagelser."
+
+#: includes/wcag.php:804
+msgid "Keyboard"
+msgstr "Tastatur"
+
+#: includes/wcag.php:805
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "Al funktionalitet er tilgængelig ved brug af et tastatur, så brugere, der ikke kan bruge en mus, stadig kan betjene indholdet."
+
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:895
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 tastatur tilgængelig"
+
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:896
 #: includes/wcag.php:923
 #: includes/wcag.php:957
 #: includes/wcag.php:991
-#: includes/wcag.php:1011
+#: includes/wcag.php:1010
 #: includes/wcag.php:1030
 #: includes/wcag.php:1049
-#: includes/wcag.php:1133
+#: includes/wcag.php:1068
+#: includes/wcag.php:1100
+#: includes/wcag.php:1117
+#: includes/wcag.php:1134
 #: includes/wcag.php:1167
+#: includes/wcag.php:1186
+#: includes/wcag.php:1203
+#: includes/wcag.php:1220
 #: includes/wcag.php:1237
-#: includes/wcag.php:1304
+#: includes/wcag.php:1271
+#: includes/wcag.php:1305
 #: includes/wcag.php:1338
 #: includes/wcag.php:1372
-#: includes/wcag.php:1457
+#: includes/wcag.php:1406
+#: includes/wcag.php:1440
+#: includes/wcag.php:1458
 #: includes/wcag.php:1476
-#: includes/wcag.php:1506
+#: includes/wcag.php:1505
+#: includes/wcag.php:1535
+#: includes/wcag.php:1562
+#: includes/wcag.php:1589
+#: includes/wcag.php:1609
+#: includes/wcag.php:1626
+#: includes/wcag.php:1643
+msgid "Operable"
+msgstr "Betjenbar"
+
+#: includes/wcag.php:838
+msgid "No Keyboard Trap"
+msgstr "Ingen tastaturfælde"
+
+#: includes/wcag.php:839
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "Tastaturbrugere kan bevæge sig til og væk fra alle dele af indholdet uden at sidde fast."
+
+#: includes/wcag.php:872
+msgid "Keyboard (No Exception)"
+msgstr "Tastatur (ingen undtagelse)"
+
+#: includes/wcag.php:873
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "Al funktionalitet er tilgængelig fra et tastaturinterface, uden undtagelser."
+
+#: includes/wcag.php:891
+msgid "Character Key Shortcuts"
+msgstr "Tastaturgenveje med tegn"
+
+#: includes/wcag.php:892
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "Hvis en tastaturgenvej kun bruger bogstaver, tal eller tegnsætning, kan brugere slå den fra, ændre den, eller den virker kun, når elementet har fokus."
+
+#: includes/wcag.php:918
+msgid "Timing Adjustable"
+msgstr "Justerbar timing"
+
+#: includes/wcag.php:919
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "Hvis der er sat en tidsgrænse, kan brugere slå den fra, justere den eller forlænge den, medmindre tidsgrænsen er essentiel."
+
+#: includes/wcag.php:922
+#: includes/wcag.php:956
+#: includes/wcag.php:990
+#: includes/wcag.php:1009
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+msgid "2.2 Enough Time"
+msgstr "2.2 nok tid"
+
+#: includes/wcag.php:925
+#: includes/wcag.php:993
+#: includes/wcag.php:1012
+#: includes/wcag.php:1032
+#: includes/wcag.php:1051
+msgid "People who need more time to react"
+msgstr "Personer, der har brug for mere tid til at reagere"
+
+#: includes/wcag.php:952
+msgid "Pause, Stop, Hide"
+msgstr "Pause, stop, skjul"
+
+#: includes/wcag.php:953
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "Brugere kan pause, stoppe eller skjule bevægende, blinkende, rullende eller automatisk opdaterende information, der starter automatisk og varer mere end fem sekunder."
+
+#: includes/wcag.php:986
+msgid "No Timing"
+msgstr "Ingen timing"
+
+#: includes/wcag.php:987
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "Hvis et element kræver et svar inden for en bestemt tid, kan brugere slå timeren fra, justere tidsgrænsen, eller timingen er ikke essentiel."
+
+#: includes/wcag.php:1005
+msgid "Interruptions"
+msgstr "Afbrydelser"
+
+#: includes/wcag.php:1006
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "Brugere afbrydes ikke af uventede ændringer i indhold og kan kontrollere afbrydelser såsom automatisk opdaterende indhold."
+
+#: includes/wcag.php:1025
+msgid "Re-authenticating"
+msgstr "Genautentificering"
+
+#: includes/wcag.php:1026
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "Hvis brugere logges ud på grund af inaktivitet, bliver de underrettet, før sessionen udløber, og kan fortsætte sessionen uden at miste data."
+
+#: includes/wcag.php:1044
+msgid "Timeouts"
+msgstr "Timeouts"
+
+#: includes/wcag.php:1045
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "Brugere advares om forestående timeouts og kan anmode om mere tid eller gemme deres arbejde, før tiden udløber."
+
+#: includes/wcag.php:1063
+msgid "Three Flashes or Below Threshold"
+msgstr "Tre blink eller under tærskel"
+
+#: includes/wcag.php:1064
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "Indhold blinker ikke mere end tre gange i løbet af et sekund, hvilket reducerer risikoen for anfald hos personer med fotosensitiv epilepsi."
+
+#: includes/wcag.php:1067
+#: includes/wcag.php:1099
+#: includes/wcag.php:1116
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 anfald og fysiske reaktioner"
+
+#: includes/wcag.php:1070
+#: includes/wcag.php:1102
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "Personer med fotosensitiv epilepsi og andre fotosensitive anfaldsforstyrrelser"
+
+#: includes/wcag.php:1095
+msgid "Three Flashes"
+msgstr "Tre blink"
+
+#: includes/wcag.php:1096
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "Ingen del af indholdet blinker mere end tre gange i sekundet, uden undtagelser."
+
+#: includes/wcag.php:1112
+msgid "Animation from Interactions"
+msgstr "Animation fra interaktioner"
+
+#: includes/wcag.php:1113
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "Brugere kan slå ikke-essentielle animationer udløst af interaktioner fra, hvilket hjælper dem, der er følsomme over for bevægelse."
+
+#: includes/wcag.php:1119
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "Personer med vestibulære (indre øre) forstyrrelser, hvor bevægelse kan forårsage svimmelhed/hovedpine og kvalme"
+
+#: includes/wcag.php:1129
+msgid "Bypass Blocks"
+msgstr "Spring over blokke"
+
+#: includes/wcag.php:1130
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "Der er en måde at springe gentagne indholdsblokke over, såsom navigationsmenuer, så brugere hurtigt kan nå hovedindholdet."
+
+#: includes/wcag.php:1133
+#: includes/wcag.php:1166
+#: includes/wcag.php:1185
+#: includes/wcag.php:1202
+#: includes/wcag.php:1219
+#: includes/wcag.php:1236
+#: includes/wcag.php:1270
+#: includes/wcag.php:1304
+#: includes/wcag.php:1337
+#: includes/wcag.php:1371
+#: includes/wcag.php:1405
+#: includes/wcag.php:1439
+#: includes/wcag.php:1457
+msgid "2.4 Navigable"
+msgstr "2.4 navigerbar"
+
+#: includes/wcag.php:1162
+msgid "Section Headings"
+msgstr "Sektionsoverskrifter"
+
+#: includes/wcag.php:1163
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "Sektionsoverskrifter bruges til at organisere indhold, hvilket gør det lettere at forstå og navigere."
+
+#: includes/wcag.php:1181
+msgid "Focus Not Obscured (Minimum)"
+msgstr "Fokus ikke skjult (minimum)"
+
+#: includes/wcag.php:1182
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "Når et element modtager tastaturfokus, er det mindst delvist synligt og ikke skjult af andet indhold."
+
+#: includes/wcag.php:1198
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "Fokus ikke skjult (forbedret)"
+
+#: includes/wcag.php:1199
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "Når et element modtager tastaturfokus, er det fuldt synligt og ikke skjult af andet indhold."
+
+#: includes/wcag.php:1215
+msgid "Focus Appearance"
+msgstr "Fokus udseende"
+
+#: includes/wcag.php:1216
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "Den synlige fokusindikator for interaktive elementer er tydeligt synlig og opfylder minimumskrav til størrelse og kontrast."
+
+#: includes/wcag.php:1232
+msgid "Page Titled"
+msgstr "Sidetitel"
+
+#: includes/wcag.php:1233
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "Websider har beskrivende titler, der hjælper brugere med at forstå sidens emne eller formål."
+
+#: includes/wcag.php:1240
+#: includes/wcag.php:2153
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "Personer med alvorlige bevægelseshandicap, der er afhængige af lyd til at navigere på nettet"
+
+#: includes/wcag.php:1266
+msgid "Focus Order"
+msgstr "Fokuseringsrækkefølge"
+
+#: includes/wcag.php:1267
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "Ved navigation med tastatur flytter fokus i en logisk rækkefølge, der bevarer mening og funktionalitet."
+
+#: includes/wcag.php:1300
+msgid "Link Purpose (In Context)"
+msgstr "Linkformål (i kontekst)"
+
+#: includes/wcag.php:1301
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "Formålet med hvert link er tydeligt fra linkteksten og den sammenhæng, det optræder i, så brugerne ved, hvor linket fører hen."
+
+#: includes/wcag.php:1333
+msgid "Multiple Ways"
+msgstr "Flere måder"
+
+#: includes/wcag.php:1334
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "Der er mere end én måde at finde en webside på inden for et sæt af websider, undtagen hvor websiden er resultatet af en søgning."
+
+#: includes/wcag.php:1367
+msgid "Headings and Labels"
+msgstr "Overskrifter og etiketter"
+
+#: includes/wcag.php:1368
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "Overskrifter og etiketter beskriver emnet eller formålet med indholdet og er ikke tvetydige eller vildledende."
+
+#: includes/wcag.php:1401
+msgid "Focus Visible"
+msgstr "Synligt fokus"
+
+#: includes/wcag.php:1402
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "Det er synligt, når et element har tastaturfokus, så brugere, der navigerer med tastatur, kan se, hvilket element der er aktivt."
+
+#: includes/wcag.php:1435
+msgid "Location"
+msgstr "Placering"
+
+#: includes/wcag.php:1436
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "Brugere informeres om deres placering inden for et sæt af websider, f.eks. gennem brødkrummenavigation eller en tydelig sidetitel."
+
+#: includes/wcag.php:1453
+msgid "Link Purpose (Link Only)"
+msgstr "Linkformål (kun link)"
+
+#: includes/wcag.php:1454
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "Formålet med hvert link kan bestemmes af linkteksten alene, uden behov for yderligere kontekst."
+
+#: includes/wcag.php:1471
+msgid "Pointer Gestures"
+msgstr "Pegerbevægelser"
+
+#: includes/wcag.php:1472
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "For funktionalitet, der kan betjenes med en pegerbevægelse, gælder mindst ét af følgende: bevægelsen kan udføres med et enkelt tryk, bevægelsen kan udføres med en enkelt finger, eller bevægelsen kan udføres med en stemmekommando."
+
+#: includes/wcag.php:1475
+#: includes/wcag.php:1504
+#: includes/wcag.php:1534
+#: includes/wcag.php:1561
+#: includes/wcag.php:1588
+#: includes/wcag.php:1608
+#: includes/wcag.php:1625
+#: includes/wcag.php:1642
+msgid "2.5 Input Modalities"
+msgstr "2.5 inputmodaliteter"
+
+#: includes/wcag.php:1500
+msgid "Pointer Cancellation"
+msgstr "Annullering af pegerbevægelse"
+
+#: includes/wcag.php:1501
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "For handlinger, der kræver en pegerbevægelse, kan brugeren annullere handlingen ved at flytte pegeren væk, før handlingen er fuldført."
+
+#: includes/wcag.php:1530
+msgid "Label in Name"
+msgstr "Etiket i navn"
+
+#: includes/wcag.php:1531
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "Navnet på brugergrænsefladekomponenter inkluderer tekstetiketter, der beskriver deres formål, så hjælpeteknologier kan formidle denne information til brugerne."
+
+#: includes/wcag.php:1557
+msgid "Motion Actuation"
+msgstr "Bevægelsesaktivering"
+
+#: includes/wcag.php:1558
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "Funktionalitet, der kan betjenes med en bevægelsesbevægelse, kan også betjenes med et enkelt tryk eller klik, så brugere, der ikke kan udføre bevægelsesbevægelser, stadig kan bruge funktionaliteten."
+
+#: includes/wcag.php:1584
+msgid "Target Size"
+msgstr "Målstørrelse"
+
+#: includes/wcag.php:1585
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "Størrelsen på målet for pegerbevægelser er stor nok til at være let at aktivere, selv for brugere med begrænset fingerfærdighed."
+
+#: includes/wcag.php:1591
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "Personer, der bruger en mobil enhed i miljøer, hvor de udsættes for rystelser (såsom offentlig transport)"
+
+#: includes/wcag.php:1592
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "Personer med fingerfærdigheds- og bevægelseshandicap, herunder håndrysten"
+
+#: includes/wcag.php:1594
+#: includes/wcag.php:1648
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "Personer med store fingre eller som betjener enheden med kun en del af deres finger eller knoer"
+
+#: includes/wcag.php:1604
+msgid "Concurrent Input Mechanisms"
+msgstr "Samtidige inputmekanismer"
+
+#: includes/wcag.php:1605
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "Hvis en inputmekanisme kræver en bestemt kropsholdning eller bevægelse, er en alternativ inputmekanisme tilgængelig, som ikke har samme krav."
+
+#: includes/wcag.php:1621
+msgid "Dragging Movements"
+msgstr "Trækbevægelser"
+
+#: includes/wcag.php:1622
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "For funktionalitet, der kræver trækbevægelser, kan handlingen også udføres med enklere handlinger, så brugere med begrænset fingerfærdighed stadig kan bruge funktionaliteten."
+
+#: includes/wcag.php:1638
+msgid "Target Size (Minimum)"
+msgstr "Målstørrelse (minimum)"
+
+#: includes/wcag.php:1639
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "Målstørrelsen for ethvert interaktivt element er mindst 44x44 pixels, så det let kan aktiveres af brugere med forskellige evner."
+
+#: includes/wcag.php:1658
+msgid "Language of Page"
+msgstr "Sidesprog"
+
+#: includes/wcag.php:1659
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "Standardsproget for hver webside er programmatisk bestemt, så hjælpeteknologier kan bruge de korrekte sprogindstillinger."
+
 #: includes/wcag.php:1662
 #: includes/wcag.php:1696
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "3.1 Readable"
+msgstr "3.1 læsbar"
+
+#: includes/wcag.php:1663
+#: includes/wcag.php:1697
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
 #: includes/wcag.php:1806
-#: includes/wcag.php:1842
+#: includes/wcag.php:1841
 #: includes/wcag.php:1877
 #: includes/wcag.php:1908
-#: includes/wcag.php:1940
+#: includes/wcag.php:1939
+#: includes/wcag.php:1959
 #: includes/wcag.php:1976
 #: includes/wcag.php:2010
 #: includes/wcag.php:2044
 #: includes/wcag.php:2078
 #: includes/wcag.php:2112
 #: includes/wcag.php:2131
-#: includes/wcag.php:2202
-#: includes/wcag.php:2236
-#: includes/wcag.php:2267
-msgid "Screen reader users (blind/low vision and neurodivergent people)"
-msgstr "Skærmlæserbrugere (blinde/svagtseende og neurodivergente personer)"
+#: includes/wcag.php:2150
+#: includes/wcag.php:2168
+#: includes/wcag.php:2185
+msgid "Understandable"
+msgstr "Forståelig"
 
-#: includes/wcag.php:44
-msgid "Prerecorded Audio-only and Video-only"
-msgstr "Forudindspillet lyd-kun og video-kun"
+#: includes/wcag.php:1692
+msgid "Language of Parts"
+msgstr "Sprog i dele"
 
-#: includes/wcag.php:45
-msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
-msgstr "For forudindspillet lyd-kun og video-kun indhold skal der gives et tekstalternativ, der præsenterer tilsvarende information. Dette sikrer, at brugere, der ikke kan høre eller se mediet, stadig kan få adgang til dets indhold gennem tekst."
+#: includes/wcag.php:1693
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "Sproget i hver del af indholdet kan programmatisk bestemmes, så hjælpeteknologier kan give passende sprogstøtte."
 
-#: includes/wcag.php:48
-#: includes/wcag.php:81
-#: includes/wcag.php:114
-#: includes/wcag.php:147
-#: includes/wcag.php:180
-#: includes/wcag.php:212
-#: includes/wcag.php:229
-#: includes/wcag.php:246
-#: includes/wcag.php:265
-msgid "1.2 Time-based Media"
-msgstr "1.2 tidsbaserede medier"
+#: includes/wcag.php:1724
+msgid "Unusual Words"
+msgstr "Usædvanlige ord"
 
-#: includes/wcag.php:51
-#: includes/wcag.php:84
-#: includes/wcag.php:117
-#: includes/wcag.php:150
-#: includes/wcag.php:215
-#: includes/wcag.php:249
-#: includes/wcag.php:268
-#: includes/wcag.php:356
-#: includes/wcag.php:607
-#: includes/wcag.php:755
-msgid "Deaf and hard of hearing people"
-msgstr "Døve og hørehæmmede personer"
+#: includes/wcag.php:1725
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "Usædvanlige eller sjældne ord defineres eller forklares, så brugere med kognitive handicap eller som ikke er fortrolige med sproget kan forstå dem."
 
-#: includes/wcag.php:77
-msgid "Captions (Prerecorded)"
-msgstr "Undertekster (forudindspillet)"
+#: includes/wcag.php:1744
+msgid "Abbreviations"
+msgstr "Forkortelser"
 
-#: includes/wcag.php:78
-msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
-msgstr "Der skal gives undertekster til alt forudindspillet lydindhold i synkroniserede medier - såsom videoer, hvor lyd og billeder afspilles sammen - så brugere, der er døve eller hørehæmmede, kan få adgang til den talte information og vigtige lyde."
+#: includes/wcag.php:1745
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "Forkortelser og akronymer defineres første gang de bruges, så brugere kan forstå deres betydning."
 
-#: includes/wcag.php:110
-msgid "Audio Description or Media Alternative (Prerecorded)"
-msgstr "Lydbeskrivelse eller mediealternativ (forudindspillet)"
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Læseniveau"
 
-#: includes/wcag.php:111
-msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
-msgstr "For forudindspillet videoindhold med lyd (synkroniserede medier) skal der gives en lydbeskrivelse - eller en skriftlig transskription, der inkluderer visuelle detaljer - for at sikre, at brugere, der er blinde eller har nedsat syn, kan forstå vigtig visuel information, der ikke bliver talt."
+#: includes/wcag.php:1764
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "Indhold er skrevet i et klart og enkelt sprog og kræver ikke specialiseret viden for at forstå."
 
-#: includes/wcag.php:143
-msgid "Captions (Live)"
-msgstr "Undertekster (live)"
+#: includes/wcag.php:1782
+msgid "Pronunciation"
+msgstr "Udtale"
 
-#: includes/wcag.php:144
-msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
-msgstr "For alt live videoindhold, der inkluderer lyd, skal der gives undertekster i realtid, så brugere, der er døve eller hørehæmmede, kan få adgang til den talte information, mens det sker."
+#: includes/wcag.php:1783
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "En udtalevejledning er tilgængelig for usædvanlige eller vanskelige ord, så brugere kan forstå, hvordan de udtales."
 
-#: includes/wcag.php:176
-msgid "Audio Description (Prerecorded)"
-msgstr "Lydbeskrivelse (forudindspillet)"
+#: includes/wcag.php:1801
+msgid "On Focus"
+msgstr "Ved fokus"
 
-#: includes/wcag.php:177
-msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
-msgstr "For forudindspillet video med lyd skal der gives en lydbeskrivelse af vigtigt visuelt indhold, så brugere, der er blinde eller har nedsat syn, kan forstå visuel information, der ikke er beskrevet i hovedlydsporet."
+#: includes/wcag.php:1802
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "Når et element modtager fokus, forårsager det ikke uventede ændringer, der kunne forvirre brugeren, og det er tydeligt, hvordan man interagerer med elementet."
 
-#: includes/wcag.php:183
-#: includes/wcag.php:232
-#: includes/wcag.php:355
-#: includes/wcag.php:461
-#: includes/wcag.php:577
-#: includes/wcag.php:606
-#: includes/wcag.php:705
-#: includes/wcag.php:790
-#: includes/wcag.php:807
-#: includes/wcag.php:841
-#: includes/wcag.php:875
-msgid "Blind and low vision people"
-msgstr "Blinde og svagtseende personer"
-
-#: includes/wcag.php:208
-msgid "Sign Language (Prerecorded)"
-msgstr "Tegnsprog (forudindspillet)"
-
-#: includes/wcag.php:209
-msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
-msgstr "Der skal gives en tegnsprogstolkning for alt forudindspillet lydindhold i synkroniserede medier, så brugere, der er døve og bruger tegnsprog, fuldt ud kan forstå det talte indhold."
-
-#: includes/wcag.php:225
-msgid "Extended Audio Description (Prerecorded)"
-msgstr "Udvidet lydbeskrivelse (forudindspillet)"
-
-#: includes/wcag.php:226
-msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
-msgstr "For alt forudindspillet multimedieindhold skal der gives udvidede lydbeskrivelser, når det er nødvendigt - hvilket betyder, at videoen sættes på pause for at indsætte yderligere beskrivelser - så brugere, der er blinde eller har nedsat syn, kan forstå vigtige visuelle detaljer, der ikke kan beskrives under de naturlige pauser i lyden."
-
-#: includes/wcag.php:242
-msgid "Media Alternative (Prerecorded)"
-msgstr "Mediealternativ (forudindspillet)"
-
-#: includes/wcag.php:243
-msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
-msgstr "For forudindspillet synkroniserede medier gives et fuldt tekstalternativ (såsom et transskript), der giver al information fra både video- og lydspor, så brugere, der ikke kan se eller høre indholdet, stadig kan få adgang til det."
-
-#: includes/wcag.php:250
-msgid "Deaf-blind people"
-msgstr "Døvblinde personer"
-
-#: includes/wcag.php:261
-msgid "Audio-only (Live)"
-msgstr "Kun lyd (live)"
-
-#: includes/wcag.php:262
-msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
-msgstr "For live indhold med kun lyd gives et tekstalternativ i realtid, så personer, der ikke kan høre lyden, stadig kan få adgang til informationen."
-
-#: includes/wcag.php:279
-msgid "Info and Relationships"
-msgstr "Info og relationer"
-
-#: includes/wcag.php:280
-msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
-msgstr "Information, struktur og relationer i indhold er programmatisk bestemt eller tilgængelige i tekst, så hjælpeteknologier kan præsentere dem for brugerne."
-
-#: includes/wcag.php:283
-#: includes/wcag.php:318
-#: includes/wcag.php:352
-#: includes/wcag.php:385
-#: includes/wcag.php:412
-#: includes/wcag.php:440
-msgid "1.3 Adaptable"
-msgstr "1.3 tilpasningsdygtig"
-
-#: includes/wcag.php:286
-#: includes/wcag.php:321
-#: includes/wcag.php:808
-#: includes/wcag.php:842
-#: includes/wcag.php:876
-#: includes/wcag.php:1184
-#: includes/wcag.php:1201
-#: includes/wcag.php:1218
-#: includes/wcag.php:1269
-#: includes/wcag.php:1404
-#: includes/wcag.php:1474
-#: includes/wcag.php:1504
-#: includes/wcag.php:1624
-#: includes/wcag.php:1804
-#: includes/wcag.php:1839
-#: includes/wcag.php:1937
-msgid "People who rely on keyboard control"
-msgstr "Personer, der er afhængige af tastaturkontrol"
-
-#: includes/wcag.php:287
-#: includes/wcag.php:322
-msgid "People with cognitive differences who view interfaces using an adapted layout"
-msgstr "Personer med kognitive forskelle, der ser grænseflader ved hjælp af et tilpasset layout"
-
-#: includes/wcag.php:314
-msgid "Meaningful Sequence"
-msgstr "Meningsfuld rækkefølge"
-
-#: includes/wcag.php:315
-msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
-msgstr "Indhold præsenteres i en meningsfuld rækkefølge, så læse- eller navigationsrækkefølgen ikke forvirrer brugere, når de bruger hjælpeteknologi."
-
-#: includes/wcag.php:348
-msgid "Sensory Characteristics"
-msgstr "Sensoriske karakteristika"
-
-#: includes/wcag.php:349
-msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
-msgstr "Instruktioner afhænger ikke kun af sensoriske karakteristika som form, farve, størrelse eller lyd, så alle kan forstå dem."
-
-#: includes/wcag.php:381
-msgid "Orientation"
-msgstr "Orientering"
-
-#: includes/wcag.php:382
-msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
-msgstr "Indhold begrænser ikke sin visning og betjening til en enkelt skærmretning, såsom portræt eller landskab, medmindre en bestemt retning er afgørende."
-
-#: includes/wcag.php:388
-#: includes/wcag.php:1165
-#: includes/wcag.php:1303
-#: includes/wcag.php:1336
-#: includes/wcag.php:1370
-#: includes/wcag.php:1438
-#: includes/wcag.php:1456
-#: includes/wcag.php:1503
-#: includes/wcag.php:1607
-#: includes/wcag.php:1727
-#: includes/wcag.php:1747
-#: includes/wcag.php:1766
-#: includes/wcag.php:1785
-#: includes/wcag.php:1875
-#: includes/wcag.php:1906
-#: includes/wcag.php:1957
-#: includes/wcag.php:1974
-#: includes/wcag.php:2008
-#: includes/wcag.php:2042
-#: includes/wcag.php:2076
-#: includes/wcag.php:2110
-#: includes/wcag.php:2129
-#: includes/wcag.php:2148
-msgid "All people including those who do not identify as disabled"
-msgstr "Alle mennesker, inklusive dem, der ikke identificerer sig som handicappede"
-
-#: includes/wcag.php:408
-msgid "Identify Input Purpose"
-msgstr "Identificer inputformål"
-
-#: includes/wcag.php:409
-msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
-msgstr "Formålet med inputfelter, der indsamler information om brugeren, kan programmatisk bestemmes, så browsere og hjælpeteknologier kan hjælpe brugere med at udfylde dem."
-
-#: includes/wcag.php:415
-#: includes/wcag.php:443
-#: includes/wcag.php:1166
-#: includes/wcag.php:1235
-#: includes/wcag.php:1371
-#: includes/wcag.php:1439
-#: includes/wcag.php:2166
-#: includes/wcag.php:2183
-msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
-msgstr "Personer med kognitive handicap eller begrænset korttidshukommelse eller læsehandicap"
-
-#: includes/wcag.php:416
-#: includes/wcag.php:809
-#: includes/wcag.php:843
-#: includes/wcag.php:877
-#: includes/wcag.php:922
-#: includes/wcag.php:990
-#: includes/wcag.php:1010
-#: includes/wcag.php:1029
-#: includes/wcag.php:1048
-#: includes/wcag.php:1132
-#: includes/wcag.php:1270
-#: includes/wcag.php:1405
-#: includes/wcag.php:1475
-#: includes/wcag.php:1505
-#: includes/wcag.php:1560
 #: includes/wcag.php:1805
-#: includes/wcag.php:1841
-#: includes/wcag.php:1939
-msgid "People with dexterity and mobility impairments"
-msgstr "Personer med bevægelseshandicap"
-
-#: includes/wcag.php:436
-msgid "Identify Purpose"
-msgstr "Identificer formål"
-
-#: includes/wcag.php:437
-msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
-msgstr "Formålet med brugergrænsefladekomponenter, ikoner og regioner kan programmatisk bestemmes, så hjælpeteknologier kan tilpasse oplevelsen for brugerne."
-
-#: includes/wcag.php:454
-msgid "Use of Color"
-msgstr "Brug af farve"
-
-#: includes/wcag.php:455
-msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
-msgstr "Farve bruges ikke som den eneste måde at formidle information, angive en handling, opfordre til en reaktion eller skelne et visuelt element."
-
-#: includes/wcag.php:458
-#: includes/wcag.php:491
-#: includes/wcag.php:519
-#: includes/wcag.php:546
-#: includes/wcag.php:574
-#: includes/wcag.php:603
-#: includes/wcag.php:637
-#: includes/wcag.php:670
-#: includes/wcag.php:702
-#: includes/wcag.php:734
-#: includes/wcag.php:752
-#: includes/wcag.php:769
-#: includes/wcag.php:787
-msgid "1.4 Distinguishable"
-msgstr "1.4 adskillelig"
-
-#: includes/wcag.php:462
-msgid "Color blind people"
-msgstr "Farveblinde personer"
-
-#: includes/wcag.php:487
-msgid "Reflow"
-msgstr "Ombrydning"
-
-#: includes/wcag.php:488
-msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
-msgstr "Indhold kan ses uden at scrolle i mere end én retning, så brugere nemt kan læse og interagere med det på små skærme eller når der er zoomet ind."
-
-#: includes/wcag.php:494
-#: includes/wcag.php:1641
-msgid "People on mobile devices"
-msgstr "Personer på mobile enheder"
-
-#: includes/wcag.php:495
-#: includes/wcag.php:522
-#: includes/wcag.php:550
-#: includes/wcag.php:641
-#: includes/wcag.php:673
-#: includes/wcag.php:738
-#: includes/wcag.php:773
-#: includes/wcag.php:1271
-#: includes/wcag.php:1406
-#: includes/wcag.php:1589
-#: includes/wcag.php:1643
-msgid "People with low vision"
-msgstr "Personer med nedsat syn"
-
-#: includes/wcag.php:515
-msgid "Non-text Contrast"
-msgstr "Ikke-tekst kontrast"
-
-#: includes/wcag.php:516
-msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
-msgstr "Visuel information, der er nødvendig for at identificere brugergrænsefladekomponenter og grafiske objekter, har et kontrastforhold på mindst 3:1 i forhold til tilstødende farver."
-
-#: includes/wcag.php:542
-msgid "Text Spacing"
-msgstr "Tekstafstand"
-
-#: includes/wcag.php:543
-msgid "Users can override text spacing to improve readability without losing content or functionality."
-msgstr "Brugere kan tilsidesætte tekstafstand for at forbedre læsbarheden uden at miste indhold eller funktionalitet."
-
-#: includes/wcag.php:549
-#: includes/wcag.php:772
-#: includes/wcag.php:1729
-#: includes/wcag.php:1749
-#: includes/wcag.php:1768
-#: includes/wcag.php:1787
 #: includes/wcag.php:1840
 #: includes/wcag.php:1876
 #: includes/wcag.php:1907
 #: includes/wcag.php:1938
+#: includes/wcag.php:1958
+msgid "3.2 Predictable"
+msgstr "3.2 forudsigelig"
+
+#: includes/wcag.php:1836
+msgid "On Input"
+msgstr "Ved input"
+
+#: includes/wcag.php:1837
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "Når et inputfelt modtager data, forårsager det ikke uventede ændringer, der kunne forvirre brugeren, og det er tydeligt, hvordan dataene vil blive brugt."
+
+#: includes/wcag.php:1872
+msgid "Consistent Navigation"
+msgstr "Konsekvent navigation"
+
+#: includes/wcag.php:1873
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "Navigationsmekanismer er konsistente på tværs af hjemmesiden, så brugere kan bevæge sig forudsigeligt gennem siden."
+
+#: includes/wcag.php:1903
+msgid "Consistent Identification"
+msgstr "Konsekvent identifikation"
+
+#: includes/wcag.php:1904
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "Komponenter, der har samme funktionalitet inden for et sæt websider, identificeres konsekvent, så brugere let kan genkende dem."
+
+#: includes/wcag.php:1934
+msgid "Change on Request"
+msgstr "Ændring på anmodning"
+
+#: includes/wcag.php:1935
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "Ændringer i indhold eller kontekst, der sker som følge af brugerinput, forekommer ikke uventet, og brugere underrettes om eventuelle ændringer."
+
+#: includes/wcag.php:1954
+msgid "Consistent Help"
+msgstr "Konsekvent hjælp"
+
+#: includes/wcag.php:1955
+#: includes/wcag.php:2108
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "Hjælp og dokumentation er tilgængelig og nem at finde, så brugere kan få assistance, når det er nødvendigt."
+
+#: includes/wcag.php:1971
+msgid "Error Identification"
+msgstr "Fejlidentifikation"
+
+#: includes/wcag.php:1972
+#: includes/wcag.php:2040
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "Hvis en inputfejl opdages, og forslag til korrektion er kendt, gives forslagene til brugeren."
+
 #: includes/wcag.php:1975
 #: includes/wcag.php:2009
 #: includes/wcag.php:2043
 #: includes/wcag.php:2077
 #: includes/wcag.php:2111
 #: includes/wcag.php:2130
-msgid "People with cognitive disabilities and reading disabilities"
-msgstr "Personer med kognitive handicap og læsehandicap"
-
-#: includes/wcag.php:570
-msgid "Content on Hover or Focus"
-msgstr "Indhold ved hover eller fokus"
-
-#: includes/wcag.php:571
-msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
-msgstr "Hvis ekstra indhold vises ved hover eller fokus, kan brugere afvise det, flytte deres markør over det, og det forbliver synligt, indtil det afvises eller fokus flyttes."
-
-#: includes/wcag.php:578
-#: includes/wcag.php:956
-#: includes/wcag.php:1337
-msgid "People with cognitive disabilities"
-msgstr "Personer med kognitive handicap"
-
-#: includes/wcag.php:579
-#: includes/wcag.php:1642
-msgid "People with dexterity impairments"
-msgstr "Personer med bevægelseshandicap"
-
-#: includes/wcag.php:599
-msgid "Audio Control"
-msgstr "Lydkontrol"
-
-#: includes/wcag.php:600
-msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
-msgstr "Hvis lyd afspilles automatisk i mere end 3 sekunder, skal brugere kunne sætte på pause, stoppe eller kontrollere lydstyrken uafhængigt af systemets lydstyrke."
-
-#: includes/wcag.php:608
-#: includes/wcag.php:955
-#: includes/wcag.php:1009
-msgid "People with ADD or difficulty focusing on content without distraction"
-msgstr "Personer med ADD eller problemer med at fokusere på indhold uden distraktion"
-
-#: includes/wcag.php:633
-msgid "Contrast (Minimum)"
-msgstr "Kontrast (minimum)"
-
-#: includes/wcag.php:634
-msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
-msgstr "Tekst og billeder af tekst skal have et kontrastforhold på mindst 4,5:1, undtagen for stor tekst, tilfældig tekst eller logoer."
-
-#: includes/wcag.php:640
-#: includes/wcag.php:737
-msgid "People on mobile devices in a sunny environment"
-msgstr "Folk på mobile enheder i et solrigt miljø"
-
-#: includes/wcag.php:666
-msgid "Resize text"
-msgstr "Ændre tekststørrelse"
-
-#: includes/wcag.php:667
-msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
-msgstr "Tekst kan forstørres op til 200% uden tab af indhold eller funktionalitet, så personer med nedsat syn kan læse den lettere."
-
-#: includes/wcag.php:698
-msgid "Images of Text"
-msgstr "Tekstbilleder"
-
-#: includes/wcag.php:699
-msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
-msgstr "Hvis den samme visuelle præsentation kan laves ved hjælp af tekst alene, brug ikke tekstbilleder undtagen til dekorative eller essentielle formål."
-
-#: includes/wcag.php:730
-msgid "Contrast (Enhanced)"
-msgstr "Kontrast (forbedret)"
-
-#: includes/wcag.php:731
-msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
-msgstr "Tekst og tekstbilleder skal have et kontrastforhold på mindst 7:1, undtagen for stor tekst, tilfældig tekst eller logoer."
-
-#: includes/wcag.php:748
-msgid "Low or No Background Audio"
-msgstr "Lav eller ingen baggrundsaudio"
-
-#: includes/wcag.php:749
-msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
-msgstr "For forudindspillet lydindhold alene er baggrundslyde enten lave, kan slås fra eller er ikke til stede, så tale er lettere at forstå."
-
-#: includes/wcag.php:765
-msgid "Visual Presentation"
-msgstr "Visuel præsentation"
-
-#: includes/wcag.php:766
-msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
-msgstr "Brugere kan vælge, hvordan tekstblokke præsenteres, såsom forgrunds- og baggrundsfarver, bredde og linjeafstand, for at gøre læsning lettere."
-
-#: includes/wcag.php:783
-msgid "Images of Text (No Exception)"
-msgstr "Tekstbilleder (ingen undtagelse)"
-
-#: includes/wcag.php:784
-msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
-msgstr "Tekstbilleder bruges kun til ren dekoration eller hvor en bestemt præsentation af tekst er essentiel, uden undtagelser."
-
-#: includes/wcag.php:800
-msgid "Keyboard"
-msgstr "Tastatur"
-
-#: includes/wcag.php:801
-msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
-msgstr "Al funktionalitet er tilgængelig ved brug af et tastatur, så brugere, der ikke kan bruge en mus, stadig kan betjene indholdet."
-
-#: includes/wcag.php:804
-#: includes/wcag.php:838
-#: includes/wcag.php:872
-#: includes/wcag.php:891
-msgid "2.1 Keyboard Accessible"
-msgstr "2.1 tastatur tilgængelig"
-
-#: includes/wcag.php:805
-#: includes/wcag.php:839
-#: includes/wcag.php:873
-#: includes/wcag.php:892
-#: includes/wcag.php:919
-#: includes/wcag.php:953
-#: includes/wcag.php:987
-#: includes/wcag.php:1006
-#: includes/wcag.php:1026
-#: includes/wcag.php:1045
-#: includes/wcag.php:1064
-#: includes/wcag.php:1096
-#: includes/wcag.php:1113
-#: includes/wcag.php:1130
-#: includes/wcag.php:1163
-#: includes/wcag.php:1182
-#: includes/wcag.php:1199
-#: includes/wcag.php:1216
-#: includes/wcag.php:1233
-#: includes/wcag.php:1267
-#: includes/wcag.php:1301
-#: includes/wcag.php:1334
-#: includes/wcag.php:1368
-#: includes/wcag.php:1402
-#: includes/wcag.php:1436
-#: includes/wcag.php:1454
-#: includes/wcag.php:1472
-#: includes/wcag.php:1501
-#: includes/wcag.php:1531
-#: includes/wcag.php:1558
-#: includes/wcag.php:1585
-#: includes/wcag.php:1605
-#: includes/wcag.php:1622
-#: includes/wcag.php:1639
-msgid "Operable"
-msgstr "Betjenbar"
-
-#: includes/wcag.php:834
-msgid "No Keyboard Trap"
-msgstr "Ingen tastaturfælde"
-
-#: includes/wcag.php:835
-msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
-msgstr "Tastaturbrugere kan bevæge sig til og væk fra alle dele af indholdet uden at sidde fast."
-
-#: includes/wcag.php:868
-msgid "Keyboard (No Exception)"
-msgstr "Tastatur (ingen undtagelse)"
-
-#: includes/wcag.php:869
-msgid "All functionality is available from a keyboard interface, with no exceptions."
-msgstr "Al funktionalitet er tilgængelig fra et tastaturinterface, uden undtagelser."
-
-#: includes/wcag.php:887
-msgid "Character Key Shortcuts"
-msgstr "Tastaturgenveje med tegn"
-
-#: includes/wcag.php:888
-msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
-msgstr "Hvis en tastaturgenvej kun bruger bogstaver, tal eller tegnsætning, kan brugere slå den fra, ændre den, eller den virker kun, når elementet har fokus."
-
-#: includes/wcag.php:914
-msgid "Timing Adjustable"
-msgstr "Justerbar timing"
-
-#: includes/wcag.php:915
-msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
-msgstr "Hvis der er sat en tidsgrænse, kan brugere slå den fra, justere den eller forlænge den, medmindre tidsgrænsen er essentiel."
-
-#: includes/wcag.php:918
-#: includes/wcag.php:952
-#: includes/wcag.php:986
-#: includes/wcag.php:1005
-#: includes/wcag.php:1025
-#: includes/wcag.php:1044
-msgid "2.2 Enough Time"
-msgstr "2.2 nok tid"
-
-#: includes/wcag.php:921
-#: includes/wcag.php:989
-#: includes/wcag.php:1008
-#: includes/wcag.php:1028
-#: includes/wcag.php:1047
-msgid "People who need more time to react"
-msgstr "Personer, der har brug for mere tid til at reagere"
-
-#: includes/wcag.php:948
-msgid "Pause, Stop, Hide"
-msgstr "Pause, stop, skjul"
-
-#: includes/wcag.php:949
-msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
-msgstr "Brugere kan pause, stoppe eller skjule bevægende, blinkende, rullende eller automatisk opdaterende information, der starter automatisk og varer mere end fem sekunder."
-
-#: includes/wcag.php:982
-msgid "No Timing"
-msgstr "Ingen timing"
-
-#: includes/wcag.php:983
-msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
-msgstr "Hvis et element kræver et svar inden for en bestemt tid, kan brugere slå timeren fra, justere tidsgrænsen, eller timingen er ikke essentiel."
-
-#: includes/wcag.php:1001
-msgid "Interruptions"
-msgstr "Afbrydelser"
-
-#: includes/wcag.php:1002
-msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
-msgstr "Brugere afbrydes ikke af uventede ændringer i indhold og kan kontrollere afbrydelser såsom automatisk opdaterende indhold."
-
-#: includes/wcag.php:1021
-msgid "Re-authenticating"
-msgstr "Genautentificering"
-
-#: includes/wcag.php:1022
-msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
-msgstr "Hvis brugere logges ud på grund af inaktivitet, bliver de underrettet, før sessionen udløber, og kan fortsætte sessionen uden at miste data."
-
-#: includes/wcag.php:1040
-msgid "Timeouts"
-msgstr "Timeouts"
-
-#: includes/wcag.php:1041
-msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
-msgstr "Brugere advares om forestående timeouts og kan anmode om mere tid eller gemme deres arbejde, før tiden udløber."
-
-#: includes/wcag.php:1059
-msgid "Three Flashes or Below Threshold"
-msgstr "Tre blink eller under tærskel"
-
-#: includes/wcag.php:1060
-msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
-msgstr "Indhold blinker ikke mere end tre gange i løbet af et sekund, hvilket reducerer risikoen for anfald hos personer med fotosensitiv epilepsi."
-
-#: includes/wcag.php:1063
-#: includes/wcag.php:1095
-#: includes/wcag.php:1112
-msgid "2.3 Seizures and Physical Reactions"
-msgstr "2.3 anfald og fysiske reaktioner"
-
-#: includes/wcag.php:1066
-#: includes/wcag.php:1098
-msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
-msgstr "Personer med fotosensitiv epilepsi og andre fotosensitive anfaldsforstyrrelser"
-
-#: includes/wcag.php:1091
-msgid "Three Flashes"
-msgstr "Tre blink"
-
-#: includes/wcag.php:1092
-msgid "No part of the content flashes more than three times per second, with no exceptions."
-msgstr "Ingen del af indholdet blinker mere end tre gange i sekundet, uden undtagelser."
-
-#: includes/wcag.php:1108
-msgid "Animation from Interactions"
-msgstr "Animation fra interaktioner"
-
-#: includes/wcag.php:1109
-msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
-msgstr "Brugere kan slå ikke-essentielle animationer udløst af interaktioner fra, hvilket hjælper dem, der er følsomme over for bevægelse."
-
-#: includes/wcag.php:1115
-msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
-msgstr "Personer med vestibulære (indre øre) forstyrrelser, hvor bevægelse kan forårsage svimmelhed/hovedpine og kvalme"
-
-#: includes/wcag.php:1125
-msgid "Bypass Blocks"
-msgstr "Spring over blokke"
-
-#: includes/wcag.php:1126
-msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
-msgstr "Der er en måde at springe gentagne indholdsblokke over, såsom navigationsmenuer, så brugere hurtigt kan nå hovedindholdet."
-
-#: includes/wcag.php:1129
-#: includes/wcag.php:1162
-#: includes/wcag.php:1181
-#: includes/wcag.php:1198
-#: includes/wcag.php:1215
-#: includes/wcag.php:1232
-#: includes/wcag.php:1266
-#: includes/wcag.php:1300
-#: includes/wcag.php:1333
-#: includes/wcag.php:1367
-#: includes/wcag.php:1401
-#: includes/wcag.php:1435
-#: includes/wcag.php:1453
-msgid "2.4 Navigable"
-msgstr "2.4 navigerbar"
-
-#: includes/wcag.php:1158
-msgid "Section Headings"
-msgstr "Sektionsoverskrifter"
-
-#: includes/wcag.php:1159
-msgid "Section headings are used to organize content, making it easier to understand and navigate."
-msgstr "Sektionsoverskrifter bruges til at organisere indhold, hvilket gør det lettere at forstå og navigere."
-
-#: includes/wcag.php:1177
-msgid "Focus Not Obscured (Minimum)"
-msgstr "Fokus ikke skjult (minimum)"
-
-#: includes/wcag.php:1178
-msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
-msgstr "Når et element modtager tastaturfokus, er det mindst delvist synligt og ikke skjult af andet indhold."
-
-#: includes/wcag.php:1194
-msgid "Focus Not Obscured (Enhanced)"
-msgstr "Fokus ikke skjult (forbedret)"
-
-#: includes/wcag.php:1195
-msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
-msgstr "Når et element modtager tastaturfokus, er det fuldt synligt og ikke skjult af andet indhold."
-
-#: includes/wcag.php:1211
-msgid "Focus Appearance"
-msgstr "Fokus udseende"
-
-#: includes/wcag.php:1212
-msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
-msgstr "Den synlige fokusindikator for interaktive elementer er tydeligt synlig og opfylder minimumskrav til størrelse og kontrast."
-
-#: includes/wcag.php:1228
-msgid "Page Titled"
-msgstr "Sidetitel"
-
-#: includes/wcag.php:1229
-msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
-msgstr "Websider har beskrivende titler, der hjælper brugere med at forstå sidens emne eller formål."
-
-#: includes/wcag.php:1236
 #: includes/wcag.php:2149
-msgid "People with severe mobility impairments relying on audio to navigate the web"
-msgstr "Personer med alvorlige bevægelseshandicap, der er afhængige af lyd til at navigere på nettet"
-
-#: includes/wcag.php:1262
-msgid "Focus Order"
-msgstr "Fokuseringsrækkefølge"
-
-#: includes/wcag.php:1263
-msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
-msgstr "Ved navigation med tastatur flytter fokus i en logisk rækkefølge, der bevarer mening og funktionalitet."
-
-#: includes/wcag.php:1296
-msgid "Link Purpose (In Context)"
-msgstr "Linkformål (i kontekst)"
-
-#: includes/wcag.php:1297
-msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
-msgstr "Formålet med hvert link er tydeligt fra linkteksten og den sammenhæng, det optræder i, så brugerne ved, hvor linket fører hen."
-
-#: includes/wcag.php:1329
-msgid "Multiple Ways"
-msgstr "Flere måder"
-
-#: includes/wcag.php:1330
-msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
-msgstr "Der er mere end én måde at finde en webside på inden for et sæt af websider, undtagen hvor websiden er resultatet af en søgning."
-
-#: includes/wcag.php:1363
-msgid "Headings and Labels"
-msgstr "Overskrifter og etiketter"
-
-#: includes/wcag.php:1364
-msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
-msgstr "Overskrifter og etiketter beskriver emnet eller formålet med indholdet og er ikke tvetydige eller vildledende."
-
-#: includes/wcag.php:1397
-msgid "Focus Visible"
-msgstr "Synligt fokus"
-
-#: includes/wcag.php:1398
-msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
-msgstr "Det er synligt, når et element har tastaturfokus, så brugere, der navigerer med tastatur, kan se, hvilket element der er aktivt."
-
-#: includes/wcag.php:1431
-msgid "Location"
-msgstr "Placering"
-
-#: includes/wcag.php:1432
-msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
-msgstr "Brugere informeres om deres placering inden for et sæt af websider, f.eks. gennem brødkrummenavigation eller en tydelig sidetitel."
-
-#: includes/wcag.php:1449
-msgid "Link Purpose (Link Only)"
-msgstr "Linkformål (kun link)"
-
-#: includes/wcag.php:1450
-msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
-msgstr "Formålet med hvert link kan bestemmes af linkteksten alene, uden behov for yderligere kontekst."
-
-#: includes/wcag.php:1467
-msgid "Pointer Gestures"
-msgstr "Pegerbevægelser"
-
-#: includes/wcag.php:1468
-msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
-msgstr "For funktionalitet, der kan betjenes med en pegerbevægelse, gælder mindst ét af følgende: bevægelsen kan udføres med et enkelt tryk, bevægelsen kan udføres med en enkelt finger, eller bevægelsen kan udføres med en stemmekommando."
-
-#: includes/wcag.php:1471
-#: includes/wcag.php:1500
-#: includes/wcag.php:1530
-#: includes/wcag.php:1557
-#: includes/wcag.php:1584
-#: includes/wcag.php:1604
-#: includes/wcag.php:1621
-#: includes/wcag.php:1638
-msgid "2.5 Input Modalities"
-msgstr "2.5 inputmodaliteter"
-
-#: includes/wcag.php:1496
-msgid "Pointer Cancellation"
-msgstr "Annullering af pegerbevægelse"
-
-#: includes/wcag.php:1497
-msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
-msgstr "For handlinger, der kræver en pegerbevægelse, kan brugeren annullere handlingen ved at flytte pegeren væk, før handlingen er fuldført."
-
-#: includes/wcag.php:1526
-msgid "Label in Name"
-msgstr "Etiket i navn"
-
-#: includes/wcag.php:1527
-msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
-msgstr "Navnet på brugergrænsefladekomponenter inkluderer tekstetiketter, der beskriver deres formål, så hjælpeteknologier kan formidle denne information til brugerne."
-
-#: includes/wcag.php:1553
-msgid "Motion Actuation"
-msgstr "Bevægelsesaktivering"
-
-#: includes/wcag.php:1554
-msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
-msgstr "Funktionalitet, der kan betjenes med en bevægelsesbevægelse, kan også betjenes med et enkelt tryk eller klik, så brugere, der ikke kan udføre bevægelsesbevægelser, stadig kan bruge funktionaliteten."
-
-#: includes/wcag.php:1580
-msgid "Target Size"
-msgstr "Målstørrelse"
-
-#: includes/wcag.php:1581
-msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
-msgstr "Størrelsen på målet for pegerbevægelser er stor nok til at være let at aktivere, selv for brugere med begrænset fingerfærdighed."
-
-#: includes/wcag.php:1587
-msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
-msgstr "Personer, der bruger en mobil enhed i miljøer, hvor de udsættes for rystelser (såsom offentlig transport)"
-
-#: includes/wcag.php:1588
-msgid "People with dexterity and mobility impairments including hand tremors"
-msgstr "Personer med fingerfærdigheds- og bevægelseshandicap, herunder håndrysten"
-
-#: includes/wcag.php:1590
-#: includes/wcag.php:1644
-msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
-msgstr "Personer med store fingre eller som betjener enheden med kun en del af deres finger eller knoer"
-
-#: includes/wcag.php:1600
-msgid "Concurrent Input Mechanisms"
-msgstr "Samtidige inputmekanismer"
-
-#: includes/wcag.php:1601
-msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
-msgstr "Hvis en inputmekanisme kræver en bestemt kropsholdning eller bevægelse, er en alternativ inputmekanisme tilgængelig, som ikke har samme krav."
-
-#: includes/wcag.php:1617
-msgid "Dragging Movements"
-msgstr "Trækbevægelser"
-
-#: includes/wcag.php:1618
-msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
-msgstr "For funktionalitet, der kræver trækbevægelser, kan handlingen også udføres med enklere handlinger, så brugere med begrænset fingerfærdighed stadig kan bruge funktionaliteten."
-
-#: includes/wcag.php:1634
-msgid "Target Size (Minimum)"
-msgstr "Målstørrelse (minimum)"
-
-#: includes/wcag.php:1635
-msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
-msgstr "Målstørrelsen for ethvert interaktivt element er mindst 44x44 pixels, så det let kan aktiveres af brugere med forskellige evner."
-
-#: includes/wcag.php:1654
-msgid "Language of Page"
-msgstr "Sidesprog"
-
-#: includes/wcag.php:1655
-msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
-msgstr "Standardsproget for hver webside er programmatisk bestemt, så hjælpeteknologier kan bruge de korrekte sprogindstillinger."
-
-#: includes/wcag.php:1658
-#: includes/wcag.php:1692
-#: includes/wcag.php:1724
-#: includes/wcag.php:1744
-#: includes/wcag.php:1763
-#: includes/wcag.php:1782
-msgid "3.1 Readable"
-msgstr "3.1 læsbar"
-
-#: includes/wcag.php:1659
-#: includes/wcag.php:1693
-#: includes/wcag.php:1725
-#: includes/wcag.php:1745
-#: includes/wcag.php:1764
-#: includes/wcag.php:1783
-#: includes/wcag.php:1802
-#: includes/wcag.php:1837
-#: includes/wcag.php:1873
-#: includes/wcag.php:1904
-#: includes/wcag.php:1935
-#: includes/wcag.php:1955
-#: includes/wcag.php:1972
-#: includes/wcag.php:2006
-#: includes/wcag.php:2040
-#: includes/wcag.php:2074
-#: includes/wcag.php:2108
-#: includes/wcag.php:2127
-#: includes/wcag.php:2146
-#: includes/wcag.php:2164
-#: includes/wcag.php:2181
-msgid "Understandable"
-msgstr "Forståelig"
-
-#: includes/wcag.php:1688
-msgid "Language of Parts"
-msgstr "Sprog i dele"
-
-#: includes/wcag.php:1689
-msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
-msgstr "Sproget i hver del af indholdet kan programmatisk bestemmes, så hjælpeteknologier kan give passende sprogstøtte."
-
-#: includes/wcag.php:1720
-msgid "Unusual Words"
-msgstr "Usædvanlige ord"
-
-#: includes/wcag.php:1721
-msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
-msgstr "Usædvanlige eller sjældne ord defineres eller forklares, så brugere med kognitive handicap eller som ikke er fortrolige med sproget kan forstå dem."
-
-#: includes/wcag.php:1740
-msgid "Abbreviations"
-msgstr "Forkortelser"
-
-#: includes/wcag.php:1741
-msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
-msgstr "Forkortelser og akronymer defineres første gang de bruges, så brugere kan forstå deres betydning."
-
-#: includes/wcag.php:1759
-msgid "Reading Level"
-msgstr "Læseniveau"
-
-#: includes/wcag.php:1760
-msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
-msgstr "Indhold er skrevet i et klart og enkelt sprog og kræver ikke specialiseret viden for at forstå."
-
-#: includes/wcag.php:1778
-msgid "Pronunciation"
-msgstr "Udtale"
-
-#: includes/wcag.php:1779
-msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
-msgstr "En udtalevejledning er tilgængelig for usædvanlige eller vanskelige ord, så brugere kan forstå, hvordan de udtales."
-
-#: includes/wcag.php:1797
-msgid "On Focus"
-msgstr "Ved fokus"
-
-#: includes/wcag.php:1798
-msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
-msgstr "Når et element modtager fokus, forårsager det ikke uventede ændringer, der kunne forvirre brugeren, og det er tydeligt, hvordan man interagerer med elementet."
-
-#: includes/wcag.php:1801
-#: includes/wcag.php:1836
-#: includes/wcag.php:1872
-#: includes/wcag.php:1903
-#: includes/wcag.php:1934
-#: includes/wcag.php:1954
-msgid "3.2 Predictable"
-msgstr "3.2 forudsigelig"
-
-#: includes/wcag.php:1832
-msgid "On Input"
-msgstr "Ved input"
-
-#: includes/wcag.php:1833
-msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
-msgstr "Når et inputfelt modtager data, forårsager det ikke uventede ændringer, der kunne forvirre brugeren, og det er tydeligt, hvordan dataene vil blive brugt."
-
-#: includes/wcag.php:1868
-msgid "Consistent Navigation"
-msgstr "Konsekvent navigation"
-
-#: includes/wcag.php:1869
-msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
-msgstr "Navigationsmekanismer er konsistente på tværs af hjemmesiden, så brugere kan bevæge sig forudsigeligt gennem siden."
-
-#: includes/wcag.php:1899
-msgid "Consistent Identification"
-msgstr "Konsekvent identifikation"
-
-#: includes/wcag.php:1900
-msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
-msgstr "Komponenter, der har samme funktionalitet inden for et sæt websider, identificeres konsekvent, så brugere let kan genkende dem."
-
-#: includes/wcag.php:1930
-msgid "Change on Request"
-msgstr "Ændring på anmodning"
-
-#: includes/wcag.php:1931
-msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
-msgstr "Ændringer i indhold eller kontekst, der sker som følge af brugerinput, forekommer ikke uventet, og brugere underrettes om eventuelle ændringer."
-
-#: includes/wcag.php:1950
-msgid "Consistent Help"
-msgstr "Konsekvent hjælp"
-
-#: includes/wcag.php:1951
-#: includes/wcag.php:2104
-msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
-msgstr "Hjælp og dokumentation er tilgængelig og nem at finde, så brugere kan få assistance, når det er nødvendigt."
-
-#: includes/wcag.php:1967
-msgid "Error Identification"
-msgstr "Fejlidentifikation"
-
-#: includes/wcag.php:1968
-#: includes/wcag.php:2036
-msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
-msgstr "Hvis en inputfejl opdages, og forslag til korrektion er kendt, gives forslagene til brugeren."
-
-#: includes/wcag.php:1971
-#: includes/wcag.php:2005
-#: includes/wcag.php:2039
-#: includes/wcag.php:2073
-#: includes/wcag.php:2107
-#: includes/wcag.php:2126
-#: includes/wcag.php:2145
-#: includes/wcag.php:2163
-#: includes/wcag.php:2180
+#: includes/wcag.php:2167
+#: includes/wcag.php:2184
 msgid "3.3 Input Assistance"
 msgstr "3.3 inputassistance"
 
-#: includes/wcag.php:2001
+#: includes/wcag.php:2005
 msgid "Labels or Instructions"
 msgstr "Etiketter eller instruktioner"
 
-#: includes/wcag.php:2002
+#: includes/wcag.php:2006
 msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
 msgstr "Etiketter eller instruktioner gives, når et inputfelt kræver brugerinput, så brugere ved, hvilke oplysninger der er nødvendige."
 
-#: includes/wcag.php:2035
+#: includes/wcag.php:2039
 msgid "Error Suggestion"
 msgstr "Fejlforslag"
 
-#: includes/wcag.php:2069
+#: includes/wcag.php:2073
 msgid "Error Prevention (Legal, Financial, Data)"
 msgstr "Fejlforebyggelse (juridisk, økonomisk, data)"
 
-#: includes/wcag.php:2070
-#: includes/wcag.php:2123
+#: includes/wcag.php:2074
+#: includes/wcag.php:2127
 msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
 msgstr "For websider, der kræver brugerinput, advares brugere om fejl og kan rette dem, før indsendelsen færdiggøres."
 
-#: includes/wcag.php:2103
+#: includes/wcag.php:2107
 msgid "Help"
 msgstr "Hjælp"
 
-#: includes/wcag.php:2122
+#: includes/wcag.php:2126
 msgid "Error Prevention (All)"
 msgstr "Fejlforebyggelse (alle)"
 
-#: includes/wcag.php:2141
+#: includes/wcag.php:2145
 msgid "Redundant Entry"
 msgstr "Redundant indtastning"
 
-#: includes/wcag.php:2142
+#: includes/wcag.php:2146
 msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
 msgstr "Brugere skal ikke indtaste de samme oplysninger flere gange, hvilket reducerer risikoen for fejl og sparer tid."
 
-#: includes/wcag.php:2159
+#: includes/wcag.php:2163
 msgid "Accessible Authentication (Minimum)"
 msgstr "Tilgængelig autentificering (minimum)"
 
-#: includes/wcag.php:2160
+#: includes/wcag.php:2164
 msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
 msgstr "Autentificeringsprocesser afhænger ikke af kognitive funktionstest som at huske en adgangskode eller løse et puslespil, medmindre et alternativ er tilgængeligt."
 
-#: includes/wcag.php:2176
+#: includes/wcag.php:2180
 msgid "Accessible Authentication (Enhanced)"
 msgstr "Tilgængelig autentificering (udvidet)"
 
-#: includes/wcag.php:2177
+#: includes/wcag.php:2181
 msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
 msgstr "Udvidede autentificeringsmetoder er tilgængelige, som ikke afhænger af kognitive funktionstest, såsom at huske adgangskoder, og kræver ikke en test af kognitiv funktion."
 
-#: includes/wcag.php:2193
+#: includes/wcag.php:2197
 msgid "Parsing"
 msgstr "Parsing"
 
-#: includes/wcag.php:2194
+#: includes/wcag.php:2198
 msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
 msgstr "Indhold er kodet, så hjælpeteknologier præcist kan fortolke og præsentere det for brugere."
 
-#: includes/wcag.php:2197
-#: includes/wcag.php:2231
-#: includes/wcag.php:2264
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+#: includes/wcag.php:2268
 msgid "4.1 Compatible"
 msgstr "4.1 kompatibel"
 
-#: includes/wcag.php:2198
-#: includes/wcag.php:2232
-#: includes/wcag.php:2265
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2269
 msgid "Robust"
 msgstr "Robust"
 
-#: includes/wcag.php:2201
-#: includes/wcag.php:2235
+#: includes/wcag.php:2205
+#: includes/wcag.php:2239
 msgid "People with low vision using screen magnifiers"
 msgstr "Personer med nedsat syn, der bruger skærmforstørrere"
 
-#: includes/wcag.php:2227
+#: includes/wcag.php:2231
 msgid "Name, Role, Value"
 msgstr "Navn, rolle, værdi"
 
-#: includes/wcag.php:2228
+#: includes/wcag.php:2232
 msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
 msgstr "Brugergrænsefladekomponenter har navne, roller og værdier, der kan bestemmes programmatisk, så hjælpeteknologier kan kommunikere dem til brugere."
 
-#: includes/wcag.php:2260
+#: includes/wcag.php:2264
 msgid "Status Messages"
 msgstr "Statusmeddelelser"
 
-#: includes/wcag.php:2261
+#: includes/wcag.php:2265
 msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
 msgstr "Statusmeddelelser bestemmes programmatisk, så hjælpeteknologier kan underrette brugere om vigtige ændringer, såsom formularfejl eller opdateringer."
 
-#: includes/wcag.php:2286
+#: includes/wcag.php:2290
 msgid "Best Practice"
 msgstr "Bedste praksis"
 
-#: includes/wcag.php:2287
+#: includes/wcag.php:2291
 msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
 msgstr "En brugervenligheds forbedring eller konvention, der forbedrer tilgængeligheden, men ikke er påkrævet for WCAG-overholdelse."
 
-#: includes/wcag.php:2301
+#: includes/wcag.php:2305
 msgid "Non-WCAG Accessibility Issue"
 msgstr "Ikke-WCAG tilgængelighedsproblem"
 
-#: includes/wcag.php:2302
+#: includes/wcag.php:2306
 msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
 msgstr "Et problem, der påvirker brugere med handicap, men ikke direkte kan knyttes til et nuværende WCAG-succeskriterium."
 
-#: includes/wcag.php:2316
+#: includes/wcag.php:2320
 msgid "Manual Testing Needed (Multiple Success Criteria)"
 msgstr "Manuel test nødvendig (flere succeskriterier)"
 
-#: includes/wcag.php:2317
+#: includes/wcag.php:2321
 msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
 msgstr "Bruges til dokumenter, medier og andet ikke-scanbart indhold, der kræver manuel test og sandsynligvis vil fejle flere WCAG-succeskriterier."
 
-#: partials/admin-page/fixes-page.php:14
+#: partials/admin-page/fixes-page.php:18
 msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
 msgstr "Indstillinger gemt. For at bekræfte og afspejle disse opdateringer i dit websites statistikker, bedes du genskanne dit site. Hvis du bruger et caching-plugin, skal du sørge for at rydde cachen for at sikre, at de opdaterede rettelser anvendes korrekt."
 
-#: partials/admin-page/fixes-page.php:22
+#: partials/admin-page/fixes-page.php:26
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Accessibility New Window Warnings-pluginet er installeret. Rettelsen for links, der åbnes i et nyt vindue, som er inkluderet her, vil tilsidesætte dets funktionalitet. Du kan trygt fjerne pluginet og bruge disse rettelser i stedet."
 
-#: partials/custom-meta-box.php:13
+#: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Paneler for Accessibility Checker-problemer"
 
-#: partials/custom-meta-box.php:24
-msgid "Summary"
-msgstr "Oversigt"
+#: partials/custom-meta-box.php:28
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Status"
+msgstr "Tilgængelighedsstatus"
 
-#: partials/custom-meta-box.php:34
-msgid "Details"
-msgstr "Detaljer"
+#: partials/custom-meta-box.php:38
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Analysis"
+msgstr "Tilgængelighedsanalyse"
 
-#: partials/custom-meta-box.php:44
-msgid "Readability"
-msgstr "Læsbarhed"
+#: partials/custom-meta-box.php:48
+#: build/sidebar.bundle.js:2
+msgid "Readability Analysis"
+msgstr "Læsbarhedsanalyse"
 
-#: partials/custom-meta-box.php:53
+#: partials/custom-meta-box.php:57
 msgid "Delete all currently found issues"
 msgstr "Slet alle aktuelt fundne problemer"
 
-#: partials/custom-meta-box.php:55
+#: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Clear Issues"
 msgstr "Ryd problemer"
 
-#: partials/pro-callout.php:13
-#: partials/welcome-page.php:199
+#: partials/pro-callout.php:17
+#: partials/welcome-page.php:203
 msgid "Equalize Digital Logo"
 msgstr "Equalize Digital Logo"
 
-#: partials/pro-callout.php:16
-#: partials/welcome-page.php:200
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:204
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Opgrader til Accessibility Checker Pro"
 
-#: partials/pro-callout.php:20
-#: partials/welcome-page.php:203
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:207
 msgid "Scan all post types"
 msgstr "Scan alle indlægstyper"
 
-#: partials/pro-callout.php:21
-#: partials/welcome-page.php:204
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:208
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Administratorkolonner til at se tilgængelighedsstatus på et øjeblik"
 
-#: partials/pro-callout.php:22
-#: partials/welcome-page.php:205
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:209
 msgid "Centralized list of all open issues"
 msgstr "Centraliseret liste over alle åbne problemer"
 
-#: partials/pro-callout.php:23
-#: partials/welcome-page.php:206
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:210
 msgid "Ignore log"
 msgstr "Ignorer-log"
 
-#: partials/pro-callout.php:24
-#: partials/welcome-page.php:207
+#: partials/pro-callout.php:28
+#: partials/welcome-page.php:211
 msgid "Rename simplified summary"
 msgstr "Omdøb forenklet oversigt"
 
-#: partials/pro-callout.php:25
-#: partials/welcome-page.php:208
+#: partials/pro-callout.php:29
+#: partials/welcome-page.php:212
 msgid "User restrictions on ignoring issues"
 msgstr "Brugerbegrænsninger for ignorering af problemer"
 
-#: partials/pro-callout.php:26
-#: partials/welcome-page.php:209
+#: partials/pro-callout.php:30
+#: partials/welcome-page.php:213
 msgid "Email support"
 msgstr "E-mailsupport"
 
-#: partials/pro-callout.php:27
-#: partials/welcome-page.php:210
+#: partials/pro-callout.php:31
+#: partials/welcome-page.php:214
 msgid "...and more"
 msgstr "...og mere"
 
-#: partials/pro-callout.php:57
-#: partials/welcome-page.php:223
+#: partials/pro-callout.php:61
+#: partials/welcome-page.php:227
 msgid "Or activate your license key here."
 msgstr "Eller aktiver din licensnøgle her."
 
-#: partials/settings-page.php:20
+#: partials/settings-page.php:24
 msgid "General"
 msgstr "Generelt"
 
-#: partials/welcome-page.php:31
+#: partials/welcome-page.php:35
 msgid "version"
 msgstr "version"
 
-#: partials/welcome-page.php:40
+#: partials/welcome-page.php:44
 msgid "Link to Equalize Digital Website"
 msgstr "Link til Equalize Digitals hjemmeside"
 
-#: partials/welcome-page.php:49
+#: partials/welcome-page.php:53
 msgid "Quick Start Guide"
 msgstr "Hurtig opstartsvejledning"
 
-#: partials/welcome-page.php:50
+#: partials/welcome-page.php:54
 msgid "Follow these steps to get started checking your content:"
 msgstr "Følg disse trin for at komme i gang med at tjekke dit indhold:"
 
 #. translators: %s: path to settings page.
-#: partials/welcome-page.php:57
+#: partials/welcome-page.php:61
 #, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "På <a href=\"%s\">Indstillingssiden</a> skal du vælge, hvilke indlægstyper du vil scanne."
 
-#: partials/welcome-page.php:64
+#: partials/welcome-page.php:68
 msgid "Go to the edit screen for the post you want to check."
 msgstr "Gå til redigeringsskærmen for det indlæg, du vil tjekke."
 
-#: partials/welcome-page.php:65
+#: partials/welcome-page.php:69
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
 msgstr "Find Accessibility Checker-metaboksen under dit indhold. Hvis du bruger en front-end sidebygger, skal du besøge backend-redigeringsskærmen for at se Accessibility Checker-resultaterne."
 
-#: partials/welcome-page.php:66
+#: partials/welcome-page.php:70
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
 msgstr "Hvis der er fejl eller advarsler i dit indlæg, skal du åbne detaljer-fanen i Accessibility Checker for at få mere information."
 
-#: partials/welcome-page.php:67
+#: partials/welcome-page.php:71
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
 msgstr "Udvid hvert problem for at se koden, eller klik på »vis på siden«, hvis du har brug for hjælp til at finde det element, der skal rettes."
 
-#: partials/welcome-page.php:68
+#: partials/welcome-page.php:72
 msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
 msgstr "Hvis du ikke ved, hvad en fejl eller advarsel betyder, skal du klikke på »i«-ikonet for at læse dokumentationen og hvordan du retter det."
 
-#: partials/welcome-page.php:69
+#: partials/welcome-page.php:73
 msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
 msgstr "Hvis et problem er falsk positivt, og elementet er tilgængeligt, kan du fjerne problemer fra rapporter med funktionen »Ignorer«."
 
-#: partials/welcome-page.php:70
+#: partials/welcome-page.php:74
 msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
 msgstr "Efter at have rettet hvert problem skal du opdatere indlægget for at se tilgængelighedsrapporten ændre sig. Dit mål er at få hver side til at vise 100% Beståede Tests."
 
-#: partials/welcome-page.php:74
+#: partials/welcome-page.php:78
 msgid "Watch a video of Accessibility Checker in use."
 msgstr "Se en video af Accessibility Checker i brug."
 
-#: partials/welcome-page.php:80
+#: partials/welcome-page.php:84
 msgid "Documentation and FAQs"
 msgstr "Dokumentation og ofte stillede spørgsmål"
 
-#: partials/welcome-page.php:84
+#: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Hvorfor siger vi 100% Beståede Tests, ikke 100% Tilgængelig?"
 
-#: partials/welcome-page.php:84
-#: partials/welcome-page.php:89
-#: partials/welcome-page.php:94
-#: partials/welcome-page.php:99
-#: partials/welcome-page.php:104
-#: partials/welcome-page.php:109
-#: partials/welcome-page.php:114
-#: partials/welcome-page.php:120
-#: partials/welcome-page.php:216
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
 msgid "(opens in a new window)"
 msgstr "(åbnes i et nyt vindue)"
 
-#: partials/welcome-page.php:89
+#: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
 msgstr "Hvordan man manuelt tjekker dit website for tilgængelighed"
 
-#: partials/welcome-page.php:94
+#: partials/welcome-page.php:98
 msgid "When to Ignore Accessibility Errors"
 msgstr "Hvornår man skal ignorere tilgængelighedsfejl"
 
-#: partials/welcome-page.php:99
+#: partials/welcome-page.php:103
 msgid "What to do if a Plugin You’re Using has Accessibility Errors"
 msgstr "Hvad man skal gøre, hvis et plugin, du bruger, har tilgængelighedsfejl"
 
-#: partials/welcome-page.php:104
+#: partials/welcome-page.php:108
 msgid "What to do if there are Accessibility Errors in Your Theme"
 msgstr "Hvad man skal gøre, hvis der er tilgængelighedsfejl i dit tema"
 
-#: partials/welcome-page.php:109
+#: partials/welcome-page.php:113
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
 msgstr "Kan jeg hyre Equalize Digital til at løse tilgængelighedsproblemer på min hjemmeside?"
 
-#: partials/welcome-page.php:114
+#: partials/welcome-page.php:118
 msgid "Additional Resources for Learning About Accessibility"
 msgstr "Yderligere ressourcer til at lære om tilgængelighed"
 
-#: partials/welcome-page.php:120
+#: partials/welcome-page.php:124
 msgid "Read Full Documentation"
 msgstr "Læs fuld dokumentation"
 
-#: partials/welcome-page.php:127
+#: partials/welcome-page.php:131
 msgid "Support Information"
 msgstr "Supportinformation"
 
-#: partials/welcome-page.php:133
+#: partials/welcome-page.php:137
 msgid "Plugin Support"
 msgstr "Plugin-support"
 
-#: partials/welcome-page.php:135
+#: partials/welcome-page.php:139
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
 msgstr "Aktive licensindehavere af betalte Accessibility Checker-planer får ubegrænset e-mailsupport til brug af plugin'et og fejlfinding."
 
-#: partials/welcome-page.php:138
+#: partials/welcome-page.php:142
 msgid "Open Support Ticket"
 msgstr "Åbn supportbillet"
 
-#: partials/welcome-page.php:145
+#: partials/welcome-page.php:149
 msgid "Free Plugin Support"
 msgstr "Gratis plugin-support"
 
-#: partials/welcome-page.php:147
+#: partials/welcome-page.php:151
 msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
 msgstr "Gratis plugin-support er tilgængelig via WordPress.org-forummerne. Du skal oprette en konto, og derefter kan du åbne en ny supporttråd."
 
-#: partials/welcome-page.php:150
+#: partials/welcome-page.php:154
 msgid "Go to Support Forum"
 msgstr "Gå til supportforum"
 
-#: partials/welcome-page.php:157
+#: partials/welcome-page.php:161
 msgid "Office Hours"
 msgstr "Kontortid"
 
-#: partials/welcome-page.php:159
+#: partials/welcome-page.php:163
 msgid "Open Q&A on Zoom every other week to help you remediate your website."
 msgstr "Åben spørgetid på Zoom hver anden uge for at hjælpe dig med at udbedre dit website."
 
-#: partials/welcome-page.php:161
+#: partials/welcome-page.php:165
 msgid "Included in Small Business and Agency plans"
 msgstr "Inkluderet i Small Business- og Agency-planer"
 
-#: partials/welcome-page.php:166
+#: partials/welcome-page.php:170
 msgid "Register for Office Hours"
 msgstr "Tilmeld dig kontortid"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:176
 msgid "Auditing and Remediation"
 msgstr "Revision og udbedring"
 
-#: partials/welcome-page.php:174
+#: partials/welcome-page.php:178
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Få hjælp til at gøre dit website tilgængeligt. Ekspertrevision, brugertest og udviklingssupport. Overensstemmelseserklæringer tilgængelige."
 
-#: partials/welcome-page.php:178
+#: partials/welcome-page.php:182
 msgid "Get Remediation Help"
 msgstr "Få hjælp til udbedring"
 
@@ -4464,6 +4530,7 @@ msgstr "Ret indstillinger"
 
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Dette vil rydde alle problemer for dette indlæg. En gemning vil være nødvendig for at udløse en ny scanning af indlæggets indhold. Vil du fortsætte?"
 
@@ -4500,11 +4567,6 @@ msgid "Sorry, your submission failed. Please try again."
 msgstr "Beklager, din indsendelse mislykkedes. Prøv venligst igen."
 
 #: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "åbner et nyt vindue"
-
-#: build/frontendFixes.bundle.js:1
 msgid "EDAC: Did not find a matching target ID on the page for the skip link."
 msgstr "EDAC: Fandt ikke et matchende mål-ID på siden for spring over-linket."
 
@@ -4512,9 +4574,26 @@ msgstr "EDAC: Fandt ikke et matchende mål-ID på siden for spring over-linket."
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Fejl ved opdatering af historik for spring over-link."
 
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "åbner et nyt vindue"
+
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Luk rettelsesvindue"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Elementet er ikke synligt. Prøv at deaktivere typografier."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Elementet kan ikke fokuseres. Prøv at deaktivere typografier."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Elementet blev ikke fundet på siden."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4554,18 +4633,6 @@ msgid "Disable Styles"
 msgstr "Deaktivér stilarter"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not visible. Try disabling styles."
-msgstr "Elementet er ikke synligt. Prøv at deaktivere typografier."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not focusable. Try disabling styles."
-msgstr "Elementet kan ikke fokuseres. Prøv at deaktivere typografier."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element was not found on the page."
-msgstr "Elementet blev ikke fundet på siden."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Der opstod en fejl under indlæsning af problemerne."
 
@@ -4575,6 +4642,7 @@ msgid "Fix issue: %s"
 msgstr "Ret problem: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Ret problem"
 
@@ -4665,6 +4733,137 @@ msgstr "Fejl ved gemning af scanningsresultater."
 msgid "Error: Missing required parameters."
 msgstr "Fejl: Manglende påkrævede parametre."
 
+#: build/issueModal.bundle.js:2
+msgid "Issue related image"
+msgstr "Problemrelateret billede"
+
+#: build/issueModal.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Indstillinger for løsning gemt."
+
+#: build/issueModal.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Kunne ikke gemme indstillinger for løsning."
+
+#: build/issueModal.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Indlæser løsningsinformation..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Gem løsning for: %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Problem afvist med succes."
+
+#: build/issueModal.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Problem genåbnet med succes."
+
+#: build/issueModal.bundle.js:2
+msgid "Dismissing..."
+msgstr "Afviser..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Problem afvist — %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Problem afvist"
+
+#: build/issueModal.bundle.js:2
+msgid "Scope:"
+msgstr "Omfang:"
+
+#: build/issueModal.bundle.js:2
+msgid "All pages"
+msgstr "Alle sider"
+
+#: build/issueModal.bundle.js:2
+msgid "By:"
+msgstr "Af:"
+
+#: build/issueModal.bundle.js:2
+msgid "On:"
+msgstr "Den:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Årsag til afvisning:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reopening..."
+msgstr "Genåbner..."
+
+#: build/issueModal.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Kommentar (valgfrit)"
+
+#: build/issueModal.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Tilføj en note, der forklarer, hvorfor dette problem afvises."
+
+#: build/issueModal.bundle.js:2
+msgid "More dismiss options"
+msgstr "Flere afvisningsmuligheder"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Afvis globalt"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Afvis og luk modal"
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue #%s"
+msgstr "Problem #%s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Details"
+msgstr "Problemdetaljer"
+
+#: build/issueModal.bundle.js:2
+msgid "Type"
+msgstr "Type"
+
+#: build/issueModal.bundle.js:2
+msgid "Severity"
+msgstr "Alvorlighedsgrad"
+
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Landemærke"
+
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Vis forklaring"
+
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Hvorfor det er vigtigt"
+
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Sådan rettes det"
+
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Mere detaljeret dokumentation"
+
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Billede"
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "nyt vindue"
@@ -4752,3 +4951,230 @@ msgstr "fortsæt læsningen"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "lær mere"
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to load accessibility data"
+msgstr "Kunne ikke indlæse tilgængelighedsdata"
+
+#: build/sidebar.bundle.js:2
+msgid "Error loading accessibility data"
+msgstr "Fejl ved indlæsning af tilgængelighedsdata"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility results..."
+msgstr "Indlæser tilgængelighedsresultater..."
+
+#: build/sidebar.bundle.js:2
+msgid "Updating accessibility data..."
+msgstr "Opdaterer tilgængelighedsdata..."
+
+#: build/sidebar.bundle.js:2
+msgid "problem to address"
+msgid_plural "problems to address"
+msgstr[0] "problem at løse"
+msgstr[1] "problemer at løse"
+
+#: build/sidebar.bundle.js:2
+msgid "issue that needs review"
+msgid_plural "issues that need review"
+msgstr[0] "problem, der skal gennemgås"
+msgstr[1] "problemer, der skal gennemgås"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s and %3$d %4$s."
+msgstr "Du har %1$d %2$s og %3$d %4$s."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s."
+msgstr "Du har %1$d %2$s."
+
+#: build/sidebar.bundle.js:2
+msgid "Check and fix accessibility issues in your content."
+msgstr "Kontroller og ret tilgængelighedsproblemer i dit indhold."
+
+#: build/sidebar.bundle.js:2
+msgid "Open Accessibility Panel"
+msgstr "Åbn tilgængelighedspanel"
+
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "Ikke relevant"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth"
+msgstr "%d."
+
+#: build/sidebar.bundle.js:2
+msgid "Summary provided"
+msgstr "Resumé angivet"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary required"
+msgstr "Resumé påkrævet"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary not required"
+msgstr "Resumé ikke påkrævet"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d problems in Accessibility Analysis"
+msgstr "Se %d problemer i Tilgængelighedsanalyse"
+
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Problemer"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d items needing review in Accessibility Analysis"
+msgstr "Se %d elementer, der skal gennemgås i Tilgængelighedsanalyse"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %s"
+msgstr "Se detaljer om læseniveau: %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Beståede kontroller"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue"
+msgstr "Problem"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "Issue actions for %s"
+msgstr "Problemhandlinger for %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue actions"
+msgstr "Problemhandlinger"
+
+#: build/sidebar.bundle.js:2
+msgid "Show code"
+msgstr "Vis kode"
+
+#: build/sidebar.bundle.js:2
+msgid "Reopen issue"
+msgstr "Genåbn problem"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismiss issue"
+msgstr "Afvis problem"
+
+#: build/sidebar.bundle.js:2
+msgid "Apply fix"
+msgstr "Anvend løsning"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total"
+msgstr "%d i alt"
+
+#: build/sidebar.bundle.js:2
+msgid "No dismissed issues."
+msgstr "Ingen afviste problemer."
+
+#: build/sidebar.bundle.js:2
+msgid "No issues found."
+msgstr "Ingen problemer fundet."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total issues"
+msgstr "%d samlede problemer"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismissed Issues"
+msgstr "Afviste problemer"
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified summary saved successfully."
+msgstr "Forenklet resumé gemt med succes."
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to save summary. Please try again."
+msgstr "Kunne ikke gemme resumé. Prøv venligst igen."
+
+#: build/sidebar.bundle.js:2
+msgid "An error occurred while saving the summary."
+msgstr "Der opstod en fejl under gemning af resuméet."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%s grade"
+msgstr "%s. klasse"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth grade"
+msgstr "%d. klasse"
+
+#: build/sidebar.bundle.js:2
+msgid "Not available"
+msgstr "Ikke tilgængelig"
+
+#: build/sidebar.bundle.js:2
+msgid "Warning"
+msgstr "Advarsel"
+
+#: build/sidebar.bundle.js:2
+msgid "This post does not contain enough content to calculate a reading level."
+msgstr "Dette indlæg indeholder ikke nok indhold til at beregne et læseniveau."
+
+#: build/sidebar.bundle.js:2
+msgid "Adjust summary prompts in settings."
+msgstr "Juster resuméprompter i indstillinger."
+
+#: build/sidebar.bundle.js:2
+msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
+msgstr "Indhold på eller under et læseniveau på 9. klasse kræver ikke et forenklet resumé."
+
+#: build/sidebar.bundle.js:2
+msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
+msgstr "Indhold over et læseniveau på 9. klasse kræver et forenklet resumé for at opfylde WCAG AAA-vejledningen."
+
+#: build/sidebar.bundle.js:2
+msgid "Learn more about readability requirements."
+msgstr "Lær mere om læsbarhedskrav."
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary Reading Level"
+msgstr "Forenklet resumé læseniveau"
+
+#: build/sidebar.bundle.js:2
+msgid "Needs improvement, summary is above the 9th-grade reading level."
+msgstr "Kræver forbedring, resuméet er over læseniveauet for 9. klasse."
+
+#: build/sidebar.bundle.js:2
+msgid "Below the recommended 9th-grade reading level."
+msgstr "Under det anbefalede læseniveau for 9. klasse."
+
+#: build/sidebar.bundle.js:2
+msgid "Enter simplified summary..."
+msgstr "Indtast forenklet resumé..."
+
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Gem resumé"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility data..."
+msgstr "Indlæser tilgængelighedsdata..."
+
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Checker actions"
+msgstr "Handlinger for tilgængelighedskontrol"
+
+#: build/sidebar.bundle.js:2
+msgid "Scan"
+msgstr "Scan"
+
+#: build/sidebar.bundle.js:2
+msgid "Refresh"
+msgstr "Opdater"

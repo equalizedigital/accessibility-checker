@@ -165,9 +165,25 @@ class Insert_Rule_Data {
 				'ignre'             => absint( $rule_data['ignre'] ),
 				'ignre_user'        => isset( $rule_data['ignre_user'] ) ? absint( $rule_data['ignre_user'] ) : null,
 				'ignre_date'        => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
-				'ignre_comment'     => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
+				'ignre_comment'     => isset( $rule_data['ignre_comment'] ) ? null : null,
 				'ignre_global'      => absint( $rule_data['ignre_global'] ),
 			];
+
+			if ( isset( $rule_data['ignre_comment'] ) ) {
+				$allowed_html = [
+					'strong' => [],
+					'b'      => [],
+					'em'     => [],
+					'i'      => [],
+					'a'      => [
+						'href'   => true,
+						'target' => true,
+						'rel'    => true,
+					],
+				];
+				
+				$rule_data_sanitized['ignre_comment'] = esc_html( wp_kses( $rule_data['ignre_comment'], $allowed_html ) );
+			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
 			$wpdb->insert( $table_name, $rule_data_sanitized );

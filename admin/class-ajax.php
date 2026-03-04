@@ -10,7 +10,12 @@ namespace EDAC\Admin;
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EDAC\Inc\Summary_Generator;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class that handles ajax requests.
@@ -33,7 +38,6 @@ class Ajax {
 		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
 		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
 		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
-		add_action( 'wp_ajax_edac_update_simplified_summary', [ $this, 'simplified_summary' ] );
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
@@ -95,12 +99,16 @@ class Ajax {
 
 		$html['content'] .= '<ul class="edac-summary-grid">';
 
-			$html['content'] .= '<li class="edac-summary-total" aria-label="' . $summary['passed_tests'] . '% Passed Tests">';
+			$html['content'] .= '<li class="edac-summary-total">';
 
-				$html['content'] .= '<div class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
+				$html['content'] .= '<span class="screen-reader-text">' . $summary['passed_tests'] . '% Passed Checks</span>';
+
+				$html['content'] .= edac_icon( 'info', '', true );
+
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+						<div class="edac-panel-number-label">Passed Checks<sup>*</sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -108,9 +116,9 @@ class Ajax {
 					</div>
 				</div>';
 
-				$html['content'] .= '<div class="edac-summary-total-mobile">
+				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-mobile">
 					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup><a href="#edac-summary-disclaimer" aria-label="About passed tests.">*</a></sup></div>
+					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
 					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
@@ -123,39 +131,47 @@ class Ajax {
 				' . edac_generate_summary_stat(
 				'edac-summary-errors',
 				$summary['errors'],
-				/* translators: %s: Number of errors */
-				sprintf( _n( '%s Error', '%s Errors', $summary['errors'], 'accessibility-checker' ), $summary['errors'] )
+				_n( 'Problem', 'Problems', $summary['errors'], 'accessibility-checker' ),
+				$summary['errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-contrast',
 				$summary['contrast_errors'],
-				/* translators: %s: Number of contrast errors */
-				sprintf( _n( '%s Contrast Error', '%s Contrast Errors', $summary['contrast_errors'], 'accessibility-checker' ), $summary['contrast_errors'] )
+				_n( 'Contrast Problem', 'Contrast Problems', $summary['contrast_errors'], 'accessibility-checker' ),
+				$summary['contrast_errors'] > 0 ? 'error' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-warnings',
 				$summary['warnings'],
-				/* translators: %s: Number of warnings */
-				sprintf( _n( '%s Warning', '%s Warnings', $summary['warnings'], 'accessibility-checker' ), $summary['warnings'] )
+				_n( 'Needs Review', 'Needs Review', $summary['warnings'], 'accessibility-checker' ),
+				$summary['warnings'] > 0 ? 'warning' : 'check'
 			) . '
 				' . edac_generate_summary_stat(
 				'edac-summary-ignored',
 				$summary['ignored'],
-				/* translators: %s: Number of ignored items */
-				sprintf( _n( '%s Ignored Item', '%s Ignored Items', $summary['ignored'], 'accessibility-checker' ), $summary['ignored'] )
+				_n( 'Dismissed Issue', 'Dismissed Issues', $summary['ignored'], 'accessibility-checker' ),
+				'dismissed'
 			) . '
 
 		</ul>
 		<div class="edac-summary-readability" ' . ( $is_virtual_page ? 'style="display: none;"' : '' ) . '>
 			<div class="edac-summary-readability-level">
-				<div><img src="' . EDAC_PLUGIN_URL . 'assets/images/readability-icon-navy.png" alt="" width="54"></div>
-				<div class="edac-panel-number' . ( ( (int) $summary['content_grade'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">
+				<div>' . edac_icon(
+			edac_get_readability_panel_icon(
+				(int) $summary['content_grade'] > 0,
+				(int) $summary['content_grade'],
+				(int) $summary['content_grade'] > 9,
+				$simplified_summary,
+				$simplified_summary_grade,
+				$simplified_summary_grade_failed
+			)
+		) . '</div>
+				<div class="edac-panel-number">
 					' . $summary['readability'] . '
 				</div>
-				<div class="edac-panel-number-label' . ( ( (int) $summary['readability'] <= 9 || 'none' === $simplified_summary_prompt ) ? ' passed-text-color' : ' failed-text-color' ) . '">Reading <br />Level</div>
+				<div class="edac-panel-number-label">Reading Level</div>
 			</div>
 			<div class="edac-summary-readability-summary">
-				<div class="edac-summary-readability-summary-icon' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '"></div>
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
 			</div>
 		</div>
@@ -163,8 +179,8 @@ class Ajax {
 
 		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
 		$html['content'] .= sprintf(
-			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
-			'<a href="' . esc_url(
+			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s',
+			'<a target="_blank" href="' . esc_url(
 				edac_generate_link_type(
 					[
 						'utm_campaign' => 'dashboard-widget',
@@ -174,7 +190,7 @@ class Ajax {
 					[ 'help_id' => 4280 ]
 				)
 			) . '">',
-			'</a>'
+			'<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>'
 		) . PHP_EOL;
 		$html['content'] .= '</small></div>' . PHP_EOL;
 
@@ -265,29 +281,28 @@ class Ajax {
 			}
 		}
 
-		// sort error rules by count.
-		usort(
-			$error_rules,
-			function ( $a, $b ) {
-
-				return strcmp( $b['count'], $a['count'] );
+		// shared comparator: sort by severity (ascending, 1=critical first), then count (descending).
+		$sort_by_severity_then_count = function ( $a, $b ) {
+			$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+			$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+			if ( $severity_a !== $severity_b ) {
+				return $severity_a - $severity_b;
 			}
-		);
+			return (int) $b['count'] - (int) $a['count'];
+		};
 
-		// sort warning rules by count.
-		usort(
-			$warning_rules,
-			function ( $a, $b ) {
+		usort( $error_rules, $sort_by_severity_then_count );
+		usort( $warning_rules, $sort_by_severity_then_count );
 
-				return strcmp( $b['count'], $a['count'] );
-			}
-		);
-
-		// sort passed rules array by title.
+		// sort passed rules array by severity (ascending, 1=critical first), then title.
 		usort(
 			$passed_rules,
 			function ( $a, $b ) {
-
+				$severity_a = isset( $a['severity'] ) ? (int) $a['severity'] : PHP_INT_MAX;
+				$severity_b = isset( $b['severity'] ) ? (int) $b['severity'] : PHP_INT_MAX;
+				if ( $severity_a !== $severity_b ) {
+					return $severity_a - $severity_b;
+				}
 				return strcmp( $b['title'], $a['title'] );
 			}
 		);
@@ -305,9 +320,28 @@ class Ajax {
 			 */
 			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
 
+			$severity_map = [
+				1 => [
+					'label' => __( 'Critical', 'accessibility-checker' ),
+					'class' => 'severity-critical',
+				],
+				2 => [
+					'label' => __( 'High', 'accessibility-checker' ),
+					'class' => 'severity-high',
+				],
+				3 => [
+					'label' => __( 'Medium', 'accessibility-checker' ),
+					'class' => 'severity-medium',
+				],
+				4 => [
+					'label' => __( 'Low', 'accessibility-checker' ),
+					'class' => 'severity-low',
+				],
+			];
+
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_reason, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -326,20 +360,29 @@ class Ajax {
 
 				$tool_tip_link = edac_link_wrapper( $rule['info_url'], 'frontend-highlighter', $rule['slug'], false );
 
+				$severity_badge = '';
+				if ( ! empty( $rule['severity'] ) && isset( $severity_map[ (int) $rule['severity'] ] ) ) {
+					$sev            = $severity_map[ (int) $rule['severity'] ];
+					$severity_badge = '<span class="edac-badge edac-badge--' . esc_attr( $sev['class'] ) . '"><span class="edac-badge__label">' . esc_html( $sev['label'] ) . '</span></span>';
+				}
+
 				$html .= '<div class="edac-details-rule">';
 
 				$html .= '<div class="edac-details-rule-title">';
 
+				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
+
 				$html .= '<h3>';
-				$html .= '<span class="edac-details-rule-count' . $count_classes . '">' . $rule['count'] . '</span> ';
-				$html .= esc_html( $rule['title'] );
+				$html .= edac_icon( $icon_name );
+				$html .= ' ' . esc_html( $rule['title'] );
+				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
 				if ( $count_ignored > 0 ) {
-					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' Ignored Items</span>';
+					$html .= '<span class="edac-details-rule-count-ignore">' . $count_ignored . ' ' . esc_html( _n( 'Dismissed Issue', 'Dismissed Issues', $count_ignored, 'accessibility-checker' ) ) . '</span>';
 				}
+				$html .= $severity_badge;
 				$html .= '</h3>';
 				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
 				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
-
 				$html .= '</div>';
 
 				if ( $results ) {
@@ -428,26 +471,12 @@ class Ajax {
 
 					foreach ( $results as $row ) {
 
-						$id               = (int) $row['id'];
-						$ignore           = (int) $row['ignre'];
-						$ignore_class     = $ignore ? ' active' : '';
-						$ignore_label     = $ignore ? 'Ignored' : 'Ignore';
-						$ignore_user      = (int) $row['ignre_user'];
-						$ignore_user_info = get_userdata( $ignore_user );
-						$ignore_username  = is_object( $ignore_user_info )
-							? '<strong>' . esc_html__( 'Username:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_user_info->user_login )
-							: '';
-
-						$ignore_date_text        = $row['ignre_date'] ? edac_format_datetime_from_utc( $row['ignre_date'] ) : '';
-						$ignore_date             = $ignore_date_text
-						? '<strong>' . esc_html__( 'Date:', 'accessibility-checker' ) . '</strong> ' . esc_html( $ignore_date_text )
-						: '';
-						$ignore_comment          = esc_html( $row['ignre_comment'] );
-						$ignore_action           = $ignore ? 'disable' : 'enable';
-						$ignore_type             = $rule['rule_type'];
-						$ignore_submit_label     = $ignore ? 'Stop Ignoring' : 'Ignore This ' . $ignore_type;
-						$ignore_comment_disabled = $ignore ? 'disabled' : '';
-						$ignore_global           = (int) $row['ignre_global'];
+						$id            = (int) $row['id'];
+						$ignore        = (int) $row['ignre'];
+						$ignore_class  = $ignore ? ' active' : '';
+						$ignore_label  = $ignore ? 'Dismissed' : 'Dismiss';
+						$ignore_global = (int) $row['ignre_global'];
+						$ignore_reason = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
 						// check for images and svgs in object code.
 						$media      = edac_parse_html_for_media( $row['object'] );
@@ -500,7 +529,6 @@ class Ajax {
 								],
 								$post_view_link
 							);
-
 							// Translators: %d is the issue ID.
 							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
 							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
@@ -529,26 +557,19 @@ class Ajax {
 
 						$html .= '</div>';
 
-						$html .= '<div id="edac-details-rule-records-record-ignore-' . $row['id'] . '" class="edac-details-rule-records-record-ignore">';
-
-						$html .= '<div class="edac-details-rule-records-record-ignore-info">';
-						$html .= '<span class="edac-details-rule-records-record-ignore-info-user">' . $ignore_username . '</span>';
-
-						$html .= ' <span class="edac-details-rule-records-record-ignore-info-date">' . $ignore_date . '</span>';
-						$html .= '</div>';
-
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<label for="edac-details-rule-records-record-ignore-comment-' . $id . '">Comment</label><br>' : '';
-						$html .= ( true === $ignore_permission || ! empty( $ignore_comment ) ) ? '<textarea rows="4" class="edac-details-rule-records-record-ignore-comment" id="edac-details-rule-records-record-ignore-comment-' . $id . '" ' . $ignore_comment_disabled . '>' . $ignore_comment . '</textarea>' : '';
-
-						if ( $ignore_global && edac_is_pro() ) {
-							$html .= ( true === $ignore_permission ) ? '<a href="' . admin_url( 'admin.php?page=accessibility_checker_ignored&tab=global' ) . '" class="edac-details-rule-records-record-ignore-global">' . __( 'Manage Globally Ignored', 'accessibility-checker' ) . '</a>' : '';
-						} else {
-							$html .= ( true === $ignore_permission ) ? '<button class="edac-details-rule-records-record-ignore-submit" data-id="' . $id . '" data-action="' . $ignore_action . '" data-type="' . $ignore_type . '">' . EDAC_SVG_IGNORE_ICON . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . $ignore_submit_label . '</span></button>' : '';
-						}
-
-						$html .= ( false === $ignore_permission && false === $ignore ) ? __( 'Your user account doesn\'t have permission to ignore this issue.', 'accessibility-checker' ) : '';
-
-						$html .= '</div>';
+						$html .= IgnoreUI::render_ignore_panel(
+							[
+								'issue_id'          => $id,
+								'is_ignored'        => (bool) $ignore,
+								'ignore_user'       => (int) $row['ignre_user'],
+								'ignore_date'       => $row['ignre_date'] ?? '',
+								'ignore_comment'    => $row['ignre_comment'] ?? '',
+								'ignore_reason'     => $ignore_reason,
+								'ignore_global'     => $ignore_global,
+								'ignore_type'       => $rule['rule_type'],
+								'ignore_permission' => $ignore_permission,
+							]
+						);
 
 						$html .= '</div>';
 
@@ -631,8 +652,8 @@ class Ajax {
 		$html .= '<ul class="edac-readability-list">';
 
 		$html .= '<li class="edac-readability-list-item edac-readability-grade-level">
-		<span class="edac-readability-list-item-icon dashicons ' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'dashicons-no-alt' : 'dashicons-saved' ) . '"></span>
-		<p class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></p>';
+		' . edac_icon( ( $post_grade_failed && $simplified_summary && $simplified_summary_grade > 0 && ! $simplified_summary_grade_failed ) ? 'info' : ( ( $post_grade_failed || 0 === $post_grade ) ? 'warning' : 'check' ), '', true, '', 'edac-readability-list-item-icon' ) . '
+		<h3 class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></h3>';
 		if ( $post_grade_failed ) {
 			$html .= '<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
 		} elseif ( 0 === $post_grade ) {
@@ -645,19 +666,42 @@ class Ajax {
 		if ( $post_grade_failed ) {
 
 			if ( $simplified_summary && 'none' !== $simplified_summary_prompt ) {
-				$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
-					<span class="edac-readability-list-item-icon dashicons ' . ( ( $simplified_summary_grade_failed ) ? 'dashicons-no-alt' : 'dashicons-saved' ) . '"></span>
-					<p class="edac-readability-list-item-title">Simplified Summary Reading Grade Level: <strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . edac_ordinal( $simplified_summary_grade ) . '</strong></p>
-					<p class="edac-readability-list-item-description">Your simplified summary has a reading level ' . ( ( $simplified_summary_grade_failed ) ? 'higher' : 'lower' ) . ' than 9th grade.</p>
+				if ( 0 === $simplified_summary_grade ) {
+					$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
+					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
+						<h3 class="edac-readability-list-item-title">' .
+						sprintf(
+							/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
+							esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
+							'<strong class="failed-text-color">' . esc_html__( 'None', 'accessibility-checker' ) . '</strong>'
+						)
+						. '</h3>
+						<p class="edac-readability-list-item-description">' . esc_html__( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) . '</p>
+					</li>';
+				} else {
+					$html .= '<li class="edac-readability-list-item edac-readability-summary-grade-level">
+				' . edac_icon( $simplified_summary_grade_failed ? 'warning' : 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
+					<h3 class="edac-readability-list-item-title">' .
+						sprintf(
+							/* translators: %s: the simplified summary grade level value (wrapped in a <strong> tag) */
+							esc_html__( 'Simplified Summary Reading Grade Level: %s', 'accessibility-checker' ),
+							'<strong class="' . ( ( $simplified_summary_grade_failed ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . esc_html( edac_ordinal( $simplified_summary_grade ) ) . '</strong>'
+						)
+					. '</h3>
+					<p class="edac-readability-list-item-description">' . ( ( $simplified_summary_grade_failed )
+						? esc_html__( 'Your simplified summary has a reading level above 9th grade.', 'accessibility-checker' )
+						: esc_html__( 'Your simplified summary has a reading level at or below 9th grade.', 'accessibility-checker' )
+					) . '</p>
 				</li>';
+				}
 			}
 
 			if ( 'none' === $simplified_summary_prompt ) {
 
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
-					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning-icon-yellow.png" alt="" width="22"></span>
-					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
+					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
+					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
 						<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
@@ -665,8 +709,8 @@ class Ajax {
 
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
-					<span class="edac-readability-list-item-icon dashicons dashicons-saved"></span>
-					<p class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</p>
+				' . edac_icon( 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
+					<h3 class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</h3>
 						<p class="edac-readability-list-item-description">Set where the Simplified Summary is inserted into the content on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
@@ -674,8 +718,8 @@ class Ajax {
 
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
-					<span class="edac-readability-list-item-icon"><img src="' . plugin_dir_url( __FILE__ ) . 'assets/images/warning-icon-yellow.png" alt="" width="22"></span>
-					<p class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</p>
+					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
+					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
 						<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
 				</li>';
 
@@ -690,11 +734,11 @@ class Ajax {
 			<form action="/" class="edac-readability-simplified-summary">
 				<label for="edac-readability-text">Simplified Summary</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<input type="submit" value="Submit">
+				<p><input type="submit" class="button button-primary" value="Save Summary"></p>
 			</form>';
 		}
 
-		$html .= '<span class="dashicons dashicons-info"></span><a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>';
 
 		if ( ! $html ) {
 			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );
@@ -705,6 +749,13 @@ class Ajax {
 
 	/**
 	 * Insert ignore data into database
+	 *
+	 * Note: There is a new dismiss-issue rest endpoint that covers this functionality
+	 * now and should be used going forward. This ajax was updated to support dismiss
+	 * reasons to align with the new endpoint and allow other things to continue to
+	 * work here gracefully.
+	 *
+	 * This should be removed in a future release.
 	 *
 	 * @return void
 	 *
@@ -737,6 +788,7 @@ class Ajax {
 		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
 		$ignre_date_formatted = ( 'enable' === $action ) ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
+		$ignre_reason         = ( 'enable' === $action && isset( $_REQUEST['reason'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['reason'] ) ) : null;
 		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
 
 		// If largeBatch is set and 'true', we need to perform an update using the 'object'
@@ -752,12 +804,12 @@ class Ajax {
 				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $object ) );
+			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
 		} else {
 			// For small batches of IDs, we can just loop through.
 			foreach ( $ids as $id ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignore_global, $siteid, $id ) );
+				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $id ) );
 			}
 		}
 
@@ -773,48 +825,6 @@ class Ajax {
 			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 		}
 		wp_send_json_success( wp_json_encode( $data ) );
-	}
-
-	/**
-	 * Update simplified summary
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that the post ID was not specified
-	 *  - '-3' means that the summary was not specified
-	 *  - '-5' means that the user does not have permission to view this information for this post
-	 */
-	public function simplified_summary() {
-
-			// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! isset( $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'The post ID was not set', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! isset( $_REQUEST['summary'] ) ) {
-			wp_send_json_error( new \WP_Error( '-3', __( 'The summary was not set', 'accessibility-checker' ) ) );
-		}
-
-		if ( ! current_user_can( 'edit_post', (int) $_REQUEST['post_id'] ) ) {
-			wp_send_json_error( new \WP_Error( '-5', __( 'You do not have permission to edit this post.', 'accessibility-checker' ) ) );
-		}
-
-		$post_id = (int) $_REQUEST['post_id'];
-		update_post_meta(
-			$post_id,
-			'_edac_simplified_summary',
-			sanitize_text_field( wp_unslash( $_REQUEST['summary'] ) )
-		);
-
-		$edac_simplified_summary = get_post_meta( $post_id, '_edac_simplified_summary', $single = true );
-		$simplified_summary      = $edac_simplified_summary ? $edac_simplified_summary : '';
-
-		wp_send_json_success( wp_json_encode( $simplified_summary ) );
 	}
 
 	/**

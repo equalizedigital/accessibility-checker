@@ -1,0 +1,176 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/issueModal.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "nl_NL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Problem": [
+                "Probleem",
+                "Problemen"
+            ],
+            "Needs Review": [
+                "Moet worden beoordeeld",
+                "Moet worden beoordeeld"
+            ],
+            "Critical": [
+                "Kritiek"
+            ],
+            "High": [
+                "Hoog"
+            ],
+            "Medium": [
+                "Gemiddeld"
+            ],
+            "Low": [
+                "Laag"
+            ],
+            "These settings enable global fixes across your entire site.": [
+                "Deze instellingen activeren globale oplossingen voor uw hele website."
+            ],
+            "Save": [
+                "Opslaan"
+            ],
+            "Affected Code": [
+                "Getroffen code"
+            ],
+            "View on page": [
+                "Bekijk op pagina"
+            ],
+            "Reopen Issue": [
+                "Probleem heropenen"
+            ],
+            "Dismiss Issue": [
+                "Probleem negeren"
+            ],
+            "Dismiss issue as:": [
+                "Probleem negeren als:"
+            ],
+            "View %s landmark on website, opens a new window": [
+                "%s landmark op website bekijken, opent een nieuw venster"
+            ],
+            "Fix Issue": [
+                "Probleem oplossen"
+            ],
+            "Issue related image": [
+                "Afbeelding gerelateerd aan probleem"
+            ],
+            "Fix settings saved.": [
+                "Oplossingsinstellingen opgeslagen."
+            ],
+            "Failed to save fix settings.": [
+                "Oplossingsinstellingen konden niet worden opgeslagen."
+            ],
+            "Loading fix information...": [
+                "Oplossingsinformatie laden..."
+            ],
+            "Save fix for: %s": [
+                "Oplossing opslaan voor: %s"
+            ],
+            "Bold (Ctrl+B)": [
+                "Vet (ctrl+b)"
+            ],
+            "Italic (Ctrl+I)": [
+                "Cursief (ctrl+i)"
+            ],
+            "Link (Ctrl+K)": [
+                "Link (ctrl+k)"
+            ],
+            "https:\/\/example.com": [
+                "https:\/\/example.com"
+            ],
+            "Link URL": [
+                "Link-URL"
+            ],
+            "Add": [
+                "Toevoegen"
+            ],
+            "Issue dismissed successfully.": [
+                "Probleem succesvol genegeerd."
+            ],
+            "Issue reopened successfully.": [
+                "Probleem succesvol heropend."
+            ],
+            "Dismissing...": [
+                "Negeren..."
+            ],
+            "Issue Dismissed \u2014 %s": [
+                "Probleem genegeerd \u2014 %s"
+            ],
+            "Issue Dismissed": [
+                "Probleem genegeerd"
+            ],
+            "Scope:": [
+                "Bereik:"
+            ],
+            "All pages": [
+                "Alle pagina's"
+            ],
+            "By:": [
+                "Door:"
+            ],
+            "On:": [
+                "Op:"
+            ],
+            "Reason for dismissal:": [
+                "Reden voor negeren:"
+            ],
+            "Reopening...": [
+                "Heropenen..."
+            ],
+            "Comment (optional)": [
+                "Opmerking (optioneel)"
+            ],
+            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
+                "Voeg een notitie toe waarin u uitlegt waarom dit probleem wordt genegeerd. Ondersteunt vet, cursief en links."
+            ],
+            "More dismiss options": [
+                "Meer negeeropties"
+            ],
+            "Dismiss Globally": [
+                "Wereldwijd negeren"
+            ],
+            "Dismiss & Close Modal": [
+                "Negeren en modaal sluiten"
+            ],
+            "Issue #%s": [
+                "Probleem #%s"
+            ],
+            "Issue Details": [
+                "Probleemdetails"
+            ],
+            "Type": [
+                "Type"
+            ],
+            "Severity": [
+                "Ernst"
+            ],
+            "Landmark": [
+                "Landmark"
+            ],
+            "WCAG:": [
+                "WCAG:"
+            ],
+            "Show explanation": [
+                "Uitleg tonen"
+            ],
+            "Why It Matters": [
+                "Waarom het belangrijk is"
+            ],
+            "How to Fix": [
+                "Hoe op te lossen"
+            ],
+            "More Detailed Documentation": [
+                "Meer gedetailleerde documentatie"
+            ],
+            "Image": [
+                "Afbeelding"
+            ]
+        }
+    }
+}

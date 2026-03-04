@@ -228,4 +228,35 @@ class Helpers {
 		 */
 		return current_user_can( apply_filters( 'edac_filter_dashboard_widget_capability', 'edit_posts' ) );
 	}
+
+	/**
+	 * Determine if the current post type is scannable.
+	 *
+	 * @param array $post_types List of scannable post types (optional).
+	 * @return bool
+	 */
+	public static function is_current_post_type_scannable( array $post_types = [] ): bool {
+		if ( empty( $post_types ) ) {
+			$post_types = Settings::get_scannable_post_types();
+		}
+
+		$current_post_type = get_post_type();
+
+		return is_array( $post_types ) && in_array( $current_post_type, $post_types, true );
+	}
+
+	/**
+	 * Check whether the current screen is using the block editor.
+	 *
+	 * @return bool
+	 */
+	public static function is_block_editor(): bool {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			return false;
+		}
+
+		$screen = get_current_screen();
+
+		return $screen && method_exists( $screen, 'is_block_editor' ) && $screen->is_block_editor();
+	}
 }

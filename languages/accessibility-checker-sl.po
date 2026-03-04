@@ -1,15 +1,15 @@
-# Copyright (C) 2025 Equalize Digital
+# Copyright (C) 2026 Equalize Digital
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.35.0\n"
+"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2025-12-04T22:32:40+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,12 +18,13 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:39
-#: includes/classes/class-accessibility-statement.php:51
-#: includes/classes/class-admin-toolbar.php:53
-#: includes/options-page.php:45
-#: partials/welcome-page.php:24
+#: admin/class-meta-boxes.php:43
+#: includes/classes/class-accessibility-statement.php:55
+#: includes/classes/class-admin-toolbar.php:57
+#: includes/options-page.php:49
+#: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -47,18 +48,18 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/FixesPage.php:71
+#: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
 #: admin/site-health/class-pro.php:82
-#: includes/classes/class-admin-toolbar.php:102
+#: includes/classes/class-admin-toolbar.php:106
 msgid "Fixes"
 msgstr "Popravki"
 
-#: admin/AdminPage/FixesPage.php:138
+#: admin/AdminPage/FixesPage.php:142
 msgid "General Fixes"
 msgstr "Splošni popravki"
 
-#: admin/AdminPage/FixesPage.php:212
+#: admin/AdminPage/FixesPage.php:220
 msgid "These fixes help improve accessibility by modifying HTML elements and behaviors on your site."
 msgstr "Ti popravki pomagajo izboljšati dostopnost s spreminjanjem elementov HTML in obnašanja na vaši strani."
 
@@ -70,13 +71,13 @@ msgstr "Nadgradite na Pro različico, da odklenete to funkcijo, odpre se v novem
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:47
 #: admin/AdminPage/FixesSettingType/Text.php:38
-#: admin/class-plugin-action-links.php:55
+#: admin/class-plugin-action-links.php:59
 #: build/admin.bundle.js:2
 msgid "Get Pro"
 msgstr "Nadgradite na Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:340
+#: admin/class-ajax.php:384
 msgid "Opens in a new window."
 msgstr "Odpre se v novem oknu."
 
@@ -168,278 +169,372 @@ msgstr "Želiš narediti več z Accessibility Checkerjem? %1$sOdkleni funkcije P
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odkleni funkcije Pro (odpre se v novem oknu)"
 
-#: admin/class-admin-notices.php:129
+#: admin/class-admin-notices.php:133
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Posebna ponudba za črni petek! 🎉"
 
-#: admin/class-admin-notices.php:130
+#: admin/class-admin-notices.php:134
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Nadgradite na plačljivo različico Accessibility Checkerja med 24. novembrom in 3. decembrom in prejmite 30 % popusta! Popolno skeniranje spletnega mesta, poročilo o odprtih težavah na celotnem spletnem mestu, prezrite dnevnike in še več."
 
-#: admin/class-admin-notices.php:131
-#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:135
+#: admin/class-admin-notices.php:225
 msgid "Ask a Pre-Sale Question"
 msgstr "Postavite predprodajno vprašanje"
 
-#: admin/class-admin-notices.php:132
-#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:136
+#: admin/class-admin-notices.php:226
 msgid "Upgrade Now"
 msgstr "Nadgradite zdaj"
 
-#: admin/class-admin-notices.php:151
-#: admin/class-admin-notices.php:241
-#: admin/class-admin-notices.php:330
-#: admin/class-ajax.php:56
-#: admin/class-ajax.php:202
-#: admin/class-ajax.php:585
-#: admin/class-ajax.php:718
-#: admin/class-ajax.php:792
-#: admin/class-frontend-highlight.php:78
-#: admin/class-frontend-highlight.php:96
-#: admin/class-frontend-highlight.php:101
+#: admin/class-admin-notices.php:155
+#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:334
+#: admin/class-ajax.php:60
+#: admin/class-ajax.php:218
+#: admin/class-ajax.php:607
+#: admin/class-ajax.php:770
+#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
+#: admin/class-frontend-highlight.php:109
 msgid "Permission Denied"
 msgstr "Dovoljenje zavrnjeno"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:354
+#: admin/class-admin-notices.php:167
+#: admin/class-admin-notices.php:257
+#: admin/class-admin-notices.php:358
 msgid "Update option wasn't successful"
 msgstr "Posodobitev možnosti ni bila uspešna"
 
-#: admin/class-admin-notices.php:219
+#: admin/class-admin-notices.php:223
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Prihrani 25 % pri Accessibility Checker Pro ob počastitvi Svetovnega dne ozaveščanja o dostopnosti! 🎉"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:224
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Uporabite kupon GAAD25 od 13. Do 21. maja za dostop do celotnega skeniranja strani in drugih profesionalnih funkcij s posebnim popustom. Niste prepričani, ali je nadgradnja prava za vas?"
 
-#: admin/class-admin-notices.php:305
+#: admin/class-admin-notices.php:309
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Živjo! Hvala, ker uporabljaš Accessibility Checker kot del svojega nabora orodij za dostopnost. Ker ga uporabljaš že nekaj časa, bi te prosili, da napišeš 5-zvezdično oceno za Accessibility Checker v imeniku vtičnikov za WordPress? To bo pomagalo povečati našo prepoznavnost, da bo več ljudi lahko izvedelo o pomembnosti spletne dostopnosti. Najlepša hvala!"
 
-#: admin/class-admin-notices.php:308
+#: admin/class-admin-notices.php:312
 msgid "Write A Review"
 msgstr "Napišite oceno"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:313
 msgid "Remind Me In Two Weeks"
 msgstr "Opomni me čez dva tedna"
 
-#: admin/class-admin-notices.php:310
+#: admin/class-admin-notices.php:314
 msgid "Never Ask Again"
 msgstr "Nikoli več ne vprašaj"
 
-#: admin/class-admin-notices.php:337
+#: admin/class-admin-notices.php:341
 msgid "The review action value was not set"
 msgstr "Vrednost dejanja za oceno ni bila nastavljena"
 
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:206
-#: admin/class-ajax.php:589
-#: admin/class-ajax.php:796
+#: admin/class-ajax.php:64
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:611
 msgid "The post ID was not set"
 msgstr "ID objave ni bil nastavljen"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:210
-#: admin/class-ajax.php:593
+#: admin/class-ajax.php:68
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:615
 msgid "You do not have permission to view this information for this post."
 msgstr "Za ogled teh informacij za to objavo nimate dovoljenja."
 
-#: admin/class-ajax.php:83
+#: admin/class-ajax.php:87
 msgid "A Simplified summary has not been included for this content."
 msgstr "Za to vsebino ni bila vključena poenostavljena povzetka."
 
-#: admin/class-ajax.php:86
+#: admin/class-ajax.php:90
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Vaša vsebina ima raven branja na ravni 9. razreda ali nižje in ne potrebuje poenostavljenega povzetka."
 
-#: admin/class-ajax.php:89
+#: admin/class-ajax.php:93
 msgid "The reading level of the simplified summary is too high."
 msgstr "Raven branja poenostavljenega povzetka je previsoka."
 
-#: admin/class-ajax.php:91
+#: admin/class-ajax.php:95
 msgid "A simplified summary has been included for this content."
 msgstr "Za to vsebino je bil vključen poenostavljen povzetek."
 
-#. translators: %s: Number of errors
-#: admin/class-ajax.php:127
-#, php-format
-msgid "%s Error"
-msgid_plural "%s Errors"
-msgstr[0] "%s Napaka"
-msgstr[1] "%s Errors"
-msgstr[2] "%s Errors"
-msgstr[3] "%s Napak"
+#: admin/class-ajax.php:134
+#: build/issueModal.bundle.js:2
+msgid "Problem"
+msgid_plural "Problems"
+msgstr[0] "Težava"
+msgstr[1] "Težavi"
+msgstr[2] "Težave"
+msgstr[3] "Težave"
 
-#. translators: %s: Number of contrast errors
-#: admin/class-ajax.php:133
-#, php-format
-msgid "%s Contrast Error"
-msgid_plural "%s Contrast Errors"
-msgstr[0] "%s Napaka kontrasta"
-msgstr[1] "%s Contrast Errors"
-msgstr[2] "%s Contrast Errors"
-msgstr[3] "%s Napak kontrasta"
+#: admin/class-ajax.php:140
+msgid "Contrast Problem"
+msgid_plural "Contrast Problems"
+msgstr[0] "Težava s kontrastom"
+msgstr[1] "Težavi s kontrastom"
+msgstr[2] "Težave s kontrastom"
+msgstr[3] "Težave s kontrastom"
 
-#. translators: %s: Number of warnings
-#: admin/class-ajax.php:139
-#, php-format
-msgid "%s Warning"
-msgid_plural "%s Warnings"
-msgstr[0] "%s Opozorilo"
-msgstr[1] "%s Warnings"
-msgstr[2] "%s Warnings"
-msgstr[3] "%s Opozoril"
+#: admin/class-ajax.php:146
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Needs Review"
+msgid_plural "Needs Review"
+msgstr[0] "Potreben pregled"
+msgstr[1] "Potrebna pregleda"
+msgstr[2] "Potrebni pregledi"
+msgstr[3] "Potrebni pregledi"
 
-#. translators: %s: Number of ignored items
-#: admin/class-ajax.php:145
-#, php-format
-msgid "%s Ignored Item"
-msgid_plural "%s Ignored Items"
-msgstr[0] "%s Prezrt element"
-msgstr[1] "%s Ignored Items"
-msgstr[2] "%s Ignored Items"
-msgstr[3] "%s Prezrtih elementov"
+#: admin/class-ajax.php:152
+#: admin/class-ajax.php:380
+msgid "Dismissed Issue"
+msgid_plural "Dismissed Issues"
+msgstr[0] "Zavržena težava"
+msgstr[1] "Zavrženi težavi"
+msgstr[2] "Zavržene težave"
+msgstr[3] "Zavržene težave"
 
-#: admin/class-ajax.php:182
+#: admin/class-ajax.php:198
 msgid "No summary to return"
 msgstr "Ni povzetka za vrnitev"
 
-#: admin/class-ajax.php:221
+#: admin/class-ajax.php:237
+#: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Neveljavno ime tabele"
 
-#: admin/class-ajax.php:365
+#: admin/class-ajax.php:325
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Kritično"
+
+#: admin/class-ajax.php:329
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Visoko"
+
+#: admin/class-ajax.php:333
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Srednje"
+
+#: admin/class-ajax.php:337
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Nizko"
+
+#: admin/class-ajax.php:378
+msgid " total"
+msgstr " skupaj"
+
+#: admin/class-ajax.php:408
+#: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Te nastavitve omogočajo globalne popravke po celotnem spletnem mestu."
 
-#: admin/class-ajax.php:366
+#: admin/class-ajax.php:409
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Morda bo treba strani ponovno shraniti ali izvesti celoten pregled spletnega mesta, da bodo popravki vidni v poročilih."
 
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:437
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Shrani"
 
-#: admin/class-ajax.php:416
+#: admin/class-ajax.php:459
+#: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Prizadeta koda"
 
-#: admin/class-ajax.php:438
-msgid "Username:"
-msgstr "Uporabniško ime:"
-
-#: admin/class-ajax.php:443
-msgid "Date:"
-msgstr "Datum:"
-
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:505
+#: admin/class-ajax.php:534
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Oglejte si težavo z ID %d na spletni strani, odpre se novo okno"
 
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:535
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Ogled na strani"
 
-#: admin/class-ajax.php:525
+#: admin/class-ajax.php:554
 msgid "Fix: "
 msgstr "Popravek: "
 
-#: admin/class-ajax.php:526
+#: admin/class-ajax.php:555
 msgid "Fix"
 msgstr "Popravi"
 
-#: admin/class-ajax.php:549
-msgid "Your user account doesn't have permission to ignore this issue."
-msgstr "Vaš uporabniški račun nima dovoljenja za prezrtje te težave."
-
-#: admin/class-ajax.php:566
+#: admin/class-ajax.php:588
 msgid "No details to return"
 msgstr "Ni podrobnosti za vrnitev"
 
-#: admin/class-ajax.php:700
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:676
+#: admin/class-ajax.php:688
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Poenostavljena raven branja povzetka: %s"
+
+#: admin/class-ajax.php:677
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "Brez"
+
+#: admin/class-ajax.php:680
+#: build/sidebar.bundle.js:2
+msgid "Not enough content to determine an accurate reading level."
+msgstr "Ni dovolj vsebine za določitev natančne ravni branja."
+
+#: admin/class-ajax.php:693
+msgid "Your simplified summary has a reading level above 9th grade."
+msgstr "Vaš poenostavljeni povzetek ima raven branja nad 9. razredom."
+
+#: admin/class-ajax.php:694
+msgid "Your simplified summary has a reading level at or below 9th grade."
+msgstr "Vaš poenostavljeni povzetek ima raven branja na ali pod 9. razredom."
+
+#: admin/class-ajax.php:745
 msgid "No readability data to return"
 msgstr "Ni podatkov o berljivosti za vrnitev"
 
-#: admin/class-ajax.php:752
-#: admin/class-ajax.php:773
+#: admin/class-ajax.php:805
+#: admin/class-ajax.php:826
 msgid "No ignore data to return"
 msgstr "Ni podatkov o prezrtju za vrnitev"
 
-#: admin/class-ajax.php:800
-msgid "The summary was not set"
-msgstr "Povzetek ni bil nastavljen"
-
-#: admin/class-ajax.php:804
-msgid "You do not have permission to edit this post."
-msgstr "Nimate dovoljenja za urejanje te objave."
-
-#: admin/class-frontend-highlight.php:82
+#: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Vrednost ID ni bila nastavljena"
 
-#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:93
+#: includes/classes/class-rest-api.php:1037
 msgid "Post not found"
 msgstr "Objava ni bila najdena"
 
-#: admin/class-frontend-highlight.php:111
+#: admin/class-frontend-highlight.php:115
 msgid "Issue query returned no results"
 msgstr "Poizvedba o težavi ni vrnila rezultatov"
 
-#: admin/class-frontend-highlight.php:155
+#: admin/class-frontend-highlight.php:162
 msgid "Object query returned no results"
 msgstr "Poizvedba o objektu ni vrnila rezultatov"
 
-#: admin/class-plugin-action-links.php:48
-#: includes/classes/class-admin-toolbar.php:94
-#: includes/options-page.php:68
+#: admin/class-ignore-ui.php:31
+msgid "False positive"
+msgstr "Lažno pozitivno"
+
+#: admin/class-ignore-ui.php:32
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Skener je to označil, vendar se ne nanaša na to vsebino."
+
+#: admin/class-ignore-ui.php:35
+msgid "Remediated"
+msgstr "Odpravljeno"
+
+#: admin/class-ignore-ui.php:36
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Težava je bila odpravljena, vendar stran še ni bila ponovno skenirana."
+
+#: admin/class-ignore-ui.php:39
+msgid "Confirmed accessible"
+msgstr "Potrjeno dostopno"
+
+#: admin/class-ignore-ui.php:40
+msgid "Reviewed and verified to meet accessibility requirements."
+msgstr "Pregledano in preverjeno, da ustreza zahtevam glede dostopnosti."
+
+#: admin/class-ignore-ui.php:82
+msgid "Username:"
+msgstr "Uporabniško ime:"
+
+#: admin/class-ignore-ui.php:92
+msgid "Date:"
+msgstr "Datum:"
+
+#: admin/class-ignore-ui.php:97
+#: build/issueModal.bundle.js:2
+msgid "Reopen Issue"
+msgstr "Ponovno odpri težavo"
+
+#: admin/class-ignore-ui.php:98
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Issue"
+msgstr "Zavrni težavo"
+
+#: admin/class-ignore-ui.php:119
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
+msgid "Comment"
+msgstr "Komentar"
+
+#: admin/class-ignore-ui.php:126
+msgid "Manage Globally Dismissed"
+msgstr "Upravljanje globalno zavrnjenih"
+
+#: admin/class-ignore-ui.php:134
+msgid "Your user account doesn't have permission to dismiss this issue."
+msgstr "Vaš uporabniški račun nima dovoljenja za zavrnitev te težave."
+
+#: admin/class-ignore-ui.php:156
+#: build/issueModal.bundle.js:2
+msgid "Dismiss issue as:"
+msgstr "Zavrni težavo kot:"
+
+#: admin/class-plugin-action-links.php:52
+#: includes/classes/class-admin-toolbar.php:98
+#: includes/options-page.php:72
 msgid "Settings"
 msgstr "Nastavitve"
 
-#: admin/class-plugin-action-links.php:60
+#: admin/class-plugin-action-links.php:64
 msgid "Get Accessibility Checker Pro, opens in new window"
 msgstr "Pridobi Accessibility Checker Pro, odpre se v novem oknu"
 
-#: admin/class-plugin-row-meta.php:53
+#: admin/class-plugin-row-meta.php:57
 msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Prikaži dokumentacijo za Accessibility Checker (odpre se v novem oknu)"
 
-#: admin/class-plugin-row-meta.php:54
-#: admin/class-widgets.php:313
+#: admin/class-plugin-row-meta.php:58
+#: admin/class-widgets.php:317
 msgid "Documentation"
 msgstr "Dokumentacija"
 
-#: admin/class-plugin-row-meta.php:59
+#: admin/class-plugin-row-meta.php:63
 msgid "Get support for Accessibility Checker (opens in new window)"
 msgstr "Pridobi podporo za Accessibility Checker (odpre se v novem oknu)"
 
-#: admin/class-plugin-row-meta.php:60
+#: admin/class-plugin-row-meta.php:64
 msgid "Support"
 msgstr "Podpora"
 
-#: admin/class-plugin-row-meta.php:65
+#: admin/class-plugin-row-meta.php:69
 msgid "Rate Accessibility Checker plugin (opens in new window)"
 msgstr "Oceni vtičnik Accessibility Checker (odpre se v novem oknu)"
 
-#: admin/class-plugin-row-meta.php:66
+#: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Oceni vtičnik"
 
-#: admin/class-upgrade-promotion.php:58
+#: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Nadgradi na pro"
 
-#: admin/class-upgrade-promotion.php:60
+#: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
 msgstr "Akcijska nadgradnja zdaj"
 
-#: admin/class-upgrade-promotion.php:82
+#: admin/class-upgrade-promotion.php:86
 msgid "Unable to redirect to upgrade page."
 msgstr "Preusmerjanje na stran za nadgradnjo ni mogoče."
 
@@ -464,7 +559,7 @@ msgid "See History"
 msgstr "Ogled zgodovine"
 
 #: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:98
+#: admin/class-widgets.php:102
 msgid "Passed Tests"
 msgstr "Opravljeni testi"
 
@@ -509,12 +604,12 @@ msgid "Average Issue Density"
 msgstr "Povprečna gostota težav"
 
 #: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:105
+#: admin/class-widgets.php:109
 msgid "Report Last Updated:"
 msgstr "Poročilo nazadnje posodobljeno:"
 
 #: admin/class-welcome-page.php:216
-#: includes/options-page.php:606
+#: includes/options-page.php:610
 msgid "Never"
 msgstr "Nikoli"
 
@@ -557,130 +652,130 @@ msgid "Unlock Detailed Accessibility Reports"
 msgstr "Odklenite podrobna poročila o dostopnosti"
 
 #: admin/class-welcome-page.php:304
-#: admin/class-widgets.php:71
+#: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Začnite pregledovati celotno spletno mesto glede težav z dostopnostjo, pridobite poročila za celotno spletno mesto in hitreje dosežite skladnost s smernicami za dostopnost."
 
 #: admin/class-welcome-page.php:308
-#: admin/class-widgets.php:73
+#: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Nadgradi Accessibility Checker"
 
-#: admin/class-widgets.php:69
+#: admin/class-widgets.php:73
 msgid "close ad"
 msgstr "zapri oglas"
 
-#: admin/class-widgets.php:70
+#: admin/class-widgets.php:74
 msgid "Get Detailed Accessibility Reports"
 msgstr "Pridobite podrobna poročila o dostopnosti"
 
-#: admin/class-widgets.php:88
+#: admin/class-widgets.php:92
 msgid "Full Site Accessibility Status"
 msgstr "Status dostopnosti celotnega spletnega mesta"
 
-#: admin/class-widgets.php:113
+#: admin/class-widgets.php:117
 msgid "URLs Scanned:"
 msgstr "Pregledani URL-ji:"
 
-#: admin/class-widgets.php:121
+#: admin/class-widgets.php:125
 msgid "Errors:"
 msgstr "Napake:"
 
-#: admin/class-widgets.php:125
+#: admin/class-widgets.php:129
 msgid "Color Contrast Errors:"
 msgstr "Napake barvnega kontrasta:"
 
-#: admin/class-widgets.php:129
+#: admin/class-widgets.php:133
 msgid "Warnings:"
 msgstr "Opozorila:"
 
-#: admin/class-widgets.php:144
+#: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
 msgstr "Vaše spletno mesto ima težave z dostopnostjo, ki jih je treba čim prej odpraviti, da zagotovite skladnost s smernicami za dostopnost."
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "Way to go! Accessibility Checker cannot find any accessibility problems in the content it tested. Some problems cannot be found by automated tools so don't forget to"
 msgstr "Odlično! Accessibility Checker ni našel nobenih težav z dostopnostjo v testirani vsebini. Nekaterih težav avtomatizirana orodja ne morejo najti, zato ne pozabi"
 
-#: admin/class-widgets.php:147
+#: admin/class-widgets.php:151
 msgid "manually test your site"
 msgstr "ročno testirati svojega spletnega mesta"
 
-#: admin/class-widgets.php:162
+#: admin/class-widgets.php:166
 msgid "Issues By Post Type"
 msgstr "Težave po vrsti objave"
 
-#: admin/class-widgets.php:169
+#: admin/class-widgets.php:173
 msgid "Post Type"
 msgstr "Vrsta objave"
 
-#: admin/class-widgets.php:172
+#: admin/class-widgets.php:176
 msgid "Errors"
 msgstr "Napake"
 
-#: admin/class-widgets.php:175
+#: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: admin/class-widgets.php:178
+#: admin/class-widgets.php:182
 msgid "Warnings"
 msgstr "Opozorila"
 
-#: admin/class-widgets.php:248
+#: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Nadgradite za pregled"
 
-#: admin/class-widgets.php:277
+#: admin/class-widgets.php:281
 msgid "See More Reports"
 msgstr "Oglejte si več poročil"
 
-#: admin/class-widgets.php:289
-#: partials/welcome-page.php:239
+#: admin/class-widgets.php:293
+#: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Naučite se o dostopnosti"
 
-#: admin/class-widgets.php:311
+#: admin/class-widgets.php:315
 msgid "Additional Resources"
 msgstr "Dodatni viri"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog (opens in a new window)"
 msgstr "Blog (odpre se v novem oknu)"
 
-#: admin/class-widgets.php:312
+#: admin/class-widgets.php:316
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:313
+#: admin/class-widgets.php:317
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentacija (odpre se v novem oknu)"
 
-#: admin/opt-in/class-email-opt-in.php:115
+#: admin/opt-in/class-email-opt-in.php:119
 msgid "Accessibility Events &amp; News in Your Inbox"
 msgstr "Dogodki in novice o dostopnosti v vaš nabiralnik"
 
-#: admin/opt-in/class-email-opt-in.php:121
+#: admin/opt-in/class-email-opt-in.php:125
 msgid "Subscribe to Equalize Digital's email list to get access to free accessibility webinars and training resources."
 msgstr "Naroči se na e-poštni seznam Equalize Digital in pridobi dostop do brezplačnih spletnih seminarjev o dostopnosti in izobraževalnih virov."
 
-#: admin/opt-in/class-email-opt-in.php:127
+#: admin/opt-in/class-email-opt-in.php:131
 msgid "Email*"
 msgstr "E-pošta*"
 
-#: admin/opt-in/class-email-opt-in.php:131
+#: admin/opt-in/class-email-opt-in.php:135
 msgid "Type your email"
 msgstr "Vnesite svoj e-poštni naslov"
 
-#: admin/opt-in/class-email-opt-in.php:139
+#: admin/opt-in/class-email-opt-in.php:143
 msgid "First Name"
 msgstr "Ime"
 
-#: admin/opt-in/class-email-opt-in.php:143
+#: admin/opt-in/class-email-opt-in.php:147
 msgid "Type your first name"
 msgstr "Vnesite svoje ime"
 
 #. translators: 1: link to privacy policy page. 2: link close tag.
-#: admin/opt-in/class-email-opt-in.php:153
+#: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "S prijavo na prejemanje obvestil soglašate s prejemanjem e-poštnih sporočil v skladu z našo %1$sPolitiko zasebnosti%2$s."
@@ -689,66 +784,66 @@ msgstr "S prijavo na prejemanje obvestil soglašate s prejemanjem e-poštnih spo
 msgid "Accessibility Checker &mdash; Audit History"
 msgstr "Accessibility Checker &mdash; Zgodovina pregledov"
 
-#: admin/site-health/class-checks.php:44
+#: admin/site-health/class-checks.php:48
 msgid "Accessibility issues"
 msgstr "Težave z dostopnostjo"
 
-#: admin/site-health/class-checks.php:49
+#: admin/site-health/class-checks.php:53
 msgid "Content checked for accessibility"
 msgstr "Vsebina preverjena za dostopnost"
 
-#: admin/site-health/class-checks.php:54
+#: admin/site-health/class-checks.php:58
 msgid "Post types configured for accessibility checks"
 msgstr "Vrste objav konfigurirane za preverjanje dostopnosti"
 
-#: admin/site-health/class-checks.php:69
+#: admin/site-health/class-checks.php:73
 msgid "Accessibility"
 msgstr "Dostopnost"
 
-#: admin/site-health/class-checks.php:96
+#: admin/site-health/class-checks.php:100
 msgid "View Issues"
 msgstr "Prikaži težave"
 
-#: admin/site-health/class-checks.php:103
+#: admin/site-health/class-checks.php:107
 msgid "View Accessibility Checker"
 msgstr "Prikaži Accessibility Checker"
 
-#: admin/site-health/class-checks.php:122
+#: admin/site-health/class-checks.php:126
 msgid "Accessibility issues detected"
 msgstr "Zaznane težave z dostopnostjo"
 
 #. translators: 1: error count, 2: warning count.
-#: admin/site-health/class-checks.php:125
+#: admin/site-health/class-checks.php:129
 #, php-format
 msgid "Accessibility Checker has detected %1$s errors and %2$s warnings."
 msgstr "Accessibility Checker je zaznal %1$s napak in %2$s opozoril."
 
-#: admin/site-health/class-checks.php:141
+#: admin/site-health/class-checks.php:145
 msgid "No accessibility issues detected"
 msgstr "Ni zaznanih težav z dostopnostjo"
 
-#: admin/site-health/class-checks.php:142
+#: admin/site-health/class-checks.php:146
 msgid "Accessibility Checker has not found any issues in scanned content."
 msgstr "Accessibility Checker ni našel nobenih težav v pregledani vsebini."
 
-#: admin/site-health/class-checks.php:160
+#: admin/site-health/class-checks.php:164
 msgid "Content has not been checked"
 msgstr "Vsebina ni bila preverjena"
 
-#: admin/site-health/class-checks.php:161
+#: admin/site-health/class-checks.php:165
 msgid "No posts have been scanned yet. Run a full site scan to begin checking your content for accessibility issues."
 msgstr "Nobena objava še ni bila pregledana. Zaženite pregled celotnega spletnega mesta, da začnete preverjati težave z dostopnostjo v vaši vsebini."
 
-#: admin/site-health/class-checks.php:165
+#: admin/site-health/class-checks.php:169
 msgid "Start full site scan"
 msgstr "Začni pregled celotnega spletnega mesta"
 
-#: admin/site-health/class-checks.php:174
+#: admin/site-health/class-checks.php:178
 msgid "Content is being checked for accessibility"
 msgstr "Vsebina se preverja za dostopnost"
 
 #. translators: %s is the number of posts scanned.
-#: admin/site-health/class-checks.php:177
+#: admin/site-health/class-checks.php:181
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
@@ -757,24 +852,24 @@ msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[3] "Accessibility Checker je pregledal %s objav za težave z dostopnostjo."
 
-#: admin/site-health/class-checks.php:196
+#: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
 msgstr "Ni izbranih vrst objav za preverjanje dostopnosti"
 
-#: admin/site-health/class-checks.php:197
+#: admin/site-health/class-checks.php:201
 msgid "Accessibility Checker cannot scan any content because no post types have been selected. Without configured post types, no accessibility issues will be detected."
 msgstr "Accessibility Checker ne more pregledati nobene vsebine, ker ni izbranih vrst objav. Brez konfiguriranih vrst objav ne bo mogoče zaznati težav z dostopnostjo."
 
-#: admin/site-health/class-checks.php:201
+#: admin/site-health/class-checks.php:205
 msgid "Configure post types"
 msgstr "Konfiguriraj vrste objav"
 
-#: admin/site-health/class-checks.php:213
+#: admin/site-health/class-checks.php:217
 msgid "Post types are configured for accessibility checking"
 msgstr "Vrste objav so konfigurirane za preverjanje dostopnosti"
 
 #. translators: 1: number of post types, 2: comma-separated list of post type names.
-#: admin/site-health/class-checks.php:216
+#: admin/site-health/class-checks.php:220
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
@@ -829,7 +924,7 @@ msgid "Disabled"
 msgstr "Onemogočeno"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:199
+#: includes/options-page.php:203
 msgid "Delete Data"
 msgstr "Izbriši podatke"
 
@@ -886,407 +981,372 @@ msgid "Simplified Sum Heading"
 msgstr "Naslov poenostavljenega povzetka"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:190
+#: includes/options-page.php:194
 msgid "Ignore Permissions"
 msgstr "Dovoljenja za prezrtje"
-
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "Brez"
 
 #: admin/site-health/class-pro.php:78
 msgid "Ignores DB Table Count"
 msgstr "Število tabel v podatkovni bazi za prezrtje"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
-#: includes/classes/class-accessibility-statement.php:45
+#: includes/classes/class-accessibility-statement.php:49
 #, php-format
 msgid "%1$s uses %2$s to monitor our website's accessibility."
 msgstr "Za spremljanje dostopnosti naše spletne strani %1$s uporablja %2$s."
 
-#: includes/classes/class-accessibility-statement.php:50
+#: includes/classes/class-accessibility-statement.php:54
 msgid "Accessibility Checker (opens in a new window)"
 msgstr "Accessibility Checker (odpre se v novem oknu)"
 
 #. translators: %1$s is a link to the accessibility policy page, with text "Accessibility Policy".
-#: includes/classes/class-accessibility-statement.php:59
+#: includes/classes/class-accessibility-statement.php:63
 #, php-format
 msgid "Read our %s"
 msgstr "Preberite naš %s"
 
-#: includes/classes/class-accessibility-statement.php:60
+#: includes/classes/class-accessibility-statement.php:64
 msgid "Accessibility Policy"
 msgstr "Pravilnik o dostopnosti"
 
-#: includes/classes/class-admin-toolbar.php:115
-#: partials/pro-callout.php:47
-#: partials/welcome-page.php:215
+#: includes/classes/class-admin-toolbar.php:119
+#: partials/pro-callout.php:51
+#: partials/welcome-page.php:219
 msgid "Get Accessibility Checker Pro"
 msgstr "Pridobi Accessibility Checker Pro"
 
-#: includes/classes/class-admin-toolbar.php:120
+#: includes/classes/class-admin-toolbar.php:124
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Pridobi Accessibility Checker Pro (se odpre v novem oknu)"
 
-#: includes/classes/class-simplified-summary.php:73
-#: includes/options-page.php:898
-#: includes/options-page.php:922
+#: includes/classes/class-rest-api.php:991
+msgid "Unknown"
+msgstr "Neznano"
+
+#: includes/classes/class-rest-api.php:1224
+msgid "Issue not found."
+msgstr "Težava ni najdena."
+
+#: includes/classes/class-rest-api.php:1267
+msgid "Failed to update the issue."
+msgstr "Posodobitev težave ni uspela."
+
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:902
+#: includes/options-page.php:926
+#: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Poenostavljen povzetek"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:41
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
 msgstr "Dodaj velikost in vrsto datotekam v povezavah"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:50
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:54
 msgid "Add Context to Linked Files"
 msgstr "Dodaj kontekst povezanim datotekam"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:83
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:87
 msgid "Add File Size & Type To Links"
 msgstr "Dodaj velikost in vrsto datoteke povezavam"
 
-#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:85
+#: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:89
 msgid "Add the file size and type to linked files that may trigger a download."
 msgstr "Dodaj velikost in vrsto datoteke povezavam, ki lahko sprožijo prenos."
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:41
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:45
 msgid "Add Labels to Unlabelled Form Fields"
 msgstr "Dodaj oznake neoznačenim poljem obrazca"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:50
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:73
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:96
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:54
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:77
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:100
 msgid "Label Form Fields"
 msgstr "Označi polja obrazca"
 
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:99
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:103
 msgid "Add labels to unlabelled form fields if field purpose can be determined."
 msgstr "Dodaj oznake neoznačenim poljem obrazca, če je mogoče določiti namen polja."
 
 #. translators: %1$s: a CSS class name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:130
+#: includes/classes/Fixes/Fix/AddLabelToUnlabelledFormFieldsFix.php:134
 #, php-format
 msgid "Attempt to add labels to form fields that are missing them. Note: You may need to add custom styles targeting the %1$s class if adding labels affects your form layouts."
 msgstr "Poskusi dodati oznake poljem obrazca, ki jih nimajo. Opomba: Morda boste morali dodati prilagojene sloge, ki ciljajo na razred %1$s, če dodajanje oznak vpliva na postavitev vašega obrazca."
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:41
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:45
 msgid "Add Missing or Empty Page Titles"
 msgstr "Dodaj manjkajoče ali prazne naslove strani"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:50
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:54
 msgid "Set Page HTML Titles"
 msgstr "Nastavi HTML naslove strani"
 
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:84
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:88
 msgid "Add Missing Page Title"
 msgstr "Dodaj manjkajoči naslov strani"
 
 #. translators: %1$s: a code tag with a title tag.
-#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:87
+#: includes/classes/Fixes/Fix/AddMissingOrEmptyPageTitleFix.php:91
 #, php-format
 msgid "Add a %1$s tag to the page if it's missing or empty."
 msgstr "Dodaj značko %1$s na stran, če manjka ali je prazna."
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:34
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:38
 msgid "Add warning when link opens new tab/window"
 msgstr "Dodaj opozorilo, ko se povezava odpre v novem zavihku/oknu"
 
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:68
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:72
 msgid "Add Label To Links That Open A New Tab/Window"
 msgstr "Dodaj oznako povezavam, ki se odprejo v novem zavihku/oknu"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:73
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:77
 #, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Dodaj oznako in ikono povezavam z %1$s, ki uporabnike obveščajo, da se bodo odprle v novem zavihku/oknu. %2$sOpomba: Ta nastavitev ne bo imela učinka, če je omogočena popravek „Blokiraj povezave, ki odpirajo nova okna“.%3$s"
 
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:43
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:75
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
 msgstr "Blokiraj nalaganje PDF datotek"
 
 #. translators: %1$s: a code tag with the capability name.
-#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
+#: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:83
 #, php-format
 msgid "Restrict PDF uploads for users without the %1$s capability (allowed for admins by default)."
 msgstr "Omeji nalaganje PDF datotek za uporabnike brez zmožnosti %1$s (privzeto dovoljeno za administratorje)."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:34
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:38
 msgid "Add Labels to Comment and Search Forms"
 msgstr "Dodaj oznake obrazcem za komentarje in iskanje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:43
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:47
 msgid "Label Comment/Search Fields"
 msgstr "Označi polja za komentarje/iskanje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:66
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:70
 msgid "Comment and Search Form Labels"
 msgstr "Oznake obrazcev za komentarje in iskanje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:67
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:71
 msgid "Add missing labels to WordPress comment and search forms."
 msgstr "Dodaj manjkajoče oznake WordPress obrazcem za komentarje in iskanje."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:90
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:94
 msgid "Label Comment Form"
 msgstr "Označi obrazec za komentarje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:93
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:97
 msgid "Add missing labels to the WordPress comment form."
 msgstr "Dodaj manjkajoče oznake WordPress obrazcu za komentarje."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:101
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:105
 msgid "Label Search Form"
 msgstr "Označi obrazec za iskanje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:104
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:108
 msgid "Add a missing label to the WordPress search form."
 msgstr "Dodaj manjkajočo oznako WordPress obrazcu za iskanje."
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:138
-msgid "Comment"
-msgstr "Komentar"
-
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:143
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:147
 msgid "Name"
 msgstr "Ime"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:148
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:152
 msgid "Email"
 msgstr "E-pošta"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:153
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:157
 msgid "Website"
 msgstr "Spletna stran"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:177
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:181
 msgid "Search …"
 msgstr "Iskanje …"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:182
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:186
 msgid "Search for:"
 msgstr "Išči:"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:184
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:188
 msgid "Search"
 msgstr "Iskanje"
 
-#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:198
+#: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Nastavitve za dodajanje manjkajočih oznak obrazcem za komentarje in iskanje v WordPressu."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:33
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
 msgstr "Dodaj obrobe za fokus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:56
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:60
 msgid "Focus Outline"
 msgstr "Obroba za fokus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:57
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:83
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:61
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:87
 msgid "Add an outline to elements when they receive keyboard focus."
 msgstr "Dodaj obrobo elementom, ko prejmejo fokus tipkovnice."
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:81
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:85
 msgid "Add Focus Outline"
 msgstr "Dodaj obrobo za fokus"
 
-#: includes/classes/Fixes/Fix/FocusOutlineFix.php:112
+#: includes/classes/Fixes/Fix/FocusOutlineFix.php:116
 msgid "Settings related to enhancing focus outlines for better keyboard accessibility."
 msgstr "Nastavitve, povezane z izboljšanjem obrob za fokus za boljšo dostopnost s tipkovnico."
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:33
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:37
 msgid "Add lang & dir Attributes"
 msgstr "Dodaj atributa lang in dir"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:42
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:46
 msgid "Set Page Language"
 msgstr "Nastavi jezik strani"
 
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:76
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:80
 msgid "Add \"lang\" & \"dir\" Attributes"
 msgstr "Dodaj atributa „lang“ in „dir“"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag. %2$s: dir attribute %3$s: html element.
-#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:79
+#: includes/classes/Fixes/Fix/HTMLLangAndDirFix.php:83
 #, php-format
 msgid "Add the site language (%1$s) and text direction (%2$s) attributes to the %3$s element."
 msgstr "Dodaj atributa za jezik spletnega mesta (%1$s) in smer besedila (%2$s) elementu %3$s."
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:33
+#: includes/classes/Fixes/Fix/LinkUnderline.php:37
 msgid "Add Underlines to all non-nav Links"
 msgstr "Dodaj podčrtave vsem povezavam, ki niso del navigacije"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:42
+#: includes/classes/Fixes/Fix/LinkUnderline.php:46
 msgid "Underline Links"
 msgstr "Podčrtaj povezave"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:76
+#: includes/classes/Fixes/Fix/LinkUnderline.php:80
 msgid "Force Link Underline"
 msgstr "Vsili podčrtavanje povezav"
 
-#: includes/classes/Fixes/Fix/LinkUnderline.php:78
+#: includes/classes/Fixes/Fix/LinkUnderline.php:82
 msgid "Ensure that non-navigation links are underlined."
 msgstr "Zagotovi, da so povezave, ki niso del navigacije, podčrtane."
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:34
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:38
 msgid "Make Meta Viewport Tag Scalable"
 msgstr "Naredi meta oznako viewport prilagodljivo"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:57
-msgid "Ensure scalable viewport"
-msgstr "Zagotovi prilagodljiv viewport"
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:58
-msgid "Make sure that the viewport tag on the page allows scaling."
-msgstr "Poskrbi, da oznaka viewport na strani omogoča prilagajanje velikosti."
-
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:81
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:71
 msgid "Make Viewport Scalable"
 msgstr "Naredi viewport prilagodljiv"
 
-#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:84
+#: includes/classes/Fixes/Fix/MetaViewportScalableFix.php:74
 msgid "Ensure the viewport tag allows for scaling, enhancing accessibility on mobile devices."
 msgstr "Zagotovi, da oznaka viewport omogoča prilagajanje velikosti, kar izboljša dostopnost na mobilnih napravah."
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:34
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:38
 msgid "Prevent Links Opening New Windows"
 msgstr "Prepreči odpiranje povezav v novih oknih"
 
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:68
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:72
 msgid "Block Links Opening New Windows"
 msgstr "Blokiraj odpiranje povezav v novih oknih"
 
 #. translators: %1%s: A <code> tag containing target="_blank".
-#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:73
+#: includes/classes/Fixes/Fix/PreventLinksOpeningNewWindowFix.php:77
 #, php-format
 msgid "Prevent links from opening in a new window or tab by removing %1$s."
 msgstr "Prepreči odpiranje povezav v novem oknu ali zavihku z odstranitvijo %1$s."
 
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:34
-msgid "Add \"Read\" Link with Post Title"
-msgstr "Dodaj povezavo „Preberi“ z naslovom prispevka"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:43
-msgid "Add Title to Read More Link"
-msgstr "Dodaj naslov povezavi \"Preberi več\""
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:66
-msgid "Read More links"
-msgstr "Povezave \"Preberi več\""
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:67
-msgid "Add the post title and links "
-msgstr "Dodaj naslov prispevka in povezave "
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:91
-msgid "Add Post Title To \"Read More\""
-msgstr "Dodaj naslov prispevka povezavi „Preberi več“"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:93
-msgid "Add the post title to \"Read More\" links in post lists when your theme outputs those links."
-msgstr "Dodaj naslov prispevka povezavam „Preberi več“ v seznamih prispevkov, ko vaša tema izpiše te povezave."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:102
-msgid "For Screen Readers Only"
-msgstr "Samo za bralnike zaslona"
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:104
-msgid "Makes the post title added to \"Read More\" links visible only to screen readers."
-msgstr "Naredi naslov prispevka, dodan povezavam „Preberi več“, viden samo bralnikom zaslona."
-
-#: includes/classes/Fixes/Fix/ReadMoreAddTitleFix.php:235
-msgid "This fix adds the post title to the \"Read More\" links in post lists at the \"More\" block and in excerpts."
-msgstr "Ta popravek doda naslov prispevka povezavam „Preberi več“ v seznamih prispevkov pri bloku „Več“ in v izsekih."
-
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:33
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:37
 msgid "Prefer Accessible Label Attribute"
 msgstr "Daj prednost dostopnemu atributu oznake"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:42
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:46
 msgid "Remove Unnecessary Title Attributes"
 msgstr "Odstrani nepotrebne atribute naslova"
 
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:76
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:80
 msgid "Remove Title Attributes"
 msgstr "Odstrani atribute naslova"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:79
+#: includes/classes/Fixes/Fix/RemoveTitleIfPrefferedAccessibleNameFix.php:83
 #, php-format
 msgid "Remove %1$s attributes from elements that already have a preferred accessible name."
 msgstr "Odstrani atribute %1$s z elementov, ki že imajo prednostno dostopno ime."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:34
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:38
 msgid "Add Skip Links"
 msgstr "Dodaj preskočne povezave"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:57
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:61
 msgid "Skip Link"
 msgstr "Preskočna povezava"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:81
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:85
 msgid "Enable Skip Link"
 msgstr "Omogoči preskočno povezavo"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:84
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:88
 msgid "Add a skip link to all site pages, allowing users to skip directly to the main content."
 msgstr "Dodaj preskočno povezavo na vse strani spletišča, kar uporabnikom omogoča neposreden preskok na glavno vsebino."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:92
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:96
 msgid "Main Content Target (required)"
 msgstr "Cilj glavne vsebine (obvezno)"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:95
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:99
 msgid "Define the ID(s) of the main content area(s) to be targeted by skip links. Enter multiple IDs separated by commas; the system will cascade through the list to find the appropriate one for each page."
 msgstr "Določi ID-je področij glavne vsebine, na katere bodo ciljale preskočne povezave. Vnesi več ID-jev, ločenih z vejicami; sistem bo kaskadno pregledal seznam, da bo našel ustreznega za vsako stran."
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:104
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:108
 msgid "Navigation Target"
 msgstr "Cilj navigacije"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:107
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:111
 msgid "Set the ID attribute of the navigation element. This is useful if your main navigation contains actions that most site visitors would want to take such as login or search features."
 msgstr "Nastavi ID atribut navigacijskega elementa. To je koristno, če vaša glavna navigacija vsebuje dejanja, ki bi jih večina obiskovalcev spletnega mesta želela izvesti, kot so funkcije prijave ali iskanja."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:236
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Če vaša tema še ne dodaja preskočne povezave, ki uporabnikom tipkovnice omogoča obiti navigacijo in hitro skočiti na glavno vsebino, tukaj omogočite preskočne povezave. %1$sVeč o preskočnih povezavah.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:263
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
 msgid "Skip to content"
 msgstr "Preskoči na vsebino"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:272
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
 msgid "Skip to navigation"
 msgstr "Preskoči na navigacijo"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:33
+#: includes/classes/Fixes/Fix/TabindexFix.php:37
 msgid "Remove Tabindex from Focusable Elements"
 msgstr "Odstrani tabindex iz elementov, ki lahko prejmejo fokus"
 
-#: includes/classes/Fixes/Fix/TabindexFix.php:67
+#: includes/classes/Fixes/Fix/TabindexFix.php:71
 msgid "Remove Tab Index"
 msgstr "Odstrani tabindex"
 
 #. translators: %1$s: a attribute name wrapped in a <code> tag.
-#: includes/classes/Fixes/Fix/TabindexFix.php:70
+#: includes/classes/Fixes/Fix/TabindexFix.php:74
 #, php-format
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Odstrani atribut %1$s z elementov, ki lahko prejmejo fokus."
 
-#: includes/classes/Fixes/FixesManager.php:241
+#: includes/classes/Fixes/FixesManager.php:250
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Opomba: Ta nastavitev ni priporočljiva za teme, ki so že pripravljene za dostopnost."
 
-#: includes/classes/Fixes/FixesManager.php:294
+#: includes/classes/Fixes/FixesManager.php:320
 msgid "Fix not found"
 msgstr "Popravek ni bil najden"
+
+#: includes/classes/Fixes/FixesManager.php:356
+msgid "Fix not found."
+msgstr "Popravek ni najden."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -1329,18 +1389,18 @@ msgid "Hard of hearing"
 msgstr "Naglušni"
 
 #: includes/classes/Rules/AffectedDisabilities.php:70
-#: includes/wcag.php:52
-#: includes/wcag.php:85
-#: includes/wcag.php:118
-#: includes/wcag.php:151
-#: includes/wcag.php:251
-#: includes/wcag.php:269
-#: includes/wcag.php:1661
-#: includes/wcag.php:1695
-#: includes/wcag.php:1728
-#: includes/wcag.php:1748
-#: includes/wcag.php:1767
-#: includes/wcag.php:1786
+#: includes/wcag.php:56
+#: includes/wcag.php:89
+#: includes/wcag.php:122
+#: includes/wcag.php:155
+#: includes/wcag.php:255
+#: includes/wcag.php:273
+#: includes/wcag.php:1665
+#: includes/wcag.php:1699
+#: includes/wcag.php:1732
+#: includes/wcag.php:1752
+#: includes/wcag.php:1771
+#: includes/wcag.php:1790
 msgid "Language learners"
 msgstr "Učenci jezikov"
 
@@ -2683,7 +2743,7 @@ msgid "W3C: Understanding Guideline 1.2"
 msgstr "W3C: Razumevanje smernice 1.2"
 
 #. translators: 1: a php classname, 2: an error message that was thrown about why this failed to register.
-#: includes/classes/WPCLI/BootstrapCLI.php:109
+#: includes/classes/WPCLI/BootstrapCLI.php:113
 #, php-format
 msgid "Failed to register command %1$s because %2$s"
 msgstr "Registracija ukaza %1$s ni uspela, ker %2$s"
@@ -2746,1713 +2806,1719 @@ msgstr "ID prispevka %1$d ne obstaja."
 msgid "Either the post is not yet scanned or all tests passed for post ID %1$d."
 msgstr "Prispevek še ni bil pregledan ali pa so bili vsi testi uspešno opravljeni za ID prispevka %1$d."
 
-#: includes/helper-functions.php:27
+#: includes/helper-functions.php:31
 msgid "permalink of "
 msgstr "povezava do "
 
-#: includes/helper-functions.php:28
+#: includes/helper-functions.php:32
 msgid "permalink to "
 msgstr "povezava na "
 
-#: includes/helper-functions.php:29
+#: includes/helper-functions.php:33
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:392
+#: includes/helper-functions.php:403
 msgid "Attend Free"
 msgstr "Obišči brezplačno"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:841
-#, php-format
+#: includes/helper-functions.php:855
+#: build/issueModal.bundle.js:2
+#, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Ogled %s orientacijske točke na spletni strani, odpre se novo okno"
 
-#: includes/options-page.php:44
+#: includes/options-page.php:48
 msgid "Welcome to Accessibility Checker"
 msgstr "Dobrodošli v Accessibility Checker"
 
-#: includes/options-page.php:67
+#: includes/options-page.php:71
 msgid "Accessibility Checker Settings"
 msgstr "Nastavitve Accessibility Checkerja"
 
-#: includes/options-page.php:111
+#: includes/options-page.php:115
 msgid "Scan Settings"
 msgstr "Nastavitve skeniranja"
 
-#: includes/options-page.php:118
+#: includes/options-page.php:122
 msgid "Permissions"
 msgstr "Dovoljenja"
 
-#: includes/options-page.php:125
+#: includes/options-page.php:129
 msgid "Simplified Summary Settings"
 msgstr "Nastavitve poenostavljenega povzetka"
 
-#: includes/options-page.php:132
+#: includes/options-page.php:136
 msgid "Footer Accessibility Statement"
 msgstr "Izjava o dostopnosti v nogi"
 
-#: includes/options-page.php:139
+#: includes/options-page.php:143
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker na spletni strani"
 
-#: includes/options-page.php:146
+#: includes/options-page.php:150
 msgid "System Settings"
 msgstr "Sistemske nastavitve"
 
-#: includes/options-page.php:154
+#: includes/options-page.php:158
 msgid "Post Types To Be Checked"
 msgstr "Vrste prispevkov za preverjanje"
 
-#: includes/options-page.php:163
+#: includes/options-page.php:167
 msgid "Scan Speed"
 msgstr "Hitrost skeniranja"
 
-#: includes/options-page.php:172
+#: includes/options-page.php:176
 msgid "Archive Scanning"
 msgstr "Skeniranje arhiva"
 
-#: includes/options-page.php:181
+#: includes/options-page.php:185
 msgid "Taxonomy Scanning"
 msgstr "Skeniranje taksonomije"
 
-#: includes/options-page.php:208
+#: includes/options-page.php:212
 msgid "Prompt for Simplified Summary"
 msgstr "Poziv za poenostavljen povzetek"
 
-#: includes/options-page.php:217
+#: includes/options-page.php:221
 msgid "Simplified Summary Position"
 msgstr "Položaj poenostavljenega povzetka"
 
-#: includes/options-page.php:226
+#: includes/options-page.php:230
 msgid "Simplified Summary Heading"
 msgstr "Poenostavljen naslov povzetka"
 
-#: includes/options-page.php:235
-#: includes/options-page.php:736
+#: includes/options-page.php:239
+#: includes/options-page.php:740
 msgid "Add Footer Accessibility Statement"
 msgstr "Dodaj izjavo o dostopnosti v nogo"
 
-#: includes/options-page.php:244
-#: includes/options-page.php:759
+#: includes/options-page.php:248
+#: includes/options-page.php:763
 msgid "Include Link to Accessibility Policy"
 msgstr "Vključi povezavo do politike dostopnosti"
 
-#: includes/options-page.php:253
+#: includes/options-page.php:257
 msgid "Accessibility Policy page"
 msgstr "Stran s politiko dostopnosti"
 
-#: includes/options-page.php:262
+#: includes/options-page.php:266
 msgid "Accessibility Statement Preview"
 msgstr "Predogled izjave o dostopnosti"
 
-#: includes/options-page.php:271
+#: includes/options-page.php:275
 msgid "Frontend Accessibility Checker Position"
 msgstr "Položaj Accessibility Checkerja na spletni strani"
 
-#: includes/options-page.php:320
+#: includes/options-page.php:324
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfiguriraj vrste vsebine, ki jih je treba preveriti glede težav z dostopnostjo."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:325
+#: includes/options-page.php:329
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Več funkcij in e-poštna podpora sta na voljo s %1$s."
 
-#: includes/options-page.php:333
+#: includes/options-page.php:337
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (odpre se v novem oknu)"
 
-#: includes/options-page.php:333
-#: partials/welcome-page.php:21
+#: includes/options-page.php:337
+#: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:347
+#: includes/options-page.php:351
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Uporabite spodnje nastavitve za konfiguracijo preverjalnika dostopnosti na sprednji strani."
 
-#: includes/options-page.php:357
+#: includes/options-page.php:361
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Smernice za dostopnost spletnih vsebin (WCAG) na ravni AAA zahtevajo, da ima vsebina z bralnim nivojem nad 9. Razredom alternativo, ki jo je lažje prebrati. Poenostavljen povzetek besedila je dodan na zavihku berljivosti v metapolju Accessibility Checkerja na zaslonu za urejanje vsakega prispevka ali strani."
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti (se odpre v novem oknu)"
 
-#: includes/options-page.php:367
+#: includes/options-page.php:371
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti."
 
-#: includes/options-page.php:376
+#: includes/options-page.php:380
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Ali razmišljaš „Vau, ta vtičnik je neverjetno“ in ti pomaga narediti tvojo spletno stran bolj dostopno? Deli svoje prizadevanja za izboljšanje dostopnosti svoje spletne strani s svojimi strankami in jim sporoči, da uporabljaš Accessibility Checker, da zagotoviš, da lahko vsi ljudje uporabljajo tvojo spletno stran. Dodaj majhno besedilno povezavo in izjavo v nogo svoje spletne strani."
 
-#: includes/options-page.php:385
+#: includes/options-page.php:389
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfiguriraj sistemske nastavitve za vtičnik Accessibility Checker."
 
-#: includes/options-page.php:399
+#: includes/options-page.php:403
 msgid "Fast"
 msgstr "Hitro"
 
-#: includes/options-page.php:400
+#: includes/options-page.php:404
 msgid "Normal"
 msgstr "Normalno"
 
-#: includes/options-page.php:401
+#: includes/options-page.php:405
 msgid "Slow"
 msgstr "Počasi"
 
-#: includes/options-page.php:402
+#: includes/options-page.php:406
 msgid "Slowest"
 msgstr "Najpočasneje"
 
-#: includes/options-page.php:424
+#: includes/options-page.php:428
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Hitrejša skeniranja so bolj zahtevna za vire in lahko povzročijo veliko obremenitev vaše spletne strani."
 
-#: includes/options-page.php:450
+#: includes/options-page.php:454
 msgid "Enable scanning of archive pages"
 msgstr "Omogoči skeniranje arhivskih strani"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:458
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Izberite, ali naj bodo arhivske strani vključene v celotno skeniranje spletnega mesta. Privzeto se za izbiro taksonomskih izrazov za arhivske podatke uporablja metoda vzorčenja."
 
-#: includes/options-page.php:480
+#: includes/options-page.php:484
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skeniraj vse taksonomske izraze namesto le vzorca"
 
-#: includes/options-page.php:484
+#: includes/options-page.php:488
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Preveri vse arhivske strani taksonomskih izrazov namesto reprezentativnega vzorca. To zahteva, da je skeniranje arhivskih strani omogočeno, in lahko na seznam za skeniranje doda veliko število URL-jev."
 
-#: includes/options-page.php:513
+#: includes/options-page.php:517
 msgid "Before the content"
 msgstr "Pred vsebino"
 
-#: includes/options-page.php:518
+#: includes/options-page.php:522
 msgid "After the content"
 msgstr "Po vsebini"
 
-#: includes/options-page.php:523
+#: includes/options-page.php:527
 msgid "Insert manually"
 msgstr "Vstavi ročno"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:531
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Uporabite to funkcijo za ročno dodajanje poenostavljenega povzetka v vašo temo znotraj zanke."
 
-#: includes/options-page.php:529
+#: includes/options-page.php:533
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija opcijsko sprejme ID objave kot parameter."
 
-#: includes/options-page.php:532
+#: includes/options-page.php:536
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nastavite, kje želite, da se poenostavljeni povzetki pojavijo v odnosu do vaše vsebine, če so izpolnjeni."
 
-#: includes/options-page.php:547
+#: includes/options-page.php:551
 msgid "Bottom Right Corner (default)"
 msgstr "Spodnji desni kot (privzeto)"
 
-#: includes/options-page.php:552
+#: includes/options-page.php:556
 msgid "Bottom Left Corner"
 msgstr "Spodnji levi kot"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:560
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nastavite, kje želite, da se preverjalnik dostopnosti na sprednji strani pojavi na strani."
 
-#: includes/options-page.php:596
+#: includes/options-page.php:600
 msgid "When Required"
 msgstr "Ko je potrebno"
 
-#: includes/options-page.php:601
+#: includes/options-page.php:605
 msgid "Always"
 msgstr "Vedno"
 
-#: includes/options-page.php:609
+#: includes/options-page.php:613
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ali naj Accessibility Checker zahteva poenostavljen povzetek samo, ko je bralni nivo tvojega prispevka ali strani nad 9. razredom, vedno zahteva ne glede na bralni nivo ali nikoli ne zahteva ne glede na bralni nivo?"
 
-#: includes/options-page.php:661
+#: includes/options-page.php:665
 msgid "To check content other than posts and pages, please "
 msgstr "Za preverjanje vsebine, ki ni objava ali stran, prosimo "
 
-#: includes/options-page.php:663
+#: includes/options-page.php:667
 msgid "upgrade to pro"
 msgstr "nadgradite na Pro"
 
-#: includes/options-page.php:664
+#: includes/options-page.php:668
 msgid " (opens in a new window)"
 msgstr " (se odpre v novem oknu)"
 
-#: includes/options-page.php:669
+#: includes/options-page.php:673
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Izberite, katere vrste objav naj se preverijo med skeniranjem. Upoštevajte, da bo odstranitev predhodno izbrane vrste objave odstranila njene skenirane informacije in vse prilagojene ignorirane opozorila, ki so bila nastavljena."
 
-#: includes/options-page.php:811
+#: includes/options-page.php:815
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Izbriši vse podatke Accessibility Checkerja, ko je vtičnik odstranjen."
 
-#: includes/options-page.php:966
+#: includes/options-page.php:970
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Izberi, katere uporabniške vloge imajo dovoljenje za ignoriranje težav."
 
-#: includes/options-page.php:999
+#: includes/options-page.php:1003
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Konfiguriraj, katere uporabniške vloge imajo dostop do določenih funkcij Accessibility Checker."
 
-#: includes/wcag.php:11
+#: includes/wcag.php:15
 msgid "Non-text Content"
 msgstr "Nebesedilna vsebina"
 
-#: includes/wcag.php:12
+#: includes/wcag.php:16
 msgid "All non-text content must have a text alternative that serves the same purpose, unless it falls into specific exceptions like controls, media, tests, sensory content, CAPTCHA, or decorative elements. Each type must follow specific guidance to ensure accessibility without interfering with the user experience."
 msgstr "Vsa nebesedilna vsebina mora imeti besedilno alternativo, ki služi istemu namenu, razen če spada v posebne izjeme, kot so kontrole, mediji, testi, čutna vsebina, CAPTCHA ali dekorativni elementi. Vsaka vrsta mora slediti posebnim smernicam, da zagotovi dostopnost brez poseganja v uporabniško izkušnjo."
 
-#: includes/wcag.php:15
+#: includes/wcag.php:19
 msgid "1.1 Text Alternatives"
 msgstr "1.1 besedilne alternative"
 
-#: includes/wcag.php:16
-#: includes/wcag.php:49
-#: includes/wcag.php:82
-#: includes/wcag.php:115
-#: includes/wcag.php:148
-#: includes/wcag.php:181
-#: includes/wcag.php:213
-#: includes/wcag.php:230
-#: includes/wcag.php:247
-#: includes/wcag.php:266
-#: includes/wcag.php:284
-#: includes/wcag.php:319
-#: includes/wcag.php:353
-#: includes/wcag.php:386
-#: includes/wcag.php:413
-#: includes/wcag.php:441
-#: includes/wcag.php:459
-#: includes/wcag.php:492
-#: includes/wcag.php:520
-#: includes/wcag.php:547
-#: includes/wcag.php:575
-#: includes/wcag.php:604
-#: includes/wcag.php:638
-#: includes/wcag.php:671
-#: includes/wcag.php:703
-#: includes/wcag.php:735
-#: includes/wcag.php:753
-#: includes/wcag.php:770
-#: includes/wcag.php:788
+#: includes/wcag.php:20
+#: includes/wcag.php:53
+#: includes/wcag.php:86
+#: includes/wcag.php:119
+#: includes/wcag.php:152
+#: includes/wcag.php:185
+#: includes/wcag.php:217
+#: includes/wcag.php:234
+#: includes/wcag.php:251
+#: includes/wcag.php:270
+#: includes/wcag.php:288
+#: includes/wcag.php:323
+#: includes/wcag.php:357
+#: includes/wcag.php:390
+#: includes/wcag.php:417
+#: includes/wcag.php:445
+#: includes/wcag.php:463
+#: includes/wcag.php:496
+#: includes/wcag.php:524
+#: includes/wcag.php:551
+#: includes/wcag.php:579
+#: includes/wcag.php:608
+#: includes/wcag.php:642
+#: includes/wcag.php:675
+#: includes/wcag.php:707
+#: includes/wcag.php:739
+#: includes/wcag.php:757
+#: includes/wcag.php:774
+#: includes/wcag.php:792
 msgid "Perceivable"
 msgstr "Zaznavno"
 
-#: includes/wcag.php:18
-#: includes/wcag.php:288
-#: includes/wcag.php:1533
-#: includes/wcag.php:2200
-#: includes/wcag.php:2234
+#: includes/wcag.php:22
+#: includes/wcag.php:292
+#: includes/wcag.php:1537
+#: includes/wcag.php:2204
+#: includes/wcag.php:2238
 msgid "People with dexterity impairments using voice control"
 msgstr "Ljudje z motoričnimi težavami, ki uporabljajo glasovno upravljanje"
 
-#: includes/wcag.php:19
-#: includes/wcag.php:289
-#: includes/wcag.php:323
+#: includes/wcag.php:23
+#: includes/wcag.php:293
+#: includes/wcag.php:327
+#: includes/wcag.php:448
+#: includes/wcag.php:898
+#: includes/wcag.php:927
+#: includes/wcag.php:961
+#: includes/wcag.php:995
+#: includes/wcag.php:1015
+#: includes/wcag.php:1034
+#: includes/wcag.php:1053
+#: includes/wcag.php:1137
+#: includes/wcag.php:1171
+#: includes/wcag.php:1241
+#: includes/wcag.php:1308
+#: includes/wcag.php:1342
+#: includes/wcag.php:1376
+#: includes/wcag.php:1461
+#: includes/wcag.php:1480
+#: includes/wcag.php:1510
+#: includes/wcag.php:1666
+#: includes/wcag.php:1700
+#: includes/wcag.php:1810
+#: includes/wcag.php:1846
+#: includes/wcag.php:1881
+#: includes/wcag.php:1912
+#: includes/wcag.php:1944
+#: includes/wcag.php:1980
+#: includes/wcag.php:2014
+#: includes/wcag.php:2048
+#: includes/wcag.php:2082
+#: includes/wcag.php:2116
+#: includes/wcag.php:2135
+#: includes/wcag.php:2206
+#: includes/wcag.php:2240
+#: includes/wcag.php:2271
+msgid "Screen reader users (blind/low vision and neurodivergent people)"
+msgstr "Uporabniki bralnikov zaslona (slepi/slabovidni in nevrorazlični ljudje)"
+
+#: includes/wcag.php:48
+msgid "Prerecorded Audio-only and Video-only"
+msgstr "Vnaprej posneti samo zvok in samo video"
+
+#: includes/wcag.php:49
+msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
+msgstr "Za vnaprej posneto vsebino, ki je samo zvočna ali samo video, je treba zagotoviti besedilno alternativo, ki predstavlja enakovredne informacije. To zagotavlja, da lahko uporabniki, ki ne morejo slišati ali videti medija, še vedno dostopajo do njegove vsebine prek besedila."
+
+#: includes/wcag.php:52
+#: includes/wcag.php:85
+#: includes/wcag.php:118
+#: includes/wcag.php:151
+#: includes/wcag.php:184
+#: includes/wcag.php:216
+#: includes/wcag.php:233
+#: includes/wcag.php:250
+#: includes/wcag.php:269
+msgid "1.2 Time-based Media"
+msgstr "1.2 časovno osnovani mediji"
+
+#: includes/wcag.php:55
+#: includes/wcag.php:88
+#: includes/wcag.php:121
+#: includes/wcag.php:154
+#: includes/wcag.php:219
+#: includes/wcag.php:253
+#: includes/wcag.php:272
+#: includes/wcag.php:360
+#: includes/wcag.php:611
+#: includes/wcag.php:759
+msgid "Deaf and hard of hearing people"
+msgstr "Gluhi in naglušni ljudje"
+
+#: includes/wcag.php:81
+msgid "Captions (Prerecorded)"
+msgstr "Podnapisi (vnaprej posneti)"
+
+#: includes/wcag.php:82
+msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
+msgstr "Podnapise je treba zagotoviti za vso vnaprej posneto zvočno vsebino v sinhroniziranih medijih - kot so videoposnetki, kjer se zvok in slika predvajata skupaj - tako da lahko uporabniki, ki so gluhi ali naglušni, dostopajo do govorjenih informacij in pomembnih zvokov."
+
+#: includes/wcag.php:114
+msgid "Audio Description or Media Alternative (Prerecorded)"
+msgstr "Zvočni opis ali medijska alternativa (vnaprej posneto)"
+
+#: includes/wcag.php:115
+msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
+msgstr "Za vnaprej posneto video vsebino z zvokom (sinhronizirani mediji) je treba zagotoviti zvočni opis - ali pisni prepis, ki vključuje vizualne podrobnosti - da se zagotovi, da lahko uporabniki, ki so slepi ali slabovidni, razumejo pomembne vizualne informacije, ki niso izgovorjene."
+
+#: includes/wcag.php:147
+msgid "Captions (Live)"
+msgstr "Podnapisi (v živo)"
+
+#: includes/wcag.php:148
+msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
+msgstr "Za vso video vsebino v živo, ki vključuje zvok, je treba zagotoviti podnapise v realnem času, tako da lahko uporabniki, ki so gluhi ali naglušni, dostopajo do govorjenih informacij, ko se te dogajajo."
+
+#: includes/wcag.php:180
+msgid "Audio Description (Prerecorded)"
+msgstr "Zvočni opis (vnaprej posnet)"
+
+#: includes/wcag.php:181
+msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
+msgstr "Za vnaprej posneti video z zvokom je treba zagotoviti zvočni opis pomembne vizualne vsebine, kar omogoča slepim uporabnikom ali uporabnikom z okvaro vida razumevanje vizualnih informacij, ki niso opisane v glavnem zvoku."
+
+#: includes/wcag.php:187
+#: includes/wcag.php:236
+#: includes/wcag.php:359
+#: includes/wcag.php:465
+#: includes/wcag.php:581
+#: includes/wcag.php:610
+#: includes/wcag.php:709
+#: includes/wcag.php:794
+#: includes/wcag.php:811
+#: includes/wcag.php:845
+#: includes/wcag.php:879
+msgid "Blind and low vision people"
+msgstr "Slepi in slabovidni ljudje"
+
+#: includes/wcag.php:212
+msgid "Sign Language (Prerecorded)"
+msgstr "Znakovni jezik (vnaprej posnet)"
+
+#: includes/wcag.php:213
+msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
+msgstr "Za vso vnaprej posneto zvočno vsebino v sinhroniziranih medijih je treba zagotoviti tolmačenje v znakovni jezik, s čimer se zagotovi, da lahko gluhi uporabniki, ki uporabljajo znakovni jezik, v celoti razumejo govorjeno vsebino."
+
+#: includes/wcag.php:229
+msgid "Extended Audio Description (Prerecorded)"
+msgstr "Razširjen zvočni opis (vnaprej posnet)"
+
+#: includes/wcag.php:230
+msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
+msgstr "Za vso vnaprej posneto večpredstavnostno vsebino je treba po potrebi zagotoviti razširjene zvočne opise - kar pomeni, da se video ustavi za vstavljanje dodatnih opisov - tako da lahko slepi uporabniki ali uporabniki z okvaro vida razumejo pomembne vizualne podrobnosti, ki jih ni mogoče opisati med naravnimi premori v zvoku."
+
+#: includes/wcag.php:246
+msgid "Media Alternative (Prerecorded)"
+msgstr "Medijska alternativa (vnaprej posneta)"
+
+#: includes/wcag.php:247
+msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
+msgstr "Za vnaprej posnete sinhronizirane medije je zagotovljena celotna besedilna alternativa (kot je prepis), ki vsebuje vse informacije iz video in zvočnih posnetkov, tako da lahko uporabniki, ki ne morejo videti ali slišati vsebine, do nje še vedno dostopajo."
+
+#: includes/wcag.php:254
+msgid "Deaf-blind people"
+msgstr "Gluhoslepi ljudje"
+
+#: includes/wcag.php:265
+msgid "Audio-only (Live)"
+msgstr "Samo zvok (v živo)"
+
+#: includes/wcag.php:266
+msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
+msgstr "Za vsebino, ki je samo zvočna in v živo, je v realnem času zagotovljena besedilna alternativa, tako da lahko ljudje, ki ne slišijo zvoka, še vedno dostopajo do informacij."
+
+#: includes/wcag.php:283
+msgid "Info and Relationships"
+msgstr "Informacije in razmerja"
+
+#: includes/wcag.php:284
+msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
+msgstr "Informacije, struktura in razmerja v vsebini so programsko določeni ali na voljo v besedilu, tako da jih lahko pomožne tehnologije predstavijo uporabnikom."
+
+#: includes/wcag.php:287
+#: includes/wcag.php:322
+#: includes/wcag.php:356
+#: includes/wcag.php:389
+#: includes/wcag.php:416
 #: includes/wcag.php:444
-#: includes/wcag.php:894
+msgid "1.3 Adaptable"
+msgstr "1.3 prilagodljivo"
+
+#: includes/wcag.php:290
+#: includes/wcag.php:325
+#: includes/wcag.php:812
+#: includes/wcag.php:846
+#: includes/wcag.php:880
+#: includes/wcag.php:1188
+#: includes/wcag.php:1205
+#: includes/wcag.php:1222
+#: includes/wcag.php:1273
+#: includes/wcag.php:1408
+#: includes/wcag.php:1478
+#: includes/wcag.php:1508
+#: includes/wcag.php:1628
+#: includes/wcag.php:1808
+#: includes/wcag.php:1843
+#: includes/wcag.php:1941
+msgid "People who rely on keyboard control"
+msgstr "Ljudje, ki se zanašajo na nadzor s tipkovnico"
+
+#: includes/wcag.php:291
+#: includes/wcag.php:326
+msgid "People with cognitive differences who view interfaces using an adapted layout"
+msgstr "Ljudje s kognitivnimi razlikami, ki si vmesnike ogledujejo z uporabo prilagojene postavitve"
+
+#: includes/wcag.php:318
+msgid "Meaningful Sequence"
+msgstr "Smiselno zaporedje"
+
+#: includes/wcag.php:319
+msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
+msgstr "Vsebina je predstavljena v smiselnem vrstnem redu, tako da vrstni red branja ali krmarjenja ne zmede uporabnikov pri uporabi pomožne tehnologije."
+
+#: includes/wcag.php:352
+msgid "Sensory Characteristics"
+msgstr "Senzorične značilnosti"
+
+#: includes/wcag.php:353
+msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
+msgstr "Navodila se ne zanašajo samo na senzorične značilnosti, kot so oblika, barva, velikost ali zvok, tako da jih lahko razumejo vsi."
+
+#: includes/wcag.php:385
+msgid "Orientation"
+msgstr "Usmerjenost"
+
+#: includes/wcag.php:386
+msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
+msgstr "Vsebina ne omejuje svojega pogleda in delovanja na eno samo usmerjenost zaslona, kot sta pokončna ali ležeča, razen če je določena usmerjenost bistvena."
+
+#: includes/wcag.php:392
+#: includes/wcag.php:1169
+#: includes/wcag.php:1307
+#: includes/wcag.php:1340
+#: includes/wcag.php:1374
+#: includes/wcag.php:1442
+#: includes/wcag.php:1460
+#: includes/wcag.php:1507
+#: includes/wcag.php:1611
+#: includes/wcag.php:1731
+#: includes/wcag.php:1751
+#: includes/wcag.php:1770
+#: includes/wcag.php:1789
+#: includes/wcag.php:1879
+#: includes/wcag.php:1910
+#: includes/wcag.php:1961
+#: includes/wcag.php:1978
+#: includes/wcag.php:2012
+#: includes/wcag.php:2046
+#: includes/wcag.php:2080
+#: includes/wcag.php:2114
+#: includes/wcag.php:2133
+#: includes/wcag.php:2152
+msgid "All people including those who do not identify as disabled"
+msgstr "Vsi ljudje, vključno s tistimi, ki se ne identificirajo kot invalidi"
+
+#: includes/wcag.php:412
+msgid "Identify Input Purpose"
+msgstr "Prepoznavanje namena vnosa"
+
+#: includes/wcag.php:413
+msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
+msgstr "Namen vnosnih polj, ki zbirajo informacije o uporabniku, je mogoče programsko določiti, tako da lahko brskalniki in pomožne tehnologije pomagajo uporabnikom pri njihovem izpolnjevanju."
+
+#: includes/wcag.php:419
+#: includes/wcag.php:447
+#: includes/wcag.php:1170
+#: includes/wcag.php:1239
+#: includes/wcag.php:1375
+#: includes/wcag.php:1443
+#: includes/wcag.php:2170
+#: includes/wcag.php:2187
+msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
+msgstr "Ljudje s kognitivnimi motnjami ali omejenim kratkoročnim spominom ali motnjami branja"
+
+#: includes/wcag.php:420
+#: includes/wcag.php:813
+#: includes/wcag.php:847
+#: includes/wcag.php:881
+#: includes/wcag.php:926
+#: includes/wcag.php:994
+#: includes/wcag.php:1014
+#: includes/wcag.php:1033
+#: includes/wcag.php:1052
+#: includes/wcag.php:1136
+#: includes/wcag.php:1274
+#: includes/wcag.php:1409
+#: includes/wcag.php:1479
+#: includes/wcag.php:1509
+#: includes/wcag.php:1564
+#: includes/wcag.php:1809
+#: includes/wcag.php:1845
+#: includes/wcag.php:1943
+msgid "People with dexterity and mobility impairments"
+msgstr "Ljudje z okvarami spretnosti in gibljivosti"
+
+#: includes/wcag.php:440
+msgid "Identify Purpose"
+msgstr "Prepoznavanje namena"
+
+#: includes/wcag.php:441
+msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
+msgstr "Namen uporabniških vmesniških komponent, ikon in območij je mogoče programsko določiti, tako da lahko pomožne tehnologije prilagodijo izkušnjo za uporabnike."
+
+#: includes/wcag.php:458
+msgid "Use of Color"
+msgstr "Uporaba barve"
+
+#: includes/wcag.php:459
+msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
+msgstr "Barva se ne uporablja kot edini način za posredovanje informacij, označevanje dejanja, spodbujanje odziva ali razlikovanje vizualnega elementa."
+
+#: includes/wcag.php:462
+#: includes/wcag.php:495
+#: includes/wcag.php:523
+#: includes/wcag.php:550
+#: includes/wcag.php:578
+#: includes/wcag.php:607
+#: includes/wcag.php:641
+#: includes/wcag.php:674
+#: includes/wcag.php:706
+#: includes/wcag.php:738
+#: includes/wcag.php:756
+#: includes/wcag.php:773
+#: includes/wcag.php:791
+msgid "1.4 Distinguishable"
+msgstr "1.4 razločljivo"
+
+#: includes/wcag.php:466
+msgid "Color blind people"
+msgstr "Barvno slepi ljudje"
+
+#: includes/wcag.php:491
+msgid "Reflow"
+msgstr "Preoblikovanje"
+
+#: includes/wcag.php:492
+msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
+msgstr "Vsebino je mogoče ogledati brez drsenja v več kot eni smeri, tako da jo lahko uporabniki enostavno berejo in z njo komunicirajo na majhnih zaslonih ali pri povečavi."
+
+#: includes/wcag.php:498
+#: includes/wcag.php:1645
+msgid "People on mobile devices"
+msgstr "Ljudje na mobilnih napravah"
+
+#: includes/wcag.php:499
+#: includes/wcag.php:526
+#: includes/wcag.php:554
+#: includes/wcag.php:645
+#: includes/wcag.php:677
+#: includes/wcag.php:742
+#: includes/wcag.php:777
+#: includes/wcag.php:1275
+#: includes/wcag.php:1410
+#: includes/wcag.php:1593
+#: includes/wcag.php:1647
+msgid "People with low vision"
+msgstr "Ljudje s slabim vidom"
+
+#: includes/wcag.php:519
+msgid "Non-text Contrast"
+msgstr "Kontrast ne-besedila"
+
+#: includes/wcag.php:520
+msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
+msgstr "Vizualne informacije, potrebne za prepoznavanje komponent uporabniškega vmesnika in grafičnih objektov, imajo kontrastno razmerje vsaj 3:1 glede na sosednje barve."
+
+#: includes/wcag.php:546
+msgid "Text Spacing"
+msgstr "Razmik besedila"
+
+#: includes/wcag.php:547
+msgid "Users can override text spacing to improve readability without losing content or functionality."
+msgstr "Uporabniki lahko preglasijo razmik besedila za izboljšanje berljivosti brez izgube vsebine ali funkcionalnosti."
+
+#: includes/wcag.php:553
+#: includes/wcag.php:776
+#: includes/wcag.php:1733
+#: includes/wcag.php:1753
+#: includes/wcag.php:1772
+#: includes/wcag.php:1791
+#: includes/wcag.php:1844
+#: includes/wcag.php:1880
+#: includes/wcag.php:1911
+#: includes/wcag.php:1942
+#: includes/wcag.php:1979
+#: includes/wcag.php:2013
+#: includes/wcag.php:2047
+#: includes/wcag.php:2081
+#: includes/wcag.php:2115
+#: includes/wcag.php:2134
+msgid "People with cognitive disabilities and reading disabilities"
+msgstr "Ljudje s kognitivnimi motnjami in motnjami branja"
+
+#: includes/wcag.php:574
+msgid "Content on Hover or Focus"
+msgstr "Vsebina ob prehodu z miško ali fokusu"
+
+#: includes/wcag.php:575
+msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
+msgstr "Če se ob prehodu z miško ali fokusu pojavi dodatna vsebina, jo lahko uporabniki zavrnejo, premaknejo kazalec čez njo in ostane vidna, dokler je ne zavrnejo ali premaknejo fokusa."
+
+#: includes/wcag.php:582
+#: includes/wcag.php:960
+#: includes/wcag.php:1341
+msgid "People with cognitive disabilities"
+msgstr "Ljudje s kognitivnimi motnjami"
+
+#: includes/wcag.php:583
+#: includes/wcag.php:1646
+msgid "People with dexterity impairments"
+msgstr "Ljudje z okvarami spretnosti"
+
+#: includes/wcag.php:603
+msgid "Audio Control"
+msgstr "Nadzor zvoka"
+
+#: includes/wcag.php:604
+msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
+msgstr "Če se zvok samodejno predvaja več kot 3 sekunde, morajo imeti uporabniki možnost, da ga začasno ustavijo, ustavijo ali nadzirajo glasnost neodvisno od sistemske glasnosti."
+
+#: includes/wcag.php:612
+#: includes/wcag.php:959
+#: includes/wcag.php:1013
+msgid "People with ADD or difficulty focusing on content without distraction"
+msgstr "Ljudje z motnjo pozornosti ali težavami s osredotočanjem na vsebino brez motenj"
+
+#: includes/wcag.php:637
+msgid "Contrast (Minimum)"
+msgstr "Kontrast (minimalni)"
+
+#: includes/wcag.php:638
+msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
+msgstr "Besedilo in slike besedila morajo imeti kontrastno razmerje vsaj 4,5:1, razen za veliko besedilo, naključno besedilo ali logotipe."
+
+#: includes/wcag.php:644
+#: includes/wcag.php:741
+msgid "People on mobile devices in a sunny environment"
+msgstr "Ljudje na mobilnih napravah v sončnem okolju"
+
+#: includes/wcag.php:670
+msgid "Resize text"
+msgstr "Spremeni velikost besedila"
+
+#: includes/wcag.php:671
+msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
+msgstr "Besedilo je mogoče povečati do 200 % brez izgube vsebine ali funkcionalnosti, tako da ga lahko ljudje s slabim vidom lažje berejo."
+
+#: includes/wcag.php:702
+msgid "Images of Text"
+msgstr "Slike besedila"
+
+#: includes/wcag.php:703
+msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
+msgstr "Če je mogoče enako vizualno predstavitev ustvariti samo z besedilom, ne uporabljajte slik besedila, razen za dekorativne ali bistvene namene."
+
+#: includes/wcag.php:734
+msgid "Contrast (Enhanced)"
+msgstr "Kontrast (izboljšan)"
+
+#: includes/wcag.php:735
+msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
+msgstr "Besedilo in slike besedila morajo imeti kontrastno razmerje vsaj 7:1, razen za veliko besedilo, naključno besedilo ali logotipe."
+
+#: includes/wcag.php:752
+msgid "Low or No Background Audio"
+msgstr "Nizek ali brez zvoka v ozadju"
+
+#: includes/wcag.php:753
+msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
+msgstr "Pri vnaprej posnetih zvočnih vsebinah so zvoki v ozadju bodisi tihi, jih je mogoče izklopiti ali pa jih sploh ni, tako da je govor lažje razumeti."
+
+#: includes/wcag.php:769
+msgid "Visual Presentation"
+msgstr "Vizualna predstavitev"
+
+#: includes/wcag.php:770
+msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
+msgstr "Uporabniki lahko izberejo, kako so predstavljeni bloki besedila, na primer barve ospredja in ozadja, širino in razmik med vrsticami, da olajšajo branje."
+
+#: includes/wcag.php:787
+msgid "Images of Text (No Exception)"
+msgstr "Slike besedila (brez izjeme)"
+
+#: includes/wcag.php:788
+msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
+msgstr "Slike besedila se uporabljajo samo za čisto dekoracijo ali kjer je določena predstavitev besedila bistvena, brez izjem."
+
+#: includes/wcag.php:804
+msgid "Keyboard"
+msgstr "Tipkovnica"
+
+#: includes/wcag.php:805
+msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
+msgstr "Vse funkcionalnosti so na voljo z uporabo tipkovnice, tako da lahko uporabniki, ki ne morejo uporabljati miške, še vedno upravljajo z vsebino."
+
+#: includes/wcag.php:808
+#: includes/wcag.php:842
+#: includes/wcag.php:876
+#: includes/wcag.php:895
+msgid "2.1 Keyboard Accessible"
+msgstr "2.1 dostopno s tipkovnico"
+
+#: includes/wcag.php:809
+#: includes/wcag.php:843
+#: includes/wcag.php:877
+#: includes/wcag.php:896
 #: includes/wcag.php:923
 #: includes/wcag.php:957
 #: includes/wcag.php:991
-#: includes/wcag.php:1011
+#: includes/wcag.php:1010
 #: includes/wcag.php:1030
 #: includes/wcag.php:1049
-#: includes/wcag.php:1133
+#: includes/wcag.php:1068
+#: includes/wcag.php:1100
+#: includes/wcag.php:1117
+#: includes/wcag.php:1134
 #: includes/wcag.php:1167
+#: includes/wcag.php:1186
+#: includes/wcag.php:1203
+#: includes/wcag.php:1220
 #: includes/wcag.php:1237
-#: includes/wcag.php:1304
+#: includes/wcag.php:1271
+#: includes/wcag.php:1305
 #: includes/wcag.php:1338
 #: includes/wcag.php:1372
-#: includes/wcag.php:1457
+#: includes/wcag.php:1406
+#: includes/wcag.php:1440
+#: includes/wcag.php:1458
 #: includes/wcag.php:1476
-#: includes/wcag.php:1506
+#: includes/wcag.php:1505
+#: includes/wcag.php:1535
+#: includes/wcag.php:1562
+#: includes/wcag.php:1589
+#: includes/wcag.php:1609
+#: includes/wcag.php:1626
+#: includes/wcag.php:1643
+msgid "Operable"
+msgstr "Uporabno"
+
+#: includes/wcag.php:838
+msgid "No Keyboard Trap"
+msgstr "Brez pasti za tipkovnico"
+
+#: includes/wcag.php:839
+msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
+msgstr "Uporabniki tipkovnice se lahko premikajo do vseh delov vsebine in stran od njih, ne da bi se kje zataknili."
+
+#: includes/wcag.php:872
+msgid "Keyboard (No Exception)"
+msgstr "Tipkovnica (brez izjeme)"
+
+#: includes/wcag.php:873
+msgid "All functionality is available from a keyboard interface, with no exceptions."
+msgstr "Vse funkcionalnosti so na voljo prek vmesnika tipkovnice, brez izjem."
+
+#: includes/wcag.php:891
+msgid "Character Key Shortcuts"
+msgstr "Bližnjice s tipkami znakov"
+
+#: includes/wcag.php:892
+msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
+msgstr "Če bližnjica na tipkovnici uporablja samo črke, številke ali ločila, jo lahko uporabniki izklopijo, spremenijo ali deluje samo, ko je element v fokusu."
+
+#: includes/wcag.php:918
+msgid "Timing Adjustable"
+msgstr "Prilagodljiv čas"
+
+#: includes/wcag.php:919
+msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
+msgstr "Če je nastavljena časovna omejitev, jo lahko uporabniki izklopijo, prilagodijo ali podaljšajo, razen če je časovna omejitev bistvena."
+
+#: includes/wcag.php:922
+#: includes/wcag.php:956
+#: includes/wcag.php:990
+#: includes/wcag.php:1009
+#: includes/wcag.php:1029
+#: includes/wcag.php:1048
+msgid "2.2 Enough Time"
+msgstr "2.2 dovolj časa"
+
+#: includes/wcag.php:925
+#: includes/wcag.php:993
+#: includes/wcag.php:1012
+#: includes/wcag.php:1032
+#: includes/wcag.php:1051
+msgid "People who need more time to react"
+msgstr "Ljudje, ki potrebujejo več časa za odziv"
+
+#: includes/wcag.php:952
+msgid "Pause, Stop, Hide"
+msgstr "Premor, ustavitev, skrivanje"
+
+#: includes/wcag.php:953
+msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
+msgstr "Uporabniki lahko začasno ustavijo, ustavijo ali skrijejo premikajoče se, utripajoče, drseče ali samodejno posodabljajoče se informacije, ki se začnejo samodejno in trajajo več kot pet sekund."
+
+#: includes/wcag.php:986
+msgid "No Timing"
+msgstr "Brez časovne omejitve"
+
+#: includes/wcag.php:987
+msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
+msgstr "Če element zahteva odziv v določenem času, lahko uporabniki izklopijo časovnik, prilagodijo časovno omejitev ali pa časovna omejitev ni bistvena."
+
+#: includes/wcag.php:1005
+msgid "Interruptions"
+msgstr "Prekinitve"
+
+#: includes/wcag.php:1006
+msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
+msgstr "Uporabniki niso prekinjeni zaradi nepričakovanih sprememb vsebine in lahko nadzorujejo prekinitve, kot je samodejno posodabljanje vsebine."
+
+#: includes/wcag.php:1025
+msgid "Re-authenticating"
+msgstr "Ponovna avtentikacija"
+
+#: includes/wcag.php:1026
+msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
+msgstr "Če so uporabniki odjavljeni zaradi neaktivnosti, so obveščeni, preden seja poteče, in lahko nadaljujejo sejo brez izgube podatkov."
+
+#: includes/wcag.php:1044
+msgid "Timeouts"
+msgstr "Časovne omejitve"
+
+#: includes/wcag.php:1045
+msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
+msgstr "Uporabniki so opozorjeni na bližajoče se časovne omejitve in lahko zahtevajo več časa ali shranijo svoje delo pred iztekom časa."
+
+#: includes/wcag.php:1063
+msgid "Three Flashes or Below Threshold"
+msgstr "Tri utripi ali pod pragom"
+
+#: includes/wcag.php:1064
+msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
+msgstr "Vsebina ne utripa več kot trikrat v katerem koli enosekundnem obdobju, s čimer se zmanjša tveganje za napade pri ljudeh s fotosenzitivno epilepsijo."
+
+#: includes/wcag.php:1067
+#: includes/wcag.php:1099
+#: includes/wcag.php:1116
+msgid "2.3 Seizures and Physical Reactions"
+msgstr "2.3 napadi in fizične reakcije"
+
+#: includes/wcag.php:1070
+#: includes/wcag.php:1102
+msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
+msgstr "Ljudje s fotosenzitivno epilepsijo in drugimi fotosenzitivnimi motnjami napadov"
+
+#: includes/wcag.php:1095
+msgid "Three Flashes"
+msgstr "Trije utripi"
+
+#: includes/wcag.php:1096
+msgid "No part of the content flashes more than three times per second, with no exceptions."
+msgstr "Noben del vsebine ne utripa več kot trikrat na sekundo, brez izjem."
+
+#: includes/wcag.php:1112
+msgid "Animation from Interactions"
+msgstr "Animacija iz interakcij"
+
+#: includes/wcag.php:1113
+msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
+msgstr "Uporabniki lahko izklopijo nebistvene animacije, ki jih sprožijo interakcije, kar pomaga tistim, ki so občutljivi na gibanje."
+
+#: includes/wcag.php:1119
+msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
+msgstr "Ljudje z vestibularnimi (notranje uho) motnjami, kjer lahko gibanje povzroči vrtoglavico/glavobole in slabost"
+
+#: includes/wcag.php:1129
+msgid "Bypass Blocks"
+msgstr "Preskoči bloke"
+
+#: includes/wcag.php:1130
+msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
+msgstr "Na voljo je način za preskok ponavljajočih se blokov vsebine, kot so navigacijski meniji, tako da lahko uporabniki hitro dosežejo glavno vsebino."
+
+#: includes/wcag.php:1133
+#: includes/wcag.php:1166
+#: includes/wcag.php:1185
+#: includes/wcag.php:1202
+#: includes/wcag.php:1219
+#: includes/wcag.php:1236
+#: includes/wcag.php:1270
+#: includes/wcag.php:1304
+#: includes/wcag.php:1337
+#: includes/wcag.php:1371
+#: includes/wcag.php:1405
+#: includes/wcag.php:1439
+#: includes/wcag.php:1457
+msgid "2.4 Navigable"
+msgstr "2.4 navigabilno"
+
+#: includes/wcag.php:1162
+msgid "Section Headings"
+msgstr "Naslovi razdelkov"
+
+#: includes/wcag.php:1163
+msgid "Section headings are used to organize content, making it easier to understand and navigate."
+msgstr "Naslovi razdelkov se uporabljajo za organizacijo vsebine, zaradi česar je lažje razumeti in krmariti po njej."
+
+#: includes/wcag.php:1181
+msgid "Focus Not Obscured (Minimum)"
+msgstr "Fokus ni zakrit (minimalno)"
+
+#: includes/wcag.php:1182
+msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
+msgstr "Ko element prejme fokus tipkovnice, je vsaj delno viden in ni skrit za drugo vsebino."
+
+#: includes/wcag.php:1198
+msgid "Focus Not Obscured (Enhanced)"
+msgstr "Fokus ni zakrit (izboljšano)"
+
+#: includes/wcag.php:1199
+msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
+msgstr "Ko element prejme fokus tipkovnice, je v celoti viden in ni skrit za drugo vsebino."
+
+#: includes/wcag.php:1215
+msgid "Focus Appearance"
+msgstr "Videz fokusa"
+
+#: includes/wcag.php:1216
+msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
+msgstr "Vidni indikator fokusa za interaktivne elemente je jasno viden in izpolnjuje minimalne zahteve glede velikosti in kontrasta."
+
+#: includes/wcag.php:1232
+msgid "Page Titled"
+msgstr "Naslov strani"
+
+#: includes/wcag.php:1233
+msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
+msgstr "Spletne strani imajo opisne naslove, ki uporabnikom pomagajo razumeti temo ali namen strani."
+
+#: includes/wcag.php:1240
+#: includes/wcag.php:2153
+msgid "People with severe mobility impairments relying on audio to navigate the web"
+msgstr "Ljudje s hudimi gibalnimi okvarami, ki se pri navigaciji po spletu zanašajo na zvok"
+
+#: includes/wcag.php:1266
+msgid "Focus Order"
+msgstr "Vrstni red fokusa"
+
+#: includes/wcag.php:1267
+msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
+msgstr "Pri navigaciji s tipkovnico se fokus premika v logičnem vrstnem redu, ki ohranja pomen in uporabnost."
+
+#: includes/wcag.php:1300
+msgid "Link Purpose (In Context)"
+msgstr "Namen povezave (v kontekstu)"
+
+#: includes/wcag.php:1301
+msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
+msgstr "Namen vsake povezave je jasen iz besedila povezave in konteksta, v katerem se pojavi, tako da uporabniki vedo, kam jih bo povezava pripeljala."
+
+#: includes/wcag.php:1333
+msgid "Multiple Ways"
+msgstr "Več načinov"
+
+#: includes/wcag.php:1334
+msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
+msgstr "Na voljo je več kot en način za iskanje spletne strani znotraj nabora spletnih strani, razen če je spletna stran rezultat poizvedbe."
+
+#: includes/wcag.php:1367
+msgid "Headings and Labels"
+msgstr "Naslovi in oznake"
+
+#: includes/wcag.php:1368
+msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
+msgstr "Naslovi in oznake opisujejo temo ali namen vsebine in niso dvoumni ali zavajajoči."
+
+#: includes/wcag.php:1401
+msgid "Focus Visible"
+msgstr "Viden fokus"
+
+#: includes/wcag.php:1402
+msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
+msgstr "Ko ima element fokus tipkovnice, je to vidno, tako da uporabniki, ki navigirajo s tipkovnico, vidijo, kateri element je aktiven."
+
+#: includes/wcag.php:1435
+msgid "Location"
+msgstr "Lokacija"
+
+#: includes/wcag.php:1436
+msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
+msgstr "Uporabniki so obveščeni o svoji lokaciji znotraj nabora spletnih strani, na primer prek drobtinic ali jasnega naslova strani."
+
+#: includes/wcag.php:1453
+msgid "Link Purpose (Link Only)"
+msgstr "Namen povezave (samo povezava)"
+
+#: includes/wcag.php:1454
+msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
+msgstr "Namen vsake povezave je mogoče določiti samo iz besedila povezave, brez potrebe po dodatnem kontekstu."
+
+#: includes/wcag.php:1471
+msgid "Pointer Gestures"
+msgstr "Kazalniške kretnje"
+
+#: includes/wcag.php:1472
+msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
+msgstr "Za funkcionalnost, ki jo je mogoče upravljati s kazalniško kretnjo, velja vsaj eno od naslednjega: kretnjo je mogoče izvesti s preprostim tapom, kretnjo je mogoče izvesti z enim prstom ali kretnjo je mogoče izvesti z glasovnim ukazom."
+
+#: includes/wcag.php:1475
+#: includes/wcag.php:1504
+#: includes/wcag.php:1534
+#: includes/wcag.php:1561
+#: includes/wcag.php:1588
+#: includes/wcag.php:1608
+#: includes/wcag.php:1625
+#: includes/wcag.php:1642
+msgid "2.5 Input Modalities"
+msgstr "2.5 načini vnosa"
+
+#: includes/wcag.php:1500
+msgid "Pointer Cancellation"
+msgstr "Preklic kazalnika"
+
+#: includes/wcag.php:1501
+msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
+msgstr "Za dejanja, ki zahtevajo kazalniško kretnjo, lahko uporabnik prekliče dejanje s premikom kazalnika stran, preden je dejanje zaključeno."
+
+#: includes/wcag.php:1530
+msgid "Label in Name"
+msgstr "Oznaka v imenu"
+
+#: includes/wcag.php:1531
+msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
+msgstr "Ime uporabniških vmesniških komponent vključuje besedilne oznake, ki opisujejo njihov namen, tako da lahko pomožne tehnologije te informacije posredujejo uporabnikom."
+
+#: includes/wcag.php:1557
+msgid "Motion Actuation"
+msgstr "Aktivacija z gibanjem"
+
+#: includes/wcag.php:1558
+msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
+msgstr "Funkcionalnost, ki jo je mogoče upravljati z gibalno kretnjo, je mogoče upravljati tudi s preprostim dotikom ali klikom, tako da lahko uporabniki, ki ne morejo izvajati gibalnih kretenj, še vedno uporabljajo funkcionalnost."
+
+#: includes/wcag.php:1584
+msgid "Target Size"
+msgstr "Velikost tarče"
+
+#: includes/wcag.php:1585
+msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
+msgstr "Velikost tarče za kazalniške kretnje je dovolj velika, da jo je mogoče enostavno aktivirati, tudi za uporabnike z omejeno spretnostjo."
+
+#: includes/wcag.php:1591
+msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
+msgstr "Ljudje, ki uporabljajo mobilno napravo v okoljih, kjer so izpostavljeni tresenju (na primer v javnem prevozu)"
+
+#: includes/wcag.php:1592
+msgid "People with dexterity and mobility impairments including hand tremors"
+msgstr "Ljudje z okvarami spretnosti in gibljivosti, vključno s tresenjem rok"
+
+#: includes/wcag.php:1594
+#: includes/wcag.php:1648
+msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
+msgstr "Ljudje z velikimi prsti ali tisti, ki upravljajo napravo samo z delom prsta ali členkom"
+
+#: includes/wcag.php:1604
+msgid "Concurrent Input Mechanisms"
+msgstr "Sočasni mehanizmi vnosa"
+
+#: includes/wcag.php:1605
+msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
+msgstr "Če vnosni mehanizem zahteva določeno držo ali gibanje, je na voljo alternativni vnosni mehanizem, ki nima iste zahteve."
+
+#: includes/wcag.php:1621
+msgid "Dragging Movements"
+msgstr "Vlečni gibi"
+
+#: includes/wcag.php:1622
+msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
+msgstr "Za funkcionalnost, ki zahteva vlečne gibe, je mogoče dejanje dokončati tudi s preprostejšimi dejanji, tako da lahko uporabniki z omejeno spretnostjo še vedno uporabljajo funkcionalnost."
+
+#: includes/wcag.php:1638
+msgid "Target Size (Minimum)"
+msgstr "Velikost tarče (minimalna)"
+
+#: includes/wcag.php:1639
+msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
+msgstr "Velikost tarče za vsak interaktivni element je vsaj 44x44 pikslov, tako da jo lahko enostavno aktivirajo uporabniki z različnimi sposobnostmi."
+
+#: includes/wcag.php:1658
+msgid "Language of Page"
+msgstr "Jezik strani"
+
+#: includes/wcag.php:1659
+msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
+msgstr "Privzeti jezik vsake spletne strani je programsko določen, tako da lahko pomožne tehnologije uporabljajo pravilne jezikovne nastavitve."
+
 #: includes/wcag.php:1662
 #: includes/wcag.php:1696
+#: includes/wcag.php:1728
+#: includes/wcag.php:1748
+#: includes/wcag.php:1767
+#: includes/wcag.php:1786
+msgid "3.1 Readable"
+msgstr "3.1 berljivo"
+
+#: includes/wcag.php:1663
+#: includes/wcag.php:1697
+#: includes/wcag.php:1729
+#: includes/wcag.php:1749
+#: includes/wcag.php:1768
+#: includes/wcag.php:1787
 #: includes/wcag.php:1806
-#: includes/wcag.php:1842
+#: includes/wcag.php:1841
 #: includes/wcag.php:1877
 #: includes/wcag.php:1908
-#: includes/wcag.php:1940
+#: includes/wcag.php:1939
+#: includes/wcag.php:1959
 #: includes/wcag.php:1976
 #: includes/wcag.php:2010
 #: includes/wcag.php:2044
 #: includes/wcag.php:2078
 #: includes/wcag.php:2112
 #: includes/wcag.php:2131
-#: includes/wcag.php:2202
-#: includes/wcag.php:2236
-#: includes/wcag.php:2267
-msgid "Screen reader users (blind/low vision and neurodivergent people)"
-msgstr "Uporabniki bralnikov zaslona (slepi/slabovidni in nevrorazlični ljudje)"
+#: includes/wcag.php:2150
+#: includes/wcag.php:2168
+#: includes/wcag.php:2185
+msgid "Understandable"
+msgstr "Razumljivo"
 
-#: includes/wcag.php:44
-msgid "Prerecorded Audio-only and Video-only"
-msgstr "Vnaprej posneti samo zvok in samo video"
+#: includes/wcag.php:1692
+msgid "Language of Parts"
+msgstr "Jezik delov"
 
-#: includes/wcag.php:45
-msgid "For prerecorded audio-only and video-only content, a text alternative must be provided that presents equivalent information. This ensures users who cannot hear or see the media can still access its content through text."
-msgstr "Za vnaprej posneto vsebino, ki je samo zvočna ali samo video, je treba zagotoviti besedilno alternativo, ki predstavlja enakovredne informacije. To zagotavlja, da lahko uporabniki, ki ne morejo slišati ali videti medija, še vedno dostopajo do njegove vsebine prek besedila."
+#: includes/wcag.php:1693
+msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
+msgstr "Jezik vsakega dela vsebine je mogoče programsko določiti, tako da lahko pomožne tehnologije zagotovijo ustrezno jezikovno podporo."
 
-#: includes/wcag.php:48
-#: includes/wcag.php:81
-#: includes/wcag.php:114
-#: includes/wcag.php:147
-#: includes/wcag.php:180
-#: includes/wcag.php:212
-#: includes/wcag.php:229
-#: includes/wcag.php:246
-#: includes/wcag.php:265
-msgid "1.2 Time-based Media"
-msgstr "1.2 časovno osnovani mediji"
+#: includes/wcag.php:1724
+msgid "Unusual Words"
+msgstr "Neobičajne besede"
 
-#: includes/wcag.php:51
-#: includes/wcag.php:84
-#: includes/wcag.php:117
-#: includes/wcag.php:150
-#: includes/wcag.php:215
-#: includes/wcag.php:249
-#: includes/wcag.php:268
-#: includes/wcag.php:356
-#: includes/wcag.php:607
-#: includes/wcag.php:755
-msgid "Deaf and hard of hearing people"
-msgstr "Gluhi in naglušni ljudje"
+#: includes/wcag.php:1725
+msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
+msgstr "Neobičajne ali redke besede so definirane ali pojasnjene, tako da jih lahko razumejo uporabniki s kognitivnimi motnjami ali tisti, ki niso seznanjeni z jezikom."
 
-#: includes/wcag.php:77
-msgid "Captions (Prerecorded)"
-msgstr "Podnapisi (vnaprej posneti)"
+#: includes/wcag.php:1744
+msgid "Abbreviations"
+msgstr "Okrajšave"
 
-#: includes/wcag.php:78
-msgid "Captions must be provided for all prerecorded audio content in synchronized media—such as videos where audio and visuals play together—so that users who are deaf or hard of hearing can access the spoken information and important sounds."
-msgstr "Podnapise je treba zagotoviti za vso vnaprej posneto zvočno vsebino v sinhroniziranih medijih - kot so videoposnetki, kjer se zvok in slika predvajata skupaj - tako da lahko uporabniki, ki so gluhi ali naglušni, dostopajo do govorjenih informacij in pomembnih zvokov."
+#: includes/wcag.php:1745
+msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
+msgstr "Okrajšave in kratice so definirane ob prvi uporabi, tako da uporabniki lahko razumejo njihov pomen."
 
-#: includes/wcag.php:110
-msgid "Audio Description or Media Alternative (Prerecorded)"
-msgstr "Zvočni opis ali medijska alternativa (vnaprej posneto)"
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Raven branja"
 
-#: includes/wcag.php:111
-msgid "For prerecorded video content with audio (synchronized media), an audio description—or a written transcript that includes visual details—must be provided to ensure users who are blind or have low vision can understand important visual information that isn't spoken."
-msgstr "Za vnaprej posneto video vsebino z zvokom (sinhronizirani mediji) je treba zagotoviti zvočni opis - ali pisni prepis, ki vključuje vizualne podrobnosti - da se zagotovi, da lahko uporabniki, ki so slepi ali slabovidni, razumejo pomembne vizualne informacije, ki niso izgovorjene."
+#: includes/wcag.php:1764
+msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
+msgstr "Vsebina je napisana v jasnem in preprostem jeziku in za razumevanje ne zahteva specializiranega znanja."
 
-#: includes/wcag.php:143
-msgid "Captions (Live)"
-msgstr "Podnapisi (v živo)"
+#: includes/wcag.php:1782
+msgid "Pronunciation"
+msgstr "Izgovorjava"
 
-#: includes/wcag.php:144
-msgid "For all live video content that includes audio, captions must be provided in real time so that users who are deaf or hard of hearing can access the spoken information as it happens."
-msgstr "Za vso video vsebino v živo, ki vključuje zvok, je treba zagotoviti podnapise v realnem času, tako da lahko uporabniki, ki so gluhi ali naglušni, dostopajo do govorjenih informacij, ko se te dogajajo."
+#: includes/wcag.php:1783
+msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
+msgstr "Na voljo je vodnik za izgovorjavo neobičajnih ali težkih besed, tako da uporabniki vedo, kako jih izgovoriti."
 
-#: includes/wcag.php:176
-msgid "Audio Description (Prerecorded)"
-msgstr "Zvočni opis (vnaprej posnet)"
+#: includes/wcag.php:1801
+msgid "On Focus"
+msgstr "Ob fokusu"
 
-#: includes/wcag.php:177
-msgid "For prerecorded video with audio, an audio description of important visual content must be provided, allowing users who are blind or have low vision to understand visual information that is not described in the main audio."
-msgstr "Za vnaprej posneti video z zvokom je treba zagotoviti zvočni opis pomembne vizualne vsebine, kar omogoča slepim uporabnikom ali uporabnikom z okvaro vida razumevanje vizualnih informacij, ki niso opisane v glavnem zvoku."
+#: includes/wcag.php:1802
+msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
+msgstr "Ko element prejme fokus, to ne povzroči nepričakovanih sprememb, ki bi lahko zmedle uporabnika, in je jasno, kako interagirati z elementom."
 
-#: includes/wcag.php:183
-#: includes/wcag.php:232
-#: includes/wcag.php:355
-#: includes/wcag.php:461
-#: includes/wcag.php:577
-#: includes/wcag.php:606
-#: includes/wcag.php:705
-#: includes/wcag.php:790
-#: includes/wcag.php:807
-#: includes/wcag.php:841
-#: includes/wcag.php:875
-msgid "Blind and low vision people"
-msgstr "Slepi in slabovidni ljudje"
-
-#: includes/wcag.php:208
-msgid "Sign Language (Prerecorded)"
-msgstr "Znakovni jezik (vnaprej posnet)"
-
-#: includes/wcag.php:209
-msgid "A sign language interpretation must be provided for all prerecorded audio content in synchronized media, ensuring that users who are deaf and use sign language can fully understand the spoken content."
-msgstr "Za vso vnaprej posneto zvočno vsebino v sinhroniziranih medijih je treba zagotoviti tolmačenje v znakovni jezik, s čimer se zagotovi, da lahko gluhi uporabniki, ki uporabljajo znakovni jezik, v celoti razumejo govorjeno vsebino."
-
-#: includes/wcag.php:225
-msgid "Extended Audio Description (Prerecorded)"
-msgstr "Razširjen zvočni opis (vnaprej posnet)"
-
-#: includes/wcag.php:226
-msgid "For all prerecorded multimedia content, extended audio descriptions must be provided when necessary—meaning the video is paused to insert additional descriptions—so that users who are blind or have low vision can understand important visual details that can't be described during the natural pauses in the audio."
-msgstr "Za vso vnaprej posneto večpredstavnostno vsebino je treba po potrebi zagotoviti razširjene zvočne opise - kar pomeni, da se video ustavi za vstavljanje dodatnih opisov - tako da lahko slepi uporabniki ali uporabniki z okvaro vida razumejo pomembne vizualne podrobnosti, ki jih ni mogoče opisati med naravnimi premori v zvoku."
-
-#: includes/wcag.php:242
-msgid "Media Alternative (Prerecorded)"
-msgstr "Medijska alternativa (vnaprej posneta)"
-
-#: includes/wcag.php:243
-msgid "For prerecorded synchronized media, a full text alternative (such as a transcript) is provided that gives all the information in both the video and audio tracks, so users who cannot see or hear the content can still access it."
-msgstr "Za vnaprej posnete sinhronizirane medije je zagotovljena celotna besedilna alternativa (kot je prepis), ki vsebuje vse informacije iz video in zvočnih posnetkov, tako da lahko uporabniki, ki ne morejo videti ali slišati vsebine, do nje še vedno dostopajo."
-
-#: includes/wcag.php:250
-msgid "Deaf-blind people"
-msgstr "Gluhoslepi ljudje"
-
-#: includes/wcag.php:261
-msgid "Audio-only (Live)"
-msgstr "Samo zvok (v živo)"
-
-#: includes/wcag.php:262
-msgid "For live audio-only content, a text alternative is provided in real time so people who cannot hear the audio can still access the information."
-msgstr "Za vsebino, ki je samo zvočna in v živo, je v realnem času zagotovljena besedilna alternativa, tako da lahko ljudje, ki ne slišijo zvoka, še vedno dostopajo do informacij."
-
-#: includes/wcag.php:279
-msgid "Info and Relationships"
-msgstr "Informacije in razmerja"
-
-#: includes/wcag.php:280
-msgid "Information, structure, and relationships in content are programmatically determined or available in text, so assistive technologies can present them to users."
-msgstr "Informacije, struktura in razmerja v vsebini so programsko določeni ali na voljo v besedilu, tako da jih lahko pomožne tehnologije predstavijo uporabnikom."
-
-#: includes/wcag.php:283
-#: includes/wcag.php:318
-#: includes/wcag.php:352
-#: includes/wcag.php:385
-#: includes/wcag.php:412
-#: includes/wcag.php:440
-msgid "1.3 Adaptable"
-msgstr "1.3 prilagodljivo"
-
-#: includes/wcag.php:286
-#: includes/wcag.php:321
-#: includes/wcag.php:808
-#: includes/wcag.php:842
-#: includes/wcag.php:876
-#: includes/wcag.php:1184
-#: includes/wcag.php:1201
-#: includes/wcag.php:1218
-#: includes/wcag.php:1269
-#: includes/wcag.php:1404
-#: includes/wcag.php:1474
-#: includes/wcag.php:1504
-#: includes/wcag.php:1624
-#: includes/wcag.php:1804
-#: includes/wcag.php:1839
-#: includes/wcag.php:1937
-msgid "People who rely on keyboard control"
-msgstr "Ljudje, ki se zanašajo na nadzor s tipkovnico"
-
-#: includes/wcag.php:287
-#: includes/wcag.php:322
-msgid "People with cognitive differences who view interfaces using an adapted layout"
-msgstr "Ljudje s kognitivnimi razlikami, ki si vmesnike ogledujejo z uporabo prilagojene postavitve"
-
-#: includes/wcag.php:314
-msgid "Meaningful Sequence"
-msgstr "Smiselno zaporedje"
-
-#: includes/wcag.php:315
-msgid "Content is presented in a meaningful order so that reading or navigation order does not confuse users when using assistive technology."
-msgstr "Vsebina je predstavljena v smiselnem vrstnem redu, tako da vrstni red branja ali krmarjenja ne zmede uporabnikov pri uporabi pomožne tehnologije."
-
-#: includes/wcag.php:348
-msgid "Sensory Characteristics"
-msgstr "Senzorične značilnosti"
-
-#: includes/wcag.php:349
-msgid "Instructions do not rely only on sensory characteristics such as shape, color, size, or sound, so everyone can understand them."
-msgstr "Navodila se ne zanašajo samo na senzorične značilnosti, kot so oblika, barva, velikost ali zvok, tako da jih lahko razumejo vsi."
-
-#: includes/wcag.php:381
-msgid "Orientation"
-msgstr "Usmerjenost"
-
-#: includes/wcag.php:382
-msgid "Content does not restrict its view and operation to a single display orientation, such as portrait or landscape, unless a specific orientation is essential."
-msgstr "Vsebina ne omejuje svojega pogleda in delovanja na eno samo usmerjenost zaslona, kot sta pokončna ali ležeča, razen če je določena usmerjenost bistvena."
-
-#: includes/wcag.php:388
-#: includes/wcag.php:1165
-#: includes/wcag.php:1303
-#: includes/wcag.php:1336
-#: includes/wcag.php:1370
-#: includes/wcag.php:1438
-#: includes/wcag.php:1456
-#: includes/wcag.php:1503
-#: includes/wcag.php:1607
-#: includes/wcag.php:1727
-#: includes/wcag.php:1747
-#: includes/wcag.php:1766
-#: includes/wcag.php:1785
-#: includes/wcag.php:1875
-#: includes/wcag.php:1906
-#: includes/wcag.php:1957
-#: includes/wcag.php:1974
-#: includes/wcag.php:2008
-#: includes/wcag.php:2042
-#: includes/wcag.php:2076
-#: includes/wcag.php:2110
-#: includes/wcag.php:2129
-#: includes/wcag.php:2148
-msgid "All people including those who do not identify as disabled"
-msgstr "Vsi ljudje, vključno s tistimi, ki se ne identificirajo kot invalidi"
-
-#: includes/wcag.php:408
-msgid "Identify Input Purpose"
-msgstr "Prepoznavanje namena vnosa"
-
-#: includes/wcag.php:409
-msgid "The purpose of input fields that collect information about the user can be programmatically determined, so browsers and assistive technologies can help users fill them in."
-msgstr "Namen vnosnih polj, ki zbirajo informacije o uporabniku, je mogoče programsko določiti, tako da lahko brskalniki in pomožne tehnologije pomagajo uporabnikom pri njihovem izpolnjevanju."
-
-#: includes/wcag.php:415
-#: includes/wcag.php:443
-#: includes/wcag.php:1166
-#: includes/wcag.php:1235
-#: includes/wcag.php:1371
-#: includes/wcag.php:1439
-#: includes/wcag.php:2166
-#: includes/wcag.php:2183
-msgid "People with cognitive disabilities or limited short-term memory or reading disabilities"
-msgstr "Ljudje s kognitivnimi motnjami ali omejenim kratkoročnim spominom ali motnjami branja"
-
-#: includes/wcag.php:416
-#: includes/wcag.php:809
-#: includes/wcag.php:843
-#: includes/wcag.php:877
-#: includes/wcag.php:922
-#: includes/wcag.php:990
-#: includes/wcag.php:1010
-#: includes/wcag.php:1029
-#: includes/wcag.php:1048
-#: includes/wcag.php:1132
-#: includes/wcag.php:1270
-#: includes/wcag.php:1405
-#: includes/wcag.php:1475
-#: includes/wcag.php:1505
-#: includes/wcag.php:1560
 #: includes/wcag.php:1805
-#: includes/wcag.php:1841
-#: includes/wcag.php:1939
-msgid "People with dexterity and mobility impairments"
-msgstr "Ljudje z okvarami spretnosti in gibljivosti"
-
-#: includes/wcag.php:436
-msgid "Identify Purpose"
-msgstr "Prepoznavanje namena"
-
-#: includes/wcag.php:437
-msgid "The purpose of user interface components, icons, and regions can be programmatically determined, so assistive technologies can adapt the experience for users."
-msgstr "Namen uporabniških vmesniških komponent, ikon in območij je mogoče programsko določiti, tako da lahko pomožne tehnologije prilagodijo izkušnjo za uporabnike."
-
-#: includes/wcag.php:454
-msgid "Use of Color"
-msgstr "Uporaba barve"
-
-#: includes/wcag.php:455
-msgid "Color is not used as the only way to convey information, indicate an action, prompt a response, or distinguish a visual element."
-msgstr "Barva se ne uporablja kot edini način za posredovanje informacij, označevanje dejanja, spodbujanje odziva ali razlikovanje vizualnega elementa."
-
-#: includes/wcag.php:458
-#: includes/wcag.php:491
-#: includes/wcag.php:519
-#: includes/wcag.php:546
-#: includes/wcag.php:574
-#: includes/wcag.php:603
-#: includes/wcag.php:637
-#: includes/wcag.php:670
-#: includes/wcag.php:702
-#: includes/wcag.php:734
-#: includes/wcag.php:752
-#: includes/wcag.php:769
-#: includes/wcag.php:787
-msgid "1.4 Distinguishable"
-msgstr "1.4 razločljivo"
-
-#: includes/wcag.php:462
-msgid "Color blind people"
-msgstr "Barvno slepi ljudje"
-
-#: includes/wcag.php:487
-msgid "Reflow"
-msgstr "Preoblikovanje"
-
-#: includes/wcag.php:488
-msgid "Content can be viewed without scrolling in more than one direction, so users can easily read and interact with it on small screens or when zoomed in."
-msgstr "Vsebino je mogoče ogledati brez drsenja v več kot eni smeri, tako da jo lahko uporabniki enostavno berejo in z njo komunicirajo na majhnih zaslonih ali pri povečavi."
-
-#: includes/wcag.php:494
-#: includes/wcag.php:1641
-msgid "People on mobile devices"
-msgstr "Ljudje na mobilnih napravah"
-
-#: includes/wcag.php:495
-#: includes/wcag.php:522
-#: includes/wcag.php:550
-#: includes/wcag.php:641
-#: includes/wcag.php:673
-#: includes/wcag.php:738
-#: includes/wcag.php:773
-#: includes/wcag.php:1271
-#: includes/wcag.php:1406
-#: includes/wcag.php:1589
-#: includes/wcag.php:1643
-msgid "People with low vision"
-msgstr "Ljudje s slabim vidom"
-
-#: includes/wcag.php:515
-msgid "Non-text Contrast"
-msgstr "Kontrast ne-besedila"
-
-#: includes/wcag.php:516
-msgid "Visual information needed to identify user interface components and graphical objects has a contrast ratio of at least 3:1 against adjacent colors."
-msgstr "Vizualne informacije, potrebne za prepoznavanje komponent uporabniškega vmesnika in grafičnih objektov, imajo kontrastno razmerje vsaj 3:1 glede na sosednje barve."
-
-#: includes/wcag.php:542
-msgid "Text Spacing"
-msgstr "Razmik besedila"
-
-#: includes/wcag.php:543
-msgid "Users can override text spacing to improve readability without losing content or functionality."
-msgstr "Uporabniki lahko preglasijo razmik besedila za izboljšanje berljivosti brez izgube vsebine ali funkcionalnosti."
-
-#: includes/wcag.php:549
-#: includes/wcag.php:772
-#: includes/wcag.php:1729
-#: includes/wcag.php:1749
-#: includes/wcag.php:1768
-#: includes/wcag.php:1787
 #: includes/wcag.php:1840
 #: includes/wcag.php:1876
 #: includes/wcag.php:1907
 #: includes/wcag.php:1938
+#: includes/wcag.php:1958
+msgid "3.2 Predictable"
+msgstr "3.2 predvidljivo"
+
+#: includes/wcag.php:1836
+msgid "On Input"
+msgstr "Ob vnosu"
+
+#: includes/wcag.php:1837
+msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
+msgstr "Ko vnosno polje prejme podatke, to ne povzroči nepričakovanih sprememb, ki bi lahko zmedle uporabnika, in je jasno, kako bodo podatki uporabljeni."
+
+#: includes/wcag.php:1872
+msgid "Consistent Navigation"
+msgstr "Dosledna navigacija"
+
+#: includes/wcag.php:1873
+msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
+msgstr "Navigacijski mehanizmi so dosledni po celotnem spletnem mestu, tako da se lahko uporabniki predvidljivo premikajo po strani."
+
+#: includes/wcag.php:1903
+msgid "Consistent Identification"
+msgstr "Dosledna identifikacija"
+
+#: includes/wcag.php:1904
+msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
+msgstr "Komponente, ki imajo enako funkcionalnost znotraj nabora spletnih strani, so dosledno identificirane, tako da jih uporabniki lahko enostavno prepoznajo."
+
+#: includes/wcag.php:1934
+msgid "Change on Request"
+msgstr "Sprememba na zahtevo"
+
+#: includes/wcag.php:1935
+msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
+msgstr "Spremembe v vsebini ali kontekstu, ki se pojavijo kot rezultat uporabniškega vnosa, se ne zgodijo nepričakovano, in uporabniki so obveščeni o vseh spremembah."
+
+#: includes/wcag.php:1954
+msgid "Consistent Help"
+msgstr "Dosledna pomoč"
+
+#: includes/wcag.php:1955
+#: includes/wcag.php:2108
+msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
+msgstr "Pomoč in dokumentacija sta na voljo in ju je enostavno najti, tako da lahko uporabniki dobijo pomoč, ko jo potrebujejo."
+
+#: includes/wcag.php:1971
+msgid "Error Identification"
+msgstr "Identifikacija napak"
+
+#: includes/wcag.php:1972
+#: includes/wcag.php:2040
+msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
+msgstr "Če je zaznana napaka pri vnosu in so znani predlogi za popravek, so ti predlogi posredovani uporabniku."
+
 #: includes/wcag.php:1975
 #: includes/wcag.php:2009
 #: includes/wcag.php:2043
 #: includes/wcag.php:2077
 #: includes/wcag.php:2111
 #: includes/wcag.php:2130
-msgid "People with cognitive disabilities and reading disabilities"
-msgstr "Ljudje s kognitivnimi motnjami in motnjami branja"
-
-#: includes/wcag.php:570
-msgid "Content on Hover or Focus"
-msgstr "Vsebina ob prehodu z miško ali fokusu"
-
-#: includes/wcag.php:571
-msgid "If extra content appears on hover or focus, users can dismiss it, move their pointer over it, and it remains visible until dismissed or focus is moved."
-msgstr "Če se ob prehodu z miško ali fokusu pojavi dodatna vsebina, jo lahko uporabniki zavrnejo, premaknejo kazalec čez njo in ostane vidna, dokler je ne zavrnejo ali premaknejo fokusa."
-
-#: includes/wcag.php:578
-#: includes/wcag.php:956
-#: includes/wcag.php:1337
-msgid "People with cognitive disabilities"
-msgstr "Ljudje s kognitivnimi motnjami"
-
-#: includes/wcag.php:579
-#: includes/wcag.php:1642
-msgid "People with dexterity impairments"
-msgstr "Ljudje z okvarami spretnosti"
-
-#: includes/wcag.php:599
-msgid "Audio Control"
-msgstr "Nadzor zvoka"
-
-#: includes/wcag.php:600
-msgid "If audio plays automatically for more than 3 seconds, users must be able to pause, stop, or control the volume independently from the system volume."
-msgstr "Če se zvok samodejno predvaja več kot 3 sekunde, morajo imeti uporabniki možnost, da ga začasno ustavijo, ustavijo ali nadzirajo glasnost neodvisno od sistemske glasnosti."
-
-#: includes/wcag.php:608
-#: includes/wcag.php:955
-#: includes/wcag.php:1009
-msgid "People with ADD or difficulty focusing on content without distraction"
-msgstr "Ljudje z motnjo pozornosti ali težavami s osredotočanjem na vsebino brez motenj"
-
-#: includes/wcag.php:633
-msgid "Contrast (Minimum)"
-msgstr "Kontrast (minimalni)"
-
-#: includes/wcag.php:634
-msgid "Text and images of text must have a contrast ratio of at least 4.5:1, except for large text, incidental text, or logotypes."
-msgstr "Besedilo in slike besedila morajo imeti kontrastno razmerje vsaj 4,5:1, razen za veliko besedilo, naključno besedilo ali logotipe."
-
-#: includes/wcag.php:640
-#: includes/wcag.php:737
-msgid "People on mobile devices in a sunny environment"
-msgstr "Ljudje na mobilnih napravah v sončnem okolju"
-
-#: includes/wcag.php:666
-msgid "Resize text"
-msgstr "Spremeni velikost besedila"
-
-#: includes/wcag.php:667
-msgid "Text can be resized up to 200% without loss of content or functionality, so people with low vision can read it more easily."
-msgstr "Besedilo je mogoče povečati do 200 % brez izgube vsebine ali funkcionalnosti, tako da ga lahko ljudje s slabim vidom lažje berejo."
-
-#: includes/wcag.php:698
-msgid "Images of Text"
-msgstr "Slike besedila"
-
-#: includes/wcag.php:699
-msgid "If the same visual presentation can be made using text alone, do not use images of text except for decorative or essential purposes."
-msgstr "Če je mogoče enako vizualno predstavitev ustvariti samo z besedilom, ne uporabljajte slik besedila, razen za dekorativne ali bistvene namene."
-
-#: includes/wcag.php:730
-msgid "Contrast (Enhanced)"
-msgstr "Kontrast (izboljšan)"
-
-#: includes/wcag.php:731
-msgid "Text and images of text must have a contrast ratio of at least 7:1, except for large text, incidental text, or logotypes."
-msgstr "Besedilo in slike besedila morajo imeti kontrastno razmerje vsaj 7:1, razen za veliko besedilo, naključno besedilo ali logotipe."
-
-#: includes/wcag.php:748
-msgid "Low or No Background Audio"
-msgstr "Nizek ali brez zvoka v ozadju"
-
-#: includes/wcag.php:749
-msgid "For prerecorded audio-only content, background sounds are either low, can be turned off, or are not present, so speech is easier to understand."
-msgstr "Pri vnaprej posnetih zvočnih vsebinah so zvoki v ozadju bodisi tihi, jih je mogoče izklopiti ali pa jih sploh ni, tako da je govor lažje razumeti."
-
-#: includes/wcag.php:765
-msgid "Visual Presentation"
-msgstr "Vizualna predstavitev"
-
-#: includes/wcag.php:766
-msgid "Users can choose how blocks of text are presented, such as foreground and background colors, width, and line spacing, to make reading easier."
-msgstr "Uporabniki lahko izberejo, kako so predstavljeni bloki besedila, na primer barve ospredja in ozadja, širino in razmik med vrsticami, da olajšajo branje."
-
-#: includes/wcag.php:783
-msgid "Images of Text (No Exception)"
-msgstr "Slike besedila (brez izjeme)"
-
-#: includes/wcag.php:784
-msgid "Images of text are only used for pure decoration or where a particular presentation of text is essential, with no exceptions."
-msgstr "Slike besedila se uporabljajo samo za čisto dekoracijo ali kjer je določena predstavitev besedila bistvena, brez izjem."
-
-#: includes/wcag.php:800
-msgid "Keyboard"
-msgstr "Tipkovnica"
-
-#: includes/wcag.php:801
-msgid "All functionality is available using a keyboard, so users who cannot use a mouse can still operate the content."
-msgstr "Vse funkcionalnosti so na voljo z uporabo tipkovnice, tako da lahko uporabniki, ki ne morejo uporabljati miške, še vedno upravljajo z vsebino."
-
-#: includes/wcag.php:804
-#: includes/wcag.php:838
-#: includes/wcag.php:872
-#: includes/wcag.php:891
-msgid "2.1 Keyboard Accessible"
-msgstr "2.1 dostopno s tipkovnico"
-
-#: includes/wcag.php:805
-#: includes/wcag.php:839
-#: includes/wcag.php:873
-#: includes/wcag.php:892
-#: includes/wcag.php:919
-#: includes/wcag.php:953
-#: includes/wcag.php:987
-#: includes/wcag.php:1006
-#: includes/wcag.php:1026
-#: includes/wcag.php:1045
-#: includes/wcag.php:1064
-#: includes/wcag.php:1096
-#: includes/wcag.php:1113
-#: includes/wcag.php:1130
-#: includes/wcag.php:1163
-#: includes/wcag.php:1182
-#: includes/wcag.php:1199
-#: includes/wcag.php:1216
-#: includes/wcag.php:1233
-#: includes/wcag.php:1267
-#: includes/wcag.php:1301
-#: includes/wcag.php:1334
-#: includes/wcag.php:1368
-#: includes/wcag.php:1402
-#: includes/wcag.php:1436
-#: includes/wcag.php:1454
-#: includes/wcag.php:1472
-#: includes/wcag.php:1501
-#: includes/wcag.php:1531
-#: includes/wcag.php:1558
-#: includes/wcag.php:1585
-#: includes/wcag.php:1605
-#: includes/wcag.php:1622
-#: includes/wcag.php:1639
-msgid "Operable"
-msgstr "Uporabno"
-
-#: includes/wcag.php:834
-msgid "No Keyboard Trap"
-msgstr "Brez pasti za tipkovnico"
-
-#: includes/wcag.php:835
-msgid "Keyboard users can move to and away from all parts of the content without getting stuck."
-msgstr "Uporabniki tipkovnice se lahko premikajo do vseh delov vsebine in stran od njih, ne da bi se kje zataknili."
-
-#: includes/wcag.php:868
-msgid "Keyboard (No Exception)"
-msgstr "Tipkovnica (brez izjeme)"
-
-#: includes/wcag.php:869
-msgid "All functionality is available from a keyboard interface, with no exceptions."
-msgstr "Vse funkcionalnosti so na voljo prek vmesnika tipkovnice, brez izjem."
-
-#: includes/wcag.php:887
-msgid "Character Key Shortcuts"
-msgstr "Bližnjice s tipkami znakov"
-
-#: includes/wcag.php:888
-msgid "If a keyboard shortcut uses only letters, numbers, or punctuation, users can turn it off, change it, or it only works when the element has focus."
-msgstr "Če bližnjica na tipkovnici uporablja samo črke, številke ali ločila, jo lahko uporabniki izklopijo, spremenijo ali deluje samo, ko je element v fokusu."
-
-#: includes/wcag.php:914
-msgid "Timing Adjustable"
-msgstr "Prilagodljiv čas"
-
-#: includes/wcag.php:915
-msgid "If a time limit is set, users can turn it off, adjust it, or extend it unless the time limit is essential."
-msgstr "Če je nastavljena časovna omejitev, jo lahko uporabniki izklopijo, prilagodijo ali podaljšajo, razen če je časovna omejitev bistvena."
-
-#: includes/wcag.php:918
-#: includes/wcag.php:952
-#: includes/wcag.php:986
-#: includes/wcag.php:1005
-#: includes/wcag.php:1025
-#: includes/wcag.php:1044
-msgid "2.2 Enough Time"
-msgstr "2.2 dovolj časa"
-
-#: includes/wcag.php:921
-#: includes/wcag.php:989
-#: includes/wcag.php:1008
-#: includes/wcag.php:1028
-#: includes/wcag.php:1047
-msgid "People who need more time to react"
-msgstr "Ljudje, ki potrebujejo več časa za odziv"
-
-#: includes/wcag.php:948
-msgid "Pause, Stop, Hide"
-msgstr "Premor, ustavitev, skrivanje"
-
-#: includes/wcag.php:949
-msgid "Users can pause, stop, or hide moving, blinking, scrolling, or auto-updating information that starts automatically and lasts more than five seconds."
-msgstr "Uporabniki lahko začasno ustavijo, ustavijo ali skrijejo premikajoče se, utripajoče, drseče ali samodejno posodabljajoče se informacije, ki se začnejo samodejno in trajajo več kot pet sekund."
-
-#: includes/wcag.php:982
-msgid "No Timing"
-msgstr "Brez časovne omejitve"
-
-#: includes/wcag.php:983
-msgid "If an element requires a response in a specific time, users can turn off the timer, adjust the time limit, or the timing is not essential."
-msgstr "Če element zahteva odziv v določenem času, lahko uporabniki izklopijo časovnik, prilagodijo časovno omejitev ali pa časovna omejitev ni bistvena."
-
-#: includes/wcag.php:1001
-msgid "Interruptions"
-msgstr "Prekinitve"
-
-#: includes/wcag.php:1002
-msgid "Users are not interrupted by unexpected changes in content, and can control interruptions such as auto-updating content."
-msgstr "Uporabniki niso prekinjeni zaradi nepričakovanih sprememb vsebine in lahko nadzorujejo prekinitve, kot je samodejno posodabljanje vsebine."
-
-#: includes/wcag.php:1021
-msgid "Re-authenticating"
-msgstr "Ponovna avtentikacija"
-
-#: includes/wcag.php:1022
-msgid "If users are logged out due to inactivity, they are notified before the session expires and can continue the session without losing data."
-msgstr "Če so uporabniki odjavljeni zaradi neaktivnosti, so obveščeni, preden seja poteče, in lahko nadaljujejo sejo brez izgube podatkov."
-
-#: includes/wcag.php:1040
-msgid "Timeouts"
-msgstr "Časovne omejitve"
-
-#: includes/wcag.php:1041
-msgid "Users are warned of impending timeouts and can request more time or save their work before timing out."
-msgstr "Uporabniki so opozorjeni na bližajoče se časovne omejitve in lahko zahtevajo več časa ali shranijo svoje delo pred iztekom časa."
-
-#: includes/wcag.php:1059
-msgid "Three Flashes or Below Threshold"
-msgstr "Tri utripi ali pod pragom"
-
-#: includes/wcag.php:1060
-msgid "Content does not flash more than three times in any one second period, reducing the risk of seizures for people with photosensitive epilepsy."
-msgstr "Vsebina ne utripa več kot trikrat v katerem koli enosekundnem obdobju, s čimer se zmanjša tveganje za napade pri ljudeh s fotosenzitivno epilepsijo."
-
-#: includes/wcag.php:1063
-#: includes/wcag.php:1095
-#: includes/wcag.php:1112
-msgid "2.3 Seizures and Physical Reactions"
-msgstr "2.3 napadi in fizične reakcije"
-
-#: includes/wcag.php:1066
-#: includes/wcag.php:1098
-msgid "People with photosensitive epilepsy and other photosensitive seizure disorders"
-msgstr "Ljudje s fotosenzitivno epilepsijo in drugimi fotosenzitivnimi motnjami napadov"
-
-#: includes/wcag.php:1091
-msgid "Three Flashes"
-msgstr "Trije utripi"
-
-#: includes/wcag.php:1092
-msgid "No part of the content flashes more than three times per second, with no exceptions."
-msgstr "Noben del vsebine ne utripa več kot trikrat na sekundo, brez izjem."
-
-#: includes/wcag.php:1108
-msgid "Animation from Interactions"
-msgstr "Animacija iz interakcij"
-
-#: includes/wcag.php:1109
-msgid "Users can turn off non-essential animations triggered by interactions, helping those who are sensitive to motion."
-msgstr "Uporabniki lahko izklopijo nebistvene animacije, ki jih sprožijo interakcije, kar pomaga tistim, ki so občutljivi na gibanje."
-
-#: includes/wcag.php:1115
-msgid "People with vestibular (inner ear) disorders where movement can cause dizziness/headaches and nausea"
-msgstr "Ljudje z vestibularnimi (notranje uho) motnjami, kjer lahko gibanje povzroči vrtoglavico/glavobole in slabost"
-
-#: includes/wcag.php:1125
-msgid "Bypass Blocks"
-msgstr "Preskoči bloke"
-
-#: includes/wcag.php:1126
-msgid "A way is available to skip repeated blocks of content, such as navigation menus, so users can quickly reach the main content."
-msgstr "Na voljo je način za preskok ponavljajočih se blokov vsebine, kot so navigacijski meniji, tako da lahko uporabniki hitro dosežejo glavno vsebino."
-
-#: includes/wcag.php:1129
-#: includes/wcag.php:1162
-#: includes/wcag.php:1181
-#: includes/wcag.php:1198
-#: includes/wcag.php:1215
-#: includes/wcag.php:1232
-#: includes/wcag.php:1266
-#: includes/wcag.php:1300
-#: includes/wcag.php:1333
-#: includes/wcag.php:1367
-#: includes/wcag.php:1401
-#: includes/wcag.php:1435
-#: includes/wcag.php:1453
-msgid "2.4 Navigable"
-msgstr "2.4 navigabilno"
-
-#: includes/wcag.php:1158
-msgid "Section Headings"
-msgstr "Naslovi razdelkov"
-
-#: includes/wcag.php:1159
-msgid "Section headings are used to organize content, making it easier to understand and navigate."
-msgstr "Naslovi razdelkov se uporabljajo za organizacijo vsebine, zaradi česar je lažje razumeti in krmariti po njej."
-
-#: includes/wcag.php:1177
-msgid "Focus Not Obscured (Minimum)"
-msgstr "Fokus ni zakrit (minimalno)"
-
-#: includes/wcag.php:1178
-msgid "When an element receives keyboard focus, it is at least partially visible and not hidden by other content."
-msgstr "Ko element prejme fokus tipkovnice, je vsaj delno viden in ni skrit za drugo vsebino."
-
-#: includes/wcag.php:1194
-msgid "Focus Not Obscured (Enhanced)"
-msgstr "Fokus ni zakrit (izboljšano)"
-
-#: includes/wcag.php:1195
-msgid "When an element receives keyboard focus, it is fully visible and not hidden by other content."
-msgstr "Ko element prejme fokus tipkovnice, je v celoti viden in ni skrit za drugo vsebino."
-
-#: includes/wcag.php:1211
-msgid "Focus Appearance"
-msgstr "Videz fokusa"
-
-#: includes/wcag.php:1212
-msgid "The visible focus indicator for interactive elements is clearly visible and meets minimum size and contrast requirements."
-msgstr "Vidni indikator fokusa za interaktivne elemente je jasno viden in izpolnjuje minimalne zahteve glede velikosti in kontrasta."
-
-#: includes/wcag.php:1228
-msgid "Page Titled"
-msgstr "Naslov strani"
-
-#: includes/wcag.php:1229
-msgid "Web pages have descriptive titles that help users understand the topic or purpose of the page."
-msgstr "Spletne strani imajo opisne naslove, ki uporabnikom pomagajo razumeti temo ali namen strani."
-
-#: includes/wcag.php:1236
 #: includes/wcag.php:2149
-msgid "People with severe mobility impairments relying on audio to navigate the web"
-msgstr "Ljudje s hudimi gibalnimi okvarami, ki se pri navigaciji po spletu zanašajo na zvok"
-
-#: includes/wcag.php:1262
-msgid "Focus Order"
-msgstr "Vrstni red fokusa"
-
-#: includes/wcag.php:1263
-msgid "When navigating with a keyboard, focus moves in a logical order that preserves meaning and operability."
-msgstr "Pri navigaciji s tipkovnico se fokus premika v logičnem vrstnem redu, ki ohranja pomen in uporabnost."
-
-#: includes/wcag.php:1296
-msgid "Link Purpose (In Context)"
-msgstr "Namen povezave (v kontekstu)"
-
-#: includes/wcag.php:1297
-msgid "The purpose of each link is clear from the link text and the context in which it appears, so users know where the link will take them."
-msgstr "Namen vsake povezave je jasen iz besedila povezave in konteksta, v katerem se pojavi, tako da uporabniki vedo, kam jih bo povezava pripeljala."
-
-#: includes/wcag.php:1329
-msgid "Multiple Ways"
-msgstr "Več načinov"
-
-#: includes/wcag.php:1330
-msgid "More than one way is available to locate a web page within a set of web pages, except where the web page is the result of a query."
-msgstr "Na voljo je več kot en način za iskanje spletne strani znotraj nabora spletnih strani, razen če je spletna stran rezultat poizvedbe."
-
-#: includes/wcag.php:1363
-msgid "Headings and Labels"
-msgstr "Naslovi in oznake"
-
-#: includes/wcag.php:1364
-msgid "Headings and labels describe the topic or purpose of content, and are not ambiguous or misleading."
-msgstr "Naslovi in oznake opisujejo temo ali namen vsebine in niso dvoumni ali zavajajoči."
-
-#: includes/wcag.php:1397
-msgid "Focus Visible"
-msgstr "Viden fokus"
-
-#: includes/wcag.php:1398
-msgid "It is visible when an element has keyboard focus, so users navigating with a keyboard can see which element is active."
-msgstr "Ko ima element fokus tipkovnice, je to vidno, tako da uporabniki, ki navigirajo s tipkovnico, vidijo, kateri element je aktiven."
-
-#: includes/wcag.php:1431
-msgid "Location"
-msgstr "Lokacija"
-
-#: includes/wcag.php:1432
-msgid "Users are informed about their location within a set of web pages, such as through breadcrumb navigation or a clear page title."
-msgstr "Uporabniki so obveščeni o svoji lokaciji znotraj nabora spletnih strani, na primer prek drobtinic ali jasnega naslova strani."
-
-#: includes/wcag.php:1449
-msgid "Link Purpose (Link Only)"
-msgstr "Namen povezave (samo povezava)"
-
-#: includes/wcag.php:1450
-msgid "The purpose of each link can be determined by the link text alone, without needing additional context."
-msgstr "Namen vsake povezave je mogoče določiti samo iz besedila povezave, brez potrebe po dodatnem kontekstu."
-
-#: includes/wcag.php:1467
-msgid "Pointer Gestures"
-msgstr "Kazalniške kretnje"
-
-#: includes/wcag.php:1468
-msgid "For functionality that can be operated by a pointer gesture, at least one of the following is true: the gesture can be performed by a simple tap, the gesture can be performed with a single finger, or the gesture can be performed with a voice command."
-msgstr "Za funkcionalnost, ki jo je mogoče upravljati s kazalniško kretnjo, velja vsaj eno od naslednjega: kretnjo je mogoče izvesti s preprostim tapom, kretnjo je mogoče izvesti z enim prstom ali kretnjo je mogoče izvesti z glasovnim ukazom."
-
-#: includes/wcag.php:1471
-#: includes/wcag.php:1500
-#: includes/wcag.php:1530
-#: includes/wcag.php:1557
-#: includes/wcag.php:1584
-#: includes/wcag.php:1604
-#: includes/wcag.php:1621
-#: includes/wcag.php:1638
-msgid "2.5 Input Modalities"
-msgstr "2.5 načini vnosa"
-
-#: includes/wcag.php:1496
-msgid "Pointer Cancellation"
-msgstr "Preklic kazalnika"
-
-#: includes/wcag.php:1497
-msgid "For actions that require a pointer gesture, the user can cancel the action by moving the pointer away before the action is completed."
-msgstr "Za dejanja, ki zahtevajo kazalniško kretnjo, lahko uporabnik prekliče dejanje s premikom kazalnika stran, preden je dejanje zaključeno."
-
-#: includes/wcag.php:1526
-msgid "Label in Name"
-msgstr "Oznaka v imenu"
-
-#: includes/wcag.php:1527
-msgid "The name of user interface components includes text labels that describe their purpose, so assistive technologies can convey this information to users."
-msgstr "Ime uporabniških vmesniških komponent vključuje besedilne oznake, ki opisujejo njihov namen, tako da lahko pomožne tehnologije te informacije posredujejo uporabnikom."
-
-#: includes/wcag.php:1553
-msgid "Motion Actuation"
-msgstr "Aktivacija z gibanjem"
-
-#: includes/wcag.php:1554
-msgid "Functionality that can be operated by a motion gesture can also be operated by a simple touch or click, so users who cannot perform motion gestures can still use the functionality."
-msgstr "Funkcionalnost, ki jo je mogoče upravljati z gibalno kretnjo, je mogoče upravljati tudi s preprostim dotikom ali klikom, tako da lahko uporabniki, ki ne morejo izvajati gibalnih kretenj, še vedno uporabljajo funkcionalnost."
-
-#: includes/wcag.php:1580
-msgid "Target Size"
-msgstr "Velikost tarče"
-
-#: includes/wcag.php:1581
-msgid "The size of the target for pointer gestures is large enough to be easily activated, even by users with limited dexterity."
-msgstr "Velikost tarče za kazalniške kretnje je dovolj velika, da jo je mogoče enostavno aktivirati, tudi za uporabnike z omejeno spretnostjo."
-
-#: includes/wcag.php:1587
-msgid "People using a mobile device in environments where they are exposed to shaking (such as public transportation)"
-msgstr "Ljudje, ki uporabljajo mobilno napravo v okoljih, kjer so izpostavljeni tresenju (na primer v javnem prevozu)"
-
-#: includes/wcag.php:1588
-msgid "People with dexterity and mobility impairments including hand tremors"
-msgstr "Ljudje z okvarami spretnosti in gibljivosti, vključno s tresenjem rok"
-
-#: includes/wcag.php:1590
-#: includes/wcag.php:1644
-msgid "People with with large fingers or who are operating the device with only a part of their finger or knuckle"
-msgstr "Ljudje z velikimi prsti ali tisti, ki upravljajo napravo samo z delom prsta ali členkom"
-
-#: includes/wcag.php:1600
-msgid "Concurrent Input Mechanisms"
-msgstr "Sočasni mehanizmi vnosa"
-
-#: includes/wcag.php:1601
-msgid "If an input mechanism requires a specific posture or movement, an alternative input mechanism is available that does not have the same requirement."
-msgstr "Če vnosni mehanizem zahteva določeno držo ali gibanje, je na voljo alternativni vnosni mehanizem, ki nima iste zahteve."
-
-#: includes/wcag.php:1617
-msgid "Dragging Movements"
-msgstr "Vlečni gibi"
-
-#: includes/wcag.php:1618
-msgid "For functionality that requires dragging movements, the action can also be completed by simpler actions, so users with limited dexterity can still use the functionality."
-msgstr "Za funkcionalnost, ki zahteva vlečne gibe, je mogoče dejanje dokončati tudi s preprostejšimi dejanji, tako da lahko uporabniki z omejeno spretnostjo še vedno uporabljajo funkcionalnost."
-
-#: includes/wcag.php:1634
-msgid "Target Size (Minimum)"
-msgstr "Velikost tarče (minimalna)"
-
-#: includes/wcag.php:1635
-msgid "The target size for any interactive element is at least 44x44 pixels, so it can be easily activated by users with various abilities."
-msgstr "Velikost tarče za vsak interaktivni element je vsaj 44x44 pikslov, tako da jo lahko enostavno aktivirajo uporabniki z različnimi sposobnostmi."
-
-#: includes/wcag.php:1654
-msgid "Language of Page"
-msgstr "Jezik strani"
-
-#: includes/wcag.php:1655
-msgid "The default language of each web page is programmatically determined, so assistive technologies can use the correct language settings."
-msgstr "Privzeti jezik vsake spletne strani je programsko določen, tako da lahko pomožne tehnologije uporabljajo pravilne jezikovne nastavitve."
-
-#: includes/wcag.php:1658
-#: includes/wcag.php:1692
-#: includes/wcag.php:1724
-#: includes/wcag.php:1744
-#: includes/wcag.php:1763
-#: includes/wcag.php:1782
-msgid "3.1 Readable"
-msgstr "3.1 berljivo"
-
-#: includes/wcag.php:1659
-#: includes/wcag.php:1693
-#: includes/wcag.php:1725
-#: includes/wcag.php:1745
-#: includes/wcag.php:1764
-#: includes/wcag.php:1783
-#: includes/wcag.php:1802
-#: includes/wcag.php:1837
-#: includes/wcag.php:1873
-#: includes/wcag.php:1904
-#: includes/wcag.php:1935
-#: includes/wcag.php:1955
-#: includes/wcag.php:1972
-#: includes/wcag.php:2006
-#: includes/wcag.php:2040
-#: includes/wcag.php:2074
-#: includes/wcag.php:2108
-#: includes/wcag.php:2127
-#: includes/wcag.php:2146
-#: includes/wcag.php:2164
-#: includes/wcag.php:2181
-msgid "Understandable"
-msgstr "Razumljivo"
-
-#: includes/wcag.php:1688
-msgid "Language of Parts"
-msgstr "Jezik delov"
-
-#: includes/wcag.php:1689
-msgid "The language of each part of the content can be programmatically determined, so assistive technologies can provide appropriate language support."
-msgstr "Jezik vsakega dela vsebine je mogoče programsko določiti, tako da lahko pomožne tehnologije zagotovijo ustrezno jezikovno podporo."
-
-#: includes/wcag.php:1720
-msgid "Unusual Words"
-msgstr "Neobičajne besede"
-
-#: includes/wcag.php:1721
-msgid "Unusual or rare words are defined or explained, so users with cognitive disabilities or who are not familiar with the language can understand them."
-msgstr "Neobičajne ali redke besede so definirane ali pojasnjene, tako da jih lahko razumejo uporabniki s kognitivnimi motnjami ali tisti, ki niso seznanjeni z jezikom."
-
-#: includes/wcag.php:1740
-msgid "Abbreviations"
-msgstr "Okrajšave"
-
-#: includes/wcag.php:1741
-msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
-msgstr "Okrajšave in kratice so definirane ob prvi uporabi, tako da uporabniki lahko razumejo njihov pomen."
-
-#: includes/wcag.php:1759
-msgid "Reading Level"
-msgstr "Raven branja"
-
-#: includes/wcag.php:1760
-msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
-msgstr "Vsebina je napisana v jasnem in preprostem jeziku in za razumevanje ne zahteva specializiranega znanja."
-
-#: includes/wcag.php:1778
-msgid "Pronunciation"
-msgstr "Izgovorjava"
-
-#: includes/wcag.php:1779
-msgid "A pronunciation guide is available for unusual or difficult words, so users can understand how to say them."
-msgstr "Na voljo je vodnik za izgovorjavo neobičajnih ali težkih besed, tako da uporabniki vedo, kako jih izgovoriti."
-
-#: includes/wcag.php:1797
-msgid "On Focus"
-msgstr "Ob fokusu"
-
-#: includes/wcag.php:1798
-msgid "When an element receives focus, it does not cause unexpected changes that could confuse the user, and it is clear how to interact with the element."
-msgstr "Ko element prejme fokus, to ne povzroči nepričakovanih sprememb, ki bi lahko zmedle uporabnika, in je jasno, kako interagirati z elementom."
-
-#: includes/wcag.php:1801
-#: includes/wcag.php:1836
-#: includes/wcag.php:1872
-#: includes/wcag.php:1903
-#: includes/wcag.php:1934
-#: includes/wcag.php:1954
-msgid "3.2 Predictable"
-msgstr "3.2 predvidljivo"
-
-#: includes/wcag.php:1832
-msgid "On Input"
-msgstr "Ob vnosu"
-
-#: includes/wcag.php:1833
-msgid "When an input field receives data, it does not cause unexpected changes that could confuse the user, and it is clear how the data will be used."
-msgstr "Ko vnosno polje prejme podatke, to ne povzroči nepričakovanih sprememb, ki bi lahko zmedle uporabnika, in je jasno, kako bodo podatki uporabljeni."
-
-#: includes/wcag.php:1868
-msgid "Consistent Navigation"
-msgstr "Dosledna navigacija"
-
-#: includes/wcag.php:1869
-msgid "Navigation mechanisms are consistent across the website, so users can predictably move through the site."
-msgstr "Navigacijski mehanizmi so dosledni po celotnem spletnem mestu, tako da se lahko uporabniki predvidljivo premikajo po strani."
-
-#: includes/wcag.php:1899
-msgid "Consistent Identification"
-msgstr "Dosledna identifikacija"
-
-#: includes/wcag.php:1900
-msgid "Components that have the same functionality within a set of web pages are identified consistently, so users can recognize them easily."
-msgstr "Komponente, ki imajo enako funkcionalnost znotraj nabora spletnih strani, so dosledno identificirane, tako da jih uporabniki lahko enostavno prepoznajo."
-
-#: includes/wcag.php:1930
-msgid "Change on Request"
-msgstr "Sprememba na zahtevo"
-
-#: includes/wcag.php:1931
-msgid "Changes in content or context that occur as a result of user input do not occur unexpectedly, and users are notified of any changes."
-msgstr "Spremembe v vsebini ali kontekstu, ki se pojavijo kot rezultat uporabniškega vnosa, se ne zgodijo nepričakovano, in uporabniki so obveščeni o vseh spremembah."
-
-#: includes/wcag.php:1950
-msgid "Consistent Help"
-msgstr "Dosledna pomoč"
-
-#: includes/wcag.php:1951
-#: includes/wcag.php:2104
-msgid "Help and documentation are available and are easy to find, so users can get assistance when needed."
-msgstr "Pomoč in dokumentacija sta na voljo in ju je enostavno najti, tako da lahko uporabniki dobijo pomoč, ko jo potrebujejo."
-
-#: includes/wcag.php:1967
-msgid "Error Identification"
-msgstr "Identifikacija napak"
-
-#: includes/wcag.php:1968
-#: includes/wcag.php:2036
-msgid "If an input error is detected and suggestions for correction are known, then the suggestions are provided to the user."
-msgstr "Če je zaznana napaka pri vnosu in so znani predlogi za popravek, so ti predlogi posredovani uporabniku."
-
-#: includes/wcag.php:1971
-#: includes/wcag.php:2005
-#: includes/wcag.php:2039
-#: includes/wcag.php:2073
-#: includes/wcag.php:2107
-#: includes/wcag.php:2126
-#: includes/wcag.php:2145
-#: includes/wcag.php:2163
-#: includes/wcag.php:2180
+#: includes/wcag.php:2167
+#: includes/wcag.php:2184
 msgid "3.3 Input Assistance"
 msgstr "3.3 pomoč pri vnosu"
 
-#: includes/wcag.php:2001
+#: includes/wcag.php:2005
 msgid "Labels or Instructions"
 msgstr "Oznake ali navodila"
 
-#: includes/wcag.php:2002
+#: includes/wcag.php:2006
 msgid "Labels or instructions are provided when an input field requires user input, so users know what information is needed."
 msgstr "Oznake ali navodila so na voljo, ko vnosno polje zahteva uporabniški vnos, tako da uporabniki vedo, katere informacije so potrebne."
 
-#: includes/wcag.php:2035
+#: includes/wcag.php:2039
 msgid "Error Suggestion"
 msgstr "Predlog za odpravo napake"
 
-#: includes/wcag.php:2069
+#: includes/wcag.php:2073
 msgid "Error Prevention (Legal, Financial, Data)"
 msgstr "Preprečevanje napak (pravne, finančne, podatkovne)"
 
-#: includes/wcag.php:2070
-#: includes/wcag.php:2123
+#: includes/wcag.php:2074
+#: includes/wcag.php:2127
 msgid "For web pages that require user input, users are warned of errors and can correct them before finalizing the submission."
 msgstr "Za spletne strani, ki zahtevajo uporabniški vnos, so uporabniki opozorjeni na napake in jih lahko popravijo pred dokončno oddajo."
 
-#: includes/wcag.php:2103
+#: includes/wcag.php:2107
 msgid "Help"
 msgstr "Pomoč"
 
-#: includes/wcag.php:2122
+#: includes/wcag.php:2126
 msgid "Error Prevention (All)"
 msgstr "Preprečevanje napak (vse)"
 
-#: includes/wcag.php:2141
+#: includes/wcag.php:2145
 msgid "Redundant Entry"
 msgstr "Odvečni vnos"
 
-#: includes/wcag.php:2142
+#: includes/wcag.php:2146
 msgid "Users are not required to enter the same information multiple times, reducing the risk of errors and saving time."
 msgstr "Od uporabnikov se ne zahteva, da večkrat vnesejo iste informacije, kar zmanjšuje tveganje napak in prihrani čas."
 
-#: includes/wcag.php:2159
+#: includes/wcag.php:2163
 msgid "Accessible Authentication (Minimum)"
 msgstr "Dostopna avtentikacija (minimalna)"
 
-#: includes/wcag.php:2160
+#: includes/wcag.php:2164
 msgid "Authentication processes do not rely on cognitive function tests like remembering a password or solving a puzzle, unless an alternative is provided."
 msgstr "Procesi avtentikacije ne temeljijo na testih kognitivnih funkcij, kot je pomnjenje gesla ali reševanje uganke, razen če je na voljo alternativa."
 
-#: includes/wcag.php:2176
+#: includes/wcag.php:2180
 msgid "Accessible Authentication (Enhanced)"
 msgstr "Dostopna avtentikacija (izboljšana)"
 
-#: includes/wcag.php:2177
+#: includes/wcag.php:2181
 msgid "Enhanced authentication methods are provided that do not rely on cognitive function tests, such as remembering passwords, and do not require a test of cognitive function."
 msgstr "Na voljo so izboljšane metode avtentikacije, ki ne temeljijo na testih kognitivnih funkcij, kot je pomnjenje gesel, in ne zahtevajo testa kognitivnih funkcij."
 
-#: includes/wcag.php:2193
+#: includes/wcag.php:2197
 msgid "Parsing"
 msgstr "Razčlenjevanje"
 
-#: includes/wcag.php:2194
+#: includes/wcag.php:2198
 msgid "Content is coded so that assistive technologies can accurately interpret and present it to users."
 msgstr "Vsebina je kodirana tako, da jo lahko podporne tehnologije natančno interpretirajo in predstavijo uporabnikom."
 
-#: includes/wcag.php:2197
-#: includes/wcag.php:2231
-#: includes/wcag.php:2264
+#: includes/wcag.php:2201
+#: includes/wcag.php:2235
+#: includes/wcag.php:2268
 msgid "4.1 Compatible"
 msgstr "4.1 združljivo"
 
-#: includes/wcag.php:2198
-#: includes/wcag.php:2232
-#: includes/wcag.php:2265
+#: includes/wcag.php:2202
+#: includes/wcag.php:2236
+#: includes/wcag.php:2269
 msgid "Robust"
 msgstr "Robustno"
 
-#: includes/wcag.php:2201
-#: includes/wcag.php:2235
+#: includes/wcag.php:2205
+#: includes/wcag.php:2239
 msgid "People with low vision using screen magnifiers"
 msgstr "Ljudje s slabim vidom, ki uporabljajo povečevalnike zaslona"
 
-#: includes/wcag.php:2227
+#: includes/wcag.php:2231
 msgid "Name, Role, Value"
 msgstr "Ime, vloga, vrednost"
 
-#: includes/wcag.php:2228
+#: includes/wcag.php:2232
 msgid "User interface components have names, roles, and values that can be programmatically determined, so assistive technologies can communicate them to users."
 msgstr "Komponente uporabniškega vmesnika imajo imena, vloge in vrednosti, ki jih je mogoče programsko določiti, tako da jih lahko podporne tehnologije sporočijo uporabnikom."
 
-#: includes/wcag.php:2260
+#: includes/wcag.php:2264
 msgid "Status Messages"
 msgstr "Sporočila o stanju"
 
-#: includes/wcag.php:2261
+#: includes/wcag.php:2265
 msgid "Status messages are programmatically determined so that assistive technologies can notify users of important changes, such as form errors or updates."
 msgstr "Sporočila o stanju so programsko določena, tako da lahko podporne tehnologije obvestijo uporabnike o pomembnih spremembah, kot so napake v obrazcih ali posodobitve."
 
-#: includes/wcag.php:2286
+#: includes/wcag.php:2290
 msgid "Best Practice"
 msgstr "Najboljša praksa"
 
-#: includes/wcag.php:2287
+#: includes/wcag.php:2291
 msgid "A usability improvement or convention that enhances accessibility but is not required for WCAG compliance."
 msgstr "Izboljšava uporabnosti ali konvencija, ki izboljša dostopnost, vendar ni zahtevana za skladnost z WCAG."
 
-#: includes/wcag.php:2301
+#: includes/wcag.php:2305
 msgid "Non-WCAG Accessibility Issue"
 msgstr "Težava z dostopnostjo, ki ni del WCAG"
 
-#: includes/wcag.php:2302
+#: includes/wcag.php:2306
 msgid "A problem that affects users with disabilities but doesn't map directly to a current WCAG success criterion."
 msgstr "Problem, ki vpliva na uporabnike z invalidnostmi, vendar se ne ujema neposredno s trenutnim merilom uspešnosti WCAG."
 
-#: includes/wcag.php:2316
+#: includes/wcag.php:2320
 msgid "Manual Testing Needed (Multiple Success Criteria)"
 msgstr "Potrebno ročno testiranje (več meril uspešnosti)"
 
-#: includes/wcag.php:2317
+#: includes/wcag.php:2321
 msgid "Used for documents, media, and other non-scannable content that require manual testing and are likely to fail multiple WCAG success criteria."
 msgstr "Uporablja se za dokumente, medije in drugo vsebino, ki je ni mogoče skenirati in zahteva ročno testiranje ter bo verjetno padla na več merilih uspešnosti WCAG."
 
-#: partials/admin-page/fixes-page.php:14
+#: partials/admin-page/fixes-page.php:18
 msgid "Settings Saved. To confirm and reflect these updates in your site's statistics, please rescan your site. If you are using a caching plugin, make sure to clear the cache to ensure the updated fixes are applied correctly."
 msgstr "Nastavitve shranjene. Za potrditev in odsev teh posodobitev v statistiki vašega spletnega mesta ponovno preglejte svoje spletno mesto. Če uporabljate vtičnik za predpomnjenje, počistite predpomnilnik, da zagotovite pravilno uporabo posodobljenih popravkov."
 
-#: partials/admin-page/fixes-page.php:22
+#: partials/admin-page/fixes-page.php:26
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Vtičnik Accessibility New Window Warnings je nameščen. Popravek za povezave, ki se odpirajo v novem oknu, vključen tukaj, bo preglasil njegovo funkcionalnost. Vtičnik lahko varno odstranite in namesto tega uporabite te popravke."
 
-#: partials/custom-meta-box.php:13
+#: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Plošče s težavami Accessibility Checkerja"
 
-#: partials/custom-meta-box.php:24
-msgid "Summary"
-msgstr "Povzetek"
+#: partials/custom-meta-box.php:28
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Status"
+msgstr "Status dostopnosti"
 
-#: partials/custom-meta-box.php:34
-msgid "Details"
-msgstr "Podrobnosti"
+#: partials/custom-meta-box.php:38
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Analysis"
+msgstr "Analiza dostopnosti"
 
-#: partials/custom-meta-box.php:44
-msgid "Readability"
-msgstr "Berljivost"
+#: partials/custom-meta-box.php:48
+#: build/sidebar.bundle.js:2
+msgid "Readability Analysis"
+msgstr "Analiza berljivosti"
 
-#: partials/custom-meta-box.php:53
+#: partials/custom-meta-box.php:57
 msgid "Delete all currently found issues"
 msgstr "Izbriši vse trenutno najdene težave"
 
-#: partials/custom-meta-box.php:55
+#: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "Clear Issues"
 msgstr "Počisti težave"
 
-#: partials/pro-callout.php:13
-#: partials/welcome-page.php:199
+#: partials/pro-callout.php:17
+#: partials/welcome-page.php:203
 msgid "Equalize Digital Logo"
 msgstr "Logotip Equalize Digital"
 
-#: partials/pro-callout.php:16
-#: partials/welcome-page.php:200
+#: partials/pro-callout.php:20
+#: partials/welcome-page.php:204
 msgid "Upgrade to Accessibility Checker Pro"
 msgstr "Nadgradi na Accessibility Checker Pro"
 
-#: partials/pro-callout.php:20
-#: partials/welcome-page.php:203
+#: partials/pro-callout.php:24
+#: partials/welcome-page.php:207
 msgid "Scan all post types"
 msgstr "Preglej vse vrste objav"
 
-#: partials/pro-callout.php:21
-#: partials/welcome-page.php:204
+#: partials/pro-callout.php:25
+#: partials/welcome-page.php:208
 msgid "Admin columns to see accessibility status at a glance"
 msgstr "Administratorski stolpci za pregled stanja dostopnosti na prvi pogled"
 
-#: partials/pro-callout.php:22
-#: partials/welcome-page.php:205
+#: partials/pro-callout.php:26
+#: partials/welcome-page.php:209
 msgid "Centralized list of all open issues"
 msgstr "Centraliziran seznam vseh odprtih težav"
 
-#: partials/pro-callout.php:23
-#: partials/welcome-page.php:206
+#: partials/pro-callout.php:27
+#: partials/welcome-page.php:210
 msgid "Ignore log"
 msgstr "Dnevnik prezrtih težav"
 
-#: partials/pro-callout.php:24
-#: partials/welcome-page.php:207
+#: partials/pro-callout.php:28
+#: partials/welcome-page.php:211
 msgid "Rename simplified summary"
 msgstr "Preimenuj poenostavljen povzetek"
 
-#: partials/pro-callout.php:25
-#: partials/welcome-page.php:208
+#: partials/pro-callout.php:29
+#: partials/welcome-page.php:212
 msgid "User restrictions on ignoring issues"
 msgstr "Omejitve uporabnikov pri preziranju težav"
 
-#: partials/pro-callout.php:26
-#: partials/welcome-page.php:209
+#: partials/pro-callout.php:30
+#: partials/welcome-page.php:213
 msgid "Email support"
 msgstr "E-poštna podpora"
 
-#: partials/pro-callout.php:27
-#: partials/welcome-page.php:210
+#: partials/pro-callout.php:31
+#: partials/welcome-page.php:214
 msgid "...and more"
 msgstr "...in več"
 
-#: partials/pro-callout.php:57
-#: partials/welcome-page.php:223
+#: partials/pro-callout.php:61
+#: partials/welcome-page.php:227
 msgid "Or activate your license key here."
 msgstr "Ali tukaj aktiviraj svojo licenčno ključ."
 
-#: partials/settings-page.php:20
+#: partials/settings-page.php:24
 msgid "General"
 msgstr "Splošno"
 
-#: partials/welcome-page.php:31
+#: partials/welcome-page.php:35
 msgid "version"
 msgstr "različica"
 
-#: partials/welcome-page.php:40
+#: partials/welcome-page.php:44
 msgid "Link to Equalize Digital Website"
 msgstr "Povezava do spletne strani Equalize Digital"
 
-#: partials/welcome-page.php:49
+#: partials/welcome-page.php:53
 msgid "Quick Start Guide"
 msgstr "Vodič za hiter začetek"
 
-#: partials/welcome-page.php:50
+#: partials/welcome-page.php:54
 msgid "Follow these steps to get started checking your content:"
 msgstr "Sledite tem korakom za začetek preverjanja vaše vsebine:"
 
 #. translators: %s: path to settings page.
-#: partials/welcome-page.php:57
+#: partials/welcome-page.php:61
 #, php-format
 msgid "On the <a href=\"%s\">Settings Page</a>, choose which post types you want to scan."
 msgstr "Na <a href=\"%s\">strani z nastavitvami</a> izberite vrste objav, ki jih želite pregledati."
 
-#: partials/welcome-page.php:64
+#: partials/welcome-page.php:68
 msgid "Go to the edit screen for the post you want to check."
 msgstr "Pojdite na zaslon za urejanje objave, ki jo želite preveriti."
 
-#: partials/welcome-page.php:65
+#: partials/welcome-page.php:69
 msgid "Find the Accessibility Checker meta box below your content. If using a front-end page builder, you must visit the backend edit screen to view Accessibility Checker results."
 msgstr "Poišči metapolje Accessibility Checkerja pod svojo vsebino. Če uporabljaš urejevalnik strani na sprednji strani, moraš obiskati zaslon za urejanje na zaledju, da vidiš rezultate Accessibility Checkerja."
 
-#: partials/welcome-page.php:66
+#: partials/welcome-page.php:70
 msgid "If errors or warnings are present on your post, open the details tab in Accessibility Checker for more information."
 msgstr "Če so na tvojem prispevku prisotne napake ali opozorila, odpri zavihek s podrobnostmi v Accessibility Checkerju za več informacij."
 
-#: partials/welcome-page.php:67
+#: partials/welcome-page.php:71
 msgid "Expand each issue to see the code, or click \"view on page\" if you need help finding the element that needs fixing."
 msgstr "Razširite vsako težavo, da vidite kodo, ali kliknite „ogled na strani“, če potrebujete pomoč pri iskanju elementa, ki ga je treba popraviti."
 
-#: partials/welcome-page.php:68
+#: partials/welcome-page.php:72
 msgid "If you don't know what an error or warning means, click the \"i\" icon to read the documentation and how to fix it."
 msgstr "Če ne veste, kaj pomeni napaka ali opozorilo, kliknite ikono „i“, da preberete dokumentacijo in kako to popraviti."
 
-#: partials/welcome-page.php:69
+#: partials/welcome-page.php:73
 msgid "If an issue is a false positive and the element is accessible, you can remove issues from reports with the \"Ignore\" feature."
 msgstr "Če je težava lažno pozitivna in je element dostopen, lahko odstranite težave iz poročil s funkcijo „Prezri“."
 
-#: partials/welcome-page.php:70
+#: partials/welcome-page.php:74
 msgid "After fixing each issue, update the post to see the accessibility report change. Your goal is to get every page to say 100% Passed Tests."
 msgstr "Po popravljanju vsake težave posodobite objavo, da vidite spremembo poročila o dostopnosti. Vaš cilj je doseči, da vsaka stran prikaže 100% opravljenih testov."
 
-#: partials/welcome-page.php:74
+#: partials/welcome-page.php:78
 msgid "Watch a video of Accessibility Checker in use."
 msgstr "Oglej si video o uporabi Accessibility Checkerja."
 
-#: partials/welcome-page.php:80
+#: partials/welcome-page.php:84
 msgid "Documentation and FAQs"
 msgstr "Dokumentacija in pogosta vprašanja"
 
-#: partials/welcome-page.php:84
+#: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Zakaj pravimo 100% opravljenih testov, ne 100% dostopno?"
 
-#: partials/welcome-page.php:84
-#: partials/welcome-page.php:89
-#: partials/welcome-page.php:94
-#: partials/welcome-page.php:99
-#: partials/welcome-page.php:104
-#: partials/welcome-page.php:109
-#: partials/welcome-page.php:114
-#: partials/welcome-page.php:120
-#: partials/welcome-page.php:216
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
 msgid "(opens in a new window)"
 msgstr "(se odpre v novem oknu)"
 
-#: partials/welcome-page.php:89
+#: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
 msgstr "Kako ročno preveriti dostopnost vašega spletnega mesta"
 
-#: partials/welcome-page.php:94
+#: partials/welcome-page.php:98
 msgid "When to Ignore Accessibility Errors"
 msgstr "Kdaj prezreti napake dostopnosti"
 
-#: partials/welcome-page.php:99
+#: partials/welcome-page.php:103
 msgid "What to do if a Plugin You’re Using has Accessibility Errors"
 msgstr "Kaj storiti, če vtičnik, ki ga uporabljate, vsebuje napake dostopnosti"
 
-#: partials/welcome-page.php:104
+#: partials/welcome-page.php:108
 msgid "What to do if there are Accessibility Errors in Your Theme"
 msgstr "Kaj storiti, če so napake dostopnosti v vaši temi"
 
-#: partials/welcome-page.php:109
+#: partials/welcome-page.php:113
 msgid "Can I Hire Equalize Digital to Fix Accessibility Issues on My Website?"
 msgstr "Ali lahko najamem Equalize Digital za odpravo težav z dostopnostjo na moji spletni strani?"
 
-#: partials/welcome-page.php:114
+#: partials/welcome-page.php:118
 msgid "Additional Resources for Learning About Accessibility"
 msgstr "Dodatni viri za učenje o dostopnosti"
 
-#: partials/welcome-page.php:120
+#: partials/welcome-page.php:124
 msgid "Read Full Documentation"
 msgstr "Preberite celotno dokumentacijo"
 
-#: partials/welcome-page.php:127
+#: partials/welcome-page.php:131
 msgid "Support Information"
 msgstr "Informacije o podpori"
 
-#: partials/welcome-page.php:133
+#: partials/welcome-page.php:137
 msgid "Plugin Support"
 msgstr "Podpora za vtičnik"
 
-#: partials/welcome-page.php:135
+#: partials/welcome-page.php:139
 msgid "Active license holders of paid Accessibility Checker plans get unlimited email support on plugin usage and troubleshooting."
 msgstr "Aktivni imetniki licence plačljivih načrtov Accessibility Checkerja imajo neomejeno e-poštno podporo glede uporabe vtičnika in odpravljanja težav."
 
-#: partials/welcome-page.php:138
+#: partials/welcome-page.php:142
 msgid "Open Support Ticket"
 msgstr "Odpri zahtevek za podporo"
 
-#: partials/welcome-page.php:145
+#: partials/welcome-page.php:149
 msgid "Free Plugin Support"
 msgstr "Brezplačna podpora za vtičnik"
 
-#: partials/welcome-page.php:147
+#: partials/welcome-page.php:151
 msgid "Free plugin support is available via the WordPress.org forums. You'll need to create an account then you can open a new support thread."
 msgstr "Brezplačna podpora za vtičnik je na voljo prek forumov WordPress.org. Ustvariti morate račun, nato pa lahko odprete novo temo za podporo."
 
-#: partials/welcome-page.php:150
+#: partials/welcome-page.php:154
 msgid "Go to Support Forum"
 msgstr "Pojdi na forum za podporo"
 
-#: partials/welcome-page.php:157
+#: partials/welcome-page.php:161
 msgid "Office Hours"
 msgstr "Uradne ure"
 
-#: partials/welcome-page.php:159
+#: partials/welcome-page.php:163
 msgid "Open Q&A on Zoom every other week to help you remediate your website."
 msgstr "Odprti vprašanja in odgovori na Zoomu vsak drugi teden, da vam pomagamo pri odpravljanju težav na vašem spletnem mestu."
 
-#: partials/welcome-page.php:161
+#: partials/welcome-page.php:165
 msgid "Included in Small Business and Agency plans"
 msgstr "Vključeno v načrte za mala podjetja in agencije"
 
-#: partials/welcome-page.php:166
+#: partials/welcome-page.php:170
 msgid "Register for Office Hours"
 msgstr "Prijavite se na uradne ure"
 
-#: partials/welcome-page.php:172
+#: partials/welcome-page.php:176
 msgid "Auditing and Remediation"
 msgstr "Revizija in odpravljanje težav"
 
-#: partials/welcome-page.php:174
+#: partials/welcome-page.php:178
 msgid "Get help making your website accessible. Expert auditing, user testing, and dev support. Conformance letters available."
 msgstr "Dobite pomoč pri zagotavljanju dostopnosti vašega spletnega mesta. Strokovna revizija, testiranje uporabnikov in razvojna podpora. Na voljo so pisma o skladnosti."
 
-#: partials/welcome-page.php:178
+#: partials/welcome-page.php:182
 msgid "Get Remediation Help"
 msgstr "Pridobite pomoč pri odpravljanju težav"
 
@@ -4484,6 +4550,7 @@ msgstr "Popravi nastavitve"
 
 #: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/sidebar.bundle.js:2
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "To bo izbrisalo vse težave za to objavo. Za sprožitev novega pregleda vsebine objave bo potrebno shranjevanje. Ali želite nadaljevati?"
 
@@ -4520,11 +4587,6 @@ msgid "Sorry, your submission failed. Please try again."
 msgstr "Oprostite, vaša oddaja ni uspela. Prosimo, poskusite znova."
 
 #: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "odpre novo okno"
-
-#: build/frontendFixes.bundle.js:1
 msgid "EDAC: Did not find a matching target ID on the page for the skip link."
 msgstr "EDAC: Na strani ni bilo mogoče najti ujemajočega se ciljnega ID-ja za povezavo za preskok."
 
@@ -4532,9 +4594,26 @@ msgstr "EDAC: Na strani ni bilo mogoče najti ujemajočega se ciljnega ID-ja za 
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Napaka pri posodabljanju zgodovine za povezavo za preskok."
 
+#: build/frontendFixes.bundle.js:1
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "odpre novo okno"
+
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Zapri modal s popravki"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not visible. Try disabling styles."
+msgstr "Element ni viden. Poskusite onemogočiti sloge."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element is not focusable. Try disabling styles."
+msgstr "Element ni mogoče fokusirati. Poskusite onemogočiti sloge."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The element was not found on the page."
+msgstr "Elementa ni bilo mogoče najti na strani."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4574,18 +4653,6 @@ msgid "Disable Styles"
 msgstr "Onemogoči sloge"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not visible. Try disabling styles."
-msgstr "Element ni viden. Poskusite onemogočiti sloge."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element is not focusable. Try disabling styles."
-msgstr "Element ni mogoče fokusirati. Poskusite onemogočiti sloge."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "The element was not found on the page."
-msgstr "Elementa ni bilo mogoče najti na strani."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Pri nalaganju težav je prišlo do napake."
 
@@ -4595,6 +4662,7 @@ msgid "Fix issue: %s"
 msgstr "Odpravi težavo: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Odpravi težavo"
 
@@ -4691,6 +4759,137 @@ msgstr "Napaka pri shranjevanju rezultatov pregleda."
 msgid "Error: Missing required parameters."
 msgstr "Napaka: Manjkajo zahtevani parametri."
 
+#: build/issueModal.bundle.js:2
+msgid "Issue related image"
+msgstr "Slika, povezana s težavo"
+
+#: build/issueModal.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Nastavitve popravka so shranjene."
+
+#: build/issueModal.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Shranjevanje nastavitev popravka ni uspelo."
+
+#: build/issueModal.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Nalaganje informacij o popravku ..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Shrani popravek za: %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Težava uspešno zavrnjena."
+
+#: build/issueModal.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Težava uspešno ponovno odprta."
+
+#: build/issueModal.bundle.js:2
+msgid "Dismissing..."
+msgstr "Zavračanje ..."
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Težava zavrnjena — %s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Težava zavrnjena"
+
+#: build/issueModal.bundle.js:2
+msgid "Scope:"
+msgstr "Obseg:"
+
+#: build/issueModal.bundle.js:2
+msgid "All pages"
+msgstr "Vse strani"
+
+#: build/issueModal.bundle.js:2
+msgid "By:"
+msgstr "Avtor:"
+
+#: build/issueModal.bundle.js:2
+msgid "On:"
+msgstr "Vklopljeno:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Razlog za zavrnitev:"
+
+#: build/issueModal.bundle.js:2
+msgid "Reopening..."
+msgstr "Ponovno odpiranje ..."
+
+#: build/issueModal.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Komentar (neobvezno)"
+
+#: build/issueModal.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Dodajte opombo, ki pojasnjuje, zakaj je ta težava zavrnjena."
+
+#: build/issueModal.bundle.js:2
+msgid "More dismiss options"
+msgstr "Več možnosti zavrnitve"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Zavrni globalno"
+
+#: build/issueModal.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Zavrni in zapri modalno okno"
+
+#: build/issueModal.bundle.js:2
+#, js-format
+msgid "Issue #%s"
+msgstr "Težava #%s"
+
+#: build/issueModal.bundle.js:2
+msgid "Issue Details"
+msgstr "Podrobnosti težave"
+
+#: build/issueModal.bundle.js:2
+msgid "Type"
+msgstr "Vrsta"
+
+#: build/issueModal.bundle.js:2
+msgid "Severity"
+msgstr "Resnost"
+
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Znamenitost"
+
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Pokaži razlago"
+
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Zakaj je pomembno"
+
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Kako popraviti"
+
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Podrobnejša dokumentacija"
+
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Slika"
+
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "novo okno"
@@ -4778,3 +4977,234 @@ msgstr "nadaljujte z branjem"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "izvedite več"
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to load accessibility data"
+msgstr "Nalaganje podatkov o dostopnosti ni uspelo"
+
+#: build/sidebar.bundle.js:2
+msgid "Error loading accessibility data"
+msgstr "Napaka pri nalaganju podatkov o dostopnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility results..."
+msgstr "Nalaganje rezultatov dostopnosti ..."
+
+#: build/sidebar.bundle.js:2
+msgid "Updating accessibility data..."
+msgstr "Posodabljanje podatkov o dostopnosti ..."
+
+#: build/sidebar.bundle.js:2
+msgid "problem to address"
+msgid_plural "problems to address"
+msgstr[0] "težava za reševanje"
+msgstr[1] "težavi za reševanje"
+msgstr[2] "težave za reševanje"
+msgstr[3] "težave za reševanje"
+
+#: build/sidebar.bundle.js:2
+msgid "issue that needs review"
+msgid_plural "issues that need review"
+msgstr[0] "težava, ki jo je treba pregledati"
+msgstr[1] "težavi, ki ju je treba pregledati"
+msgstr[2] "težave, ki jih je treba pregledati"
+msgstr[3] "težave, ki jih je treba pregledati"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s and %3$d %4$s."
+msgstr "Imate %1$d %2$s in %3$d %4$s."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "You have %1$d %2$s."
+msgstr "Imate %1$d %2$s."
+
+#: build/sidebar.bundle.js:2
+msgid "Check and fix accessibility issues in your content."
+msgstr "Preverite in odpravite težave z dostopnostjo v vaši vsebini."
+
+#: build/sidebar.bundle.js:2
+msgid "Open Accessibility Panel"
+msgstr "Odpri ploščo za dostopnost"
+
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "Ni na voljo"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth"
+msgstr "%d."
+
+#: build/sidebar.bundle.js:2
+msgid "Summary provided"
+msgstr "Povzetek je na voljo"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary required"
+msgstr "Povzetek je obvezen"
+
+#: build/sidebar.bundle.js:2
+msgid "Summary not required"
+msgstr "Povzetek ni obvezen"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d problems in Accessibility Analysis"
+msgstr "Oglejte si %d težav v analizi dostopnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Težave"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View %d items needing review in Accessibility Analysis"
+msgstr "Oglejte si %d elementov, ki jih je treba pregledati v analizi dostopnosti"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %s"
+msgstr "Oglejte si podrobnosti ravni branja: %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Opravljeni pregledi"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue"
+msgstr "Težava"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "Issue actions for %s"
+msgstr "Dejanja za težavo %s"
+
+#: build/sidebar.bundle.js:2
+msgid "Issue actions"
+msgstr "Dejanja za težavo"
+
+#: build/sidebar.bundle.js:2
+msgid "Show code"
+msgstr "Pokaži kodo"
+
+#: build/sidebar.bundle.js:2
+msgid "Reopen issue"
+msgstr "Ponovno odpri težavo"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismiss issue"
+msgstr "Zavrni težavo"
+
+#: build/sidebar.bundle.js:2
+msgid "Apply fix"
+msgstr "Uporabi popravek"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total"
+msgstr "%d skupaj"
+
+#: build/sidebar.bundle.js:2
+msgid "No dismissed issues."
+msgstr "Ni zavrnjenih težav."
+
+#: build/sidebar.bundle.js:2
+msgid "No issues found."
+msgstr "Ni najdenih težav."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%d total issues"
+msgstr "%d skupnih težav"
+
+#: build/sidebar.bundle.js:2
+msgid "Dismissed Issues"
+msgstr "Zavržene težave"
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified summary saved successfully."
+msgstr "Poenostavljeni povzetek uspešno shranjen."
+
+#: build/sidebar.bundle.js:2
+msgid "Failed to save summary. Please try again."
+msgstr "Shranjevanje povzetka ni uspelo. Poskusite znova."
+
+#: build/sidebar.bundle.js:2
+msgid "An error occurred while saving the summary."
+msgstr "Pri shranjevanju povzetka je prišlo do napake."
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%s grade"
+msgstr "%s razred"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "%dth grade"
+msgstr "%d. razred"
+
+#: build/sidebar.bundle.js:2
+msgid "Not available"
+msgstr "Ni na voljo"
+
+#: build/sidebar.bundle.js:2
+msgid "Warning"
+msgstr "Opozorilo"
+
+#: build/sidebar.bundle.js:2
+msgid "This post does not contain enough content to calculate a reading level."
+msgstr "Ta objava ne vsebuje dovolj vsebine za izračun ravni branja."
+
+#: build/sidebar.bundle.js:2
+msgid "Adjust summary prompts in settings."
+msgstr "Prilagodite pozive za povzetek v nastavitvah."
+
+#: build/sidebar.bundle.js:2
+msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
+msgstr "Vsebina na ali pod 9. razredom branja ne zahteva poenostavljenega povzetka."
+
+#: build/sidebar.bundle.js:2
+msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
+msgstr "Vsebina nad 9. razredom branja zahteva poenostavljen povzetek za izpolnjevanje smernic WCAG AAA."
+
+#: build/sidebar.bundle.js:2
+msgid "Learn more about readability requirements."
+msgstr "Več o zahtevah glede berljivosti."
+
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary Reading Level"
+msgstr "Poenostavljena raven branja povzetka"
+
+#: build/sidebar.bundle.js:2
+msgid "Needs improvement, summary is above the 9th-grade reading level."
+msgstr "Potrebna je izboljšava, povzetek je nad 9. razredom branja."
+
+#: build/sidebar.bundle.js:2
+msgid "Below the recommended 9th-grade reading level."
+msgstr "Pod priporočeno ravnjo branja 9. razreda."
+
+#: build/sidebar.bundle.js:2
+msgid "Enter simplified summary..."
+msgstr "Vnesite poenostavljen povzetek ..."
+
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Shrani povzetek"
+
+#: build/sidebar.bundle.js:2
+msgid "Loading accessibility data..."
+msgstr "Nalaganje podatkov o dostopnosti ..."
+
+#: build/sidebar.bundle.js:2
+msgid "Accessibility Checker actions"
+msgstr "Dejanja preverjevalnika dostopnosti"
+
+#: build/sidebar.bundle.js:2
+msgid "Scan"
+msgstr "Skeniraj"
+
+#: build/sidebar.bundle.js:2
+msgid "Refresh"
+msgstr "Osveži"

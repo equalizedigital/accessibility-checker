@@ -7,6 +7,10 @@
 
 use EDAC\Admin\Welcome_Page;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 ?>
 
 <div class="wrap edac-welcome-container">
@@ -18,18 +22,18 @@ use EDAC\Admin\Welcome_Page;
 				<h1 class="edac-welcome-title">
 					<?php
 					if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID === true ) {
-						$welcome_title = __( 'Accessibility Checker Pro', 'accessibility-checker' );
-						$version       = EDACP_VERSION;
+						$edac_welcome_title = __( 'Accessibility Checker Pro', 'accessibility-checker' );
+						$edac_version       = EDACP_VERSION;
 					} else {
-						$welcome_title = __( 'Accessibility Checker', 'accessibility-checker' );
-						$version       = EDAC_VERSION;
+						$edac_welcome_title = __( 'Accessibility Checker', 'accessibility-checker' );
+						$edac_version       = EDAC_VERSION;
 					}
 
 					printf(
 						'%1$s <span class="edac-welcome-header-version">%2$s %3$s</span>',
-						esc_html( $welcome_title ),
+						esc_html( $edac_welcome_title ),
 						esc_html__( 'version', 'accessibility-checker' ),
-						esc_html( $version )
+						esc_html( $edac_version )
 					);
 					?>
 				</h1>
@@ -231,8 +235,8 @@ use EDAC\Admin\Welcome_Page;
 	?>
 
 		<?php
-		$meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
-		if ( ! empty( $meetup_html ) ) :
+		$edac_meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		if ( ! empty( $edac_meetup_html ) ) :
 			?>
 			<div class="edac-panel">
 				<h2 class="edac-summary-header">
@@ -240,7 +244,7 @@ use EDAC\Admin\Welcome_Page;
 				</h2>
 				<?php
 				//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
-				echo $meetup_html;
+				echo $edac_meetup_html;
 				?>
 			</div>
 		<?php endif; ?>
