@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4755,30 +4755,6 @@ msgid "Save fix for: %s"
 msgstr "Şunun için düzeltmeyi kaydet: %s"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "Kalın (ctrl+b)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "İtalik (ctrl+i)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "Bağlantı (ctrl+k)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "Bağlantı URL'si"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "Ekle"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "Sorun başarıyla kapatıldı."
 
@@ -4828,8 +4804,8 @@ msgid "Comment (optional)"
 msgstr "Yorum (isteğe bağlı)"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "Bu sorunun neden kapatıldığını açıklayan bir not ekleyin. Kalın, italik ve bağlantıları destekler."
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Bu sorunun neden göz ardı edildiğini açıklayan bir not ekleyin."
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"
