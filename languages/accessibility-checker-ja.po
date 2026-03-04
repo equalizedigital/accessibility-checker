@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4742,30 +4742,6 @@ msgid "Save fix for: %s"
 msgstr "%s の修正を保存"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "太字 (Ctrl+B)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "斜体 (Ctrl+I)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "リンク (Ctrl+K)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "リンクURL"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "追加"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "問題を正常に却下しました。"
 
@@ -4815,8 +4791,8 @@ msgid "Comment (optional)"
 msgstr "コメント (任意)"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "この問題が却下される理由を説明するメモを追加します。太字、斜体、リンクをサポートしています。"
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "この問題を却下する理由を説明するメモを追加してください。"
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"

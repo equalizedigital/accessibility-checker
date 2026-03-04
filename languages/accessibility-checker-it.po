@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4755,30 +4755,6 @@ msgid "Save fix for: %s"
 msgstr "Salva correzione per: %s"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "Grassetto (ctrl+b)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "Corsivo (ctrl+i)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "Link (ctrl+k)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "URL del link"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "Aggiungi"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "Problema ignorato con successo."
 
@@ -4828,8 +4804,8 @@ msgid "Comment (optional)"
 msgstr "Commento (facoltativo)"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "Aggiungi una nota che spieghi perché questo problema viene ignorato. Supporta grassetto, corsivo e link."
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Aggiungi una nota che spieghi perché questo problema viene ignorato."
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4755,30 +4755,6 @@ msgid "Save fix for: %s"
 msgstr "Αποθήκευση επιδιόρθωσης για: %s"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "Έντονα (ctrl+b)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "Πλάγια (ctrl+i)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "Σύνδεσμος (ctrl+k)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "URL συνδέσμου"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "Προσθήκη"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "Το ζήτημα απορρίφθηκε επιτυχώς."
 
@@ -4828,8 +4804,8 @@ msgid "Comment (optional)"
 msgstr "Σχόλιο (προαιρετικό)"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "Προσθέστε μια σημείωση που να εξηγεί γιατί απορρίπτεται αυτό το ζήτημα. Υποστηρίζει έντονα, πλάγια και συνδέσμους."
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Προσθέστε μια σημείωση που να εξηγεί γιατί απορρίπτεται αυτό το ζήτημα."
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"

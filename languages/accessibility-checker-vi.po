@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4742,30 +4742,6 @@ msgid "Save fix for: %s"
 msgstr "Lưu bản sửa lỗi cho: %s"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "In đậm (ctrl+b)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "In nghiêng (ctrl+i)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "Liên kết (ctrl+k)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "URL liên kết"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "Thêm"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "Đã bỏ qua sự cố thành công."
 
@@ -4815,8 +4791,8 @@ msgid "Comment (optional)"
 msgstr "Bình luận (tùy chọn)"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "Thêm ghi chú giải thích lý do sự cố này bị bỏ qua. Hỗ trợ in đậm, in nghiêng và liên kết."
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Thêm ghi chú giải thích lý do bỏ qua vấn đề này."
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"

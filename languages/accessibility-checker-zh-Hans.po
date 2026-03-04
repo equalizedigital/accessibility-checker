@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T17:39:13+00:00\n"
+"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -4742,30 +4742,6 @@ msgid "Save fix for: %s"
 msgstr "保存修复：%s"
 
 #: build/issueModal.bundle.js:2
-msgid "Bold (Ctrl+B)"
-msgstr "粗体 (Ctrl+B)"
-
-#: build/issueModal.bundle.js:2
-msgid "Italic (Ctrl+I)"
-msgstr "斜体 (Ctrl+I)"
-
-#: build/issueModal.bundle.js:2
-msgid "Link (Ctrl+K)"
-msgstr "链接 (Ctrl+K)"
-
-#: build/issueModal.bundle.js:2
-msgid "https://example.com"
-msgstr "https://example.com"
-
-#: build/issueModal.bundle.js:2
-msgid "Link URL"
-msgstr "链接 URL"
-
-#: build/issueModal.bundle.js:2
-msgid "Add"
-msgstr "添加"
-
-#: build/issueModal.bundle.js:2
 msgid "Issue dismissed successfully."
 msgstr "问题已成功忽略。"
 
@@ -4815,8 +4791,8 @@ msgid "Comment (optional)"
 msgstr "评论（可选）"
 
 #: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links."
-msgstr "添加说明此问题为何被忽略的备注。支持粗体、斜体和链接。"
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "添加说明此问题为何被驳回的备注。"
 
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"
