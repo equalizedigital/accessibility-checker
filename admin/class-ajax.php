@@ -179,8 +179,8 @@ class Ajax {
 
 		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
 		$html['content'] .= sprintf(
-			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s.',
-			'<a href="' . esc_url(
+			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s',
+			'<a target="_blank" href="' . esc_url(
 				edac_generate_link_type(
 					[
 						'utm_campaign' => 'dashboard-widget',
@@ -190,7 +190,7 @@ class Ajax {
 					[ 'help_id' => 4280 ]
 				)
 			) . '">',
-			'</a>'
+			'<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>'
 		) . PHP_EOL;
 		$html['content'] .= '</small></div>' . PHP_EOL;
 
@@ -529,7 +529,6 @@ class Ajax {
 								],
 								$post_view_link
 							);
-
 							// Translators: %d is the issue ID.
 							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
 							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
@@ -739,7 +738,7 @@ class Ajax {
 			</form>';
 		}
 
-		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements</a>';
+		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>';
 
 		if ( ! $html ) {
 			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );

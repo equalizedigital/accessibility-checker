@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - Audit Your Website for WCAG, ADA, and Section 508 Accessibility Errors ===
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, accessible, wcag, ada, WP accessibility
-Requires at least: 6.6
+Requires at least: 6.7
 Tested up to: 6.9
-Stable tag: 1.37.0
+Stable tag: 1.38.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -211,6 +211,22 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-03-04 - version 1.38.0
+* New - Block Editor Sidebar with accessibility scan data, issues, and quick access panel for faster navigation.
+* New - Dismissed issues now have assignable reasons for the dismissal.
+* New - Dismiss reason and severity now visible on issues (in both sidebar and classic metabox).
+* New - Ability to reopen issues that were dismissed with one click from the sidebar.
+* Updated - Classic Editor metabox visual design to match sidebar styling.
+* Updated - Terminology: "Errors" now "Problems".
+* Updated - Terminology: "Warnings" now "Needs Review".
+* Updated - Terminology: "Ignore" now "Dissmis".
+* Updated - Terminology: "Passed Tests" now "Passed Checks".
+* Updated - in the sidebar contrast errors are now included in the "Problems" sections.
+* Enhanced - Using both color and shape now indicate state of found issues and readability.
+* Fix - Make sure that summary needed is flagged for above 9th grade. Some instances it could flag for summary at 9th.
+* Fix - prevent welcome modal on the first visit from overriding other events on the page load.
+* Fix - various type safety and existed checks in places to prevent edge case errors.
+
 2026-01-23 - version 1.37.0
 * Fix - Duplicate markup on the page can now be properly identified as an issue.
 * Fix - Restrict global ignore management link and fix button label span closure.
@@ -226,15 +242,5 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Add - new trigger for invalid alt text - "an image".
 * Add - allow role="menuitem" with aria-expanded in link validation checks
 * New - visit welcome screen on plugin activation.
-
-2025-12-05 - version 1.35.0
-* Fix - Ignored issues no longer count in density scores.
-* Fix - Ignored issues count comparison and message logic in frontend highlighter.
-* Fix - Allow long translations to wrap in new window warning tooltip.
-* Fix - Improve sanitization that would prevent checkboxes saving on first attempt in some cases.
-* Fix - Dashboard widget to conditionally display upcoming meetups and improve meetup data handling.
-* Fix - Make highlighter controls translatable.
-* Tweak - Add better help article link for new window warning fix.
-* Tweak - Use WordPress data functions instead of server time for ignore date formatting.
 
 Older versions can be found in the plugins `changelog.txt`.

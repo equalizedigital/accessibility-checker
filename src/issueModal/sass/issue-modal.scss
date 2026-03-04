@@ -128,7 +128,6 @@
 			font-size: 13px;
 
 			a {
-				color: #0073aa;
 				text-decoration: underline;
 
 				&:hover {
@@ -155,7 +154,6 @@
 			font-size: 13px;
 
 			a {
-				color: #0073aa;
 				text-decoration: underline;
 
 				&:hover {
@@ -256,7 +254,6 @@
 				margin: 0;
 
 				a {
-					color: #0073aa;
 					text-decoration: underline;
 
 					&:hover {
@@ -487,6 +484,14 @@
 				&:last-child {
 					margin-bottom: 0;
 				}
+			}
+
+			img {
+				max-width: 100%;
+				max-height: 300px;
+				height: auto;
+				border: 1px solid #ddd;
+				border-radius: 4px;
 			}
 		}
 
