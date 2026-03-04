@@ -9,6 +9,7 @@ import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
+import ExternalLinkIcon from '../../components/ExternalLinkIcon';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 import '../../sass/components/readability-analysis.scss';
@@ -316,8 +317,9 @@ const ReadabilityAnalysis = () => {
 							</a>
 						) }
 						{ readingLevelStatus !== 'below' && (
-							<a href={ readabilityHelpUrl || '#' } className="edac-panel-section__link">
+							<a href={ readabilityHelpUrl || '#' } target="_blank" className="edac-panel-section__link">
 								{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
+								<ExternalLinkIcon />
 							</a>
 						) }
 
@@ -389,8 +391,9 @@ const ReadabilityAnalysis = () => {
 						<p className="edac-panel-section__message">
 							{ __( 'A simplified summary is required for this content.', 'accessibility-checker' ) }
 						</p>
-						<a href={ readabilityHelpUrl || '#' } className="edac-panel-section__link">
+						<a href={ readabilityHelpUrl || '#' } target="_blank" className="edac-panel-section__link">
 							{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
+							<ExternalLinkIcon />
 						</a>
 
 						<div className="edac-panel-section__subsection">
