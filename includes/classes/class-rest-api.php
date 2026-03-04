@@ -351,7 +351,7 @@ class REST_Api {
 								$wpdb->prepare( 'SELECT postid FROM %i WHERE id = %d', $table_name, $issue_id )
 							);
 
-							return $post_id > 0 ? current_user_can( 'edit_post', $post_id ) : false;
+							return (bool) ( $post_id > 0 && current_user_can( 'edit_post', $post_id ) );
 						},
 					]
 				);
