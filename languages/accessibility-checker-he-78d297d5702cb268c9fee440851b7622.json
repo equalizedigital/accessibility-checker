@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "\u05e9\u05de\u05d5\u05e8 \u05ea\u05d9\u05e7\u05d5\u05df \u05e2\u05d1\u05d5\u05e8: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "\u05de\u05d5\u05d3\u05d2\u05e9 (Ctrl+B)"
-            ],
-            "Italic (Ctrl+I)": [
-                "\u05e0\u05d8\u05d5\u05d9 (Ctrl+I)"
-            ],
-            "Link (Ctrl+K)": [
-                "\u05e7\u05d9\u05e9\u05d5\u05e8 (Ctrl+K)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "\u05db\u05ea\u05d5\u05d1\u05ea URL \u05e9\u05dc \u05e7\u05d9\u05e9\u05d5\u05e8"
-            ],
-            "Add": [
-                "\u05d4\u05d5\u05e1\u05e3"
-            ],
             "Issue dismissed successfully.": [
                 "\u05d4\u05d1\u05e2\u05d9\u05d4 \u05d1\u05d5\u05d8\u05dc\u05d4 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "\u05d4\u05e2\u05e8\u05d4 (\u05d0\u05d5\u05e4\u05e6\u05d9\u05d5\u05e0\u05dc\u05d9)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "\u05d4\u05d5\u05e1\u05e3 \u05d4\u05e2\u05e8\u05d4 \u05d4\u05de\u05e1\u05d1\u05d9\u05e8\u05d4 \u05de\u05d3\u05d5\u05e2 \u05d1\u05e2\u05d9\u05d4 \u05d6\u05d5 \u05de\u05d1\u05d5\u05d8\u05dc\u05ea. \u05ea\u05d5\u05de\u05da \u05d1\u05d8\u05e7\u05e1\u05d8 \u05de\u05d5\u05d3\u05d2\u05e9, \u05e0\u05d8\u05d5\u05d9 \u05d5\u05e7\u05d9\u05e9\u05d5\u05e8\u05d9\u05dd."
+            "Add a note explaining why this issue is being dismissed.": [
+                "\u05d4\u05d5\u05e1\u05e3 \u05d4\u05e2\u05e8\u05d4 \u05d4\u05de\u05e1\u05d1\u05d9\u05e8\u05d4 \u05de\u05d3\u05d5\u05e2 \u05d1\u05e2\u05d9\u05d4 \u05d6\u05d5 \u05e0\u05d3\u05d7\u05d9\u05ea."
             ],
             "More dismiss options": [
                 "\u05d0\u05e4\u05e9\u05e8\u05d5\u05d9\u05d5\u05ea \u05d1\u05d9\u05d8\u05d5\u05dc \u05e0\u05d5\u05e1\u05e4\u05d5\u05ea"

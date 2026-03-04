@@ -74,24 +74,6 @@
             "Save fix for: %s": [
                 "Ulo\u017eit opravu pro: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Tu\u010dn\u00e9 (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Kurz\u00edva (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Odkaz (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL odkazu"
-            ],
-            "Add": [
-                "P\u0159idat"
-            ],
             "Issue dismissed successfully.": [
                 "Probl\u00e9m \u00fasp\u011b\u0161n\u011b zam\u00edtnut."
             ],
@@ -128,8 +110,8 @@
             "Comment (optional)": [
                 "Koment\u00e1\u0159 (voliteln\u00e9)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "P\u0159idejte pozn\u00e1mku vysv\u011btluj\u00edc\u00ed, pro\u010d je tento probl\u00e9m zam\u00edtnut. Podporuje tu\u010dn\u00e9 p\u00edsmo, kurz\u00edvu a odkazy."
+            "Add a note explaining why this issue is being dismissed.": [
+                "P\u0159idejte pozn\u00e1mku vysv\u011btluj\u00edc\u00ed, pro\u010d je tento probl\u00e9m zam\u00edtnut."
             ],
             "More dismiss options": [
                 "Dal\u0161\u00ed mo\u017enosti zam\u00edtnut\u00ed"
