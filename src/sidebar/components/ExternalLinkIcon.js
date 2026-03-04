@@ -9,12 +9,14 @@
  * @param {boolean} props.showScreenReaderText - Whether to include screen reader text. Defaults to true.
  * @return {Element} The external link icon and optional screen reader text.
  */
+import { __ } from '@wordpress/i18n';
+
 const ExternalLinkIcon = ( { showScreenReaderText = true } = {} ) => {
 	return (
 		<>
 			<span aria-hidden="true">{ ' ↗' }</span>
 			{ showScreenReaderText && (
-				<span className="screen-reader-text">, opens a new window</span>
+				<span className="screen-reader-text">{ __( ', opens a new window', 'accessibility-checker' ) }</span>
 			) }
 		</>
 	);
