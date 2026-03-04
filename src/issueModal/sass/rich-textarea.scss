@@ -24,8 +24,8 @@
 	resize: vertical;
 
 	&:focus {
-		border-color: #0073aa;
-		box-shadow: 0 0 0 1px #0073aa;
+		border-color: $info-blue;
+		box-shadow: 0 0 0 1px $info-blue;
 		outline: none;
 	}
 
