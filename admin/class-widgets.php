@@ -99,7 +99,7 @@ class Widgets {
 					conic-gradient(#006600 0%, #e2e4e7 0);">
 					<div class="edac-progress-percentage">-</div>
 					<div class="edac-progress-label">' .
-					__( 'Passed Tests', 'accessibility-checker' ) .
+					__( 'Passed Checks', 'accessibility-checker' ) .
 					'</div>
 				</div>
 			</div>
