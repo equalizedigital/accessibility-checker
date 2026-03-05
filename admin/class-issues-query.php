@@ -183,9 +183,10 @@ class Issues_Query {
 
 		global $wpdb;
 
-		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
-
-		$sql = $this->get_sql();
+		// SQLite does not support COUNT(DISTINCT col1, col2) with multiple columns.
+		// Use a subquery to count distinct (rule, object) pairs for cross-database compatibility.
+		$inner_sql = 'SELECT DISTINCT rule, object ' . $this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'];
+		$sql       = "SELECT COUNT(*) FROM ($inner_sql) AS distinct_issues";
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_var( $sql );
