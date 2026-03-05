@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Oplossing opslaan voor: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Vet (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Cursief (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "Link-URL"
-            ],
-            "Add": [
-                "Toevoegen"
-            ],
             "Issue dismissed successfully.": [
                 "Probleem succesvol genegeerd."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Opmerking (optioneel)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Voeg een notitie toe waarin u uitlegt waarom dit probleem wordt genegeerd. Ondersteunt vet, cursief en links."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Voeg een notitie toe waarin wordt uitgelegd waarom dit probleem wordt genegeerd."
             ],
             "More dismiss options": [
                 "Meer negeeropties"

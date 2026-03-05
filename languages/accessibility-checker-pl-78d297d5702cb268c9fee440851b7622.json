@@ -74,24 +74,6 @@
             "Save fix for: %s": [
                 "Zapisz poprawk\u0119 dla: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Pogrubienie (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Kursywa (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "Adres URL linku"
-            ],
-            "Add": [
-                "Dodaj"
-            ],
             "Issue dismissed successfully.": [
                 "Problem pomy\u015blnie odrzucony."
             ],
@@ -128,8 +110,8 @@
             "Comment (optional)": [
                 "Komentarz (opcjonalnie)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Dodaj notatk\u0119 wyja\u015bniaj\u0105c\u0105, dlaczego ten problem jest odrzucany. Obs\u0142uguje pogrubienie, kursyw\u0119 i linki."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Dodaj notatk\u0119 wyja\u015bniaj\u0105c\u0105, dlaczego ten problem jest odrzucany."
             ],
             "More dismiss options": [
                 "Wi\u0119cej opcji odrzucania"

@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Spara fix f\u00f6r: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Fet (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Kursiv (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "L\u00e4nk (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "L\u00e4nk URL"
-            ],
-            "Add": [
-                "L\u00e4gg till"
-            ],
             "Issue dismissed successfully.": [
                 "\u00c4rendet avf\u00e4rdades framg\u00e5ngsrikt."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Kommentar (valfritt)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "L\u00e4gg till en anteckning som f\u00f6rklarar varf\u00f6r detta \u00e4rende avf\u00e4rdas. St\u00f6der fetstil, kursiv stil och l\u00e4nkar."
+            "Add a note explaining why this issue is being dismissed.": [
+                "L\u00e4gg till en anteckning som f\u00f6rklarar varf\u00f6r det h\u00e4r \u00e4rendet avf\u00e4rdas."
             ],
             "More dismiss options": [
                 "Fler avf\u00e4rdningsalternativ"
