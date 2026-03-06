@@ -91,6 +91,15 @@ class Widgets {
 			<h3 class="edac-summary-header">' .
 				__( 'Full Site Accessibility Status', 'accessibility-checker' ) .
 				'</h3>
+
+			<div class="edac-summary-metadata">
+				<span id="edac-summary-info-count">-</span>
+				<span>' . __( 'URLs Scanned', 'accessibility-checker' ) . '</span>
+				<span>•</span>
+				<span>' . __( 'Updated', 'accessibility-checker' ) . '</span>
+				<span id="edac-summary-info-date" class="edac-timestamp-to-local">-</span>
+			</div>
+
 			<div class="edac-summary-passed">
 				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="0"
 					aria-valuemin="0" aria-valuemax="100"
@@ -99,38 +108,29 @@ class Widgets {
 					conic-gradient(#006600 0%, #e2e4e7 0);">
 					<div class="edac-progress-percentage">-</div>
 					<div class="edac-progress-label">' .
-					__( 'Passed Tests', 'accessibility-checker' ) .
+					__( 'Passed Checks', 'accessibility-checker' ) .
 					'</div>
 				</div>
 			</div>
 
 			<div class="edac-summary-info">
-				<div class="edac-summary-info-date">
-					<div class="edac-summary-info-date-label">' . __( 'Report Last Updated:', 'accessibility-checker' ) . '</div>
-					<div id="edac-summary-info-date" class="edac-summary-info-date-date edac-timestamp-to-local">-</div>';
-
-				$html .= '
-				</div>
-
-				<div class="edac-summary-info-count">
-					<div class="edac-summary-scan-count-label">
-						' . __( 'URLs Scanned:', 'accessibility-checker' ) . '
-					</div>
-					<div id="edac-summary-info-count" class="edac-summary-info-count-number">-</div>
-				</div>';
-
-				$html .= '
 				<div class="edac-summary-info-stats">
 					<div  class="edac-summary-info-stats-box edac-summary-info-stats-box-error">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Errors:', 'accessibility-checker' ) . ' </div>
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'error' ) . '</span>
+						<div class="edac-summary-info-stats-box-label">' . __( 'Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Color Contrast Errors:', 'accessibility-checker' ) . ' </div>
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'error' ) . '</span>
+						<div class="edac-summary-info-stats-box-label">' . __( 'Contrast Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-contrast-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Warnings:', 'accessibility-checker' ) . ' </div>
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'warning' ) . '</span>
+						<div class="edac-summary-info-stats-box-label">' . __( 'Needs Review:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-warnings" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 				</div>
@@ -173,13 +173,13 @@ class Widgets {
 						' . __( 'Post Type', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
-						' . __( 'Errors', 'accessibility-checker' ) . '
+						' . __( 'Problems', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
 						' . __( 'Contrast', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
-						' . __( 'Warnings', 'accessibility-checker' ) . '
+						' . __( 'Needs Review', 'accessibility-checker' ) . '
 					</th>
 				</tr>
 				</thead>
@@ -248,8 +248,9 @@ class Widgets {
 							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
-									<a href="' . esc_url( $non_scannable_post_type_pro_link ) . '">
+									<a class="button" href="' . esc_url( $non_scannable_post_type_pro_link ) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Upgrade to Scan (opens in a new window)', 'accessibility-checker' ) . '">
 										' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
+										<span aria-hidden="true"> ↗</span>
 									</a>
 								</div>
 							</td>
@@ -313,8 +314,8 @@ class Widgets {
 			false
 		);
 		$html     .= '<h3 class="screen-reader-text">' . __( 'Additional Resources', 'accessibility-checker' ) . '</h3>';
-		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
-		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
+		$html     .= '<a target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a>';
+		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a></div></div>';
 
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
 		echo $html;

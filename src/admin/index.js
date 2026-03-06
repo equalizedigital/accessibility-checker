@@ -724,7 +724,7 @@ const fillDashboardWidget = () => {
 						passedPercentage
 					);
 					passedPercentageEl.style.background =
-						'radial-gradient(closest-side, white 85%, transparent 80% 100%), conic-gradient(#006600 ' +
+						'radial-gradient(closest-side, white 85%, transparent 80% 100%), conic-gradient(var(--wp-admin-theme-color, #3273aa) ' +
 						passedPercentage +
 						'%, #e2e4e7 0)';
 				}
@@ -776,7 +776,7 @@ const fillDashboardWidget = () => {
 				const contrastContainerEl = document.querySelector(
 					'.edac-summary-info-stats-box-contrast'
 				);
-				if ( errors > 0 && contrastContainerEl ) {
+				if ( contrastErrors > 0 && contrastContainerEl ) {
 					contrastContainerEl.classList.add( 'has-errors' );
 				}
 				const contrastErrorsEl = document.querySelector(
