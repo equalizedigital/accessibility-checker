@@ -158,4 +158,35 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 			],
 		];
 	}
+
+	/**
+	 * Ensures missing keys do not emit notices.
+	 */
+	public function test_edac_remove_element_with_value_missing_key() {
+		$items = [
+			[
+				'id'   => 1,
+				'name' => 'Alice',
+			],
+			[
+				'name' => 'MissingId',
+			],
+		];
+
+		$handler = static function ( ...$args ) {
+			unset( $args );
+			throw new \RuntimeException( 'Unexpected PHP warning or notice in helper call.' );
+		};
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Intentional in test to fail on notices/warnings.
+		set_error_handler( $handler );
+
+		try {
+			$result = edac_remove_element_with_value( $items, 'id', 2 );
+		} finally {
+			restore_error_handler();
+		}
+
+		$this->assertSame( $items, $result );
+	}
 }
