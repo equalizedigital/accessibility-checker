@@ -258,7 +258,7 @@ class Issues_Query {
 
 				// Then add color_contrast_failure to the rule_slugs filter.
 				$key = array_search( 'color_contrast_failure', $filter['rule_slugs'], true );
-				if ( ! $key ) {
+				if ( false === $key ) {
 					$filter['rule_slugs'][] = 'color_contrast_failure';
 				}
 			}
