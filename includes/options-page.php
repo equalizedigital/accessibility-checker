@@ -659,7 +659,7 @@ function edac_post_types_cb() {
 			}
 			?>
 		</fieldset>
-		<?php if ( EDAC_KEY_VALID === false ) { ?>
+		<?php if ( defined( 'EDAC_KEY_VALID' ) && false === EDAC_KEY_VALID ) { ?>
 			<p class="edac-description">
 				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
