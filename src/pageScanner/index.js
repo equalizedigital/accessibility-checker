@@ -27,8 +27,20 @@ const LANDMARK_ROLES = [
 const CONDITIONAL_LANDMARK_TAGS = [ 'SECTION', 'ARTICLE', 'FORM' ];
 const CONDITIONAL_LANDMARK_ROLES = [ 'region', 'article', 'form' ];
 
+export function safeQuerySelector( selector ) {
+	if ( ! selector || typeof selector !== 'string' ) {
+		return null;
+	}
+
+	try {
+		return document.querySelector( selector );
+	} catch ( error ) {
+		return null;
+	}
+}
+
 function getLandmarkForSelector( selector ) {
-	const el = document.querySelector( selector );
+	const el = safeQuerySelector( selector );
 	if ( ! el ) {
 		return { type: null, selector: null };
 	}
@@ -261,10 +273,10 @@ const scan = async (
 
 			//Sort the violations by order they appear in the document
 			violations.sort( function( a, b ) {
-				a = document.querySelector( a.selector );
-				b = document.querySelector( b.selector );
+				a = safeQuerySelector( a.selector );
+				b = safeQuerySelector( b.selector );
 
-				if ( a === b ) {
+				if ( ! a || ! b || a === b ) {
 					return 0;
 				}
 
@@ -380,7 +392,7 @@ function processViolation( violation, item ) {
 	const landmark = getLandmarkForSelector( selector );
 	const ancestry = violation.node.ancestry || [];
 	const xpath = violation.node.xpath || [];
-	const html = document.querySelector( selector )?.outerHTML;
+	const html = safeQuerySelector( selector )?.outerHTML;
 	return {
 		selector,
 		ancestry,
