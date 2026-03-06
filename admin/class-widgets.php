@@ -248,7 +248,7 @@ class Widgets {
 							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
-									<a class="button" href="' . esc_url( $non_scannable_post_type_pro_link ) . '" target="_blank" aria-label="' . __( 'Upgrade to Scan (opens in a new window)', 'accessibility-checker' ) . '">
+									<a class="button" href="' . esc_url( $non_scannable_post_type_pro_link ) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Upgrade to Scan (opens in a new window)', 'accessibility-checker' ) . '">
 										' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
 										<span aria-hidden="true"> ↗</span>
 									</a>
@@ -314,8 +314,8 @@ class Widgets {
 			false
 		);
 		$html     .= '<h3 class="screen-reader-text">' . __( 'Additional Resources', 'accessibility-checker' ) . '</h3>';
-		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a>';
-		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a></div></div>';
+		$html     .= '<a target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a>';
+		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a></div></div>';
 
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
 		echo $html;
