@@ -776,7 +776,7 @@ const fillDashboardWidget = () => {
 				const contrastContainerEl = document.querySelector(
 					'.edac-summary-info-stats-box-contrast'
 				);
-				if ( errors > 0 && contrastContainerEl ) {
+				if ( contrastErrors > 0 && contrastContainerEl ) {
 					contrastContainerEl.classList.add( 'has-errors' );
 				}
 				const contrastErrorsEl = document.querySelector(

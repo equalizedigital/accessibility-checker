@@ -116,17 +116,20 @@ class Widgets {
 			<div class="edac-summary-info">
 				<div class="edac-summary-info-stats">
 					<div  class="edac-summary-info-stats-box edac-summary-info-stats-box-error">
-						' . edac_icon( 'error' ) . '
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'error' ) . '</span>
 						<div class="edac-summary-info-stats-box-label">' . __( 'Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast">
-						' . edac_icon( 'error' ) . '
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'error' ) . '</span>
 						<div class="edac-summary-info-stats-box-label">' . __( 'Contrast Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-contrast-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning">
-						' . edac_icon( 'warning' ) . '
+						<span class="edac-stats-icon edac-stats-icon--ok">' . edac_icon( 'check' ) . '</span>
+						<span class="edac-stats-icon edac-stats-icon--issue">' . edac_icon( 'warning' ) . '</span>
 						<div class="edac-summary-info-stats-box-label">' . __( 'Needs Review:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-warnings" class="edac-summary-info-stats-box-number">-</div>
 					</div>
@@ -310,8 +313,8 @@ class Widgets {
 			false
 		);
 		$html     .= '<h3 class="screen-reader-text">' . __( 'Additional Resources', 'accessibility-checker' ) . '</h3>';
-		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '</a>';
-		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '</a></div></div>';
+		$html     .= '<a target="_blank" aria-label="' . __( 'Blog (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-mr-1" href="' . esc_url( $blog_link ) . '">' . __( 'Blog', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a>';
+		$html     .= '<span class="edac-widget-footer-link-list-spacer"></span><a target="_blank" aria-label="' . __( 'Documentation (opens in a new window)', 'accessibility-checker' ) . '" class="edac-widget-footer-link-list-item edac-ml-1" href="' . esc_url( $docs_link ) . '">' . __( 'Documentation', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></a></div></div>';
 
 		//phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- content is being escaped as it is being produced, late escaping would be more complicated and unreadable
 		echo $html;
