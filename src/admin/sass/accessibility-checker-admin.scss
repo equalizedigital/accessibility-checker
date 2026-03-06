@@ -1437,8 +1437,10 @@
 
     &-notice-upgrade-to-edacp {
       text-align: center;
-      border: solid 1px variables.$color-gray;
-      padding: .5rem;
+      
+      a {
+        width: 100%;
+      }
     }
   }
 

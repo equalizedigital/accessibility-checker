@@ -173,13 +173,13 @@ class Widgets {
 						' . __( 'Post Type', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
-						' . __( 'Errors', 'accessibility-checker' ) . '
+						' . __( 'Problems', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
 						' . __( 'Contrast', 'accessibility-checker' ) . '
 					</th>
 					<th scope="col" >
-						' . __( 'Warnings', 'accessibility-checker' ) . '
+						' . __( 'Needs Review', 'accessibility-checker' ) . '
 					</th>
 				</tr>
 				</thead>
@@ -248,8 +248,9 @@ class Widgets {
 							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
-									<a href="' . esc_url( $non_scannable_post_type_pro_link ) . '">
+									<a class="button" href="' . esc_url( $non_scannable_post_type_pro_link ) . '" target="_blank" aria-label="' . __( 'Upgrade to Scan (opens in a new window)', 'accessibility-checker' ) . '">
 										' . __( 'Upgrade to Scan', 'accessibility-checker' ) . '
+										<span aria-hidden="true"> ↗</span>
 									</a>
 								</div>
 							</td>
