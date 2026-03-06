@@ -101,14 +101,18 @@ class Ajax {
 
 			$html['content'] .= '<li class="edac-summary-total">';
 
-				$html['content'] .= '<span class="screen-reader-text">' . $summary['passed_tests'] . '% Passed Checks</span>';
+				$html['content'] .= '<span class="screen-reader-text">' . sprintf(
+				/* translators: %d: percentage of passed checks */
+					esc_html__( '%d%% Passed Checks', 'accessibility-checker' ),
+					$summary['passed_tests']
+				) . '</span>';
 
 				$html['content'] .= edac_icon( 'info', '', true );
 
 				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-progress-circle ' . ( ( $summary['passed_tests'] > 50 ) ? ' over50' : '' ) . '">
 					<div class="edac-summary-total-progress-circle-label">
 						<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-						<div class="edac-panel-number-label">Passed Checks<sup>*</sup></div>
+						<div class="edac-panel-number-label">' . esc_html__( 'Passed Checks', 'accessibility-checker' ) . '<sup>*</sup></div>
 					</div>
 					<div class="left-half-clipper">
 						<div class="first50-bar"></div>
@@ -118,7 +122,7 @@ class Ajax {
 
 				$html['content'] .= '<div aria-hidden="true" class="edac-summary-total-mobile">
 					<div class="edac-panel-number">' . $summary['passed_tests'] . '%</div>
-					<div class="edac-panel-number-label">Passed Tests<sup>*</sup></div>
+					<div class="edac-panel-number-label">' . esc_html__( 'Passed Tests', 'accessibility-checker' ) . '<sup>*</sup></div>
 					<div class="edac-summary-total-mobile-bar"><span style="width:' . ( $summary['passed_tests'] ) . '%;"></span></div>
 				</div>';
 
@@ -169,7 +173,7 @@ class Ajax {
 				<div class="edac-panel-number">
 					' . $summary['readability'] . '
 				</div>
-				<div class="edac-panel-number-label">Reading Level</div>
+				<div class="edac-panel-number-label">' . esc_html__( 'Reading Level', 'accessibility-checker' ) . '</div>
 			</div>
 			<div class="edac-summary-readability-summary">
 				<div class="edac-summary-readability-summary-text' . ( ( ( 'none' === $simplified_summary_prompt || $summary['simplified_summary'] || (int) $summary['content_grade'] <= 9 ) && ! $simplified_summary_grade_failed ) ? ' active' : '' ) . '">' . $simplified_summary_text . '</div>
@@ -179,7 +183,8 @@ class Ajax {
 
 		$html['content'] .= '<div class="edac-summary-disclaimer" id="edac-summary-disclaimer"><small>' . PHP_EOL;
 		$html['content'] .= sprintf(
-			'* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s',
+			/* translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text */
+			__( '* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s', 'accessibility-checker' ),
 			'<a target="_blank" href="' . esc_url(
 				edac_generate_link_type(
 					[
@@ -381,8 +386,21 @@ class Ajax {
 				}
 				$html .= $severity_badge;
 				$html .= '</h3>';
-				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="Read documentation for ' . esc_html( $rule['title'] ) . '. ' . esc_attr__( 'Opens in a new window.', 'accessibility-checker' ) . '"><span class="dashicons dashicons-info"></span></a>';
-				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="Expand issues for ' . esc_html( $rule['title'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+				$html .= '<a href="' . $tool_tip_link . '" class="edac-details-rule-information" target="_blank" aria-label="' . esc_attr(
+					sprintf(
+						/* translators: 1: rule title, 2: "Opens in a new window." */
+						__( 'Read documentation for %1$s. %2$s', 'accessibility-checker' ),
+						$rule['title'],
+						__( 'Opens in a new window.', 'accessibility-checker' )
+					)
+				) . '"><span class="dashicons dashicons-info"></span></a>';
+				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="' . esc_attr(
+					sprintf(
+						/* translators: %s: rule title */
+						__( 'Expand issues for %s', 'accessibility-checker' ),
+						$rule['title']
+					)
+				) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 				$html .= '</div>';
 
 				if ( $results ) {
@@ -459,13 +477,13 @@ class Ajax {
 								' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								Image
+								' . esc_html__( 'Image', 'accessibility-checker' ) . '
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								Landmark
+								' . esc_html__( 'Landmark', 'accessibility-checker' ) . '
 							</div>
 							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								Actions
+								' . esc_html__( 'Actions', 'accessibility-checker' ) . '
 							</div>
 						</div>';
 
@@ -474,7 +492,7 @@ class Ajax {
 						$id            = (int) $row['id'];
 						$ignore        = (int) $row['ignre'];
 						$ignore_class  = $ignore ? ' active' : '';
-						$ignore_label  = $ignore ? 'Dismissed' : 'Dismiss';
+						$ignore_label  = $ignore ? __( 'Dismissed', 'accessibility-checker' ) : __( 'Dismiss', 'accessibility-checker' );
 						$ignore_global = (int) $row['ignre_global'];
 						$ignore_reason = isset( $row['ignre_reason'] ) ? sanitize_text_field( $row['ignre_reason'] ) : '';
 
@@ -483,7 +501,11 @@ class Ajax {
 						$object_img = $media['img'];
 						$object_svg = $media['svg'];
 
-						$html .= '<h4 class="screen-reader-text">Issue ID ' . $id . '</h4>';
+						$html .= '<h4 class="screen-reader-text">' . sprintf(
+							/* translators: %d: issue ID number */
+							esc_html__( 'Issue ID %d', 'accessibility-checker' ),
+							$id
+						) . '</h4>';
 
 						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record">';
 
@@ -496,7 +518,13 @@ class Ajax {
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
 
 						if ( $object_img ) {
-							$html .= '<img src="' . $object_img . '" alt="image for issue ' . $id . '" />';
+							$html .= '<img src="' . esc_url( $object_img ) . '" alt="' . esc_attr(
+								sprintf(
+									/* translators: %d: issue ID number */
+									__( 'image for issue %d', 'accessibility-checker' ),
+									$id
+								)
+							) . '" />';
 						} elseif ( $object_svg ) {
 							$html .= $object_svg;
 						}
@@ -653,13 +681,18 @@ class Ajax {
 
 		$html .= '<li class="edac-readability-list-item edac-readability-grade-level">
 		' . edac_icon( ( $post_grade_failed && $simplified_summary && $simplified_summary_grade > 0 && ! $simplified_summary_grade_failed ) ? 'info' : ( ( $post_grade_failed || 0 === $post_grade ) ? 'warning' : 'check' ), '', true, '', 'edac-readability-list-item-icon' ) . '
-		<h3 class="edac-readability-list-item-title">Post Reading Grade Level: <strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? 'None' : $post_grade_readability ) . '</strong><br /></h3>';
+		<h3 class="edac-readability-list-item-title">' .
+		sprintf(
+			/* translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder. */
+			esc_html__( 'Post Reading Grade Level: %s', 'accessibility-checker' ),
+			'<strong class="' . ( ( $post_grade_failed || 0 === $post_grade ) ? 'failed-text-color' : 'passed-text-color' ) . '">' . ( ( 0 === $post_grade ) ? esc_html__( 'None', 'accessibility-checker' ) : esc_html( $post_grade_readability ) ) . '</strong>'
+		) . '<br /></h3>';
 		if ( $post_grade_failed ) {
-			$html .= '<p class="edac-readability-list-item-description">Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.</p>';
+			$html .= '<p class="edac-readability-list-item-description">' . esc_html__( 'Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below.', 'accessibility-checker' ) . '</p>';
 		} elseif ( 0 === $post_grade ) {
-			$html .= '<p class="edac-readability-list-item-description">Your post does not contain enough content to calculate its reading level.</p>';
+			$html .= '<p class="edac-readability-list-item-description">' . esc_html__( 'Your post does not contain enough content to calculate its reading level.', 'accessibility-checker' ) . '</p>';
 		} else {
-			$html .= '<p class="edac-readability-list-item-description">A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page.</p>';
+			$html .= '<p class="edac-readability-list-item-description">' . esc_html__( 'A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page.', 'accessibility-checker' ) . '</p>';
 		}
 		$html .= '</li>';
 
@@ -701,8 +734,12 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
-						<p class="edac-readability-list-item-description">Your Prompt for Simplified Summary is set to "never." If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
+					<h3 class="edac-readability-list-item-title">' . esc_html__( 'Simplified summary is not being automatically inserted into the content.', 'accessibility-checker' ) . '</h3>
+						<p class="edac-readability-list-item-description">' . sprintf(
+							/* translators: %s: link to the settings page */
+						__( 'Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s.', 'accessibility-checker' ),
+						'<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) . '">' . esc_html__( 'settings page', 'accessibility-checker' ) . '</a>'
+					) . '</p>
 				</li>';
 
 			} elseif ( 'none' !== $simplified_summary_position ) {
@@ -710,8 +747,16 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 				' . edac_icon( 'check', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<h3 class="edac-readability-list-item-title">Simplified summary is being automatically inserted <strong>' . $simplified_summary_position . ' the content</strong>.</h3>
-						<p class="edac-readability-list-item-description">Set where the Simplified Summary is inserted into the content on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
+					<h3 class="edac-readability-list-item-title">' . sprintf(
+						/* translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder. */
+					__( 'Simplified summary is being automatically inserted %s.', 'accessibility-checker' ),
+					'<strong>' . esc_html( $simplified_summary_position ) . ' ' . esc_html__( 'the content', 'accessibility-checker' ) . '</strong>'
+				) . '</h3>
+						<p class="edac-readability-list-item-description">' . sprintf(
+							/* translators: %s: link to the settings page */
+					__( 'Set where the Simplified Summary is inserted into the content on the %s.', 'accessibility-checker' ),
+					'<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) . '">' . esc_html__( 'settings page', 'accessibility-checker' ) . '</a>'
+				) . '</p>
 				</li>';
 
 			} else {
@@ -719,8 +764,12 @@ class Ajax {
 				$html .=
 					'<li class="edac-readability-list-item edac-readability-summary-position">
 					' . edac_icon( 'warning', '', true, '', 'edac-readability-list-item-icon' ) . '
-					<h3 class="edac-readability-list-item-title">Simplified summary is not being automatically inserted into the content.</h3>
-						<p class="edac-readability-list-item-description">Your Simplified Summary location is set to "manually" which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the <a href="' . get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings">settings page</a>.</p>
+					<h3 class="edac-readability-list-item-title">' . esc_html__( 'Simplified summary is not being automatically inserted into the content.', 'accessibility-checker' ) . '</h3>
+						<p class="edac-readability-list-item-description">' . sprintf(
+							/* translators: %s: link to the settings page */
+						__( 'Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s.', 'accessibility-checker' ),
+						'<a href="' . esc_url( admin_url( 'admin.php?page=accessibility_checker_settings' ) ) . '">' . esc_html__( 'settings page', 'accessibility-checker' ) . '</a>'
+					) . '</p>
 				</li>';
 
 			}
@@ -732,13 +781,13 @@ class Ajax {
 			$html .=
 				'</form>
 			<form action="/" class="edac-readability-simplified-summary">
-				<label for="edac-readability-text">Simplified Summary</label>
+				<label for="edac-readability-text">' . esc_html__( 'Simplified Summary', 'accessibility-checker' ) . '</label>
 				<textarea name="" id="edac-readability-text" cols="30" rows="10">' . $simplified_summary . '</textarea>
-				<p><input type="submit" class="button button-primary" value="Save Summary"></p>
+				<p><input type="submit" class="button button-primary" value="' . esc_attr__( 'Save Summary', 'accessibility-checker' ) . '"></p>
 			</form>';
 		}
 
-		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">Learn more about improving readability and simplified summary requirements<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>';
+		$html .= '<span class="dashicons dashicons-info" aria-hidden="true"></span> <a href="' . esc_url( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis', false ) ) . '" target="_blank">' . esc_html__( 'Learn more about improving readability and simplified summary requirements', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span><span class="screen-reader-text">' . __( ', opens a new window', 'accessibility-checker' ) . '</span></a>';
 
 		if ( ! $html ) {
 			wp_send_json_error( new \WP_Error( '-3', __( 'No readability data to return', 'accessibility-checker' ) ) );
