@@ -74,5 +74,8 @@
     "unique-selector": "^0.5.0",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.1"
+  },
+  "dependencies": {
+    "@equalizedigital/accessibility-checker-rules": "^1.0.0"
   }
 }
