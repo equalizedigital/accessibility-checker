@@ -18,7 +18,7 @@ class RuleRegistry {
 	 */
 	public static function load_rules(): array {
 		$rules = [];
-		
+
 		// List of rule class names - add new rules here.
 		$rule_classes = [
 			'AriaHiddenRule',
@@ -46,6 +46,7 @@ class RuleRegistry {
 			'LinkBlankRule',
 			'LinkImproperRule',
 			'LinkMsOfficeFileRule',
+			'LinkNakedRule',
 			'LinkNonHtmlFileRule',
 			'LinkPdfRule',
 			'LongDescriptionInvalidRule',
@@ -65,16 +66,16 @@ class RuleRegistry {
 			'UnderlinedTextRule',
 			'VideoPresentRule',
 		];
-		
+
 		foreach ( $rule_classes as $class_name ) {
 			$full_class_name = __NAMESPACE__ . '\\Rule\\' . $class_name;
-			
+
 			// PSR-4 autoloader will handle loading the class.
 			if ( is_subclass_of( $full_class_name, RuleInterface::class ) ) {
 				$rules[] = $full_class_name::get_rule();
 			}
 		}
-		
+
 		return $rules;
 	}
 }
