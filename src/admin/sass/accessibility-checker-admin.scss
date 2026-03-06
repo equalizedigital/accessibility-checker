@@ -1212,12 +1212,10 @@
     }
 
     &-passed {
-
-      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: .3rem 0;
+      padding: 0 15px 0 0;
 
       /* see: https://nikitahl.com/circle-progress-bar-css#conic-gradient */
 
@@ -1234,11 +1232,29 @@
         .edac-progress-percentage {
           margin: 0 .5rem;
           font-size: variables.$font-size-x-large;
+          font-weight: 600;
         }
 
         .edac-progress-label {
           margin: 0 1rem 0 1rem;
           font-size: variables.$font-size-small;
+        }
+      }
+    }
+
+    &-metadata {
+      width: 100%;
+      padding: 0.5rem 0 1rem;
+      font-size: variables.$font-size-small;
+
+      span {
+        &:nth-child(1),
+        &:nth-child(5) {
+          font-weight: 600;
+        }
+
+        &:nth-child(3) {
+          color: variables.$color-gray;
         }
       }
     }
@@ -1284,49 +1300,54 @@
 
         &-box {
           margin: .3rem 0;
+          padding: .5rem .75rem;
           display: flex;
           align-items: center;
-          width: 100%;
-          color: #ffffff;
+          border: 1px solid variables.$color-gray-light;
+          border-radius: 5px;
+          gap: .5rem;
+
+          .edac-icon {
+            display: flex;
+            flex-shrink: 0;
+          }
 
           &-error {
-            background: variables.$color-green url('../images/error-icon-white.png') no-repeat calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-
             &.has-errors {
-              background-color: variables.$color-red;
+              .edac-icon--error {
+                color: variables.$color-red;
+              }
             }
           }
 
           &-contrast {
-            background: variables.$color-green url('.././images/contrast-icon-white.png') no-repeat calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-
             &.has-errors {
-              background-color: variables.$color-red;
+              .edac-icon--error {
+                color: variables.$color-red;
+              }
             }
           }
 
           &-warning {
-            background: variables.$color-green url('.././images/warning-icon-white.png') no-repeat calc(0% + 5px) 50%;
-            background-size: 1rem 1rem;
-
             &.has-warning {
-                background: variables.$color-yellow url('.././images/warning-icon-navy.png') no-repeat calc(0% + 5px) 50%;
-                background-size: 1rem 1rem;
-                color: variables.$color-blue-dark;
+              color: variables.$color-blue-dark;
+
+              .edac-icon--warning {
+                color: variables.$color-orange;
+              }
             }
           }
 
           &-label {
-            line-height: 2rem;
-            margin-left: calc(1rem + 10px);
+            line-height: 1.5rem;
             font-size: variables.$font-size-small;
+            flex: 1;
           }
 
           &-number {
-            margin-left: calc(.3rem);
+            margin-left: auto;
             font-size: variables.$font-size-small;
+            font-weight: 600;
           }
         }
       }
@@ -1334,7 +1355,7 @@
   }
 
   .edac-summary-notice {
-    padding: 1.5rem 0 .5rem 0;
+    padding: 1rem 0 0 0;
     font-size: variables.$font-size-medium;
   }
 

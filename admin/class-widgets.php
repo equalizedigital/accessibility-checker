@@ -91,6 +91,15 @@ class Widgets {
 			<h3 class="edac-summary-header">' .
 				__( 'Full Site Accessibility Status', 'accessibility-checker' ) .
 				'</h3>
+
+			<div class="edac-summary-metadata">
+				<span id="edac-summary-info-count">-</span>
+				<span>' . __( 'URLs Scanned', 'accessibility-checker' ) . '</span>
+				<span>•</span>
+				<span>' . __( 'Updated', 'accessibility-checker' ) . '</span>
+				<span id="edac-summary-info-date" class="edac-timestamp-to-local">-</span>
+			</div>
+
 			<div class="edac-summary-passed">
 				<div id="edac-summary-passed" class="edac-circle-progress" role="progressbar" aria-valuenow="0"
 					aria-valuemin="0" aria-valuemax="100"
@@ -105,32 +114,20 @@ class Widgets {
 			</div>
 
 			<div class="edac-summary-info">
-				<div class="edac-summary-info-date">
-					<div class="edac-summary-info-date-label">' . __( 'Report Last Updated:', 'accessibility-checker' ) . '</div>
-					<div id="edac-summary-info-date" class="edac-summary-info-date-date edac-timestamp-to-local">-</div>';
-
-				$html .= '
-				</div>
-
-				<div class="edac-summary-info-count">
-					<div class="edac-summary-scan-count-label">
-						' . __( 'URLs Scanned:', 'accessibility-checker' ) . '
-					</div>
-					<div id="edac-summary-info-count" class="edac-summary-info-count-number">-</div>
-				</div>';
-
-				$html .= '
 				<div class="edac-summary-info-stats">
 					<div  class="edac-summary-info-stats-box edac-summary-info-stats-box-error">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Errors:', 'accessibility-checker' ) . ' </div>
+						' . edac_icon( 'error' ) . '
+						<div class="edac-summary-info-stats-box-label">' . __( 'Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-contrast">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Color Contrast Errors:', 'accessibility-checker' ) . ' </div>
+						' . edac_icon( 'error' ) . '
+						<div class="edac-summary-info-stats-box-label">' . __( 'Contrast Problems:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-contrast-errors" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 					<div class="edac-summary-info-stats-box edac-summary-info-stats-box-warning">
-						<div class="edac-summary-info-stats-box-label">' . __( 'Warnings:', 'accessibility-checker' ) . ' </div>
+						' . edac_icon( 'warning' ) . '
+						<div class="edac-summary-info-stats-box-label">' . __( 'Needs Review:', 'accessibility-checker' ) . ' </div>
 						<div id="edac-summary-info-warnings" class="edac-summary-info-stats-box-number">-</div>
 					</div>
 				</div>
