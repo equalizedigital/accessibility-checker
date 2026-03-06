@@ -96,6 +96,36 @@ class Admin_Toolbar_Test extends TestCase {
 	}
 
 	/**
+	 * Test get_default_menu_items() handles missing EDAC_KEY_VALID when pro is defined.
+	 *
+	 * @runInSeparateProcess
+	 */
+	public function test_get_default_menu_items_handles_missing_edac_key_valid_constant() {
+		if ( defined( 'EDAC_KEY_VALID' ) ) {
+			$this->markTestSkipped( 'EDAC_KEY_VALID is already defined in this test environment.' );
+		}
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.0.0' );
+		}
+
+		$reflection = new \ReflectionClass( Admin_Toolbar::class );
+		$method     = $reflection->getMethod( 'get_default_menu_items' );
+		$method->setAccessible( true );
+		$toolbar = new Admin_Toolbar();
+		$items   = $method->invoke( $toolbar );
+
+		$pro_item = null;
+		foreach ( $items as $item ) {
+			if ( 'accessibility-checker-pro' === $item['id'] ) {
+				$pro_item = $item;
+				break;
+			}
+		}
+
+		$this->assertNotNull( $pro_item );
+	}
+
+	/**
 	 * Test pro menu link uses the expected UTM content parameter key.
 	 */
 	public function test_get_default_menu_items_pro_link_uses_utm_content() {
