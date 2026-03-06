@@ -59,7 +59,8 @@ const SkipLinkFixInit = () => {
 		return;
 	}
 
-	if ( ! window.edac_frontend_fixes.skip_link.targets ) {
+	const skipLinkTargets = window.edac_frontend_fixes?.skip_link?.targets;
+	if ( ! Array.isArray( skipLinkTargets ) || skipLinkTargets.length === 0 ) {
 		return;
 	}
 
@@ -70,7 +71,7 @@ const SkipLinkFixInit = () => {
 	}
 
 	// try to find one the targets on the page.
-	const foundMainTarget = window.edac_frontend_fixes.skip_link.targets.find( ( target ) => document.querySelector( target ) );
+	const foundMainTarget = skipLinkTargets.find( ( target ) => document.querySelector( target ) );
 
 	if ( ! foundMainTarget ) {
 		// eslint-disable-next-line
