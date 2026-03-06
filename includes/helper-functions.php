@@ -406,7 +406,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 		<li class="edac-upcoming-meetup-item edac-mb-3">
 			<h' . esc_html( $heading ) . ' class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h' . esc_html( $heading ) . '>
 			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . (string) ( (int) $event->time / 1000 ) . '</div>
-			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name . ' ' . __( '(opens in a new window)', 'accessibility-checker' ) ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '" target="_blank">' . $link_text . '<span aria-hidden="true"> ↗</span></a>
+			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name . ' ' . __( '(opens in a new window)', 'accessibility-checker' ) ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '" target="_blank" rel="noopener noreferrer">' . $link_text . '<span aria-hidden="true"> ↗</span></a>
 		</li>';
 	}
 
