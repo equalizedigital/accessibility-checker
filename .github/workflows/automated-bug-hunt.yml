@@ -20,6 +20,33 @@ jobs:
         with:
           fetch-depth: 0  # Full history to compare changes
 
+      - name: Setup GitHub CLI
+        run: |
+          # GitHub CLI is pre-installed on GitHub runners, but let's ensure it's updated
+          gh --version || (curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+          && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null \
+          && sudo apt update \
+          && sudo apt install gh -y)
+
+          # Verify installation
+          gh --version
+
+      - name: Authenticate GitHub CLI
+        run: |
+          # GitHub CLI automatically uses GITHUB_TOKEN in GitHub Actions
+          # No need to set GH_TOKEN, which can cause conflicts
+          gh auth status
+
+      - name: Install Copilot CLI extension
+        run: |
+          # Install the Copilot extension for GitHub CLI
+          # GitHub CLI automatically uses GITHUB_TOKEN in Actions context
+          gh extension install github/gh-copilot || gh extension upgrade gh-copilot
+
+          # Verify installation
+          gh copilot --version || echo "Copilot CLI installed"
+
       - name: Configure Git for Copilot authorship
         run: |
           git config --global user.name "GitHub Copilot"
@@ -33,20 +60,15 @@ jobs:
             let coAuthorName, coAuthorEmail;
 
             if (context.eventName === 'schedule') {
-              // Scheduled run - use William Patton as co-author
               coAuthorName = 'William Patton';
               coAuthorEmail = 'pattonwebz@users.noreply.github.com';
             } else if (context.eventName === 'workflow_dispatch') {
-              // Manual trigger - use the triggering user as co-author
               const { data: user } = await github.rest.users.getByUsername({
                 username: context.actor
               });
-
               coAuthorName = user.name || context.actor;
-              // Use GitHub's noreply email format for privacy
               coAuthorEmail = `${context.actor}@users.noreply.github.com`;
             } else {
-              // Fallback to William Patton
               coAuthorName = 'William Patton';
               coAuthorEmail = 'pattonwebz@users.noreply.github.com';
             }
@@ -60,50 +82,44 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const { data: prs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              head: `${context.repo.owner}:automated-bug-fix`,
-              per_page: 100
-            });
-
-            // Also check for any PRs with the bot label using Search API
-            // pulls.list doesn't support labels parameter, so we use search
             const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:pr is:open label:automated-bug-fix`;
             const { data: searchResults } = await github.rest.search.issuesAndPullRequests({
               q: searchQuery,
               per_page: 100
             });
-            const labeledPrs = searchResults.items;
 
-            const allOpenPrs = [...prs, ...labeledPrs];
-            const uniquePrs = [...new Map(allOpenPrs.map(pr => [pr.number, pr])).values()];
+            const openPrs = searchResults.items;
 
-            // Extract files changed in open PRs
+            // If 3 or more automated PRs exist, skip this run
+            if (openPrs.length >= 3) {
+              core.notice(`Skipping: ${openPrs.length} automated bug-fix PRs already open.`);
+              core.setOutput('should_skip', 'true');
+              core.setOutput('open_pr_count', openPrs.length);
+              return;
+            }
+
             const filesInOpenPrs = new Set();
-            for (const pr of uniquePrs) {
+            const prSummaries = [];
+
+            for (const pr of openPrs) {
               const { data: files } = await github.rest.pulls.listFiles({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: pr.number
               });
               files.forEach(f => filesInOpenPrs.add(f.filename));
+              prSummaries.push(`#${pr.number}: ${pr.title}`);
             }
 
-            core.setOutput('has_open_prs', uniquePrs.length > 0);
-            core.setOutput('open_pr_count', uniquePrs.length);
+            core.setOutput('should_skip', 'false');
+            core.setOutput('open_pr_count', openPrs.length);
             core.setOutput('files_in_prs', Array.from(filesInOpenPrs).join(','));
-            core.setOutput('pr_numbers', uniquePrs.map(pr => pr.number).join(','));
-
-            return {
-              hasOpenPrs: uniquePrs.length > 0,
-              count: uniquePrs.length,
-              files: Array.from(filesInOpenPrs)
-            };
+            core.setOutput('pr_numbers', openPrs.map(pr => pr.number).join(','));
+            core.setOutput('pr_summaries', prSummaries.join('\n'));
 
       - name: Get recently changed files
         id: changed_files
+        if: steps.check_prs.outputs.should_skip != 'true'
         run: |
           # Get files changed in the last 7 days
           RECENT_FILES=$(git log --since="7 days ago" --name-only --pretty=format: | sort -u | grep -E '\.(php|js)$' || echo "")
@@ -111,168 +127,139 @@ jobs:
           echo "$RECENT_FILES" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
 
-      - name: Find and fix bugs
-        uses: github/ai-agent@v1
-        with:
-          agent: bug-hunter
-          task: |
-            ## Context
-            - **Open bug-fix PRs**: ${{ steps.check_prs.outputs.open_pr_count }}
-            - **PR numbers**: ${{ steps.check_prs.outputs.pr_numbers }}
-            - **Files already in open PRs**: ${{ steps.check_prs.outputs.files_in_prs }}
-            - **Recently changed files**: ${{ steps.changed_files.outputs.recent_files }}
-
-            ## Critical Rules - Avoiding Duplicates
-
-            1. **SKIP files already in open PRs**: Do NOT analyze or create PRs for any files listed in "Files already in open PRs" above
-
-            2. **Check existing PR descriptions**: Review the open PR numbers listed above to see what bugs have already been identified
-
-            3. **Prioritize recently changed files**: Focus analysis on files in "Recently changed files" that are NOT in open PRs
-
-            4. **One bug per PR**: Only fix ONE distinct bug per run, even if multiple are found
-
-            5. **Use consistent branch naming**: Create branch named `automated-bug-fix/YYYY-MM-DD-HH-MM` with current timestamp
-
-            6. **Exit if no new bugs**: If all found bugs are already in open PRs, exit without creating a PR
-
-            ## Analysis Process
-
-            1. **Review Open PRs First**:
-               - Read descriptions of PRs #${{ steps.check_prs.outputs.pr_numbers }}
-               - Note which bugs/files are already being addressed
-
-            2. **Scan for New Bugs**:
-               - Focus on recently changed files NOT in open PRs
-               - Look for security issues, logic errors, PHP warnings
-               - Check for missing nonce verification, SQL injection risks
-               - Verify proper sanitization/escaping
-
-            3. **If New Bug Found**:
-               - Verify it's NOT already addressed in an open PR
-               - Create minimal fix for ONE bug only
-               - Add PHPUnit tests reproducing bug and verifying fix
-               - **Commit message format**:
-                 ```
-                 fix: [bug description]
-
-                 [Detailed explanation of the bug and fix]
-
-                 Co-authored-by: ${{ steps.coauthor.outputs.name }} <${{ steps.coauthor.outputs.email }}>
-                 ```
-               - **Create DRAFT PR** with label `automated-bug-fix`
-               - Title format: `fix: [descriptive bug summary]`
-               - Include clear description of the bug and how it was fixed
-
-            4. **If No New Bugs**:
-               - Log: "No new bugs found. X bugs already in open PRs."
-               - Exit gracefully without creating PR
-
-            ## Priority Areas (that aren't in open PRs)
-            **Critical/High Priority**:
-            - Security vulnerabilities (XSS, SQLi, CSRF)
-            - Fatal errors (application crashes)
-            - Authentication/authorization issues
-
-            **Medium Priority**:
-            - Logic errors in recently changed code
-            - PHP warnings (deprecated functions, undefined variables)
-            - Performance issues
-            - Missing input validation/sanitization
-
-          base-branch: develop
-
-      - name: Label the created PR
-        if: success()
+      - name: Filter candidate files
+        id: candidates
+        if: steps.check_prs.outputs.should_skip != 'true'
         uses: actions/github-script@v7
         with:
           script: |
-            // Find the PR just created by looking for very recent PRs
-            const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+            const recentFiles = `${{ steps.changed_files.outputs.recent_files }}`.split('\n').filter(Boolean);
+            const filesInPrs = `${{ steps.check_prs.outputs.files_in_prs }}`.split(',').filter(Boolean);
 
-            const { data: recentPrs } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'open',
-              sort: 'created',
-              direction: 'desc',
-              per_page: 10
-            });
+            const candidateFiles = recentFiles.filter(f => !filesInPrs.includes(f));
 
-            // Find PR created recently with our branch pattern and by github-actions
-            const newPr = recentPrs.find(pr =>
-              new Date(pr.created_at) > fiveMinutesAgo &&
-              pr.head.ref.startsWith('automated-bug-fix/') &&
-              (pr.user.login === 'github-actions[bot]' || pr.user.type === 'Bot')
-            );
+            core.setOutput('candidate_files', candidateFiles.join('\n'));
+            core.setOutput('candidate_count', candidateFiles.length);
 
-            if (newPr) {
-              await github.rest.issues.addLabels({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: newPr.number,
-                labels: ['automated-bug-fix', 'needs-review']
-              });
-
-              core.info(`Successfully labeled PR #${newPr.number}`);
+            if (candidateFiles.length === 0) {
+              core.notice('No new files to analyze - all recent changes are in open PRs');
+              core.setOutput('should_run', 'false');
             } else {
-              core.warning('No recent PR found to label. This might be expected if no bugs were found.');
+              core.setOutput('should_run', 'true');
             }
 
-      - name: Add timestamp to PR
-        if: success()
+      - name: Run Copilot bug analysis
+        id: bug_hunt
+        if: steps.candidates.outputs.should_run == 'true'
+        run: |
+          # Create the analysis prompt
+          cat > /tmp/bug_hunt_prompt.txt << 'EOF'
+          You are analyzing a WordPress plugin for bugs.
+
+          Context:
+          - Repository: ${{ github.repository }}
+          - Open automated PRs: ${{ steps.check_prs.outputs.open_pr_count }}
+          - PRs: ${{ steps.check_prs.outputs.pr_summaries }}
+          - Files already being fixed: ${{ steps.check_prs.outputs.files_in_prs }}
+
+          Files to analyze (recently changed, NOT in open PRs):
+          ${{ steps.candidates.outputs.candidate_files }}
+
+          Task:
+          1. Analyze these files for bugs (security issues, logic errors, undefined variables, etc.)
+          2. Focus on WordPress-specific issues: missing nonces, unsanitized input, SQL injection risks
+          3. Skip files that are already in the open PRs listed above
+          4. If you find a NEW bug that isn't addressed in open PRs, describe it in detail
+          5. Provide the file path, line numbers, bug description, and suggested fix
+          6. Include test cases that would reproduce the bug
+
+          Output format:
+          BUG_FOUND: yes/no
+          FILE: path/to/file.php
+          LINES: 123-145
+          SEVERITY: high/medium/low
+          DESCRIPTION: [description]
+          FIX: [suggested fix]
+          TEST_CASES: [test cases]
+          EOF
+
+          echo "=== Analyzing code with Copilot CLI ==="
+          cat /tmp/bug_hunt_prompt.txt
+          echo ""
+
+          # Use gh copilot to analyze
+          # Note: The exact command may vary based on gh-copilot version
+          gh copilot suggest "$(cat /tmp/bug_hunt_prompt.txt)" > /tmp/copilot_response.txt 2>&1 || {
+            echo "Trying alternative copilot command..."
+            # Try using gh copilot explain instead
+            echo "${{ steps.candidates.outputs.candidate_files }}" | head -1 | xargs -I {} cat {} | gh copilot explain "Analyze this code for bugs: $(cat /tmp/bug_hunt_prompt.txt)" > /tmp/copilot_response.txt 2>&1 || true
+          }
+
+          echo "=== Copilot Response ==="
+          cat /tmp/copilot_response.txt || echo "No response generated"
+
+          # Check if a bug was found (this is a simple heuristic)
+          if grep -qi "bug\|issue\|problem\|vulnerability" /tmp/copilot_response.txt; then
+            echo "bug_found=true" >> $GITHUB_OUTPUT
+            echo "response<<EOF" >> $GITHUB_OUTPUT
+            cat /tmp/copilot_response.txt >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "bug_found=false" >> $GITHUB_OUTPUT
+            echo "No bugs detected by Copilot"
+          fi
+
+      - name: Create issue with Copilot findings
+        if: steps.bug_hunt.outputs.bug_found == 'true'
         uses: actions/github-script@v7
         with:
           script: |
-            // Find the same PR we just labeled
-            const fiveMinutesAgo = new Date(Date.now() - 5 * 60 * 1000);
+            const date = new Date().toISOString().split('T')[0];
+            const time = new Date().toISOString().split('T')[1].substring(0, 5);
 
-            const { data: recentPrs } = await github.rest.pulls.list({
+            const copilotResponse = `${{ steps.bug_hunt.outputs.response }}`;
+
+            const body = `## 🤖 Automated Bug Hunt - ${date} ${time} UTC
+
+            ### 🔍 Copilot Analysis Results
+
+            ${copilotResponse}
+
+            ---
+
+            ### Next Steps
+
+            @copilot Based on the analysis above, please:
+
+            1. Confirm this is a legitimate bug that needs fixing
+            2. Provide the exact code changes needed to fix it
+            3. Write PHPUnit test cases that:
+               - Reproduce the bug (should fail before fix)
+               - Verify the fix works (should pass after fix)
+            4. Ensure the fix follows WordPress Coding Standards
+
+            Once confirmed, I'll ask you to create a PR with the fix.
+
+            **Co-author for commits:** ${{ steps.coauthor.outputs.name }} <${{ steps.coauthor.outputs.email }}>
+
+            ---
+            _Automated analysis by [Bug Hunter workflow](.github/workflows/automated-bug-hunter.yml)_`;
+
+            const issue = await github.rest.issues.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              state: 'open',
-              sort: 'created',
-              direction: 'desc',
-              per_page: 10
+              title: `🐛 Potential Bug Detected - ${date}`,
+              labels: ['automated-bug-hunt', 'needs-review', 'bug'],
+              body: body
             });
 
-            const newPr = recentPrs.find(pr =>
-              new Date(pr.created_at) > fiveMinutesAgo &&
-              pr.head.ref.startsWith('automated-bug-fix/') &&
-              (pr.user.login === 'github-actions[bot]' || pr.user.type === 'Bot')
-            );
+            core.notice(`✅ Created issue #${issue.data.number} with Copilot findings`);
 
-            if (newPr) {
-              // Get current date in YYYY-MM-DD format
-              const date = new Date();
-              const dateStr = date.toISOString().split('T')[0];
-
-              // Count existing automated PRs to get sequence number
-              // Use Search API because pulls.list doesn't support labels parameter
-              const searchQuery = `repo:${context.repo.owner}/${context.repo.repo} is:pr label:automated-bug-fix`;
-              const { data: searchResults } = await github.rest.search.issuesAndPullRequests({
-                q: searchQuery,
-                per_page: 100
-              });
-              const sequenceNum = searchResults.total_count;
-
-              // Update title with timestamp
-              const newTitle = `${newPr.title} - Auto-detected ${dateStr}`;
-
-              // Prepend metadata to description
-              const metadata = `**Automated bug fix #${sequenceNum}** detected on ${dateStr}\n\n---\n\n`;
-              const newBody = metadata + (newPr.body || '');
-
-              await github.rest.pulls.update({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                pull_number: newPr.number,
-                title: newTitle,
-                body: newBody
-              });
-
-              core.info(`Added timestamp to PR #${newPr.number}: ${dateStr}`);
-            } else {
-              core.warning('No recent PR found to update with timestamp.');
-            }
-
+      - name: Summary
+        if: always()
+        run: |
+          echo "=== Bug Hunter Summary ==="
+          echo "Should skip: ${{ steps.check_prs.outputs.should_skip }}"
+          echo "Open PRs: ${{ steps.check_prs.outputs.open_pr_count }}"
+          echo "Candidate files: ${{ steps.candidates.outputs.candidate_count }}"
+          echo "Bug found: ${{ steps.bug_hunt.outputs.bug_found }}"
