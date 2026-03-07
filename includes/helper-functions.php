@@ -12,6 +12,75 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
+ * Check if the current database is SQLite.
+ *
+ * Detects SQLite by checking for the SQLite Database Integration plugin
+ * or related SQLite drivers.
+ *
+ * @since 1.36.0
+ * @return bool True if running on SQLite, false otherwise.
+ */
+function edac_is_sqlite() {
+	global $wpdb;
+
+	// Check for official SQLite integration constants.
+	if ( defined( 'DB_ENGINE' ) && 'sqlite' === DB_ENGINE ) {
+		return true;
+	}
+
+	// Check for SQLite-specific constant from the integration plugin.
+	if ( defined( 'SQLITE_DB_DROPIN_VERSION' ) ) {
+		return true;
+	}
+
+	// Check for known SQLite driver class names.
+	if ( class_exists( 'WP_SQLite_DB' ) || false !== strpos( get_class( $wpdb ), 'SQLite' ) ) {
+		return true;
+	}
+
+	// Check for SQLite driver property.
+	if ( isset( $wpdb->dbdriver ) && 'sqlite' === $wpdb->dbdriver ) {
+		return true;
+	}
+
+	return false;
+}
+
+/**
+ * Check if a table exists in the database.
+ *
+ * This function provides cross-database compatibility for checking table existence.
+ * It works with both MySQL and SQLite databases.
+ *
+ * @since 1.36.0
+ *
+ * @param string $table_name The name of the table to check.
+ * @return bool True if the table exists, false otherwise.
+ */
+function edac_table_exists( $table_name ) {
+	global $wpdb;
+
+	if ( edac_is_sqlite() ) {
+		// SQLite: Check the sqlite_master table.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$result = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT name FROM sqlite_master WHERE type='table' AND name=%s",
+				$table_name
+			)
+		);
+		return $result === $table_name;
+	}
+
+	// MySQL: Use SHOW TABLES LIKE.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	$result = $wpdb->get_var(
+		$wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name )
+	);
+	return $result === $table_name;
+}
+
+/**
  * Compare strings
  *
  * @param string $string1 String to compare.
@@ -231,7 +300,8 @@ function edac_get_post_type_label( string $post_type ): string {
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
  * If not, it returns null.
  *
- * After that, it checks if a table with that name actually exists in the database using the SHOW TABLES LIKE query.
+ * After that, it checks if a table with that name actually exists in the database.
+ * This check is cross-database compatible (MySQL and SQLite).
  * If the table doesn't exist, it also returns null.
  *
  * If both checks are passed, it returns the valid table name.
@@ -241,7 +311,6 @@ function edac_get_post_type_label( string $post_type ): string {
  * @return string|null The validated table name, or null if the table name is invalid or the table does not exist.
  */
 function edac_get_valid_table_name( $table_name ) {
-	global $wpdb;
 	static $found_table_name;
 
 	if ( isset( $found_table_name ) ) {
@@ -255,8 +324,7 @@ function edac_get_valid_table_name( $table_name ) {
 	}
 
 	// Verify that the table actually exists in the database.
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) {
+	if ( ! edac_table_exists( $table_name ) ) {
 		// Table does not exist.
 		return null;
 	}
