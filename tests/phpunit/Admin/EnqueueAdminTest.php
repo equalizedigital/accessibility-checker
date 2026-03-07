@@ -53,15 +53,39 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that the base script is enqueued in the admin on non-editor pages.
+	 * Test that the base script is enqueued on an Accessibility Checker admin page.
 	 *
 	 * @return void
 	 */
-	public function testEnqueueBaseScriptInAdminNonEditorPage() {
+	public function testEnqueueBaseScriptOnAccessibilityCheckerAdminPage() {
+		global $pagenow;
+		$pagenow      = 'admin.php';
+		$_GET['page'] = 'accessibility_checker'; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- test setup.
+
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+
+		unset( $_GET['page'] );
+	}
+
+	/**
+	 * Test that scripts are not enqueued on unrelated admin pages.
+	 *
+	 * @return void
+	 */
+	public function testDoesNotEnqueueScriptsOnUnrelatedAdminPage() {
+		global $pagenow;
+		$pagenow      = 'tools.php';
+		$_GET['page'] = 'tools';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertFalse( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+
+		unset( $_GET['page'] );
 	}
 
 	/**

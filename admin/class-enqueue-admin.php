@@ -72,7 +72,7 @@ class Enqueue_Admin {
 					$is_scannable_post ||
 					in_array( $page, $enabled_pages, true )
 				)
-			) ||
+			) &&
 			'site-editor.php' !== $pagenow
 		) {
 
