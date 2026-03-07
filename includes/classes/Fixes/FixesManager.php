@@ -11,6 +11,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddFileSizeAndTypeToLinkedFil
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddLabelToUnlabelledFormFieldsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddMissingOrEmptyPageTitleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddSpacebarSupportToLinksWithButtonRoleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\BlockPDFUploadsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
@@ -142,6 +143,7 @@ class FixesManager {
 				AddMissingOrEmptyPageTitleFix::class,
 				AddLabelToUnlabelledFormFieldsFix::class,
 				AddNewWindowWarningFix::class,
+				AddSpacebarSupportToLinksWithButtonRoleFix::class,
 			]
 		);
 		if ( ! is_array( $fixes ) ) {
