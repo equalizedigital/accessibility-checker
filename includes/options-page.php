@@ -742,7 +742,7 @@ function edac_post_statuses_cb() {
 		</p>
 	<?php } else { ?>
 		<p class="edac-description">
-			<?php esc_html_e( 'Choose which post statuses should be checked during a scan.', 'accessibility-checker' ); ?>
+			<?php esc_html_e( 'Choose which post statuses should be checked during a scan. Please note, removing a previously selected post status will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' ); ?>
 		</p>
 	<?php } ?>
 	<?php
