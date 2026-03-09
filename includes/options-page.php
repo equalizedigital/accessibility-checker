@@ -966,7 +966,7 @@ function edac_ignore_user_roles_cb() {
 					<?php echo esc_html( $role['name'] ); ?>
 				</label>
 				<br>
-				<?php $index++; ?>
+				<?php ++$index; ?>
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</fieldset>
