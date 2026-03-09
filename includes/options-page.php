@@ -639,10 +639,12 @@ function edac_post_types_cb() {
 		<fieldset>
 			<?php
 			if ( $all_post_types ) {
-				foreach ( $all_post_types as $index => $post_type ) {
+				$position = 0;
+				foreach ( $all_post_types as $post_type ) {
 					$disabled        = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					$post_type_label = edac_get_post_type_label( $post_type );
-					$field_id        = ( 0 === $index ) ? 'edac_post_types' : "edac_post_types_{$post_type}";
+					$field_id        = ( 0 === $position ) ? 'edac_post_types' : "edac_post_types_{$post_type}";
+					++$position;
 					?>
 					<label>
 						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $post_type ); ?>"
