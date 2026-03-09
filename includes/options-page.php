@@ -163,6 +163,15 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
+		'edac_post_statuses',
+		__( 'Post Statuses To Be Checked', 'accessibility-checker' ),
+		'edac_post_statuses_cb',
+		'edac_settings',
+		'edac_general',
+		[ 'label_for' => 'edac_post_statuses' ]
+	);
+
+	add_settings_field(
 		'edacp_full_site_scan_speed',
 		__( 'Scan Speed', 'accessibility-checker' ),
 		'edac_full_site_scan_speed_cb',
@@ -281,6 +290,7 @@ function edac_register_setting() {
 
 	// Register settings.
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
+	register_setting( 'edac_settings', 'edac_post_statuses', 'edac_sanitize_post_statuses' );
 
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
 	register_setting(
@@ -675,6 +685,111 @@ function edac_post_types_cb() {
 			</p>
 			<?php
 		}
+}
+
+/**
+ * Render the checkbox input field for post_statuses option
+ */
+function edac_post_statuses_cb() {
+
+	$all_statuses = [ 'publish', 'future', 'draft', 'pending', 'private' ];
+
+	$stored_statuses = get_option( 'edac_post_statuses' );
+	if ( ! is_array( $stored_statuses ) || empty( $stored_statuses ) ) {
+		$stored_statuses = $all_statuses;
+	}
+
+	$filter_test      = apply_filters( 'edac_scannable_post_statuses', [] );
+	$is_filter_active = ! empty( $filter_test );
+	$active_statuses  = $is_filter_active ? $filter_test : $stored_statuses;
+
+	$status_labels = [
+		'publish' => __( 'Published', 'accessibility-checker' ),
+		'future'  => __( 'Scheduled', 'accessibility-checker' ),
+		'draft'   => __( 'Draft', 'accessibility-checker' ),
+		'pending' => __( 'Pending Review', 'accessibility-checker' ),
+		'private' => __( 'Private', 'accessibility-checker' ),
+	];
+	?>
+	<fieldset <?php echo $is_filter_active ? 'aria-disabled="true"' : ''; ?>>
+		<?php foreach ( $all_statuses as $status ) { ?>
+			<label>
+				<input type="checkbox"
+					<?php if ( ! $is_filter_active ) { ?>
+						name="edac_post_statuses[]"
+					<?php } ?>
+					value="<?php echo esc_attr( $status ); ?>"
+					<?php checked( in_array( $status, $active_statuses, true ), 1 ); ?>
+					<?php disabled( $is_filter_active, true ); ?>
+				>
+				<?php echo esc_html( $status_labels[ $status ] ?? $status ); ?>
+			</label>
+			<br>
+		<?php } ?>
+	</fieldset>
+	<?php if ( $is_filter_active ) { ?>
+		<p class="edac-description">
+			<?php
+			echo wp_kses(
+				sprintf(
+					/* translators: %s: filter hook name */
+					__( 'These values are currently set via the <code>%s</code> filter and cannot be changed here.', 'accessibility-checker' ),
+					'edac_scannable_post_statuses'
+				),
+				[ 'code' => [] ]
+			);
+			?>
+		</p>
+	<?php } else { ?>
+		<p class="edac-description">
+			<?php esc_html_e( 'Choose which post statuses should be checked during a scan.', 'accessibility-checker' ); ?>
+		</p>
+	<?php } ?>
+	<?php
+}
+
+/**
+ * Sanitize the post statuses value before being saved to database
+ *
+ * @param array $selected_statuses Post statuses to sanitize.
+ * @return array
+ */
+function edac_sanitize_post_statuses( $selected_statuses ) {
+
+	$all_statuses = [ 'publish', 'future', 'draft', 'pending', 'private' ];
+
+	// If a filter is overriding the statuses, preserve the stored option unchanged.
+	$filter_test = apply_filters( 'edac_scannable_post_statuses', [] );
+	if ( ! empty( $filter_test ) ) {
+		return get_option( 'edac_post_statuses', $all_statuses );
+	}
+
+	$stored_statuses = get_option( 'edac_post_statuses', $all_statuses );
+	if ( ! is_array( $stored_statuses ) || empty( $stored_statuses ) ) {
+		$stored_statuses = $all_statuses;
+	}
+
+	if ( is_array( $selected_statuses ) ) {
+		$selected_statuses = array_values( array_intersect( $selected_statuses, $all_statuses ) );
+	} else {
+		$selected_statuses = $all_statuses;
+	}
+
+	// Clear cached stats if selected statuses change.
+	$prev = $stored_statuses;
+	sort( $prev );
+	$next = $selected_statuses;
+	sort( $next );
+	if ( $prev !== $next ) {
+		$scan_stats = new Scans_Stats();
+		$scan_stats->clear_cache();
+
+		if ( class_exists( '\EDACP\Scans' ) || class_exists( '\EqualizeDigital\AccessibilityCheckerPro\Admin\Scans' ) ) {
+			delete_option( 'edacp_fullscan_completed_at' );
+		}
+	}
+
+	return $selected_statuses;
 }
 
 /**
