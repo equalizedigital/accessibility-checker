@@ -42,7 +42,7 @@ class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 	public function tear_down(): void {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Safe variable, caching not required for one time operation.
+		$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB
 
 		remove_all_filters( 'edac_scannable_post_statuses' );
 		delete_option( 'edac_post_statuses' );
