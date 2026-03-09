@@ -32,9 +32,10 @@ class PurgePostDataTest extends WP_UnitTestCase {
 		$table_name      = $wpdb->prefix . 'accessibility_checker';
 
 		$sql = "CREATE TABLE $table_name (
-	        id mediumint(9) NOT NULL AUTO_INCREMENT,
-	        postid mediumint(9) NOT NULL,
-	        siteid mediumint(9) NOT NULL,
+	        id bigint(20) NOT NULL AUTO_INCREMENT,
+	        postid bigint(20) NOT NULL,
+	        siteid bigint(20) NOT NULL,
+	        type text NOT NULL,
 	        PRIMARY KEY  (id)
 	    ) $charset_collate;";
 
@@ -48,11 +49,13 @@ class PurgePostDataTest extends WP_UnitTestCase {
 			$table_name,
 			[
 				'postid' => $this->valid_post_id,
-				'siteid' => 1,
+				'siteid' => get_current_blog_id(),
+				'type'   => 'post',
 			],
 			[
 				'%d',
 				'%d',
+				'%s',
 			]
 		);
 	}
@@ -198,20 +201,6 @@ class PurgePostDataTest extends WP_UnitTestCase {
 
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 
-		// Re-create the table with the full schema needed for the JOIN query.
-		$charset_collate = $wpdb->get_charset_collate();
-		$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Safe variable used for table name, caching not required for one time operation.
-		$wpdb->query(
-			// phpcs:ignore WordPress.DB
-			"CREATE TABLE $table_name (
-				id bigint(20) NOT NULL AUTO_INCREMENT,
-				postid bigint(20) NOT NULL,
-				siteid bigint(20) NOT NULL,
-				type text NOT NULL,
-				PRIMARY KEY (id)
-			) $charset_collate;" // phpcs:ignore WordPress.DB
-		);
 
 		// Create a draft post and a published post.
 		$draft_post_id   = $this->factory()->post->create( [ 'post_status' => 'draft' ] );

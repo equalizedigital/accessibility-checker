@@ -11,11 +11,39 @@
 class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 
 	/**
-	 * Clean up filters/options after each test.
+	 * Create the custom table that delete_status_posts() needs.
+	 *
+	 * @return void
+	 */
+	public function set_up(): void {
+		parent::set_up();
+
+		global $wpdb;
+		$charset_collate = $wpdb->get_charset_collate();
+		$table_name      = $wpdb->prefix . 'accessibility_checker';
+
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta(
+			"CREATE TABLE $table_name (
+				id bigint(20) NOT NULL AUTO_INCREMENT,
+				postid bigint(20) NOT NULL,
+				siteid bigint(20) NOT NULL,
+				type text NOT NULL,
+				PRIMARY KEY (id)
+			) $charset_collate;"
+		);
+	}
+
+	/**
+	 * Drop the custom table and clean up filters/options after each test.
 	 *
 	 * @return void
 	 */
 	public function tear_down(): void {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$wpdb->query( "DROP TABLE IF EXISTS $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Safe variable, caching not required for one time operation.
+
 		remove_all_filters( 'edac_scannable_post_statuses' );
 		delete_option( 'edac_post_statuses' );
 		parent::tear_down();
