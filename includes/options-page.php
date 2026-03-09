@@ -787,6 +787,12 @@ function edac_sanitize_post_statuses( $selected_statuses ) {
 		if ( class_exists( '\EDACP\Scans' ) || class_exists( '\EqualizeDigital\AccessibilityCheckerPro\Admin\Scans' ) ) {
 			delete_option( 'edacp_fullscan_completed_at' );
 		}
+
+		// Delete scan data for any statuses that were removed.
+		$removed_statuses = array_diff( $stored_statuses, $selected_statuses );
+		foreach ( $removed_statuses as $removed_status ) {
+			Purge_Post_Data::delete_status_posts( $removed_status );
+		}
 	}
 
 	return $selected_statuses;
