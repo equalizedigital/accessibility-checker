@@ -90,29 +90,39 @@ class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Verify submitted values are sanitized against allowed statuses when unfiltered.
+	 * Verify a free user's previously saved statuses are preserved on save
+	 * regardless of what values are submitted.
 	 *
 	 * @return void
 	 */
-	public function test_sanitizes_selected_statuses_when_no_filter_is_active(): void {
-		update_option( 'edac_post_statuses', [ 'publish', 'future', 'draft', 'pending', 'private' ] );
+	public function test_free_user_preserves_stored_statuses_on_save(): void {
+		update_option( 'edac_post_statuses', [ 'draft', 'private' ] );
 
-		$result = edac_sanitize_post_statuses( [ 'draft', 'trash', 'private', 'invalid' ] );
+		$result = edac_sanitize_post_statuses( [ 'publish', 'future', 'pending' ] );
 
 		$this->assertSame( [ 'draft', 'private' ], $result );
 	}
 
 	/**
-	 * Verify that a filter returning an empty array is treated as no filter and
-	 * sanitization proceeds normally against the submitted values.
-	 *
-	 * This guards against the regression where an empty-array return from the
-	 * filter was incorrectly treated as an active override and caused the stored
-	 * option to be returned unchanged instead of sanitizing the submitted input.
+	 * Verify a free user gets all statuses when no stored option exists.
 	 *
 	 * @return void
 	 */
-	public function test_returns_stored_statuses_when_filter_returns_empty_array(): void {
+	public function test_free_user_returns_all_statuses_when_no_stored_option(): void {
+		delete_option( 'edac_post_statuses' );
+
+		$result = edac_sanitize_post_statuses( [ 'draft' ] );
+
+		$this->assertSame( [ 'publish', 'future', 'draft', 'pending', 'private' ], $result );
+	}
+
+	/**
+	 * Verify a free user's stored statuses are preserved even when a filter that
+	 * returns an empty array is present (empty-array filter is not treated as active).
+	 *
+	 * @return void
+	 */
+	public function test_free_user_preserves_stored_statuses_when_filter_returns_empty_array(): void {
 		update_option( 'edac_post_statuses', [ 'publish', 'draft' ] );
 
 		add_filter(
@@ -124,8 +134,6 @@ class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 
 		$result = edac_sanitize_post_statuses( [ 'draft', 'private' ] );
 
-		// Filter returns empty array so it is not considered active — submitted
-		// values should be sanitized normally against the allowed list.
-		$this->assertSame( [ 'draft', 'private' ], $result );
+		$this->assertSame( [ 'publish', 'draft' ], $result );
 	}
 }
