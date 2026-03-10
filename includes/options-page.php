@@ -701,7 +701,17 @@ function edac_post_statuses_cb() {
 
 	$filter_test      = apply_filters( 'edac_scannable_post_statuses', [] );
 	$is_filter_active = ! empty( $filter_test );
-	$active_statuses  = $is_filter_active ? $filter_test : $stored_statuses;
+	$is_pro           = edac_is_pro();
+
+	if ( $is_filter_active ) {
+		$active_statuses = $filter_test;
+	} elseif ( $is_pro ) {
+		$active_statuses = $stored_statuses;
+	} else {
+		$active_statuses = $all_statuses;
+	}
+
+	$is_disabled = $is_filter_active || ! $is_pro;
 
 	$status_labels = [
 		'publish' => __( 'Published', 'accessibility-checker' ),
@@ -710,17 +720,22 @@ function edac_post_statuses_cb() {
 		'pending' => __( 'Pending Review', 'accessibility-checker' ),
 		'private' => __( 'Private', 'accessibility-checker' ),
 	];
+
+	$fieldset_attrs = '';
+	if ( $is_filter_active ) {
+		$fieldset_attrs = 'aria-disabled="true"';
+	} elseif ( ! $is_pro ) {
+		$fieldset_attrs = 'class="edac-setting--upsell"';
+	}
 	?>
-	<fieldset <?php echo $is_filter_active ? 'aria-disabled="true"' : ''; ?>>
+	<fieldset <?php echo $fieldset_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 		<?php foreach ( $all_statuses as $status ) { ?>
 			<label>
 				<input type="checkbox"
-					<?php if ( ! $is_filter_active ) { ?>
-						name="edac_post_statuses[]"
-					<?php } ?>
+					name="edac_post_statuses[]"
 					value="<?php echo esc_attr( $status ); ?>"
 					<?php checked( in_array( $status, $active_statuses, true ), 1 ); ?>
-					<?php disabled( $is_filter_active, true ); ?>
+					<?php disabled( $is_disabled, true ); ?>
 				>
 				<?php echo esc_html( $status_labels[ $status ] ?? $status ); ?>
 			</label>
