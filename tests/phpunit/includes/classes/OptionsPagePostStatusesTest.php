@@ -101,4 +101,31 @@ class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 
 		$this->assertSame( [ 'draft', 'private' ], $result );
 	}
+
+	/**
+	 * Verify that a filter returning an empty array is treated as no filter and
+	 * sanitization proceeds normally against the submitted values.
+	 *
+	 * This guards against the regression where an empty-array return from the
+	 * filter was incorrectly treated as an active override and caused the stored
+	 * option to be returned unchanged instead of sanitizing the submitted input.
+	 *
+	 * @return void
+	 */
+	public function test_returns_stored_statuses_when_filter_returns_empty_array(): void {
+		update_option( 'edac_post_statuses', [ 'publish', 'draft' ] );
+
+		add_filter(
+			'edac_scannable_post_statuses',
+			static function () {
+				return [];
+			}
+		);
+
+		$result = edac_sanitize_post_statuses( [ 'draft', 'private' ] );
+
+		// Filter returns empty array so it is not considered active — submitted
+		// values should be sanitized normally against the allowed list.
+		$this->assertSame( [ 'draft', 'private' ], $result );
+	}
 }
