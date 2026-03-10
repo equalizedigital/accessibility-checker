@@ -699,12 +699,11 @@ function edac_post_statuses_cb() {
 		$stored_statuses = $all_statuses;
 	}
 
-	$filter_test      = apply_filters( 'edac_scannable_post_statuses', [] );
-	$is_filter_active = ! empty( $filter_test );
+	$is_filter_active = has_filter( 'edac_scannable_post_statuses' );
 	$is_pro           = edac_is_pro();
 
 	if ( $is_filter_active ) {
-		$active_statuses = $filter_test;
+		$active_statuses = apply_filters( 'edac_scannable_post_statuses', [] );
 	} elseif ( $is_pro ) {
 		$active_statuses = $stored_statuses;
 	} else {
