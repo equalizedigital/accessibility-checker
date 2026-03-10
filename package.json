@@ -13,7 +13,7 @@
     "dist:dotorg": "npm run dist:keep-build-folder",
     "dist:keep-build-folder": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh --keep-build-folder",
     "lint": "./vendor/bin/phpcs && npm run lint:js",
-    "lint-staged-precommit": "lint-staged && npm run lint:js",
+    "lint-staged-precommit": "lint-staged",
     "lint:php": "./vendor/bin/phpcs",
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
@@ -27,7 +27,8 @@
     "phpstan": "./vendor/bin/phpstan"
   },
   "lint-staged": {
-    "*.php": "./vendor/bin/phpcs"
+    "*.php": "./vendor/bin/phpcs",
+    "*.js": "wp-scripts lint-js"
   },
   "files": [
     "LICENSE.txt",
