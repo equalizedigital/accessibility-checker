@@ -759,8 +759,7 @@ function edac_sanitize_post_statuses( $selected_statuses ) {
 	$all_statuses = [ 'publish', 'future', 'draft', 'pending', 'private' ];
 
 	// If a filter is overriding the statuses, preserve the stored option unchanged.
-	$filter_test = apply_filters( 'edac_scannable_post_statuses', [] );
-	if ( ! empty( $filter_test ) ) {
+	if ( has_filter( 'edac_scannable_post_statuses' ) ) {
 		return get_option( 'edac_post_statuses', $all_statuses );
 	}
 
