@@ -117,12 +117,13 @@ class OptionsPagePostStatusesTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Verify a free user's stored statuses are preserved even when a filter that
-	 * returns an empty array is present (empty-array filter is not treated as active).
+	 * Verify stored statuses are preserved when a filter is registered but returns
+	 * an empty array. has_filter() treats the filter as active regardless of its
+	 * return value, so the sanitizer preserves the stored option unchanged.
 	 *
 	 * @return void
 	 */
-	public function test_free_user_preserves_stored_statuses_when_filter_returns_empty_array(): void {
+	public function test_preserves_stored_statuses_when_filter_registered_but_returns_empty_array(): void {
 		update_option( 'edac_post_statuses', [ 'publish', 'draft' ] );
 
 		add_filter(
