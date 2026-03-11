@@ -668,10 +668,10 @@ function edac_post_types_cb() {
 					?>
 					<label>
 						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $post_type ); ?>"
-																<?php
-																checked( in_array( $post_type, $selected_post_types, true ), 1 );
-																echo esc_attr( $disabled );
-																?>
+							<?php
+							checked( in_array( $post_type, $selected_post_types, true ), 1 );
+							echo esc_attr( $disabled );
+							?>
 						>
 						<?php echo esc_html( $post_type_label ); ?>
 					</label>
