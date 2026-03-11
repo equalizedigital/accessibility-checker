@@ -70,24 +70,6 @@
             "Save fix for: %s": [
                 "Simpan perbaikan untuk: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Tebal (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Miring (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Tautan (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL Tautan"
-            ],
-            "Add": [
-                "Tambah"
-            ],
             "Issue dismissed successfully.": [
                 "Masalah berhasil diabaikan."
             ],
@@ -124,8 +106,8 @@
             "Comment (optional)": [
                 "Komentar (opsional)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Tambahkan catatan yang menjelaskan mengapa masalah ini diabaikan. Mendukung tebal, miring, dan tautan."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Tambahkan catatan yang menjelaskan mengapa masalah ini diabaikan."
             ],
             "More dismiss options": [
                 "Opsi pengabaian lainnya"

@@ -3,12 +3,13 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { PanelBody, PanelRow, TextareaControl, Button, Notice } from '@wordpress/components';
+import { PanelBody, PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
+import ExternalLinkIcon from '../../components/ExternalLinkIcon';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 import '../../sass/components/readability-analysis.scss';
@@ -50,8 +51,17 @@ const ReadabilityAnalysis = () => {
 	// Initialize summary text from readability data
 	const initialSummary = readabilityData?.simplified_summary || '';
 	const initialSummaryGrade = readabilityData?.simplified_summary_grade || 0;
-	const initialSummaryGradeReadable = readabilityData?.simplified_summary_grade_readability || '';
 	const initialSummaryGradeFailed = Boolean( readabilityData?.simplified_summary_grade_failed );
+	const rawPostGradeFailed = readabilityData?.post_grade_failed;
+	const isPostGradeFailed = rawPostGradeFailed === true || rawPostGradeFailed === 1 || rawPostGradeFailed === '1' || rawPostGradeFailed === 'true';
+
+	// Respect setting-driven prompt mode from localized sidebar config.
+	const rawPromptSetting = window?.edac_sidebar_app?.simplifiedSummaryPrompt ?? '';
+	const promptSetting = String( rawPromptSetting ).toLowerCase();
+	const alwaysPromptSummary = promptSetting === 'always';
+
+	// Show summary input when setting is "always", otherwise use grade-based requirement.
+	const requiresSummary = alwaysPromptSummary || isPostGradeFailed;
 
 	// Update textarea when initial summary changes
 	useEffect( () => {
@@ -147,8 +157,8 @@ const ReadabilityAnalysis = () => {
 	};
 
 	const getSummaryGradeLabel = () => {
-		if ( initialSummaryGradeReadable ) {
-			return sprintf( __( '%s grade', 'accessibility-checker' ), initialSummaryGradeReadable );
+		if ( readabilityData?.simplified_summary_grade_readability ) {
+			return sprintf( __( '%s grade', 'accessibility-checker' ), readabilityData.simplified_summary_grade_readability );
 		}
 		if ( summaryGrade ) {
 			return sprintf( __( '%dth grade', 'accessibility-checker' ), summaryGrade );
@@ -226,13 +236,15 @@ const ReadabilityAnalysis = () => {
 			onToggle={ handlePanelToggle }
 		>
 			{ notice && (
-				<Notice
-					status={ notice.type }
-					isDismissible={ true }
-					onRemove={ () => setNotice( null ) }
-				>
-					{ notice.message }
-				</Notice>
+				<div style={ { marginTop: '16px' } }>
+					<Notice
+						status={ notice.type }
+						isDismissible={ true }
+						onRemove={ () => setNotice( null ) }
+					>
+						{ notice.message }
+					</Notice>
+				</div>
 			) }
 
 			{/* No Content Panel */}
@@ -307,12 +319,13 @@ const ReadabilityAnalysis = () => {
 							</a>
 						) }
 						{ readingLevelStatus !== 'below' && (
-							<a href={ readabilityHelpUrl || '#' } className="edac-panel-section__link">
+							<a href={ readabilityHelpUrl || '#' } target="_blank" className="edac-panel-section__link">
 								{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
+								<ExternalLinkIcon />
 							</a>
 						) }
 
-						{ readingLevelStatus !== 'below' && (
+						{ ( readingLevelStatus !== 'below' || requiresSummary ) && (
 							<>
 								<div className="edac-panel-section__subsection">
 									<h4 className="edac-panel-section__subheading">
@@ -358,14 +371,53 @@ const ReadabilityAnalysis = () => {
 									<Button
 										variant="primary"
 										onClick={ handleSaveSummary }
-										disabled={ isSaving || summaryText === initialSummary }
 										className="edac-panel-section__save-button"
 									>
+										{ isSaving && <Spinner /> }
 										{ __( 'Save Summary', 'accessibility-checker' ) }
 									</Button>
 								</div>
 							</>
 						) }
+					</div>
+				</PanelRow>
+			) }
+
+			{/* Fallback summary panel when requiresSummary is true but no reading level panel */}
+			{ requiresSummary && ! ( hasContent && postGrade > 0 && readingLevelStatus ) && (
+				<PanelRow className="edac-panel-row">
+					<div className="edac-panel-section">
+						<div className="edac-panel-section__header">
+							<h3 className="edac-panel-section__title">{ __( 'Simplified Summary', 'accessibility-checker' ) }</h3>
+						</div>
+						<p className="edac-panel-section__message">
+							{ __( 'A simplified summary is required for this content.', 'accessibility-checker' ) }
+						</p>
+						<a href={ readabilityHelpUrl || '#' } target="_blank" className="edac-panel-section__link">
+							{ __( 'Learn more about readability requirements.', 'accessibility-checker' ) }
+							<ExternalLinkIcon />
+						</a>
+
+						<div className="edac-panel-section__subsection">
+							<h4 className="edac-panel-section__subheading">
+								{ __( 'Simplified Summary', 'accessibility-checker' ) }
+							</h4>
+							<TextareaControl
+								value={ summaryText }
+								onChange={ setSummaryText }
+								placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
+								rows={ 4 }
+								className="summary-textarea"
+							/>
+							<Button
+								variant="primary"
+								onClick={ handleSaveSummary }
+								className="edac-panel-section__save-button"
+							>
+								{ isSaving && <Spinner /> }
+								{ __( 'Save Summary', 'accessibility-checker' ) }
+							</Button>
+						</div>
 					</div>
 				</PanelRow>
 			) }

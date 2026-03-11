@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Guardar corre\u00e7\u00e3o para: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Negrito (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "It\u00e1lico (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Liga\u00e7\u00e3o (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL da liga\u00e7\u00e3o"
-            ],
-            "Add": [
-                "Adicionar"
-            ],
             "Issue dismissed successfully.": [
                 "Problema ignorado com sucesso."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Coment\u00e1rio (opcional)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Adicione uma nota a explicar por que motivo este problema est\u00e1 a ser ignorado. Suporta negrito, it\u00e1lico e liga\u00e7\u00f5es."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Adicione uma nota a explicar por que este problema est\u00e1 a ser ignorado."
             ],
             "More dismiss options": [
                 "Mais op\u00e7\u00f5es para ignorar"
