@@ -24,8 +24,10 @@ function edac_activation() {
 
 	Accessibility_Statement::add_page();
 
-	// This is an add_option on purpose to not overwrite user settings on update.
+	// These are add_option on purpose to not overwrite user settings on update.
 	add_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
+	add_option( 'edac_post_statuses', [ 'publish', 'future', 'draft', 'pending', 'private' ] );
+
 
 	// New installs default to hiding the legacy metabox in the block editor.
 	// Existing sites that deactivate/reactivate preserve the visible (legacy) behavior

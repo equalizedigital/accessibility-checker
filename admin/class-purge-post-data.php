@@ -66,6 +66,48 @@ class Purge_Post_Data {
 	}
 
 	/**
+	 * Purge issues by post status.
+	 *
+	 * Deletes all accessibility checker data (custom table rows and postmeta)
+	 * for posts that have the given post status. Mirrors delete_cpt_posts() but
+	 * filters by post_status instead of post type.
+	 *
+	 * @since 1.38.0
+	 *
+	 * @param string $post_status Post status slug (e.g. 'draft', 'private').
+	 *
+	 * @return bool|int|\mysqli_result|void
+	 */
+	public static function delete_status_posts( string $post_status ) {
+
+		if ( ! $post_status ) {
+			return;
+		}
+
+		global $wpdb;
+
+		/**
+		 * Fires before deleting posts of a specific post status.
+		 *
+		 * @since 1.38.0
+		 *
+		 * @param string $post_status Post status.
+		 */
+		do_action( 'edac_before_delete_status_posts', $post_status );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+		return $wpdb->query(
+			$wpdb->prepare(
+				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid JOIN $wpdb->posts as P ON P.ID = T1.post_id WHERE T1.meta_key like %s and T2.siteid=%d and P.post_status=%s",
+				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
+				$wpdb->esc_like( '_edac' ) . '%',
+				get_current_blog_id(),
+				$post_status
+			)
+		);
+	}
+
+	/**
 	 * Purge issues by post type
 	 *
 	 * @since 1.10.0
@@ -96,7 +138,7 @@ class Purge_Post_Data {
 			$wpdb->prepare(
 				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
 				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
+				$wpdb->esc_like( '_edac' ) . '%',
 				get_current_blog_id(),
 				$post_type
 			)
