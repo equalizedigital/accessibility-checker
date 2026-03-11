@@ -31,21 +31,22 @@ export default {
 		}
 
 		const trimmedHref = href ? href.trim() : '';
+		const normalizedHref = trimmedHref.toLowerCase();
 
 		// Fail if href is missing, just '#', or contains invalid protocols
 		if ( ! href ||
 			trimmedHref === '#' ||
-			href.toLowerCase().startsWith( 'javascript:' ) ||
-			href.toLowerCase().startsWith( 'data:' ) ||
-			href.toLowerCase().startsWith( 'file:' )
+			normalizedHref.startsWith( 'javascript:' ) ||
+			normalizedHref.startsWith( 'data:' ) ||
+			normalizedHref.startsWith( 'file:' )
 		) {
 			return false;
 		}
 
 		// Optionally validate URL format if it's an absolute URL
-		if ( href.includes( '://' ) ) {
+		if ( trimmedHref.includes( '://' ) ) {
 			try {
-				new URL( href );
+				new URL( trimmedHref );
 			} catch ( e ) {
 				return false; // Invalid URL formats
 			}
