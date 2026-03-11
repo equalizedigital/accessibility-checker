@@ -1,4 +1,4 @@
-const MetaViewportScalable = window.edac_frontend_fixes.meta_viewport_scalable || {
+const MetaViewportScalable = window.edac_frontend_fixes?.meta_viewport_scalable || {
 	enabled: false,
 };
 
