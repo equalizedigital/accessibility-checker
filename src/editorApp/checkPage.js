@@ -24,7 +24,7 @@ const postData = async ( url = '', data = {} ) => {
 };
 
 const saveScanResults = ( postId, violations, densityMetrics ) => {
-	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
+	document.querySelector( '.edac-panel' )?.classList.add( 'edac-panel-loading' );
 	// eslint-disable-next-line camelcase
 	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
@@ -45,7 +45,7 @@ const saveScanResults = ( postId, violations, densityMetrics ) => {
 			} );
 		}
 
-		document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
+		document.querySelector( '.edac-panel' )?.classList.remove( 'edac-panel-loading' );
 	} );
 };
 
