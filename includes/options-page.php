@@ -740,10 +740,16 @@ function edac_post_statuses_cb() {
 	}
 	?>
 	<fieldset <?php echo $fieldset_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
-		<?php foreach ( $all_statuses as $status ) { ?>
+		<?php
+		$position = 0;
+		foreach ( $all_statuses as $status ) {
+			$field_id = ( 0 === $position ) ? 'edac_post_statuses' : "edac_post_statuses_{$status}";
+			++$position;
+			?>
 			<label>
 				<input type="checkbox"
 					name="edac_post_statuses[]"
+					id="<?php echo esc_attr( $field_id ); ?>"
 					value="<?php echo esc_attr( $status ); ?>"
 					<?php checked( in_array( $status, $active_statuses, true ), 1 ); ?>
 					<?php disabled( $is_disabled, true ); ?>
