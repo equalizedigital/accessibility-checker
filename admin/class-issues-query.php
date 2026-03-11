@@ -183,9 +183,8 @@ class Issues_Query {
 
 		global $wpdb;
 
-		$this->query['select'] = 'SELECT COUNT( DISTINCT rule, object ) ';
-
-		$sql = $this->get_sql();
+		$sql = 'SELECT COUNT(*) FROM (SELECT DISTINCT rule, object' .
+			$this->query['from'] . ' ' . $this->query['where_base'] . ' ' . $this->query['filters'] . ' ' . $this->query['limit'] . ') AS distinct_issues';
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		return $wpdb->get_var( $sql );

@@ -91,15 +91,36 @@ class Purge_Post_Data {
 		 */
 		do_action( 'edac_before_delete_cpt_posts', $post_type );
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-		return $wpdb->query(
+		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		if ( ! $table_name ) {
+			return;
+		}
+
+		$deleted_issues = $wpdb->query(
 			$wpdb->prepare(
-				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
-				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
+				'DELETE FROM %i WHERE siteid=%d and type=%s',
+				$table_name,
 				get_current_blog_id(),
 				$post_type
 			)
 		);
+
+		$post_ids = get_posts(
+			[
+				'post_type'      => $post_type,
+				'post_status'    => 'any',
+				'fields'         => 'ids',
+				'posts_per_page' => -1,
+				'no_found_rows'  => true,
+			]
+		);
+
+		if ( ! empty( $post_ids ) ) {
+			foreach ( $post_ids as $post_id ) {
+				self::delete_post_meta( (int) $post_id );
+			}
+		}
+
+		return $deleted_issues;
 	}
 }

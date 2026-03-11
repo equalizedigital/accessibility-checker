@@ -41,9 +41,7 @@ class Update_Database {
 
 		global $wpdb;
 		$table_name   = $wpdb->prefix . 'accessibility_checker';
-		$table_exists = $wpdb->get_var( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like( $table_name ) )
-		) === $table_name;
+		$table_exists = edac_table_exists( $table_name );
 		$db_version   = get_option( 'edac_db_version' );
 
 		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Prepare above, Safe variable used for table name, caching not required for one time operation.
@@ -106,11 +104,27 @@ class Update_Database {
 		// Find records with NULL or empty selectors and update them with a fallback value.
 		// Using the record ID ensures each record has a unique selector for backward compatibility.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration query.
-		$wpdb->query(
+		$ids = $wpdb->get_col(
 			$wpdb->prepare(
-				"UPDATE %i SET selector = CONCAT('legacy-id-', id) WHERE selector IS NULL OR selector = ''",
-				$table_name
+				'SELECT id FROM %i WHERE selector IS NULL OR selector = %s',
+				$table_name,
+				''
 			)
 		);
+
+		if ( empty( $ids ) ) {
+			return;
+		}
+
+		foreach ( $ids as $id ) {
+			$wpdb->query(
+				$wpdb->prepare(
+					'UPDATE %i SET selector = %s WHERE id = %d',
+					$table_name,
+					'legacy-id-' . (int) $id,
+					$id
+				)
+			);
+		}
 	}
 }

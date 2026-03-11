@@ -231,7 +231,7 @@ function edac_get_post_type_label( string $post_type ): string {
  * The function first checks if the provided table name only contains alphanumeric characters, underscores, or hyphens.
  * If not, it returns null.
  *
- * After that, it checks if a table with that name actually exists in the database using the SHOW TABLES LIKE query.
+ * After that, it checks if a table with that name actually exists in the database.
  * If the table doesn't exist, it also returns null.
  *
  * If both checks are passed, it returns the valid table name.
@@ -255,14 +255,42 @@ function edac_get_valid_table_name( $table_name ) {
 	}
 
 	// Verify that the table actually exists in the database.
-	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-	if ( $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) !== $table_name ) {
+	if ( ! edac_table_exists( $table_name ) ) {
 		// Table does not exist.
 		return null;
 	}
 
 	$found_table_name = $table_name;
 	return $found_table_name;
+}
+
+/**
+ * Check if a table exists in the current database.
+ *
+ * Supports both MySQL/MariaDB and SQLite-compatible WordPress environments.
+ *
+ * @param string $table_name Table name.
+ *
+ * @return bool
+ */
+function edac_table_exists( $table_name ) {
+	global $wpdb;
+
+	if ( ! empty( $wpdb->is_mysql ) ) {
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		return $wpdb->get_var( $wpdb->prepare( 'SHOW TABLES LIKE %s', $table_name ) ) === $table_name;
+	}
+
+	// SQLite and other non-MySQL drivers.
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	return ! empty(
+		$wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT name FROM sqlite_master WHERE type IN ('table','view') AND name = %s",
+				$table_name
+			)
+		)
+	);
 }
 
 /**
