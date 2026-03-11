@@ -100,7 +100,7 @@ class Purge_Post_Data {
 			$wpdb->prepare(
 				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid JOIN $wpdb->posts as P ON P.ID = T1.post_id WHERE T1.meta_key like %s and T2.siteid=%d and P.post_status=%s",
 				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
+				$wpdb->esc_like( '_edac' ) . '%',
 				get_current_blog_id(),
 				$post_status
 			)
@@ -138,7 +138,7 @@ class Purge_Post_Data {
 			$wpdb->prepare(
 				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
 				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
+				$wpdb->esc_like( '_edac' ) . '%',
 				get_current_blog_id(),
 				$post_type
 			)
