@@ -208,6 +208,15 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
+		'edac_show_metabox_in_block_editor',
+		__( 'Block Editor Metabox', 'accessibility-checker' ),
+		'edac_show_metabox_in_block_editor_cb',
+		'edac_settings',
+		'edac_system',
+		[ 'label_for' => 'edac_show_metabox_in_block_editor' ]
+	);
+
+	add_settings_field(
 		'edac_simplified_summary_prompt',
 		__( 'Prompt for Simplified Summary', 'accessibility-checker' ),
 		'edac_simplified_summary_prompt_cb',
@@ -283,6 +292,7 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
 
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', 'edac_sanitize_checkbox' );
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
@@ -813,6 +823,24 @@ function edac_delete_data_cb() {
 		<label>
 			<input type="checkbox" name="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
 			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<?php
+}
+
+
+/**
+ * Render the checkbox input field for toggling metabox visibility in the block editor.
+ */
+function edac_show_metabox_in_block_editor_cb() {
+
+	$option = get_option( 'edac_show_metabox_in_block_editor', 1 );
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="edac_show_metabox_in_block_editor" value="1" <?php checked( $option, 1 ); ?>>
+			<?php esc_html_e( 'Show Accessibility Checker metabox in the Block Editor', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php

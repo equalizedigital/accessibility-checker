@@ -123,6 +123,10 @@ const edacScriptVars = edac_script_vars;
 		 * @param {Function} callback - Callback function to run after ajax is complete
 		 */
 		function edacSummaryAjax( callback = null ) {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
@@ -157,6 +161,10 @@ const edacScriptVars = edac_script_vars;
 		 * Ajax Details
 		 */
 		function edacDetailsAjax() {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
@@ -235,6 +243,10 @@ const edacScriptVars = edac_script_vars;
 		 * Ajax Readability
 		 */
 		function edacReadabilityAjax() {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {

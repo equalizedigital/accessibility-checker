@@ -211,9 +211,37 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		
 		// Check that the transient was set.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
+		$this->assertSame( '0', get_option( 'edac_show_metabox_in_block_editor' ) );
 		
 		// Clean up.
 		delete_transient( 'edac_activation_redirect' );
+		delete_option( 'edac_show_metabox_in_block_editor' );
+	}
+
+	/**
+	 * Test that reactivation on an existing install defaults show_metabox to '1'.
+	 *
+	 * Existing sites that never had this option written should default to showing
+	 * the legacy metabox to preserve the behavior they had before the setting existed.
+	 */
+	public function test_activation_on_existing_install_defaults_metabox_to_visible() {
+		// Simulate an existing install by writing a db_version option.
+		update_option( 'edac_db_version', '1.0.6' );
+		delete_option( 'edac_show_metabox_in_block_editor' );
+		delete_transient( 'edac_activation_redirect' );
+
+		if ( ! class_exists( 'EDAC\Admin\Accessibility_Statement' ) ) {
+			require_once EDAC_PLUGIN_DIR . 'admin/class-accessibility-statement.php';
+		}
+
+		edac_activation();
+
+		$this->assertSame( '1', get_option( 'edac_show_metabox_in_block_editor' ) );
+
+		// Clean up.
+		delete_transient( 'edac_activation_redirect' );
+		delete_option( 'edac_show_metabox_in_block_editor' );
+		delete_option( 'edac_db_version' );
 	}
 
 	/**
