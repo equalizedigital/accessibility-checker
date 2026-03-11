@@ -82,6 +82,8 @@ class Purge_Post_Data {
 
 		global $wpdb;
 
+		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+
 		/**
 		 * Fires before deleting posts of a specific post type.
 		 *
@@ -91,12 +93,37 @@ class Purge_Post_Data {
 		 */
 		do_action( 'edac_before_delete_cpt_posts', $post_type );
 
+		// Get post IDs from the accessibility checker table that match the criteria.
+		// Multi-table DELETE with JOIN is not supported in SQLite, so we use two separate queries.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
+		$post_ids = $wpdb->get_col(
+			$wpdb->prepare(
+				'SELECT DISTINCT postid FROM %i WHERE siteid=%d AND type=%s',
+				$table_name,
+				get_current_blog_id(),
+				$post_type
+			)
+		);
+
+		if ( ! empty( $post_ids ) ) {
+			$placeholders = implode( ',', array_fill( 0, count( $post_ids ), '%d' ) );
+			// Delete the accessibility plugin's postmeta records for these posts.
+			// $placeholders contains only '%d' values from array_fill() and is safe to interpolate.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Safe variable used for table name, caching not required for one time operation.
+			$wpdb->query(
+				$wpdb->prepare(
+					"DELETE FROM {$wpdb->postmeta} WHERE meta_key LIKE %s AND post_id IN ($placeholders)", // phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- $placeholders is built from array_fill() with '%d' values only.
+					array_merge( [ '_edac%' ], $post_ids )
+				)
+			);
+		}
+
+		// Delete accessibility checker records for this post type.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		return $wpdb->query(
 			$wpdb->prepare(
-				"DELETE T1,T2 from $wpdb->postmeta as T1 JOIN %i as T2 ON T1.post_id = T2.postid WHERE T1.meta_key like %s and T2.siteid=%d and T2.type=%s",
-				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				'_edac%',
+				'DELETE FROM %i WHERE siteid=%d AND type=%s',
+				$table_name,
 				get_current_blog_id(),
 				$post_type
 			)
