@@ -108,7 +108,7 @@ function edac_ordinal( $number ) {
  */
 function edac_remove_element_with_value( $items, $key, $value ) {
 	foreach ( $items as $sub_key => $sub_array ) {
-		if ( $sub_array[ $key ] === $value ) {
+		if ( isset( $sub_array[ $key ] ) && $sub_array[ $key ] === $value ) {
 			unset( $items[ $sub_key ] );
 		}
 	}
