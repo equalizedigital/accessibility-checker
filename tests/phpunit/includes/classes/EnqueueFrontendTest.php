@@ -13,6 +13,13 @@ use EDAC\Inc\Enqueue_Frontend;
 class EnqueueFrontendTest extends WP_UnitTestCase {
 
 	/**
+	 * Stored filter callbacks to be removed in tearDown.
+	 *
+	 * @var array<string, callable>
+	 */
+	private array $added_filters = [];
+
+	/**
 	 * Set up test state.
 	 */
 	protected function setUp(): void {
@@ -29,6 +36,11 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	 * Clean up test state.
 	 */
 	protected function tearDown(): void {
+		foreach ( $this->added_filters as $hook => $callback ) {
+			remove_filter( $hook, $callback );
+		}
+		$this->added_filters = [];
+
 		delete_option( 'edac_post_types' );
 
 		global $wp_scripts, $wp_styles, $post;
@@ -42,7 +54,7 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	/**
 	 * Ensure the highlighter uses the filtered post ID when determining scannable post types.
 	 */
-	public function testFrontendHighlighterUsesFilteredPostIdForScannableType() {
+	public function testFrontendHighlighterUsesFilteredPostIdForScannableType(): void {
 		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_id );
 
@@ -52,17 +64,15 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		global $post;
 		$post = $global_post;
 
-		add_filter(
-			'edac_filter_frontend_highlight_post_id',
-			static function () use ( $scannable_post ) {
-				return $scannable_post->ID;
-			}
-		);
+		$filter_callback = static function () use ( $scannable_post ) {
+			return $scannable_post->ID;
+		};
+
+		$this->added_filters['edac_filter_frontend_highlight_post_id'] = $filter_callback;
+		add_filter( 'edac_filter_frontend_highlight_post_id', $filter_callback );
 
 		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
 
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
-
-		remove_all_filters( 'edac_filter_frontend_highlight_post_id' );
 	}
 }
