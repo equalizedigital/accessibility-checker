@@ -734,7 +734,12 @@
 
   #edac-rules-list {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+
+    .edac-rules-group {
+      flex: 1 1 200px;
+    }
   }
 
   .edac-rules-group label {
