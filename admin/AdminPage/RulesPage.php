@@ -287,7 +287,6 @@ class RulesPage implements PageInterface {
 							?>
 						</label>
 					</span>
-					<br>
 				<?php endforeach; ?>
 			</fieldset>
 		<?php endforeach; ?>
