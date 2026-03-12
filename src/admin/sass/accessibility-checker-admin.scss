@@ -732,6 +732,22 @@
 .edac-settings {
   max-width: 800px;
 
+  #edac-rules-list {
+    display: flex;
+    gap: 20px;
+  }
+
+  .edac-rules-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .edac-icon {
+      position: relative;
+      top: -2px;
+    }
+  }
+
   &.pro-callout-wrapper {
     max-width: fit-content;
   }
