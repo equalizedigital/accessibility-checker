@@ -7,6 +7,8 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 
+use EqualizeDigital\AccessibilityChecker\Rules\RuleRegistry;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -140,7 +142,7 @@ class RulesPage implements PageInterface {
 		add_settings_field(
 			'edac_reset_rules',
 			'',
-			'edac_reset_rules_cb',
+			[ $this, 'reset_rules_cb' ],
 			self::SETTINGS_SLUG,
 			'edac_rules_general',
 		);
@@ -148,13 +150,13 @@ class RulesPage implements PageInterface {
 		add_settings_field(
 			'edac_disabled_rules',
 			__( 'Active Rules', 'accessibility-checker' ),
-			'edac_disabled_rules_cb',
+			[ $this, 'disabled_rules_cb' ],
 			self::SETTINGS_SLUG,
 			'edac_rules_general',
 			[ 'label_for' => 'edac_disabled_rules' ]
 		);
 
-		register_setting( self::SETTINGS_SLUG, 'edac_disabled_rules', 'edac_sanitize_disabled_rules' );
+		register_setting( self::SETTINGS_SLUG, 'edac_disabled_rules', [ $this, 'sanitize_disabled_rules' ] );
 	}
 
 	/**
@@ -162,6 +164,159 @@ class RulesPage implements PageInterface {
 	 */
 	public function rules_section_general_cb() {
 		echo '<p>' . esc_html__( 'Choose which rules are active during a scan. Unchecked rules will not be processed.', 'accessibility-checker' ) . '</p>';
+	}
+
+	/**
+	 * Render the reset all rules button.
+	 */
+	public function reset_rules_cb() {
+		?>
+		<button
+			type="button"
+			id="edac-reset-rules"
+			class="button"
+			<?php disabled( ! edac_is_pro() ); ?>
+		><?php esc_html_e( 'Reset all rules to active', 'accessibility-checker' ); ?></button>
+		<script>
+		( function() {
+			var btn = document.getElementById( 'edac-reset-rules' );
+			if ( ! btn ) { return; }
+			btn.addEventListener( 'click', function() {
+				if ( ! window.confirm( <?php echo wp_json_encode( __( 'Are you sure you want to reset all rules to active? This will enable any rules you have disabled.', 'accessibility-checker' ) ); ?> ) ) {
+					return;
+				}
+				document.querySelectorAll( '#edac-rules-list input[type="checkbox"]' ).forEach( function( cb ) {
+					cb.checked = true;
+				} );
+				var form = btn.closest( 'form' );
+				if ( form ) {
+					var submitBtn = form.querySelector( 'input[type="submit"], button[type="submit"]' );
+					if ( submitBtn ) {
+						submitBtn.click();
+					} else if ( form.requestSubmit ) {
+						form.requestSubmit();
+					} else {
+						form.submit();
+					}
+				}
+			} );
+		} )();
+		</script>
+		<?php
+	}
+
+	/**
+	 * Render the checkbox list for the active rules option.
+	 */
+	public function disabled_rules_cb() {
+
+		// Check whether an external filter is modifying the rules list. If so,
+		// the UI should be locked — letting both mechanisms run simultaneously
+		// could produce unexpected results.
+		$has_external_filter = false;
+		global $wp_filter;
+		if ( isset( $wp_filter['edac_filter_register_rules'] ) ) {
+			foreach ( $wp_filter['edac_filter_register_rules']->callbacks as $callbacks ) {
+				foreach ( $callbacks as $callback ) {
+					$fn = $callback['function'];
+					if ( ! ( is_array( $fn ) && $fn[0] instanceof self && 'apply_disabled_rules_setting' === $fn[1] ) ) {
+						$has_external_filter = true;
+						break 2;
+					}
+				}
+			}
+		}
+
+		if ( $has_external_filter ) {
+			echo '<p>' . esc_html__( 'Active rules cannot be configured here because another plugin or theme is filtering the rules list via the edac_filter_register_rules hook.', 'accessibility-checker' ) . '</p>';
+			return;
+		}
+
+		$is_pro    = edac_is_pro();
+		$all_rules = RuleRegistry::load_rules();
+		$disabled  = get_option( 'edac_disabled_rules', [] );
+		$disabled  = is_array( $disabled ) ? $disabled : [];
+
+		$groups = [
+			'error'   => __( 'Problems', 'accessibility-checker' ),
+			'warning' => __( 'Needs Review', 'accessibility-checker' ),
+		];
+
+		$group_icons = [
+			'error'   => 'error',
+			'warning' => 'warning',
+		];
+
+		$fieldset_attrs = $is_pro ? '' : 'class="edac-setting--upsell"';
+		?>
+		<div id="edac-rules-list">
+		<?php
+		$position = 0;
+		foreach ( $groups as $rule_type => $group_label ) :
+			$group_rules = array_filter( $all_rules, fn( $r ) => ( $r['rule_type'] ?? '' ) === $rule_type );
+			if ( empty( $group_rules ) ) {
+				continue;
+			}
+			?>
+			<fieldset <?php echo $fieldset_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> class="edac-rules-group" data-group="<?php echo esc_attr( $rule_type ); ?>">
+				<legend class="screen-reader-text"><?php echo esc_html( $group_label ); ?></legend>
+				<?php
+				foreach ( $group_rules as $rule ) :
+					$slug     = $rule['slug'];
+					$title    = $rule['title'] ?? $slug;
+					$field_id = ( 0 === $position ) ? 'edac_disabled_rules' : 'edac_active_rules_' . $slug;
+					++$position;
+					?>
+					<span class="edac-rule-item">
+						<label>
+							<input
+								type="checkbox"
+								id="<?php echo esc_attr( $field_id ); ?>"
+								name="edac_active_rules[]"
+								value="<?php echo esc_attr( $slug ); ?>"
+								<?php checked( ! in_array( $slug, $disabled, true ) ); ?>
+								<?php disabled( ! $is_pro ); ?>
+							>
+							<?php
+							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- edac_icon returns safe SVG markup.
+							echo edac_icon( $group_icons[ $rule_type ] );
+							echo esc_html( $title );
+							?>
+						</label>
+					</span>
+					<br>
+				<?php endforeach; ?>
+			</fieldset>
+		<?php endforeach; ?>
+		</div>
+
+		<p class="edac-description">
+			<?php esc_html_e( 'Choose which rules are active during a scan. Unchecked rules will not be processed. Note: disabling a rule does not remove previously stored results for that rule.', 'accessibility-checker' ); ?>
+		</p>
+		<?php
+	}
+
+	/**
+	 * Sanitize the active rules submission and store disabled rule slugs.
+	 *
+	 * The form submits active rule slugs via edac_active_rules[]. We compute
+	 * disabled = all registered slugs − submitted active slugs and store that.
+	 *
+	 * @return array Array of disabled rule slugs.
+	 */
+	public function sanitize_disabled_rules(): array {
+
+		$all_slugs = array_column( RuleRegistry::load_rules(), 'slug' );
+
+		$submitted_active = isset( $_POST['edac_active_rules'] ) ? (array) $_POST['edac_active_rules'] : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized, WordPress.Security.NonceVerification.Missing -- sanitized below with array_filter and in_array and nonce verified by the Setting API.
+
+		// Only accept values that exactly match a registered rule slug.
+		$valid_active = array_filter(
+			$submitted_active,
+			fn( $slug ) => in_array( $slug, $all_slugs, true )
+		);
+
+		return array_values( array_diff( $all_slugs, $valid_active ) );
 	}
 
 	/**
