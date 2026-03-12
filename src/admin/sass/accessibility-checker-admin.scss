@@ -743,8 +743,11 @@
     gap: 4px;
 
     .edac-icon {
-      position: relative;
-      top: -2px;
+      display: flex;
+
+      svg {
+      	margin-top: -4px;
+      }
     }
   }
 
