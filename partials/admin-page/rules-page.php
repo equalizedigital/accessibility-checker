@@ -10,8 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 ?>
-<div id="edac-rules-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
-	<div class="edac-settings-general <?php echo EDAC_KEY_VALID ? '' : 'edac-show-pro-callout'; ?>">
+<div id="edac-rules-page" class="wrap edac-settings <?php echo esc_attr( edac_is_pro() ? '' : 'pro-callout-wrapper' ); ?>">
+	<div class="edac-settings-general <?php echo esc_attr( edac_is_pro() ? '' : 'edac-show-pro-callout' ); ?>">
 		<form action="options.php" method="post">
 			<?php
 			settings_fields( 'edac_settings_rules' );
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			submit_button();
 			?>
 		</form>
-		<?php if ( EDAC_KEY_VALID === false ) { ?>
+		<?php if ( ! edac_is_pro() ) { ?>
 			<div><?php include EDAC_PLUGIN_DIR . 'partials/pro-callout.php'; ?></div>
 		<?php } ?>
 	</div>
