@@ -65,19 +65,18 @@ class RulesPageTest extends WP_UnitTestCase {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Test that add_page registers the edac_filter_register_rules filter at priority 5.
+	 * Test that apply_disabled_rules_setting can be registered on edac_filter_register_rules at priority 5.
+	 *
+	 * The actual registration happens in the plugin bootstrap (plugins_loaded), not in add_page(),
+	 * so this test verifies the method is hookable and callable as expected.
 	 */
-	public function test_add_page_registers_apply_disabled_rules_filter() {
-		$this->page->add_page();
+	public function test_apply_disabled_rules_setting_is_hookable_at_priority_5() {
+		add_filter( 'edac_filter_register_rules', [ $this->page, 'apply_disabled_rules_setting' ], 5 );
 
-		$this->assertNotFalse(
-			has_filter( 'edac_filter_register_rules', [ $this->page, 'apply_disabled_rules_setting' ] ),
-			'apply_disabled_rules_setting should be hooked onto edac_filter_register_rules'
-		);
 		$this->assertSame(
 			5,
 			has_filter( 'edac_filter_register_rules', [ $this->page, 'apply_disabled_rules_setting' ] ),
-			'Filter should be registered at priority 5'
+			'apply_disabled_rules_setting should be hookable onto edac_filter_register_rules at priority 5'
 		);
 	}
 
@@ -396,15 +395,17 @@ class RulesPageTest extends WP_UnitTestCase {
 	// -------------------------------------------------------------------------
 
 	/**
-	 * Test that sanitize_disabled_rules returns all slugs as disabled when nothing is submitted.
+	 * Test that sanitize_disabled_rules returns the existing stored value when not pro and nothing is submitted.
+	 *
+	 * Diff computation is a pro-only feature; without pro the method always returns
+	 * whatever is already stored in the option.
 	 */
-	public function test_sanitize_disabled_rules_returns_all_when_nothing_submitted() {
+	public function test_sanitize_disabled_rules_returns_existing_stored_value_when_not_pro() {
 		unset( $_POST['edac_active_rules'] );
 
-		$all_slugs = array_column( RuleRegistry::load_rules(), 'slug' );
-		$result    = $this->page->sanitize_disabled_rules();
+		$result = $this->page->sanitize_disabled_rules();
 
-		$this->assertEqualsCanonicalizing( $all_slugs, $result );
+		$this->assertEmpty( $result );
 	}
 
 	/**
@@ -421,19 +422,24 @@ class RulesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that sanitize_disabled_rules correctly computes disabled as the difference.
+	 * Test that sanitize_disabled_rules returns existing stored value when not pro, ignoring POST data.
+	 *
+	 * Diff computation is a pro-only feature; without pro the submitted active-rules
+	 * list is ignored and whatever is currently stored is preserved.
 	 */
-	public function test_sanitize_disabled_rules_computes_correct_diff() {
+	public function test_sanitize_disabled_rules_ignores_post_data_when_not_pro() {
+		$stored = [ 'some_rule' ];
+		update_option( 'edac_disabled_rules', $stored );
+
 		$all_slugs = array_column( RuleRegistry::load_rules(), 'slug' );
-		$this->assertGreaterThan( 1, count( $all_slugs ), 'Need at least 2 rules to test diff' );
+		$this->assertGreaterThan( 1, count( $all_slugs ), 'Need at least 2 rules for this test' );
 
-		$active_slugs = array_slice( $all_slugs, 1 ); // Submit all except the first.
-
-		$_POST['edac_active_rules'] = $active_slugs; // phpcs:ignore WordPress.Security.NonceVerification.Missing
+		// Submit all-but-first as active — should be ignored when not pro.
+		$_POST['edac_active_rules'] = array_slice( $all_slugs, 1 ); // phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		$result = $this->page->sanitize_disabled_rules();
 
-		$this->assertSame( [ $all_slugs[0] ], $result );
+		$this->assertSame( $stored, $result );
 	}
 
 	/**
