@@ -138,6 +138,14 @@ class RulesPage implements PageInterface {
 	public function register_fields_and_settings() {
 
 		add_settings_field(
+			'edac_reset_rules',
+			'',
+			'edac_reset_rules_cb',
+			self::SETTINGS_SLUG,
+			'edac_rules_general',
+		);
+
+		add_settings_field(
 			'edac_disabled_rules',
 			__( 'Active Rules', 'accessibility-checker' ),
 			'edac_disabled_rules_cb',

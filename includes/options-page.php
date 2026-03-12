@@ -1091,6 +1091,45 @@ function edac_disabled_rules_cb() {
 }
 
 /**
+ * Render the reset all rules button.
+ */
+function edac_reset_rules_cb() {
+	?>
+	<button
+		type="button"
+		id="edac-reset-rules"
+		class="button"
+		<?php disabled( ! edac_is_pro() ); ?>
+	><?php esc_html_e( 'Reset all rules to active', 'accessibility-checker' ); ?></button>
+	<script>
+	( function() {
+		var btn = document.getElementById( 'edac-reset-rules' );
+		if ( ! btn ) { return; }
+		btn.addEventListener( 'click', function() {
+			if ( ! window.confirm( <?php echo wp_json_encode( __( 'Are you sure you want to reset all rules to active? This will enable any rules you have disabled.', 'accessibility-checker' ) ); ?> ) ) {
+				return;
+			}
+			document.querySelectorAll( '#edac-rules-list input[type="checkbox"]' ).forEach( function( cb ) {
+				cb.checked = true;
+			} );
+			var form = btn.closest( 'form' );
+			if ( form ) {
+				var submitBtn = form.querySelector( 'input[type="submit"], button[type="submit"]' );
+				if ( submitBtn ) {
+					submitBtn.click();
+				} else if ( form.requestSubmit ) {
+					form.requestSubmit();
+				} else {
+					form.submit();
+				}
+			}
+		} );
+	} )();
+	</script>
+	<?php
+}
+
+/**
  * Sanitize the active rules submission and store disabled rule slugs.
  *
  * The form submits active rule slugs via edac_active_rules[]. We compute
