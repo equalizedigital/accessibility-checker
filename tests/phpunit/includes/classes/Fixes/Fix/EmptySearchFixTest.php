@@ -35,6 +35,7 @@ class EmptySearchFixTest extends WP_UnitTestCase {
 		$this->common_teardown();
 		remove_all_actions( 'pre_get_posts' );
 		remove_all_filters( 'template_include' );
+		remove_all_filters( 'get_search_query' );
 		unset( $_GET['s'] );
 		parent::tearDown();
 	}
@@ -238,6 +239,41 @@ class EmptySearchFixTest extends WP_UnitTestCase {
 		$this->assertNotFalse( has_filter( 'template_include', [ $this->fix, 'force_search_template' ] ) );
 
 		$this->restore_main_query();
+	}
+
+	/**
+	 * Test that handle_empty_search adds get_search_query filter.
+	 *
+	 * @return void
+	 */
+	public function test_handle_empty_search_adds_search_query_filter() {
+		$_GET['s'] = '';
+
+		$query = $this->get_main_query();
+
+		$this->fix->handle_empty_search( $query );
+
+		$this->assertNotFalse( has_filter( 'get_search_query', [ $this->fix, 'clear_fake_search_query' ] ) );
+
+		$this->restore_main_query();
+	}
+
+	/**
+	 * Test that clear_fake_search_query returns empty string for the placeholder value.
+	 *
+	 * @return void
+	 */
+	public function test_clear_fake_search_query_clears_placeholder() {
+		$this->assertEquals( '', $this->fix->clear_fake_search_query( '&#32;' ) );
+	}
+
+	/**
+	 * Test that clear_fake_search_query passes through real search queries.
+	 *
+	 * @return void
+	 */
+	public function test_clear_fake_search_query_passes_real_queries() {
+		$this->assertEquals( 'hello', $this->fix->clear_fake_search_query( 'hello' ) );
 	}
 
 	/**
