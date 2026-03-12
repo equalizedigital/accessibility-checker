@@ -251,10 +251,6 @@ class RulesPage implements PageInterface {
 		];
 
 		$list_attrs = $is_pro ? '' : 'class="edac-setting--upsell"';
-
-		if ( $has_external_filter ) {
-			echo '<p class="edac-description">' . esc_html__( 'The rule list is read-only because another plugin or theme is filtering it via the edac_filter_register_rules hook.', 'accessibility-checker' ) . '</p>';
-		}
 		?>
 		<div id="edac-rules-list" <?php echo $list_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 		<?php
@@ -300,7 +296,26 @@ class RulesPage implements PageInterface {
 		<p class="edac-description">
 			<?php esc_html_e( 'Choose which rules are active during a scan. Unchecked rules will not be processed. Note: disabling a rule does not remove previously stored results for that rule.', 'accessibility-checker' ); ?>
 		</p>
+
 		<?php
+		if ( $has_external_filter ) {
+			?>
+			<p class="edac-description">
+				<?php
+				echo wp_kses(
+					sprintf(
+						/* translators: %s is a code tag with the name of the filter hook. */
+						__( 'The rule list is read-only because another plugin or theme is filtering it via the %s hook.', 'accessibility-checker' ),
+						'<code>edac_filter_register_rules</code>'
+					),
+					[
+						'code' => [],
+					]
+				);
+				?>
+			</p>
+			<?php
+		}
 	}
 
 	/**
