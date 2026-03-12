@@ -1901,3 +1901,21 @@
     }
   }
 }
+
+.edac-icon {
+	&--success {
+		color: sidebar-variables.$check-green;
+	}
+
+	&--info {
+		color: sidebar-variables.$info-grey;
+	}
+
+	&--warning {
+		color: sidebar-variables.$warning-orange;
+	}
+
+	&--error {
+		color: sidebar-variables.$error-red;
+	}
+}
