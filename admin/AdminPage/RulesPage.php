@@ -327,9 +327,9 @@ class RulesPage implements PageInterface {
 	 */
 	public function sanitize_disabled_rules(): array {
 
-		// When an external filter controls the rules list, preserve whatever is
-		// already stored rather than allowing the (disabled) form to overwrite it.
-		if ( $this->has_external_filter() ) {
+		// When an external filter controls the rules list, or we are not using pro
+		// preserve whatever is already stored.
+		if ( $this->has_external_filter() || ! edac_is_pro() ) {
 			$existing = get_option( 'edac_disabled_rules', [] );
 			return is_array( $existing ) ? $existing : [];
 		}
