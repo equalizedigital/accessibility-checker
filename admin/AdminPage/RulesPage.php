@@ -167,6 +167,30 @@ class RulesPage implements PageInterface {
 	}
 
 	/**
+	 * Checks whether any callback other than our own is hooked onto edac_filter_register_rules.
+	 *
+	 * When an external filter is present the UI should be read-only and saves
+	 * should preserve the existing stored value.
+	 *
+	 * @return bool
+	 */
+	private function has_external_filter(): bool {
+		global $wp_filter;
+		if ( ! isset( $wp_filter['edac_filter_register_rules'] ) ) {
+			return false;
+		}
+		foreach ( $wp_filter['edac_filter_register_rules']->callbacks as $callbacks ) {
+			foreach ( $callbacks as $callback ) {
+				$fn = $callback['function'];
+				if ( ! ( is_array( $fn ) && $fn[0] instanceof self && 'apply_disabled_rules_setting' === $fn[1] ) ) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Render the reset all rules button.
 	 */
 	public function reset_rules_cb() {
@@ -175,7 +199,7 @@ class RulesPage implements PageInterface {
 			type="button"
 			id="edac-reset-rules"
 			class="button"
-			<?php disabled( ! edac_is_pro() ); ?>
+			<?php disabled( ! edac_is_pro() || $this->has_external_filter() ); ?>
 		><?php esc_html_e( 'Reset all rules to active', 'accessibility-checker' ); ?></button>
 		<script>
 		( function() {
@@ -210,32 +234,11 @@ class RulesPage implements PageInterface {
 	 */
 	public function disabled_rules_cb() {
 
-		// Check whether an external filter is modifying the rules list. If so,
-		// the UI should be locked — letting both mechanisms run simultaneously
-		// could produce unexpected results.
-		$has_external_filter = false;
-		global $wp_filter;
-		if ( isset( $wp_filter['edac_filter_register_rules'] ) ) {
-			foreach ( $wp_filter['edac_filter_register_rules']->callbacks as $callbacks ) {
-				foreach ( $callbacks as $callback ) {
-					$fn = $callback['function'];
-					if ( ! ( is_array( $fn ) && $fn[0] instanceof self && 'apply_disabled_rules_setting' === $fn[1] ) ) {
-						$has_external_filter = true;
-						break 2;
-					}
-				}
-			}
-		}
-
-		if ( $has_external_filter ) {
-			echo '<p>' . esc_html__( 'Active rules cannot be configured here because another plugin or theme is filtering the rules list via the edac_filter_register_rules hook.', 'accessibility-checker' ) . '</p>';
-			return;
-		}
-
-		$is_pro    = edac_is_pro();
-		$all_rules = RuleRegistry::load_rules();
-		$disabled  = get_option( 'edac_disabled_rules', [] );
-		$disabled  = is_array( $disabled ) ? $disabled : [];
+		$has_external_filter = $this->has_external_filter();
+		$is_pro              = edac_is_pro();
+		$all_rules           = RuleRegistry::load_rules();
+		$disabled            = get_option( 'edac_disabled_rules', [] );
+		$disabled            = is_array( $disabled ) ? $disabled : [];
 
 		$groups = [
 			'error'   => __( 'Problems', 'accessibility-checker' ),
@@ -247,9 +250,13 @@ class RulesPage implements PageInterface {
 			'warning' => 'warning',
 		];
 
-		$fieldset_attrs = $is_pro ? '' : 'class="edac-setting--upsell"';
+		$list_attrs = $is_pro ? '' : 'class="edac-setting--upsell"';
+
+		if ( $has_external_filter ) {
+			echo '<p class="edac-description">' . esc_html__( 'The rule list is read-only because another plugin or theme is filtering it via the edac_filter_register_rules hook.', 'accessibility-checker' ) . '</p>';
+		}
 		?>
-		<div id="edac-rules-list">
+		<div id="edac-rules-list" <?php echo $list_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>
 		<?php
 		$position = 0;
 		foreach ( $groups as $rule_type => $group_label ) :
@@ -258,7 +265,7 @@ class RulesPage implements PageInterface {
 				continue;
 			}
 			?>
-			<fieldset <?php echo $fieldset_attrs; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> class="edac-rules-group" data-group="<?php echo esc_attr( $rule_type ); ?>">
+			<fieldset class="edac-rules-group" data-group="<?php echo esc_attr( $rule_type ); ?>">
 				<legend class="screen-reader-text"><?php echo esc_html( $group_label ); ?></legend>
 				<?php
 				foreach ( $group_rules as $rule ) :
@@ -275,7 +282,7 @@ class RulesPage implements PageInterface {
 								name="edac_active_rules[]"
 								value="<?php echo esc_attr( $slug ); ?>"
 								<?php checked( ! in_array( $slug, $disabled, true ) ); ?>
-								<?php disabled( ! $is_pro ); ?>
+								<?php disabled( ! $is_pro || $has_external_filter ); ?>
 							>
 							<?php
 							// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- edac_icon returns safe SVG markup.
@@ -305,6 +312,13 @@ class RulesPage implements PageInterface {
 	 * @return array Array of disabled rule slugs.
 	 */
 	public function sanitize_disabled_rules(): array {
+
+		// When an external filter controls the rules list, preserve whatever is
+		// already stored rather than allowing the (disabled) form to overwrite it.
+		if ( $this->has_external_filter() ) {
+			$existing = get_option( 'edac_disabled_rules', [] );
+			return is_array( $existing ) ? $existing : [];
+		}
 
 		$all_slugs = array_column( RuleRegistry::load_rules(), 'slug' );
 
