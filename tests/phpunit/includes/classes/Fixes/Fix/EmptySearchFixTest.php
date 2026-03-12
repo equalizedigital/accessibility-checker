@@ -32,11 +32,12 @@ class EmptySearchFixTest extends WP_UnitTestCase {
 	 * Clean up after tests.
 	 */
 	public function tearDown(): void {
-		$this->common_teardown();
-		remove_all_actions( 'pre_get_posts' );
-		remove_all_filters( 'template_include' );
-		remove_all_filters( 'get_search_query' );
+		$this->restore_main_query();
+		remove_action( 'pre_get_posts', [ $this->fix, 'handle_empty_search' ] );
+		remove_filter( 'template_include', [ $this->fix, 'force_search_template' ] );
+		remove_filter( 'get_search_query', [ $this->fix, 'clear_fake_search_query' ] );
 		unset( $_GET['s'] );
+		$this->common_teardown();
 		parent::tearDown();
 	}
 
