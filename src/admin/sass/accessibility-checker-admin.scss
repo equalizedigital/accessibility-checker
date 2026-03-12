@@ -1927,19 +1927,19 @@
 }
 
 .edac-icon {
-	&--success {
-		color: sidebar-variables.$check-green;
-	}
+  &--success {
+    color: sidebar-variables.$check-green;
+  }
 
-	&--info {
-		color: sidebar-variables.$info-grey;
-	}
+  &--info {
+    color: sidebar-variables.$info-grey;
+  }
 
-	&--warning {
-		color: sidebar-variables.$warning-orange;
-	}
+  &--warning {
+    color: sidebar-variables.$warning-orange;
+  }
 
-	&--error {
-		color: sidebar-variables.$error-red;
-	}
+  &--error {
+    color: sidebar-variables.$error-red;
+  }
 }
