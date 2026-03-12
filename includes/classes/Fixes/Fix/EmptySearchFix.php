@@ -144,7 +144,6 @@ class EmptySearchFix implements FixInterface {
 		}
 
 		$query->query_vars['s'] = '&#32;';
-		$query->set( 'is_search', 1 );
 
 		add_filter( 'get_search_query', [ $this, 'clear_fake_search_query' ] );
 		add_action( 'template_include', [ $this, 'force_search_template' ] );
