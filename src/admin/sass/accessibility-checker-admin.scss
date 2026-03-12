@@ -732,6 +732,30 @@
 .edac-settings {
   max-width: 800px;
 
+  #edac-rules-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    .edac-rules-group {
+      flex: 1 1 200px;
+    }
+  }
+
+  .edac-rules-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    .edac-icon {
+      display: flex;
+
+      svg {
+      	margin-top: -4px;
+      }
+    }
+  }
+
   &.pro-callout-wrapper {
     max-width: fit-content;
   }
@@ -1437,7 +1461,7 @@
 
     &-notice-upgrade-to-edacp {
       text-align: center;
-      
+
       a {
         width: 100%;
       }
@@ -1899,5 +1923,23 @@
       color: variables.$color-red;
       text-decoration: underline;
     }
+  }
+}
+
+.edac-icon {
+  &--success {
+    color: sidebar-variables.$check-green;
+  }
+
+  &--info {
+    color: sidebar-variables.$info-grey;
+  }
+
+  &--warning {
+    color: sidebar-variables.$warning-orange;
+  }
+
+  &--error {
+    color: sidebar-variables.$error-red;
   }
 }
