@@ -57,9 +57,6 @@ class RulesPage implements PageInterface {
 		add_filter( 'edac_filter_remove_admin_notices_screens', [ $this, 'add_slug_to_admin_notices' ] );
 		add_filter( 'edac_filter_settings_tab_items', [ $this, 'add_rules_tab' ], 8 );
 		add_action( 'edac_settings_tab_content', [ $this, 'add_rules_tab_content' ], 12, 1 );
-
-		// Run early so other filters can refilter after us.
-		add_filter( 'edac_filter_register_rules', [ $this, 'apply_disabled_rules_setting' ], 5 );
 	}
 
 	/**

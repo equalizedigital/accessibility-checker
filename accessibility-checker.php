@@ -21,6 +21,7 @@
  */
 
 use EDAC\Inc\Plugin;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\RulesPage;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -110,6 +111,17 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/options-page.php';
  */
 add_action( 'admin_menu', 'edac_add_options_page' );
 add_action( 'admin_init', 'edac_register_setting' );
+
+// Register the disabled-rules scan filter on every request (not just admin pages) so
+// that rules disabled via the Rules settings page are excluded during REST API scans too.
+add_action(
+	'plugins_loaded',
+	function () {
+		$rules_page = new RulesPage( 'manage_options' );
+		// Run early so other filters can refilter after us.
+		add_filter( 'edac_filter_register_rules', [ $rules_page, 'apply_disabled_rules_setting' ], 5 );
+	}
+);
 
 /**
  * Gets an array of default filters,
