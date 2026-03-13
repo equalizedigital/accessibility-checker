@@ -18,35 +18,35 @@ beforeEach( () => {
 } );
 
 describe( 'Missing Transcript Rule', () => {
-	test.each([
+	test.each( [
 		// ❌ Failing cases — should trigger violations
 		{
-			name: "flags <audio> without transcript nearby",
+			name: 'flags <audio> without transcript nearby',
 			html: '<audio src="audio.mp3" controls></audio>',
 			shouldPass: false,
 		},
 		{
-			name: "flags <video> without transcript nearby",
+			name: 'flags <video> without transcript nearby',
 			html: '<video src="video.mp4" controls></video>',
 			shouldPass: false,
 		},
 		{
-			name: "flags iframe (YouTube) without transcript",
+			name: 'flags iframe (YouTube) without transcript',
 			html: '<iframe src="https://www.youtube.com/embed/xyz"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: "flags iframe (Vimeo) without transcript",
+			name: 'flags iframe (Vimeo) without transcript',
 			html: '<iframe src="https://player.vimeo.com/video/123"></iframe>',
 			shouldPass: false,
 		},
 		{
-			name: "flags <a> linking to mp3 without transcript",
+			name: 'flags <a> linking to mp3 without transcript',
 			html: '<a href="episode.mp3">Listen here</a>',
 			shouldPass: false,
 		},
 		{
-			name: "flags <a> linking to mp4 without transcript",
+			name: 'flags <a> linking to mp4 without transcript',
 			html: '<a href="clip.mp4">Watch now</a>',
 			shouldPass: false,
 		},
@@ -73,12 +73,12 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: "passes link to audio file with transcript in wrapper",
+			name: 'passes link to audio file with transcript in wrapper',
 			html: '<div><a href="song.ogg">Listen</a><p>The transcript can be found below.</p></div>',
 			shouldPass: true,
 		},
 		{
-			name: "passes with aria-describedby pointing to transcript",
+			name: 'passes with aria-describedby pointing to transcript',
 			html: `
 				<p id="transcript-id">This is the transcript of the media content.</p>
 				<video src="movie.mp4" aria-describedby="transcript-id"></video>
@@ -86,7 +86,7 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: "passes YouTube iframe with transcript link nearby",
+			name: 'passes YouTube iframe with transcript link nearby',
 			html: `
 			<figure>
 				<div class="wp-block-embed__wrapper">
@@ -101,7 +101,7 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: "passes Vimeo iframe with transcript link nearby",
+			name: 'passes Vimeo iframe with transcript link nearby',
 			html: `
 			<div>
 				<div>
@@ -115,22 +115,22 @@ describe( 'Missing Transcript Rule', () => {
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{
-			name: "ignores mailto link",
+			name: 'ignores mailto link',
 			html: '<a href="mailto:info@example.com">Email us</a>',
 			shouldPass: true,
 		},
 		{
-			name: "ignores tel link",
+			name: 'ignores tel link',
 			html: '<a href="tel:1234567890">Call us</a>',
 			shouldPass: true,
 		},
 		{
-			name: "ignores plain content block",
+			name: 'ignores plain content block',
 			html: '<div class="text">Just some info</div>',
 			shouldPass: true,
 		},
 		{
-			name: "finds transcript 4 additional steps up the DOM tree",
+			name: 'finds transcript 4 additional steps up the DOM tree',
 			html: `
 				<div>
 					<div>
@@ -148,7 +148,7 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: "finds transcript 5 additional steps up the DOM tree",
+			name: 'finds transcript 5 additional steps up the DOM tree',
 			html: `
 				<div>
 					<div>
@@ -167,17 +167,17 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
-	])("$name", async ({ html, shouldPass }) => {
+	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;
 
-		const results = await axe.run(document.body, {
-			runOnly: ["missing_transcript"],
-		});
+		const results = await axe.run( document.body, {
+			runOnly: [ 'missing_transcript' ],
+		} );
 
-		if (shouldPass) {
-			expect(results.violations.length).toBe(0);
+		if ( shouldPass ) {
+			expect( results.violations.length ).toBe( 0 );
 		} else {
-			expect(results.violations.length).toBeGreaterThan(0);
+			expect( results.violations.length ).toBeGreaterThan( 0 );
 		}
-	});
+	} );
 } );
