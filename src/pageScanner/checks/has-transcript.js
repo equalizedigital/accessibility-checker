@@ -113,7 +113,7 @@ function getSurroundingText( node, radius = 250 ) {
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	let parent = node.closest( '.media-wrapper, figure, section, article' );
 
-	// Fallback: if no specific container found, use a reasonable ancestor (up to 3 levels)
+	// Fallback: if no specific container found, use a reasonable ancestor (up to TRAVERSAL_LEVEL_LIMIT levels)
 	if ( ! parent ) {
 		let ancestor = node.parentElement;
 		let level = 0;
