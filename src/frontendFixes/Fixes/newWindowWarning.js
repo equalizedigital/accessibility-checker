@@ -63,9 +63,7 @@ const initializeTooltip = () => {
  * Processes all anchor links and applies necessary accessibility enhancements.
  */
 const processLinks = () => {
-	// Remove previously appended icons to avoid duplication
-	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
-
+	// Only process links that have not yet been enhanced to prevent duplicate icons.
 	document.querySelectorAll( 'a:not([data-nww-processed])' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
