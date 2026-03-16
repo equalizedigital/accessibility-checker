@@ -9,6 +9,7 @@ const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
 const MAX_SIBLINGS_TO_CHECK = 5;
+const TRAVERSAL_LEVEL_LIMIT = 5;
 const PARENT_SIBLING_LIMIT = 3;
 
 export default {
@@ -112,11 +113,11 @@ function getSurroundingText( node, radius = 250 ) {
 	// Walk limited DOM subtree (media-wrapper, section, article, etc.)
 	let parent = node.closest( '.media-wrapper, figure, section, article' );
 
-	// Fallback: if no specific container found, use a reasonable ancestor (up to 3 levels)
+	// Fallback: if no specific container found, use a reasonable ancestor (up to TRAVERSAL_LEVEL_LIMIT levels)
 	if ( ! parent ) {
 		let ancestor = node.parentElement;
 		let level = 0;
-		while ( ancestor && level < 3 ) {
+		while ( ancestor && level < TRAVERSAL_LEVEL_LIMIT ) {
 			// Use the first parent that has multiple children or siblings
 			if ( ancestor.children.length > 1 || ancestor.nextElementSibling || ancestor.previousElementSibling ) {
 				parent = ancestor;
