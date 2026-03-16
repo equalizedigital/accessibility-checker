@@ -71,9 +71,13 @@ const processLinks = () => {
 
 		// Check if the link opens a new window using target="_blank"
 		if ( link.getAttribute( 'target' ) === '_blank' ) {
-			addExternalLinkIcon( link );
+			if ( ! link.closest( '.anww-no-icon' ) ) {
+				addExternalLinkIcon( link );
+			}
 			updateAriaLabel( link );
-			addTooltipHandlers( link );
+			if ( ! link.closest( '.anww-no-tooltip' ) ) {
+				addTooltipHandlers( link );
+			}
 			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			return;
 		}
@@ -84,9 +88,13 @@ const processLinks = () => {
 			const targetWindow = windowOpenMatch ? windowOpenMatch[ 1 ] : '';
 
 			if ( targetWindow === '_blank' || targetWindow === '' ) {
-				addExternalLinkIcon( link );
+				if ( ! link.closest( '.anww-no-icon' ) ) {
+					addExternalLinkIcon( link );
+				}
 				updateAriaLabel( link );
-				addTooltipHandlers( link );
+				if ( ! link.closest( '.anww-no-tooltip' ) ) {
+					addTooltipHandlers( link );
+				}
 				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			}
 		}
