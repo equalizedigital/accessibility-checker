@@ -1459,6 +1459,18 @@
 
 .edac-welcome-container {
 
+  .edac-background-light {
+    border: solid 1px variables.$color-gray-light;
+    border-radius: 5px;
+  }
+
+  .edac-welcome-aside {
+
+    .edac-panel {
+      padding: 20px;
+    }
+  }
+
   .edac-welcome-aside>div {
     width: 200px;
   }
@@ -1589,6 +1601,8 @@
 
       .edac-progress-percentage {
         margin: 0 .5rem;
+        font-size: 2.75rem;
+        font-weight: 600;
       }
 
       .edac-progress-label {
@@ -1710,12 +1724,15 @@
     }
 
     .edac-stat-number {
-      font-size: variables.$font-size-xx-large;
-      line-height: variables.$font-size-xx-large;
+      font-size: 2.75rem;
+      line-height: 1;
       font-weight: 600;
     }
 
     .edac-background-light {
+
+      background-color: variables.$color-gray-lightest;
+
       .edac-stat-label {
         font-size: variables.$font-size-small;
         line-height: variables.$font-size-medium;
@@ -1819,6 +1836,14 @@
 
       .edac-flex-item {
         padding: 1rem;
+
+        h3 {
+          margin-top: 0;
+        }
+        
+        p:last-child {
+          margin-bottom: 0;
+        }
       }
     }
   }
