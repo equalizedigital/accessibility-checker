@@ -231,5 +231,78 @@ describe( 'New Window Warning Tooltip', () => {
 			// Should NOT have external link icon due to modifier class
 			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).toBeNull();
 		} );
+
+		test( 'does not add icon when link is inside .edac-nww-no-icon container', () => {
+			document.body.innerHTML = '<div class="edac-nww-no-icon"><a href="http://example.com" target="_blank">External Link</a></div>';
+
+			NewWindowWarning();
+
+			const link = document.querySelector( 'a' );
+
+			// Should still update aria-label
+			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+
+			// Should NOT have external link icon
+			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).toBeNull();
+
+			// Should still be marked as processed
+			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
+		} );
+
+		test( 'does not add tooltip when link is inside .edac-nww-no-tooltip container', () => {
+			document.body.innerHTML = '<div class="edac-nww-no-tooltip"><a href="http://example.com" target="_blank">External Link</a></div>';
+
+			NewWindowWarning();
+
+			const link = document.querySelector( 'a' );
+			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+
+			// Should still update aria-label
+			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+
+			// Should still have icon
+			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).not.toBeNull();
+
+			// Tooltip should remain hidden when link is hovered
+			const event = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 100, pageY: 100 } );
+			link.dispatchEvent( event );
+
+			expect( anwwLinkTooltip.style.display ).toBe( 'none' );
+		} );
+
+		test( 'does not add icon or tooltip when link is inside edac-nww- prefixed modifier containers', () => {
+			document.body.innerHTML = '<div class="edac-nww-no-icon edac-nww-no-tooltip"><a href="http://example.com" target="_blank">External Link</a></div>';
+
+			NewWindowWarning();
+
+			const link = document.querySelector( 'a' );
+			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+
+			// Should still update aria-label
+			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+
+			// Should NOT have external link icon
+			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).toBeNull();
+
+			// Tooltip should remain hidden
+			const event = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 100, pageY: 100 } );
+			link.dispatchEvent( event );
+
+			expect( anwwLinkTooltip.style.display ).toBe( 'none' );
+		} );
+
+		test( 'applies edac-nww-no-icon modifier to links using window.open onclick', () => {
+			document.body.innerHTML = '<div class="edac-nww-no-icon"><a href="#" onclick="window.open(\'http://example.com\', \'_blank\')">Link</a></div>';
+
+			NewWindowWarning();
+
+			const link = document.querySelector( 'a' );
+
+			// Should still update aria-label
+			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+
+			// Should NOT have external link icon due to modifier class
+			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).toBeNull();
+		} );
 	} );
 } );
