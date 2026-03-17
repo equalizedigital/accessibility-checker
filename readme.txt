@@ -138,7 +138,7 @@ These free virtual meetups are held twice per month via Zoom and are live captio
 
 ### About Us
 
-[Equalize Digital](https://equalizedigital.com) is a mission-driven organization striving to create a world where all people have equal access to products and tools on web, regardless of ability. Our team has been building custom WordPress websites, themes, and plugins since 2010. We're the trusted accessibility auditing team for WordPress plugin developers and organizations worldwide, including government, high education, nonprofit, and enterprise businesses.
+[Equalize Digital](https://equalizedigital.com) is a mission-driven organization striving to create a world where all people have equal access to products and tools on web, regardless of ability. Our team has been building custom WordPress websites, themes, and plugins since 2010. We're the trusted accessibility auditing team for WordPress plugin developers and organizations worldwide, including government, higher education, nonprofit, and enterprise businesses.
 
 == Installation ==
 
