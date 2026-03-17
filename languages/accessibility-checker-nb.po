@@ -1006,7 +1006,7 @@ msgstr "Innholdstyper er konfigurert for tilgjengelighetskontroll"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker er konfigurert til å skanne %1$s innholdstype: %2$s."
-msgstr[1] "Accessibility Checker er konfigurert til å skanne %1$s innholdstyper: %2$s."
+msgstr[1] "Accessibility Checker er konfigurert til å skanne %1$s innleggstyper: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
