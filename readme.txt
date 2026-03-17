@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
 Tested up to: 6.9
-Stable tag: 1.38.0
+Stable tag: 1.39.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
