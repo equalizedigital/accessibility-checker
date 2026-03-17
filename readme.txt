@@ -93,7 +93,7 @@ Accessibility Checker is designed to support both day-to-day publishing and broa
 * **[Pro] Dismissed Log.** Review dismissed issues, who dismissed them, and when.
 * **[Pro] User restrictions on Dismiss.** Limit which roles can dismiss errors and warnings.
 
-Additional paid add-ons include;
+Additional paid add-ons include:
 
 * **Audit History add-on:** track and report on changes over time.
 * **CSV Export add-on:** export issues to CSV for management in a spreadsheet or project management tool.
