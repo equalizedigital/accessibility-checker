@@ -91,7 +91,7 @@ Accessibility Checker is designed to support both day-to-day publishing and broa
 * **[Pro] Admin columns.** View accessibility status at a glance in content lists.
 * **[Pro] Full-site reports** See existing issues in one place for faster remediation.
 * **[Pro] Dismissed Log.** Review dismissed issues, who dismissed them, and when.
-* **[Pro] User restrictions on Ignore.** Limit which roles can dismiss errors and warnings.
+* **[Pro] User restrictions on Dismiss.** Limit which roles can dismiss errors and warnings.
 
 Additional paid add-ons include;
 
@@ -267,9 +267,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website, with a dashed pink outline around the element and explanation of the issue and how to fix it.
 3. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
 4. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
-5. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible and add an option comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can ber reopened.
+5. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
 6. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
-7. Accessibility Checker 100% passed tests example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
+7. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
 8. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
 9. Accessibility Checker fixes settings: 11 automated fixes for common accessibility issues on WordPress websites.
 
