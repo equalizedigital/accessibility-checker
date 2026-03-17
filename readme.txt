@@ -175,7 +175,7 @@ Current settings in the free plugin include:
 ### How to Start Testing
 After activating the plugin and configuring settings, you can see reports on posts or pages in three ways:
 
-1. On the front-end view (as a logged in user), click the Accessibility Checker button to open the report for that page.
+1. On the front-end view (as a logged-in user), click the Accessibility Checker button to open the report for that page.
 2. In the block editor, open the Accessibility Checker sidebar panel or (if enabled) in a metabox below the content.
 3. In the classic editor, view the Accessibility Checker metabox below the content.
 
