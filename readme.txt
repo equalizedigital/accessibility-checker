@@ -178,7 +178,7 @@ After activating the plugin and configuring settings, you can see reports on pos
 2. In the block editor, open the Accessibility Checker sidebar panel or (if enabled) in a metabox below the content.
 3. In the classic editor, view the Accessibility Checker metabox below the content.
 
-Any time you save the post (save draft, publish, update), Accessibility Checker will rescan your page and update the report to reflect changes. The block editor sidebar panel and front-end view also include a button to scan a post without requiring a save.
+Any time you save the post (save draft, publish, update), Accessibility Checker will re-scan your page and update the report to reflect changes. The block editor sidebar panel and front-end view also include a button to scan a post without requiring a save.
 
 == Frequently Asked Questions ==
 
@@ -263,7 +263,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Screenshots ==
 
-1. WordPress post editor showing the Accessibility Checker sidebar panel expanded reporting 27 problems, 41 Needs Review, 11th grade reading level and a Passed Checks score of 70%. Issues identified include empty links, ambiguous anchor text, linked image empty alternative text, missing form label, insufficient color contrast, inclorrect heading order, and improper use of link.
+1. WordPress post editor showing the Accessibility Checker sidebar panel expanded reporting 27 problems, 41 Needs Review, 11th grade reading level and a Passed Checks score of 70%. Issues identified include empty links, ambiguous anchor text, linked image empty alternative text, missing form label, insufficient color contrast, incorrect heading order, and improper use of link.
 2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website, with a dashed pink outline around the element and explanation of the issue and how to fix it.
 3. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
 4. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
@@ -283,7 +283,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Updated - Classic Editor metabox visual design to match sidebar styling.
 * Updated - Terminology: "Errors" now "Problems".
 * Updated - Terminology: "Warnings" now "Needs Review".
-* Updated - Terminology: "Ignore" now "Dissmis".
+* Updated - Terminology: "Ignore" now "Dismiss".
 * Updated - Terminology: "Passed Tests" now "Passed Checks".
 * Updated - in the sidebar contrast errors are now included in the "Problems" sections.
 * Enhanced - Using both color and shape now indicate state of found issues and readability.
