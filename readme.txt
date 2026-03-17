@@ -11,7 +11,7 @@ Find and fix accessibility issues with confidence. Real-time reports, automated 
 
 == Description ==
 
-[Plugin Website](https://equalizedigital.com/accessibility-checker/)| [Live Demo](https://equalizedigital.com/demo/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
+[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Live Demo](https://equalizedigital.com/demo/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
 ### Make Your Website Accessible with Accessibility Checker
 
