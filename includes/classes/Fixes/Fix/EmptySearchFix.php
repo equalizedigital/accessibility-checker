@@ -167,15 +167,16 @@ class EmptySearchFix implements FixInterface {
 	/**
 	 * Force the search template for an empty search.
 	 *
-	 * Uses the theme's search.php if available, otherwise falls back
-	 * to the default template.
+	 * Uses get_search_template() to respect the full WordPress template
+	 * hierarchy (search_template_hierarchy filter) and the search_template
+	 * filter, falling back to the original template if none is found.
 	 *
 	 * @param string $template The current template path.
 	 *
 	 * @return string The search template path, or the original template.
 	 */
 	public function force_search_template( $template ): string {
-		$search_template = locate_template( 'search.php' );
+		$search_template = get_search_template();
 		if ( $search_template ) {
 			return $search_template;
 		}
