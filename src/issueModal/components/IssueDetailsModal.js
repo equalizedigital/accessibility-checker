@@ -17,6 +17,7 @@ import Badge from '../../sidebar/components/Badge';
 import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
+import { shouldDisplayWcagNumber } from '../../sidebar/utils/wcagHelpers';
 
 /**
  * Get the "View on page" URL for an issue
@@ -246,6 +247,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
 	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
+	const showWcagNumber = shouldDisplayWcagNumber( rule?.wcag );
 
 	return (
 		<Modal
@@ -365,11 +367,11 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							<strong>{ __( 'WCAG:', 'accessibility-checker' ) }</strong>{ ' ' }
 							{ rule.wcag_url ? (
 								<a href={ rule.wcag_url } target="_blank" rel="noopener noreferrer">
-									{ rule.wcag } { rule.wcag_title }
+									{ showWcagNumber && <>{ rule.wcag }{ ' ' }</> }{ rule.wcag_title }
 									<ExternalLinkIcon />
 								</a>
 							) : (
-								<>{ rule.wcag } { rule.wcag_title }</>
+								<>{ showWcagNumber && <>{ rule.wcag }{ ' ' }</> }{ rule.wcag_title }</>
 							) }
 						</p>
 					) }
