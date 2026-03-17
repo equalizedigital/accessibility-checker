@@ -12,13 +12,13 @@ Find and fix accessibility issues with confidence. Real-time reports, automated 
 
 == Description ==
 
-[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Live Demo](https://equalizedigital.com/demo/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
-
 ### Make Your Website Accessible with Accessibility Checker
 
 Equalize Digital Accessibility Checker helps you find and fix accessibility issues in WordPress. Scan posts and pages as you edit, review WCAG-based issues inside WordPress, apply automated fixes for common barriers, and generate an accessibility statement to support your compliance efforts.
 
 Whether you're improving compliance with accessibility laws, working toward Web Content Accessibility Guidelines (WCAG) conformance, or making your website easier for everyone to use, Accessibility Checker gives your team a practical workflow for ongoing accessibility testing and remediation.
+
+[Plugin Website](https://equalizedigital.com/accessibility-checker/) | [Live Demo](https://equalizedigital.com/demo/) | [Documentation](https://equalizedigital.com/accessibility-checker/documentation/) | [Compare Free to Pro](https://equalizedigital.com/accessibility-checker/features/#comparison) | [Get Pro](https://equalizedigital.com/accessibility-checker/pricing/) | [WP Accessibility Meetup](https://equalizedigital.com/wordpress-accessibility-meetup/) | [WP Accessibility Facebook Group](https://www.facebook.com/groups/wordpress.accessibility)
 
 ### Why Make Your Website Accessible
 
