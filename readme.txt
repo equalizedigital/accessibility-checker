@@ -27,6 +27,7 @@ Laws around the world, such as the European Accessibility Act (EAA), Americans w
 Accessibility fixes on websites often translate to better overall usability on the site and can improve search engine ranking and conversions.
 
 Including Accessibility Checker on your website and fixing identified problems can help you to:
+
 * Reduce legal risk.
 * Improve SEO and increase reach.
 * Increase sales and conversions.
