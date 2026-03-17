@@ -997,7 +997,7 @@ msgstr "접근성 검사를 위해 포스트 유형이 구성됨"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker는 %1$s개의 포스트 유형을 스캔하도록 구성되어 있어: %2$s."
+msgstr[0] "Accessibility Checker는 %1$s개의 게시물 유형을 스캔하도록 구성되어 있습니다: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
