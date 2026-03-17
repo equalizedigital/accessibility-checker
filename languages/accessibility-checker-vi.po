@@ -997,7 +997,7 @@ msgstr "Các loại bài viết đã được cấu hình để kiểm tra khả
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker được cấu hình để quét %1$s loại bài viết: %2$s."
+msgstr[0] "Accessibility Checker được cấu hình để quét %1$s loại bài đăng: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
