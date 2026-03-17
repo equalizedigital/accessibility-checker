@@ -89,7 +89,7 @@ Accessibility Checker is designed to support both day-to-day publishing and broa
 * **[Pro] Bulk scanning.** Scan all posts and pages in bulk for a site-wide overview.
 * **[Pro] Scan additional post types.** Extend in-editor accessibility checks to more content types.
 * **[Pro] Admin columns.** View accessibility status at a glance in content lists.
-* **[Pro] Full-site reports** See existing issues in one place for faster remediation.
+* **[Pro] Full-site reports.** See existing issues in one place for faster remediation.
 * **[Pro] Dismissed Log.** Review dismissed issues, who dismissed them, and when.
 * **[Pro] User restrictions on Dismiss.** Limit which roles can dismiss errors and warnings.
 
