@@ -4,8 +4,9 @@ Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
 Tested up to: 6.9
 Stable tag: 1.38.0
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Requires PHP: 7.4
+License: GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 Find and fix accessibility issues with confidence. Real-time reports, automated fixes, and guidance. Reduce compliance risk and reach more users.
 
