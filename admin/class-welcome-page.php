@@ -104,7 +104,7 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c2 edac-welcome-grid-item <?php echo ( $summary['distinct_errors_without_contrast'] > 0 ) ? 'has-errors' : ' has-no-errors'; ?>">
+						<div class="edac-welcome-grid-c2 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_errors_without_contrast'] > 0 ) ? 'has-errors' : ' has-no-errors'; ?>">
 							<?php echo wp_kses( ( $summary['distinct_errors_without_contrast'] > 0 ) ? edac_icon( 'error' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
@@ -130,7 +130,7 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c3 edac-welcome-grid-item <?php echo ( $summary['distinct_contrast_errors'] > 0 ) ? 'has-contrast-errors' : 'has-no-contrast-errors'; ?>">
+						<div class="edac-welcome-grid-c3 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_contrast_errors'] > 0 ) ? 'has-contrast-errors' : 'has-no-contrast-errors'; ?>">
 							<?php echo wp_kses( ( $summary['distinct_contrast_errors'] > 0 ) ? edac_icon( 'error' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
@@ -156,7 +156,7 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c4 edac-welcome-grid-item <?php echo ( $summary['distinct_warnings'] > 0 ) ? 'has-warning' : 'has-no-warning'; ?>">
+						<div class="edac-welcome-grid-c4 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_warnings'] > 0 ) ? 'has-warning' : 'has-no-warning'; ?>">
 							<?php echo wp_kses( ( $summary['distinct_warnings'] > 0 ) ? edac_icon( 'warning' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
@@ -182,7 +182,7 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c5 edac-welcome-grid-item <?php echo ( $summary['distinct_ignored'] > 0 ) ? 'has-ignored' : 'has-no-ignored'; ?>">
+						<div class="edac-welcome-grid-c5 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_ignored'] > 0 ) ? 'has-ignored' : 'has-no-ignored'; ?>">
 							<?php echo wp_kses( ( $summary['distinct_ignored'] > 0 ) ? edac_icon( 'dismissed' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
