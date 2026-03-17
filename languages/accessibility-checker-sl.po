@@ -996,8 +996,8 @@ msgstr "Vsebina se preverja za dostopnost"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker je pregledal %s objavo za težave z dostopnostjo."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker je pregledal %s objavi za težave z dostopnostjo."
+msgstr[2] "Accessibility Checker je pregledal %s objave za težave z dostopnostjo."
 msgstr[3] "Accessibility Checker je pregledal %s objav za težave z dostopnostjo."
 
 #: admin/site-health/class-checks.php:200
@@ -1022,8 +1022,8 @@ msgstr "Vrste objav so konfigurirane za preverjanje dostopnosti"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker je konfiguriran za pregled %1$s vrste objave: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker je konfiguriran za pregled %1$s vrst objav: %2$s."
+msgstr[2] "Accessibility Checker je konfiguriran za pregled %1$s vrst objav: %2$s."
 msgstr[3] "Accessibility Checker je konfiguriran za pregled %1$s vrst objav: %2$s."
 
 #: admin/site-health/class-free.php:46
@@ -4843,16 +4843,16 @@ msgstr "Ni zaznanih težav."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "napaka"
-msgstr[1] "errors"
-msgstr[2] "errors"
+msgstr[1] "napaki"
+msgstr[2] "napake"
 msgstr[3] "napake"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "opozorilo"
-msgstr[1] "warnings"
-msgstr[2] "warnings"
+msgstr[1] "opozorili"
+msgstr[2] "opozorila"
 msgstr[3] "opozorila"
 
 #: build/frontendHighlighterApp.bundle.js:2
@@ -4863,8 +4863,8 @@ msgstr "in"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "prezrta težava"
-msgstr[1] "ignored issues"
-msgstr[2] "ignored issues"
+msgstr[1] "prezrti težavi"
+msgstr[2] "prezrte težave"
 msgstr[3] "prezrti težavi"
 
 #: build/frontendHighlighterApp.bundle.js:2
