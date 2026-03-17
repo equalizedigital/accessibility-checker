@@ -279,7 +279,8 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 2026-03-17 - version 1.39.0
 * New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.
 * New - Setting to hide the legacy metabox in the Block Editor.
-* Fix - Orphaned settings labels on options page.
+* New - Fix to allow empty search results to display a meaningful message instead of a 404.
+* Fix - Orphaned settings labels on the options page.
 * Fix - Issue modal content clipped when affected code contains long URLs.
 * Fix - Undefined help_id notice in help link generation.
 * Updated - Welcome dashboard UI updated to bring it in line with other UI changes.
