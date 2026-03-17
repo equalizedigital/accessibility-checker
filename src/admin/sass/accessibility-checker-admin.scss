@@ -1577,16 +1577,31 @@
       align-items: center;
     }
 
-    .edac-inner-row:nth-child(1) {
-      align-items: flex-end;
-      height: 50%;
+    .edac-background-light {
+
+      .edac-inner-row:nth-child(1) {
+        align-items: flex-end;
+        height: 50%;
+      }
+
+      .edac-inner-row:nth-child(2) {
+        margin-top: .5rem;
+        align-items: flex-start;
+        height: 50%;
+      }
     }
 
-    .edac-inner-row:nth-child(2) {
-      margin-top: .5rem;
-      align-items: flex-start;
-      height: 50%;
+    .edac-welcome-grid-item-has-icon {
+       .edac-inner-row:nth-child(2) {
+        align-items: flex-end;
+        height: 50%;
+      }
 
+      .edac-inner-row:nth-child(3) {
+        margin-top: .5rem;
+        align-items: flex-start;
+        height: 50%;
+      }
     }
 
     .edac-circle-progress {
@@ -1628,8 +1643,13 @@
       justify-content: center;
 
       svg {
-        width: 37px;
-        height: 37px;
+        width: 27px;
+        height: 27px;
+
+        @include helpers.breakpoint(xl) {
+          width: 37px;
+          height: 37px;
+        }
       }
     }
 
@@ -1724,9 +1744,13 @@
     }
 
     .edac-stat-number {
-      font-size: 2.75rem;
+      font-size: 2rem;
       line-height: 1;
       font-weight: 600;
+
+      @include helpers.breakpoint(xl) {
+        font-size: 2.75rem;
+      }
     }
 
     .edac-background-light {

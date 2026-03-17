@@ -1,5 +1,16 @@
 *** Accessibility Checker ***
 
+2026-03-17 - version 1.39.0
+* New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.
+* New - Setting to hide the legacy metabox in the Block Editor.
+* New - Fix to allow empty search results to display a meaningful message instead of a 404.
+* Fix - Orphaned settings labels on the options page.
+* Fix - Issue modal content clipped when affected code contains long URLs.
+* Fix - Undefined help_id notice in help link generation.
+* Updated - Welcome dashboard UI updated to bring it in line with other UI changes.
+* Updated - Made more strings translatable - particularly those returned by ajax.
+* Enhanced - Missing transcript detection now searches 2 additional levels up.
+
 2026-03-04 - version 1.38.0
 * New - Block Editor Sidebar with accessibility scan data, issues, and quick access panel for faster navigation.
 * New - Dismissed issues now have assignable reasons for the dismissal.

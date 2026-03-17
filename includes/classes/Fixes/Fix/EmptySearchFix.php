@@ -92,6 +92,7 @@ class EmptySearchFix implements FixInterface {
 			'section'     => 'empty_search',
 			'fix_slug'    => $this->get_slug(),
 			'group_name'  => $this->get_nicename(),
+			'help_id'     => 10540,
 		];
 
 		return $fields;

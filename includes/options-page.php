@@ -841,7 +841,7 @@ function edac_show_metabox_in_block_editor_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="edac_show_metabox_in_block_editor" value="1" <?php checked( $option, 1 ); ?>>
+			<input type="checkbox" name="edac_show_metabox_in_block_editor" id="edac_show_metabox_in_block_editor" value="1" <?php checked( $option, 1 ); ?>>
 			<?php esc_html_e( 'Show Accessibility Checker metabox in the Block Editor', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
