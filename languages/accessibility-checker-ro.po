@@ -989,7 +989,7 @@ msgstr "Conținutul este verificat pentru accesibilitate"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker a scanat %s postare pentru probleme de accesibilitate."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker a scanat %s postări pentru probleme de accesibilitate."
 msgstr[2] "Accessibility Checker a scanat %s postări pentru probleme de accesibilitate."
 
 #: admin/site-health/class-checks.php:200
@@ -1014,7 +1014,7 @@ msgstr "Tipurile de postări sunt configurate pentru verificarea accesibilităț
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker este configurat să scaneze %1$s tip de postare: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker este configurat să scaneze %1$s tipuri de postări: %2$s."
 msgstr[2] "Accessibility Checker este configurat să scaneze %1$s tipuri de postări: %2$s."
 
 #: admin/site-health/class-free.php:46
@@ -4834,14 +4834,14 @@ msgstr "Nu s-au detectat probleme."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "eroare"
-msgstr[1] "errors"
+msgstr[1] "erori"
 msgstr[2] "erori"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "avertisment"
-msgstr[1] "warnings"
+msgstr[1] "avertismente"
 msgstr[2] "avertismente"
 
 #: build/frontendHighlighterApp.bundle.js:2
@@ -4852,7 +4852,7 @@ msgstr "și"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "problemă ignorată"
-msgstr[1] "ignored issues"
+msgstr[1] "probleme ignorate"
 msgstr[2] "probleme ignorate"
 
 #: build/frontendHighlighterApp.bundle.js:2

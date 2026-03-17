@@ -1006,7 +1006,7 @@ msgstr "Berichttypes zijn geconfigureerd voor toegankelijkheidscontrole"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker is geconfigureerd om %1$s berichttype te scannen: %2$s."
-msgstr[1] "Accessibility Checker is geconfigureerd om %1$s berichttypes te scannen: %2$s."
+msgstr[1] "Accessibility Checker is geconfigureerd om %1$s berichttypen te scannen: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"

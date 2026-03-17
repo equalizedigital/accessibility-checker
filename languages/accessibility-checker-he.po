@@ -981,7 +981,7 @@ msgstr "התוכן נבדק לנגישות"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker סרק פוסט %s לבעיות נגישות."
+msgstr[0] "Accessibility Checker סרק %s פוסט עבור בעיות נגישות."
 msgstr[1] "Accessibility Checker סרק %s פוסטים לבעיות נגישות."
 
 #: admin/site-health/class-checks.php:200

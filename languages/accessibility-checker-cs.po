@@ -989,7 +989,7 @@ msgstr "Obsah je kontrolován na přístupnost"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker naskenoval %s příspěvek na problémy s přístupností."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker naskenoval %s příspěvky na problémy s přístupností."
 msgstr[2] "Accessibility Checker naskenoval %s příspěvků na problémy s přístupností."
 
 #: admin/site-health/class-checks.php:200
@@ -1014,7 +1014,7 @@ msgstr "Typy příspěvků jsou nakonfigurovány pro kontrolu přístupnosti"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker je nakonfigurován pro skenování %1$s typu příspěvku: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker je nakonfigurován pro skenování %1$s typů příspěvků: %2$s."
 msgstr[2] "Accessibility Checker je nakonfigurován pro skenování %1$s typů příspěvků: %2$s."
 
 #: admin/site-health/class-free.php:46
@@ -4834,14 +4834,14 @@ msgstr "Nebyly zjištěny žádné problémy."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "chyba"
-msgstr[1] "errors"
+msgstr[1] "chyby"
 msgstr[2] "chyb"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "varování"
-msgstr[1] "warnings"
+msgstr[1] "varování"
 msgstr[2] "varování"
 
 #: build/frontendHighlighterApp.bundle.js:2
@@ -4852,7 +4852,7 @@ msgstr "a"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "ignorovaný problém"
-msgstr[1] "ignored issues"
+msgstr[1] "ignorované problémy"
 msgstr[2] "ignorovaných problémů"
 
 #: build/frontendHighlighterApp.bundle.js:2

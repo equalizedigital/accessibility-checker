@@ -989,8 +989,8 @@ msgstr "Zawartość jest sprawdzana pod kątem dostępności"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker przeskanował %s wpis pod kątem problemów z dostępnością."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker przeskanował %s wpisy pod kątem problemów z dostępnością."
+msgstr[2] "Accessibility Checker przeskanował %s wpisów pod kątem problemów z dostępnością."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1014,8 +1014,8 @@ msgstr "Typy wpisów są skonfigurowane do sprawdzania dostępności"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker jest skonfigurowany do skanowania %1$s typu wpisu: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
+msgstr[2] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -4834,15 +4834,15 @@ msgstr "Nie wykryto problemów."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "błąd"
-msgstr[1] "errors"
-msgstr[2] "errors"
+msgstr[1] "błędy"
+msgstr[2] "błędów"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "ostrzeżenie"
-msgstr[1] "warnings"
-msgstr[2] "warnings"
+msgstr[1] "ostrzeżenia"
+msgstr[2] "ostrzeżeń"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "and"
@@ -4851,9 +4851,9 @@ msgstr "i"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "ignorowany problem"
-msgstr[1] "ignored issues"
-msgstr[2] "ignored issues"
+msgstr[0] "zignorowany problem"
+msgstr[1] "zignorowane problemy"
+msgstr[2] "zignorowanych problemów"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "detected."

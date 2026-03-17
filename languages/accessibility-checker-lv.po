@@ -988,8 +988,8 @@ msgstr "Saturs tiek pārbaudīts pieejamībai"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[1] "Accessibility Checker ir skenējis %s ierakstu, meklējot pieejamības problēmas."
+msgstr[0] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
+msgstr[1] "Accessibility Checker ir skenējis %s ierakstu, lai atrastu pieejamības problēmas."
 msgstr[2] "Accessibility Checker ir skenējis %s ierakstus, meklējot pieejamības problēmas."
 
 #: admin/site-health/class-checks.php:200
@@ -1013,7 +1013,7 @@ msgstr "Ierakstu veidi ir konfigurēti pieejamības pārbaudei"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[0] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 msgstr[1] "Accessibility Checker ir konfigurēts skenēt %1$s ieraksta veidu: %2$s."
 msgstr[2] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 
@@ -4833,14 +4833,14 @@ msgstr "Nav konstatētas problēmas."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "error"
 msgid_plural "errors"
-msgstr[0] "errors"
+msgstr[0] "kļūdas"
 msgstr[1] "kļūda"
 msgstr[2] "kļūdas"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
-msgstr[0] "warnings"
+msgstr[0] "brīdinājumi"
 msgstr[1] "brīdinājums"
 msgstr[2] "brīdinājumi"
 
@@ -4851,8 +4851,8 @@ msgstr "un"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "ignored issue"
 msgid_plural "ignored issues"
-msgstr[0] "ignored issues"
-msgstr[1] "ignorētā problēma"
+msgstr[0] "ignorētas problēmas"
+msgstr[1] "ignorēta problēma"
 msgstr[2] "ignorētās problēmas"
 
 #: build/frontendHighlighterApp.bundle.js:2

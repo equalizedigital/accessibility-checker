@@ -988,8 +988,8 @@ msgstr "Obsah sa kontroluje na prístupnosť"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker naskenoval %s príspevok na problémy s prístupnosťou."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker skontroloval %s príspevok na problémy s prístupnosťou."
+msgstr[1] "Accessibility Checker skontroloval %s príspevky na problémy s prístupnosťou."
 msgstr[2] "Accessibility Checker naskenoval %s príspevkov na problémy s prístupnosťou."
 
 #: admin/site-health/class-checks.php:200
@@ -1014,7 +1014,7 @@ msgstr "Typy príspevkov sú nakonfigurované na kontrolu prístupnosti"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typu príspevku: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typov príspevkov: %2$s."
 msgstr[2] "Accessibility Checker je nakonfigurovaný na skenovanie %1$s typov príspevkov: %2$s."
 
 #: admin/site-health/class-free.php:46
@@ -4834,14 +4834,14 @@ msgstr "Neboli zistené žiadne problémy."
 msgid "error"
 msgid_plural "errors"
 msgstr[0] "chyba"
-msgstr[1] "errors"
+msgstr[1] "chyby"
 msgstr[2] "chyby"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "warning"
 msgid_plural "warnings"
 msgstr[0] "upozornenie"
-msgstr[1] "warnings"
+msgstr[1] "upozornenia"
 msgstr[2] "upozornenia"
 
 #: build/frontendHighlighterApp.bundle.js:2
@@ -4852,7 +4852,7 @@ msgstr "a"
 msgid "ignored issue"
 msgid_plural "ignored issues"
 msgstr[0] "ignorovaný problém"
-msgstr[1] "ignored issues"
+msgstr[1] "ignorované problémy"
 msgstr[2] "ignorované problémy"
 
 #: build/frontendHighlighterApp.bundle.js:2
