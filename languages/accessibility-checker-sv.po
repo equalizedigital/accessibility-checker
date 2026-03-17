@@ -981,7 +981,7 @@ msgstr "Innehållet kontrolleras för tillgänglighet"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker har skannat %s inlägg för tillgänglighetsproblem."
+msgstr[0] "Accessibility Checker har skannat %s inlägg efter tillgänglighetsproblem."
 msgstr[1] "Accessibility Checker har skannat %s inlägg för tillgänglighetsproblem."
 
 #: admin/site-health/class-checks.php:200
@@ -1006,7 +1006,7 @@ msgstr "Inläggstyper är konfigurerade för tillgänglighetskontroll"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker är konfigurerad att skanna %1$s inläggstyp: %2$s."
-msgstr[1] "Accessibility Checker är konfigurerad att skanna %1$s inläggstyper: %2$s."
+msgstr[1] "Accessibility Checker är konfigurerad för att skanna %1$s inläggstyper: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
