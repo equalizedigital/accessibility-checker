@@ -209,7 +209,7 @@ Accessibility Checker identifies issues related to Web Content Accessibility Gui
 The plugin flags issues related primarily to WCAG Level A and AA success criteria, which are the most commonly required conformance levels. You can find a [full list of Accessibility Checker checks in our documentation](https://equalizedigital.com/accessibility-checker/documentation/). Each check is mapped to a WCAG success criterion.
 
 = Do I need coding knowledge to use Accessibility Checker? =
-Accessibility Checker is designed for content creators and site owners, not just developers. We continually improve the plugin to make it easy for non-coders to use. 
+Accessibility Checker is designed for content creators and site owners, not just developers. We continually improve the plugin to make it easy for non-coders to use.
 
 Many issues can be fixed directly in the WordPress editor, such as:
 
@@ -275,6 +275,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 9. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
 
 == Changelog ==
+
+2026-03-17 - version 1.39.0
+* New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.
+* New - Setting to hide the legacy metabox in the Block Editor.
+* Fix - Orphaned settings labels on options page.
+* Fix - Issue modal content clipped when affected code contains long URLs.
+* Fix - Undefined help_id notice in help link generation.
+* Updated - Welcome dashboard UI updated to bring it in line with other UI changes.
+* Updated - Made more strings translatable - particularly those returned by ajax.
+* Enhanced - Missing transcript detection now searches 2 additional levels up.
 
 2026-03-04 - version 1.38.0
 * New - Block Editor Sidebar with accessibility scan data, issues, and quick access panel for faster navigation.
