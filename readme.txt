@@ -92,7 +92,7 @@ Accessibility Checker is designed to support both day-to-day publishing and broa
 * **[Pro] Admin columns.** View accessibility status at a glance in content lists.
 * **[Pro] Full-site reports.** See existing issues in one place for faster remediation.
 * **[Pro] Dismissed Log.** Review dismissed issues, who dismissed them, and when.
-* **[Pro] User restrictions on Dismiss.** Limit which roles can dismiss errors and warnings.
+* **[Pro] User restrictions on Dismiss.** Limit which roles can dismiss issues.
 
 Additional paid add-ons include:
 
