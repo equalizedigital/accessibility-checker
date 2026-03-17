@@ -169,7 +169,7 @@ Current settings in the free plugin include:
 * Add footer accessibility statement.
 * Choose positioning for the front-end Accessibility Checker.
 * Show or hide the Accessibility Checker metabox in the block editor.
-* Enable 11 automated fixes for common accessibility problems.
+* Enable 12 automated fixes for common accessibility problems.
 
 ### How to Start Testing
 After activating the plugin and configuring settings, you can see reports on posts or pages in three ways:
