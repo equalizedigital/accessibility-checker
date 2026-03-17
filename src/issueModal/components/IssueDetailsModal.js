@@ -17,6 +17,7 @@ import Badge from '../../sidebar/components/Badge';
 import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
+import { shouldDisplayWcagNumber } from '../../sidebar/utils/wcagHelpers';
 
 /**
  * Get the "View on page" URL for an issue
@@ -246,9 +247,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 
 	const viewUrl = issue ? getViewOnPageUrl( issue, viewLink ) : null;
 	const severityLabel = getSeverityLabel( rule?.severity || issue?.severity );
-	// WCAG numbers starting with '0' are internal sorting values (e.g. 0.1 = Best Practice)
-	// and should not be shown to users.
-	const showWcagNumber = rule?.wcag && ! String( rule.wcag ).startsWith( '0' );
+	const showWcagNumber = shouldDisplayWcagNumber( rule?.wcag );
 
 	return (
 		<Modal
