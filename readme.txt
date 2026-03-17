@@ -272,7 +272,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 6. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
 7. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
 8. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
-9. Accessibility Checker fixes settings: 11 automated fixes for common accessibility issues on WordPress websites.
+9. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
 
 == Changelog ==
 
