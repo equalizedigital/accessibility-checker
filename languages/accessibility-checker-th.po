@@ -997,7 +997,7 @@ msgstr "ประเภทโพสต์ได้รับการกำหน
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker ถูกกำหนดค่าให้สแกนประเภทโพสต์ %1$s ประเภท: %2$s"
+msgstr[0] "Accessibility Checker ได้รับการกำหนดค่าให้สแกนประเภทโพสต์ %1$s รายการ: %2$s"
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
