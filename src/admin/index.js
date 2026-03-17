@@ -123,6 +123,10 @@ const edacScriptVars = edac_script_vars;
 		 * @param {Function} callback - Callback function to run after ajax is complete
 		 */
 		function edacSummaryAjax( callback = null ) {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
@@ -157,6 +161,10 @@ const edacScriptVars = edac_script_vars;
 		 * Ajax Details
 		 */
 		function edacDetailsAjax() {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
@@ -235,6 +243,10 @@ const edacScriptVars = edac_script_vars;
 		 * Ajax Readability
 		 */
 		function edacReadabilityAjax() {
+			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
+				return;
+			}
+
 			const postID = edacScriptVars.postID;
 
 			if ( postID === null ) {
@@ -724,7 +736,7 @@ const fillDashboardWidget = () => {
 						passedPercentage
 					);
 					passedPercentageEl.style.background =
-						'radial-gradient(closest-side, white 85%, transparent 80% 100%), conic-gradient(#006600 ' +
+						'radial-gradient(closest-side, white 85%, transparent 80% 100%), conic-gradient(var(--wp-admin-theme-color, #3273aa) ' +
 						passedPercentage +
 						'%, #e2e4e7 0)';
 				}
@@ -776,7 +788,7 @@ const fillDashboardWidget = () => {
 				const contrastContainerEl = document.querySelector(
 					'.edac-summary-info-stats-box-contrast'
 				);
-				if ( errors > 0 && contrastContainerEl ) {
+				if ( contrastErrors > 0 && contrastContainerEl ) {
 					contrastContainerEl.classList.add( 'has-errors' );
 				}
 				const contrastErrorsEl = document.querySelector(

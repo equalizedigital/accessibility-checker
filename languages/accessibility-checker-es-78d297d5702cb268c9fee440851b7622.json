@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Guardar soluci\u00f3n para: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Negrita (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Cursiva (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Enlace (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL del enlace"
-            ],
-            "Add": [
-                "A\u00f1adir"
-            ],
             "Issue dismissed successfully.": [
                 "Problema descartado correctamente."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Comentario (opcional)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "A\u00f1ada una nota explicando por qu\u00e9 se descarta este problema. Admite negrita, cursiva y enlaces."
+            "Add a note explaining why this issue is being dismissed.": [
+                "A\u00f1ada una nota explicando por qu\u00e9 se desestima este problema."
             ],
             "More dismiss options": [
                 "M\u00e1s opciones de descarte"

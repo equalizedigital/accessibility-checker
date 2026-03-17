@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
+"Project-Id-Version: Accessibility Checker 1.38.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
+"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:43
+#: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:49
@@ -77,7 +77,7 @@ msgid "Get Pro"
 msgstr "Passa a Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:384
+#: admin/class-ajax.php:394
 msgid "Opens in a new window."
 msgstr "Si apre in una nuova finestra."
 
@@ -191,9 +191,9 @@ msgstr "Aggiorna ora"
 #: admin/class-admin-notices.php:245
 #: admin/class-admin-notices.php:334
 #: admin/class-ajax.php:60
-#: admin/class-ajax.php:218
-#: admin/class-ajax.php:607
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:223
+#: admin/class-ajax.php:634
+#: admin/class-ajax.php:818
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -236,14 +236,14 @@ msgid "The review action value was not set"
 msgstr "Il valore dell'azione di recensione non è stato impostato"
 
 #: admin/class-ajax.php:64
-#: admin/class-ajax.php:222
-#: admin/class-ajax.php:611
+#: admin/class-ajax.php:227
+#: admin/class-ajax.php:638
 msgid "The post ID was not set"
 msgstr "L'ID del post non è stato impostato"
 
 #: admin/class-ajax.php:68
-#: admin/class-ajax.php:226
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:231
+#: admin/class-ajax.php:642
 msgid "You do not have permission to view this information for this post."
 msgstr "Non hai il permesso di visualizzare queste informazioni per questo post."
 
@@ -263,20 +263,38 @@ msgstr "Il livello di lettura del riassunto semplificato è troppo elevato."
 msgid "A simplified summary has been included for this content."
 msgstr "È stato incluso un riassunto semplificato per questo contenuto."
 
-#: admin/class-ajax.php:134
+#. translators: %d: percentage of passed checks
+#: admin/class-ajax.php:106
+#, php-format
+msgid "%d%% Passed Checks"
+msgstr "%d%% controlli superati"
+
+#: admin/class-ajax.php:115
+#: admin/class-welcome-page.php:102
+#: admin/class-widgets.php:111
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Controlli superati"
+
+#: admin/class-ajax.php:125
+msgid "Passed Tests"
+msgstr "Test superati"
+
+#: admin/class-ajax.php:138
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Problema"
 msgstr[1] "Problemi"
 
-#: admin/class-ajax.php:140
+#: admin/class-ajax.php:144
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Problema di contrasto"
 msgstr[1] "Problemi di contrasto"
 
-#: admin/class-ajax.php:146
+#: admin/class-ajax.php:150
+#: admin/class-widgets.php:182
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -284,125 +302,267 @@ msgid_plural "Needs Review"
 msgstr[0] "Necessita di revisione"
 msgstr[1] "Necessita di revisione"
 
-#: admin/class-ajax.php:152
-#: admin/class-ajax.php:380
+#: admin/class-ajax.php:156
+#: admin/class-ajax.php:385
+#: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Problema ignorato"
 msgstr[1] "Problemi ignorati"
 
+#: admin/class-ajax.php:176
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Livello di lettura"
+
+#. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
+#: admin/class-ajax.php:187
+#, php-format
+msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
+msgstr "* La vera accessibilità richiede test manuali oltre alle scansioni automatizzate. %1$sScopri come testare manualmente l'accessibilità%2$s"
+
 #: admin/class-ajax.php:198
+#: admin/class-ajax.php:790
+#: admin/class-ignore-ui.php:126
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid ", opens a new window"
+msgstr ", si apre una nuova finestra"
+
+#: admin/class-ajax.php:203
 msgid "No summary to return"
 msgstr "Nessun riassunto da restituire"
 
-#: admin/class-ajax.php:237
+#: admin/class-ajax.php:242
 #: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Nome della tabella non valido"
 
-#: admin/class-ajax.php:325
+#: admin/class-ajax.php:330
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Critico"
 
-#: admin/class-ajax.php:329
+#: admin/class-ajax.php:334
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Alto"
 
-#: admin/class-ajax.php:333
+#: admin/class-ajax.php:338
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Medio"
 
-#: admin/class-ajax.php:337
+#: admin/class-ajax.php:342
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Basso"
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:383
 msgid " total"
 msgstr " totale"
 
-#: admin/class-ajax.php:408
+#. translators: 1: rule title, 2: "Opens in a new window."
+#: admin/class-ajax.php:392
+#, php-format
+msgid "Read documentation for %1$s. %2$s"
+msgstr "Leggi la documentazione per %1$s. %2$s"
+
+#. translators: %s: rule title
+#: admin/class-ajax.php:400
+#, php-format
+msgid "Expand issues for %s"
+msgstr "Espandi i problemi per %s"
+
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Queste impostazioni abilitano correzioni globali su tutto il sito."
 
-#: admin/class-ajax.php:409
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Potrebbe essere necessario salvare nuovamente le pagine o eseguire una scansione completa del sito per vedere le correzioni riflesse nei rapporti."
 
-#: admin/class-ajax.php:437
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Salva"
 
-#: admin/class-ajax.php:459
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Codice interessato"
 
+#: admin/class-ajax.php:480
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Immagine"
+
+#: admin/class-ajax.php:483
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Punto di riferimento"
+
+#: admin/class-ajax.php:486
+msgid "Actions"
+msgstr "Azioni"
+
+#: admin/class-ajax.php:495
+msgid "Dismissed"
+msgstr "Ignorato"
+
+#: admin/class-ajax.php:495
+msgid "Dismiss"
+msgstr "Ignora"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:506
+#, php-format
+msgid "Issue ID %d"
+msgstr "ID problema %d"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:524
+#, php-format
+msgid "image for issue %d"
+msgstr "immagine per il problema %d"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:561
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Visualizza il problema ID %d sul sito web, si apre in una nuova finestra"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Visualizza sulla pagina"
 
-#: admin/class-ajax.php:554
+#: admin/class-ajax.php:581
 msgid "Fix: "
 msgstr "Correzione: "
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:582
 msgid "Fix"
 msgstr "Correggi"
 
-#: admin/class-ajax.php:588
+#: admin/class-ajax.php:615
 msgid "No details to return"
 msgstr "Nessun dettaglio da restituire"
 
-#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:676
-#: admin/class-ajax.php:688
+#. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
+#: admin/class-ajax.php:687
 #, php-format
-msgid "Simplified Summary Reading Grade Level: %s"
-msgstr "Livello di leggibilità del riepilogo semplificato: %s"
+msgid "Post Reading Grade Level: %s"
+msgstr "Livello di leggibilità del post: %s"
 
-#: admin/class-ajax.php:677
+#: admin/class-ajax.php:688
+#: admin/class-ajax.php:709
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Nessuno"
 
-#: admin/class-ajax.php:680
+#: admin/class-ajax.php:691
+msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
+msgstr "Il tuo post ha un livello di leggibilità superiore al 9° grado. Le Web Content Accessibility Guidelines (WCAG) a livello AAA richiedono un riassunto semplificato del tuo post che sia di 9° grado o inferiore."
+
+#: admin/class-ajax.php:693
+msgid "Your post does not contain enough content to calculate its reading level."
+msgstr "Il tuo post non contiene abbastanza contenuto per calcolare il suo livello di leggibilità."
+
+#: admin/class-ajax.php:695
+msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
+msgstr "Un riassunto semplificato non è necessario quando il livello di leggibilità del contenuto è di 9° grado o inferiore. Scegli quando richiedere un riassunto semplificato nella pagina delle impostazioni."
+
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:708
+#: admin/class-ajax.php:720
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Livello di leggibilità del riepilogo semplificato: %s"
+
+#: admin/class-ajax.php:712
 #: build/sidebar.bundle.js:2
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Contenuto insufficiente per determinare un livello di leggibilità accurato."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:725
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Il riepilogo semplificato ha un livello di leggibilità superiore alla 9ª classe."
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:726
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Il riepilogo semplificato ha un livello di leggibilità pari o inferiore alla 9ª classe."
 
-#: admin/class-ajax.php:745
+#: admin/class-ajax.php:737
+#: admin/class-ajax.php:767
+msgid "Simplified summary is not being automatically inserted into the content."
+msgstr "Il riassunto semplificato non viene inserito automaticamente nel contenuto."
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:740
+#, php-format
+msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "La tua richiesta di riassunto semplificato è impostata su “mai.” Se desideri che il riassunto semplificato venga visualizzato automaticamente, puoi modificarlo su %s."
+
+#: admin/class-ajax.php:741
+#: admin/class-ajax.php:758
+#: admin/class-ajax.php:771
+msgid "settings page"
+msgstr "pagina delle impostazioni"
+
+#. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
+#: admin/class-ajax.php:752
+#, php-format
+msgid "Simplified summary is being automatically inserted %s."
+msgstr "Il riassunto semplificato viene inserito automaticamente %s."
+
+#: admin/class-ajax.php:753
+msgid "the content"
+msgstr "il contenuto"
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:757
+#, php-format
+msgid "Set where the Simplified Summary is inserted into the content on the %s."
+msgstr "Imposta dove il riassunto semplificato viene inserito nel contenuto su %s."
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:770
+#, php-format
+msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "La posizione del tuo riassunto semplificato è impostata su “manualmente”, il che richiede l'aggiunta di una funzione al modello della tua pagina. Se desideri che il riassunto semplificato venga visualizzato automaticamente, puoi modificarlo su %s."
+
+#: admin/class-ajax.php:784
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:932
+#: includes/options-page.php:956
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary"
+msgstr "Riepilogo semplificato"
+
+#: admin/class-ajax.php:786
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Salva riepilogo"
+
+#: admin/class-ajax.php:790
+msgid "Learn more about improving readability and simplified summary requirements"
+msgstr "Scopri di più sul miglioramento della leggibilità e sui requisiti del riassunto semplificato"
+
+#: admin/class-ajax.php:793
 msgid "No readability data to return"
 msgstr "Nessun dato di leggibilità da restituire"
 
-#: admin/class-ajax.php:805
-#: admin/class-ajax.php:826
+#: admin/class-ajax.php:853
+#: admin/class-ajax.php:874
 msgid "No ignore data to return"
 msgstr "Nessun dato di ignorazione da restituire"
 
@@ -498,7 +658,7 @@ msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Visualizza la documentazione di Accessibility Checker (si apre in una nuova finestra)"
 
 #: admin/class-plugin-row-meta.php:58
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation"
 msgstr "Documentazione"
 
@@ -530,117 +690,106 @@ msgstr "Offerta di aggiornamento ora"
 msgid "Unable to redirect to upgrade page."
 msgstr "Impossibile reindirizzare alla pagina di aggiornamento."
 
-#: admin/class-welcome-page.php:38
+#: admin/class-welcome-page.php:68
 msgid "Most Recent Test Summary"
 msgstr "Riepilogo del test più recente"
 
-#: admin/class-welcome-page.php:45
+#: admin/class-welcome-page.php:75
 msgid "Update Counts"
 msgstr "Aggiorna conteggi"
 
-#: admin/class-welcome-page.php:50
+#: admin/class-welcome-page.php:80
 msgid "Start New Scan"
 msgstr "Avvia nuova scansione"
 
-#: admin/class-welcome-page.php:54
+#: admin/class-welcome-page.php:84
 msgid "View All Open Issues"
 msgstr "Visualizza tutti i problemi aperti"
 
-#: admin/class-welcome-page.php:59
+#: admin/class-welcome-page.php:89
 msgid "See History"
 msgstr "Vedi cronologia"
 
-#: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:102
-msgid "Passed Tests"
-msgstr "Test superati"
+#: admin/class-welcome-page.php:119
+msgid "Unique Problem"
+msgid_plural "Unique Problems"
+msgstr[0] "Problema unico"
+msgstr[1] "Problemi unici"
 
-#: admin/class-welcome-page.php:88
-msgid "Unique Error"
-msgid_plural "Unique Errors"
-msgstr[0] "Errore unico"
-msgstr[1] "Errori unici"
+#: admin/class-welcome-page.php:145
+msgid "Unique Contrast Problem"
+msgid_plural "Unique Contrast Problems"
+msgstr[0] "Problema di contrasto unico"
+msgstr[1] "Problemi di contrasto unici"
 
-#: admin/class-welcome-page.php:113
-msgid "Unique Color Contrast Error"
-msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Errore unico di contrasto del colore"
-msgstr[1] "Errori unici di contrasto del colore"
+#: admin/class-welcome-page.php:171
+msgid "Unique Item Needing Review"
+msgid_plural "Unique Items Needing Review"
+msgstr[0] "Elemento unico da rivedere"
+msgstr[1] "Elementi unici da rivedere"
 
-#: admin/class-welcome-page.php:138
-msgid "Unique Warning"
-msgid_plural "Unique Warnings"
-msgstr[0] "Avviso unico"
-msgstr[1] "Avvisi unici"
-
-#: admin/class-welcome-page.php:163
-msgid "Ignored Item"
-msgid_plural "Ignored Items"
-msgstr[0] "Elemento ignorato"
-msgstr[1] "Elementi ignorati"
-
-#: admin/class-welcome-page.php:180
+#: admin/class-welcome-page.php:214
 msgid "Average Issues Per Page"
 msgstr "Media dei problemi per pagina"
 
-#: admin/class-welcome-page.php:193
+#: admin/class-welcome-page.php:227
 msgid "Average Issue Density"
 msgstr "Densità media dei problemi"
 
-#: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:109
+#: admin/class-welcome-page.php:240
 msgid "Report Last Updated:"
 msgstr "Ultimo aggiornamento del rapporto:"
 
-#: admin/class-welcome-page.php:216
-#: includes/options-page.php:610
+#: admin/class-welcome-page.php:250
+#: includes/options-page.php:619
 msgid "Never"
 msgstr "Mai"
 
-#: admin/class-welcome-page.php:230
+#: admin/class-welcome-page.php:264
+#: admin/class-widgets.php:97
 msgid "URLs Scanned"
 msgstr "URL scansionati"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:241
+#: admin/class-welcome-page.php:275
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s di %2$s"
 
-#: admin/class-welcome-page.php:250
+#: admin/class-welcome-page.php:284
 msgid "Post Types Checked"
 msgstr "Tipi di post controllati"
 
-#: admin/class-welcome-page.php:263
+#: admin/class-welcome-page.php:297
 msgid "URLs with 100% score"
 msgstr "URL con punteggio 100%"
 
-#: admin/class-welcome-page.php:271
+#: admin/class-welcome-page.php:305
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "Questo riepilogo viene aggiornato automaticamente ogni 24 ore o ogni volta che viene completata una scansione completa del sito. Puoi anche aggiornare manualmente questi risultati cliccando sul pulsante Aggiorna conteggi."
 
-#: admin/class-welcome-page.php:277
+#: admin/class-welcome-page.php:311
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "Il tuo sito ha un gran numero di problemi. Per motivi di prestazioni, non tutti i problemi sono stati inclusi in questo riepilogo."
 
-#: admin/class-welcome-page.php:287
+#: admin/class-welcome-page.php:321
 msgid "Site-Wide Accessibility Reports"
 msgstr "Rapporti di accessibilità a livello di sito"
 
-#: admin/class-welcome-page.php:292
+#: admin/class-welcome-page.php:326
 msgid "Hide banner"
 msgstr "Nascondi banner"
 
-#: admin/class-welcome-page.php:301
+#: admin/class-welcome-page.php:335
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "Sblocca rapporti dettagliati sull'accessibilità"
 
-#: admin/class-welcome-page.php:304
+#: admin/class-welcome-page.php:338
 #: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Inizia a scansionare l'intero sito web per problemi di accessibilità, ottieni rapporti completi del sito e diventa conforme alle linee guida sull'accessibilità più rapidamente."
 
-#: admin/class-welcome-page.php:308
+#: admin/class-welcome-page.php:342
 #: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Aggiorna Accessibility Checker"
@@ -657,21 +806,21 @@ msgstr "Ottieni rapporti dettagliati sull'accessibilità"
 msgid "Full Site Accessibility Status"
 msgstr "Stato di accessibilità dell'intero sito"
 
-#: admin/class-widgets.php:117
-msgid "URLs Scanned:"
-msgstr "URL scansionati:"
+#: admin/class-widgets.php:99
+msgid "Updated"
+msgstr "Aggiornato"
 
-#: admin/class-widgets.php:125
-msgid "Errors:"
-msgstr "Errori:"
+#: admin/class-widgets.php:121
+msgid "Problems:"
+msgstr "Problemi:"
 
-#: admin/class-widgets.php:129
-msgid "Color Contrast Errors:"
-msgstr "Errori di contrasto del colore:"
+#: admin/class-widgets.php:127
+msgid "Contrast Problems:"
+msgstr "Problemi di contrasto:"
 
 #: admin/class-widgets.php:133
-msgid "Warnings:"
-msgstr "Avvisi:"
+msgid "Needs Review:"
+msgstr "Da rivedere:"
 
 #: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
@@ -694,43 +843,44 @@ msgid "Post Type"
 msgstr "Tipo di post"
 
 #: admin/class-widgets.php:176
-msgid "Errors"
-msgstr "Errori"
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Problemi"
 
 #: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Contrasto"
 
-#: admin/class-widgets.php:182
-msgid "Warnings"
-msgstr "Avvisi"
+#: admin/class-widgets.php:251
+msgid "Upgrade to Scan (opens in a new window)"
+msgstr "Aggiorna per scansionare (si apre in una nuova finestra)"
 
 #: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Passa all'upgrade per scansionare"
 
-#: admin/class-widgets.php:281
+#: admin/class-widgets.php:282
 msgid "See More Reports"
 msgstr "Vedi altri rapporti"
 
-#: admin/class-widgets.php:293
+#: admin/class-widgets.php:294
 #: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Impara l'accessibilità"
 
-#: admin/class-widgets.php:315
+#: admin/class-widgets.php:316
 msgid "Additional Resources"
 msgstr "Risorse aggiuntive"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog (opens in a new window)"
 msgstr "Blog (si apre in una nuova finestra)"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog"
 msgstr "Blog"
 
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation (opens in a new window)"
 msgstr "Documentazione (si apre in una nuova finestra)"
 
@@ -1010,13 +1160,6 @@ msgstr "Problema non trovato."
 #: includes/classes/class-rest-api.php:1267
 msgid "Failed to update the issue."
 msgstr "Impossibile aggiornare il problema."
-
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:902
-#: includes/options-page.php:926
-#: build/sidebar.bundle.js:2
-msgid "Simplified Summary"
-msgstr "Riepilogo semplificato"
 
 #: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
@@ -2802,6 +2945,19 @@ msgstr "&nbsp;"
 msgid "Attend Free"
 msgstr "Partecipa gratuitamente"
 
+#: includes/helper-functions.php:409
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(si apre in una nuova finestra)"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 #: includes/helper-functions.php:855
 #: build/issueModal.bundle.js:2
@@ -2858,191 +3014,199 @@ msgid "Taxonomy Scanning"
 msgstr "Scansione tassonomia"
 
 #: includes/options-page.php:212
+msgid "Block Editor Metabox"
+msgstr "Metabox dell'editor a blocchi"
+
+#: includes/options-page.php:221
 msgid "Prompt for Simplified Summary"
 msgstr "Richiedi riassunto semplificato"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:230
 msgid "Simplified Summary Position"
 msgstr "Posizione del riassunto semplificato"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:239
 msgid "Simplified Summary Heading"
 msgstr "Intestazione del riepilogo semplificato"
 
-#: includes/options-page.php:239
-#: includes/options-page.php:740
+#: includes/options-page.php:248
+#: includes/options-page.php:752
 msgid "Add Footer Accessibility Statement"
 msgstr "Aggiungi dichiarazione di accessibilità nel piè di pagina"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:763
+#: includes/options-page.php:257
+#: includes/options-page.php:775
 msgid "Include Link to Accessibility Policy"
 msgstr "Includi link alla politica di accessibilità"
 
-#: includes/options-page.php:257
+#: includes/options-page.php:266
 msgid "Accessibility Policy page"
 msgstr "Pagina della politica di accessibilità"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:275
 msgid "Accessibility Statement Preview"
 msgstr "Anteprima della dichiarazione di accessibilità"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:283
 msgid "Frontend Accessibility Checker Position"
 msgstr "Posizione di Accessibility Checker per il frontend"
 
-#: includes/options-page.php:324
+#: includes/options-page.php:333
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Configura i tipi di contenuto che devono essere controllati per problemi di accessibilità."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:329
+#: includes/options-page.php:338
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Altre funzionalità e supporto via email sono disponibili con %1$s."
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (si apre in una nuova finestra)"
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:351
+#: includes/options-page.php:360
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Usa le impostazioni qui sotto per configurare il controllo di accessibilità frontend."
 
-#: includes/options-page.php:361
+#: includes/options-page.php:370
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Le Linee guida per l'accessibilità dei contenuti web (WCAG) a livello AAA richiedono che qualsiasi contenuto con un livello di lettura superiore al 9° grado abbia un'alternativa più facile da leggere. Il testo di riepilogo semplificato viene aggiunto nella scheda di leggibilità nel meta box di Accessibility Checker nella schermata di modifica di ciascun post o pagina."
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Scopri di più sui riepiloghi semplificati e sui requisiti di leggibilità (si apre in una nuova finestra)"
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Scopri di più sui riepiloghi semplificati e sui requisiti di leggibilità."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:389
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Stai pensando “Wow, questo plugin è incredibile” e ti sta aiutando a rendere il tuo sito web più accessibile? Condividi i tuoi sforzi per rendere il tuo sito web più accessibile con i tuoi clienti e fai sapere loro che stai usando Accessibility Checker per garantire che tutte le persone possano utilizzare il tuo sito web. Aggiungi un piccolo link di solo testo e una dichiarazione nel piè di pagina del tuo sito web."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:398
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Configura le impostazioni a livello di sistema per il plugin Accessibility Checker."
 
-#: includes/options-page.php:403
+#: includes/options-page.php:412
 msgid "Fast"
 msgstr "Veloce"
 
-#: includes/options-page.php:404
+#: includes/options-page.php:413
 msgid "Normal"
 msgstr "Normale"
 
-#: includes/options-page.php:405
+#: includes/options-page.php:414
 msgid "Slow"
 msgstr "Lenta"
 
-#: includes/options-page.php:406
+#: includes/options-page.php:415
 msgid "Slowest"
 msgstr "Più lenta"
 
-#: includes/options-page.php:428
+#: includes/options-page.php:437
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Le scansioni più veloci richiedono più risorse e potrebbero causare un carico elevato sul tuo sito web."
 
-#: includes/options-page.php:454
+#: includes/options-page.php:463
 msgid "Enable scanning of archive pages"
 msgstr "Abilita la scansione delle pagine di archivio"
 
-#: includes/options-page.php:458
+#: includes/options-page.php:467
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Scegli se le pagine di archivio devono essere incluse nelle scansioni complete del sito. Per impostazione predefinita, viene utilizzato un metodo di campionamento per selezionare i termini di tassonomia per i dati di archivio."
 
-#: includes/options-page.php:484
+#: includes/options-page.php:493
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scansiona tutti i termini di tassonomia invece di un semplice campione"
 
-#: includes/options-page.php:488
+#: includes/options-page.php:497
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Controlla tutte le pagine di archivio dei termini di tassonomia invece di un campione rappresentativo. Questo richiede che la scansione delle pagine di archivio sia abilitata e potrebbe aggiungere un gran numero di URL all'elenco di scansione."
 
-#: includes/options-page.php:517
+#: includes/options-page.php:526
 msgid "Before the content"
 msgstr "Prima del contenuto"
 
-#: includes/options-page.php:522
+#: includes/options-page.php:531
 msgid "After the content"
 msgstr "Dopo il contenuto"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:536
 msgid "Insert manually"
 msgstr "Inserisci manualmente"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:540
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Usa questa funzione per aggiungere manualmente il riepilogo semplificato al tuo tema all'interno del loop."
 
-#: includes/options-page.php:533
+#: includes/options-page.php:542
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "La funzione accetta facoltativamente l'ID del post come parametro."
 
-#: includes/options-page.php:536
+#: includes/options-page.php:545
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Imposta dove vorresti che appaiano i riepiloghi semplificati in relazione al tuo contenuto, se compilati."
 
-#: includes/options-page.php:551
+#: includes/options-page.php:560
 msgid "Bottom Right Corner (default)"
 msgstr "Angolo in basso a destra (predefinito)"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:565
 msgid "Bottom Left Corner"
 msgstr "Angolo in basso a sinistra"
 
-#: includes/options-page.php:560
+#: includes/options-page.php:569
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Imposta dove vorresti che appaia il controllo di accessibilità frontend sulla pagina."
 
-#: includes/options-page.php:600
+#: includes/options-page.php:609
 msgid "When Required"
 msgstr "Quando richiesto"
 
-#: includes/options-page.php:605
+#: includes/options-page.php:614
 msgid "Always"
 msgstr "Sempre"
 
-#: includes/options-page.php:613
+#: includes/options-page.php:622
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker dovrebbe chiedere un riepilogo semplificato solo quando il livello di lettura del tuo post o pagina è superiore al 9° grado, chiederlo sempre indipendentemente dal livello di lettura, o non chiederlo mai indipendentemente dal livello di lettura?"
 
-#: includes/options-page.php:665
+#: includes/options-page.php:677
 msgid "To check content other than posts and pages, please "
 msgstr "Per controllare contenuti diversi da post e pagine, per favore "
 
-#: includes/options-page.php:667
+#: includes/options-page.php:679
 msgid "upgrade to pro"
 msgstr "passa a pro"
 
-#: includes/options-page.php:668
+#: includes/options-page.php:680
 msgid " (opens in a new window)"
 msgstr " (si apre in una nuova finestra)"
 
-#: includes/options-page.php:673
+#: includes/options-page.php:685
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Scegli quali tipi di post devono essere controllati durante una scansione. Nota che rimuovere un tipo di post precedentemente selezionato rimuoverà le sue informazioni scansionate e qualsiasi avviso personalizzato ignorato che è stato configurato."
 
-#: includes/options-page.php:815
+#: includes/options-page.php:827
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Elimina tutti i dati di Accessibility Checker quando il plugin viene disinstallato."
 
-#: includes/options-page.php:970
+#: includes/options-page.php:845
+msgid "Show Accessibility Checker metabox in the Block Editor"
+msgstr "Mostra la metabox di Accessibility Checker nell'editor a blocchi"
+
+#: includes/options-page.php:1004
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Scegli quali ruoli utente hanno il permesso di ignorare i problemi."
 
-#: includes/options-page.php:1003
+#: includes/options-page.php:1037
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Configura quali ruoli utente hanno accesso a specifiche funzionalità di Accessibility Checker."
 
@@ -4033,11 +4197,6 @@ msgstr "Abbreviazioni"
 msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
 msgstr "Le abbreviazioni e gli acronimi sono definiti la prima volta che vengono utilizzati, in modo che gli utenti possano comprenderne il significato."
 
-#: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
-msgid "Reading Level"
-msgstr "Livello di lettura"
-
 #: includes/wcag.php:1764
 msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
 msgstr "Il contenuto è scritto in un linguaggio chiaro e semplice e non richiede conoscenze specialistiche per essere compreso."
@@ -4405,18 +4564,6 @@ msgstr "Documentazione e FAQ"
 #: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Perché diciamo 100% Test Superati, Non 100% Accessibile?"
-
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(si apre in una nuova finestra)"
 
 #: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
@@ -4796,6 +4943,14 @@ msgid "Reason for dismissal:"
 msgstr "Motivo dell'ignoranza:"
 
 #: build/issueModal.bundle.js:2
+msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
+msgstr "Questo problema è stato ignorato a livello globale. Gestisci le esclusioni globali per riaprirlo."
+
+#: build/issueModal.bundle.js:2
+msgid "Manage Global Dismissals"
+msgstr "Gestisci le esclusioni globali"
+
+#: build/issueModal.bundle.js:2
 msgid "Reopening..."
 msgstr "Riaprendo..."
 
@@ -4810,10 +4965,6 @@ msgstr "Aggiungi una nota che spieghi perché questo problema viene ignorato."
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"
 msgstr "Altre opzioni di ignoranza"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss Globally"
-msgstr "Ignora globalmente"
 
 #: build/issueModal.bundle.js:2
 msgid "Dismiss & Close Modal"
@@ -4837,10 +4988,6 @@ msgid "Severity"
 msgstr "Gravità"
 
 #: build/issueModal.bundle.js:2
-msgid "Landmark"
-msgstr "Punto di riferimento"
-
-#: build/issueModal.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
@@ -4859,10 +5006,6 @@ msgstr "Come risolvere"
 #: build/issueModal.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Documentazione più dettagliata"
-
-#: build/issueModal.bundle.js:2
-msgid "Image"
-msgstr "Immagine"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5025,10 +5168,6 @@ msgid "View %d problems in Accessibility Analysis"
 msgstr "Visualizza %d problemi nell'analisi dell'accessibilità"
 
 #: build/sidebar.bundle.js:2
-msgid "Problems"
-msgstr "Problemi"
-
-#: build/sidebar.bundle.js:2
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Visualizza %d elementi che necessitano di revisione nell'analisi dell'accessibilità"
@@ -5037,10 +5176,6 @@ msgstr "Visualizza %d elementi che necessitano di revisione nell'analisi dell'ac
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Visualizza i dettagli del livello di leggibilità: %s"
-
-#: build/sidebar.bundle.js:2
-msgid "Passed Checks"
-msgstr "Controlli superati"
 
 #: build/sidebar.bundle.js:2
 msgid "Issue"
@@ -5160,8 +5295,8 @@ msgid "Enter simplified summary..."
 msgstr "Inserisci riepilogo semplificato..."
 
 #: build/sidebar.bundle.js:2
-msgid "Save Summary"
-msgstr "Salva riepilogo"
+msgid "A simplified summary is required for this content."
+msgstr "Per questo contenuto è richiesto un riepilogo semplificato."
 
 #: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."

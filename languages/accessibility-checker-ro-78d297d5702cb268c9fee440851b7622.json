@@ -74,24 +74,6 @@
             "Save fix for: %s": [
                 "Salva\u021bi remedierea pentru: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Aldin (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Cursiv (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL link"
-            ],
-            "Add": [
-                "Ad\u0103uga\u021bi"
-            ],
             "Issue dismissed successfully.": [
                 "Problema a fost ignorat\u0103 cu succes."
             ],
@@ -128,8 +110,8 @@
             "Comment (optional)": [
                 "Comentariu (op\u021bional)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Ad\u0103uga\u021bi o not\u0103 care explic\u0103 de ce este ignorat\u0103 aceast\u0103 problem\u0103. Suport\u0103 aldine, cursive \u0219i linkuri."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Ad\u0103uga\u021bi o not\u0103 explic\u00e2nd de ce aceast\u0103 problem\u0103 este ignorat\u0103."
             ],
             "More dismiss options": [
                 "Mai multe op\u021biuni de ignorare"

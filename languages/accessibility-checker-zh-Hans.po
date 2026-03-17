@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
+"Project-Id-Version: Accessibility Checker 1.38.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
+"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:43
+#: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:49
@@ -77,7 +77,7 @@ msgid "Get Pro"
 msgstr "获取专业版"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:384
+#: admin/class-ajax.php:394
 msgid "Opens in a new window."
 msgstr "在新窗口中打开。"
 
@@ -191,9 +191,9 @@ msgstr "立即升级"
 #: admin/class-admin-notices.php:245
 #: admin/class-admin-notices.php:334
 #: admin/class-ajax.php:60
-#: admin/class-ajax.php:218
-#: admin/class-ajax.php:607
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:223
+#: admin/class-ajax.php:634
+#: admin/class-ajax.php:818
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -236,14 +236,14 @@ msgid "The review action value was not set"
 msgstr "评价操作值未设置"
 
 #: admin/class-ajax.php:64
-#: admin/class-ajax.php:222
-#: admin/class-ajax.php:611
+#: admin/class-ajax.php:227
+#: admin/class-ajax.php:638
 msgid "The post ID was not set"
 msgstr "未设置帖子 ID"
 
 #: admin/class-ajax.php:68
-#: admin/class-ajax.php:226
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:231
+#: admin/class-ajax.php:642
 msgid "You do not have permission to view this information for this post."
 msgstr "您没有权限查看此帖子的此信息。"
 
@@ -263,142 +263,302 @@ msgstr "简化摘要的阅读水平过高。"
 msgid "A simplified summary has been included for this content."
 msgstr "本内容包含一个简化摘要。"
 
-#: admin/class-ajax.php:134
+#. translators: %d: percentage of passed checks
+#: admin/class-ajax.php:106
+#, php-format
+msgid "%d%% Passed Checks"
+msgstr "%d%% 通过检查"
+
+#: admin/class-ajax.php:115
+#: admin/class-welcome-page.php:102
+#: admin/class-widgets.php:111
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "已通过检查"
+
+#: admin/class-ajax.php:125
+msgid "Passed Tests"
+msgstr "通过的测试"
+
+#: admin/class-ajax.php:138
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "问题"
 
-#: admin/class-ajax.php:140
+#: admin/class-ajax.php:144
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "对比度问题"
 
-#: admin/class-ajax.php:146
+#: admin/class-ajax.php:150
+#: admin/class-widgets.php:182
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "需要审查"
 
-#: admin/class-ajax.php:152
-#: admin/class-ajax.php:380
+#: admin/class-ajax.php:156
+#: admin/class-ajax.php:385
+#: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "已忽略的问题"
 
+#: admin/class-ajax.php:176
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "阅读水平"
+
+#. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
+#: admin/class-ajax.php:187
+#, php-format
+msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
+msgstr "* 除了自动化扫描，真正的可访问性还需要手动测试。%1$s了解如何手动测试可访问性%2$s"
+
 #: admin/class-ajax.php:198
+#: admin/class-ajax.php:790
+#: admin/class-ignore-ui.php:126
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid ", opens a new window"
+msgstr "，在新窗口中打开"
+
+#: admin/class-ajax.php:203
 msgid "No summary to return"
 msgstr "无返回摘要"
 
-#: admin/class-ajax.php:237
+#: admin/class-ajax.php:242
 #: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "表格名称无效"
 
-#: admin/class-ajax.php:325
+#: admin/class-ajax.php:330
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "严重"
 
-#: admin/class-ajax.php:329
+#: admin/class-ajax.php:334
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "高"
 
-#: admin/class-ajax.php:333
+#: admin/class-ajax.php:338
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "中"
 
-#: admin/class-ajax.php:337
+#: admin/class-ajax.php:342
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "低"
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:383
 msgid " total"
 msgstr " 总计"
 
-#: admin/class-ajax.php:408
+#. translators: 1: rule title, 2: "Opens in a new window."
+#: admin/class-ajax.php:392
+#, php-format
+msgid "Read documentation for %1$s. %2$s"
+msgstr "阅读 %1$s 的文档。%2$s"
+
+#. translators: %s: rule title
+#: admin/class-ajax.php:400
+#, php-format
+msgid "Expand issues for %s"
+msgstr "展开 %s 的问题"
+
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "这些设置可对整个网站进行全局修复。"
 
-#: admin/class-ajax.php:409
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "可能需要重新保存页面或进行全站扫描，才能在报告中看到修复结果。"
 
-#: admin/class-ajax.php:437
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "节省"
 
-#: admin/class-ajax.php:459
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "受影响的代码"
 
+#: admin/class-ajax.php:480
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "图片"
+
+#: admin/class-ajax.php:483
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "地标"
+
+#: admin/class-ajax.php:486
+msgid "Actions"
+msgstr "操作"
+
+#: admin/class-ajax.php:495
+msgid "Dismissed"
+msgstr "已忽略"
+
+#: admin/class-ajax.php:495
+msgid "Dismiss"
+msgstr "忽略"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:506
+#, php-format
+msgid "Issue ID %d"
+msgstr "问题 ID %d"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:524
+#, php-format
+msgid "image for issue %d"
+msgstr "问题 %d 的图片"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:561
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "在网站上查看问题 ID %d，打开一个新窗口"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "在页面上查看"
 
-#: admin/class-ajax.php:554
+#: admin/class-ajax.php:581
 msgid "Fix: "
 msgstr "修复： "
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:582
 msgid "Fix"
 msgstr "修复"
 
-#: admin/class-ajax.php:588
+#: admin/class-ajax.php:615
 msgid "No details to return"
 msgstr "没有返回的详细信息"
 
-#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:676
-#: admin/class-ajax.php:688
+#. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
+#: admin/class-ajax.php:687
 #, php-format
-msgid "Simplified Summary Reading Grade Level: %s"
-msgstr "简化摘要阅读年级水平：%s"
+msgid "Post Reading Grade Level: %s"
+msgstr "发布阅读年级水平：%s"
 
-#: admin/class-ajax.php:677
+#: admin/class-ajax.php:688
+#: admin/class-ajax.php:709
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "无"
 
-#: admin/class-ajax.php:680
+#: admin/class-ajax.php:691
+msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
+msgstr "您的帖子阅读水平高于 9 年级。AAA 级别的 Web 内容可访问性指南 (WCAG) 要求您的帖子提供 9 年级或以下的简化摘要。"
+
+#: admin/class-ajax.php:693
+msgid "Your post does not contain enough content to calculate its reading level."
+msgstr "您的帖子内容不足，无法计算其阅读水平。"
+
+#: admin/class-ajax.php:695
+msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
+msgstr "当内容阅读水平为 9 年级或以下时，无需简化摘要。在设置页面上选择何时提示简化摘要。"
+
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:708
+#: admin/class-ajax.php:720
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "简化摘要阅读年级水平：%s"
+
+#: admin/class-ajax.php:712
 #: build/sidebar.bundle.js:2
 msgid "Not enough content to determine an accurate reading level."
 msgstr "内容不足，无法确定准确的阅读水平。"
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:725
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "您的简化摘要阅读水平高于 9 年级。"
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:726
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "您的简化摘要阅读水平在 9 年级或以下。"
 
-#: admin/class-ajax.php:745
+#: admin/class-ajax.php:737
+#: admin/class-ajax.php:767
+msgid "Simplified summary is not being automatically inserted into the content."
+msgstr "简化摘要未自动插入到内容中。"
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:740
+#, php-format
+msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "您的简化摘要提示设置为 “从不。” 如果您希望自动显示简化摘要，可以在 %s 上更改此设置。"
+
+#: admin/class-ajax.php:741
+#: admin/class-ajax.php:758
+#: admin/class-ajax.php:771
+msgid "settings page"
+msgstr "设置页面"
+
+#. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
+#: admin/class-ajax.php:752
+#, php-format
+msgid "Simplified summary is being automatically inserted %s."
+msgstr "简化摘要正在自动插入 %s。"
+
+#: admin/class-ajax.php:753
+msgid "the content"
+msgstr "内容"
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:757
+#, php-format
+msgid "Set where the Simplified Summary is inserted into the content on the %s."
+msgstr "在 %s 上设置简化摘要插入到内容中的位置。"
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:770
+#, php-format
+msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "您的简化摘要位置设置为 “手动”，这需要将函数添加到您的页面模板中。如果您希望自动显示简化摘要，可以在 %s 上更改此设置。"
+
+#: admin/class-ajax.php:784
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:932
+#: includes/options-page.php:956
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary"
+msgstr "简化摘要"
+
+#: admin/class-ajax.php:786
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "保存摘要"
+
+#: admin/class-ajax.php:790
+msgid "Learn more about improving readability and simplified summary requirements"
+msgstr "了解更多关于提高可读性和简化摘要要求的信息"
+
+#: admin/class-ajax.php:793
 msgid "No readability data to return"
 msgstr "无可读性数据返回"
 
-#: admin/class-ajax.php:805
-#: admin/class-ajax.php:826
+#: admin/class-ajax.php:853
+#: admin/class-ajax.php:874
 msgid "No ignore data to return"
 msgstr "没有要返回的忽略数据"
 
@@ -494,7 +654,7 @@ msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "查看 Accessibility Checker 文档（在新窗口中打开）"
 
 #: admin/class-plugin-row-meta.php:58
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation"
 msgstr "文档"
 
@@ -526,113 +686,103 @@ msgstr "升级特惠进行中"
 msgid "Unable to redirect to upgrade page."
 msgstr "无法重定向到升级页面。"
 
-#: admin/class-welcome-page.php:38
+#: admin/class-welcome-page.php:68
 msgid "Most Recent Test Summary"
 msgstr "最新测试摘要"
 
-#: admin/class-welcome-page.php:45
+#: admin/class-welcome-page.php:75
 msgid "Update Counts"
 msgstr "更新计数"
 
-#: admin/class-welcome-page.php:50
+#: admin/class-welcome-page.php:80
 msgid "Start New Scan"
 msgstr "开始新扫描"
 
-#: admin/class-welcome-page.php:54
+#: admin/class-welcome-page.php:84
 msgid "View All Open Issues"
 msgstr "查看所有未解决的问题"
 
-#: admin/class-welcome-page.php:59
+#: admin/class-welcome-page.php:89
 msgid "See History"
 msgstr "查看历史"
 
-#: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:102
-msgid "Passed Tests"
-msgstr "通过的测试"
+#: admin/class-welcome-page.php:119
+msgid "Unique Problem"
+msgid_plural "Unique Problems"
+msgstr[0] "独特问题"
 
-#: admin/class-welcome-page.php:88
-msgid "Unique Error"
-msgid_plural "Unique Errors"
-msgstr[0] "独特错误"
+#: admin/class-welcome-page.php:145
+msgid "Unique Contrast Problem"
+msgid_plural "Unique Contrast Problems"
+msgstr[0] "独特对比度问题"
 
-#: admin/class-welcome-page.php:113
-msgid "Unique Color Contrast Error"
-msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "独特的颜色对比度错误"
+#: admin/class-welcome-page.php:171
+msgid "Unique Item Needing Review"
+msgid_plural "Unique Items Needing Review"
+msgstr[0] "独特待审核项目"
 
-#: admin/class-welcome-page.php:138
-msgid "Unique Warning"
-msgid_plural "Unique Warnings"
-msgstr[0] "独特警告"
-
-#: admin/class-welcome-page.php:163
-msgid "Ignored Item"
-msgid_plural "Ignored Items"
-msgstr[0] "忽略的项目"
-
-#: admin/class-welcome-page.php:180
+#: admin/class-welcome-page.php:214
 msgid "Average Issues Per Page"
 msgstr "每页平均问题数"
 
-#: admin/class-welcome-page.php:193
+#: admin/class-welcome-page.php:227
 msgid "Average Issue Density"
 msgstr "平均问题密度"
 
-#: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:109
+#: admin/class-welcome-page.php:240
 msgid "Report Last Updated:"
 msgstr "报告最后更新："
 
-#: admin/class-welcome-page.php:216
-#: includes/options-page.php:610
+#: admin/class-welcome-page.php:250
+#: includes/options-page.php:619
 msgid "Never"
 msgstr "从未"
 
-#: admin/class-welcome-page.php:230
+#: admin/class-welcome-page.php:264
+#: admin/class-widgets.php:97
 msgid "URLs Scanned"
 msgstr "已扫描的 URL"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:241
+#: admin/class-welcome-page.php:275
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%2$s 中的 %1$s"
 
-#: admin/class-welcome-page.php:250
+#: admin/class-welcome-page.php:284
 msgid "Post Types Checked"
 msgstr "已检查的文章类型"
 
-#: admin/class-welcome-page.php:263
+#: admin/class-welcome-page.php:297
 msgid "URLs with 100% score"
 msgstr "100% 得分的 URL"
 
-#: admin/class-welcome-page.php:271
+#: admin/class-welcome-page.php:305
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "此摘要每24小时自动更新一次，或在完成全站扫描时更新。您也可以点击更新计数按钮手动更新这些结果。"
 
-#: admin/class-welcome-page.php:277
+#: admin/class-welcome-page.php:311
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "您的网站存在大量问题。出于性能考虑，并非所有问题都包含在此摘要中。"
 
-#: admin/class-welcome-page.php:287
+#: admin/class-welcome-page.php:321
 msgid "Site-Wide Accessibility Reports"
 msgstr "全站无障碍报告"
 
-#: admin/class-welcome-page.php:292
+#: admin/class-welcome-page.php:326
 msgid "Hide banner"
 msgstr "隐藏横幅"
 
-#: admin/class-welcome-page.php:301
+#: admin/class-welcome-page.php:335
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "解锁详细的无障碍报告"
 
-#: admin/class-welcome-page.php:304
+#: admin/class-welcome-page.php:338
 #: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "开始扫描整个网站的无障碍问题，获取全站报告，并更快地符合无障碍指南。"
 
-#: admin/class-welcome-page.php:308
+#: admin/class-welcome-page.php:342
 #: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "升级 Accessibility Checker"
@@ -649,21 +799,21 @@ msgstr "获取详细的无障碍报告"
 msgid "Full Site Accessibility Status"
 msgstr "全站无障碍状态"
 
-#: admin/class-widgets.php:117
-msgid "URLs Scanned:"
-msgstr "已扫描的 URL："
+#: admin/class-widgets.php:99
+msgid "Updated"
+msgstr "已更新"
 
-#: admin/class-widgets.php:125
-msgid "Errors:"
-msgstr "错误："
+#: admin/class-widgets.php:121
+msgid "Problems:"
+msgstr "问题："
 
-#: admin/class-widgets.php:129
-msgid "Color Contrast Errors:"
-msgstr "颜色对比度错误："
+#: admin/class-widgets.php:127
+msgid "Contrast Problems:"
+msgstr "对比度问题："
 
 #: admin/class-widgets.php:133
-msgid "Warnings:"
-msgstr "警告："
+msgid "Needs Review:"
+msgstr "需要审核："
 
 #: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
@@ -686,43 +836,44 @@ msgid "Post Type"
 msgstr "文章类型"
 
 #: admin/class-widgets.php:176
-msgid "Errors"
-msgstr "错误"
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "问题"
 
 #: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "对比度"
 
-#: admin/class-widgets.php:182
-msgid "Warnings"
-msgstr "警告"
+#: admin/class-widgets.php:251
+msgid "Upgrade to Scan (opens in a new window)"
+msgstr "升级到扫描（在新窗口中打开）"
 
 #: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "升级以扫描"
 
-#: admin/class-widgets.php:281
+#: admin/class-widgets.php:282
 msgid "See More Reports"
 msgstr "查看更多报告"
 
-#: admin/class-widgets.php:293
+#: admin/class-widgets.php:294
 #: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "学习无障碍"
 
-#: admin/class-widgets.php:315
+#: admin/class-widgets.php:316
 msgid "Additional Resources"
 msgstr "更多资源"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog (opens in a new window)"
 msgstr "博客（在新窗口中打开）"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog"
 msgstr "博客"
 
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation (opens in a new window)"
 msgstr "文档（在新窗口中打开）"
 
@@ -1000,13 +1151,6 @@ msgstr "未找到问题。"
 #: includes/classes/class-rest-api.php:1267
 msgid "Failed to update the issue."
 msgstr "未能更新问题。"
-
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:902
-#: includes/options-page.php:926
-#: build/sidebar.bundle.js:2
-msgid "Simplified Summary"
-msgstr "简化摘要"
 
 #: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
@@ -2792,6 +2936,19 @@ msgstr "&nbsp;"
 msgid "Attend Free"
 msgstr "免费参加"
 
+#: includes/helper-functions.php:409
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "（在新窗口中打开）"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 #: includes/helper-functions.php:855
 #: build/issueModal.bundle.js:2
@@ -2848,191 +3005,199 @@ msgid "Taxonomy Scanning"
 msgstr "分类法扫描"
 
 #: includes/options-page.php:212
+msgid "Block Editor Metabox"
+msgstr "区块编辑器元框"
+
+#: includes/options-page.php:221
 msgid "Prompt for Simplified Summary"
 msgstr "提示输入简化摘要"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:230
 msgid "Simplified Summary Position"
 msgstr "简化摘要位置"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:239
 msgid "Simplified Summary Heading"
 msgstr "简化摘要标题"
 
-#: includes/options-page.php:239
-#: includes/options-page.php:740
+#: includes/options-page.php:248
+#: includes/options-page.php:752
 msgid "Add Footer Accessibility Statement"
 msgstr "添加页脚无障碍声明"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:763
+#: includes/options-page.php:257
+#: includes/options-page.php:775
 msgid "Include Link to Accessibility Policy"
 msgstr "包含无障碍政策链接"
 
-#: includes/options-page.php:257
+#: includes/options-page.php:266
 msgid "Accessibility Policy page"
 msgstr "无障碍政策页面"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:275
 msgid "Accessibility Statement Preview"
 msgstr "无障碍声明预览"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:283
 msgid "Frontend Accessibility Checker Position"
 msgstr "前端 Accessibility Checker 位置"
 
-#: includes/options-page.php:324
+#: includes/options-page.php:333
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "配置应检查可访问性问题的内容类型。"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:329
+#: includes/options-page.php:338
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "更多功能和电子邮件支持可通过%1$s获得。"
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro（在新窗口中打开）"
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:351
+#: includes/options-page.php:360
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "使用以下设置来配置前端无障碍检查器。"
 
-#: includes/options-page.php:361
+#: includes/options-page.php:370
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Web 内容无障碍指南（WCAG）AAA 级要求任何阅读水平高于 9 年级的内容都应有一个更易读的替代版本。简化摘要文本可以在每个文章或页面编辑屏幕的 Accessibility Checker 元框中的可读性选项卡上添加。"
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "了解更多关于简化摘要和可读性要求（在新窗口中打开）"
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "了解更多关于简化摘要和可读性要求。"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:389
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "您是否在想 “哇，这个插件太棒了”，它是否正在帮助您使您的网站更易访问？与您的客户分享您为使网站更易访问所做的努力，让他们知道您正在使用 Accessibility Checker 来确保所有人都能使用您的网站。在您网站的页脚添加一个小型纯文本链接和声明。"
 
-#: includes/options-page.php:389
+#: includes/options-page.php:398
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "为 Accessibility Checker 插件配置系统级设置。"
 
-#: includes/options-page.php:403
+#: includes/options-page.php:412
 msgid "Fast"
 msgstr "快速"
 
-#: includes/options-page.php:404
+#: includes/options-page.php:413
 msgid "Normal"
 msgstr "正常"
 
-#: includes/options-page.php:405
+#: includes/options-page.php:414
 msgid "Slow"
 msgstr "慢速"
 
-#: includes/options-page.php:406
+#: includes/options-page.php:415
 msgid "Slowest"
 msgstr "最慢"
 
-#: includes/options-page.php:428
+#: includes/options-page.php:437
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "更快的扫描会消耗更多资源，可能会给你的网站带来高负载。"
 
-#: includes/options-page.php:454
+#: includes/options-page.php:463
 msgid "Enable scanning of archive pages"
 msgstr "启用归档页面扫描"
 
-#: includes/options-page.php:458
+#: includes/options-page.php:467
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "选择是否在完整网站扫描中包含归档页面。默认情况下，会使用抽样方法选择分类法术语以获取归档数据。"
 
-#: includes/options-page.php:484
+#: includes/options-page.php:493
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "扫描所有分类术语而不仅仅是样本"
 
-#: includes/options-page.php:488
+#: includes/options-page.php:497
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "检查所有分类法术语归档页面，而不是代表性样本。这需要启用归档页面扫描，并可能会向扫描列表添加大量 URL。"
 
-#: includes/options-page.php:517
+#: includes/options-page.php:526
 msgid "Before the content"
 msgstr "在内容之前"
 
-#: includes/options-page.php:522
+#: includes/options-page.php:531
 msgid "After the content"
 msgstr "在内容之后"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:536
 msgid "Insert manually"
 msgstr "手动插入"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:540
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "使用此功能在循环内手动将简化摘要添加到你的主题中。"
 
-#: includes/options-page.php:533
+#: includes/options-page.php:542
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "该函数可选择接受文章ID作为参数。"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:545
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "设置你希望简化摘要在填写时相对于内容的显示位置。"
 
-#: includes/options-page.php:551
+#: includes/options-page.php:560
 msgid "Bottom Right Corner (default)"
 msgstr "右下角（默认）"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:565
 msgid "Bottom Left Corner"
 msgstr "左下角"
 
-#: includes/options-page.php:560
+#: includes/options-page.php:569
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "设置你希望前端无障碍检查器在页面上出现的位置。"
 
-#: includes/options-page.php:600
+#: includes/options-page.php:609
 msgid "When Required"
 msgstr "在需要时"
 
-#: includes/options-page.php:605
+#: includes/options-page.php:614
 msgid "Always"
 msgstr "始终"
 
-#: includes/options-page.php:613
+#: includes/options-page.php:622
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker 是否应该只在您的文章或页面的阅读水平高于 9 年级时要求简化摘要，还是无论阅读水平如何都始终要求，或者无论阅读水平如何都从不要求？"
 
-#: includes/options-page.php:665
+#: includes/options-page.php:677
 msgid "To check content other than posts and pages, please "
 msgstr "要检查文章和页面以外的内容，请 "
 
-#: includes/options-page.php:667
+#: includes/options-page.php:679
 msgid "upgrade to pro"
 msgstr "升级为专业版"
 
-#: includes/options-page.php:668
+#: includes/options-page.php:680
 msgid " (opens in a new window)"
 msgstr " （在新窗口中打开）"
 
-#: includes/options-page.php:673
+#: includes/options-page.php:685
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "选择在扫描期间应检查哪些文章类型。请注意，移除先前选择的文章类型将删除其扫描信息和任何已设置的自定义忽略警告。"
 
-#: includes/options-page.php:815
+#: includes/options-page.php:827
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "卸载插件时删除所有 Accessibility Checker 数据。"
 
-#: includes/options-page.php:970
+#: includes/options-page.php:845
+msgid "Show Accessibility Checker metabox in the Block Editor"
+msgstr "在区块编辑器中显示 Accessibility Checker 元框"
+
+#: includes/options-page.php:1004
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "选择哪些用户角色有权忽略问题。"
 
-#: includes/options-page.php:1003
+#: includes/options-page.php:1037
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "配置哪些用户角色可以访问特定的 Accessibility Checker 功能。"
 
@@ -4023,11 +4188,6 @@ msgstr "缩写"
 msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
 msgstr "缩写和首字母缩略词在首次使用时被定义，这样用户可以理解它们的含义。"
 
-#: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
-msgid "Reading Level"
-msgstr "阅读水平"
-
 #: includes/wcag.php:1764
 msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
 msgstr "内容以清晰简单的语言编写，不需要专门知识就能理解。"
@@ -4395,18 +4555,6 @@ msgstr "文档和常见问题"
 #: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "为什么我们说100%通过测试，而不是100%无障碍？"
-
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "（在新窗口中打开）"
 
 #: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
@@ -4783,6 +4931,14 @@ msgid "Reason for dismissal:"
 msgstr "忽略原因："
 
 #: build/issueModal.bundle.js:2
+msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
+msgstr "此问题已全局忽略。管理全局忽略以重新打开。"
+
+#: build/issueModal.bundle.js:2
+msgid "Manage Global Dismissals"
+msgstr "管理全局忽略"
+
+#: build/issueModal.bundle.js:2
 msgid "Reopening..."
 msgstr "正在重新打开..."
 
@@ -4797,10 +4953,6 @@ msgstr "添加说明此问题为何被驳回的备注。"
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"
 msgstr "更多忽略选项"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss Globally"
-msgstr "全局忽略"
 
 #: build/issueModal.bundle.js:2
 msgid "Dismiss & Close Modal"
@@ -4824,10 +4976,6 @@ msgid "Severity"
 msgstr "严重性"
 
 #: build/issueModal.bundle.js:2
-msgid "Landmark"
-msgstr "地标"
-
-#: build/issueModal.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG："
 
@@ -4846,10 +4994,6 @@ msgstr "如何修复"
 #: build/issueModal.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "更详细的文档"
-
-#: build/issueModal.bundle.js:2
-msgid "Image"
-msgstr "图片"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5010,10 +5154,6 @@ msgid "View %d problems in Accessibility Analysis"
 msgstr "在可访问性分析中查看 %d 个问题"
 
 #: build/sidebar.bundle.js:2
-msgid "Problems"
-msgstr "问题"
-
-#: build/sidebar.bundle.js:2
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "在可访问性分析中查看 %d 个需要审查的项目"
@@ -5022,10 +5162,6 @@ msgstr "在可访问性分析中查看 %d 个需要审查的项目"
 #, js-format
 msgid "View reading level details: %s"
 msgstr "查看阅读水平详情：%s"
-
-#: build/sidebar.bundle.js:2
-msgid "Passed Checks"
-msgstr "已通过检查"
 
 #: build/sidebar.bundle.js:2
 msgid "Issue"
@@ -5145,8 +5281,8 @@ msgid "Enter simplified summary..."
 msgstr "输入简化摘要..."
 
 #: build/sidebar.bundle.js:2
-msgid "Save Summary"
-msgstr "保存摘要"
+msgid "A simplified summary is required for this content."
+msgstr "此内容需要简化摘要。"
 
 #: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."

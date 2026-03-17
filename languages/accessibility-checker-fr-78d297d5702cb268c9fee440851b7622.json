@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Enregistrer la correction pour\u00a0: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Gras (Ctrl+B)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Italique (Ctrl+I)"
-            ],
-            "Link (Ctrl+K)": [
-                "Lien (Ctrl+K)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL du lien"
-            ],
-            "Add": [
-                "Ajouter"
-            ],
             "Issue dismissed successfully.": [
                 "Probl\u00e8me ignor\u00e9 avec succ\u00e8s."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Commentaire (facultatif)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Ajoutez une note expliquant pourquoi ce probl\u00e8me est ignor\u00e9. Prend en charge le gras, l\u2019italique et les liens."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Ajoutez une note expliquant pourquoi ce probl\u00e8me est ignor\u00e9."
             ],
             "More dismiss options": [
                 "Plus d\u2019options d\u2019ignorance"

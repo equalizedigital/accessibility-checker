@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Tallenna korjaus kohteelle: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Lihavointi (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Kursivointi (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Linkki (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "Linkin URL-osoite"
-            ],
-            "Add": [
-                "Lis\u00e4\u00e4"
-            ],
             "Issue dismissed successfully.": [
                 "Ongelma hyl\u00e4tty onnistuneesti."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Kommentti (valinnainen)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Lis\u00e4\u00e4 huomautus, joka selitt\u00e4\u00e4, miksi t\u00e4m\u00e4 ongelma hyl\u00e4t\u00e4\u00e4n. Tukee lihavointia, kursivointia ja linkkej\u00e4."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Lis\u00e4\u00e4 huomautus, jossa selitet\u00e4\u00e4n, miksi t\u00e4m\u00e4 ongelma hyl\u00e4t\u00e4\u00e4n."
             ],
             "More dismiss options": [
                 "Lis\u00e4\u00e4 hylk\u00e4\u00e4misvaihtoehtoja"

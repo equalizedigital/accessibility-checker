@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Jav\u00edt\u00e1s ment\u00e9se ehhez: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "F\u00e9lk\u00f6v\u00e9r (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "D\u0151lt (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Hivatkoz\u00e1s (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "Hivatkoz\u00e1s URL-je"
-            ],
-            "Add": [
-                "Hozz\u00e1ad\u00e1s"
-            ],
             "Issue dismissed successfully.": [
                 "Probl\u00e9ma sikeresen elvetve."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Megjegyz\u00e9s (opcion\u00e1lis)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Adjon meg egy megjegyz\u00e9st, amely elmagyar\u00e1zza, mi\u00e9rt ker\u00fcl elvet\u00e9sre ez a probl\u00e9ma. T\u00e1mogatja a f\u00e9lk\u00f6v\u00e9r, d\u0151lt \u00e9s hivatkoz\u00e1sokat."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Adjon hozz\u00e1 egy megjegyz\u00e9st, amely elmagyar\u00e1zza, mi\u00e9rt utas\u00edtj\u00e1k el ezt a probl\u00e9m\u00e1t."
             ],
             "More dismiss options": [
                 "Tov\u00e1bbi elvet\u00e9si lehet\u0151s\u00e9gek"

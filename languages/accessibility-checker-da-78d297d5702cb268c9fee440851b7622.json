@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Gem l\u00f8sning for: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Fed (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Kursiv (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "Link-URL"
-            ],
-            "Add": [
-                "Tilf\u00f8j"
-            ],
             "Issue dismissed successfully.": [
                 "Problem afvist med succes."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Kommentar (valgfrit)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Tilf\u00f8j en note, der forklarer, hvorfor dette problem afvises. Underst\u00f8tter fed, kursiv og links."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Tilf\u00f8j en note, der forklarer, hvorfor dette problem afvises."
             ],
             "More dismiss options": [
                 "Flere afvisningsmuligheder"

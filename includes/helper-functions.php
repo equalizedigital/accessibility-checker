@@ -406,7 +406,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
 		<li class="edac-upcoming-meetup-item edac-mb-3">
 			<h' . esc_html( $heading ) . ' class="edac-upcoming-meetup-item-name">' . esc_html( $event->name ) . '</h' . esc_html( $heading ) . '>
 			<div class="edac-upcoming-meetup-item-time edac-timestamp-to-local">' . (string) ( (int) $event->time / 1000 ) . '</div>
-			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '">' . $link_text . '</a>
+			<a aria-label="' . esc_attr( $link_text . ': ' . $event->name . ' ' . __( '(opens in a new window)', 'accessibility-checker' ) ) . '" class="edac-upcoming-meetup-item-link" href="' . esc_url( $event->link ) . '" target="_blank" rel="noopener noreferrer">' . $link_text . '<span aria-hidden="true"> ↗</span></a>
 		</li>';
 	}
 
@@ -656,7 +656,7 @@ function edac_generate_link_type( $query_args = [], $type = 'pro', $args = [] ):
 
 	switch ( $type ) {
 		case 'help':
-			$base_link = trailingslashit( 'https://a11ychecker.com/help' . $args['help_id'] ?? '' );
+			$base_link = trailingslashit( 'https://a11ychecker.com/help' . ( $args['help_id'] ?? '' ) );
 			break;
 		case 'custom': // phpcs:ignore -- intentially only breaking inside the condition because if it's not set we want to hit default.
 			if ( ! empty( $args['base_link'] ) ) {

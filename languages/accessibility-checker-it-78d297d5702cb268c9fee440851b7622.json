@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Salva correzione per: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Grassetto (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "Corsivo (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL del link"
-            ],
-            "Add": [
-                "Aggiungi"
-            ],
             "Issue dismissed successfully.": [
                 "Problema ignorato con successo."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Commento (facoltativo)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Aggiungi una nota che spieghi perch\u00e9 questo problema viene ignorato. Supporta grassetto, corsivo e link."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Aggiungi una nota che spieghi perch\u00e9 questo problema viene ignorato."
             ],
             "More dismiss options": [
                 "Altre opzioni di ignoranza"

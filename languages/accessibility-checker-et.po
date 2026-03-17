@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0-beta.2\n"
+"Project-Id-Version: Accessibility Checker 1.38.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-03T23:54:02+00:00\n"
+"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -18,7 +18,7 @@ msgstr ""
 
 #. Plugin Name of the plugin
 #: accessibility-checker.php
-#: admin/class-meta-boxes.php:43
+#: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:49
@@ -77,7 +77,7 @@ msgid "Get Pro"
 msgstr "Hangi Pro versioon"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:384
+#: admin/class-ajax.php:394
 msgid "Opens in a new window."
 msgstr "Avaneb uues aknas."
 
@@ -191,9 +191,9 @@ msgstr "Uuenda kohe"
 #: admin/class-admin-notices.php:245
 #: admin/class-admin-notices.php:334
 #: admin/class-ajax.php:60
-#: admin/class-ajax.php:218
-#: admin/class-ajax.php:607
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:223
+#: admin/class-ajax.php:634
+#: admin/class-ajax.php:818
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -236,14 +236,14 @@ msgid "The review action value was not set"
 msgstr "Arvustuse tegevuse väärtust ei määratud"
 
 #: admin/class-ajax.php:64
-#: admin/class-ajax.php:222
-#: admin/class-ajax.php:611
+#: admin/class-ajax.php:227
+#: admin/class-ajax.php:638
 msgid "The post ID was not set"
 msgstr "Postituse ID-d ei määratud"
 
 #: admin/class-ajax.php:68
-#: admin/class-ajax.php:226
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:231
+#: admin/class-ajax.php:642
 msgid "You do not have permission to view this information for this post."
 msgstr "Teil pole luba selle postituse kohta teavet vaadata."
 
@@ -263,20 +263,38 @@ msgstr "Lihtsustatud kokkuvõtte lugemistase on liiga kõrge."
 msgid "A simplified summary has been included for this content."
 msgstr "Selle sisu jaoks on lisatud lihtsustatud kokkuvõte."
 
-#: admin/class-ajax.php:134
+#. translators: %d: percentage of passed checks
+#: admin/class-ajax.php:106
+#, php-format
+msgid "%d%% Passed Checks"
+msgstr "%d%% läbitud kontrolli"
+
+#: admin/class-ajax.php:115
+#: admin/class-welcome-page.php:102
+#: admin/class-widgets.php:111
+#: build/sidebar.bundle.js:2
+msgid "Passed Checks"
+msgstr "Läbitud kontrollid"
+
+#: admin/class-ajax.php:125
+msgid "Passed Tests"
+msgstr "Läbitud testid"
+
+#: admin/class-ajax.php:138
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Probleem"
 msgstr[1] "Probleemid"
 
-#: admin/class-ajax.php:140
+#: admin/class-ajax.php:144
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Kontrastiprobleem"
 msgstr[1] "Kontrastiprobleemid"
 
-#: admin/class-ajax.php:146
+#: admin/class-ajax.php:150
+#: admin/class-widgets.php:182
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -284,125 +302,267 @@ msgid_plural "Needs Review"
 msgstr[0] "Vajab ülevaatamist"
 msgstr[1] "Vajab ülevaatamist"
 
-#: admin/class-ajax.php:152
-#: admin/class-ajax.php:380
+#: admin/class-ajax.php:156
+#: admin/class-ajax.php:385
+#: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Tagasilükatud probleem"
 msgstr[1] "Tagasilükatud probleemid"
 
+#: admin/class-ajax.php:176
+#: includes/wcag.php:1763
+#: build/sidebar.bundle.js:2
+msgid "Reading Level"
+msgstr "Lugemistase"
+
+#. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
+#: admin/class-ajax.php:187
+#, php-format
+msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
+msgstr "* Tõeline ligipääsetavus nõuab lisaks automatiseeritud skaneeringutele ka käsitsi testimist. %1$sLisateave ligipääsetavuse käsitsi testimise kohta%2$s"
+
 #: admin/class-ajax.php:198
+#: admin/class-ajax.php:790
+#: admin/class-ignore-ui.php:126
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid ", opens a new window"
+msgstr ", avab uue akna"
+
+#: admin/class-ajax.php:203
 msgid "No summary to return"
 msgstr "Kokkuvõte puudub"
 
-#: admin/class-ajax.php:237
+#: admin/class-ajax.php:242
 #: includes/classes/class-rest-api.php:899
 msgid "Invalid table name"
 msgstr "Vigane tabeli nimi"
 
-#: admin/class-ajax.php:325
+#: admin/class-ajax.php:330
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Kriitiline"
 
-#: admin/class-ajax.php:329
+#: admin/class-ajax.php:334
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Kõrge"
 
-#: admin/class-ajax.php:333
+#: admin/class-ajax.php:338
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Keskmine"
 
-#: admin/class-ajax.php:337
+#: admin/class-ajax.php:342
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Madal"
 
-#: admin/class-ajax.php:378
+#: admin/class-ajax.php:383
 msgid " total"
 msgstr " kokku"
 
-#: admin/class-ajax.php:408
+#. translators: 1: rule title, 2: "Opens in a new window."
+#: admin/class-ajax.php:392
+#, php-format
+msgid "Read documentation for %1$s. %2$s"
+msgstr "Lugege dokumentatsiooni %1$s kohta. %2$s"
+
+#. translators: %s: rule title
+#: admin/class-ajax.php:400
+#, php-format
+msgid "Expand issues for %s"
+msgstr "Laienda probleeme %s jaoks"
+
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Need seaded võimaldavad globaalseid parandusi üle kogu teie saidi."
 
-#: admin/class-ajax.php:409
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Lehed võib olla vaja uuesti salvestada või läbi viia täielik saidi kontroll, et parandused raportites kajastuksid."
 
-#: admin/class-ajax.php:437
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Save"
 msgstr "Salvesta"
 
-#: admin/class-ajax.php:459
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 msgid "Affected Code"
 msgstr "Mõjutatud kood"
 
+#: admin/class-ajax.php:480
+#: build/issueModal.bundle.js:2
+msgid "Image"
+msgstr "Pilt"
+
+#: admin/class-ajax.php:483
+#: build/issueModal.bundle.js:2
+msgid "Landmark"
+msgstr "Maamärk"
+
+#: admin/class-ajax.php:486
+msgid "Actions"
+msgstr "Tegevused"
+
+#: admin/class-ajax.php:495
+msgid "Dismissed"
+msgstr "Tagasi lükatud"
+
+#: admin/class-ajax.php:495
+msgid "Dismiss"
+msgstr "Lükka tagasi"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:506
+#, php-format
+msgid "Issue ID %d"
+msgstr "Probleemi ID %d"
+
+#. translators: %d: issue ID number
+#: admin/class-ajax.php:524
+#, php-format
+msgid "image for issue %d"
+msgstr "pilt probleemi %d kohta"
+
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:561
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Vaata probleemi ID %d veebisaidil, avaneb uues aknas"
 
-#: admin/class-ajax.php:535
+#: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Vaata lehel"
 
-#: admin/class-ajax.php:554
+#: admin/class-ajax.php:581
 msgid "Fix: "
 msgstr "Paranda: "
 
-#: admin/class-ajax.php:555
+#: admin/class-ajax.php:582
 msgid "Fix"
 msgstr "Paranda"
 
-#: admin/class-ajax.php:588
+#: admin/class-ajax.php:615
 msgid "No details to return"
 msgstr "Üksikasju pole"
 
-#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:676
-#: admin/class-ajax.php:688
+#. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
+#: admin/class-ajax.php:687
 #, php-format
-msgid "Simplified Summary Reading Grade Level: %s"
-msgstr "Lihtsustatud kokkuvõtte lugemistaseme klass: %s"
+msgid "Post Reading Grade Level: %s"
+msgstr "Postituse lugemise tase: %s"
 
-#: admin/class-ajax.php:677
+#: admin/class-ajax.php:688
+#: admin/class-ajax.php:709
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Puudub"
 
-#: admin/class-ajax.php:680
+#: admin/class-ajax.php:691
+msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
+msgstr "Teie postituse lugemise tase on kõrgem kui 9. klass. Veebisisu ligipääsetavuse juhised (WCAG) AAA tasemel nõuavad teie postituse lihtsustatud kokkuvõtet, mis on 9. klassi tasemel või madalam."
+
+#: admin/class-ajax.php:693
+msgid "Your post does not contain enough content to calculate its reading level."
+msgstr "Teie postitus ei sisalda piisavalt sisu, et selle lugemise taset arvutada."
+
+#: admin/class-ajax.php:695
+msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
+msgstr "Lihtsustatud kokkuvõte ei ole vajalik, kui sisu lugemise tase on 9. klassi tasemel või madalam. Valige seadete lehel, millal lihtsustatud kokkuvõtet küsida."
+
+#. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
+#: admin/class-ajax.php:708
+#: admin/class-ajax.php:720
+#, php-format
+msgid "Simplified Summary Reading Grade Level: %s"
+msgstr "Lihtsustatud kokkuvõtte lugemistaseme klass: %s"
+
+#: admin/class-ajax.php:712
 #: build/sidebar.bundle.js:2
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Sisu pole piisavalt, et määrata täpset lugemistaset."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:725
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Teie lihtsustatud kokkuvõtte lugemistase on üle 9. klassi."
 
-#: admin/class-ajax.php:694
+#: admin/class-ajax.php:726
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Teie lihtsustatud kokkuvõtte lugemistase on 9. klass või madalam."
 
-#: admin/class-ajax.php:745
+#: admin/class-ajax.php:737
+#: admin/class-ajax.php:767
+msgid "Simplified summary is not being automatically inserted into the content."
+msgstr "Lihtsustatud kokkuvõtet ei sisestata sisusse automaatselt."
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:740
+#, php-format
+msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "Teie lihtsustatud kokkuvõtte küsimise seade on „mitte kunagi.“ Kui soovite, et lihtsustatud kokkuvõte kuvataks automaatselt, saate seda muuta %s lehel."
+
+#: admin/class-ajax.php:741
+#: admin/class-ajax.php:758
+#: admin/class-ajax.php:771
+msgid "settings page"
+msgstr "seadete lehel"
+
+#. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
+#: admin/class-ajax.php:752
+#, php-format
+msgid "Simplified summary is being automatically inserted %s."
+msgstr "Lihtsustatud kokkuvõte sisestatakse automaatselt %s."
+
+#: admin/class-ajax.php:753
+msgid "the content"
+msgstr "sisu"
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:757
+#, php-format
+msgid "Set where the Simplified Summary is inserted into the content on the %s."
+msgstr "Määrake, kuhu lihtsustatud kokkuvõte sisusse sisestatakse %s lehel."
+
+#. translators: %s: link to the settings page
+#: admin/class-ajax.php:770
+#, php-format
+msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
+msgstr "Teie lihtsustatud kokkuvõtte asukoht on seatud „käsitsi“, mis nõuab funktsiooni lisamist teie lehe malli. Kui soovite, et lihtsustatud kokkuvõte kuvataks automaatselt, saate seda muuta %s lehel."
+
+#: admin/class-ajax.php:784
+#: includes/classes/class-simplified-summary.php:77
+#: includes/options-page.php:932
+#: includes/options-page.php:956
+#: build/sidebar.bundle.js:2
+msgid "Simplified Summary"
+msgstr "Lihtsustatud kokkuvõte"
+
+#: admin/class-ajax.php:786
+#: build/sidebar.bundle.js:2
+msgid "Save Summary"
+msgstr "Salvesta kokkuvõte"
+
+#: admin/class-ajax.php:790
+msgid "Learn more about improving readability and simplified summary requirements"
+msgstr "Lisateave loetavuse parandamise ja lihtsustatud kokkuvõtte nõuete kohta"
+
+#: admin/class-ajax.php:793
 msgid "No readability data to return"
 msgstr "Loetavuse andmeid pole"
 
-#: admin/class-ajax.php:805
-#: admin/class-ajax.php:826
+#: admin/class-ajax.php:853
+#: admin/class-ajax.php:874
 msgid "No ignore data to return"
 msgstr "Ignoreerimise andmeid pole"
 
@@ -498,7 +658,7 @@ msgid "View Accessibility Checker Documentation (opens in new window)"
 msgstr "Vaata Accessibility Checkeri dokumentatsiooni (avaneb uues aknas)"
 
 #: admin/class-plugin-row-meta.php:58
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation"
 msgstr "Dokumentatsioon"
 
@@ -530,117 +690,106 @@ msgstr "Uuenda nüüd soodushinnaga"
 msgid "Unable to redirect to upgrade page."
 msgstr "Ei õnnestunud suunata uuendamise lehele."
 
-#: admin/class-welcome-page.php:38
+#: admin/class-welcome-page.php:68
 msgid "Most Recent Test Summary"
 msgstr "Viimase kontrolli kokkuvõte"
 
-#: admin/class-welcome-page.php:45
+#: admin/class-welcome-page.php:75
 msgid "Update Counts"
 msgstr "Uuenda arve"
 
-#: admin/class-welcome-page.php:50
+#: admin/class-welcome-page.php:80
 msgid "Start New Scan"
 msgstr "Alusta uut kontrolli"
 
-#: admin/class-welcome-page.php:54
+#: admin/class-welcome-page.php:84
 msgid "View All Open Issues"
 msgstr "Vaata kõiki avatud probleeme"
 
-#: admin/class-welcome-page.php:59
+#: admin/class-welcome-page.php:89
 msgid "See History"
 msgstr "Vaata ajalugu"
 
-#: admin/class-welcome-page.php:72
-#: admin/class-widgets.php:102
-msgid "Passed Tests"
-msgstr "Läbitud testid"
+#: admin/class-welcome-page.php:119
+msgid "Unique Problem"
+msgid_plural "Unique Problems"
+msgstr[0] "Ainulaadne probleem"
+msgstr[1] "Ainulaadsed probleemid"
 
-#: admin/class-welcome-page.php:88
-msgid "Unique Error"
-msgid_plural "Unique Errors"
-msgstr[0] "Unikaalne viga"
-msgstr[1] "Unikaalsed vead"
+#: admin/class-welcome-page.php:145
+msgid "Unique Contrast Problem"
+msgid_plural "Unique Contrast Problems"
+msgstr[0] "Ainulaadne kontrastiprobleem"
+msgstr[1] "Ainulaadsed kontrastiprobleemid"
 
-#: admin/class-welcome-page.php:113
-msgid "Unique Color Contrast Error"
-msgid_plural "Unique Color Contrast Errors"
-msgstr[0] "Unikaalne värvikontrasti viga"
-msgstr[1] "Unikaalsed värvikontrasti vead"
+#: admin/class-welcome-page.php:171
+msgid "Unique Item Needing Review"
+msgid_plural "Unique Items Needing Review"
+msgstr[0] "Ainulaadne ülevaatamist vajav element"
+msgstr[1] "Ainulaadsed ülevaatamist vajavad elemendid"
 
-#: admin/class-welcome-page.php:138
-msgid "Unique Warning"
-msgid_plural "Unique Warnings"
-msgstr[0] "Unikaalne hoiatus"
-msgstr[1] "Unikaalsed hoiatused"
-
-#: admin/class-welcome-page.php:163
-msgid "Ignored Item"
-msgid_plural "Ignored Items"
-msgstr[0] "Ignoreeritud üksus"
-msgstr[1] "Ignoreeritud üksused"
-
-#: admin/class-welcome-page.php:180
+#: admin/class-welcome-page.php:214
 msgid "Average Issues Per Page"
 msgstr "Keskmiselt probleeme lehe kohta"
 
-#: admin/class-welcome-page.php:193
+#: admin/class-welcome-page.php:227
 msgid "Average Issue Density"
 msgstr "Keskmine probleemide tihedus"
 
-#: admin/class-welcome-page.php:206
-#: admin/class-widgets.php:109
+#: admin/class-welcome-page.php:240
 msgid "Report Last Updated:"
 msgstr "Raport viimati uuendatud:"
 
-#: admin/class-welcome-page.php:216
-#: includes/options-page.php:610
+#: admin/class-welcome-page.php:250
+#: includes/options-page.php:619
 msgid "Never"
 msgstr "Mitte kunagi"
 
-#: admin/class-welcome-page.php:230
+#: admin/class-welcome-page.php:264
+#: admin/class-widgets.php:97
 msgid "URLs Scanned"
 msgstr "Kontrollitud URL-id"
 
 #. translators: %1$s is the number of post types with issues, %2$s is the number of public post types.
-#: admin/class-welcome-page.php:241
+#: admin/class-welcome-page.php:275
 #, php-format
 msgid "%1$s of %2$s"
 msgstr "%1$s / %2$s"
 
-#: admin/class-welcome-page.php:250
+#: admin/class-welcome-page.php:284
 msgid "Post Types Checked"
 msgstr "Kontrollitud postituste tüübid"
 
-#: admin/class-welcome-page.php:263
+#: admin/class-welcome-page.php:297
 msgid "URLs with 100% score"
 msgstr "URL-id 100% tulemusega"
 
-#: admin/class-welcome-page.php:271
+#: admin/class-welcome-page.php:305
 msgid "This summary is automatically updated every 24 hours, or any time a full site scan is completed. You can also manually update these results by clicking the Update Counts button."
 msgstr "See kokkuvõte uuendatakse automaatselt iga 24 tunni järel või iga kord, kui täielik saidi kontroll on lõpetatud. Saate neid tulemusi käsitsi uuendada ka klõpsates nuppu \"Uuenda arve\"."
 
-#: admin/class-welcome-page.php:277
+#: admin/class-welcome-page.php:311
 msgid "Your site has a large number of issues. For performance reasons, not all issues have been included in this summary."
 msgstr "Teie saidil on suur hulk probleeme. Jõudluse tagamiseks pole kõiki probleeme sellesse kokkuvõttesse kaasatud."
 
-#: admin/class-welcome-page.php:287
+#: admin/class-welcome-page.php:321
 msgid "Site-Wide Accessibility Reports"
 msgstr "Ülesaidilised ligipääsetavuse raportid"
 
-#: admin/class-welcome-page.php:292
+#: admin/class-welcome-page.php:326
 msgid "Hide banner"
 msgstr "Peida bänner"
 
-#: admin/class-welcome-page.php:301
+#: admin/class-welcome-page.php:335
 msgid "Unlock Detailed Accessibility Reports"
 msgstr "Ava üksikasjalikud ligipääsetavuse raportid"
 
-#: admin/class-welcome-page.php:304
+#: admin/class-welcome-page.php:338
 #: admin/class-widgets.php:75
 msgid "Start scanning your entire website for accessibility issues, get full-site reports, and become compliant with accessibility guidelines faster."
 msgstr "Alusta kogu oma veebisaidi ligipääsetavuse probleemide kontrollimist, saa täieliku saidi raportid ja muutu kiiremini ligipääsetavuse suunistele vastavaks."
 
-#: admin/class-welcome-page.php:308
+#: admin/class-welcome-page.php:342
 #: admin/class-widgets.php:77
 msgid "Upgrade Accessibility Checker"
 msgstr "Upgrade Accessibility Checker (juurdepääsetavuse kontrollija)"
@@ -657,21 +806,21 @@ msgstr "Hangi üksikasjalikud ligipääsetavuse raportid"
 msgid "Full Site Accessibility Status"
 msgstr "Kogu saidi ligipääsetavuse staatus"
 
-#: admin/class-widgets.php:117
-msgid "URLs Scanned:"
-msgstr "Kontrollitud URL-id:"
+#: admin/class-widgets.php:99
+msgid "Updated"
+msgstr "Uuendatud"
 
-#: admin/class-widgets.php:125
-msgid "Errors:"
-msgstr "Vead:"
+#: admin/class-widgets.php:121
+msgid "Problems:"
+msgstr "Probleemid:"
 
-#: admin/class-widgets.php:129
-msgid "Color Contrast Errors:"
-msgstr "Värvikontrasti vead:"
+#: admin/class-widgets.php:127
+msgid "Contrast Problems:"
+msgstr "Kontrastiprobleemid:"
 
 #: admin/class-widgets.php:133
-msgid "Warnings:"
-msgstr "Hoiatused:"
+msgid "Needs Review:"
+msgstr "Vajab ülevaatamist:"
 
 #: admin/class-widgets.php:148
 msgid "Your site has accessibility issues that should be addressed as soon as possible to ensure compliance with accessibility guidelines."
@@ -694,43 +843,44 @@ msgid "Post Type"
 msgstr "Postituse tüüp"
 
 #: admin/class-widgets.php:176
-msgid "Errors"
-msgstr "Vead"
+#: build/sidebar.bundle.js:2
+msgid "Problems"
+msgstr "Probleemid"
 
 #: admin/class-widgets.php:179
 msgid "Contrast"
 msgstr "Kontrast"
 
-#: admin/class-widgets.php:182
-msgid "Warnings"
-msgstr "Hoiatused"
+#: admin/class-widgets.php:251
+msgid "Upgrade to Scan (opens in a new window)"
+msgstr "Uuenda skaneerimiseks (avaneb uues aknas)"
 
 #: admin/class-widgets.php:252
 msgid "Upgrade to Scan"
 msgstr "Täienda, et kontrollida"
 
-#: admin/class-widgets.php:281
+#: admin/class-widgets.php:282
 msgid "See More Reports"
 msgstr "Vaata rohkem raporteid"
 
-#: admin/class-widgets.php:293
+#: admin/class-widgets.php:294
 #: partials/welcome-page.php:243
 msgid "Learn Accessibility"
 msgstr "Õpi ligipääsetavust"
 
-#: admin/class-widgets.php:315
+#: admin/class-widgets.php:316
 msgid "Additional Resources"
 msgstr "Täiendavad ressursid"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog (opens in a new window)"
 msgstr "Blogi (avaneb uues aknas)"
 
-#: admin/class-widgets.php:316
+#: admin/class-widgets.php:317
 msgid "Blog"
 msgstr "Blogi"
 
-#: admin/class-widgets.php:317
+#: admin/class-widgets.php:318
 msgid "Documentation (opens in a new window)"
 msgstr "Dokumentatsioon (avaneb uues aknas)"
 
@@ -1010,13 +1160,6 @@ msgstr "Probleemi ei leitud."
 #: includes/classes/class-rest-api.php:1267
 msgid "Failed to update the issue."
 msgstr "Probleemi värskendamine ebaõnnestus."
-
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:902
-#: includes/options-page.php:926
-#: build/sidebar.bundle.js:2
-msgid "Simplified Summary"
-msgstr "Lihtsustatud kokkuvõte"
 
 #: includes/classes/Fixes/Fix/AddFileSizeAndTypeToLinkedFilesFix.php:45
 msgid "Add Size & Type To File Links"
@@ -2802,6 +2945,19 @@ msgstr "&nbsp;"
 msgid "Attend Free"
 msgstr "Osale tasuta"
 
+#: includes/helper-functions.php:409
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(avaneb uues aknas)"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
 #: includes/helper-functions.php:855
 #: build/issueModal.bundle.js:2
@@ -2858,191 +3014,199 @@ msgid "Taxonomy Scanning"
 msgstr "Taksonoomia skannimine"
 
 #: includes/options-page.php:212
+msgid "Block Editor Metabox"
+msgstr "Plokiredaktori metaboks"
+
+#: includes/options-page.php:221
 msgid "Prompt for Simplified Summary"
 msgstr "Küsi lihtsustatud kokkuvõtet"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:230
 msgid "Simplified Summary Position"
 msgstr "Lihtsustatud kokkuvõtte asukoht"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:239
 msgid "Simplified Summary Heading"
 msgstr "Lihtsustatud kokkuvõtte pealkiri"
 
-#: includes/options-page.php:239
-#: includes/options-page.php:740
+#: includes/options-page.php:248
+#: includes/options-page.php:752
 msgid "Add Footer Accessibility Statement"
 msgstr "Lisa jaluse ligipääsetavuse teade"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:763
+#: includes/options-page.php:257
+#: includes/options-page.php:775
 msgid "Include Link to Accessibility Policy"
 msgstr "Lisa link ligipääsetavuse eeskirjale"
 
-#: includes/options-page.php:257
+#: includes/options-page.php:266
 msgid "Accessibility Policy page"
 msgstr "Ligipääsetavuse eeskirja leht"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:275
 msgid "Accessibility Statement Preview"
 msgstr "Ligipääsetavuse teate eelvaade"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:283
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend juurdepääsetavuse kontrollija positsioon"
 
-#: includes/options-page.php:324
+#: includes/options-page.php:333
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Seadista sisu tüübid, mida tuleks kontrollida ligipääsetavuse probleemide suhtes."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:329
+#: includes/options-page.php:338
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Rohkem funktsioone ja e-posti tugi on saadaval koos %1$s."
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (avaneb uues aknas)"
 
-#: includes/options-page.php:337
+#: includes/options-page.php:346
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Ligipääsetavuse kontrollija Pro"
 
-#: includes/options-page.php:351
+#: includes/options-page.php:360
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Kasutage allolevaid seadeid eesliidese ligipääsetavuse kontrollija konfigureerimiseks."
 
-#: includes/options-page.php:361
+#: includes/options-page.php:370
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Veebisisu juurdepääsetavuse suunised (WCAG) AAA-tasemel nõuavad, et iga sisu, mille lugemistase on kõrgem kui 9. Klass, peab olema lihtsamini loetav. Lihtsustatud kokkuvõttev tekst lisatakse iga postituse või lehe redigeerimisekraani ligipääsetavuse kontrollija metakasti loetavuse vahekaardile."
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Loe lähemalt lihtsustatud kokkuvõtete ja loetavuse nõuete kohta (avaneb uues aknas)"
 
-#: includes/options-page.php:371
+#: includes/options-page.php:380
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Loe lähemalt lihtsustatud kokkuvõtete ja loetavuse nõuete kohta."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:389
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Kas sa mõtled \"Wow, see plugin on hämmastav\" ja kas see aitab sul oma veebilehte kättesaadavamaks muuta? Jagage oma jõupingutusi oma veebisaidi ligipääsetavamaks muutmisel oma klientidega ja andke neile teada, et kasutate Accessibility Checker'i, et tagada, et kõik inimesed saaksid teie veebisaiti kasutada. Lisage oma veebisaidi jalusesse väike tekstiline link ja avaldus."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:398
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Seadista süsteemi taseme seaded Accessibility Checker plugina jaoks."
 
-#: includes/options-page.php:403
+#: includes/options-page.php:412
 msgid "Fast"
 msgstr "Kiire"
 
-#: includes/options-page.php:404
+#: includes/options-page.php:413
 msgid "Normal"
 msgstr "Tavaline"
 
-#: includes/options-page.php:405
+#: includes/options-page.php:414
 msgid "Slow"
 msgstr "Aeglane"
 
-#: includes/options-page.php:406
+#: includes/options-page.php:415
 msgid "Slowest"
 msgstr "Aeglaseim"
 
-#: includes/options-page.php:428
+#: includes/options-page.php:437
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Kiiremad skannimised on ressursimahukamad ja võivad tekitada suurt koormust sinu veebilehele."
 
-#: includes/options-page.php:454
+#: includes/options-page.php:463
 msgid "Enable scanning of archive pages"
 msgstr "Luba arhiivilehekülgede skannimine"
 
-#: includes/options-page.php:458
+#: includes/options-page.php:467
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Vali, kas arhiivilehti tuleks kaasata täieliku saidi skannimisse. Vaikimisi kasutatakse arhiiviandmete jaoks taksonoomia terminite valimiseks valimimeetodit."
 
-#: includes/options-page.php:484
+#: includes/options-page.php:493
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skanni kõik taksonoomia terminid, mitte ainult valim"
 
-#: includes/options-page.php:488
+#: includes/options-page.php:497
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Kontrolli kõiki taksonoomia terminite arhiivilehti esindava valimi asemel. See nõuab, et arhiivilehe skannimine oleks lubatud ja võib lisada skannimisloendisse suure hulga URL-e."
 
-#: includes/options-page.php:517
+#: includes/options-page.php:526
 msgid "Before the content"
 msgstr "Enne sisu"
 
-#: includes/options-page.php:522
+#: includes/options-page.php:531
 msgid "After the content"
 msgstr "Pärast sisu"
 
-#: includes/options-page.php:527
+#: includes/options-page.php:536
 msgid "Insert manually"
 msgstr "Sisesta käsitsi"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:540
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Kasutage seda funktsiooni, et lisada lihtsustatud kokkuvõte käsitsi oma teemale tsükli sees."
 
-#: includes/options-page.php:533
+#: includes/options-page.php:542
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funktsioon võtab valikuliselt parameetrina vastu postituse ID."
 
-#: includes/options-page.php:536
+#: includes/options-page.php:545
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Määrake, kus soovite, et lihtsustatud kokkuvõtted ilmuksid teie sisu suhtes, kui need on täidetud."
 
-#: includes/options-page.php:551
+#: includes/options-page.php:560
 msgid "Bottom Right Corner (default)"
 msgstr "Alumine parempoolne nurk (vaikimisi)"
 
-#: includes/options-page.php:556
+#: includes/options-page.php:565
 msgid "Bottom Left Corner"
 msgstr "Alumine vasakpoolne nurk"
 
-#: includes/options-page.php:560
+#: includes/options-page.php:569
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Määrake, kus soovite, et eesliidese ligipääsetavuse kontrollija lehel ilmuks."
 
-#: includes/options-page.php:600
+#: includes/options-page.php:609
 msgid "When Required"
 msgstr "Vajadusel"
 
-#: includes/options-page.php:605
+#: includes/options-page.php:614
 msgid "Always"
 msgstr "Alati"
 
-#: includes/options-page.php:613
+#: includes/options-page.php:622
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Kas Accessibility Checker peaks küsima lihtsustatud kokkuvõtet ainult siis, kui teie postituse või lehe lugemise tase on üle 9. klassi, küsima seda alati olenemata lugemise tasemest või mitte kunagi küsima seda olenemata lugemise tasemest?"
 
-#: includes/options-page.php:665
+#: includes/options-page.php:677
 msgid "To check content other than posts and pages, please "
 msgstr "Muu sisu kui postituste ja lehtede kontrollimiseks palun "
 
-#: includes/options-page.php:667
+#: includes/options-page.php:679
 msgid "upgrade to pro"
 msgstr "täienda Pro-versioonile"
 
-#: includes/options-page.php:668
+#: includes/options-page.php:680
 msgid " (opens in a new window)"
 msgstr " (avaneb uues aknas)"
 
-#: includes/options-page.php:673
+#: includes/options-page.php:685
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
 msgstr "Valige, milliseid postituse tüüpe tuleks skannimise ajal kontrollida. Pange tähele, et varem valitud postituse tüübi eemaldamine kustutab selle skannitud teabe ja kõik kohandatud eiratud hoiatused, mis on seadistatud."
 
-#: includes/options-page.php:815
+#: includes/options-page.php:827
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Kustuta kõik Accessibility Checkeri andmed, kui plugin eemaldatakse."
 
-#: includes/options-page.php:970
+#: includes/options-page.php:845
+msgid "Show Accessibility Checker metabox in the Block Editor"
+msgstr "Näita Accessibility Checkeri metaboksi plokiredaktoris"
+
+#: includes/options-page.php:1004
 msgid "Choose which user roles have permission to ignore issues."
 msgstr "Vali, millistel kasutajarollidel on õigus probleeme ignoreerida."
 
-#: includes/options-page.php:1003
+#: includes/options-page.php:1037
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Seadista, millistel kasutajarollidel on juurdepääs konkreetsetele Accessibility Checker funktsioonidele."
 
@@ -4033,11 +4197,6 @@ msgstr "Lühendid"
 msgid "Abbreviations and acronyms are defined the first time they are used, so users can understand their meaning."
 msgstr "Lühendid ja akronüümid on defineeritud esimesel kasutuskorral, nii et kasutajad saavad aru nende tähendusest."
 
-#: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
-msgid "Reading Level"
-msgstr "Lugemistase"
-
 #: includes/wcag.php:1764
 msgid "Content is written in a clear and simple language, and does not require specialized knowledge to understand."
 msgstr "Sisu on kirjutatud selges ja lihtsas keeles ning ei nõua mõistmiseks eriteadmisi."
@@ -4405,18 +4564,6 @@ msgstr "Dokumentatsioon ja KKK"
 #: partials/welcome-page.php:88
 msgid "Why do we say 100% Passed Tests, Not 100% Accessible?"
 msgstr "Miks me ütleme 100% Läbitud Testid, mitte 100% Ligipääsetav?"
-
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(avaneb uues aknas)"
 
 #: partials/welcome-page.php:93
 msgid "How to Manually Check Your Website for Accessibility"
@@ -4796,6 +4943,14 @@ msgid "Reason for dismissal:"
 msgstr "Tagasilükkamise põhjus:"
 
 #: build/issueModal.bundle.js:2
+msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
+msgstr "See probleem lükati globaalselt tagasi. Selle uuesti avamiseks hallake globaalseid tagasilükkamisi."
+
+#: build/issueModal.bundle.js:2
+msgid "Manage Global Dismissals"
+msgstr "Halda globaalseid tagasilükkamisi"
+
+#: build/issueModal.bundle.js:2
 msgid "Reopening..."
 msgstr "Uuesti avamine..."
 
@@ -4810,10 +4965,6 @@ msgstr "Lisage märkus, mis selgitab, miks see probleem tagasi lükatakse."
 #: build/issueModal.bundle.js:2
 msgid "More dismiss options"
 msgstr "Rohkem tagasilükkamise valikuid"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss Globally"
-msgstr "Lükka globaalselt tagasi"
 
 #: build/issueModal.bundle.js:2
 msgid "Dismiss & Close Modal"
@@ -4837,10 +4988,6 @@ msgid "Severity"
 msgstr "Tõsidus"
 
 #: build/issueModal.bundle.js:2
-msgid "Landmark"
-msgstr "Maamärk"
-
-#: build/issueModal.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
@@ -4859,10 +5006,6 @@ msgstr "Kuidas parandada"
 #: build/issueModal.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Üksikasjalikum dokumentatsioon"
-
-#: build/issueModal.bundle.js:2
-msgid "Image"
-msgstr "Pilt"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5025,10 +5168,6 @@ msgid "View %d problems in Accessibility Analysis"
 msgstr "Vaata %d probleemi ligipääsetavuse analüüsis"
 
 #: build/sidebar.bundle.js:2
-msgid "Problems"
-msgstr "Probleemid"
-
-#: build/sidebar.bundle.js:2
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Vaata %d ülevaatamist vajavat elementi ligipääsetavuse analüüsis"
@@ -5037,10 +5176,6 @@ msgstr "Vaata %d ülevaatamist vajavat elementi ligipääsetavuse analüüsis"
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Vaata lugemistaseme üksikasju: %s"
-
-#: build/sidebar.bundle.js:2
-msgid "Passed Checks"
-msgstr "Läbitud kontrollid"
 
 #: build/sidebar.bundle.js:2
 msgid "Issue"
@@ -5160,8 +5295,8 @@ msgid "Enter simplified summary..."
 msgstr "Sisestage lihtsustatud kokkuvõte..."
 
 #: build/sidebar.bundle.js:2
-msgid "Save Summary"
-msgstr "Salvesta kokkuvõte"
+msgid "A simplified summary is required for this content."
+msgstr "Selle sisu jaoks on vaja lihtsustatud kokkuvõtet."
 
 #: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."

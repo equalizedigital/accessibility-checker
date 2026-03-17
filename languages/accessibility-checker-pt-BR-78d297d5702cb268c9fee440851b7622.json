@@ -72,24 +72,6 @@
             "Save fix for: %s": [
                 "Salvar corre\u00e7\u00e3o para: %s"
             ],
-            "Bold (Ctrl+B)": [
-                "Negrito (ctrl+b)"
-            ],
-            "Italic (Ctrl+I)": [
-                "It\u00e1lico (ctrl+i)"
-            ],
-            "Link (Ctrl+K)": [
-                "Link (ctrl+k)"
-            ],
-            "https:\/\/example.com": [
-                "https:\/\/example.com"
-            ],
-            "Link URL": [
-                "URL do link"
-            ],
-            "Add": [
-                "Adicionar"
-            ],
             "Issue dismissed successfully.": [
                 "Problema ignorado com sucesso."
             ],
@@ -126,8 +108,8 @@
             "Comment (optional)": [
                 "Coment\u00e1rio (opcional)"
             ],
-            "Add a note explaining why this issue is being dismissed. Supports bold, italic, and links.": [
-                "Adicione uma nota explicando por que este problema est\u00e1 sendo ignorado. Suporta negrito, it\u00e1lico e links."
+            "Add a note explaining why this issue is being dismissed.": [
+                "Adicione uma nota explicando por que este problema est\u00e1 sendo ignorado."
             ],
             "More dismiss options": [
                 "Mais op\u00e7\u00f5es de dispensa"
