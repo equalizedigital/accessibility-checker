@@ -82,7 +82,7 @@ Accessibility Checker is designed to support both day-to-day publishing and broa
 * **Built by accessibility professionals.** Equalize Digital team members include certified accessibility professionals and experienced WordPress accessibility practitioners.
 * **WCAG 2.2 A, AA, and AAA guidance.** Review issues against current WCAG success criteria.
 * **Readability analysis and simplified summary support.** Check Flesch-Kincaid grade level and add a simplified summary for WCAG Success Criterion 3.1.5 Reading Level.
-* **Remove issues from reports** Dismiss items that have been manually reviewed and found not relevant or remediated, with notes, usernames, and timestamps.
+* **Remove issues from reports.** Dismiss items that have been manually reviewed and found not relevant or remediated, with notes, usernames, and timestamps.
 * **Accessibility statement generator.** Draft an accessibility statement that you can customize and publish on your website.
 * **Footer accessibility statement.** Insert an accessibility statement into your footer with one click.
 * **Detailed documentation.** Use help articles and instructions for every issue to guide remediation.
