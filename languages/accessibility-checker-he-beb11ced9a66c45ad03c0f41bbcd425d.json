@@ -1,0 +1,222 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "he_IL",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
+            "Needs Review": [
+                "\u05d3\u05d5\u05e8\u05e9 \u05d1\u05d3\u05d9\u05e7\u05d4",
+                "\u05d3\u05d5\u05e8\u05e9 \u05d1\u05d3\u05d9\u05e7\u05d4"
+            ],
+            "Critical": [
+                "\u05e7\u05e8\u05d9\u05d8\u05d9"
+            ],
+            "High": [
+                "\u05d2\u05d1\u05d5\u05d4"
+            ],
+            "Medium": [
+                "\u05d1\u05d9\u05e0\u05d5\u05e0\u05d9"
+            ],
+            "Low": [
+                "\u05e0\u05de\u05d5\u05da"
+            ],
+            "View on page": [
+                "\u05e6\u05e4\u05d4 \u05d1\u05d3\u05e3"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "\u05d0\u05d9\u05df \u05de\u05e1\u05e4\u05d9\u05e7 \u05ea\u05d5\u05db\u05df \u05db\u05d3\u05d9 \u05dc\u05e7\u05d1\u05d5\u05e2 \u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05de\u05d3\u05d5\u05d9\u05e7\u05ea."
+            ],
+            "Simplified Summary": [
+                "\u05e1\u05d9\u05db\u05d5\u05dd \u05de\u05e4\u05d5\u05e9\u05d8"
+            ],
+            "Reading Level": [
+                "\u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d4"
+            ],
+            "Accessibility Status": [
+                "\u05e1\u05d8\u05d8\u05d5\u05e1 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "Accessibility Analysis": [
+                "\u05e0\u05d9\u05ea\u05d5\u05d7 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "Readability Analysis": [
+                "\u05e0\u05d9\u05ea\u05d5\u05d7 \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea"
+            ],
+            "Clear Issues": [
+                "\u05e0\u05e7\u05d4 \u05d1\u05e2\u05d9\u05d5\u05ea"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d6\u05d5 \u05ea\u05e0\u05e7\u05d4 \u05d0\u05ea \u05db\u05dc \u05d4\u05d1\u05e2\u05d9\u05d5\u05ea \u05e2\u05d1\u05d5\u05e8 \u05e4\u05d5\u05e1\u05d8 \u05d6\u05d4. \u05d9\u05d9\u05d3\u05e8\u05e9 \u05e9\u05de\u05d9\u05e8\u05d4 \u05db\u05d3\u05d9 \u05dc\u05d4\u05e4\u05e2\u05d9\u05dc \u05e1\u05e8\u05d9\u05e7\u05d4 \u05d7\u05d3\u05e9\u05d4 \u05e9\u05dc \u05ea\u05d5\u05db\u05df \u05d4\u05e4\u05d5\u05e1\u05d8. \u05d4\u05d0\u05dd \u05d1\u05e8\u05e6\u05d5\u05e0\u05da \u05dc\u05d4\u05de\u05e9\u05d9\u05da?"
+            ],
+            "Failed to load accessibility data": [
+                "\u05d8\u05e2\u05d9\u05e0\u05ea \u05e0\u05ea\u05d5\u05e0\u05d9 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea \u05e0\u05db\u05e9\u05dc\u05d4"
+            ],
+            "Error loading accessibility data": [
+                "\u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05d8\u05e2\u05d9\u05e0\u05ea \u05e0\u05ea\u05d5\u05e0\u05d9 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "Loading accessibility results...": [
+                "\u05d8\u05d5\u05e2\u05df \u05ea\u05d5\u05e6\u05d0\u05d5\u05ea \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea..."
+            ],
+            "Updating accessibility data...": [
+                "\u05de\u05e2\u05d3\u05db\u05df \u05e0\u05ea\u05d5\u05e0\u05d9 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea..."
+            ],
+            "problem to address": [
+                "\u05d1\u05e2\u05d9\u05d4 \u05dc\u05d8\u05d9\u05e4\u05d5\u05dc",
+                "\u05d1\u05e2\u05d9\u05d5\u05ea \u05dc\u05d8\u05d9\u05e4\u05d5\u05dc"
+            ],
+            "issue that needs review": [
+                "\u05d1\u05e2\u05d9\u05d4 \u05d4\u05d3\u05d5\u05e8\u05e9\u05ea \u05d1\u05d3\u05d9\u05e7\u05d4",
+                "\u05d1\u05e2\u05d9\u05d5\u05ea \u05d4\u05d3\u05d5\u05e8\u05e9\u05d5\u05ea \u05d1\u05d3\u05d9\u05e7\u05d4"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "\u05d9\u05e9 \u05dc\u05da %1$d %2$s \u05d5-%3$d %4$s."
+            ],
+            "You have %1$d %2$s.": [
+                "\u05d9\u05e9 \u05dc\u05da %1$d %2$s."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "\u05d1\u05d3\u05d5\u05e7 \u05d5\u05ea\u05e7\u05df \u05d1\u05e2\u05d9\u05d5\u05ea \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea \u05d1\u05ea\u05d5\u05db\u05df \u05e9\u05dc\u05da."
+            ],
+            "Open Accessibility Panel": [
+                "\u05e4\u05ea\u05d7 \u05d7\u05dc\u05d5\u05e0\u05d9\u05ea \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "N\/A": [
+                "\u05dc\u05d0 \u05e8\u05dc\u05d5\u05d5\u05e0\u05d8\u05d9"
+            ],
+            "%dth": [
+                "%d"
+            ],
+            "Summary provided": [
+                "\u05e1\u05d9\u05db\u05d5\u05dd \u05e1\u05d5\u05e4\u05e7"
+            ],
+            "Summary required": [
+                "\u05e1\u05d9\u05db\u05d5\u05dd \u05e0\u05d3\u05e8\u05e9"
+            ],
+            "Summary not required": [
+                "\u05e1\u05d9\u05db\u05d5\u05dd \u05dc\u05d0 \u05e0\u05d3\u05e8\u05e9"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "\u05d4\u05e6\u05d2 %d \u05d1\u05e2\u05d9\u05d5\u05ea \u05d1\u05e0\u05d9\u05ea\u05d5\u05d7 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "Problems": [
+                "\u05d1\u05e2\u05d9\u05d5\u05ea"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "\u05d4\u05e6\u05d2 %d \u05e4\u05e8\u05d9\u05d8\u05d9\u05dd \u05d4\u05d3\u05d5\u05e8\u05e9\u05d9\u05dd \u05d1\u05d3\u05d9\u05e7\u05d4 \u05d1\u05e0\u05d9\u05ea\u05d5\u05d7 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "View reading level details: %s": [
+                "\u05d4\u05e6\u05d2 \u05e4\u05e8\u05d8\u05d9 \u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea: %s"
+            ],
+            "Passed Checks": [
+                "\u05e2\u05d1\u05e8 \u05d1\u05d3\u05d9\u05e7\u05d5\u05ea"
+            ],
+            "Issue": [
+                "\u05d1\u05e2\u05d9\u05d4"
+            ],
+            "Issue actions for %s": [
+                "\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05dc\u05d1\u05e2\u05d9\u05d4 %s"
+            ],
+            "Issue actions": [
+                "\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05dc\u05d1\u05e2\u05d9\u05d4"
+            ],
+            "Show code": [
+                "\u05d4\u05e6\u05d2 \u05e7\u05d5\u05d3"
+            ],
+            "Reopen issue": [
+                "\u05e4\u05ea\u05d7 \u05de\u05d7\u05d3\u05e9 \u05d1\u05e2\u05d9\u05d4"
+            ],
+            "Dismiss issue": [
+                "\u05d1\u05d8\u05dc \u05d1\u05e2\u05d9\u05d4"
+            ],
+            "Apply fix": [
+                "\u05d4\u05d7\u05dc \u05ea\u05d9\u05e7\u05d5\u05df"
+            ],
+            "%d total": [
+                "%d \u05e1\u05d4\u05f4\u05db"
+            ],
+            "No dismissed issues.": [
+                "\u05d0\u05d9\u05df \u05d1\u05e2\u05d9\u05d5\u05ea \u05e9\u05d1\u05d5\u05d8\u05dc\u05d5."
+            ],
+            "No issues found.": [
+                "\u05dc\u05d0 \u05e0\u05de\u05e6\u05d0\u05d5 \u05d1\u05e2\u05d9\u05d5\u05ea."
+            ],
+            "%d total issues": [
+                "%d \u05d1\u05e2\u05d9\u05d5\u05ea \u05d1\u05e1\u05da \u05d4\u05db\u05dc"
+            ],
+            "Dismissed Issues": [
+                "\u05d1\u05e2\u05d9\u05d5\u05ea \u05e9\u05d1\u05d5\u05d8\u05dc\u05d5"
+            ],
+            "Simplified summary saved successfully.": [
+                "\u05d4\u05e1\u05d9\u05db\u05d5\u05dd \u05d4\u05e4\u05e9\u05d5\u05d8 \u05e0\u05e9\u05de\u05e8 \u05d1\u05d4\u05e6\u05dc\u05d7\u05d4."
+            ],
+            "Failed to save summary. Please try again.": [
+                "\u05e9\u05de\u05d9\u05e8\u05ea \u05d4\u05e1\u05d9\u05db\u05d5\u05dd \u05e0\u05db\u05e9\u05dc\u05d4. \u05d0\u05e0\u05d0 \u05e0\u05e1\u05d4 \u05e9\u05d5\u05d1."
+            ],
+            "An error occurred while saving the summary.": [
+                "\u05d0\u05d9\u05e8\u05e2\u05d4 \u05e9\u05d2\u05d9\u05d0\u05d4 \u05d1\u05e2\u05ea \u05e9\u05de\u05d9\u05e8\u05ea \u05d4\u05e1\u05d9\u05db\u05d5\u05dd."
+            ],
+            "%s grade": [
+                "\u05db\u05d9\u05ea\u05d4 %s"
+            ],
+            "%dth grade": [
+                "\u05db\u05d9\u05ea\u05d4 %d"
+            ],
+            "Not available": [
+                "\u05dc\u05d0 \u05d6\u05de\u05d9\u05df"
+            ],
+            "Warning": [
+                "\u05d0\u05d6\u05d4\u05e8\u05d4"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "\u05e4\u05d5\u05e1\u05d8 \u05d6\u05d4 \u05d0\u05d9\u05e0\u05d5 \u05de\u05db\u05d9\u05dc \u05de\u05e1\u05e4\u05d9\u05e7 \u05ea\u05d5\u05db\u05df \u05db\u05d3\u05d9 \u05dc\u05d7\u05e9\u05d1 \u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea."
+            ],
+            "Adjust summary prompts in settings.": [
+                "\u05d4\u05ea\u05d0\u05dd \u05d0\u05ea \u05d4\u05e0\u05d7\u05d9\u05d5\u05ea \u05d4\u05e1\u05d9\u05db\u05d5\u05dd \u05d1\u05d4\u05d2\u05d3\u05e8\u05d5\u05ea."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "\u05ea\u05d5\u05db\u05df \u05d1\u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05e9\u05dc \u05db\u05d9\u05ea\u05d4 \u05d8\u05f3 \u05d0\u05d5 \u05de\u05ea\u05d7\u05ea\u05d9\u05d4 \u05d0\u05d9\u05e0\u05d5 \u05d3\u05d5\u05e8\u05e9 \u05e1\u05d9\u05db\u05d5\u05dd \u05e4\u05e9\u05d5\u05d8."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "\u05ea\u05d5\u05db\u05df \u05d1\u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05de\u05e2\u05dc \u05db\u05d9\u05ea\u05d4 \u05d8\u05f3 \u05d3\u05d5\u05e8\u05e9 \u05e1\u05d9\u05db\u05d5\u05dd \u05e4\u05e9\u05d5\u05d8 \u05db\u05d3\u05d9 \u05dc\u05e2\u05de\u05d5\u05d3 \u05d1\u05d4\u05e0\u05d7\u05d9\u05d5\u05ea WCAG AAA."
+            ],
+            "Learn more about readability requirements.": [
+                "\u05dc\u05de\u05d3 \u05e2\u05d5\u05d3 \u05e2\u05dc \u05d3\u05e8\u05d9\u05e9\u05d5\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea."
+            ],
+            "Simplified Summary Reading Level": [
+                "\u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05e9\u05dc \u05e1\u05d9\u05db\u05d5\u05dd \u05e4\u05e9\u05d5\u05d8"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "\u05d3\u05d5\u05e8\u05e9 \u05e9\u05d9\u05e4\u05d5\u05e8, \u05d4\u05e1\u05d9\u05db\u05d5\u05dd \u05de\u05e2\u05dc \u05e8\u05de\u05ea \u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05e9\u05dc \u05db\u05d9\u05ea\u05d4 \u05d8\u05f3."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "\u05de\u05ea\u05d7\u05ea \u05dc\u05e8\u05de\u05ea \u05d4\u05e7\u05e8\u05d9\u05d0\u05d5\u05ea \u05d4\u05de\u05d5\u05de\u05dc\u05e6\u05ea \u05e9\u05dc \u05db\u05d9\u05ea\u05d4 \u05d8\u05f3."
+            ],
+            "Enter simplified summary...": [
+                "\u05d4\u05d6\u05df \u05e1\u05d9\u05db\u05d5\u05dd \u05e4\u05e9\u05d5\u05d8..."
+            ],
+            "Save Summary": [
+                "\u05e9\u05de\u05d5\u05e8 \u05e1\u05d9\u05db\u05d5\u05dd"
+            ],
+            "Loading accessibility data...": [
+                "\u05d8\u05d5\u05e2\u05df \u05e0\u05ea\u05d5\u05e0\u05d9 \u05e0\u05d2\u05d9\u05e9\u05d5\u05ea..."
+            ],
+            "Accessibility Checker actions": [
+                "\u05e4\u05e2\u05d5\u05dc\u05d5\u05ea \u05d1\u05d5\u05d3\u05e7 \u05d4\u05e0\u05d2\u05d9\u05e9\u05d5\u05ea"
+            ],
+            "Scan": [
+                "\u05e1\u05e8\u05d5\u05e7"
+            ],
+            "Refresh": [
+                "\u05e8\u05e2\u05e0\u05df"
+            ]
+        }
+    }
+}

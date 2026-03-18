@@ -1,0 +1,222 @@
+{
+    "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+    "generator": "WP-CLI\/2.12.0",
+    "source": "build\/sidebar.bundle.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "hu",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
+            "Needs Review": [
+                "\u00c1ttekint\u00e9sre szorul",
+                "\u00c1ttekint\u00e9sre szorul"
+            ],
+            "Critical": [
+                "Kritikus"
+            ],
+            "High": [
+                "Magas"
+            ],
+            "Medium": [
+                "K\u00f6zepes"
+            ],
+            "Low": [
+                "Alacsony"
+            ],
+            "View on page": [
+                "Megtekint\u00e9s az oldalon"
+            ],
+            "Not enough content to determine an accurate reading level.": [
+                "Nincs elegend\u0151 tartalom a pontos olvas\u00e1si szint meghat\u00e1roz\u00e1s\u00e1hoz."
+            ],
+            "Simplified Summary": [
+                "Egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3"
+            ],
+            "Reading Level": [
+                "Olvas\u00e1si szint"
+            ],
+            "Accessibility Status": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi \u00e1llapot"
+            ],
+            "Accessibility Analysis": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi elemz\u00e9s"
+            ],
+            "Readability Analysis": [
+                "Olvashat\u00f3s\u00e1gi elemz\u00e9s"
+            ],
+            "Clear Issues": [
+                "Probl\u00e9m\u00e1k t\u00f6rl\u00e9se"
+            ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "Ez t\u00f6rli az \u00f6sszes probl\u00e9m\u00e1t enn\u00e9l a bejegyz\u00e9sn\u00e9l. Ment\u00e9sre lesz sz\u00fcks\u00e9g egy \u00faj ellen\u0151rz\u00e9s ind\u00edt\u00e1s\u00e1hoz a bejegyz\u00e9s tartalm\u00e1ra vonatkoz\u00f3an. Folytatni szeretn\u00e9?"
+            ],
+            "Failed to load accessibility data": [
+                "Nem siker\u00fclt bet\u00f6lteni a hozz\u00e1f\u00e9rhet\u0151s\u00e9gi adatokat"
+            ],
+            "Error loading accessibility data": [
+                "Hiba a hozz\u00e1f\u00e9rhet\u0151s\u00e9gi adatok bet\u00f6lt\u00e9sekor"
+            ],
+            "Loading accessibility results...": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi eredm\u00e9nyek bet\u00f6lt\u00e9se..."
+            ],
+            "Updating accessibility data...": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi adatok friss\u00edt\u00e9se..."
+            ],
+            "problem to address": [
+                "megoldand\u00f3 probl\u00e9ma",
+                "megoldand\u00f3 probl\u00e9m\u00e1k"
+            ],
+            "issue that needs review": [
+                "\u00e1ttekint\u00e9sre szorul\u00f3 probl\u00e9ma",
+                "\u00e1ttekint\u00e9sre szorul\u00f3 probl\u00e9m\u00e1k"
+            ],
+            "You have %1$d %2$s and %3$d %4$s.": [
+                "Van %1$d %2$s \u00e9s %3$d %4$s."
+            ],
+            "You have %1$d %2$s.": [
+                "Van %1$d %2$s."
+            ],
+            "Check and fix accessibility issues in your content.": [
+                "Ellen\u0151rizze \u00e9s jav\u00edtsa a hozz\u00e1f\u00e9rhet\u0151s\u00e9gi probl\u00e9m\u00e1kat a tartalm\u00e1ban."
+            ],
+            "Open Accessibility Panel": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi panel megnyit\u00e1sa"
+            ],
+            "N\/A": [
+                "N\/A"
+            ],
+            "%dth": [
+                "%d."
+            ],
+            "Summary provided": [
+                "\u00d6sszefoglal\u00f3 megadva"
+            ],
+            "Summary required": [
+                "\u00d6sszefoglal\u00f3 sz\u00fcks\u00e9ges"
+            ],
+            "Summary not required": [
+                "\u00d6sszefoglal\u00f3 nem sz\u00fcks\u00e9ges"
+            ],
+            "View %d problems in Accessibility Analysis": [
+                "Tekintse meg a(z) %d probl\u00e9m\u00e1t a hozz\u00e1f\u00e9rhet\u0151s\u00e9gi elemz\u00e9sben"
+            ],
+            "Problems": [
+                "Probl\u00e9m\u00e1k"
+            ],
+            "View %d items needing review in Accessibility Analysis": [
+                "Tekintse meg a(z) %d \u00e1ttekint\u00e9sre szorul\u00f3 elemet a hozz\u00e1f\u00e9rhet\u0151s\u00e9gi elemz\u00e9sben"
+            ],
+            "View reading level details: %s": [
+                "Olvashat\u00f3s\u00e1gi szint r\u00e9szleteinek megtekint\u00e9se: %s"
+            ],
+            "Passed Checks": [
+                "Sikeres ellen\u0151rz\u00e9sek"
+            ],
+            "Issue": [
+                "Probl\u00e9ma"
+            ],
+            "Issue actions for %s": [
+                "Probl\u00e9ma m\u0171veletek ehhez: %s"
+            ],
+            "Issue actions": [
+                "Probl\u00e9ma m\u0171veletek"
+            ],
+            "Show code": [
+                "K\u00f3d megjelen\u00edt\u00e9se"
+            ],
+            "Reopen issue": [
+                "Probl\u00e9ma \u00fajranyit\u00e1sa"
+            ],
+            "Dismiss issue": [
+                "Probl\u00e9ma elvet\u00e9se"
+            ],
+            "Apply fix": [
+                "Jav\u00edt\u00e1s alkalmaz\u00e1sa"
+            ],
+            "%d total": [
+                "%d \u00f6sszesen"
+            ],
+            "No dismissed issues.": [
+                "Nincsenek elvetett probl\u00e9m\u00e1k."
+            ],
+            "No issues found.": [
+                "Nincsenek probl\u00e9m\u00e1k."
+            ],
+            "%d total issues": [
+                "%d \u00f6sszes probl\u00e9ma"
+            ],
+            "Dismissed Issues": [
+                "Elvetett probl\u00e9m\u00e1k"
+            ],
+            "Simplified summary saved successfully.": [
+                "Egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3 sikeresen mentve."
+            ],
+            "Failed to save summary. Please try again.": [
+                "Nem siker\u00fclt menteni az \u00f6sszefoglal\u00f3t. K\u00e9rj\u00fck, pr\u00f3b\u00e1lja \u00fajra."
+            ],
+            "An error occurred while saving the summary.": [
+                "Hiba t\u00f6rt\u00e9nt az \u00f6sszefoglal\u00f3 ment\u00e9sekor."
+            ],
+            "%s grade": [
+                "%s oszt\u00e1ly"
+            ],
+            "%dth grade": [
+                "%d. oszt\u00e1ly"
+            ],
+            "Not available": [
+                "Nem el\u00e9rhet\u0151"
+            ],
+            "Warning": [
+                "Figyelmeztet\u00e9s"
+            ],
+            "This post does not contain enough content to calculate a reading level.": [
+                "Ez a bejegyz\u00e9s nem tartalmaz elegend\u0151 tartalmat az olvas\u00e1si szint kisz\u00e1m\u00edt\u00e1s\u00e1hoz."
+            ],
+            "Adjust summary prompts in settings.": [
+                "\u00d6sszefoglal\u00f3 promptok be\u00e1ll\u00edt\u00e1sa a be\u00e1ll\u00edt\u00e1sokban."
+            ],
+            "Content at or below a 9th-grade reading level does not require a simplified summary.": [
+                "A 9. oszt\u00e1lyos vagy az alatti olvas\u00e1si szint\u0171 tartalomhoz nem sz\u00fcks\u00e9ges egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3."
+            ],
+            "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance.": [
+                "A 9. oszt\u00e1lyos olvas\u00e1si szint feletti tartalomhoz egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3 sz\u00fcks\u00e9ges a WCAG AAA ir\u00e1nyelveinek val\u00f3 megfelel\u00e9shez."
+            ],
+            "Learn more about readability requirements.": [
+                "Tov\u00e1bbi inform\u00e1ci\u00f3 az olvashat\u00f3s\u00e1gi k\u00f6vetelm\u00e9nyekr\u0151l."
+            ],
+            "Simplified Summary Reading Level": [
+                "Egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3 olvas\u00e1si szintje"
+            ],
+            "Needs improvement, summary is above the 9th-grade reading level.": [
+                "Fejleszt\u00e9sre szorul, az \u00f6sszefoglal\u00f3 a 9. oszt\u00e1lyos olvas\u00e1si szint felett van."
+            ],
+            "Below the recommended 9th-grade reading level.": [
+                "Az aj\u00e1nlott 9. oszt\u00e1lyos olvas\u00e1si szint alatt."
+            ],
+            "Enter simplified summary...": [
+                "Egyszer\u0171s\u00edtett \u00f6sszefoglal\u00f3 megad\u00e1sa..."
+            ],
+            "Save Summary": [
+                "\u00d6sszefoglal\u00f3 ment\u00e9se"
+            ],
+            "Loading accessibility data...": [
+                "Hozz\u00e1f\u00e9rhet\u0151s\u00e9gi adatok bet\u00f6lt\u00e9se..."
+            ],
+            "Accessibility Checker actions": [
+                "Accessibility Checker m\u0171veletek"
+            ],
+            "Scan": [
+                "Szkennel\u00e9s"
+            ],
+            "Refresh": [
+                "Friss\u00edt\u00e9s"
+            ]
+        }
+    }
+}

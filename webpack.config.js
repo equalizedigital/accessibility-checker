@@ -17,6 +17,14 @@ module.exports = {
 		editorApp: [
 			'./src/editorApp/index.js',
 		],
+		sidebar: [
+			'./src/sidebar/index.js',
+			'./src/sidebar/sass/sidebar.scss',
+		],
+		issueModal: [
+			'./src/issueModal/index.js',
+			'./src/issueModal/sass/issue-modal.scss',
+		],
 		frontendHighlighterApp: [
 			'./src/frontendHighlighterApp/index.js',
 			'./src/frontendHighlighterApp/sass/app.scss',
@@ -82,9 +90,15 @@ module.exports = {
 				test: /\.css$/i,
 				use: [ MiniCssExtractPlugin.loader, 'css-loader' ],
 			},
-			// loader for images and icons (required if css references image files)
+			// SVG loader: import as React component
 			{
-				test: /\.(svg|png|jpg|gif)$/,
+				test: /\.svg$/,
+				issuer: /\.[jt]sx?$/,
+				use: [ '@svgr/webpack' ],
+			},
+			// loader for images (required if css references image files)
+			{
+				test: /\.(png|jpg|gif)$/,
 				type: 'asset/resource',
 				generator: {
 					filename: './img/[name][ext]',
@@ -102,5 +116,16 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/plugins': [ 'wp', 'plugins' ],
+		'@wordpress/editor': [ 'wp', 'editor' ],
+		'@wordpress/edit-post': [ 'wp', 'editPost' ],
+		'@wordpress/element': [ 'wp', 'element' ],
+		'@wordpress/data': [ 'wp', 'data' ],
+		'@wordpress/api-fetch': [ 'wp', 'apiFetch' ],
+		'@wordpress/components': [ 'wp', 'components' ],
+		'@wordpress/block-editor': [ 'wp', 'blockEditor' ],
+		'@wordpress/rich-text': [ 'wp', 'richText' ],
+		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
+		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
 	},
 };

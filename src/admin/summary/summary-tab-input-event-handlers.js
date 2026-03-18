@@ -57,7 +57,7 @@ export const initSummaryTabKeyboardAndClickHandlers = () => {
 
 			if ( event.key === 'ArrowRight' || event.keyCode === 39 ) {
 				let newTabIndex = index + 1;
-				if ( newTabIndex > tabs.length ) {
+				if ( newTabIndex >= tabs.length ) {
 					newTabIndex = 0;
 				}
 				tabs[ newTabIndex ].click();
