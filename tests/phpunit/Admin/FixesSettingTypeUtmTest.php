@@ -10,7 +10,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
 /**
  * Tests for UTM key formatting in fix setting type links.
  */
-class FixesSettingTypeUtmTest extends WP_UnitTestCase {
+class Edac_FixesSettingTypeUtmTest extends WP_UnitTestCase {
 
 	/**
 	 * Verify text field help link uses underscore UTM keys.

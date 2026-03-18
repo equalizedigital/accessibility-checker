@@ -10,7 +10,7 @@ use EDAC\Admin\Widgets;
 /**
  * Tests for dashboard widget links.
  */
-class WidgetsTest extends WP_UnitTestCase {
+class Edac_Widgets_Test extends WP_UnitTestCase {
 
 	/**
 	 * Set up test state.
