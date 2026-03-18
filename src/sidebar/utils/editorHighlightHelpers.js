@@ -190,14 +190,9 @@ const ensureHighlightStyles = ( canvasDoc ) => {
 	style.id = 'edac-editor-highlight-styles';
 	style.textContent = `
 		.${ HIGHLIGHT_CLASS } {
-			outline: 3px solid #d63638 !important;
-			outline-offset: 2px !important;
-			animation: edac-editor-highlight-pulse 0.6s ease-in-out 3;
-		}
-
-		@keyframes edac-editor-highlight-pulse {
-			0%, 100% { outline-color: #d63638; }
-			50% { outline-color: #f0c33c; }
+			outline: 4px dashed transparent !important;
+			outline-color: #f0f !important;
+			outline-offset: 5px !important;
 		}
 	`;
 	canvasDoc.head.appendChild( style );
