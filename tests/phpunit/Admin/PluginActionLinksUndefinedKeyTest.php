@@ -27,14 +27,18 @@ class PluginActionLinksUndefinedKeyTest extends WP_UnitTestCase {
 			/**
 			 * Mock the edac_link_wrapper function.
 			 *
-			 * @param string $url      The URL to wrap.
-			 * @param string $source   The source parameter.
-			 * @param string $campaign The campaign parameter.
-			 * @param bool   $unused   Unused parameter for compatibility.
+			 * @param string $base_url      The URL to wrap.
+			 * @param string $campaign      The campaign parameter.
+			 * @param string $content       The content parameter.
+			 * @param bool   $directly_echo Unused in this mock.
 			 * @return string The wrapped URL.
 			 */
-			function edac_link_wrapper( $url, $source, $campaign, $unused ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return $url . '?utm_source=' . $source . '&utm_campaign=' . $campaign;
+			function edac_link_wrapper( $base_url, $campaign, $content, $directly_echo ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+				$params = [
+					'utm_campaign' => $campaign,
+					'utm_content'  => $content,
+				];
+				return $base_url . '?' . http_build_query( array_filter( $params ) );
 			}
 		}
 
