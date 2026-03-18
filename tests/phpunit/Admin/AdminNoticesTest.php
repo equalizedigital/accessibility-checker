@@ -44,6 +44,26 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that removing admin notices does not error when the current screen is unavailable.
+	 */
+	public function test_edac_remove_admin_notices_handles_missing_screen() {
+		if ( ! function_exists( 'get_current_screen' ) ) {
+			$this->markTestSkipped( 'get_current_screen is not available in this test environment.' );
+		}
+
+		global $current_screen;
+		$previous_screen = $current_screen ?? null;
+		$current_screen  = null;
+
+		try {
+			$this->admin_notices->edac_remove_admin_notices();
+			$this->assertTrue( true );
+		} finally {
+			$current_screen = $previous_screen;
+		}
+	}
+
+	/**
 	 * Test that the edac_get_black_friday_message function contains the expected promotional message.
 	 */
 	public function test_edac_get_black_friday_message_contains_promo_message() {

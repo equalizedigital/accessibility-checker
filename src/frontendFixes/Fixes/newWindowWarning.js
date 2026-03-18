@@ -63,17 +63,19 @@ const initializeTooltip = () => {
  * Processes all anchor links and applies necessary accessibility enhancements.
  */
 const processLinks = () => {
-	// Remove previously appended icons to avoid duplication
-	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
-
+	// Only process links that have not yet been enhanced to prevent duplicate icons.
 	document.querySelectorAll( 'a:not([data-nww-processed])' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
 		if ( link.getAttribute( 'target' ) === '_blank' ) {
-			addExternalLinkIcon( link );
+			if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
+				addExternalLinkIcon( link );
+			}
 			updateAriaLabel( link );
-			addTooltipHandlers( link );
+			if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
+				addTooltipHandlers( link );
+			}
 			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			return;
 		}
@@ -84,9 +86,13 @@ const processLinks = () => {
 			const targetWindow = windowOpenMatch ? windowOpenMatch[ 1 ] : '';
 
 			if ( targetWindow === '_blank' || targetWindow === '' ) {
-				addExternalLinkIcon( link );
+				if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
+					addExternalLinkIcon( link );
+				}
 				updateAriaLabel( link );
-				addTooltipHandlers( link );
+				if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
+					addTooltipHandlers( link );
+				}
 				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
 			}
 		}

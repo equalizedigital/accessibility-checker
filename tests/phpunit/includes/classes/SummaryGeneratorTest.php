@@ -39,4 +39,20 @@ class SummaryGeneratorTest extends WP_UnitTestCase {
 			get_post_meta( $post_id, '_edac_density_data', true )
 		);
 	}
+
+	/**
+	 * Ensures that calculate_content_grade handles missing posts gracefully.
+	 *
+	 * @throws ReflectionException If the method does not exist this is thrown.
+	 */
+	public function test_calculate_content_grade_returns_zero_when_post_missing() {
+		$post_id           = 999999;
+		$summary_generator = new Summary_Generator( $post_id );
+
+		$method = ( new ReflectionClass( get_class( $summary_generator ) ) )
+			->getMethod( 'calculate_content_grade' );
+		$method->setAccessible( true );
+
+		$this->assertSame( 0, $method->invoke( $summary_generator ) );
+	}
 }

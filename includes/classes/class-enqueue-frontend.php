@@ -85,7 +85,7 @@ class Enqueue_Frontend {
 
 		// Don't load if this pagetype is not setup to be scanned.
 		$post_types        = Settings::get_scannable_post_types();
-		$current_post_type = get_post_type();
+		$current_post_type = get_post_type( $post_id );
 		$active            = ( is_array( $post_types ) && in_array( $current_post_type, $post_types, true ) );
 
 

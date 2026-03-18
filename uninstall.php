@@ -11,8 +11,8 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 }
 
 // check if the delte data option is checked. If not, don't delete data.
-$delete_data = get_option( 'edac_delete_data' );
-if ( true === (bool) $delete_data ) {
+$edac_delete_data = get_option( 'edac_delete_data' );
+if ( true === (bool) $edac_delete_data ) {
 
 	// drop database.
 	global $wpdb;
@@ -21,7 +21,7 @@ if ( true === (bool) $delete_data ) {
 	$wpdb->query( $wpdb->prepare( 'DROP TABLE IF EXISTS %i', $wpdb->prefix . 'accessibility_checker' ) );
 
 	// delete options.
-	$options     = [
+	$edac_options     = [
 		'edac_db_version',
 		'edac_activation_date',
 		'edac_simplified_summary_position',
@@ -39,7 +39,7 @@ if ( true === (bool) $delete_data ) {
 		'edac_black_friday_2024_notice_dismiss',
 		'edac_black_friday_2025_notice_dismiss',
 	];
-	$fix_options = [
+	$edac_fix_options = [
 		'edac_add_label_to_unlabeled_form_fields',
 		'edac_add_label_to_unlabelled_form_fields',
 		'edac_fix_add_file_size_and_type_to_linked_files',
@@ -68,10 +68,10 @@ if ( true === (bool) $delete_data ) {
 		'edac_fix_new_window_warning',
 	];
 
-	$options_to_clear = array_merge( $options, $fix_options );
+	$edac_options_to_clear = array_merge( $edac_options, $edac_fix_options );
 
-	foreach ( $options_to_clear as $option ) {
-		delete_option( $option );
-		delete_site_option( $option );
+	foreach ( $edac_options_to_clear as $edac_option ) {
+		delete_option( $edac_option );
+		delete_site_option( $edac_option );
 	}
 }

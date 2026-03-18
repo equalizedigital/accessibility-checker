@@ -129,6 +129,66 @@ describe( 'Missing Transcript Rule', () => {
 			html: '<div class="text">Just some info</div>',
 			shouldPass: true,
 		},
+		{
+			name: 'finds transcript 4 additional steps up the DOM tree',
+			html: `
+				<div>
+					<div>
+						<div>
+							<div>
+								<div>
+									<video src="video.mp4"></video>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p>Transcript available nearby.</p>
+				</div>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'finds transcript 5 additional steps up the DOM tree',
+			html: `
+				<div>
+					<div>
+						<div>
+							<div>
+								<div>
+									<div>
+										<video src="video.mp4"></video>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p>Transcript available nearby.</p>
+				</div>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'should not find transcript 6 up the DOM tree',
+			html: `
+				<div>
+					<div>
+						<div>
+							<div>
+								<div>
+									<div>
+										<div>
+											<video src="video.mp4"></video>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<p>Transcript available nearby.</p>
+				</div>
+			`,
+			shouldPass: false,
+		},
 	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;
 

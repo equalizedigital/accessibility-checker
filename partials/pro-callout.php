@@ -39,8 +39,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_url(
 				edac_generate_link_type(
 					[
-						'utm-campaign' => 'pro-callout',
-						'utm-content'  => 'get-pro',
+						'utm_campaign' => 'pro-callout',
+						'utm_content'  => 'get-pro',
 					]
 				)
 			);
@@ -62,5 +62,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</a>
 	<?php endif; ?>
 </div>
-
 
