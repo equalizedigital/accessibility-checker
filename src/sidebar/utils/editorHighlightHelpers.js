@@ -371,6 +371,7 @@ const findBestAncestor = ( el, matchProps ) => {
  *
  * @param {Document} canvasDoc  - The editor canvas document.
  * @param {Object}   matchProps - Properties extracted from the issue object HTML.
+ * @return {boolean} True if the element was found and highlighted.
  */
 const highlightElementInCanvas = ( canvasDoc, matchProps ) => {
 	ensureHighlightStyles( canvasDoc );
@@ -379,11 +380,12 @@ const highlightElementInCanvas = ( canvasDoc, matchProps ) => {
 	const element = findElementInCanvas( canvasDoc, matchProps );
 
 	if ( ! element ) {
-		return;
+		return false;
 	}
 
 	element.classList.add( HIGHLIGHT_CLASS );
 	element.scrollIntoView( { behavior: 'smooth', block: 'center' } );
+	return true;
 };
 
 /**
@@ -393,22 +395,25 @@ const highlightElementInCanvas = ( canvasDoc, matchProps ) => {
  * and applies a visual highlight outline.
  *
  * @param {Object} issue - The issue object containing the object (HTML) field.
+ * @return {boolean} True if the element was found and highlighted.
  */
 export const highlightIssueInEditor = ( issue ) => {
 	if ( ! issue?.object ) {
-		return;
+		return false;
 	}
 
 	const matchProps = extractMatchProps( issue.object );
 	if ( ! matchProps ) {
-		return;
+		return false;
 	}
 
 	// Apply visual highlight in the editor canvas.
 	const canvasDoc = getEditorCanvasDocument();
 	if ( canvasDoc ) {
-		highlightElementInCanvas( canvasDoc, matchProps );
+		return highlightElementInCanvas( canvasDoc, matchProps );
 	}
+
+	return false;
 };
 
 /**

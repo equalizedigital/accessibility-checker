@@ -139,7 +139,14 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 
 		// Handle the 'highlight' action to highlight the element in the block editor
 		if ( action === 'highlight' ) {
-			highlightIssueInEditor( issue );
+			const found = highlightIssueInEditor( issue );
+			if ( ! found ) {
+				wp.data.dispatch( 'core/notices' ).createNotice(
+					'info',
+					__( 'This element is outside the block editor. Use "View on page" to see it on the frontend.', 'accessibility-checker' ),
+					{ type: 'snackbar' },
+				);
+			}
 			return;
 		}
 
