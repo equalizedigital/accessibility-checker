@@ -13,6 +13,7 @@ import { restoreFocusWithFallback } from '../utils/focusHelpers';
 import { STORE_NAME } from '../store/accessibility-checker-store';
 import Badge from './Badge';
 import IssueRow from './IssueRow';
+import { highlightIssueInEditor } from '../utils/editorHighlightHelpers';
 
 /**
  * Get the "View on page" URL for an issue
@@ -133,6 +134,12 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 			if ( url ) {
 				window.open( url, '_blank', 'noopener,noreferrer' );
 			}
+			return;
+		}
+
+		// Handle the 'highlight' action to highlight the element in the block editor
+		if ( action === 'highlight' ) {
+			highlightIssueInEditor( issue );
 			return;
 		}
 
