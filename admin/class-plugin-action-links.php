@@ -55,7 +55,7 @@ class Plugin_Action_Links {
 		array_unshift( $links, $settings_link );
 
 		// Add Pro link if not already pro version.
-		if ( ! defined( 'EDACP_VERSION' ) || ! EDAC_KEY_VALID ) {
+		if ( ! edac_is_pro() ) {
 			$go_pro_text = esc_html__( 'Get Pro', 'accessibility-checker' );
 			
 			$links['go_pro'] = sprintf( 
