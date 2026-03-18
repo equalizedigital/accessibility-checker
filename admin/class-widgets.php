@@ -238,12 +238,12 @@ class Widgets {
 							'utm_campaign' => 'dashboard-widget',
 							'utm_content'  => 'upgrade-to-edacp',
 						],
-					'pro',
-					[
-						'post_type' => $post_type,
-					]
-				);
-				$html                            .= '
+						'pro',
+						[
+							'post_type' => $post_type,
+						]
+					);
+				$html                                .= '
 						<tr >
 							<th scope="col">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
