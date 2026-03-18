@@ -6,13 +6,15 @@
  * @since 1.37.0
  */
 
+namespace EqualizeDigital\AccessibilityChecker;
+
 /**
  * Tests for edac_generate_link_type.
  *
  * @covers ::edac_generate_link_type
  * @since 1.37.0
  */
-class GenerateLinkTypeTest extends WP_UnitTestCase {
+class GenerateLinkTypeTest extends \WP_UnitTestCase {
 
 	/**
 	 * Verifies help links can be generated without a help_id.
@@ -47,16 +49,18 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 	public function test_edac_generate_link_type_help_with_help_id(): void {
 		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) );
 
-		$link = edac_generate_link_type(
-			[],
-			'help',
-			[
-				'help_id' => '/rule-name',
-			]
-		);
+		try {
+			$link = edac_generate_link_type(
+				[],
+				'help',
+				[
+					'help_id' => '/rule-name',
+				]
+			);
 
-		delete_option( 'edac_activation_date' );
-
-		$this->assertSame( '/help/rule-name/', wp_parse_url( $link, PHP_URL_PATH ) );
+			$this->assertSame( '/help/rule-name/', wp_parse_url( $link, PHP_URL_PATH ) );
+		} finally {
+			delete_option( 'edac_activation_date' );
+		}
 	}
 }
