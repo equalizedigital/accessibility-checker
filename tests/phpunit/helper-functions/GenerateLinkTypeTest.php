@@ -23,8 +23,10 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 	public function test_edac_generate_link_type_help_without_help_id(): void {
 		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s' ) );
 
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler
 		set_error_handler(
 			static function ( $severity, $message, $file, $line ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
 				throw new ErrorException( $message, 0, $severity, $file, $line );
 			}
 		);
