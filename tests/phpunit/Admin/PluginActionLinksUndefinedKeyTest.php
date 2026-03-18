@@ -19,6 +19,15 @@ class PluginActionLinksUndefinedKeyTest extends WP_UnitTestCase {
 	 * @preserveGlobalState disabled
 	 */
 	public function test_add_plugin_action_links_adds_pro_link_when_key_constant_missing() {
+		// Precondition: neither EDAC_KEY_VALID nor EDACP_VERSION should be defined so that
+		// edac_is_pro() returns false via the missing-key branch.  PHP constants cannot be
+		// undefined once set, so skip rather than produce a misleading test result.
+		if ( defined( 'EDAC_KEY_VALID' ) || defined( 'EDACP_VERSION' ) ) {
+			$this->markTestSkipped( 'Cannot exercise the undefined-key branch: EDAC_KEY_VALID or EDACP_VERSION is already defined in this process.' );
+		}
+		$this->assertFalse( defined( 'EDAC_KEY_VALID' ), 'Precondition failed: EDAC_KEY_VALID must not be defined.' );
+		$this->assertFalse( defined( 'EDACP_VERSION' ), 'Precondition failed: EDACP_VERSION must not be defined.' );
+
 		if ( ! defined( 'EDAC_PLUGIN_FILE' ) ) {
 			define( 'EDAC_PLUGIN_FILE', __FILE__ );
 		}
