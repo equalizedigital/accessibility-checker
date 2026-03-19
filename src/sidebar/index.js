@@ -11,6 +11,8 @@ import { Spinner } from '@wordpress/components';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
 import SidebarTitleMenu from './components/SidebarTitleMenu';
+import PrePublishPanel from './components/PrePublishPanel';
+import PostSaveBlockNotice from './components/PostSaveBlockNotice';
 import { STORE_NAME } from './store/accessibility-checker-store';
 import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-icon.svg';
 
@@ -122,5 +124,13 @@ if ( window.edac_sidebar_app && window.edac_sidebar_app.gutenbergEnabled ) {
 
 	registerPlugin( 'accessibility-checker-quick-access', {
 		render: QuickAccessPanelWrapper,
+	} );
+
+	registerPlugin( 'accessibility-checker-pre-publish', {
+		render: PrePublishPanel,
+	} );
+
+	registerPlugin( 'accessibility-checker-save-notice', {
+		render: PostSaveBlockNotice,
 	} );
 }

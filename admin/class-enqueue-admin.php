@@ -9,6 +9,7 @@ namespace EDAC\Admin;
 
 use EDAC\Admin\OptIn\Email_Opt_In;
 use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
+use EqualizeDigital\AccessibilityChecker\Admin\PublishBlocker;
 
 /**
  * Class that initializes and handles enqueueing styles and scripts for the admin.
@@ -85,13 +86,20 @@ class Enqueue_Admin {
 				'edac',
 				'edac_script_vars',
 				[
-					'postID'                   => $post_id,
-					'nonce'                    => wp_create_nonce( 'ajax-nonce' ),
-					'edacApiUrl'               => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-					'restNonce'                => wp_create_nonce( 'wp_rest' ),
-					'proUrl'                   => esc_url_raw( edac_generate_link_type( [ 'utm_content' => '__name__' ] ) ),
-					'hasDismissEndpoint'       => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),
-					'showMetaboxInBlockEditor' => ! Helpers::is_block_editor() || (bool) get_option( 'edac_show_metabox_in_block_editor', 1 ),
+					'postID'                      => $post_id,
+					'nonce'                       => wp_create_nonce( 'ajax-nonce' ),
+					'edacApiUrl'                  => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'restNonce'                   => wp_create_nonce( 'wp_rest' ),
+					'proUrl'                      => esc_url_raw( edac_generate_link_type( [ 'utm_content' => '__name__' ] ) ),
+					'hasDismissEndpoint'          => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),
+					'showMetaboxInBlockEditor'    => ! Helpers::is_block_editor() || (bool) get_option( 'edac_show_metabox_in_block_editor', 1 ),
+					'blockPublish'                => (bool) get_option( 'edac_block_publish', false ),
+					'blockPublishMode'            => get_option( 'edac_block_publish_mode', 'soft' ),
+					'blockPublishOnErrors'        => (bool) get_option( 'edac_block_publish_on_errors', false ),
+					'blockPublishOnWarnings'      => (bool) get_option( 'edac_block_publish_on_warnings', false ),
+					'userCanBypassPublishBlock'   => PublishBlocker::user_can_bypass(),
+					'postSummary'                 => $post_id ? (array) get_post_meta( $post_id, '_edac_summary', true ) : [],
+					'classicEditorPublishWarning' => __( 'This content has accessibility issues. Are you sure you want to publish it?', 'accessibility-checker' ),
 				]
 			);
 
@@ -201,17 +209,31 @@ class Enqueue_Admin {
 			'edac-sidebar',
 			'edac_sidebar_app',
 			[
-				'gutenbergEnabled'        => true,
-				'postID'                  => get_the_ID(),
-				'highlightNonce'          => wp_create_nonce( 'edac_highlight' ),
-				'ajaxNonce'               => wp_create_nonce( 'ajax-nonce' ),
-				'ajaxUrl'                 => admin_url( 'admin-ajax.php' ),
-				'edacApiUrl'              => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-				'settingsUrl'             => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
-				'canManageSettings'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
-				'readabilityHelpUrl'      => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
-				'dismissReasons'          => IgnoreUI::get_reasons(),
-				'simplifiedSummaryPrompt' => get_option( 'edac_simplified_summary_prompt', 'none' ),
+				'gutenbergEnabled'          => true,
+				'postID'                    => get_the_ID(),
+				'highlightNonce'            => wp_create_nonce( 'edac_highlight' ),
+				'ajaxNonce'                 => wp_create_nonce( 'ajax-nonce' ),
+				'ajaxUrl'                   => admin_url( 'admin-ajax.php' ),
+				'edacApiUrl'                => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+				'settingsUrl'               => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
+				'canManageSettings'         => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
+				'readabilityHelpUrl'        => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
+				'dismissReasons'            => IgnoreUI::get_reasons(),
+				'simplifiedSummaryPrompt'   => get_option( 'edac_simplified_summary_prompt', 'none' ),
+				'isPro'                     => edac_is_pro(),
+				'proUpgradeUrl'             => esc_url_raw(
+					edac_generate_link_type(
+						[
+							'utm_campaign' => 'block-editor',
+							'utm_content'  => 'publish-block-pre-publish',
+						]
+					)
+				),
+				'blockPublish'              => (bool) get_option( 'edac_block_publish', false ),
+				'blockPublishMode'          => get_option( 'edac_block_publish_mode', 'soft' ),
+				'blockPublishOnErrors'      => (bool) get_option( 'edac_block_publish_on_errors', false ),
+				'blockPublishOnWarnings'    => (bool) get_option( 'edac_block_publish_on_warnings', false ),
+				'userCanBypassPublishBlock' => PublishBlocker::user_can_bypass(),
 			]
 		);
 

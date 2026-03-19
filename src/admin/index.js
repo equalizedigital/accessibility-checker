@@ -26,6 +26,61 @@ const edacScriptVars = edac_script_vars;
 			inlineSettingsProUpsell();
 		}
 
+		// Classic editor soft-mode publish warning.
+		// Hard mode is enforced server-side via wp_insert_post_data.
+		// Soft mode shows a browser confirm() so the user can still proceed.
+		( function initClassicEditorPublishWarning() {
+			const vars = window.edac_script_vars || {};
+
+			// Only act when soft mode is active, the feature is on, and the user is
+			// not bypassing the block.
+			if (
+				! vars.blockPublish ||
+				vars.blockPublishMode !== 'soft' ||
+				vars.userCanBypassPublishBlock
+			) {
+				return;
+			}
+
+			const postForm = document.getElementById( 'post' );
+			if ( ! postForm ) {
+				return; // Not in classic editor.
+			}
+
+			postForm.addEventListener( 'submit', function( event ) {
+				// Determine the target publish status from the hidden field set by
+				// the classic editor when the user clicks Publish/Update.
+				const statusField = document.getElementById( 'post_status' );
+				const hiddenStatus = document.getElementById( 'hidden_post_status' );
+				const targetStatus =
+					( statusField && statusField.value ) ||
+					( hiddenStatus && hiddenStatus.value ) ||
+					'';
+
+				if ( targetStatus !== 'publish' ) {
+					return; // Not publishing — no warning needed.
+				}
+
+				const summary = vars.postSummary || {};
+				const errorCount = ( ( summary.errors || 0 ) + ( summary.contrast_errors || 0 ) );
+				const warningCount = summary.warnings || 0;
+
+				const hasBlockingErrors = vars.blockPublishOnErrors && errorCount > 0;
+				const hasBlockingWarnings = vars.blockPublishOnWarnings && warningCount > 0;
+
+				if ( ! hasBlockingErrors && ! hasBlockingWarnings ) {
+					return; // No blocking issues.
+				}
+
+				if ( ! window.confirm( // eslint-disable-line no-alert
+					vars.classicEditorPublishWarning ||
+					'This content has accessibility issues. Are you sure you want to publish it?'
+				) ) {
+					event.preventDefault();
+				}
+			} );
+		}() );
+
 		// Accessibility Statement disable
 		jQuery(
 			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'

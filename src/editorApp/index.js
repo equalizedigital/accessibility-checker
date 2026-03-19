@@ -1,6 +1,6 @@
 /* global edac_editor_app */
 
-import { init as initCheckPage } from './checkPage';
+import { init as initCheckPage, runScanNow } from './checkPage';
 const { __ } = wp.i18n;
 
 window.addEventListener( 'DOMContentLoaded', () => {
@@ -8,6 +8,7 @@ window.addEventListener( 'DOMContentLoaded', () => {
 	const SCANNABLE_POST_TYPE = edac_editor_app.active;
 
 	if ( SCANNABLE_POST_TYPE ) {
+		window.edacRunScanNow = runScanNow;
 		setTimeout( function() {
 			initCheckPage();
 		}, 250 ); // Allow page load to fire before init, otherwise we'll have to wait for iframe to load.

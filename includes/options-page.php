@@ -125,6 +125,13 @@ function edac_register_setting() {
 	);
 
 	add_settings_section(
+		'edac_publish_blocking',
+		__( 'Publish Blocking', 'accessibility-checker' ),
+		'edac_publish_blocking_section_cb',
+		'edac_settings'
+	);
+
+	add_settings_section(
 		'edac_simplified_summary',
 		__( 'Simplified Summary Settings', 'accessibility-checker' ),
 		'edac_simplified_summary_cb',
@@ -196,6 +203,59 @@ function edac_register_setting() {
 		'edac_settings',
 		'edac_permissions',
 		[ 'label_for' => 'edac_ignore_user_roles' ]
+	);
+
+	add_settings_field(
+		'edac_block_publish',
+		__( 'Enable Publish Blocking', 'accessibility-checker' ),
+		'edac_block_publish_cb',
+		'edac_settings',
+		'edac_publish_blocking',
+		[ 'label_for' => 'edac_block_publish' ]
+	);
+
+	add_settings_field(
+		'edac_block_publish_mode',
+		__( 'Blocking Mode', 'accessibility-checker' ),
+		'edac_block_publish_mode_cb',
+		'edac_settings',
+		'edac_publish_blocking',
+		[ 'label_for' => 'edac_block_publish_mode' ]
+	);
+
+	add_settings_field(
+		'edac_block_publish_issue_types',
+		__( 'Block on Issue Types', 'accessibility-checker' ),
+		'edac_block_publish_issue_types_cb',
+		'edac_settings',
+		'edac_publish_blocking'
+	);
+
+	add_settings_field(
+		'edac_block_publish_post_types',
+		__( 'Post Types to Enforce', 'accessibility-checker' ),
+		'edac_block_publish_post_types_cb',
+		'edac_settings',
+		'edac_publish_blocking',
+		[ 'label_for' => 'edac_block_publish_post_types' ]
+	);
+
+	add_settings_field(
+		'edac_block_publish_roles',
+		__( 'Roles Subject to Block', 'accessibility-checker' ),
+		'edac_block_publish_roles_cb',
+		'edac_settings',
+		'edac_publish_blocking',
+		[ 'label_for' => 'edac_block_publish_roles' ]
+	);
+
+	add_settings_field(
+		'edac_block_publish_bypass_cap',
+		__( 'Bypass Capability', 'accessibility-checker' ),
+		'edac_block_publish_bypass_cap_cb',
+		'edac_settings',
+		'edac_publish_blocking',
+		[ 'label_for' => 'edac_block_publish_bypass_cap' ]
 	);
 
 	add_settings_field(
@@ -315,6 +375,15 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
 
 	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
+
+	// Publish blocking settings - Pro only.
+	register_setting( 'edac_settings', 'edac_block_publish', 'edac_sanitize_pro_block_publish' );
+	register_setting( 'edac_settings', 'edac_block_publish_mode', 'edac_sanitize_pro_block_publish_mode' );
+	register_setting( 'edac_settings', 'edac_block_publish_on_errors', 'edac_sanitize_pro_block_publish_on_errors' );
+	register_setting( 'edac_settings', 'edac_block_publish_on_warnings', 'edac_sanitize_pro_block_publish_on_warnings' );
+	register_setting( 'edac_settings', 'edac_block_publish_post_types', 'edac_sanitize_pro_block_publish_post_types' );
+	register_setting( 'edac_settings', 'edac_block_publish_roles', 'edac_sanitize_pro_block_publish_roles' );
+	register_setting( 'edac_settings', 'edac_block_publish_bypass_cap', 'edac_sanitize_pro_block_publish_bypass_cap' );
 
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
 	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
@@ -1037,4 +1106,329 @@ function edac_permissions_section_cb() {
 		<?php esc_html_e( 'Configure which user roles have access to specific Accessibility Checker features.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
+}
+
+/**
+ * Render the description for the publish blocking section.
+ */
+function edac_publish_blocking_section_cb() {
+	?>
+	<p>
+		<?php
+		esc_html_e( 'Prevent or warn when publishing content that contains accessibility issues.', 'accessibility-checker' );
+		if ( ! edac_is_pro() ) {
+			printf(
+				/* translators: %1$s: opening link tag, %2$s: closing link tag */
+				' ' . esc_html__( 'This is a %1$sPro feature%2$s.', 'accessibility-checker' ),
+				'<a href="' . esc_url(
+					edac_generate_link_type(
+						[
+							'utm_campaign' => 'settings-page',
+							'utm_content'  => 'publish-blocking-section',
+						]
+					)
+				) . '" target="_blank" aria-label="' . esc_attr__( 'Accessibility Checker Pro (opens in a new window)', 'accessibility-checker' ) . '">',
+				'</a>'
+			);
+		}
+		?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the enable publish blocking checkbox.
+ */
+function edac_block_publish_cb() {
+	$option = get_option( 'edac_block_publish', 0 );
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<label>
+			<input
+				type="checkbox"
+				name="edac_block_publish"
+				id="edac_block_publish"
+				aria-describedby="edac_block_publish_desc"
+				value="1"
+				<?php checked( $option, 1 ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Enable publish blocking', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<p id="edac_block_publish_desc" class="edac-description">
+		<?php esc_html_e( 'When enabled, publishing will be blocked or a warning will be shown if accessibility issues are found.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the blocking mode radio buttons.
+ */
+function edac_block_publish_mode_cb() {
+	$mode = get_option( 'edac_block_publish_mode', 'soft' );
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<label>
+			<input
+				type="radio"
+				name="edac_block_publish_mode"
+				id="edac_block_publish_mode"
+				value="soft"
+				<?php checked( $mode, 'soft' ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Warn only — show a warning before publishing but allow it to proceed', 'accessibility-checker' ); ?>
+		</label>
+		<br>
+		<label>
+			<input
+				type="radio"
+				name="edac_block_publish_mode"
+				value="hard"
+				<?php checked( $mode, 'hard' ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Hard block — prevent publishing until issues are resolved or ignored', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'In warn-only mode, a notice is shown in the pre-publish panel but publishing can still proceed. In hard block mode, the publish button is disabled in the block editor and saving is reverted to the previous status in the classic editor.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the block-on issue types checkboxes.
+ */
+function edac_block_publish_issue_types_cb() {
+	$on_errors   = get_option( 'edac_block_publish_on_errors', 0 );
+	$on_warnings = get_option( 'edac_block_publish_on_warnings', 0 );
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<label>
+			<input
+				type="checkbox"
+				name="edac_block_publish_on_errors"
+				id="edac_block_publish_on_errors"
+				aria-describedby="edac_block_publish_issue_types_desc"
+				value="1"
+				<?php checked( $on_errors, 1 ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Errors (problems that must be addressed)', 'accessibility-checker' ); ?>
+		</label>
+		<br>
+		<label>
+			<input
+				type="checkbox"
+				name="edac_block_publish_on_warnings"
+				value="1"
+				<?php checked( $on_warnings, 1 ); ?>
+				<?php disabled( ! edac_is_pro() ); ?>
+			>
+			<?php esc_html_e( 'Warnings (issues that need review)', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<p id="edac_block_publish_issue_types_desc" class="edac-description">
+		<?php esc_html_e( 'Choose which types of unresolved issues will trigger the publish block. Ignored issues are never counted.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the post types to enforce checkboxes.
+ */
+function edac_block_publish_post_types_cb() {
+	$selected   = (array) get_option( 'edac_block_publish_post_types', [] );
+	$post_types = Settings::get_scannable_post_types();
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<?php if ( $post_types ) : ?>
+			<?php $index = 0; ?>
+			<?php foreach ( $post_types as $post_type ) : ?>
+				<?php $field_id = ( 0 === $index ) ? 'edac_block_publish_post_types' : "edac_block_publish_post_types_{$index}"; ?>
+				<label>
+					<input
+						type="checkbox"
+						name="edac_block_publish_post_types[]"
+						id="<?php echo esc_attr( $field_id ); ?>"
+						value="<?php echo esc_attr( $post_type ); ?>"
+						<?php checked( in_array( $post_type, $selected, true ), 1 ); ?>
+						<?php disabled( ! edac_is_pro() ); ?>
+					>
+					<?php echo esc_html( edac_get_post_type_label( $post_type ) ); ?>
+				</label>
+				<br>
+				<?php ++$index; ?>
+			<?php endforeach; ?>
+		<?php else : ?>
+			<p class="edac-description">
+				<?php esc_html_e( 'No scannable post types are configured. Please select post types to check in the Scan Settings section above.', 'accessibility-checker' ); ?>
+			</p>
+		<?php endif; ?>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Choose which post types are subject to publish blocking. Only post types enabled in Scan Settings are available.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the roles subject to block checkboxes.
+ */
+function edac_block_publish_roles_cb() {
+	global $wp_roles;
+	$selected = (array) get_option( 'edac_block_publish_roles', [] );
+	$roles    = $wp_roles->roles;
+	?>
+	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<?php if ( $roles ) : ?>
+			<?php $index = 0; ?>
+			<?php foreach ( $roles as $key => $role ) : ?>
+				<?php $field_id = ( 0 === $index ) ? 'edac_block_publish_roles' : "edac_block_publish_roles_{$index}"; ?>
+				<label>
+					<input
+						type="checkbox"
+						name="edac_block_publish_roles[]"
+						id="<?php echo esc_attr( $field_id ); ?>"
+						value="<?php echo esc_attr( $key ); ?>"
+						<?php checked( in_array( $key, $selected, true ), 1 ); ?>
+						<?php disabled( ! edac_is_pro() ); ?>
+					>
+					<?php echo esc_html( $role['name'] ); ?>
+				</label>
+				<br>
+				<?php ++$index; ?>
+			<?php endforeach; ?>
+		<?php endif; ?>
+	</fieldset>
+	<p class="edac-description">
+		<?php esc_html_e( 'Choose which user roles are subject to the publish block. Users in roles not checked here can always publish regardless of accessibility issues.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Render the bypass capability text input.
+ */
+function edac_block_publish_bypass_cap_cb() {
+	$cap = get_option( 'edac_block_publish_bypass_cap', '' );
+	?>
+	<input
+		type="text"
+		name="edac_block_publish_bypass_cap"
+		id="edac_block_publish_bypass_cap"
+		aria-describedby="edac_block_publish_bypass_cap_desc"
+		value="<?php echo esc_attr( $cap ); ?>"
+		class="regular-text<?php echo edac_is_pro() ? '' : ' edac-setting--upsell'; ?>"
+		<?php disabled( ! edac_is_pro() ); ?>
+	>
+	<p id="edac_block_publish_bypass_cap_desc" class="edac-description">
+		<?php esc_html_e( 'Enter a custom WordPress capability (e.g., edac_bypass_publish_block). Any user granted this capability will bypass the publish block, regardless of their role. Leave blank to rely only on the roles setting above.', 'accessibility-checker' ); ?>
+	</p>
+	<?php
+}
+
+/**
+ * Sanitize the publish blocking enable setting. Preserves value when Pro is inactive.
+ *
+ * @param mixed $input The input value.
+ * @return int
+ */
+function edac_sanitize_pro_block_publish( $input ) {
+	return edac_sanitize_pro_checkbox( $input, 'edac_block_publish' );
+}
+
+/**
+ * Sanitize the publish blocking mode setting. Preserves value when Pro is inactive.
+ *
+ * @param string $input The input value.
+ * @return string
+ */
+function edac_sanitize_pro_block_publish_mode( $input ) {
+	if ( edac_is_pro() ) {
+		return in_array( $input, [ 'soft', 'hard' ], true ) ? $input : 'soft';
+	}
+	return get_option( 'edac_block_publish_mode', 'soft' );
+}
+
+/**
+ * Sanitize the block-on-errors setting. Preserves value when Pro is inactive.
+ *
+ * @param mixed $input The input value.
+ * @return int
+ */
+function edac_sanitize_pro_block_publish_on_errors( $input ) {
+	return edac_sanitize_pro_checkbox( $input, 'edac_block_publish_on_errors' );
+}
+
+/**
+ * Sanitize the block-on-warnings setting. Preserves value when Pro is inactive.
+ *
+ * @param mixed $input The input value.
+ * @return int
+ */
+function edac_sanitize_pro_block_publish_on_warnings( $input ) {
+	return edac_sanitize_pro_checkbox( $input, 'edac_block_publish_on_warnings' );
+}
+
+/**
+ * Sanitize the block publish post types setting. Preserves value when Pro is inactive.
+ *
+ * @param array $input The input value.
+ * @return array
+ */
+function edac_sanitize_pro_block_publish_post_types( $input ) {
+	if ( ! edac_is_pro() ) {
+		return get_option( 'edac_block_publish_post_types', [] );
+	}
+
+	$valid_post_types = Settings::get_scannable_post_types();
+	$sanitized        = [];
+
+	foreach ( (array) $input as $post_type ) {
+		if ( in_array( $post_type, $valid_post_types, true ) ) {
+			$sanitized[] = $post_type;
+		}
+	}
+
+	return $sanitized;
+}
+
+/**
+ * Sanitize the block publish roles setting. Preserves value when Pro is inactive.
+ *
+ * @param array $input The input value.
+ * @return array
+ */
+function edac_sanitize_pro_block_publish_roles( $input ) {
+	if ( ! edac_is_pro() ) {
+		return get_option( 'edac_block_publish_roles', [] );
+	}
+
+	global $wp_roles;
+	$valid_roles = array_keys( $wp_roles->roles );
+	$sanitized   = [];
+
+	foreach ( (array) $input as $role ) {
+		if ( in_array( $role, $valid_roles, true ) ) {
+			$sanitized[] = $role;
+		}
+	}
+
+	return $sanitized;
+}
+
+/**
+ * Sanitize the bypass capability setting. Preserves value when Pro is inactive.
+ *
+ * @param string $input The input value.
+ * @return string
+ */
+function edac_sanitize_pro_block_publish_bypass_cap( $input ) {
+	if ( ! edac_is_pro() ) {
+		return get_option( 'edac_block_publish_bypass_cap', '' );
+	}
+	return sanitize_key( $input );
 }

@@ -26,15 +26,25 @@ const postData = async ( url = '', data = {} ) => {
 const saveScanResults = ( postId, violations, densityMetrics ) => {
 	document.querySelector( '.edac-panel' )?.classList.add( 'edac-panel-loading' );
 	// eslint-disable-next-line camelcase
-	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
+	return postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
 		densityMetrics,
 	} ).then( ( data ) => {
 		info( 'Saving ' + postId + ': done' );
 
-		// Create and dispatch an event to tell legacy admin.js to refresh tabs. Refactor this.
-		const customEvent = new CustomEvent( 'edac_js_scan_save_complete' );
-		top.dispatchEvent( customEvent );
+		// Create and dispatch an event to tell legacy admin.js to refresh tabs.
+		// Include details so other components can reliably chain behavior.
+		const detail = {
+			postId,
+			success: !! data.success,
+		};
+		const customEvent = new CustomEvent( 'edac_js_scan_save_complete', { detail } );
+		window.dispatchEvent( customEvent );
+		try {
+			top.dispatchEvent( customEvent );
+		} catch ( e ) {
+			// Cross-origin top frame — ignore.
+		}
 
 		if ( ! data.success ) {
 			info( 'Saving ' + postId + ': error' );
@@ -46,6 +56,7 @@ const saveScanResults = ( postId, violations, densityMetrics ) => {
 		}
 
 		document.querySelector( '.edac-panel' )?.classList.remove( 'edac-panel-loading' );
+		return data;
 	} );
 };
 
@@ -103,6 +114,50 @@ const injectIframe = ( previewUrl, postID ) => {
 			scannerScriptElement.src = edac_editor_app.baseurl + '/build/pageScanner.bundle.js?v=' + edac_editor_app.version;
 			iframeDocument.head.appendChild( scannerScriptElement );
 		}
+	} );
+};
+
+/**
+ * Run a scan now and resolve when scan results have been persisted.
+ *
+ * @return {Promise<Object>} Promise resolving with scan completion details.
+ */
+export const runScanNow = () => {
+	return new Promise( ( resolve ) => {
+		let settled = false;
+
+		const finish = ( detail ) => {
+			if ( settled ) {
+				return;
+			}
+			settled = true;
+			clearTimeout( timeoutId );
+			window.removeEventListener( 'edac_js_scan_save_complete', handleComplete );
+			try {
+				top.removeEventListener( 'edac_js_scan_save_complete', handleComplete );
+			} catch ( e ) {
+				// Cross-origin top frame — ignore.
+			}
+			resolve( detail || {} );
+		};
+
+		const handleComplete = ( event ) => {
+			finish( event?.detail || { success: true } );
+		};
+
+		const timeoutId = setTimeout( () => {
+			finish( { success: false, timedOut: true } );
+		}, 20000 );
+
+		window.addEventListener( 'edac_js_scan_save_complete', handleComplete );
+		try {
+			top.addEventListener( 'edac_js_scan_save_complete', handleComplete );
+		} catch ( e ) {
+			// Cross-origin top frame — ignore.
+		}
+
+		// eslint-disable-next-line camelcase
+		injectIframe( edac_editor_app.scanUrl, edac_editor_app.postID );
 	} );
 };
 top.edacScanCompleteListenerAdded = false;

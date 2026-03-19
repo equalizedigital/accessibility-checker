@@ -10,6 +10,7 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EqualizeDigital\AccessibilityChecker\Admin\PublishBlocker;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -30,6 +31,8 @@ class Plugin {
 			$meta_boxes = new Meta_Boxes();
 			$admin      = new Admin( $meta_boxes );
 			$admin->init();
+			$publish_blocker = new PublishBlocker();
+			add_action( 'plugins_loaded', [ $publish_blocker, 'init' ] );
 		} else {
 			$this->init();
 		}
