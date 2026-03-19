@@ -71,15 +71,12 @@ class Orphaned_Issues_Cleanup {
 	public static function schedule_event() {
 		$event = wp_get_scheduled_event( self::EVENT );
 
-		if ( ! $event ) {
-			wp_schedule_event( time(), self::RECURRENCE, self::EVENT );
+		if ( $event && self::RECURRENCE === $event->schedule ) {
 			return;
 		}
 
-		if ( self::RECURRENCE !== $event->schedule ) {
-			wp_unschedule_event( $event->timestamp, self::EVENT );
-			wp_schedule_event( time(), self::RECURRENCE, self::EVENT );
-		}
+		wp_clear_scheduled_hook( self::EVENT );
+		wp_schedule_event( time(), self::RECURRENCE, self::EVENT );
 	}
 
 	/**
@@ -90,10 +87,7 @@ class Orphaned_Issues_Cleanup {
 	 * @return void
 	 */
 	public static function unschedule_event() {
-		$timestamp = wp_next_scheduled( self::EVENT );
-		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, self::EVENT );
-		}
+		wp_clear_scheduled_hook( self::EVENT );
 	}
 
 	/**
