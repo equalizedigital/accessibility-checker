@@ -777,6 +777,28 @@ class AccessibilityCheckerHighlight {
 				</div>`;
 			}
 
+			// Color contrast data
+			if ( matchingObj.extra_data?.fgColor && matchingObj.extra_data?.bgColor ) {
+				const { fgColor, bgColor, contrastRatio, expectedContrastRatio } = matchingObj.extra_data;
+				content += `
+					<div class="edac-highlight-panel-description-contrast">
+						<div class="edac-highlight-panel-description-contrast-swatches">
+							<div class="edac-highlight-panel-description-contrast-swatch">
+								<div class="edac-highlight-panel-description-contrast-swatch-color" style="background-color: ${ fgColor }; color: ${ bgColor };">Aa</div>
+								<div class="edac-highlight-panel-description-contrast-swatch-label">${ __( 'Foreground', 'accessibility-checker' ) }<br>${ fgColor }</div>
+							</div>
+							<div class="edac-highlight-panel-description-contrast-swatch">
+								<div class="edac-highlight-panel-description-contrast-swatch-color" style="background-color: ${ bgColor }; color: ${ fgColor };">Aa</div>
+								<div class="edac-highlight-panel-description-contrast-swatch-label">${ __( 'Background', 'accessibility-checker' ) }<br>${ bgColor }</div>
+							</div>
+						</div>
+						<div class="edac-highlight-panel-description-contrast-ratio">
+							${ __( 'Contrast ratio:', 'accessibility-checker' ) } <strong>${ contrastRatio }:1</strong> (${ __( 'required:', 'accessibility-checker' ) } ${ expectedContrastRatio })
+						</div>
+					</div>
+				`;
+			}
+
 			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
 				// this is the markup to put in the modal.
 				content += `
