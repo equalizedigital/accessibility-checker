@@ -123,6 +123,17 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 			'warnings'        => 0,
 			'ignored'         => 0,
 			'readability'     => 0,
+			'regression'      => [
+				'has_baseline' => false,
+				'status'       => 'stable',
+				'delta'        => [
+					'errors'          => 0,
+					'warnings'        => 0,
+					'contrast_errors' => 0,
+					'passed_tests'    => 0,
+				],
+				'scanned_at'   => '',
+			],
 		];
 
 		$this->assertSame( $expected, $summary );
@@ -146,7 +157,11 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 		$method = $this->get_private_method( $api, 'get_summary_data' );
 		$result = $method->invoke( $api, self::$post_id );
 
-		$this->assertSame( $meta, $result );
+		$this->assertSame( 5, $result['passed_tests'] );
+		$this->assertSame( 2, $result['errors'] );
+		$this->assertArrayHasKey( 'regression', $result );
+		$this->assertFalse( $result['regression']['has_baseline'] );
+		$this->assertSame( 'stable', $result['regression']['status'] );
 	}
 
 	/**

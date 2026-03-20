@@ -55,4 +55,39 @@ class SummaryGeneratorTest extends WP_UnitTestCase {
 
 		$this->assertSame( 0, $method->invoke( $summary_generator ) );
 	}
+
+	/**
+	 * Ensures that regression data marks worsening scans as declining.
+	 *
+	 * @throws ReflectionException If the method does not exist this is thrown.
+	 */
+	public function test_build_regression_data_marks_declining_status() {
+		$post_id           = self::factory()->post->create();
+		$summary_generator = new Summary_Generator( $post_id );
+
+		$method = ( new ReflectionClass( get_class( $summary_generator ) ) )
+			->getMethod( 'build_regression_data' );
+		$method->setAccessible( true );
+
+		$previous = [
+			'errors'          => 1,
+			'warnings'        => 1,
+			'contrast_errors' => 0,
+			'passed_tests'    => 85,
+		];
+
+		$current = [
+			'errors'          => 4,
+			'warnings'        => 3,
+			'contrast_errors' => 0,
+			'passed_tests'    => 70,
+		];
+
+		$regression = $method->invoke( $summary_generator, $previous, $current );
+
+		$this->assertTrue( $regression['has_baseline'] );
+		$this->assertSame( 'declining', $regression['status'] );
+		$this->assertSame( 3, $regression['delta']['errors'] );
+		$this->assertSame( -15, $regression['delta']['passed_tests'] );
+	}
 }

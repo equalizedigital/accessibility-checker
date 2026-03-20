@@ -69,6 +69,8 @@ const AccessibilityStatus = () => {
 	// Extract data from store
 	const summary = data?.summary || {};
 	const readability = data?.readability || {};
+	const regression = summary.regression || {};
+	const regressionDelta = regression.delta || {};
 
 	const coveragePercent = summary.passed_tests || 0;
 	const problems = ( summary.errors || 0 ) + ( summary.contrast_errors || 0 );
@@ -78,6 +80,46 @@ const AccessibilityStatus = () => {
 	const postGradeReadable = readability.post_grade_readability || '';
 	const needsSummary = !! readability.post_grade_failed;
 	const hasSummary = !! readability.simplified_summary;
+	const hasRegressionBaseline = !! regression.has_baseline;
+	const regressionStatus = regression.status || 'stable';
+	const problemsDelta =
+		( regressionDelta.errors || 0 ) + ( regressionDelta.contrast_errors || 0 );
+	const warningDelta = regressionDelta.warnings || 0;
+	const passedDelta = regressionDelta.passed_tests || 0;
+
+	const renderRegressionMessage = useCallback(
+		( delta, noun, invertMeaning = false ) => {
+			if ( ! hasRegressionBaseline ) {
+				return __( 'Run another scan to start tracking trend changes.', 'accessibility-checker' );
+			}
+
+			if ( delta === 0 ) {
+				return sprintf( __( 'No change in %s since the last scan.', 'accessibility-checker' ), noun );
+			}
+
+			const increase = delta > 0;
+			const absDelta = Math.abs( delta );
+			const directionWord = increase ? __( 'up', 'accessibility-checker' ) : __( 'down', 'accessibility-checker' );
+			const impactWord = ( increase && ! invertMeaning ) || ( ! increase && invertMeaning )
+				? __( 'Regression', 'accessibility-checker' )
+				: __( 'Improvement', 'accessibility-checker' );
+
+			return sprintf(
+				// translators: 1: regression/improvement label, 2: magnitude, 3: metric label, 4: up/down.
+				__( '%1$s: %2$d %3$s %4$s since last scan.', 'accessibility-checker' ),
+				impactWord,
+				absDelta,
+				noun,
+				directionWord,
+			);
+		},
+		[ hasRegressionBaseline ],
+	);
+
+	const retentionMessage =
+		regressionStatus === 'declining'
+			? __( 'Accessibility is declining. If you stop scanning, this drift may go unnoticed until users are blocked.', 'accessibility-checker' )
+			: __( 'Ongoing scans prove whether accessibility is improving or slipping over time.', 'accessibility-checker' );
 
 	// Determine status icon based on errors and warnings
 	let statusIconName = 'check';
@@ -206,7 +248,9 @@ const AccessibilityStatus = () => {
 						<div className="edac-status-card__value">
 							{ problems }
 						</div>
-						{/* Placeholder for 30-day trend - will be implemented later */}
+						<div className="edac-status-card__meta edac-status-card__meta--trend">
+							{ renderRegressionMessage( problemsDelta, __( 'problems', 'accessibility-checker' ) ) }
+						</div>
 					</div>
 
 					{/* Needs Review (Warnings) */}
@@ -240,7 +284,9 @@ const AccessibilityStatus = () => {
 						<div className="edac-status-card__value">
 							{ needsReview }
 						</div>
-						{/* Placeholder for 30-day trend - will be implemented later */}
+						<div className="edac-status-card__meta edac-status-card__meta--trend">
+							{ renderRegressionMessage( warningDelta, __( 'warnings', 'accessibility-checker' ) ) }
+						</div>
 					</div>
 					{/* Reading Level */}
 					<div
@@ -290,8 +336,13 @@ const AccessibilityStatus = () => {
 						<div className="edac-status-card__value">
 							{ coveragePercent }%
 						</div>
-						{/* Placeholder for 30-day trend - will be implemented later */}
+						<div className="edac-status-card__meta edac-status-card__meta--trend">
+							{ renderRegressionMessage( passedDelta, __( 'passed checks', 'accessibility-checker' ), true ) }
+						</div>
 					</div>
+				</PanelRow>
+				<PanelRow className="edac-status-retention-message">
+					<p>{ retentionMessage }</p>
 				</PanelRow>
 			</PanelBody>
 		</Panel>
@@ -299,4 +350,3 @@ const AccessibilityStatus = () => {
 };
 
 export default AccessibilityStatus;
-

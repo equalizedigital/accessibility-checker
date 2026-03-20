@@ -874,6 +874,29 @@ class REST_Api {
 				'warnings'        => 0,
 				'ignored'         => 0,
 				'readability'     => 0,
+				'regression'      => [
+					'has_baseline' => false,
+					'status'       => 'stable',
+					'delta'        => [
+						'errors'          => 0,
+						'warnings'        => 0,
+						'contrast_errors' => 0,
+						'passed_tests'    => 0,
+					],
+					'scanned_at'   => '',
+				],
+			];
+		} elseif ( ! isset( $summary['regression'] ) || ! is_array( $summary['regression'] ) ) {
+			$summary['regression'] = [
+				'has_baseline' => false,
+				'status'       => 'stable',
+				'delta'        => [
+					'errors'          => 0,
+					'warnings'        => 0,
+					'contrast_errors' => 0,
+					'passed_tests'    => 0,
+				],
+				'scanned_at'   => '',
 			];
 		}
 

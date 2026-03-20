@@ -60,6 +60,7 @@ class Summary_Generator {
 
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		$summary    = [];
+		$previous_summary = get_post_meta( $this->post_id, '_edac_summary', true );
 
 		if ( ! $table_name ) {
 			return $summary;
@@ -80,10 +81,60 @@ class Summary_Generator {
 		$summary['content_grade']      = $this->calculate_content_grade();
 		$summary['readability']        = $this->get_readability( $summary );
 		$summary['simplified_summary'] = (bool) ( get_post_meta( $this->post_id, '_edac_simplified_summary', true ) );
+		$summary['regression']         = $this->build_regression_data( $previous_summary, $summary );
 		$this->update_issue_density( $summary );
 		$this->save_summary_meta_data( $summary );
 
 		return $summary;
+	}
+
+	/**
+	 * Build regression/trend data by comparing the current summary with the previous scan summary.
+	 *
+	 * @param mixed $previous_summary The previously saved summary meta.
+	 * @param array $current_summary  The current summary data.
+	 *
+	 * @return array
+	 */
+	private function build_regression_data( $previous_summary, array $current_summary ) {
+		$metrics = [
+			'errors',
+			'warnings',
+			'contrast_errors',
+			'passed_tests',
+		];
+
+		$deltas = [];
+		foreach ( $metrics as $metric ) {
+			$current_value = absint( $current_summary[ $metric ] ?? 0 );
+			$previous_value = is_array( $previous_summary ) ? absint( $previous_summary[ $metric ] ?? 0 ) : 0;
+			$deltas[ $metric ] = $current_value - $previous_value;
+		}
+
+		$regression_score = max( 0, $deltas['errors'] ) + max( 0, $deltas['warnings'] ) + max( 0, $deltas['contrast_errors'] );
+
+		$status = 'stable';
+		if ( $regression_score >= 5 || $deltas['passed_tests'] <= -10 ) {
+			$status = 'declining';
+		} elseif ( $regression_score > 0 || $deltas['passed_tests'] < 0 ) {
+			$status = 'watch';
+		} elseif ( $deltas['errors'] < 0 || $deltas['warnings'] < 0 || $deltas['contrast_errors'] < 0 || $deltas['passed_tests'] > 0 ) {
+			$status = 'improving';
+		}
+
+		$has_baseline = is_array( $previous_summary ) && ! empty( $previous_summary );
+
+		return [
+			'has_baseline' => (bool) $has_baseline,
+			'status'       => sanitize_key( $status ),
+			'delta'        => [
+				'errors'          => intval( $deltas['errors'] ),
+				'warnings'        => intval( $deltas['warnings'] ),
+				'contrast_errors' => intval( $deltas['contrast_errors'] ),
+				'passed_tests'    => intval( $deltas['passed_tests'] ),
+			],
+			'scanned_at'   => current_time( 'mysql', true ),
+		];
 	}
 
 	/**
@@ -330,6 +381,34 @@ class Summary_Generator {
 		update_post_meta( $this->post_id, '_edac_summary_warnings', absint( $summary['warnings'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_ignored', absint( $summary['ignored'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', absint( $summary['contrast_errors'] ) );
+		$this->update_summary_history( $summary );
+	}
+
+	/**
+	 * Stores compact summary scan history used for trend/regression messaging.
+	 *
+	 * @param array $summary The latest summary.
+	 *
+	 * @return void
+	 */
+	private function update_summary_history( array $summary ) {
+		$history   = get_post_meta( $this->post_id, '_edac_summary_history', true );
+		$history   = is_array( $history ) ? $history : [];
+		$timestamp = current_time( 'mysql', true );
+
+		$history[] = [
+			'scanned_at'      => $timestamp,
+			'errors'          => absint( $summary['errors'] ?? 0 ),
+			'warnings'        => absint( $summary['warnings'] ?? 0 ),
+			'contrast_errors' => absint( $summary['contrast_errors'] ?? 0 ),
+			'passed_tests'    => absint( $summary['passed_tests'] ?? 0 ),
+		];
+
+		if ( count( $history ) > 10 ) {
+			$history = array_slice( $history, -10 );
+		}
+
+		update_post_meta( $this->post_id, '_edac_summary_history', $history );
 	}
 
 	/**
@@ -351,6 +430,17 @@ class Summary_Generator {
 			'content_grade'      => absint( $summary['content_grade'] ?? 0 ),
 			'readability'        => sanitize_text_field( $summary['readability'] ?? '' ),
 			'simplified_summary' => filter_var( $summary['simplified_summary'] ?? false, FILTER_VALIDATE_BOOLEAN ),
+			'regression'         => [
+				'has_baseline' => filter_var( $summary['regression']['has_baseline'] ?? false, FILTER_VALIDATE_BOOLEAN ),
+				'status'       => sanitize_key( $summary['regression']['status'] ?? 'stable' ),
+				'delta'        => [
+					'errors'          => intval( $summary['regression']['delta']['errors'] ?? 0 ),
+					'warnings'        => intval( $summary['regression']['delta']['warnings'] ?? 0 ),
+					'contrast_errors' => intval( $summary['regression']['delta']['contrast_errors'] ?? 0 ),
+					'passed_tests'    => intval( $summary['regression']['delta']['passed_tests'] ?? 0 ),
+				],
+				'scanned_at'   => sanitize_text_field( $summary['regression']['scanned_at'] ?? '' ),
+			],
 		];
 	}
 }
