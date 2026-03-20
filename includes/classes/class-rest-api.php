@@ -995,6 +995,9 @@ class REST_Api {
 				}
 				$result['ignre_user_name'] = $user_cache[ $user_id ];
 			}
+			if ( isset( $result['extra_data'] ) && null !== $result['extra_data'] ) {
+				$result['extra_data'] = json_decode( $result['extra_data'], true );
+			}
 			$results_by_rule[ $rule_slug ][] = $result;
 		}
 
