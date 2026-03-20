@@ -346,7 +346,7 @@ class Ajax {
 
 			foreach ( $rules as $rule ) {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
-				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_reason, ignre_global, landmark, landmark_selector FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
+				$results        = $wpdb->get_results( $wpdb->prepare( 'SELECT id, postid, object, ruletype, ignre, ignre_user, ignre_date, ignre_comment, ignre_reason, ignre_global, landmark, landmark_selector, extra_data FROM %i where postid = %d and rule = %s and siteid = %d', $table_name, $postid, $rule['slug'], $siteid ), ARRAY_A );
 				$count_classes  = ( 'error' === $rule['rule_type'] ) ? ' edac-details-rule-count-error' : ' edac-details-rule-count-warning';
 				$count_classes .= ( 0 !== $rule['count'] ) ? ' active' : '';
 
@@ -507,7 +507,9 @@ class Ajax {
 							$id
 						) . '</h4>';
 
-						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record">';
+						$extra_data_attr = ! empty( $row['extra_data'] ) ? ' data-extra-data="' . esc_attr( $row['extra_data'] ) . '"' : '';
+						
+						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record"' . $extra_data_attr . '>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
 
