@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
 use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ColorContrastCustomValuesFix;
 
 /**
  * ColorContrastFailure Rule class.
@@ -49,6 +50,9 @@ class ColorContrastFailureRule implements RuleInterface {
 			'affected_disabilities' => [
 				AffectedDisabilities::LOW_VISION,
 				AffectedDisabilities::COLORBLIND,
+			],
+			'fixes'                 => [
+				ColorContrastCustomValuesFix::get_slug(),
 			],
 		];
 	}
