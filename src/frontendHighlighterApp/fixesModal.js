@@ -6,6 +6,98 @@ let focusRestoreTarget = null;
 const CloseEvent = new Event( 'edac-fixes-modal-closed', { bubbles: true } );
 const changeEventListeners = [];
 
+
+const COLOR_CONTRAST_FIX_FIELD_NAMES = {
+	enabled: 'edac_fix_color_contrast_custom_values_enabled',
+	selector: 'edac_fix_color_contrast_custom_values_selector',
+	textColor: 'edac_fix_color_contrast_custom_values_text_color',
+	backgroundColor: 'edac_fix_color_contrast_custom_values_background_color',
+};
+
+const rgbToHex = ( colorString ) => {
+	if ( ! colorString ) {
+		return '';
+	}
+
+	const rgbMatch = colorString.match( /rgba?\((\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i );
+	if ( ! rgbMatch ) {
+		return '';
+	}
+
+	const [ , r, g, b ] = rgbMatch;
+	const toHex = ( channel ) => Number.parseInt( channel, 10 ).toString( 16 ).padStart( 2, '0' );
+	return `#${ toHex( r ) }${ toHex( g ) }${ toHex( b ) }`.toLowerCase();
+};
+
+const isHexColor = ( value ) => /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test( value || '' );
+
+const getPreferredSelectorForElement = ( element ) => {
+	if ( ! element ) {
+		return '';
+	}
+
+	if ( element.id ) {
+		return `#${ CSS.escape( element.id ) }`;
+	}
+
+	if ( element.classList?.length ) {
+		const firstClass = element.classList[ 0 ];
+		if ( firstClass ) {
+			return `${ element.tagName.toLowerCase() }.${ CSS.escape( firstClass ) }`;
+		}
+	}
+
+	return element.tagName?.toLowerCase() || '';
+};
+
+const enhanceColorContrastFixFields = ( modalBody ) => {
+	if ( ! modalBody ) {
+		return;
+	}
+
+	const textColorInput = modalBody.querySelector( `[name="${ COLOR_CONTRAST_FIX_FIELD_NAMES.textColor }"]` );
+	const backgroundColorInput = modalBody.querySelector( `[name="${ COLOR_CONTRAST_FIX_FIELD_NAMES.backgroundColor }"]` );
+	const selectorInput = modalBody.querySelector( `[name="${ COLOR_CONTRAST_FIX_FIELD_NAMES.selector }"]` );
+	const enabledInput = modalBody.querySelector( `[name="${ COLOR_CONTRAST_FIX_FIELD_NAMES.enabled }"]` );
+
+	if ( ! textColorInput || ! backgroundColorInput || ! selectorInput ) {
+		return;
+	}
+
+	const selectedElement = document.querySelector( '.edac-highlight-element-selected' );
+	const computedStyles = selectedElement ? window.getComputedStyle( selectedElement ) : null;
+
+	textColorInput.type = 'color';
+	backgroundColorInput.type = 'color';
+	textColorInput.setAttribute( 'aria-label', __( 'Text color', 'accessibility-checker' ) );
+	backgroundColorInput.setAttribute( 'aria-label', __( 'Background color', 'accessibility-checker' ) );
+
+	const fallbackTextColor = rgbToHex( computedStyles?.color || '' ) || '#000000';
+	const fallbackBackgroundColor = rgbToHex( computedStyles?.backgroundColor || '' ) || '#ffffff';
+
+	if ( ! isHexColor( textColorInput.value ) ) {
+		textColorInput.value = fallbackTextColor;
+	}
+	if ( ! isHexColor( backgroundColorInput.value ) ) {
+		backgroundColorInput.value = fallbackBackgroundColor;
+	}
+
+	if ( ! selectorInput.value ) {
+		selectorInput.value = getPreferredSelectorForElement( selectedElement );
+	}
+
+	const onFieldChange = () => {
+		if ( enabledInput ) {
+			enabledInput.checked = true;
+		}
+	};
+
+	textColorInput.addEventListener( 'change', onFieldChange );
+	backgroundColorInput.addEventListener( 'change', onFieldChange );
+	selectorInput.addEventListener( 'change', onFieldChange );
+};
+
+
 const buildFixesModalBase = () => {
 	// Create the modal
 	const modal = document.createElement( 'div' );
@@ -157,6 +249,7 @@ export const fillFixesModal = ( content = '', fieldsElement = '' ) => {
 	modalTitle.innerText = fancyName;
 	modalBody.innerHTML = content;
 	modalBody.appendChild( fieldsWrapper );
+	enhanceColorContrastFixFields( modalBody );
 
 	modal.querySelectorAll( 'input, select, textarea' ).forEach( ( field ) => {
 		const changeListener = () => {
