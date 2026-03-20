@@ -395,7 +395,7 @@ function processViolation( violation, item ) {
 	};
 
 	if ( item.id === 'color_contrast_failure' ) {
-		const check = violation.node.any?.find( ( c ) => c.id === 'color-contrast' );
+		const check = violation.any?.find( ( c ) => c.id === 'color-contrast' );
 		if ( check?.data ) {
 			result.extraData = {
 				fgColor: check.data.fgColor,
