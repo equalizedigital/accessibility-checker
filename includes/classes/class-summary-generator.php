@@ -58,8 +58,8 @@ class Summary_Generator {
 	public function generate_summary() {
 		global $wpdb;
 
-		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
-		$summary    = [];
+		$table_name       = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
+		$summary          = [];
 		$previous_summary = get_post_meta( $this->post_id, '_edac_summary', true );
 
 		if ( ! $table_name ) {
@@ -81,11 +81,43 @@ class Summary_Generator {
 		$summary['content_grade']      = $this->calculate_content_grade();
 		$summary['readability']        = $this->get_readability( $summary );
 		$summary['simplified_summary'] = (bool) ( get_post_meta( $this->post_id, '_edac_simplified_summary', true ) );
-		$summary['regression']         = $this->build_regression_data( $previous_summary, $summary );
+
+		// If issue counts haven't changed since the last save, preserve existing regression
+		// data to avoid a second generate_summary() call overwriting deltas with zeros.
+		if ( $this->issue_counts_match( $previous_summary, $summary ) && ! empty( $previous_summary['regression'] ) ) {
+			$summary['regression'] = $previous_summary['regression'];
+		} else {
+			$summary['regression'] = $this->build_regression_data( $previous_summary, $summary );
+		}
+
 		$this->update_issue_density( $summary );
 		$this->save_summary_meta_data( $summary );
 
 		return $summary;
+	}
+
+	/**
+	 * Checks whether issue-related counts in the current summary match a previously saved summary.
+	 *
+	 * @param mixed $previous_summary The previously saved summary meta.
+	 * @param array $current_summary  The current summary data.
+	 *
+	 * @return bool True when all issue counts are identical.
+	 */
+	private function issue_counts_match( $previous_summary, array $current_summary ): bool {
+		if ( ! is_array( $previous_summary ) ) {
+			return false;
+		}
+
+		$metrics = [ 'errors', 'warnings', 'contrast_errors', 'passed_tests', 'content_grade' ];
+
+		foreach ( $metrics as $metric ) {
+			if ( absint( $previous_summary[ $metric ] ?? 0 ) !== absint( $current_summary[ $metric ] ?? 0 ) ) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
@@ -102,12 +134,13 @@ class Summary_Generator {
 			'warnings',
 			'contrast_errors',
 			'passed_tests',
+			'content_grade',
 		];
 
 		$deltas = [];
 		foreach ( $metrics as $metric ) {
-			$current_value = absint( $current_summary[ $metric ] ?? 0 );
-			$previous_value = is_array( $previous_summary ) ? absint( $previous_summary[ $metric ] ?? 0 ) : 0;
+			$current_value     = absint( $current_summary[ $metric ] ?? 0 );
+			$previous_value    = is_array( $previous_summary ) ? absint( $previous_summary[ $metric ] ?? 0 ) : 0;
 			$deltas[ $metric ] = $current_value - $previous_value;
 		}
 
@@ -132,6 +165,7 @@ class Summary_Generator {
 				'warnings'        => intval( $deltas['warnings'] ),
 				'contrast_errors' => intval( $deltas['contrast_errors'] ),
 				'passed_tests'    => intval( $deltas['passed_tests'] ),
+				'content_grade'   => intval( $deltas['content_grade'] ),
 			],
 			'scanned_at'   => current_time( 'mysql', true ),
 		];
@@ -396,13 +430,30 @@ class Summary_Generator {
 		$history   = is_array( $history ) ? $history : [];
 		$timestamp = current_time( 'mysql', true );
 
-		$history[] = [
+		$new_entry = [
 			'scanned_at'      => $timestamp,
 			'errors'          => absint( $summary['errors'] ?? 0 ),
 			'warnings'        => absint( $summary['warnings'] ?? 0 ),
 			'contrast_errors' => absint( $summary['contrast_errors'] ?? 0 ),
 			'passed_tests'    => absint( $summary['passed_tests'] ?? 0 ),
+			'content_grade'   => absint( $summary['content_grade'] ?? 0 ),
 		];
+
+		// Skip duplicate entries when generate_summary() is called multiple times per scan.
+		if ( ! empty( $history ) ) {
+			$last = end( $history );
+			if (
+				absint( $last['errors'] ?? -1 ) === $new_entry['errors'] &&
+				absint( $last['warnings'] ?? -1 ) === $new_entry['warnings'] &&
+				absint( $last['contrast_errors'] ?? -1 ) === $new_entry['contrast_errors'] &&
+				absint( $last['passed_tests'] ?? -1 ) === $new_entry['passed_tests'] &&
+				absint( $last['content_grade'] ?? -1 ) === $new_entry['content_grade']
+			) {
+				return;
+			}
+		}
+
+		$history[] = $new_entry;
 
 		if ( count( $history ) > 10 ) {
 			$history = array_slice( $history, -10 );
@@ -438,6 +489,7 @@ class Summary_Generator {
 					'warnings'        => intval( $summary['regression']['delta']['warnings'] ?? 0 ),
 					'contrast_errors' => intval( $summary['regression']['delta']['contrast_errors'] ?? 0 ),
 					'passed_tests'    => intval( $summary['regression']['delta']['passed_tests'] ?? 0 ),
+					'content_grade'   => intval( $summary['regression']['delta']['content_grade'] ?? 0 ),
 				],
 				'scanned_at'   => sanitize_text_field( $summary['regression']['scanned_at'] ?? '' ),
 			],

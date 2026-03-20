@@ -86,6 +86,7 @@ const AccessibilityStatus = () => {
 		( regressionDelta.errors || 0 ) + ( regressionDelta.contrast_errors || 0 );
 	const warningDelta = regressionDelta.warnings || 0;
 	const passedDelta = regressionDelta.passed_tests || 0;
+	const readingLevelDelta = regressionDelta.content_grade || 0;
 
 	const renderRegressionMessage = useCallback(
 		( delta, noun, invertMeaning = false ) => {
@@ -119,7 +120,7 @@ const AccessibilityStatus = () => {
 	const retentionMessage =
 		regressionStatus === 'declining'
 			? __( 'Accessibility is declining. If you stop scanning, this drift may go unnoticed until users are blocked.', 'accessibility-checker' )
-			: __( 'Ongoing scans prove whether accessibility is improving or slipping over time.', 'accessibility-checker' );
+			: '';
 
 	// Determine status icon based on errors and warnings
 	let statusIconName = 'check';
@@ -319,11 +320,12 @@ const AccessibilityStatus = () => {
 						<div className="edac-status-card__value">
 							{ readingLevelText }
 						</div>
-						{ summaryStatus && (
-							<div className="edac-status-card__meta">
-								{ summaryStatus }
-							</div>
-						) }
+						<div className="edac-status-card__meta edac-status-card__meta--trend">
+							{ summaryStatus && (
+								<span>{ summaryStatus }. </span>
+							) }
+							{ renderRegressionMessage( readingLevelDelta, __( 'reading level', 'accessibility-checker' ) ) }
+						</div>
 					</div>
 					{/* Passed Checks (Coverage) */}
 					<div className="edac-status-card">
@@ -341,9 +343,11 @@ const AccessibilityStatus = () => {
 						</div>
 					</div>
 				</PanelRow>
-				<PanelRow className="edac-status-retention-message">
-					<p>{ retentionMessage }</p>
-				</PanelRow>
+				{ retentionMessage && (
+					<PanelRow className="edac-status-retention-message">
+						<p>{ retentionMessage }</p>
+					</PanelRow>
+				) }
 			</PanelBody>
 		</Panel>
 	);
