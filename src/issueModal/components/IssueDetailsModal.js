@@ -425,6 +425,45 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 						)
 					) }
 
+					{ /* Color Contrast Data */ }
+					{ issue?.extra_data?.fgColor && issue?.extra_data?.bgColor && (
+						<div className="edac-analysis__contrast" data-section="contrast">
+							<div className="edac-analysis__contrast-swatches">
+								<div className="edac-analysis__contrast-swatch">
+									<div
+										className="edac-analysis__contrast-swatch-color"
+										style={ { backgroundColor: issue.extra_data.fgColor, color: issue.extra_data.bgColor } }
+										aria-hidden="true"
+									>
+										Aa
+									</div>
+									<div className="edac-analysis__contrast-swatch-label">
+										<span>{ __( 'Foreground', 'accessibility-checker' ) }</span>
+										<code>{ issue.extra_data.fgColor }</code>
+									</div>
+								</div>
+								<div className="edac-analysis__contrast-swatch">
+									<div
+										className="edac-analysis__contrast-swatch-color"
+										style={ { backgroundColor: issue.extra_data.bgColor, color: issue.extra_data.fgColor } }
+										aria-hidden="true"
+									>
+										Aa
+									</div>
+									<div className="edac-analysis__contrast-swatch-label">
+										<span>{ __( 'Background', 'accessibility-checker' ) }</span>
+										<code>{ issue.extra_data.bgColor }</code>
+									</div>
+								</div>
+							</div>
+							<p className="edac-analysis__contrast-ratio">
+								{ __( 'Contrast ratio:', 'accessibility-checker' ) }{ ' ' }
+								<strong>{ issue.extra_data.contrastRatio }:1</strong>{ ' ' }
+								({ __( 'required:', 'accessibility-checker' ) } { issue.extra_data.expectedContrastRatio })
+							</p>
+						</div>
+					) }
+
 					<hr aria-hidden="true" />
 
 					{ /* Affected Code */ }
