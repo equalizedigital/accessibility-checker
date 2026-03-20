@@ -65,7 +65,7 @@ class Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath, extra_data FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
 			return null;
 		}
@@ -143,6 +143,7 @@ class Frontend_Highlight {
 			$array['selector']   = $result['selector'] ?? '';
 			$array['ancestry']   = $result['ancestry'] ?? '';
 			$array['xpath']      = $result['xpath'] ?? '';
+			$array['extra_data'] = ! empty( $result['extra_data'] ) ? json_decode( $result['extra_data'], true ) : null;
 
 			$issues[] = $array;
 
