@@ -780,6 +780,40 @@ class AccessibilityCheckerHighlight {
 			// Color contrast data
 			if ( matchingObj.extra_data?.fgColor && matchingObj.extra_data?.bgColor ) {
 				const { fgColor, bgColor, contrastRatio, expectedContrastRatio } = matchingObj.extra_data;
+				const savedFix = matchingObj.extra_data?.colorFix || null;
+				const fgHex = this.rgbToHex( fgColor ) || fgColor;
+				const bgHex = this.rgbToHex( bgColor ) || bgColor;
+				const currentFg = savedFix?.new_fg || fgHex;
+				const currentBg = savedFix?.new_bg || bgHex;
+				const canFix = window.edacFrontendHighlighterApp?.userCanFix;
+				const resetButton = savedFix && canFix
+					? `<button class="edac-color-fix-reset edac-highlight-panel-description--button" aria-label="${ __( 'Reset colors to original detected values', 'accessibility-checker' ) }">${ __( 'Reset to Original', 'accessibility-checker' ) }</button>`
+					: '';
+				const colorEditor = canFix
+					? `<div class="edac-highlight-panel-description-contrast-editor">
+							<p class="edac-highlight-panel-description-contrast-editor-title">${ __( 'Fix Colors', 'accessibility-checker' ) }</p>
+							<div class="edac-highlight-panel-description-contrast-editor-inputs">
+								<label class="edac-color-fix-label">
+									${ __( 'Foreground', 'accessibility-checker' ) }
+									<input type="color" class="edac-color-fix-fg" value="${ currentFg }" data-original="${ fgHex }">
+								</label>
+								<label class="edac-color-fix-label">
+									${ __( 'Background', 'accessibility-checker' ) }
+									<input type="color" class="edac-color-fix-bg" value="${ currentBg }" data-original="${ bgHex }">
+								</label>
+							</div>
+							<div class="edac-highlight-panel-description-contrast-ratio-live">
+								${ __( 'New ratio:', 'accessibility-checker' ) } <strong class="edac-color-fix-ratio-value">—</strong>
+							</div>
+							<div class="edac-highlight-panel-description-contrast-editor-actions">
+								<button class="edac-color-fix-preview edac-highlight-panel-description--button">${ __( 'Preview', 'accessibility-checker' ) }</button>
+								<button class="edac-color-fix-save edac-highlight-panel-description--button">${ __( 'Save Fix', 'accessibility-checker' ) }</button>
+								${ resetButton }
+							</div>
+							<p class="edac-color-fix-notice" aria-live="polite" role="status"></p>
+						</div>`
+					: '';
+
 				content += `
 					<div class="edac-highlight-panel-description-contrast">
 						<div class="edac-highlight-panel-description-contrast-swatches">
@@ -795,6 +829,7 @@ class AccessibilityCheckerHighlight {
 						<div class="edac-highlight-panel-description-contrast-ratio">
 							${ __( 'Contrast ratio:', 'accessibility-checker' ) } <strong>${ contrastRatio }:1</strong> (${ __( 'required:', 'accessibility-checker' ) } ${ expectedContrastRatio })
 						</div>
+						${ colorEditor }
 					</div>
 				`;
 			}
@@ -838,6 +873,11 @@ class AccessibilityCheckerHighlight {
 
 			// content
 			descriptionContent.innerHTML = content;
+
+			// Attach color fix handlers when contrast data is present and user can fix.
+			if ( matchingObj.extra_data?.fgColor && matchingObj.extra_data?.bgColor && window.edacFrontendHighlighterApp?.userCanFix ) {
+				this.initColorFixHandlers( matchingObj, descriptionContent );
+			}
 
 			// code object
 			// remove any non-html from the object
@@ -1492,6 +1532,255 @@ class AccessibilityCheckerHighlight {
 		} ).finally( () => {
 			this.clearIssuesButton.disabled = false;
 			this.clearIssuesButton.textContent = __( 'Clear Issues', 'accessibility-checker' );
+		} );
+	}
+
+	/**
+	 * Convert an rgb() or rgba() color string to a CSS hex color.
+	 *
+	 * Returns null when the input cannot be parsed (e.g. named colors or HSL).
+	 *
+	 * @param {string} rgbString - Color string such as "rgb(51, 51, 51)" or "#3a3a3a".
+	 * @return {string|null} Hex string like "#333333", or null on failure.
+	 */
+	rgbToHex( rgbString ) {
+		if ( ! rgbString ) {
+			return null;
+		}
+		// Already a hex value.
+		if ( /^#[0-9a-fA-F]{3,8}$/.test( rgbString.trim() ) ) {
+			const s = rgbString.trim().replace( /^#/, '' );
+			if ( s.length === 3 ) {
+				return '#' + s.split( '' ).map( ( c ) => c + c ).join( '' );
+			}
+			return '#' + s.slice( 0, 6 );
+		}
+		const match = rgbString.match( /rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/ );
+		if ( ! match ) {
+			return null;
+		}
+		return '#' + [ match[ 1 ], match[ 2 ], match[ 3 ] ]
+			.map( ( n ) => parseInt( n, 10 ).toString( 16 ).padStart( 2, '0' ) )
+			.join( '' );
+	}
+
+	/**
+	 * Calculate the WCAG 2.1 contrast ratio between two hex colours.
+	 *
+	 * @param {string} hex1 - First colour as a 6-digit hex string (e.g. "#333333").
+	 * @param {string} hex2 - Second colour as a 6-digit hex string.
+	 * @return {string|null} Contrast ratio rounded to two decimal places, or null on error.
+	 */
+	computeContrastRatio( hex1, hex2 ) {
+		const toLinear = ( c ) => {
+			const s = c / 255;
+			return s <= 0.03928 ? s / 12.92 : Math.pow( ( s + 0.055 ) / 1.055, 2.4 );
+		};
+		const luminance = ( hex ) => {
+			const r = parseInt( hex.slice( 1, 3 ), 16 );
+			const g = parseInt( hex.slice( 3, 5 ), 16 );
+			const b = parseInt( hex.slice( 5, 7 ), 16 );
+			if ( isNaN( r ) || isNaN( g ) || isNaN( b ) ) {
+				return null;
+			}
+			return ( ( 0.2126 * toLinear( r ) ) + ( 0.7152 * toLinear( g ) ) ) + ( 0.0722 * toLinear( b ) );
+		};
+		const l1 = luminance( hex1 );
+		const l2 = luminance( hex2 );
+		if ( l1 === null || l2 === null ) {
+			return null;
+		}
+		const lighter = Math.max( l1, l2 );
+		const darker = Math.min( l1, l2 );
+		return ( ( lighter + 0.05 ) / ( darker + 0.05 ) ).toFixed( 2 );
+	}
+
+	/**
+	 * Attach event handlers for the inline color contrast fix editor.
+	 *
+	 * Wires up preview, save, and reset interactions in the description panel.
+	 * Original detected colors are preserved in the issue's extra_data and in
+	 * data-original attributes on the colour inputs, while any saved fix values
+	 * are tracked server-side via the REST API.
+	 *
+	 * @param {Object}      matchingObj        - Issue object from this.issues.
+	 * @param {HTMLElement} descriptionContent - The description content container.
+	 */
+	initColorFixHandlers( matchingObj, descriptionContent ) {
+		const fgInput = descriptionContent.querySelector( '.edac-color-fix-fg' );
+		const bgInput = descriptionContent.querySelector( '.edac-color-fix-bg' );
+		const ratioDisplay = descriptionContent.querySelector( '.edac-color-fix-ratio-value' );
+		const previewBtn = descriptionContent.querySelector( '.edac-color-fix-preview' );
+		const saveBtn = descriptionContent.querySelector( '.edac-color-fix-save' );
+		const resetBtn = descriptionContent.querySelector( '.edac-color-fix-reset' );
+		const notice = descriptionContent.querySelector( '.edac-color-fix-notice' );
+
+		if ( ! fgInput || ! bgInput ) {
+			return;
+		}
+
+		// Update the live contrast ratio display whenever either colour changes.
+		const updateRatio = () => {
+			const ratio = this.computeContrastRatio( fgInput.value, bgInput.value );
+			if ( ratioDisplay ) {
+				ratioDisplay.textContent = ratio ? ratio + ':1' : '—';
+			}
+		};
+		fgInput.addEventListener( 'input', updateRatio );
+		bgInput.addEventListener( 'input', updateRatio );
+		updateRatio();
+
+		// Preview: apply colours directly to the element so the user can see the result.
+		if ( previewBtn ) {
+			previewBtn.addEventListener( 'click', () => {
+				const element = matchingObj.element;
+				if ( ! element ) {
+					return;
+				}
+				// Only capture the very first computed values so reset always goes back to the true original.
+				if ( ! element.dataset.edacOriginalFg ) {
+					element.dataset.edacOriginalFg = getComputedStyle( element ).color;
+				}
+				if ( ! element.dataset.edacOriginalBg ) {
+					element.dataset.edacOriginalBg = getComputedStyle( element ).backgroundColor;
+				}
+				element.style.setProperty( 'color', fgInput.value, 'important' );
+				element.style.setProperty( 'background-color', bgInput.value, 'important' );
+			} );
+		}
+
+		// Save: persist the colour override to WordPress via REST.
+		if ( saveBtn ) {
+			saveBtn.addEventListener( 'click', () => {
+				const selector = matchingObj.ancestry || matchingObj.selector;
+				if ( ! selector ) {
+					if ( notice ) {
+						notice.textContent = __( 'Cannot save: no selector found for this element.', 'accessibility-checker' );
+					}
+					return;
+				}
+
+				const restUrl = window.edacFrontendHighlighterApp?.restUrl;
+				const nonce = window.edacFrontendHighlighterApp?.restNonce;
+				if ( ! restUrl || ! nonce ) {
+					return;
+				}
+
+				saveBtn.disabled = true;
+				if ( notice ) {
+					notice.textContent = __( 'Saving…', 'accessibility-checker' );
+				}
+
+				fetch( restUrl + '/color-fix', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+						'X-WP-Nonce': nonce,
+					},
+					body: JSON.stringify( {
+						issue_id: matchingObj.id,
+						post_id: window.edacFrontendHighlighterApp.postID,
+						new_fg: fgInput.value,
+						new_bg: bgInput.value,
+						original_fg: fgInput.dataset.original,
+						original_bg: bgInput.dataset.original,
+						selector,
+					} ),
+				} )
+					.then( ( response ) => {
+						saveBtn.disabled = false;
+						if ( response.ok ) {
+							if ( notice ) {
+								notice.textContent = __( 'Fix saved. Reload the page to see the result applied for all visitors.', 'accessibility-checker' );
+							}
+							// Show the reset button if it was not already present.
+							if ( ! resetBtn ) {
+								const actions = descriptionContent.querySelector( '.edac-highlight-panel-description-contrast-editor-actions' );
+								if ( actions ) {
+									const btn = document.createElement( 'button' );
+									btn.className = 'edac-color-fix-reset edac-highlight-panel-description--button';
+									btn.setAttribute( 'aria-label', __( 'Reset colors to original detected values', 'accessibility-checker' ) );
+									btn.textContent = __( 'Reset to Original', 'accessibility-checker' );
+									actions.appendChild( btn );
+									this.bindResetButton( btn, matchingObj, fgInput, bgInput, notice, updateRatio );
+								}
+							}
+						} else if ( notice ) {
+							notice.textContent = __( 'Save failed. Please try again.', 'accessibility-checker' );
+						}
+					} )
+					.catch( () => {
+						saveBtn.disabled = false;
+						if ( notice ) {
+							notice.textContent = __( 'Save failed. Please try again.', 'accessibility-checker' );
+						}
+					} );
+			} );
+		}
+
+		// Reset: delete the saved fix and revert any live preview.
+		if ( resetBtn ) {
+			this.bindResetButton( resetBtn, matchingObj, fgInput, bgInput, notice, updateRatio );
+		}
+	}
+
+	/**
+	 * Bind the reset-to-original button for the color contrast fix editor.
+	 *
+	 * @param {HTMLElement} btn         - The reset button element.
+	 * @param {Object}      matchingObj - Issue object from this.issues.
+	 * @param {HTMLElement} fgInput     - The foreground colour input.
+	 * @param {HTMLElement} bgInput     - The background colour input.
+	 * @param {HTMLElement} notice      - The status notice element.
+	 * @param {Function}    updateRatio - Callback to refresh the live ratio display.
+	 */
+	bindResetButton( btn, matchingObj, fgInput, bgInput, notice, updateRatio ) {
+		btn.addEventListener( 'click', () => {
+			const restUrl = window.edacFrontendHighlighterApp?.restUrl;
+			const nonce = window.edacFrontendHighlighterApp?.restNonce;
+			if ( ! restUrl || ! nonce ) {
+				return;
+			}
+
+			btn.disabled = true;
+			if ( notice ) {
+				notice.textContent = __( 'Resetting…', 'accessibility-checker' );
+			}
+
+			const postId = window.edacFrontendHighlighterApp.postID;
+			fetch( `${ restUrl }/color-fix/${ matchingObj.id }?post_id=${ postId }`, {
+				method: 'DELETE',
+				headers: {
+					'X-WP-Nonce': nonce,
+				},
+			} )
+				.then( ( response ) => {
+					btn.disabled = false;
+					if ( response.ok ) {
+						// Revert inline styles applied by preview.
+						const element = matchingObj.element;
+						if ( element ) {
+							element.style.removeProperty( 'color' );
+							element.style.removeProperty( 'background-color' );
+						}
+						// Restore picker values to original detected colours.
+						fgInput.value = fgInput.dataset.original;
+						bgInput.value = bgInput.dataset.original;
+						updateRatio();
+						btn.remove();
+						if ( notice ) {
+							notice.textContent = __( 'Reset to original colors.', 'accessibility-checker' );
+						}
+					} else if ( notice ) {
+						notice.textContent = __( 'Reset failed. Please try again.', 'accessibility-checker' );
+					}
+				} )
+				.catch( () => {
+					btn.disabled = false;
+					if ( notice ) {
+						notice.textContent = __( 'Reset failed. Please try again.', 'accessibility-checker' );
+					}
+				} );
 		} );
 	}
 

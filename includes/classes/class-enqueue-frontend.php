@@ -111,6 +111,7 @@ class Enqueue_Frontend {
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js',
+					'restUrl'          => esc_url_raw( rest_url( 'edac/v1' ) ),
 				]
 			);
 

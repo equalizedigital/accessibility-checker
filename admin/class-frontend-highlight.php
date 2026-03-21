@@ -8,6 +8,7 @@
 namespace EDAC\Admin;
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\ColorContrastFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -115,7 +116,8 @@ class Frontend_Highlight {
 			wp_send_json_error( new \WP_Error( '-3', __( 'Issue query returned no results', 'accessibility-checker' ) ) );
 		}
 
-		$rules = edac_register_rules();
+		$rules       = edac_register_rules();
+		$color_fixes = ColorContrastFix::get_color_fixes( $post_id );
 
 		$issues = [];
 		$fixes  = [];
@@ -143,7 +145,11 @@ class Frontend_Highlight {
 			$array['selector']   = $result['selector'] ?? '';
 			$array['ancestry']   = $result['ancestry'] ?? '';
 			$array['xpath']      = $result['xpath'] ?? '';
-			$array['extra_data'] = ! empty( $result['extra_data'] ) ? json_decode( $result['extra_data'], true ) : null;
+			$extra_data          = ! empty( $result['extra_data'] ) ? json_decode( $result['extra_data'], true ) : null;
+			if ( is_array( $extra_data ) && isset( $color_fixes[ (int) $result['id'] ] ) ) {
+				$extra_data['colorFix'] = $color_fixes[ (int) $result['id'] ];
+			}
+			$array['extra_data'] = $extra_data;
 
 			$issues[] = $array;
 
