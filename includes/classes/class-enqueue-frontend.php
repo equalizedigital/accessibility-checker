@@ -112,6 +112,7 @@ class Enqueue_Frontend {
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js',
 					'restUrl'          => esc_url_raw( rest_url( 'edac/v1' ) ),
+					'acRestUrl'        => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
 				]
 			);
 

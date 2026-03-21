@@ -1691,7 +1691,7 @@ class AccessibilityCheckerHighlight {
 						saveBtn.disabled = false;
 						if ( response.ok ) {
 							if ( notice ) {
-								notice.textContent = __( 'Fix saved. Reload the page to see the result applied for all visitors.', 'accessibility-checker' );
+								notice.textContent = __( 'Fix saved. The issue will be dismissed from the panel on the next page load.', 'accessibility-checker' );
 							}
 							// Show the reset button if it was not already present.
 							if ( ! resetBtn ) {
@@ -1704,6 +1704,21 @@ class AccessibilityCheckerHighlight {
 									actions.appendChild( btn );
 									this.bindResetButton( btn, matchingObj, fgInput, bgInput, notice, updateRatio );
 								}
+							}
+							// Dismiss the issue in AC so it no longer appears as an active failure after reload.
+							const acRestUrl = window.edacFrontendHighlighterApp?.acRestUrl;
+							if ( acRestUrl ) {
+								fetch( `${ acRestUrl }/dismiss-issue/${ matchingObj.id }`, {
+									method: 'POST',
+									headers: {
+										'Content-Type': 'application/json',
+										'X-WP-Nonce': nonce,
+									},
+									body: JSON.stringify( { action: 'dismiss' } ),
+								} ).then( () => {
+									matchingObj.ignored = '1';
+									this.showIssueCount();
+								} );
 							}
 						} else if ( notice ) {
 							notice.textContent = __( 'Save failed. Please try again.', 'accessibility-checker' );
@@ -1769,7 +1784,22 @@ class AccessibilityCheckerHighlight {
 						updateRatio();
 						btn.remove();
 						if ( notice ) {
-							notice.textContent = __( 'Reset to original colors.', 'accessibility-checker' );
+							notice.textContent = __( 'Reset to original colors. The issue will reappear in the panel on the next page load.', 'accessibility-checker' );
+						}
+						// Restore the issue in AC so it shows as an active failure again after reload.
+						const acRestUrl = window.edacFrontendHighlighterApp?.acRestUrl;
+						if ( acRestUrl ) {
+							fetch( `${ acRestUrl }/dismiss-issue/${ matchingObj.id }`, {
+								method: 'POST',
+								headers: {
+									'Content-Type': 'application/json',
+									'X-WP-Nonce': nonce,
+								},
+								body: JSON.stringify( { action: 'undismiss' } ),
+							} ).then( () => {
+								matchingObj.ignored = '0';
+								this.showIssueCount();
+							} );
 						}
 					} else if ( notice ) {
 						notice.textContent = __( 'Reset failed. Please try again.', 'accessibility-checker' );
