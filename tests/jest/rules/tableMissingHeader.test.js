@@ -103,6 +103,35 @@ describe( 'Table Header Detection Rule', () => {
 			shouldPass: true,
 		},
 
+		{
+			name: 'Table with role="presentation" (no headers needed)',
+			html: `
+				<table role="presentation">
+					<tbody>
+						<tr>
+							<td>Image</td>
+							<td>Contact info</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with role="none" (no headers needed)',
+			html: `
+				<table role="none">
+					<tbody>
+						<tr>
+							<td>Column A</td>
+							<td>Column B</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			shouldPass: true,
+		},
+
 		// ❌ Failing cases
 		{
 			name: 'Core table block with no <th>',

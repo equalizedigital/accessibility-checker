@@ -5,6 +5,13 @@ export default {
 			return true;
 		}
 
+		// Tables with role="presentation" or role="none" are not treated as data tables
+		// by screen readers, so headers are not required for them.
+		const role = node.getAttribute( 'role' );
+		if ( role === 'presentation' || role === 'none' ) {
+			return true;
+		}
+
 		// TODO: Improve logic to account for colspan, rowspan, and complex ARIA header relationships
 
 		const rows = Array.from( node.querySelectorAll( 'tr' ) );
