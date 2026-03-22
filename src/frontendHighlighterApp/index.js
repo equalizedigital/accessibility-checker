@@ -1269,6 +1269,8 @@ class AccessibilityCheckerHighlight {
 					element.querySelector( 'h1, h2, h3, h4, h5, h6' );
 				return hasAccessibleName ? 'Region' : 'Section';
 			}
+			case 'article':
+				return 'Article';
 			case 'form': {
 				// Check if form has accessible name
 				const formHasAccessibleName = element.getAttribute( 'aria-label' ) ||
