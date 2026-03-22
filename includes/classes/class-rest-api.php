@@ -419,9 +419,74 @@ class REST_Api {
 		// Use just the opening <html> and closing </html> tag, prevents storing entire page as the affected code.
 		if ( 'html-has-lang' === $rule_id || 'document-title' === $rule_id ) {
 			$html = preg_replace( '/^.*(<html.*?>).*(<\/html>).*$/s', '$1...$2', $html );
-
 		}
+
+		// For missing headings, the body HTML can be extremely long on pages built with complex
+		// page builders (e.g. Elementor). Truncate to the body tag with its direct child elements
+		// (inner content replaced with '...') to retain structural context without storing the
+		// entire page HTML.
+		if ( 'missing_headings' === $rule_id && strlen( $html ) > 1024 ) {
+			$html = $this->truncate_body_html( $html );
+		}
+
 		return $html;
+	}
+
+	/**
+	 * Truncate body HTML to the body tag with its direct child element tags.
+	 *
+	 * For the missing_headings rule, the full body HTML can be extremely long on pages built
+	 * with complex page builders. This returns the body opening tag followed by each direct
+	 * child element's opening tag with its inner content replaced by '...', preserving
+	 * enough structural context to identify the issue.
+	 *
+	 * @since 1.16.0
+	 * @param string $html The full body HTML.
+	 * @return string Truncated HTML showing the body tag with direct child elements.
+	 */
+	private function truncate_body_html( string $html ): string {
+		$dom = new \DOMDocument();
+		libxml_use_internal_errors( true );
+		$dom->loadHTML( $html, LIBXML_NOERROR );
+		libxml_clear_errors();
+
+		$body = $dom->getElementsByTagName( 'body' )->item( 0 );
+		if ( ! $body ) {
+			// Fallback: return a plain string truncation.
+			return mb_substr( $html, 0, 1024 ) . '...';
+		}
+
+		// Build the opening body tag, preserving its attributes.
+		$truncated = '<body';
+		foreach ( $body->attributes as $attr ) {
+			$truncated .= ' ' . $attr->name . '="' . htmlspecialchars( $attr->value, ENT_QUOTES, 'UTF-8' ) . '"';
+		}
+		$truncated .= '>';
+
+		// Void (self-closing) HTML elements that should not get a closing tag.
+		$void_elements = [ 'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr' ];
+
+		// Add each direct child element with its inner content replaced by '...'.
+		foreach ( $body->childNodes as $child ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			if ( XML_ELEMENT_NODE !== $child->nodeType ) { // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+				continue;
+			}
+
+			$tag        = $child->nodeName; // phpcs:ignore WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
+			$child_html = '<' . $tag;
+			foreach ( $child->attributes as $attr ) {
+				$child_html .= ' ' . $attr->name . '="' . htmlspecialchars( $attr->value, ENT_QUOTES, 'UTF-8' ) . '"';
+			}
+
+			if ( in_array( strtolower( $tag ), $void_elements, true ) ) {
+				$truncated .= $child_html . '>';
+			} else {
+				$truncated .= $child_html . '>...</' . $tag . '>';
+			}
+		}
+
+		$truncated .= '</body>';
+		return $truncated;
 	}
 
 	/**
