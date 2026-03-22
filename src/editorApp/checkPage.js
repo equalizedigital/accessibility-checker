@@ -75,6 +75,22 @@ const injectIframe = ( previewUrl, postID ) => {
 
 	// Wait for the preview to load & inject the pageScanner script.
 	iframe.addEventListener( 'load', function() {
+
+		// Detect if the iframe was redirected away from the expected scan URL.
+		// When a post type redirects requests (e.g., a non-publicly-queryable
+		// post type redirecting to the homepage), the final URL will no longer
+		// contain 'edac_pageScanner'. In that case, abort the scan and remove
+		// the iframe.
+		try {
+			const loadedUrl = iframe.contentWindow.location.href;
+			if ( loadedUrl && ! loadedUrl.includes( 'edac_pageScanner' ) ) {
+				iframe.remove();
+				return;
+			}
+		} catch ( e ) {
+			// Cross-origin iframe; cannot check the URL. Proceed with the scan.
+		}
+
 		// Access the contentDocument of the iframe.
 		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
