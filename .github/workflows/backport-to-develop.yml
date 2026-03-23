@@ -25,17 +25,18 @@ jobs:
 
       - name: Get merged branch name
         id: get-branch
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           # Get the head branch name from the merged PR
-          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           echo "branch-name=$BRANCH_NAME" >> $GITHUB_OUTPUT
           echo "Merged branch: $BRANCH_NAME"
 
       - name: Check if branch exists
         id: check-branch
+        env:
+          BRANCH_NAME: ${{ steps.get-branch.outputs.branch-name }}
         run: |
-          BRANCH_NAME="${{ steps.get-branch.outputs.branch-name }}"
-          
           # Check if the branch still exists on the remote
           if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
             echo "branch-exists=true" >> $GITHUB_OUTPUT
@@ -48,15 +49,21 @@ jobs:
       - name: Create backport PR
         if: steps.check-branch.outputs.branch-exists == 'true'
         uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ steps.get-branch.outputs.branch-name }}
+          ORIGINAL_PR_NUMBER: ${{ github.event.pull_request.number }}
+          ORIGINAL_PR_TITLE: ${{ github.event.pull_request.title }}
+          ORIGINAL_PR_BODY: ${{ github.event.pull_request.body }}
+          ORIGINAL_PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const branchName = '${{ steps.get-branch.outputs.branch-name }}';
-            const originalPrNumber = context.payload.pull_request.number;
-            const originalPrTitle = context.payload.pull_request.title;
-            const originalPrBody = context.payload.pull_request.body || '';
-            const originalPrAuthor = context.payload.pull_request.user.login;
-            
+            const branchName = process.env.BRANCH_NAME;
+            const originalPrNumber = process.env.ORIGINAL_PR_NUMBER;
+            const originalPrTitle = process.env.ORIGINAL_PR_TITLE;
+            const originalPrBody = process.env.ORIGINAL_PR_BODY || '';
+            const originalPrAuthor = process.env.ORIGINAL_PR_AUTHOR;
+
             // Create the backport PR
             try {
               const response = await github.rest.pulls.create({
