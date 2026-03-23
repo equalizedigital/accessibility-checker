@@ -147,6 +147,7 @@ class AddNewWindowWarningFix implements FixInterface {
 				--edac-nww-icon-size: 0.75em;
 			}
 
+			.anww-external-link-icon,
 			.edac-nww-external-link-icon {
 				font: normal normal normal 1em var(--edac-nww-font-base) !important;
 				speak: never;
@@ -155,17 +156,19 @@ class AddNewWindowWarningFix implements FixInterface {
 				-moz-osx-font-smoothing: grayscale;
 			}
 
+			.anww-external-link-icon:before,
 			.edac-nww-external-link-icon:before {
 				content: " \e900";
 				font-size: var(--edac-nww-icon-size);
 			}
 
+			.anww-external-link-icon.elementor-button-link-content:before,
 			.edac-nww-external-link-icon.elementor-button-link-content:before {
 				vertical-align: middle;
 			}
 
 			/* Modifier classes: add these to a container element to opt out of specific behaviors. */
-			.anww-no-icon .edac-nww-external-link-icon,
+			.anww-no-icon .anww-external-link-icon,
 			.edac-nww-no-icon .edac-nww-external-link-icon {
 				display: none !important;
 			}
