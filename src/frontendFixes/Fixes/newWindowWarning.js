@@ -4,8 +4,8 @@
  * Adds an icon and tooltip to links that open in a new window, improving accessibility by informing users of the behavior.
  */
 
-const classPrefix = window.edac_frontend_fixes?.new_window_warning?.classPrefix ?? 'edac-nww';
-const localizedString = window.edac_frontend_fixes?.new_window_warning?.localizedString ?? 'opens a new window';
+const classPrefix = window.edac_frontend_fixes?.new_window_warning?.classPrefix || window.anww_localized?.classPrefix || 'edac-nww';
+const localizedString = window.edac_frontend_fixes?.new_window_warning?.localizedString || window.anww_localized?.localizedString || 'opens a new window';
 const iconClass = `${ classPrefix }-external-link-icon`;
 
 const NewWindowWarning = () => {
