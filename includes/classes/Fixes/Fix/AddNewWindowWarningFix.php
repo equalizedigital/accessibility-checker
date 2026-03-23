@@ -112,7 +112,9 @@ class AddNewWindowWarningFix implements FixInterface {
 			function ( $data ) {
 
 				$data[ $this->get_slug() ] = [
-					'enabled' => true,
+					'enabled'         => true,
+					'classPrefix'     => 'edac-nww',
+					'localizedString' => __( 'opens a new window', 'accessibility-checker' ),
 				];
 				return $data;
 			}
