@@ -309,6 +309,11 @@ class Connector {
 			return;
 		}
 
+		if ( 200 !== wp_remote_retrieve_response_code( $response ) ) {
+			// this is a silent failure, we should log this or flag it somehow.
+			return;
+		}
+
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( isset( $license_data->license ) ) {
