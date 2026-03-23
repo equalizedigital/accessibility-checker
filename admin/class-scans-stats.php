@@ -479,8 +479,13 @@ class Scans_Stats {
 	 * @param int $limit Number of posts to return (default 5).
 	 * @return array Array of arrays with post_title, post_url, and issue_count.
 	 */
-	private function get_top_pages_with_issues( $limit = 5 ) {
+	private function get_top_pages_with_issues( int $limit = 5 ) {
 		global $wpdb;
+
+		$limit = max( 0, $limit );
+		if ( 0 === $limit ) {
+			return [];
+		}
 
 		$ac_table_name = $wpdb->prefix . 'accessibility_checker';
 		$siteid        = get_current_blog_id();
