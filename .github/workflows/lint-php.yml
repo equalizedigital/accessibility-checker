@@ -41,9 +41,9 @@ jobs:
         with:
           php-version: 7.4
           coverage: none
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
 
       # The lint stage doesn't run the unit tests or use code style, so no need for PHPUnit, WPCS or phpcompatibility.
       - name: 'Composer: adjust dependencies - remove PHPUnit'
@@ -70,7 +70,7 @@ jobs:
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
           coverage: none
           tools: cs2pr
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          github-token: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
 
       - name: Lint against parse errors
         id: lint_with_cs2pr

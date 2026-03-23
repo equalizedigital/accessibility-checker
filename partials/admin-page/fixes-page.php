@@ -5,7 +5,11 @@
  * @package Accessibility_Checker
  */
 
-	use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 ?>
 <div id="edac-fixes-page" class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">

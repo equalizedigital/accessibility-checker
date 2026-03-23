@@ -7,6 +7,10 @@
 
 use EDAC\Admin\Orphaned_Issues_Cleanup;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Deactivation
  *

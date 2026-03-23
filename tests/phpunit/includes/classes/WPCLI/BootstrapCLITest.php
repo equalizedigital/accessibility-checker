@@ -69,4 +69,34 @@ class BootstrapCLITest extends WP_UnitTestCase {
 		// check if the output contains the expected exception message.
 		$this->assertStringStartsWith( 'Warning: Failed to register command', $output );
 	}
+
+	/**
+	 * Ensure non-array filter output does not trigger warnings during registration.
+	 */
+	public function test_register_handles_non_array_filter_output() {
+		$filter = static function () {
+			return 'not-an-array';
+		};
+
+		add_filter( 'edac_filter_command_classes', $filter );
+
+		$bootstrap_cli = new BootstrapCLI( new WP_CLI() );
+
+		$error_handler = static function () {
+			throw new Exception( 'PHP warning raised during register().' );
+		};
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Converts PHP warnings into test failures for this regression case.
+		set_error_handler( $error_handler );
+
+		try {
+			$bootstrap_cli->register();
+			$this->addToAssertionCount( 1 ); // If we reach this point without an exception, the test has passed.
+		} catch ( Exception $exception ) {
+			$this->fail( 'Register should ignore non-array filter output.' );
+		} finally {
+			restore_error_handler();
+			remove_filter( 'edac_filter_command_classes', $filter );
+		}
+	}
 }

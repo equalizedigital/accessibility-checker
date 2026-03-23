@@ -15,6 +15,10 @@ use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Admin handling class.
  */

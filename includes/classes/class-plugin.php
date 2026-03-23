@@ -14,6 +14,10 @@ use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Main plugin functionality class.
  */

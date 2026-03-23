@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Prevents links from opening in new windows.
  *
@@ -156,6 +160,12 @@ class AddNewWindowWarningFix implements FixInterface {
 
 			.edac-nww-external-link-icon.elementor-button-link-content:before {
 				vertical-align: middle;
+			}
+
+			/* Modifier classes: add these to a container element to opt out of specific behaviors. */
+			.anww-no-icon .edac-nww-external-link-icon,
+			.edac-nww-no-icon .edac-nww-external-link-icon {
+				display: none !important;
 			}
 		</style>
 		<?php

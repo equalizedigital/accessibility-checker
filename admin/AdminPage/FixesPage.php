@@ -7,6 +7,10 @@
 
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Registers the Fixes page and it's settings.
  *
@@ -140,6 +144,10 @@ class FixesPage implements PageInterface {
 				],
 			]
 		);
+
+		if ( ! is_array( $sections ) ) {
+			$sections = [];
+		}
 
 		foreach ( $sections as $section_id => $section ) {
 			if ( ! is_string( $section_id ) || ! isset( $section['title'], $section['callback'] ) ) {
