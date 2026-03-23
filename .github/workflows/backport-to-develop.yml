@@ -27,23 +27,26 @@ jobs:
         id: get-branch
         env:
           BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
         run: |
-          # Get the head branch name from the merged PR
+          # Get the head branch name and repo from the merged PR
           echo "branch-name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "Merged branch: $BRANCH_NAME"
+          echo "head-repo=$HEAD_REPO" >> $GITHUB_OUTPUT
+          echo "Merged branch: $BRANCH_NAME from $HEAD_REPO"
 
       - name: Check if branch exists
         id: check-branch
         env:
-          BRANCH_NAME: ${{ steps.get-branch.outputs.branch-name }}
+          HEAD_REF: ${{ steps.get-branch.outputs.branch-name }}
+          HEAD_REPO: ${{ steps.get-branch.outputs.head-repo }}
         run: |
-          # Check if the branch still exists on the remote
-          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+          # Check if the branch still exists on the fork remote
+          if git ls-remote "https://github.com/${HEAD_REPO}.git" "refs/heads/${HEAD_REF}" | grep -q "refs/heads/${HEAD_REF}"; then
             echo "branch-exists=true" >> $GITHUB_OUTPUT
-            echo "Branch $BRANCH_NAME exists and can be used for backport"
+            echo "Branch $HEAD_REF exists in $HEAD_REPO and can be used for backport"
           else
             echo "branch-exists=false" >> $GITHUB_OUTPUT
-            echo "Branch $BRANCH_NAME no longer exists, cannot create backport PR"
+            echo "Branch $HEAD_REF no longer exists in $HEAD_REPO, cannot create backport PR"
           fi
 
       - name: Create backport PR
