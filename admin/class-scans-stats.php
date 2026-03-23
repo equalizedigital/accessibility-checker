@@ -537,8 +537,8 @@ class Scans_Stats {
 		if ( $posts ) {
 			foreach ( $posts as $post ) {
 				$result[] = [
-					'post_title'  => $post->post_title,
-					'post_url'    => get_permalink( $post->ID ),
+					'post_title'  => esc_html( $post->post_title ),
+					'post_url'    => esc_url( get_permalink( $post->ID ) ),
 					'issue_count' => (int) $post->issue_count,
 				];
 			}
