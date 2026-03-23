@@ -25,7 +25,7 @@ let tooltipTimeout;
 const initializeTooltip = () => {
 	anwwLinkTooltip = document.createElement( 'div' );
 	anwwLinkTooltip.setAttribute( 'role', 'tooltip' );
-	anwwLinkTooltip.classList.add( 'anww-tooltip' );
+	anwwLinkTooltip.classList.add( `${ classPrefix }-tooltip` );
 	Object.assign( anwwLinkTooltip.style, {
 		position: 'absolute',
 		background: 'white',
@@ -44,7 +44,7 @@ const initializeTooltip = () => {
 
 	// Hide tooltip when clicking outside or pressing Escape
 	document.addEventListener( 'click', ( event ) => {
-		if ( ! event.target.closest( ".anww-tooltip, a[target='_blank']" ) ) {
+		if ( ! event.target.closest( `.${ classPrefix }-tooltip, a[target='_blank']` ) ) {
 			hideTooltip();
 		}
 	} );
