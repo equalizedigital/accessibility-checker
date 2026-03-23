@@ -784,8 +784,13 @@ class Connector {
 		}
 
 		// RFC 8725: Validate not-before claim (nbf) if present.
-		if ( isset( $payload['nbf'] ) && $payload['nbf'] > $current_time ) {
-			return false;
+		if ( isset( $payload['nbf'] ) ) {
+			if ( ! is_numeric( $payload['nbf'] ) ) {
+				return false;
+			}
+			if ( (int) $payload['nbf'] > $current_time ) {
+				return false;
+			}
 		}
 
 		return true;
