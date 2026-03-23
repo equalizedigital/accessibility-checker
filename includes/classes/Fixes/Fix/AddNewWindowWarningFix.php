@@ -141,12 +141,12 @@ class AddNewWindowWarningFix implements FixInterface {
 			}
 
 			:root {
-				--font-base: 'anww', sans-serif;
-				--icon-size: 0.75em;
+				--edac-nww-font-base: 'anww', sans-serif;
+				--edac-nww-icon-size: 0.75em;
 			}
 
 			.edac-nww-external-link-icon {
-				font: normal normal normal 1em var(--font-base) !important;
+				font: normal normal normal 1em var(--edac-nww-font-base) !important;
 				speak: never;
 				text-transform: none;
 				-webkit-font-smoothing: antialiased;
@@ -155,7 +155,7 @@ class AddNewWindowWarningFix implements FixInterface {
 
 			.edac-nww-external-link-icon:before {
 				content: " \e900";
-				font-size: var(--icon-size);
+				font-size: var(--edac-nww-icon-size);
 			}
 
 			.edac-nww-external-link-icon.elementor-button-link-content:before {
