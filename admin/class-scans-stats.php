@@ -345,7 +345,8 @@ class Scans_Stats {
 		}
 
 		// Get top 5 posts with issues.
-		$data['top_pages_with_issues'] = $this->get_top_pages_with_issues( 5 );
+		$data['top_pages_with_issues']    = $this->get_top_pages_with_issues( 5 );
+		$data['top_issues_found_on_site'] = $this->get_top_issues_found_on_site( 10 );
 
 		$data['cache_id']   = $transient_name;
 		$data['cached_at']  = time();
@@ -550,5 +551,57 @@ class Scans_Stats {
 		}
 
 		return $result;
+	}
+
+	/**
+	 * Get top N issues found on the site.
+	 *
+	 * @param int $limit Number of issues to return (default 10).
+	 * @return array Array of arrays with rule_slug and issue_count.
+	 */
+	private function get_top_issues_found_on_site( int $limit = 10 ) {
+		global $wpdb;
+
+		$limit = max( 0, $limit );
+		if ( 0 === $limit ) {
+			return [];
+		}
+
+		$ac_table_name = $wpdb->prefix . 'accessibility_checker';
+		$siteid        = get_current_blog_id();
+
+		// Build the SQL query to get top issues by count.
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- No user input, and table name is properly escaped.
+		$sql = $wpdb->prepare(
+			'SELECT rule, COUNT(id) as issue_count
+			FROM %i
+			WHERE siteid = %d
+			AND ignre = 0
+			AND ignre_global = 0
+			GROUP BY rule
+			ORDER BY issue_count DESC
+			LIMIT %d',
+			$ac_table_name,
+			$siteid,
+			$limit
+		);
+		// phpcs:enable WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Direct query for stats calculation, SQL is prepared above.
+		$issues = $wpdb->get_results( $sql );
+
+		if ( ! $issues ) {
+			return [];
+		}
+
+		return array_map(
+			function ( $issue ) {
+				return [
+					'rule_slug'   => esc_html( $issue->rule ),
+					'issue_count' => (int) $issue->issue_count,
+				];
+			},
+			$issues
+		);
 	}
 }
