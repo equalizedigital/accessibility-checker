@@ -54,7 +54,7 @@ class Connector {
 	private const NOTICE_TRANSIENT_TTL = 60;
 
 	/**
-	 * Sets up the license page and handlers if EDACP is not active.
+	 * Sets up the license page and handlers.
 	 *
 	 * @since 1.xx.x
 	 */
@@ -76,7 +76,7 @@ class Connector {
 		add_action( 'admin_post_edac_jwt_register', [ $this, 'handle_jwt_register_post' ] );
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
 
-		// When license for pro is deactivated we should unregister the site to avoid orphaned registrations.
+		// When the pro license is deactivated, unregister the site to avoid orphaned registrations.
 		add_action( 'edacp_license_deactivated', [ $this, 'handle_site_unregistration' ] );
 
 		add_action(
@@ -99,7 +99,7 @@ class Connector {
 	public function register_license_settings() {
 		register_setting(
 			'edac_license',
-			'edac_license_key',
+			'edacp_license_key',
 			[
 				'type'              => 'string',
 				'sanitize_callback' => 'sanitize_text_field',
@@ -140,9 +140,9 @@ class Connector {
 		check_admin_referer( 'edac_license_nonce', 'edac_license_nonce' );
 
 		// Normalize license key from the form.
-		if ( isset( $_POST['edac_license_key'] ) ) {
-			$license = sanitize_text_field( wp_unslash( $_POST['edac_license_key'] ) );
-			update_option( 'edac_license_key', $license );
+		if ( isset( $_POST['edacp_license_key'] ) ) {
+			$license = sanitize_text_field( wp_unslash( $_POST['edacp_license_key'] ) );
+			update_option( 'edacp_license_key', $license );
 		}
 
 		if ( isset( $_POST['edac_license_activate'] ) ) {
@@ -167,7 +167,7 @@ class Connector {
 	 * @return void
 	 */
 	private function activate_license() {
-		$license = trim( get_option( 'edac_license_key' ) );
+		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
 			update_option( 'edac_license_error', 'missing' );
 			return;
@@ -223,7 +223,7 @@ class Connector {
 	 * @return void
 	 */
 	private function deactivate_license() {
-		$license = trim( get_option( 'edac_license_key' ) );
+		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
 			return;
 		}
@@ -257,7 +257,7 @@ class Connector {
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
 
 		if ( isset( $license_data->license ) && 'deactivated' === $license_data->license ) {
-			delete_option( 'edac_license_key' );
+			delete_option( 'edacp_license_key' );
 			delete_option( 'edac_license_status' );
 			delete_option( 'edac_license_error' );
 		}
@@ -278,7 +278,7 @@ class Connector {
 			return;
 		}
 
-		$license = trim( get_option( 'edac_license_key' ) );
+		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( ! $license ) {
 			return;
 		}
@@ -390,7 +390,7 @@ class Connector {
 			}
 		}
 
-		return get_option( 'edac_license_key' );
+		return get_option( 'edacp_license_key' );
 	}
 
 	/**

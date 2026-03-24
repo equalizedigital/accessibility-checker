@@ -130,7 +130,7 @@ class ConnectedServicesPage implements PageInterface {
 			$license = get_option( 'edacp_license_key' );
 			$status  = get_option( 'edacp_license_status' );
 		} else {
-			$license = get_option( 'edac_license_key' );
+			$license = get_option( 'edacp_license_key' );
 			$status  = get_option( 'edac_license_status' );
 		}
 		$site_id             = get_option( 'edac_site_id' );
@@ -152,13 +152,13 @@ class ConnectedServicesPage implements PageInterface {
 						</th>
 						<td>
 						<input
-							id="edac_license_key"
-							name="edac_license_key"
+							id="edacp_license_key"
+							name="edacp_license_key"
 							type="text"
 							class="regular-text"
 							value="<?php echo esc_attr( $license ); ?>"
 						/>
-						<label class="description" for="edac_license_key">
+						<label class="description" for="edacp_license_key">
 							<?php if ( $is_connected ) : ?>
 								<span style="color:green;"> <?php esc_html_e( 'active', 'accessibility-checker' ); ?></span>
 							<?php elseif ( false !== $status && 'expired' === $status ) : ?>
