@@ -46,6 +46,6 @@ Cycle 1: Competitive landscape baseline. Briefed analyst and synthesizer. Agenda
 4. EAA June 2025 enforcement — new buyer cohort entering market?
 
 ## Next Steps
-- Analyst runs deep research on 3 focus areas
-- Synthesizer produces opportunity/threat report
-- Lead reviews and defines cycle 2 focus based on findings
+- **RUN ANALYST NEXT**: Execute `.agents/squads/research/analyst.md` — briefing is ready at `.agents/memory/research/analyst/state.md`
+- After analyst completes, run synthesizer: `.agents/squads/research/synthesizer.md`
+- Lead then reviews synthesis and defines cycle 2 focus
