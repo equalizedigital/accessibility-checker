@@ -286,7 +286,7 @@ class Connector {
 		$api_params = [
 			'edd_action'   => 'check_license',
 			'license'      => $license,
-			'item_id'      => self::PRODUCT_ID,
+			'item_id'      => self::get_product_id(),
 			'item_name'    => rawurlencode( self::PRODUCT_NAME ),
 			'url'          => home_url(),
 			'environment'  => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
@@ -355,7 +355,7 @@ class Connector {
 	/**
 	 * Get the MyDot API endpoint.
 	 *
-	 * Can be overridden by filtering the value with the `mydot_api_endpoint` filter.
+	 * Can be overridden by filtering the value with the `edac_mydot_api_endpoint` filter.
 	 *
 	 * @since 1.xx.x
 	 *
@@ -370,6 +370,26 @@ class Connector {
 		 * @param string $default The default or environment-overridden API endpoint URL.
 		 */
 		return apply_filters( 'edac_mydot_api_endpoint', self::API_ENDPOINT );
+	}
+
+	/**
+	 * Get the MyDot product ID.
+	 *
+	 * Can be overridden by filtering the value with the `edac_mydot_product_id` filter.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return int The product ID. Defaults to 1666.
+	 */
+	public static function get_product_id(): int {
+		/**
+		 * Filters the MyDot product ID.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param int $default The default product ID.
+		 */
+		return (int) apply_filters( 'edac_mydot_product_id', self::PRODUCT_ID );
 	}
 
 	/**
