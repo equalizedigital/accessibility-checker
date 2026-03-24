@@ -176,7 +176,7 @@ class Connector {
 		$api_params = [
 			'edd_action'  => 'activate_license',
 			'license'     => $license,
-			'item_name'   => rawurlencode( self::PRODUCT_NAME ),
+			'item_id'     => self::get_product_id(),
 			'url'         => home_url(),
 			'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 			'wp_version'  => get_bloginfo( 'version' ),
