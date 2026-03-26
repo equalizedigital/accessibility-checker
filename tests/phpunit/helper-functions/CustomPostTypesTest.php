@@ -17,9 +17,15 @@ class CustomPostTypesTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		unregister_post_type( 'edac_public_qt' );
-		unregister_post_type( 'edac_public_default' );
-		unregister_post_type( 'edac_not_queryable' );
-		unregister_post_type( 'edac_not_public' );
+		if ( post_type_exists( 'edac_public_qt' ) ) {
+			unregister_post_type( 'edac_public_qt' );
+		}
+		if ( post_type_exists( 'edac_not_queryable' ) ) {
+			unregister_post_type( 'edac_not_queryable' );
+		}
+		if ( post_type_exists( 'edac_not_public' ) ) {
+			unregister_post_type( 'edac_not_public' );
+		}
 		parent::tearDown();
 	}
 
