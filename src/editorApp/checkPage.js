@@ -84,11 +84,16 @@ const injectIframe = ( previewUrl, postID ) => {
 		try {
 			const loadedUrl = iframe.contentWindow.location.href;
 			if ( loadedUrl && ! loadedUrl.includes( 'edac_pageScanner' ) ) {
+				// eslint-disable-next-line no-console
+				console.warn( 'EDAC: Scan aborted — iframe redirected away from expected scan URL.', loadedUrl );
 				iframe.remove();
 				return;
 			}
 		} catch ( e ) {
-			// Cross-origin iframe; cannot check the URL. Proceed with the scan.
+			// Cross-origin means the iframe was redirected off-site.
+			// We cannot scan a cross-origin document, so abort.
+			iframe.remove();
+			return;
 		}
 
 		// Access the contentDocument of the iframe.

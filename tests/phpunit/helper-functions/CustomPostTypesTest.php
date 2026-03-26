@@ -17,6 +17,7 @@ class CustomPostTypesTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		unregister_post_type( 'edac_public_qt' );
+		unregister_post_type( 'edac_public_default' );
 		unregister_post_type( 'edac_not_queryable' );
 		unregister_post_type( 'edac_not_public' );
 		parent::tearDown();
@@ -37,6 +38,23 @@ class CustomPostTypesTest extends WP_UnitTestCase {
 		);
 
 		$this->assertContains( 'edac_public_qt', edac_custom_post_types() );
+	}
+
+	/**
+	 * Registers a custom post type with public=true but no explicit publicly_queryable
+	 * and asserts it is included — WordPress defaults publicly_queryable to true
+	 * when public is true, so existing CPTs should not regress.
+	 */
+	public function test_includes_public_cpt_with_default_publicly_queryable(): void {
+		register_post_type(
+			'edac_public_default',
+			[
+				'public' => true,
+				'label'  => 'Public Default Queryable',
+			]
+		);
+
+		$this->assertContains( 'edac_public_default', edac_custom_post_types() );
 	}
 
 	/**
