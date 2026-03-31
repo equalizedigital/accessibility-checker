@@ -253,6 +253,82 @@ jobs:
           path: ${{ env.REF_ZIP_FOLDER }}
           if-no-files-found: error
 
+      - name: Resolve public plugin URLs for Playground
+        id: playground-zips
+        if: github.event.repository.private == false
+        run: |
+          PRIMARY_PLUGIN_ZIP_URL=""
+          REF_PLUGIN_ZIP_URL=""
+
+          if [ -n "${PRIMARY_ZIP_NAME:-}" ]; then
+            if [ "${{ github.event_name }}" = "release" ]; then
+              PRIMARY_PLUGIN_ZIP_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ github.event.release.tag_name }}/${PRIMARY_ZIP_NAME}"
+            else
+              PRIMARY_PLUGIN_ZIP_URL="https://nightly.link/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/${PRIMARY_ZIP_NAME_NO_EXT}.zip"
+            fi
+          fi
+
+          if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ] && [ -n "${REF_ZIP_NAME:-}" ]; then
+            if [ "${{ github.event_name }}" = "release" ]; then
+              REF_PLUGIN_ZIP_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ github.event.release.tag_name }}/${REF_ZIP_NAME}"
+            else
+              REF_PLUGIN_ZIP_URL="https://nightly.link/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/${REF_ZIP_NAME_NO_EXT}.zip"
+            fi
+          fi
+
+          echo "primary_plugin_zip_url=$PRIMARY_PLUGIN_ZIP_URL" >> "$GITHUB_OUTPUT"
+          echo "ref_plugin_zip_url=$REF_PLUGIN_ZIP_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Build WordPress Playground links
+        if: github.event.repository.private == false
+        run: |
+          export PRIMARY_PLUGIN_ZIP_URL='${{ steps.playground-zips.outputs.primary_plugin_zip_url }}'
+          export REF_PLUGIN_ZIP_URL='${{ steps.playground-zips.outputs.ref_plugin_zip_url }}'
+
+          build_playground_url() {
+            python3 - "$1" <<'PY'
+            import base64
+            import json
+            import sys
+            import urllib.parse
+
+            plugin_url = sys.argv[1]
+            blueprint = {
+                "landingPage": "/wp-admin/plugins.php",
+                "steps": [
+                    {"step": "login"},
+                    {
+                        "step": "installPlugin",
+                        "pluginZipFile": {"resource": "url", "url": plugin_url},
+                    },
+                    {
+                        "step": "activatePlugin",
+                        "pluginPath": "accessibility-checker/accessibility-checker.php",
+                    },
+                ],
+            }
+
+            blueprint_json = json.dumps(blueprint, separators=(",", ":"))
+            data_uri = "data:application/json;base64," + base64.b64encode(blueprint_json.encode("utf-8")).decode("ascii")
+            encoded_blueprint_url = urllib.parse.quote(data_uri, safe="")
+            print(f"https://playground.wordpress.net/?blueprint-url={encoded_blueprint_url}")
+            PY
+          }
+
+          PRIMARY_PLAYGROUND_URL=""
+          REF_PLAYGROUND_URL=""
+
+          if [ -n "$PRIMARY_PLUGIN_ZIP_URL" ]; then
+            PRIMARY_PLAYGROUND_URL="$(build_playground_url "$PRIMARY_PLUGIN_ZIP_URL")"
+          fi
+
+          if [ -n "$REF_PLUGIN_ZIP_URL" ]; then
+            REF_PLAYGROUND_URL="$(build_playground_url "$REF_PLUGIN_ZIP_URL")"
+          fi
+
+          echo "PRIMARY_PLAYGROUND_URL=$PRIMARY_PLAYGROUND_URL" >> "$GITHUB_ENV"
+          echo "REF_PLAYGROUND_URL=$REF_PLAYGROUND_URL" >> "$GITHUB_ENV"
+
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
         uses: softprops/action-gh-release@v2
@@ -286,7 +362,17 @@ jobs:
               ? `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}/artifacts/${artifact.id}`
               : runUrl;
 
-            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})`;
+            const primaryPlaygroundUrl = process.env.PRIMARY_PLAYGROUND_URL;
+            const primaryPlaygroundLine = primaryPlaygroundUrl
+              ? `\n- **Playground (primary)**: [Open with plugin preinstalled](${primaryPlaygroundUrl})`
+              : `\n- **Playground (primary)**: Not available for this run (repository may be private or plugin ZIP URL is not publicly accessible).`;
+
+            const refPlaygroundUrl = process.env.REF_PLAYGROUND_URL;
+            const refPlaygroundLine = refPlaygroundUrl
+              ? `\n- **Playground (ref)**: [Open with plugin preinstalled](${refPlaygroundUrl})`
+              : '';
+
+            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})${primaryPlaygroundLine}${refPlaygroundLine}`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -319,10 +405,21 @@ jobs:
           echo "=== Build Summary ==="
           echo "Mode: ${{ steps.setref.outputs.mode }}"
           echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
+          if [ -n "${PRIMARY_PLAYGROUND_URL:-}" ]; then
+            echo "Playground (primary): ${PRIMARY_PLAYGROUND_URL}"
+          else
+            echo "Playground (primary): skipped (repo is private or URL unavailable)"
+          fi
           if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
             echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
+            if [ -n "${REF_PLAYGROUND_URL:-}" ]; then
+              echo "Playground (ref): ${REF_PLAYGROUND_URL}"
+            else
+              echo "Playground (ref): skipped (repo is private or URL unavailable)"
+            fi
           else
             echo "Ref zip: Not built"
+            echo "Playground (ref): Not built"
           fi
           if [ "${{ github.event_name }}" = "release" ]; then
             echo "Uploaded to release: ${{ github.event.release.html_url }}"
