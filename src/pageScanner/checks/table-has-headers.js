@@ -5,13 +5,51 @@ export default {
 			return true;
 		}
 
-		// TODO: Improve logic to account for colspan, rowspan, and complex ARIA header relationships
-
 		const rows = Array.from( node.querySelectorAll( 'tr' ) );
 
 		if ( rows.length === 0 ) {
 			return true;
 		}
+
+		// Helper function to calculate the actual column span of cells in a row
+		const getEffectiveColumnCount = ( row ) => {
+			let columnCount = 0;
+			Array.from( row.children ).forEach( ( cell ) => {
+				const colspan = parseInt( cell.getAttribute( 'colspan' ) || '1', 10 );
+				columnCount += colspan;
+			} );
+			return columnCount;
+		};
+
+		// Helper function to count header cells accounting for colspan
+		const getHeaderColumnCount = ( row ) => {
+			let headerColumnCount = 0;
+			Array.from( row.children ).forEach( ( cell ) => {
+				if ( cell.tagName.toLowerCase() === 'th' ) {
+					const colspan = parseInt( cell.getAttribute( 'colspan' ) || '1', 10 );
+					headerColumnCount += colspan;
+				}
+			} );
+			return headerColumnCount;
+		};
+
+		// Helper function to validate ARIA header relationships
+		const validateAriaHeaders = () => {
+			const dataCells = node.querySelectorAll( 'td[headers]' );
+			if ( dataCells.length === 0 ) {
+				return true; // No ARIA headers to validate
+			}
+
+			for ( const cell of dataCells ) {
+				const headerIds = cell.getAttribute( 'headers' ).split( /\s+/ );
+				for ( const headerId of headerIds ) {
+					if ( headerId && ! node.querySelector( `#${ headerId }` ) ) {
+						return false; // Referenced header doesn't exist
+					}
+				}
+			}
+			return true;
+		};
 
 		// Case 1: Valid row-header table (every row starts with <th scope="row">)
 		const isRowHeaderTable = rows.every( ( row ) => {
@@ -25,37 +63,50 @@ export default {
 		} );
 
 		if ( isRowHeaderTable ) {
-			return true;
+			// Validate ARIA relationships even for row-header tables
+			return validateAriaHeaders();
 		}
 
-		// Case 2: Classic table with header row
-		const headerRow =
-			node.querySelector( 'thead tr' ) ||
-			rows.find( ( row ) => row.querySelectorAll( 'th' ).length > 0 );
+		// Case 2: Check for tables with header rows (including complex structures)
+		const headerRows = rows.filter( ( row ) =>
+			Array.from( row.children ).some( ( cell ) =>
+				cell.tagName.toLowerCase() === 'th'
+			)
+		);
 
-		if ( ! headerRow ) {
+		if ( headerRows.length === 0 ) {
 			return false;
 		}
 
-		const thCount = headerRow.querySelectorAll( 'th' ).length;
-		if ( thCount === 0 ) {
-			return false;
-		}
-
-		let headerRowEncountered = false;
-
-		for ( const row of rows ) {
-			if ( ! headerRowEncountered && row === headerRow ) {
-				headerRowEncountered = true;
-				continue;
+		// Calculate the maximum column span from header rows
+		let maxHeaderColumns = 0;
+		headerRows.forEach( ( row ) => {
+			const headerColumns = getHeaderColumnCount( row );
+			if ( headerColumns > maxHeaderColumns ) {
+				maxHeaderColumns = headerColumns;
 			}
+		} );
 
-			const tdCount = row.querySelectorAll( 'td' ).length;
-			if ( tdCount > thCount ) {
+		if ( maxHeaderColumns === 0 ) {
+			return false;
+		}
+
+		// Find data rows (rows without any th elements)
+		const dataRows = rows.filter( ( row ) =>
+			! Array.from( row.children ).some( ( cell ) =>
+				cell.tagName.toLowerCase() === 'th'
+			)
+		);
+
+		// Validate that data rows don't exceed the column structure
+		for ( const row of dataRows ) {
+			const columnCount = getEffectiveColumnCount( row );
+			if ( columnCount > maxHeaderColumns ) {
 				return false;
 			}
 		}
 
-		return true;
+		// Validate ARIA header relationships
+		return validateAriaHeaders();
 	},
 };
