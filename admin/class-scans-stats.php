@@ -570,16 +570,31 @@ class Scans_Stats {
 		$ac_table_name = $wpdb->prefix . 'accessibility_checker';
 		$siteid        = get_current_blog_id();
 
-		// Build the SQL query to get top issues by count.
-		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- No user input, and table name is properly escaped.
+		$rules_raw     = edac_register_rules();
+		$rules_parsed  = [];
+		$severity_case = '0';
+
+		foreach ( $rules_raw as $rule ) {
+			if ( ! isset( $rule['slug'] ) ) {
+				continue;
+			}
+
+			$slug                  = (string) $rule['slug'];
+			$rules_parsed[ $slug ] = $rule;
+			$severity              = isset( $rule['severity'] ) ? (int) $rule['severity'] : 0;
+			$severity_case        .= $wpdb->prepare( ' + (CASE WHEN rule = %s THEN %d ELSE 0 END)', $slug, $severity );
+		}
+
+		// Build the SQL query to get top issues by severity, then count.
+		// phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQL.NotPrepared -- No user input, and table name is properly escaped, severity cases is prepared above.
 		$sql = $wpdb->prepare(
-			'SELECT rule, COUNT(id) as issue_count
+			'SELECT rule, COUNT(id) AS issue_count, (' . $severity_case . ') AS severity
 			FROM %i
 			WHERE siteid = %d
 			AND ignre = 0
 			AND ignre_global = 0
 			GROUP BY rule
-			ORDER BY issue_count DESC
+			ORDER BY severity DESC, issue_count DESC, rule ASC
 			LIMIT %d',
 			$ac_table_name,
 			$siteid,
@@ -595,10 +610,14 @@ class Scans_Stats {
 		}
 
 		return array_map(
-			function ( $issue ) {
+			function ( $issue ) use ( $rules_parsed ) {
+				$rule = $rules_parsed[ $issue->rule ] ?? [];
+
 				return [
-					'rule_slug'   => esc_html( $issue->rule ),
-					'issue_count' => (int) $issue->issue_count,
+					'rule_nicename' => sanitize_text_field( $rule['title'] ?? $issue->rule ),
+					'rule_slug'     => sanitize_text_field( $rule['slug'] ?? $issue->rule ),
+					'issue_count'   => (int) $issue->issue_count,
+					'severity'      => isset( $rule['severity'] ) ? (int) $rule['severity'] : (int) $issue->severity,
 				];
 			},
 			$issues
