@@ -287,13 +287,7 @@ jobs:
 
           build_playground_url() {
             local plugin_url="$1"
-            python3 -c 'import base64,json,sys,urllib.parse
-            plugin_url=sys.argv[1]
-            blueprint={"landingPage":"/wp-admin/plugins.php","steps":[{"step":"login"},{"step":"installPlugin","pluginZipFile":{"resource":"url","url":plugin_url}},{"step":"activatePlugin","pluginPath":"accessibility-checker/accessibility-checker.php"}]}
-            blueprint_json=json.dumps(blueprint,separators=(",",":"))
-            data_uri="data:application/json;base64,"+base64.b64encode(blueprint_json.encode("utf-8")).decode("ascii")
-            encoded_blueprint_url=urllib.parse.quote(data_uri,safe="")
-            print(f"https://playground.wordpress.net/?blueprint-url={encoded_blueprint_url}")' "$plugin_url"
+            python3 -c 'import base64,json,sys,urllib.parse; plugin_url=sys.argv[1]; blueprint={"landingPage":"/wp-admin/plugins.php","steps":[{"step":"login"},{"step":"installPlugin","pluginZipFile":{"resource":"url","url":plugin_url}},{"step":"activatePlugin","pluginPath":"accessibility-checker/accessibility-checker.php"}]}; blueprint_json=json.dumps(blueprint,separators=(",",":")); data_uri="data:application/json;base64,"+base64.b64encode(blueprint_json.encode("utf-8")).decode("ascii"); encoded_blueprint_url=urllib.parse.quote(data_uri,safe=""); print(f"https://playground.wordpress.net/?blueprint-url={encoded_blueprint_url}")' "$plugin_url"
           }
 
           PRIMARY_PLAYGROUND_URL=""
