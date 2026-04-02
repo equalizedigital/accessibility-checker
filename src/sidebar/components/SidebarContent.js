@@ -8,6 +8,7 @@ import AccessibilityStatus from './Panels/AccessibilityStatus';
 import AccessibilityAnalysis from './Panels/AccessibilityAnalysis';
 import DismissedIssues from './Panels/DismissedIssues';
 import ReadabilityAnalysis from './Panels/ReadabilityAnalysis';
+import ScreenReaderTextFormat from './Panels/ScreenReaderTextFormat';
 import '../sass/components/sidebar-content.scss';
 
 /**
@@ -41,8 +42,9 @@ const SidebarContent = () => {
 			<div className="edac-sidebar__content">
 				<AccessibilityStatus />
 				<AccessibilityAnalysis />
-				<DismissedIssues />
 				<ReadabilityAnalysis />
+				<DismissedIssues />
+				<ScreenReaderTextFormat />
 			</div>
 		);
 	}

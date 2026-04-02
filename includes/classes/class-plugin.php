@@ -34,6 +34,8 @@ class Plugin {
 			$this->init();
 		}
 
+		add_action( 'init', [ $this, 'register_sr_only_user_meta' ] );
+
 		// The REST api must load if admin or not.
 		$rest_api = new REST_Api();
 		$rest_api->init_hooks();
@@ -76,6 +78,23 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
+	}
+
+	/**
+	 * Register user meta for the screen reader text always-show preference.
+	 *
+	 * @return void
+	 */
+	public function register_sr_only_user_meta(): void {
+		register_meta(
+			'user',
+			'show_sr_text_in_editor',
+			[
+				'type'         => 'boolean',
+				'single'       => true,
+				'show_in_rest' => true,
+			]
+		);
 	}
 
 	/**

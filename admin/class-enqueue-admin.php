@@ -32,6 +32,7 @@ class Enqueue_Admin {
 		self::maybe_enqueue_sidebar_script();
 		self::maybe_enqueue_issue_modal_script();
 		self::maybe_enqueue_email_opt_in_script();
+		self::maybe_enqueue_sr_only_format();
 	}
 
 	/**
@@ -299,6 +300,127 @@ class Enqueue_Admin {
 		$email_opt_in->enqueue_scripts();
 	}
 
+
+	/**
+	 * Enqueue the screen reader only format script and styles for the block editor.
+	 *
+	 * @return void
+	 */
+	public static function maybe_enqueue_sr_only_format(): void {
+		global $pagenow;
+
+		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow ) {
+			return;
+		}
+
+		if ( ! Helpers::is_block_editor() ) {
+			return;
+		}
+
+		$post_types = Settings::get_scannable_post_types();
+		if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'edac-sr-only-format',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
+			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n' ],
+			EDAC_VERSION,
+			false
+		);
+
+		wp_set_script_translations( 'edac-sr-only-format', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+
+		wp_localize_script(
+			'edac-sr-only-format',
+			'edacSrOnlyFormat',
+			[
+				'showSrTextInEditor' => (bool) get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ),
+			]
+		);
+	}
+
+	/**
+	 * Inject screen reader only format styles into the block editor iframe.
+	 *
+	 * @param array $editor_settings Default editor settings.
+	 * @return array
+	 */
+	public static function maybe_inject_sr_only_editor_styles( array $editor_settings ): array {
+		if ( ! self::should_load_sr_only_format() ) {
+			return $editor_settings;
+		}
+
+		$css = self::get_sr_only_editor_styles();
+		if ( '' === $css ) {
+			return $editor_settings;
+		}
+
+		if ( ! isset( $editor_settings['styles'] ) || ! is_array( $editor_settings['styles'] ) ) {
+			$editor_settings['styles'] = [];
+		}
+
+		if ( get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
+			$editor_settings['bodyClassName'] = trim( ( $editor_settings['bodyClassName'] ?? '' ) . ' sr-only-show-always' );
+		}
+
+		$editor_settings['styles'][] = [
+			'css'            => $css,
+			'__unstableType' => 'theme',
+		];
+
+		return $editor_settings;
+	}
+
+	/**
+	 * Determine whether the screen reader only format assets should load.
+	 *
+	 * @return bool
+	 */
+	private static function should_load_sr_only_format(): bool {
+		global $pagenow;
+
+		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow ) {
+			return false;
+		}
+
+		if ( ! Helpers::is_block_editor() ) {
+			return false;
+		}
+
+		$post_types = Settings::get_scannable_post_types();
+
+		return Helpers::is_current_post_type_scannable( $post_types );
+	}
+
+	/**
+	 * Build the CSS that should be injected into the block editor iframe.
+	 *
+	 * @return string
+	 */
+	private static function get_sr_only_editor_styles(): string {
+		$css_file = plugin_dir_path( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css';
+		if ( ! file_exists( $css_file ) || ! is_readable( $css_file ) ) {
+			return '';
+		}
+
+		$css = file_get_contents( $css_file ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Reads a local built CSS asset from the plugin directory.
+		if ( false === $css ) {
+			return '';
+		}
+
+		$css .= sprintf(
+			'
+			.is-selected .text-format-sr-only:hover:after,
+			.is-selected .text-format-sr-only:focus:after {
+				content: %s;
+			}',
+			wp_json_encode( __( '* Screen Reader Text', 'accessibility-checker' ) )
+		);
+
+		return $css;
+	}
 
 	/**
 	 * Gets the current admin page slug.
