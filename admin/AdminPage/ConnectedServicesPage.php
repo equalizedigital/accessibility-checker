@@ -82,10 +82,14 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return array Modified tabs array with Connected Services tab added.
 	 */
 	public function add_connected_services_tab( $tabs ) {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			return $tabs;
+		}
+
 		$tabs[] = [
-			'slug'       => 'connected-services',
-			'label'      => esc_html__( 'Connected Services', 'accessibility-checker' ),
-			'order'      => 99, // Last tab.
+			'slug'       => 'license',
+			'label'      => esc_html__( 'License', 'accessibility-checker' ),
+			'order'      => 3,
 			'capability' => $this->settings_capability,
 		];
 		return $tabs;
@@ -101,7 +105,7 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function maybe_render_tab_content( $settings_tab ) {
-		if ( 'connected-services' === $settings_tab ) {
+		if ( 'license' === $settings_tab || 'connected-services' === $settings_tab ) {
 			$this->render_page();
 		}
 	}
@@ -137,11 +141,9 @@ class ConnectedServicesPage implements PageInterface {
 		$is_connected        = ( 'valid' === $status && ! empty( $site_id ) );
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
 		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
-		$terms_link          = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'connected-services', 'terms', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Terms of Service', 'accessibility-checker' ) . '</a>';
-		$privacy_link        = '<a href="' . esc_url( \edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'connected-services', 'privacy', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Privacy Policy', 'accessibility-checker' ) . '</a>';
 		?>
-		<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 		<?php if ( ! defined( 'EDACP_VERSION' ) ) : ?>
+			<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
 				<table class="form-table">
@@ -215,53 +217,7 @@ class ConnectedServicesPage implements PageInterface {
 				</p>
 			<?php endif; ?>
 
-		<?php else : ?>
-			<p><?php esc_html_e( 'Get monthly accessibility email reports and access to additional services by connecting this site.', 'accessibility-checker' ); ?></p>
-			<table class="form-table">
-				<tbody>
-				<tr valign="top">
-					<th scope="row" valign="top">
-						<?php esc_html_e( 'Connect site', 'accessibility-checker' ); ?>
-					</th>
-					<td>
-						<?php if ( $is_connected ) : ?>
-							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0;">
-								<input type="hidden" name="action" value="edac_jwt_unregister" />
-								<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
-								<input
-									type="submit"
-									class="button-primary"
-									name="edac_jwt_unregister"
-									value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
-								>
-							</form>
-						<?php else : ?>
-							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" style="margin:0;">
-								<input type="hidden" name="action" value="edac_jwt_register" />
-								<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
-								<input
-									type="submit"
-									class="button-primary"
-									name="edac_jwt_register"
-									value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
-								/>
-							</form>
-						<?php endif; ?>
-					</td>
-				</tr>
-				</tbody>
-			</table>
 		<?php endif; ?>
-		<p>
-			<?php
-			printf(
-				/* translators: %1$s: link to Terms of Service, %2$s: link to Privacy Policy */
-				esc_html__( 'By connecting this site, you agree to the Equalize Digital %1$s and %2$s.', 'accessibility-checker' ),
-				wp_kses_post( $terms_link ),
-				wp_kses_post( $privacy_link )
-			);
-			?>
-		</p>
 		<?php
 	}
 
@@ -279,7 +235,7 @@ class ConnectedServicesPage implements PageInterface {
 		} else {
 			$error = get_option( 'edac_license_error' );
 		}
-		$license_url = get_bloginfo( 'url' ) . '/wp-admin/admin.php?page=accessibility_checker_settings&tab=connected-services';
+		$license_url = admin_url( 'admin.php?page=accessibility_checker_settings&tab=' . ( defined( 'EDACP_VERSION' ) ? 'license' : 'accessibility-reports' ) );
 		$message     = null;
 
 		if ( $error ) {

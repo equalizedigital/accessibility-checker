@@ -10,6 +10,7 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
@@ -47,6 +48,9 @@ class Plugin {
 		$cleanup->init_hooks();
 
 		$this->register_fixes_manager();
+
+		$accessibility_reports = new AccessibilityReportsPage( 'manage_options' );
+		$accessibility_reports->add_page();
 
 		$connector = new Connector();
 		$connector->init();
