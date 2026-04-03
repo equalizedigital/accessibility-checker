@@ -80,13 +80,17 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$has_pro_plugin    = defined( 'EDACP_VERSION' );
-		$is_pro            = $has_pro_plugin;
-		$status            = $has_pro_plugin ? get_option( 'edacp_license_status' ) : get_option( 'edac_license_status' );
-		$license_key       = (string) get_option( 'edacp_license_key', '' );
-		$site_id           = (string) get_option( 'edac_site_id', '' );
-		$is_connected      = ( 'valid' === $status && '' !== $site_id );
-		$next_collection   = (string) get_option( 'edac_next_collection', '' );
+		$has_pro_plugin  = defined( 'EDACP_VERSION' );
+		$is_pro          = $has_pro_plugin;
+		$status          = $has_pro_plugin ? get_option( 'edacp_license_status' ) : get_option( 'edac_license_status' );
+		$license_key     = (string) get_option( 'edacp_license_key', '' );
+		$site_id         = (string) get_option( 'edac_site_id', '' );
+		$is_connected    = ( 'valid' === $status && '' !== $site_id );
+		$next_collection = (string) get_option( 'edac_next_collection', '' );
+		$scans_stats     = new Scans_Stats();
+		$summary         = $scans_stats->summary();
+		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $has_pro_plugin ) : [];
+
 		$upgrade_url       = edac_generate_link_type(
 			[
 				'utm_campaign' => 'settings-page',
