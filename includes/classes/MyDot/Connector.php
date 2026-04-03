@@ -216,7 +216,7 @@ class Connector {
 	}
 
 	/**
-	 * Deactivate the license via API and clear stored values on success.
+	 * Deactivate the license via API and always clear local stored values.
 	 *
 	 * @since 1.xx.x
 	 *
@@ -225,13 +225,20 @@ class Connector {
 	private function deactivate_license() {
 		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
+			delete_option( 'edacp_license_key' );
+			delete_option( 'edac_license_status' );
+			delete_option( 'edac_license_error' );
+			delete_option( 'edac_jwt_public_key' );
+			delete_option( 'edac_site_id' );
+			delete_option( 'edac_collection_interval_days' );
+			delete_option( 'edac_next_collection' );
 			return;
 		}
 
-		// Automatically unregister the site before deactivating the license.
-		$site_id = get_option( 'edac_site_id' );
-		if ( ! empty( $site_id ) ) {
-			$this->handle_site_unregistration();
+		// Best effort unregister: do not block local disconnect on remote failures.
+		$site_id = (string) get_option( 'edac_site_id' );
+		if ( '' !== $site_id ) {
+			self::unregister_site( $site_id, get_site_url(), $license );
 		}
 
 		$api_params = [
@@ -241,7 +248,7 @@ class Connector {
 			'url'        => home_url(),
 		];
 
-		$response = wp_remote_post(
+		wp_remote_post(
 			self::get_api_endpoint(),
 			[
 				'timeout'   => 15, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- accommodation for slow hosting environments.
@@ -250,17 +257,15 @@ class Connector {
 			]
 		);
 
-		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
-			return;
-		}
-
-		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
-
-		if ( isset( $license_data->license ) && 'deactivated' === $license_data->license ) {
-			delete_option( 'edacp_license_key' );
-			delete_option( 'edac_license_status' );
-			delete_option( 'edac_license_error' );
-		}
+		// Remote deactivation is a best effort. Intentionally clear local
+		// state regardless of API response so users can always disconnect.
+		delete_option( 'edacp_license_key' );
+		delete_option( 'edac_license_status' );
+		delete_option( 'edac_license_error' );
+		delete_option( 'edac_jwt_public_key' );
+		delete_option( 'edac_site_id' );
+		delete_option( 'edac_collection_interval_days' );
+		delete_option( 'edac_next_collection' );
 	}
 
 	/**
