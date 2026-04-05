@@ -224,6 +224,46 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug maps to error with ruletype key (no underscore)' => [
+				'items'    => [
+					[
+						'slug'     => 'missing_alt',
+						'ruletype' => 'error',
+					],
+					[
+						'slug'     => 'link_blank',
+						'ruletype' => 'warning',
+					],
+				],
+				'key'      => 'ruletype',
+				'value'    => 'problem',
+				'expected' => [
+					1 => [
+						'slug'     => 'link_blank',
+						'ruletype' => 'warning',
+					],
+				],
+			],
+			'problem slug maps to error with ruleType key (camelCase)' => [
+				'items'    => [
+					[
+						'slug'     => 'missing_alt',
+						'ruleType' => 'error',
+					],
+					[
+						'slug'     => 'link_blank',
+						'ruleType' => 'warning',
+					],
+				],
+				'key'      => 'ruleType',
+				'value'    => 'problem',
+				'expected' => [
+					1 => [
+						'slug'     => 'link_blank',
+						'ruleType' => 'warning',
+					],
+				],
+			],
 		];
 	}
 }

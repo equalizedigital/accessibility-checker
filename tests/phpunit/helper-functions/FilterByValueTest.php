@@ -269,6 +269,46 @@ class FilterByValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug maps to error with ruletype index (no underscore)' => [
+				'items'    => [
+					[
+						'slug'     => 'missing_alt',
+						'ruletype' => 'error',
+					],
+					[
+						'slug'     => 'link_blank',
+						'ruletype' => 'warning',
+					],
+				],
+				'index'    => 'ruletype',
+				'value'    => 'problem',
+				'expected' => [
+					[
+						'slug'     => 'missing_alt',
+						'ruletype' => 'error',
+					],
+				],
+			],
+			'problem slug maps to error with ruleType index (camelCase)' => [
+				'items'    => [
+					[
+						'slug'     => 'missing_alt',
+						'ruleType' => 'error',
+					],
+					[
+						'slug'     => 'link_blank',
+						'ruleType' => 'warning',
+					],
+				],
+				'index'    => 'ruleType',
+				'value'    => 'problem',
+				'expected' => [
+					[
+						'slug'     => 'missing_alt',
+						'ruleType' => 'error',
+					],
+				],
+			],
 		];
 	}
 }
