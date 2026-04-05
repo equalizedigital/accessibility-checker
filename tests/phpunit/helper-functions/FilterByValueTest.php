@@ -249,6 +249,26 @@ class FilterByValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug not mapped for non-rule_type index' => [
+				'items'    => [
+					[
+						'type' => 'problem',
+						'name' => 'Item 1',
+					],
+					[
+						'type' => 'error',
+						'name' => 'Item 2',
+					],
+				],
+				'index'    => 'type',
+				'value'    => 'problem',
+				'expected' => [
+					[
+						'type' => 'problem',
+						'name' => 'Item 1',
+					],
+				],
+			],
 		];
 	}
 }

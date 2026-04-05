@@ -204,6 +204,26 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug not mapped for non-rule_type key' => [
+				'items'    => [
+					[
+						'type' => 'problem',
+						'name' => 'Item 1',
+					],
+					[
+						'type' => 'error',
+						'name' => 'Item 2',
+					],
+				],
+				'key'      => 'type',
+				'value'    => 'problem',
+				'expected' => [
+					1 => [
+						'type' => 'error',
+						'name' => 'Item 2',
+					],
+				],
+			],
 		];
 	}
 }

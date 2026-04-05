@@ -129,18 +129,20 @@ function edac_map_type_slug( $type, $reverse = false ) {
 /**
  * Remove element from multi-dimensional array
  *
- * Supports mapping the new display type slugs ('problem', 'needs_review') to
- * their internal equivalents ('error', 'warning') when matching values.
+ * When $key is 'rule_type', supports mapping the new display type slugs
+ * ('problem', 'needs_review') to their internal equivalents ('error', 'warning')
+ * before matching. For all other keys the value is used as-is.
  *
  * @param array  $items The multi-dimensional array.
  * @param string $key The key of the element.
- * @param string $value The value to match for removal. The display type slugs
- *                      'problem' and 'needs_review' are automatically mapped to
- *                      their internal equivalents 'error' and 'warning'.
+ * @param string $value The value to match for removal. When $key is 'rule_type',
+ *                      the display type slugs 'problem' and 'needs_review' are
+ *                      automatically mapped to their internal equivalents 'error'
+ *                      and 'warning'.
  * @return array
  */
 function edac_remove_element_with_value( $items, $key, $value ) {
-	$mapped_value = edac_map_type_slug( $value );
+	$mapped_value = 'rule_type' === $key ? edac_map_type_slug( $value ) : $value;
 	foreach ( $items as $sub_key => $sub_array ) {
 		if ( $sub_array[ $key ] === $mapped_value ) {
 			unset( $items[ $sub_key ] );
@@ -152,18 +154,20 @@ function edac_remove_element_with_value( $items, $key, $value ) {
 /**
  * Filter a multi-dimensional array
  *
- * Supports mapping the new display type slugs ('problem', 'needs_review') to
- * their internal equivalents ('error', 'warning') when matching values.
+ * When $index is 'rule_type', supports mapping the new display type slugs
+ * ('problem', 'needs_review') to their internal equivalents ('error', 'warning')
+ * before matching. For all other indexes the value is used as-is.
  *
  * @param array  $items The multi-dimensional array.
  * @param string $index The index of the element.
- * @param string $value The element value to match. The display type slugs
- *                      'problem' and 'needs_review' are automatically mapped to
- *                      their internal equivalents 'error' and 'warning'.
+ * @param string $value The element value to match. When $index is 'rule_type',
+ *                      the display type slugs 'problem' and 'needs_review' are
+ *                      automatically mapped to their internal equivalents 'error'
+ *                      and 'warning'.
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
-	$mapped_value = edac_map_type_slug( $value );
+	$mapped_value = 'rule_type' === $index ? edac_map_type_slug( $value ) : $value;
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
 			$temp[ $key ] = $items[ $key ][ $index ];
