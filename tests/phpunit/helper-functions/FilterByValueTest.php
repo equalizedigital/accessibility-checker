@@ -193,6 +193,62 @@ class FilterByValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug maps to error'           => [
+				'items'    => [
+					[
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+					[
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+					[
+						'slug'      => 'empty_heading',
+						'rule_type' => 'error',
+					],
+				],
+				'index'    => 'rule_type',
+				'value'    => 'problem',
+				'expected' => [
+					[
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+					[
+						'slug'      => 'empty_heading',
+						'rule_type' => 'error',
+					],
+				],
+			],
+			'needs_review slug maps to warning'    => [
+				'items'    => [
+					[
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+					[
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+					[
+						'slug'      => 'img_alt_invalid',
+						'rule_type' => 'warning',
+					],
+				],
+				'index'    => 'rule_type',
+				'value'    => 'needs_review',
+				'expected' => [
+					[
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+					[
+						'slug'      => 'img_alt_invalid',
+						'rule_type' => 'warning',
+					],
+				],
+			],
 		];
 	}
 }

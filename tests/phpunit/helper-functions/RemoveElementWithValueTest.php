@@ -156,6 +156,54 @@ class RemoveElementWithValueTest extends WP_UnitTestCase {
 					],
 				],
 			],
+			'problem slug maps to error'        => [
+				'items'    => [
+					[
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+					[
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+					[
+						'slug'      => 'empty_heading',
+						'rule_type' => 'error',
+					],
+				],
+				'key'      => 'rule_type',
+				'value'    => 'problem',
+				'expected' => [
+					1 => [
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+				],
+			],
+			'needs_review slug maps to warning' => [
+				'items'    => [
+					[
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+					[
+						'slug'      => 'link_blank',
+						'rule_type' => 'warning',
+					],
+					[
+						'slug'      => 'img_alt_invalid',
+						'rule_type' => 'warning',
+					],
+				],
+				'key'      => 'rule_type',
+				'value'    => 'needs_review',
+				'expected' => [
+					0 => [
+						'slug'      => 'missing_alt',
+						'rule_type' => 'error',
+					],
+				],
+			],
 		];
 	}
 }

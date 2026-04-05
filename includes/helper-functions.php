@@ -99,16 +99,50 @@ function edac_ordinal( $number ) {
 }
 
 /**
+ * Maps an issue type slug to its internal equivalent, or the reverse.
+ *
+ * By default, maps the new display slugs to the internal storage values:
+ *   - 'problem'      => 'error'
+ *   - 'needs_review' => 'warning'
+ *
+ * When $reverse is true, maps the internal values back to display slugs:
+ *   - 'error'   => 'problem'
+ *   - 'warning' => 'needs_review'
+ *
+ * Values that are not in the mapping are returned unchanged.
+ *
+ * @param string $type    The type slug to map.
+ * @param bool   $reverse Whether to reverse the mapping direction. Default false.
+ * @return string The mapped type slug, or the original value if no mapping exists.
+ */
+function edac_map_type_slug( $type, $reverse = false ) {
+	$forward_map = [
+		'problem'      => 'error',
+		'needs_review' => 'warning',
+	];
+
+	$map = $reverse ? array_flip( $forward_map ) : $forward_map;
+
+	return $map[ $type ] ?? $type;
+}
+
+/**
  * Remove element from multi-dimensional array
+ *
+ * Supports mapping the new display type slugs ('problem', 'needs_review') to
+ * their internal equivalents ('error', 'warning') when matching values.
  *
  * @param array  $items The multi-dimensional array.
  * @param string $key The key of the element.
- * @param string $value The value of the element.
+ * @param string $value The value to match for removal. The display type slugs
+ *                      'problem' and 'needs_review' are automatically mapped to
+ *                      their internal equivalents 'error' and 'warning'.
  * @return array
  */
 function edac_remove_element_with_value( $items, $key, $value ) {
+	$mapped_value = edac_map_type_slug( $value );
 	foreach ( $items as $sub_key => $sub_array ) {
-		if ( $sub_array[ $key ] === $value ) {
+		if ( $sub_array[ $key ] === $mapped_value ) {
 			unset( $items[ $sub_key ] );
 		}
 	}
@@ -118,17 +152,23 @@ function edac_remove_element_with_value( $items, $key, $value ) {
 /**
  * Filter a multi-dimensional array
  *
+ * Supports mapping the new display type slugs ('problem', 'needs_review') to
+ * their internal equivalents ('error', 'warning') when matching values.
+ *
  * @param array  $items The multi-dimensional array.
  * @param string $index The index of the element.
- * @param string $value The element value to match.
+ * @param string $value The element value to match. The display type slugs
+ *                      'problem' and 'needs_review' are automatically mapped to
+ *                      their internal equivalents 'error' and 'warning'.
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
+	$mapped_value = edac_map_type_slug( $value );
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
 			$temp[ $key ] = $items[ $key ][ $index ];
 
-			if ( $temp[ $key ] === $value ) {
+			if ( $temp[ $key ] === $mapped_value ) {
 				$newarray[ $key ] = $items[ $key ];
 			}
 		}
