@@ -46,7 +46,7 @@ class Connector {
 	 *
 	 * @var int
 	 */
-	const PRODUCT_ID = 1666;
+	const PRODUCT_ID = 24;
 
 	/**
 	 * TTL for transient-based admin notices (seconds).
