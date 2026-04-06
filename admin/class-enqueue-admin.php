@@ -376,8 +376,7 @@ class Enqueue_Admin {
 		}
 
 		$editor_settings['styles'][] = [
-			'css'            => $css,
-			'__unstableType' => 'theme',
+			'css' => $css,
 		];
 
 		return $editor_settings;
