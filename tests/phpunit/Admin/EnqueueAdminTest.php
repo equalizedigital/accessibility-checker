@@ -255,6 +255,80 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that the sr-only format script enqueues on post.php for a scannable post type.
+	 */
+	public function testSrOnlyFormatEnqueuesOnPostEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on post.php for a non-scannable post type.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueForNonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script enqueues on the Full Site Editor.
+	 */
+	public function testSrOnlyFormatEnqueuesInFullSiteEditor() {
+		global $pagenow;
+		$pagenow = 'site-editor.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on site-editor.php when not in block editor.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueInFseWhenNotBlockEditor() {
+		global $pagenow;
+		$pagenow = 'site-editor.php';
+
+		$this->set_mock_screen( false );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on unrelated admin pages.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueOnOtherAdminPages() {
+		global $pagenow;
+		$pagenow = 'edit.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
 	 * Helper to set a mock current screen with block editor context.
 	 *
 	 * @param bool $is_block_editor Whether the screen should behave as block editor.

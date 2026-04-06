@@ -304,12 +304,18 @@ class Enqueue_Admin {
 	/**
 	 * Enqueue the screen reader only format script and styles for the block editor.
 	 *
+	 * Loads on post edit screens for scannable post types, and also on the
+	 * Full Site Editor (site-editor.php) where there is no post type context.
+	 *
 	 * @return void
 	 */
 	public static function maybe_enqueue_sr_only_format(): void {
 		global $pagenow;
 
-		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow ) {
+		$is_post_editor = 'post.php' === $pagenow || 'post-new.php' === $pagenow;
+		$is_fse         = 'site-editor.php' === $pagenow;
+
+		if ( ! $is_post_editor && ! $is_fse ) {
 			return;
 		}
 
@@ -317,9 +323,13 @@ class Enqueue_Admin {
 			return;
 		}
 
-		$post_types = Settings::get_scannable_post_types();
-		if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
-			return;
+		// In the post editor, only load for scannable post types.
+		// The FSE has no post type context, so skip this check there.
+		if ( $is_post_editor ) {
+			$post_types = Settings::get_scannable_post_types();
+			if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
+				return;
+			}
 		}
 
 		wp_enqueue_script(
@@ -376,17 +386,28 @@ class Enqueue_Admin {
 	/**
 	 * Determine whether the screen reader only format assets should load.
 	 *
+	 * Returns true for the post editor on scannable post types, and also
+	 * for the Full Site Editor where there is no post type context.
+	 *
 	 * @return bool
 	 */
 	private static function should_load_sr_only_format(): bool {
 		global $pagenow;
 
-		if ( 'post.php' !== $pagenow && 'post-new.php' !== $pagenow ) {
+		$is_post_editor = 'post.php' === $pagenow || 'post-new.php' === $pagenow;
+		$is_fse         = 'site-editor.php' === $pagenow;
+
+		if ( ! $is_post_editor && ! $is_fse ) {
 			return false;
 		}
 
 		if ( ! Helpers::is_block_editor() ) {
 			return false;
+		}
+
+		// The FSE has no post type context, so always load there.
+		if ( $is_fse ) {
+			return true;
 		}
 
 		$post_types = Settings::get_scannable_post_types();
