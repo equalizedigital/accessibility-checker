@@ -309,27 +309,12 @@ class Enqueue_Admin {
 	 * @return void
 	 */
 	public static function maybe_enqueue_sr_only_format(): void {
+		if ( ! self::should_load_sr_only_format() ) {
+			return;
+		}
+
 		global $pagenow;
-
-		$is_post_editor = 'post.php' === $pagenow || 'post-new.php' === $pagenow;
-		$is_fse         = 'site-editor.php' === $pagenow;
-
-		if ( ! $is_post_editor && ! $is_fse ) {
-			return;
-		}
-
-		if ( ! Helpers::is_block_editor() ) {
-			return;
-		}
-
-		// In the post editor, only load for scannable post types.
-		// The FSE has no post type context, so skip this check there.
-		if ( $is_post_editor ) {
-			$post_types = Settings::get_scannable_post_types();
-			if ( ! Helpers::is_current_post_type_scannable( $post_types ) ) {
-				return;
-			}
-		}
+		$is_fse = 'site-editor.php' === $pagenow;
 
 		wp_enqueue_script(
 			'edac-sr-only-format',
