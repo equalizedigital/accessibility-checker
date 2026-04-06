@@ -335,7 +335,7 @@ class Enqueue_Admin {
 		wp_enqueue_script(
 			'edac-sr-only-format',
 			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
-			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n' ],
+			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor' ],
 			EDAC_VERSION,
 			false
 		);
@@ -347,6 +347,7 @@ class Enqueue_Admin {
 			'edacSrOnlyFormat',
 			[
 				'showSrTextInEditor' => (bool) get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ),
+				'isFSE'              => $is_fse,
 			]
 		);
 	}
