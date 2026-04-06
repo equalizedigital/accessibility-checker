@@ -270,6 +270,21 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that the sr-only format script enqueues on post-new.php for a scannable post type.
+	 */
+	public function testSrOnlyFormatEnqueuesOnPostNewEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post-new.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
 	 * Test that the sr-only format script does not enqueue on post.php for a non-scannable post type.
 	 */
 	public function testSrOnlyFormatDoesNotEnqueueForNonScannablePostType() {

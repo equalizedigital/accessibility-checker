@@ -29,7 +29,7 @@ const SrOnlyEdit = ( { isActive, value, onChange, onFocus } ) => {
 
 	const onClick = () => {
 		onToggle();
-		onFocus();
+		onFocus?.();
 	};
 
 	return createElement( RichTextToolbarButton, {

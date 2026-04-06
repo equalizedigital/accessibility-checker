@@ -2,7 +2,6 @@ import apiFetch from '@wordpress/api-fetch';
 
 export const CLASS_NAME = 'sr-only-show-always';
 
-let currentChecked = false;
 let observerCleanup = null;
 let domReadyPromise = null;
 
@@ -14,7 +13,6 @@ export const toggleClassOnDocumentBody = ( targetDocument, checked ) => {
 };
 
 export const applySrOnlyVisibility = ( checked ) => {
-	currentChecked = checked;
 	toggleClassOnDocumentBody( document, checked );
 
 	document.querySelectorAll( 'iframe' ).forEach( ( iframe ) => {
@@ -62,7 +60,8 @@ export const fetchUserMetaValue = async ( metaKey ) => {
 const observeSrOnlyVisibility = () => {
 	const handleFrameLoad = ( event ) => {
 		try {
-			toggleClassOnDocumentBody( event.target?.contentDocument, currentChecked );
+			const checked = document.body?.classList.contains( CLASS_NAME ) ?? false;
+			toggleClassOnDocumentBody( event.target?.contentDocument, checked );
 		} catch ( frameLoadError ) {
 			// Ignore cross-document access failures.
 		}
@@ -71,7 +70,8 @@ const observeSrOnlyVisibility = () => {
 	const attachListener = ( iframe ) => {
 		iframe.addEventListener( 'load', handleFrameLoad );
 		try {
-			toggleClassOnDocumentBody( iframe.contentDocument, currentChecked );
+			const checked = document.body?.classList.contains( CLASS_NAME ) ?? false;
+			toggleClassOnDocumentBody( iframe.contentDocument, checked );
 		} catch ( iframeAccessError ) {
 			// Ignore cross-document access failures.
 		}

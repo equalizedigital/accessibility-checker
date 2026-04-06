@@ -32,7 +32,6 @@ class Enqueue_Admin {
 		self::maybe_enqueue_sidebar_script();
 		self::maybe_enqueue_issue_modal_script();
 		self::maybe_enqueue_email_opt_in_script();
-		self::maybe_enqueue_sr_only_format();
 	}
 
 	/**
@@ -422,14 +421,22 @@ class Enqueue_Admin {
 	 * @return string
 	 */
 	private static function get_sr_only_editor_styles(): string {
+		static $cached_css = null;
+
+		if ( null !== $cached_css ) {
+			return $cached_css;
+		}
+
 		$css_file = plugin_dir_path( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css';
 		if ( ! file_exists( $css_file ) || ! is_readable( $css_file ) ) {
-			return '';
+			$cached_css = '';
+			return $cached_css;
 		}
 
 		$css = file_get_contents( $css_file ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Reads a local built CSS asset from the plugin directory.
 		if ( false === $css ) {
-			return '';
+			$cached_css = '';
+			return $cached_css;
 		}
 
 		$css .= sprintf(
@@ -441,7 +448,8 @@ class Enqueue_Admin {
 			wp_json_encode( __( '* Screen Reader Text', 'accessibility-checker' ) )
 		);
 
-		return $css;
+		$cached_css = $css;
+		return $cached_css;
 	}
 
 	/**

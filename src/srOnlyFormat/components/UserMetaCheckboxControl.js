@@ -3,7 +3,7 @@
  */
 
 import { CheckboxControl } from '@wordpress/components';
-import { createElement, useEffect, useState } from '@wordpress/element';
+import { createElement, useEffect, useRef, useState } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { applySrOnlyVisibility, ensureSrOnlyVisibilityObserver, fetchUserMetaValue } from '../utils/visibility';
@@ -13,6 +13,11 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ isSaving, setIsSaving ] = useState( false );
 	const [ error, setError ] = useState( '' );
+	const onChangeRef = useRef( onChange );
+
+	useEffect( () => {
+		onChangeRef.current = onChange;
+	}, [ onChange ] );
 
 	useEffect( () => {
 		let isMounted = true;
@@ -25,7 +30,7 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 				}
 
 				setChecked( value );
-				onChange( value );
+				onChangeRef.current?.( value );
 				setError( '' );
 			} )
 			.catch( () => {
@@ -44,7 +49,7 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 		return () => {
 			isMounted = false;
 		};
-	}, [ metaKey, onChange ] );
+	}, [ metaKey ] );
 
 	useEffect( () => {
 		if ( isLoading ) {
@@ -60,7 +65,7 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 		setChecked( nextChecked );
 		setIsSaving( true );
 		setError( '' );
-		onChange( nextChecked );
+		onChangeRef.current?.( nextChecked );
 
 		try {
 			await apiFetch( {
@@ -70,7 +75,7 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 			} );
 		} catch ( saveError ) {
 			setChecked( previousChecked );
-			onChange( previousChecked );
+			onChangeRef.current?.( previousChecked );
 			setError( __( 'Unable to save this preference.', 'accessibility-checker' ) );
 		} finally {
 			setIsSaving( false );
