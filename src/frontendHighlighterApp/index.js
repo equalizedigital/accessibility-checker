@@ -1652,7 +1652,7 @@ class AccessibilityCheckerHighlight {
 		// Save: persist the colour override to WordPress via REST.
 		if ( saveBtn ) {
 			saveBtn.addEventListener( 'click', () => {
-				const selector = matchingObj.ancestry || matchingObj.selector;
+				const selector = matchingObj.ancestry;
 				if ( ! selector ) {
 					if ( notice ) {
 						notice.textContent = __( 'Cannot save: no selector found for this element.', 'accessibility-checker' );
