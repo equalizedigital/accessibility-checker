@@ -357,7 +357,10 @@ class Enqueue_Admin {
 		}
 
 		if ( get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
-			$editor_settings['bodyClassName'] = trim( ( $editor_settings['bodyClassName'] ?? '' ) . ' sr-only-show-always' );
+			$body_classes = trim( (string) ( $editor_settings['bodyClassName'] ?? '' ) );
+			if ( false === strpos( " {$body_classes} ", ' sr-only-show-always ' ) ) {
+				$editor_settings['bodyClassName'] = trim( $body_classes . ' sr-only-show-always' );
+			}
 		}
 
 		$editor_settings['styles'][] = [

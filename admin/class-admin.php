@@ -100,10 +100,16 @@ class Admin {
 	 * @return string
 	 */
 	public function sr_only_admin_body_class( string $classes ): string {
-		if ( get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
-			$classes .= ' sr-only-show-always';
+		if ( ! get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
+			return $classes;
 		}
-		return $classes;
+
+		$classes = trim( $classes );
+		if ( false !== strpos( " {$classes} ", ' sr-only-show-always ' ) ) {
+			return $classes;
+		}
+
+		return trim( $classes . ' sr-only-show-always' );
 	}
 
 	/**
