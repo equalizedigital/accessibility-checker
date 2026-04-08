@@ -20,12 +20,26 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	private $enqueue_admin;
 
 	/**
+	 * Holds the test admin user ID.
+	 *
+	 * @var int
+	 */
+	private $test_admin_user_id;
+
+	/**
 	 * Setup the option, global wp_scripts and the Enqueue_Admin instance.
 	 *
 	 * @return void
 	 */
 	protected function setUp(): void {
 		parent::setUp();
+
+		$this->test_admin_user_id = self::factory()->user->create(
+			[
+				'role' => 'administrator',
+			]
+		);
+		wp_set_current_user( $this->test_admin_user_id );
 
 		update_option( 'edac_post_types', [ 'post', 'page' ] );
 
@@ -42,6 +56,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
+		if ( $this->test_admin_user_id ) {
+			delete_user_meta( $this->test_admin_user_id, 'show_sr_text_in_editor' );
+		}
+
+		wp_set_current_user( 0 );
+
+		if ( $this->test_admin_user_id ) {
+			wp_delete_user( $this->test_admin_user_id );
+			$this->test_admin_user_id = 0;
+		}
+
 		parent::tearDown();
 
 		delete_option( 'edac_post_types' );
@@ -341,6 +366,116 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		Enqueue_Admin::maybe_enqueue_sr_only_format();
 
 		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that sr-only editor styles are injected and existing styles are preserved.
+	 */
+	public function testInjectSrOnlyEditorStylesAddsCssAndPreservesExistingStyles() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		$editor_settings = [
+			'styles' => [
+				[ 'css' => '.existing-style { color: red; }' ],
+			],
+		];
+
+		$result = Enqueue_Admin::maybe_inject_sr_only_editor_styles( $editor_settings );
+
+		$this->assertCount( 2, $result['styles'] );
+		$this->assertSame( '.existing-style { color: red; }', $result['styles'][0]['css'] );
+		$this->assertStringContainsString( '.text-format-sr-only', $result['styles'][1]['css'] );
+		$this->assertStringContainsString( 'Screen Reader Text', $result['styles'][1]['css'] );
+	}
+
+	/**
+	 * Test that sr-only body class is appended when always-show user preference is enabled.
+	 */
+	public function testInjectSrOnlyEditorStylesAddsBodyClassWhenPreferenceEnabled() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+		update_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true );
+
+		$editor_settings = [
+			'bodyClassName' => 'editor-default',
+		];
+
+		$result = Enqueue_Admin::maybe_inject_sr_only_editor_styles( $editor_settings );
+
+		$this->assertStringContainsString( 'editor-default', $result['bodyClassName'] );
+		$this->assertStringContainsString( 'sr-only-show-always', $result['bodyClassName'] );
+		$this->assertArrayHasKey( 'styles', $result );
+		$this->assertNotEmpty( $result['styles'] );
+	}
+
+	/**
+	 * Test that sr-only body class is not appended when always-show user preference is disabled.
+	 */
+	public function testInjectSrOnlyEditorStylesDoesNotAddBodyClassWhenPreferenceDisabled() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+		update_user_meta( get_current_user_id(), 'show_sr_text_in_editor', false );
+
+		$result = Enqueue_Admin::maybe_inject_sr_only_editor_styles( [] );
+
+		$this->assertArrayNotHasKey( 'bodyClassName', $result );
+		$this->assertArrayHasKey( 'styles', $result );
+		$this->assertNotEmpty( $result['styles'] );
+	}
+
+	/**
+	 * Test that sr-only body class is not duplicated when already present.
+	 */
+	public function testInjectSrOnlyEditorStylesDoesNotDuplicateBodyClassWhenAlreadyPresent() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+		update_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true );
+
+		$editor_settings = [
+			'bodyClassName' => 'editor-default sr-only-show-always',
+		];
+
+		$result = Enqueue_Admin::maybe_inject_sr_only_editor_styles( $editor_settings );
+
+		$this->assertSame( 'editor-default sr-only-show-always', $result['bodyClassName'] );
+		$this->assertSame( 1, preg_match_all( '/\bsr-only-show-always\b/', $result['bodyClassName'] ) );
+		$this->assertArrayHasKey( 'styles', $result );
+		$this->assertNotEmpty( $result['styles'] );
+	}
+
+	/**
+	 * Test that sr-only body class appends cleanly for empty bodyClassName values.
+	 */
+	public function testInjectSrOnlyEditorStylesAppendsBodyClassWithoutLeadingWhitespace() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+		update_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true );
+
+		$editor_settings = [
+			'bodyClassName' => '',
+		];
+
+		$result = Enqueue_Admin::maybe_inject_sr_only_editor_styles( $editor_settings );
+
+		$this->assertSame( 'sr-only-show-always', $result['bodyClassName'] );
+		$this->assertArrayHasKey( 'styles', $result );
+		$this->assertNotEmpty( $result['styles'] );
 	}
 
 	/**
