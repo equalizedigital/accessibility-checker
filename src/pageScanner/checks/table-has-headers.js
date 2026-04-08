@@ -5,6 +5,14 @@ export default {
 			return true;
 		}
 
+		// Tables with role="presentation" or role="none" are not treated as data tables
+		// by screen readers, so headers are not required for them.
+		const role = node.getAttribute( 'role' );
+		const roleTokens = ( role || '' ).toLowerCase().split( /\s+/ );
+		if ( roleTokens.includes( 'presentation' ) || roleTokens.includes( 'none' ) ) {
+			return true;
+		}
+
 		const rows = Array.from( node.querySelectorAll( 'tr' ) );
 
 		if ( rows.length === 0 ) {
