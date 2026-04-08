@@ -319,7 +319,7 @@ class Enqueue_Admin {
 		wp_enqueue_script(
 			'edac-sr-only-format',
 			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
-			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor' ],
+			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor', 'wp-api-fetch' ],
 			EDAC_VERSION,
 			false
 		);
