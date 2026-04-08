@@ -49,8 +49,12 @@ const SidebarContent = () => {
 		);
 	}
 
-	// No data yet and not loading
-	return null;
+	// If there is a failure the sr option should still be available to use.
+	return (
+		<div className="edac-sidebar__content">
+			<ScreenReaderTextFormat />
+		</div>
+	);
 };
 
 export default SidebarContent;
