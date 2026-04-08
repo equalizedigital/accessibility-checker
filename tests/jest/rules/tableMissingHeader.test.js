@@ -131,6 +131,48 @@ describe( 'Table Header Detection Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'Table with role="Presentation" (uppercase, no headers needed)',
+			html: `
+				<table role="Presentation">
+					<tbody>
+						<tr>
+							<td>Image</td>
+							<td>Contact info</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with role=" presentation " (whitespace-padded, no headers needed)',
+			html: `
+				<table role=" presentation ">
+					<tbody>
+						<tr>
+							<td>Image</td>
+							<td>Contact info</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'Table with role="none presentation" (fallback token list, no headers needed)',
+			html: `
+				<table role="none presentation">
+					<tbody>
+						<tr>
+							<td>Image</td>
+							<td>Contact info</td>
+						</tr>
+					</tbody>
+				</table>
+			`,
+			shouldPass: true,
+		},
 
 		// ❌ Failing cases
 		{
