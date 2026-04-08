@@ -16,6 +16,7 @@ import { registerPlugin } from '@wordpress/plugins';
 import { PluginMoreMenuItem } from '@wordpress/editor';
 import apiFetch from '@wordpress/api-fetch';
 import { initializeSrOnlyVisibilityPreference, applySrOnlyVisibility, fetchUserMetaValue } from './utils/visibility';
+import { createPreferenceToggleHandler } from './utils/preferenceToggle';
 
 const name = 'edac/sr-only';
 const title = __( 'Screen Reader Only', 'accessibility-checker' );
@@ -56,6 +57,7 @@ registerFormatType( name, {
  */
 const SrOnlyFormatMenuItem = () => {
 	const [ checked, setChecked ] = useState( false );
+	const [ isSaving, setIsSaving ] = useState( false );
 	const [ isLoading, setIsLoading ] = useState( true );
 
 	useEffect( () => {
@@ -79,33 +81,26 @@ const SrOnlyFormatMenuItem = () => {
 		};
 	}, [] );
 
-	const handleClick = async () => {
-		if ( isLoading ) {
-			return;
-		}
-
-		const nextChecked = ! checked;
-		setChecked( nextChecked );
-		applySrOnlyVisibility( nextChecked );
-
-		try {
-			await apiFetch( {
+	const handleClick = createPreferenceToggleHandler( {
+		getChecked: () => checked,
+		isBlocked: () => isLoading || isSaving,
+		setChecked,
+		setIsSaving,
+		applyVisibility: applySrOnlyVisibility,
+		savePreference: ( nextChecked ) =>
+			apiFetch( {
 				path: '/wp/v2/users/me',
 				method: 'POST',
 				data: { meta: { show_sr_text_in_editor: nextChecked } },
-			} );
-		} catch ( saveError ) {
-			// Revert optimistic update on failure.
-			setChecked( checked );
-			applySrOnlyVisibility( checked );
-		}
-	};
+			} ),
+	} );
 
 	return createElement(
 		PluginMoreMenuItem,
 		{
 			icon: checked ? 'visibility' : 'hidden',
 			onClick: handleClick,
+			disabled: isLoading || isSaving,
 		},
 		__( 'Always show screen reader text', 'accessibility-checker' )
 	);
