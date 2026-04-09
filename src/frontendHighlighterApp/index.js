@@ -146,6 +146,7 @@ class AccessibilityCheckerHighlight {
 		// Wire up the admin bar "Check This Page" link regardless of position so it always works.
 		const adminBarCheckPageItem = document.querySelector( AccessibilityCheckerHighlight.ADMIN_BAR_CHECK_PAGE_SELECTOR );
 		if ( adminBarCheckPageItem ) {
+			adminBarCheckPageItem.setAttribute( 'role', 'button' );
 			adminBarCheckPageItem.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
 				this.panelOpen();
