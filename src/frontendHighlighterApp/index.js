@@ -121,6 +121,21 @@ class AccessibilityCheckerHighlight {
 		} else if ( this.landmarkParameter ) {
 			this.highlightLandmark( this.landmarkParameter );
 		}
+
+		// Handle admin bar position: hide the floating toggle button and wire up the admin bar link.
+		if ( ( edacFrontendHighlighterApp?.widgetPosition || 'right' ) === 'admin_bar' ) {
+			this.panelToggle.style.display = 'none';
+		}
+
+		// Wire up the admin bar "Check This Page" link regardless of position so it always works.
+		const adminBarCheckPageItem = document.querySelector( '#wp-admin-bar-accessibility-checker-check-page a' );
+		if ( adminBarCheckPageItem ) {
+			adminBarCheckPageItem.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				this.panelOpen();
+				this.focusTrapControls();
+			} );
+		}
 	}
 
 	/**
@@ -702,13 +717,21 @@ class AccessibilityCheckerHighlight {
 		this.highlightPanel.classList.remove( 'edac-highlight-panel-visible' );
 		this.panelControls.style.display = 'none';
 		this.panelDescription.style.display = 'none';
-		this.panelToggle.style.display = 'block';
 		this.removeSelectedClasses();
 		this.removeHighlightButtons();
 
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
-		this.panelToggle.focus();
+		// When using admin bar only mode, keep the floating toggle hidden and move focus to the admin bar link.
+		if ( ( edacFrontendHighlighterApp?.widgetPosition || 'right' ) === 'admin_bar' ) {
+			const adminBarCheckPageItem = document.querySelector( '#wp-admin-bar-accessibility-checker-check-page a' );
+			if ( adminBarCheckPageItem ) {
+				adminBarCheckPageItem.focus();
+			}
+		} else {
+			this.panelToggle.style.display = 'block';
+			this.panelToggle.focus();
+		}
 	}
 
 	/**
