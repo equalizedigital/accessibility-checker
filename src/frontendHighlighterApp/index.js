@@ -62,6 +62,15 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
+	 * Returns the configured widget position value.
+	 *
+	 * @return {string} The widget position ('right', 'left', or 'admin_bar').
+	 */
+	getWidgetPosition() {
+		return edacFrontendHighlighterApp?.widgetPosition || 'right';
+	}
+
+	/**
 	 * This function initializes the component by setting up event listeners
 	 * and managing the initial state of the panel based on the URL parameter.
 	 */
@@ -123,12 +132,13 @@ class AccessibilityCheckerHighlight {
 		}
 
 		// Handle admin bar position: hide the floating toggle button and wire up the admin bar link.
-		if ( ( edacFrontendHighlighterApp?.widgetPosition || 'right' ) === 'admin_bar' ) {
+		const adminBarCheckPageSelector = '#wp-admin-bar-accessibility-checker-check-page a';
+		if ( this.getWidgetPosition() === 'admin_bar' ) {
 			this.panelToggle.style.display = 'none';
 		}
 
 		// Wire up the admin bar "Check This Page" link regardless of position so it always works.
-		const adminBarCheckPageItem = document.querySelector( '#wp-admin-bar-accessibility-checker-check-page a' );
+		const adminBarCheckPageItem = document.querySelector( adminBarCheckPageSelector );
 		if ( adminBarCheckPageItem ) {
 			adminBarCheckPageItem.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
@@ -448,7 +458,7 @@ class AccessibilityCheckerHighlight {
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
 	addHighlightPanel() {
-		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
+		const widgetPosition = this.getWidgetPosition();
 
 		const userCanEdit = edacFrontendHighlighterApp && edacFrontendHighlighterApp?.userCanEdit && edacFrontendHighlighterApp?.loggedIn;
 		const clearButtonMarkup = userCanEdit
@@ -723,7 +733,7 @@ class AccessibilityCheckerHighlight {
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
 		// When using admin bar only mode, keep the floating toggle hidden and move focus to the admin bar link.
-		if ( ( edacFrontendHighlighterApp?.widgetPosition || 'right' ) === 'admin_bar' ) {
+		if ( this.getWidgetPosition() === 'admin_bar' ) {
 			const adminBarCheckPageItem = document.querySelector( '#wp-admin-bar-accessibility-checker-check-page a' );
 			if ( adminBarCheckPageItem ) {
 				adminBarCheckPageItem.focus();
