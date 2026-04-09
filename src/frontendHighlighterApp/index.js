@@ -10,6 +10,13 @@ import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesMod
 
 class AccessibilityCheckerHighlight {
 	/**
+	 * CSS selector for the admin bar "Check This Page" link.
+	 *
+	 * @type {string}
+	 */
+	static ADMIN_BAR_CHECK_PAGE_SELECTOR = '#wp-admin-bar-accessibility-checker-check-page a';
+
+	/**
 	 * Constructor
 	 * @param {Object} settings
 	 */
@@ -132,13 +139,12 @@ class AccessibilityCheckerHighlight {
 		}
 
 		// Handle admin bar position: hide the floating toggle button and wire up the admin bar link.
-		const adminBarCheckPageSelector = '#wp-admin-bar-accessibility-checker-check-page a';
 		if ( this.getWidgetPosition() === 'admin_bar' ) {
 			this.panelToggle.style.display = 'none';
 		}
 
 		// Wire up the admin bar "Check This Page" link regardless of position so it always works.
-		const adminBarCheckPageItem = document.querySelector( adminBarCheckPageSelector );
+		const adminBarCheckPageItem = document.querySelector( AccessibilityCheckerHighlight.ADMIN_BAR_CHECK_PAGE_SELECTOR );
 		if ( adminBarCheckPageItem ) {
 			adminBarCheckPageItem.addEventListener( 'click', ( e ) => {
 				e.preventDefault();
@@ -734,7 +740,7 @@ class AccessibilityCheckerHighlight {
 
 		// When using admin bar only mode, keep the floating toggle hidden and move focus to the admin bar link.
 		if ( this.getWidgetPosition() === 'admin_bar' ) {
-			const adminBarCheckPageItem = document.querySelector( '#wp-admin-bar-accessibility-checker-check-page a' );
+			const adminBarCheckPageItem = document.querySelector( AccessibilityCheckerHighlight.ADMIN_BAR_CHECK_PAGE_SELECTOR );
 			if ( adminBarCheckPageItem ) {
 				adminBarCheckPageItem.focus();
 			}

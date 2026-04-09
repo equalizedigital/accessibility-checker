@@ -154,7 +154,7 @@ class Admin_Toolbar {
 		}
 
 		global $post;
-		if ( ! is_object( $post ) || empty( $post->ID ) ) {
+		if ( ! is_object( $post ) || ! $post->ID ) {
 			return null;
 		}
 
