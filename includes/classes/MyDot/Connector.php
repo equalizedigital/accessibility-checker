@@ -54,6 +54,17 @@ class Connector {
 	private const NOTICE_TRANSIENT_TTL = 60;
 
 	/**
+	 * Determine whether enrollment should use the filtered product ID.
+	 *
+	 * We only use Pro product context when Pro is active and licensed.
+	 *
+	 * @return bool
+	 */
+	private static function should_use_filtered_product_id_for_enrollment(): bool {
+		return defined( 'EDACP_VERSION' ) && 'valid' === get_option( 'edacp_license_status' );
+	}
+
+	/**
 	 * Sets up the license page and handlers.
 	 *
 	 * @since 1.xx.x
@@ -605,7 +616,11 @@ class Connector {
 			'weekly_reports'  => $weekly_reports,
 			'monthly_reports' => $monthly_reports,
 		];
-		$response     = wp_remote_post(
+
+		if ( self::should_use_filtered_product_id_for_enrollment() ) {
+			$request_data['product_id'] = self::get_product_id();
+		}
+		$response = wp_remote_post(
 			self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/register-site',
 			[
 				'headers'     => [ 'Content-Type' => 'application/json' ],
@@ -657,7 +672,11 @@ class Connector {
 			'site_url'    => $site_url,
 			'license_key' => $license_key,
 		];
-		$response     = wp_remote_post(
+
+		if ( self::should_use_filtered_product_id_for_enrollment() ) {
+			$request_data['product_id'] = self::get_product_id();
+		}
+		$response = wp_remote_post(
 			self::get_api_endpoint() . '/wp-json/myed-email-reports/v1/unregister-site',
 			[
 				'headers'     => [
