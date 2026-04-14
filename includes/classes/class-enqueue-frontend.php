@@ -27,6 +27,29 @@ class Enqueue_Frontend {
 	 */
 	public static function enqueue() {
 		self::maybe_enqueue_frontend_highlighter();
+		self::enqueue_sr_only_styles();
+	}
+
+	/**
+	 * Enqueue the screen reader only format styles on the frontend.
+	 *
+	 * Loaded on all frontend pages so that text wrapped in .text-format-sr-only
+	 * is visually hidden for sighted users while remaining accessible to screen readers.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_sr_only_styles(): void {
+		if ( is_admin() ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'edac-sr-only-format',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css',
+			[],
+			EDAC_VERSION,
+			'all'
+		);
 	}
 
 	/**

@@ -301,6 +301,145 @@ class Enqueue_Admin {
 
 
 	/**
+	 * Enqueue the screen reader only format script and styles for the block editor.
+	 *
+	 * Loads on post edit screens for scannable post types, and also on the
+	 * Full Site Editor (site-editor.php) where there is no post type context.
+	 *
+	 * @return void
+	 */
+	public static function maybe_enqueue_sr_only_format(): void {
+		if ( ! self::should_load_sr_only_format() ) {
+			return;
+		}
+
+		global $pagenow;
+		$is_fse = 'site-editor.php' === $pagenow;
+
+		wp_enqueue_script(
+			'edac-sr-only-format',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
+			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor', 'wp-api-fetch' ],
+			EDAC_VERSION,
+			false
+		);
+
+		wp_set_script_translations( 'edac-sr-only-format', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+
+		wp_localize_script(
+			'edac-sr-only-format',
+			'edacSrOnlyFormat',
+			[
+				'showSrTextInEditor' => (bool) get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ),
+				'isFSE'              => $is_fse,
+			]
+		);
+	}
+
+	/**
+	 * Inject screen reader only format styles into the block editor iframe.
+	 *
+	 * @param array $editor_settings Default editor settings.
+	 * @return array
+	 */
+	public static function maybe_inject_sr_only_editor_styles( array $editor_settings ): array {
+		if ( ! self::should_load_sr_only_format() ) {
+			return $editor_settings;
+		}
+
+		$css = self::get_sr_only_editor_styles();
+		if ( '' === $css ) {
+			return $editor_settings;
+		}
+
+		if ( ! isset( $editor_settings['styles'] ) || ! is_array( $editor_settings['styles'] ) ) {
+			$editor_settings['styles'] = [];
+		}
+
+		if ( get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
+			$body_classes = trim( (string) ( $editor_settings['bodyClassName'] ?? '' ) );
+			if ( false === strpos( " {$body_classes} ", ' sr-only-show-always ' ) ) {
+				$editor_settings['bodyClassName'] = trim( $body_classes . ' sr-only-show-always' );
+			}
+		}
+
+		$editor_settings['styles'][] = [
+			'css' => $css,
+		];
+
+		return $editor_settings;
+	}
+
+	/**
+	 * Determine whether the screen reader only format assets should load.
+	 *
+	 * Returns true for the post editor on scannable post types, and also
+	 * for the Full Site Editor where there is no post type context.
+	 *
+	 * @return bool
+	 */
+	private static function should_load_sr_only_format(): bool {
+		global $pagenow;
+
+		$is_post_editor = 'post.php' === $pagenow || 'post-new.php' === $pagenow;
+		$is_fse         = 'site-editor.php' === $pagenow;
+
+		if ( ! $is_post_editor && ! $is_fse ) {
+			return false;
+		}
+
+		if ( ! Helpers::is_block_editor() ) {
+			return false;
+		}
+
+		// The FSE has no post type context, so always load there.
+		if ( $is_fse ) {
+			return true;
+		}
+
+		$post_types = Settings::get_scannable_post_types();
+
+		return Helpers::is_current_post_type_scannable( $post_types );
+	}
+
+	/**
+	 * Build the CSS that should be injected into the block editor iframe.
+	 *
+	 * @return string
+	 */
+	private static function get_sr_only_editor_styles(): string {
+		static $cached_css = null;
+
+		if ( null !== $cached_css ) {
+			return $cached_css;
+		}
+
+		$css_file = plugin_dir_path( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css';
+		if ( ! file_exists( $css_file ) || ! is_readable( $css_file ) ) {
+			$cached_css = '';
+			return $cached_css;
+		}
+
+		$css = file_get_contents( $css_file ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Reads a local built CSS asset from the plugin directory.
+		if ( false === $css ) {
+			$cached_css = '';
+			return $cached_css;
+		}
+
+		$css .= sprintf(
+			'
+			.is-selected .text-format-sr-only:hover:after,
+			.is-selected .text-format-sr-only:focus:after {
+				content: %s;
+			}',
+			wp_json_encode( __( '* Screen Reader Text', 'accessibility-checker' ) )
+		);
+
+		$cached_css = $css;
+		return $cached_css;
+	}
+
+	/**
 	 * Gets the current admin page slug.
 	 *
 	 * @since 1.31.0

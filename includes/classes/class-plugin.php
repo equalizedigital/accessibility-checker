@@ -46,6 +46,7 @@ class Plugin {
 		$cleanup->init_hooks();
 
 		$this->register_fixes_manager();
+		$this->register_sr_only_meta_hooks();
 
 		// When WP CLI is enabled, load the CLI commands.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
@@ -76,6 +77,32 @@ class Plugin {
 
 		$lazyload_filter = new Lazyload_Filter();
 		$lazyload_filter->init_hooks();
+	}
+
+	/**
+	 * Register hooks for the screen reader only user meta.
+	 *
+	 * @return void
+	 */
+	public function register_sr_only_meta_hooks(): void {
+		add_action( 'init', [ $this, 'register_sr_only_user_meta' ] );
+	}
+
+	/**
+	 * Register user meta for the screen reader text always-show preference.
+	 *
+	 * @return void
+	 */
+	public function register_sr_only_user_meta(): void {
+		register_meta(
+			'user',
+			'show_sr_text_in_editor',
+			[
+				'type'         => 'boolean',
+				'single'       => true,
+				'show_in_rest' => true,
+			]
+		);
 	}
 
 	/**

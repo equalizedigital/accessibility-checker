@@ -39,6 +39,10 @@ module.exports = {
 		frontendFixes: [
 			'./src/frontendFixes/index.js',
 		],
+		srOnlyFormat: [
+			'./src/srOnlyFormat/index.js',
+			'./src/srOnlyFormat/sass/sr-only-format.scss',
+		],
 
 	},
 	optimization: {

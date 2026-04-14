@@ -20,12 +20,26 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	private $enqueue_admin;
 
 	/**
+	 * Holds the test admin user ID.
+	 *
+	 * @var int
+	 */
+	private $test_admin_user_id;
+
+	/**
 	 * Setup the option, global wp_scripts and the Enqueue_Admin instance.
 	 *
 	 * @return void
 	 */
 	protected function setUp(): void {
 		parent::setUp();
+
+		$this->test_admin_user_id = self::factory()->user->create(
+			[
+				'role' => 'administrator',
+			]
+		);
+		wp_set_current_user( $this->test_admin_user_id );
 
 		update_option( 'edac_post_types', [ 'post', 'page' ] );
 
@@ -42,6 +56,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
+		if ( $this->test_admin_user_id ) {
+			delete_user_meta( $this->test_admin_user_id, 'show_sr_text_in_editor' );
+		}
+
+		wp_set_current_user( 0 );
+
+		if ( $this->test_admin_user_id ) {
+			wp_delete_user( $this->test_admin_user_id );
+			$this->test_admin_user_id = 0;
+		}
+
 		parent::tearDown();
 
 		delete_option( 'edac_post_types' );
@@ -253,6 +278,96 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertFalse( wp_style_is( 'edac-sidebar', 'enqueued' ) );
 	}
+
+	/**
+	 * Test that the sr-only format script enqueues on post.php for a scannable post type.
+	 */
+	public function testSrOnlyFormatEnqueuesOnPostEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script enqueues on post-new.php for a scannable post type.
+	 */
+	public function testSrOnlyFormatEnqueuesOnPostNewEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post-new.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on post.php for a non-scannable post type.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueForNonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script enqueues on the Full Site Editor.
+	 */
+	public function testSrOnlyFormatEnqueuesInFullSiteEditor() {
+		global $pagenow;
+		$pagenow = 'site-editor.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertTrue( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on site-editor.php when not in block editor.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueInFseWhenNotBlockEditor() {
+		global $pagenow;
+		$pagenow = 'site-editor.php';
+
+		$this->set_mock_screen( false );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the sr-only format script does not enqueue on unrelated admin pages.
+	 */
+	public function testSrOnlyFormatDoesNotEnqueueOnOtherAdminPages() {
+		global $pagenow;
+		$pagenow = 'edit.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+
+		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
 
 	/**
 	 * Helper to set a mock current screen with block editor context.
