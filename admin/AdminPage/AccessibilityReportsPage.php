@@ -110,7 +110,7 @@ class AccessibilityReportsPage implements PageInterface {
 			'svg'  => [
 				'width'   => true,
 				'height'  => true,
-				'viewBox' => true,
+				'viewbox' => true,
 				'fill'    => true,
 				'xmlns'   => true,
 			],
@@ -255,13 +255,12 @@ class AccessibilityReportsPage implements PageInterface {
 							</article>
 
 							<article class="edac-reports-card">
-								<h3><?php esc_html_e( 'Last Report', 'accessibility-checker' ); ?></h3>
+								<h3><?php esc_html_e( 'Accessibility Summary', 'accessibility-checker' ); ?></h3>
 								<p><?php esc_html_e( 'This summary reflects the latest scan data available for your site.', 'accessibility-checker' ); ?></p>
 								<div class="edac-reports-stat">
 									<div class="edac-reports-stat__label"><?php esc_html_e( 'Total Issues Found', 'accessibility-checker' ); ?></div>
 									<div class="edac-reports-stat__value"><?php echo esc_html( number_format_i18n( $preview_data['total_issues'] ) ); ?></div>
-									<div class="edac-reports-stat__caption"><?php echo esc_html( $preview_data['summary_caption'] ); ?></div>
-								</div>
+									</div>
 							</article>
 
 							<article class="edac-reports-card">
@@ -312,8 +311,8 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return array
 	 */
 	private function get_preview_data( array $summary, bool $has_pro_plugin ): array {
-		$problems           = (int) ( $summary['distinct_errors'] ?? 0 );
-		$needs_review       = (int) ( $summary['distinct_warnings'] ?? 0 );
+		$problems           = (int) ( $summary['errors'] ?? 0 );
+		$needs_review       = (int) ( $summary['warnings'] ?? 0 );
 		$total_issues       = $problems + $needs_review;
 		$urls_scanned       = (int) ( $summary['posts_scanned'] ?? 0 );
 		$post_types_checked = (int) ( $summary['scannable_post_types_count'] ?? 0 );
@@ -331,7 +330,6 @@ class AccessibilityReportsPage implements PageInterface {
 			'taxonomies_checked' => sprintf( '%1$d/%2$d', $taxonomies_checked['checked'], max( $taxonomies_checked['total'], $taxonomies_checked['checked'] ) ),
 			'top_pages'          => array_slice( $summary['top_pages_with_issues'] ?? [], 0, 5 ),
 			'top_issues'         => $this->format_top_issues( $summary['top_issues_found_on_site'] ?? [], $rules ),
-			'summary_caption'    => $total_issues > 0 ? __( 'Current site snapshot', 'accessibility-checker' ) : __( 'No issues found in the latest scan data', 'accessibility-checker' ),
 		];
 	}
 
