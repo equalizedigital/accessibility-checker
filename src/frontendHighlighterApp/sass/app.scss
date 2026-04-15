@@ -507,6 +507,11 @@ body {
 				background-color: variables.$color-blue !important;
 				padding: 8px 12px !important;
 				gap: 8px !important;
+				cursor: grab !important;
+
+				button, a {
+					cursor: pointer !important;
+				}
 			}
 
 			&-header-actions {

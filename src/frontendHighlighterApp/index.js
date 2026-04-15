@@ -177,6 +177,14 @@ class AccessibilityCheckerHighlight {
 		this.moveButton.textContent = isRight
 			? __( 'Move to Right', 'accessibility-checker' )
 			: __( 'Move to Left', 'accessibility-checker' );
+
+		// Clear any drag-applied inline position so the panel repositions via CSS classes.
+		this.panelControls.style.position = '';
+		this.panelControls.style.width = '';
+		this.panelControls.style.left = '';
+		this.panelControls.style.top = '';
+		this.panelControls.style.right = '';
+		this.panelControls.style.bottom = '';
 	}
 
 	/**
@@ -545,7 +553,77 @@ class AccessibilityCheckerHighlight {
                 `;
 
 		document.body.insertAdjacentHTML( 'afterbegin', newElement );
-		return document.getElementById( 'edac-highlight-panel' );
+		const panel = document.getElementById( 'edac-highlight-panel' );
+		this.initDrag( panel );
+		return panel;
+	}
+
+	/**
+	 * Makes the panel draggable by its header. Buttons in the header are excluded from triggering a drag.
+	 *
+	 * @param {HTMLElement} panel
+	 */
+	initDrag( panel ) {
+		const controls = panel.querySelector( '.edac-highlight-panel-controls' );
+		const header = panel.querySelector( '.edac-highlight-panel-controls-header' );
+		if ( ! header || ! controls ) {
+			return;
+		}
+
+		header.style.cursor = 'grab';
+
+		let startX, startY, startLeft, startTop;
+
+		header.addEventListener( 'pointerdown', ( e ) => {
+			// Let buttons and links handle their own clicks.
+			if ( e.target.closest( 'button, a' ) ) {
+				return;
+			}
+
+			const rect = controls.getBoundingClientRect();
+			startLeft = rect.left;
+			startTop = rect.top;
+			startX = e.clientX;
+			startY = e.clientY;
+
+			// Detach controls from panel flow and position them independently.
+			controls.style.width = rect.width + 'px';
+			controls.style.position = 'fixed';
+			controls.style.left = startLeft + 'px';
+			controls.style.top = startTop + 'px';
+			controls.style.right = 'auto';
+			controls.style.bottom = 'auto';
+
+			// Capture pointer so pointermove/pointerup fire even outside the window.
+			header.setPointerCapture( e.pointerId );
+			document.body.style.userSelect = 'none';
+			header.style.cursor = 'grabbing';
+
+			e.preventDefault();
+		} );
+
+		header.addEventListener( 'pointermove', ( e ) => {
+			if ( ! header.hasPointerCapture( e.pointerId ) ) {
+				return;
+			}
+			controls.style.left = ( startLeft + e.clientX - startX ) + 'px';
+			controls.style.top = ( startTop + e.clientY - startY ) + 'px';
+		} );
+
+		header.addEventListener( 'pointerup', ( e ) => {
+			if ( ! header.hasPointerCapture( e.pointerId ) ) {
+				return;
+			}
+			header.releasePointerCapture( e.pointerId );
+			document.body.style.userSelect = '';
+			header.style.cursor = 'grab';
+		} );
+
+		header.addEventListener( 'pointercancel', ( e ) => {
+			header.releasePointerCapture( e.pointerId );
+			document.body.style.userSelect = '';
+			header.style.cursor = 'grab';
+		} );
 	}
 
 	/**
