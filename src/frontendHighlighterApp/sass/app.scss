@@ -159,34 +159,136 @@ body {
 			}
 		}
 
-		&-description {
-			max-height: calc(100vh - 230px) !important;
-			display: block;
-			border: solid 1px variables.$color-gray-light !important;
-			background-color: variables.$color-white !important;
-			margin-bottom: 15px !important;
-			padding: 15px !important;
-			color: variables.$color-white !important;
-			background-color: variables.$color-blue-dark !important;
-			font-size: 14px !important;
-			line-height: 22px !important;
-			font-family: sans-serif !important;
-			text-align: left !important;
-			display: none;
-			overflow-y: scroll !important;
-			box-shadow: 0px 0px 5px rgba(variables.$color-black, .25) !important;
-			-webkit-font-smoothing: antialiased !important;
-			-moz-osx-font-smoothing: grayscale !important;
+		// Re-apply edac-badge styles — all:unset inside the panel strips them
+		.edac-badge {
+			display: inline-flex !important;
+			align-items: center !important;
+			gap: 4px !important;
+			padding: 3px 10px !important;
+			border-radius: 20px !important;
+			font-size: 12px !important;
+			font-weight: 400 !important;
+			white-space: nowrap !important;
+			color: #1e1e1e !important;
 
-			&:focus {
-				//outline: solid 5px rgba(0,208,255,.75);
+			&__icon {
+				font-size: 12px !important;
+				line-height: 1 !important;
 			}
+
+			&__label {
+				line-height: 1 !important;
+			}
+
+			&--large {
+				font-size: 13px !important;
+
+				.edac-badge__icon {
+					font-size: 14px !important;
+				}
+			}
+
+			&--error {
+				background: transparent !important;
+				border: 1px solid #970C0C !important;
+				padding: 2px 10px !important;
+
+				.edac-badge__icon svg {
+					stroke: #970C0C !important;
+				}
+			}
+
+			&--warning {
+				background: transparent !important;
+				border: 1px solid #CF8402 !important;
+				padding: 2px 10px !important;
+
+				.edac-badge__icon svg {
+					stroke: #CF8402 !important;
+				}
+			}
+
+			&--ignored {
+				background: transparent !important;
+				border: 1px solid variables.$color-gray !important;
+			}
+
+			&--severity-critical {
+				background: rgba(#970C0C, 0.1) !important;
+				border: 1px solid #970C0C !important;
+			}
+
+			&--severity-high {
+				background: rgba(#F49D02, 0.1) !important;
+				border: 1px solid #F49D02 !important;
+			}
+
+			&--severity-medium {
+				background: rgba(#F1C500, 0.1) !important;
+				border: 1px solid #F1C500 !important;
+			}
+
+			&--severity-low {
+				background: rgba(#015798, 0.1) !important;
+				border: 1px solid #015798 !important;
+			}
+
+			.edac-badge__icon {
+				display: inline-flex !important;
+				align-items: center !important;
+
+				svg {
+					display: block !important;
+					width: 16px !important;
+					height: 16px !important;
+					overflow: visible !important;
+					stroke: currentColor !important;
+					fill: none !important;
+				}
+			}
+		}
+
+		&-description {
 
 			&-title {
 				font-size: 16px !important;
-				display: block !important;
+				display: flex !important;
+				align-items: center !important;
+				flex-wrap: wrap !important;
+				gap: 8px !important;
 				font-weight: bold !important;
 				margin-bottom: 5px !important;
+
+				&-text {
+					font-weight: bold !important;
+				}
+			}
+
+			&-wcag {
+				display: block !important;
+				margin-bottom: 10px !important;
+				font-size: 12px !important;
+			}
+
+			&-meta {
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 8px !important;
+				margin-bottom: 12px !important;
+			}
+
+			&-meta-row {
+				display: flex !important;
+				align-items: center !important;
+				gap: 10px !important;
+				font-size: 13px !important;
+			}
+
+			&-meta-label {
+				font-weight: bold !important;
+				min-width: 70px !important;
+				flex-shrink: 0 !important;
+				font-size: 13px !important;
 			}
 
 			&-type {
@@ -224,16 +326,17 @@ body {
 				margin-bottom: 5px !important;
 			}
 
-			&-status {
-				color: variables.$color-white !important;
+			&-notice {
 				display: block !important;
-				background-color: variables.$color-red !important;
-				padding: 10px 15px !important;
-				margin-top: 10px !important;
-				margin-bottom: 10px !important;
+				margin-top: 8px !important;
+				padding: 8px 12px !important;
+				border-left: 4px solid #72aee6 !important;
+				background-color: #f0f6fc !important;
+				color: #1e1e1e !important;
+				font-size: 13px !important;
+				line-height: 1.5 !important;
 			}
 
-			&-reference,
 			&-code-button,
 			&--button {
 				all: unset;
@@ -253,7 +356,16 @@ body {
 			}
 
 			&-reference {
-				text-decoration: none !important;
+				all: unset !important;
+				display: inline !important;
+				color: variables.$color-blue !important;
+				text-decoration: underline !important;
+				cursor: pointer !important;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+
+				&:hover, &:focus {
+					text-decoration: none !important;
+				}
 			}
 
 			&-code-button {
@@ -291,28 +403,63 @@ body {
 				display: block;
 			}
 
+
+
+			&-explanation-toggle {
+				all: unset !important;
+				display: inline-flex !important;
+				align-items: center !important;
+				gap: 2px !important;
+				margin-top: 8px !important;
+				font-size: 13px !important;
+				color: variables.$color-blue !important;
+				cursor: pointer !important;
+				text-decoration: underline !important;
+
+				&:hover, &:focus {
+					color: variables.$color-blue-dark !important;
+				}
+
+				svg {
+					fill: variables.$color-blue !important;
+					transform: rotate(180deg) !important;
+					transition: transform 0.2s ease !important;
+				}
+
+				&[aria-expanded="true"] svg {
+					transform: rotate(0deg) !important;
+				}
+			}
+
+			&-explanation {
+				&[hidden] {
+					display: none !important;
+				}
+			}
+
 			&-how-to-fix {
-				display: inline-block;
+				display: block !important;
 				margin-bottom: 0 !important;
+				margin-top: 12px !important;
 
 				&-title {
-					display: block;
+					display: block !important;
+					font-size: 15px !important;
 					font-weight: bold !important;
-					margin-top: 10px !important;
 					margin-bottom: 5px !important;
 				}
 			}
 		}
 
 		&-controls {
-			color: variables.$color-white !important;
-			display: block;
-			background-color: variables.$color-blue !important;
-			border: solid 1px variables.$color-gray-light !important;
+			color: #1e1e1e !important;
+			background-color: variables.$color-white !important;
 			display: none;
-			box-shadow: 0px 0px 5px rgba(variables.$color-black, .15) !important;
-			position: relative !important;
-			padding: 15px !important;
+			flex-direction: column !important;
+			max-height: calc(100vh - 80px) !important;
+			box-shadow: 0 4px 20px rgba(variables.$color-black, .35) !important;
+			border-radius: 10px !important;
+			overflow: hidden !important;
 			font-size: 14px !important;
 			line-height: 22px !important;
 			font-family: sans-serif !important;
@@ -323,42 +470,97 @@ body {
 				// outline: solid 1px rgba(0,208,255,.75);
 			}
 
+			&-header {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: space-between !important;
+				background-color: variables.$color-blue-dark !important;
+				padding: 8px 12px !important;
+				gap: 8px !important;
+			}
+
+			&-header-actions {
+				display: flex !important;
+				align-items: center !important;
+				gap: 4px !important;
+				flex-shrink: 0 !important;
+			}
+
 			&-title {
-				font-size: 16px !important;
-				display: block !important;
+				font-size: 14px !important;
 				font-weight: bold !important;
-				margin-bottom: 5px !important;
+				flex: 1 !important;
+				color: variables.$color-white !important;
 			}
 
 			&-close {
-				width: 25px !important;
-				height: 25px !important;
-				color: variables.$color-blue-dark !important;
-				background-color: variables.$color-yellow !important;
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: 28px !important;
+				height: 28px !important;
+				color: variables.$color-white !important;
 				font-size: 18px !important;
-				line-height: 25px !important;
-				position: absolute !important;
-				top: 0px !important;
-				right: 0px !important;
-				text-align: center !important;
+				cursor: pointer !important;
+				border-radius: 2px !important;
 
 				&:hover, &:focus {
-					cursor: pointer !important;
+					background-color: variables.$color-yellow !important;
 					color: variables.$color-blue-dark !important;
-					background-color: variables.$color-white !important;
 				}
+			}
+
+			&-content {
+				flex: 1 !important;
+				overflow-y: auto !important;
+				padding: 15px !important;
+				border-bottom: solid 1px variables.$color-gray-light !important;
+
+				&-empty {
+					color: variables.$color-gray !important;
+					font-size: 13px !important;
+					text-align: center !important;
+					padding: 20px 0 !important;
+				}
+
+				&-issue {
+					display: block;
+
+					&[hidden] {
+						display: none !important;
+					}
+				}
+			}
+
+			&-footer {
+				flex-shrink: 0 !important;
+				border-top: solid 1px variables.$color-gray-light !important;
 			}
 
 			&-summary {
 				display: block !important;
+				padding: 12px 15px 0 !important;
+
+				.edac-highlight-summary-total {
+					display: block !important;
+					font-weight: bold !important;
+					font-size: 15px !important;
+				}
+
+				.edac-highlight-summary-breakdown {
+					display: block !important;
+					font-size: 12px !important;
+					opacity: 0.85 !important;
+					margin-top: 2px !important;
+				}
 			}
 
 			&-buttons {
-
-				&.single_button {
-					display: grid !important;
-					grid-template-columns: repeat(2, 1fr) !important;
-				}
+				display: flex !important;
+				align-items: center !important;
+				padding: 10px 15px 15px !important;
+				gap: 8px !important;
 
 				button {
 					all: unset;
@@ -367,8 +569,7 @@ body {
 					background-color: variables.$color-blue-dark !important;
 					padding: 4px 10px !important;
 					display: inline-block !important;
-					margin-top: 10px !important;
-					margin-right: 10px !important;
+					flex-shrink: 0 !important;
 
 					&:hover, &:focus {
 						color: variables.$color-blue-dark !important;
@@ -379,16 +580,86 @@ body {
 					&:disabled {
 						display: none !important;
 					}
-
 				}
 			}
 
-			.edac-highlight-disable-styles {
-				float: right !important;
-				margin-right: 0 !important;
+			&-pagination {
+				flex: 1 !important;
+				text-align: center !important;
+				font-size: 13px !important;
+				color: #555 !important;
+			}
+
+			.edac-highlight-menu-container {
+				position: relative !important;
+				display: flex !important;
+				align-items: center !important;
+			}
+
+			.edac-highlight-menu-button {
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: 28px !important;
+				height: 28px !important;
+				color: variables.$color-white !important;
+				font-size: 18px !important;
+				cursor: pointer !important;
+				letter-spacing: 1px !important;
+				border-radius: 2px !important;
+
+				&:hover, &:focus {
+					background-color: variables.$color-yellow !important;
+					color: variables.$color-blue-dark !important;
+				}
+			}
+
+			.edac-highlight-menu {
+				all: unset !important;
+				display: block !important;
+				position: absolute !important;
+				top: 100% !important;
+				right: 0 !important;
+				background-color: variables.$color-blue-dark !important;
+				list-style: none !important;
+				margin: 0 !important;
+				padding: 0 !important;
+				min-width: 160px !important;
+				z-index: 10 !important;
+				box-shadow: 0 4px 8px rgba(variables.$color-black, .25) !important;
+				border-radius: 5px !important;
+				overflow: hidden !important;
+
+				&[hidden] {
+					display: none !important;
+				}
+
+				li {
+					all: unset !important;
+					display: block !important;
+				}
+
+				button {
+					all: unset !important;
+					display: block !important;
+					width: 100% !important;
+					box-sizing: border-box !important;
+					color: variables.$color-white !important;
+					padding: 8px 12px !important;
+					cursor: pointer !important;
+					text-align: left !important;
+					white-space: nowrap !important;
+
+					&:hover, &:focus {
+						color: variables.$color-blue-dark !important;
+						background-color: variables.$color-white !important;
+					}
+				}
 			}
 		}
 	}
+
 }
 
 

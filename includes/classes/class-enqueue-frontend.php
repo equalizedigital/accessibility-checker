@@ -126,6 +126,7 @@ class Enqueue_Frontend {
 					'nonce'            => wp_create_nonce( 'frontend-highlighter' ),
 					'restNonce'        => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
 					'userCanFix'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
+					'isPro'            => edac_is_pro(),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
