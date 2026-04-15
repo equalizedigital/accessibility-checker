@@ -827,12 +827,30 @@ class AccessibilityCheckerHighlight {
 
 			let content = '';
 
-			// WCAG reference
+			// WCAG reference + severity inline
 			if ( matchingObj.wcag ) {
-				content += `<div class="edac-highlight-panel-description-wcag"><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ sprintf( __( 'WCAG: %s', 'accessibility-checker' ), matchingObj.wcag ) } ↗\uFE0E</a></div>`;
+				const wcagLinkText = matchingObj.wcag_title
+					? `${ matchingObj.wcag } ${ matchingObj.wcag_title } ↗\uFE0E`
+					: `${ matchingObj.wcag } ↗\uFE0E`;
+
+				let severityBadgeHtml = '';
+				if ( matchingObj.severity ) {
+					const severityMap = {
+						1: { label: __( 'Critical', 'accessibility-checker' ), slug: 'critical' },
+						2: { label: __( 'High', 'accessibility-checker' ), slug: 'high' },
+						3: { label: __( 'Medium', 'accessibility-checker' ), slug: 'medium' },
+						4: { label: __( 'Low', 'accessibility-checker' ), slug: 'low' },
+					};
+					const severity = severityMap[ matchingObj.severity ];
+					if ( severity ) {
+						severityBadgeHtml = `<strong class="edac-highlight-panel-description-wcag-label">${ __( 'Severity:', 'accessibility-checker' ) }</strong> <span class="edac-badge edac-badge--severity-${ severity.slug }"><span class="edac-badge__label">${ severity.label }</span></span>`;
+					}
+				}
+
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
-			// Metadata rows: Type, Severity, Landmark
+			// Metadata row: Type
 			content += `<div class="edac-highlight-panel-description-meta">`;
 
 			// Type
@@ -847,26 +865,6 @@ class AccessibilityCheckerHighlight {
 				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Ignored', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
 			</span>`;
 
-			// Severity
-			if ( matchingObj.severity ) {
-				const severityMap = {
-					1: { label: __( 'Critical', 'accessibility-checker' ), slug: 'critical' },
-					2: { label: __( 'High', 'accessibility-checker' ), slug: 'high' },
-					3: { label: __( 'Medium', 'accessibility-checker' ), slug: 'medium' },
-					4: { label: __( 'Low', 'accessibility-checker' ), slug: 'low' },
-				};
-				const severity = severityMap[ matchingObj.severity ];
-				if ( severity ) {
-					content += `<div class="edac-highlight-panel-description-meta-row">
-						<span class="edac-highlight-panel-description-meta-label">${ __( 'Severity', 'accessibility-checker' ) }</span>
-						<span class="edac-badge edac-badge--severity-${ severity.slug }">
-							<span class="edac-badge__label">${ severity.label }</span>
-						</span>
-					</div>`;
-				}
-			}
-
-
 			content += `</div>`;
 
 
@@ -880,7 +878,8 @@ class AccessibilityCheckerHighlight {
 
 			if ( isPro && hasExplanation ) {
 				// Pro: show expandable explanation accordion
-				content += `<button class="edac-highlight-panel-description-explanation-toggle" aria-expanded="${ this.explanationExpanded }" aria-controls="edac-highlight-panel-description-explanation">${ __( 'Show explanation', 'accessibility-checker' ) } <span aria-hidden="true"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" aria-hidden="true" focusable="false"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z"></path></svg></span></button>`;
+				const explanationArrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
+				content += `<button class="edac-highlight-panel-description-explanation-toggle" aria-expanded="${ this.explanationExpanded }" aria-controls="edac-highlight-panel-description-explanation">${ __( 'Show explanation', 'accessibility-checker' ) } <img src="${ explanationArrowUri }" width="16" height="16" class="edac-highlight-panel-description-explanation-toggle-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button>`;
 				content += `<div id="edac-highlight-panel-description-explanation" class="edac-highlight-panel-description-explanation"${ this.explanationExpanded ? '' : ' hidden' }>`;
 
 				if ( matchingObj.why_it_matters ) {
@@ -897,7 +896,7 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ↗\uFE0E</a>`;
+				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ↗\uFE0E</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
@@ -931,7 +930,8 @@ class AccessibilityCheckerHighlight {
 			}
 
 			// Get the code button
-			content += `<button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Code', 'accessibility-checker' ) }</button>`;
+			const codeArrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
+			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
 			// title and content
 			descriptionTitle.innerHTML = `<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }` +

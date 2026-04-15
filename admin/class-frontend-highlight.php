@@ -135,6 +135,7 @@ class Frontend_Highlight {
 			$array['slug']              = $rule[0]['slug'];
 			$array['rule_title']        = $rule[0]['title'];
 			$array['wcag']              = $rule[0]['wcag'] ?? '';
+			$array['wcag_title']        = $this->get_wcag_title( $rule[0]['wcag'] ?? '' );
 			$array['summary']           = $rule[0]['summary'];
 			$array['why_it_matters']    = wp_kses_post( $rule[0]['why_it_matters'] ?? '' );
 			$array['how_to_fix']        = wp_kses_post( $rule[0]['how_to_fix'] ?? '' );
@@ -218,5 +219,27 @@ class Frontend_Highlight {
 				]
 			)
 		);
+	}
+
+	/**
+	 * Get the WCAG criterion title for a given WCAG number.
+	 *
+	 * @param string $wcag_number The WCAG number (e.g., '1.1.1').
+	 * @return string The criterion title, or empty string if not found.
+	 */
+	private function get_wcag_title( $wcag_number ) {
+		if ( ! $wcag_number ) {
+			return '';
+		}
+		static $wcag_lookup = null;
+		if ( null === $wcag_lookup ) {
+			$wcag_file = EDAC_PLUGIN_DIR . 'includes/wcag.php';
+			if ( ! file_exists( $wcag_file ) ) {
+				return '';
+			}
+			$wcag_data   = include $wcag_file;
+			$wcag_lookup = is_array( $wcag_data ) ? array_column( $wcag_data, 'title', 'number' ) : [];
+		}
+		return $wcag_lookup[ $wcag_number ] ?? '';
 	}
 }

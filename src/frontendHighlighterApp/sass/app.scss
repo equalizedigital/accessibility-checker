@@ -265,9 +265,17 @@ body {
 			}
 
 			&-wcag {
-				display: block !important;
+				display: flex !important;
+				align-items: center !important;
+				flex-wrap: wrap !important;
+				gap: 8px !important;
 				margin-bottom: 10px !important;
 				font-size: 12px !important;
+
+				&-label {
+					font-weight: bold !important;
+					flex-shrink: 0 !important;
+				}
 			}
 
 			&-meta {
@@ -337,7 +345,32 @@ body {
 				line-height: 1.5 !important;
 			}
 
-			&-code-button,
+			&-code-button {
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				gap: 2px !important;
+				margin-top: 8px !important;
+				font-size: 13px !important;
+				color: variables.$color-blue !important;
+				cursor: pointer !important;
+				text-decoration: underline !important;
+
+				&:hover, &:focus {
+					color: variables.$color-blue-dark !important;
+					text-decoration: none !important;
+				}
+
+				&-arrow {
+					transform: rotate(180deg) !important;
+					transition: transform 0.2s ease !important;
+				}
+
+				&[aria-expanded="true"] &-arrow {
+					transform: rotate(0deg) !important;
+				}
+			}
+
 			&--button {
 				all: unset;
 				color: variables.$color-blue-dark !important;
@@ -368,13 +401,10 @@ body {
 				}
 			}
 
-			&-code-button {
-			}
-
 			&-code {
 				color: variables.$color-black !important;
 				display: block;
-				background-color: variables.$color-white !important;
+				background-color: #f6f7f7 !important;
 				padding: 10px 15px !important;
 				display: none;
 				margin-top: 10px !important;
@@ -407,7 +437,7 @@ body {
 
 			&-explanation-toggle {
 				all: unset !important;
-				display: inline-flex !important;
+				display: flex !important;
 				align-items: center !important;
 				gap: 2px !important;
 				margin-top: 8px !important;
@@ -418,15 +448,15 @@ body {
 
 				&:hover, &:focus {
 					color: variables.$color-blue-dark !important;
+					text-decoration: none !important;
 				}
 
-				svg {
-					fill: variables.$color-blue !important;
+				&-arrow {
 					transform: rotate(180deg) !important;
 					transition: transform 0.2s ease !important;
 				}
 
-				&[aria-expanded="true"] svg {
+				&[aria-expanded="true"] &-arrow {
 					transform: rotate(0deg) !important;
 				}
 			}
@@ -474,7 +504,7 @@ body {
 				display: flex !important;
 				align-items: center !important;
 				justify-content: space-between !important;
-				background-color: variables.$color-blue-dark !important;
+				background-color: variables.$color-blue !important;
 				padding: 8px 12px !important;
 				gap: 8px !important;
 			}
@@ -566,7 +596,7 @@ body {
 					all: unset;
 					text-decoration: none !important;
 					color: variables.$color-white !important;
-					background-color: variables.$color-blue-dark !important;
+					background-color: variables.$color-blue !important;
 					padding: 4px 10px !important;
 					display: inline-block !important;
 					flex-shrink: 0 !important;
