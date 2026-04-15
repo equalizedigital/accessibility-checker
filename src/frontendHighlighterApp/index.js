@@ -36,6 +36,7 @@ class AccessibilityCheckerHighlight {
 		this.landmarkParameter = this.get_url_parameter( 'edac_landmark' );
 		this.currentIssueStatus = null;
 		this.explanationExpanded = false;
+		this.codeExpanded = false;
 		this.tooltips = [];
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
 			clickOutsideDeactivates: true,
@@ -931,7 +932,7 @@ class AccessibilityCheckerHighlight {
 
 			// Get the code button
 			const codeArrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
-			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="false" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
+			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
 			// title and content
 			descriptionTitle.innerHTML = `<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }` +
@@ -987,8 +988,8 @@ class AccessibilityCheckerHighlight {
 			this.codeButton = document.querySelector( '.edac-highlight-panel-description-code-button' );
 			this.codeButton.addEventListener( 'click', () => this.codeToggle() );
 
-			// close the code container each time the description is opened
-			this.codeContainer.style.display = 'none';
+			// restore persistent code expanded state
+			this.codeContainer.style.display = this.codeExpanded ? 'block' : 'none';
 
 			// show the issue content, hide the empty state
 			const emptyState = document.querySelector( '.edac-highlight-panel-controls-content-empty' );
@@ -1156,13 +1157,9 @@ class AccessibilityCheckerHighlight {
 	 * This function toggles the code container.
 	 */
 	codeToggle() {
-		if ( this.codeContainer.style.display === 'none' || this.codeContainer.style.display === '' ) {
-			this.codeContainer.style.display = 'block';
-			this.codeButton.setAttribute( 'aria-expanded', 'true' );
-		} else {
-			this.codeContainer.style.display = 'none';
-			this.codeButton.setAttribute( 'aria-expanded', 'false' );
-		}
+		this.codeExpanded = ! this.codeExpanded;
+		this.codeContainer.style.display = this.codeExpanded ? 'block' : 'none';
+		this.codeButton.setAttribute( 'aria-expanded', String( this.codeExpanded ) );
 	}
 
 	showFixSettings( event ) {
