@@ -86,7 +86,8 @@ class AccessibilityReportsPage implements PageInterface {
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$site_id         = (string) get_option( 'edac_site_id', '' );
 		$is_connected    = ( 'valid' === $status && '' !== $site_id );
-		$next_collection = (string) get_option( 'edac_next_collection', '' );
+		$next_monday     = new \DateTime( 'next monday', wp_timezone() );
+		$next_collection = $next_monday->format( 'Y-m-d' );
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $has_pro_plugin ) : [];
@@ -98,6 +99,7 @@ class AccessibilityReportsPage implements PageInterface {
 			]
 		);
 		$dashboard_url     = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$email_reports_url = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
 		$signup_url        = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
 		$terms_url         = edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'accessibility-reports', 'terms', false );
 		$privacy_url       = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
@@ -110,7 +112,7 @@ class AccessibilityReportsPage implements PageInterface {
 			'svg'  => [
 				'width'   => true,
 				'height'  => true,
-				'viewBox' => true,
+				'viewbox' => true,
 				'fill'    => true,
 				'xmlns'   => true,
 			],
@@ -216,15 +218,11 @@ class AccessibilityReportsPage implements PageInterface {
 								<p class="edac-reports-card__meta">
 									<?php if ( $next_collection ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( $this->format_report_date( $next_collection ) ) ); ?></span>
+										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_collection ) ) ) ); ?></span>
 									<?php endif; ?>
-									<?php if ( wp_get_current_user()->user_email ) : ?>
-										<?php /* translators: %s: recipient email address. */ ?>
-										<span><?php printf( esc_html__( 'Sent to: %s', 'accessibility-checker' ), esc_html( wp_get_current_user()->user_email ) ); ?></span>
-									<?php endif; ?>
-								</p>
+									</p>
 								<p>
-									<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $dashboard_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Manage Reports', 'accessibility-checker' ); ?></a>
+									<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $email_reports_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Manage Recipients in Dashboard', 'accessibility-checker' ); ?></a>
 								</p>
 							</article>
 
@@ -255,13 +253,12 @@ class AccessibilityReportsPage implements PageInterface {
 							</article>
 
 							<article class="edac-reports-card">
-								<h3><?php esc_html_e( 'Last Report', 'accessibility-checker' ); ?></h3>
+								<h3><?php esc_html_e( 'Accessibility Summary', 'accessibility-checker' ); ?></h3>
 								<p><?php esc_html_e( 'This summary reflects the latest scan data available for your site.', 'accessibility-checker' ); ?></p>
 								<div class="edac-reports-stat">
 									<div class="edac-reports-stat__label"><?php esc_html_e( 'Total Issues Found', 'accessibility-checker' ); ?></div>
 									<div class="edac-reports-stat__value"><?php echo esc_html( number_format_i18n( $preview_data['total_issues'] ) ); ?></div>
-									<div class="edac-reports-stat__caption"><?php echo esc_html( $preview_data['summary_caption'] ); ?></div>
-								</div>
+									</div>
 							</article>
 
 							<article class="edac-reports-card">
@@ -312,8 +309,8 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return array
 	 */
 	private function get_preview_data( array $summary, bool $has_pro_plugin ): array {
-		$problems           = (int) ( $summary['distinct_errors'] ?? 0 );
-		$needs_review       = (int) ( $summary['distinct_warnings'] ?? 0 );
+		$problems           = (int) ( $summary['errors'] ?? 0 );
+		$needs_review       = (int) ( $summary['warnings'] ?? 0 );
 		$total_issues       = $problems + $needs_review;
 		$urls_scanned       = (int) ( $summary['posts_scanned'] ?? 0 );
 		$post_types_checked = (int) ( $summary['scannable_post_types_count'] ?? 0 );
@@ -331,7 +328,6 @@ class AccessibilityReportsPage implements PageInterface {
 			'taxonomies_checked' => sprintf( '%1$d/%2$d', $taxonomies_checked['checked'], max( $taxonomies_checked['total'], $taxonomies_checked['checked'] ) ),
 			'top_pages'          => array_slice( $summary['top_pages_with_issues'] ?? [], 0, 5 ),
 			'top_issues'         => $this->format_top_issues( $summary['top_issues_found_on_site'] ?? [], $rules ),
-			'summary_caption'    => $total_issues > 0 ? __( 'Current site snapshot', 'accessibility-checker' ) : __( 'No issues found in the latest scan data', 'accessibility-checker' ),
 		];
 	}
 
@@ -469,17 +465,5 @@ class AccessibilityReportsPage implements PageInterface {
 		}
 
 		return substr( $license_key, 0, 4 ) . str_repeat( '*', max( strlen( $license_key ) - 8, 4 ) ) . substr( $license_key, -4 );
-	}
-
-	/**
-	 * Format the next collection date in the site timezone.
-	 *
-	 * @param string $utc_datetime UTC datetime string.
-	 * @return string
-	 */
-	private function format_report_date( string $utc_datetime ): string {
-		$formatted = edac_format_datetime_from_utc( $utc_datetime );
-
-		return $formatted ? $formatted : $utc_datetime;
 	}
 }
