@@ -46,12 +46,49 @@ class Connector {
 	 *
 	 * @var int
 	 */
-	const PRODUCT_ID = 24;
+	const PRODUCT_ID = 1666;
 
 	/**
 	 * TTL for transient-based admin notices (seconds).
 	 */
 	private const NOTICE_TRANSIENT_TTL = 60;
+
+	/**
+	 * License metadata option: stores inferred license state from EDD responses.
+	 *
+	 * This is not raw response data; it's processed/inferred state that combines:
+	 * - License type inference (free vs pro) based on product_id, item_name, or source context
+	 * - License level inference (single-site, multi-site, unlimited, lifetime) from license_limit
+	 * - Formatted/sanitized response fields (expires, site_count, activations_left, etc.)
+	 *
+	 * Single option (not scattered across multiple wp_options for better atomicity).
+	 *
+	 * @var string
+	 */
+	private const LICENSE_METADATA_OPTION = 'edac_license_metadata';
+
+	/**
+	 * License status constants.
+	 */
+	private const LICENSE_STATUS_VALID   = 'valid';
+	private const LICENSE_STATUS_EXPIRED = 'expired';
+	private const LICENSE_STATUS_UNKNOWN = 'unknown';
+
+	/**
+	 * License type constants.
+	 */
+	private const LICENSE_TYPE_FREE    = 'free';
+	private const LICENSE_TYPE_PRO     = 'pro';
+	private const LICENSE_TYPE_UNKNOWN = 'unknown';
+
+	/**
+	 * License level constants.
+	 */
+	private const LICENSE_LEVEL_SINGLE_SITE = 'single-site';
+	private const LICENSE_LEVEL_MULTI_SITE  = 'multi-site';
+	private const LICENSE_LEVEL_UNLIMITED   = 'unlimited';
+	private const LICENSE_LEVEL_LIFETIME    = 'lifetime';
+	private const LICENSE_LEVEL_UNKNOWN     = 'unknown';
 
 	/**
 	 * Determine whether enrollment should use the filtered product ID.
@@ -65,6 +102,16 @@ class Connector {
 	}
 
 	/**
+	 * Expose the free product ID via a filter so other plugins (e.g. Pro) can
+	 * read it when inferring license type from API response product IDs.
+	 *
+	 * @return int
+	 */
+	public static function get_free_product_id(): int {
+		return self::PRODUCT_ID;
+	}
+
+	/**
 	 * Sets up the license page and handlers.
 	 *
 	 * @since 1.xx.x
@@ -72,6 +119,9 @@ class Connector {
 	public function init() {
 		$connected_services = new ConnectedServicesPage( 'manage_options' );
 		$connected_services->add_page();
+
+		// Expose the free product ID so the Pro plugin can infer license type from API response product IDs.
+		add_filter( 'edac_free_product_id', [ __CLASS__, 'get_free_product_id' ] );
 
 		// Ensure the license options group is registered so options.php allows saves.
 		add_action( 'admin_init', [ $this, 'register_license_settings' ] );
@@ -178,6 +228,13 @@ class Connector {
 	 * @return void
 	 */
 	private function activate_license() {
+		// If pro plugin is enabled with a valid license, it takes precedence.
+		// Do not allow free license activation to overwrite pro state.
+		if ( defined( 'EDACP_VERSION' ) && 'valid' === get_option( 'edacp_license_status' ) ) {
+			update_option( 'edac_license_error', __( 'Pro license is active. Please deactivate the Pro license first if you want to use a free license.', 'accessibility-checker' ) );
+			return;
+		}
+
 		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
 			update_option( 'edac_license_error', 'missing' );
@@ -187,7 +244,7 @@ class Connector {
 		$api_params = [
 			'edd_action'  => 'activate_license',
 			'license'     => $license,
-			'item_id'     => self::get_product_id(),
+			'item_id'     => self::PRODUCT_ID,
 			'url'         => home_url(),
 			'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 			'wp_version'  => get_bloginfo( 'version' ),
@@ -210,6 +267,7 @@ class Connector {
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		self::store_license_metadata_from_response( $license_data, 'free' );
 
 		if ( isset( $license_data->error ) ) {
 			update_option( 'edac_license_error', $license_data->error );
@@ -227,6 +285,25 @@ class Connector {
 	}
 
 	/**
+	 * Clear all license and enrollment state.
+	 *
+	 * Called when deactivating or removing a license to ensure a clean slate.
+	 *
+	 * @return void
+	 */
+	private static function clear_all_license_state(): void {
+		delete_option( 'edacp_license_key' );
+		delete_option( 'edac_license_status' );
+		delete_option( 'edac_license_error' );
+		self::clear_stored_license_metadata();
+		delete_option( 'edac_jwt_public_key' );
+		delete_option( 'edac_site_id' );
+		delete_option( 'edac_collection_interval_days' );
+		delete_option( 'edac_next_collection' );
+		delete_option( 'edac_fallback_active' );
+	}
+
+	/**
 	 * Deactivate the license via API and always clear local stored values.
 	 *
 	 * @since 1.xx.x
@@ -236,13 +313,7 @@ class Connector {
 	private function deactivate_license() {
 		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
-			delete_option( 'edacp_license_key' );
-			delete_option( 'edac_license_status' );
-			delete_option( 'edac_license_error' );
-			delete_option( 'edac_jwt_public_key' );
-			delete_option( 'edac_site_id' );
-			delete_option( 'edac_collection_interval_days' );
-			delete_option( 'edac_next_collection' );
+			self::clear_all_license_state();
 			return;
 		}
 
@@ -270,13 +341,7 @@ class Connector {
 
 		// Remote deactivation is a best effort. Intentionally clear local
 		// state regardless of API response so users can always disconnect.
-		delete_option( 'edacp_license_key' );
-		delete_option( 'edac_license_status' );
-		delete_option( 'edac_license_error' );
-		delete_option( 'edac_jwt_public_key' );
-		delete_option( 'edac_site_id' );
-		delete_option( 'edac_collection_interval_days' );
-		delete_option( 'edac_next_collection' );
+		self::clear_all_license_state();
 	}
 
 	/**
@@ -289,8 +354,15 @@ class Connector {
 	 * @return void
 	 */
 	public function periodic_check_license() {
-		// If pro plugin is enabled, let it handle license checking.
-		if ( defined( 'EDACP_VERSION' ) ) {
+		// Guard: Only bail if Pro is active with VALID license.
+		// This allows fallback when Pro license becomes invalid (expired, disabled, etc).
+		//
+		// Safe from race conditions:
+		// - Once Pro's license status changes from 'valid' to anything else, this guard
+		// stops bailing and free plugin resumes checking.
+		// - Both plugins check the same 'edacp_license_status' option atomically
+		// - Concurrent reads of the same option value are thread-safe in WordPress.
+		if ( defined( 'EDACP_VERSION' ) && self::LICENSE_STATUS_VALID === get_option( 'edacp_license_status' ) ) {
 			return;
 		}
 
@@ -302,7 +374,7 @@ class Connector {
 		$api_params = [
 			'edd_action'   => 'check_license',
 			'license'      => $license,
-			'item_id'      => self::get_product_id(),
+			'item_id'      => self::PRODUCT_ID,
 			'item_name'    => rawurlencode( self::PRODUCT_NAME ),
 			'url'          => home_url(),
 			'environment'  => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
@@ -331,6 +403,7 @@ class Connector {
 		}
 
 		$license_data = json_decode( wp_remote_retrieve_body( $response ) );
+		self::store_license_metadata_from_response( $license_data, 'free' );
 
 		if ( isset( $license_data->license ) ) {
 			update_option( 'edac_license_status', $license_data->license );
@@ -409,24 +482,18 @@ class Connector {
 	}
 
 	/**
-	 * Get the active license key (pro or free).
+	 * Get the active license key.
 	 *
-	 * Checks for the pro license key first (if EDACP is active), then falls back
-	 * to the free license key. Returns an empty string if no key is found.
+	 * Both free and pro plugins store their license key in the same option 'edacp_license_key'.
+	 * The actual product type (free vs pro) is determined by the EDD response item_id at activation
+	 * time and stored in the metadata. This function simply retrieves the key itself.
+	 *
+	 * @return string The license key or empty string if none stored.
 	 *
 	 * @since 1.xx.x
-	 *
-	 * @return string The license key or empty string if none found.
 	 */
-	public static function get_license_key() {
-		if ( defined( 'EDACP_VERSION' ) ) {
-			$pro_key = get_option( 'edacp_license_key' );
-			if ( ! empty( $pro_key ) ) {
-				return $pro_key;
-			}
-		}
-
-		return get_option( 'edacp_license_key' );
+	public static function get_license_key(): string {
+		return (string) get_option( 'edacp_license_key', '' );
 	}
 
 	/**
@@ -1042,5 +1109,136 @@ class Connector {
 			$b64 .= str_repeat( '=', 4 - $pad );
 		}
 		return base64_decode( $b64, true );
+	}
+
+	/**
+	 * Infer license metadata from an EDD response.
+	 *
+	 * Determines the license type (free/pro), level (single-site/multi-site/unlimited/lifetime),
+	 * and formats response fields for storage.
+	 *
+	 * Primary inference uses product ID (most reliable when free/pro have distinct IDs).
+	 * Secondary fallback uses item_name string matching.
+	 * Tertiary fallback uses the source context (e.g., 'free', 'pro').
+	 *
+	 * @param object|array $license_data EDD response payload.
+	 * @param string       $source       Activation/check source context ('free' or 'pro').
+	 * @return array Inferred metadata with keys: type, level, item_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
+	 *
+	 * @since 1.xx.x
+	 */
+	public static function infer_license_metadata_from_response( $license_data, string $source ): array {
+		if ( ! is_object( $license_data ) && ! is_array( $license_data ) ) {
+			return [
+				'type'             => self::LICENSE_TYPE_UNKNOWN,
+				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'item_id'          => 0,
+				'item_name'        => '',
+				'expires'          => '',
+				'license_limit'    => '',
+				'site_count'       => '',
+				'activations_left' => '',
+				'last_response_at' => time(),
+			];
+		}
+
+		$data = is_object( $license_data ) ? get_object_vars( $license_data ) : $license_data;
+
+		// Validate response has at least basic structure (item_id or item_name).
+		if ( empty( $data['item_id'] ) && empty( $data['item_name'] ) ) {
+			// Incomplete response; use source as last resort.
+			return [
+				'type'             => in_array( $source, [ self::LICENSE_TYPE_FREE, self::LICENSE_TYPE_PRO ], true ) ? $source : self::LICENSE_TYPE_UNKNOWN,
+				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'item_id'          => 0,
+				'item_name'        => '',
+				'expires'          => '',
+				'license_limit'    => '',
+				'site_count'       => '',
+				'activations_left' => '',
+				'last_response_at' => time(),
+			];
+		}
+
+		$item_name = sanitize_text_field( (string) ( $data['item_name'] ?? '' ) );
+		$item_id   = absint( $data['item_id'] ?? 0 );
+		$limit_raw = $data['license_limit'] ?? '';
+
+		// Primary: infer from product ID in response — most reliable when free/pro have distinct IDs.
+		$type           = self::LICENSE_TYPE_UNKNOWN;
+		$pro_product_id = (int) apply_filters( 'edac_pro_product_id', 0 );
+		if ( $item_id > 0 ) {
+			if ( self::PRODUCT_ID === $item_id ) {
+				$type = self::LICENSE_TYPE_FREE;
+			} elseif ( $pro_product_id > 0 && $pro_product_id === $item_id ) {
+				// Inferred as Pro because Pro's product ID filter matched.
+				$type = self::LICENSE_TYPE_PRO;
+			}
+		}
+
+		// Secondary: infer from item_name string match.
+		if ( self::LICENSE_TYPE_UNKNOWN === $type && '' !== $item_name ) {
+			$item_name_normalized = strtolower( $item_name );
+			if ( false !== strpos( $item_name_normalized, 'pro' ) ) {
+				$type = self::LICENSE_TYPE_PRO;
+			} elseif ( false !== strpos( $item_name_normalized, 'free' ) ) {
+				$type = self::LICENSE_TYPE_FREE;
+			}
+		}
+
+		// Fallback: use source context.
+		if ( self::LICENSE_TYPE_UNKNOWN === $type ) {
+			$type = in_array( $source, [ self::LICENSE_TYPE_FREE, self::LICENSE_TYPE_PRO ], true ) ? $source : self::LICENSE_TYPE_UNKNOWN;
+		}
+
+		$level = self::LICENSE_LEVEL_UNKNOWN;
+		if ( is_numeric( $limit_raw ) ) {
+			$limit = (int) $limit_raw;
+			if ( 0 === $limit ) {
+				$level = self::LICENSE_LEVEL_UNLIMITED; // EDD uses 0 to mean no activation limit.
+			} elseif ( 1 === $limit ) {
+				$level = self::LICENSE_LEVEL_SINGLE_SITE;
+			} elseif ( $limit > 1 ) {
+				$level = self::LICENSE_LEVEL_MULTI_SITE;
+			}
+		} elseif ( is_string( $limit_raw ) ) {
+			$limit_normalized = strtolower( trim( $limit_raw ) );
+			if ( in_array( $limit_normalized, [ self::LICENSE_LEVEL_LIFETIME, self::LICENSE_LEVEL_UNLIMITED ], true ) ) {
+				$level = $limit_normalized;
+			}
+		}
+
+		return [
+			'type'             => $type,
+			'level'            => $level,
+			'item_id'          => $item_id,
+			'item_name'        => $item_name,
+			'expires'          => sanitize_text_field( (string) ( $data['expires'] ?? '' ) ),
+			'license_limit'    => sanitize_text_field( (string) $limit_raw ),
+			'site_count'       => sanitize_text_field( (string) ( $data['site_count'] ?? '' ) ),
+			'activations_left' => sanitize_text_field( (string) ( $data['activations_left'] ?? '' ) ),
+			'last_response_at' => time(),
+		];
+	}
+
+	/**
+	 * Persist inferred license metadata from an EDD response.
+	 *
+	 * @param object|array|null $license_data EDD response payload.
+	 * @param string            $source       Activation/check source context.
+	 * @return void
+	 */
+	private static function store_license_metadata_from_response( $license_data, string $source ): void {
+		$metadata = self::infer_license_metadata_from_response( $license_data, $source );
+		update_option( self::LICENSE_METADATA_OPTION, $metadata );
+	}
+
+	/**
+	 * Clear stored inferred license metadata.
+	 *
+	 * @return void
+	 */
+	private static function clear_stored_license_metadata(): void {
+		delete_option( self::LICENSE_METADATA_OPTION );
 	}
 }
