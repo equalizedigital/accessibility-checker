@@ -508,7 +508,7 @@ class AccessibilityCheckerHighlight {
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
                                         <div class="edac-highlight-panel-controls-header">
-                                                <div class="edac-highlight-panel-controls-title">${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
+                                                <div class="edac-highlight-panel-controls-title"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-header-actions">
                                                         <div class="edac-highlight-menu-container">
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
