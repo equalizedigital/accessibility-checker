@@ -138,7 +138,7 @@ class Connector {
 		add_action( 'admin_post_edac_jwt_unregister', [ $this, 'handle_jwt_unregister_post' ] );
 
 		// When the pro license is deactivated, unregister the site to avoid orphaned registrations.
-		add_action( 'edacp_license_deactivated', [ $this, 'handle_site_unregistration' ] );
+		add_action( 'edacp_license_deactivated', [ $this, 'handle_site_unregistration' ], 10, 3 );
 
 		// When a Pro license is activated on an already-connected site, refresh registration
 		// so enrollment context is updated for Pro.
@@ -697,12 +697,16 @@ class Connector {
 	 *
 	 * @since 1.xx.x
 	 *
+	 * @param string      $license      Optional license key passed from deactivation hooks.
+	 * @param string      $url          Optional site URL from deactivation hooks.
+	 * @param object|null $license_data Optional license payload from deactivation hooks.
+	 *
 	 * @return void
 	 */
-	public function handle_site_unregistration() {
+	public function handle_site_unregistration( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
 		$preserve_license = self::should_preserve_license_on_unregistration();
 		$site_id          = get_option( 'edac_site_id' );
-		$license_key      = self::get_license_key();
+		$license_key      = '' !== (string) $license ? (string) $license : self::get_license_key();
 		if ( empty( $site_id ) || empty( $license_key ) ) {
 			// Clear local report connection state even when required data is missing.
 			self::clear_report_connection_state();

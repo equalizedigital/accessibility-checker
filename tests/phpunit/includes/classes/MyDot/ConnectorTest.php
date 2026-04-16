@@ -594,4 +594,63 @@ class ConnectorTest extends WP_UnitTestCase {
 		$this->assertFalse( get_option( 'edac_site_id', false ) );
 		$this->assertFalse( get_option( 'edac_jwt_public_key', false ) );
 	}
+
+	/**
+	 * Ensures hook-provided license key is used for unregistration when option key is missing.
+	 */
+	public function test_handle_site_unregistration_uses_hook_license_when_stored_key_missing() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		update_option( 'edacp_license_status', 'valid' );
+		update_option( 'edac_site_id', 'existing-site-id' );
+
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) {
+				if ( false === strpos( $url, '/wp-json/myed-email-reports/v1/unregister-site' ) ) {
+					return $preempt;
+				}
+
+				$body = json_decode( $args['body'], true );
+				if ( empty( $body['license_key'] ) || 'hook-key' !== $body['license_key'] ) {
+					return [
+						'headers'  => [],
+						'body'     => wp_json_encode(
+							[
+								'success' => false,
+								'message' => 'Unexpected license key',
+							]
+						),
+						'response' => [
+							'code'    => 200,
+							'message' => 'OK',
+						],
+					];
+				}
+
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode(
+						[
+							'success' => true,
+							'data'    => [],
+						]
+					),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration( 'hook-key', home_url(), (object) [ 'license' => 'deactivated' ] );
+
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+	}
 }
