@@ -129,20 +129,15 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		// If pro plugin is enabled, check its license status instead.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			$license = get_option( 'edacp_license_key' );
-			$status  = get_option( 'edacp_license_status' );
-		} else {
-			$license = get_option( 'edacp_license_key' );
-			$status  = get_option( 'edac_license_status' );
-		}
-		$site_id             = get_option( 'edac_site_id' );
-		$is_connected        = ( 'valid' === $status && ! empty( $site_id ) );
+		$license_context     = $this->get_license_context();
+		$is_pro              = $license_context['is_pro'];
+		$status              = $license_context['status'];
+		$license             = get_option( 'edacp_license_key' );
+		$is_connected        = $license_context['is_connected'];
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
 		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
 		?>
-		<?php if ( ! defined( 'EDACP_VERSION' ) ) : ?>
+		<?php if ( ! $is_pro ) : ?>
 			<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
@@ -222,6 +217,65 @@ class ConnectedServicesPage implements PageInterface {
 	}
 
 	/**
+	 * Resolve the effective license context for connected services.
+	 *
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 */
+	private function get_license_context(): array {
+		$has_pro_plugin = defined( 'EDACP_VERSION' );
+		$pro_status     = (string) get_option( 'edacp_license_status', '' );
+		$free_status    = (string) get_option( 'edac_license_status', '' );
+		$site_id        = (string) get_option( 'edac_site_id', '' );
+
+		return self::resolve_license_context( $has_pro_plugin, $pro_status, $free_status, $site_id );
+	}
+
+	/**
+	 * Resolve effective license context from current status values.
+	 *
+	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
+	 * @param string $pro_status     Current Pro license status.
+	 * @param string $free_status    Current free license status.
+	 * @param string $site_id        Current connected site ID.
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 */
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
+		$is_pro = $has_pro_plugin && 'valid' === $pro_status;
+		$status = $is_pro ? $pro_status : $free_status;
+
+		return [
+			'has_pro_plugin' => $has_pro_plugin,
+			'is_pro'         => $is_pro,
+			'status'         => $status,
+			'is_connected'   => 'valid' === $status && '' !== $site_id,
+		];
+	}
+
+	/**
+	 * Resolve which error option and settings tab should be used for notices.
+	 *
+	 * @return array{error:string,tab:string}
+	 */
+	private function get_error_context(): array {
+		$license_context = $this->get_license_context();
+
+		return self::resolve_error_context( $license_context['is_pro'] );
+	}
+
+	/**
+	 * Resolve notice context from effective license authority.
+	 *
+	 * @param bool $is_pro Whether Pro is currently authoritative.
+	 * @return array{error:string,tab:string}
+	 */
+	private static function resolve_error_context( bool $is_pro ): array {
+		return [
+			'error' => (string) get_option( $is_pro ? 'edacp_license_error' : 'edac_license_error', '' ),
+			'tab'   => $is_pro ? 'license' : 'accessibility-reports',
+		];
+	}
+
+	/**
 	 * Display admin notices when the license added is invalid or expired.
 	 *
 	 * @since 1.xx.x
@@ -229,14 +283,10 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function admin_notices() {
-		// If pro plugin is enabled, check its license error instead.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			$error = get_option( 'edacp_license_error' );
-		} else {
-			$error = get_option( 'edac_license_error' );
-		}
-		$license_url = admin_url( 'admin.php?page=accessibility_checker_settings&tab=' . ( defined( 'EDACP_VERSION' ) ? 'license' : 'accessibility-reports' ) );
-		$message     = null;
+		$error_context = $this->get_error_context();
+		$error         = $error_context['error'];
+		$license_url   = admin_url( 'admin.php?page=accessibility_checker_settings&tab=' . $error_context['tab'] );
+		$message       = null;
 
 		if ( $error ) {
 			$message = $this->get_error_message( $error, $license_url );
