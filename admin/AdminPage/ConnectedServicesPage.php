@@ -222,12 +222,13 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
 	private function get_license_context(): array {
-		$has_pro_plugin = defined( 'EDACP_VERSION' );
-		$pro_status     = (string) get_option( 'edacp_license_status', '' );
-		$free_status    = (string) get_option( 'edac_license_status', '' );
-		$site_id        = (string) get_option( 'edac_site_id', '' );
+		$has_pro_plugin  = defined( 'EDACP_VERSION' );
+		$pro_status      = (string) get_option( 'edacp_license_status', '' );
+		$free_status     = (string) get_option( 'edac_license_status', '' );
+		$site_id         = (string) get_option( 'edac_site_id', '' );
+		$fallback_active = (bool) get_option( 'edac_fallback_active', false );
 
-		return self::resolve_license_context( $has_pro_plugin, $pro_status, $free_status, $site_id );
+		return self::resolve_license_context( $has_pro_plugin, $pro_status, $free_status, $site_id, $fallback_active );
 	}
 
 	/**
@@ -237,17 +238,23 @@ class ConnectedServicesPage implements PageInterface {
 	 * @param string $pro_status     Current Pro license status.
 	 * @param string $free_status    Current free license status.
 	 * @param string $site_id        Current connected site ID.
+	 * @param bool   $fallback_active Whether fallback handoff is in progress.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
-		$is_pro = $has_pro_plugin && 'valid' === $pro_status;
-		$status = $is_pro ? $pro_status : $free_status;
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
+		$status       = $is_pro ? $pro_status : $free_status;
+		$is_connected = 'valid' === $status && '' !== $site_id;
+
+		if ( ! $is_pro && $fallback_active ) {
+			$is_connected = false;
+		}
 
 		return [
 			'has_pro_plugin' => $has_pro_plugin,
 			'is_pro'         => $is_pro,
 			'status'         => $status,
-			'is_connected'   => 'valid' === $status && '' !== $site_id,
+			'is_connected'   => $is_connected,
 		];
 	}
 

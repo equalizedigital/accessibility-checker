@@ -31,6 +31,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_license_error' );
 		delete_option( 'edacp_license_error' );
+		delete_option( 'edac_fallback_active' );
 	}
 
 	/**
@@ -42,6 +43,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_license_error' );
 		delete_option( 'edacp_license_error' );
+		delete_option( 'edac_fallback_active' );
 
 		parent::tearDown();
 	}
@@ -86,7 +88,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	public function test_resolve_license_context_uses_pro_when_pro_is_valid() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
-			[ true, 'valid', 'valid', 'site-123' ]
+			[ true, 'valid', 'valid', 'site-123', false ]
 		);
 
 		$this->assertTrue( $context['has_pro_plugin'] );
@@ -103,7 +105,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	public function test_resolve_license_context_falls_back_to_free_when_pro_is_invalid() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123' ]
+			[ true, 'expired', 'valid', 'site-123', false ]
 		);
 
 		$this->assertTrue( $context['has_pro_plugin'] );
@@ -158,5 +160,21 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 
 		$this->assertSame( 'invalid', $context['error'] );
 		$this->assertSame( 'accessibility-reports', $context['tab'] );
+	}
+
+	/**
+	 * Ensures fallback marker prevents stale connected state during pro->free handoff.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_resolve_license_context_treats_fallback_as_temporarily_disconnected() {
+		$context = $this->invoke_private_static_method(
+			'resolve_license_context',
+			[ true, 'expired', 'valid', 'site-123', true ]
+		);
+
+		$this->assertFalse( $context['is_pro'] );
+		$this->assertSame( 'valid', $context['status'] );
+		$this->assertFalse( $context['is_connected'] );
 	}
 }
