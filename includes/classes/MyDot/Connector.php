@@ -302,11 +302,44 @@ class Connector {
 		delete_option( 'edac_license_status' );
 		delete_option( 'edac_license_error' );
 		self::clear_stored_license_metadata();
+		self::clear_report_connection_state();
+		delete_option( 'edac_fallback_active' );
+	}
+
+	/**
+	 * Clear report-connection specific state only.
+	 *
+	 * @return void
+	 */
+	private static function clear_report_connection_state(): void {
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
+	}
+
+	/**
+	 * Clear free-authority license state while preserving active Pro status.
+	 *
+	 * @return void
+	 */
+	private static function clear_free_disconnect_license_state(): void {
+		delete_option( 'edacp_license_key' );
+		delete_option( 'edac_license_status' );
+		delete_option( 'edac_license_error' );
+		self::clear_stored_license_metadata();
 		delete_option( 'edac_fallback_active' );
+	}
+
+	/**
+	 * Determine whether an unregister action should preserve current license state.
+	 *
+	 * Active Pro licenses should remain active when only disabling reports.
+	 *
+	 * @return bool
+	 */
+	private static function should_preserve_license_on_unregistration(): bool {
+		return defined( 'EDACP_VERSION' ) && self::LICENSE_STATUS_VALID === get_option( 'edacp_license_status' );
 	}
 
 	/**
@@ -667,12 +700,16 @@ class Connector {
 	 * @return void
 	 */
 	public function handle_site_unregistration() {
-		$site_id     = get_option( 'edac_site_id' );
-		$license_key = self::get_license_key();
+		$preserve_license = self::should_preserve_license_on_unregistration();
+		$site_id          = get_option( 'edac_site_id' );
+		$license_key      = self::get_license_key();
 		if ( empty( $site_id ) || empty( $license_key ) ) {
-			// Clear any remaining local state even if required data is missing,
-			// so the user is never left in a partially-connected state.
-			self::clear_all_license_state();
+			// Clear local report connection state even when required data is missing.
+			self::clear_report_connection_state();
+			if ( ! $preserve_license ) {
+				// Free disconnect keeps the historical behavior of clearing the key.
+				self::clear_free_disconnect_license_state();
+			}
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -685,10 +722,13 @@ class Connector {
 		}
 		$response_data = self::unregister_site( $site_id, get_site_url(), $license_key );
 
-		// Always clear all local license and registration state regardless of the API response.
-		// This ensures "Disable Email Reports" always succeeds locally, preventing user lockout
-		// when the license server is unreachable or returns an error (e.g. "invalid license").
-		self::clear_all_license_state();
+		// Always clear local report state so reports are disabled immediately.
+		self::clear_report_connection_state();
+		if ( ! $preserve_license ) {
+			// Free disconnect keeps the historical behavior of clearing the key,
+			// even when the API response is an error.
+			self::clear_free_disconnect_license_state();
+		}
 
 		if ( empty( $response_data['success'] ) ) {
 			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );

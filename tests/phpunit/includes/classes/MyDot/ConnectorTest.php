@@ -511,9 +511,13 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures local site unregistration clears stale Pro state even when required data is missing.
+	 * Ensures missing-data unregistration preserves active Pro license state.
 	 */
-	public function test_handle_site_unregistration_clears_stale_pro_state_when_registration_data_is_missing() {
+	public function test_handle_site_unregistration_preserves_active_pro_license_when_registration_data_is_missing() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
 		update_option( 'edacp_license_key', 'test-key' );
 		update_option( 'edacp_license_status', 'valid' );
 		update_option( 'edacp_license_error', 'test-pro-error' );
@@ -523,9 +527,71 @@ class ConnectorTest extends WP_UnitTestCase {
 		$connector = new Connector();
 		$connector->handle_site_unregistration();
 
+		$this->assertSame( 'test-key', get_option( 'edacp_license_key' ) );
+		$this->assertSame( 'valid', get_option( 'edacp_license_status' ) );
+		$this->assertSame( 'test-pro-error', get_option( 'edacp_license_error' ) );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+	}
+
+	/**
+	 * Ensures free-authority unregistration clears the shared key even when data is missing.
+	 */
+	public function test_handle_site_unregistration_clears_free_license_state_when_registration_data_is_missing() {
+		update_option( 'edacp_license_key', 'free-key' );
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', '' );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+
 		$this->assertFalse( get_option( 'edacp_license_key', false ) );
-		$this->assertFalse( get_option( 'edacp_license_status', false ) );
-		$this->assertFalse( get_option( 'edacp_license_error', false ) );
 		$this->assertFalse( get_option( 'edac_license_status', false ) );
+	}
+
+	/**
+	 * Ensures active Pro license is preserved even when remote unregistration fails.
+	 */
+	public function test_handle_site_unregistration_preserves_active_pro_license_on_remote_failure() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		update_option( 'edacp_license_key', 'pro-key' );
+		update_option( 'edacp_license_status', 'valid' );
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edac_jwt_public_key', 'public-key' );
+
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) {
+				if ( false === strpos( $url, '/wp-json/myed-email-reports/v1/unregister-site' ) ) {
+					return $preempt;
+				}
+
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode(
+						[
+							'success' => false,
+							'message' => 'Remote failure',
+						]
+					),
+					'response' => [
+						'code'    => 500,
+						'message' => 'Server Error',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+
+		$this->assertSame( 'pro-key', get_option( 'edacp_license_key' ) );
+		$this->assertSame( 'valid', get_option( 'edacp_license_status' ) );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+		$this->assertFalse( get_option( 'edac_jwt_public_key', false ) );
 	}
 }
