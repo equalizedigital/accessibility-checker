@@ -546,7 +546,6 @@ class AccessibilityCheckerHighlight {
                                                         ${ __( 'Select an issue on the page to view details.', 'accessibility-checker' ) }
                                                 </div>
                                                 <div class="edac-highlight-panel-controls-content-issue" style="display:none">
-                                                        <div class="edac-highlight-panel-description-notice" style="display:none"></div>
                                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
@@ -925,7 +924,6 @@ class AccessibilityCheckerHighlight {
 		const matchingObj = this.issues.find( ( obj ) => String( obj[ keyToSearch ] ) === String( searchTerm ) );
 
 		if ( matchingObj ) {
-			const descriptionNotice = document.querySelector( '.edac-highlight-panel-controls-content-issue .edac-highlight-panel-description-notice' );
 			const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
 			const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
@@ -1038,18 +1036,11 @@ class AccessibilityCheckerHighlight {
 			const codeArrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
 			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
-			// title and content
-			descriptionTitle.innerHTML = `<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
-
-			if ( descriptionNotice ) {
-				if ( this.currentIssueStatus ) {
-					descriptionNotice.textContent = this.currentIssueStatus;
-					descriptionNotice.style.display = 'block';
-				} else {
-					descriptionNotice.textContent = '';
-					descriptionNotice.style.display = 'none';
-				}
-			}
+			// title and content (notice only rendered when there is a status message)
+			const noticeHtml = this.currentIssueStatus
+				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
+				: '';
+			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
 
 			// content
 			descriptionContent.innerHTML = content;
