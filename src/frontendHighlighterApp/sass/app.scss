@@ -344,10 +344,6 @@ body {
 				font-size: 13px !important;
 				font-weight: normal !important;
 				line-height: 1.5 !important;
-
-				&[hidden] {
-					display: none !important;
-				}
 			}
 
 			&-code-button {
@@ -579,10 +575,6 @@ body {
 
 				&-issue {
 					display: block;
-
-					&[hidden] {
-						display: none !important;
-					}
 				}
 			}
 

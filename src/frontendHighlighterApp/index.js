@@ -545,8 +545,8 @@ class AccessibilityCheckerHighlight {
                                                 <div class="edac-highlight-panel-controls-content-empty">
                                                         ${ __( 'Select an issue on the page to view details.', 'accessibility-checker' ) }
                                                 </div>
-                                                <div class="edac-highlight-panel-controls-content-issue" hidden>
-                                                        <div class="edac-highlight-panel-description-notice" hidden></div>
+                                                <div class="edac-highlight-panel-controls-content-issue" style="display:none">
+                                                        <div class="edac-highlight-panel-description-notice" style="display:none"></div>
                                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
@@ -1044,10 +1044,10 @@ class AccessibilityCheckerHighlight {
 			if ( descriptionNotice ) {
 				if ( this.currentIssueStatus ) {
 					descriptionNotice.textContent = this.currentIssueStatus;
-					descriptionNotice.hidden = false;
+					descriptionNotice.style.display = 'block';
 				} else {
 					descriptionNotice.textContent = '';
-					descriptionNotice.hidden = true;
+					descriptionNotice.style.display = 'none';
 				}
 			}
 
@@ -1106,10 +1106,10 @@ class AccessibilityCheckerHighlight {
 			const emptyState = document.querySelector( '.edac-highlight-panel-controls-content-empty' );
 			const issueContent = document.querySelector( '.edac-highlight-panel-controls-content-issue' );
 			if ( emptyState ) {
-				emptyState.hidden = true;
+				emptyState.style.display = 'none';
 			}
 			if ( issueContent ) {
-				issueContent.hidden = false;
+				issueContent.style.display = 'block';
 			}
 		}
 	}
@@ -1121,10 +1121,10 @@ class AccessibilityCheckerHighlight {
 		const emptyState = document.querySelector( '.edac-highlight-panel-controls-content-empty' );
 		const issueContent = document.querySelector( '.edac-highlight-panel-controls-content-issue' );
 		if ( emptyState ) {
-			emptyState.hidden = false;
+			emptyState.style.display = 'block';
 		}
 		if ( issueContent ) {
-			issueContent.hidden = true;
+			issueContent.style.display = 'none';
 		}
 	}
 
@@ -1241,6 +1241,11 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = false;
 		this.disableStylesButton.textContent = __( 'Disable Styles', 'accessibility-checker' );
+
+		// Re-render the current issue to restore panel state after styles are re-enabled.
+		if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
+			this.showIssue( this.issues[ this.currentButtonIndex ].id );
+		}
 	}
 
 	/**
