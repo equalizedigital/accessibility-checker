@@ -683,6 +683,11 @@ class AccessibilityCheckerHighlight {
 
 		this.currentButtonIndex = this.issues.findIndex( ( i ) => i.id === id );
 
+		// Keep the URL in sync so the current issue is bookmarkable / shareable.
+		const url = new URL( window.location.href );
+		url.searchParams.set( 'edac', id );
+		history.replaceState( null, '', url.toString() );
+
 		const pagination = document.getElementById( 'edac-highlight-pagination' );
 		if ( pagination ) {
 			pagination.textContent = sprintf(
@@ -834,6 +839,10 @@ class AccessibilityCheckerHighlight {
 
 				if ( id !== undefined ) {
 					this.showIssue( id );
+				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
+					this.showIssue( this.issues[ this.currentButtonIndex ].id );
+				} else if ( this.issues.length > 0 ) {
+					this.showIssue( this.issues[ 0 ].id );
 				}
 			}
 		).catch( ( err ) => {
