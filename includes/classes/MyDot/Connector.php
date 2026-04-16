@@ -285,6 +285,11 @@ class Connector {
 		// Automatically register the site after successful license activation.
 		if ( 'valid' === ( $license_data->license ?? '' ) ) {
 			$this->handle_site_registration();
+			// Always clear fallback marker when license recovers to valid state,
+			// regardless of whether registration succeeded. License validity and
+			// registration status are independent concerns (license = key validity,
+			// registration = reports feature). The registration can be retried separately.
+			delete_option( 'edac_fallback_active' );
 		}
 	}
 
@@ -447,7 +452,9 @@ class Connector {
 		if ( isset( $license_data->license ) ) {
 			update_option( 'edac_license_status', $license_data->license );
 			if ( 'valid' === $license_data->license ) {
+				// License has recovered to valid, so clear error notices and fallback marker.
 				delete_option( 'edac_license_error' );
+				delete_option( 'edacp_license_error' );
 				// Free revalidated successfully after fallback; remove the temporary
 				// fallback marker so UI can reflect connected state again.
 				delete_option( 'edac_fallback_active' );
@@ -585,9 +592,9 @@ class Connector {
 	 *
 	 * @since 1.xx.x
 	 *
-	 * @return void
+	 * @return bool True when registration succeeded and state was saved.
 	 */
-	private function handle_site_registration() {
+	private function handle_site_registration(): bool {
 		$license_key = self::get_license_key();
 		if ( empty( $license_key ) ) {
 			set_transient(
@@ -598,7 +605,7 @@ class Connector {
 				],
 				self::NOTICE_TRANSIENT_TTL
 			);
-			return;
+			return false;
 		}
 		$site_url  = site_url();
 		$site_name = get_bloginfo( 'name' );
@@ -614,7 +621,7 @@ class Connector {
 				],
 				self::NOTICE_TRANSIENT_TTL
 			);
-			return;
+			return false;
 		}
 		if ( isset( $response_data['data'] ) ) {
 			$data = $response_data['data'];
@@ -638,6 +645,7 @@ class Connector {
 				],
 				self::NOTICE_TRANSIENT_TTL
 			);
+			return true;
 		} else {
 			set_transient(
 				$this->get_notice_transient_key(),
@@ -647,6 +655,7 @@ class Connector {
 				],
 				self::NOTICE_TRANSIENT_TTL
 			);
+			return false;
 		}
 	}
 
