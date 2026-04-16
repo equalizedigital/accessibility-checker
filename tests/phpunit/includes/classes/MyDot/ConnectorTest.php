@@ -25,6 +25,10 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edacp_license_error' );
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edacp_license_key' );
+		delete_option( 'edac_site_id' );
+		delete_option( 'edac_collection_interval_days' );
+		delete_option( 'edac_next_collection' );
+		delete_option( 'edac_fallback_active' );
 	}
 
 	/**
@@ -38,6 +42,10 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edacp_license_error' );
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edacp_license_key' );
+		delete_option( 'edac_site_id' );
+		delete_option( 'edac_collection_interval_days' );
+		delete_option( 'edac_next_collection' );
+		delete_option( 'edac_fallback_active' );
 		remove_all_filters( 'edac_pro_product_id' );
 		remove_all_filters( 'pre_http_request' );
 
@@ -253,6 +261,7 @@ class ConnectorTest extends WP_UnitTestCase {
 		$this->assertSame( 'free', $metadata['type'] );
 		$this->assertSame( 1666, $metadata['item_id'] );
 		$this->assertSame( 'single-site', $metadata['level'] );
+		$this->assertFalse( get_option( 'edac_fallback_active', false ) );
 	}
 
 	/**
@@ -410,6 +419,95 @@ class ConnectorTest extends WP_UnitTestCase {
 		// Verify that site ID is still empty (no enrollment happened).
 		$site_id = get_option( 'edac_site_id', false );
 		$this->assertFalse( $site_id, 'Site should not be auto-registered during fallback' );
+	}
+
+	/**
+	 * Ensures fallback marker is cleared when free periodic check validates successfully.
+	 */
+	public function test_periodic_check_license_clears_fallback_marker_when_free_becomes_valid() {
+		update_option( 'edac_fallback_active', 1 );
+		update_option( 'edacp_license_key', 'free-license-key' );
+
+		$filter = $this->mock_http_response(
+			[
+				'license'          => 'valid',
+				'item_id'          => 1666,
+				'item_name'        => 'Accessibility Checker Free',
+				'license_limit'    => '1',
+				'expires'          => '2026-12-31 00:00:00',
+				'site_count'       => '1',
+				'activations_left' => '0',
+			]
+		);
+		add_filter( 'pre_http_request', $filter, 10, 3 );
+
+		$connector = new Connector();
+		$connector->periodic_check_license();
+
+		$this->assertFalse( get_option( 'edac_fallback_active', false ) );
+	}
+
+	/**
+	 * Ensures Pro activation hook refreshes existing registration context.
+	 */
+	public function test_handle_pro_license_activation_refreshes_registration_when_already_connected() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edacp_license_key', 'pro-license-key' );
+
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) {
+				if ( false === strpos( $url, '/wp-json/myed-email-reports/v1/register-site' ) ) {
+					return $preempt;
+				}
+
+				$body = json_decode( $args['body'], true );
+				if ( empty( $body['license_key'] ) || 'pro-license-key' !== $body['license_key'] ) {
+					return [
+						'headers'  => [],
+						'body'     => wp_json_encode(
+							[
+								'success' => false,
+								'message' => 'Unexpected request body',
+							]
+						),
+						'response' => [
+							'code'    => 200,
+							'message' => 'OK',
+						],
+					];
+				}
+
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode(
+						[
+							'success' => true,
+							'data'    => [
+								'site_id'                  => 'pro-site-id',
+								'jwt_public_key'           => 'pro-public-key',
+								'collection_interval_days' => '7',
+								'next_collection'          => '2030-01-01',
+							],
+						]
+					),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->handle_pro_license_activation( 'pro-license-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 'pro-site-id', get_option( 'edac_site_id' ) );
+		$this->assertSame( 'pro-public-key', get_option( 'edac_jwt_public_key' ) );
+		$this->assertSame( '7', get_option( 'edac_collection_interval_days' ) );
+		$this->assertSame( '2030-01-01', get_option( 'edac_next_collection' ) );
 	}
 
 	/**

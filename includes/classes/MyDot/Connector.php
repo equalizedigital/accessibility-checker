@@ -140,6 +140,10 @@ class Connector {
 		// When the pro license is deactivated, unregister the site to avoid orphaned registrations.
 		add_action( 'edacp_license_deactivated', [ $this, 'handle_site_unregistration' ] );
 
+		// When a Pro license is activated on an already-connected site, refresh registration
+		// so enrollment context is updated for Pro.
+		add_action( 'edacp_license_activated', [ $this, 'handle_pro_license_activation' ], 10, 3 );
+
 		add_action(
 			'in_admin_header',
 			function () {
@@ -411,6 +415,9 @@ class Connector {
 			update_option( 'edac_license_status', $license_data->license );
 			if ( 'valid' === $license_data->license ) {
 				delete_option( 'edac_license_error' );
+				// Free revalidated successfully after fallback; remove the temporary
+				// fallback marker so UI can reflect connected state again.
+				delete_option( 'edac_fallback_active' );
 			}
 		}
 
@@ -607,6 +614,48 @@ class Connector {
 				],
 				self::NOTICE_TRANSIENT_TTL
 			);
+		}
+	}
+
+	/**
+	 * Refresh enrollment after Pro activation when the site is already connected.
+	 *
+	 * This keeps backend enrollment context aligned on free->pro upgrades without
+	 * requiring users to manually disconnect/reconnect reports.
+	 *
+	 * @param string      $license      Activated license key.
+	 * @param string      $url          Site URL from activation hook.
+	 * @param object|null $license_data Activation response payload.
+	 * @return void
+	 */
+	public function handle_pro_license_activation( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
+		$site_id = (string) get_option( 'edac_site_id', '' );
+		if ( '' === $site_id ) {
+			return;
+		}
+
+		$license_key = self::get_license_key();
+		if ( '' === $license_key ) {
+			return;
+		}
+
+		$response_data = self::register_site( $license_key, site_url(), get_bloginfo( 'name' ), true, true );
+		if ( empty( $response_data['success'] ) || empty( $response_data['data'] ) ) {
+			return;
+		}
+
+		$data = $response_data['data'];
+		if ( ! empty( $data['jwt_public_key'] ) ) {
+			update_option( 'edac_jwt_public_key', $data['jwt_public_key'] );
+		}
+		if ( ! empty( $data['site_id'] ) ) {
+			update_option( 'edac_site_id', $data['site_id'] );
+		}
+		if ( ! empty( $data['collection_interval_days'] ) ) {
+			update_option( 'edac_collection_interval_days', $data['collection_interval_days'] );
+		}
+		if ( ! empty( $data['next_collection'] ) ) {
+			update_option( 'edac_next_collection', $data['next_collection'] );
 		}
 	}
 
