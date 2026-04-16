@@ -37,6 +37,7 @@ class AccessibilityCheckerHighlight {
 		this.currentIssueStatus = null;
 		this.explanationExpanded = false;
 		this.codeExpanded = false;
+		this.isDragged = false;
 		this.tooltips = [];
 		this.panelControlsFocusTrap = createFocusTrap( '#' + this.panelControls.id, {
 			clickOutsideDeactivates: true,
@@ -116,7 +117,7 @@ class AccessibilityCheckerHighlight {
 			}
 		} );
 
-		// Handle move left/right
+		// Handle move left/right / reset position
 		this.moveButton.addEventListener( 'click', () => {
 			this.togglePosition();
 			this.closeMenu();
@@ -171,13 +172,6 @@ class AccessibilityCheckerHighlight {
 	}
 
 	togglePosition() {
-		const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
-		this.highlightPanel.classList.toggle( 'edac-highlight-panel--right', ! isRight );
-		this.highlightPanel.classList.toggle( 'edac-highlight-panel--left', isRight );
-		this.moveButton.textContent = isRight
-			? __( 'Move to Right', 'accessibility-checker' )
-			: __( 'Move to Left', 'accessibility-checker' );
-
 		// Clear any drag-applied inline position so the panel repositions via CSS classes.
 		this.panelControls.style.position = '';
 		this.panelControls.style.width = '';
@@ -185,6 +179,23 @@ class AccessibilityCheckerHighlight {
 		this.panelControls.style.top = '';
 		this.panelControls.style.right = '';
 		this.panelControls.style.bottom = '';
+
+		// If the panel was dragged, just reset — don't toggle the side.
+		if ( this.isDragged ) {
+			this.isDragged = false;
+			const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
+			this.moveButton.textContent = isRight
+				? __( 'Move to Left', 'accessibility-checker' )
+				: __( 'Move to Right', 'accessibility-checker' );
+			return;
+		}
+
+		const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
+		this.highlightPanel.classList.toggle( 'edac-highlight-panel--right', ! isRight );
+		this.highlightPanel.classList.toggle( 'edac-highlight-panel--left', isRight );
+		this.moveButton.textContent = isRight
+			? __( 'Move to Right', 'accessibility-checker' )
+			: __( 'Move to Left', 'accessibility-checker' );
 	}
 
 	/**
@@ -535,6 +546,7 @@ class AccessibilityCheckerHighlight {
                                                         ${ __( 'Select an issue on the page to view details.', 'accessibility-checker' ) }
                                                 </div>
                                                 <div class="edac-highlight-panel-controls-content-issue" hidden>
+                                                        <div class="edac-highlight-panel-description-notice" hidden></div>
                                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
@@ -617,6 +629,10 @@ class AccessibilityCheckerHighlight {
 			header.releasePointerCapture( e.pointerId );
 			document.body.style.userSelect = '';
 			header.style.cursor = 'grab';
+
+			// Mark as dragged and update the menu action.
+			this.isDragged = true;
+			this.moveButton.textContent = __( 'Reset Position', 'accessibility-checker' );
 		} );
 
 		header.addEventListener( 'pointercancel', ( e ) => {
@@ -909,6 +925,7 @@ class AccessibilityCheckerHighlight {
 		const matchingObj = this.issues.find( ( obj ) => String( obj[ keyToSearch ] ) === String( searchTerm ) );
 
 		if ( matchingObj ) {
+			const descriptionNotice = document.querySelector( '.edac-highlight-panel-controls-content-issue .edac-highlight-panel-description-notice' );
 			const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
 			const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
@@ -1022,10 +1039,17 @@ class AccessibilityCheckerHighlight {
 			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
 			// title and content
-			descriptionTitle.innerHTML = `<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }` +
-				( this.currentIssueStatus
-					? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-					: '' );
+			descriptionTitle.innerHTML = `<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+
+			if ( descriptionNotice ) {
+				if ( this.currentIssueStatus ) {
+					descriptionNotice.textContent = this.currentIssueStatus;
+					descriptionNotice.hidden = false;
+				} else {
+					descriptionNotice.textContent = '';
+					descriptionNotice.hidden = true;
+				}
+			}
 
 			// content
 			descriptionContent.innerHTML = content;

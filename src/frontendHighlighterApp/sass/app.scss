@@ -336,13 +336,18 @@ body {
 
 			&-notice {
 				display: block !important;
-				margin-top: 8px !important;
+				margin-bottom: 10px !important;
 				padding: 8px 12px !important;
-				border-left: 4px solid #72aee6 !important;
-				background-color: #f0f6fc !important;
+				border-left: 4px solid variables.$color-yellow !important;
+				background-color: rgba(variables.$color-yellow, 0.15) !important;
 				color: #1e1e1e !important;
 				font-size: 13px !important;
+				font-weight: normal !important;
 				line-height: 1.5 !important;
+
+				&[hidden] {
+					display: none !important;
+				}
 			}
 
 			&-code-button {
