@@ -21,6 +21,7 @@ class AccessibilityCheckerHighlight {
 		this.settings = { ...defaultSettings, ...settings };
 		this._scanAttempted = false;
 		this._isRescanning = false;
+		this._issuesCleared = false;
 
 		this.highlightPanel = this.addHighlightPanel();
 		this.nextButton = document.querySelector( '#edac-highlight-next' );
@@ -542,8 +543,8 @@ class AccessibilityCheckerHighlight {
                                                 </div>
                                         </div>
                                         <div id="edac-highlight-panel-controls-content" class="edac-highlight-panel-controls-content">
-                                                <div class="edac-highlight-panel-controls-content-empty">
-                                                        ${ __( 'Select an issue on the page to view details.', 'accessibility-checker' ) }
+                                                <div id="edac-highlight-panel-controls-content-empty" class="edac-highlight-panel-controls-content-empty">
+                                                        ${ __( 'No issues found on this page.', 'accessibility-checker' ) }
                                                 </div>
                                                 <div class="edac-highlight-panel-controls-content-issue" style="display:none">
                                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
@@ -783,6 +784,13 @@ class AccessibilityCheckerHighlight {
 		// previous and next buttons are disabled until we have issues to show.
 		this.nextButton.disabled = true;
 		this.previousButton.disabled = true;
+
+		// If issues were cleared, trigger a fresh scan instead of loading stale data.
+		if ( this._issuesCleared ) {
+			this._issuesCleared = false;
+			this.rescanPage();
+			return;
+		}
 
 		// Get the issues for this page.
 		this.highlightAjax().then(
@@ -1721,8 +1729,36 @@ class AccessibilityCheckerHighlight {
 			} ),
 		} ).then( ( response ) => {
 			if ( response.ok ) {
+				this._issuesCleared = true;
 				this.removeHighlightButtons();
+				this.removeSelectedClasses();
 				this.issues = [];
+				this.currentButtonIndex = null;
+
+				// Clear issue text from the panel.
+				const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
+				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
+				if ( descriptionTitle ) {
+					descriptionTitle.innerHTML = '';
+				}
+				if ( descriptionContent ) {
+					descriptionContent.innerHTML = '';
+				}
+
+				// Remove the URL parameter.
+				const url = new URL( window.location.href );
+				url.searchParams.delete( 'edac' );
+				history.replaceState( null, '', url.toString() );
+
+				// Clear the pagination count and hide nav buttons.
+				const pagination = document.getElementById( 'edac-highlight-pagination' );
+				if ( pagination ) {
+					pagination.textContent = '';
+				}
+				this.nextButton.disabled = true;
+				this.previousButton.disabled = true;
+
+				this.descriptionClose();
 				this.showIssueCount();
 				if ( summary ) {
 					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );

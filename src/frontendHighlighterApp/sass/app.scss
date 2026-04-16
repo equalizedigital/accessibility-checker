@@ -567,10 +567,14 @@ body {
 				border-bottom: solid 1px variables.$color-gray-light !important;
 
 				&-empty {
-					color: variables.$color-gray !important;
+					margin: 15px !important;
+					padding: 8px 12px !important;
+					border-left: 4px solid variables.$color-yellow !important;
+					background-color: rgba(variables.$color-yellow, 0.15) !important;
+					color: #1e1e1e !important;
 					font-size: 13px !important;
-					text-align: center !important;
-					padding: 20px 0 !important;
+					font-weight: normal !important;
+					line-height: 1.5 !important;
 				}
 
 				&-issue {
