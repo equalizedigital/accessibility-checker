@@ -80,17 +80,15 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$has_pro_plugin  = defined( 'EDACP_VERSION' );
-		$is_pro          = $has_pro_plugin;
-		$status          = $has_pro_plugin ? get_option( 'edacp_license_status' ) : get_option( 'edac_license_status' );
+		$license_context = $this->get_license_context();
+		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
-		$site_id         = (string) get_option( 'edac_site_id', '' );
-		$is_connected    = ( 'valid' === $status && '' !== $site_id );
+		$is_connected    = $license_context['is_connected'];
 		$next_monday     = new \DateTime( 'next monday', wp_timezone() );
 		$next_collection = $next_monday->format( 'Y-m-d' );
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
-		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $has_pro_plugin ) : [];
+		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
 
 		$upgrade_url       = edac_generate_link_type(
 			[
@@ -302,20 +300,58 @@ class AccessibilityReportsPage implements PageInterface {
 	}
 
 	/**
+	 * Resolve the effective license context for the reports UI.
+	 *
+	 * Pro should only be treated as authoritative when it is both installed and valid.
+	 * Otherwise the reports page should fall back to the free plugin state.
+	 *
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 */
+	private function get_license_context(): array {
+		$has_pro_plugin = defined( 'EDACP_VERSION' );
+		$pro_status     = (string) get_option( 'edacp_license_status', '' );
+		$free_status    = (string) get_option( 'edac_license_status', '' );
+		$site_id        = (string) get_option( 'edac_site_id', '' );
+
+		return self::resolve_license_context( $has_pro_plugin, $pro_status, $free_status, $site_id );
+	}
+
+	/**
+	 * Resolve effective license context from current status values.
+	 *
+	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
+	 * @param string $pro_status     Current Pro license status.
+	 * @param string $free_status    Current free license status.
+	 * @param string $site_id        Current connected site ID.
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 */
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
+		$is_pro = $has_pro_plugin && 'valid' === $pro_status;
+		$status = $is_pro ? $pro_status : $free_status;
+
+		return [
+			'has_pro_plugin' => $has_pro_plugin,
+			'is_pro'         => $is_pro,
+			'status'         => $status,
+			'is_connected'   => 'valid' === $status && '' !== $site_id,
+		];
+	}
+
+	/**
 	 * Build preview data from current site stats.
 	 *
-	 * @param array $summary         Current site summary.
-	 * @param bool  $has_pro_plugin  Whether the Pro plugin is active.
+	 * @param array $summary Current site summary.
+	 * @param bool  $is_pro  Whether the effective active license is Pro.
 	 * @return array
 	 */
-	private function get_preview_data( array $summary, bool $has_pro_plugin ): array {
+	private function get_preview_data( array $summary, bool $is_pro ): array {
 		$problems           = (int) ( $summary['errors'] ?? 0 );
 		$needs_review       = (int) ( $summary['warnings'] ?? 0 );
 		$total_issues       = $problems + $needs_review;
 		$urls_scanned       = (int) ( $summary['posts_scanned'] ?? 0 );
 		$post_types_checked = (int) ( $summary['scannable_post_types_count'] ?? 0 );
 		$public_post_types  = (int) ( $summary['public_post_types_count'] ?? 0 );
-		$taxonomies_checked = $this->get_taxonomy_coverage_counts( $has_pro_plugin );
+		$taxonomies_checked = $this->get_taxonomy_coverage_counts( $is_pro );
 		$rules              = $this->get_rule_index();
 
 		return [
@@ -427,10 +463,10 @@ class AccessibilityReportsPage implements PageInterface {
 	/**
 	 * Get taxonomy coverage counts for the preview panel.
 	 *
-	 * @param bool $has_pro_plugin Whether the Pro plugin is active.
+	 * @param bool $is_pro Whether the effective active license is Pro.
 	 * @return array
 	 */
-	private function get_taxonomy_coverage_counts( bool $has_pro_plugin ): array {
+	private function get_taxonomy_coverage_counts( bool $is_pro ): array {
 		$taxonomies = get_taxonomies(
 			[
 				'public' => true,
@@ -443,7 +479,7 @@ class AccessibilityReportsPage implements PageInterface {
 		$total   = count( $taxonomies );
 		$checked = 0;
 
-		if ( $has_pro_plugin && get_option( 'edacp_enable_archive_scanning' ) ) {
+		if ( $is_pro && get_option( 'edacp_enable_archive_scanning' ) ) {
 			$checked = $total;
 		}
 
