@@ -29,7 +29,9 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_license_status' );
 		delete_option( 'edacp_license_status' );
 		delete_option( 'edac_site_id' );
+		delete_option( 'edac_fallback_active' );
 		delete_option( 'edacp_enable_archive_scanning' );
+		delete_option( 'edac_next_collection' );
 	}
 
 	/**
@@ -39,7 +41,9 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_license_status' );
 		delete_option( 'edacp_license_status' );
 		delete_option( 'edac_site_id' );
+		delete_option( 'edac_fallback_active' );
 		delete_option( 'edacp_enable_archive_scanning' );
+		delete_option( 'edac_next_collection' );
 
 		parent::tearDown();
 	}
@@ -84,7 +88,7 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	public function test_resolve_license_context_uses_pro_when_pro_is_valid() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
-			[ true, 'valid', 'valid', 'site-123' ]
+			[ true, 'valid', 'valid', 'site-123', false ]
 		);
 
 		$this->assertTrue( $context['has_pro_plugin'] );
@@ -101,7 +105,7 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	public function test_resolve_license_context_falls_back_to_free_when_pro_is_invalid() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123' ]
+			[ true, 'expired', 'valid', 'site-123', false ]
 		);
 
 		$this->assertTrue( $context['has_pro_plugin'] );
@@ -124,5 +128,34 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		$this->assertSame( 0, $free_counts['checked'] );
 		$this->assertGreaterThanOrEqual( $free_counts['checked'], $free_counts['total'] );
 		$this->assertSame( $pro_counts['total'], $pro_counts['checked'] );
+	}
+
+	/**
+	 * Ensures fallback marker prevents stale connected state until free revalidation completes.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_resolve_license_context_treats_fallback_as_temporarily_disconnected() {
+		$context = $this->invoke_private_static_method(
+			'resolve_license_context',
+			[ true, 'expired', 'valid', 'site-123', true ]
+		);
+
+		$this->assertFalse( $context['is_pro'] );
+		$this->assertSame( 'valid', $context['status'] );
+		$this->assertFalse( $context['is_connected'] );
+	}
+
+	/**
+	 * Ensures stored next collection date is preferred over local fallback estimate.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_next_collection_date_uses_stored_value_when_available() {
+		update_option( 'edac_next_collection', '2030-01-15' );
+
+		$next_collection = $this->invoke_private_method( 'get_next_collection_date' );
+
+		$this->assertSame( '2030-01-15', $next_collection );
 	}
 }
