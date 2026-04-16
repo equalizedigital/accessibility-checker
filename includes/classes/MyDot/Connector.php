@@ -293,6 +293,8 @@ class Connector {
 	 */
 	private static function clear_all_license_state(): void {
 		delete_option( 'edacp_license_key' );
+		delete_option( 'edacp_license_status' );
+		delete_option( 'edacp_license_error' );
 		delete_option( 'edac_license_status' );
 		delete_option( 'edac_license_error' );
 		self::clear_stored_license_metadata();
@@ -619,6 +621,9 @@ class Connector {
 		$site_id     = get_option( 'edac_site_id' );
 		$license_key = self::get_license_key();
 		if ( empty( $site_id ) || empty( $license_key ) ) {
+			// Clear any remaining local state even if required data is missing,
+			// so the user is never left in a partially-connected state.
+			self::clear_all_license_state();
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -630,6 +635,12 @@ class Connector {
 			return;
 		}
 		$response_data = self::unregister_site( $site_id, get_site_url(), $license_key );
+
+		// Always clear all local license and registration state regardless of the API response.
+		// This ensures "Disable Email Reports" always succeeds locally, preventing user lockout
+		// when the license server is unreachable or returns an error (e.g. "invalid license").
+		self::clear_all_license_state();
+
 		if ( empty( $response_data['success'] ) ) {
 			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
 			set_transient(
@@ -642,10 +653,6 @@ class Connector {
 			);
 			return;
 		}
-		delete_option( 'edac_jwt_public_key' );
-		delete_option( 'edac_site_id' );
-		delete_option( 'edac_collection_interval_days' );
-		delete_option( 'edac_next_collection' );
 		set_transient(
 			$this->get_notice_transient_key(),
 			[

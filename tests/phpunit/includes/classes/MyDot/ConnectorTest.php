@@ -21,6 +21,8 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_license_metadata' );
 		delete_option( 'edac_license_status' );
 		delete_option( 'edac_license_error' );
+		delete_option( 'edacp_license_status' );
+		delete_option( 'edacp_license_error' );
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edacp_license_key' );
 	}
@@ -32,6 +34,8 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_license_metadata' );
 		delete_option( 'edac_license_status' );
 		delete_option( 'edac_license_error' );
+		delete_option( 'edacp_license_status' );
+		delete_option( 'edacp_license_error' );
 		delete_option( 'edac_jwt_public_key' );
 		delete_option( 'edacp_license_key' );
 		remove_all_filters( 'edac_pro_product_id' );
@@ -332,6 +336,8 @@ class ConnectorTest extends WP_UnitTestCase {
 	public function test_deactivate_license_clears_all_options() {
 		// Set up initial state with all license-related options.
 		update_option( 'edacp_license_key', 'test-key' );
+		update_option( 'edacp_license_status', 'valid' );
+		update_option( 'edacp_license_error', 'test-pro-error' );
 		update_option( 'edac_license_status', 'valid' );
 		update_option( 'edac_license_error', 'test-error' );
 		update_option( 'edac_license_metadata', [ 'type' => 'free' ] );
@@ -350,6 +356,8 @@ class ConnectorTest extends WP_UnitTestCase {
 
 		// Verify all options are cleared.
 		$this->assertFalse( get_option( 'edacp_license_key', false ) );
+		$this->assertFalse( get_option( 'edacp_license_status', false ) );
+		$this->assertFalse( get_option( 'edacp_license_error', false ) );
 		$this->assertFalse( get_option( 'edac_license_status', false ) );
 		$this->assertFalse( get_option( 'edac_license_error', false ) );
 		$this->assertFalse( get_option( 'edac_license_metadata', false ) );
@@ -402,5 +410,24 @@ class ConnectorTest extends WP_UnitTestCase {
 		// Verify that site ID is still empty (no enrollment happened).
 		$site_id = get_option( 'edac_site_id', false );
 		$this->assertFalse( $site_id, 'Site should not be auto-registered during fallback' );
+	}
+
+	/**
+	 * Ensures local site unregistration clears stale Pro state even when required data is missing.
+	 */
+	public function test_handle_site_unregistration_clears_stale_pro_state_when_registration_data_is_missing() {
+		update_option( 'edacp_license_key', 'test-key' );
+		update_option( 'edacp_license_status', 'valid' );
+		update_option( 'edacp_license_error', 'test-pro-error' );
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', '' );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+
+		$this->assertFalse( get_option( 'edacp_license_key', false ) );
+		$this->assertFalse( get_option( 'edacp_license_status', false ) );
+		$this->assertFalse( get_option( 'edacp_license_error', false ) );
+		$this->assertFalse( get_option( 'edac_license_status', false ) );
 	}
 }
