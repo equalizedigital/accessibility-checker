@@ -1125,9 +1125,11 @@ class AccessibilityCheckerHighlight {
 
 			// WCAG reference + severity inline
 			if ( matchingObj.wcag ) {
+				const wcagNumber = parseFloat( matchingObj.wcag );
+				const showWcagNumber = ! isNaN( wcagNumber ) && wcagNumber >= 1;
 				const wcagLinkText = matchingObj.wcag_title
-					? `${ matchingObj.wcag } ${ matchingObj.wcag_title } ↗\uFE0E`
-					: `${ matchingObj.wcag } ↗\uFE0E`;
+					? `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }${ matchingObj.wcag_title } ↗\uFE0E`
+					: `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }↗\uFE0E`;
 
 				let severityBadgeHtml = '';
 				if ( matchingObj.severity ) {
