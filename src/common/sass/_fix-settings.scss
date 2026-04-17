@@ -94,14 +94,21 @@
 
 	&--button {
 		&--save {
-			padding: 5px 8px;
-			background: blue;
+			padding: 8px 13px;
+			background: variables.$color-blue;
 			color: white;
+			border-radius: 2px;
 
-			&:hover,
-			&:focus {
-				background: #072446 !important;
+			&:hover {
+				background: color-mix(in srgb, variables.$color-blue 90%, black) !important;
 				color: white !important;
+			}
+
+			&:focus-visible {
+				background: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+				color: white !important;
+				outline: 2px solid variables.$color-blue !important;
+				outline-offset: 2px !important;
 			}
 
 			:focus {
@@ -196,9 +203,12 @@
 		height: 35px;
 		width: 35px;
 		position: absolute;
-		top: 5px;
-		right: 5px;
+		top: 8px;
+		right: 8px;
 		color: variables.$color-blue-dark;
+		background: transparent;
+		border-radius: 2px;
+		outline: 2px solid transparent;
 
 		.dashicons, .dashicons::before {
 			vertical-align: middle;
@@ -209,8 +219,10 @@
 
 		&:hover,
 		&:focus {
-			background-color: variables.$color-yellow;
+			background: transparent;
 			color: variables.$color-blue-dark;
+			outline-color: variables.$color-blue-dark;
+			outline-offset: 2px;
 		}
 	}
 }

@@ -185,7 +185,7 @@ class AccessibilityCheckerHighlight {
 		if ( this.isDragged ) {
 			this.isDragged = false;
 			const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
-			this.moveButton.textContent = isRight
+			this.moveButton.querySelector( 'span' ).textContent = isRight
 				? __( 'Move to Left', 'accessibility-checker' )
 				: __( 'Move to Right', 'accessibility-checker' );
 			return;
@@ -194,7 +194,7 @@ class AccessibilityCheckerHighlight {
 		const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
 		this.highlightPanel.classList.toggle( 'edac-highlight-panel--right', ! isRight );
 		this.highlightPanel.classList.toggle( 'edac-highlight-panel--left', isRight );
-		this.moveButton.textContent = isRight
+		this.moveButton.querySelector( 'span' ).textContent = isRight
 			? __( 'Move to Right', 'accessibility-checker' )
 			: __( 'Move to Left', 'accessibility-checker' );
 	}
@@ -515,12 +515,18 @@ class AccessibilityCheckerHighlight {
 		const moveLabel = widgetPosition === 'right'
 			? __( 'Move to Left', 'accessibility-checker' )
 			: __( 'Move to Right', 'accessibility-checker' );
+		const scanIcon = `<span class="edac-menu-icon edac-menu-icon--scan" aria-hidden="true"></span>`;
+		const refreshIcon = `<span class="edac-menu-icon edac-menu-icon--refresh" aria-hidden="true"></span>`;
+		const trashIcon = `<span class="edac-menu-icon edac-menu-icon--trash" aria-hidden="true"></span>`;
+		const moveIcon = `<span class="edac-menu-icon edac-menu-icon--move" aria-hidden="true"></span>`;
+		const stylesIcon = `<span class="edac-menu-icon edac-menu-icon--styles" aria-hidden="true"></span>`;
+
 		const clearButtonMarkup = userCanEdit
-			? `<li role="none"><button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues" role="menuitem">${ __( 'Clear Issues', 'accessibility-checker' ) }</button></li>`
+			? `<li role="none"><button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues" role="menuitem"><span>${ __( 'Clear Issues', 'accessibility-checker' ) }</span>${ trashIcon }</button></li>`
 			: '';
 
 		const rescanButton = userCanEdit
-			? `<li role="none"><button id="edac-highlight-rescan" class="edac-highlight-rescan" role="menuitem">${ __( 'Rescan This Page', 'accessibility-checker' ) }</button></li>`
+			? `<li role="none"><button id="edac-highlight-rescan" class="edac-highlight-rescan" role="menuitem"><span>${ __( 'Rescan This Page', 'accessibility-checker' ) }</span>${ refreshIcon }</button></li>`
 			: '';
 
 		const newElement = `
@@ -533,10 +539,10 @@ class AccessibilityCheckerHighlight {
                                                         <div class="edac-highlight-menu-container">
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
                                                                 <ul id="edac-highlight-menu" class="edac-highlight-menu" role="menu" aria-label="${ __( 'More options', 'accessibility-checker' ) }" hidden>
-                                                                        <li role="none"><button id="edac-highlight-move" class="edac-highlight-move" role="menuitem">${ moveLabel }</button></li>
+                                                                        <li role="none"><button id="edac-highlight-move" class="edac-highlight-move" role="menuitem"><span>${ moveLabel }</span>${ moveIcon }</button></li>
                                                                         ${ rescanButton }
                                                                         ${ clearButtonMarkup }
-                                                                        <li role="none"><button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" role="menuitem" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }">${ __( 'Disable Styles', 'accessibility-checker' ) }</button></li>
+                                                                        <li role="none"><button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" role="menuitem" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }"><span>${ __( 'Disable Styles', 'accessibility-checker' ) }</span>${ stylesIcon }</button></li>
                                                                 </ul>
                                                         </div>
                                                         <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
@@ -567,6 +573,13 @@ class AccessibilityCheckerHighlight {
 
 		document.body.insertAdjacentHTML( 'afterbegin', newElement );
 		const panel = document.getElementById( 'edac-highlight-panel' );
+
+		// Override --wp-admin-theme-color with the correct value from the user's
+		// admin color scheme, since WordPress does not update this variable on the frontend.
+		if ( edacFrontendHighlighterApp?.adminThemeColor ) {
+			panel.style.setProperty( '--wp-admin-theme-color', edacFrontendHighlighterApp.adminThemeColor );
+		}
+
 		this.initDrag( panel );
 		return panel;
 	}
@@ -633,7 +646,7 @@ class AccessibilityCheckerHighlight {
 
 			// Mark as dragged and update the menu action.
 			this.isDragged = true;
-			this.moveButton.textContent = __( 'Reset Position', 'accessibility-checker' );
+			this.moveButton.querySelector( 'span' ).textContent = __( 'Reset Position', 'accessibility-checker' );
 		} );
 
 		header.addEventListener( 'pointercancel', ( e ) => {
@@ -1206,7 +1219,7 @@ class AccessibilityCheckerHighlight {
 		document.querySelector( 'body' ).classList.add( 'edac-app-disable-styles' );
 
 		this.stylesDisabled = true;
-		this.disableStylesButton.textContent = __( 'Enable Styles', 'accessibility-checker' );
+		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Enable Styles', 'accessibility-checker' );
 	}
 
 	/**
@@ -1241,7 +1254,7 @@ class AccessibilityCheckerHighlight {
 		document.querySelector( 'body' ).classList.remove( 'edac-app-disable-styles' );
 
 		this.stylesDisabled = false;
-		this.disableStylesButton.textContent = __( 'Disable Styles', 'accessibility-checker' );
+		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Disable Styles', 'accessibility-checker' );
 
 		// Re-render the current issue to restore panel state after styles are re-enabled.
 		if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {

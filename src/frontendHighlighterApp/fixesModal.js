@@ -34,6 +34,11 @@ const buildFixesModalBase = () => {
 	overlay.setAttribute( 'tabindex', '-1' );
 	document.body.appendChild( overlay );
 	document.body.appendChild( modal );
+
+	// Override --wp-admin-theme-color on the modal since it lives outside the panel element.
+	if ( window.edacFrontendHighlighterApp?.adminThemeColor ) {
+		modal.style.setProperty( '--wp-admin-theme-color', window.edacFrontendHighlighterApp.adminThemeColor );
+	}
 };
 
 const bindListenersForFixesModal = () => {

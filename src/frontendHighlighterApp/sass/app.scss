@@ -25,6 +25,7 @@ body {
 		letter-spacing: normal !important;
 	}
 
+
 	& {
 		display: inline-block;
 		clear: both;
@@ -358,8 +359,12 @@ body {
 				text-decoration: underline !important;
 
 				&:hover, &:focus {
-					color: variables.$color-blue-dark !important;
 					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
 				}
 
 				&-arrow {
@@ -374,16 +379,24 @@ body {
 
 			&--button {
 				all: unset;
-				color: variables.$color-blue-dark !important;
-				background-color: variables.$color-yellow !important;
-				padding: 4px 10px !important;
+				color: variables.$color-white !important;
+				background-color: variables.$color-blue !important;
+				padding: 8px 13px !important;
 				display: inline-block !important;
 				margin-top: 10px !important;
 				margin-right: 10px !important;
+				border-radius: 2px !important;
 
-				&:hover, &:focus, &[aria-expanded="true"] {
-					color: variables.$color-blue-dark !important;
-					background-color: variables.$color-white !important;
+				&:hover {
+					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					cursor: pointer !important;
+					text-decoration: none !important;
+				}
+
+				&:focus-visible {
+					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
 					cursor: pointer !important;
 					text-decoration: none !important;
 				}
@@ -399,6 +412,11 @@ body {
 
 				&:hover, &:focus {
 					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
 				}
 			}
 
@@ -448,8 +466,12 @@ body {
 				text-decoration: underline !important;
 
 				&:hover, &:focus {
-					color: variables.$color-blue-dark !important;
 					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
 				}
 
 				&-arrow {
@@ -553,10 +575,10 @@ body {
 				font-size: 18px !important;
 				cursor: pointer !important;
 				border-radius: 2px !important;
+				border: 1px solid transparent !important;
 
 				&:hover, &:focus {
-					background-color: variables.$color-yellow !important;
-					color: variables.$color-blue-dark !important;
+					border-color: variables.$color-white !important;
 				}
 			}
 
@@ -614,17 +636,25 @@ body {
 				button {
 					all: unset;
 					text-decoration: none !important;
-					color: variables.$color-white !important;
-					background-color: variables.$color-blue !important;
-					padding: 4px 10px !important;
+					color: variables.$color-blue !important;
+					background-color: transparent !important;
+					border: 1px solid variables.$color-blue !important;
+					padding: 8px 13px !important;
 					display: inline-block !important;
 					flex-shrink: 0 !important;
 					width: 80px !important;
 					text-align: center !important;
+					border-radius: 2px !important;
 
-					&:hover, &:focus {
-						color: variables.$color-blue-dark !important;
-						background-color: variables.$color-white !important;
+					&:hover {
+						background-color: color-mix(in srgb, variables.$color-blue 5%, transparent) !important;
+						cursor: pointer !important;
+					}
+
+					&:focus-visible {
+						background-color: color-mix(in srgb, variables.$color-blue 5%, transparent) !important;
+						outline: 2px solid variables.$color-blue !important;
+						outline-offset: 2px !important;
 						cursor: pointer !important;
 					}
 
@@ -659,10 +689,10 @@ body {
 				cursor: pointer !important;
 				letter-spacing: 1px !important;
 				border-radius: 2px !important;
+				border: 1px solid transparent !important;
 
 				&:hover, &:focus {
-					background-color: variables.$color-yellow !important;
-					color: variables.$color-blue-dark !important;
+					border-color: variables.$color-white !important;
 				}
 			}
 
@@ -670,16 +700,17 @@ body {
 				all: unset !important;
 				display: block !important;
 				position: absolute !important;
-				top: 100% !important;
+				top: calc(100% + 6px) !important;
 				right: 0 !important;
-				background-color: variables.$color-blue-dark !important;
+				background-color: variables.$color-white !important;
 				list-style: none !important;
 				margin: 0 !important;
-				padding: 0 !important;
-				min-width: 160px !important;
+				padding: 6px !important;
+				min-width: 200px !important;
 				z-index: 10 !important;
-				box-shadow: 0 4px 8px rgba(variables.$color-black, .25) !important;
-				border-radius: 5px !important;
+				box-shadow: 0 4px 16px rgba(variables.$color-black, .15) !important;
+				border-radius: 8px !important;
+				border: 1px solid variables.$color-gray-light !important;
 				overflow: hidden !important;
 
 				&[hidden] {
@@ -693,18 +724,28 @@ body {
 
 				button {
 					all: unset !important;
-					display: block !important;
+					display: flex !important;
+					align-items: center !important;
+					justify-content: space-between !important;
 					width: 100% !important;
 					box-sizing: border-box !important;
-					color: variables.$color-white !important;
-					padding: 8px 12px !important;
+					color: #1e1e1e !important;
+					padding: 8px 10px !important;
 					cursor: pointer !important;
-					text-align: left !important;
 					white-space: nowrap !important;
+					border-radius: 4px !important;
+					font-size: 13px !important;
+					gap: 12px !important;
+					outline: 2px solid transparent !important;
 
-					&:hover, &:focus {
-						color: variables.$color-blue-dark !important;
-						background-color: variables.$color-white !important;
+					&:hover {
+						background-color: color-mix(in srgb, variables.$color-blue 6%, transparent) !important;
+						color: variables.$color-blue !important;
+					}
+
+					&:focus {
+						outline-color: variables.$color-blue !important;
+						color: variables.$color-blue !important;
 					}
 				}
 			}
@@ -801,7 +842,9 @@ body {
 
 	&__close:focus,
 	&__close:hover {
-		background: variables.$color-yellow;
+		outline: 2px solid #1e1e1e;
+		outline-offset: 2px;
+		background: transparent;
 	}
 
 	&--open {
@@ -874,5 +917,37 @@ body {
 			text-decoration: none !important;
 			cursor: pointer !important;
 		}
+	}
+}
+
+// Menu icon system using CSS mask-image so icons inherit color from parent button
+.edac-menu-icon {
+	display: inline-block !important;
+	flex-shrink: 0 !important;
+	width: 16px !important;
+	height: 16px !important;
+	background-color: currentColor !important;
+	mask-repeat: no-repeat !important;
+	mask-size: contain !important;
+	mask-position: center !important;
+
+	&--scan {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") !important;
+	}
+
+	&--refresh {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M23 4v6h-6'/%3E%3Cpath d='M1 20v-6h6'/%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10'/%3E%3Cpath d='M20.49 15a9 9 0 0 1-14.85 3.36L1 14'/%3E%3C/svg%3E") !important;
+	}
+
+	&--trash {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
+	}
+
+	&--move {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l-3 3 3 3'/%3E%3Cpath d='M19 9l3 3-3 3'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E") !important;
+	}
+
+	&--styles {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42'/%3E%3C/svg%3E") !important;
 	}
 }
