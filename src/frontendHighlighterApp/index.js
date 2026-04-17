@@ -550,6 +550,7 @@ class AccessibilityCheckerHighlight {
                                                         <div id="edac-highlight-panel-description-title" class="edac-highlight-panel-description-title"></div>
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
+                                                        <div id="edac-highlight-panel-description-fix" class="edac-highlight-panel-description-fix"></div>
                                                 </div>
                                         </div>
                                         <div class="edac-highlight-panel-controls-footer">
@@ -1014,35 +1015,10 @@ class AccessibilityCheckerHighlight {
 				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ↗\uFE0E</a>`;
 			}
 
-			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
-				// this is the markup to put in the modal.
-				content += `
-					<div style="display:none;" class="always-hide">
-						<div class="edac-fix-settings">
-							<div class="edac-fix-settings--fields">
-								${ this.fixes[ matchingObj.slug ].fields }
-								<div class="edac-fix-settings--action-row">
-									<button role="button" class="button button-primary edac-fix-settings--button--save">
-										${ __( 'Save', 'accessibility-checker' ) }
-									</button>
-									<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
-								</div>
-							</div>
-						</div>
-					</div>
-				`;
-				// and the button that will trigger the modal.
-				content += ` <br />
- 					<button role="button"
- 						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
- 						aria-haspopup="true"
- 						aria-controls="edac-highlight-panel-description-fix"
-						aria-label="${ sprintf( __( 'Fix issue: %s', 'accessibility-checker' ), this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name ) }"> 						${ __( 'Fix Issue', 'accessibility-checker' ) }</button>`;
-			}
-
 			// Get the code button
 			const codeArrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
 			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
+
 
 			// title and content (notice only rendered when there is a status message)
 			const noticeHtml = this.currentIssueStatus
@@ -1067,15 +1043,41 @@ class AccessibilityCheckerHighlight {
 				descriptionCode.innerText = textNode.nodeValue;
 			}
 
-			// show fix settings button if available
-			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix ) {
-				this.fixSettingsButton = document.querySelector( '.edac-fix-settings--button--open' );
+			// inject fix settings below the code box
+			const descriptionFix = document.getElementById( 'edac-highlight-panel-description-fix' );
+			if ( descriptionFix ) {
+				descriptionFix.innerHTML = '';
+			}
+			if ( this.fixes[ matchingObj.slug ] && window.edacFrontendHighlighterApp?.userCanFix && descriptionFix ) {
+				descriptionFix.innerHTML = `
+					<div style="display:none;" class="always-hide">
+						<div class="edac-fix-settings">
+							<div class="edac-fix-settings--fields">
+								${ this.fixes[ matchingObj.slug ].fields }
+								<div class="edac-fix-settings--action-row">
+									<button role="button" class="button button-primary edac-fix-settings--button--save">
+										${ __( 'Save', 'accessibility-checker' ) }
+									</button>
+									<span class="edac-fix-settings--notice-slot" aria-live="polite" role="alert"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button role="button"
+						class="edac-fix-settings--button--open edac-highlight-panel-description--button"
+						aria-haspopup="true"
+						aria-controls="edac-highlight-panel-description-fix"
+						aria-label="${ sprintf( __( 'Fix issue: %s', 'accessibility-checker' ), this.fixes[ matchingObj.slug ][ Object.keys( this.fixes[ matchingObj.slug ] )[ 0 ] ].group_name ) }">
+						${ __( 'Fix Issue', 'accessibility-checker' ) }
+					</button>
+				`;
+
+				this.fixSettingsButton = descriptionFix.querySelector( '.edac-fix-settings--button--open' );
 				this.fixSettingsButton.addEventListener( 'click', ( event ) => {
 					this.showFixSettings( event );
 				} );
-				this.fixSettingsButton.display = 'block';
 
-				this.fixSettingsSaveButton = document.querySelector( '.edac-fix-settings--button--save' );
+				this.fixSettingsSaveButton = descriptionFix.querySelector( '.edac-fix-settings--button--save' );
 				this.fixSettingsSaveButton.addEventListener( 'click', ( event ) => {
 					saveFixSettings( event.target.closest( '.edac-fix-settings' ) );
 				} );
@@ -1278,7 +1280,7 @@ class AccessibilityCheckerHighlight {
 	}
 
 	showFixSettings( event ) {
-		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-description-content' ).querySelector( '.edac-fix-settings' );
+		const fixSettingsContainer = event.target.closest( '.edac-highlight-panel-controls-content-issue' ).querySelector( '.edac-fix-settings' );
 		if ( ! fixSettingsContainer ) {
 			// this is a fail, it should do something.
 			return;
