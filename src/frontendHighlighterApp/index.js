@@ -1450,10 +1450,10 @@ class AccessibilityCheckerHighlight {
 		this.panelControlsFocusTrap.pause();
 		openFixesModal( event.target );
 
-		// unpause the focus trap when the modal is closed.
+		// unpause the focus trap when the modal is closed (once only, to avoid handler accumulation).
 		document.addEventListener( 'edac-fixes-modal-closed', () => {
 			this.panelControlsFocusTrap.unpause();
-		} );
+		}, { once: true } );
 	}
 
 	/**
