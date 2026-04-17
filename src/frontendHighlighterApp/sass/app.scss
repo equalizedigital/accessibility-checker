@@ -619,6 +619,8 @@ body {
 					padding: 4px 10px !important;
 					display: inline-block !important;
 					flex-shrink: 0 !important;
+					width: 80px !important;
+					text-align: center !important;
 
 					&:hover, &:focus {
 						color: variables.$color-blue-dark !important;
