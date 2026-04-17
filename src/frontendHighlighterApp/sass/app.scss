@@ -532,6 +532,18 @@ body {
 				}
 			}
 
+			&-content {
+				code {
+					font-family: monospace !important;
+					font-size: 12px !important;
+					background-color: #f6f7f7 !important;
+					border: 1px solid #ddd !important;
+					border-radius: 3px !important;
+					padding: 1px 5px !important;
+					color: #1e1e1e !important;
+				}
+			}
+
 			&-how-to-fix {
 				display: block !important;
 				margin-bottom: 0 !important;
