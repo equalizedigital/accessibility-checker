@@ -157,6 +157,13 @@ class AccessibilityCheckerHighlight {
 			} );
 		}
 
+		// Reactivate the focus trap when the user clicks back into the panel.
+		this.panelControls.addEventListener( 'pointerdown', () => {
+			if ( ! this.panelControlsFocusTrap.active ) {
+				this.panelControlsFocusTrap.activate( { returnFocusOnDeactivate: false } );
+			}
+		} );
+
 		// Restore docked state if it was previously set.
 		if ( this.isDocked ) {
 			this.applyDock();
