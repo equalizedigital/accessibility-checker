@@ -403,6 +403,7 @@ class AccessibilityCheckerHighlight {
 		const onClick = ( e ) => {
 			const id = e.currentTarget.dataset.id;
 			this.showIssue( id );
+			this.focusTrapControls();
 		};
 
 		tooltip.addEventListener( 'click', onClick );
@@ -689,7 +690,7 @@ class AccessibilityCheckerHighlight {
 		this.panelControlsFocusTrap.activate();
 
 		setTimeout( () => {
-			this.panelControls.focus();
+			this.closePanel?.focus();
 		}, 100 ); //give render time to complete.
 	};
 
