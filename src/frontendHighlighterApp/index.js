@@ -45,6 +45,9 @@ class AccessibilityCheckerHighlight {
 			escapeDeactivates: () => {
 				this.panelClose();
 			},
+			initialFocus: () => {
+				return this.closePanel;
+			},
 		} );
 
 		this.disableStylesButton = document.querySelector( '#edac-highlight-disable-styles' );
