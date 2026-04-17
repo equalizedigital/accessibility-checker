@@ -53,6 +53,8 @@ class AccessibilityCheckerHighlight {
 		this.menuButton = document.querySelector( '#edac-highlight-menu-button' );
 		this.menu = document.querySelector( '#edac-highlight-menu' );
 		this.moveButton = document.querySelector( '#edac-highlight-move' );
+		this.dockButton = document.querySelector( '#edac-highlight-dock' );
+		this.isDocked = localStorage.getItem( 'edac-panel-docked' ) === '1';
 		this.stylesDisabled = false;
 		this.originalCss = [];
 		this.originalInlineStyles = [];
@@ -148,6 +150,18 @@ class AccessibilityCheckerHighlight {
 			} );
 		}
 
+		if ( this.dockButton ) {
+			this.dockButton.addEventListener( 'click', () => {
+				this.closeMenu();
+				this.toggleDock();
+			} );
+		}
+
+		// Restore docked state if it was previously set.
+		if ( this.isDocked ) {
+			this.applyDock();
+		}
+
 		// Open panel if a URL parameter exists
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
@@ -197,6 +211,14 @@ class AccessibilityCheckerHighlight {
 		this.moveButton.querySelector( 'span' ).textContent = isRight
 			? __( 'Move to Right', 'accessibility-checker' )
 			: __( 'Move to Left', 'accessibility-checker' );
+
+		// If docked, update body margin to match the new side.
+		if ( this.isDocked ) {
+			const panelWidth = this.panelControls.offsetWidth + 'px';
+			document.body.style.marginRight = '';
+			document.body.style.marginLeft = '';
+			document.body.style[ isRight ? 'marginLeft' : 'marginRight' ] = panelWidth;
+		}
 	}
 
 	/**
@@ -521,6 +543,10 @@ class AccessibilityCheckerHighlight {
 		const trashIcon = `<span class="edac-menu-icon edac-menu-icon--trash" aria-hidden="true"></span>`;
 		const moveIcon = `<span class="edac-menu-icon edac-menu-icon--move" aria-hidden="true"></span>`;
 		const stylesIcon = `<span class="edac-menu-icon edac-menu-icon--styles" aria-hidden="true"></span>`;
+		const dockIcon = `<span class="edac-menu-icon edac-menu-icon--dock" aria-hidden="true"></span>`;
+		const dockLabel = localStorage.getItem( 'edac-panel-docked' ) === '1'
+			? __( 'Undock Panel', 'accessibility-checker' )
+			: __( 'Dock Panel', 'accessibility-checker' );
 
 		const clearButtonMarkup = userCanEdit
 			? `<li role="none"><button id="edac-highlight-clear-issues" class="edac-highlight-clear-issues" role="menuitem"><span>${ __( 'Clear Issues', 'accessibility-checker' ) }</span>${ trashIcon }</button></li>`
@@ -541,6 +567,7 @@ class AccessibilityCheckerHighlight {
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
                                                                 <ul id="edac-highlight-menu" class="edac-highlight-menu" role="menu" aria-label="${ __( 'More options', 'accessibility-checker' ) }" hidden>
                                                                         <li role="none"><button id="edac-highlight-move" class="edac-highlight-move" role="menuitem"><span>${ moveLabel }</span>${ moveIcon }</button></li>
+                                                                        <li role="none"><button id="edac-highlight-dock" class="edac-highlight-dock" role="menuitem"><span>${ dockLabel }</span>${ dockIcon }</button></li>
                                                                         ${ rescanButton }
                                                                         ${ clearButtonMarkup }
                                                                         <li role="none"><button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" role="menuitem" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }"><span>${ __( 'Disable Styles', 'accessibility-checker' ) }</span>${ stylesIcon }</button></li>
@@ -604,6 +631,11 @@ class AccessibilityCheckerHighlight {
 		header.addEventListener( 'pointerdown', ( e ) => {
 			// Let buttons and links handle their own clicks.
 			if ( e.target.closest( 'button, a' ) ) {
+				return;
+			}
+
+			// Disable drag in docked mode.
+			if ( this.isDocked ) {
 				return;
 			}
 
@@ -897,6 +929,9 @@ class AccessibilityCheckerHighlight {
 	 * This function closes the accessibility checker panel.
 	 */
 	panelClose() {
+		if ( this.isDocked ) {
+			this.removeDock();
+		}
 		this.highlightPanel.classList.remove( 'edac-highlight-panel-visible' );
 		this.panelControls.style.display = 'none';
 		this.panelToggle.style.display = 'block';
@@ -906,6 +941,90 @@ class AccessibilityCheckerHighlight {
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
 		this.panelToggle.focus();
+	}
+
+	/**
+	 * Toggle between docked and undocked panel modes.
+	 */
+	toggleDock() {
+		if ( this.isDocked ) {
+			this.removeDock();
+		} else {
+			this.applyDock();
+			// Open the panel if not already open.
+			if ( ! this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				this.panelOpen();
+			}
+		}
+	}
+
+	/**
+	 * Apply docked sidebar mode.
+	 */
+	applyDock() {
+		this.isDocked = true;
+		localStorage.setItem( 'edac-panel-docked', '1' );
+
+		const isRight = this.highlightPanel.classList.contains( 'edac-highlight-panel--right' );
+		this.highlightPanel.classList.add( 'edac-highlight-panel--docked' );
+
+		// Reset any drag-applied inline position styles.
+		this.isDragged = false;
+		this.panelControls.style.position = '';
+		this.panelControls.style.left = '';
+		this.panelControls.style.right = '';
+		this.panelControls.style.top = '';
+		this.panelControls.style.bottom = '';
+		this.panelControls.style.width = '';
+
+		// Offset below the admin bar if present.
+		const adminBar = document.getElementById( 'wpadminbar' );
+		const adminBarHeight = adminBar ? adminBar.offsetHeight : 0;
+		this.highlightPanel.style.setProperty( '--edac-adminbar-height', adminBarHeight + 'px' );
+
+		// Show panel controls, hide the toggle button.
+		this.panelControls.style.display = 'flex';
+		this.panelToggle.style.display = 'none';
+		this.highlightPanel.classList.add( 'edac-highlight-panel-visible' );
+
+		// Push page content to make room for the panel.
+		const panelWidth = this.panelControls.offsetWidth + 'px';
+		document.body.style[ isRight ? 'marginRight' : 'marginLeft' ] = panelWidth;
+
+		if ( this.dockButton ) {
+			this.dockButton.querySelector( 'span' ).textContent = __( 'Undock Panel', 'accessibility-checker' );
+		}
+
+		// Reset move button label to reflect the current side (no longer "Reset Position").
+		this.moveButton.querySelector( 'span' ).textContent = isRight
+			? __( 'Move to Left', 'accessibility-checker' )
+			: __( 'Move to Right', 'accessibility-checker' );
+	}
+
+	/**
+	 * Remove docked sidebar mode and return to overlay.
+	 */
+	removeDock() {
+		this.isDocked = false;
+		localStorage.removeItem( 'edac-panel-docked' );
+
+		this.highlightPanel.classList.remove( 'edac-highlight-panel--docked' );
+
+		// Remove body margin.
+		document.body.style.marginRight = '';
+		document.body.style.marginLeft = '';
+
+		// Reset any inline position styles set during dock.
+		this.panelControls.style.width = '';
+		this.panelControls.style.position = '';
+		this.panelControls.style.left = '';
+		this.panelControls.style.right = '';
+		this.panelControls.style.top = '';
+		this.panelControls.style.bottom = '';
+
+		if ( this.dockButton ) {
+			this.dockButton.querySelector( 'span' ).textContent = __( 'Dock Panel', 'accessibility-checker' );
+		}
 	}
 
 	/**

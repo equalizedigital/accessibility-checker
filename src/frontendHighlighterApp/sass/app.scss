@@ -134,6 +134,48 @@ body {
 			left: 15px !important;
 		}
 
+		&--docked {
+			bottom: 0 !important;
+			right: 0 !important;
+			left: 0 !important;
+			max-width: none !important;
+			width: auto !important;
+
+			&.edac-highlight-panel--right {
+				right: 0 !important;
+				left: auto !important;
+			}
+
+			&.edac-highlight-panel--left {
+				left: 0 !important;
+				right: auto !important;
+			}
+
+			.edac-highlight-panel-controls {
+				position: fixed !important;
+				top: var(--edac-adminbar-height, 0px) !important;
+				bottom: 0 !important;
+				height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
+				max-height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
+				width: 400px !important;
+				min-width: 400px !important;
+				max-width: 400px !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+				border-left: 1px solid variables.$color-gray-light !important;
+			}
+
+			&.edac-highlight-panel--left .edac-highlight-panel-controls {
+				border-left: none !important;
+				border-right: 1px solid variables.$color-gray-light !important;
+			}
+
+			// Hide the header grab cursor in docked mode.
+			.edac-highlight-panel-controls-header {
+				cursor: default !important;
+			}
+		}
+
 		&-visible {
 			width: 400px !important;
 		}
@@ -949,5 +991,9 @@ body {
 
 	&--styles {
 		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42'/%3E%3C/svg%3E") !important;
+	}
+
+	&--dock {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='2' width='8' height='20' rx='2'/%3E%3Cpath d='M2 12h8'/%3E%3Cpath d='M6 8l-4 4 4 4'/%3E%3C/svg%3E") !important;
 	}
 }
