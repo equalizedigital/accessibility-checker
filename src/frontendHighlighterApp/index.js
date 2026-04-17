@@ -177,6 +177,9 @@ class AccessibilityCheckerHighlight {
 			this.panelOpen( this.urlParameter );
 		} else if ( this.landmarkParameter ) {
 			this.highlightLandmark( this.landmarkParameter );
+		} else if ( this.isDocked ) {
+			// Docked panel restored on page load — fetch issue data so the panel isn't empty.
+			this.panelOpen();
 		}
 	}
 
