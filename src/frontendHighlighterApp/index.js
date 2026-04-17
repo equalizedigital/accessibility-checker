@@ -639,7 +639,16 @@ class AccessibilityCheckerHighlight {
 
 		header.style.cursor = 'grab';
 
-		let startX, startY, startLeft, startTop;
+		let startX, startY, startLeft, startTop, isDragging, hasMoved;
+
+		const resetControlsPosition = () => {
+			controls.style.position = '';
+			controls.style.width = '';
+			controls.style.left = '';
+			controls.style.top = '';
+			controls.style.right = '';
+			controls.style.bottom = '';
+		};
 
 		header.addEventListener( 'pointerdown', ( e ) => {
 			// Let buttons and links handle their own clicks.
@@ -657,6 +666,8 @@ class AccessibilityCheckerHighlight {
 			startTop = rect.top;
 			startX = e.clientX;
 			startY = e.clientY;
+			isDragging = true;
+			hasMoved = false;
 
 			// Detach controls from panel flow and position them independently.
 			controls.style.width = rect.width + 'px';
@@ -675,30 +686,54 @@ class AccessibilityCheckerHighlight {
 		} );
 
 		header.addEventListener( 'pointermove', ( e ) => {
-			if ( ! header.hasPointerCapture( e.pointerId ) ) {
+			if ( ! isDragging ) {
 				return;
 			}
-			controls.style.left = ( startLeft + e.clientX - startX ) + 'px';
-			controls.style.top = ( startTop + e.clientY - startY ) + 'px';
+			const dx = e.clientX - startX;
+			const dy = e.clientY - startY;
+			if ( ! hasMoved && Math.abs( dx ) <= 4 && Math.abs( dy ) <= 4 ) {
+				return;
+			}
+			hasMoved = true;
+			controls.style.left = ( startLeft + dx ) + 'px';
+			controls.style.top = ( startTop + dy ) + 'px';
 		} );
 
 		header.addEventListener( 'pointerup', ( e ) => {
-			if ( ! header.hasPointerCapture( e.pointerId ) ) {
+			if ( ! isDragging ) {
 				return;
 			}
+			isDragging = false;
 			header.releasePointerCapture( e.pointerId );
 			document.body.style.userSelect = '';
 			header.style.cursor = 'grab';
 
-			// Mark as dragged and update the menu action.
-			this.isDragged = true;
-			this.moveButton.querySelector( 'span' ).textContent = __( 'Reset Position', 'accessibility-checker' );
+			// Check final delta too — pointermove may have been skipped on a fast gesture.
+			const totalDx = e.clientX - startX;
+			const totalDy = e.clientY - startY;
+			const wasDrag = hasMoved || Math.abs( totalDx ) > 4 || Math.abs( totalDy ) > 4;
+
+			if ( wasDrag ) {
+				// Mark as dragged and update the menu action.
+				this.isDragged = true;
+				this.moveButton.querySelector( 'span' ).textContent = __( 'Reset Position', 'accessibility-checker' );
+			} else {
+				// Simple click — undo the fixed positioning applied on pointerdown.
+				resetControlsPosition();
+			}
 		} );
 
 		header.addEventListener( 'pointercancel', ( e ) => {
+			if ( ! isDragging ) {
+				return;
+			}
+			isDragging = false;
 			header.releasePointerCapture( e.pointerId );
 			document.body.style.userSelect = '';
 			header.style.cursor = 'grab';
+			if ( ! hasMoved ) {
+				resetControlsPosition();
+			}
 		} );
 	}
 
