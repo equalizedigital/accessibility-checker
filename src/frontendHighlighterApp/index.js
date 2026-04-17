@@ -744,7 +744,7 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
-		this.currentButtonIndex = this.issues.findIndex( ( i ) => i.id === id );
+		this.currentButtonIndex = this.issues.findIndex( ( i ) => String( i.id ) === String( id ) );
 
 		// Keep the URL in sync so the current issue is bookmarkable / shareable.
 		const url = new URL( window.location.href );
@@ -988,8 +988,11 @@ class AccessibilityCheckerHighlight {
 		this.highlightPanel.classList.add( 'edac-highlight-panel-visible' );
 
 		// Push page content to make room for the panel.
-		const panelWidth = this.panelControls.offsetWidth + 'px';
-		document.body.style[ isRight ? 'marginRight' : 'marginLeft' ] = panelWidth;
+		// Use a rAF so the browser has laid out the panel before we read its width.
+		requestAnimationFrame( () => {
+			const panelWidth = this.panelControls.offsetWidth + 'px';
+			document.body.style[ isRight ? 'marginRight' : 'marginLeft' ] = panelWidth;
+		} );
 
 		if ( this.dockButton ) {
 			this.dockButton.querySelector( 'span' ).textContent = __( 'Undock Panel', 'accessibility-checker' );
@@ -1130,14 +1133,14 @@ class AccessibilityCheckerHighlight {
 				if ( matchingObj.why_it_matters ) {
 					content += `<div class="edac-highlight-panel-description-how-to-fix">
 						<div class="edac-highlight-panel-description-how-to-fix-title">${ __( 'Why It Matters', 'accessibility-checker' ) }</div>
-						<p class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.why_it_matters }</p>
+						<div class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.why_it_matters }</div>
 					</div>`;
 				}
 
 				if ( matchingObj.how_to_fix ) {
 					content += `<div class="edac-highlight-panel-description-how-to-fix">
 						<div class="edac-highlight-panel-description-how-to-fix-title">${ __( 'How to Fix', 'accessibility-checker' ) }</div>
-						<p class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.how_to_fix }</p>
+						<div class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.how_to_fix }</div>
 					</div>`;
 				}
 

@@ -82,6 +82,7 @@ body {
 		position: fixed !important;
 		z-index: 2147483647 !important;
 		bottom: 15px !important;
+		font-weight: 400 !important;
 
 		@media screen and (max-width: variables.$small-screen-width) {
 			width: 100%;
@@ -157,9 +158,9 @@ body {
 				bottom: 0 !important;
 				height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
 				max-height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
-				width: 400px !important;
-				min-width: 400px !important;
-				max-width: 400px !important;
+				width: min(400px, 100vw) !important;
+				min-width: 0 !important;
+				max-width: 100vw !important;
 				border-radius: 0 !important;
 				box-shadow: none !important;
 				border-left: 1px solid variables.$color-gray-light !important;
@@ -285,7 +286,7 @@ body {
 					width: 16px !important;
 					height: 16px !important;
 					overflow: visible !important;
-					stroke: currentColor !important;
+					stroke: currentcolor !important;
 					fill: none !important;
 				}
 			}
@@ -464,8 +465,11 @@ body {
 
 			&-code {
 				color: variables.$color-black !important;
-				display: block;
+				font-family: monospace !important;
+				font-size: 12px !important;
 				background-color: #f6f7f7 !important;
+				border: 1px solid #ddd !important;
+				border-radius: 3px !important;
 				padding: 10px 15px !important;
 				display: none;
 				margin-top: 10px !important;
@@ -980,7 +984,7 @@ body {
 	flex-shrink: 0 !important;
 	width: 16px !important;
 	height: 16px !important;
-	background-color: currentColor !important;
+	background-color: currentcolor !important;
 	mask-repeat: no-repeat !important;
 	mask-size: contain !important;
 	mask-position: center !important;
