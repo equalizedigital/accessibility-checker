@@ -536,7 +536,10 @@ class REST_Api {
 							'ancestry' => $violation['ancestry'] ?? [],
 							'xpath'    => $violation['xpath'] ?? [],
 						];
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
+
+						$extra_data = isset( $violation['extraData'] ) && is_array( $violation['extraData'] ) ? $violation['extraData'] : null;
+
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors, $extra_data );
 
 						/**
 						 * Fires after a rule is run against the content.
@@ -991,6 +994,9 @@ class REST_Api {
 					$user_cache[ $user_id ] = $user_info ? $user_info->user_login : __( 'Unknown', 'accessibility-checker' );
 				}
 				$result['ignre_user_name'] = $user_cache[ $user_id ];
+			}
+			if ( isset( $result['extra_data'] ) && null !== $result['extra_data'] ) {
+				$result['extra_data'] = json_decode( $result['extra_data'], true );
 			}
 			$results_by_rule[ $rule_slug ][] = $result;
 		}

@@ -381,7 +381,8 @@ function processViolation( violation, item ) {
 	const ancestry = violation.node.ancestry || [];
 	const xpath = violation.node.xpath || [];
 	const html = document.querySelector( selector )?.outerHTML;
-	return {
+
+	const result = {
 		selector,
 		ancestry,
 		xpath,
@@ -392,4 +393,20 @@ function processViolation( violation, item ) {
 		landmark: landmark.type,
 		landmarkSelector: landmark.selector,
 	};
+
+	if ( item.id === 'color_contrast_failure' ) {
+		const check = violation.any?.find( ( c ) => c.id === 'color-contrast' );
+		if ( check?.data ) {
+			result.extraData = {
+				fgColor: check.data.fgColor,
+				bgColor: check.data.bgColor,
+				contrastRatio: check.data.contrastRatio,
+				expectedContrastRatio: check.data.expectedContrastRatio,
+				fontSize: check.data.fontSize,
+				fontWeight: check.data.fontWeight,
+			};
+		}
+	}
+
+	return result;
 }

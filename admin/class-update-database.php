@@ -63,6 +63,7 @@ class Update_Database {
 				rule text NOT NULL,
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
+				extra_data text NULL,
 				recordcheck mediumint(9) NOT NULL,
 				created timestamp NOT NULL default CURRENT_TIMESTAMP,
 				user bigint(20) NOT NULL,

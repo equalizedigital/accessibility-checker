@@ -36,11 +36,12 @@ class Insert_Rule_Data {
 	 * @param string|null $landmark          The landmark type (main, header, footer, nav), optional.
 	 * @param string|null $landmark_selector The landmark selector, optional.
 	 * @param array       $selectors         An array of selectors that point to the object, optional.
+	 * @param array|null  $extra_data        Optional extra data to store as JSON (e.g. color contrast values).
 	 *
 	 * @return void|int|\WP_Error The ID of the inserted record, void if no
 	 * record was inserted or a WP_Error if the insert failed.
 	 */
-	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [] ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [], ?array $extra_data = null ) {
 
 		if ( ! isset( $post->ID, $post->post_type )
 			|| empty( $rule )
@@ -66,6 +67,7 @@ class Insert_Rule_Data {
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
+			'extra_data'        => $extra_data ? wp_json_encode( $extra_data ) : null,
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
@@ -111,7 +113,7 @@ class Insert_Rule_Data {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d, extra_data = %s  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
 						$table_name,
 						1,
 						$rule_data['landmark'],
@@ -120,6 +122,7 @@ class Insert_Rule_Data {
 						$rule_data['ancestry'],
 						$rule_data['xpath'],
 						$rule_data['ignre'],
+						$rule_data['extra_data'],
 						$rule_data['siteid'],
 						$rule_data['postid'],
 						$rule_data['rule'],
@@ -160,6 +163,7 @@ class Insert_Rule_Data {
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),
+				'extra_data'        => isset( $rule_data['extra_data'] ) ? sanitize_text_field( $rule_data['extra_data'] ) : null,
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),
