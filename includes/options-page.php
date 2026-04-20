@@ -10,6 +10,7 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\RulesPage;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -78,6 +79,9 @@ function edac_add_options_page() {
 
 	$fixes_page = new FixesPage( $settings_capability );
 	$fixes_page->add_page();
+
+	$rules_page = new RulesPage( $settings_capability );
+	$rules_page->add_page();
 
 	// Deregister the pro setting registration - this is added for backwards compatibility for users
 	// that don't update pro. Added here in 1.31.0 and released with pro 1.16.0.
