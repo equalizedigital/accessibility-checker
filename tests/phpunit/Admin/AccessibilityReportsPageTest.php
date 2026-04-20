@@ -131,11 +131,11 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures fallback marker prevents stale connected state until free revalidation completes.
+	 * Ensures fallback marker does not disconnect reports when Free is valid and the site remains enrolled.
 	 *
 	 * @throws ReflectionException If reflection fails.
 	 */
-	public function test_resolve_license_context_treats_fallback_as_temporarily_disconnected() {
+	public function test_resolve_license_context_keeps_free_fallback_connected_when_site_id_exists() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
 			[ true, 'expired', 'valid', 'site-123', true ]
@@ -143,7 +143,7 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 
 		$this->assertFalse( $context['is_pro'] );
 		$this->assertSame( 'valid', $context['status'] );
-		$this->assertFalse( $context['is_connected'] );
+		$this->assertTrue( $context['is_connected'] );
 	}
 
 	/**

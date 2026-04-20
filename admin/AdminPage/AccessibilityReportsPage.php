@@ -323,17 +323,13 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @param string $pro_status     Current Pro license status.
 	 * @param string $free_status    Current free license status.
 	 * @param string $site_id        Current connected site ID.
-	 * @param bool   $fallback_active Whether fallback handoff is in progress.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
 		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
 		$status       = $is_pro ? $pro_status : $free_status;
 		$is_connected = 'valid' === $status && '' !== $site_id;
 
-		if ( ! $is_pro && $fallback_active ) {
-			$is_connected = false;
-		}
 
 		return [
 			'has_pro_plugin' => $has_pro_plugin,

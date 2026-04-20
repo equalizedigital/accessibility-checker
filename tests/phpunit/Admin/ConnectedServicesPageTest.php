@@ -163,11 +163,11 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures fallback marker prevents stale connected state during pro->free handoff.
+	 * Ensures fallback marker does not disconnect reports when Free is valid and the site remains connected.
 	 *
 	 * @throws ReflectionException If reflection fails.
 	 */
-	public function test_resolve_license_context_treats_fallback_as_temporarily_disconnected() {
+	public function test_resolve_license_context_keeps_free_fallback_connected_when_site_id_exists() {
 		$context = $this->invoke_private_static_method(
 			'resolve_license_context',
 			[ true, 'expired', 'valid', 'site-123', true ]
@@ -175,6 +175,154 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 
 		$this->assertFalse( $context['is_pro'] );
 		$this->assertSame( 'valid', $context['status'] );
-		$this->assertFalse( $context['is_connected'] );
+		$this->assertTrue( $context['is_connected'] );
+	}
+
+	/**
+	 * Ensures degraded notice context is shown when Pro is invalid and Free is valid.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_resolve_degraded_notice_context_connected_mode() {
+		$context = $this->invoke_private_static_method(
+			'resolve_degraded_notice_context',
+			[ true, false, 'expired', 'valid', true, false ]
+		);
+
+		$this->assertTrue( $context['show'] );
+		$this->assertSame( 'connected', $context['mode'] );
+	}
+
+	/**
+	 * Ensures degraded notice context switches to reconnect mode while fallback is active.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_resolve_degraded_notice_context_reconnect_mode_during_fallback() {
+		$context = $this->invoke_private_static_method(
+			'resolve_degraded_notice_context',
+			[ true, false, 'expired', 'valid', false, true ]
+		);
+
+		$this->assertTrue( $context['show'] );
+		$this->assertSame( 'reconnect', $context['mode'] );
+	}
+
+	/**
+	 * Ensures degraded notice does not show when Pro is still authoritative.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_resolve_degraded_notice_context_hidden_when_pro_is_valid() {
+		$context = $this->invoke_private_static_method(
+			'resolve_degraded_notice_context',
+			[ true, true, 'valid', 'valid', true, false ]
+		);
+
+		$this->assertFalse( $context['show'] );
+		$this->assertSame( '', $context['mode'] );
+	}
+
+	/**
+	 * Ensures degraded notice message explains connected degraded mode.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_degraded_notice_message_connected_mode() {
+		update_option( 'edacp_license_status', 'expired' );
+		update_option( 'edac_fallback_active', false );
+
+		$message = $this->invoke_private_method(
+			'get_degraded_notice_message',
+			[
+				[
+					'has_pro_plugin' => true,
+					'is_pro'         => false,
+					'status'         => 'valid',
+					'is_connected'   => true,
+				],
+			]
+		);
+
+		$this->assertIsString( $message );
+		$this->assertStringContainsString( 'Free email reports', $message );
+	}
+
+	/**
+	 * Ensures degraded notice message explains reconnect mode during fallback.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_degraded_notice_message_reconnect_mode() {
+		update_option( 'edacp_license_status', 'expired' );
+		update_option( 'edac_fallback_active', true );
+
+		$message = $this->invoke_private_method(
+			'get_degraded_notice_message',
+			[
+				[
+					'has_pro_plugin' => true,
+					'is_pro'         => false,
+					'status'         => 'valid',
+					'is_connected'   => false,
+				],
+			]
+		);
+
+		$this->assertIsString( $message );
+		$this->assertStringContainsString( 'not currently connected', $message );
+	}
+
+	/**
+	 * Ensures free connected services renderer ignores the Pro license tab.
+	 */
+	public function test_maybe_render_tab_content_does_not_render_on_license_tab() {
+		ob_start();
+		$this->page->maybe_render_tab_content( 'license' );
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output );
+	}
+
+	/**
+	 * Ensures degraded-state notice can be injected into the Pro license page hook.
+	 */
+	public function test_render_pro_license_degraded_notice_outputs_when_pro_is_invalid_and_free_is_valid() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', 'test-pro-version' );
+		}
+
+		update_option( 'edacp_license_status', 'expired' );
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', 'site-123' );
+		update_option( 'edac_fallback_active', false );
+
+		ob_start();
+		$this->page->render_pro_license_degraded_notice();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'Free email reports', $output );
+		$this->assertStringNotContainsString( 'Pro License Degraded to Free', $output );
+	}
+
+	/**
+	 * Ensures connected services shows a connected-as-free state instead of the free license key form during degraded fallback.
+	 */
+	public function test_render_page_shows_connected_as_free_in_degraded_connected_state() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', 'test-pro-version' );
+		}
+
+		update_option( 'edacp_license_status', 'expired' );
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', 'site-123' );
+		update_option( 'edac_fallback_active', true );
+
+		ob_start();
+		$this->page->render_page();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'Connected as Free', $output );
+		$this->assertStringNotContainsString( 'Free License Key', $output );
 	}
 }

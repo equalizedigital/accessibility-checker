@@ -64,6 +64,12 @@ class ConnectedServicesPage implements PageInterface {
 			[ $this, 'maybe_render_tab_content' ]
 		);
 
+		// Inject degraded-state messaging above the Pro license form when Pro renders the license tab.
+		add_action(
+			'edacp_license_page_before_form',
+			[ $this, 'render_pro_license_degraded_notice' ]
+		);
+
 		// Register admin notice display with higher priority than default.
 		add_action(
 			'in_admin_header',
@@ -82,16 +88,7 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return array Modified tabs array with Connected Services tab added.
 	 */
 	public function add_connected_services_tab( $tabs ) {
-		if ( ! defined( 'EDACP_VERSION' ) ) {
-			return $tabs;
-		}
-
-		$tabs[] = [
-			'slug'       => 'license',
-			'label'      => esc_html__( 'License', 'accessibility-checker' ),
-			'order'      => 3,
-			'capability' => $this->settings_capability,
-		];
+		// Free plugin no longer owns the Pro License tab.
 		return $tabs;
 	}
 
@@ -105,7 +102,7 @@ class ConnectedServicesPage implements PageInterface {
 	 * @return void
 	 */
 	public function maybe_render_tab_content( $settings_tab ) {
-		if ( 'license' === $settings_tab || 'connected-services' === $settings_tab ) {
+		if ( 'connected-services' === $settings_tab ) {
 			$this->render_page();
 		}
 	}
@@ -134,10 +131,18 @@ class ConnectedServicesPage implements PageInterface {
 		$status              = $license_context['status'];
 		$license             = get_option( 'edacp_license_key' );
 		$is_connected        = $license_context['is_connected'];
+		$degraded_context    = $this->get_degraded_notice_context( $license_context );
+		$degraded_notice     = $this->get_degraded_notice_message( $license_context );
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
 		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
 		?>
-		<?php if ( ! $is_pro ) : ?>
+		<?php if ( ! empty( $degraded_notice ) ) : ?>
+			<div class="notice notice-warning inline"><p><?php echo esc_html( $degraded_notice ); ?></p></div>
+		<?php endif; ?>
+
+		<?php if ( ! $is_pro && $degraded_context['show'] && 'connected' === $degraded_context['mode'] ) : ?>
+			<?php $this->render_degraded_connected_state( $dashboard_link ); ?>
+		<?php elseif ( ! $is_pro ) : ?>
 			<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
@@ -217,6 +222,75 @@ class ConnectedServicesPage implements PageInterface {
 	}
 
 	/**
+	 * Render a clearer connected-as-free state when Pro has degraded but reports remain connected.
+	 *
+	 * @param string $dashboard_link HTML link to the customer dashboard.
+	 * @return void
+	 */
+	private function render_degraded_connected_state( string $dashboard_link ): void {
+		?>
+		<h2><?php esc_html_e( 'Connected as Free', 'accessibility-checker' ); ?></h2>
+		<p><?php esc_html_e( 'Your Pro license is no longer valid, but this site remains connected for Free email reports.', 'accessibility-checker' ); ?></p>
+		<p>
+			<?php
+			printf(
+				/* translators: %s: link to my.equalizedigital.com dashboard */
+				esc_html__( 'You can manage recipients and review connection details in your %s dashboard.', 'accessibility-checker' ),
+				wp_kses_post( $dashboard_link )
+			);
+			?>
+		</p>
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+			<input type="hidden" name="action" value="edac_license" />
+			<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
+			<input
+				type="submit"
+				class="button-primary"
+				name="edac_license_deactivate"
+				value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
+			>
+		</form>
+		<?php
+	}
+
+	/**
+	 * Render degraded-state notice inside the Pro license page.
+	 *
+	 * @return void
+	 */
+	public function render_pro_license_degraded_notice(): void {
+		$license_context = $this->get_license_context();
+		$degraded_notice = $this->get_degraded_notice_message( $license_context );
+
+		if ( empty( $degraded_notice ) ) {
+			return;
+		}
+		?>
+		<div class="notice notice-warning inline"><p><?php echo esc_html( $degraded_notice ); ?></p></div>
+		<?php
+	}
+
+	/**
+	 * Build degraded notice state from the current effective license context.
+	 *
+	 * @param array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool} $license_context Effective license context.
+	 * @return array{show:bool,mode:string}
+	 */
+	private function get_degraded_notice_context( array $license_context ): array {
+		$pro_status      = (string) get_option( 'edacp_license_status', '' );
+		$fallback_active = (bool) get_option( 'edac_fallback_active', false );
+
+		return self::resolve_degraded_notice_context(
+			$license_context['has_pro_plugin'],
+			$license_context['is_pro'],
+			$pro_status,
+			$license_context['status'],
+			$license_context['is_connected'],
+			$fallback_active
+		);
+	}
+
+	/**
 	 * Resolve the effective license context for connected services.
 	 *
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
@@ -238,17 +312,12 @@ class ConnectedServicesPage implements PageInterface {
 	 * @param string $pro_status     Current Pro license status.
 	 * @param string $free_status    Current free license status.
 	 * @param string $site_id        Current connected site ID.
-	 * @param bool   $fallback_active Whether fallback handoff is in progress.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
 		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
 		$status       = $is_pro ? $pro_status : $free_status;
 		$is_connected = 'valid' === $status && '' !== $site_id;
-
-		if ( ! $is_pro && $fallback_active ) {
-			$is_connected = false;
-		}
 
 		return [
 			'has_pro_plugin' => $has_pro_plugin,
@@ -280,6 +349,56 @@ class ConnectedServicesPage implements PageInterface {
 			'error' => (string) get_option( $is_pro ? 'edacp_license_error' : 'edac_license_error', '' ),
 			'tab'   => $is_pro ? 'license' : 'accessibility-reports',
 		];
+	}
+
+	/**
+	 * Resolve whether to show a Pro-to-Free degraded-state notice.
+	 *
+	 * @param bool   $has_pro_plugin    Whether Pro plugin is installed.
+	 * @param bool   $is_pro            Whether Pro is currently authoritative.
+	 * @param string $pro_status        Current Pro status option.
+	 * @param string $effective_status  Effective authority status.
+	 * @param bool   $is_connected      Whether UI currently considers site connected.
+	 * @return array{show:bool,mode:string}
+	 */
+	private static function resolve_degraded_notice_context( bool $has_pro_plugin, bool $is_pro, string $pro_status, string $effective_status, bool $is_connected ): array {
+		$show = $has_pro_plugin
+			&& ! $is_pro
+			&& 'valid' === $effective_status
+			&& '' !== $pro_status
+			&& 'valid' !== $pro_status;
+
+		if ( ! $show ) {
+			return [
+				'show' => false,
+				'mode' => '',
+			];
+		}
+
+		return [
+			'show' => true,
+			'mode' => ! $is_connected ? 'reconnect' : 'connected',
+		];
+	}
+
+	/**
+	 * Get degraded-state notice message when Pro is invalid and Free is active.
+	 *
+	 * @param array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool} $license_context Effective license context.
+	 * @return string|null
+	 */
+	private function get_degraded_notice_message( array $license_context ): ?string {
+		$notice_context = $this->get_degraded_notice_context( $license_context );
+
+		if ( ! $notice_context['show'] ) {
+			return null;
+		}
+
+		if ( 'connected' === $notice_context['mode'] ) {
+			return __( 'Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features.', 'accessibility-checker' );
+		}
+
+		return __( 'Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports.', 'accessibility-checker' );
 	}
 
 	/**
