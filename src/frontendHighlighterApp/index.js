@@ -58,6 +58,7 @@ class AccessibilityCheckerHighlight {
 		this.menu = document.querySelector( '#edac-highlight-menu' );
 		this.moveButton = document.querySelector( '#edac-highlight-move' );
 		this.dockButton = document.querySelector( '#edac-highlight-dock' );
+		this.srAnnouncer = document.querySelector( '#edac-highlight-announcer' );
 		this.isDocked = localStorage.getItem( 'edac-panel-docked' ) === '1';
 		this.stylesDisabled = false;
 		this.originalCss = [];
@@ -200,6 +201,23 @@ class AccessibilityCheckerHighlight {
 		this.menuButton.setAttribute( 'aria-expanded', 'false' );
 	}
 
+	/**
+	 * Announce a message to screen readers using a live region.
+	 *
+	 * @param {string} message - The message to announce.
+	 */
+	announce( message ) {
+		if ( ! this.srAnnouncer ) {
+			return;
+		}
+		// Clear first so repeated identical messages are re-announced.
+		this.srAnnouncer.textContent = '';
+		// Use a timeout to ensure the DOM update is picked up by assistive technologies.
+		setTimeout( () => {
+			this.srAnnouncer.textContent = message;
+		}, 50 );
+	}
+
 	togglePosition() {
 		// Clear any drag-applied inline position so the panel repositions via CSS classes.
 		this.panelControls.style.position = '';
@@ -216,6 +234,7 @@ class AccessibilityCheckerHighlight {
 			this.moveButton.querySelector( 'span' ).textContent = isRight
 				? __( 'Move to Left', 'accessibility-checker' )
 				: __( 'Move to Right', 'accessibility-checker' );
+			this.announce( __( 'Panel position reset.', 'accessibility-checker' ) );
 			return;
 		}
 
@@ -225,6 +244,10 @@ class AccessibilityCheckerHighlight {
 		this.moveButton.querySelector( 'span' ).textContent = isRight
 			? __( 'Move to Right', 'accessibility-checker' )
 			: __( 'Move to Left', 'accessibility-checker' );
+		this.announce( isRight
+			? __( 'Panel moved to the left.', 'accessibility-checker' )
+			: __( 'Panel moved to the right.', 'accessibility-checker' )
+		);
 
 		// If docked, update body margin to match the new side.
 		if ( this.isDocked ) {
@@ -571,6 +594,7 @@ class AccessibilityCheckerHighlight {
 			: '';
 
 		const newElement = `
+                        <div id="edac-highlight-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
                         <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
@@ -1051,6 +1075,7 @@ class AccessibilityCheckerHighlight {
 		this.moveButton.querySelector( 'span' ).textContent = isRight
 			? __( 'Move to Left', 'accessibility-checker' )
 			: __( 'Move to Right', 'accessibility-checker' );
+		this.announce( __( 'Panel docked.', 'accessibility-checker' ) );
 	}
 
 	/**
@@ -1077,6 +1102,7 @@ class AccessibilityCheckerHighlight {
 		if ( this.dockButton ) {
 			this.dockButton.querySelector( 'span' ).textContent = __( 'Dock Panel', 'accessibility-checker' );
 		}
+		this.announce( __( 'Panel undocked.', 'accessibility-checker' ) );
 	}
 
 	/**
