@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.39.0\n"
+"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-17T21:56:25+00:00\n"
+"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -47,6 +47,305 @@ msgstr "Equalize Digital"
 #: accessibility-checker.php
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:56
+#: admin/AdminPage/AccessibilityReportsPage.php:137
+msgid "Accessibility Reports"
+msgstr "Zprávy o přístupnosti"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+msgid "New"
+msgstr "Nové"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:143
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
+msgstr "Získejte pravidelné e-mailové zprávy s přehledem přístupnosti vašeho webu, včetně celkového počtu problémů, vývoje v čase, nejproblémovějších stránek a nejzávažnějších problémů k opravě nejdříve."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:145
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
+msgstr "Získejte pravidelné e-mailové zprávy s přehledem přístupnosti vašeho webu, včetně celkového počtu problémů, vývoje v čase, nejproblémovějších stránek a nejzávažnějších problémů k opravě nejdříve. Některé detaily, jako je pokrytí celého webu a podrobné rozdělení problémů, jsou dostupné ve verzi Pro."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:156
+#: admin/AdminPage/AccessibilityReportsPage.php:170
+msgid "Enable Email Reports"
+msgstr "Povolit e-mailové zprávy"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:163
+#: admin/AdminPage/AccessibilityReportsPage.php:167
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/ConnectedServicesPage.php:153
+msgid "Free License Key"
+msgstr "Klíč bezplatné licence"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:176
+msgid "Get a Free License Key"
+msgstr "Získejte klíč bezplatné licence"
+
+#. translators: %s: dashboard URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:181
+#, php-format
+msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
+msgstr "Stáhli jste si plugin od Equalize Digital? Váš klíč najdete ve svém <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">panelu</a>."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:190
+#, php-format
+msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
+msgstr "Nainstalovali jste z WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Vytvořte si bezplatný účet</a> a získejte ho."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:199
+#, php-format
+msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
+msgstr "Nejste si jisti? Jednoduše si <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">vytvořte bezplatný účet</a>. Trvá to jen minutu."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:211
+msgid "Reports Enabled"
+msgstr "Zprávy povoleny"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:214
+msgid "You’ll receive weekly accessibility reports for this site."
+msgstr "Pro tento web budete dostávat týdenní zprávy o přístupnosti."
+
+#. translators: %s: next report date.
+#: admin/AdminPage/AccessibilityReportsPage.php:218
+#, php-format
+msgid "Next report: %s"
+msgstr "Další zpráva: %s"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:222
+msgid "Manage Recipients in Dashboard"
+msgstr "Spravujte příjemce v panelu"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Full Coverage"
+msgstr "Plné pokrytí"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Limited Coverage"
+msgstr "Omezené pokrytí"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:232
+msgid "Your reports include all post types and taxonomies."
+msgstr "Vaše zprávy zahrnují všechny typy příspěvků a taxonomie."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:234
+msgid "Full-site scanning enabled"
+msgstr "Skenování celého webu povoleno"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:235
+msgid "Complete issue breakdowns"
+msgstr "Kompletní rozdělení problémů"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:236
+msgid "Detailed reporting"
+msgstr "Detailní přehledy"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:239
+msgid "Your reports only include part of your site."
+msgstr "Vaše zprávy zahrnují pouze část vašeho webu."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:240
+msgid "Upgrade to Pro to:"
+msgstr "Upgradujte na Pro pro:"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:242
+msgid "Scan all content types"
+msgstr "Skenování všech typů obsahu"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:243
+msgid "Get full issue breakdowns"
+msgstr "Získejte kompletní rozdělení problémů"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:244
+msgid "Receive more detailed reports"
+msgstr "Dostávejte podrobnější zprávy"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/class-upgrade-promotion.php:62
+msgid "Upgrade to Pro"
+msgstr "Upgradujte na pro"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:253
+msgid "Accessibility Summary"
+msgstr "Souhrn přístupnosti"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:254
+msgid "This summary reflects the latest scan data available for your site."
+msgstr "Tento souhrn odráží nejnovější dostupná data skenování pro váš web."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:256
+msgid "Total Issues Found"
+msgstr "Celkem nalezených problémů"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+msgid "Account Connection"
+msgstr "Připojení účtu"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:270
+msgid "Disable Email Reports"
+msgstr "Zakázat e-mailové zprávy"
+
+#. translators: %1$s: terms link, %2$s: privacy link.
+#: admin/AdminPage/AccessibilityReportsPage.php:281
+#, php-format
+msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
+msgstr "Připojením tohoto webu souhlasíte s <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">podmínkami služby</a> a <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">zásadami ochrany osobních údajů</a> Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:294
+msgid "Preview of the weekly accessibility report email."
+msgstr "Náhled týdenní e-mailové zprávy o přístupnosti."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "N/A"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/class-ajax.php:330
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Kritické"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/class-ajax.php:334
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Vysoká"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/class-ajax.php:338
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Střední"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/class-ajax.php:342
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Nízká"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: includes/classes/class-rest-api.php:997
+msgid "Unknown"
+msgstr "Neznámé"
+
+#: admin/AdminPage/ConnectedServicesPage.php:137
+msgid "create a free account"
+msgstr "vytvořit bezplatný účet"
+
+#: admin/AdminPage/ConnectedServicesPage.php:146
+msgid "Connect this site"
+msgstr "Připojit tento web"
+
+#: admin/AdminPage/ConnectedServicesPage.php:165
+msgid "active"
+msgstr "aktivní"
+
+#: admin/AdminPage/ConnectedServicesPage.php:167
+msgid "expired"
+msgstr "vypršela platnost"
+
+#: admin/AdminPage/ConnectedServicesPage.php:169
+msgid "Enter your license key"
+msgstr "Zadejte svůj licenční klíč"
+
+#: admin/AdminPage/ConnectedServicesPage.php:184
+#: admin/AdminPage/ConnectedServicesPage.php:250
+msgid "Disconnect Site"
+msgstr "Odpojit web"
+
+#: admin/AdminPage/ConnectedServicesPage.php:191
+msgid "Connect Site"
+msgstr "Připojit web"
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:204
+#, php-format
+msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
+msgstr "Pokud jste si stáhli bezplatný plugin od Equalize Digital, máte již bezplatný licenční klíč ve svém panelu %s."
+
+#. translators: %s: link to create a free account
+#: admin/AdminPage/ConnectedServicesPage.php:213
+#, php-format
+msgid "If not, %s to generate a license key and connect this site."
+msgstr "Pokud ne, %s pro vygenerování licenčního klíče a připojení tohoto webu."
+
+#: admin/AdminPage/ConnectedServicesPage.php:232
+msgid "Connected as Free"
+msgstr "Připojeno jako bezplatné"
+
+#: admin/AdminPage/ConnectedServicesPage.php:233
+msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
+msgstr "Vaše Pro licence již není platná, ale tento web zůstává připojen pro bezplatné e-mailové zprávy."
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:238
+#, php-format
+msgid "You can manage recipients and review connection details in your %s dashboard."
+msgstr "Příjemce a podrobnosti o připojení můžete spravovat ve svém panelu %s."
+
+#: admin/AdminPage/ConnectedServicesPage.php:398
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "Vaše Pro licence již není platná. Tento web používá platnou bezplatnou licenci a e-mailové zprávy zůstávají připojeny jako bezplatné e-mailové zprávy. Obnovte svou Pro licenci, abyste obnovili funkce pouze pro Pro."
+
+#: admin/AdminPage/ConnectedServicesPage.php:401
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
+msgstr "Vaše Pro licence již není platná. Tento web používá platnou bezplatnou licenci, ale e-mailové zprávy aktuálně nejsou připojeny. Připojte tento web v sekci Bezplatná licence, abyste obnovili bezplatné e-mailové zprávy."
+
+#: admin/AdminPage/ConnectedServicesPage.php:442
+msgid "Please renew your license"
+msgstr "Obnovte si prosím licenci"
+
+#. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
+#: admin/AdminPage/ConnectedServicesPage.php:445
+#, php-format
+msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
+msgstr "Platnost vaší licence %1$s vypršela. %3$s pro pokračování v přístupu k dalším funkcím a službám pro %2$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:455
+#, php-format
+msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
+msgstr "Váš licenční klíč %s byl deaktivován. Pokud se domníváte, že se jedná o chybu, nebo byste chtěli nadále využívat další funkce, obraťte se prosím na náš tým podpory."
+
+#. translators: %1$s: item name, %2$s: license url, %3$s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:462
+#, php-format
+msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
+msgstr "Licenční klíč pro %1$s se zdá být neplatný. Pro přístup k dalším funkcím a službám přístupnosti pro %3$s prosím <a href=\"%2$s\">zkontrolujte svůj licenční klíč</a>."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:472
+#, php-format
+msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
+msgstr "Tento licenční klíč pro %s není pro tento web aktivní. Aktivujte jej prosím pro přístup k dalším funkcím na tomto webu."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:479
+#, php-format
+msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
+msgstr "Tento licenční klíč se nezdá být platný pro %s. Ověřte, že jste zadali správný licenční klíč."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:486
+#, php-format
+msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
+msgstr "Váš licenční klíč %s dosáhl limitu aktivací webu. Můžete upgradovat svou licenci nebo ji deaktivovat na jiném webu, abyste zde mohli používat další funkce."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:493
+#, php-format
+msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
+msgstr "Při ověřování vašeho licenčního klíče %s došlo k problému. Zkuste to prosím znovu nebo se obraťte na náš tým podpory, pokud problém přetrvává."
 
 #: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
@@ -169,27 +468,27 @@ msgstr "Chcete s Accessibility Checker dělat více? %1$sOdemkněte funkce Pro%2
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odemknout funkce Pro (otevře se v novém okně)"
 
-#: admin/class-admin-notices.php:133
+#: admin/class-admin-notices.php:139
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Speciální nabídka k Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:134
+#: admin/class-admin-notices.php:140
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Upgradujte na placenou verzi Accessibility Checker od 24. listopadu do 3. prosince a získejte 30% slevu! Plné skenování webu, celostránková zpráva o otevřených problémech, ignorování protokolů a další."
 
-#: admin/class-admin-notices.php:135
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Zeptejte se na předprodejní otázku"
 
-#: admin/class-admin-notices.php:136
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:142
+#: admin/class-admin-notices.php:232
 msgid "Upgrade Now"
 msgstr "Upgradovat nyní"
 
-#: admin/class-admin-notices.php:155
-#: admin/class-admin-notices.php:245
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:161
+#: admin/class-admin-notices.php:251
+#: admin/class-admin-notices.php:340
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -201,37 +500,37 @@ msgstr "Upgradovat nyní"
 msgid "Permission Denied"
 msgstr "Přístup odepřen"
 
-#: admin/class-admin-notices.php:167
-#: admin/class-admin-notices.php:257
-#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:173
+#: admin/class-admin-notices.php:263
+#: admin/class-admin-notices.php:364
 msgid "Update option wasn't successful"
 msgstr "Aktualizace možnosti nebyla úspěšná"
 
-#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:229
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Získejte 25% slevu na Accessibility Checker Pro na počest Světového dne povědomí o přístupnosti! 🎉"
 
-#: admin/class-admin-notices.php:224
+#: admin/class-admin-notices.php:230
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Použijte slevový kód GAAD25 od 13. Do 21. května a získejte přístup k celkovému skenování webu a dalším profesionálním funkcím se speciální slevou. Nejste si jisti, zda je upgrade pro vás vhodný?"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:315
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Dobrý den! Děkujeme, že používáte Accessibility Checker jako součást vašeho sady nástrojů pro přístupnost. Vzhledem k tomu, že jej již nějakou dobu používáte, mohli byste prosím napsat 5hvězdičkovou recenzi Accessibility Checker v adresáři pluginů WordPress? Pomůže to zvýšit naši viditelnost, aby se více lidí mohlo dozvědět o důležitosti webové přístupnosti. Moc děkujeme!"
 
-#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:318
 msgid "Write A Review"
 msgstr "Napsat recenzi"
 
-#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:319
 msgid "Remind Me In Two Weeks"
 msgstr "Připomenout za dva týdny"
 
-#: admin/class-admin-notices.php:314
+#: admin/class-admin-notices.php:320
 msgid "Never Ask Again"
 msgstr "Už se nikdy neptat"
 
-#: admin/class-admin-notices.php:341
+#: admin/class-admin-notices.php:347
 msgid "The review action value was not set"
 msgstr "Hodnota akce pro recenzi nebyla nastavena"
 
@@ -281,6 +580,7 @@ msgid "Passed Tests"
 msgstr "Úspěšné testy"
 
 #: admin/class-ajax.php:138
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
@@ -297,6 +597,7 @@ msgstr[2] "Problémy s kontrastem"
 
 #: admin/class-ajax.php:150
 #: admin/class-widgets.php:182
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -329,6 +630,7 @@ msgstr "* Skutečná přístupnost vyžaduje kromě automatických skenů i ruč
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
 #: admin/class-ignore-ui.php:126
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
@@ -339,33 +641,9 @@ msgid "No summary to return"
 msgstr "Žádné shrnutí k dispozici"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:899
+#: includes/classes/class-rest-api.php:905
 msgid "Invalid table name"
 msgstr "Neplatný název tabulky"
-
-#: admin/class-ajax.php:330
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Critical"
-msgstr "Kritické"
-
-#: admin/class-ajax.php:334
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "High"
-msgstr "Vysoká"
-
-#: admin/class-ajax.php:338
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Medium"
-msgstr "Střední"
-
-#: admin/class-ajax.php:342
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Low"
-msgstr "Nízká"
 
 #: admin/class-ajax.php:383
 msgid " total"
@@ -570,12 +848,16 @@ msgstr "Žádná data o čitelnosti k dispozici"
 msgid "No ignore data to return"
 msgstr "Žádná data o ignorování k dispozici"
 
+#: admin/class-enqueue-admin.php:435
+msgid "* Screen Reader Text"
+msgstr "* Text pro čtečky obrazovky"
+
 #: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Hodnota ID nebyla nastavena"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1037
+#: includes/classes/class-rest-api.php:1043
 msgid "Post not found"
 msgstr "Příspěvek nebyl nalezen"
 
@@ -583,7 +865,7 @@ msgstr "Příspěvek nebyl nalezen"
 msgid "Issue query returned no results"
 msgstr "Dotaz na problém nevrátil žádné výsledky"
 
-#: admin/class-frontend-highlight.php:162
+#: admin/class-frontend-highlight.php:168
 msgid "Object query returned no results"
 msgstr "Dotaz na objekt nevrátil žádné výsledky"
 
@@ -681,10 +963,6 @@ msgstr "Ohodnotit plugin Accessibility Checker (otevře se v novém okně)"
 #: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Ohodnotit plugin"
-
-#: admin/class-upgrade-promotion.php:62
-msgid "Upgrade to Pro"
-msgstr "Upgradujte na pro"
 
 #: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
@@ -1158,15 +1436,11 @@ msgstr "Získat Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získejte Accessibility Checker Pro (otevře se v novém okně)"
 
-#: includes/classes/class-rest-api.php:991
-msgid "Unknown"
-msgstr "Neznámé"
-
-#: includes/classes/class-rest-api.php:1224
+#: includes/classes/class-rest-api.php:1230
 msgid "Issue not found."
 msgstr "Problém nenalezen."
 
-#: includes/classes/class-rest-api.php:1267
+#: includes/classes/class-rest-api.php:1273
 msgid "Failed to update the issue."
 msgstr "Nepodařilo se aktualizovat problém."
 
@@ -1237,6 +1511,11 @@ msgstr "Přidat popisek k odkazům, které otevírají novou záložku/okno"
 #, php-format
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Přidejte popisek a ikonu k odkazům s %1$s, informující uživatele, že otevřou novou záložku/okno. %2$sPoznámka: Toto nastavení nebude mít žádný účinek, pokud je povolena oprava „Blokovat odkazy otevírající nová okna“.%3$s"
+
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:117
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "otevře se v novém okně"
 
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
@@ -1496,6 +1775,64 @@ msgstr "Oprava nebyla nalezena"
 #: includes/classes/Fixes/FixesManager.php:358
 msgid "Fix not found."
 msgstr "Oprava nenalezena."
+
+#: includes/classes/MyDot/Connector.php:202
+msgid "You do not have permission to manage this license."
+msgstr "Nemáte oprávnění spravovat tuto licenci."
+
+#: includes/classes/MyDot/Connector.php:238
+msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
+msgstr "Pro licence je aktivní. Nejprve deaktivujte Pro licenci, pokud chcete použít bezplatnou licenci."
+
+#: includes/classes/MyDot/Connector.php:268
+msgid "An error occurred, please try again."
+msgstr "Došlo k chybě, zkuste to prosím znovu."
+
+#: includes/classes/MyDot/Connector.php:557
+msgid "You do not have permission to register this site."
+msgstr "Nemáte oprávnění k registraci tohoto webu."
+
+#: includes/classes/MyDot/Connector.php:578
+msgid "You do not have permission to unregister this site."
+msgstr "Nemáte oprávnění k odregistrování tohoto webu."
+
+#: includes/classes/MyDot/Connector.php:604
+msgid "No license key found. Please activate a license before registering your site."
+msgstr "Nenalezen žádný licenční klíč. Před registrací webu aktivujte licenci."
+
+#: includes/classes/MyDot/Connector.php:615
+#: includes/classes/MyDot/Connector.php:822
+msgid "Unknown error occurred while registering the site."
+msgstr "Při registraci webu došlo k neznámé chybě."
+
+#: includes/classes/MyDot/Connector.php:644
+msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
+msgstr "Web úspěšně zaregistrován. Váš web je nyní nakonfigurován pro používání doplňkových služeb přístupnosti."
+
+#: includes/classes/MyDot/Connector.php:654
+msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
+msgstr "Registrace webu dokončena, ale data odpovědi nebyla v očekávaném formátu. Některé funkce nemusí fungovat správně."
+
+#: includes/classes/MyDot/Connector.php:730
+msgid "Unable to unregister site. Required registration data is missing."
+msgstr "Nelze odregistrovat web. Chybí požadovaná registrační data."
+
+#: includes/classes/MyDot/Connector.php:747
+#: includes/classes/MyDot/Connector.php:880
+msgid "Unknown error occurred while unregistering the site."
+msgstr "Při odregistrování webu došlo k neznámé chybě."
+
+#: includes/classes/MyDot/Connector.php:762
+msgid "Site unregistered successfully. Your site will no longer receive email reports."
+msgstr "Web úspěšně odregistrován. Váš web již nebude dostávat e-mailové zprávy."
+
+#: includes/classes/MyDot/Connector.php:785
+msgid "No license key provided."
+msgstr "Nebyl poskytnut žádný licenční klíč."
+
+#: includes/classes/MyDot/Connector.php:843
+msgid "Missing required parameters for unregistration."
+msgstr "Chybí požadované parametry pro odregistraci."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -2967,11 +3304,11 @@ msgstr "trvalý odkaz na "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:403
+#: includes/helper-functions.php:409
 msgid "Attend Free"
 msgstr "Zúčastněte se zdarma"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:415
 #: partials/welcome-page.php:88
 #: partials/welcome-page.php:93
 #: partials/welcome-page.php:98
@@ -2985,7 +3322,7 @@ msgid "(opens in a new window)"
 msgstr "(otevře se v novém okně)"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:855
+#: includes/helper-functions.php:861
 #: build/issueModal.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
@@ -4747,14 +5084,14 @@ msgstr "EDAC: Na stránce nebyl nalezen odpovídající cílový ID pro odkaz p�
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Chyba při aktualizaci historie pro odkaz přeskočení."
 
-#: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "otevře se v novém okně"
-
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Zavřít modální okno oprav"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%1$d of %2$d"
+msgstr "%1$d z %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
@@ -4769,9 +5106,37 @@ msgid "The element was not found on the page."
 msgstr "Prvek nebyl na stránce nalezen."
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Left"
+msgstr "Přesunout doleva"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Right"
+msgstr "Přesunout doprava"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel position reset."
+msgstr "Pozice panelu resetována."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the left."
+msgstr "Panel přesunut doleva."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the right."
+msgstr "Panel přesunut doprava."
+
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Otevřít podrobnosti pro %1$s, %2$s z %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Undock Panel"
+msgstr "Uvolnit panel"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Dock Panel"
+msgstr "Připnout panel"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
@@ -4782,8 +5147,24 @@ msgid "Accessibility Checker Tools"
 msgstr "Nástroje Accessibility Checker"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "More options"
+msgstr "Další možnosti"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Vypnout styly stránky"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Zakázat styly"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Close"
 msgstr "Zavřít"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues found on this page."
+msgstr "Na této stránce nebyly nalezeny žádné problémy."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Loading..."
@@ -4798,16 +5179,61 @@ msgid "Next"
 msgstr "Další"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Page Styles"
-msgstr "Vypnout styly stránky"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
-msgstr "Zakázat styly"
+msgid "Reset Position"
+msgstr "Resetovat pozici"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Při načítání problémů došlo k chybě."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel docked."
+msgstr "Panel připnut."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel undocked."
+msgstr "Panel uvolněn."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Severity:"
+msgstr "Závažnost:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Typ problému:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Ignored"
+msgstr "Ignorováno"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Zobrazit vysvětlení"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Proč je to důležité"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Jak opravit"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Podrobnější dokumentace"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Affected Code"
+msgstr "Zobrazit dotčený kód"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4818,18 +5244,6 @@ msgstr "Opravit problém: %s"
 #: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Opravit problém"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Full Documentation"
-msgstr "Úplná dokumentace"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Show Code"
-msgstr "Zobrazit kód"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Typ problému:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
@@ -4844,37 +5258,40 @@ msgid "These settings enable global fixes across your entire site. Pages may nee
 msgstr "Tato nastavení umožňují globální opravy napříč celým vaším webem. Může být nutné znovu uložit stránky nebo spustit kompletní skenování webu, aby se opravy projevily v reportech."
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d issue found"
+msgid_plural "%d issues found"
+msgstr[0] "Nalezen %d problém"
+msgstr[1] "Nalezeny %d problémy"
+msgstr[2] "Nalezeno %d problémů"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Problem"
+msgid_plural "%d Problems"
+msgstr[0] "%d problém"
+msgstr[1] "%d problémy"
+msgstr[2] "%d problémů"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Needs Review"
+msgid_plural "%d Need Review"
+msgstr[0] "%d vyžaduje kontrolu"
+msgstr[1] "%d vyžadují kontrolu"
+msgstr[2] "%d vyžaduje kontrolu"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Ignored"
+msgid_plural "%d Ignored"
+msgstr[0] "%d ignorován"
+msgstr[1] "%d ignorovány"
+msgstr[2] "%d ignorováno"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
 msgstr "Nebyly zjištěny žádné problémy."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "chyba"
-msgstr[1] "chyby"
-msgstr[2] "chyb"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "warning"
-msgid_plural "warnings"
-msgstr[0] "varování"
-msgstr[1] "varování"
-msgstr[2] "varování"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "and"
-msgstr "a"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "ignored issue"
-msgid_plural "ignored issues"
-msgstr[0] "ignorovaný problém"
-msgstr[1] "ignorované problémy"
-msgstr[2] "ignorovaných problémů"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "detected."
-msgstr "zjištěno."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -5016,26 +5433,6 @@ msgstr "Typ"
 msgid "Severity"
 msgstr "Závažnost"
 
-#: build/issueModal.bundle.js:2
-msgid "WCAG:"
-msgstr "WCAG:"
-
-#: build/issueModal.bundle.js:2
-msgid "Show explanation"
-msgstr "Zobrazit vysvětlení"
-
-#: build/issueModal.bundle.js:2
-msgid "Why It Matters"
-msgstr "Proč je to důležité"
-
-#: build/issueModal.bundle.js:2
-msgid "How to Fix"
-msgstr "Jak opravit"
-
-#: build/issueModal.bundle.js:2
-msgid "More Detailed Documentation"
-msgstr "Podrobnější dokumentace"
-
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "nové okno"
@@ -5171,10 +5568,6 @@ msgstr "Zkontrolujte a opravte problémy s přístupností ve vašem obsahu."
 #: build/sidebar.bundle.js:2
 msgid "Open Accessibility Panel"
 msgstr "Otevřít panel přístupnosti"
-
-#: build/sidebar.bundle.js:2
-msgid "N/A"
-msgstr "N/A"
 
 #: build/sidebar.bundle.js:2
 #, js-format
@@ -5330,6 +5723,30 @@ msgid "A simplified summary is required for this content."
 msgstr "Pro tento obsah je vyžadováno zjednodušené shrnutí."
 
 #: build/sidebar.bundle.js:2
+msgid "Unable to load this preference."
+msgstr "Nepodařilo se načíst tuto předvolbu."
+
+#: build/sidebar.bundle.js:2
+msgid "Unable to save this preference."
+msgstr "Nepodařilo se uložit tuto předvolbu."
+
+#: build/sidebar.bundle.js:2
+msgid "Loading preference..."
+msgstr "Načítám předvolbu..."
+
+#: build/sidebar.bundle.js:2
+msgid "Screen Reader Text Format"
+msgstr "Formát textu pro čtečky obrazovky"
+
+#: build/sidebar.bundle.js:2
+msgid "Control whether screen reader text stays visible while you edit."
+msgstr "Kontrolujte, zda text pro čtečky obrazovky zůstává viditelný během úprav."
+
+#: build/sidebar.bundle.js:2
+msgid "Always show screen reader text?"
+msgstr "Vždy zobrazit text pro čtečky obrazovky?"
+
+#: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."
 msgstr "Načítání dat přístupnosti..."
 
@@ -5344,3 +5761,11 @@ msgstr "Skenovat"
 #: build/sidebar.bundle.js:2
 msgid "Refresh"
 msgstr "Obnovit"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Screen Reader Only"
+msgstr "Pouze pro čtečky obrazovky"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Always show screen reader text"
+msgstr "Vždy zobrazit text pro čtečky obrazovky"
