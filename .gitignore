@@ -23,3 +23,8 @@ dist
 
 # Exclude coverage reports
 coverage/
+
+# Local only working fules
+*.log
+*.sql
+docs-local
