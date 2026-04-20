@@ -594,7 +594,7 @@ class AccessibilityCheckerHighlight {
 			: '';
 
 		const newElement = `
-                        <div id="edac-highlight-announcer" role="status" aria-live="polite" aria-atomic="true"></div>
+                        <div id="edac-highlight-announcer" class="edac-sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
                         <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
@@ -1150,13 +1150,15 @@ class AccessibilityCheckerHighlight {
 
 			let content = '';
 
+			const newWindowHtml = `<span aria-hidden="true">↗\uFE0E</span><span class="edac-sr-only">${ __( ', opens a new window', 'accessibility-checker' ) }</span>`;
+
 			// WCAG reference + severity inline
 			if ( matchingObj.wcag ) {
 				const wcagNumber = parseFloat( matchingObj.wcag );
 				const showWcagNumber = ! isNaN( wcagNumber ) && wcagNumber >= 1;
 				const wcagLinkText = matchingObj.wcag_title
-					? `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }${ matchingObj.wcag_title } ↗\uFE0E`
-					: `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }↗\uFE0E`;
+					? `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }${ matchingObj.wcag_title } ${ newWindowHtml }`
+					: `${ showWcagNumber ? matchingObj.wcag + ' ' : '' }${ newWindowHtml }`;
 
 				let severityBadgeHtml = '';
 				if ( matchingObj.severity ) {
@@ -1221,11 +1223,11 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ↗\uFE0E</a></div>`;
+				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ↗\uFE0E</a>`;
+				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
 			}
 
 			// Get the code button
