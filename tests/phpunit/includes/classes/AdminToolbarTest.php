@@ -121,4 +121,45 @@ class Admin_Toolbar_Test extends TestCase {
 		$this->assertStringContainsString( 'utm_content=admin-toolbar', $pro_item['href'] );
 		$this->assertStringNotContainsString( 'utm-content=admin-toolbar', $pro_item['href'] );
 	}
+
+	/**
+	 * Test get_check_this_page_item() returns null when no global post is set.
+	 */
+	public function test_get_check_this_page_item_returns_null_without_post() {
+		global $post;
+		$original_post = $post;
+		$post          = null;
+
+		$reflection = new \ReflectionClass( Admin_Toolbar::class );
+		$method     = $reflection->getMethod( 'get_check_this_page_item' );
+		$method->setAccessible( true );
+		$toolbar = new Admin_Toolbar();
+		$result  = $method->invoke( $toolbar );
+
+		$post = $original_post;
+
+		$this->assertNull( $result );
+	}
+
+	/**
+	 * Test get_default_menu_items() includes the settings item as a stable first admin-only item.
+	 */
+	public function test_get_default_menu_items_includes_settings_item() {
+		$reflection = new \ReflectionClass( Admin_Toolbar::class );
+		$method     = $reflection->getMethod( 'get_default_menu_items' );
+		$method->setAccessible( true );
+		$toolbar = new Admin_Toolbar();
+		$items   = $method->invoke( $toolbar );
+
+		$settings_item = null;
+		foreach ( $items as $item ) {
+			if ( 'accessibility-checker-settings' === $item['id'] ) {
+				$settings_item = $item;
+				break;
+			}
+		}
+
+		$this->assertNotNull( $settings_item );
+		$this->assertSame( 'accessibility-checker', $settings_item['parent'] );
+	}
 }

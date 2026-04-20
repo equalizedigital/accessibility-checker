@@ -565,6 +565,11 @@ function edac_frontend_highlighter_position_cb() {
 				<?php esc_html_e( 'Bottom Left Corner', 'accessibility-checker' ); ?>
 			</label>
 			<br>
+			<label>
+				<input type="radio" name="edac_frontend_highlighter_position" value="admin_bar" <?php checked( $position, 'admin_bar' ); ?>>
+				<?php esc_html_e( 'Hide Button (Admin Bar Only)', 'accessibility-checker' ); ?>
+			</label>
+			<br>
 		</fieldset>
 		<p class="edac-description"><?php echo esc_html__( 'Set where you would like the frontend accessibility checker to appear on the page.', 'accessibility-checker' ); ?></p>
 	<?php
@@ -591,7 +596,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
  * @return string
  */
 function edac_sanitize_frontend_highlighter_position( string $position ): string {
-	if ( in_array( $position, [ 'right', 'left' ], true ) ) {
+	if ( in_array( $position, [ 'right', 'left', 'admin_bar' ], true ) ) {
 		return $position;
 	}
 	return 'right';

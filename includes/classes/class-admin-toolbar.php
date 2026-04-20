@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EDAC\Admin\Settings;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -91,6 +93,12 @@ class Admin_Toolbar {
 	private function get_default_menu_items(): array {
 		$menu_items = [];
 
+		// Add "Check This Page" item on the frontend when the highlighter is active for this post.
+		$check_page_item = $this->get_check_this_page_item();
+		if ( $check_page_item ) {
+			$menu_items[] = $check_page_item;
+		}
+
 		// Add Settings submenu item.
 		$menu_items[] = [
 			'id'     => 'accessibility-checker-settings',
@@ -127,5 +135,48 @@ class Admin_Toolbar {
 		}
 
 		return $menu_items;
+	}
+
+	/**
+	 * Get the "Check This Page" admin bar menu item for the frontend highlighter.
+	 *
+	 * Returns an array for the menu item when on a frontend page that the
+	 * accessibility highlighter is active on, or null if it should not be shown.
+	 *
+	 * @since 1.40.0
+	 * @return array|null Menu item configuration array, or null if not applicable.
+	 */
+	private function get_check_this_page_item(): ?array {
+
+		// Only show on the frontend, not in wp-admin.
+		if ( is_admin() ) {
+			return null;
+		}
+
+		global $post;
+		if ( ! is_object( $post ) || ! $post->ID ) {
+			return null;
+		}
+
+		// Only show if the user can edit this post.
+		if ( ! current_user_can( 'edit_post', $post->ID ) ) {
+			return null;
+		}
+
+		// Only show for scannable post types.
+		$post_types = Settings::get_scannable_post_types();
+		if ( ! is_array( $post_types ) || ! in_array( get_post_type( $post->ID ), $post_types, true ) ) {
+			return null;
+		}
+
+		return [
+			'id'     => 'accessibility-checker-check-page',
+			'parent' => 'accessibility-checker',
+			'title'  => __( 'Check This Page', 'accessibility-checker' ),
+			'href'   => '#',
+			'meta'   => [
+				'class' => 'edac-admin-bar-check-page',
+			],
+		];
 	}
 }

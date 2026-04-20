@@ -10,6 +10,13 @@ import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesMod
 
 class AccessibilityCheckerHighlight {
 	/**
+	 * CSS selector for the admin bar "Check This Page" link.
+	 *
+	 * @type {string}
+	 */
+	static ADMIN_BAR_CHECK_PAGE_SELECTOR = '#wp-admin-bar-accessibility-checker-check-page a';
+
+	/**
 	 * Constructor
 	 * @param {Object} settings
 	 */
@@ -59,6 +66,15 @@ class AccessibilityCheckerHighlight {
 		this.originalInlineStyles = [];
 
 		this.init();
+	}
+
+	/**
+	 * Returns the configured widget position value.
+	 *
+	 * @return {string} The widget position ('right', 'left', or 'admin_bar').
+	 */
+	getWidgetPosition() {
+		return edacFrontendHighlighterApp?.widgetPosition || 'right';
 	}
 
 	/**
@@ -120,6 +136,22 @@ class AccessibilityCheckerHighlight {
 			this.panelOpen( this.urlParameter );
 		} else if ( this.landmarkParameter ) {
 			this.highlightLandmark( this.landmarkParameter );
+		}
+
+		// Handle admin bar position: hide the floating toggle button and wire up the admin bar link.
+		if ( this.getWidgetPosition() === 'admin_bar' ) {
+			this.panelToggle.style.display = 'none';
+		}
+
+		// Wire up the admin bar "Check This Page" link regardless of position so it always works.
+		const adminBarCheckPageItem = document.querySelector( AccessibilityCheckerHighlight.ADMIN_BAR_CHECK_PAGE_SELECTOR );
+		if ( adminBarCheckPageItem ) {
+			adminBarCheckPageItem.setAttribute( 'role', 'button' );
+			adminBarCheckPageItem.addEventListener( 'click', ( e ) => {
+				e.preventDefault();
+				this.panelOpen();
+				this.focusTrapControls();
+			} );
 		}
 	}
 
@@ -433,7 +465,7 @@ class AccessibilityCheckerHighlight {
 	 * This function adds a new div element to the DOM, which contains the accessibility checker panel.
 	 */
 	addHighlightPanel() {
-		const widgetPosition = edacFrontendHighlighterApp?.widgetPosition || 'right';
+		const widgetPosition = this.getWidgetPosition();
 
 		const userCanEdit = edacFrontendHighlighterApp && edacFrontendHighlighterApp?.userCanEdit && edacFrontendHighlighterApp?.loggedIn;
 		const clearButtonMarkup = userCanEdit
@@ -702,13 +734,21 @@ class AccessibilityCheckerHighlight {
 		this.highlightPanel.classList.remove( 'edac-highlight-panel-visible' );
 		this.panelControls.style.display = 'none';
 		this.panelDescription.style.display = 'none';
-		this.panelToggle.style.display = 'block';
 		this.removeSelectedClasses();
 		this.removeHighlightButtons();
 
 		this.closePanel.removeEventListener( 'click', this.panelControlsFocusTrap.deactivate );
 
-		this.panelToggle.focus();
+		// When using admin bar only mode, keep the floating toggle hidden and move focus to the admin bar link.
+		if ( this.getWidgetPosition() === 'admin_bar' ) {
+			const adminBarCheckPageItem = document.querySelector( AccessibilityCheckerHighlight.ADMIN_BAR_CHECK_PAGE_SELECTOR );
+			if ( adminBarCheckPageItem ) {
+				adminBarCheckPageItem.focus();
+			}
+		} else {
+			this.panelToggle.style.display = 'block';
+			this.panelToggle.focus();
+		}
 	}
 
 	/**
