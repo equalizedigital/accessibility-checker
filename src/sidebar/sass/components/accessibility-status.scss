@@ -110,6 +110,25 @@
 			font-size: 10px;
 			color: $info-blue;
 			margin-top: 2px;
+
+			&--trend {
+				line-height: 1.35;
+				min-height: 28px;
+				color: $subtext-gray;
+			}
+		}
+	}
+
+	.edac-status-retention-message {
+		margin: 10px 0 0;
+		padding-top: 10px;
+		border-top: 1px dashed $outline-grey;
+
+		p {
+			margin: 0;
+			font-size: 11px;
+			line-height: 1.4;
+			color: $info-grey;
 		}
 	}
 
@@ -126,4 +145,3 @@
 		}
 	}
 }
-
