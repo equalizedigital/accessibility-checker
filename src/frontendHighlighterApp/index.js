@@ -575,7 +575,7 @@ class AccessibilityCheckerHighlight {
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
                                 <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
                                         <div class="edac-highlight-panel-controls-header">
-                                                <div class="edac-highlight-panel-controls-title"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
+                                                <div class="edac-highlight-panel-controls-title" role="heading" aria-level="2"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-header-actions">
                                                         <div class="edac-highlight-menu-container">
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
@@ -1142,11 +1142,11 @@ class AccessibilityCheckerHighlight {
 					};
 					const severity = severityMap[ matchingObj.severity ];
 					if ( severity ) {
-						severityBadgeHtml = `<strong class="edac-highlight-panel-description-wcag-label">${ __( 'Severity:', 'accessibility-checker' ) }</strong> <span class="edac-badge edac-badge--severity-${ severity.slug }"><span class="edac-badge__label">${ severity.label }</span></span>`;
+						severityBadgeHtml = `<strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'Severity:', 'accessibility-checker' ) }</strong> <span class="edac-badge edac-badge--severity-${ severity.slug }"><span class="edac-badge__label">${ severity.label }</span></span>`;
 					}
 				}
 
-				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
 			// Metadata row: Type
@@ -1183,14 +1183,14 @@ class AccessibilityCheckerHighlight {
 
 				if ( matchingObj.why_it_matters ) {
 					content += `<div class="edac-highlight-panel-description-how-to-fix">
-						<div class="edac-highlight-panel-description-how-to-fix-title">${ __( 'Why It Matters', 'accessibility-checker' ) }</div>
+						<div class="edac-highlight-panel-description-how-to-fix-title" role="heading" aria-level="4">${ __( 'Why It Matters', 'accessibility-checker' ) }</div>
 						<div class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.why_it_matters }</div>
 					</div>`;
 				}
 
 				if ( matchingObj.how_to_fix ) {
 					content += `<div class="edac-highlight-panel-description-how-to-fix">
-						<div class="edac-highlight-panel-description-how-to-fix-title">${ __( 'How to Fix', 'accessibility-checker' ) }</div>
+						<div class="edac-highlight-panel-description-how-to-fix-title" role="heading" aria-level="4">${ __( 'How to Fix', 'accessibility-checker' ) }</div>
 						<div class="edac-highlight-panel-description-how-to-fix-content">${ matchingObj.how_to_fix }</div>
 					</div>`;
 				}
@@ -1211,7 +1211,7 @@ class AccessibilityCheckerHighlight {
 			const noticeHtml = this.currentIssueStatus
 				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
 				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1536,7 +1536,7 @@ class AccessibilityCheckerHighlight {
 		const total = errorCount + warningCount;
 
 		if ( total === 0 && ignoredCount === 0 ) {
-			div.innerHTML = `<span class="edac-highlight-summary-total">${ __( 'No issues detected.', 'accessibility-checker' ) }</span>`;
+			div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ __( 'No issues detected.', 'accessibility-checker' ) }</span>`;
 			return;
 		}
 
@@ -1571,7 +1571,7 @@ class AccessibilityCheckerHighlight {
 			) );
 		}
 
-		div.innerHTML = `<span class="edac-highlight-summary-total">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ breakdownParts.join( ' · ' ) }</span>`;
+		div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ breakdownParts.join( ' · ' ) }</span>`;
 	}
 
 	/**
