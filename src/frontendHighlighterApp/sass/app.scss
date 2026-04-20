@@ -2,6 +2,8 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+// Visually hidden (screen-reader only) live region for announcing panel actions.
+// This pattern hides the element visually while keeping it accessible to assistive technologies.
 #edac-highlight-announcer {
 	position: absolute;
 	width: 1px;
