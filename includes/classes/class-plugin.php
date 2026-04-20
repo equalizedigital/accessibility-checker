@@ -10,6 +10,8 @@ namespace EDAC\Inc;
 use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage;
+use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -47,6 +49,12 @@ class Plugin {
 
 		$this->register_fixes_manager();
 		$this->register_sr_only_meta_hooks();
+
+		$accessibility_reports = new AccessibilityReportsPage( 'manage_options' );
+		$accessibility_reports->add_page();
+
+		$connector = new Connector();
+		$connector->init();
 
 		// When WP CLI is enabled, load the CLI commands.
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {

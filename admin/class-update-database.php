@@ -82,11 +82,40 @@ class Update_Database {
 			// Run migration for selector-based unique identifiers if upgrading from older versions.
 			if ( version_compare( $db_version, '1.0.5', '<' ) ) {
 				$this->migrate_to_selector_based_unique_id();
-			}       
+			}
+
+			// Migrate free plugin license key to shared option key used by both free and pro.
+			if ( version_compare( $db_version, '1.0.7', '<' ) ) {
+				$this->migrate_license_key_to_shared_option();
+			}
 		}
 
 		// Update database version option.
 		update_option( 'edac_db_version', sanitize_text_field( EDAC_DB_VERSION ) );
+	}
+
+	/**
+	 * Migrate early testing key to the shared option used by both free and pro.
+	 *
+	 * Copies `edac_license_key` to `edacp_license_key` if the free key exists and the
+	 * shared key is not already set, then deletes the old option.
+	 *
+	 * @since 1.0.7
+	 * @return void
+	 */
+	private function migrate_license_key_to_shared_option() {
+		$migratable_key = get_option( 'edac_license_key', '' );
+
+		if ( empty( $migratable_key ) ) {
+			return;
+		}
+
+		// Only copy if the shared key is not already occupied.
+		if ( empty( get_option( 'edacp_license_key', '' ) ) ) {
+			update_option( 'edacp_license_key', $migratable_key );
+		}
+
+		delete_option( 'edac_license_key' );
 	}
 
 	/**
