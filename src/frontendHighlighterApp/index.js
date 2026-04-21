@@ -1187,7 +1187,7 @@ class AccessibilityCheckerHighlight {
 				ignored: 'data:image/svg+xml,' + encodeURIComponent( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" width="16" height="16" fill="none"><path d="M13.875 19.6562L17.3437 23.125L23.125 15.0312M32.375 18.5C32.375 20.3221 32.0161 22.1263 31.3188 23.8097C30.6215 25.4931 29.5995 27.0227 28.3111 28.3111C27.0227 29.5995 25.4931 30.6215 23.8097 31.3188C22.1263 32.0161 20.3221 32.375 18.5 32.375C16.6779 32.375 14.8737 32.0161 13.1903 31.3188C11.5069 30.6215 9.97731 29.5995 8.68889 28.3111C7.40048 27.0227 6.37846 25.4931 5.68117 23.8097C4.98389 22.1263 4.625 20.3221 4.625 18.5C4.625 14.8201 6.08683 11.291 8.68889 8.68889C11.291 6.08683 14.8201 4.625 18.5 4.625C22.1799 4.625 25.709 6.08683 28.3111 8.68889C30.9132 11.291 32.375 14.8201 32.375 18.5Z" stroke="#737373" stroke-width="2.775" stroke-linecap="round" stroke-linejoin="round"/></svg>' ),
 			};
 			const typeIconUri = typeIconDataUris[ matchingObj.rule_type ];
-			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large" aria-label="${ __( 'Issue type:', 'accessibility-checker' ) } ${ matchingObj.rule_type }">
+			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large">
 				${ typeIconUri ? `<img src="${ typeIconUri }" width="16" height="16" style="display:block;width:16px;height:16px;flex-shrink:0" alt="" />` : '' }
 				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Ignored', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
 			</span>`;
