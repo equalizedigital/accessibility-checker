@@ -206,7 +206,7 @@ class Widgets {
 
 					$html .= '
 							<tr>
-								<th scope="col">' . esc_html( $post_type_label ) . '</th>
+								<th scope="row">' . esc_html( $post_type_label ) . '</th>
 								<td id="' . esc_attr( $post_type ) . '-errors">-</td>
 								<td id="' . esc_attr( $post_type ) . '-contrast-errors">-</td>
 								<td id="' . esc_attr( $post_type ) . '-warnings">-</td>
@@ -214,7 +214,7 @@ class Widgets {
 				} else {
 					$html .= '
 							<tr>
-								<th scope="col">' . esc_html( $post_type_label ) . '</th>
+								<th scope="row">' . esc_html( $post_type_label ) . '</th>
 								<td>-</td>
 								<td>-</td>
 								<td>-</td>
@@ -225,7 +225,7 @@ class Widgets {
 
 				$html .= '
 						<tr >
-							<th scope="col">' . esc_html( $post_type_label ) . '</th>
+							<th scope="row">' . esc_html( $post_type_label ) . '</th>
 							<td>-</td>
 							<td>-</td>
 							<td>-</td>
@@ -245,7 +245,7 @@ class Widgets {
 				);
 				$html                            .= '
 						<tr >
-							<th scope="col">' . esc_html( $post_type_label ) . '</th>
+							<th scope="row">' . esc_html( $post_type_label ) . '</th>
 							<td colspan="3">
 								<div class="edac-issues-summary-notice-upgrade-to-edacp">
 									<a class="button" href="' . esc_url( $non_scannable_post_type_pro_link ) . '" target="_blank" rel="noopener noreferrer" aria-label="' . esc_attr__( 'Upgrade to Scan (opens in a new window)', 'accessibility-checker' ) . '">
