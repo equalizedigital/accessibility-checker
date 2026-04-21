@@ -827,12 +827,33 @@ class AccessibilityCheckerHighlight {
 
 		const pagination = document.getElementById( 'edac-highlight-pagination' );
 		if ( pagination ) {
-			pagination.textContent = sprintf(
+			const visiblePosition = sprintf(
 				// translators: %1$d is the current issue number, %2$d is the total number of issues.
 				__( '%1$d of %2$d', 'accessibility-checker' ),
 				this.currentButtonIndex + 1,
 				this.issues.length
 			);
+
+			const issueTitle = issue.rule_title || __( 'Untitled issue', 'accessibility-checker' );
+			const srAnnouncement = sprintf(
+				// translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+				__( 'Issue %1$d of %2$d: %3$s', 'accessibility-checker' ),
+				this.currentButtonIndex + 1,
+				this.issues.length,
+				issueTitle
+			);
+
+			pagination.textContent = '';
+
+			const visiblePositionNode = document.createElement( 'span' );
+			visiblePositionNode.setAttribute( 'aria-hidden', 'true' );
+			visiblePositionNode.textContent = visiblePosition;
+
+			const srOnlyNode = document.createElement( 'span' );
+			srOnlyNode.className = 'edac-sr-only';
+			srOnlyNode.textContent = srAnnouncement;
+
+			pagination.append( visiblePositionNode, srOnlyNode );
 		}
 
 		const tooltip = issue.tooltip;
