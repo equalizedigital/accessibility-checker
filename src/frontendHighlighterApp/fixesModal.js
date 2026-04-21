@@ -131,11 +131,12 @@ const closeFixesModal = () => {
 		}
 	} );
 	document.body.classList.remove( 'edac-fixes-modal--open' );
-	if ( focusRestoreTarget ) {
-		focusRestoreTarget.focus();
-	}
 	unbindChangeEvents();
 	document.dispatchEvent( CloseEvent );
+	if ( focusRestoreTarget ) {
+		const target = focusRestoreTarget;
+		setTimeout( () => target.focus(), 0 );
+	}
 };
 
 export const fillFixesModal = ( content = '', fieldsElement = '' ) => {
