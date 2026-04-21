@@ -311,14 +311,22 @@ class Admin_Notices {
 
 		?>
 		<div class="notice notice-info edac-review-notice">
-			<p>
-				<?php esc_html_e( "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!", 'accessibility-checker' ); ?>
-			</p>
-			<p>
-				<button class="edac-review-notice-review button button-small button-primary"><?php esc_html_e( 'Write A Review', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-remind button button-small"><?php esc_html_e( 'Remind Me In Two Weeks', 'accessibility-checker' ); ?></button>
-				<button class="edac-review-notice-dismiss button button-small"><?php esc_html_e( 'Never Ask Again', 'accessibility-checker' ); ?></button>
-			</p>
+			<img
+				src="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-checker-icon.svg' ); ?>"
+				alt=""
+				aria-hidden="true"
+				class="edac-review-notice-logo"
+			/>
+			<div class="edac-review-notice-content">
+				<p class="edac-review-notice-message">
+					<?php esc_html_e( 'Thanks for using Accessibility Checker. Please consider leaving a review to help others learn about web accessibility.', 'accessibility-checker' ); ?>
+				</p>
+				<div class="edac-review-notice-actions">
+					<button class="edac-review-notice-review button button-primary"><?php esc_html_e( 'Leave a 5-Star Review', 'accessibility-checker' ); ?> <span aria-hidden="true">★★★★★</span></button>
+					<button class="edac-review-notice-remind edac-review-notice-text-link"><?php esc_html_e( 'Maybe Later', 'accessibility-checker' ); ?></button>
+					<button class="edac-review-notice-dismiss edac-review-notice-text-link"><?php esc_html_e( 'No Thanks', 'accessibility-checker' ); ?></button>
+				</div>
+			</div>
 		</div>
 		<?php
 	}
