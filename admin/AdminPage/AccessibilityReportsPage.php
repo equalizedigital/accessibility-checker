@@ -89,17 +89,19 @@ class AccessibilityReportsPage implements PageInterface {
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
 
-		$upgrade_url       = edac_generate_link_type(
+		$upgrade_url = edac_generate_link_type(
 			[
 				'utm_campaign' => 'settings-page',
 				'utm_content'  => 'accessibility-reports-upgrade',
 			]
 		);
-		$dashboard_url     = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
-		$email_reports_url = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
-		$signup_url        = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
-		$terms_url         = edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'accessibility-reports', 'terms', false );
-		$privacy_url       = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
+
+		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$email_reports_url   = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
+		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
+		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
+		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
+
 		$allowed_icon_html = [
 			'span' => [
 				'class'       => true,
@@ -277,10 +279,10 @@ class AccessibilityReportsPage implements PageInterface {
 					<p class="edac-reports-page__legal">
 						<?php
 						printf(
-							/* translators: %1$s: terms link, %2$s: privacy link. */
-							wp_kses_post( __( 'By connecting this site, you agree to the Equalize Digital <a href="%1$s" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.', 'accessibility-checker' ) ),
-							esc_url( $terms_url ),
-							esc_url( $privacy_url )
+							/* translators: %1$s: privacy link, %2$s: data processing agreement link. */
+							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.', 'accessibility-checker' ) ),
+							esc_url( $privacy_url ),
+							esc_url( $data_processing_url )
 						);
 						?>
 					</p>
