@@ -597,9 +597,9 @@ class AccessibilityCheckerHighlight {
                         <div id="edac-highlight-announcer" class="edac-sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
                         <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
-                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
+                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0" role="dialog" aria-labelledby="edac-highlight-panel-controls-title">
                                         <div class="edac-highlight-panel-controls-header">
-                                                <div class="edac-highlight-panel-controls-title" role="heading" aria-level="2"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
+                                                <div id="edac-highlight-panel-controls-title" class="edac-highlight-panel-controls-title" role="heading" aria-level="2"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-header-actions">
                                                         <div class="edac-highlight-menu-container">
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
