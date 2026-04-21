@@ -290,8 +290,8 @@ class AccessibilityReportsPage implements PageInterface {
 			<aside class="edac-reports-preview">
 				<img
 					class="edac-reports-preview__image"
-					src="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-reports-email-preview.png' ); ?>"
-					alt="<?php esc_attr_e( 'Preview of the weekly accessibility report email.', 'accessibility-checker' ); ?>"
+					src="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-reports-email-preview.jpg' ); ?>"
+					alt="<?php esc_attr_e( 'Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues.', 'accessibility-checker' ); ?>"
 				/>
 			</aside>
 		</div>
