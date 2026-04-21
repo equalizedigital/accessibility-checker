@@ -1062,8 +1062,8 @@ class Connector {
 		if ( ! empty( $auth_header ) ) {
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
 				// Check if the site is registered currently before attempting validation.
-				$site_id = get_option( 'edac_site_id' );
-				if ( empty( $site_id ) ) {
+				$site_id = (string) get_option( 'edac_site_id', '' );
+				if ( '' === $site_id ) {
 					return false;
 				}
 
