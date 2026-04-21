@@ -1422,6 +1422,7 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = true;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Enable Styles', 'accessibility-checker' );
+		this.disableStylesButton.setAttribute( 'aria-label', __( 'Enable Page Styles', 'accessibility-checker' ) );
 	}
 
 	/**
@@ -1457,6 +1458,7 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = false;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Disable Styles', 'accessibility-checker' );
+		this.disableStylesButton.setAttribute( 'aria-label', __( 'Disable Page Styles', 'accessibility-checker' ) );
 
 		// Re-render the current issue to restore panel state after styles are re-enabled.
 		if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
