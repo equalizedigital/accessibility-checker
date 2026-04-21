@@ -161,7 +161,7 @@ class AccessibilityReportsPage implements PageInterface {
 							</div>
 						<?php else : ?>
 							<div class="edac-reports-grid edac-reports-grid--two">
-								<article class="edac-reports-card">
+								<div class="edac-reports-card">
 									<h3><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></h3>
 									<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 										<input type="hidden" name="action" value="edac_license" />
@@ -172,9 +172,9 @@ class AccessibilityReportsPage implements PageInterface {
 											<?php esc_html_e( 'Enable Email Reports', 'accessibility-checker' ); ?>
 										</button>
 									</form>
-								</article>
+								</div>
 
-								<article class="edac-reports-card">
+								<div class="edac-reports-card">
 									<h3><?php esc_html_e( 'Get a Free License Key', 'accessibility-checker' ); ?></h3>
 									<p>
 										<?php
@@ -203,12 +203,12 @@ class AccessibilityReportsPage implements PageInterface {
 										);
 										?>
 									</p>
-								</article>
+								</div>
 							</div>
 						<?php endif; ?>
 				<?php else : ?>
 						<div class="edac-reports-grid edac-reports-grid--two">
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<div class="edac-reports-card__header">
 									<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
 									<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
@@ -223,9 +223,9 @@ class AccessibilityReportsPage implements PageInterface {
 								<p>
 									<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $email_reports_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Manage Recipients in Dashboard', 'accessibility-checker' ); ?></a>
 								</p>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<div class="edac-reports-card__header">
 									<h3><?php echo esc_html( $is_pro ? __( 'Full Coverage', 'accessibility-checker' ) : __( 'Limited Coverage', 'accessibility-checker' ) ); ?></h3>
 									<span class="edac-reports-card__status <?php echo esc_attr( $is_pro ? 'edac-reports-card__status--success' : 'edac-reports-card__status--warning' ); ?>" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( $is_pro ? 'check' : 'warning' ), $allowed_icon_html ); ?></span>
@@ -249,18 +249,18 @@ class AccessibilityReportsPage implements PageInterface {
 										<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $upgrade_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade to Pro', 'accessibility-checker' ); ?></a>
 									</p>
 								<?php endif; ?>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<h3><?php esc_html_e( 'Accessibility Summary', 'accessibility-checker' ); ?></h3>
 								<p><?php esc_html_e( 'This summary reflects the latest scan data available for your site.', 'accessibility-checker' ); ?></p>
 								<div class="edac-reports-stat">
 									<div class="edac-reports-stat__label"><?php esc_html_e( 'Total Issues Found', 'accessibility-checker' ); ?></div>
 									<div class="edac-reports-stat__value"><?php echo esc_html( number_format_i18n( $preview_data['total_issues'] ) ); ?></div>
 									</div>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<h3><?php echo esc_html( $is_pro ? __( 'Account Connection', 'accessibility-checker' ) : __( 'Free License Key', 'accessibility-checker' ) ); ?></h3>
 								<?php if ( ! $is_pro ) : ?>
 									<div class="edac-reports-page__license-mask"><?php echo esc_html( $this->mask_license_key( $license_key ) ); ?></div>
@@ -272,7 +272,7 @@ class AccessibilityReportsPage implements PageInterface {
 										<?php esc_html_e( 'Disable Email Reports', 'accessibility-checker' ); ?>
 									</button>
 								</form>
-							</article>
+							</div>
 						</div>
 				<?php endif; ?>
 
