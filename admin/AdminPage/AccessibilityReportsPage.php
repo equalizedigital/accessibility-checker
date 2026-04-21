@@ -96,11 +96,11 @@ class AccessibilityReportsPage implements PageInterface {
 			]
 		);
 
-		$dashboard_url        = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
-		$email_reports_url    = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
-		$signup_url           = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
-		$privacy_url          = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
-		$data_processing_link = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
+		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$email_reports_url   = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
+		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
+		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
+		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
 
 		$allowed_icon_html = [
 			'span' => [
@@ -282,7 +282,7 @@ class AccessibilityReportsPage implements PageInterface {
 							/* translators: %1$s: privacy link, %2$s: data processing agreement link. */
 							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.', 'accessibility-checker' ) ),
 							esc_url( $privacy_url ),
-							esc_url( $data_processing_link )
+							esc_url( $data_processing_url )
 						);
 						?>
 					</p>
