@@ -135,6 +135,7 @@ const closeFixesModal = () => {
 	document.dispatchEvent( CloseEvent );
 	if ( focusRestoreTarget ) {
 		const target = focusRestoreTarget;
+		focusRestoreTarget = null;
 		setTimeout( () => target.focus(), 0 );
 	}
 };
