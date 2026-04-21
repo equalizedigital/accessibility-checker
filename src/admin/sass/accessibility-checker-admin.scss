@@ -904,6 +904,7 @@
 .edac-reports-preview {
   display: none;
   min-width: 0;
+  margin-bottom: 15px;
 
   @include helpers.breakpoint(lg) {
     display: block;
@@ -1644,7 +1645,7 @@
 
     &-notice-upgrade-to-edacp {
       text-align: center;
-      
+
       a {
         width: 100%;
       }
@@ -2077,7 +2078,7 @@
         h3 {
           margin-top: 0;
         }
-        
+
         p:last-child {
           margin-bottom: 0;
         }
