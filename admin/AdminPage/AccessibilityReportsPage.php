@@ -279,10 +279,12 @@ class AccessibilityReportsPage implements PageInterface {
 					<p class="edac-reports-page__legal">
 						<?php
 						printf(
-							/* translators: %1$s: privacy link, %2$s: data processing agreement link. */
-							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.', 'accessibility-checker' ) ),
+							/* translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label. */
+							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%3$s">Privacy Policy <span aria-hidden="true">&#8599;</span></a> and <a href="%2$s" target="_blank" rel="noopener noreferrer" aria-label="%4$s">Data Processing Agreement <span aria-hidden="true">&#8599;</span></a>.', 'accessibility-checker' ) ),
 							esc_url( $privacy_url ),
-							esc_url( $data_processing_url )
+							esc_url( $data_processing_url ),
+							esc_attr__( 'Privacy Policy (opens in a new window)', 'accessibility-checker' ),
+							esc_attr__( 'Data Processing Agreement (opens in a new window)', 'accessibility-checker' )
 						);
 						?>
 					</p>
