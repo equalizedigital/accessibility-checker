@@ -80,6 +80,8 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
+		wp_enqueue_script( 'wp-a11y' );
+
 		$license_context = $this->get_license_context();
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
@@ -299,6 +301,43 @@ class AccessibilityReportsPage implements PageInterface {
 				/>
 			</aside>
 		</div>
+		<?php $this->render_notice_announcement_script(); ?>
+		<?php
+	}
+
+	/**
+	 * Announce admin notices on reports tab after full-page form submissions.
+	 *
+	 * @return void
+	 */
+	private function render_notice_announcement_script(): void {
+		$selector         = '.edac-settings--reports .notice.notice-success p, .edac-settings--reports .notice.notice-error p, .edac-settings--reports .notice.notice-warning p, .edac-settings--reports .notice.notice-info p';
+		$fallback_message = __( 'Status message updated.', 'accessibility-checker' );
+		?>
+		<script>
+			document.addEventListener( 'DOMContentLoaded', function() {
+				var notice = document.querySelector( <?php echo wp_json_encode( $selector ); ?> );
+				if ( ! notice ) {
+					return;
+				}
+
+				var message = notice.textContent ? notice.textContent.trim() : '';
+				if ( ! message ) {
+					message = <?php echo wp_json_encode( $fallback_message ); ?>;
+				}
+
+				if ( window.wp && window.wp.a11y && 'function' === typeof window.wp.a11y.speak ) {
+					window.wp.a11y.speak( message, 'polite' );
+					return;
+				}
+
+				var noticeContainer = notice.closest( '.notice' );
+				if ( noticeContainer ) {
+					noticeContainer.setAttribute( 'tabindex', '-1' );
+					noticeContainer.focus();
+				}
+			} );
+		</script>
 		<?php
 	}
 

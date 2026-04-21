@@ -158,4 +158,16 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 
 		$this->assertSame( '2030-01-15', $next_collection );
 	}
+
+	/**
+	 * Ensures the reports page renders a screen-reader announcement script for admin notices.
+	 */
+	public function test_render_page_outputs_notice_announcement_script() {
+		ob_start();
+		$this->page->render_page();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'wp.a11y.speak', $output );
+		$this->assertStringContainsString( '.edac-settings--reports .notice.notice-success p', $output );
+	}
 }
