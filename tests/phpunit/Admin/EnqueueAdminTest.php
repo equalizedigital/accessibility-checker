@@ -73,8 +73,46 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'], $_GET['tab'] );
 
 		unset( $this->enqueue_admin );
+	}
+
+	/**
+	 * Test that reports notice announcement script enqueues on Accessibility Reports tab.
+	 *
+	 * @return void
+	 */
+	public function testReportsNoticeAnnouncementScriptEnqueuesOnReportsTab() {
+		global $pagenow;
+		$pagenow      = 'admin.php';
+		$_GET['page'] = 'accessibility_checker_settings';
+		$_GET['tab']  = 'accessibility-reports';
+
+		Enqueue_Admin::enqueue();
+
+		$this->assertTrue( wp_script_is( 'edac-reports-a11y-notice', 'enqueued' ) );
+
+		$inline_script_data = wp_scripts()->get_data( 'edac-reports-a11y-notice', 'after' );
+		$inline_script      = is_array( $inline_script_data ) ? implode( "\n", $inline_script_data ) : (string) $inline_script_data;
+		$this->assertStringContainsString( 'edac-reports-notice-live-region', $inline_script );
+		$this->assertStringContainsString( 'edac-connector-notice', $inline_script );
+	}
+
+	/**
+	 * Test that reports notice announcement script does not enqueue outside reports tab.
+	 *
+	 * @return void
+	 */
+	public function testReportsNoticeAnnouncementScriptDoesNotEnqueueOutsideReportsTab() {
+		global $pagenow;
+		$pagenow      = 'admin.php';
+		$_GET['page'] = 'accessibility_checker_settings';
+		$_GET['tab']  = 'settings';
+
+		Enqueue_Admin::enqueue();
+
+		$this->assertFalse( wp_script_is( 'edac-reports-a11y-notice', 'enqueued' ) );
 	}
 
 	/**

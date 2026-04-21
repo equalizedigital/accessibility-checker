@@ -32,6 +32,7 @@ class Enqueue_Admin {
 		self::maybe_enqueue_sidebar_script();
 		self::maybe_enqueue_issue_modal_script();
 		self::maybe_enqueue_email_opt_in_script();
+		self::maybe_enqueue_reports_notice_announcement_script();
 	}
 
 	/**
@@ -447,5 +448,57 @@ class Enqueue_Admin {
 	 */
 	private static function get_current_page_slug(): ?string {
 		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+	}
+
+	/**
+	 * Announce email-reports admin notices for screen reader users.
+	 *
+	 * On the Accessibility Reports tab, connector actions redirect with a visible
+	 * admin notice. This script mirrors that notice text into a polite live region
+	 * so the message is announced after page load.
+	 *
+	 * @return void
+	 */
+	private static function maybe_enqueue_reports_notice_announcement_script(): void {
+		$page = self::get_current_page_slug();
+		$tab  = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only routing context.
+
+		if ( 'accessibility_checker_settings' !== $page || 'accessibility-reports' !== $tab ) {
+			return;
+		}
+
+		wp_register_script( 'edac-reports-a11y-notice', false, [], EDAC_VERSION, true );
+		wp_enqueue_script( 'edac-reports-a11y-notice' );
+
+		wp_add_inline_script(
+			'edac-reports-a11y-notice',
+			"(function(){\n" .
+			"\tfunction announceReportsNotice(){\n" .
+			"\t\tvar notice = document.querySelector('.edac-connector-notice .notice-message, .edac-connector-notice p');\n" .
+			"\t\tif(!notice){return;}\n" .
+			"\t\tvar message = (notice.textContent || '').trim();\n" .
+			"\t\tif(!message){return;}\n" .
+			"\t\tvar liveRegion = document.getElementById('edac-reports-notice-live-region');\n" .
+			"\t\tif(!liveRegion){\n" .
+			"\t\t\tliveRegion = document.createElement('div');\n" .
+			"\t\t\tliveRegion.id = 'edac-reports-notice-live-region';\n" .
+			"\t\t\tliveRegion.className = 'screen-reader-text';\n" .
+			"\t\t\tliveRegion.setAttribute('role', 'status');\n" .
+			"\t\t\tliveRegion.setAttribute('aria-live', 'polite');\n" .
+			"\t\t\tliveRegion.setAttribute('aria-atomic', 'true');\n" .
+			"\t\t\tdocument.body.appendChild(liveRegion);\n" .
+			"\t\t}\n" .
+			"\t\twindow.setTimeout(function(){\n" .
+			"\t\t\tliveRegion.textContent = '';\n" .
+			"\t\t\tliveRegion.textContent = message;\n" .
+			"\t\t}, 100);\n" .
+			"\t}\n" .
+			"\tif(document.readyState === 'loading'){\n" .
+			"\t\tdocument.addEventListener('DOMContentLoaded', announceReportsNotice);\n" .
+			"\t}else{\n" .
+			"\t\tannounceReportsNotice();\n" .
+			"\t}\n" .
+			'})();'
+		);
 	}
 }

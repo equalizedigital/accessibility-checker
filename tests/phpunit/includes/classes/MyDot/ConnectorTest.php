@@ -95,6 +95,30 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures connector notices include a stable CSS class for a11y announcement hooks.
+	 */
+	public function test_display_admin_notices_outputs_connector_notice_class() {
+		$connector = new Connector();
+
+		set_transient(
+			'edac_connector_notice_' . get_current_user_id(),
+			[
+				'type'    => 'success',
+				'message' => 'Reports enabled successfully.',
+			],
+			60
+		);
+
+		ob_start();
+		$connector->display_admin_notices();
+		$output = ob_get_clean();
+
+		$this->assertIsString( $output );
+		$this->assertStringContainsString( 'edac-connector-notice', $output );
+		$this->assertStringContainsString( 'notice-message', $output );
+	}
+
+	/**
 	 * Ensures metadata is stored as a single array option for free licenses.
 	 *
 	 * @throws ReflectionException If the method cannot be reflected.
