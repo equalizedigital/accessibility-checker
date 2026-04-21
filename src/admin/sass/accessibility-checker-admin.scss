@@ -904,7 +904,6 @@
 .edac-reports-preview {
   display: none;
   min-width: 0;
-  margin-bottom: 15px;
 
   @include helpers.breakpoint(lg) {
     display: block;
