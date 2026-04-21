@@ -280,7 +280,7 @@ class AccessibilityReportsPage implements PageInterface {
 						<?php
 						printf(
 							/* translators: %1$s: terms link, %2$s: privacy link. */
-							wp_kses_post( __( 'By connecting this site, you agree to the Equalize Digital <a href="%1$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.', 'accessibility-checker' ) ),
+							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Data Processing Agreement</a>.', 'accessibility-checker' ) ),
 							esc_url( $privacy_url ),
 							esc_url( $data_processing_link )
 						);
