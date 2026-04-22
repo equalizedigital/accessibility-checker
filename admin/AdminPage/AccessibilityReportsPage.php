@@ -216,7 +216,7 @@ class AccessibilityReportsPage implements PageInterface {
 								<p class="edac-reports-card__meta">
 									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_send_date ) ) ) ); ?></span>
+										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( mysql2date( get_option( 'date_format' ), $next_send_date ) ) ); ?></span>
 									<?php endif; ?>
 									</p>
 							</div>
