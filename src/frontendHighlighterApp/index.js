@@ -375,7 +375,7 @@ class AccessibilityCheckerHighlight {
 					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
 						// Only try kickoffScan once per highlightAjax call
 						self._scanAttempted = true;
-						self.kickoffScan();
+						self.kickoffScan().catch( () => {} );
 						// After kickoffScan, try highlightAjax again, but only once
 						setTimeout( () => {
 							self.highlightAjax().then( resolve ).catch( reject );
@@ -1926,7 +1926,7 @@ class AccessibilityCheckerHighlight {
 			this.panelOpen();
 		} ).finally( () => {
 			this._isRescanning = false;
-		} );
+		} ).catch( () => {} );
 	}
 
 	/**
