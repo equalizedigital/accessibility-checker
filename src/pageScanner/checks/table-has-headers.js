@@ -43,7 +43,6 @@ export default {
 
 		// Helper function to validate ARIA header relationships
 		const validateAriaHeaders = () => {
-			const doc = node.ownerDocument || document;
 			const dataCells = node.querySelectorAll( 'td[headers]' );
 			if ( dataCells.length === 0 ) {
 				return true; // No ARIA headers to validate
@@ -56,10 +55,9 @@ export default {
 						continue;
 					}
 
-					const headerElement = doc.getElementById( headerId );
-
-					if ( ! headerElement || ! node.contains( headerElement ) ) {
-						return false; // Referenced header doesn't exist
+					const headerElement = node.querySelector( '#' + CSS.escape( headerId ) );
+					if ( ! headerElement ) {
+						return false; // Referenced header doesn't exist within table
 					}
 				}
 			}
