@@ -147,15 +147,21 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures stored next collection date is preferred over local fallback estimate.
+	 * Ensures the next send estimate returns today when it is Monday, otherwise next Monday.
 	 *
 	 * @throws ReflectionException If reflection fails.
 	 */
-	public function test_get_next_collection_date_uses_stored_value_when_available() {
-		update_option( 'edac_next_collection', '2030-01-15' );
+	public function test_get_next_send_estimate_date_returns_today_or_next_monday() {
+		$today = new DateTime( 'now', wp_timezone() );
 
-		$next_collection = $this->invoke_private_method( 'get_next_collection_date' );
+		if ( '1' === $today->format( 'N' ) ) {
+			$expected = $today->format( 'Y-m-d' );
+		} else {
+			$expected = ( new DateTime( 'next monday', wp_timezone() ) )->format( 'Y-m-d' );
+		}
 
-		$this->assertSame( '2030-01-15', $next_collection );
+		$next_collection = $this->invoke_private_method( 'get_next_send_estimate_date' );
+
+		$this->assertSame( $expected, $next_collection );
 	}
 }
