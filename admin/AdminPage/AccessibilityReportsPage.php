@@ -319,28 +319,30 @@ class AccessibilityReportsPage implements PageInterface {
 	/**
 	 * Resolve effective license context from current status values.
 	 *
-	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
-	 * @param string $pro_status     Current Pro license status.
-	 * @param string $free_status    Current free license status.
-	 * @param string $site_id        Current connected site ID.
+	 * @param bool   $has_pro_plugin  Whether the Pro plugin is installed.
+	 * @param string $pro_status      Current Pro license status.
+	 * @param string $free_status     Current free license status.
+	 * @param string $site_id         Current connected site ID.
+	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
-		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+		$is_pro       = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
 		$status       = $is_pro ? $pro_status : $free_status;
 		$is_connected = 'valid' === $status && '' !== $site_id;
 
 
 		return [
-			'has_pro_plugin' => $has_pro_plugin,
-			'is_pro'         => $is_pro,
-			'status'         => $status,
-			'is_connected'   => $is_connected,
+			'has_pro_plugin'  => $has_pro_plugin,
+			'is_pro'          => $is_pro,
+			'status'          => $status,
+			'is_connected'    => $is_connected,
+			'fallback_active' => $fallback_active,
 		];
 	}
 
 	/**
-	 * Gets the next estimated send data, assuming each send will be on
+	 * Gets the next estimated send date, assuming each send will be on
 	 * Mondays.
 	 *
 	 * @return string

@@ -160,8 +160,8 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 			$expected = ( new DateTime( 'next monday', wp_timezone() ) )->format( 'Y-m-d' );
 		}
 
-		$next_collection = $this->invoke_private_method( 'get_next_send_estimate_date' );
+		$next_send_date = $this->invoke_private_method( 'get_next_send_estimate_date' );
 
-		$this->assertSame( $expected, $next_collection );
+		$this->assertSame( $expected, $next_send_date );
 	}
 }
