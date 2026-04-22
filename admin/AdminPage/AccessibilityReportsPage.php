@@ -84,7 +84,7 @@ class AccessibilityReportsPage implements PageInterface {
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$is_connected    = $license_context['is_connected'];
-		$next_collection = $this->get_next_collection_date();
+		$next_send_date  = $this->get_next_send_estimate_date();
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
@@ -97,7 +97,6 @@ class AccessibilityReportsPage implements PageInterface {
 		);
 
 		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
-		$email_reports_url   = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
 		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
 		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
 		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
@@ -215,14 +214,11 @@ class AccessibilityReportsPage implements PageInterface {
 								</div>
 								<p><?php esc_html_e( 'You’ll receive weekly accessibility reports for this site.', 'accessibility-checker' ); ?></p>
 								<p class="edac-reports-card__meta">
-									<?php if ( $next_collection ) : ?>
+									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_collection ) ) ) ); ?></span>
+										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( mysql2date( get_option( 'date_format' ), $next_send_date ) ) ); ?></span>
 									<?php endif; ?>
 									</p>
-								<p>
-									<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $email_reports_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Manage Recipients in Dashboard', 'accessibility-checker' ); ?></a>
-								</p>
 							</div>
 
 							<div class="edac-reports-card">
@@ -323,42 +319,48 @@ class AccessibilityReportsPage implements PageInterface {
 	/**
 	 * Resolve effective license context from current status values.
 	 *
-	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
-	 * @param string $pro_status     Current Pro license status.
-	 * @param string $free_status    Current free license status.
-	 * @param string $site_id        Current connected site ID.
+	 * @param bool   $has_pro_plugin  Whether the Pro plugin is installed.
+	 * @param string $pro_status      Current Pro license status.
+	 * @param string $free_status     Current free license status.
+	 * @param string $site_id         Current connected site ID.
+	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
-		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+		$is_pro       = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
 		$status       = $is_pro ? $pro_status : $free_status;
 		$is_connected = 'valid' === $status && '' !== $site_id;
 
 
 		return [
-			'has_pro_plugin' => $has_pro_plugin,
-			'is_pro'         => $is_pro,
-			'status'         => $status,
-			'is_connected'   => $is_connected,
+			'has_pro_plugin'  => $has_pro_plugin,
+			'is_pro'          => $is_pro,
+			'status'          => $status,
+			'is_connected'    => $is_connected,
+			'fallback_active' => $fallback_active,
 		];
 	}
 
 	/**
-	 * Get the next report collection date for display.
-	 *
-	 * Prefers the schedule returned by the connector service and falls back to a
-	 * local estimate when no remote schedule has been stored yet.
+	 * Gets the next estimated send date, assuming each send will be on
+	 * Mondays.
 	 *
 	 * @return string
 	 */
-	private function get_next_collection_date(): string {
-		$next_collection = (string) get_option( 'edac_next_collection', '' );
-		if ( '' !== $next_collection ) {
-			return $next_collection;
-		}
+	private function get_next_send_estimate_date(): string {
+		try {
+			// If today is Monday, use today. Otherwise, use next Monday.
+			$today = new \DateTime( 'now', wp_timezone() );
 
-		$next_monday = new \DateTime( 'next monday', wp_timezone() );
-		return $next_monday->format( 'Y-m-d' );
+			if ( '1' === $today->format( 'N' ) ) {
+				return $today->format( 'Y-m-d' );
+			}
+
+			$next_monday = new \DateTime( 'next monday', wp_timezone() );
+			return $next_monday->format( 'Y-m-d' );
+		} catch ( \Exception $exception ) {
+			return '';
+		}
 	}
 
 	/**
