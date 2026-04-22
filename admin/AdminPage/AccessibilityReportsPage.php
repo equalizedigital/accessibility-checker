@@ -84,7 +84,7 @@ class AccessibilityReportsPage implements PageInterface {
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$is_connected    = $license_context['is_connected'];
-		$next_collection = $this->get_next_collection_date();
+		$next_send_date  = $this->get_next_send_estimate_date();
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
@@ -214,9 +214,9 @@ class AccessibilityReportsPage implements PageInterface {
 								</div>
 								<p><?php esc_html_e( 'You’ll receive weekly accessibility reports for this site.', 'accessibility-checker' ); ?></p>
 								<p class="edac-reports-card__meta">
-									<?php if ( $next_collection ) : ?>
+									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_collection ) ) ) ); ?></span>
+										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_send_date ) ) ) ); ?></span>
 									<?php endif; ?>
 									</p>
 							</div>
@@ -340,21 +340,25 @@ class AccessibilityReportsPage implements PageInterface {
 	}
 
 	/**
-	 * Get the next report collection date for display.
-	 *
-	 * Prefers the schedule returned by the connector service and falls back to a
-	 * local estimate when no remote schedule has been stored yet.
+	 * Gets the next estimated send data, assuming each send will be on
+	 * Mondays.
 	 *
 	 * @return string
 	 */
-	private function get_next_collection_date(): string {
-		$next_collection = (string) get_option( 'edac_next_collection', '' );
-		if ( '' !== $next_collection ) {
-			return $next_collection;
-		}
+	private function get_next_send_estimate_date(): string {
+		try {
+			// If today is Monday, use today. Otherwise, use next Monday.
+			$today = new \DateTime( 'now', wp_timezone() );
 
-		$next_monday = new \DateTime( 'next monday', wp_timezone() );
-		return $next_monday->format( 'Y-m-d' );
+			if ( '1' === $today->format( 'N' ) ) {
+				return $today->format( 'Y-m-d' );
+			}
+
+			$next_monday = new \DateTime( 'next monday', wp_timezone() );
+			return $next_monday->format( 'Y-m-d' );
+		} catch ( \Exception $exception ) {
+			return '';
+		}
 	}
 
 	/**
