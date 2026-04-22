@@ -609,7 +609,7 @@ class AccessibilityCheckerHighlight {
                                                                         <li role="none"><button id="edac-highlight-dock" class="edac-highlight-dock" role="menuitem"><span>${ dockLabel }</span>${ dockIcon }</button></li>
                                                                         ${ rescanButton }
                                                                         ${ clearButtonMarkup }
-                                                                        <li role="none"><button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" role="menuitem" aria-live="polite" aria-label="${ __( 'Disable Page Styles', 'accessibility-checker' ) }"><span>${ __( 'Disable Styles', 'accessibility-checker' ) }</span>${ stylesIcon }</button></li>
+                                                                        <li role="none"><button id="edac-highlight-disable-styles" class="edac-highlight-disable-styles" role="menuitem" aria-live="polite"><span>${ __( 'Disable Styles', 'accessibility-checker' ) }</span>${ stylesIcon }</button></li>
                                                                 </ul>
                                                         </div>
                                                         <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
@@ -1444,7 +1444,6 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = true;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Enable Styles', 'accessibility-checker' );
-		this.disableStylesButton.setAttribute( 'aria-label', __( 'Enable Page Styles', 'accessibility-checker' ) );
 		this.announce( __( 'Page styles disabled.', 'accessibility-checker' ) );
 	}
 
@@ -1481,7 +1480,6 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = false;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Disable Styles', 'accessibility-checker' );
-		this.disableStylesButton.setAttribute( 'aria-label', __( 'Disable Page Styles', 'accessibility-checker' ) );
 		this.announce( __( 'Page styles re-enabled.', 'accessibility-checker' ) );
 
 		// Re-render the current issue to restore panel state after styles are re-enabled.
