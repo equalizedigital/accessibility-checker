@@ -304,7 +304,7 @@ class AccessibilityReportsPage implements PageInterface {
 	 * Pro should only be treated as authoritative when it is both installed and valid.
 	 * Otherwise the reports page should fall back to the free plugin state.
 	 *
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,fallback_active:bool}
 	 */
 	private function get_license_context(): array {
 		$has_pro_plugin  = defined( 'EDACP_VERSION' );
@@ -324,7 +324,7 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @param string $free_status     Current free license status.
 	 * @param string $site_id         Current connected site ID.
 	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,fallback_active:bool}
 	 */
 	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
 		$is_pro       = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
