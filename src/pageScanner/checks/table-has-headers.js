@@ -43,6 +43,7 @@ export default {
 
 		// Helper function to validate ARIA header relationships
 		const validateAriaHeaders = () => {
+			const doc = node.ownerDocument || document;
 			const dataCells = node.querySelectorAll( 'td[headers]' );
 			if ( dataCells.length === 0 ) {
 				return true; // No ARIA headers to validate
@@ -55,7 +56,18 @@ export default {
 						continue;
 					}
 
-					const headerElement = node.querySelector( '#' + CSS.escape( headerId ) );
+					let headerElement;
+					try {
+						// CSS.escape handles IDs with special characters (e.g. "name:primary").
+						// Scoped to the table so duplicate IDs elsewhere in the document don't
+						// cause false positives.
+						headerElement = node.querySelector( '#' + CSS.escape( headerId ) );
+					} catch ( e ) {
+						// CSS.escape unavailable — fall back to document-scoped lookup.
+						const candidate = doc.getElementById( headerId );
+						headerElement = candidate && node.contains( candidate ) ? candidate : null;
+					}
+
 					if ( ! headerElement ) {
 						return false; // Referenced header doesn't exist within table
 					}
