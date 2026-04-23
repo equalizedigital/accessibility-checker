@@ -596,6 +596,85 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures validate_jwt_token_in_request_with_fallback returns false when edac_site_id option is not set.
+	 */
+	public function test_validate_jwt_token_in_request_with_fallback_returns_false_when_site_id_missing() {
+		// edac_site_id is deleted in set_up(), so no option is present.
+		$request = new \WP_REST_Request( 'POST', '/test' );
+		$request->set_header( 'Authorization', 'Bearer some.jwt.token' );
+
+		$this->assertFalse( Connector::validate_jwt_token_in_request_with_fallback( $request ) );
+	}
+
+	/**
+	 * Ensures validate_jwt_token_in_request_with_fallback returns false when edac_site_id is an empty string.
+	 */
+	public function test_validate_jwt_token_in_request_with_fallback_returns_false_when_site_id_is_empty_string() {
+		update_option( 'edac_site_id', '' );
+
+		$request = new \WP_REST_Request( 'POST', '/test' );
+		$request->set_header( 'Authorization', 'Bearer some.jwt.token' );
+
+		$this->assertFalse( Connector::validate_jwt_token_in_request_with_fallback( $request ) );
+	}
+
+	/**
+	 * Ensures validate_jwt_token_in_request_with_fallback returns false when passed a non-WP_REST_Request value.
+	 */
+	public function test_validate_jwt_token_in_request_with_fallback_returns_false_for_non_rest_request() {
+		$this->assertFalse( Connector::validate_jwt_token_in_request_with_fallback( null ) );
+	}
+
+	/**
+	 * Ensures validate_jwt_token_in_request_with_fallback returns false when no Authorization header is present.
+	 */
+	public function test_validate_jwt_token_in_request_with_fallback_returns_false_without_bearer_header() {
+		update_option( 'edac_site_id', 'some-site-id' );
+
+		$request = new \WP_REST_Request( 'POST', '/test' );
+
+		$this->assertFalse( Connector::validate_jwt_token_in_request_with_fallback( $request ) );
+	}
+
+	/**
+	 * Ensures validate_jwt_token_in_request_with_fallback proceeds to token validation when the site is connected.
+	 *
+	 * When edac_site_id is present, the method must not bail early and must attempt to
+	 * validate the JWT. This is confirmed by verifying the public-key refresh HTTP request
+	 * is made — a request that only occurs after the site_id guard passes.
+	 */
+	public function test_validate_jwt_token_in_request_with_fallback_proceeds_to_validation_when_site_id_present() {
+		update_option( 'edac_site_id', 'some-site-id' );
+
+		$http_request_made = false;
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode( [ 'public_key' => '' ] ),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/test' );
+		$request->set_header( 'Authorization', 'Bearer some.jwt.token' );
+
+		// Returns false because the JWT token is invalid — not because site_id is missing.
+		$this->assertFalse( Connector::validate_jwt_token_in_request_with_fallback( $request ) );
+
+		// Confirms the code passed the site_id guard and attempted public-key refresh.
+		$this->assertTrue( $http_request_made, 'Expected HTTP request to be made for public key refresh.' );
+	}
+
+	/**
 	 * Ensures hook-provided license key is used for unregistration when option key is missing.
 	 */
 	public function test_handle_site_unregistration_uses_hook_license_when_stored_key_missing() {

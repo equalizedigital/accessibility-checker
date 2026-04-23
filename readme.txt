@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
 Tested up to: 6.9
-Stable tag: 1.39.0
+Stable tag: 1.40.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -276,6 +276,15 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 9. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
 
 == Changelog ==
+
+2026-04-21 - version 1.40.0
+* New - Screen reader only text format support in the Block Editor and frontend.
+* New - Email reports opt-in added for site summaries.
+* New - Frontend highlighter UI update and positioning options added.
+* Fix - Article landmark labels now correctly display "Landmark: Article".
+* Changed - Missing Table Header checks now correctly skip tables marked with role="presentation" or role="none".
+* Changed - Table header detection now better handles colspan, rowspan, and ARIA header relationships.
+* Changed - Orphaned issue cleanup now runs twice daily for fresher issue data.
 
 2026-03-17 - version 1.39.0
 * New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.

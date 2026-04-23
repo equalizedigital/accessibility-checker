@@ -84,22 +84,23 @@ class AccessibilityReportsPage implements PageInterface {
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$is_connected    = $license_context['is_connected'];
-		$next_collection = $this->get_next_collection_date();
+		$next_send_date  = $this->get_next_send_estimate_date();
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
 
-		$upgrade_url       = edac_generate_link_type(
+		$upgrade_url = edac_generate_link_type(
 			[
 				'utm_campaign' => 'settings-page',
 				'utm_content'  => 'accessibility-reports-upgrade',
 			]
 		);
-		$dashboard_url     = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
-		$email_reports_url = edac_link_wrapper( 'https://my.equalizedigital.com/email-reports', 'accessibility-reports', 'email-reports', false );
-		$signup_url        = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
-		$terms_url         = edac_link_wrapper( 'https://equalizedigital.com/terms-of-service/', 'accessibility-reports', 'terms', false );
-		$privacy_url       = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
+
+		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
+		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
+		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
+
 		$allowed_icon_html = [
 			'span' => [
 				'class'       => true,
@@ -159,7 +160,7 @@ class AccessibilityReportsPage implements PageInterface {
 							</div>
 						<?php else : ?>
 							<div class="edac-reports-grid edac-reports-grid--two">
-								<article class="edac-reports-card">
+								<div class="edac-reports-card">
 									<h3><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></h3>
 									<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 										<input type="hidden" name="action" value="edac_license" />
@@ -170,9 +171,9 @@ class AccessibilityReportsPage implements PageInterface {
 											<?php esc_html_e( 'Enable Email Reports', 'accessibility-checker' ); ?>
 										</button>
 									</form>
-								</article>
+								</div>
 
-								<article class="edac-reports-card">
+								<div class="edac-reports-card">
 									<h3><?php esc_html_e( 'Get a Free License Key', 'accessibility-checker' ); ?></h3>
 									<p>
 										<?php
@@ -201,29 +202,26 @@ class AccessibilityReportsPage implements PageInterface {
 										);
 										?>
 									</p>
-								</article>
+								</div>
 							</div>
 						<?php endif; ?>
 				<?php else : ?>
 						<div class="edac-reports-grid edac-reports-grid--two">
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<div class="edac-reports-card__header">
 									<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
 									<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
 								</div>
 								<p><?php esc_html_e( 'You’ll receive weekly accessibility reports for this site.', 'accessibility-checker' ); ?></p>
 								<p class="edac-reports-card__meta">
-									<?php if ( $next_collection ) : ?>
+									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( wp_date( get_option( 'date_format' ), strtotime( $next_collection ) ) ) ); ?></span>
+										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( mysql2date( get_option( 'date_format' ), $next_send_date ) ) ); ?></span>
 									<?php endif; ?>
 									</p>
-								<p>
-									<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $email_reports_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Manage Recipients in Dashboard', 'accessibility-checker' ); ?></a>
-								</p>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<div class="edac-reports-card__header">
 									<h3><?php echo esc_html( $is_pro ? __( 'Full Coverage', 'accessibility-checker' ) : __( 'Limited Coverage', 'accessibility-checker' ) ); ?></h3>
 									<span class="edac-reports-card__status <?php echo esc_attr( $is_pro ? 'edac-reports-card__status--success' : 'edac-reports-card__status--warning' ); ?>" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( $is_pro ? 'check' : 'warning' ), $allowed_icon_html ); ?></span>
@@ -247,18 +245,18 @@ class AccessibilityReportsPage implements PageInterface {
 										<a class="button button-primary edac-reports-page__button" href="<?php echo esc_url( $upgrade_url ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Upgrade to Pro', 'accessibility-checker' ); ?></a>
 									</p>
 								<?php endif; ?>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<h3><?php esc_html_e( 'Accessibility Summary', 'accessibility-checker' ); ?></h3>
 								<p><?php esc_html_e( 'This summary reflects the latest scan data available for your site.', 'accessibility-checker' ); ?></p>
 								<div class="edac-reports-stat">
 									<div class="edac-reports-stat__label"><?php esc_html_e( 'Total Issues Found', 'accessibility-checker' ); ?></div>
 									<div class="edac-reports-stat__value"><?php echo esc_html( number_format_i18n( $preview_data['total_issues'] ) ); ?></div>
 									</div>
-							</article>
+							</div>
 
-							<article class="edac-reports-card">
+							<div class="edac-reports-card">
 								<h3><?php echo esc_html( $is_pro ? __( 'Account Connection', 'accessibility-checker' ) : __( 'Free License Key', 'accessibility-checker' ) ); ?></h3>
 								<?php if ( ! $is_pro ) : ?>
 									<div class="edac-reports-page__license-mask"><?php echo esc_html( $this->mask_license_key( $license_key ) ); ?></div>
@@ -270,17 +268,19 @@ class AccessibilityReportsPage implements PageInterface {
 										<?php esc_html_e( 'Disable Email Reports', 'accessibility-checker' ); ?>
 									</button>
 								</form>
-							</article>
+							</div>
 						</div>
 				<?php endif; ?>
 
 					<p class="edac-reports-page__legal">
 						<?php
 						printf(
-							/* translators: %1$s: terms link, %2$s: privacy link. */
-							wp_kses_post( __( 'By connecting this site, you agree to the Equalize Digital <a href="%1$s" target="_blank" rel="noopener noreferrer">Terms of Service</a> and <a href="%2$s" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.', 'accessibility-checker' ) ),
-							esc_url( $terms_url ),
-							esc_url( $privacy_url )
+							/* translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label. */
+							wp_kses_post( __( 'By connecting this site, you agree to Equalize Digital\'s <a href="%1$s" target="_blank" rel="noopener noreferrer" aria-label="%3$s">Privacy Policy <span aria-hidden="true">&#8599;</span></a> and <a href="%2$s" target="_blank" rel="noopener noreferrer" aria-label="%4$s">Data Processing Agreement <span aria-hidden="true">&#8599;</span></a>.', 'accessibility-checker' ) ),
+							esc_url( $privacy_url ),
+							esc_url( $data_processing_url ),
+							esc_attr__( 'Privacy Policy (opens in a new window)', 'accessibility-checker' ),
+							esc_attr__( 'Data Processing Agreement (opens in a new window)', 'accessibility-checker' )
 						);
 						?>
 					</p>
@@ -290,8 +290,8 @@ class AccessibilityReportsPage implements PageInterface {
 			<aside class="edac-reports-preview">
 				<img
 					class="edac-reports-preview__image"
-					src="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-reports-email-preview.png' ); ?>"
-					alt="<?php esc_attr_e( 'Preview of the weekly accessibility report email.', 'accessibility-checker' ); ?>"
+					src="<?php echo esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-reports-email-preview.jpg' ); ?>"
+					alt="<?php esc_attr_e( 'Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues.', 'accessibility-checker' ); ?>"
 				/>
 			</aside>
 		</div>
@@ -319,42 +319,48 @@ class AccessibilityReportsPage implements PageInterface {
 	/**
 	 * Resolve effective license context from current status values.
 	 *
-	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
-	 * @param string $pro_status     Current Pro license status.
-	 * @param string $free_status    Current free license status.
-	 * @param string $site_id        Current connected site ID.
+	 * @param bool   $has_pro_plugin  Whether the Pro plugin is installed.
+	 * @param string $pro_status      Current Pro license status.
+	 * @param string $free_status     Current free license status.
+	 * @param string $site_id         Current connected site ID.
+	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
-		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+		$is_pro       = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
 		$status       = $is_pro ? $pro_status : $free_status;
 		$is_connected = 'valid' === $status && '' !== $site_id;
 
 
 		return [
-			'has_pro_plugin' => $has_pro_plugin,
-			'is_pro'         => $is_pro,
-			'status'         => $status,
-			'is_connected'   => $is_connected,
+			'has_pro_plugin'  => $has_pro_plugin,
+			'is_pro'          => $is_pro,
+			'status'          => $status,
+			'is_connected'    => $is_connected,
+			'fallback_active' => $fallback_active,
 		];
 	}
 
 	/**
-	 * Get the next report collection date for display.
-	 *
-	 * Prefers the schedule returned by the connector service and falls back to a
-	 * local estimate when no remote schedule has been stored yet.
+	 * Gets the next estimated send date, assuming each send will be on
+	 * Mondays.
 	 *
 	 * @return string
 	 */
-	private function get_next_collection_date(): string {
-		$next_collection = (string) get_option( 'edac_next_collection', '' );
-		if ( '' !== $next_collection ) {
-			return $next_collection;
-		}
+	private function get_next_send_estimate_date(): string {
+		try {
+			// If today is Monday, use today. Otherwise, use next Monday.
+			$today = new \DateTime( 'now', wp_timezone() );
 
-		$next_monday = new \DateTime( 'next monday', wp_timezone() );
-		return $next_monday->format( 'Y-m-d' );
+			if ( '1' === $today->format( 'N' ) ) {
+				return $today->format( 'Y-m-d' );
+			}
+
+			$next_monday = new \DateTime( 'next monday', wp_timezone() );
+			return $next_monday->format( 'Y-m-d' );
+		} catch ( \Exception $exception ) {
+			return '';
+		}
 	}
 
 	/**
