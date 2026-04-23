@@ -223,8 +223,8 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
 
-		if ( defined( 'EDACP_VERSION' ) ) {
-			// Message for users who already have Accessibility Checker Pro active.
+		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
+			// Message for users who already have Accessibility Checker Pro active (valid license).
 			$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 			$message .= sprintf(
 				/* translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag */
