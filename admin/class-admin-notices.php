@@ -223,9 +223,10 @@ class Admin_Notices {
 		// Construct the promotional message.
 		$message = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
 
+		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
+
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
 			// Message for users who already have Accessibility Checker Pro active (valid license).
-			$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 			$message .= sprintf(
 				/* translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag */
 				esc_html__( '3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital\'s %3$sArchiveWP plugin%4$s. Go further with accessibility.', 'accessibility-checker' ),
@@ -234,12 +235,12 @@ class Admin_Notices {
 				'<a href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/archivewp/', 'admin-notice', 'GAAD2026-archivewp', false ) ) . '">',
 				'</a>'
 			) . '<br />';
-			$message .= esc_html__( 'Limited-time offer • May 20–22 • Use coupon code GAAD2026', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( 'Limited-time offer • May 20–22 • Use coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code><br />';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/', 'admin-notice', 'GAAD2026-grab-deal', false ) ) . '">' . esc_html__( 'Grab the Deal Before It Ends', 'accessibility-checker' ) . '</a></p>';
 		} else {
 			// Message for users who do not have Accessibility Checker Pro active.
-			$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
-			$message .= esc_html__( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code GAAD2026.', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code', 'accessibility-checker' );
+			$message .= '<code>GAAD2026</code>.</br>';
 			$message .= esc_html__( 'Limited-time offer • May 20–22', 'accessibility-checker' ) . '<br />';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD2026-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		}
