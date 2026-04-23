@@ -35,6 +35,7 @@ if ( true === (bool) $edac_delete_data ) {
 		'edac_authorization_password', // legacy option, remove in 1.29.0.
 		'edac_authorization_username', // legacy option, remove in 1.29.0.
 		'edac_gaad_notice_dismiss',
+		'edac_gaad_notice_dismiss_2026',
 		'edac_black_friday_2023_notice_dismiss',
 		'edac_black_friday_2024_notice_dismiss',
 		'edac_black_friday_2025_notice_dismiss',
