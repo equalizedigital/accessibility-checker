@@ -95,6 +95,28 @@ describe( 'Image Alt Empty Validation', () => {
 			html: '<img src="smiley.jpg" alt="" class="wp-smiley">',
 			shouldPass: true,
 		},
+
+		// Tracking pixel (1x1) edge cases
+		{
+			name: 'should pass for 1x1 tracking pixel with empty alt (gif)',
+			html: '<img src="track.gif" alt="" width="1" height="1">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for 1x1 tracking pixel with empty alt (arbitrary src)',
+			html: '<img src="https://example.com/whatever.png" alt="" width="1" height="1">',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for 2x1 image with empty alt (not a tracking pixel)',
+			html: '<img src="tiny.png" alt="" width="2" height="1">',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for img with empty alt and no dimension attributes (cannot confirm tracking pixel without dimensions)',
+			html: '<img src="maybe-tracker.gif" alt="">',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {

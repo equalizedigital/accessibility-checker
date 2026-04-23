@@ -35,6 +35,11 @@ export default {
 			return true;
 		}
 
+		// Skip 1x1 tracking pixels (any src or base64)
+		if ( hasEmptyAlt && isTrackingPixel( node ) ) {
+			return true;
+		}
+
 		// Return false if alt is empty and none of the exceptions apply
 		return ! hasEmptyAlt;
 	},
@@ -73,6 +78,33 @@ function isInsideValidCaption( node ) {
 		if ( anchorText !== '' && anchorText.length > 5 ) {
 			return true;
 		}
+	}
+
+	return false;
+}
+
+/**
+ * Check if image is a 1x1 tracking pixel.
+ * Checks both HTML attributes and computed natural dimensions.
+ * @param {HTMLElement} node - The node to check
+ * @return {boolean} True if image is a 1x1 tracking pixel
+ */
+function isTrackingPixel( node ) {
+	// Check HTML width/height attributes
+	const widthAttr = node.getAttribute( 'width' );
+	const heightAttr = node.getAttribute( 'height' );
+	if ( widthAttr === '1' && heightAttr === '1' ) {
+		return true;
+	}
+
+	// Check computed natural dimensions (e.g. for base64 or loaded images without explicit attributes)
+	if (
+		typeof node.naturalWidth === 'number' &&
+		typeof node.naturalHeight === 'number' &&
+		node.naturalWidth === 1 &&
+		node.naturalHeight === 1
+	) {
+		return true;
 	}
 
 	return false;
