@@ -915,6 +915,9 @@
     width: 100%;
     height: auto;
     margin-bottom: -15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    clip-path: inset(-10px -10px 0 -10px);
+    border-radius: 5px 5px 0 0;
   }
 }
 
