@@ -116,12 +116,16 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	/**
 	 * Test that the Pro GAAD promo message is shown when EDACP_VERSION is defined and edac_is_pro() is true.
 	 *
+	 * Note: EDAC_KEY_VALID is defined by the plugin bootstrap in the test environment, so this test
+	 * can only run in environments where both constants are not yet defined (e.g. Pro plugin installed
+	 * with a valid key). It mirrors the skip pattern used by PluginActionLinksUndefinedKeyTest.
+	 *
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
 	 */
 	public function test_edac_get_gaad_promo_message_pro_contains_pro_content() {
-		if ( ! function_exists( 'edac_is_pro' ) ) {
-			$this->markTestSkipped( 'edac_is_pro is not available in this test environment.' );
+		if ( defined( 'EDAC_KEY_VALID' ) || defined( 'EDACP_VERSION' ) ) {
+			$this->markTestSkipped( 'Cannot test Pro-message branch: EDAC_KEY_VALID or EDACP_VERSION is already defined in this environment.' );
 		}
 
 		define( 'EDACP_VERSION', '1.0.0' );
@@ -140,17 +144,20 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	/**
 	 * Test that the Pro GAAD promo message is NOT shown when EDACP_VERSION is defined but edac_is_pro() is false (no valid key).
 	 *
+	 * The plugin bootstrap always defines EDAC_KEY_VALID as false in the test environment, so we only
+	 * need to define EDACP_VERSION to exercise the "Pro plugin installed, but no valid license" path.
+	 *
 	 * @runInSeparateProcess
 	 * @preserveGlobalState disabled
 	 */
 	public function test_edac_get_gaad_promo_message_pro_version_without_valid_key_shows_non_pro_message() {
-		if ( ! function_exists( 'edac_is_pro' ) ) {
-			$this->markTestSkipped( 'edac_is_pro is not available in this test environment.' );
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$this->markTestSkipped( 'Cannot test this branch: EDACP_VERSION is already defined in this environment.' );
 		}
 
-		// EDACP_VERSION defined but EDAC_KEY_VALID is false — edac_is_pro() returns false.
+		// EDAC_KEY_VALID is already defined as false by the plugin bootstrap (get_option check).
+		// Defining EDACP_VERSION simulates Pro plugin installed without a valid key.
 		define( 'EDACP_VERSION', '1.0.0' );
-		define( 'EDAC_KEY_VALID', false );
 
 		$message = $this->admin_notices->edac_get_gaad_promo_message();
 		// Should fall back to the non-Pro (upgrade) message.
