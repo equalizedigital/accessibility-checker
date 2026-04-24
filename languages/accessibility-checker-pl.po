@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0\n"
+"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
+"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -47,6 +47,305 @@ msgstr "Equalize Digital"
 #: accessibility-checker.php
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:56
+#: admin/AdminPage/AccessibilityReportsPage.php:137
+msgid "Accessibility Reports"
+msgstr "Raporty dostępności"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+msgid "New"
+msgstr "Nowe"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:143
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
+msgstr "Otrzymuj cykliczne raporty e-mail z przeglądem dostępności Twojej witryny, w tym liczbą wszystkich problemów, trendami w czasie, najbardziej problematycznymi stronami oraz najpoważniejszymi problemami do naprawienia w pierwszej kolejności."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:145
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
+msgstr "Otrzymuj cykliczne raporty e-mail z przeglądem dostępności Twojej witryny, w tym liczbą wszystkich problemów, trendami w czasie, najbardziej problematycznymi stronami oraz najpoważniejszymi problemami do naprawienia w pierwszej kolejności. Niektóre szczegóły, takie jak pełne pokrycie witryny i szczegółowe zestawienia problemów, są dostępne w wersji Pro."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:156
+#: admin/AdminPage/AccessibilityReportsPage.php:170
+msgid "Enable Email Reports"
+msgstr "Włącz raporty e-mail"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:163
+#: admin/AdminPage/AccessibilityReportsPage.php:167
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/ConnectedServicesPage.php:153
+msgid "Free License Key"
+msgstr "Darmowy klucz licencyjny"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:176
+msgid "Get a Free License Key"
+msgstr "Uzyskaj darmowy klucz licencyjny"
+
+#. translators: %s: dashboard URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:181
+#, php-format
+msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
+msgstr "Pobrane z Equalize Digital? Twój klucz znajduje się w <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">panelu sterowania</a>."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:190
+#, php-format
+msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
+msgstr "Zainstalowane z WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Utwórz darmowe konto</a>, aby go otrzymać."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:199
+#, php-format
+msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
+msgstr "Nie masz pewności? Po prostu <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">utwórz darmowe konto</a>. Zajmie to tylko chwilę."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:211
+msgid "Reports Enabled"
+msgstr "Raporty włączone"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:214
+msgid "You’ll receive weekly accessibility reports for this site."
+msgstr "Będziesz otrzymywać cotygodniowe raporty dostępności dla tej witryny."
+
+#. translators: %s: next report date.
+#: admin/AdminPage/AccessibilityReportsPage.php:218
+#, php-format
+msgid "Next report: %s"
+msgstr "Następny raport: %s"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:222
+msgid "Manage Recipients in Dashboard"
+msgstr "Zarządzaj odbiorcami w panelu sterowania"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Full Coverage"
+msgstr "Pełne pokrycie"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Limited Coverage"
+msgstr "Ograniczone pokrycie"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:232
+msgid "Your reports include all post types and taxonomies."
+msgstr "Twoje raporty obejmują wszystkie typy postów i taksonomie."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:234
+msgid "Full-site scanning enabled"
+msgstr "Skanowanie całej witryny włączone"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:235
+msgid "Complete issue breakdowns"
+msgstr "Kompletne zestawienia problemów"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:236
+msgid "Detailed reporting"
+msgstr "Szczegółowe raportowanie"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:239
+msgid "Your reports only include part of your site."
+msgstr "Twoje raporty obejmują tylko część Twojej witryny."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:240
+msgid "Upgrade to Pro to:"
+msgstr "Zaktualizuj do wersji Pro, aby:"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:242
+msgid "Scan all content types"
+msgstr "Skanować wszystkie typy treści"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:243
+msgid "Get full issue breakdowns"
+msgstr "Uzyskać pełne zestawienia problemów"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:244
+msgid "Receive more detailed reports"
+msgstr "Otrzymywać bardziej szczegółowe raporty"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/class-upgrade-promotion.php:62
+msgid "Upgrade to Pro"
+msgstr "Uaktualnij do wersji pro"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:253
+msgid "Accessibility Summary"
+msgstr "Podsumowanie dostępności"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:254
+msgid "This summary reflects the latest scan data available for your site."
+msgstr "To podsumowanie odzwierciedla najnowsze dane skanowania dostępne dla Twojej witryny."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:256
+msgid "Total Issues Found"
+msgstr "Znaleziono wszystkich problemów"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+msgid "Account Connection"
+msgstr "Połączenie konta"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:270
+msgid "Disable Email Reports"
+msgstr "Wyłącz raporty e-mail"
+
+#. translators: %1$s: terms link, %2$s: privacy link.
+#: admin/AdminPage/AccessibilityReportsPage.php:281
+#, php-format
+msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
+msgstr "Łącząc tę witrynę, zgadzasz się na <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Warunki świadczenia usług</a> oraz <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Politykę prywatności</a> Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:294
+msgid "Preview of the weekly accessibility report email."
+msgstr "Podgląd cotygodniowego raportu dostępności (e-mail)."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "N/D"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/class-ajax.php:330
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Krytyczny"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/class-ajax.php:334
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Wysoki"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/class-ajax.php:338
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Średni"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/class-ajax.php:342
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Niski"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: includes/classes/class-rest-api.php:997
+msgid "Unknown"
+msgstr "Nieznany"
+
+#: admin/AdminPage/ConnectedServicesPage.php:137
+msgid "create a free account"
+msgstr "utwórz darmowe konto"
+
+#: admin/AdminPage/ConnectedServicesPage.php:146
+msgid "Connect this site"
+msgstr "Połącz tę witrynę"
+
+#: admin/AdminPage/ConnectedServicesPage.php:165
+msgid "active"
+msgstr "aktywne"
+
+#: admin/AdminPage/ConnectedServicesPage.php:167
+msgid "expired"
+msgstr "wygasły"
+
+#: admin/AdminPage/ConnectedServicesPage.php:169
+msgid "Enter your license key"
+msgstr "Wprowadź swój klucz licencyjny"
+
+#: admin/AdminPage/ConnectedServicesPage.php:184
+#: admin/AdminPage/ConnectedServicesPage.php:250
+msgid "Disconnect Site"
+msgstr "Odłącz witrynę"
+
+#: admin/AdminPage/ConnectedServicesPage.php:191
+msgid "Connect Site"
+msgstr "Połącz witrynę"
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:204
+#, php-format
+msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
+msgstr "Jeśli pobrałeś darmową wtyczkę z Equalize Digital, masz już darmowy klucz licencyjny w swoim panelu sterowania %s."
+
+#. translators: %s: link to create a free account
+#: admin/AdminPage/ConnectedServicesPage.php:213
+#, php-format
+msgid "If not, %s to generate a license key and connect this site."
+msgstr "Jeśli nie, %s, aby wygenerować klucz licencyjny i połączyć tę witrynę."
+
+#: admin/AdminPage/ConnectedServicesPage.php:232
+msgid "Connected as Free"
+msgstr "Połączono jako bezpłatne"
+
+#: admin/AdminPage/ConnectedServicesPage.php:233
+msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
+msgstr "Twoja licencja Pro nie jest już ważna, ale ta witryna pozostaje połączona w celu otrzymywania bezpłatnych raportów e-mail."
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:238
+#, php-format
+msgid "You can manage recipients and review connection details in your %s dashboard."
+msgstr "Możesz zarządzać odbiorcami i przeglądać szczegóły połączenia w swoim panelu sterowania %s."
+
+#: admin/AdminPage/ConnectedServicesPage.php:398
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "Twoja licencja Pro nie jest już ważna. Ta witryna używa ważnej licencji bezpłatnej, a raporty e-mail pozostają połączone jako bezpłatne raporty e-mail. Odnów swoją licencję Pro, aby przywrócić funkcje dostępne tylko w wersji Pro."
+
+#: admin/AdminPage/ConnectedServicesPage.php:401
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
+msgstr "Twoja licencja Pro nie jest już ważna. Ta witryna używa ważnej licencji bezpłatnej, ale raporty e-mail nie są obecnie połączone. Połącz tę witrynę z sekcji „Licencja bezpłatna”, aby wznowić otrzymywanie bezpłatnych raportów e-mail."
+
+#: admin/AdminPage/ConnectedServicesPage.php:442
+msgid "Please renew your license"
+msgstr "Prosimy o odnowienie licencji"
+
+#. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
+#: admin/AdminPage/ConnectedServicesPage.php:445
+#, php-format
+msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
+msgstr "Twoja licencja %1$s wygasła. %3$s, aby nadal mieć dostęp do dodatkowych funkcji i usług dla %2$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:455
+#, php-format
+msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
+msgstr "Twój klucz licencyjny %s został wyłączony. Skontaktuj się z naszym zespołem wsparcia, jeśli uważasz, że to błąd, lub chcesz nadal mieć dostęp do dodatkowych funkcji."
+
+#. translators: %1$s: item name, %2$s: license url, %3$s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:462
+#, php-format
+msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
+msgstr "Klucz licencyjny dla %1$s wydaje się być nieprawidłowy. Prosimy o <a href=\"%2$s\">sprawdzenie klucza licencyjnego</a>, aby uzyskać dostęp do dodatkowych funkcji i usług dostępności dla %3$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:472
+#, php-format
+msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
+msgstr "Ten klucz licencyjny dla %s nie jest aktywny dla tej witryny. Aktywuj go, aby uzyskać dostęp do dodatkowych funkcji na tej stronie."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:479
+#, php-format
+msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
+msgstr "Ten klucz licencyjny nie wydaje się być ważny dla %s. Sprawdź, czy wprowadziłeś prawidłowy klucz licencyjny."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:486
+#, php-format
+msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
+msgstr "Twój klucz licencyjny %s osiągnął limit aktywacji witryn. Możesz uaktualnić swoją licencję lub dezaktywować ją na innej witrynie, aby używać dodatkowych funkcji tutaj."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:493
+#, php-format
+msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
+msgstr "Wystąpił problem z walidacją Twojego klucza licencyjnego %s. Spróbuj ponownie lub skontaktuj się z naszym zespołem wsparcia, jeśli problem będzie się powtarzał."
 
 #: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
@@ -169,27 +468,27 @@ msgstr "Chcesz więcej możliwości z Accessibility Checker? %1$sOdblokuj funkcj
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odblokuj funkcje Pro (otwiera się w nowym oknie)"
 
-#: admin/class-admin-notices.php:133
+#: admin/class-admin-notices.php:139
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Oferta specjalna na Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:134
+#: admin/class-admin-notices.php:140
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Uaktualnij do płatnej wersji Accessibility Checker od 24 listopada do 3 grudnia i uzyskaj 30% zniżki! Pełne skanowanie witryny, raport otwartych problemów w całej witrynie, ignorowanie dzienników i wiele więcej."
 
-#: admin/class-admin-notices.php:135
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Zadaj pytanie przed zakupem"
 
-#: admin/class-admin-notices.php:136
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:142
+#: admin/class-admin-notices.php:232
 msgid "Upgrade Now"
 msgstr "Kup teraz"
 
-#: admin/class-admin-notices.php:155
-#: admin/class-admin-notices.php:245
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:161
+#: admin/class-admin-notices.php:251
+#: admin/class-admin-notices.php:340
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -201,37 +500,37 @@ msgstr "Kup teraz"
 msgid "Permission Denied"
 msgstr "Odmowa dostępu"
 
-#: admin/class-admin-notices.php:167
-#: admin/class-admin-notices.php:257
-#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:173
+#: admin/class-admin-notices.php:263
+#: admin/class-admin-notices.php:364
 msgid "Update option wasn't successful"
 msgstr "Aktualizacja opcji nie powiodła się"
 
-#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:229
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Skorzystaj z 25% zniżki na Accessibility Checker Pro z okazji Światowego Dnia Świadomości Dostępności! 🎉"
 
-#: admin/class-admin-notices.php:224
+#: admin/class-admin-notices.php:230
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Użyj kodu kuponu GAAD25 od 13 do 21 maja, aby uzyskać dostęp do pełnego skanowania witryny i innych funkcji pro ze specjalną zniżką. Nie jesteś pewien, czy aktualizacja jest dla Ciebie odpowiednia?"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:315
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Witaj! Dziękujemy za korzystanie z Accessibility Checker jako części Twojego zestawu narzędzi do dostępności. Skoro używasz go już od jakiegoś czasu, czy mógłbyś napisać 5-gwiazdkową recenzję Accessibility Checker w katalogu wtyczek WordPress? Pomoże to zwiększyć naszą widoczność, dzięki czemu więcej osób dowie się o znaczeniu dostępności stron internetowych. Bardzo dziękujemy!"
 
-#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:318
 msgid "Write A Review"
 msgstr "Napisz recenzję"
 
-#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:319
 msgid "Remind Me In Two Weeks"
 msgstr "Przypomnij mi za dwa tygodnie"
 
-#: admin/class-admin-notices.php:314
+#: admin/class-admin-notices.php:320
 msgid "Never Ask Again"
 msgstr "Nigdy więcej nie pytaj"
 
-#: admin/class-admin-notices.php:341
+#: admin/class-admin-notices.php:347
 msgid "The review action value was not set"
 msgstr "Wartość akcji recenzji nie została ustawiona"
 
@@ -281,6 +580,7 @@ msgid "Passed Tests"
 msgstr "Testy zakończone pomyślnie"
 
 #: admin/class-ajax.php:138
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
@@ -297,6 +597,7 @@ msgstr[2] "Problemów z kontrastem"
 
 #: admin/class-ajax.php:150
 #: admin/class-widgets.php:182
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -329,6 +630,7 @@ msgstr "* Prawdziwa dostępność wymaga ręcznego testowania oprócz automatycz
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
 #: admin/class-ignore-ui.php:126
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
@@ -339,33 +641,9 @@ msgid "No summary to return"
 msgstr "Brak podsumowania do zwrócenia"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:899
+#: includes/classes/class-rest-api.php:905
 msgid "Invalid table name"
 msgstr "Nieprawidłowa nazwa tabeli"
-
-#: admin/class-ajax.php:330
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Critical"
-msgstr "Krytyczny"
-
-#: admin/class-ajax.php:334
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "High"
-msgstr "Wysoki"
-
-#: admin/class-ajax.php:338
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Medium"
-msgstr "Średni"
-
-#: admin/class-ajax.php:342
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Low"
-msgstr "Niski"
 
 #: admin/class-ajax.php:383
 msgid " total"
@@ -570,12 +848,16 @@ msgstr "Brak danych o czytelności do zwrócenia"
 msgid "No ignore data to return"
 msgstr "Brak danych o ignorowaniu do zwrócenia"
 
+#: admin/class-enqueue-admin.php:435
+msgid "* Screen Reader Text"
+msgstr "* Tekst dla czytnika ekranu"
+
 #: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Nie ustawiono wartości id"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1037
+#: includes/classes/class-rest-api.php:1043
 msgid "Post not found"
 msgstr "Nie znaleziono wpisu"
 
@@ -583,7 +865,7 @@ msgstr "Nie znaleziono wpisu"
 msgid "Issue query returned no results"
 msgstr "Zapytanie o problem nie zwróciło wyników"
 
-#: admin/class-frontend-highlight.php:162
+#: admin/class-frontend-highlight.php:168
 msgid "Object query returned no results"
 msgstr "Zapytanie o obiekt nie zwróciło wyników"
 
@@ -681,10 +963,6 @@ msgstr "Oceń wtyczkę Accessibility Checker (otwiera się w nowym oknie)"
 #: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Oceń wtyczkę"
-
-#: admin/class-upgrade-promotion.php:62
-msgid "Upgrade to Pro"
-msgstr "Uaktualnij do wersji pro"
 
 #: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
@@ -989,8 +1267,8 @@ msgstr "Zawartość jest sprawdzana pod kątem dostępności"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker przeskanował %s wpis pod kątem problemów z dostępnością."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker przeskanował %s wpisy pod kątem problemów z dostępnością."
+msgstr[2] "Accessibility Checker przeskanował %s wpisów pod kątem problemów z dostępnością."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1014,8 +1292,8 @@ msgstr "Typy wpisów są skonfigurowane do sprawdzania dostępności"
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker jest skonfigurowany do skanowania %1$s typu wpisu: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
+msgstr[2] "Accessibility Checker jest skonfigurowany do skanowania %1$s typów wpisów: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -1158,15 +1436,11 @@ msgstr "Zdobądź Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Pobierz Accessibility Checker Pro (otwiera się w nowym oknie)"
 
-#: includes/classes/class-rest-api.php:991
-msgid "Unknown"
-msgstr "Nieznany"
-
-#: includes/classes/class-rest-api.php:1224
+#: includes/classes/class-rest-api.php:1230
 msgid "Issue not found."
 msgstr "Problem nie znaleziony."
 
-#: includes/classes/class-rest-api.php:1267
+#: includes/classes/class-rest-api.php:1273
 msgid "Failed to update the issue."
 msgstr "Nie udało się zaktualizować problemu."
 
@@ -1238,6 +1512,11 @@ msgstr "Dodaj etykietę do linków otwierających nową kartę/okno"
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Dodaj etykietę i ikonę do linków z %1$s informujące użytkowników, że otworzą nową kartę/okno. %2$sUwaga: To ustawienie nie będzie miało wpływu, jeśli włączona jest poprawka „Blokuj linki otwierające nowe okna”.%3$s"
 
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:117
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "otwiera nowe okno"
+
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
@@ -1308,6 +1587,23 @@ msgstr "Szukaj"
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Ustawienia dodawania brakujących etykiet do formularzy komentarzy i wyszukiwania WordPress."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:42
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:88
+msgid "Force Error on Empty Search"
+msgstr "Wymuś błąd przy pustym wyszukiwaniu"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:65
+msgid "Empty Search Handling"
+msgstr "Obsługa pustego wyszukiwania"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:91
+msgid "When a search is submitted with an empty query, force WordPress to display the search results template so users see a meaningful response. This assumes the active theme has a search.php template."
+msgstr "Gdy wyszukiwanie zostanie przesłane z pustym zapytaniem, wymuś na WordPressie wyświetlenie szablonu wyników wyszukiwania, aby użytkownicy zobaczyli sensowną odpowiedź. Zakłada to, że aktywny motyw ma szablon search.php."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:107
+msgid "Force WordPress to show a search results page when a search is submitted with an empty query."
+msgstr "Wymuś na WordPressie wyświetlenie strony wyników wyszukiwania, gdy wyszukiwanie zostanie przesłane z pustym zapytaniem."
 
 #: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
@@ -1468,17 +1764,75 @@ msgstr "Usuń indeks tabulacji"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Usuń atrybut %1$s z elementów, które można fokusować."
 
-#: includes/classes/Fixes/FixesManager.php:250
+#: includes/classes/Fixes/FixesManager.php:252
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Uwaga: To ustawienie nie jest zalecane dla motywów, które są już przygotowane pod kątem dostępności."
 
-#: includes/classes/Fixes/FixesManager.php:320
+#: includes/classes/Fixes/FixesManager.php:322
 msgid "Fix not found"
 msgstr "Nie znaleziono poprawki"
 
-#: includes/classes/Fixes/FixesManager.php:356
+#: includes/classes/Fixes/FixesManager.php:358
 msgid "Fix not found."
 msgstr "Nie znaleziono poprawki."
+
+#: includes/classes/MyDot/Connector.php:202
+msgid "You do not have permission to manage this license."
+msgstr "Nie masz uprawnień do zarządzania tą licencją."
+
+#: includes/classes/MyDot/Connector.php:238
+msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
+msgstr "Licencja Pro jest aktywna. Najpierw dezaktywuj licencję Pro, jeśli chcesz użyć licencji bezpłatnej."
+
+#: includes/classes/MyDot/Connector.php:268
+msgid "An error occurred, please try again."
+msgstr "Wystąpił błąd, spróbuj ponownie."
+
+#: includes/classes/MyDot/Connector.php:557
+msgid "You do not have permission to register this site."
+msgstr "Nie masz uprawnień do rejestrowania tej witryny."
+
+#: includes/classes/MyDot/Connector.php:578
+msgid "You do not have permission to unregister this site."
+msgstr "Nie masz uprawnień do wyrejestrowania tej witryny."
+
+#: includes/classes/MyDot/Connector.php:604
+msgid "No license key found. Please activate a license before registering your site."
+msgstr "Nie znaleziono klucza licencyjnego. Aktywuj licencję przed zarejestrowaniem witryny."
+
+#: includes/classes/MyDot/Connector.php:615
+#: includes/classes/MyDot/Connector.php:822
+msgid "Unknown error occurred while registering the site."
+msgstr "Wystąpił nieznany błąd podczas rejestrowania witryny."
+
+#: includes/classes/MyDot/Connector.php:644
+msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
+msgstr "Witryna zarejestrowana pomyślnie. Twoja witryna jest teraz skonfigurowana do korzystania z dodatkowych usług dostępności."
+
+#: includes/classes/MyDot/Connector.php:654
+msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
+msgstr "Rejestracja witryny zakończona, ale dane odpowiedzi nie były w oczekiwanym formacie. Niektóre funkcje mogą nie działać poprawnie."
+
+#: includes/classes/MyDot/Connector.php:730
+msgid "Unable to unregister site. Required registration data is missing."
+msgstr "Nie można wyrejestrować witryny. Brak wymaganych danych rejestracyjnych."
+
+#: includes/classes/MyDot/Connector.php:747
+#: includes/classes/MyDot/Connector.php:880
+msgid "Unknown error occurred while unregistering the site."
+msgstr "Wystąpił nieznany błąd podczas wyrejestrowywania witryny."
+
+#: includes/classes/MyDot/Connector.php:762
+msgid "Site unregistered successfully. Your site will no longer receive email reports."
+msgstr "Witryna wyrejestrowana pomyślnie. Twoja witryna nie będzie już otrzymywać raportów e-mail."
+
+#: includes/classes/MyDot/Connector.php:785
+msgid "No license key provided."
+msgstr "Nie podano klucza licencyjnego."
+
+#: includes/classes/MyDot/Connector.php:843
+msgid "Missing required parameters for unregistration."
+msgstr "Brak wymaganych parametrów do wyrejestrowania."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -2950,11 +3304,11 @@ msgstr "permalink do "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:403
+#: includes/helper-functions.php:409
 msgid "Attend Free"
 msgstr "Weź udział za darmo"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:415
 #: partials/welcome-page.php:88
 #: partials/welcome-page.php:93
 #: partials/welcome-page.php:98
@@ -2968,7 +3322,7 @@ msgid "(opens in a new window)"
 msgstr "(otwiera się w nowym oknie)"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:855
+#: includes/helper-functions.php:861
 #: build/issueModal.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
@@ -4730,14 +5084,14 @@ msgstr "EDAC: Nie znaleziono na stronie pasującego docelowego ID dla linku pomi
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Błąd podczas aktualizacji historii dla linku pomijającego."
 
-#: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "otwiera nowe okno"
-
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Zamknij modal poprawek"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%1$d of %2$d"
+msgstr "%1$d z %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
@@ -4752,9 +5106,37 @@ msgid "The element was not found on the page."
 msgstr "Element nie został znaleziony na stronie."
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Left"
+msgstr "Przenieś w lewo"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Right"
+msgstr "Przenieś w prawo"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel position reset."
+msgstr "Położenie panelu zostało zresetowane."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the left."
+msgstr "Panel przesunięty w lewo."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the right."
+msgstr "Panel przesunięty w prawo."
+
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Otwórz szczegóły dla %1$s, %2$s z %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Undock Panel"
+msgstr "Odłącz panel"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Dock Panel"
+msgstr "Zadokuj panel"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
@@ -4765,8 +5147,24 @@ msgid "Accessibility Checker Tools"
 msgstr "Narzędzia Accessibility Checker"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "More options"
+msgstr "Więcej opcji"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Wyłącz style strony"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Wyłącz style"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Close"
 msgstr "Zamknij"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues found on this page."
+msgstr "Nie znaleziono problemów na tej stronie."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Loading..."
@@ -4781,16 +5179,61 @@ msgid "Next"
 msgstr "Następny"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Page Styles"
-msgstr "Wyłącz style strony"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
-msgstr "Wyłącz style"
+msgid "Reset Position"
+msgstr "Resetuj położenie"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Wystąpił błąd podczas ładowania problemów."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel docked."
+msgstr "Panel zadokowany."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel undocked."
+msgstr "Panel odłączony."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Severity:"
+msgstr "Ważność:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Typ problemu:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Ignored"
+msgstr "Ignorowane"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Pokaż wyjaśnienie"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Dlaczego to ważne"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Jak naprawić"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Bardziej szczegółowa dokumentacja"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Affected Code"
+msgstr "Pokaż zmieniony kod"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4801,18 +5244,6 @@ msgstr "Napraw problem: %s"
 #: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Napraw problem"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Full Documentation"
-msgstr "Pełna dokumentacja"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Show Code"
-msgstr "Pokaż kod"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Typ problemu:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
@@ -4827,37 +5258,40 @@ msgid "These settings enable global fixes across your entire site. Pages may nee
 msgstr "Te ustawienia włączają globalne poprawki na całej Twojej witrynie. Aby zmiany były widoczne w raportach, może być konieczne ponowne zapisanie stron lub przeprowadzenie pełnego skanowania witryny."
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d issue found"
+msgid_plural "%d issues found"
+msgstr[0] "Znaleziono %d problem"
+msgstr[1] "Znaleziono %d problemy"
+msgstr[2] "Znaleziono %d problemów"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Problem"
+msgid_plural "%d Problems"
+msgstr[0] "%d problem"
+msgstr[1] "%d problemy"
+msgstr[2] "%d problemów"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Needs Review"
+msgid_plural "%d Need Review"
+msgstr[0] "%d wymaga recenzji"
+msgstr[1] "%d wymagają recenzji"
+msgstr[2] "%d wymaga recenzji"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Ignored"
+msgid_plural "%d Ignored"
+msgstr[0] "Zignorowano %d"
+msgstr[1] "Zignorowano %d"
+msgstr[2] "Zignorowano %d"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
 msgstr "Nie wykryto problemów."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "błąd"
-msgstr[1] "errors"
-msgstr[2] "errors"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "warning"
-msgid_plural "warnings"
-msgstr[0] "ostrzeżenie"
-msgstr[1] "warnings"
-msgstr[2] "warnings"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "and"
-msgstr "i"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "ignored issue"
-msgid_plural "ignored issues"
-msgstr[0] "ignorowany problem"
-msgstr[1] "ignored issues"
-msgstr[2] "ignored issues"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "detected."
-msgstr "wykryto."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4999,26 +5433,6 @@ msgstr "Typ"
 msgid "Severity"
 msgstr "Waga"
 
-#: build/issueModal.bundle.js:2
-msgid "WCAG:"
-msgstr "WCAG:"
-
-#: build/issueModal.bundle.js:2
-msgid "Show explanation"
-msgstr "Pokaż wyjaśnienie"
-
-#: build/issueModal.bundle.js:2
-msgid "Why It Matters"
-msgstr "Dlaczego to ważne"
-
-#: build/issueModal.bundle.js:2
-msgid "How to Fix"
-msgstr "Jak naprawić"
-
-#: build/issueModal.bundle.js:2
-msgid "More Detailed Documentation"
-msgstr "Bardziej szczegółowa dokumentacja"
-
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "nowe okno"
@@ -5154,10 +5568,6 @@ msgstr "Sprawdź i napraw problemy z dostępnością w swojej treści."
 #: build/sidebar.bundle.js:2
 msgid "Open Accessibility Panel"
 msgstr "Otwórz panel dostępności"
-
-#: build/sidebar.bundle.js:2
-msgid "N/A"
-msgstr "N/D"
 
 #: build/sidebar.bundle.js:2
 #, js-format
@@ -5313,6 +5723,30 @@ msgid "A simplified summary is required for this content."
 msgstr "Wymagane jest uproszczone podsumowanie dla tej treści."
 
 #: build/sidebar.bundle.js:2
+msgid "Unable to load this preference."
+msgstr "Nie można załadować tego ustawienia."
+
+#: build/sidebar.bundle.js:2
+msgid "Unable to save this preference."
+msgstr "Nie można zapisać tego ustawienia."
+
+#: build/sidebar.bundle.js:2
+msgid "Loading preference..."
+msgstr "Ładowanie ustawienia..."
+
+#: build/sidebar.bundle.js:2
+msgid "Screen Reader Text Format"
+msgstr "Format tekstu dla czytnika ekranu"
+
+#: build/sidebar.bundle.js:2
+msgid "Control whether screen reader text stays visible while you edit."
+msgstr "Kontroluj, czy tekst dla czytnika ekranu pozostaje widoczny podczas edycji."
+
+#: build/sidebar.bundle.js:2
+msgid "Always show screen reader text?"
+msgstr "Zawsze pokazuj tekst dla czytnika ekranu?"
+
+#: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."
 msgstr "Ładowanie danych dostępności..."
 
@@ -5327,3 +5761,11 @@ msgstr "Skanuj"
 #: build/sidebar.bundle.js:2
 msgid "Refresh"
 msgstr "Odśwież"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Screen Reader Only"
+msgstr "Tylko czytnik ekranu"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Always show screen reader text"
+msgstr "Zawsze pokazuj tekst dla czytnika ekranu"

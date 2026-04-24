@@ -25,38 +25,48 @@ jobs:
 
       - name: Get merged branch name
         id: get-branch
+        env:
+          BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+          HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
         run: |
-          # Get the head branch name from the merged PR
-          BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
+          # Get the head branch name and repo from the merged PR
           echo "branch-name=$BRANCH_NAME" >> $GITHUB_OUTPUT
-          echo "Merged branch: $BRANCH_NAME"
+          echo "head-repo=$HEAD_REPO" >> $GITHUB_OUTPUT
+          echo "Merged branch: $BRANCH_NAME from $HEAD_REPO"
 
       - name: Check if branch exists
         id: check-branch
+        env:
+          HEAD_REF: ${{ steps.get-branch.outputs.branch-name }}
+          HEAD_REPO: ${{ steps.get-branch.outputs.head-repo }}
         run: |
-          BRANCH_NAME="${{ steps.get-branch.outputs.branch-name }}"
-          
-          # Check if the branch still exists on the remote
-          if git ls-remote --heads origin "$BRANCH_NAME" | grep -q "$BRANCH_NAME"; then
+          # Check if the branch still exists on the fork remote
+          if git ls-remote "https://github.com/${HEAD_REPO}.git" "refs/heads/${HEAD_REF}" | grep -q "refs/heads/${HEAD_REF}"; then
             echo "branch-exists=true" >> $GITHUB_OUTPUT
-            echo "Branch $BRANCH_NAME exists and can be used for backport"
+            echo "Branch $HEAD_REF exists in $HEAD_REPO and can be used for backport"
           else
             echo "branch-exists=false" >> $GITHUB_OUTPUT
-            echo "Branch $BRANCH_NAME no longer exists, cannot create backport PR"
+            echo "Branch $HEAD_REF no longer exists in $HEAD_REPO, cannot create backport PR"
           fi
 
       - name: Create backport PR
         if: steps.check-branch.outputs.branch-exists == 'true'
         uses: actions/github-script@v7
+        env:
+          BRANCH_NAME: ${{ steps.get-branch.outputs.branch-name }}
+          ORIGINAL_PR_NUMBER: ${{ github.event.pull_request.number }}
+          ORIGINAL_PR_TITLE: ${{ github.event.pull_request.title }}
+          ORIGINAL_PR_BODY: ${{ github.event.pull_request.body }}
+          ORIGINAL_PR_AUTHOR: ${{ github.event.pull_request.user.login }}
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const branchName = '${{ steps.get-branch.outputs.branch-name }}';
-            const originalPrNumber = context.payload.pull_request.number;
-            const originalPrTitle = context.payload.pull_request.title;
-            const originalPrBody = context.payload.pull_request.body || '';
-            const originalPrAuthor = context.payload.pull_request.user.login;
-            
+            const branchName = process.env.BRANCH_NAME;
+            const originalPrNumber = process.env.ORIGINAL_PR_NUMBER;
+            const originalPrTitle = process.env.ORIGINAL_PR_TITLE;
+            const originalPrBody = process.env.ORIGINAL_PR_BODY || '';
+            const originalPrAuthor = process.env.ORIGINAL_PR_AUTHOR;
+
             // Create the backport PR
             try {
               const response = await github.rest.pulls.create({

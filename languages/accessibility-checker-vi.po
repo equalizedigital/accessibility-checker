@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0\n"
+"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
+"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -47,6 +47,305 @@ msgstr "Equalize Digital"
 #: accessibility-checker.php
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:56
+#: admin/AdminPage/AccessibilityReportsPage.php:137
+msgid "Accessibility Reports"
+msgstr "Báo cáo tiếp cận"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+msgid "New"
+msgstr "Mới"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:143
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
+msgstr "Nhận báo cáo email định kỳ với tổng quan về khả năng tiếp cận của trang web của bạn, bao gồm tổng số vấn đề, xu hướng theo thời gian, các trang có vấn đề nhất và các vấn đề nghiêm trọng nhất cần khắc phục trước tiên."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:145
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
+msgstr "Nhận báo cáo email định kỳ với tổng quan về khả năng tiếp cận của trang web của bạn, bao gồm tổng số vấn đề, xu hướng theo thời gian, các trang có vấn đề nhất và các vấn đề nghiêm trọng nhất cần khắc phục trước tiên. Một số chi tiết, như phạm vi toàn trang và phân tích vấn đề, có sẵn trong gói Pro."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:156
+#: admin/AdminPage/AccessibilityReportsPage.php:170
+msgid "Enable Email Reports"
+msgstr "Bật báo cáo email"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:163
+#: admin/AdminPage/AccessibilityReportsPage.php:167
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/ConnectedServicesPage.php:153
+msgid "Free License Key"
+msgstr "Khóa giấy phép miễn phí"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:176
+msgid "Get a Free License Key"
+msgstr "Nhận khóa giấy phép miễn phí"
+
+#. translators: %s: dashboard URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:181
+#, php-format
+msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
+msgstr "Bạn đã tải plugin từ Equalize Digital? Khóa của bạn nằm trong <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">bảng điều khiển</a>."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:190
+#, php-format
+msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
+msgstr "Đã cài đặt từ WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Tạo tài khoản miễn phí</a> để nhận một khóa."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:199
+#, php-format
+msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
+msgstr "Không chắc chắn? Chỉ cần <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">tạo một tài khoản miễn phí</a>. Chỉ mất một phút."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:211
+msgid "Reports Enabled"
+msgstr "Đã bật báo cáo"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:214
+msgid "You’ll receive weekly accessibility reports for this site."
+msgstr "Bạn sẽ nhận được báo cáo tiếp cận hàng tuần cho trang web này."
+
+#. translators: %s: next report date.
+#: admin/AdminPage/AccessibilityReportsPage.php:218
+#, php-format
+msgid "Next report: %s"
+msgstr "Báo cáo tiếp theo: %s"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:222
+msgid "Manage Recipients in Dashboard"
+msgstr "Quản lý người nhận trong bảng điều khiển"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Full Coverage"
+msgstr "Phạm vi đầy đủ"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Limited Coverage"
+msgstr "Phạm vi giới hạn"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:232
+msgid "Your reports include all post types and taxonomies."
+msgstr "Báo cáo của bạn bao gồm tất cả các loại bài đăng và phân loại."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:234
+msgid "Full-site scanning enabled"
+msgstr "Đã bật quét toàn bộ trang"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:235
+msgid "Complete issue breakdowns"
+msgstr "Phân tích vấn đề chi tiết"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:236
+msgid "Detailed reporting"
+msgstr "Báo cáo chi tiết"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:239
+msgid "Your reports only include part of your site."
+msgstr "Báo cáo của bạn chỉ bao gồm một phần trang web của bạn."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:240
+msgid "Upgrade to Pro to:"
+msgstr "Nâng cấp lên Pro để:"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:242
+msgid "Scan all content types"
+msgstr "Quét tất cả các loại nội dung"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:243
+msgid "Get full issue breakdowns"
+msgstr "Nhận phân tích vấn đề đầy đủ"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:244
+msgid "Receive more detailed reports"
+msgstr "Nhận báo cáo chi tiết hơn"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/class-upgrade-promotion.php:62
+msgid "Upgrade to Pro"
+msgstr "Nâng cấp lên bản pro"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:253
+msgid "Accessibility Summary"
+msgstr "Tóm tắt tiếp cận"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:254
+msgid "This summary reflects the latest scan data available for your site."
+msgstr "Tóm tắt này phản ánh dữ liệu quét mới nhất có sẵn cho trang web của bạn."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:256
+msgid "Total Issues Found"
+msgstr "Tổng số vấn đề được tìm thấy"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+msgid "Account Connection"
+msgstr "Kết nối tài khoản"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:270
+msgid "Disable Email Reports"
+msgstr "Tắt báo cáo email"
+
+#. translators: %1$s: terms link, %2$s: privacy link.
+#: admin/AdminPage/AccessibilityReportsPage.php:281
+#, php-format
+msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
+msgstr "Bằng cách kết nối trang web này, bạn đồng ý với <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Điều khoản dịch vụ</a> và <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Chính sách quyền riêng tư</a> của Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:294
+msgid "Preview of the weekly accessibility report email."
+msgstr "Xem trước email báo cáo tiếp cận hàng tuần."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "Không áp dụng"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/class-ajax.php:330
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Nghiêm trọng"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/class-ajax.php:334
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Cao"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/class-ajax.php:338
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Trung bình"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/class-ajax.php:342
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Thấp"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: includes/classes/class-rest-api.php:997
+msgid "Unknown"
+msgstr "Không xác định"
+
+#: admin/AdminPage/ConnectedServicesPage.php:137
+msgid "create a free account"
+msgstr "tạo tài khoản miễn phí"
+
+#: admin/AdminPage/ConnectedServicesPage.php:146
+msgid "Connect this site"
+msgstr "Kết nối trang web này"
+
+#: admin/AdminPage/ConnectedServicesPage.php:165
+msgid "active"
+msgstr "hoạt động"
+
+#: admin/AdminPage/ConnectedServicesPage.php:167
+msgid "expired"
+msgstr "đã hết hạn"
+
+#: admin/AdminPage/ConnectedServicesPage.php:169
+msgid "Enter your license key"
+msgstr "Nhập khóa giấy phép của bạn"
+
+#: admin/AdminPage/ConnectedServicesPage.php:184
+#: admin/AdminPage/ConnectedServicesPage.php:250
+msgid "Disconnect Site"
+msgstr "Ngắt kết nối trang web"
+
+#: admin/AdminPage/ConnectedServicesPage.php:191
+msgid "Connect Site"
+msgstr "Kết nối trang web"
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:204
+#, php-format
+msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
+msgstr "Nếu bạn đã tải xuống plugin miễn phí từ Equalize Digital, bạn đã có khóa giấy phép miễn phí trong bảng điều khiển %s của mình."
+
+#. translators: %s: link to create a free account
+#: admin/AdminPage/ConnectedServicesPage.php:213
+#, php-format
+msgid "If not, %s to generate a license key and connect this site."
+msgstr "Nếu chưa, %s để tạo khóa giấy phép và kết nối trang web này."
+
+#: admin/AdminPage/ConnectedServicesPage.php:232
+msgid "Connected as Free"
+msgstr "Đã kết nối dưới dạng miễn phí"
+
+#: admin/AdminPage/ConnectedServicesPage.php:233
+msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
+msgstr "Giấy phép Pro của bạn không còn hợp lệ, nhưng trang web này vẫn được kết nối để nhận báo cáo email miễn phí."
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:238
+#, php-format
+msgid "You can manage recipients and review connection details in your %s dashboard."
+msgstr "Bạn có thể quản lý người nhận và xem lại chi tiết kết nối trong bảng điều khiển %s của mình."
+
+#: admin/AdminPage/ConnectedServicesPage.php:398
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "Giấy phép Pro của bạn không còn hợp lệ. Trang web này đang sử dụng giấy phép miễn phí hợp lệ và báo cáo email vẫn được kết nối dưới dạng báo cáo email miễn phí. Hãy gia hạn giấy phép Pro của bạn để khôi phục các tính năng chỉ dành cho Pro."
+
+#: admin/AdminPage/ConnectedServicesPage.php:401
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
+msgstr "Giấy phép Pro của bạn không còn hợp lệ. Trang web này đang sử dụng giấy phép miễn phí hợp lệ, nhưng báo cáo email hiện không được kết nối. Hãy kết nối trang web này từ mục Giấy phép miễn phí để tiếp tục nhận báo cáo email miễn phí."
+
+#: admin/AdminPage/ConnectedServicesPage.php:442
+msgid "Please renew your license"
+msgstr "Vui lòng gia hạn giấy phép của bạn"
+
+#. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
+#: admin/AdminPage/ConnectedServicesPage.php:445
+#, php-format
+msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
+msgstr "Giấy phép %1$s của bạn đã hết hạn. %3$s để tiếp tục truy cập các tính năng và dịch vụ bổ sung cho %2$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:455
+#, php-format
+msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
+msgstr "Khóa giấy phép %s của bạn đã bị vô hiệu hóa. Vui lòng liên hệ với nhóm hỗ trợ của chúng tôi nếu bạn tin rằng đây là lỗi hoặc muốn tiếp tục truy cập các tính năng bổ sung."
+
+#. translators: %1$s: item name, %2$s: license url, %3$s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:462
+#, php-format
+msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
+msgstr "Khóa giấy phép cho %1$s dường như không hợp lệ. Vui lòng <a href=\"%2$s\">kiểm tra khóa giấy phép của bạn</a> để truy cập các tính năng và dịch vụ tiếp cận bổ sung cho %3$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:472
+#, php-format
+msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
+msgstr "Khóa giấy phép này cho %s không hoạt động cho trang web này. Vui lòng kích hoạt nó để truy cập các tính năng bổ sung trên trang web này."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:479
+#, php-format
+msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
+msgstr "Khóa giấy phép này dường như không hợp lệ đối với %s. Vui lòng xác minh bạn đã nhập đúng khóa giấy phép."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:486
+#, php-format
+msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
+msgstr "Khóa giấy phép %s của bạn đã đạt đến giới hạn kích hoạt trang web. Bạn có thể nâng cấp giấy phép hoặc hủy kích hoạt nó trên một trang web khác để sử dụng các tính năng bổ sung tại đây."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:493
+#, php-format
+msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
+msgstr "Đã xảy ra sự cố khi xác thực khóa giấy phép %s của bạn. Vui lòng thử lại hoặc liên hệ với nhóm hỗ trợ của chúng tôi nếu sự cố vẫn tiếp diễn."
 
 #: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
@@ -169,27 +468,27 @@ msgstr "Muốn làm được nhiều hơn với Accessibility Checker? %1$sMở 
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Mở khóa tính năng Pro (mở trong cửa sổ mới)"
 
-#: admin/class-admin-notices.php:133
+#: admin/class-admin-notices.php:139
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:134
+#: admin/class-admin-notices.php:140
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 24 tháng 11 đến ngày 3 tháng 12 để được giảm giá 30%! Quét toàn bộ trang web, báo cáo các vấn đề mở trên toàn trang web, bỏ qua nhật ký và hơn thế nữa."
 
-#: admin/class-admin-notices.php:135
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Đặt câu hỏi trước khi mua"
 
-#: admin/class-admin-notices.php:136
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:142
+#: admin/class-admin-notices.php:232
 msgid "Upgrade Now"
 msgstr "Nâng cấp ngay"
 
-#: admin/class-admin-notices.php:155
-#: admin/class-admin-notices.php:245
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:161
+#: admin/class-admin-notices.php:251
+#: admin/class-admin-notices.php:340
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -201,37 +500,37 @@ msgstr "Nâng cấp ngay"
 msgid "Permission Denied"
 msgstr "Quyền truy cập bị từ chối"
 
-#: admin/class-admin-notices.php:167
-#: admin/class-admin-notices.php:257
-#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:173
+#: admin/class-admin-notices.php:263
+#: admin/class-admin-notices.php:364
 msgid "Update option wasn't successful"
 msgstr "Cập nhật tùy chọn không thành công"
 
-#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:229
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Giảm giá 25% cho Accessibility Checker Pro nhân Ngày Nhận thức Khả năng Tiếp cận Toàn cầu! 🎉"
 
-#: admin/class-admin-notices.php:224
+#: admin/class-admin-notices.php:230
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Sử dụng mã giảm giá GAAD25 từ ngày 13 tháng 5 đến ngày 21 tháng 5 để được truy cập vào tính năng quét toàn bộ trang web và các tính năng Pro khác với mức giảm giá đặc biệt. Không chắc liệu nâng cấp có phù hợp với bạn không?"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:315
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Xin chào! Cảm ơn bạn đã sử dụng Accessibility Checker như một phần trong bộ công cụ kiểm tra khả năng tiếp cận của bạn. Vì bạn đã sử dụng nó một thời gian, bạn có thể viết đánh giá 5 sao cho Accessibility Checker trên thư mục plugin WordPress được không? Điều này sẽ giúp tăng khả năng hiển thị của chúng tôi để nhiều người có thể biết về tầm quan trọng của khả năng tiếp cận web. Cảm ơn bạn rất nhiều!"
 
-#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:318
 msgid "Write A Review"
 msgstr "Viết đánh giá"
 
-#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:319
 msgid "Remind Me In Two Weeks"
 msgstr "Nhắc tôi sau hai tuần"
 
-#: admin/class-admin-notices.php:314
+#: admin/class-admin-notices.php:320
 msgid "Never Ask Again"
 msgstr "Không bao giờ hỏi lại"
 
-#: admin/class-admin-notices.php:341
+#: admin/class-admin-notices.php:347
 msgid "The review action value was not set"
 msgstr "Giá trị hành động đánh giá không được thiết lập"
 
@@ -281,6 +580,7 @@ msgid "Passed Tests"
 msgstr "Các bài kiểm tra đã vượt qua"
 
 #: admin/class-ajax.php:138
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
@@ -293,6 +593,7 @@ msgstr[0] "Vấn đề về độ tương phản"
 
 #: admin/class-ajax.php:150
 #: admin/class-widgets.php:182
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -321,6 +622,7 @@ msgstr "* Khả năng tiếp cận thực sự yêu cầu kiểm tra thủ công
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
 #: admin/class-ignore-ui.php:126
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
@@ -331,33 +633,9 @@ msgid "No summary to return"
 msgstr "Không có bản tóm tắt để trả về"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:899
+#: includes/classes/class-rest-api.php:905
 msgid "Invalid table name"
 msgstr "Tên bảng không hợp lệ"
-
-#: admin/class-ajax.php:330
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Critical"
-msgstr "Nghiêm trọng"
-
-#: admin/class-ajax.php:334
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "High"
-msgstr "Cao"
-
-#: admin/class-ajax.php:338
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Medium"
-msgstr "Trung bình"
-
-#: admin/class-ajax.php:342
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Low"
-msgstr "Thấp"
 
 #: admin/class-ajax.php:383
 msgid " total"
@@ -562,12 +840,16 @@ msgstr "Không có dữ liệu khả năng đọc để trả về"
 msgid "No ignore data to return"
 msgstr "Không có dữ liệu bỏ qua để trả về"
 
+#: admin/class-enqueue-admin.php:435
+msgid "* Screen Reader Text"
+msgstr "* Văn bản trình đọc màn hình"
+
 #: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Giá trị id chưa được thiết lập"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1037
+#: includes/classes/class-rest-api.php:1043
 msgid "Post not found"
 msgstr "Không tìm thấy bài viết"
 
@@ -575,7 +857,7 @@ msgstr "Không tìm thấy bài viết"
 msgid "Issue query returned no results"
 msgstr "Truy vấn vấn đề không trả về kết quả nào"
 
-#: admin/class-frontend-highlight.php:162
+#: admin/class-frontend-highlight.php:168
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
@@ -673,10 +955,6 @@ msgstr "Đánh giá plugin Accessibility Checker (mở trong cửa sổ mới)"
 #: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Đánh giá plugin"
-
-#: admin/class-upgrade-promotion.php:62
-msgid "Upgrade to Pro"
-msgstr "Nâng cấp lên bản pro"
 
 #: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
@@ -997,7 +1275,7 @@ msgstr "Các loại bài viết đã được cấu hình để kiểm tra khả
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker được cấu hình để quét %1$s loại bài viết: %2$s."
+msgstr[0] "Accessibility Checker được cấu hình để quét %1$s loại bài đăng: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -1140,15 +1418,11 @@ msgstr "Nhận Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Nhận Accessibility Checker Pro (mở trong cửa sổ mới)"
 
-#: includes/classes/class-rest-api.php:991
-msgid "Unknown"
-msgstr "Không xác định"
-
-#: includes/classes/class-rest-api.php:1224
+#: includes/classes/class-rest-api.php:1230
 msgid "Issue not found."
 msgstr "Không tìm thấy sự cố."
 
-#: includes/classes/class-rest-api.php:1267
+#: includes/classes/class-rest-api.php:1273
 msgid "Failed to update the issue."
 msgstr "Không thể cập nhật sự cố."
 
@@ -1220,6 +1494,11 @@ msgstr "Thêm nhãn cho các liên kết mở tab/cửa sổ mới"
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Thêm nhãn và biểu tượng cho các liên kết có %1$s thông báo cho người dùng rằng chúng sẽ mở một tab/cửa sổ mới. %2$sLưu ý: Cài đặt này sẽ không có tác dụng nếu tính năng \"Chặn Liên kết Mở Cửa sổ Mới\" được bật.%3$s"
 
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:117
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "mở cửa sổ mới"
+
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
@@ -1290,6 +1569,23 @@ msgstr "Tìm kiếm"
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Cài đặt để thêm nhãn còn thiếu vào biểu mẫu bình luận và tìm kiếm của WordPress."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:42
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:88
+msgid "Force Error on Empty Search"
+msgstr "Buộc lỗi khi tìm kiếm trống"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:65
+msgid "Empty Search Handling"
+msgstr "Xử lý tìm kiếm trống"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:91
+msgid "When a search is submitted with an empty query, force WordPress to display the search results template so users see a meaningful response. This assumes the active theme has a search.php template."
+msgstr "Khi tìm kiếm được gửi với truy vấn trống, buộc WordPress hiển thị mẫu kết quả tìm kiếm để người dùng thấy phản hồi có ý nghĩa. Điều này giả định chủ đề đang hoạt động có mẫu search.php."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:107
+msgid "Force WordPress to show a search results page when a search is submitted with an empty query."
+msgstr "Buộc WordPress hiển thị trang kết quả tìm kiếm khi tìm kiếm được gửi với truy vấn trống."
 
 #: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
@@ -1450,17 +1746,75 @@ msgstr "Loại bỏ chỉ mục tab"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Loại bỏ thuộc tính %1$s khỏi các phần tử có thể focus."
 
-#: includes/classes/Fixes/FixesManager.php:250
+#: includes/classes/Fixes/FixesManager.php:252
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Lưu ý: Cài đặt này không được khuyến nghị cho các giao diện đã sẵn sàng cho khả năng truy cập."
 
-#: includes/classes/Fixes/FixesManager.php:320
+#: includes/classes/Fixes/FixesManager.php:322
 msgid "Fix not found"
 msgstr "Không tìm thấy sửa đổi"
 
-#: includes/classes/Fixes/FixesManager.php:356
+#: includes/classes/Fixes/FixesManager.php:358
 msgid "Fix not found."
 msgstr "Không tìm thấy bản sửa lỗi."
+
+#: includes/classes/MyDot/Connector.php:202
+msgid "You do not have permission to manage this license."
+msgstr "Bạn không có quyền quản lý giấy phép này."
+
+#: includes/classes/MyDot/Connector.php:238
+msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
+msgstr "Giấy phép Pro đang hoạt động. Vui lòng hủy kích hoạt giấy phép Pro trước nếu bạn muốn sử dụng giấy phép miễn phí."
+
+#: includes/classes/MyDot/Connector.php:268
+msgid "An error occurred, please try again."
+msgstr "Đã xảy ra lỗi, vui lòng thử lại."
+
+#: includes/classes/MyDot/Connector.php:557
+msgid "You do not have permission to register this site."
+msgstr "Bạn không có quyền đăng ký trang web này."
+
+#: includes/classes/MyDot/Connector.php:578
+msgid "You do not have permission to unregister this site."
+msgstr "Bạn không có quyền hủy đăng ký trang web này."
+
+#: includes/classes/MyDot/Connector.php:604
+msgid "No license key found. Please activate a license before registering your site."
+msgstr "Không tìm thấy khóa giấy phép. Vui lòng kích hoạt giấy phép trước khi đăng ký trang web của bạn."
+
+#: includes/classes/MyDot/Connector.php:615
+#: includes/classes/MyDot/Connector.php:822
+msgid "Unknown error occurred while registering the site."
+msgstr "Đã xảy ra lỗi không xác định khi đăng ký trang web."
+
+#: includes/classes/MyDot/Connector.php:644
+msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
+msgstr "Đã đăng ký trang web thành công. Trang web của bạn hiện được cấu hình để sử dụng các dịch vụ tiếp cận bổ sung."
+
+#: includes/classes/MyDot/Connector.php:654
+msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
+msgstr "Đã hoàn tất đăng ký trang web, nhưng dữ liệu phản hồi không đúng định dạng mong muốn. Một số tính năng có thể không hoạt động chính xác."
+
+#: includes/classes/MyDot/Connector.php:730
+msgid "Unable to unregister site. Required registration data is missing."
+msgstr "Không thể hủy đăng ký trang web. Dữ liệu đăng ký bắt buộc bị thiếu."
+
+#: includes/classes/MyDot/Connector.php:747
+#: includes/classes/MyDot/Connector.php:880
+msgid "Unknown error occurred while unregistering the site."
+msgstr "Đã xảy ra lỗi không xác định khi hủy đăng ký trang web."
+
+#: includes/classes/MyDot/Connector.php:762
+msgid "Site unregistered successfully. Your site will no longer receive email reports."
+msgstr "Đã hủy đăng ký trang web thành công. Trang web của bạn sẽ không còn nhận được báo cáo email."
+
+#: includes/classes/MyDot/Connector.php:785
+msgid "No license key provided."
+msgstr "Chưa cung cấp khóa giấy phép."
+
+#: includes/classes/MyDot/Connector.php:843
+msgid "Missing required parameters for unregistration."
+msgstr "Thiếu các tham số bắt buộc để hủy đăng ký."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -2932,11 +3286,11 @@ msgstr "đường dẫn tĩnh đến "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:403
+#: includes/helper-functions.php:409
 msgid "Attend Free"
 msgstr "Tham gia miễn phí"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:415
 #: partials/welcome-page.php:88
 #: partials/welcome-page.php:93
 #: partials/welcome-page.php:98
@@ -2950,7 +3304,7 @@ msgid "(opens in a new window)"
 msgstr "(mở trong cửa sổ mới)"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:855
+#: includes/helper-functions.php:861
 #: build/issueModal.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
@@ -4712,14 +5066,14 @@ msgstr "EDAC: Không tìm thấy ID mục tiêu phù hợp trên trang cho liên
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Lỗi khi cập nhật lịch sử cho liên kết bỏ qua."
 
-#: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "mở cửa sổ mới"
-
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Đóng cửa sổ sửa lỗi"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%1$d of %2$d"
+msgstr "%1$d trong số %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
@@ -4734,9 +5088,37 @@ msgid "The element was not found on the page."
 msgstr "Không tìm thấy phần tử trên trang."
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Left"
+msgstr "Di chuyển sang trái"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Right"
+msgstr "Di chuyển sang phải"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel position reset."
+msgstr "Đã đặt lại vị trí bảng điều khiển."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the left."
+msgstr "Bảng điều khiển đã được di chuyển sang trái."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the right."
+msgstr "Bảng điều khiển đã được di chuyển sang phải."
+
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Mở chi tiết cho %1$s, %2$s của %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Undock Panel"
+msgstr "Tháo bảng điều khiển"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Dock Panel"
+msgstr "Gắn bảng điều khiển"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
@@ -4747,8 +5129,24 @@ msgid "Accessibility Checker Tools"
 msgstr "Công cụ Accessibility Checker"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "More options"
+msgstr "Tùy chọn khác"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Tắt kiểu trang"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Tắt kiểu"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Close"
 msgstr "Đóng"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues found on this page."
+msgstr "Không tìm thấy vấn đề nào trên trang này."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Loading..."
@@ -4763,16 +5161,61 @@ msgid "Next"
 msgstr "Tiếp theo"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Page Styles"
-msgstr "Tắt kiểu trang"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
-msgstr "Tắt kiểu"
+msgid "Reset Position"
+msgstr "Đặt lại vị trí"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Đã xảy ra lỗi khi tải các vấn đề."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel docked."
+msgstr "Bảng điều khiển đã được gắn."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel undocked."
+msgstr "Bảng điều khiển đã được tháo."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Severity:"
+msgstr "Mức độ nghiêm trọng:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Loại vấn đề:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Ignored"
+msgstr "Đã bỏ qua"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Hiển thị giải thích"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Tại sao nó quan trọng"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Cách khắc phục"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Tài liệu chi tiết hơn"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Affected Code"
+msgstr "Hiển thị mã bị ảnh hưởng"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4783,18 +5226,6 @@ msgstr "Khắc phục sự cố: %s"
 #: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Khắc phục sự cố"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Full Documentation"
-msgstr "Tài liệu đầy đủ"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Show Code"
-msgstr "Hiển thị mã"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Loại vấn đề:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
@@ -4809,31 +5240,32 @@ msgid "These settings enable global fixes across your entire site. Pages may nee
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn. Có thể cần phải lưu lại các trang hoặc chạy quét toàn bộ trang web để thấy các sửa đổi được phản ánh trong báo cáo."
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d issue found"
+msgid_plural "%d issues found"
+msgstr[0] "%d vấn đề được tìm thấy"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Problem"
+msgid_plural "%d Problems"
+msgstr[0] "%d sự cố"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Needs Review"
+msgid_plural "%d Need Review"
+msgstr[0] "%d cần xem xét"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Ignored"
+msgid_plural "%d Ignored"
+msgstr[0] "%d đã bỏ qua"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
 msgstr "Không phát hiện vấn đề nào."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "lỗi"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "warning"
-msgid_plural "warnings"
-msgstr[0] "cảnh báo"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "and"
-msgstr "và"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "ignored issue"
-msgid_plural "ignored issues"
-msgstr[0] "vấn đề bị bỏ qua"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "detected."
-msgstr "đã phát hiện."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4975,26 +5407,6 @@ msgstr "Loại"
 msgid "Severity"
 msgstr "Mức độ nghiêm trọng"
 
-#: build/issueModal.bundle.js:2
-msgid "WCAG:"
-msgstr "WCAG:"
-
-#: build/issueModal.bundle.js:2
-msgid "Show explanation"
-msgstr "Hiển thị giải thích"
-
-#: build/issueModal.bundle.js:2
-msgid "Why It Matters"
-msgstr "Tại sao nó quan trọng"
-
-#: build/issueModal.bundle.js:2
-msgid "How to Fix"
-msgstr "Cách khắc phục"
-
-#: build/issueModal.bundle.js:2
-msgid "More Detailed Documentation"
-msgstr "Tài liệu chi tiết hơn"
-
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "cửa sổ mới"
@@ -5126,10 +5538,6 @@ msgstr "Kiểm tra và khắc phục các vấn đề về khả năng truy cậ
 #: build/sidebar.bundle.js:2
 msgid "Open Accessibility Panel"
 msgstr "Mở bảng điều khiển khả năng truy cập"
-
-#: build/sidebar.bundle.js:2
-msgid "N/A"
-msgstr "Không áp dụng"
 
 #: build/sidebar.bundle.js:2
 #, js-format
@@ -5285,6 +5693,30 @@ msgid "A simplified summary is required for this content."
 msgstr "Cần có bản tóm tắt đơn giản cho nội dung này."
 
 #: build/sidebar.bundle.js:2
+msgid "Unable to load this preference."
+msgstr "Không thể tải tùy chọn này."
+
+#: build/sidebar.bundle.js:2
+msgid "Unable to save this preference."
+msgstr "Không thể lưu tùy chọn này."
+
+#: build/sidebar.bundle.js:2
+msgid "Loading preference..."
+msgstr "Đang tải tùy chọn..."
+
+#: build/sidebar.bundle.js:2
+msgid "Screen Reader Text Format"
+msgstr "Định dạng văn bản trình đọc màn hình"
+
+#: build/sidebar.bundle.js:2
+msgid "Control whether screen reader text stays visible while you edit."
+msgstr "Kiểm soát xem văn bản trình đọc màn hình có hiển thị trong khi bạn chỉnh sửa hay không."
+
+#: build/sidebar.bundle.js:2
+msgid "Always show screen reader text?"
+msgstr "Luôn hiển thị văn bản trình đọc màn hình?"
+
+#: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."
 msgstr "Đang tải dữ liệu khả năng truy cập..."
 
@@ -5299,3 +5731,11 @@ msgstr "Quét"
 #: build/sidebar.bundle.js:2
 msgid "Refresh"
 msgstr "Làm mới"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Screen Reader Only"
+msgstr "Chỉ dành cho trình đọc màn hình"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Always show screen reader text"
+msgstr "Luôn hiển thị văn bản trình đọc màn hình"

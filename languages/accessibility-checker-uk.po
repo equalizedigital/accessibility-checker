@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.38.0\n"
+"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-03-16T22:30:12+00:00\n"
+"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -47,6 +47,305 @@ msgstr "Equalize Digital"
 #: accessibility-checker.php
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:56
+#: admin/AdminPage/AccessibilityReportsPage.php:137
+msgid "Accessibility Reports"
+msgstr "Звіти з доступності"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+msgid "New"
+msgstr "Новий"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:143
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
+msgstr "Отримуйте регулярні звіти електронною поштою зі знімком доступності вашого сайту, включно із загальною кількістю проблем, тенденціями з часом, найпроблемнішими сторінками та найсерйознішими проблемами, які потрібно вирішити в першу чергу."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:145
+msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
+msgstr "Отримуйте регулярні звіти електронною поштою зі знімком доступності вашого сайту, включно із загальною кількістю проблем, тенденціями з часом, найпроблемнішими сторінками та найсерйознішими проблемами, які потрібно вирішити в першу чергу. Деякі деталі, як-от повне покриття сайту та розбивка проблем, доступні в Pro-версії."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:156
+#: admin/AdminPage/AccessibilityReportsPage.php:170
+msgid "Enable Email Reports"
+msgstr "Увімкнути звіти електронною поштою"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:163
+#: admin/AdminPage/AccessibilityReportsPage.php:167
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/ConnectedServicesPage.php:153
+msgid "Free License Key"
+msgstr "Безкоштовний ліцензійний ключ"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:176
+msgid "Get a Free License Key"
+msgstr "Отримати безкоштовний ліцензійний ключ"
+
+#. translators: %s: dashboard URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:181
+#, php-format
+msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
+msgstr "Отримали плагін від Equalize Digital? Ваш ключ знаходиться у вашій <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">панелі керування</a>."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:190
+#, php-format
+msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
+msgstr "Установлено з WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Створіть безкоштовний акаунт</a>, щоб отримати його."
+
+#. translators: %s: signup URL.
+#: admin/AdminPage/AccessibilityReportsPage.php:199
+#, php-format
+msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
+msgstr "Не впевнені? Просто <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">створіть безкоштовний акаунт</a>. Це займе лише хвилину."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:211
+msgid "Reports Enabled"
+msgstr "Звіти ввімкнено"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:214
+msgid "You’ll receive weekly accessibility reports for this site."
+msgstr "Ви отримуватимете щотижневі звіти з доступності для цього сайту."
+
+#. translators: %s: next report date.
+#: admin/AdminPage/AccessibilityReportsPage.php:218
+#, php-format
+msgid "Next report: %s"
+msgstr "Наступний звіт: %s"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:222
+msgid "Manage Recipients in Dashboard"
+msgstr "Керувати отримувачами в панелі керування"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Full Coverage"
+msgstr "Повне покриття"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:228
+msgid "Limited Coverage"
+msgstr "Обмежене покриття"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:232
+msgid "Your reports include all post types and taxonomies."
+msgstr "Ваші звіти включають усі типи записів і таксономії."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:234
+msgid "Full-site scanning enabled"
+msgstr "Повноцінне сканування сайту ввімкнено"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:235
+msgid "Complete issue breakdowns"
+msgstr "Повна розбивка проблем"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:236
+msgid "Detailed reporting"
+msgstr "Детальна звітність"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:239
+msgid "Your reports only include part of your site."
+msgstr "Ваші звіти включають лише частину вашого сайту."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:240
+msgid "Upgrade to Pro to:"
+msgstr "Оновіть до Pro, щоб:"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:242
+msgid "Scan all content types"
+msgstr "Сканувати всі типи вмісту"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:243
+msgid "Get full issue breakdowns"
+msgstr "Отримати повну розбивку проблем"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:244
+msgid "Receive more detailed reports"
+msgstr "Отримувати детальніші звіти"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/class-upgrade-promotion.php:62
+msgid "Upgrade to Pro"
+msgstr "Оновитися до pro"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:253
+msgid "Accessibility Summary"
+msgstr "Зведення доступності"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:254
+msgid "This summary reflects the latest scan data available for your site."
+msgstr "Це зведення відображає найновіші дані сканування, доступні для вашого сайту."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:256
+msgid "Total Issues Found"
+msgstr "Усього знайдено проблем"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:262
+msgid "Account Connection"
+msgstr "Підключення акаунта"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:270
+msgid "Disable Email Reports"
+msgstr "Вимкнути звіти електронною поштою"
+
+#. translators: %1$s: terms link, %2$s: privacy link.
+#: admin/AdminPage/AccessibilityReportsPage.php:281
+#, php-format
+msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
+msgstr "Підключаючи цей сайт, ви погоджуєтеся з <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Умовами надання послуг</a> та <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Політикою конфіденційності</a> Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:294
+msgid "Preview of the weekly accessibility report email."
+msgstr "Попередній перегляд щотижневого звіту з доступності електронною поштою."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: build/sidebar.bundle.js:2
+msgid "N/A"
+msgstr "Н/Д"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/class-ajax.php:330
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Critical"
+msgstr "Критичний"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/class-ajax.php:334
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "High"
+msgstr "Високий"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/class-ajax.php:338
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Medium"
+msgstr "Середній"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/class-ajax.php:342
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/sidebar.bundle.js:2
+msgid "Low"
+msgstr "Низький"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: includes/classes/class-rest-api.php:997
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: admin/AdminPage/ConnectedServicesPage.php:137
+msgid "create a free account"
+msgstr "створити безкоштовний акаунт"
+
+#: admin/AdminPage/ConnectedServicesPage.php:146
+msgid "Connect this site"
+msgstr "Підключити цей сайт"
+
+#: admin/AdminPage/ConnectedServicesPage.php:165
+msgid "active"
+msgstr "активний"
+
+#: admin/AdminPage/ConnectedServicesPage.php:167
+msgid "expired"
+msgstr "термін дії минув"
+
+#: admin/AdminPage/ConnectedServicesPage.php:169
+msgid "Enter your license key"
+msgstr "Введіть ліцензійний ключ"
+
+#: admin/AdminPage/ConnectedServicesPage.php:184
+#: admin/AdminPage/ConnectedServicesPage.php:250
+msgid "Disconnect Site"
+msgstr "Відключити сайт"
+
+#: admin/AdminPage/ConnectedServicesPage.php:191
+msgid "Connect Site"
+msgstr "Підключити сайт"
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:204
+#, php-format
+msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
+msgstr "Якщо ви завантажили безкоштовний плагін з Equalize Digital, у вас уже є безкоштовний ліцензійний ключ у вашій панелі керування %s."
+
+#. translators: %s: link to create a free account
+#: admin/AdminPage/ConnectedServicesPage.php:213
+#, php-format
+msgid "If not, %s to generate a license key and connect this site."
+msgstr "Якщо ні, %s, щоб згенерувати ліцензійний ключ і підключити цей сайт."
+
+#: admin/AdminPage/ConnectedServicesPage.php:232
+msgid "Connected as Free"
+msgstr "Підключено як безкоштовно"
+
+#: admin/AdminPage/ConnectedServicesPage.php:233
+msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
+msgstr "Термін дії вашої Pro-ліцензії закінчився, але цей сайт залишається підключеним для отримання безкоштовних звітів електронною поштою."
+
+#. translators: %s: link to my.equalizedigital.com dashboard
+#: admin/AdminPage/ConnectedServicesPage.php:238
+#, php-format
+msgid "You can manage recipients and review connection details in your %s dashboard."
+msgstr "Ви можете керувати отримувачами та переглядати деталі підключення у вашій панелі керування %s."
+
+#: admin/AdminPage/ConnectedServicesPage.php:398
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "Термін дії вашої Pro-ліцензії закінчився. Цей сайт використовує дійсну безкоштовну ліцензію, і звіти електронною поштою залишаються підключеними як безкоштовні. Оновіть свою Pro-ліцензію, щоб відновити функції, доступні лише в Pro-версії."
+
+#: admin/AdminPage/ConnectedServicesPage.php:401
+msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
+msgstr "Термін дії вашої Pro-ліцензії закінчився. Цей сайт використовує дійсну безкоштовну ліцензію, але звіти електронною поштою наразі не підключені. Підключіть цей сайт у розділі «Безкоштовна ліцензія», щоб відновити отримання безкоштовних звітів електронною поштою."
+
+#: admin/AdminPage/ConnectedServicesPage.php:442
+msgid "Please renew your license"
+msgstr "Будь ласка, поновіть свою ліцензію"
+
+#. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
+#: admin/AdminPage/ConnectedServicesPage.php:445
+#, php-format
+msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
+msgstr "Термін дії вашої ліцензії %1$s закінчився. %3$s, щоб продовжувати доступ до додаткових функцій і послуг для %2$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:455
+#, php-format
+msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
+msgstr "Ваш ліцензійний ключ %s було вимкнено. Будь ласка, зв’яжіться з нашою службою підтримки, якщо ви вважаєте, що це помилка, або бажаєте продовжувати доступ до додаткових функцій."
+
+#. translators: %1$s: item name, %2$s: license url, %3$s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:462
+#, php-format
+msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
+msgstr "Ліцензійний ключ для %1$s виглядає недійсним. Будь ласка, <a href=\"%2$s\">перевірте свій ліцензійний ключ</a>, щоб отримати доступ до додаткових функцій доступності та послуг для %3$s."
+
+#. translators: %s: item name
+#: admin/AdminPage/ConnectedServicesPage.php:472
+#, php-format
+msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
+msgstr "Цей ліцензійний ключ для %s неактивний для цього сайту. Будь ласка, активуйте його, щоб отримати доступ до додаткових функцій на цьому вебсайті."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:479
+#, php-format
+msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
+msgstr "Цей ліцензійний ключ не виглядає дійсним для %s. Будь ласка, переконайтеся, що ви ввели правильний ліцензійний ключ."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:486
+#, php-format
+msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
+msgstr "Ваш ліцензійний ключ %s досяг ліміту активацій на сайтах. Ви можете оновити свою ліцензію або деактивувати її на іншому сайті, щоб використовувати додаткові функції тут."
+
+#. translators: %s: the plugins item name
+#: admin/AdminPage/ConnectedServicesPage.php:493
+#, php-format
+msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
+msgstr "Виникла проблема під час перевірки ліцензійного ключа %s. Будь ласка, спробуйте ще раз або зв'яжіться з нашою службою підтримки, якщо проблема не зникає."
 
 #: admin/AdminPage/FixesPage.php:75
 #: admin/site-health/class-free.php:105
@@ -169,27 +468,27 @@ msgstr "Хочете отримати більше можливостей з Acc
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Розблокувати функції Pro (відкриється в новому вікні)"
 
-#: admin/class-admin-notices.php:133
+#: admin/class-admin-notices.php:139
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Спеціальна пропозиція до Чорної п'ятниці! 🎉"
 
-#: admin/class-admin-notices.php:134
+#: admin/class-admin-notices.php:140
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Оновіть Accessibility Checker до платної версії з 24 листопада по 3 грудня та отримайте знижку 30%! Повне сканування сайту, звіт про відкриті проблеми по всьому сайту, журнали ігнорування тощо."
 
-#: admin/class-admin-notices.php:135
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Задати питання перед покупкою"
 
-#: admin/class-admin-notices.php:136
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:142
+#: admin/class-admin-notices.php:232
 msgid "Upgrade Now"
 msgstr "Оновити зараз"
 
-#: admin/class-admin-notices.php:155
-#: admin/class-admin-notices.php:245
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:161
+#: admin/class-admin-notices.php:251
+#: admin/class-admin-notices.php:340
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -201,37 +500,37 @@ msgstr "Оновити зараз"
 msgid "Permission Denied"
 msgstr "У доступі відмовлено"
 
-#: admin/class-admin-notices.php:167
-#: admin/class-admin-notices.php:257
-#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:173
+#: admin/class-admin-notices.php:263
+#: admin/class-admin-notices.php:364
 msgid "Update option wasn't successful"
 msgstr "Оновлення опції не вдалося"
 
-#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:229
 msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
 msgstr "🎉 Отримайте знижку 25% на Accessibility Checker Pro на честь Всесвітнього дня поінформованості про доступність! 🎉"
 
-#: admin/class-admin-notices.php:224
+#: admin/class-admin-notices.php:230
 msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
 msgstr "Використовуйте купон GAAD25 з 13 по 21 травня, щоб отримати доступ до повного сканування сайту та інших професійних функцій за спеціальною знижкою. Не впевнені, чи варто оновлюватися?"
 
-#: admin/class-admin-notices.php:309
+#: admin/class-admin-notices.php:315
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Вітаємо! Дякуємо, що використовуєте Accessibility Checker як частину вашого інструментарію для забезпечення доступності. Оскільки ви вже деякий час користуєтеся ним, чи не могли б ви написати 5-зірковий відгук про Accessibility Checker у каталозі плагінів WordPress? Це допоможе підвищити нашу видимість, щоб більше людей дізналися про важливість веб-доступності. Дуже дякуємо!"
 
-#: admin/class-admin-notices.php:312
+#: admin/class-admin-notices.php:318
 msgid "Write A Review"
 msgstr "Написати відгук"
 
-#: admin/class-admin-notices.php:313
+#: admin/class-admin-notices.php:319
 msgid "Remind Me In Two Weeks"
 msgstr "Нагадати через два тижні"
 
-#: admin/class-admin-notices.php:314
+#: admin/class-admin-notices.php:320
 msgid "Never Ask Again"
 msgstr "Більше не питати"
 
-#: admin/class-admin-notices.php:341
+#: admin/class-admin-notices.php:347
 msgid "The review action value was not set"
 msgstr "Значення дії відгуку не було встановлено"
 
@@ -281,6 +580,7 @@ msgid "Passed Tests"
 msgstr "Пройдені тести"
 
 #: admin/class-ajax.php:138
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
@@ -297,6 +597,7 @@ msgstr[2] "Проблем з контрастом"
 
 #: admin/class-ajax.php:150
 #: admin/class-widgets.php:182
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
@@ -329,6 +630,7 @@ msgstr "* Справжня доступність вимагає ручного 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
 #: admin/class-ignore-ui.php:126
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
@@ -339,33 +641,9 @@ msgid "No summary to return"
 msgstr "Немає підсумку для повернення"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:899
+#: includes/classes/class-rest-api.php:905
 msgid "Invalid table name"
 msgstr "Недійсна назва таблиці"
-
-#: admin/class-ajax.php:330
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Critical"
-msgstr "Критичний"
-
-#: admin/class-ajax.php:334
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "High"
-msgstr "Високий"
-
-#: admin/class-ajax.php:338
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Medium"
-msgstr "Середній"
-
-#: admin/class-ajax.php:342
-#: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
-msgid "Low"
-msgstr "Низький"
 
 #: admin/class-ajax.php:383
 msgid " total"
@@ -570,12 +848,16 @@ msgstr "Немає даних про читабельність для пове�
 msgid "No ignore data to return"
 msgstr "Немає даних про ігнорування для повернення"
 
+#: admin/class-enqueue-admin.php:435
+msgid "* Screen Reader Text"
+msgstr "* Текст для зчитування з екрана"
+
 #: admin/class-frontend-highlight.php:86
 msgid "The id value was not set"
 msgstr "Значення id не було встановлено"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1037
+#: includes/classes/class-rest-api.php:1043
 msgid "Post not found"
 msgstr "Допис не знайдено"
 
@@ -583,7 +865,7 @@ msgstr "Допис не знайдено"
 msgid "Issue query returned no results"
 msgstr "Запит проблеми не повернув результатів"
 
-#: admin/class-frontend-highlight.php:162
+#: admin/class-frontend-highlight.php:168
 msgid "Object query returned no results"
 msgstr "Запит об'єкта не повернув результатів"
 
@@ -681,10 +963,6 @@ msgstr "Оцінити плагін Accessibility Checker (відкриєтьс�
 #: admin/class-plugin-row-meta.php:70
 msgid "Rate plugin"
 msgstr "Оцінити плагін"
-
-#: admin/class-upgrade-promotion.php:62
-msgid "Upgrade to Pro"
-msgstr "Оновитися до pro"
 
 #: admin/class-upgrade-promotion.php:64
 msgid "Upgrade Sale Now"
@@ -988,9 +1266,9 @@ msgstr "Вміст перевіряється на доступність"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker просканував %s публікацію на наявність проблем доступності."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker просканував %s запис на наявність проблем доступності."
+msgstr[1] "Accessibility Checker просканував %s записи на наявність проблем доступності."
+msgstr[2] "Accessibility Checker просканував %s записів на наявність проблем доступності."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1014,8 +1292,8 @@ msgstr "Типи публікацій налаштовані для переві
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
 msgstr[0] "Accessibility Checker налаштований на сканування %1$s типу публікацій: %2$s."
-msgstr[1] "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[2] "Accessibility Checker is configured to scan %1$s post types: %2$s."
+msgstr[1] "Accessibility Checker налаштовано для сканування %1$s типів записів: %2$s."
+msgstr[2] "Accessibility Checker налаштовано для сканування %1$s типів записів: %2$s."
 
 #: admin/site-health/class-free.php:46
 msgid "Accessibility Checker &mdash; Free"
@@ -1158,15 +1436,11 @@ msgstr "Отримати Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Отримати Accessibility Checker Pro (відкривається у новому вікні)"
 
-#: includes/classes/class-rest-api.php:991
-msgid "Unknown"
-msgstr "Невідомо"
-
-#: includes/classes/class-rest-api.php:1224
+#: includes/classes/class-rest-api.php:1230
 msgid "Issue not found."
 msgstr "Проблему не знайдено."
 
-#: includes/classes/class-rest-api.php:1267
+#: includes/classes/class-rest-api.php:1273
 msgid "Failed to update the issue."
 msgstr "Не вдалося оновити проблему."
 
@@ -1238,6 +1512,11 @@ msgstr "Додати мітку до посилань, які відкриваю
 msgid "Add a label and icon to links with %1$s informing users they will open a new tab/window. %2$sNote: This setting will have no effect if the \"Block Links Opening New Windows\" fix is enabled.%3$s"
 msgstr "Додати мітку та іконку до посилань із %1$s, повідомляючи користувачів, що вони відкриються у новій вкладці/вікні. %2$sПримітка: Цей параметр не матиме ефекту, якщо ввімкнено виправлення „Блокувати посилання, що відкривають нові вікна“.%3$s"
 
+#: includes/classes/Fixes/Fix/AddNewWindowWarningFix.php:117
+#: build/pageScanner.bundle.js:2
+msgid "opens a new window"
+msgstr "відкриває нове вікно"
+
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:47
 #: includes/classes/Fixes/Fix/BlockPDFUploadsFix.php:79
 msgid "Block PDF Uploads"
@@ -1308,6 +1587,23 @@ msgstr "Пошук"
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:202
 msgid "Settings to add missing labels to WordPress comment and search forms."
 msgstr "Налаштування для додавання відсутніх міток до форм коментарів та пошуку WordPress."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:42
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:88
+msgid "Force Error on Empty Search"
+msgstr "Примусова помилка при порожньому пошуку"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:65
+msgid "Empty Search Handling"
+msgstr "Обробка порожнього пошуку"
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:91
+msgid "When a search is submitted with an empty query, force WordPress to display the search results template so users see a meaningful response. This assumes the active theme has a search.php template."
+msgstr "Коли пошук надсилається з порожнім запитом, примусьте WordPress відобразити шаблон результатів пошуку, щоб користувачі бачили змістовну відповідь. Це передбачає, що активна тема має шаблон search.php."
+
+#: includes/classes/Fixes/Fix/EmptySearchFix.php:107
+msgid "Force WordPress to show a search results page when a search is submitted with an empty query."
+msgstr "Примусьте WordPress показувати сторінку результатів пошуку, коли пошук надсилається з порожнім запитом."
 
 #: includes/classes/Fixes/Fix/FocusOutlineFix.php:37
 msgid "Add Focus Outlines"
@@ -1468,17 +1764,75 @@ msgstr "Видалити індекс табуляції"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Видалити атрибут %1$s з елементів, що фокусуються."
 
-#: includes/classes/Fixes/FixesManager.php:250
+#: includes/classes/Fixes/FixesManager.php:252
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Примітка: Це налаштування не рекомендується для тем, які вже готові до доступності."
 
-#: includes/classes/Fixes/FixesManager.php:320
+#: includes/classes/Fixes/FixesManager.php:322
 msgid "Fix not found"
 msgstr "Виправлення не знайдено"
 
-#: includes/classes/Fixes/FixesManager.php:356
+#: includes/classes/Fixes/FixesManager.php:358
 msgid "Fix not found."
 msgstr "Виправлення не знайдено."
+
+#: includes/classes/MyDot/Connector.php:202
+msgid "You do not have permission to manage this license."
+msgstr "У вас немає дозволу на керування цією ліцензією."
+
+#: includes/classes/MyDot/Connector.php:238
+msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
+msgstr "Pro-ліцензія активна. Будь ласка, спочатку деактивуйте Pro-ліцензію, якщо ви хочете використовувати безкоштовну ліцензію."
+
+#: includes/classes/MyDot/Connector.php:268
+msgid "An error occurred, please try again."
+msgstr "Виникла помилка, будь ласка, спробуйте ще раз."
+
+#: includes/classes/MyDot/Connector.php:557
+msgid "You do not have permission to register this site."
+msgstr "У вас немає дозволу на реєстрацію цього сайту."
+
+#: includes/classes/MyDot/Connector.php:578
+msgid "You do not have permission to unregister this site."
+msgstr "У вас немає дозволу на скасування реєстрації цього сайту."
+
+#: includes/classes/MyDot/Connector.php:604
+msgid "No license key found. Please activate a license before registering your site."
+msgstr "Ліцензійний ключ не знайдено. Будь ласка, активуйте ліцензію перед реєстрацією сайту."
+
+#: includes/classes/MyDot/Connector.php:615
+#: includes/classes/MyDot/Connector.php:822
+msgid "Unknown error occurred while registering the site."
+msgstr "Виникла невідома помилка під час реєстрації сайту."
+
+#: includes/classes/MyDot/Connector.php:644
+msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
+msgstr "Сайт успішно зареєстровано. Тепер ваш сайт налаштовано на використання додаткових послуг доступності."
+
+#: includes/classes/MyDot/Connector.php:654
+msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
+msgstr "Реєстрацію сайту завершено, але дані відповіді були не в очікуваному форматі. Деякі функції можуть працювати некоректно."
+
+#: includes/classes/MyDot/Connector.php:730
+msgid "Unable to unregister site. Required registration data is missing."
+msgstr "Не вдалося скасувати реєстрацію сайту. Відсутні необхідні дані для реєстрації."
+
+#: includes/classes/MyDot/Connector.php:747
+#: includes/classes/MyDot/Connector.php:880
+msgid "Unknown error occurred while unregistering the site."
+msgstr "Виникла невідома помилка під час скасування реєстрації сайту."
+
+#: includes/classes/MyDot/Connector.php:762
+msgid "Site unregistered successfully. Your site will no longer receive email reports."
+msgstr "Реєстрацію сайту успішно скасовано. Ваш сайт більше не отримуватиме звіти електронною поштою."
+
+#: includes/classes/MyDot/Connector.php:785
+msgid "No license key provided."
+msgstr "Ліцензійний ключ не надано."
+
+#: includes/classes/MyDot/Connector.php:843
+msgid "Missing required parameters for unregistration."
+msgstr "Відсутні необхідні параметри для скасування реєстрації."
 
 #: includes/classes/Rules/AffectedDisabilities.php:50
 msgid "Blind"
@@ -2950,11 +3304,11 @@ msgstr "постійне посилання до "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:403
+#: includes/helper-functions.php:409
 msgid "Attend Free"
 msgstr "Відвідати безкоштовно"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:415
 #: partials/welcome-page.php:88
 #: partials/welcome-page.php:93
 #: partials/welcome-page.php:98
@@ -2968,7 +3322,7 @@ msgid "(opens in a new window)"
 msgstr "(відкривається в новому вікні)"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:855
+#: includes/helper-functions.php:861
 #: build/issueModal.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
@@ -4730,14 +5084,14 @@ msgstr "EDAC: Не знайдено відповідного цільового 
 msgid "EDAC: Error updating history for skip link."
 msgstr "EDAC: Помилка оновлення історії для посилання пропуску."
 
-#: build/frontendFixes.bundle.js:1
-#: build/pageScanner.bundle.js:2
-msgid "opens a new window"
-msgstr "відкриває нове вікно"
-
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Close fixes modal"
 msgstr "Закрити модальне вікно виправлень"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%1$d of %2$d"
+msgstr "%1$d з %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
@@ -4752,9 +5106,37 @@ msgid "The element was not found on the page."
 msgstr "Елемент не знайдено на сторінці."
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Left"
+msgstr "Перемістити вліво"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Move to Right"
+msgstr "Перемістити вправо"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel position reset."
+msgstr "Позицію панелі скинуто."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the left."
+msgstr "Панель переміщено вліво."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel moved to the right."
+msgstr "Панель переміщено вправо."
+
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Відкрити деталі для %1$s, %2$s з %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Undock Panel"
+msgstr "Відкріпити панель"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Dock Panel"
+msgstr "Прикріпити панель"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Rescan This Page"
@@ -4765,8 +5147,24 @@ msgid "Accessibility Checker Tools"
 msgstr "Інструменти Accessibility Checker"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "More options"
+msgstr "Більше опцій"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Page Styles"
+msgstr "Вимкнути стилі сторінки"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Disable Styles"
+msgstr "Вимкнути стилі"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Close"
 msgstr "Закрити"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No issues found on this page."
+msgstr "На цій сторінці проблем не знайдено."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Loading..."
@@ -4781,16 +5179,61 @@ msgid "Next"
 msgstr "Далі"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Page Styles"
-msgstr "Вимкнути стилі сторінки"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Disable Styles"
-msgstr "Вимкнути стилі"
+msgid "Reset Position"
+msgstr "Скинути позицію"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "An error occurred when loading the issues."
 msgstr "Виникла помилка під час завантаження проблем."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel docked."
+msgstr "Панель прикріплено."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Panel undocked."
+msgstr "Панель відкріплено."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Severity:"
+msgstr "Серйозність:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "WCAG:"
+msgstr "WCAG:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Issue type:"
+msgstr "Тип проблеми:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Ignored"
+msgstr "Ігноровано"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Show explanation"
+msgstr "Показати пояснення"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "Why It Matters"
+msgstr "Чому це важливо"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "How to Fix"
+msgstr "Як виправити"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+msgid "More Detailed Documentation"
+msgstr "Детальніша документація"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Show Affected Code"
+msgstr "Показати уражений код"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4801,18 +5244,6 @@ msgstr "Виправити проблему: %s"
 #: build/issueModal.bundle.js:2
 msgid "Fix Issue"
 msgstr "Виправити проблему"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Full Documentation"
-msgstr "Повна документація"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Show Code"
-msgstr "Показати код"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Тип проблеми:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
@@ -4827,37 +5258,40 @@ msgid "These settings enable global fixes across your entire site. Pages may nee
 msgstr "Ці налаштування вмикають глобальні виправлення на всьому вашому сайті. Можливо, сторінки потрібно буде повторно зберегти або провести повне сканування сайту, щоб побачити виправлення у звітах."
 
 #: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d issue found"
+msgid_plural "%d issues found"
+msgstr[0] "Знайдено %d проблему"
+msgstr[1] "Знайдено %d проблеми"
+msgstr[2] "Знайдено %d проблем"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Problem"
+msgid_plural "%d Problems"
+msgstr[0] "%d проблема"
+msgstr[1] "%d проблеми"
+msgstr[2] "%d проблем"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Needs Review"
+msgid_plural "%d Need Review"
+msgstr[0] "%d потребує перегляду"
+msgstr[1] "%d потребують перегляду"
+msgstr[2] "%d потребують перегляду"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "%d Ignored"
+msgid_plural "%d Ignored"
+msgstr[0] "%d ігнорується"
+msgstr[1] "%d ігноруються"
+msgstr[2] "%d ігноруються"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
 msgstr "Проблем не виявлено."
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "error"
-msgid_plural "errors"
-msgstr[0] "помилка"
-msgstr[1] "errors"
-msgstr[2] "errors"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "warning"
-msgid_plural "warnings"
-msgstr[0] "попередження"
-msgstr[1] "warnings"
-msgstr[2] "warnings"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "and"
-msgstr "та"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "ignored issue"
-msgid_plural "ignored issues"
-msgstr[0] "проігнорована проблема"
-msgstr[1] "ignored issues"
-msgstr[2] "ignored issues"
-
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "detected."
-msgstr "виявлено."
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
@@ -4999,26 +5433,6 @@ msgstr "Тип"
 msgid "Severity"
 msgstr "Серйозність"
 
-#: build/issueModal.bundle.js:2
-msgid "WCAG:"
-msgstr "WCAG:"
-
-#: build/issueModal.bundle.js:2
-msgid "Show explanation"
-msgstr "Показати пояснення"
-
-#: build/issueModal.bundle.js:2
-msgid "Why It Matters"
-msgstr "Чому це важливо"
-
-#: build/issueModal.bundle.js:2
-msgid "How to Fix"
-msgstr "Як виправити"
-
-#: build/issueModal.bundle.js:2
-msgid "More Detailed Documentation"
-msgstr "Детальніша документація"
-
 #: build/pageScanner.bundle.js:2
 msgid "new window"
 msgstr "нове вікно"
@@ -5154,10 +5568,6 @@ msgstr "Перевірте та виправте проблеми доступн
 #: build/sidebar.bundle.js:2
 msgid "Open Accessibility Panel"
 msgstr "Відкрити панель доступності"
-
-#: build/sidebar.bundle.js:2
-msgid "N/A"
-msgstr "Н/Д"
 
 #: build/sidebar.bundle.js:2
 #, js-format
@@ -5313,6 +5723,30 @@ msgid "A simplified summary is required for this content."
 msgstr "Для цього вмісту потрібен спрощений підсумок."
 
 #: build/sidebar.bundle.js:2
+msgid "Unable to load this preference."
+msgstr "Не вдалося завантажити цю перевагу."
+
+#: build/sidebar.bundle.js:2
+msgid "Unable to save this preference."
+msgstr "Не вдалося зберегти цю перевагу."
+
+#: build/sidebar.bundle.js:2
+msgid "Loading preference..."
+msgstr "Завантаження переваги..."
+
+#: build/sidebar.bundle.js:2
+msgid "Screen Reader Text Format"
+msgstr "Формат тексту для зчитування з екрана"
+
+#: build/sidebar.bundle.js:2
+msgid "Control whether screen reader text stays visible while you edit."
+msgstr "Керуйте видимістю тексту для зчитування з екрана під час редагування."
+
+#: build/sidebar.bundle.js:2
+msgid "Always show screen reader text?"
+msgstr "Завжди показувати текст для зчитування з екрана?"
+
+#: build/sidebar.bundle.js:2
 msgid "Loading accessibility data..."
 msgstr "Завантаження даних доступності..."
 
@@ -5327,3 +5761,11 @@ msgstr "Сканувати"
 #: build/sidebar.bundle.js:2
 msgid "Refresh"
 msgstr "Оновити"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Screen Reader Only"
+msgstr "Лише для зчитування з екрана"
+
+#: build/srOnlyFormat.bundle.js:2
+msgid "Always show screen reader text"
+msgstr "Завжди показувати текст для зчитування з екрана"

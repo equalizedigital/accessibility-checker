@@ -27,6 +27,56 @@ class Enqueue_Frontend {
 	 */
 	public static function enqueue() {
 		self::maybe_enqueue_frontend_highlighter();
+		self::enqueue_sr_only_styles();
+	}
+
+	/**
+	 * Get the primary color for the current user's admin color scheme.
+	 *
+	 * $_wp_admin_css_colors is only populated in the admin, so we use a
+	 * hardcoded map of the default WordPress color schemes instead.
+	 *
+	 * @return string Hex color value.
+	 */
+	public static function get_admin_theme_color(): string {
+		$scheme = get_user_option( 'admin_color' );
+		$scheme = $scheme ? $scheme : 'fresh';
+
+		$scheme_colors = [
+			'fresh'     => '#0073aa',
+			'light'     => '#04a4cc',
+			'modern'    => '#3858e9',
+			'blue'      => '#096484',
+			'coffee'    => '#46403c',
+			'ectoplasm' => '#523f6d',
+			'midnight'  => '#e14d43',
+			'ocean'     => '#627c83',
+			'sunrise'   => '#cf4944',
+		];
+
+		return $scheme_colors[ $scheme ] ?? '#3858e9';
+	}
+
+	/**
+	 * Enqueue the screen reader only format styles on the frontend.
+	 *
+	 * Loaded on all frontend pages so that text wrapped in .text-format-sr-only
+	 * is visually hidden for sighted users while remaining accessible to screen readers.
+	 *
+	 * @return void
+	 */
+	public static function enqueue_sr_only_styles(): void {
+		if ( is_admin() ) {
+			return;
+		}
+
+		wp_enqueue_style(
+			'edac-sr-only-format',
+			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css',
+			[],
+			EDAC_VERSION,
+			'all'
+		);
 	}
 
 	/**
@@ -103,6 +153,7 @@ class Enqueue_Frontend {
 					'nonce'            => wp_create_nonce( 'frontend-highlighter' ),
 					'restNonce'        => is_user_logged_in() ? wp_create_nonce( 'wp_rest' ) : '',
 					'userCanFix'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
+					'isPro'            => edac_is_pro(),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
@@ -111,6 +162,7 @@ class Enqueue_Frontend {
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js',
+					'adminThemeColor'  => self::get_admin_theme_color(),
 				]
 			);
 

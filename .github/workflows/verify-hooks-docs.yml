@@ -1,9 +1,16 @@
 name: Verify hooks docs
 
 on:
-  push:
-    branches:
-      - 'release/**'
+  schedule:
+    # Every Monday at 12:00 PM GMT
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run against'
+        required: false
+        default: 'develop'
+        type: string
 
 jobs:
   verify-docs:
@@ -12,6 +19,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch || 'develop' }}
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -36,5 +45,5 @@ jobs:
             This PR was created by the verify-hooks-docs workflow because the generated
             hooks documentation changed when the code in this PR was inspected.
           branch: automation/regenerate-hooks-docs-${{ github.run_id }}
-          base: develop
+          base: ${{ inputs.branch || 'develop' }}
           author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
