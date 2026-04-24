@@ -22,6 +22,7 @@ class AccessibilityCheckerHighlight {
 		this.settings = { ...defaultSettings, ...settings };
 		this._scanAttempted = false;
 		this._isRescanning = false;
+		this._pendingRescanAnnouncement = false;
 		this._issuesCleared = false;
 
 		this.highlightPanel = this.addHighlightPanel();
@@ -597,9 +598,9 @@ class AccessibilityCheckerHighlight {
                         <div id="edac-highlight-announcer" class="edac-sr-only" role="status" aria-live="polite" aria-atomic="true"></div>
                         <div id="edac-highlight-panel" class="edac-highlight-panel edac-highlight-panel--${ widgetPosition }">
                                 <button id="edac-highlight-panel-toggle" class="edac-highlight-panel-toggle" aria-haspopup="dialog" aria-label="${ __( 'Accessibility Checker Tools', 'accessibility-checker' ) }"></button>
-                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0">
+                                <div id="edac-highlight-panel-controls" class="edac-highlight-panel-controls" tabindex="0" role="dialog" aria-labelledby="edac-highlight-panel-controls-title">
                                         <div class="edac-highlight-panel-controls-header">
-                                                <div class="edac-highlight-panel-controls-title" role="heading" aria-level="2"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
+                                                <div id="edac-highlight-panel-controls-title" class="edac-highlight-panel-controls-title" role="heading" aria-level="2"><span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span>${ __( 'Accessibility Checker', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-header-actions">
                                                         <div class="edac-highlight-menu-container">
                                                                 <button id="edac-highlight-menu-button" class="edac-highlight-menu-button" aria-haspopup="menu" aria-expanded="false" aria-label="${ __( 'More options', 'accessibility-checker' ) }">&#8943;</button>
@@ -826,12 +827,33 @@ class AccessibilityCheckerHighlight {
 
 		const pagination = document.getElementById( 'edac-highlight-pagination' );
 		if ( pagination ) {
-			pagination.textContent = sprintf(
+			const visiblePosition = sprintf(
 				// translators: %1$d is the current issue number, %2$d is the total number of issues.
 				__( '%1$d of %2$d', 'accessibility-checker' ),
 				this.currentButtonIndex + 1,
 				this.issues.length
 			);
+
+			const issueTitle = issue.rule_title || __( 'Untitled issue', 'accessibility-checker' );
+			const srAnnouncement = sprintf(
+				// translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+				__( 'Issue %1$d of %2$d: %3$s', 'accessibility-checker' ),
+				this.currentButtonIndex + 1,
+				this.issues.length,
+				issueTitle
+			);
+
+			pagination.textContent = '';
+
+			const visiblePositionNode = document.createElement( 'span' );
+			visiblePositionNode.setAttribute( 'aria-hidden', 'true' );
+			visiblePositionNode.textContent = visiblePosition;
+
+			const srOnlyNode = document.createElement( 'span' );
+			srOnlyNode.className = 'edac-sr-only';
+			srOnlyNode.textContent = srAnnouncement;
+
+			pagination.append( visiblePositionNode, srOnlyNode );
 		}
 
 		const tooltip = issue.tooltip;
@@ -1187,7 +1209,7 @@ class AccessibilityCheckerHighlight {
 				ignored: 'data:image/svg+xml,' + encodeURIComponent( '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37" width="16" height="16" fill="none"><path d="M13.875 19.6562L17.3437 23.125L23.125 15.0312M32.375 18.5C32.375 20.3221 32.0161 22.1263 31.3188 23.8097C30.6215 25.4931 29.5995 27.0227 28.3111 28.3111C27.0227 29.5995 25.4931 30.6215 23.8097 31.3188C22.1263 32.0161 20.3221 32.375 18.5 32.375C16.6779 32.375 14.8737 32.0161 13.1903 31.3188C11.5069 30.6215 9.97731 29.5995 8.68889 28.3111C7.40048 27.0227 6.37846 25.4931 5.68117 23.8097C4.98389 22.1263 4.625 20.3221 4.625 18.5C4.625 14.8201 6.08683 11.291 8.68889 8.68889C11.291 6.08683 14.8201 4.625 18.5 4.625C22.1799 4.625 25.709 6.08683 28.3111 8.68889C30.9132 11.291 32.375 14.8201 32.375 18.5Z" stroke="#737373" stroke-width="2.775" stroke-linecap="round" stroke-linejoin="round"/></svg>' ),
 			};
 			const typeIconUri = typeIconDataUris[ matchingObj.rule_type ];
-			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large" aria-label="${ __( 'Issue type:', 'accessibility-checker' ) } ${ matchingObj.rule_type }">
+			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large">
 				${ typeIconUri ? `<img src="${ typeIconUri }" width="16" height="16" style="display:block;width:16px;height:16px;flex-shrink:0" alt="" />` : '' }
 				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Ignored', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
 			</span>`;
@@ -1422,6 +1444,8 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = true;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Enable Styles', 'accessibility-checker' );
+		this.disableStylesButton.setAttribute( 'aria-label', __( 'Enable Page Styles', 'accessibility-checker' ) );
+		this.announce( __( 'Page styles disabled.', 'accessibility-checker' ) );
 	}
 
 	/**
@@ -1457,6 +1481,8 @@ class AccessibilityCheckerHighlight {
 
 		this.stylesDisabled = false;
 		this.disableStylesButton.querySelector( 'span' ).textContent = __( 'Disable Styles', 'accessibility-checker' );
+		this.disableStylesButton.setAttribute( 'aria-label', __( 'Disable Page Styles', 'accessibility-checker' ) );
+		this.announce( __( 'Page styles re-enabled.', 'accessibility-checker' ) );
 
 		// Re-render the current issue to restore panel state after styles are re-enabled.
 		if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
@@ -1751,32 +1777,47 @@ class AccessibilityCheckerHighlight {
 		const densityMetrics = getPageDensity();
 		const self = this;
 		const scriptId = 'edac-accessibility-checker-scanner-script';
-		if ( ! document.getElementById( scriptId ) ) {
-			const script = document.createElement( 'script' );
-			script.src = window.edacFrontendHighlighterApp?.scannerBundleUrl || '/wp-content/plugins/accessibility-checker/build/pageScanner.bundle.js';
-			script.id = scriptId;
-			script.onload = function() {
-				setTimeout( () => {
-					self._runScanOrShowError( densityMetrics );
-				}, 100 );
+
+		return new Promise( ( resolve, reject ) => {
+			const runScan = () => {
+				self._runScanOrShowError( densityMetrics )
+					.then( resolve )
+					.catch( reject );
 			};
-			script.onerror = function() {
-				self.showWait( false );
-				self.showScanError( 'Failed to load scanner script.' );
-			};
-			document.head.appendChild( script );
-		} else {
-			self._runScanOrShowError( densityMetrics );
-		}
+
+			if ( ! document.getElementById( scriptId ) ) {
+				const script = document.createElement( 'script' );
+				script.src = window.edacFrontendHighlighterApp?.scannerBundleUrl || '/wp-content/plugins/accessibility-checker/build/pageScanner.bundle.js';
+				script.id = scriptId;
+				script.onload = function() {
+					setTimeout( () => {
+						runScan();
+					}, 100 );
+				};
+				script.onerror = function() {
+					const message = __( 'Failed to load scanner script.', 'accessibility-checker' );
+					self.showWait( false );
+					self.showScanError( message );
+					reject( new Error( message ) );
+				};
+				document.head.appendChild( script );
+			} else {
+				runScan();
+			}
+		} );
 	}
 
 	_runScanOrShowError( densityMetrics ) {
 		if ( window.runAccessibilityScan ) {
-			this.runAccessibilityScanAndSave( densityMetrics );
-		} else {
-			this.showWait( false );
-			this.showScanError( __( 'Scanner function not found.', 'accessibility-checker' ) );
+			return this.runAccessibilityScanAndSave( densityMetrics );
 		}
+
+		const message = __( 'Scanner function not found.', 'accessibility-checker' );
+		this.showWait( false );
+		this.showScanError( message );
+		const error = new Error( message );
+		error.edacHandled = true;
+		return Promise.reject( error );
 	}
 
 	runAccessibilityScanAndSave( densityMetrics ) {
@@ -1786,29 +1827,43 @@ class AccessibilityCheckerHighlight {
 			summary.textContent = __( 'Scanning...', 'accessibility-checker' );
 			summary.classList.remove( 'edac-error' );
 		}
-		window.runAccessibilityScan().then( ( result ) => {
+		return window.runAccessibilityScan().then( ( result ) => {
 			const postId = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.postID;
 			const nonce = window.edacFrontendHighlighterApp && window.edacFrontendHighlighterApp.restNonce;
 			if ( ! postId || ! nonce ) {
+				const message = __( 'Missing postId or nonce.', 'accessibility-checker' );
 				self.showWait( false );
-				self.showScanError( __( 'Missing postId or nonce.', 'accessibility-checker' ) );
-				return;
+				self.showScanError( message );
+				const error = new Error( message );
+				error.edacHandled = true;
+				throw error;
 			}
 			if ( ! result || ! result.violations || result.violations.length === 0 ) {
 				self.showWait( false );
+				if ( self._pendingRescanAnnouncement ) {
+					self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
+					self._pendingRescanAnnouncement = false;
+				}
 				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
-				return;
+				return { status: 'no-violations' };
 			}
-			self.saveScanResults( postId, nonce, result.violations, densityMetrics );
-		} ).catch( () => {
+			return self.saveScanResults( postId, nonce, result.violations, densityMetrics );
+		} ).catch( ( error ) => {
+			if ( error?.edacHandled ) {
+				throw error;
+			}
+			const message = __( 'Accessibility scan error.', 'accessibility-checker' );
 			self.showWait( false );
-			self.showScanError( __( 'Accessibility scan error.', 'accessibility-checker' ) );
+			self.showScanError( message );
+			const handledError = new Error( message );
+			handledError.edacHandled = true;
+			throw handledError;
 		} );
 	}
 
 	saveScanResults( postId, nonce, violations, densityMetrics ) {
 		const self = this;
-		fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+		return fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -1825,14 +1880,25 @@ class AccessibilityCheckerHighlight {
 			.then( ( data ) => {
 				self.showWait( false );
 				if ( data && data.success ) {
-					// Optionally show a success message or update UI
-				} else {
-					self.showScanError( __( 'Saving failed.', 'accessibility-checker' ) );
+					return { status: 'success' };
 				}
+
+				const message = __( 'Saving failed.', 'accessibility-checker' );
+				self.showScanError( message );
+				const error = new Error( message );
+				error.edacHandled = true;
+				throw error;
 			} )
-			.catch( () => {
+			.catch( ( error ) => {
+				if ( error?.edacHandled ) {
+					throw error;
+				}
+				const message = __( 'Error saving scan results.', 'accessibility-checker' );
 				self.showWait( false );
-				self.showScanError( __( 'Error saving scan results.', 'accessibility-checker' ) );
+				self.showScanError( message );
+				const handledError = new Error( message );
+				handledError.edacHandled = true;
+				throw handledError;
 			} );
 	}
 
@@ -1842,16 +1908,25 @@ class AccessibilityCheckerHighlight {
 	rescanPage() {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
+			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
 			return;
 		}
+		// Avoid panelOpen from short-circuiting into an auto-rescan after an explicit rescan.
+		this._issuesCleared = false;
 		this._isRescanning = true;
+		this._pendingRescanAnnouncement = true;
+		this.announce( __( 'Rescanning this page.', 'accessibility-checker' ) );
 
 		this.removeHighlightButtons();
-		this.kickoffScan();
-		setTimeout( () => {
-			this._isRescanning = false;
+		this.kickoffScan().then( () => {
+			if ( this._pendingRescanAnnouncement ) {
+				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
+				this._pendingRescanAnnouncement = false;
+			}
 			this.panelOpen();
-		}, 5000 );
+		} ).finally( () => {
+			this._isRescanning = false;
+		} );
 	}
 
 	/**
@@ -1952,6 +2027,11 @@ class AccessibilityCheckerHighlight {
 		if ( summary ) {
 			summary.textContent = message;
 			summary.classList.add( 'edac-error' );
+		}
+
+		if ( this._pendingRescanAnnouncement ) {
+			this.announce( message );
+			this._pendingRescanAnnouncement = false;
 		}
 	}
 }

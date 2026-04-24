@@ -1061,6 +1061,12 @@ class Connector {
 		$parts       = null !== $auth_header ? explode( ' ', $auth_header ) : [];
 		if ( ! empty( $auth_header ) ) {
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
+				// Check if the site is registered currently before attempting validation.
+				$site_id = (string) get_option( 'edac_site_id', '' );
+				if ( '' === $site_id ) {
+					return false;
+				}
+
 				// Use the fallback validator which will refresh key if needed.
 				return self::validate_jwt_token_with_fallback( $parts[1] );
 			}

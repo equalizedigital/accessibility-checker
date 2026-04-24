@@ -1,0 +1,6 @@
+reviews:
+  branches:
+    include:
+      - main
+      - develop
+      - release/**
