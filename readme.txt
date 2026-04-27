@@ -267,7 +267,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 1. WordPress post editor showing the Accessibility Checker sidebar panel expanded reporting 27 problems, 41 Needs Review, 11th grade reading level and a Passed Checks score of 70%. Issues identified include empty links, ambiguous anchor text, linked image empty alternative text, missing form label, insufficient color contrast, incorrect heading order, and improper use of link.
 2. Accessibility problems can be viewed on the front end of the website, with a dashed pink outline around the element and an explanation of the issue and how to fix it in an Accessibility Checker dialog.
-3. Example of the front-end highlighter docked to the right, rather than in a dialog overlayed on the website.
+3. Example of the front-end highlighter docked to the right, rather than in a dialog overlaid on the website.
 4. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
 5. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
 6. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible, and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
