@@ -266,14 +266,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Screenshots ==
 
 1. WordPress post editor showing the Accessibility Checker sidebar panel expanded reporting 27 problems, 41 Needs Review, 11th grade reading level and a Passed Checks score of 70%. Issues identified include empty links, ambiguous anchor text, linked image empty alternative text, missing form label, insufficient color contrast, incorrect heading order, and improper use of link.
-2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website, with a dashed pink outline around the element and explanation of the issue and how to fix it.
-3. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
-4. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
-5. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
-6. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
-7. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
-8. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
-9. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
+2. Accessibility problems can be viewed on the front end of the website, with a dashed pink outline around the element and an explanation of the issue and how to fix it in an Accessibility Checker dialog.
+3. Example of the front-end highlighter docked to the right, rather than in a dialog overlaid on the website.
+4. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
+5. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
+6. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible, and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
+7. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
+8. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
+9. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
+10. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
+11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
 
