@@ -75,10 +75,16 @@ const processLinks = () => {
 
 		// Check if the link opens a new window using target="_blank"
 		if ( link.getAttribute( 'target' ) === '_blank' ) {
+			if ( link.closest( '.anww-disabled, .edac-nww-disabled' ) ) {
+				link.setAttribute( 'data-nww-processed', 'true' );
+				return;
+			}
 			if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
 				addExternalLinkIcon( link );
 			}
-			updateAriaLabel( link );
+			if ( ! link.closest( '.anww-no-aria-label, .edac-nww-no-aria-label' ) ) {
+				updateAriaLabel( link );
+			}
 			if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
 				addTooltipHandlers( link );
 			}
@@ -92,10 +98,16 @@ const processLinks = () => {
 			const targetWindow = windowOpenMatch ? windowOpenMatch[ 1 ] : '';
 
 			if ( targetWindow === '_blank' || targetWindow === '' ) {
+				if ( link.closest( '.anww-disabled, .edac-nww-disabled' ) ) {
+					link.setAttribute( 'data-nww-processed', 'true' );
+					return;
+				}
 				if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
 					addExternalLinkIcon( link );
 				}
-				updateAriaLabel( link );
+				if ( ! link.closest( '.anww-no-aria-label, .edac-nww-no-aria-label' ) ) {
+					updateAriaLabel( link );
+				}
 				if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
 					addTooltipHandlers( link );
 				}
