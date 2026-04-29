@@ -165,7 +165,7 @@ class ToggleFix implements CLICommandInterface {
 		} elseif ( ! empty( $arguments['disable'] ) ) {
 			$new_value = false;
 		} else {
-			// Default behaviour: toggle the current state.
+			// Default behavior: toggle the current state.
 			$new_value = ! $current_value;
 		}
 

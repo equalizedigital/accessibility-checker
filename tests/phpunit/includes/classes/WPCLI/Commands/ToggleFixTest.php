@@ -245,7 +245,7 @@ class ToggleFixTest extends WP_UnitTestCase {
 			[
 				'enable'  => true,
 				'disable' => true,
-			] 
+			]
 		);
 		$output = ob_get_clean();
 
