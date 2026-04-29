@@ -8,6 +8,7 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { renderStructureMap } from './structureMap';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -60,6 +61,16 @@ class AccessibilityCheckerHighlight {
 		this.moveButton = document.querySelector( '#edac-highlight-move' );
 		this.dockButton = document.querySelector( '#edac-highlight-dock' );
 		this.srAnnouncer = document.querySelector( '#edac-highlight-announcer' );
+		this.tabIssues = document.querySelector( '#edac-tab-issues' );
+		this.tabStructure = document.querySelector( '#edac-tab-structure' );
+		this.panelStructure = document.querySelector( '#edac-panel-structure' );
+		this.activeViewIndex = 0;
+
+		// Force-hide the structure panel from the start. CSS alone can't reliably win
+		// against all:unset inside the panel, so we use the highest-priority override possible.
+		if ( this.panelStructure ) {
+			this.panelStructure.style.setProperty( 'display', 'none', 'important' );
+		}
 		this.isDocked = localStorage.getItem( 'edac-panel-docked' ) === '1';
 		this.stylesDisabled = false;
 		this.originalCss = [];
@@ -163,6 +174,29 @@ class AccessibilityCheckerHighlight {
 			} );
 		}
 
+		// View tab switching (Issues / Structure)
+		const viewTabs = [ this.tabIssues, this.tabStructure ];
+		viewTabs.forEach( ( tab, index ) => {
+			tab.addEventListener( 'click', () => this.switchView( index ) );
+			tab.addEventListener( 'keydown', ( e ) => {
+				let next = index;
+				if ( e.key === 'ArrowRight' ) {
+					next = ( index + 1 ) % viewTabs.length;
+				} else if ( e.key === 'ArrowLeft' ) {
+					next = ( index - 1 + viewTabs.length ) % viewTabs.length;
+				} else if ( e.key === 'Home' ) {
+					next = 0;
+				} else if ( e.key === 'End' ) {
+					next = viewTabs.length - 1;
+				} else {
+					return;
+				}
+				e.preventDefault();
+				this.switchView( next );
+				viewTabs[ next ].focus();
+			} );
+		} );
+
 		// Reactivate the focus trap when the user clicks back into the panel.
 		this.panelControls.addEventListener( 'pointerdown', () => {
 			if ( ! this.panelControlsFocusTrap.active ) {
@@ -184,6 +218,51 @@ class AccessibilityCheckerHighlight {
 			// Docked panel restored on page load — fetch issue data so the panel isn't empty.
 			this.panelOpen();
 		}
+	}
+
+	/**
+	 * Switch between Issues (index 0) and Structure (index 1) views.
+	 * @param {number} index
+	 */
+	switchView( index ) {
+		const viewTabs = [ this.tabIssues, this.tabStructure ];
+		const viewPanels = [ this.contentArea, this.panelStructure ];
+
+		viewTabs.forEach( ( tab, i ) => {
+			const active = i === index;
+			tab.setAttribute( 'aria-selected', String( active ) );
+			tab.tabIndex = active ? 0 : -1;
+		} );
+
+		viewPanels.forEach( ( panel, i ) => {
+			const active = i === index;
+			if ( active ) {
+				panel.removeAttribute( 'hidden' );
+				panel.classList.remove( 'edac-view-hidden' );
+				panel.style.removeProperty( 'display' );
+			} else {
+				panel.setAttribute( 'hidden', '' );
+				panel.classList.add( 'edac-view-hidden' );
+				panel.style.setProperty( 'display', 'none', 'important' );
+			}
+		} );
+
+		// Hide prev/next nav in structure view — they only apply to issues.
+		this.panelControls.classList.toggle( 'edac-view--structure', index === 1 );
+		this.activeViewIndex = index;
+
+		if ( index === 1 ) {
+			this.buildStructureMap();
+		}
+	}
+
+	buildStructureMap() {
+		renderStructureMap(
+			this.panelStructure,
+			this.issues || [],
+			( el ) => this.applyLandmarkHighlight( el ),
+			( el ) => this.applyHeadingHighlight( el )
+		);
 	}
 
 	toggleMenu() {
@@ -615,7 +694,11 @@ class AccessibilityCheckerHighlight {
                                                         <button id="edac-highlight-panel-controls-close" class="edac-highlight-panel-controls-close" aria-label="${ __( 'Close', 'accessibility-checker' ) }">×</button>
                                                 </div>
                                         </div>
-                                        <div id="edac-highlight-panel-controls-content" class="edac-highlight-panel-controls-content">
+                                        <div role="tablist" class="edac-highlight-view-tabs" aria-label="${ __( 'Panel view', 'accessibility-checker' ) }">
+                                                <button id="edac-tab-issues" role="tab" aria-selected="true" aria-controls="edac-highlight-panel-controls-content" class="edac-highlight-view-tab" tabindex="0">${ __( 'Issues', 'accessibility-checker' ) }</button>
+                                                <button id="edac-tab-structure" role="tab" aria-selected="false" aria-controls="edac-panel-structure" class="edac-highlight-view-tab" tabindex="-1">${ __( 'Structure', 'accessibility-checker' ) }</button>
+                                        </div>
+                                        <div id="edac-highlight-panel-controls-content" role="tabpanel" aria-labelledby="edac-tab-issues" class="edac-highlight-panel-controls-content">
                                                 <div id="edac-highlight-panel-controls-content-empty" class="edac-highlight-panel-controls-content-empty">
                                                         ${ __( 'No issues found on this page.', 'accessibility-checker' ) }
                                                 </div>
@@ -626,6 +709,7 @@ class AccessibilityCheckerHighlight {
                                                         <div id="edac-highlight-panel-description-fix" class="edac-highlight-panel-description-fix"></div>
                                                 </div>
                                         </div>
+                                        <div id="edac-panel-structure" role="tabpanel" aria-labelledby="edac-tab-structure" class="edac-highlight-panel-controls-content edac-view-hidden" hidden></div>
                                         <div class="edac-highlight-panel-controls-footer">
                                                 <div class="edac-highlight-panel-controls-summary">${ __( 'Loading...', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-buttons">
@@ -1674,69 +1758,66 @@ class AccessibilityCheckerHighlight {
 			}
 
 			if ( landmarkElement ) {
-				// Clean up any existing landmark labels first
-				this.removeLandmarkLabels();
-
-				// Add highlighting styles
-				landmarkElement.classList.add( 'edac-highlight-element-selected' );
-				landmarkElement.classList.add( 'edac-landmark-highlight' );
-
-				// Create and add landmark type label
-				const landmarkType = this.getLandmarkType( landmarkElement );
-				const landmarkLabel = document.createElement( 'div' );
-				landmarkLabel.classList.add( 'edac-landmark-label' );
-				landmarkLabel.textContent = sprintf( __( 'Landmark: %s', 'accessibility-checker' ), landmarkType );
-				landmarkLabel.setAttribute( 'aria-hidden', 'true' );
-				landmarkLabel.style.cssText = `
-					position: absolute;
-					background: #072446;
-					color: white;
-					padding: 4px 8px;
-					font-size: 12px;
-					font-weight: bold;
-					border-radius: 3px;
-					z-index: 99998;
-					pointer-events: none;
-					font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-					line-height: 1;
-					box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-				`;
-
-				// Position the label inside the top-left corner of the landmark
-				const rect = landmarkElement.getBoundingClientRect();
-				landmarkLabel.style.left = ( rect.left + window.scrollX - 0 ) + 'px'; // 15px inside from left edge
-				landmarkLabel.style.top = ( rect.top + window.scrollY - 0 ) + 'px'; // 15px inside from top edge
-
-				// Add label to the page
-				document.body.appendChild( landmarkLabel );
-
-				// Store reference for cleanup
-				landmarkElement.setAttribute( 'data-edac-landmark-label-id', Date.now() );
-				landmarkLabel.setAttribute( 'data-edac-landmark-for', landmarkElement.getAttribute( 'data-edac-landmark-label-id' ) );
-
-				// Adjust for small elements
-				if ( landmarkElement.offsetWidth < 20 ) {
-					landmarkElement.classList.add( 'edac-highlight-element-selected-min-width' );
-				}
-
-				if ( landmarkElement.offsetHeight < 5 ) {
-					landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
-				}
-
-				// Scroll to the landmark with 20px offset from start
-				const elementRect = landmarkElement.getBoundingClientRect();
-				const elementTop = elementRect.top + window.scrollY - 75;
-				window.scrollTo( {
-					top: elementTop,
-					behavior: 'smooth',
-				} );
-
-			} else {
-				// Landmark element not found - silently fail
+				this.applyLandmarkHighlight( landmarkElement );
 			}
 		} catch ( error ) {
 			// Error highlighting landmark - silently fail
 		}
+	}
+
+	/**
+	 * Applies the visual landmark highlight (outline, label badge, scroll) to a live element.
+	 * @param {HTMLElement} landmarkElement The element to highlight
+	 */
+	applyLandmarkHighlight( landmarkElement ) {
+		this.removeLandmarkLabels();
+		this.removeHeadingHighlights();
+
+		landmarkElement.classList.add( 'edac-highlight-element-selected' );
+		landmarkElement.classList.add( 'edac-landmark-highlight' );
+
+		const landmarkType = this.getLandmarkType( landmarkElement );
+		const landmarkLabel = document.createElement( 'div' );
+		landmarkLabel.classList.add( 'edac-landmark-label' );
+		landmarkLabel.textContent = sprintf( __( 'Landmark: %s', 'accessibility-checker' ), landmarkType );
+		landmarkLabel.setAttribute( 'aria-hidden', 'true' );
+		landmarkLabel.style.cssText = `
+			position: absolute;
+			background: #072446;
+			color: white;
+			padding: 4px 8px;
+			font-size: 12px;
+			font-weight: bold;
+			border-radius: 3px;
+			z-index: 99998;
+			pointer-events: none;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			line-height: 1;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		`;
+
+		const rect = landmarkElement.getBoundingClientRect();
+		landmarkLabel.style.left = ( rect.left + window.scrollX ) + 'px';
+		landmarkLabel.style.top = ( rect.top + window.scrollY ) + 'px';
+
+		document.body.appendChild( landmarkLabel );
+
+		landmarkElement.setAttribute( 'data-edac-landmark-label-id', Date.now() );
+		landmarkLabel.setAttribute( 'data-edac-landmark-for', landmarkElement.getAttribute( 'data-edac-landmark-label-id' ) );
+
+		if ( landmarkElement.offsetWidth < 20 ) {
+			landmarkElement.classList.add( 'edac-highlight-element-selected-min-width' );
+		}
+
+		if ( landmarkElement.offsetHeight < 5 ) {
+			landmarkElement.classList.add( 'edac-highlight-element-selected-min-height' );
+		}
+
+		const elementTop = landmarkElement.getBoundingClientRect().top + window.scrollY - 75;
+		window.scrollTo( {
+			top: elementTop,
+			behavior: 'smooth',
+		} );
 	}
 
 	/**
@@ -1746,6 +1827,69 @@ class AccessibilityCheckerHighlight {
 	 */
 	getLandmarkType( element ) {
 		return getLandmarkTypeUtil( element );
+	}
+
+	/**
+	 * Applies the visual heading highlight (outline, label badge, scroll) to a live element.
+	 * @param {HTMLElement} headingElement The heading element to highlight
+	 */
+	applyHeadingHighlight( headingElement ) {
+		this.removeLandmarkLabels();
+		this.removeHeadingHighlights();
+
+		headingElement.classList.add( 'edac-highlight-element-selected', 'edac-heading-highlight' );
+
+		const level = headingElement.tagName.toUpperCase();
+		const headingLabel = document.createElement( 'div' );
+		headingLabel.classList.add( 'edac-heading-label' );
+		headingLabel.textContent = sprintf( __( 'Heading: %s', 'accessibility-checker' ), level );
+		headingLabel.setAttribute( 'aria-hidden', 'true' );
+		headingLabel.style.cssText = `
+			position: absolute;
+			background: #072446;
+			color: white;
+			padding: 4px 8px;
+			font-size: 12px;
+			font-weight: bold;
+			border-radius: 3px;
+			z-index: 99998;
+			pointer-events: none;
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			line-height: 1;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+		`;
+
+		const rect = headingElement.getBoundingClientRect();
+		headingLabel.style.left = ( rect.left + window.scrollX ) + 'px';
+		headingLabel.style.top = ( rect.top + window.scrollY ) + 'px';
+
+		document.body.appendChild( headingLabel );
+
+		if ( headingElement.offsetWidth < 20 ) {
+			headingElement.classList.add( 'edac-highlight-element-selected-min-width' );
+		}
+
+		if ( headingElement.offsetHeight < 5 ) {
+			headingElement.classList.add( 'edac-highlight-element-selected-min-height' );
+		}
+
+		const elementTop = headingElement.getBoundingClientRect().top + window.scrollY - 75;
+		window.scrollTo( {
+			top: elementTop,
+			behavior: 'smooth',
+		} );
+	}
+
+	removeHeadingHighlights() {
+		document.querySelectorAll( '.edac-heading-label' ).forEach( ( label ) => label.remove() );
+		document.querySelectorAll( '.edac-heading-highlight' ).forEach( ( el ) => {
+			el.classList.remove(
+				'edac-heading-highlight',
+				'edac-highlight-element-selected',
+				'edac-highlight-element-selected-min-width',
+				'edac-highlight-element-selected-min-height'
+			);
+		} );
 	}
 
 	/**
@@ -1760,7 +1904,12 @@ class AccessibilityCheckerHighlight {
 		// Remove landmark highlight classes
 		const landmarkHighlights = document.querySelectorAll( '.edac-landmark-highlight' );
 		landmarkHighlights.forEach( ( element ) => {
-			element.classList.remove( 'edac-landmark-highlight' );
+			element.classList.remove(
+				'edac-landmark-highlight',
+				'edac-highlight-element-selected',
+				'edac-highlight-element-selected-min-width',
+				'edac-highlight-element-selected-min-height'
+			);
 			element.removeAttribute( 'data-edac-landmark-label-id' );
 		} );
 	}
