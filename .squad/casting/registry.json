@@ -1,0 +1,52 @@
+{
+  "agents": {
+    "morpheus": {
+      "persistent_name": "Morpheus",
+      "universe": "The Matrix",
+      "role": "Lead",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "neo": {
+      "persistent_name": "Neo",
+      "universe": "The Matrix",
+      "role": "Backend Dev",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "trinity": {
+      "persistent_name": "Trinity",
+      "universe": "The Matrix",
+      "role": "Frontend Dev",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "tank": {
+      "persistent_name": "Tank",
+      "universe": "The Matrix",
+      "role": "Tester",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "scribe": {
+      "persistent_name": "Scribe",
+      "universe": "exempt",
+      "role": "Session Logger",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    },
+    "ralph": {
+      "persistent_name": "Ralph",
+      "universe": "exempt",
+      "role": "Work Monitor",
+      "created_at": "2026-04-09T15:32:01Z",
+      "legacy_named": false,
+      "status": "active"
+    }
+  }
+}

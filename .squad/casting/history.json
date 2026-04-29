@@ -1,0 +1,23 @@
+{
+  "universe_usage_history": [
+    {
+      "universe": "The Matrix",
+      "project": "accessibility-checker",
+      "assigned_at": "2026-04-09T15:32:01Z"
+    }
+  ],
+  "assignment_cast_snapshots": {
+    "accessibility-checker-2026-04-09": {
+      "assignment_id": "accessibility-checker-2026-04-09",
+      "universe": "The Matrix",
+      "project": "accessibility-checker",
+      "created_at": "2026-04-09T15:32:01Z",
+      "cast": {
+        "Lead": "Morpheus",
+        "Backend Dev": "Neo",
+        "Frontend Dev": "Trinity",
+        "Tester": "Tank"
+      }
+    }
+  }
+}
