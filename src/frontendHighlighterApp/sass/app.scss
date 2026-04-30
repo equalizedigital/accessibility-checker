@@ -875,9 +875,10 @@ body {
 			}
 		}
 
-		// Headings and Landmarks tabpanels — scrollable content areas.
+		// Structure tabpanels — scrollable content areas.
 		#edac-panel-headings,
-		#edac-panel-landmarks {
+		#edac-panel-landmarks,
+		#edac-panel-taborder {
 			display: block !important;
 			overflow-y: auto !important;
 			padding: 6px 0 !important;
@@ -967,6 +968,28 @@ body {
 			&--landmark {
 				background-color: #e8f0f8 !important;
 				color: variables.$color-blue-dark !important;
+			}
+
+			&--tabstop {
+				background-color: #ede8f8 !important;
+				color: #3d1f8a !important;
+			}
+		}
+
+		.edac-structure-item-taborder-type {
+			font-size: 11px !important;
+			font-weight: 600 !important;
+			color: variables.$color-gray !important;
+			white-space: nowrap !important;
+			flex-shrink: 0 !important;
+		}
+
+		.edac-structure-item--warning .edac-structure-item-btn {
+			border-left: 3px solid variables.$color-orange !important;
+
+			.edac-structure-item-level--tabstop {
+				background-color: variables.$color-orange !important;
+				color: variables.$color-white !important;
 			}
 		}
 
