@@ -261,6 +261,9 @@ class AccessibilityCheckerHighlight {
 
 		if ( index !== 3 ) {
 			this.removeTabOrderOverlay();
+			document.querySelectorAll( '.edac-highlight-btn' ).forEach( ( b ) => b.style.removeProperty( 'display' ) );
+		} else {
+			document.querySelectorAll( '.edac-highlight-btn' ).forEach( ( b ) => b.style.setProperty( 'display', 'none', 'important' ) );
 		}
 
 		if ( index === 0 ) {
