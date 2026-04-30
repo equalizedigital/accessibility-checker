@@ -29,6 +29,10 @@ body {
 	&.edac-app-wait * {
 		cursor: wait !important;
 	}
+
+	&.edac-tab-order-active .edac-highlight-btn {
+		display: none !important;
+	}
 }
 
 .edac-highlight {

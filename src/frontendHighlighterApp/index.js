@@ -261,9 +261,9 @@ class AccessibilityCheckerHighlight {
 
 		if ( index !== 3 ) {
 			this.removeTabOrderOverlay();
-			document.querySelectorAll( '.edac-highlight-btn' ).forEach( ( b ) => b.style.removeProperty( 'display' ) );
+			document.body.classList.remove( 'edac-tab-order-active' );
 		} else {
-			document.querySelectorAll( '.edac-highlight-btn' ).forEach( ( b ) => b.style.setProperty( 'display', 'none', 'important' ) );
+			document.body.classList.add( 'edac-tab-order-active' );
 		}
 
 		if ( index === 0 ) {
@@ -390,6 +390,7 @@ class AccessibilityCheckerHighlight {
 
 	removeTabOrderOverlay() {
 		document.getElementById( 'edac-tab-order-overlay' )?.remove();
+		document.body.classList.remove( 'edac-tab-order-active' );
 		if ( this._tabOrderResizeHandler ) {
 			window.removeEventListener( 'resize', this._tabOrderResizeHandler );
 		}
