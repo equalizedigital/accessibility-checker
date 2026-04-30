@@ -233,6 +233,10 @@ class AccessibilityCheckerHighlight {
 	 * @param {number} index
 	 */
 	switchView( index ) {
+		this.removeSelectedClasses();
+		this.removeHeadingHighlights();
+		this.removeTabOrderHighlights();
+
 		const viewTabs = [ this.tabIssues, this.tabHeadings, this.tabLandmarks, this.tabTabOrder ];
 		const viewPanels = [ this.contentArea, this.panelHeadings, this.panelLandmarks, this.panelTabOrder ];
 
