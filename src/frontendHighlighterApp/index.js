@@ -8,7 +8,7 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
-import { renderStructureMap } from './structureMap';
+import { renderHeadingsPanel, renderLandmarksPanel } from './structureMap';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -62,15 +62,18 @@ class AccessibilityCheckerHighlight {
 		this.dockButton = document.querySelector( '#edac-highlight-dock' );
 		this.srAnnouncer = document.querySelector( '#edac-highlight-announcer' );
 		this.tabIssues = document.querySelector( '#edac-tab-issues' );
-		this.tabStructure = document.querySelector( '#edac-tab-structure' );
-		this.panelStructure = document.querySelector( '#edac-panel-structure' );
+		this.tabHeadings = document.querySelector( '#edac-tab-headings' );
+		this.tabLandmarks = document.querySelector( '#edac-tab-landmarks' );
+		this.panelHeadings = document.querySelector( '#edac-panel-headings' );
+		this.panelLandmarks = document.querySelector( '#edac-panel-landmarks' );
 		this.activeViewIndex = 0;
 
-		// Force-hide the structure panel from the start. CSS alone can't reliably win
-		// against all:unset inside the panel, so we use the highest-priority override possible.
-		if ( this.panelStructure ) {
-			this.panelStructure.style.setProperty( 'display', 'none', 'important' );
-		}
+		// Force-hide structure panels from the start — all:unset overrides CSS [hidden].
+		[ this.panelHeadings, this.panelLandmarks ].forEach( ( panel ) => {
+			if ( panel ) {
+				panel.style.setProperty( 'display', 'none', 'important' );
+			}
+		} );
 		this.isDocked = localStorage.getItem( 'edac-panel-docked' ) === '1';
 		this.stylesDisabled = false;
 		this.originalCss = [];
@@ -174,8 +177,8 @@ class AccessibilityCheckerHighlight {
 			} );
 		}
 
-		// View tab switching (Issues / Structure)
-		const viewTabs = [ this.tabIssues, this.tabStructure ];
+		// View tab switching (Issues / Headings / Landmarks)
+		const viewTabs = [ this.tabIssues, this.tabHeadings, this.tabLandmarks ];
 		viewTabs.forEach( ( tab, index ) => {
 			tab.addEventListener( 'click', () => this.switchView( index ) );
 			tab.addEventListener( 'keydown', ( e ) => {
@@ -221,12 +224,12 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
-	 * Switch between Issues (index 0) and Structure (index 1) views.
+	 * Switch between Issues (0), Headings (1), and Landmarks (2) views.
 	 * @param {number} index
 	 */
 	switchView( index ) {
-		const viewTabs = [ this.tabIssues, this.tabStructure ];
-		const viewPanels = [ this.contentArea, this.panelStructure ];
+		const viewTabs = [ this.tabIssues, this.tabHeadings, this.tabLandmarks ];
+		const viewPanels = [ this.contentArea, this.panelHeadings, this.panelLandmarks ];
 
 		viewTabs.forEach( ( tab, i ) => {
 			const active = i === index;
@@ -247,22 +250,25 @@ class AccessibilityCheckerHighlight {
 			}
 		} );
 
-		// Hide prev/next nav in structure view — they only apply to issues.
-		this.panelControls.classList.toggle( 'edac-view--structure', index === 1 );
+		// Hide footer (summary + prev/next) when not on Issues tab.
+		this.panelControls.classList.toggle( 'edac-view--structure', index !== 0 );
 		this.activeViewIndex = index;
 
 		if ( index === 1 ) {
-			this.buildStructureMap();
+			this.buildHeadingsPanel();
+		} else if ( index === 2 ) {
+			this.buildLandmarksPanel();
 		}
 	}
 
-	buildStructureMap() {
-		renderStructureMap(
-			this.panelStructure,
-			this.issues || [],
-			( el ) => this.applyLandmarkHighlight( el ),
-			( el ) => this.applyHeadingHighlight( el )
-		);
+	buildHeadingsPanel() {
+		this.panelHeadings.innerHTML = '';
+		renderHeadingsPanel( this.panelHeadings, this.issues || [], ( el ) => this.applyHeadingHighlight( el ) );
+	}
+
+	buildLandmarksPanel() {
+		this.panelLandmarks.innerHTML = '';
+		renderLandmarksPanel( this.panelLandmarks, ( el ) => this.applyLandmarkHighlight( el ) );
 	}
 
 	toggleMenu() {
@@ -696,7 +702,8 @@ class AccessibilityCheckerHighlight {
                                         </div>
                                         <div role="tablist" class="edac-highlight-view-tabs" aria-label="${ __( 'Panel view', 'accessibility-checker' ) }">
                                                 <button id="edac-tab-issues" role="tab" aria-selected="true" aria-controls="edac-highlight-panel-controls-content" class="edac-highlight-view-tab" tabindex="0">${ __( 'Issues', 'accessibility-checker' ) }</button>
-                                                <button id="edac-tab-structure" role="tab" aria-selected="false" aria-controls="edac-panel-structure" class="edac-highlight-view-tab" tabindex="-1">${ __( 'Structure', 'accessibility-checker' ) }</button>
+                                                <button id="edac-tab-headings" role="tab" aria-selected="false" aria-controls="edac-panel-headings" class="edac-highlight-view-tab" tabindex="-1">${ __( 'Headings', 'accessibility-checker' ) }</button>
+                                                <button id="edac-tab-landmarks" role="tab" aria-selected="false" aria-controls="edac-panel-landmarks" class="edac-highlight-view-tab" tabindex="-1">${ __( 'Landmarks', 'accessibility-checker' ) }</button>
                                         </div>
                                         <div id="edac-highlight-panel-controls-content" role="tabpanel" aria-labelledby="edac-tab-issues" class="edac-highlight-panel-controls-content">
                                                 <div id="edac-highlight-panel-controls-content-empty" class="edac-highlight-panel-controls-content-empty">
@@ -709,7 +716,8 @@ class AccessibilityCheckerHighlight {
                                                         <div id="edac-highlight-panel-description-fix" class="edac-highlight-panel-description-fix"></div>
                                                 </div>
                                         </div>
-                                        <div id="edac-panel-structure" role="tabpanel" aria-labelledby="edac-tab-structure" class="edac-highlight-panel-controls-content edac-view-hidden" hidden></div>
+                                        <div id="edac-panel-headings" role="tabpanel" aria-labelledby="edac-tab-headings" class="edac-highlight-panel-controls-content edac-view-hidden" hidden></div>
+                                        <div id="edac-panel-landmarks" role="tabpanel" aria-labelledby="edac-tab-landmarks" class="edac-highlight-panel-controls-content edac-view-hidden" hidden></div>
                                         <div class="edac-highlight-panel-controls-footer">
                                                 <div class="edac-highlight-panel-controls-summary">${ __( 'Loading...', 'accessibility-checker' ) }</div>
                                                 <div class="edac-highlight-panel-controls-buttons">

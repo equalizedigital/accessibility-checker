@@ -82,9 +82,9 @@ function makeItemButton( levelText, labelText, isLandmark, hasError ) {
 	return btn;
 }
 
-function renderHeadingsPanel( panel, issues, onHeadingClick ) {
+export function renderHeadingsPanel( panel, issues, onHeadingClick ) {
 	const headingEls = Array.from( document.querySelectorAll( 'h1, h2, h3, h4, h5, h6' ) ).filter(
-		( el ) => ! el.closest( '#edac-highlight-panel' )
+		( el ) => ! el.closest( '#edac-highlight-panel' ) && ! el.closest( '#edac-fixes-modal' )
 	);
 
 	if ( headingEls.length === 0 ) {
@@ -188,7 +188,7 @@ function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick ) {
 	}
 }
 
-function renderLandmarksPanel( panel, onLandmarkClick ) {
+export function renderLandmarksPanel( panel, onLandmarkClick ) {
 	const landmarkEls = Array.from( document.querySelectorAll( LANDMARK_SELECTOR ) ).filter(
 		( el ) => ! el.closest( '#edac-highlight-panel' )
 	);
@@ -207,86 +207,4 @@ function renderLandmarksPanel( panel, onLandmarkClick ) {
 	list.setAttribute( 'role', 'list' );
 	appendLandmarkNodes( nodes, list, onLandmarkClick );
 	panel.append( list );
-}
-
-export function renderStructureMap( container, issues, onLandmarkClick, onHeadingClick ) {
-	container.innerHTML = '';
-
-	const tablist = document.createElement( 'div' );
-	tablist.setAttribute( 'role', 'tablist' );
-	tablist.setAttribute( 'aria-label', __( 'Structure type', 'accessibility-checker' ) );
-	tablist.className = 'edac-structure-tabs';
-
-	const headingsTab = document.createElement( 'button' );
-	headingsTab.id = 'edac-tab-headings';
-	headingsTab.setAttribute( 'role', 'tab' );
-	headingsTab.setAttribute( 'aria-selected', 'true' );
-	headingsTab.setAttribute( 'aria-controls', 'edac-structure-headings' );
-	headingsTab.className = 'edac-structure-tab';
-	headingsTab.tabIndex = 0;
-	headingsTab.textContent = __( 'Headings', 'accessibility-checker' );
-
-	const landmarksTab = document.createElement( 'button' );
-	landmarksTab.id = 'edac-tab-landmarks';
-	landmarksTab.setAttribute( 'role', 'tab' );
-	landmarksTab.setAttribute( 'aria-selected', 'false' );
-	landmarksTab.setAttribute( 'aria-controls', 'edac-structure-landmarks' );
-	landmarksTab.className = 'edac-structure-tab';
-	landmarksTab.tabIndex = -1;
-	landmarksTab.textContent = __( 'Landmarks', 'accessibility-checker' );
-
-	tablist.append( headingsTab, landmarksTab );
-
-	const headingsPanel = document.createElement( 'div' );
-	headingsPanel.id = 'edac-structure-headings';
-	headingsPanel.setAttribute( 'role', 'tabpanel' );
-	headingsPanel.setAttribute( 'aria-labelledby', 'edac-tab-headings' );
-	headingsPanel.className = 'edac-structure-panel';
-	headingsPanel.tabIndex = 0;
-
-	const landmarksPanel = document.createElement( 'div' );
-	landmarksPanel.id = 'edac-structure-landmarks';
-	landmarksPanel.setAttribute( 'role', 'tabpanel' );
-	landmarksPanel.setAttribute( 'aria-labelledby', 'edac-tab-landmarks' );
-	landmarksPanel.className = 'edac-structure-panel';
-	landmarksPanel.tabIndex = 0;
-	landmarksPanel.hidden = true;
-
-	const tabs = [ headingsTab, landmarksTab ];
-	const panels = [ headingsPanel, landmarksPanel ];
-
-	const activateSubTab = ( index ) => {
-		tabs.forEach( ( tab, i ) => {
-			const active = i === index;
-			tab.setAttribute( 'aria-selected', String( active ) );
-			tab.tabIndex = active ? 0 : -1;
-			panels[ i ].hidden = ! active;
-		} );
-	};
-
-	tabs.forEach( ( tab, index ) => {
-		tab.addEventListener( 'click', () => activateSubTab( index ) );
-		tab.addEventListener( 'keydown', ( e ) => {
-			let next = index;
-			if ( e.key === 'ArrowRight' || e.key === 'ArrowDown' ) {
-				next = ( index + 1 ) % tabs.length;
-			} else if ( e.key === 'ArrowLeft' || e.key === 'ArrowUp' ) {
-				next = ( index - 1 + tabs.length ) % tabs.length;
-			} else if ( e.key === 'Home' ) {
-				next = 0;
-			} else if ( e.key === 'End' ) {
-				next = tabs.length - 1;
-			} else {
-				return;
-			}
-			e.preventDefault();
-			activateSubTab( next );
-			tabs[ next ].focus();
-		} );
-	} );
-
-	renderHeadingsPanel( headingsPanel, issues, onHeadingClick );
-	renderLandmarksPanel( landmarksPanel, onLandmarkClick );
-
-	container.append( tablist, headingsPanel, landmarksPanel );
 }

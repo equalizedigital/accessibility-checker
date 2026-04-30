@@ -824,9 +824,9 @@ body {
 				}
 			}
 
-			// Hide prev/next navigation when structure view is active.
+			// Hide footer (summary + nav) when structure view is active.
 			&.edac-view--structure {
-				.edac-highlight-panel-controls-buttons {
+				.edac-highlight-panel-controls-footer {
 					display: none !important;
 				}
 			}
@@ -875,60 +875,12 @@ body {
 			}
 		}
 
-		// Structure tabpanel — flex column so sub-tabs stay fixed and list scrolls.
-		#edac-panel-structure {
-			display: flex !important;
-			flex-direction: column !important;
-			overflow: hidden !important;
-			padding: 0 !important;
-		}
-
-		// Structure sub-tabs (Headings / Landmarks)
-		.edac-structure-tabs {
-			display: flex !important;
-			flex-shrink: 0 !important;
-			border-bottom: 1px solid variables.$color-gray-light !important;
-			margin: 0 !important;
-			padding: 0 !important;
-		}
-
-		.edac-structure-tab {
-			all: unset !important;
-			flex: 1 !important;
-			padding: 8px 12px !important;
-			font-size: 12px !important;
-			font-weight: 500 !important;
-			color: variables.$color-dark-gray !important;
-			cursor: pointer !important;
-			text-align: center !important;
-			border-bottom: 2px solid transparent !important;
-			box-sizing: border-box !important;
-
-			&:hover {
-				color: variables.$color-blue !important;
-			}
-
-			&:focus-visible {
-				outline: 2px solid variables.$color-blue !important;
-				outline-offset: -2px !important;
-			}
-
-			&[aria-selected="true"] {
-				color: variables.$color-blue !important;
-				border-bottom-color: variables.$color-blue !important;
-				font-weight: 600 !important;
-			}
-		}
-
-		// Structure sub-tabpanels
-		.edac-structure-panel {
-			flex: 1 !important;
+		// Headings and Landmarks tabpanels — scrollable content areas.
+		#edac-panel-headings,
+		#edac-panel-landmarks {
+			display: block !important;
 			overflow-y: auto !important;
 			padding: 6px 0 !important;
-
-			&[hidden] {
-				display: none !important;
-			}
 		}
 
 		// Structure tree list
