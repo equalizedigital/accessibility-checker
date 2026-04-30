@@ -940,6 +940,15 @@ body {
 				outline: 2px solid variables.$color-blue !important;
 				outline-offset: -2px !important;
 			}
+
+			&--active {
+				background-color: rgba(50, 115, 170, 0.12) !important;
+
+				.edac-structure-item-level {
+					background-color: variables.$color-blue-dark !important;
+					color: variables.$color-white !important;
+				}
+			}
 		}
 
 		.edac-structure-item-level {

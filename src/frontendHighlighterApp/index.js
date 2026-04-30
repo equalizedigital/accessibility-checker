@@ -67,6 +67,7 @@ class AccessibilityCheckerHighlight {
 		this.panelHeadings = document.querySelector( '#edac-panel-headings' );
 		this.panelLandmarks = document.querySelector( '#edac-panel-landmarks' );
 		this.activeViewIndex = 0;
+		this._activeLandmarkEl = null;
 
 		// Force-hide structure panels from the start — all:unset overrides CSS [hidden].
 		[ this.panelHeadings, this.panelLandmarks ].forEach( ( panel ) => {
@@ -216,7 +217,9 @@ class AccessibilityCheckerHighlight {
 		if ( this.urlParameter ) {
 			this.panelOpen( this.urlParameter );
 		} else if ( this.landmarkParameter ) {
+			this.panelOpen();
 			this.highlightLandmark( this.landmarkParameter );
+			this.switchView( 2 );
 		} else if ( this.isDocked ) {
 			// Docked panel restored on page load — fetch issue data so the panel isn't empty.
 			this.panelOpen();
@@ -254,7 +257,12 @@ class AccessibilityCheckerHighlight {
 		this.panelControls.classList.toggle( 'edac-view--structure', index !== 0 );
 		this.activeViewIndex = index;
 
-		if ( index === 1 ) {
+		if ( index === 0 ) {
+			// If issues loaded while we were on another tab, show them now.
+			if ( this.issues?.length > 0 && this.currentButtonIndex === null ) {
+				this.showIssue( this.issues[ 0 ].id );
+			}
+		} else if ( index === 1 ) {
 			this.buildHeadingsPanel();
 		} else if ( index === 2 ) {
 			this.buildLandmarksPanel();
@@ -268,7 +276,7 @@ class AccessibilityCheckerHighlight {
 
 	buildLandmarksPanel() {
 		this.panelLandmarks.innerHTML = '';
-		renderLandmarksPanel( this.panelLandmarks, ( el ) => this.applyLandmarkHighlight( el ) );
+		renderLandmarksPanel( this.panelLandmarks, ( el ) => this.applyLandmarkHighlight( el ), this._activeLandmarkEl );
 	}
 
 	toggleMenu() {
@@ -1096,10 +1104,15 @@ class AccessibilityCheckerHighlight {
 
 				if ( id !== undefined ) {
 					this.showIssue( id );
-				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
-					this.showIssue( this.issues[ this.currentButtonIndex ].id );
-				} else if ( this.issues.length > 0 ) {
-					this.showIssue( this.issues[ 0 ].id );
+				} else if ( this.activeViewIndex === 0 ) {
+					// Only auto-navigate to an issue when the Issues tab is active.
+					// Skipping this on Headings/Landmarks prevents polluting the URL
+					// with ?edac=<id>, which would reopen the Issues tab on refresh.
+					if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
+						this.showIssue( this.issues[ this.currentButtonIndex ].id );
+					} else if ( this.issues.length > 0 ) {
+						this.showIssue( this.issues[ 0 ].id );
+					}
 				}
 			}
 		).catch( ( err ) => {
@@ -1778,6 +1791,7 @@ class AccessibilityCheckerHighlight {
 	 * @param {HTMLElement} landmarkElement The element to highlight
 	 */
 	applyLandmarkHighlight( landmarkElement ) {
+		this._activeLandmarkEl = landmarkElement;
 		this.removeLandmarkLabels();
 		this.removeHeadingHighlights();
 

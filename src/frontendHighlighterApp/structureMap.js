@@ -133,6 +133,10 @@ export function renderHeadingsPanel( panel, issues, onHeadingClick ) {
 		) );
 
 		btn.addEventListener( 'click', () => {
+			panel.querySelectorAll( '.edac-structure-item-btn--active' ).forEach(
+				( b ) => b.classList.remove( 'edac-structure-item-btn--active' )
+			);
+			btn.classList.add( 'edac-structure-item-btn--active' );
 			if ( onHeadingClick ) {
 				onHeadingClick( el );
 			} else {
@@ -148,7 +152,7 @@ export function renderHeadingsPanel( panel, issues, onHeadingClick ) {
 	panel.append( list );
 }
 
-function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick ) {
+function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick, activeElement ) {
 	for ( const node of nodeList ) {
 		const type = getLandmarkType( node.el );
 		const label = getLandmarkLabel( node.el );
@@ -166,7 +170,15 @@ function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick ) {
 			label ? `${ type }: ${ label }` : type
 		) );
 
+		if ( node.el === activeElement ) {
+			btn.classList.add( 'edac-structure-item-btn--active' );
+		}
+
 		btn.addEventListener( 'click', () => {
+			ulEl.closest( '[role="tabpanel"]' ).querySelectorAll( '.edac-structure-item-btn--active' ).forEach(
+				( b ) => b.classList.remove( 'edac-structure-item-btn--active' )
+			);
+			btn.classList.add( 'edac-structure-item-btn--active' );
 			if ( onLandmarkClick ) {
 				onLandmarkClick( node.el );
 			} else {
@@ -180,7 +192,7 @@ function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick ) {
 		if ( node.children.length ) {
 			const childUl = document.createElement( 'ul' );
 			childUl.setAttribute( 'role', 'list' );
-			appendLandmarkNodes( node.children, childUl, onLandmarkClick );
+			appendLandmarkNodes( node.children, childUl, onLandmarkClick, activeElement );
 			li.append( childUl );
 		}
 
@@ -188,7 +200,7 @@ function appendLandmarkNodes( nodeList, ulEl, onLandmarkClick ) {
 	}
 }
 
-export function renderLandmarksPanel( panel, onLandmarkClick ) {
+export function renderLandmarksPanel( panel, onLandmarkClick, activeElement ) {
 	const landmarkEls = Array.from( document.querySelectorAll( LANDMARK_SELECTOR ) ).filter(
 		( el ) => ! el.closest( '#edac-highlight-panel' )
 	);
@@ -205,6 +217,6 @@ export function renderLandmarksPanel( panel, onLandmarkClick ) {
 	const list = document.createElement( 'ul' );
 	list.className = 'edac-structure-list';
 	list.setAttribute( 'role', 'list' );
-	appendLandmarkNodes( nodes, list, onLandmarkClick );
+	appendLandmarkNodes( nodes, list, onLandmarkClick, activeElement );
 	panel.append( list );
 }
