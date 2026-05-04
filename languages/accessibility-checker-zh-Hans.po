@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
+"Project-Id-Version: Accessibility Checker 1.40.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
+"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:137
+#: admin/AdminPage/AccessibilityReportsPage.php:138
 msgid "Accessibility Reports"
 msgstr "可访问性报告"
 
@@ -57,151 +57,155 @@ msgstr "可访问性报告"
 msgid "New"
 msgstr "新建"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:143
+#: admin/AdminPage/AccessibilityReportsPage.php:144
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "获取定期电子邮件报告，其中包含您网站可访问性的快照，包括问题总数、随时间变化的趋势、最常见问题页面以及最需要首先修复的严重问题。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:145
+#: admin/AdminPage/AccessibilityReportsPage.php:146
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "获取定期电子邮件报告，其中包含您网站可访问性的快照，包括问题总数、随时间变化的趋势、最常见问题页面以及最需要首先修复的严重问题。一些详细信息，例如全站覆盖范围和问题分类，可在专业版中获取。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:156
-#: admin/AdminPage/AccessibilityReportsPage.php:170
+#: admin/AdminPage/AccessibilityReportsPage.php:157
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Enable Email Reports"
 msgstr "启用电子邮件报告"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:163
-#: admin/AdminPage/AccessibilityReportsPage.php:167
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:164
+#: admin/AdminPage/AccessibilityReportsPage.php:168
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 #: admin/AdminPage/ConnectedServicesPage.php:153
 msgid "Free License Key"
 msgstr "免费许可证密钥"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:176
+#: admin/AdminPage/AccessibilityReportsPage.php:177
 msgid "Get a Free License Key"
 msgstr "获取免费许可证密钥"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:181
+#: admin/AdminPage/AccessibilityReportsPage.php:182
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "从 Equalize Digital 获取的插件？您的密钥在<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">仪表盘</a>中。"
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:190
+#: admin/AdminPage/AccessibilityReportsPage.php:191
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "从 WordPress.org 安装的？<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">创建免费账户</a>即可获取。"
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:199
+#: admin/AdminPage/AccessibilityReportsPage.php:200
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "不确定？只需<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">创建一个免费账户</a>。只需一分钟。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:211
+#: admin/AdminPage/AccessibilityReportsPage.php:212
 msgid "Reports Enabled"
 msgstr "报告已启用"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:214
+#: admin/AdminPage/AccessibilityReportsPage.php:215
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "您将收到此网站的每周可访问性报告。"
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:218
+#: admin/AdminPage/AccessibilityReportsPage.php:219
 #, php-format
 msgid "Next report: %s"
 msgstr "下一次报告：%s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:222
-msgid "Manage Recipients in Dashboard"
-msgstr "在仪表盘中管理收件人"
-
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Full Coverage"
 msgstr "完全覆盖"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Limited Coverage"
 msgstr "有限覆盖"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:230
 msgid "Your reports include all post types and taxonomies."
 msgstr "您的报告包括所有文章类型和分类法。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:232
 msgid "Full-site scanning enabled"
 msgstr "已启用全站扫描"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:235
+#: admin/AdminPage/AccessibilityReportsPage.php:233
 msgid "Complete issue breakdowns"
 msgstr "完整问题分类"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:236
+#: admin/AdminPage/AccessibilityReportsPage.php:234
 msgid "Detailed reporting"
 msgstr "详细报告"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:239
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Your reports only include part of your site."
 msgstr "您的报告仅包含您网站的一部分内容。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:238
 msgid "Upgrade to Pro to:"
 msgstr "升级到专业版可："
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "Scan all content types"
 msgstr "扫描所有内容类型"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:243
+#: admin/AdminPage/AccessibilityReportsPage.php:241
 msgid "Get full issue breakdowns"
 msgstr "获取完整问题分类"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:242
 msgid "Receive more detailed reports"
 msgstr "接收更详细的报告"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "升级到专业版"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:253
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Accessibility Summary"
 msgstr "可访问性摘要"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "此摘要反映了您网站可用的最新扫描数据。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:254
 msgid "Total Issues Found"
 msgstr "发现的问题总数"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Account Connection"
 msgstr "账户连接"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Disable Email Reports"
 msgstr "禁用电子邮件报告"
 
-#. translators: %1$s: terms link, %2$s: privacy link.
-#: admin/AdminPage/AccessibilityReportsPage.php:281
+#. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 #, php-format
-msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
-msgstr "通过连接此网站，您同意 Equalize Digital 的<a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">服务条款</a>和<a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">隐私政策</a>。"
+msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
+msgstr "通过连接此网站，即表示您同意 Equalize Digital 的 <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">隐私政策 <span aria-hidden=\"true\">&#8599;</span></a> 和 <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">数据处理协议 <span aria-hidden=\"true\">&#8599;</span></a>。"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:282
+msgid "Privacy Policy (opens in a new window)"
+msgstr "隐私政策（在新窗口中打开）"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:283
+msgid "Data Processing Agreement (opens in a new window)"
+msgstr "数据处理协议（在新窗口中打开）"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:294
-msgid "Preview of the weekly accessibility report email."
-msgstr "每周可访问性报告电子邮件预览。"
+msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
+msgstr "每周电子邮件包括发现的问题总数和自上次报告以来的更改、覆盖范围信息、问题计数、需要复查的项目、通过测试的百分比，以及关于最常出现问题的页面和最严重问题的信息。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: admin/AdminPage/AccessibilityReportsPage.php:387
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "不适用"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/AdminPage/AccessibilityReportsPage.php:477
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -209,7 +213,7 @@ msgstr "不适用"
 msgid "Critical"
 msgstr "严重"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/AdminPage/AccessibilityReportsPage.php:479
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -217,7 +221,7 @@ msgstr "严重"
 msgid "High"
 msgstr "高"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/AdminPage/AccessibilityReportsPage.php:481
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -225,7 +229,7 @@ msgstr "高"
 msgid "Medium"
 msgstr "中"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:483
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -233,7 +237,7 @@ msgstr "中"
 msgid "Low"
 msgstr "低"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:485
 #: includes/classes/class-rest-api.php:997
 msgid "Unknown"
 msgstr "未知"
@@ -477,18 +481,17 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 24th to 
 msgstr "在 11 月 24 日至 12 月 3 日期间升级到 Accessibility Checker 付费版，即可享受七折优惠！包括全站扫描、全站开放问题报告、忽略日志等功能。"
 
 #: admin/class-admin-notices.php:141
-#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "提出售前问题"
 
 #: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:232
+#: admin/class-admin-notices.php:245
 msgid "Upgrade Now"
 msgstr "立即升级"
 
 #: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:251
-#: admin/class-admin-notices.php:340
+#: admin/class-admin-notices.php:266
+#: admin/class-admin-notices.php:356
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -501,36 +504,54 @@ msgid "Permission Denied"
 msgstr "权限被拒绝"
 
 #: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:263
-#: admin/class-admin-notices.php:364
+#: admin/class-admin-notices.php:279
+#: admin/class-admin-notices.php:380
 msgid "Update option wasn't successful"
 msgstr "更新选项未成功"
 
-#: admin/class-admin-notices.php:229
-msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 为庆祝全球无障碍意识日，Accessibility Checker Pro 现在 7.5 折优惠！🎉"
+#: admin/class-admin-notices.php:226
+msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
+msgstr "⚡️ 全球无障碍宣传日闪购"
 
-#: admin/class-admin-notices.php:230
-msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
-msgstr "从5月13日至5月21日，使用优惠码GAAD25，以特别折扣价格获得全站扫描和其他专业功能。不确定升级是否适合您？"
+#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
+#: admin/class-admin-notices.php:232
+#, php-format
+msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
+msgstr "仅限 3 天：购买 %1$s无障碍课程%2$s和 Equalize Digital 的 %3$sArchiveWP 插件%4$s可享 %% 折扣。在无障碍方面更进一步。"
 
-#: admin/class-admin-notices.php:315
+#: admin/class-admin-notices.php:238
+msgid "Limited-time offer • May 20–22 • Use coupon code "
+msgstr "限时优惠 • 5月20日至22日 • 使用优惠码 "
+
+#: admin/class-admin-notices.php:239
+msgid "Grab the Deal Before It Ends"
+msgstr "在优惠结束前抓住机会"
+
+#: admin/class-admin-notices.php:242
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
+msgstr "仅限 3 天：使用优惠码升级到 Accessibility Checker Pro 可节省 15%"
+
+#: admin/class-admin-notices.php:244
+msgid "Limited-time offer • May 20–22"
+msgstr "限时优惠 • 5月20日至22日"
+
+#: admin/class-admin-notices.php:331
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "您好！感谢您使用 Accessibility Checker 作为您的无障碍工具包的一部分。既然您已经使用它一段时间了，能否请您在 WordPress 插件目录中为 Accessibility Checker 写一个 5 星评价？这将有助于提高我们的知名度，让更多人了解网络无障碍的重要性。非常感谢！"
 
-#: admin/class-admin-notices.php:318
+#: admin/class-admin-notices.php:334
 msgid "Write A Review"
 msgstr "写评价"
 
-#: admin/class-admin-notices.php:319
+#: admin/class-admin-notices.php:335
 msgid "Remind Me In Two Weeks"
 msgstr "两周后提醒我"
 
-#: admin/class-admin-notices.php:320
+#: admin/class-admin-notices.php:336
 msgid "Never Ask Again"
 msgstr "不再询问"
 
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:363
 msgid "The review action value was not set"
 msgstr "评价操作值未设置"
 
@@ -5076,6 +5097,15 @@ msgid "%1$d of %2$d"
 msgstr "%1$d/%2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Untitled issue"
+msgstr "无标题问题"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Issue %1$d of %2$d: %3$s"
+msgstr "问题 %1$d（共 %2$d）：%3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
 msgstr "元素不可见。请尝试禁用样式。"
 
@@ -5186,10 +5216,6 @@ msgid "WCAG:"
 msgstr "WCAG："
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "问题类型："
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Ignored"
 msgstr "已忽略"
 
@@ -5230,6 +5256,18 @@ msgstr "修复问题"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
 msgstr "启用样式"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Page Styles"
+msgstr "启用页面样式"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles disabled."
+msgstr "页面样式已禁用。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles re-enabled."
+msgstr "页面样式已重新启用。"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "There are no settings to display."
@@ -5273,6 +5311,10 @@ msgid "Landmark: %s"
 msgstr "地标：%s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Failed to load scanner script."
+msgstr "加载扫描器脚本失败。"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."
 msgstr "未找到扫描功能。"
 
@@ -5281,12 +5323,16 @@ msgid "Scanning..."
 msgstr "正在扫描..."
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "No violations found, skipping save."
-msgstr "未发现违规，跳过保存。"
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Missing postId or nonce."
 msgstr "缺少 postId 或 nonce。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete. No violations found."
+msgstr "重新扫描完成。未发现违规。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "未发现违规，跳过保存。"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility scan error."
@@ -5295,6 +5341,18 @@ msgstr "无障碍扫描错误。"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "保存扫描结果时出错。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan already in progress."
+msgstr "重新扫描已在进行中。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescanning this page."
+msgstr "正在重新扫描此页面。"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete."
+msgstr "重新扫描完成。"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error: Missing required parameters."
