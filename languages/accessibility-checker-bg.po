@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
+"Project-Id-Version: Accessibility Checker 1.40.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
+"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:137
+#: admin/AdminPage/AccessibilityReportsPage.php:138
 msgid "Accessibility Reports"
 msgstr "Доклади за достъпност"
 
@@ -57,151 +57,155 @@ msgstr "Доклади за достъпност"
 msgid "New"
 msgstr "Ново"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:143
+#: admin/AdminPage/AccessibilityReportsPage.php:144
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Получавайте повтарящи се имейл доклади с моментна снимка на достъпността на сайта ви, включително общия брой проблеми, тенденциите във времето, най-проблемните страници и най-сериозните проблеми за отстраняване на първо място."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:145
+#: admin/AdminPage/AccessibilityReportsPage.php:146
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Получавайте повтарящи се имейл доклади с моментна снимка на достъпността на сайта ви, включително общия брой проблеми, тенденциите във времето, най-проблемните страници и най-сериозните проблеми за отстраняване на първо място. Някои подробности, като пълно покритие на сайта и детайлни разбивки на проблемите, са налични в Pro."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:156
-#: admin/AdminPage/AccessibilityReportsPage.php:170
+#: admin/AdminPage/AccessibilityReportsPage.php:157
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Enable Email Reports"
 msgstr "Активиране на имейл доклади"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:163
-#: admin/AdminPage/AccessibilityReportsPage.php:167
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:164
+#: admin/AdminPage/AccessibilityReportsPage.php:168
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 #: admin/AdminPage/ConnectedServicesPage.php:153
 msgid "Free License Key"
 msgstr "Безплатен лицензионен ключ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:176
+#: admin/AdminPage/AccessibilityReportsPage.php:177
 msgid "Get a Free License Key"
 msgstr "Вземете безплатен лицензионен ключ"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:181
+#: admin/AdminPage/AccessibilityReportsPage.php:182
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Изтеглили ли сте плъгина от Equalize Digital? Вашият ключ е във вашето <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">табло за управление</a>."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:190
+#: admin/AdminPage/AccessibilityReportsPage.php:191
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "Инсталиран от WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Създайте безплатен акаунт</a>, за да получите ключ."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:199
+#: admin/AdminPage/AccessibilityReportsPage.php:200
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Не сте сигурни? Просто <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">създайте безплатен акаунт</a>. Отнема само минута."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:211
+#: admin/AdminPage/AccessibilityReportsPage.php:212
 msgid "Reports Enabled"
 msgstr "Докладите са активирани"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:214
+#: admin/AdminPage/AccessibilityReportsPage.php:215
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "Ще получавате седмични доклади за достъпност за този сайт."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:218
+#: admin/AdminPage/AccessibilityReportsPage.php:219
 #, php-format
 msgid "Next report: %s"
 msgstr "Следващ доклад: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:222
-msgid "Manage Recipients in Dashboard"
-msgstr "Управление на получателите в таблото за управление"
-
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Full Coverage"
 msgstr "Пълно покритие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Limited Coverage"
 msgstr "Ограничено покритие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:230
 msgid "Your reports include all post types and taxonomies."
 msgstr "Вашите доклади включват всички типове публикации и таксономии."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:232
 msgid "Full-site scanning enabled"
 msgstr "Пълно сканиране на сайта е активирано"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:235
+#: admin/AdminPage/AccessibilityReportsPage.php:233
 msgid "Complete issue breakdowns"
 msgstr "Пълни разбивки на проблемите"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:236
+#: admin/AdminPage/AccessibilityReportsPage.php:234
 msgid "Detailed reporting"
 msgstr "Подробни доклади"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:239
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Your reports only include part of your site."
 msgstr "Вашите доклади включват само част от сайта ви."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:238
 msgid "Upgrade to Pro to:"
 msgstr "Надстройте до Pro, за да:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "Scan all content types"
 msgstr "Сканирате всички типове съдържание"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:243
+#: admin/AdminPage/AccessibilityReportsPage.php:241
 msgid "Get full issue breakdowns"
 msgstr "Получите пълни разбивки на проблемите"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:242
 msgid "Receive more detailed reports"
 msgstr "Получавате по-подробни доклади"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Надгради до про"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:253
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Accessibility Summary"
 msgstr "Резюме за достъпност"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Това резюме отразява последните налични данни от сканиране за вашия сайт."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:254
 msgid "Total Issues Found"
 msgstr "Общ брой намерени проблеми"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Account Connection"
 msgstr "Свързване на акаунт"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Disable Email Reports"
 msgstr "Деактивиране на имейл доклади"
 
-#. translators: %1$s: terms link, %2$s: privacy link.
-#: admin/AdminPage/AccessibilityReportsPage.php:281
+#. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 #, php-format
-msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
-msgstr "Свързвайки този сайт, вие се съгласявате с <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Условията за ползване</a> и <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Политиката за поверителност</a> на Equalize Digital."
+msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
+msgstr "Свързвайки се с този сайт, вие се съгласявате с <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Политиката за поверителност <span aria-hidden=\"true\">&#8599;</span></a> и <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Споразумението за обработка на данни <span aria-hidden=\"true\">&#8599;</span></a> на Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:282
+msgid "Privacy Policy (opens in a new window)"
+msgstr "Политика за поверителност (отваря се в нов прозорец)"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:283
+msgid "Data Processing Agreement (opens in a new window)"
+msgstr "Споразумение за обработка на данни (отваря се в нов прозорец)"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:294
-msgid "Preview of the weekly accessibility report email."
-msgstr "Преглед на седмичния имейл доклад за достъпност."
+msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
+msgstr "Седмичният имейл включва общ брой открити проблеми и промени от последния отчет, информация за покритието, брой проблеми, нуждаещи се от преглед, процент на успешно преминати тестове, както и информация за най-проблемните страници и най-сериозните проблеми."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: admin/AdminPage/AccessibilityReportsPage.php:387
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Н/П"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/AdminPage/AccessibilityReportsPage.php:477
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -209,7 +213,7 @@ msgstr "Н/П"
 msgid "Critical"
 msgstr "Критично"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/AdminPage/AccessibilityReportsPage.php:479
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -217,7 +221,7 @@ msgstr "Критично"
 msgid "High"
 msgstr "Високо"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/AdminPage/AccessibilityReportsPage.php:481
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -225,7 +229,7 @@ msgstr "Високо"
 msgid "Medium"
 msgstr "Средно"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:483
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -233,7 +237,7 @@ msgstr "Средно"
 msgid "Low"
 msgstr "Ниско"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:485
 #: includes/classes/class-rest-api.php:997
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -477,18 +481,17 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 24th to 
 msgstr "Надстройте до платена версия на Accessibility Checker от 24 ноември до 3 декември и получете 30% отстъпка! Пълно сканиране на сайта, доклад за отворени проблеми в целия сайт, игнориране на регистрационни файлове и други."
 
 #: admin/class-admin-notices.php:141
-#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Задайте въпрос преди покупка"
 
 #: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:232
+#: admin/class-admin-notices.php:245
 msgid "Upgrade Now"
 msgstr "Надградете сега"
 
 #: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:251
-#: admin/class-admin-notices.php:340
+#: admin/class-admin-notices.php:266
+#: admin/class-admin-notices.php:356
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -501,36 +504,54 @@ msgid "Permission Denied"
 msgstr "Отказан достъп"
 
 #: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:263
-#: admin/class-admin-notices.php:364
+#: admin/class-admin-notices.php:279
+#: admin/class-admin-notices.php:380
 msgid "Update option wasn't successful"
 msgstr "Актуализацията на опцията не беше успешна"
 
-#: admin/class-admin-notices.php:229
-msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Получете 25% отстъпка за Accessibility Checker Pro в чест на Глобалния ден за осведоменост за достъпността! 🎉"
+#: admin/class-admin-notices.php:226
+msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
+msgstr "⚡️ Светкавична разпродажба за Световния ден за информираност относно достъпността"
 
-#: admin/class-admin-notices.php:230
-msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
-msgstr "Използвайте код за отстъпка GAAD25 от 13 май до 21 май, за да получите достъп до пълно сканиране на сайта и други професионални функции със специална отстъпка. Не сте сигурни дали надграждането е подходящо за вас?"
+#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
+#: admin/class-admin-notices.php:232
+#, php-format
+msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
+msgstr "Само 3 дни: Спестете 15%% от %1$sкурсове за достъпност%2$s и плъгина %3$sArchiveWP%4$s на Equalize Digital. Напреднете с достъпността."
 
-#: admin/class-admin-notices.php:315
+#: admin/class-admin-notices.php:238
+msgid "Limited-time offer • May 20–22 • Use coupon code "
+msgstr "Ограничена оферта • 20–22 май • Използвайте код за отстъпка "
+
+#: admin/class-admin-notices.php:239
+msgid "Grab the Deal Before It Ends"
+msgstr "Грабнете офертата, преди да приключи"
+
+#: admin/class-admin-notices.php:242
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
+msgstr "Само 3 дни: Спестете 15%, когато надстроите до Accessibility Checker Pro с код за отстъпка"
+
+#: admin/class-admin-notices.php:244
+msgid "Limited-time offer • May 20–22"
+msgstr "Ограничена оферта • 20–22 май"
+
+#: admin/class-admin-notices.php:331
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Здравейте! Благодарим ви, че използвате Accessibility Checker като част от вашия инструментариум за достъпност. Тъй като го използвате от известно време, бихте ли написали 5-звездна рецензия за Accessibility Checker в директорията с плъгини на WordPress? Това ще помогне да увеличим нашата видимост, така че повече хора да научат за важността на уеб достъпността. Много благодарим!"
 
-#: admin/class-admin-notices.php:318
+#: admin/class-admin-notices.php:334
 msgid "Write A Review"
 msgstr "Напишете рецензия"
 
-#: admin/class-admin-notices.php:319
+#: admin/class-admin-notices.php:335
 msgid "Remind Me In Two Weeks"
 msgstr "Напомнете ми след две седмици"
 
-#: admin/class-admin-notices.php:320
+#: admin/class-admin-notices.php:336
 msgid "Never Ask Again"
 msgstr "Никога повече не питай"
 
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:363
 msgid "The review action value was not set"
 msgstr "Стойността на действието за рецензия не беше зададена"
 
@@ -5085,6 +5106,15 @@ msgid "%1$d of %2$d"
 msgstr "%1$d от %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Untitled issue"
+msgstr "Неозаглавен проблем"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Issue %1$d of %2$d: %3$s"
+msgstr "Проблем %1$d от %2$d: %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
 msgstr "Елементът не е видим. Опитайте да деактивирате стиловете."
 
@@ -5195,10 +5225,6 @@ msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Тип на проблема:"
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Ignored"
 msgstr "Игнорирани"
 
@@ -5239,6 +5265,18 @@ msgstr "Отстраняване на проблем"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
 msgstr "Активирай стиловете"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Page Styles"
+msgstr "Активиране на стиловете на страницата"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles disabled."
+msgstr "Стиловете на страницата са деактивирани."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles re-enabled."
+msgstr "Стиловете на страницата са активирани отново."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "There are no settings to display."
@@ -5286,6 +5324,10 @@ msgid "Landmark: %s"
 msgstr "Ориентир: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Failed to load scanner script."
+msgstr "Неуспешно зареждане на скрипта за сканиране."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."
 msgstr "Функцията за сканиране не е намерена."
 
@@ -5294,12 +5336,16 @@ msgid "Scanning..."
 msgstr "Сканиране..."
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "No violations found, skipping save."
-msgstr "Не са открити нарушения, пропускане на запазването."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Missing postId or nonce."
 msgstr "Липсва postId или nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete. No violations found."
+msgstr "Повторното сканиране приключи. Не са открити нарушения."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Не са открити нарушения, пропускане на запазването."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility scan error."
@@ -5308,6 +5354,18 @@ msgstr "Грешка при сканиране на достъпността."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Грешка при запазване на резултатите от сканирането."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan already in progress."
+msgstr "Повторното сканиране вече е в ход."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescanning this page."
+msgstr "Повторно сканиране на тази страница."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete."
+msgstr "Повторното сканиране приключи."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error: Missing required parameters."
