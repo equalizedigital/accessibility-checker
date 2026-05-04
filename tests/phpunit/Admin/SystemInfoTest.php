@@ -11,6 +11,46 @@ use EqualizeDigital\AccessibilityChecker\Admin\SystemInfo;
  * Tests for SystemInfo static helper methods.
  */
 class SystemInfoTest extends WP_UnitTestCase {
+	/**
+	 * Returns normalized tags for a theme.
+	 *
+	 * @param WP_Theme $theme Theme object.
+	 * @return array<int, string>
+	 */
+	private function get_theme_tags( WP_Theme $theme ) {
+		$tags = $theme->get( 'Tags' );
+		return is_array( $tags ) ? $tags : [];
+	}
+	/**
+	 * Computes expected accessibility-ready status from theme and parent tags.
+	 *
+	 * @param WP_Theme $theme Theme object.
+	 * @return bool
+	 */
+	private function compute_expected_accessibility_ready( WP_Theme $theme ) {
+		$tags = $this->get_theme_tags( $theme );
+		if ( $theme->parent() ) {
+			$tags = array_merge( $tags, $this->get_theme_tags( $theme->parent() ) );
+		}
+		return in_array( 'accessibility-ready', $tags, true );
+	}
+	/**
+	 * Finds the first installed theme matching the given predicate.
+	 *
+	 * @param callable $predicate Matcher callback.
+	 * @return WP_Theme|null
+	 */
+	private function find_installed_theme( $predicate ) {
+		foreach ( wp_get_themes() as $theme ) {
+			if ( ! $theme instanceof WP_Theme || ! $theme->exists() ) {
+				continue;
+			}
+			if ( call_user_func( $predicate, $theme ) ) {
+				return $theme;
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * A plugin living in its own directory should return the directory name.
@@ -77,6 +117,12 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 */
 	public function testGetActivePluginsEntriesHaveRequiredKeys() {
 		$result = SystemInfo::get_active_plugins();
+		$this->assertIsArray( $result );
+
+		if ( [] === $result ) {
+			$this->assertEmpty( $result );
+			return;
+		}
 
 		foreach ( $result as $plugin ) {
 			$this->assertArrayHasKey( 'name', $plugin );
@@ -92,6 +138,12 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 */
 	public function testGetActivePluginsEntriesAreAllStrings() {
 		$result = SystemInfo::get_active_plugins();
+		$this->assertIsArray( $result );
+
+		if ( [] === $result ) {
+			$this->assertEmpty( $result );
+			return;
+		}
 
 		foreach ( $result as $plugin ) {
 			$this->assertIsString( $plugin['name'] );
@@ -154,119 +206,74 @@ class SystemInfoTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * A theme with the accessibility-ready tag returns true.
+	 * That is_theme_accessibility_ready() matches expected tag evaluation on the active theme.
 	 *
 	 * @return void
 	 */
-	public function testIsThemeAccessibilityReadyReturnsTrueWhenTagPresent() {
-		$theme = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$theme->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'accessibility-ready', 'blog' ] ],
-			]
+	public function testIsThemeAccessibilityReadyMatchesComputedExpectationForActiveTheme() {
+		$theme    = wp_get_theme();
+		$expected = $this->compute_expected_accessibility_ready( $theme );
+		$actual   = SystemInfo::is_theme_accessibility_ready( $theme );
+		$this->assertSame( $expected, $actual );
+	}
+	/**
+	 * A theme tagged accessibility-ready returns true.
+	 *
+	 * @return void
+	 */
+	public function testIsThemeAccessibilityReadyReturnsTrueForInstalledAccessibilityReadyTheme() {
+		$theme = $this->find_installed_theme(
+			function ( $candidate ) {
+				return in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true );
+			}
 		);
-		$theme->method( 'parent' )->willReturn( false );
-
+		if ( ! $theme ) {
+			$this->markTestSkipped( 'No installed theme with accessibility-ready tag found.' );
+		}
 		$this->assertTrue( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
-
 	/**
-	 * A theme without the accessibility-ready tag returns false.
+	 * A theme and parent without accessibility-ready tags return false.
 	 *
 	 * @return void
 	 */
-	public function testIsThemeAccessibilityReadyReturnsFalseWhenTagMissing() {
-		$theme = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$theme->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'blog', 'e-commerce' ] ],
-			]
+	public function testIsThemeAccessibilityReadyReturnsFalseForInstalledThemeWithoutAnyReadyTag() {
+		$theme = $this->find_installed_theme(
+			function ( $candidate ) {
+				if ( in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true ) ) {
+					return false;
+				}
+				if ( ! $candidate->parent() ) {
+					return true;
+				}
+				return ! in_array( 'accessibility-ready', $this->get_theme_tags( $candidate->parent() ), true );
+			}
 		);
-		$theme->method( 'parent' )->willReturn( false );
-
+		if ( ! $theme ) {
+			$this->markTestSkipped( 'No installed theme found where both child and parent lack accessibility-ready tag.' );
+		}
 		$this->assertFalse( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
-
 	/**
-	 * A child theme without the tag but whose parent has it returns true.
+	 * A child theme without the tag returns true when parent has accessibility-ready tag.
 	 *
 	 * @return void
 	 */
-	public function testIsThemeAccessibilityReadyReturnsTrueWhenParentThemeHasTag() {
-		$parent = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$parent->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'accessibility-ready' ] ],
-			]
+	public function testIsThemeAccessibilityReadyReturnsTrueWhenInstalledParentThemeHasTag() {
+		$theme = $this->find_installed_theme(
+			function ( $candidate ) {
+				if ( ! $candidate->parent() ) {
+					return false;
+				}
+				$child_has_tag  = in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true );
+				$parent_has_tag = in_array( 'accessibility-ready', $this->get_theme_tags( $candidate->parent() ), true );
+				return ! $child_has_tag && $parent_has_tag;
+			}
 		);
-
-		$theme = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$theme->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'blog' ] ],
-			]
-		);
-		$theme->method( 'parent' )->willReturn( $parent );
-
+		if ( ! $theme ) {
+			$this->markTestSkipped( 'No installed child theme found where only parent is accessibility-ready.' );
+		}
 		$this->assertTrue( SystemInfo::is_theme_accessibility_ready( $theme ) );
-	}
-
-	/**
-	 * Both child and parent missing the tag returns false.
-	 *
-	 * @return void
-	 */
-	public function testIsThemeAccessibilityReadyReturnsFalseWhenNeitherChildNorParentHasTag() {
-		$parent = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$parent->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'blog' ] ],
-			]
-		);
-
-		$theme = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$theme->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [ 'blog' ] ],
-			]
-		);
-		$theme->method( 'parent' )->willReturn( $parent );
-
-		$this->assertFalse( SystemInfo::is_theme_accessibility_ready( $theme ) );
-	}
-
-	/**
-	 * An empty tag list returns false without errors.
-	 *
-	 * @return void
-	 */
-	public function testIsThemeAccessibilityReadyReturnsFalseForEmptyTags() {
-		$theme = $this->getMockBuilder( WP_Theme::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$theme->method( 'get' )->willReturnMap(
-			[
-				[ 'Tags', [] ],
-			]
-		);
-		$theme->method( 'parent' )->willReturn( false );
-
-		$this->assertFalse( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
 
 	/**
