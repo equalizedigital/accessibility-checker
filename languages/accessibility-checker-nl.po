@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
+"Project-Id-Version: Accessibility Checker 1.40.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
+"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:137
+#: admin/AdminPage/AccessibilityReportsPage.php:138
 msgid "Accessibility Reports"
 msgstr "Toegankelijkheidsrapporten"
 
@@ -57,151 +57,155 @@ msgstr "Toegankelijkheidsrapporten"
 msgid "New"
 msgstr "Nieuw"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:143
+#: admin/AdminPage/AccessibilityReportsPage.php:144
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Ontvang terugkerende e-mailrapporten met een momentopname van de toegankelijkheid van uw site, inclusief het totale aantal problemen, trends over tijd, de meest problematische pagina's en de meest ernstige problemen die u als eerste moet oplossen."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:145
+#: admin/AdminPage/AccessibilityReportsPage.php:146
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Ontvang terugkerende e-mailrapporten met een momentopname van de toegankelijkheid van uw site, inclusief het totale aantal problemen, trends over tijd, de meest problematische pagina's en de meest ernstige problemen die u als eerste moet oplossen. Sommige details, zoals volledige site dekking en probleemoverzichten, zijn beschikbaar in Pro."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:156
-#: admin/AdminPage/AccessibilityReportsPage.php:170
+#: admin/AdminPage/AccessibilityReportsPage.php:157
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Enable Email Reports"
 msgstr "E-mailrapporten inschakelen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:163
-#: admin/AdminPage/AccessibilityReportsPage.php:167
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:164
+#: admin/AdminPage/AccessibilityReportsPage.php:168
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 #: admin/AdminPage/ConnectedServicesPage.php:153
 msgid "Free License Key"
 msgstr "Gratis licentiesleutel"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:176
+#: admin/AdminPage/AccessibilityReportsPage.php:177
 msgid "Get a Free License Key"
 msgstr "Ontvang een gratis licentiesleutel"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:181
+#: admin/AdminPage/AccessibilityReportsPage.php:182
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Heeft u de plugin van Equalize Digital? Uw sleutel vindt u in uw <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:190
+#: admin/AdminPage/AccessibilityReportsPage.php:191
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "Geïnstalleerd via WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Maak een gratis account aan</a> om er een te krijgen."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:199
+#: admin/AdminPage/AccessibilityReportsPage.php:200
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Niet zeker? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Maak gewoon een gratis account aan</a>. Het duurt maar een minuut."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:211
+#: admin/AdminPage/AccessibilityReportsPage.php:212
 msgid "Reports Enabled"
 msgstr "Rapporten ingeschakeld"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:214
+#: admin/AdminPage/AccessibilityReportsPage.php:215
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "U ontvangt wekelijkse toegankelijkheidsrapporten voor deze site."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:218
+#: admin/AdminPage/AccessibilityReportsPage.php:219
 #, php-format
 msgid "Next report: %s"
 msgstr "Volgend rapport: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:222
-msgid "Manage Recipients in Dashboard"
-msgstr "Beheer ontvangers in dashboard"
-
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Full Coverage"
 msgstr "Volledige dekking"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Limited Coverage"
 msgstr "Beperkte dekking"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:230
 msgid "Your reports include all post types and taxonomies."
 msgstr "Uw rapporten omvatten alle posttypen en taxonomieën."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:232
 msgid "Full-site scanning enabled"
 msgstr "Volledige sitescan ingeschakeld"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:235
+#: admin/AdminPage/AccessibilityReportsPage.php:233
 msgid "Complete issue breakdowns"
 msgstr "Complete probleemoverzichten"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:236
+#: admin/AdminPage/AccessibilityReportsPage.php:234
 msgid "Detailed reporting"
 msgstr "Gedetailleerde rapportage"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:239
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Your reports only include part of your site."
 msgstr "Uw rapporten omvatten slechts een deel van uw site."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:238
 msgid "Upgrade to Pro to:"
 msgstr "Upgrade naar Pro om:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "Scan all content types"
 msgstr "Alle inhoudstypen te scannen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:243
+#: admin/AdminPage/AccessibilityReportsPage.php:241
 msgid "Get full issue breakdowns"
 msgstr "Volledige probleemoverzichten te krijgen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:242
 msgid "Receive more detailed reports"
 msgstr "Meer gedetailleerde rapporten te ontvangen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Upgraden naar pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:253
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Accessibility Summary"
 msgstr "Toegankelijkheidsoverzicht"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Dit overzicht weerspiegelt de meest recente scandata die beschikbaar zijn voor uw site."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:254
 msgid "Total Issues Found"
 msgstr "Totaal aantal gevonden problemen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Account Connection"
 msgstr "Accountverbinding"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Disable Email Reports"
 msgstr "E-mailrapporten uitschakelen"
 
-#. translators: %1$s: terms link, %2$s: privacy link.
-#: admin/AdminPage/AccessibilityReportsPage.php:281
+#. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 #, php-format
-msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
-msgstr "Door deze site te verbinden, gaat u akkoord met de <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Servicevoorwaarden</a> en het <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacybeleid</a> van Equalize Digital."
+msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
+msgstr "Door deze site te verbinden, gaat u akkoord met het <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacybeleid <span aria-hidden=\"true\">&#8599;</span></a> en de <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Gegevensverwerkingsovereenkomst <span aria-hidden=\"true\">&#8599;</span></a> van Equalize Digital."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:282
+msgid "Privacy Policy (opens in a new window)"
+msgstr "Privacybeleid (opent in een nieuw venster)"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:283
+msgid "Data Processing Agreement (opens in a new window)"
+msgstr "Gegevensverwerkingsovereenkomst (opent in een nieuw venster)"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:294
-msgid "Preview of the weekly accessibility report email."
-msgstr "Voorbeeld van de wekelijkse e-mail voor het toegankelijkheidsrapport."
+msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
+msgstr "Wekelijkse e-mail bevat het totaal aantal gevonden problemen en wijzigingen sinds het laatste rapport, dekkingsinformatie, tellingen van problemen, items die beoordeling nodig hebben, het percentage geslaagde tests, en informatie over de meest problematische pagina's en de ernstigste problemen."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: admin/AdminPage/AccessibilityReportsPage.php:387
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "N.v.t."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/AdminPage/AccessibilityReportsPage.php:477
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -209,7 +213,7 @@ msgstr "N.v.t."
 msgid "Critical"
 msgstr "Kritiek"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/AdminPage/AccessibilityReportsPage.php:479
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -217,7 +221,7 @@ msgstr "Kritiek"
 msgid "High"
 msgstr "Hoog"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/AdminPage/AccessibilityReportsPage.php:481
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -225,7 +229,7 @@ msgstr "Hoog"
 msgid "Medium"
 msgstr "Gemiddeld"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:483
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -233,7 +237,7 @@ msgstr "Gemiddeld"
 msgid "Low"
 msgstr "Laag"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:485
 #: includes/classes/class-rest-api.php:997
 msgid "Unknown"
 msgstr "Onbekend"
@@ -477,18 +481,17 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 24th to 
 msgstr "Upgrade naar een betaalde versie van Accessibility Checker van 24 november tot 3 december en krijg 30% korting! Volledige sitesscan, sitewijd rapport met openstaande problemen, negeerlogboeken en meer."
 
 #: admin/class-admin-notices.php:141
-#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Stel een pre-sales vraag"
 
 #: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:232
+#: admin/class-admin-notices.php:245
 msgid "Upgrade Now"
 msgstr "Nu upgraden"
 
 #: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:251
-#: admin/class-admin-notices.php:340
+#: admin/class-admin-notices.php:266
+#: admin/class-admin-notices.php:356
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -501,36 +504,54 @@ msgid "Permission Denied"
 msgstr "Toegang geweigerd"
 
 #: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:263
-#: admin/class-admin-notices.php:364
+#: admin/class-admin-notices.php:279
+#: admin/class-admin-notices.php:380
 msgid "Update option wasn't successful"
 msgstr "Update-optie was niet succesvol"
 
-#: admin/class-admin-notices.php:229
-msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 Ontvang 25% korting op Accessibility Checker Pro ter ere van Global Accessibility Awareness Day! 🎉"
+#: admin/class-admin-notices.php:226
+msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
+msgstr "⚡️ Wereldwijde Dag van de Toegankelijkheid Flash Sale"
 
-#: admin/class-admin-notices.php:230
-msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
-msgstr "Gebruik kortingscode GAAD25 van 13 mei tot 21 mei om toegang te krijgen tot volledige site-scanning en andere pro-functies met een speciale korting. Weet je niet zeker of upgraden iets voor jou is?"
+#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
+#: admin/class-admin-notices.php:232
+#, php-format
+msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
+msgstr "Slechts 3 dagen: bespaar 15%% op %1$stoegankelijkheidscursussen%2$s en de %3$sArchiveWP-plugin%4$s van Equalize Digital. Ga verder met toegankelijkheid."
 
-#: admin/class-admin-notices.php:315
+#: admin/class-admin-notices.php:238
+msgid "Limited-time offer • May 20–22 • Use coupon code "
+msgstr "Tijdelijke aanbieding • 20–22 mei • Gebruik couponcode "
+
+#: admin/class-admin-notices.php:239
+msgid "Grab the Deal Before It Ends"
+msgstr "Pak de deal voordat deze eindigt"
+
+#: admin/class-admin-notices.php:242
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
+msgstr "Slechts 3 dagen: bespaar 15% wanneer u upgradet naar Accessibility Checker Pro met couponcode"
+
+#: admin/class-admin-notices.php:244
+msgid "Limited-time offer • May 20–22"
+msgstr "Tijdelijke aanbieding • 20–22 mei"
+
+#: admin/class-admin-notices.php:331
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hallo! Bedankt dat je Accessibility Checker gebruikt als onderdeel van je toegankelijkheidstoolkit. Aangezien je het al een tijdje gebruikt, zou je alsjeblieft een 5-sterren recensie willen schrijven voor Accessibility Checker in de WordPress-plugindirectory? Dit zal onze zichtbaarheid vergroten, zodat meer mensen kunnen leren over het belang van webtoegankelijkheid. Alvast heel erg bedankt!"
 
-#: admin/class-admin-notices.php:318
+#: admin/class-admin-notices.php:334
 msgid "Write A Review"
 msgstr "Schrijf een recensie"
 
-#: admin/class-admin-notices.php:319
+#: admin/class-admin-notices.php:335
 msgid "Remind Me In Two Weeks"
 msgstr "Herinner me over twee weken"
 
-#: admin/class-admin-notices.php:320
+#: admin/class-admin-notices.php:336
 msgid "Never Ask Again"
 msgstr "Vraag nooit meer"
 
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:363
 msgid "The review action value was not set"
 msgstr "De recensie-actiewaarde was niet ingesteld"
 
@@ -5085,6 +5106,15 @@ msgid "%1$d of %2$d"
 msgstr "%1$d van %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Untitled issue"
+msgstr "Probleem zonder titel"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Issue %1$d of %2$d: %3$s"
+msgstr "Probleem %1$d van %2$d: %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
 msgstr "Het element is niet zichtbaar. Probeer stijlen uit te schakelen."
 
@@ -5195,10 +5225,6 @@ msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Probleemtype:"
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Ignored"
 msgstr "Genegeerd"
 
@@ -5239,6 +5265,18 @@ msgstr "Probleem oplossen"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
 msgstr "Stijlen inschakelen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Page Styles"
+msgstr "Pagina-stijlen inschakelen"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles disabled."
+msgstr "Pagina-stijlen uitgeschakeld."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles re-enabled."
+msgstr "Pagina-stijlen opnieuw ingeschakeld."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "There are no settings to display."
@@ -5286,6 +5324,10 @@ msgid "Landmark: %s"
 msgstr "Landmark: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Failed to load scanner script."
+msgstr "Scannerscript kon niet worden geladen."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."
 msgstr "Scannerfunctie niet gevonden."
 
@@ -5294,12 +5336,16 @@ msgid "Scanning..."
 msgstr "Bezig met scannen..."
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "No violations found, skipping save."
-msgstr "Geen overtredingen gevonden, opslaan wordt overgeslagen."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Missing postId or nonce."
 msgstr "Ontbrekende postId of nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete. No violations found."
+msgstr "Opnieuw scannen voltooid. Geen overtredingen gevonden."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Geen overtredingen gevonden, opslaan wordt overgeslagen."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility scan error."
@@ -5308,6 +5354,18 @@ msgstr "Fout bij toegankelijkheidsscan."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Fout bij het opslaan van scanresultaten."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan already in progress."
+msgstr "Opnieuw scannen is al bezig."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescanning this page."
+msgstr "Deze pagina wordt opnieuw gescand."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete."
+msgstr "Opnieuw scannen voltooid."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error: Missing required parameters."
