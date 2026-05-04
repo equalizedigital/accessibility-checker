@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0-alpha\n"
+"Project-Id-Version: Accessibility Checker 1.40.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-04-20T19:54:54+00:00\n"
+"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:137
+#: admin/AdminPage/AccessibilityReportsPage.php:138
 msgid "Accessibility Reports"
 msgstr "Akadálymentességi jelentések"
 
@@ -57,151 +57,155 @@ msgstr "Akadálymentességi jelentések"
 msgid "New"
 msgstr "Új"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:143
+#: admin/AdminPage/AccessibilityReportsPage.php:144
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Kapjon ismétlődő e-mail jelentéseket webhelye akadálymentességének pillanatfelvételével, beleértve az összes hibát, az időbeli trendeket, a legproblémásabb oldalakat és a legsúlyosabb, elsőként javítandó problémákat."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:145
+#: admin/AdminPage/AccessibilityReportsPage.php:146
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Kapjon ismétlődő e-mail jelentéseket webhelye akadálymentességének pillanatfelvételével, beleértve az összes hibát, az időbeli trendeket, a legproblémásabb oldalakat és a legsúlyosabb, elsőként javítandó problémákat. Néhány részlet, például a teljes webhely lefedettsége és a hibák részletezése, elérhető a Pro verzióban."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:156
-#: admin/AdminPage/AccessibilityReportsPage.php:170
+#: admin/AdminPage/AccessibilityReportsPage.php:157
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Enable Email Reports"
 msgstr "E-mail jelentések engedélyezése"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:163
-#: admin/AdminPage/AccessibilityReportsPage.php:167
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:164
+#: admin/AdminPage/AccessibilityReportsPage.php:168
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 #: admin/AdminPage/ConnectedServicesPage.php:153
 msgid "Free License Key"
 msgstr "Ingyenes licenckulcs"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:176
+#: admin/AdminPage/AccessibilityReportsPage.php:177
 msgid "Get a Free License Key"
 msgstr "Ingyenes licenckulcs igénylése"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:181
+#: admin/AdminPage/AccessibilityReportsPage.php:182
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Az Equalize Digitaltól szerezte be a beépülő modult? Kulcsa megtalálható a <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">műszerfalán</a>."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:190
+#: admin/AdminPage/AccessibilityReportsPage.php:191
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "A WordPress.org-ról telepítette? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Hozzon létre egy ingyenes fiókot</a>, hogy kapjon egyet."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:199
+#: admin/AdminPage/AccessibilityReportsPage.php:200
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Nem biztos benne? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Hozzon létre egy ingyenes fiókot</a>! Mindössze egy percet vesz igénybe."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:211
+#: admin/AdminPage/AccessibilityReportsPage.php:212
 msgid "Reports Enabled"
 msgstr "Jelentések engedélyezve"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:214
+#: admin/AdminPage/AccessibilityReportsPage.php:215
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "Heti akadálymentességi jelentéseket fog kapni erről a webhelyről."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:218
+#: admin/AdminPage/AccessibilityReportsPage.php:219
 #, php-format
 msgid "Next report: %s"
 msgstr "Következő jelentés: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:222
-msgid "Manage Recipients in Dashboard"
-msgstr "Címzettek kezelése a műszerfalon"
-
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Full Coverage"
 msgstr "Teljes lefedettség"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:228
+#: admin/AdminPage/AccessibilityReportsPage.php:226
 msgid "Limited Coverage"
 msgstr "Korlátozott lefedettség"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:230
 msgid "Your reports include all post types and taxonomies."
 msgstr "Jelentései minden bejegyzéstípust és taxonómiát tartalmaznak."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:232
 msgid "Full-site scanning enabled"
 msgstr "Teljes webhely szkennelés engedélyezve"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:235
+#: admin/AdminPage/AccessibilityReportsPage.php:233
 msgid "Complete issue breakdowns"
 msgstr "Teljes hibarészletezés"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:236
+#: admin/AdminPage/AccessibilityReportsPage.php:234
 msgid "Detailed reporting"
 msgstr "Részletes jelentéskészítés"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:239
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Your reports only include part of your site."
 msgstr "Jelentései csak a webhelye egy részét tartalmazzák."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:238
 msgid "Upgrade to Pro to:"
 msgstr "Frissítsen Pro verzióra, hogy:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "Scan all content types"
 msgstr "Minden tartalomtípust szkenneljen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:243
+#: admin/AdminPage/AccessibilityReportsPage.php:241
 msgid "Get full issue breakdowns"
 msgstr "Teljes hibarészletezést kapjon"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:242
 msgid "Receive more detailed reports"
 msgstr "Részletesebb jelentéseket kapjon"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:247
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Váltás prémium verzióra"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:253
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Accessibility Summary"
 msgstr "Akadálymentességi összefoglaló"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Ez az összefoglaló a webhelyéhez elérhető legfrissebb szkennelési adatokat tükrözi."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:254
 msgid "Total Issues Found"
 msgstr "Összes talált hiba"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Account Connection"
 msgstr "Fiókcsatlakozás"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Disable Email Reports"
 msgstr "E-mail jelentések letiltása"
 
-#. translators: %1$s: terms link, %2$s: privacy link.
-#: admin/AdminPage/AccessibilityReportsPage.php:281
+#. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 #, php-format
-msgid "By connecting this site, you agree to the Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">Terms of Service</a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">Privacy Policy</a>."
-msgstr "A webhely csatlakoztatásával elfogadja az Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\">szolgáltatási feltételeit</a> és <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\">adatvédelmi irányelveit</a>."
+msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
+msgstr "Az oldal csatlakoztatásával Ön elfogadja az Equalize Digital <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">adatvédelmi irányelveit <span aria-hidden=\"true\">&#8599;</span></a> és az <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">adatfeldolgozási megállapodását <span aria-hidden=\"true\">&#8599;</span></a>."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:282
+msgid "Privacy Policy (opens in a new window)"
+msgstr "Adatvédelmi irányelvek (új ablakban nyílik meg)"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:283
+msgid "Data Processing Agreement (opens in a new window)"
+msgstr "Adatfeldolgozási megállapodás (új ablakban nyílik meg)"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:294
-msgid "Preview of the weekly accessibility report email."
-msgstr "A heti akadálymentességi jelentés e-mail előnézete."
+msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
+msgstr "A heti e-mail tartalmazza az összes talált problémát és az utolsó jelentés óta történt változásokat, lefedettségi információkat, a problémák számát, a felülvizsgálatra szoruló elemeket, a sikeres tesztek százalékos arányát, valamint információkat a legproblémásabb oldalakról és a legsúlyosabb hibákról."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:381
+#: admin/AdminPage/AccessibilityReportsPage.php:387
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "N/A"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:471
+#: admin/AdminPage/AccessibilityReportsPage.php:477
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -209,7 +213,7 @@ msgstr "N/A"
 msgid "Critical"
 msgstr "Kritikus"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:473
+#: admin/AdminPage/AccessibilityReportsPage.php:479
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -217,7 +221,7 @@ msgstr "Kritikus"
 msgid "High"
 msgstr "Magas"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:475
+#: admin/AdminPage/AccessibilityReportsPage.php:481
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -225,7 +229,7 @@ msgstr "Magas"
 msgid "Medium"
 msgstr "Közepes"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:483
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -233,7 +237,7 @@ msgstr "Közepes"
 msgid "Low"
 msgstr "Alacsony"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:485
 #: includes/classes/class-rest-api.php:997
 msgid "Unknown"
 msgstr "Ismeretlen"
@@ -477,18 +481,17 @@ msgid "Upgrade to a paid version of Accessibility Checker from November 24th to 
 msgstr "Frissítsen az Accessibility Checker fizetős verziójára november 24. és december 3. között, és kap 30% kedvezményt! Teljes webhely-átvizsgálás, webhelyszintű nyitott problémák jelentése, naplók figyelmen kívül hagyása és még sok más."
 
 #: admin/class-admin-notices.php:141
-#: admin/class-admin-notices.php:231
 msgid "Ask a Pre-Sale Question"
 msgstr "Tegyen fel kérdést vásárlás előtt"
 
 #: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:232
+#: admin/class-admin-notices.php:245
 msgid "Upgrade Now"
 msgstr "Frissítés most"
 
 #: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:251
-#: admin/class-admin-notices.php:340
+#: admin/class-admin-notices.php:266
+#: admin/class-admin-notices.php:356
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -501,36 +504,54 @@ msgid "Permission Denied"
 msgstr "Hozzáférés megtagadva"
 
 #: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:263
-#: admin/class-admin-notices.php:364
+#: admin/class-admin-notices.php:279
+#: admin/class-admin-notices.php:380
 msgid "Update option wasn't successful"
 msgstr "A frissítési opció nem volt sikeres"
 
-#: admin/class-admin-notices.php:229
-msgid "🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉"
-msgstr "🎉 25% kedvezmény az Accessibility Checker Pro-ra a Globális Akadálymentesítési Tudatosság Napja alkalmából! 🎉"
+#: admin/class-admin-notices.php:226
+msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
+msgstr "⚡️ A Globális Akadálymentesítési Tudatosság Napja – Villámakció"
 
-#: admin/class-admin-notices.php:230
-msgid "Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?"
-msgstr "Használja a GAAD25 kuponkódot május 13. És május 21. között, hogy hozzáférjen a teljes webhelyellenőrzéshez és más pro funkciókhoz speciális kedvezménnyel. Nem biztos benne, hogy érdemes frissítenie?"
+#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
+#: admin/class-admin-notices.php:232
+#, php-format
+msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
+msgstr "Csak 3 napig: Takarítson meg %% kedvezményt a %1$sakadálymentesítési tanfolyamok%2$s és az Equalize Digital %3$sArchiveWP bővítménye%4$s vásárlása esetén. Haladjon tovább az akadálymentesítésben."
 
-#: admin/class-admin-notices.php:315
+#: admin/class-admin-notices.php:238
+msgid "Limited-time offer • May 20–22 • Use coupon code "
+msgstr "Korlátozott idejű ajánlat • Május 20–22. • Használja a kuponkódot: "
+
+#: admin/class-admin-notices.php:239
+msgid "Grab the Deal Before It Ends"
+msgstr "Használja ki az ajánlatot, mielőtt lejár"
+
+#: admin/class-admin-notices.php:242
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
+msgstr "Csak 3 napig: Spóroljon 15%-ot, ha kuponkóddal frissít Accessibility Checker Pro-ra"
+
+#: admin/class-admin-notices.php:244
+msgid "Limited-time offer • May 20–22"
+msgstr "Korlátozott idejű ajánlat • Május 20–22."
+
+#: admin/class-admin-notices.php:331
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Üdvözöljük! Köszönjük, hogy az Accessibility Checkert használja az akadálymentesítési eszköztára részeként. Mivel már egy ideje használja, megírná az Accessibility Checker 5 csillagos értékelését a WordPress bővítmény könyvtárban? Ez segítene növelni a láthatóságunkat, hogy több ember megismerhesse a webes akadálymentesség fontosságát. Nagyon köszönjük!"
 
-#: admin/class-admin-notices.php:318
+#: admin/class-admin-notices.php:334
 msgid "Write A Review"
 msgstr "Értékelés írása"
 
-#: admin/class-admin-notices.php:319
+#: admin/class-admin-notices.php:335
 msgid "Remind Me In Two Weeks"
 msgstr "Emlékeztessen két hét múlva"
 
-#: admin/class-admin-notices.php:320
+#: admin/class-admin-notices.php:336
 msgid "Never Ask Again"
 msgstr "Ne kérdezzen többé"
 
-#: admin/class-admin-notices.php:347
+#: admin/class-admin-notices.php:363
 msgid "The review action value was not set"
 msgstr "Az értékelési művelet értéke nem lett beállítva"
 
@@ -5085,6 +5106,15 @@ msgid "%1$d of %2$d"
 msgstr "%1$d a %2$d-ből"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Untitled issue"
+msgstr "Cím nélküli probléma"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#, js-format
+msgid "Issue %1$d of %2$d: %3$s"
+msgstr "A %2$d. probléma %1$d. része: %3$s"
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "The element is not visible. Try disabling styles."
 msgstr "Az elem nem látható. Próbálja meg letiltani a stílusokat."
 
@@ -5195,10 +5225,6 @@ msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Issue type:"
-msgstr "Probléma típusa:"
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Ignored"
 msgstr "Figyelmen kívül hagyva"
 
@@ -5239,6 +5265,18 @@ msgstr "Probléma javítása"
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Enable Styles"
 msgstr "Stílusok engedélyezése"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Enable Page Styles"
+msgstr "Oldalstílusok engedélyezése"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles disabled."
+msgstr "Oldalstílusok letiltva."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Page styles re-enabled."
+msgstr "Oldalstílusok újra engedélyezve."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "There are no settings to display."
@@ -5286,6 +5324,10 @@ msgid "Landmark: %s"
 msgstr "Tájékozódási pont: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Failed to load scanner script."
+msgstr "A szkennelő szkript betöltése sikertelen."
+
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Scanner function not found."
 msgstr "A vizsgálati funkció nem található."
 
@@ -5294,12 +5336,16 @@ msgid "Scanning..."
 msgstr "Vizsgálat..."
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "No violations found, skipping save."
-msgstr "Nem találtunk hibákat, mentés kihagyva."
-
-#: build/frontendHighlighterApp.bundle.js:2
 msgid "Missing postId or nonce."
 msgstr "Hiányzó postId vagy nonce."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete. No violations found."
+msgstr "Újraszkennelés befejezve. Nem található hiba."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "No violations found, skipping save."
+msgstr "Nem találtunk hibákat, mentés kihagyva."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Accessibility scan error."
@@ -5308,6 +5354,18 @@ msgstr "Akadálymentességi vizsgálati hiba."
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error saving scan results."
 msgstr "Hiba történt a vizsgálati eredmények mentésekor."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan already in progress."
+msgstr "Újraszkennelés már folyamatban van."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescanning this page."
+msgstr "Az oldal újraszkennelése."
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "Rescan complete."
+msgstr "Újraszkennelés befejezve."
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "Error: Missing required parameters."
