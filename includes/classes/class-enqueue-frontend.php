@@ -161,7 +161,7 @@ class Enqueue_Frontend {
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
-					'scannerBundleUrl' => plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js',
+					'scannerBundleUrl' => plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js?ver=' . EDAC_VERSION,
 					'adminThemeColor'  => self::get_admin_theme_color(),
 				]
 			);
