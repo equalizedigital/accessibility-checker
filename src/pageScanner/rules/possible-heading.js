@@ -3,7 +3,9 @@ export default {
 	selector: 'p',
 	matches: ( node ) => {
 		// Not inside a blockquote, figcaption or table cell
-		return ! node.closest( 'blockquote, figcaption, td' );
+		// Not an element already made a heading via ARIA
+		return ! node.closest( 'blockquote, figcaption, td' ) &&
+			node.getAttribute( 'role' ) !== 'heading';
 	},
 	excludeHidden: false,
 	tags: [
