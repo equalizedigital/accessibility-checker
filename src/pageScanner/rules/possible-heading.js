@@ -8,19 +8,17 @@ export default {
 		}
 
 		// Elements with role="heading" are already semantic headings — skip them,
-		// but only when their aria-level is absent (defaults to 2) or is a valid
-		// integer in the range 1–6.  Out-of-range or non-numeric aria-level values
-		// mean the ARIA heading is invalid, so the element should still be checked.
+		// but only when aria-level is explicitly set to a valid integer in the
+		// range 1–6.  aria-level is a required attribute for role="heading", so a
+		// missing, out-of-range, or non-numeric value means the ARIA heading is
+		// invalid and the element should still be checked.
 		if ( node.getAttribute( 'role' ) === 'heading' ) {
 			const ariaLevel = node.getAttribute( 'aria-level' );
-			if ( ariaLevel === null ) {
-				return false; // No aria-level; spec default is 2 — valid heading.
-			}
 			const level = parseInt( ariaLevel, 10 );
 			if ( ! isNaN( level ) && level >= 1 && level <= 6 ) {
-				return false; // Valid ARIA heading level.
+				return false; // Valid ARIA heading level — not a possible-heading issue.
 			}
-			// aria-level is present but out of range or non-numeric — fall through
+			// aria-level is missing, out of range, or non-numeric — fall through
 			// to the check so this element can still be flagged.
 		}
 

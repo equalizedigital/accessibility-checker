@@ -124,9 +124,9 @@ describe( 'Possible Heading Rule', () => {
 				shouldPass: true,
 			},
 			{
-				name: 'passes for a paragraph with only role="heading" (no aria-level, defaults to 2)',
-				html: '<p role="heading">Heading without level</p>',
-				shouldPass: true,
+				name: 'fails for a paragraph with only role="heading" and no aria-level (aria-level is required)',
+				html: '<p role="heading" style="font-weight: bold;">Heading without level</p>',
+				shouldPass: false,
 			},
 			{
 				name: 'passes for a styled paragraph with role="heading" aria-level="2" and inline styles',
