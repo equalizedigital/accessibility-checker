@@ -2,10 +2,29 @@ export default {
 	id: 'possible_heading',
 	selector: 'p',
 	matches: ( node ) => {
-		// Not inside a blockquote, figcaption or table cell
-		// Not an element already made a heading via ARIA
-		return ! node.closest( 'blockquote, figcaption, td' ) &&
-			node.getAttribute( 'role' ) !== 'heading';
+		// Not inside a blockquote, figcaption or table cell.
+		if ( node.closest( 'blockquote, figcaption, td' ) ) {
+			return false;
+		}
+
+		// Elements with role="heading" are already semantic headings — skip them,
+		// but only when their aria-level is absent (defaults to 2) or is a valid
+		// integer in the range 1–6.  Out-of-range or non-numeric aria-level values
+		// mean the ARIA heading is invalid, so the element should still be checked.
+		if ( node.getAttribute( 'role' ) === 'heading' ) {
+			const ariaLevel = node.getAttribute( 'aria-level' );
+			if ( ariaLevel === null ) {
+				return false; // No aria-level; spec default is 2 — valid heading.
+			}
+			const level = parseInt( ariaLevel, 10 );
+			if ( ! isNaN( level ) && level >= 1 && level <= 6 ) {
+				return false; // Valid ARIA heading level.
+			}
+			// aria-level is present but out of range or non-numeric — fall through
+			// to the check so this element can still be flagged.
+		}
+
+		return true;
 	},
 	excludeHidden: false,
 	tags: [

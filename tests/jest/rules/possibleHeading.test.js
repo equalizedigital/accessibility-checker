@@ -107,30 +107,63 @@ describe( 'Possible Heading Rule', () => {
 
 	describe( 'ARIA heading elements should not be flagged as possible headings', () => {
 		const ariaHeadingCases = [
+			// ✅ Valid ARIA headings — should NOT trigger violations
 			{
-				name: 'passes for a paragraph with role="heading" and aria-level',
+				name: 'passes for a paragraph with role="heading" and aria-level="2"',
 				html: '<p role="heading" aria-level="2">We value your privacy</p>',
 				shouldPass: true,
 			},
 			{
-				name: 'passes for a bold paragraph with role="heading" and aria-level',
+				name: 'passes for a bold paragraph with role="heading" and aria-level="2"',
 				html: '<p role="heading" aria-level="2" style="font-weight: bold;">Bold ARIA heading</p>',
 				shouldPass: true,
 			},
 			{
-				name: 'passes for a large-font paragraph with role="heading" and aria-level',
+				name: 'passes for a large-font paragraph with role="heading" and aria-level="2"',
 				html: '<p role="heading" aria-level="2" style="font-size: 24px;">Large ARIA heading</p>',
 				shouldPass: true,
 			},
 			{
-				name: 'passes for a paragraph with only role="heading" (no aria-level)',
+				name: 'passes for a paragraph with only role="heading" (no aria-level, defaults to 2)',
 				html: '<p role="heading">Heading without level</p>',
 				shouldPass: true,
 			},
 			{
-				name: 'passes for a styled paragraph with role="heading" aria-level and inline styles',
+				name: 'passes for a styled paragraph with role="heading" aria-level="2" and inline styles',
 				html: '<p class="cky-title" data-cky-tag="title" aria-level="2" role="heading" style="color: #212121; font-weight: bold;">We value your privacy</p>',
 				shouldPass: true,
+			},
+			{
+				name: 'passes for aria-level="1" (minimum valid level)',
+				html: '<p role="heading" aria-level="1" style="font-weight: bold;">Main heading</p>',
+				shouldPass: true,
+			},
+			{
+				name: 'passes for aria-level="6" (maximum valid level)',
+				html: '<p role="heading" aria-level="6" style="font-weight: bold;">Deep heading</p>',
+				shouldPass: true,
+			},
+
+			// ❌ Invalid aria-level — should STILL trigger violations
+			{
+				name: 'fails for aria-level="0" (below valid range)',
+				html: '<p role="heading" aria-level="0" style="font-weight: bold;">Invalid level heading</p>',
+				shouldPass: false,
+			},
+			{
+				name: 'fails for aria-level="-1" (negative, below valid range)',
+				html: '<p role="heading" aria-level="-1" style="font-weight: bold;">Negative level heading</p>',
+				shouldPass: false,
+			},
+			{
+				name: 'fails for aria-level="7" (above valid range)',
+				html: '<p role="heading" aria-level="7" style="font-weight: bold;">Out of range heading</p>',
+				shouldPass: false,
+			},
+			{
+				name: 'fails for aria-level="abc" (non-numeric)',
+				html: '<p role="heading" aria-level="abc" style="font-weight: bold;">Non-numeric level</p>',
+				shouldPass: false,
 			},
 		];
 
