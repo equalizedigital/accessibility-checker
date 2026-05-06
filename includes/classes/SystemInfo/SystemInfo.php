@@ -144,12 +144,15 @@ class SystemInfo {
 	 * @return array<string, mixed>
 	 */
 	public static function get_license_request_context() {
+		$active_plugins = wp_json_encode( self::get_active_plugins() );
+		$active_theme   = wp_json_encode( self::get_active_theme() );
+
 		return [
 			'environment'    => self::get_environment_type(),
 			'wp_version'     => self::get_wordpress_version(),
 			'php_version'    => self::get_php_version(),
-			'active_plugins' => wp_json_encode( self::get_active_plugins() ),
-			'active_theme'   => wp_json_encode( self::get_active_theme() ),
+			'active_plugins' => false !== $active_plugins ? $active_plugins : [],
+			'active_theme'   => false !== $active_theme ? $active_theme : [],
 		];
 	}
 }
