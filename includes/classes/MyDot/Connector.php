@@ -11,7 +11,7 @@
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
-use EqualizeDigital\AccessibilityChecker\Admin\SystemInfo;
+use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
 
 /**
  * Class Connector

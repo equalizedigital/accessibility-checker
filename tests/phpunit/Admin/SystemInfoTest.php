@@ -5,7 +5,7 @@
  * @package accessibility-checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Admin\SystemInfo;
+use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
 
 /**
  * Tests for SystemInfo static helper methods.

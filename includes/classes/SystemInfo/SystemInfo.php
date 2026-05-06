@@ -5,7 +5,7 @@
  * @package Accessibility_Checker
  */
 
-namespace EqualizeDigital\AccessibilityChecker\Admin;
+namespace EqualizeDigital\AccessibilityChecker\SystemInfo;
 
 use WP_Theme;
 
