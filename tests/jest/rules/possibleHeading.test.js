@@ -165,6 +165,16 @@ describe( 'Possible Heading Rule', () => {
 				html: '<p role="heading" aria-level="abc" style="font-weight: bold;">Non-numeric level</p>',
 				shouldPass: false,
 			},
+			{
+				name: 'fails for aria-level="2abc" (partial numeric string)',
+				html: '<p role="heading" aria-level="2abc" style="font-weight: bold;">Partial numeric level</p>',
+				shouldPass: false,
+			},
+			{
+				name: 'fails for aria-level="2.5" (decimal, not an integer)',
+				html: '<p role="heading" aria-level="2.5" style="font-weight: bold;">Decimal level heading</p>',
+				shouldPass: false,
+			},
 		];
 
 		ariaHeadingCases.forEach( ( testCase ) => {

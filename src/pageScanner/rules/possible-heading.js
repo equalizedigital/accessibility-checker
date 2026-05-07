@@ -14,8 +14,8 @@ export default {
 		// invalid and the element should still be checked.
 		if ( node.getAttribute( 'role' ) === 'heading' ) {
 			const ariaLevel = node.getAttribute( 'aria-level' );
-			const level = parseInt( ariaLevel, 10 );
-			if ( ! isNaN( level ) && level >= 1 && level <= 6 ) {
+			const level = Number( ariaLevel );
+			if ( Number.isInteger( level ) && level >= 1 && level <= 6 ) {
 				return false; // Valid ARIA heading level — not a possible-heading issue.
 			}
 			// aria-level is missing, out of range, or non-numeric — fall through
