@@ -249,6 +249,32 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures degraded notice message still appears when Pro is expired, fallback is active,
+	 * and the free status is blank but the site remains connected.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_degraded_notice_message_connected_mode_during_fallback_with_blank_free_status() {
+		update_option( 'edacp_license_status', 'expired' );
+		update_option( 'edac_fallback_active', true );
+
+		$message = $this->invoke_private_method(
+			'get_degraded_notice_message',
+			[
+				[
+					'has_pro_plugin' => true,
+					'is_pro'         => false,
+					'status'         => '',
+					'is_connected'   => true,
+				],
+			]
+		);
+
+		$this->assertIsString( $message );
+		$this->assertStringContainsString( 'Free email reports', $message );
+	}
+
+	/**
 	 * Ensures degraded notice message explains reconnect mode during fallback.
 	 *
 	 * @throws ReflectionException If reflection fails.
@@ -286,6 +312,9 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 
 	/**
 	 * Ensures degraded-state notice can be injected into the Pro license page hook.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_render_pro_license_degraded_notice_outputs_when_pro_is_invalid_and_free_is_valid() {
 		if ( ! defined( 'EDACP_VERSION' ) ) {
@@ -307,6 +336,9 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 
 	/**
 	 * Ensures connected services shows a connected-as-free state instead of the free license key form during degraded fallback.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_render_page_shows_connected_as_free_in_degraded_connected_state() {
 		if ( ! defined( 'EDACP_VERSION' ) ) {
@@ -314,7 +346,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		}
 
 		update_option( 'edacp_license_status', 'expired' );
-		update_option( 'edac_license_status', 'valid' );
+		delete_option( 'edac_license_status' );
 		update_option( 'edac_site_id', 'site-123' );
 		update_option( 'edac_fallback_active', true );
 
@@ -322,6 +354,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		$this->page->render_page();
 		$output = ob_get_clean();
 
+		$this->assertStringContainsString( 'this site remains connected for Free email reports', $output );
 		$this->assertStringContainsString( 'Connected as Free', $output );
 		$this->assertStringNotContainsString( 'Free License Key', $output );
 	}

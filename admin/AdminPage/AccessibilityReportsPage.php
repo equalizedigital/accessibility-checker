@@ -84,6 +84,8 @@ class AccessibilityReportsPage implements PageInterface {
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$is_connected    = $license_context['is_connected'];
+		$is_registered   = $license_context['is_registered'];
+		$status          = $license_context['status'];
 		$next_send_date  = $this->get_next_send_estimate_date();
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
@@ -137,74 +139,97 @@ class AccessibilityReportsPage implements PageInterface {
 				<section class="edac-reports-page__panel">
 					<h2><?php esc_html_e( 'Accessibility Reports', 'accessibility-checker' ); ?></h2>
 
-				<?php if ( ! $is_connected ) : ?>
-						<p class="edac-reports-page__intro">
-							<?php
-							if ( $is_pro ) {
-								esc_html_e( 'Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first.', 'accessibility-checker' );
-							} else {
-								esc_html_e( 'Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro.', 'accessibility-checker' );
-							}
-							?>
-						</p>
-
-						<?php if ( $is_pro ) : ?>
-							<div class="edac-reports-page__single-action">
+					<?php if ( ! $is_connected && 'expired' === $status && $is_registered ) : ?>
+						<div class="edac-reports-grid edac-reports-grid--two">
+							<div class="edac-reports-card">
+								<div class="edac-reports-card__header">
+									<h3><?php esc_html_e( 'License Expired', 'accessibility-checker' ); ?></h3>
+								</div>
+								<p>
+									<?php esc_html_e( 'Your license has expired. This site is still connected but reports may stop until your license is renewed.', 'accessibility-checker' ); ?>
+								</p>
+								<p>
+									<a href="<?php echo esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'renew', false ) ); ?>" target="_blank" rel="noopener noreferrer">
+										<?php esc_html_e( 'Renew your license', 'accessibility-checker' ); ?>
+									</a>
+								</p>
 								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-									<input type="hidden" name="action" value="edac_jwt_register" />
-									<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
-									<button type="submit" class="button button-primary edac-reports-page__button">
+									<input type="hidden" name="action" value="edac_jwt_unregister" />
+									<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
+									<button type="submit" class="button edac-reports-page__button" name="edac_jwt_unregister">
+										<?php esc_html_e( 'Disable Email Reports', 'accessibility-checker' ); ?>
+									</button>
+								</form>
+							</div>
+						</div>
+				<?php elseif ( ! $is_connected ) : ?>
+					<p class="edac-reports-page__intro">
+						<?php
+						if ( $is_pro ) {
+							esc_html_e( 'Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first.', 'accessibility-checker' );
+						} else {
+							esc_html_e( 'Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro.', 'accessibility-checker' );
+						}
+						?>
+					</p>
+
+					<?php if ( $is_pro ) : ?>
+						<div class="edac-reports-page__single-action">
+							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+								<input type="hidden" name="action" value="edac_jwt_register" />
+								<?php wp_nonce_field( 'edac_jwt_register', 'edac_jwt_register_nonce' ); ?>
+								<button type="submit" class="button button-primary edac-reports-page__button">
+									<?php esc_html_e( 'Enable Email Reports', 'accessibility-checker' ); ?>
+								</button>
+							</form>
+						</div>
+					<?php else : ?>
+						<div class="edac-reports-grid edac-reports-grid--two">
+							<div class="edac-reports-card">
+								<h3><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></h3>
+								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+									<input type="hidden" name="action" value="edac_license" />
+									<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
+									<label class="screen-reader-text" for="edac-reports-license-key"><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></label>
+									<input id="edac-reports-license-key" name="edacp_license_key" type="text" class="regular-text edac-reports-page__license-input" value="<?php echo esc_attr( $license_key ); ?>" />
+									<button type="submit" class="button button-primary edac-reports-page__button" name="edac_license_activate">
 										<?php esc_html_e( 'Enable Email Reports', 'accessibility-checker' ); ?>
 									</button>
 								</form>
 							</div>
-						<?php else : ?>
-							<div class="edac-reports-grid edac-reports-grid--two">
-								<div class="edac-reports-card">
-									<h3><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></h3>
-									<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-										<input type="hidden" name="action" value="edac_license" />
-										<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-										<label class="screen-reader-text" for="edac-reports-license-key"><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></label>
-										<input id="edac-reports-license-key" name="edacp_license_key" type="text" class="regular-text edac-reports-page__license-input" value="<?php echo esc_attr( $license_key ); ?>" />
-										<button type="submit" class="button button-primary edac-reports-page__button" name="edac_license_activate">
-											<?php esc_html_e( 'Enable Email Reports', 'accessibility-checker' ); ?>
-										</button>
-									</form>
-								</div>
 
-								<div class="edac-reports-card">
-									<h3><?php esc_html_e( 'Get a Free License Key', 'accessibility-checker' ); ?></h3>
-									<p>
-										<?php
-										printf(
-											/* translators: %s: dashboard URL. */
-											wp_kses_post( __( 'Got the plugin from Equalize Digital? Your key is in your <a href="%s" target="_blank" rel="noopener noreferrer">dashboard</a>.', 'accessibility-checker' ) ),
-											esc_url( $dashboard_url )
-										);
-										?>
-									</p>
-									<p>
-										<?php
-										printf(
-											/* translators: %s: signup URL. */
-											wp_kses_post( __( 'Installed from WordPress.org? <a href="%s" target="_blank" rel="noopener noreferrer">Create a free account</a> to get one.', 'accessibility-checker' ) ),
-											esc_url( $signup_url )
-										);
-										?>
-									</p>
-									<p>
-										<?php
-										printf(
-											/* translators: %s: signup URL. */
-											wp_kses_post( __( 'Not sure? Just <a href="%s" target="_blank" rel="noopener noreferrer">create a free account</a>. It only takes a minute.', 'accessibility-checker' ) ),
-											esc_url( $signup_url )
-										);
-										?>
-									</p>
-								</div>
+							<div class="edac-reports-card">
+								<h3><?php esc_html_e( 'Get a Free License Key', 'accessibility-checker' ); ?></h3>
+								<p>
+									<?php
+									printf(
+										/* translators: %s: dashboard URL. */
+										wp_kses_post( __( 'Got the plugin from Equalize Digital? Your key is in your <a href="%s" target="_blank" rel="noopener noreferrer">dashboard</a>.', 'accessibility-checker' ) ),
+										esc_url( $dashboard_url )
+									);
+									?>
+								</p>
+								<p>
+									<?php
+									printf(
+										/* translators: %s: signup URL. */
+										wp_kses_post( __( 'Installed from WordPress.org? <a href="%s" target="_blank" rel="noopener noreferrer">Create a free account</a> to get one.', 'accessibility-checker' ) ),
+										esc_url( $signup_url )
+									);
+									?>
+								</p>
+								<p>
+									<?php
+									printf(
+										/* translators: %s: signup URL. */
+										wp_kses_post( __( 'Not sure? Just <a href="%s" target="_blank" rel="noopener noreferrer">create a free account</a>. It only takes a minute.', 'accessibility-checker' ) ),
+										esc_url( $signup_url )
+									);
+									?>
+								</p>
 							</div>
-						<?php endif; ?>
+						</div>
+					<?php endif; ?>
 				<?php else : ?>
 						<div class="edac-reports-grid edac-reports-grid--two">
 							<div class="edac-reports-card">
@@ -324,19 +349,23 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @param string $free_status     Current free license status.
 	 * @param string $site_id         Current connected site ID.
 	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,fallback_active:bool}
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,is_registered:bool,fallback_active:bool}
 	 */
 	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
-		$is_pro       = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
-		$status       = $is_pro ? $pro_status : $free_status;
-		$is_connected = 'valid' === $status && '' !== $site_id;
-
+		$is_pro = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
+		$status = $is_pro ? $pro_status : $free_status;
+		// is_connected is true when:
+		// 1. License status is valid AND site_id exists, OR
+		// 2. Pro exists but is expired/degraded (fallback_active), AND site_id exists (reports still flowing).
+		$is_connected  = ( 'valid' === $status && '' !== $site_id ) || ( $has_pro_plugin && $fallback_active && '' !== $site_id );
+		$is_registered = '' !== $site_id;
 
 		return [
 			'has_pro_plugin'  => $has_pro_plugin,
 			'is_pro'          => $is_pro,
 			'status'          => $status,
 			'is_connected'    => $is_connected,
+			'is_registered'   => $is_registered,
 			'fallback_active' => $fallback_active,
 		];
 	}
