@@ -354,7 +354,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		$this->page->render_page();
 		$output = ob_get_clean();
 
-		$this->assertStringContainsString( 'email reports remain connected as Free email reports', $output );
+		$this->assertStringContainsString( 'this site remains connected for Free email reports', $output );
 		$this->assertStringContainsString( 'Connected as Free', $output );
 		$this->assertStringNotContainsString( 'Free License Key', $output );
 	}
