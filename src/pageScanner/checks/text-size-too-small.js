@@ -17,17 +17,16 @@ export default {
 			return false;
 		}
 
-		// Screen-reader-only elements are visually hidden intentionally — font size
-		// is irrelevant for text that sighted users never see.
-		if ( isScreenReaderOnly( node ) ) {
-			return false;
-		}
-
 		// Check if the node has any direct text nodes as children. For a node with no
 		// children, or with TEXT_NODE children, evaluate the nodes font size. This
 		// handles both leaf nodes and container elements with mixed content.
 		const hasTextChild = Array.from( node.childNodes ).some( ( child ) => child.nodeType === Node.TEXT_NODE );
 		if ( ! node.childNodes.length || hasTextChild ) {
+			// Screen-reader-only elements are visually hidden intentionally — font size
+			// is irrelevant for text that sighted users never see.
+			if ( isScreenReaderOnly( node ) ) {
+				return false;
+			}
 			return fontSizeInPx( node ) <= SMALL_FONT_SIZE_THRESHOLD;
 		}
 
