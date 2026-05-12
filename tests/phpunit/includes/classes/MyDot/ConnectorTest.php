@@ -29,6 +29,8 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
 		delete_option( 'edac_fallback_active' );
+		wp_clear_scheduled_hook( 'edac_check_license_hook' );
+		wp_clear_scheduled_hook( 'edacp_check_license_hook' );
 	}
 
 	/**
@@ -46,6 +48,8 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
 		delete_option( 'edac_fallback_active' );
+		wp_clear_scheduled_hook( 'edac_check_license_hook' );
+		wp_clear_scheduled_hook( 'edacp_check_license_hook' );
 		remove_all_filters( 'edac_pro_product_id' );
 		remove_all_filters( 'pre_http_request' );
 
@@ -265,18 +269,220 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures free plugin's activate_license() does not run when Pro is installed with valid license.
+	 * Flow matrix for free-only periodic checks.
+	 *
+	 * @return array<string,array{0:string,1:bool,2:string|false}>
+	 */
+	public function free_only_periodic_license_flow_provider() {
+		return [
+			'free no key'   => [ '', false, false ],
+			'free with key' => [ 'free-license-key', true, 'valid' ],
+		];
+	}
+
+	/**
+	 * Covers free-only flows: no key vs key present.
+	 *
+	 * @dataProvider free_only_periodic_license_flow_provider
+	 *
+	 * @param string       $license_key          Shared license key value.
+	 * @param bool         $expects_http_request Whether free check should call remote API.
+	 * @param string|false $expected_status      Expected free status value or false when untouched.
+	 */
+	public function test_periodic_check_license_free_only_flow_matrix( $license_key, $expects_http_request, $expected_status ) {
+		if ( '' === $license_key ) {
+			delete_option( 'edacp_license_key' );
+		} else {
+			update_option( 'edacp_license_key', $license_key );
+		}
+
+		$http_request_made = false;
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode(
+						[
+							'license'          => 'valid',
+							'item_id'          => 1666,
+							'item_name'        => 'Accessibility Checker Free',
+							'license_limit'    => '1',
+							'expires'          => '2026-12-31 00:00:00',
+							'site_count'       => '1',
+							'activations_left' => '0',
+						]
+					),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->periodic_check_license();
+
+		$this->assertSame( $expects_http_request, $http_request_made );
+		if ( false === $expected_status ) {
+			$this->assertFalse( get_option( 'edac_license_status', false ) );
+			$this->assertFalse( get_option( 'edac_license_metadata', false ) );
+		} else {
+			$this->assertSame( $expected_status, get_option( 'edac_license_status' ) );
+			$this->assertIsArray( get_option( 'edac_license_metadata' ) );
+		}
+	}
+
+	/**
+	 * Flow matrix for periodic checks when Pro is installed.
+	 *
+	 * @return array<string,array{0:string,1:string|false,2:bool}>
+	 */
+	public function pro_installed_periodic_license_flow_provider() {
+		return [
+			'pro installed, no key'      => [ '', false, false ],
+			'pro installed, key set'     => [ 'free-license-key', false, false ],
+			'pro installed, key valid'   => [ 'pro-license-key', 'valid', false ],
+			'pro installed, key expired' => [ 'pro-license-key', 'expired', false ],
+		];
+	}
+
+	/**
+	 * Covers flows where Pro is installed; free periodic check should stand down once key is present.
+	 *
+	 * @dataProvider pro_installed_periodic_license_flow_provider
+	 *
+	 * @param string       $license_key          Shared license key value.
+	 * @param string|false $pro_status           Pro license status option value.
+	 * @param bool         $expects_http_request Whether free check should call remote API.
+	 */
+	public function test_periodic_check_license_pro_installed_flow_matrix( $license_key, $pro_status, $expects_http_request ) {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		if ( '' === $license_key ) {
+			delete_option( 'edacp_license_key' );
+		} else {
+			update_option( 'edacp_license_key', $license_key );
+		}
+
+		if ( false === $pro_status ) {
+			delete_option( 'edacp_license_status' );
+		} else {
+			update_option( 'edacp_license_status', $pro_status );
+		}
+
+		$http_request_made = false;
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode( [ 'license' => 'valid' ] ),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->periodic_check_license();
+
+		$this->assertSame( $expects_http_request, $http_request_made );
+		$this->assertFalse( get_option( 'edac_license_metadata', false ) );
+	}
+
+	/**
+	 * Pro-status matrix for activate_license guard behavior.
+	 *
+	 * @return array<string,array{0:string}>
+	 */
+	public function pro_status_for_activation_guard_provider() {
+		return [
+			'pro key valid'   => [ 'valid' ],
+			'pro key expired' => [ 'expired' ],
+		];
+	}
+
+	/**
+	 * Ensures free activation is blocked whenever Pro check flow is active.
+	 *
+	 * @dataProvider pro_status_for_activation_guard_provider
+	 *
+	 * @param string $pro_status Pro license status value.
+	 * @throws ReflectionException If the method cannot be reflected.
+	 */
+	public function test_activate_license_pro_installed_with_key_flow_matrix( $pro_status ) {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		update_option( 'edacp_license_status', $pro_status );
+		update_option( 'edacp_license_key', 'pro-license-key' );
+
+		$http_request_made = false;
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode( [ 'license' => 'valid' ] ),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector  = new Connector();
+		$reflection = new ReflectionClass( Connector::class );
+		$method     = $reflection->getMethod( 'activate_license' );
+		$method->setAccessible( true );
+		$method->invoke( $connector );
+
+		$this->assertFalse( $http_request_made );
+		$this->assertStringContainsString( 'Pro license management is active', (string) get_option( 'edac_license_error' ) );
+	}
+
+	/**
+	 * Ensures free cron is still scheduled in free-only mode.
+	 */
+	public function test_check_license_cron_schedules_hook_in_free_only_mode() {
+		delete_option( 'edacp_license_key' );
+
+		$connector = new Connector();
+		$connector->check_license_cron();
+
+		$this->assertNotFalse( wp_next_scheduled( 'edac_check_license_hook' ) );
+	}
+
+	/**
+	 * Ensures free plugin's activate_license() does not run when Pro license checks are active.
 	 *
 	 * This prevents the free activation form from overwriting Pro license state.
 	 *
 	 * @throws ReflectionException If the method cannot be reflected.
 	 */
-	public function test_activate_license_bails_when_pro_is_active_with_valid_license() {
-		// Simulate Pro plugin installed with valid license.
+	public function test_activate_license_bails_when_pro_license_check_is_active() {
+		// Simulate Pro plugin installed with a stored key (Pro manages checks).
 		if ( ! defined( 'EDACP_VERSION' ) ) {
 			define( 'EDACP_VERSION', '1.19.0' );
 		}
-		update_option( 'edacp_license_status', 'valid' );
+		update_option( 'edacp_license_status', 'expired' );
 		update_option( 'edacp_license_key', 'free-license-key' );
 
 		// Create a new Connector instance and call activate_license via reflection.
@@ -291,50 +497,65 @@ class ConnectorTest extends WP_UnitTestCase {
 		// Verify error was set and no HTTP request was attempted.
 		$error = get_option( 'edac_license_error' );
 		$this->assertNotEmpty( $error );
-		$this->assertStringContainsString( 'Pro license is active', $error );
+		$this->assertStringContainsString( 'Pro license management is active', $error );
 
 		// Verify metadata was NOT updated (no HTTP call happened).
 		$this->assertFalse( get_option( 'edac_license_metadata', false ) );
 	}
 
 	/**
-	 * Ensures free plugin's periodic_check_license resumes when Pro is defined but license is not valid.
-	 *
-	 * This enables automatic fallback from Pro to free when Pro's license expires or is disabled.
+	 * Ensures free periodic checks bail whenever Pro license checks are active.
 	 */
-	public function test_periodic_check_license_resumes_when_pro_license_becomes_invalid() {
-		// Simulate Pro plugin installed but with expired license.
+	public function test_periodic_check_license_bails_when_pro_license_check_is_active() {
+		// Simulate Pro plugin installed with a stored key.
 		if ( ! defined( 'EDACP_VERSION' ) ) {
 			define( 'EDACP_VERSION', '1.19.0' );
 		}
-		update_option( 'edacp_license_status', 'expired' ); // Pro license is no longer valid.
+		update_option( 'edacp_license_status', 'expired' );
 		update_option( 'edacp_license_key', 'free-license-key' );
 
-		$connector = new Connector();
-		$filter    = $this->mock_http_response(
-			[
-				'license'          => 'valid',
-				'item_id'          => 1666,
-				'item_name'        => 'Accessibility Checker Free',
-				'license_limit'    => 1,
-				'expires'          => '2026-12-31 00:00:00',
-				'site_count'       => '1',
-				'activations_left' => '0',
-			]
+		$connector         = new Connector();
+		$http_request_made = false;
+
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode( [ 'license' => 'valid' ] ),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
 		);
 
-		add_filter( 'pre_http_request', $filter, 10, 3 );
-
-		// Call periodic_check_license — it should NOT bail even though Pro is defined.
 		$connector->periodic_check_license();
 
-		$metadata = get_option( 'edac_license_metadata' );
+		$this->assertFalse( $http_request_made, 'Expected free periodic check to bail while Pro check is active.' );
+		$this->assertFalse( get_option( 'edac_license_metadata', false ) );
+		$this->assertFalse( get_option( 'edac_license_status', false ) );
+	}
 
-		// Verify free plugin checked and stored metadata (type: 'free', not Pro).
-		$this->assertIsArray( $metadata );
-		$this->assertSame( 'free', $metadata['type'] );
-		$this->assertSame( 1666, $metadata['item_id'] );
-		$this->assertSame( 'valid', get_option( 'edac_license_status' ) );
+	/**
+	 * Ensures free cron checks are unscheduled while Pro license checks are active.
+	 */
+	public function test_check_license_cron_unschedules_free_hook_when_pro_license_check_is_active() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		wp_schedule_event( time(), 'daily', 'edac_check_license_hook' );
+
+		$connector = new Connector();
+		$connector->check_license_cron();
+
+		$this->assertFalse( wp_next_scheduled( 'edac_check_license_hook' ) );
 	}
 
 	/**
@@ -378,13 +599,10 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures that when Pro license expires and free resumes, no automatic enrollment occurs.
-	 *
-	 * The free plugin should resume checking the license, but NOT automatically
-	 * register the site for email reports without explicit user action.
+	 * Ensures free periodic checks stay inactive while Pro check is active and cannot auto-enroll.
 	 */
-	public function test_periodic_check_license_fallback_does_not_auto_enroll() {
-		// Simulate Pro installed but expired.
+	public function test_periodic_check_license_with_active_pro_does_not_auto_enroll() {
+		// Simulate Pro installed with a stored key.
 		if ( ! defined( 'EDACP_VERSION' ) ) {
 			define( 'EDACP_VERSION', '1.19.0' );
 		}
@@ -411,10 +629,8 @@ class ConnectorTest extends WP_UnitTestCase {
 
 		$connector->periodic_check_license();
 
-		// Verify metadata was stored (license check succeeded).
-		$metadata = get_option( 'edac_license_metadata' );
-		$this->assertIsArray( $metadata );
-		$this->assertSame( 'free', $metadata['type'] );
+		// Verify metadata was not updated because free checks bail.
+		$this->assertFalse( get_option( 'edac_license_metadata', false ) );
 
 		// Verify that site ID is still empty (no enrollment happened).
 		$site_id = get_option( 'edac_site_id', false );
@@ -422,9 +638,13 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures fallback marker is cleared when free periodic check validates successfully.
+	 * Ensures fallback marker remains when free checks bail due to active Pro checks.
 	 */
-	public function test_periodic_check_license_clears_fallback_marker_when_free_becomes_valid() {
+	public function test_periodic_check_license_keeps_fallback_marker_when_pro_license_check_is_active() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
 		update_option( 'edac_fallback_active', 1 );
 		update_option( 'edacp_license_key', 'free-license-key' );
 
@@ -444,7 +664,7 @@ class ConnectorTest extends WP_UnitTestCase {
 		$connector = new Connector();
 		$connector->periodic_check_license();
 
-		$this->assertFalse( get_option( 'edac_fallback_active', false ) );
+		$this->assertSame( 1, (int) get_option( 'edac_fallback_active' ) );
 	}
 
 	/**
