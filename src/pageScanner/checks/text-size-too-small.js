@@ -5,7 +5,7 @@
  * @return {boolean} True if the text size is equal to or below the minimum size. False otherwise.
  */
 
-import { fontSizeInPx } from '../helpers/helpers';
+import { fontSizeInPx, isScreenReaderOnly } from '../helpers/helpers';
 
 const SMALL_FONT_SIZE_THRESHOLD = 10;
 
@@ -14,6 +14,12 @@ export default {
 	evaluate: ( node ) => {
 		// If the node has no text content then it can't have text that's too small.
 		if ( ! node.textContent.trim().length ) {
+			return false;
+		}
+
+		// Screen-reader-only elements are visually hidden intentionally — font size
+		// is irrelevant for text that sighted users never see.
+		if ( isScreenReaderOnly( node ) ) {
 			return false;
 		}
 
