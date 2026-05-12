@@ -64,7 +64,8 @@ export const isScreenReaderOnly = ( element ) => {
 	let el = element;
 	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
 		const style = window.getComputedStyle( el );
-		if ( style.clip === 'rect(0px, 0px, 0px, 0px)' || style.clipPath === 'inset(50%)' ) {
+		const isPositional = style.position === 'absolute' || style.position === 'fixed';
+		if ( ( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) || style.clipPath === 'inset(50%)' ) {
 			return true;
 		}
 		el = el.parentElement;
