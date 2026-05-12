@@ -54,13 +54,12 @@ describe( 'Text Small Validation', () => {
 			html: '<a href="#" style="font-size: 8px;"><span style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">Facebook</span><svg aria-hidden="true"></svg></a>',
 			shouldPass: true,
 		},
-		{
-			name: 'should pass for clip without absolute/fixed position (clip has no visual effect)',
-			html: '<span style="position: static; clip: rect(0px, 0px, 0px, 0px); font-size: 8px;">Clip but not positioned</span>',
-			shouldPass: false, // clip is ineffective without positioning, so this should still flag
-		},
-
 		// FAILING CASES
+		{
+			name: 'should fail for clip without absolute/fixed position (clip has no visual effect)',
+			html: '<span style="position: static; clip: rect(0px, 0px, 0px, 0px); font-size: 8px;">Clip but not positioned</span>',
+			shouldPass: false,
+		},
 		{
 			name: 'should fail for text at the threshold boundary (10px)',
 			html: '<span style="font-size: 10px;">Threshold text</span>',
