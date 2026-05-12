@@ -27,7 +27,16 @@ export default {
 			if ( isScreenReaderOnly( node ) ) {
 				return false;
 			}
-			return fontSizeInPx( node ) <= SMALL_FONT_SIZE_THRESHOLD;
+
+			const fontSize = fontSizeInPx( node );
+
+			// font-size: 0 means the text isn't rendering at all (commonly used as a
+			// layout technique on icon widget containers). That's not "too small to read".
+			if ( fontSize === 0 ) {
+				return false;
+			}
+
+			return fontSize <= SMALL_FONT_SIZE_THRESHOLD;
 		}
 
 		// No text nodes were found in direct children, and this is not a leaf node,

@@ -59,6 +59,12 @@ describe( 'Text Small Validation', () => {
 			html: '<a href="#" style="font-size: 8px;"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Facebook</span><svg aria-hidden="true"></svg></a>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for text with font-size: 0 inherited from a layout container (Elementor social icons pattern)',
+			html: '<div style="font-size: 0;"><span>Screen reader label</span></div>',
+			shouldPass: true,
+		},
+
 		// FAILING CASES
 		{
 			name: 'should fail for clip without absolute/fixed position (clip has no visual effect)',
