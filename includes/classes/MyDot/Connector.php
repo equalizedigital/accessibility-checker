@@ -104,8 +104,11 @@ class Connector {
 	/**
 	 * Determine whether Pro should be the sole authority for license checks.
 	 *
-	 * Pro is considered authoritative when the Pro plugin is loaded and a
-	 * non-empty license key exists, which indicates Pro's check flow is in use.
+	 * Pro is authoritative whenever the Pro plugin is loaded and a non-empty
+	 * license key is present. Free license checks are fully suppressed in this
+	 * state so that both plugins cannot write conflicting status values to the
+	 * database simultaneously. Pro's own cron handles all revalidation; Free
+	 * never needs to re-run alongside it.
 	 *
 	 * @return bool
 	 */
