@@ -68,6 +68,12 @@ export const isScreenReaderOnly = ( element ) => {
 		if ( ( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) || style.clipPath === 'inset(50%)' ) {
 			return true;
 		}
+		// Catch sr-only patterns that rely on 1px dimensions rather than clip values
+		// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
+		if ( isPositional && style.overflow === 'hidden' &&
+				parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) {
+			return true;
+		}
 		el = el.parentElement;
 	}
 	return false;

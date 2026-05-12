@@ -50,8 +50,13 @@ describe( 'Text Small Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for screen-reader-only text using dimension-based pattern (no clip)',
+			html: '<span style="position: absolute; width: 1px; height: 1px; overflow: hidden; font-size: 8px;">Screen reader only</span>',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for screen-reader-only text nested inside a visible element (Elementor social icon pattern)',
-			html: '<a href="#" style="font-size: 8px;"><span style="position: absolute; clip: rect(0px, 0px, 0px, 0px);">Facebook</span><svg aria-hidden="true"></svg></a>',
+			html: '<a href="#" style="font-size: 8px;"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden;">Facebook</span><svg aria-hidden="true"></svg></a>',
 			shouldPass: true,
 		},
 		// FAILING CASES
