@@ -23,7 +23,7 @@ class SystemInfo {
 		$active_plugins = [];
 
 		foreach ( wp_get_active_and_valid_plugins() as $plugin_path ) {
-			$plugin_data      = get_plugin_data( $plugin_path );
+			$plugin_data      = get_plugin_data( $plugin_path, false, false );
 			$active_plugins[] = [
 				'name'    => $plugin_data['Name'] ?? '',
 				'slug'    => self::get_plugin_slug_from_path( $plugin_path ),
@@ -151,8 +151,8 @@ class SystemInfo {
 			'environment'    => self::get_environment_type(),
 			'wp_version'     => self::get_wordpress_version(),
 			'php_version'    => self::get_php_version(),
-			'active_plugins' => false !== $active_plugins ? $active_plugins : [],
-			'active_theme'   => false !== $active_theme ? $active_theme : [],
+			'active_plugins' => false !== $active_plugins ? $active_plugins : '[]',
+			'active_theme'   => false !== $active_theme ? $active_theme : '{}',
 		];
 	}
 }
