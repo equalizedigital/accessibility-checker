@@ -559,6 +559,45 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures fallback marker remains untouched when Free checks bail due to active Pro checks.
+	 *
+	 * Pro is fully authoritative when installed with a key — Free never re-runs,
+	 * even when edac_fallback_active is set. Pro's own cron handles all revalidation.
+	 */
+	public function test_periodic_check_license_keeps_fallback_marker_when_pro_license_check_is_active() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', '1.19.0' );
+		}
+
+		update_option( 'edac_fallback_active', 1 );
+		update_option( 'edacp_license_key', 'free-license-key' );
+
+		$http_request_made = false;
+		add_filter(
+			'pre_http_request',
+			function () use ( &$http_request_made ) {
+				$http_request_made = true;
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode( [ 'license' => 'valid' ] ),
+					'response' => [
+						'code'    => 200,
+						'message' => 'OK',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		$connector = new Connector();
+		$connector->periodic_check_license();
+
+		$this->assertFalse( $http_request_made, 'Free periodic check must bail even when edac_fallback_active=1.' );
+		$this->assertSame( 1, (int) get_option( 'edac_fallback_active' ) );
+	}
+
+	/**
 	 * Ensures free plugin's deactivate_license clears all expected options.
 	 *
 	 * @throws ReflectionException If the method cannot be reflected.
@@ -637,35 +676,6 @@ class ConnectorTest extends WP_UnitTestCase {
 		$this->assertFalse( $site_id, 'Site should not be auto-registered during fallback' );
 	}
 
-	/**
-	 * Ensures fallback marker remains when free checks bail due to active Pro checks.
-	 */
-	public function test_periodic_check_license_keeps_fallback_marker_when_pro_license_check_is_active() {
-		if ( ! defined( 'EDACP_VERSION' ) ) {
-			define( 'EDACP_VERSION', '1.19.0' );
-		}
-
-		update_option( 'edac_fallback_active', 1 );
-		update_option( 'edacp_license_key', 'free-license-key' );
-
-		$filter = $this->mock_http_response(
-			[
-				'license'          => 'valid',
-				'item_id'          => 1666,
-				'item_name'        => 'Accessibility Checker Free',
-				'license_limit'    => '1',
-				'expires'          => '2026-12-31 00:00:00',
-				'site_count'       => '1',
-				'activations_left' => '0',
-			]
-		);
-		add_filter( 'pre_http_request', $filter, 10, 3 );
-
-		$connector = new Connector();
-		$connector->periodic_check_license();
-
-		$this->assertSame( 1, (int) get_option( 'edac_fallback_active' ) );
-	}
 
 	/**
 	 * Ensures Pro activation hook refreshes existing registration context.
