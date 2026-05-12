@@ -154,9 +154,9 @@ class AccessibilityReportsPage implements PageInterface {
 									</a>
 								</p>
 								<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-									<input type="hidden" name="action" value="edac_license" />
-									<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-									<button type="submit" class="button edac-reports-page__button" name="edac_license_deactivate">
+									<input type="hidden" name="action" value="edac_jwt_unregister" />
+									<?php wp_nonce_field( 'edac_jwt_unregister', 'edac_jwt_unregister_nonce' ); ?>
+									<button type="submit" class="button edac-reports-page__button" name="edac_jwt_unregister">
 										<?php esc_html_e( 'Disable Email Reports', 'accessibility-checker' ); ?>
 									</button>
 								</form>
