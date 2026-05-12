@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
-Tested up to: 6.9
+Tested up to: 7.0
 Stable tag: 1.41.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
@@ -278,6 +278,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-05-13 - version 1.41.0
+* Updated: the possible heading rule now accounts for elements with role="heading" appropriately.
+* Fix: several language translations are now properly detected by WordPress when using them.
+* Fix: harden the frontend highlighter scanner against caching when updated.
+* Fix: email report checks now defer to the pro plugin when installed to avoid conflicts.
 
 2026-04-21 - version 1.40.0
 * New - Screen reader only text format support in the Block Editor and frontend.
