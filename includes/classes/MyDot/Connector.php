@@ -483,6 +483,11 @@ class Connector {
 	 * @return void
 	 */
 	public function check_license_cron() {
+		if ( self::is_pro_license_check_active() ) {
+			wp_clear_scheduled_hook( 'edac_check_license_hook' );
+			return;
+		}
+
 		if ( ! wp_next_scheduled( 'edac_check_license_hook' ) ) {
 			wp_schedule_event( time(), 'daily', 'edac_check_license_hook' );
 		}
