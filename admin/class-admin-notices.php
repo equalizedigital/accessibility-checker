@@ -218,12 +218,12 @@ class Admin_Notices {
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
 			$message .= esc_html__( 'Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
-			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '</p><p>';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/archivewp/', 'admin-notice', 'GAAD2026-archivewp-pre', false ) ) . '">' . esc_html__( 'View ArchiveWP Pricing', 'accessibility-checker' ) . '</a> ';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/learn/courses/', 'admin-notice', 'GAAD2026-courses-pre', false ) ) . '">' . esc_html__( 'View Course Pricing', 'accessibility-checker' ) . '</a></p>';
 		} else {
 			$message .= esc_html__( 'Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
-			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '</p><p>';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD2026-pricing-pre', false ) ) . '">' . esc_html__( 'View Pricing', 'accessibility-checker' ) . '</a></p>';
 		}
 
@@ -294,12 +294,12 @@ class Admin_Notices {
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
 			$message .= esc_html__( 'Save 15% on accessibility courses and ArchiveWP with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
-			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '</p><p>';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/archivewp/?discount=GAAD2026', 'admin-notice', 'GAAD2026-archivewp', false ) ) . '">' . esc_html__( 'View ArchiveWP Pricing', 'accessibility-checker' ) . '</a> ';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/learn/courses/?discount=GAAD2026', 'admin-notice', 'GAAD2026-courses', false ) ) . '">' . esc_html__( 'View Course Pricing', 'accessibility-checker' ) . '</a></p>';
 		} else {
 			$message .= esc_html__( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
-			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '<br />';
+			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '</p><p>';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/?discount=GAAD2026', 'admin-notice', 'GAAD2026-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		}
 
