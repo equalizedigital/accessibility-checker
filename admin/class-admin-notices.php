@@ -272,7 +272,7 @@ class Admin_Notices {
 		}
 
 		$current_date = gmdate( 'Y-m-d' );
-		$start_date   = '2026-05-10';
+		$start_date   = '2026-05-20';
 		$end_date     = '2026-05-22';
 
 		if ( $current_date >= $start_date && $current_date <= $end_date ) {
