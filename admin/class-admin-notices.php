@@ -240,7 +240,7 @@ class Admin_Notices {
 		} else {
 			// Message for users who do not have Accessibility Checker Pro active.
 			$message .= esc_html__( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code', 'accessibility-checker' );
-			$message .= '<code>GAAD2026</code>.</br>';
+			$message .= '<code>GAAD2026</code>.<br />';
 			$message .= esc_html__( 'Limited-time offer • May 20–22', 'accessibility-checker' ) . '<br />';
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD2026-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		}
