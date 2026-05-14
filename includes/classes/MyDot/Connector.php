@@ -11,6 +11,7 @@
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
+use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
 
 /**
  * Class Connector
@@ -264,14 +265,13 @@ class Connector {
 		}
 
 		$api_params = [
-			'edd_action'  => 'activate_license',
-			'license'     => $license,
-			'item_id'     => self::PRODUCT_ID,
-			'url'         => home_url(),
-			'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
-			'wp_version'  => get_bloginfo( 'version' ),
-			'php_version' => phpversion(),
+			'edd_action' => 'activate_license',
+			'license'    => $license,
+			'item_id'    => self::PRODUCT_ID,
+			'url'        => home_url(),
 		];
+
+		$api_params = array_merge( $api_params, SystemInfo::get_license_request_context() );
 
 		$response = wp_remote_post(
 			self::get_api_endpoint(),
@@ -432,11 +432,10 @@ class Connector {
 			'item_id'      => self::PRODUCT_ID,
 			'item_name'    => rawurlencode( self::PRODUCT_NAME ),
 			'url'          => home_url(),
-			'environment'  => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 			'edac_version' => defined( 'EDAC_VERSION' ) ? EDAC_VERSION : '0.0.0',
-			'wp_version'   => get_bloginfo( 'version' ),
-			'php_version'  => phpversion(),
 		];
+
+		$api_params = array_merge( $api_params, SystemInfo::get_license_request_context() );
 
 		// Call the custom API.
 		$response = wp_remote_post(
