@@ -53,6 +53,33 @@ export const isElementVisible = ( element ) => {
 };
 
 /**
+ * Check if an element (or any ancestor) is hidden using the screen-reader-only
+ * technique — visually clipped to nothing but still in the accessibility tree.
+ * Font-size checks are irrelevant for such elements.
+ *
+ * @param {HTMLElement} element The element to check.
+ * @return {boolean} True if the element is screen-reader-only.
+ */
+export const isScreenReaderOnly = ( element ) => {
+	let el = element;
+	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
+		const style = window.getComputedStyle( el );
+		const isPositional = style.position === 'absolute' || style.position === 'fixed';
+		if ( ( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) || style.clipPath === 'inset(50%)' ) {
+			return true;
+		}
+		// Catch sr-only patterns that rely on 1px dimensions rather than clip values
+		// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
+		if ( isPositional && style.overflow === 'hidden' &&
+				parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) {
+			return true;
+		}
+		el = el.parentElement;
+	}
+	return false;
+};
+
+/**
  * A Map that normalizes all keys to lowercase
  */
 export class NormalizedMap extends Map {
