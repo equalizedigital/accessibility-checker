@@ -102,6 +102,25 @@ class Connector {
 	}
 
 	/**
+	 * Determine whether Pro should be the sole authority for license checks.
+	 *
+	 * Pro is authoritative whenever the Pro plugin is loaded and a non-empty
+	 * license key is present. Free license checks are fully suppressed in this
+	 * state so that both plugins cannot write conflicting status values to the
+	 * database simultaneously. Pro's own cron handles all revalidation; Free
+	 * never needs to re-run alongside it.
+	 *
+	 * @return bool
+	 */
+	private static function is_pro_license_check_active(): bool {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			return false;
+		}
+
+		return '' !== trim( (string) get_option( 'edacp_license_key', '' ) );
+	}
+
+	/**
 	 * Expose the free product ID via a filter so other plugins (e.g. Pro) can
 	 * read it when inferring license type from API response product IDs.
 	 *
@@ -232,10 +251,9 @@ class Connector {
 	 * @return void
 	 */
 	private function activate_license() {
-		// If pro plugin is enabled with a valid license, it takes precedence.
-		// Do not allow free license activation to overwrite pro state.
-		if ( defined( 'EDACP_VERSION' ) && 'valid' === get_option( 'edacp_license_status' ) ) {
-			update_option( 'edac_license_error', __( 'Pro license is active. Please deactivate the Pro license first if you want to use a free license.', 'accessibility-checker' ) );
+		// Pro is authoritative whenever its license check flow is active.
+		if ( self::is_pro_license_check_active() ) {
+			update_option( 'edac_license_error', __( 'Pro license management is active. Please manage your license from Accessibility Checker Pro.', 'accessibility-checker' ) );
 			return;
 		}
 
@@ -398,15 +416,8 @@ class Connector {
 	 * @return void
 	 */
 	public function periodic_check_license() {
-		// Guard: Only bail if Pro is active with VALID license.
-		// This allows fallback when Pro license becomes invalid (expired, disabled, etc).
-		//
-		// Safe from race conditions:
-		// - Once Pro's license status changes from 'valid' to anything else, this guard
-		// stops bailing and free plugin resumes checking.
-		// - Both plugins check the same 'edacp_license_status' option atomically
-		// - Concurrent reads of the same option value are thread-safe in WordPress.
-		if ( defined( 'EDACP_VERSION' ) && self::LICENSE_STATUS_VALID === get_option( 'edacp_license_status' ) ) {
+		// Pro is authoritative whenever its own license check flow is active.
+		if ( self::is_pro_license_check_active() ) {
 			return;
 		}
 
@@ -458,6 +469,9 @@ class Connector {
 				// Free revalidated successfully after fallback; remove the temporary
 				// fallback marker so UI can reflect connected state again.
 				delete_option( 'edac_fallback_active' );
+			} elseif ( 'expired' === $license_data->license ) {
+				// License expired: set the error option so admin notices fire on the next page load.
+				update_option( 'edac_license_error', 'expired' );
 			}
 		}
 
@@ -472,6 +486,11 @@ class Connector {
 	 * @return void
 	 */
 	public function check_license_cron() {
+		if ( self::is_pro_license_check_active() ) {
+			wp_clear_scheduled_hook( 'edac_check_license_hook' );
+			return;
+		}
+
 		if ( ! wp_next_scheduled( 'edac_check_license_hook' ) ) {
 			wp_schedule_event( time(), 'daily', 'edac_check_license_hook' );
 		}

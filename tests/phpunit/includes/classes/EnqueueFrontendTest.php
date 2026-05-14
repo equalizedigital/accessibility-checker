@@ -52,6 +52,28 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensure the localized scannerBundleUrl includes the plugin version as a query string parameter.
+	 */
+	public function testScannerBundleUrlIncludesVersionQueryString(): void {
+		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		$created_post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		global $post;
+		$post = $created_post;
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		global $wp_scripts;
+		$localized_data = $wp_scripts->get_data( 'edac-frontend-highlighter-app', 'data' );
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'scannerBundleUrl', $localized_data );
+		$this->assertStringContainsString( 'ver=' . EDAC_VERSION, $localized_data );
+	}
+
+	/**
 	 * Ensure the highlighter uses the filtered post ID when determining scannable post types.
 	 */
 	public function testFrontendHighlighterUsesFilteredPostIdForScannableType(): void {
