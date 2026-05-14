@@ -280,10 +280,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 2026-05-13 - version 1.41.0
-* Updated: the possible heading rule now accounts for elements with role="heading" appropriately.
-* Fix: several language translations are now properly detected by WordPress when using them.
-* Fix: harden the frontend highlighter scanner against caching when updated.
-* Fix: email report checks now defer to the pro plugin when installed to avoid conflicts.
+* Updated - the possible heading rule now accounts for elements with role="heading" appropriately.
+* Fix - several language translations are now properly detected by WordPress when using them.
+* Fix - harden the frontend highlighter scanner against caching when updated.
+* Fix - email report checks now defer to the pro plugin when installed to avoid conflicts.
+* Fix - Text size too small check no longer produces false positives on screen-reader-only (visually hidden) elements.
 
 2026-04-21 - version 1.40.0
 * New - Screen reader only text format support in the Block Editor and frontend.
