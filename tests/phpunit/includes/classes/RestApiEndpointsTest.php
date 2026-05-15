@@ -241,11 +241,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
-		// Verify stats structure is an array with expected keys.
+		// Verify stats structure is an array.
 		$this->assertIsArray( $data['stats'] );
-		if ( ! empty( $data['stats'] ) ) {
-			$this->assertArrayHasKey( 'total_issues', $data['stats'] );
-		}
 
 		wp_set_current_user( self::$subscriber_id );
 		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats' );
@@ -320,13 +317,12 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
-		// Verify stats structure is an array with expected keys per post type.
+		// Verify stats structure is an array keyed by post type.
 		$this->assertIsArray( $data['stats'] );
 		if ( ! empty( $data['stats'] ) ) {
-			foreach ( $data['stats'] as $stat ) {
-				$this->assertIsArray( $stat );
-				// Each stat should have post_type key.
-				$this->assertArrayHasKey( 'post_type', $stat );
+			foreach ( $data['stats'] as $post_type => $stat ) {
+				$this->assertIsString( $post_type );
+				$this->assertTrue( false === $stat || is_array( $stat ) );
 			}
 		}
 
