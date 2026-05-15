@@ -140,6 +140,23 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="#" role="menuitem">Menu without aria-expanded</a>',
 			shouldPass: false,
 		},
+
+		// Named anchor (jump target) cases
+		{
+			name: 'Passes when empty anchor is used as a named jump target',
+			html: '<a id="meet-the-team"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes when whitespace-only anchor is used as a named jump target',
+			html: '<a id="section-top">   </a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Fails when anchor has id and text content but no href',
+			html: '<a id="meet-the-team">Meet the Team</a>',
+			shouldPass: false,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 

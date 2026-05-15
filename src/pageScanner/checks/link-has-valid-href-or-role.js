@@ -30,6 +30,13 @@ export default {
 			return true;
 		}
 
+		// Allow named anchors used as jump targets: no href, has id, no visible content.
+		// Per the HTML spec, <a> without href has role="generic" and is not keyboard focusable,
+		// so it does not create a false link for AT or keyboard users.
+		if ( ! href && node.hasAttribute( 'id' ) && node.textContent.trim() === '' ) {
+			return true;
+		}
+
 		const trimmedHref = href ? href.trim() : '';
 
 		// Fail if href is missing, just '#', or contains invalid protocols
