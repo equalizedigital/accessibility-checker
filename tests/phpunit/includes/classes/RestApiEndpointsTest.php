@@ -26,6 +26,13 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	protected static $limited_id;
 
 	/**
+	 * Subscriber user ID (no edit_posts capability).
+	 *
+	 * @var int
+	 */
+	protected static $subscriber_id;
+
+	/**
 	 * Post ID used for tests.
 	 *
 	 * @var int
@@ -76,8 +83,9 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// Ensure plugin DB table exists for tests (normally created via admin_init).
 		( new \EDAC\Admin\Update_Database() )->edac_update_database();
 
-		self::$admin_id   = $factory->user->create( [ 'role' => 'administrator' ] );
-		self::$limited_id = $factory->user->create( [ 'role' => 'subscriber' ] );
+		self::$admin_id      = $factory->user->create( [ 'role' => 'administrator' ] );
+		self::$limited_id    = $factory->user->create( [ 'role' => 'subscriber' ] );
+		self::$subscriber_id = $factory->user->create( [ 'role' => 'subscriber' ] );
 		// Give limited user edit_posts but not edit_others_posts so they cannot edit this post.
 		$user = new WP_User( self::$limited_id );
 		$user->add_cap( 'edit_posts' );
@@ -233,9 +241,13 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
+		// Verify stats structure is an array with expected keys.
+		$this->assertIsArray( $data['stats'] );
+		if ( ! empty( $data['stats'] ) ) {
+			$this->assertArrayHasKey( 'total_issues', $data['stats'] );
+		}
 
-		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		wp_set_current_user( $subscriber_id );
+		wp_set_current_user( self::$subscriber_id );
 		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats' );
 		$response2 = $this->server->dispatch( $request2 );
 		$this->assertSame( 403, $response2->get_status(), 'Subscriber without edit_posts should be denied scans stats access.' );
@@ -258,8 +270,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 
-		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		wp_set_current_user( $subscriber_id );
+		wp_set_current_user( self::$subscriber_id );
 		$request2  = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-cached-scans-stats' );
 		$response2 = $this->server->dispatch( $request2 );
 		$this->assertSame( 403, $response2->get_status(), 'Subscriber without publish_posts should be denied cache clear.' );
@@ -309,9 +320,17 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
+		// Verify stats structure is an array with expected keys per post type.
+		$this->assertIsArray( $data['stats'] );
+		if ( ! empty( $data['stats'] ) ) {
+			foreach ( $data['stats'] as $stat ) {
+				$this->assertIsArray( $stat );
+				// Each stat should have post_type key.
+				$this->assertArrayHasKey( 'post_type', $stat );
+			}
+		}
 
-		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		wp_set_current_user( $subscriber_id );
+		wp_set_current_user( self::$subscriber_id );
 		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats-by-post-types' );
 		$response2 = $this->server->dispatch( $request2 );
 		$this->assertSame( 403, $response2->get_status(), 'Subscriber without edit_posts should be denied scans stats by post types.' );
