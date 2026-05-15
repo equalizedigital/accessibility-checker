@@ -33,7 +33,9 @@ export default {
 		// Allow named anchors used as jump targets: no href, has id, no visible content.
 		// Per the HTML spec, <a> without href has role="generic" and is not keyboard focusable,
 		// so it does not create a false link for AT or keyboard users.
-		if ( ! href && node.hasAttribute( 'id' ) && node.textContent.trim() === '' ) {
+		// Use hasAttribute instead of !href to exclude href="" which is keyboard focusable.
+		// Check children.length to exclude anchors wrapping images or other elements.
+		if ( ! node.hasAttribute( 'href' ) && node.hasAttribute( 'id' ) && node.children.length === 0 && node.textContent.trim() === '' ) {
 			return true;
 		}
 

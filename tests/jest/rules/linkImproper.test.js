@@ -157,6 +157,16 @@ describe( 'Link Improper Rule', () => {
 			html: '<a id="meet-the-team">Meet the Team</a>',
 			shouldPass: false,
 		},
+		{
+			name: 'Fails when anchor has id and empty href',
+			html: '<a id="top" href=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has id and child image but no href',
+			html: '<a id="logo"><img src="logo.png" alt="Home"/></a>',
+			shouldPass: false,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 
