@@ -215,4 +215,105 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data2 );
 		$this->assertTrue( $data2['success'] );
 	}
+
+	/**
+	 * Verify permissions and payload shape for scans stats endpoint.
+	 *
+	 * @return void
+	 */
+	public function test_scans_stats_permissions_and_payload() {
+		$this->assertNotNull( $this->server );
+
+		wp_set_current_user( self::$admin_id );
+		$request  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats' );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Admin should be allowed to access scans stats.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertArrayHasKey( 'stats', $data );
+
+		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $subscriber_id );
+		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats' );
+		$response2 = $this->server->dispatch( $request2 );
+		$this->assertSame( 403, $response2->get_status(), 'Subscriber without edit_posts should be denied scans stats access.' );
+	}
+
+	/**
+	 * Verify permissions and payload shape for clear cached scans stats endpoint.
+	 *
+	 * @return void
+	 */
+	public function test_clear_cached_scans_stats_permissions_and_payload() {
+		$this->assertNotNull( $this->server );
+
+		wp_set_current_user( self::$admin_id );
+		$request  = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-cached-scans-stats' );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Admin should be allowed to clear cached scans stats.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+
+		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $subscriber_id );
+		$request2  = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-cached-scans-stats' );
+		$response2 = $this->server->dispatch( $request2 );
+		$this->assertSame( 403, $response2->get_status(), 'Subscriber without publish_posts should be denied cache clear.' );
+	}
+
+	/**
+	 * Verify scans stats by post type endpoint handles allowed and disallowed post types.
+	 *
+	 * @return void
+	 */
+	public function test_scans_stats_by_post_type_status_codes() {
+		$this->assertNotNull( $this->server );
+
+		wp_set_current_user( self::$admin_id );
+
+		$disallowed_request  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats-by-post-type/page' );
+		$disallowed_response = $this->server->dispatch( $disallowed_request );
+		$this->assertSame( 400, $disallowed_response->get_status(), 'Non-scannable post type should return 400.' );
+		$disallowed_data = $disallowed_response->get_data();
+		$this->assertIsArray( $disallowed_data );
+		$this->assertArrayHasKey( 'message', $disallowed_data );
+
+		$allowed_request  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats-by-post-type/post' );
+		$allowed_response = $this->server->dispatch( $allowed_request );
+		$this->assertSame( 200, $allowed_response->get_status(), 'Scannable post type should return 200.' );
+		$allowed_data = $allowed_response->get_data();
+		$this->assertIsArray( $allowed_data );
+		$this->assertArrayHasKey( 'success', $allowed_data );
+		$this->assertTrue( $allowed_data['success'] );
+		$this->assertArrayHasKey( 'stats', $allowed_data );
+	}
+
+	/**
+	 * Verify scans stats by post types endpoint permissions and payload shape.
+	 *
+	 * @return void
+	 */
+	public function test_scans_stats_by_post_types_permissions_and_payload() {
+		$this->assertNotNull( $this->server );
+
+		wp_set_current_user( self::$admin_id );
+		$request  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats-by-post-types' );
+		$response = $this->server->dispatch( $request );
+		$this->assertSame( 200, $response->get_status(), 'Admin should be allowed to access scans stats by post types.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertArrayHasKey( 'success', $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertArrayHasKey( 'stats', $data );
+
+		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $subscriber_id );
+		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats-by-post-types' );
+		$response2 = $this->server->dispatch( $request2 );
+		$this->assertSame( 403, $response2->get_status(), 'Subscriber without edit_posts should be denied scans stats by post types.' );
+	}
 }
