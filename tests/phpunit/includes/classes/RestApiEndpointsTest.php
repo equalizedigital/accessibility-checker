@@ -322,7 +322,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		if ( ! empty( $data['stats'] ) ) {
 			foreach ( $data['stats'] as $post_type => $stat ) {
 				$this->assertIsString( $post_type );
-				$this->assertTrue( false === $stat || is_array( $stat ) );
+				$this->assertTrue( $stat === false || is_array( $stat ) );
 			}
 		}
 
