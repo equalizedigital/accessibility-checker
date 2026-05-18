@@ -320,13 +320,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
-		// Verify stats structure is an array with expected keys per post type.
+		// Verify stats structure is a keyed map where each key is a post type slug.
 		$this->assertIsArray( $data['stats'] );
 		if ( ! empty( $data['stats'] ) ) {
-			foreach ( $data['stats'] as $stat ) {
-				$this->assertIsArray( $stat );
-				// Each stat should have post_type key.
-				$this->assertArrayHasKey( 'post_type', $stat );
+			foreach ( $data['stats'] as $post_type => $stat ) {
+				$this->assertIsString( $post_type );
+				$this->assertNotSame( '', $post_type );
+				// Each value is either false (non-scannable) or a summary array (scannable).
+				$this->assertTrue( false === $stat || is_array( $stat ) );
 			}
 		}
 
