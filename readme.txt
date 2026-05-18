@@ -279,6 +279,10 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-05-18 - version 1.42.0
+* Updated - added support for named anchors as jump links.
+* New - added system info checker for compatibility checking of plugins and themes.
+
 2026-05-13 - version 1.41.0
 * Updated - the possible heading rule now accounts for elements with role="heading" appropriately.
 * Fix - several language translations are now properly detected by WordPress when using them.
