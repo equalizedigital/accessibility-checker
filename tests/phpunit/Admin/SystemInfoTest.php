@@ -153,6 +153,32 @@ class SystemInfoTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Active plugin slugs match WordPress active-and-valid plugin list.
+	 *
+	 * @return void
+	 */
+	public function testGetActivePluginsMatchesActiveAndValidPluginList() {
+		$expected_slugs = [];
+		$active_paths   = wp_get_active_and_valid_plugins();
+
+		if ( is_array( $active_paths ) ) {
+			$expected_slugs = array_map( [ SystemInfo::class, 'get_plugin_slug_from_path' ], $active_paths );
+		}
+
+		$actual_slugs = array_map(
+			static function ( $plugin ) {
+				return is_array( $plugin ) && isset( $plugin['slug'] ) ? $plugin['slug'] : '';
+			},
+			SystemInfo::get_active_plugins()
+		);
+
+		sort( $expected_slugs );
+		sort( $actual_slugs );
+
+		$this->assertSame( $expected_slugs, $actual_slugs );
+	}
+
+	/**
 	 * A non-WP_Theme value returns an empty array.
 	 *
 	 * @return void
