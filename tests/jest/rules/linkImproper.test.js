@@ -158,6 +158,11 @@ describe( 'Link Improper Rule', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'Fails when legacy name-only anchor has text',
+			html: '<a name="section-top">Text</a>',
+			shouldPass: false,
+		},
+		{
 			name: 'Fails when anchor has id and text content but no href',
 			html: '<a id="meet-the-team">Meet the Team</a>',
 			shouldPass: false,
