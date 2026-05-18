@@ -20,15 +20,24 @@ class SystemInfo {
 	 * @return array<int, array<string, string>>
 	 */
 	public static function get_active_plugins() {
-		$active_plugins = [];
+		if ( ! function_exists( 'get_plugin_data' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/plugin.php';
+		}
 
-		foreach ( wp_get_active_and_valid_plugins() as $plugin_path ) {
-			$plugin_data      = get_plugin_data( $plugin_path, false, false );
-			$active_plugins[] = [
-				'name'    => $plugin_data['Name'] ?? '',
-				'slug'    => self::get_plugin_slug_from_path( $plugin_path ),
-				'version' => $plugin_data['Version'] ?? '',
-			];
+		$active_plugins = [];
+		$plugins        = wp_get_active_and_valid_plugins();
+
+		if ( is_array( $plugins ) ) {
+			foreach ( $plugins as $plugin_path ) {
+				$plugin_data = get_plugin_data( $plugin_path, false, false );
+				if ( is_array( $plugin_data ) ) {
+					$active_plugins[] = [
+						'name'    => $plugin_data['Name'] ?? '',
+						'slug'    => self::get_plugin_slug_from_path( $plugin_path ),
+						'version' => $plugin_data['Version'] ?? '',
+					];
+				}
+			}
 		}
 
 		return $active_plugins;
