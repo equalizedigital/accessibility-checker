@@ -27,6 +27,11 @@ describe( 'Empty Link Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for link with whitespace-padded text',
+			html: '<a href="https://example.com">     Close  </a>',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for link with aria-label',
 			html: '<a href="https://example.com" aria-label="Visit our homepage"></a>',
 			shouldPass: true,

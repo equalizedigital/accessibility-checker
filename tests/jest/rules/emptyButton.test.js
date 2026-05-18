@@ -41,6 +41,16 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><img src="icon.png" alt="Submit"></button>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for button with whitespace-padded text',
+			html: '<button>  Search  </button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for button with visible text that also has a hidden sibling with identical text',
+			html: '<button><div style="display:none"><span>Search</span></div>Search</button>',
+			shouldPass: true,
+		},
 		// Additional passing cases - Edge cases
 		{
 			name: 'should pass for button with nested span containing text',

@@ -1,30 +1,29 @@
 export default {
 	id: 'button_is_empty',
 	evaluate( node ) {
-		// Get all aria-hidden and visually hidden elements
 		const getVisibleTextContent = ( element ) => {
-			const hiddenTexts = [];
-
-			// Get aria-hidden content
-			element.querySelectorAll( '[aria-hidden="true"]' ).forEach( ( el ) => {
-				hiddenTexts.push( el.cloneNode( true ).textContent );
-			} );
-
-			// Get visually hidden content
-			Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
-				const style = window.getComputedStyle( el );
-				if ( style.display === 'none' || style.visibility === 'hidden' ) {
-					hiddenTexts.push( el.textContent );
+			const isHidden = ( el ) => {
+				if ( el.getAttribute( 'aria-hidden' ) === 'true' ) {
+					return true;
 				}
-			} );
+				const style = window.getComputedStyle( el );
+				return style.display === 'none' || style.visibility === 'hidden';
+			};
 
-			// Remove all hidden content from text
-			let text = element.textContent;
-			hiddenTexts.forEach( ( hiddenText ) => {
-				text = text.replace( hiddenText, '' );
-			} );
+			const collectText = ( node ) => {
+				if ( node.nodeType === Node.TEXT_NODE ) {
+					return node.textContent;
+				}
+				if ( node.nodeType === Node.ELEMENT_NODE ) {
+					if ( isHidden( node ) ) {
+						return '';
+					}
+					return Array.from( node.childNodes ).map( collectText ).join( '' );
+				}
+				return '';
+			};
 
-			return text.trim();
+			return Array.from( element.childNodes ).map( collectText ).join( '' ).trim();
 		};
 
 		// Check for visible text content (excluding hidden content)
