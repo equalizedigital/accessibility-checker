@@ -51,7 +51,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	protected function setUp(): void {
+	public function setUp(): void {
 		parent::setUp();
 		// Initialize REST routes for each test.
 		do_action( 'init' );
@@ -64,7 +64,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	 *
 	 * @return void
 	 */
-	protected function tearDown(): void {
+	public function tearDown(): void {
 		// Reset current user between tests.
 		wp_set_current_user( 0 );
 		parent::tearDown();
@@ -241,8 +241,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
-		// Verify stats structure is an array.
+		// Verify stats structure is an array and includes a stable summary metric key.
 		$this->assertIsArray( $data['stats'] );
+		if ( ! empty( $data['stats'] ) ) {
+			$this->assertArrayHasKey( 'scannable_posts_count', $data['stats'] );
+		}
 
 		wp_set_current_user( self::$subscriber_id );
 		$request2  = new WP_REST_Request( 'GET', '/accessibility-checker/v1/scans-stats' );
@@ -317,12 +320,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'success', $data );
 		$this->assertTrue( $data['success'] );
 		$this->assertArrayHasKey( 'stats', $data );
-		// Verify stats structure is an array keyed by post type.
+		// Verify stats structure is a keyed map where each key is a post type slug.
 		$this->assertIsArray( $data['stats'] );
 		if ( ! empty( $data['stats'] ) ) {
 			foreach ( $data['stats'] as $post_type => $stat ) {
 				$this->assertIsString( $post_type );
-				$this->assertTrue( $stat === false || is_array( $stat ) );
+				$this->assertNotSame( '', $post_type );
+				// Each value is either false (non-scannable) or a summary array (scannable).
+				$this->assertTrue( false === $stat || is_array( $stat ) );
 			}
 		}
 
