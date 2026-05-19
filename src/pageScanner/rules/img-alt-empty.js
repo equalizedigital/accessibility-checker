@@ -5,7 +5,7 @@
 
 export default {
 	id: 'img_alt_empty',
-	selector: 'img[alt=""], input[type="image"][alt=""]',
+	selector: 'img[alt=""]:not([role~="none"]):not([role~="presentation"]), input[type="image"][alt=""]:not([role~="none"]):not([role~="presentation"])',
 	excludeHidden: true,
 	tags: [ 'cat.text-alternatives', 'wcag1a', 'wcag111' ],
 	all: [],
