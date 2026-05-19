@@ -280,6 +280,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 2026-05-18 - version 1.42.0
+* Updated - add support for role="none" in several of the link and image alt related rules.
 * Updated - added support for named anchors as jump links.
 * New - added system info checker for compatibility checking of plugins and themes.
 
