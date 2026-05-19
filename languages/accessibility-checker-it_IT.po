@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0\n"
+"Project-Id-Version: Accessibility Checker 1.41.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
+"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:138
+#: admin/AdminPage/AccessibilityReportsPage.php:140
 msgid "Accessibility Reports"
 msgstr "Report di accessibilità"
 
@@ -57,155 +57,169 @@ msgstr "Report di accessibilità"
 msgid "New"
 msgstr "Nuovo"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:144
+#: admin/AdminPage/AccessibilityReportsPage.php:146
+msgid "License Expired"
+msgstr "Licenza scaduta"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:149
+msgid "Your license has expired. This site is still connected but reports may stop until your license is renewed."
+msgstr "La tua licenza è scaduta. Questo sito è ancora connesso, ma i report potrebbero interrompersi finché la licenza non viene rinnovata."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:153
+#: admin/AdminPage/ConnectedServicesPage.php:229
+msgid "Renew your license"
+msgstr "Rinnova la licenza"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:160
+#: admin/AdminPage/AccessibilityReportsPage.php:293
+msgid "Disable Email Reports"
+msgstr "Disabilita i report via email"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:169
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Ricevi report via email ricorrenti con un'istantanea dell'accessibilità del tuo sito, inclusi i problemi totali, le tendenze nel tempo, le pagine più problematiche e i problemi più gravi da risolvere per primi."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:146
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Ricevi report via email ricorrenti con un'istantanea dell'accessibilità del tuo sito, inclusi i problemi totali, le tendenze nel tempo, le pagine più problematiche e i problemi più gravi da risolvere per primi. Alcuni dettagli, come la copertura completa del sito e le analisi dettagliate dei problemi, sono disponibili nella versione Pro."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:157
-#: admin/AdminPage/AccessibilityReportsPage.php:171
+#: admin/AdminPage/AccessibilityReportsPage.php:182
+#: admin/AdminPage/AccessibilityReportsPage.php:196
 msgid "Enable Email Reports"
 msgstr "Abilita i report via email"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:164
-#: admin/AdminPage/AccessibilityReportsPage.php:168
-#: admin/AdminPage/AccessibilityReportsPage.php:260
-#: admin/AdminPage/ConnectedServicesPage.php:153
+#: admin/AdminPage/AccessibilityReportsPage.php:189
+#: admin/AdminPage/AccessibilityReportsPage.php:193
+#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Chiave di licenza gratuita"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:177
+#: admin/AdminPage/AccessibilityReportsPage.php:202
 msgid "Get a Free License Key"
 msgstr "Ottieni una chiave di licenza gratuita"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:182
+#: admin/AdminPage/AccessibilityReportsPage.php:207
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Hai scaricato il plugin da Equalize Digital? La tua chiave è nella tua <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:191
+#: admin/AdminPage/AccessibilityReportsPage.php:216
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "Installato da WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Crea un account gratuito</a> per ottenerne una."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:200
+#: admin/AdminPage/AccessibilityReportsPage.php:225
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Non sei sicuro? Semplicemente <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">crea un account gratuito</a>. Ci vuole solo un minuto."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:212
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Reports Enabled"
 msgstr "Report abilitati"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:215
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "Riceverai report di accessibilità settimanali per questo sito."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:219
+#: admin/AdminPage/AccessibilityReportsPage.php:244
 #, php-format
 msgid "Next report: %s"
 msgstr "Prossimo report: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:226
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Full Coverage"
 msgstr "Copertura completa"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:226
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Limited Coverage"
 msgstr "Copertura limitata"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:230
+#: admin/AdminPage/AccessibilityReportsPage.php:255
 msgid "Your reports include all post types and taxonomies."
 msgstr "I tuoi report includono tutti i tipi di post e le tassonomie."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:257
 msgid "Full-site scanning enabled"
 msgstr "Scansione completa del sito abilitata"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:233
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Complete issue breakdowns"
 msgstr "Analisi complete dei problemi"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Detailed reporting"
 msgstr "Report dettagliati"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:237
+#: admin/AdminPage/AccessibilityReportsPage.php:262
 msgid "Your reports only include part of your site."
 msgstr "I tuoi report includono solo una parte del tuo sito."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:238
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Upgrade to Pro to:"
 msgstr "Esegui l'upgrade a Pro per:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:265
 msgid "Scan all content types"
 msgstr "Scansionare tutti i tipi di contenuto"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:241
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Get full issue breakdowns"
 msgstr "Ottenere analisi complete dei problemi"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Receive more detailed reports"
 msgstr "Ricevere report più dettagliati"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:245
+#: admin/AdminPage/AccessibilityReportsPage.php:270
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Passa a pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:276
 msgid "Accessibility Summary"
 msgstr "Riepilogo dell'accessibilità"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Questo riepilogo riflette gli ultimi dati di scansione disponibili per il tuo sito."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 msgid "Total Issues Found"
 msgstr "Problemi totali riscontrati"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:260
+#: admin/AdminPage/AccessibilityReportsPage.php:285
 msgid "Account Connection"
 msgstr "Connessione account"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:268
-msgid "Disable Email Reports"
-msgstr "Disabilita i report via email"
-
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:304
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Connettendoti a questo sito, accetti l'<a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Informativa sulla privacy <span aria-hidden=\"true\">&#8599;</span></a> e l'<a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Accordo sul trattamento dei dati <span aria-hidden=\"true\">&#8599;</span></a> di Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:282
+#: admin/AdminPage/AccessibilityReportsPage.php:307
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Informativa sulla privacy (si apre in una nuova finestra)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:283
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Accordo sul trattamento dei dati (si apre in una nuova finestra)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:294
+#: admin/AdminPage/AccessibilityReportsPage.php:319
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "L'email settimanale include il numero totale di problemi trovati e le modifiche dall'ultimo rapporto, informazioni sulla copertura, il conteggio dei problemi, gli elementi da revisionare, la percentuale di test superati e informazioni sulle pagine più problematiche e sui problemi più gravi."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:387
+#: admin/AdminPage/AccessibilityReportsPage.php:416
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "N/D"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:506
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -213,7 +227,7 @@ msgstr "N/D"
 msgid "Critical"
 msgstr "Critico"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:508
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -221,7 +235,7 @@ msgstr "Critico"
 msgid "High"
 msgstr "Alto"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:481
+#: admin/AdminPage/AccessibilityReportsPage.php:510
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -229,7 +243,7 @@ msgstr "Alto"
 msgid "Medium"
 msgstr "Medio"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:483
+#: admin/AdminPage/AccessibilityReportsPage.php:512
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -237,116 +251,123 @@ msgstr "Medio"
 msgid "Low"
 msgstr "Basso"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:485
-#: includes/classes/class-rest-api.php:997
+#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Sconosciuto"
 
-#: admin/AdminPage/ConnectedServicesPage.php:137
+#: admin/AdminPage/ConnectedServicesPage.php:138
 msgid "create a free account"
 msgstr "crea un account gratuito"
 
-#: admin/AdminPage/ConnectedServicesPage.php:146
+#: admin/AdminPage/ConnectedServicesPage.php:147
 msgid "Connect this site"
 msgstr "Connetti questo sito"
 
-#: admin/AdminPage/ConnectedServicesPage.php:165
+#: admin/AdminPage/ConnectedServicesPage.php:166
 msgid "active"
 msgstr "attivo"
 
-#: admin/AdminPage/ConnectedServicesPage.php:167
+#: admin/AdminPage/ConnectedServicesPage.php:168
 msgid "expired"
 msgstr "scaduto"
 
-#: admin/AdminPage/ConnectedServicesPage.php:169
+#: admin/AdminPage/ConnectedServicesPage.php:170
 msgid "Enter your license key"
 msgstr "Inserisci la tua chiave di licenza"
 
-#: admin/AdminPage/ConnectedServicesPage.php:184
-#: admin/AdminPage/ConnectedServicesPage.php:250
+#: admin/AdminPage/ConnectedServicesPage.php:185
+#: admin/AdminPage/ConnectedServicesPage.php:192
+#: admin/AdminPage/ConnectedServicesPage.php:269
 msgid "Disconnect Site"
 msgstr "Disconnetti sito"
 
-#: admin/AdminPage/ConnectedServicesPage.php:191
+#: admin/AdminPage/ConnectedServicesPage.php:199
 msgid "Connect Site"
 msgstr "Connetti sito"
 
 #. translators: %s: link to my.equalizedigital.com dashboard
-#: admin/AdminPage/ConnectedServicesPage.php:204
+#: admin/AdminPage/ConnectedServicesPage.php:212
 #, php-format
 msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
 msgstr "Se hai scaricato il plugin gratuito da Equalize Digital, hai già una chiave di licenza gratuita nella tua dashboard di %s."
 
 #. translators: %s: link to create a free account
-#: admin/AdminPage/ConnectedServicesPage.php:213
+#: admin/AdminPage/ConnectedServicesPage.php:221
 #, php-format
 msgid "If not, %s to generate a license key and connect this site."
 msgstr "In caso contrario, %s per generare una chiave di licenza e connettere questo sito."
 
+#. translators: %s: renew license link
 #: admin/AdminPage/ConnectedServicesPage.php:232
+#, php-format
+msgid "Your license has expired and this site is still connected. %s to restore full access, or disconnect the site above."
+msgstr "La tua licenza è scaduta e questo sito è ancora connesso. %s per ripristinare l'accesso completo, oppure disconnetti il sito qui sopra."
+
+#: admin/AdminPage/ConnectedServicesPage.php:251
 msgid "Connected as Free"
 msgstr "Connesso come gratuito"
 
-#: admin/AdminPage/ConnectedServicesPage.php:233
+#: admin/AdminPage/ConnectedServicesPage.php:252
 msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
 msgstr "La tua licenza Pro non è più valida, ma questo sito rimane connesso per i report email gratuiti."
 
 #. translators: %s: link to my.equalizedigital.com dashboard
-#: admin/AdminPage/ConnectedServicesPage.php:238
+#: admin/AdminPage/ConnectedServicesPage.php:257
 #, php-format
 msgid "You can manage recipients and review connection details in your %s dashboard."
 msgstr "Puoi gestire i destinatari e rivedere i dettagli di connessione nella tua dashboard di %s."
 
-#: admin/AdminPage/ConnectedServicesPage.php:398
-msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
-msgstr "La tua licenza Pro non è più valida. Questo sito sta utilizzando una licenza gratuita valida e i report via email rimangono connessi come report via email gratuiti. Rinnova la tua licenza Pro per ripristinare le funzionalità solo Pro."
+#: admin/AdminPage/ConnectedServicesPage.php:430
+msgid "Your Pro license is no longer valid. Email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "La tua licenza Pro non è più valida. I report via email rimangono connessi come Free email reports. Rinnova la tua licenza Pro per ripristinare le funzionalità Pro-only."
 
-#: admin/AdminPage/ConnectedServicesPage.php:401
+#: admin/AdminPage/ConnectedServicesPage.php:433
 msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
 msgstr "La tua licenza Pro non è più valida. Questo sito sta utilizzando una licenza gratuita valida, ma i report via email non sono attualmente connessi. Connetti questo sito dalla sezione Licenza gratuita per riprendere i report via email gratuiti."
 
-#: admin/AdminPage/ConnectedServicesPage.php:442
+#: admin/AdminPage/ConnectedServicesPage.php:474
 msgid "Please renew your license"
 msgstr "Rinnova la tua licenza"
 
 #. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
-#: admin/AdminPage/ConnectedServicesPage.php:445
+#: admin/AdminPage/ConnectedServicesPage.php:477
 #, php-format
 msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
 msgstr "La tua licenza %1$s è scaduta. %3$s per continuare ad accedere a funzionalità e servizi aggiuntivi per %2$s."
 
 #. translators: %s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:455
+#: admin/AdminPage/ConnectedServicesPage.php:487
 #, php-format
 msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
 msgstr "La chiave di licenza %s è stata disabilitata. Contatta il nostro team di supporto se ritieni che si tratti di un errore o desideri continuare ad accedere a funzionalità aggiuntive."
 
 #. translators: %1$s: item name, %2$s: license url, %3$s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:462
+#: admin/AdminPage/ConnectedServicesPage.php:494
 #, php-format
 msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
 msgstr "La chiave di licenza per %1$s sembra non essere valida. Per accedere a funzionalità e servizi di accessibilità aggiuntivi per %3$s, <a href=\"%2$s\">controlla la tua chiave di licenza</a>."
 
 #. translators: %s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:472
+#: admin/AdminPage/ConnectedServicesPage.php:504
 #, php-format
 msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
 msgstr "Questa chiave di licenza per %s non è attiva per questo sito. Attivala per accedere a funzionalità aggiuntive su questo sito web."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:479
+#: admin/AdminPage/ConnectedServicesPage.php:511
 #, php-format
 msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
 msgstr "Questa chiave di licenza non sembra essere valida per %s. Verifica di aver inserito la chiave di licenza corretta."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:486
+#: admin/AdminPage/ConnectedServicesPage.php:518
 #, php-format
 msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
 msgstr "La tua chiave di licenza %s ha raggiunto il limite di attivazioni per sito. Puoi aggiornare la tua licenza o disattivarla su un altro sito per utilizzare le funzionalità aggiuntive qui."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:493
+#: admin/AdminPage/ConnectedServicesPage.php:525
 #, php-format
 msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
 msgstr "Si è verificato un problema durante la convalida della chiave di licenza %s. Riprova o contatta il nostro team di supporto se il problema persiste."
@@ -472,26 +493,27 @@ msgstr "Vuoi fare di più con Accessibility Checker? %1$sSblocca le funzionalit�
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Sblocca le funzionalità Pro (si apre in una nuova finestra)"
 
-#: admin/class-admin-notices.php:139
+#: admin/class-admin-notices.php:141
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Offerta speciale del Black Friday! 🎉"
 
-#: admin/class-admin-notices.php:140
+#: admin/class-admin-notices.php:142
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Esegui l'upgrade a una versione a pagamento di Accessibility Checker dal 24 novembre al 3 dicembre e ottieni il 30% di sconto! Scansione completa del sito, report sui problemi aperti a livello di sito, log di ignorati e altro ancora."
 
-#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
 msgstr "Fai una domanda pre-vendita"
 
-#: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:144
+#: admin/class-admin-notices.php:303
 msgid "Upgrade Now"
 msgstr "Aggiorna ora"
 
-#: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:266
-#: admin/class-admin-notices.php:356
+#: admin/class-admin-notices.php:163
+#: admin/class-admin-notices.php:246
+#: admin/class-admin-notices.php:322
+#: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -503,55 +525,75 @@ msgstr "Aggiorna ora"
 msgid "Permission Denied"
 msgstr "Permesso negato"
 
-#: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:279
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:175
+#: admin/class-admin-notices.php:253
+#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:435
 msgid "Update option wasn't successful"
 msgstr "L'aggiornamento dell'opzione non è riuscito"
 
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:217
+#: admin/class-admin-notices.php:293
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ Offerta Lampo Global Accessibility Awareness Day"
 
-#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
-#: admin/class-admin-notices.php:232
-#, php-format
-msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
-msgstr "Solo 3 giorni: risparmia il 15%% sui %1$scorsi di accessibilità%2$s e sul %3$splugin ArchiveWP%4$s di Equalize Digital. Fai passi avanti nell'accessibilità."
+#: admin/class-admin-notices.php:220
+msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
+msgstr "A partire dal 20 maggio: Risparmia il 15% sui corsi di accessibilità e su ArchiveWP con il codice coupon "
 
-#: admin/class-admin-notices.php:238
-msgid "Limited-time offer • May 20–22 • Use coupon code "
-msgstr "Offerta a tempo limitato • 20–22 maggio • Usa il codice coupon "
+#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:226
+msgid "3 days only • May 20–22"
+msgstr "Solo 3 giorni • 20–22 maggio"
 
-#: admin/class-admin-notices.php:239
-msgid "Grab the Deal Before It Ends"
-msgstr "Approfitta dell'offerta prima che scada"
+#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:298
+msgid "View ArchiveWP Pricing"
+msgstr "Visualizza i prezzi di ArchiveWP"
 
-#: admin/class-admin-notices.php:242
-msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
-msgstr "Solo 3 giorni: risparmia il 15% quando effettui l'upgrade ad Accessibility Checker Pro con il codice coupon"
+#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:299
+msgid "View Course Pricing"
+msgstr "Visualizza i prezzi dei corsi"
 
-#: admin/class-admin-notices.php:244
-msgid "Limited-time offer • May 20–22"
-msgstr "Offerta a tempo limitato • 20–22 maggio"
+#: admin/class-admin-notices.php:225
+msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
+msgstr "A partire dal 20 maggio: Risparmia il 15% su Accessibility Checker Pro con il codice coupon "
 
-#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:227
+msgid "View Pricing"
+msgstr "Visualizza i prezzi"
+
+#: admin/class-admin-notices.php:296
+msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
+msgstr "Risparmia il 15% sui corsi di accessibilità e su ArchiveWP con il codice coupon "
+
+#: admin/class-admin-notices.php:297
+#: admin/class-admin-notices.php:302
+msgid "Limited-time offer • Ends May 22nd"
+msgstr "Offerta a tempo limitato • Termina il 22 maggio"
+
+#: admin/class-admin-notices.php:301
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
+msgstr "Solo per 3 giorni: Risparmia il 15% quando effettui l'upgrade ad Accessibility Checker Pro con il codice coupon "
+
+#: admin/class-admin-notices.php:386
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Ciao! Grazie per utilizzare Accessibility Checker come parte del tuo kit di strumenti per l'accessibilità. Dato che lo stai usando da un po', potresti scrivere una recensione a 5 stelle di Accessibility Checker nella directory dei plugin di WordPress? Questo ci aiuterà ad aumentare la nostra visibilità in modo che più persone possano conoscere l'importanza dell'accessibilità web. Grazie mille!"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:389
 msgid "Write A Review"
 msgstr "Scrivi una recensione"
 
-#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:390
 msgid "Remind Me In Two Weeks"
 msgstr "Ricordamelo tra due settimane"
 
-#: admin/class-admin-notices.php:336
+#: admin/class-admin-notices.php:391
 msgid "Never Ask Again"
 msgstr "Non chiedere mai più"
 
-#: admin/class-admin-notices.php:363
+#: admin/class-admin-notices.php:418
 msgid "The review action value was not set"
 msgstr "Il valore dell'azione di recensione non è stato impostato"
 
@@ -658,7 +700,7 @@ msgid "No summary to return"
 msgstr "Nessun riassunto da restituire"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:905
+#: includes/classes/class-rest-api.php:915
 msgid "Invalid table name"
 msgstr "Nome della tabella non valido"
 
@@ -874,7 +916,7 @@ msgid "The id value was not set"
 msgstr "Il valore ID non è stato impostato"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1043
+#: includes/classes/class-rest-api.php:1053
 msgid "Post not found"
 msgstr "Post non trovato"
 
@@ -1448,11 +1490,11 @@ msgstr "Ottieni Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Ottieni Accessibility Checker Pro (si apre in una nuova finestra)"
 
-#: includes/classes/class-rest-api.php:1230
+#: includes/classes/class-rest-api.php:1240
 msgid "Issue not found."
 msgstr "Problema non trovato."
 
-#: includes/classes/class-rest-api.php:1273
+#: includes/classes/class-rest-api.php:1283
 msgid "Failed to update the issue."
 msgstr "Impossibile aggiornare il problema."
 
@@ -1788,61 +1830,61 @@ msgstr "Correzione non trovata"
 msgid "Fix not found."
 msgstr "Correzione non trovata."
 
-#: includes/classes/MyDot/Connector.php:202
+#: includes/classes/MyDot/Connector.php:222
 msgid "You do not have permission to manage this license."
 msgstr "Non hai il permesso di gestire questa licenza."
 
-#: includes/classes/MyDot/Connector.php:238
-msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
-msgstr "La licenza Pro è attiva. Disattiva prima la licenza Pro se vuoi usare una licenza gratuita."
+#: includes/classes/MyDot/Connector.php:257
+msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
+msgstr "La gestione della licenza Pro è attiva. Gestisci la tua licenza da Accessibility Checker Pro."
 
-#: includes/classes/MyDot/Connector.php:268
+#: includes/classes/MyDot/Connector.php:286
 msgid "An error occurred, please try again."
 msgstr "Si è verificato un errore, riprova."
 
-#: includes/classes/MyDot/Connector.php:557
+#: includes/classes/MyDot/Connector.php:575
 msgid "You do not have permission to register this site."
 msgstr "Non hai il permesso di registrare questo sito."
 
-#: includes/classes/MyDot/Connector.php:578
+#: includes/classes/MyDot/Connector.php:596
 msgid "You do not have permission to unregister this site."
 msgstr "Non hai il permesso di annullare la registrazione di questo sito."
 
-#: includes/classes/MyDot/Connector.php:604
+#: includes/classes/MyDot/Connector.php:622
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "Nessuna chiave di licenza trovata. Attiva una licenza prima di registrare il tuo sito."
 
-#: includes/classes/MyDot/Connector.php:615
-#: includes/classes/MyDot/Connector.php:822
+#: includes/classes/MyDot/Connector.php:633
+#: includes/classes/MyDot/Connector.php:840
 msgid "Unknown error occurred while registering the site."
 msgstr "Si è verificato un errore sconosciuto durante la registrazione del sito."
 
-#: includes/classes/MyDot/Connector.php:644
+#: includes/classes/MyDot/Connector.php:662
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "Sito registrato con successo. Il tuo sito è ora configurato per utilizzare servizi di accessibilità aggiuntivi."
 
-#: includes/classes/MyDot/Connector.php:654
+#: includes/classes/MyDot/Connector.php:672
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "Registrazione del sito completata, ma i dati della risposta non erano nel formato previsto. Alcune funzionalità potrebbero non funzionare correttamente."
 
-#: includes/classes/MyDot/Connector.php:730
+#: includes/classes/MyDot/Connector.php:748
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "Impossibile annullare la registrazione del sito. Mancano i dati di registrazione richiesti."
 
-#: includes/classes/MyDot/Connector.php:747
-#: includes/classes/MyDot/Connector.php:880
+#: includes/classes/MyDot/Connector.php:765
+#: includes/classes/MyDot/Connector.php:898
 msgid "Unknown error occurred while unregistering the site."
 msgstr "Si è verificato un errore sconosciuto durante l'annullamento della registrazione del sito."
 
-#: includes/classes/MyDot/Connector.php:762
+#: includes/classes/MyDot/Connector.php:780
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "Registrazione del sito annullata con successo. Il tuo sito non riceverà più report via email."
 
-#: includes/classes/MyDot/Connector.php:785
+#: includes/classes/MyDot/Connector.php:803
 msgid "No license key provided."
 msgstr "Nessuna chiave di licenza fornita."
 
-#: includes/classes/MyDot/Connector.php:843
+#: includes/classes/MyDot/Connector.php:861
 msgid "Missing required parameters for unregistration."
 msgstr "Parametri richiesti per l'annullamento della registrazione mancanti."
 
@@ -2328,13 +2370,13 @@ msgstr "Queste immagini hanno attributi alt vuoti (%s)."
 msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
 msgstr "Gli screen reader si affidano al testo alternativo per descrivere le immagini agli utenti che non possono vederle. Se l'attributo alt è vuoto, segnala che l'immagine è decorativa e dovrebbe essere saltata. Tuttavia, se un'immagine significativa ha un attributo alt vuoto, gli utenti con disabilità visive perderanno informazioni importanti. L'uso corretto del testo alternativo migliora l'accessibilità e garantisce che tutti gli utenti possano comprendere il contenuto."
 
-#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+#. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Esamina l'immagine per determinare se è decorativa. Se lo è, è corretto utilizzare un attributo %1$s vuoto e puoi ignorare questo avviso utilizzando la funzione “Ignora” in Accessibility Checker o aggiungendo %2$s all'immagine e riscansionando la pagina. Se l'immagine trasmette informazioni, aggiungi un testo alt descrittivo che comunichi lo scopo o il significato dell'immagine."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Rivedi l'immagine per determinare se è decorativa. Se è decorativa, è corretto utilizzare un attributo %1$s vuoto e puoi ignorare questo avviso utilizzando la funzione “Ignora” in Accessibility Checker o aggiungendo %2$s o %3$s all'immagine e rieseguendo la scansione della pagina. Se l'immagine veicola informazioni, aggiungi un testo alt descrittivo che comunichi lo scopo o il significato dell'immagine."
 
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:47
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
 msgstr "Tutorial W3C sulle immagini: Immagini decorative"
 

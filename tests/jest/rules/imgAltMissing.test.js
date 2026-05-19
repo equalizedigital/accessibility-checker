@@ -56,6 +56,16 @@ describe( 'Image Alt Missing Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for img with role="none"',
+			html: '<img src="test.jpg" role="none">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with role="none presentation" (multi-value token)',
+			html: '<img src="test.jpg" role="none presentation">',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for img with aria-hidden="true"',
 			html: '<img src="test.jpg" aria-hidden="true">',
 			shouldPass: true,
