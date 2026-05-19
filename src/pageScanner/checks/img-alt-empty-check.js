@@ -10,13 +10,8 @@ export default {
 		const hasEmptyAlt = node.hasAttribute( 'alt' ) && node.getAttribute( 'alt' ) === '';
 
 		// Skip if element has presentation role
-		if (
-			hasEmptyAlt &&
-			(
-				node.getAttribute( 'role' ) === 'presentation' ||
-				node.getAttribute( 'role' ) === 'none'
-			)
-		) {
+		const roleTokens = ( node.getAttribute( 'role' ) || '' ).toLowerCase().split( /\s+/ );
+		if ( hasEmptyAlt && ( roleTokens.includes( 'presentation' ) || roleTokens.includes( 'none' ) ) ) {
 			return true;
 		}
 
