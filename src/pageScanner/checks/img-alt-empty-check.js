@@ -9,12 +9,6 @@ export default {
 		// Check if alt attribute is empty string (not missing, but explicitly empty)
 		const hasEmptyAlt = node.hasAttribute( 'alt' ) && node.getAttribute( 'alt' ) === '';
 
-		// Skip if element has presentation role
-		const roleTokens = ( node.getAttribute( 'role' ) || '' ).toLowerCase().split( /\s+/ );
-		if ( hasEmptyAlt && ( roleTokens.includes( 'presentation' ) || roleTokens.includes( 'none' ) ) ) {
-			return true;
-		}
-
 		// Skip if aria-hidden is true
 		if ( hasEmptyAlt && node.getAttribute( 'aria-hidden' ) === 'true' ) {
 			return true;
