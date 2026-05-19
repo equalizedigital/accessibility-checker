@@ -32,7 +32,7 @@ export default {
 			const role = img.getAttribute( 'role' );
 			const ariaHidden = img.getAttribute( 'aria-hidden' );
 
-			return hasAlt || role === 'presentation' || ariaHidden === 'true';
+			return hasAlt || role === 'presentation' || role === 'none' || ariaHidden === 'true';
 		} );
 	},
 };

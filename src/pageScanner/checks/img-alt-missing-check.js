@@ -18,9 +18,9 @@ export default {
 		// Get the tag name
 		const tagName = node.tagName.toLowerCase();
 
-		// Handle role="presentation"
-		if ( node.hasAttribute( 'role' ) && node.getAttribute( 'role' ) === 'presentation' ) {
-			// Images with role="presentation" are intentionally hidden from screen readers,
+		// Handle role="presentation" or role="none"
+		if ( node.hasAttribute( 'role' ) && ( node.getAttribute( 'role' ) === 'presentation' || node.getAttribute( 'role' ) === 'none' ) ) {
+			// Images with role="presentation" or role="none" are intentionally hidden from screen readers,
 			// so missing alt text is acceptable in this case
 			return false;
 		}
