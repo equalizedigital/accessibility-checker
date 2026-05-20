@@ -33,10 +33,9 @@ class Admin_Notices {
 
 		add_action( 'in_admin_header', [ $this, 'edac_remove_admin_notices' ], 1000 );
 		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
-		// Ajax handlers for notices.
-		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_gaad_presale_notice_ajax', [ $this, 'edac_gaad_presale_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_gaad_sale_notice_ajax', [ $this, 'edac_gaad_sale_notice_ajax' ] );
+		// Redirect-based dismiss handler for promotional notices.
+		add_action( 'admin_init', [ $this, 'handle_dismiss_notice' ] );
+		// Ajax handler for review notice.
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
@@ -97,6 +96,63 @@ class Admin_Notices {
 	}
 
 	/**
+	 * Handle redirect-based dismiss for promotional notices.
+	 *
+	 * Saves the dismiss option and redirects back to the originating page,
+	 * stripping the dismiss query parameters from the URL.
+	 *
+	 * @return void
+	 */
+	public function handle_dismiss_notice() {
+
+		if ( ! isset( $_GET['edac_dismiss_notice'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return;
+		}
+
+		$notice = sanitize_key( wp_unslash( $_GET['edac_dismiss_notice'] ) ); // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+
+		check_admin_referer( 'edac_dismiss_notice_' . $notice );
+
+		if ( ! Helpers::current_user_can_see_widgets_and_notices() ) {
+			wp_die( esc_html__( 'Permission Denied', 'accessibility-checker' ) );
+		}
+
+		switch ( $notice ) {
+			case 'gaad_presale':
+				update_option( 'edac_gaad_presale_notice_dismiss_2026', true );
+				break;
+			case 'gaad_sale':
+				update_option( 'edac_gaad_sale_notice_dismiss_2026', true );
+				delete_option( 'edac_gaad_notice_dismiss_2026' );
+				delete_option( 'edac_gaad_notice_dismiss_2025' );
+				delete_option( 'edac_gaad_notice_dismiss_2024' );
+				delete_option( 'edac_gaad_notice_dismiss' );
+				break;
+			case 'black_friday':
+				update_option( 'edac_black_friday_2025_notice_dismiss', true );
+				delete_option( 'edac_black_friday_2024_notice_dismiss' );
+				delete_option( 'edac_black_friday_2023_notice_dismiss' );
+				break;
+		}
+
+		wp_safe_redirect( remove_query_arg( [ 'edac_dismiss_notice', '_wpnonce' ] ) );
+		exit;
+	}
+
+	/**
+	 * Build a dismiss URL for a promotional notice.
+	 *
+	 * @param string $notice Notice key (e.g. 'gaad_presale').
+	 * @return string Nonce-protected URL that triggers handle_dismiss_notice().
+	 */
+	private function dismiss_url( string $notice ): string {
+		return wp_nonce_url(
+			add_query_arg( 'edac_dismiss_notice', $notice ),
+			'edac_dismiss_notice_' . $notice
+		);
+	}
+
+	/**
 	 * Black Friday Admin Notice
 	 *
 	 * @return void
@@ -137,47 +193,15 @@ class Admin_Notices {
 	public function edac_get_black_friday_message() {
 
 		// Construct the promotional message.
-		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
+		$message  = '<div class="edac_black_friday_notice notice notice-info">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
 		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BlackFriday25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
 		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BlackFriday25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= '<a href="' . esc_url( $this->dismiss_url( 'black_friday' ) ) . '" class="notice-dismiss"><span class="screen-reader-text">' . esc_html__( 'Dismiss this notice.', 'accessibility-checker' ) . '</span></a>';
 		$message .= '</div>';
 
 		return $message;
-	}
-
-	/**
-	 * Black Friday Admin Notice Ajax
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that update option wasn't successful
-	 */
-	public function edac_black_friday_notice_ajax() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
-		}
-
-		$results = update_option( 'edac_black_friday_2025_notice_dismiss', true );
-		// Delete old options if they exist.
-		delete_option( 'edac_black_friday_2024_notice_dismiss' );
-		delete_option( 'edac_black_friday_2023_notice_dismiss' );
-
-		if ( ! $results ) {
-
-			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
 	/**
@@ -213,7 +237,7 @@ class Admin_Notices {
 	 */
 	public function edac_get_gaad_presale_message() {
 
-		$message  = '<div class="edac_gaad_presale_notice notice notice-info is-dismissible">';
+		$message  = '<div class="edac_gaad_presale_notice notice notice-info">';
 		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
@@ -227,34 +251,10 @@ class Admin_Notices {
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD2026-pricing-pre', false ) ) . '">' . esc_html__( 'View Pricing', 'accessibility-checker' ) . '</a></p>';
 		}
 
+		$message .= '<a href="' . esc_url( $this->dismiss_url( 'gaad_presale' ) ) . '" class="notice-dismiss"><span class="screen-reader-text">' . esc_html__( 'Dismiss this notice.', 'accessibility-checker' ) . '</span></a>';
 		$message .= '</div>';
 
 		return $message;
-	}
-
-	/**
-	 * GAAD Pre-Sale Notice Ajax
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be verified
-	 *  - '-2' means that update option wasn't successful
-	 */
-	public function edac_gaad_presale_notice_ajax() {
-
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-		}
-
-		$results = update_option( 'edac_gaad_presale_notice_dismiss_2026', true );
-
-		if ( ! $results ) {
-			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
 	/**
@@ -289,7 +289,7 @@ class Admin_Notices {
 	 */
 	public function edac_get_gaad_sale_message() {
 
-		$message  = '<div class="edac_gaad_sale_notice notice notice-info is-dismissible">';
+		$message  = '<div class="edac_gaad_sale_notice notice notice-info">';
 		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
@@ -303,40 +303,10 @@ class Admin_Notices {
 			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/?discount=GAAD2026', 'admin-notice', 'GAAD2026-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
 		}
 
+		$message .= '<a href="' . esc_url( $this->dismiss_url( 'gaad_sale' ) ) . '" class="notice-dismiss"><span class="screen-reader-text">' . esc_html__( 'Dismiss this notice.', 'accessibility-checker' ) . '</span></a>';
 		$message .= '</div>';
 
 		return $message;
-	}
-
-	/**
-	 * GAAD Sale Notice Ajax
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be verified
-	 *  - '-2' means that update option wasn't successful
-	 */
-	public function edac_gaad_sale_notice_ajax() {
-
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-		}
-
-		$results = update_option( 'edac_gaad_sale_notice_dismiss_2026', true );
-		// Delete old option keys if they exist.
-		delete_option( 'edac_gaad_notice_dismiss_2026' );
-		delete_option( 'edac_gaad_notice_dismiss_2025' );
-		delete_option( 'edac_gaad_notice_dismiss_2024' );
-		delete_option( 'edac_gaad_notice_dismiss' );
-
-		if ( ! $results ) {
-			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
-			wp_send_json_error( $error );
-
-		}
-
-		wp_send_json_success( wp_json_encode( $results ) );
 	}
 
 	/**

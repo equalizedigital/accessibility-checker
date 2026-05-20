@@ -193,11 +193,10 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( 'View ArchiveWP Pricing', $message );
 	}
 	/**
-	 * Test that GAAD AJAX handlers are registered.
+	 * Test that the redirect-based dismiss handler is registered on admin_init.
 	 */
-	public function test_gaad_ajax_hooks_are_registered() {
+	public function test_dismiss_notice_handler_is_registered() {
 		$this->admin_notices->init_hooks();
-		$this->assertSame( 10, has_action( 'wp_ajax_edac_gaad_presale_notice_ajax', [ $this->admin_notices, 'edac_gaad_presale_notice_ajax' ] ) );
-		$this->assertSame( 10, has_action( 'wp_ajax_edac_gaad_sale_notice_ajax', [ $this->admin_notices, 'edac_gaad_sale_notice_ajax' ] ) );
+		$this->assertSame( 10, has_action( 'admin_init', [ $this->admin_notices, 'handle_dismiss_notice' ] ) );
 	}
 }
