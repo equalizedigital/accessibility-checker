@@ -831,18 +831,35 @@ class Ajax {
 		$type       = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
 		$siteid     = get_current_blog_id();
 
-		// Capability check: mirrors the REST /dismiss-issue endpoint.
+		// Capability check: verify edit_post on every post affected by this request.
 		$first_id    = reset( $ids );
 		$valid_table = edac_get_valid_table_name( $table_name );
+
 		if ( ! $first_id || ! $valid_table ) {
 			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
 		}
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
-		$post_id = (int) $wpdb->get_var(
-			$wpdb->prepare( 'SELECT postid FROM %i WHERE id = %d', $valid_table, $first_id )
-		);
-		if ( ! ( $post_id > 0 && current_user_can( 'edit_post', $post_id ) ) ) {
-			wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
+
+		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
+			// largeBatch updates every row sharing the same object string across the site;
+			// collect all distinct postids that would be affected and check each one.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
+			$batch_object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $valid_table, $first_id ) );
+			if ( ! $batch_object ) {
+				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+			}
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
+			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT postid FROM %i WHERE siteid = %d AND object = %s', $valid_table, $siteid, $batch_object ) );
+		} else {
+			// Small batch: look up the post for every supplied ID in one query.
+			$id_placeholders   = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
+			$query_args        = array_merge( [ $valid_table ], $ids );
+			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT postid FROM %i WHERE id IN ({$id_placeholders})", $query_args ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder -- Permission check requires direct lookup.
+		}
+
+		foreach ( (array) $affected_post_ids as $affected_post_id ) {
+			if ( ! current_user_can( 'edit_post', (int) $affected_post_id ) ) {
+				wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
+			}
 		}
 
 		$ignre                = ( 'enable' === $action ) ? 1 : 0;
