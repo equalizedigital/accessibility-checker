@@ -376,9 +376,10 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 */
 	private function set_mock_screen( bool $is_block_editor ): void {
 		// As of WP 7.0, get_current_screen() requires an actual WP_Screen
-		// instance (instanceof check), so substituting an anonymous class no
-		// longer works. Use a real screen and toggle the public property.
-		set_current_screen( 'post' );
+		// instance. Use WP_Screen::get() to obtain one without the side effects
+		// of set_current_screen() (e.g. setting $hook_suffix, $typenow, firing
+		// the current_screen action).
+		$GLOBALS['current_screen']                  = WP_Screen::get( 'post' );
 		$GLOBALS['current_screen']->is_block_editor = $is_block_editor;
 	}
 }
