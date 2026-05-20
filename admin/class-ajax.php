@@ -832,8 +832,9 @@ class Ajax {
 		$siteid     = get_current_blog_id();
 
 		// Capability check: verify edit_post on every post affected by this request.
-		$first_id    = reset( $ids );
-		$valid_table = edac_get_valid_table_name( $table_name );
+		$batch_object = null;
+		$first_id     = reset( $ids );
+		$valid_table  = edac_get_valid_table_name( $table_name );
 
 		if ( ! $first_id || ! $valid_table ) {
 			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
@@ -876,14 +877,8 @@ class Ajax {
 		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
 		// into request size limits which caused this to not function at all.
 		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
-			// Get the 'object' from the first id.
-			$first_id = $ids[0];
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- We need to get the latest value, not a cached value.
-			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $first_id ) );
-
-			if ( ! $object ) {
-				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
-			}
+			// $batch_object was already resolved during the capability check above.
+			$object = $batch_object;
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
 		} else {
