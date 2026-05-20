@@ -375,40 +375,11 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @param bool $is_block_editor Whether the screen should behave as block editor.
 	 */
 	private function set_mock_screen( bool $is_block_editor ): void {
-		$GLOBALS['current_screen'] = new class( $is_block_editor ) {
-			/**
-			 * True or false whether the screen is block editor.
-			 *
-			 * @var bool
-			 */
-			private $is_block_editor;
-
-			/**
-			 * Constructor.
-			 *
-			 * @param bool $is_block_editor Whether the screen should behave as block editor.
-			 */
-			public function __construct( bool $is_block_editor ) {
-				$this->is_block_editor = $is_block_editor;
-			}
-
-			/**
-			 * Mock is_block_editor method.
-			 *
-			 * @return bool
-			 */
-			public function is_block_editor(): bool {
-				return $this->is_block_editor;
-			}
-
-			/**
-			 * Mock in_admin method.
-			 *
-			 * @return bool
-			 */
-			public function in_admin(): bool {
-				return true;
-			}
-		};
+		// As of WP 7.0, get_current_screen() requires an actual WP_Screen
+		// instance. Use WP_Screen::get() to obtain one without the side effects
+		// of set_current_screen() (e.g. setting $hook_suffix, $typenow, firing
+		// the current_screen action).
+		$GLOBALS['current_screen']                  = WP_Screen::get( 'post' );
+		$GLOBALS['current_screen']->is_block_editor = $is_block_editor;
 	}
 }
