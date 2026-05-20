@@ -136,9 +136,14 @@ class Admin_Notices {
 		}
 
 		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/wp-admin/';
+		$home_parts  = wp_parse_url( home_url() );
+		$authority   = $home_parts['host'] ?? '';
+		if ( isset( $home_parts['port'] ) ) {
+			$authority .= ':' . $home_parts['port'];
+		}
 		$redirect_to = remove_query_arg(
 			[ 'edac_dismiss_notice', '_wpnonce' ],
-			set_url_scheme( '//' . wp_parse_url( home_url(), PHP_URL_HOST ) . $request_uri )
+			set_url_scheme( '//' . $authority . $request_uri )
 		);
 		wp_safe_redirect( $redirect_to );
 		exit;
