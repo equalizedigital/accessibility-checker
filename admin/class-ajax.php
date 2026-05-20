@@ -819,17 +819,32 @@ class Ajax {
 		}
 
 		global $wpdb;
-		$table_name           = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids              = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids                  = array_map(
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$raw_ids    = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
+		$ids        = array_map(
 			function ( $value ) {
 				return (int) $value;
 			},
 			$raw_ids
 		); // Sanitizing array elements to integers.
-		$action               = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
-		$type                 = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
-		$siteid               = get_current_blog_id();
+		$action     = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
+		$type       = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
+		$siteid     = get_current_blog_id();
+
+		// Capability check: mirrors the REST /dismiss-issue endpoint.
+		$first_id    = reset( $ids );
+		$valid_table = edac_get_valid_table_name( $table_name );
+		if ( ! $first_id || ! $valid_table ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+		}
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
+		$post_id = (int) $wpdb->get_var(
+			$wpdb->prepare( 'SELECT postid FROM %i WHERE id = %d', $valid_table, $first_id )
+		);
+		if ( ! ( $post_id > 0 && current_user_can( 'edit_post', $post_id ) ) ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
+		}
+
 		$ignre                = ( 'enable' === $action ) ? 1 : 0;
 		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
 		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
