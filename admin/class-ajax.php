@@ -857,7 +857,11 @@ class Ajax {
 			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT postid FROM %i WHERE id IN ({$id_placeholders})", $query_args ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder -- Permission check requires direct lookup.
 		}
 
-		foreach ( (array) $affected_post_ids as $affected_post_id ) {
+		if ( empty( $affected_post_ids ) ) {
+			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+		}
+
+		foreach ( $affected_post_ids as $affected_post_id ) {
 			if ( ! current_user_can( 'edit_post', (int) $affected_post_id ) ) {
 				wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
 			}
