@@ -135,7 +135,12 @@ class Admin_Notices {
 				break;
 		}
 
-		wp_safe_redirect( remove_query_arg( [ 'edac_dismiss_notice', '_wpnonce' ] ) );
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? esc_url_raw( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '/wp-admin/';
+		$redirect_to = remove_query_arg(
+			[ 'edac_dismiss_notice', '_wpnonce' ],
+			set_url_scheme( '//' . wp_parse_url( home_url(), PHP_URL_HOST ) . $request_uri )
+		);
+		wp_safe_redirect( $redirect_to );
 		exit;
 	}
 
@@ -193,7 +198,7 @@ class Admin_Notices {
 	public function edac_get_black_friday_message() {
 
 		// Construct the promotional message.
-		$message  = '<div class="edac_black_friday_notice notice notice-info">';
+		$message  = '<div class="edac_black_friday_notice notice notice-info" style="position: relative; padding-right: 38px;">';
 		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
 		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more.', 'accessibility-checker' ) . '<br />';
 		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BlackFriday25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
@@ -237,7 +242,7 @@ class Admin_Notices {
 	 */
 	public function edac_get_gaad_presale_message() {
 
-		$message  = '<div class="edac_gaad_presale_notice notice notice-info">';
+		$message  = '<div class="edac_gaad_presale_notice notice notice-info" style="position: relative; padding-right: 38px;">';
 		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
@@ -289,7 +294,7 @@ class Admin_Notices {
 	 */
 	public function edac_get_gaad_sale_message() {
 
-		$message  = '<div class="edac_gaad_sale_notice notice notice-info">';
+		$message  = '<div class="edac_gaad_sale_notice notice notice-info" style="position: relative; padding-right: 38px;">';
 		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
 
 		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
