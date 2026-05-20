@@ -1,5 +1,8 @@
 *** Accessibility Checker ***
 
+2026-05-20 - version 1.42.1
+* Updated - improved permission handling for the ignore functionality.
+
 2026-05-18 - version 1.42.0
 * Updated - add support for role="none" in several of the link and image alt related rules.
 * Updated - added support for named anchors as jump links.

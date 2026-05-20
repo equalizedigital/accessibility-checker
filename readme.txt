@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 1.42.0
+Stable tag: 1.42.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-05-20 - version 1.42.1
+* Updated - improved permission handling for the ignore functionality.
 
 2026-05-18 - version 1.42.0
 * Updated - add support for role="none" in several of the link and image alt related rules.
