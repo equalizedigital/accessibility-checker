@@ -558,32 +558,35 @@ const edacScriptVars = edac_script_vars;
 		/**
 		 * GAAD Pre-Sale Notice Ajax
 		 */
-		if ( jQuery( '.edac_gaad_presale_notice' ).length ) {
-			jQuery( '.edac_gaad_presale_notice .notice-dismiss' ).on( 'click', function() {
+		jQuery( document ).on(
+			'click',
+			'.edac_gaad_presale_notice .notice-dismiss',
+			function() {
 				edacNoticeAjax( 'edac_gaad_presale_notice_ajax' );
-			} );
-		}
+			}
+		);
 
 		/**
 		 * GAAD Sale Notice Ajax
 		 */
-		if ( jQuery( '.edac_gaad_sale_notice' ).length ) {
-			jQuery( '.edac_gaad_sale_notice .notice-dismiss' ).on( 'click', function() {
+		jQuery( document ).on(
+			'click',
+			'.edac_gaad_sale_notice .notice-dismiss',
+			function() {
 				edacNoticeAjax( 'edac_gaad_sale_notice_ajax' );
-			} );
-		}
+			}
+		);
 
 		/**
 		 * Black Friday Notice Ajax
 		 */
-		if ( jQuery( '.edac_black_friday_notice' ).length ) {
-			jQuery( '.edac_black_friday_notice .notice-dismiss' ).on(
-				'click',
-				function() {
-					edacNoticeAjax( 'edac_black_friday_notice_ajax' );
-				}
-			);
-		}
+		jQuery( document ).on(
+			'click',
+			'.edac_black_friday_notice .notice-dismiss',
+			function() {
+				edacNoticeAjax( 'edac_black_friday_notice_ajax' );
+			}
+		);
 
 		function edacNoticeAjax( functionName = null ) {
 			jQuery.ajax( {
