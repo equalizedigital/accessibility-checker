@@ -280,7 +280,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 2026-05-20 - version 1.42.1
-* Updated - improved permission handling for the ignore functionality.
+* Updated - improved permission handling for the ignore feature.
 
 2026-05-18 - version 1.42.0
 * Updated - add support for role="none" in several of the link and image alt related rules.
