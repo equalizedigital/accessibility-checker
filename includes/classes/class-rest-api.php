@@ -1274,20 +1274,30 @@ class REST_Api {
 				}
 			}
 
-			// Update all issues with the same object in one query after auth checks pass.
+			// Build an explicit list of vetted IDs so the UPDATE targets only rows we already permission-checked.
+			$issue_ids       = array_map( 'intval', wp_list_pluck( $issue_rows, 'id' ) );
+			$id_placeholders = implode( ', ', array_fill( 0, count( $issue_ids ), '%d' ) );
+
+			// Update only the exact vetted issue IDs in one query after auth checks pass.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
 			$result = $wpdb->query(
+				// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- Placeholder count is dynamic; $id_placeholders contains only %d tokens, no user input.
 				$wpdb->prepare(
-					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND object = %s',
-					$table_name,
-					$ignre,
-					$ignre_user,
-					$ignre_date,
-					$ignre_reason,
-					$ignre_comment,
-					$ignre_global,
-					$site_id,
-					$object
+					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- SQL is built from a static string concatenated with %d-only placeholders; no user input is interpolated.
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND id IN ( ' . $id_placeholders . ' )',
+					array_merge(
+						[
+							$table_name,
+							$ignre,
+							$ignre_user,
+							$ignre_date,
+							$ignre_reason,
+							$ignre_comment,
+							$ignre_global,
+							$site_id,
+						],
+						$issue_ids
+					)
 				)
 			);
 		} else {
