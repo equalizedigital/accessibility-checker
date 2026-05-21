@@ -524,10 +524,12 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		wp_set_current_user( self::$limited_id );
 
 		// Create a test issue on the limited user's own post.
+		// Use 'draft' so the limited user (who only has edit_posts, not edit_published_posts)
+		// can edit it — WordPress requires edit_published_posts for published posts.
 		$own_post_id = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
-				'post_status'  => 'publish',
+				'post_status'  => 'draft',
 				'post_author'  => self::$limited_id,
 				'post_title'   => 'Test Single Issue Post',
 				'post_content' => 'Test content',
@@ -573,7 +575,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertTrue( $data['success'] );
 		$this->assertSame( $issue_id, $data['issue_id'] );
 		$this->assertSame( 'dismiss', $data['action'] );
-		$this->assertSame( 1, $data['ignre'] );
+		$this->assertTrue( $data['ignre'] ); // endpoint returns bool $is_ignoring.
 		$this->assertSame( self::$limited_id, $data['ignre_user'] );
 
 		// Verify database was updated.
@@ -663,10 +665,12 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertNotNull( $this->server );
 
 		// Create posts for batch test (limited user owns all).
+		// Use 'draft' so the limited user (who only has edit_posts, not edit_published_posts)
+		// can edit them — WordPress requires edit_published_posts for published posts.
 		$post_1 = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
-				'post_status'  => 'publish',
+				'post_status'  => 'draft',
 				'post_author'  => self::$limited_id,
 				'post_title'   => 'Batch Post 1',
 				'post_content' => 'Batch Content 1',
@@ -676,7 +680,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$post_2 = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
-				'post_status'  => 'publish',
+				'post_status'  => 'draft',
 				'post_author'  => self::$limited_id,
 				'post_title'   => 'Batch Post 2',
 				'post_content' => 'Batch Content 2',
