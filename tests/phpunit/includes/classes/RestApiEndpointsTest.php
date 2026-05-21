@@ -763,10 +763,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertNotNull( $this->server );
 
 		// Create posts: one owned by limited_id, one by admin_id.
+		// Use 'draft' for the limited user's post so they can edit it with only edit_posts
+		// (WordPress requires edit_published_posts to edit published posts, which limited_id lacks).
+		// This correctly models partial authorization: the limited user CAN edit their draft post
+		// but CANNOT edit the admin-owned published post.
 		$limited_post = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
-				'post_status'  => 'publish',
+				'post_status'  => 'draft',
 				'post_author'  => self::$limited_id,
 				'post_title'   => 'Limited Batch Post',
 				'post_content' => 'Limited Batch Content',
