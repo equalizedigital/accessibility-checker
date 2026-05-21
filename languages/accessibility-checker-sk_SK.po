@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.40.0\n"
+"Project-Id-Version: Accessibility Checker 1.41.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-04T17:50:18+00:00\n"
+"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -49,7 +49,7 @@ msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:138
+#: admin/AdminPage/AccessibilityReportsPage.php:140
 msgid "Accessibility Reports"
 msgstr "Reporty prístupnosti"
 
@@ -57,155 +57,169 @@ msgstr "Reporty prístupnosti"
 msgid "New"
 msgstr "Nové"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:144
+#: admin/AdminPage/AccessibilityReportsPage.php:146
+msgid "License Expired"
+msgstr "Licencia vypršala"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:149
+msgid "Your license has expired. This site is still connected but reports may stop until your license is renewed."
+msgstr "Vaša licencia vypršala. Táto stránka je stále pripojená, ale správy sa môžu zastaviť, kým sa vaša licencia neobnoví."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:153
+#: admin/AdminPage/ConnectedServicesPage.php:229
+msgid "Renew your license"
+msgstr "Obnoviť licenciu"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:160
+#: admin/AdminPage/AccessibilityReportsPage.php:293
+msgid "Disable Email Reports"
+msgstr "Zakázať e-mailové reporty"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:169
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Získajte pravidelné e-mailové reporty s prehľadom prístupnosti vášho webu, vrátane celkového počtu problémov, časového vývoja trendov, najproblematickejších stránok a najzávažnejších problémov, ktoré je potrebné vyriešiť ako prvé."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:146
+#: admin/AdminPage/AccessibilityReportsPage.php:171
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Získajte pravidelné e-mailové reporty s prehľadom prístupnosti vášho webu, vrátane celkového počtu problémov, časového vývoja trendov, najproblematickejších stránok a najzávažnejších problémov, ktoré je potrebné vyriešiť ako prvé. Niektoré detaily, ako napríklad pokrytie celého webu a podrobný rozpis problémov, sú dostupné vo verzii Pro."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:157
-#: admin/AdminPage/AccessibilityReportsPage.php:171
+#: admin/AdminPage/AccessibilityReportsPage.php:182
+#: admin/AdminPage/AccessibilityReportsPage.php:196
 msgid "Enable Email Reports"
 msgstr "Povoliť e-mailové reporty"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:164
-#: admin/AdminPage/AccessibilityReportsPage.php:168
-#: admin/AdminPage/AccessibilityReportsPage.php:260
-#: admin/AdminPage/ConnectedServicesPage.php:153
+#: admin/AdminPage/AccessibilityReportsPage.php:189
+#: admin/AdminPage/AccessibilityReportsPage.php:193
+#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Bezplatný licenčný kľúč"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:177
+#: admin/AdminPage/AccessibilityReportsPage.php:202
 msgid "Get a Free License Key"
 msgstr "Získať bezplatný licenčný kľúč"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:182
+#: admin/AdminPage/AccessibilityReportsPage.php:207
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Získali ste plugin od Equalize Digital? Váš kľúč nájdete vo svojom <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">ovládacom paneli</a>."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:191
+#: admin/AdminPage/AccessibilityReportsPage.php:216
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "Nainštalovali ste z WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Vytvorte si bezplatný účet</a>, aby ste ho získali."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:200
+#: admin/AdminPage/AccessibilityReportsPage.php:225
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Nie ste si istý? Jednoducho si <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">vytvorte bezplatný účet</a>. Trvá to len minútu."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:212
+#: admin/AdminPage/AccessibilityReportsPage.php:237
 msgid "Reports Enabled"
 msgstr "Reporty povolené"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:215
+#: admin/AdminPage/AccessibilityReportsPage.php:240
 msgid "You’ll receive weekly accessibility reports for this site."
 msgstr "Budete dostávať týždenné reporty prístupnosti pre tento web."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:219
+#: admin/AdminPage/AccessibilityReportsPage.php:244
 #, php-format
 msgid "Next report: %s"
 msgstr "Ďalší report: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:226
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Full Coverage"
 msgstr "Plné pokrytie"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:226
+#: admin/AdminPage/AccessibilityReportsPage.php:251
 msgid "Limited Coverage"
 msgstr "Obmedzené pokrytie"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:230
+#: admin/AdminPage/AccessibilityReportsPage.php:255
 msgid "Your reports include all post types and taxonomies."
 msgstr "Vaše reporty zahŕňajú všetky typy príspevkov a taxonómií."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:232
+#: admin/AdminPage/AccessibilityReportsPage.php:257
 msgid "Full-site scanning enabled"
 msgstr "Skenovanie celého webu povolené"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:233
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Complete issue breakdowns"
 msgstr "Kompletný rozpis problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:234
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Detailed reporting"
 msgstr "Detailné reporty"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:237
+#: admin/AdminPage/AccessibilityReportsPage.php:262
 msgid "Your reports only include part of your site."
 msgstr "Vaše reporty zahŕňajú len časť vášho webu."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:238
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Upgrade to Pro to:"
 msgstr "Prejdite na Pro, ak chcete:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:265
 msgid "Scan all content types"
 msgstr "Skenovať všetky typy obsahu"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:241
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Get full issue breakdowns"
 msgstr "Získať kompletný rozpis problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:242
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Receive more detailed reports"
 msgstr "Dostávať detailnejšie reporty"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:245
+#: admin/AdminPage/AccessibilityReportsPage.php:270
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Prejsť na pro verziu"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:276
 msgid "Accessibility Summary"
 msgstr "Súhrn prístupnosti"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Tento súhrn odráža najnovšie dostupné údaje skenovania pre váš web."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:254
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 msgid "Total Issues Found"
 msgstr "Celkový počet nájdených problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:260
+#: admin/AdminPage/AccessibilityReportsPage.php:285
 msgid "Account Connection"
 msgstr "Prepojenie účtu"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:268
-msgid "Disable Email Reports"
-msgstr "Zakázať e-mailové reporty"
-
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:304
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Pripojením k tejto stránke súhlasíte so <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">zásadami ochrany osobných údajov <span aria-hidden=\"true\">&#8599;</span></a> a <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">dohodou o spracovaní údajov <span aria-hidden=\"true\">&#8599;</span></a> spoločnosti Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:282
+#: admin/AdminPage/AccessibilityReportsPage.php:307
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Zásady ochrany osobných údajov (otvorí sa v novom okne)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:283
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Dohoda o spracovaní údajov (otvorí sa v novom okne)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:294
+#: admin/AdminPage/AccessibilityReportsPage.php:319
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Týždenný e-mail obsahuje celkový počet nájdených problémov a zmien od poslednej správy, informácie o pokrytí, počet problémov, potrebu kontroly, percento úspešných testov a informácie o najproblematickejších stránkach a najzávažnejších problémoch."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:387
+#: admin/AdminPage/AccessibilityReportsPage.php:416
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "N/A"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:477
+#: admin/AdminPage/AccessibilityReportsPage.php:506
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -213,7 +227,7 @@ msgstr "N/A"
 msgid "Critical"
 msgstr "Kritické"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:479
+#: admin/AdminPage/AccessibilityReportsPage.php:508
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -221,7 +235,7 @@ msgstr "Kritické"
 msgid "High"
 msgstr "Vysoké"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:481
+#: admin/AdminPage/AccessibilityReportsPage.php:510
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -229,7 +243,7 @@ msgstr "Vysoké"
 msgid "Medium"
 msgstr "Stredné"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:483
+#: admin/AdminPage/AccessibilityReportsPage.php:512
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
@@ -237,116 +251,123 @@ msgstr "Stredné"
 msgid "Low"
 msgstr "Nízke"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:485
-#: includes/classes/class-rest-api.php:997
+#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Neznáme"
 
-#: admin/AdminPage/ConnectedServicesPage.php:137
+#: admin/AdminPage/ConnectedServicesPage.php:138
 msgid "create a free account"
 msgstr "vytvoriť bezplatný účet"
 
-#: admin/AdminPage/ConnectedServicesPage.php:146
+#: admin/AdminPage/ConnectedServicesPage.php:147
 msgid "Connect this site"
 msgstr "Prepojiť tento web"
 
-#: admin/AdminPage/ConnectedServicesPage.php:165
+#: admin/AdminPage/ConnectedServicesPage.php:166
 msgid "active"
 msgstr "aktívne"
 
-#: admin/AdminPage/ConnectedServicesPage.php:167
+#: admin/AdminPage/ConnectedServicesPage.php:168
 msgid "expired"
 msgstr "vypršané"
 
-#: admin/AdminPage/ConnectedServicesPage.php:169
+#: admin/AdminPage/ConnectedServicesPage.php:170
 msgid "Enter your license key"
 msgstr "Zadajte váš licenčný kľúč"
 
-#: admin/AdminPage/ConnectedServicesPage.php:184
-#: admin/AdminPage/ConnectedServicesPage.php:250
+#: admin/AdminPage/ConnectedServicesPage.php:185
+#: admin/AdminPage/ConnectedServicesPage.php:192
+#: admin/AdminPage/ConnectedServicesPage.php:269
 msgid "Disconnect Site"
 msgstr "Odpojiť web"
 
-#: admin/AdminPage/ConnectedServicesPage.php:191
+#: admin/AdminPage/ConnectedServicesPage.php:199
 msgid "Connect Site"
 msgstr "Prepojiť web"
 
 #. translators: %s: link to my.equalizedigital.com dashboard
-#: admin/AdminPage/ConnectedServicesPage.php:204
+#: admin/AdminPage/ConnectedServicesPage.php:212
 #, php-format
 msgid "If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard."
 msgstr "Ak ste si stiahli bezplatný plugin od Equalize Digital, už máte bezplatný licenčný kľúč vo svojom ovládacom paneli %s."
 
 #. translators: %s: link to create a free account
-#: admin/AdminPage/ConnectedServicesPage.php:213
+#: admin/AdminPage/ConnectedServicesPage.php:221
 #, php-format
 msgid "If not, %s to generate a license key and connect this site."
 msgstr "Ak nie, %s, aby ste vygenerovali licenčný kľúč a prepojili tento web."
 
+#. translators: %s: renew license link
 #: admin/AdminPage/ConnectedServicesPage.php:232
+#, php-format
+msgid "Your license has expired and this site is still connected. %s to restore full access, or disconnect the site above."
+msgstr "Vaša licencia vypršala a táto stránka je stále pripojená. %s na obnovenie plného prístupu, alebo odpojte stránku vyššie."
+
+#: admin/AdminPage/ConnectedServicesPage.php:251
 msgid "Connected as Free"
 msgstr "Prepojené ako bezplatné"
 
-#: admin/AdminPage/ConnectedServicesPage.php:233
+#: admin/AdminPage/ConnectedServicesPage.php:252
 msgid "Your Pro license is no longer valid, but this site remains connected for Free email reports."
 msgstr "Vaša licencia Pro už nie je platná, ale tento web zostáva prepojený pre bezplatné e-mailové reporty."
 
 #. translators: %s: link to my.equalizedigital.com dashboard
-#: admin/AdminPage/ConnectedServicesPage.php:238
+#: admin/AdminPage/ConnectedServicesPage.php:257
 #, php-format
 msgid "You can manage recipients and review connection details in your %s dashboard."
 msgstr "Príjemcov môžete spravovať a detaily prepojenia si prezrieť vo svojom ovládacom paneli %s."
 
-#: admin/AdminPage/ConnectedServicesPage.php:398
-msgid "Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
-msgstr "Vaša licencia Pro už nie je platná. Tento web používa platnú bezplatnú licenciu a e-mailové reporty zostávajú prepojené ako bezplatné e-mailové reporty. Obnovte si licenciu Pro, aby ste obnovili funkcie dostupné len pre Pro."
+#: admin/AdminPage/ConnectedServicesPage.php:430
+msgid "Your Pro license is no longer valid. Email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features."
+msgstr "Vaša Pro licencia už nie je platná. E-mailové správy zostávajú pripojené ako Bezplatné e-mailové správy. Obnovte si svoju Pro licenciu, aby ste obnovili funkcie len pre Pro verziu."
 
-#: admin/AdminPage/ConnectedServicesPage.php:401
+#: admin/AdminPage/ConnectedServicesPage.php:433
 msgid "Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports."
 msgstr "Vaša licencia Pro už nie je platná. Tento web používa platnú bezplatnú licenciu, ale e-mailové reporty momentálne nie sú prepojené. Prepojte tento web v sekcii „Bezplatná licencia“, aby ste obnovili bezplatné e-mailové reporty."
 
-#: admin/AdminPage/ConnectedServicesPage.php:442
+#: admin/AdminPage/ConnectedServicesPage.php:474
 msgid "Please renew your license"
 msgstr "Prosím, obnovte si licenciu"
 
 #. translators: %1$s: item name, %2$s: item name, %3$s: renew license link
-#: admin/AdminPage/ConnectedServicesPage.php:445
+#: admin/AdminPage/ConnectedServicesPage.php:477
 #, php-format
 msgid "Your %1$s license has expired. %3$s to continue accessing additional features and services for %2$s."
 msgstr "Vaša licencia %1$s vypršala. %3$s, ak chcete pokračovať v prístupe k ďalším funkciám a službám pre %2$s."
 
 #. translators: %s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:455
+#: admin/AdminPage/ConnectedServicesPage.php:487
 #, php-format
 msgid "Your %s license key has been disabled. Please contact our support team if you believe this is an error or would like to continue accessing additional features."
 msgstr "Váš licenčný kľúč %s bol deaktivovaný. Ak si myslíte, že ide o chybu alebo by ste chceli naďalej pristupovať k ďalším funkciám, kontaktujte náš tím podpory."
 
 #. translators: %1$s: item name, %2$s: license url, %3$s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:462
+#: admin/AdminPage/ConnectedServicesPage.php:494
 #, php-format
 msgid "The license key for %1$s appears to be invalid. Please <a href=\"%2$s\">check your license key</a> to access additional accessibility features and services for %3$s."
 msgstr "Licenčný kľúč pre %1$s sa zdá byť neplatný. Prosím, <a href=\"%2$s\">skontrolujte si licenčný kľúč</a>, aby ste získali prístup k ďalším funkciám a službám prístupnosti pre %3$s."
 
 #. translators: %s: item name
-#: admin/AdminPage/ConnectedServicesPage.php:472
+#: admin/AdminPage/ConnectedServicesPage.php:504
 #, php-format
 msgid "This license key for %s is not active for this site. Please activate it to access additional features on this website."
 msgstr "Tento licenčný kľúč pre %s nie je aktívny pre tento web. Aktivujte ho, aby ste získali prístup k ďalším funkciám na tomto webe."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:479
+#: admin/AdminPage/ConnectedServicesPage.php:511
 #, php-format
 msgid "This license key does not appear to be valid for %s. Please verify you've entered the correct license key."
 msgstr "Tento licenčný kľúč sa nezdá byť platný pre %s. Overte, či ste zadali správny licenčný kľúč."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:486
+#: admin/AdminPage/ConnectedServicesPage.php:518
 #, php-format
 msgid "Your %s license key has reached its site activation limit. You can upgrade your license or deactivate it on another site to use the additional features here."
 msgstr "Váš licenčný kľúč %s dosiahol limit aktivácie webov. Môžete si vylepšiť licenciu alebo ju deaktivovať na inom webe, aby ste tu mohli používať ďalšie funkcie."
 
 #. translators: %s: the plugins item name
-#: admin/AdminPage/ConnectedServicesPage.php:493
+#: admin/AdminPage/ConnectedServicesPage.php:525
 #, php-format
 msgid "There was an issue validating your %s license key. Please try again or contact our support team if the problem persists."
 msgstr "Vyskytol sa problém pri overovaní vášho licenčného kľúča %s. Skúste to znova alebo kontaktujte náš tím podpory, ak problém pretrváva."
@@ -472,26 +493,27 @@ msgstr "Chcete využiť Accessibility Checker ešte viac? %1$sOdomknite Pro funk
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Odomknite Pro funkcie (otvorí sa v novom okne)"
 
-#: admin/class-admin-notices.php:139
+#: admin/class-admin-notices.php:141
 msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Špeciálna ponuka na Čierny piatok! 🎉"
 
-#: admin/class-admin-notices.php:140
+#: admin/class-admin-notices.php:142
 msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
 msgstr "Inovujte na platenú verziu Accessibility Checker od 24. novembra do 3. decembra a získajte zľavu 30 %! Kompletné skenovanie stránok, správa otvorených problémov na celom webe, ignorovanie protokolov a ďalšie."
 
-#: admin/class-admin-notices.php:141
+#: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
 msgstr "Položiť predpredajnú otázku"
 
-#: admin/class-admin-notices.php:142
-#: admin/class-admin-notices.php:245
+#: admin/class-admin-notices.php:144
+#: admin/class-admin-notices.php:303
 msgid "Upgrade Now"
 msgstr "Inovovať teraz"
 
-#: admin/class-admin-notices.php:161
-#: admin/class-admin-notices.php:266
-#: admin/class-admin-notices.php:356
+#: admin/class-admin-notices.php:163
+#: admin/class-admin-notices.php:246
+#: admin/class-admin-notices.php:322
+#: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:60
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
@@ -503,55 +525,75 @@ msgstr "Inovovať teraz"
 msgid "Permission Denied"
 msgstr "Prístup zamietnutý"
 
-#: admin/class-admin-notices.php:173
-#: admin/class-admin-notices.php:279
-#: admin/class-admin-notices.php:380
+#: admin/class-admin-notices.php:175
+#: admin/class-admin-notices.php:253
+#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:435
 msgid "Update option wasn't successful"
 msgstr "Aktualizácia možnosti nebola úspešná"
 
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:217
+#: admin/class-admin-notices.php:293
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ Bleskový výpredaj ku Dňu povedomia o globálnej prístupnosti"
 
-#. translators: 1: opening anchor tag for accessibility courses link, 2: closing anchor tag, 3: opening anchor tag for ArchiveWP link, 4: closing anchor tag
-#: admin/class-admin-notices.php:232
-#, php-format
-msgid "3 days only: Save 15%% on %1$saccessibility courses%2$s and Equalize Digital's %3$sArchiveWP plugin%4$s. Go further with accessibility."
-msgstr "Iba 3 dni: Ušetrite 15%% na %1$skurzoch prístupnosti%2$s a plugine %3$sArchiveWP%4$s od Equalize Digital. Posuňte prístupnosť ďalej."
+#: admin/class-admin-notices.php:220
+msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
+msgstr "Od 20. mája: Ušetrite 15 % na kurzoch prístupnosti a ArchiveWP s kupónom "
 
-#: admin/class-admin-notices.php:238
-msgid "Limited-time offer • May 20–22 • Use coupon code "
-msgstr "Časovo obmedzená ponuka • 20. – 22. máj • Použite kupón kód "
+#: admin/class-admin-notices.php:221
+#: admin/class-admin-notices.php:226
+msgid "3 days only • May 20–22"
+msgstr "Len 3 dni • 20. – 22. mája"
 
-#: admin/class-admin-notices.php:239
-msgid "Grab the Deal Before It Ends"
-msgstr "Využite ponuku, kým neskončí"
+#: admin/class-admin-notices.php:222
+#: admin/class-admin-notices.php:298
+msgid "View ArchiveWP Pricing"
+msgstr "Zobraziť cenník ArchiveWP"
 
-#: admin/class-admin-notices.php:242
-msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code"
-msgstr "Iba 3 dni: Ušetrite 15 %, keď inovujete na Accessibility Checker Pro s kupónom kódom"
+#: admin/class-admin-notices.php:223
+#: admin/class-admin-notices.php:299
+msgid "View Course Pricing"
+msgstr "Zobraziť cenník kurzov"
 
-#: admin/class-admin-notices.php:244
-msgid "Limited-time offer • May 20–22"
-msgstr "Časovo obmedzená ponuka • 20. – 22. máj"
+#: admin/class-admin-notices.php:225
+msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
+msgstr "Od 20. mája: Ušetrite 15 % na Accessibility Checker Pro s kupónom "
 
-#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:227
+msgid "View Pricing"
+msgstr "Zobraziť cenník"
+
+#: admin/class-admin-notices.php:296
+msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
+msgstr "Ušetrite 15 % na kurzoch prístupnosti a ArchiveWP s kupónom "
+
+#: admin/class-admin-notices.php:297
+#: admin/class-admin-notices.php:302
+msgid "Limited-time offer • Ends May 22nd"
+msgstr "Časovo obmedzená ponuka • Končí 22. mája"
+
+#: admin/class-admin-notices.php:301
+msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
+msgstr "Len 3 dni: Ušetrite 15 % pri prechode na Accessibility Checker Pro s kupónom "
+
+#: admin/class-admin-notices.php:386
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Ahojte! Ďakujeme, že používate Accessibility Checker ako súčasť vášho súboru nástrojov pre prístupnosť. Keďže ho už nejaký čas používate, napísali by ste, prosím, 5-hviezdičkovú recenziu Accessibility Checker v adresári pluginov WordPress? Pomôže to zvýšiť našu viditeľnosť, aby sa viac ľudí mohlo dozvedieť o dôležitosti webovej prístupnosti. Veľmi pekne ďakujeme!"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:389
 msgid "Write A Review"
 msgstr "Napísať recenziu"
 
-#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:390
 msgid "Remind Me In Two Weeks"
 msgstr "Pripomenúť o dva týždne"
 
-#: admin/class-admin-notices.php:336
+#: admin/class-admin-notices.php:391
 msgid "Never Ask Again"
 msgstr "Už sa nikdy nepýtať"
 
-#: admin/class-admin-notices.php:363
+#: admin/class-admin-notices.php:418
 msgid "The review action value was not set"
 msgstr "Hodnota akcie pre recenziu nebola nastavená"
 
@@ -662,7 +704,7 @@ msgid "No summary to return"
 msgstr "Žiadny súhrn na vrátenie"
 
 #: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:905
+#: includes/classes/class-rest-api.php:915
 msgid "Invalid table name"
 msgstr "Neplatný názov tabuľky"
 
@@ -878,7 +920,7 @@ msgid "The id value was not set"
 msgstr "Hodnota id nebola nastavená"
 
 #: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1043
+#: includes/classes/class-rest-api.php:1053
 msgid "Post not found"
 msgstr "Príspevok sa nenašiel"
 
@@ -1457,11 +1499,11 @@ msgstr "Získajte Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získať Accessibility Checker Pro (otvorí sa v novom okne)"
 
-#: includes/classes/class-rest-api.php:1230
+#: includes/classes/class-rest-api.php:1240
 msgid "Issue not found."
 msgstr "Problém nebol nájdený."
 
-#: includes/classes/class-rest-api.php:1273
+#: includes/classes/class-rest-api.php:1283
 msgid "Failed to update the issue."
 msgstr "Nepodarilo sa aktualizovať problém."
 
@@ -1797,61 +1839,61 @@ msgstr "Úprava nebola nájdená"
 msgid "Fix not found."
 msgstr "Oprava nebola nájdená."
 
-#: includes/classes/MyDot/Connector.php:202
+#: includes/classes/MyDot/Connector.php:222
 msgid "You do not have permission to manage this license."
 msgstr "Nemáte oprávnenie spravovať túto licenciu."
 
-#: includes/classes/MyDot/Connector.php:238
-msgid "Pro license is active. Please deactivate the Pro license first if you want to use a free license."
-msgstr "Licencia Pro je aktívna. Ak chcete použiť bezplatnú licenciu, najprv deaktivujte licenciu Pro."
+#: includes/classes/MyDot/Connector.php:257
+msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
+msgstr "Správa Pro licencie je aktívna. Svoju licenciu spravujte z Accessibility Checker Pro."
 
-#: includes/classes/MyDot/Connector.php:268
+#: includes/classes/MyDot/Connector.php:286
 msgid "An error occurred, please try again."
 msgstr "Vyskytla sa chyba, skúste to prosím znova."
 
-#: includes/classes/MyDot/Connector.php:557
+#: includes/classes/MyDot/Connector.php:575
 msgid "You do not have permission to register this site."
 msgstr "Nemáte oprávnenie registrovať tento web."
 
-#: includes/classes/MyDot/Connector.php:578
+#: includes/classes/MyDot/Connector.php:596
 msgid "You do not have permission to unregister this site."
 msgstr "Nemáte oprávnenie zrušiť registráciu tohto webu."
 
-#: includes/classes/MyDot/Connector.php:604
+#: includes/classes/MyDot/Connector.php:622
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "Nenašiel sa žiadny licenčný kľúč. Pred registráciou vášho webu aktivujte licenciu."
 
-#: includes/classes/MyDot/Connector.php:615
-#: includes/classes/MyDot/Connector.php:822
+#: includes/classes/MyDot/Connector.php:633
+#: includes/classes/MyDot/Connector.php:840
 msgid "Unknown error occurred while registering the site."
 msgstr "Pri registrácii webu sa vyskytla neznáma chyba."
 
-#: includes/classes/MyDot/Connector.php:644
+#: includes/classes/MyDot/Connector.php:662
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "Web úspešne zaregistrovaný. Váš web je teraz nakonfigurovaný na používanie ďalších služieb prístupnosti."
 
-#: includes/classes/MyDot/Connector.php:654
+#: includes/classes/MyDot/Connector.php:672
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "Registrácia webu bola dokončená, ale údaje odpovede neboli v očakávanom formáte. Niektoré funkcie nemusia fungovať správne."
 
-#: includes/classes/MyDot/Connector.php:730
+#: includes/classes/MyDot/Connector.php:748
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "Nie je možné zrušiť registráciu webu. Chýbajú požadované registračné údaje."
 
-#: includes/classes/MyDot/Connector.php:747
-#: includes/classes/MyDot/Connector.php:880
+#: includes/classes/MyDot/Connector.php:765
+#: includes/classes/MyDot/Connector.php:898
 msgid "Unknown error occurred while unregistering the site."
 msgstr "Pri rušení registrácie webu sa vyskytla neznáma chyba."
 
-#: includes/classes/MyDot/Connector.php:762
+#: includes/classes/MyDot/Connector.php:780
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "Registrácia webu bola úspešne zrušená. Váš web už nebude dostávať e-mailové reporty."
 
-#: includes/classes/MyDot/Connector.php:785
+#: includes/classes/MyDot/Connector.php:803
 msgid "No license key provided."
 msgstr "Licenčný kľúč nebol poskytnutý."
 
-#: includes/classes/MyDot/Connector.php:843
+#: includes/classes/MyDot/Connector.php:861
 msgid "Missing required parameters for unregistration."
 msgstr "Chýbajú požadované parametre pre zrušenie registrácie."
 
@@ -2337,13 +2379,13 @@ msgstr "Tieto obrázky majú prázdne atribúty alt (%s)."
 msgid "Screen readers rely on alternative text to describe images to users who cannot see them. If the alt attribute is empty, it signals that the image is decorative and should be skipped. However, if a meaningful image has an empty alt attribute, users with visual impairments will miss important information. Proper use of alternative text improves accessibility and ensures all users can understand the content."
 msgstr "Čítačky obrazovky sa spoliehajú na alternatívny text na popis obrázkov používateľom, ktorí ich nemôžu vidieť. Ak je atribút alt prázdny, signalizuje to, že obrázok je dekoratívny a mal by byť preskočený. Ak však zmysluplný obrázok má prázdny atribút alt, používatelia so zrakovým postihnutím prídu o dôležité informácie. Správne použitie alternatívneho textu zlepšuje prístupnosť a zabezpečuje, že všetci používatelia môžu porozumieť obsahu."
 
-#. translators: %1$s is <code>alt=""</code> and %2$s is <code>role="presentation"</code>.
+#. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Prezri si obrázok a zisti, či je dekoratívny. Ak je dekoratívny, je správne použiť prázdny atribút %1$s a môžeš ignorovať toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker alebo pridaním %2$s k obrázku a opätovným skenovaním stránky. Ak obrázok poskytuje informácie, pridaj popisný alternatívny text, ktorý komunikuje účel alebo význam obrázka."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Skontrolujte obrázok, či je dekoratívny. Ak je dekoratívny, je správne použiť prázdny atribút %1$s a toto upozornenie môžete zamietnuť pomocou funkcie „Ignorovať“ v Accessibility Checker alebo pridaním %2$s alebo %3$s k obrázku a opätovným skenovaním stránky. Ak obrázok prenáša informácie, pridajte popisný alt text, ktorý oznamuje účel alebo význam obrázka."
 
-#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:47
+#: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
 msgstr "W3C Tutoriál o obrázkoch: Dekoratívne obrázky"
 
