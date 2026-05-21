@@ -336,4 +336,601 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$response2 = $this->server->dispatch( $request2 );
 		$this->assertSame( 403, $response2->get_status(), 'Subscriber without edit_posts should be denied scans stats by post types.' );
 	}
+
+	/**
+	 * Dismiss issue test data: post ID to object mapping.
+	 *
+	 * @var array
+	 */
+	protected static $dismiss_test_posts = [];
+
+	/**
+	 * Dismiss issue test data: issue IDs created for batch testing.
+	 *
+	 * @var array
+	 */
+	protected static $dismiss_test_issues = [];
+
+	/**
+	 * Set up dismiss-issue test fixtures.
+	 *
+	 * @param WP_UnitTest_Factory $factory Factory instance.
+	 * @return void
+	 */
+	public static function wpSetUpBeforeClass_DismissIssues( $factory ) {
+		// Create posts for dismiss tests.
+		self::$dismiss_test_posts['admin_post_1']   = $factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin Post 1',
+				'post_content' => 'Content 1',
+			]
+		);
+		self::$dismiss_test_posts['admin_post_2']   = $factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin Post 2',
+				'post_content' => 'Content 2',
+			]
+		);
+		self::$dismiss_test_posts['limited_post_1'] = $factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Limited Post 1',
+				'post_content' => 'Content Limited 1',
+			]
+		);
+		self::$dismiss_test_posts['limited_post_2'] = $factory->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Limited Post 2',
+				'post_content' => 'Content Limited 2',
+			]
+		);
+
+		// Create test issues in the accessibility_checker table.
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct DB calls required in tests.
+		// Single issue for testing single dismiss by authorized user.
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => self::$dismiss_test_posts['admin_post_1'],
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'test-rule-1',
+				'ruletype'     => 'error',
+				'object'       => 'single-issue-test-1',
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		self::$dismiss_test_issues['single_auth'] = $wpdb->insert_id;
+
+		// Batch of issues for testing batch dismiss with all authorized.
+		$batch_object = 'batch-issue-test-all-auth';
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'       => self::$dismiss_test_posts['limited_post_1'],
+					'siteid'       => $site_id,
+					'type'         => 'error',
+					'rule'         => 'test-rule-batch-' . $i,
+					'ruletype'     => 'error',
+					'object'       => $batch_object,
+					'recordcheck'  => 1,
+					'user'         => self::$limited_id,
+					'ignre'        => 0,
+					'ignre_global' => 0,
+				],
+				[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+			);
+			self::$dismiss_test_issues[ "batch_all_auth_$i" ] = $wpdb->insert_id;
+		}
+
+		// Batch of issues for testing batch dismiss with partial authorization.
+		$batch_object_partial = 'batch-issue-test-partial-auth';
+		// First issue: limited user can edit their own post.
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => self::$dismiss_test_posts['limited_post_1'],
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'test-rule-partial-1',
+				'ruletype'     => 'error',
+				'object'       => $batch_object_partial,
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		self::$dismiss_test_issues['batch_partial_auth_1'] = $wpdb->insert_id;
+
+		// Second issue: same batch but different post (admin's post - limited user cannot edit).
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => self::$dismiss_test_posts['admin_post_1'],
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'test-rule-partial-2',
+				'ruletype'     => 'error',
+				'object'       => $batch_object_partial,
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		self::$dismiss_test_issues['batch_partial_auth_2'] = $wpdb->insert_id;
+
+		// Batch of issues for testing batch dismiss with no authorization.
+		$batch_object_no_auth = 'batch-issue-test-no-auth';
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'       => self::$dismiss_test_posts['admin_post_1'],
+					'siteid'       => $site_id,
+					'type'         => 'error',
+					'rule'         => 'test-rule-no-auth-' . $i,
+					'ruletype'     => 'error',
+					'object'       => $batch_object_no_auth,
+					'recordcheck'  => 1,
+					'user'         => self::$admin_id,
+					'ignre'        => 0,
+					'ignre_global' => 0,
+				],
+				[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+			);
+			self::$dismiss_test_issues[ "batch_no_auth_$i" ] = $wpdb->insert_id;
+		}
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+	}
+
+	/**
+	 * Test: Single issue dismissed by authorized user succeeds.
+	 *
+	 * Verifies that an authorized user can dismiss a single issue and
+	 * the response contains correct data.
+	 *
+	 * @return void
+	 */
+	public function test_single_issue_dismiss_authorized_user() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Set limited user (who can edit their own posts).
+		wp_set_current_user( self::$limited_id );
+
+		// Create a test issue on the limited user's own post.
+		$own_post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Test Single Issue Post',
+				'post_content' => 'Test content',
+			]
+		);
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $own_post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'single-auth-test',
+				'ruletype'     => 'error',
+				'object'       => 'single-authorized-test',
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+
+		$issue_id = $wpdb->insert_id;
+
+		// Make the dismiss request.
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'Intentional' );
+		$request->set_param( 'comment', 'This is intentional' );
+		$request->set_param( 'ignore_global', 0 );
+
+		$response = $this->server->dispatch( $request );
+
+		// Verify response is successful.
+		$this->assertSame( 200, $response->get_status(), 'Single issue dismiss by authorized user should return 200.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertSame( $issue_id, $data['issue_id'] );
+		$this->assertSame( 'dismiss', $data['action'] );
+		$this->assertSame( 1, $data['ignre'] );
+		$this->assertSame( self::$limited_id, $data['ignre_user'] );
+
+		// Verify database was updated.
+		$updated_issue = $wpdb->get_row(
+			$wpdb->prepare( 'SELECT ignre, ignre_reason, ignre_comment FROM %i WHERE id = %d', $table_name, $issue_id ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$this->assertSame( '1', $updated_issue['ignre'] );
+		$this->assertSame( 'Intentional', $updated_issue['ignre_reason'] );
+		$this->assertSame( 'This is intentional', $updated_issue['ignre_comment'] );
+	}
+
+	/**
+	 * Test: Single issue dismissed by unauthorized user fails with 403.
+	 *
+	 * Verifies that a user without edit_post capability for the post
+	 * receives a 403 Forbidden response when attempting to dismiss an issue.
+	 *
+	 * @return void
+	 */
+	public function test_single_issue_dismiss_unauthorized_user() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Create issue on admin's post.
+		$admin_post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Test Admin Post Unauthorized',
+				'post_content' => 'Test content',
+			]
+		);
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $admin_post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'single-unauth-test',
+				'ruletype'     => 'error',
+				'object'       => 'single-unauthorized-test',
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+
+		$issue_id = $wpdb->insert_id;
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		// Set limited user (who cannot edit admin's post).
+		wp_set_current_user( self::$limited_id );
+
+		// Make the dismiss request.
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+
+		$response = $this->server->dispatch( $request );
+
+		// Verify response is 403 Forbidden.
+		$this->assertSame( 403, $response->get_status(), 'Single issue dismiss by unauthorized user should return 403.' );
+	}
+
+	/**
+	 * Test: Large batch dismissed by user with edit permission on all posts succeeds.
+	 *
+	 * Verifies that when a user has edit_post capability for all posts
+	 * in a large batch, the endpoint dismisses all issues with one bulk
+	 * UPDATE query and returns success.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_authorized_on_all() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Create posts for batch test (limited user owns all).
+		$post_1 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Batch Post 1',
+				'post_content' => 'Batch Content 1',
+			]
+		);
+
+		$post_2 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Batch Post 2',
+				'post_content' => 'Batch Content 2',
+			]
+		);
+
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$site_id      = get_current_blog_id();
+		$batch_object = 'batch-all-authorized-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// Create multiple issues with the same object (batch).
+		$issue_ids = [];
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$post_id = ( $i <= 2 ) ? $post_1 : $post_2;
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'       => $post_id,
+					'siteid'       => $site_id,
+					'type'         => 'error',
+					'rule'         => 'batch-auth-test-' . $i,
+					'ruletype'     => 'error',
+					'object'       => $batch_object,
+					'recordcheck'  => 1,
+					'user'         => self::$limited_id,
+					'ignre'        => 0,
+					'ignre_global' => 0,
+				],
+				[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+			);
+			$issue_ids[ $i ] = $wpdb->insert_id;
+		}
+
+		// Set limited user (who owns all posts).
+		wp_set_current_user( self::$limited_id );
+
+		// Make the dismiss request with largeBatch flag.
+		$first_issue_id = $issue_ids[1];
+		$request        = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $first_issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'Batch intentional' );
+		$request->set_param( 'largeBatch', true );
+		$request->set_param( 'ignore_global', 0 );
+
+		$response = $this->server->dispatch( $request );
+
+		// Verify response is successful.
+		$this->assertSame( 200, $response->get_status(), 'Large batch dismiss by fully authorized user should return 200.' );
+		$data = $response->get_data();
+		$this->assertIsArray( $data );
+		$this->assertTrue( $data['success'] );
+		$this->assertTrue( $data['large_batch'] );
+
+		// Verify ALL issues in the batch were updated.
+		$updated_issues = $wpdb->get_results(
+			$wpdb->prepare( 'SELECT id, ignre FROM %i WHERE object = %s ORDER BY id', $table_name, $batch_object ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$this->assertCount( 3, $updated_issues, 'All 3 issues in the batch should be updated.' );
+		foreach ( $updated_issues as $issue ) {
+			$this->assertSame( '1', $issue['ignre'], 'All issues in batch should have ignre = 1.' );
+		}
+	}
+
+	/**
+	 * Test: Large batch dismissed by user with partial authorization fails before bulk query.
+	 *
+	 * Verifies that when a user can edit only SOME posts in a large batch,
+	 * the endpoint returns rest_forbidden BEFORE executing the bulk UPDATE query,
+	 * ensuring no data is modified when permission checks fail.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_authorized_on_some() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Create posts: one owned by limited_id, one by admin_id.
+		$limited_post = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Limited Batch Post',
+				'post_content' => 'Limited Batch Content',
+			]
+		);
+
+		$admin_post = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin Batch Post',
+				'post_content' => 'Admin Batch Content',
+			]
+		);
+
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$site_id      = get_current_blog_id();
+		$batch_object = 'batch-partial-authorized-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// Create first issue on limited_id's post (limited user CAN edit).
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $limited_post,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'batch-partial-1',
+				'ruletype'     => 'error',
+				'object'       => $batch_object,
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$first_issue_id = $wpdb->insert_id;
+
+		// Create second issue on admin_id's post (limited user CANNOT edit).
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $admin_post,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'batch-partial-2',
+				'ruletype'     => 'error',
+				'object'       => $batch_object,
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+
+		// Set limited user.
+		wp_set_current_user( self::$limited_id );
+
+		// Make the dismiss request with largeBatch flag.
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $first_issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'largeBatch', true );
+
+		$response = $this->server->dispatch( $request );
+
+		// Verify response is 403 Forbidden.
+		$this->assertSame( 403, $response->get_status(), 'Large batch dismiss with partial authorization should return 403.' );
+
+		// Verify NO issues were updated (permission check failed before bulk query).
+		$updated_issues = $wpdb->get_results(
+			$wpdb->prepare( 'SELECT id, ignre FROM %i WHERE object = %s', $table_name, $batch_object ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		foreach ( $updated_issues as $issue ) {
+			$this->assertSame( '0', $issue['ignre'], 'No issues should be updated when permission check fails.' );
+		}
+	}
+
+	/**
+	 * Test: Large batch dismissed by user with no authorization fails.
+	 *
+	 * Verifies that when a user cannot edit ANY posts in a large batch,
+	 * the endpoint returns rest_forbidden immediately and no data is modified.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_unauthorized_on_all() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Create posts all owned by admin_id.
+		$admin_post_1 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin Batch Post 1',
+				'post_content' => 'Admin Batch Content 1',
+			]
+		);
+
+		$admin_post_2 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin Batch Post 2',
+				'post_content' => 'Admin Batch Content 2',
+			]
+		);
+
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$site_id      = get_current_blog_id();
+		$batch_object = 'batch-no-authorized-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// Create multiple issues all on admin's posts.
+		$issue_ids = [];
+		for ( $i = 1; $i <= 3; $i++ ) {
+			$post_id = ( $i <= 2 ) ? $admin_post_1 : $admin_post_2;
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'       => $post_id,
+					'siteid'       => $site_id,
+					'type'         => 'error',
+					'rule'         => 'batch-no-auth-' . $i,
+					'ruletype'     => 'error',
+					'object'       => $batch_object,
+					'recordcheck'  => 1,
+					'user'         => self::$admin_id,
+					'ignre'        => 0,
+					'ignre_global' => 0,
+				],
+				[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+			);
+			$issue_ids[ $i ] = $wpdb->insert_id;
+		}
+
+		// Set limited user (who cannot edit admin's posts).
+		wp_set_current_user( self::$limited_id );
+
+		// Make the dismiss request with largeBatch flag.
+		$first_issue_id = $issue_ids[1];
+		$request        = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $first_issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'largeBatch', true );
+
+		$response = $this->server->dispatch( $request );
+
+		// Verify response is 403 Forbidden.
+		$this->assertSame( 403, $response->get_status(), 'Large batch dismiss by completely unauthorized user should return 403.' );
+
+		// Verify NO issues were updated.
+		$updated_issues = $wpdb->get_results(
+			$wpdb->prepare( 'SELECT id, ignre FROM %i WHERE object = %s', $table_name, $batch_object ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		foreach ( $updated_issues as $issue ) {
+			$this->assertSame( '0', $issue['ignre'], 'No issues should be updated when user lacks edit permission on all posts.' );
+		}
+	}
 }
