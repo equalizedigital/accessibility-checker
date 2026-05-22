@@ -28,6 +28,14 @@ export const initSettingsTabKeyboardHandlers = () => {
 
 	tabs.forEach( ( tab, index ) => {
 		tab.addEventListener( 'keydown', ( event ) => {
+			// Space doesn't activate <a> elements natively the way it does buttons,
+			// so we handle it explicitly to satisfy the ARIA tab keyboard contract.
+			if ( event.key === ' ' ) {
+				event.preventDefault();
+				window.location.href = tab.href;
+				return;
+			}
+
 			let newIndex = null;
 
 			if ( event.key === 'ArrowRight' ) {
