@@ -1770,8 +1770,15 @@ class AccessibilityCheckerHighlight {
 	 */
 	kickoffScan() {
 		const getPageDensity = () => {
-			const elementCount = document.body.getElementsByTagName( '*' ).length;
-			const contentLength = document.body.innerText.length;
+			// Clone body to avoid modifying the original, and strip scripts/styles
+			// to match the pageScanner density helper calculation.
+			const bodyClone = document.body.cloneNode( true );
+			[ 'style', 'script' ].forEach( ( tag ) => {
+				bodyClone.querySelectorAll( tag ).forEach( ( el ) => el.remove() );
+			} );
+			const elementCount = bodyClone.getElementsByTagName( '*' ).length;
+			// Count only alphanumeric characters to match pageScanner helper.
+			const contentLength = ( bodyClone.textContent || '' ).replace( /[^A-Za-z0-9]/g, '' ).length;
 			return { elementCount, contentLength };
 		};
 		const densityMetrics = getPageDensity();
