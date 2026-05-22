@@ -1870,7 +1870,8 @@ class AccessibilityCheckerHighlight {
 
 	saveScanResults( postId, nonce, violations, densityMetrics ) {
 		const self = this;
-		return fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+		const baseUrl = window.edacFrontendHighlighterApp?.edacUrl || '';
+		return fetch( `${ baseUrl }/wp-json/accessibility-checker/v1/post-scan-results/${ postId }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
