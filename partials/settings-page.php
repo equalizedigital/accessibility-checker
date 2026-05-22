@@ -95,6 +95,7 @@ if ( 'license' === $edac_settings_tab && array_search( 'license', array_column( 
 }
 
 $edac_settings_tab     = ( array_search( $edac_settings_tab, array_column( $edac_settings_tab_items, 'slug' ), true ) !== false ) ? $edac_settings_tab : $edac_default_tab;
+$edac_active_tab_id    = 'edac-settings-tab-' . ( $edac_settings_tab ?? 'general' );
 $edac_settings_classes = [ 'wrap', 'edac-settings' ];
 
 if ( ! EDAC_KEY_VALID ) {
@@ -112,22 +113,24 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 
 	<?php
 	if ( $edac_settings_tab_items ) {
-		echo '<nav class="nav-tab-wrapper" aria-label="Settings Tabs">';
+		echo '<nav class="nav-tab-wrapper" role="tablist" aria-label="' . esc_attr__( 'Settings Tabs', 'accessibility-checker' ) . '">';
 		foreach ( $edac_settings_tab_items as $edac_settings_tab_item ) {
 			$edac_slug      = $edac_settings_tab_item['slug'] ? $edac_settings_tab_item['slug'] : null;
 			$edac_query_var = $edac_slug ? '&tab=' . $edac_slug : '';
 			$edac_label     = $edac_settings_tab_item['label'];
 			$edac_badge     = $edac_settings_tab_item['badge'] ?? '';
+			$edac_tab_id    = 'edac-settings-tab-' . ( $edac_slug ?? 'general' );
+			$edac_is_active = $edac_settings_tab === $edac_slug;
 			?>
 			<a
-			<?php
-			if ( $edac_settings_tab === $edac_slug ) :
-				?>
-				aria-current="true" <?php endif; ?>href="?page=accessibility_checker_settings<?php echo esc_html( $edac_query_var ); ?>" class="nav-tab
-				<?php
-				if ( $edac_settings_tab === $edac_slug ) :
-					?>
-				nav-tab-active<?php endif; ?>">
+				role="tab"
+				id="<?php echo esc_attr( $edac_tab_id ); ?>"
+				aria-selected="<?php echo $edac_is_active ? 'true' : 'false'; ?>"
+				aria-controls="edac-settings-tab-content"
+				<?php if ( ! $edac_is_active ) : ?>tabindex="-1"<?php endif; ?>
+				href="?page=accessibility_checker_settings<?php echo esc_html( $edac_query_var ); ?>"
+				class="nav-tab<?php if ( $edac_is_active ) : ?> nav-tab-active<?php endif; ?>"
+			>
 				<span class="edac-settings-tab__label"><?php echo esc_html( $edac_label ); ?></span>
 				<?php if ( $edac_badge ) : ?>
 					<span class="edac-settings-tab__badge"><?php echo esc_html( $edac_badge ); ?></span>
@@ -139,7 +142,7 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 	}
 	?>
 
-	<div class="tab-content">
+	<div id="edac-settings-tab-content" role="tabpanel" aria-labelledby="<?php echo esc_attr( $edac_active_tab_id ); ?>" class="tab-content">
 
 		<?php if ( null === $edac_settings_tab ) { ?>
 			<div class="edac-settings-general

@@ -9,6 +9,7 @@ import {
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
+import { initSettingsTabKeyboardHandlers } from './settings/settings-tab-keyboard-handlers';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -21,6 +22,8 @@ const edacScriptVars = edac_script_vars;
 			initFixesInputStateHandler();
 			initRequiredSetup();
 		}
+
+		initSettingsTabKeyboardHandlers();
 
 		if ( document.querySelector( '.edac-fix--upsell, .edac-setting--upsell' ) ) {
 			inlineSettingsProUpsell();
