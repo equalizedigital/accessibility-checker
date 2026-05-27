@@ -65,7 +65,7 @@ class Plugin_List_Tab {
 	 * @return array<string, array<string, array<string, string>>> The filtered plugins list.
 	 */
 	public function filter_plugins_list( $plugins ) {
-		if ( ! \is_array( $plugins ) || ! isset( $plugins['all'] ) ) {
+		if ( ! \is_array( $plugins ) || ! isset( $plugins['all'] ) || ! \is_array( $plugins['all'] ) ) {
 			return $plugins;
 		}
 
@@ -101,7 +101,8 @@ class Plugin_List_Tab {
 			return $text;
 		}
 
-		return \_nx( 'Equalize Digital', 'Equalize Digital', $count, 'plugin status', 'accessibility-checker' );
+		// translators: %s: Number of plugins.
+		return \_nx( 'Equalize Digital <span class="count">(%s)</span>', 'Equalize Digital <span class="count">(%s)</span>', $count, 'plugin status', 'accessibility-checker' );
 	}
 
 	/**
@@ -118,6 +119,6 @@ class Plugin_List_Tab {
 			return false;
 		}
 
-		return false !== \strpos( $plugin_data['AuthorURI'], 'equalizedigital.com' );
+		return false !== \stripos( $plugin_data['AuthorURI'], 'equalizedigital.com' );
 	}
 }
