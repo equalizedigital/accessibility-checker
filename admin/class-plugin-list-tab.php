@@ -90,18 +90,18 @@ class Plugin_List_Tab {
 	 *
 	 * @since 1.43.0
 	 *
-	 * @param string $text  The current status text.
-	 * @param int    $count The number of plugins with this status.
-	 * @param string $type  The status type slug.
+	 * @param string $text   The current status text.
+	 * @param int    $_count Unused — "Equalize Digital" does not inflect by count.
+	 * @param string $type   The status type slug.
 	 *
 	 * @return string The status text.
 	 */
-	public function get_status_text( $text, $count, $type ) {
+	public function get_status_text( $text, $_count, $type ) {
 		if ( self::STATUS_SLUG !== $type ) {
 			return $text;
 		}
 
-		return \_nx( 'Equalize Digital', 'Equalize Digital', $count, 'plugin status', 'accessibility-checker' );
+		return \_\_( 'Equalize Digital', 'accessibility-checker' );
 	}
 
 	/**
