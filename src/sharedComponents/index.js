@@ -7,3 +7,12 @@
  */
 export { default as Icon } from '../sidebar/components/Icon';
 export { default as Badge } from '../sidebar/components/Badge';
+export { default as ExternalLinkIcon } from '../sidebar/components/ExternalLinkIcon';
+export {
+	DISMISS_REASONS,
+	getDismissReasonOptions,
+	getDismissReasonLabel,
+	getDismissReasonDescription,
+} from '../sidebar/utils/dismissHelpers';
+export { default as RichTextarea } from '../issueModal/components/RichTextarea';
+export { default as IssueImage, extractImageUrls } from '../issueModal/components/IssueImage';
