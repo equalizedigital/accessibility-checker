@@ -26,7 +26,7 @@ class Plugin_List_Tab {
 	 *
 	 * @var int
 	 */
-	const MINIMUM_FOR_TAB = 2;
+	const MINIMUM_FOR_TAB = 3;
 
 	/**
 	 * The status slug used for the Equalize Digital tab.
