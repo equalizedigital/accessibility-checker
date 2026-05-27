@@ -14,6 +14,7 @@ use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
+use EqualizeDigital\AccessibilityChecker\Admin\Plugin_List_Tab;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
