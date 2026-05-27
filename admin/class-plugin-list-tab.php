@@ -101,8 +101,7 @@ class Plugin_List_Tab {
 			return $text;
 		}
 
-		// translators: %s: Number of plugins.
-		return \_nx( 'Equalize Digital <span class="count">(%s)</span>', 'Equalize Digital <span class="count">(%s)</span>', $count, 'plugin status', 'accessibility-checker' );
+		return \_nx( 'Equalize Digital', 'Equalize Digital', $count, 'plugin status', 'accessibility-checker' );
 	}
 
 	/**
