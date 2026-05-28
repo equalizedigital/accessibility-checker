@@ -1330,8 +1330,8 @@ msgstr "Вміст перевіряється на доступність"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker просканував %s запис на наявність проблем доступності."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker просканував %s записи на наявність проблем доступності."
+msgstr[2] "Accessibility Checker просканував %s записів на наявність проблем доступності."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1354,7 +1354,7 @@ msgstr "Типи публікацій налаштовані для переві
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker налаштований на сканування %1$s типу публікацій: %2$s."
+msgstr[0] "Accessibility Checker налаштовано для сканування %1$s типу записів: %2$s."
 msgstr[1] "Accessibility Checker налаштовано для сканування %1$s типів записів: %2$s."
 msgstr[2] "Accessibility Checker налаштовано для сканування %1$s типів записів: %2$s."
 

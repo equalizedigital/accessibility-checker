@@ -1315,7 +1315,7 @@ msgstr "正在检查内容的无障碍性"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker 已扫描 %s 篇文章的无障碍问题。"
+msgstr[0] "Accessibility Checker 已扫描 %s 篇文章以查找辅助功能问题。"
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"

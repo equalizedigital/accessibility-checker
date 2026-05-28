@@ -1315,7 +1315,7 @@ msgstr "กำลังตรวจสอบเนื้อหาสำหรั
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker ได้สแกนโพสต์ %s รายการเพื่อตรวจหาปัญหาด้านการเข้าถึง"
+msgstr[0] "Accessibility Checker ได้สแกน %s โพสต์สำหรับปัญหาการเข้าถึง"
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"

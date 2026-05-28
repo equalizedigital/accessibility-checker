@@ -1337,8 +1337,8 @@ msgstr "Vsebina se preverja za dostopnost"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker je pregledal %s objavo za težave z dostopnostjo."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker je pregledal %s objavi za težave z dostopnostjo."
+msgstr[2] "Accessibility Checker je pregledal %s objave za težave z dostopnostjo."
 msgstr[3] "Accessibility Checker je pregledal %s objav za težave z dostopnostjo."
 
 #: admin/site-health/class-checks.php:200
