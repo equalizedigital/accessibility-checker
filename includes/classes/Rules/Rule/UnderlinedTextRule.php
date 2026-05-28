@@ -38,7 +38,7 @@ class UnderlinedTextRule implements RuleInterface {
 				'<code>text-decoration: underline;</code>'
 			),
 			'why_it_matters'        => esc_html__( 'Underlined text is commonly associated with links. When non-link text is underlined, it can be confusing for users, especially those with cognitive disabilities or those relying on visual cues to identify links.', 'accessibility-checker' ),
-			'how_to_fix'            => esc_html__( 'Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'how_to_fix'            => esc_html__( 'Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 			'references'            => [],
 			'ruleset'               => 'js',
 			'wcag'                  => '1.3.1',
