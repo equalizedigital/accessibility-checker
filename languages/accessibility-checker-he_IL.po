@@ -1323,7 +1323,7 @@ msgstr "התוכן נבדק לנגישות"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker סרק %s פוסט עבור בעיות נגישות."
-msgstr[1] "Accessibility Checker סרק %s פוסטים לבעיות נגישות."
+msgstr[1] "Accessibility Checker סרק %s פוסטים עבור בעיות נגישות."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1346,7 +1346,7 @@ msgstr "סוגי פוסטים מוגדרים לבדיקת נגישות"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker מוגדר לסרוק סוג פוסט %1$s: %2$s."
+msgstr[0] "Accessibility Checker מוגדר לסרוק %1$s סוג פוסט: %2$s."
 msgstr[1] "Accessibility Checker מוגדר לסרוק %1$s סוגי פוסטים: %2$s."
 
 #: admin/site-health/class-free.php:46
