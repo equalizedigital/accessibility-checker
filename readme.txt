@@ -279,6 +279,12 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-05-28 - version 1.43.0
+* Updated - improved empty alt warnings for images that are inside buttons with accessible names.
+* Updated - improved empty button checks for elements hidden from screen readers and keyboard users.
+* Updated - more strings translated into other languages.
+* Updated - hardened the dismiss issue REST endpoints against edge cases.
+
 2026-05-20 - version 1.42.1
 * Updated - improved permission handling for the ignore feature.
 
