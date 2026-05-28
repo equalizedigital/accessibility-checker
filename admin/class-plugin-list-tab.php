@@ -101,7 +101,7 @@ class Plugin_List_Tab {
 			return $text;
 		}
 
-		return \_\_( 'Equalize Digital', 'accessibility-checker' );
+		return \__( 'Equalize Digital', 'accessibility-checker' );
 	}
 
 	/**
