@@ -1330,7 +1330,7 @@ msgstr "Conținutul este verificat pentru accesibilitate"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker a scanat %s postare pentru probleme de accesibilitate."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker a scanat %s postări pentru probleme de accesibilitate."
 msgstr[2] "Accessibility Checker a scanat %s postări pentru probleme de accesibilitate."
 
 #: admin/site-health/class-checks.php:200
