@@ -1330,8 +1330,8 @@ msgstr "Turinys tikrinamas dėl prieinamumo"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker nuskenavo %s įrašą dėl prieinamumo problemų."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker nuskenavo %s įrašus dėl prieinamumo problemų."
+msgstr[1] "Accessibility Checker nuskenavo %s įrašus dėl prieinamumo problemų."
+msgstr[2] "Accessibility Checker nuskenavo %s įrašų dėl prieinamumo problemų."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1354,7 +1354,7 @@ msgstr "Įrašų tipai sukonfigūruoti prieinamumo tikrinimui"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker sukonfigūruotas skenuoti %1$s įrašo tipą: %2$s."
+msgstr[0] "Accessibility Checker sukonfigūruotas nuskenuoti %1$s įrašo tipą: %2$s."
 msgstr[1] "Accessibility Checker sukonfigūruotas nuskenuoti %1$s įrašų tipus: %2$s."
 msgstr[2] "Accessibility Checker sukonfigūruotas nuskenuoti %1$s įrašų tipus: %2$s."
 
