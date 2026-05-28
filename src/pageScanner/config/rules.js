@@ -119,7 +119,12 @@ export const checksArray = [
 	hasAmbiguousText,
 	anchorExists,
 	imageInputHasAlt,
-	ariaHiddenValidUsage,
+	{
+		...ariaHiddenValidUsage,
+		options: {
+			exclusions: window?.scanOptions?.ruleExclusions?.aria_hidden || [],
+		},
+	},
 	tableHasHeaders,
 	headingIsEmpty,
 	transcriptMissing,

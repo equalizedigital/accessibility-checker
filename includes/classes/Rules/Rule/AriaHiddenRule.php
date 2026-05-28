@@ -62,6 +62,11 @@ class AriaHiddenRule implements RuleInterface {
 			'combines'              => [
 				'aria_hidden_validation',
 			],
+			'exclusions'            => [
+				'.wp-block-spacer',
+				'.wp-block-cover__background.has-background-dim',
+				'.wp-block-post-featured-image__overlay.has-background-dim',
+			],
 		];
 	}
 }

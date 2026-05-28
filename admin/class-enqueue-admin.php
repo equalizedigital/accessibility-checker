@@ -133,18 +133,19 @@ class Enqueue_Admin {
 					'edac-editor-app',
 					'edac_editor_app',
 					[
-						'postID'       => $post_id,
-						'edacUrl'      => esc_url_raw( get_site_url() ),
-						'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'      => plugin_dir_url( __DIR__ ),
-						'active'       => $active,
-						'pro'          => $pro,
-						'debug'        => $debug,
-						'scanUrl'      => $scan_url,
-						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
-						'version'      => EDAC_VERSION,
-						'postStatus'   => get_post_status( $post_id ),
-						'restNonce'    => wp_create_nonce( 'wp_rest' ),
+						'postID'         => $post_id,
+						'edacUrl'        => esc_url_raw( get_site_url() ),
+						'edacApiUrl'     => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+						'baseurl'        => plugin_dir_url( __DIR__ ),
+						'active'         => $active,
+						'pro'            => $pro,
+						'debug'          => $debug,
+						'scanUrl'        => $scan_url,
+						'maxAltLength'   => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
+						'ruleExclusions' => self::get_rule_exclusions(),
+						'version'        => EDAC_VERSION,
+						'postStatus'     => get_post_status( $post_id ),
+						'restNonce'      => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 
@@ -447,5 +448,20 @@ class Enqueue_Admin {
 	 */
 	private static function get_current_page_slug(): ?string {
 		return isset( $_GET['page'] ) ? sanitize_key( wp_unslash( $_GET['page'] ) ) : null; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- display only.
+	}
+
+	/**
+	 * Build a map of rule slug => exclusion selectors for rules that declare exclusions.
+	 *
+	 * @return array<string, string[]>
+	 */
+	private static function get_rule_exclusions(): array {
+		$exclusions = [];
+		foreach ( edac_register_rules() as $rule ) {
+			if ( ! empty( $rule['exclusions'] ) ) {
+				$exclusions[ $rule['slug'] ] = $rule['exclusions'];
+			}
+		}
+		return $exclusions;
 	}
 }

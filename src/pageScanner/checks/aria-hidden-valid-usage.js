@@ -14,16 +14,19 @@ const srClasses = [
 
 export default {
 	id: 'aria_hidden_valid_usage',
-	evaluate: ( node ) => {
+	evaluate: ( node, options = {} ) => {
 		// Check if element is hidden with CSS
 		const computedStyle = window.getComputedStyle( node );
 		if ( computedStyle.display === 'none' || computedStyle.visibility === 'hidden' ) {
 			return true;
 		}
 
-		// Check for valid element properties
-		if ( node.classList.contains( 'wp-block-spacer' ) ) {
-			return true;
+		// Check against configured exclusion selectors.
+		const exclusions = options?.exclusions || [];
+		for ( const selector of exclusions ) {
+			if ( node.matches( selector ) ) {
+				return true;
+			}
 		}
 
 		const role = node.getAttribute( 'role' );
