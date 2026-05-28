@@ -1323,7 +1323,7 @@ msgstr "A tartalom akadálymentesítés szempontjából ellenőrzés alatt áll"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Az Accessibility Checker %s bejegyzést vizsgált át akadálymentességi problémák szempontjából."
-msgstr[1] "Az Accessibility Checker %s bejegyzést vizsgált át akadálymentesítési problémák szempontjából."
+msgstr[1] "Az Accessibility Checker %s bejegyzést vizsgált át akadálymentességi problémák szempontjából."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1346,7 +1346,7 @@ msgstr "A bejegyzéstípusok be vannak állítva az akadálymentesítési ellen�
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Az Accessibility Checker %1$s bejegyzéstípus vizsgálatára van beállítva: %2$s."
+msgstr[0] "Az Accessibility Checker %1$s bejegyzéstípust vizsgálja: %2$s."
 msgstr[1] "Az Accessibility Checker %1$s bejegyzéstípust vizsgálja: %2$s."
 
 #: admin/site-health/class-free.php:46
