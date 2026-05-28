@@ -157,12 +157,18 @@ function edac_days_active() {
 /**
  * Custom Post Types
  *
+ * Returns only non-built-in post types that are publicly viewable, meaning
+ * both public and publicly_queryable are true. Post types that redirect
+ * frontend requests (publicly_queryable = false) are excluded so they do
+ * not appear as scan targets in settings.
+ *
  * @return array
  */
 function edac_custom_post_types() {
 	$args = [
-		'public'   => true,
-		'_builtin' => false,
+		'public'             => true,
+		'publicly_queryable' => true,
+		'_builtin'           => false,
 	];
 
 	$output   = 'names'; // names or objects, note names is the default.

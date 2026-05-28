@@ -1,5 +1,29 @@
 *** Accessibility Checker ***
 
+2026-05-20 - version 1.42.1
+* Updated - improved permission handling for the ignore feature.
+
+2026-05-18 - version 1.42.0
+* Updated - add support for role="none" in several of the link and image alt related rules.
+* Updated - added support for named anchors as jump links.
+* New - added system info checker for compatibility checking of plugins and themes.
+
+2026-05-13 - version 1.41.0
+* Updated - the possible heading rule now accounts for elements with role="heading" appropriately.
+* Fix - several language translations are now properly detected by WordPress when using them.
+* Fix - harden the frontend highlighter scanner against caching when updated.
+* Fix - email report checks now defer to the pro plugin when installed to avoid conflicts.
+* Fix - Text size too small check no longer produces false positives on screen-reader-only (visually hidden) elements.
+
+2026-04-21 - version 1.40.0
+* New - Screen reader only text format support in the Block Editor and frontend.
+* New - Email reports opt-in added for site summaries.
+* New - Frontend highlighter UI update and positioning options added.
+* Fix - Article landmark labels now correctly display "Landmark: Article".
+* Changed - Missing Table Header checks now correctly skip tables marked with role="presentation" or role="none".
+* Changed - Table header detection now better handles colspan, rowspan, and ARIA header relationships.
+* Changed - Orphaned issue cleanup now runs twice daily for fresher issue data.
+
 2026-03-17 - version 1.39.0
 * New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.
 * New - Setting to hide the legacy metabox in the Block Editor.

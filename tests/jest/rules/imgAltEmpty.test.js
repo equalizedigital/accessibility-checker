@@ -67,6 +67,11 @@ describe( 'Image Alt Empty Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for img with role="none presentation" (multi-value token)',
+			html: '<img src="decorative.jpg" alt="" role="none presentation">',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for img without alt attribute',
 			html: '<img src="test.jpg">',
 			shouldPass: true, // This check is specifically for empty alt attributes, not missing ones

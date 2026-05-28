@@ -719,6 +719,208 @@
   }
 }
 
+.nav-tab-wrapper .nav-tab {
+  .edac-settings-tab__label,
+  .edac-settings-tab__badge {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .edac-settings-tab__badge {
+    margin-left: 8px;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: #ffcc17;
+    color: #101828;
+    font-size: 0.875em;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+}
+
+.edac-reports-page {
+  margin-top: 24px;
+  display: grid;
+  gap: 16px;
+
+  * {
+    box-sizing: border-box;
+  }
+
+  @include helpers.breakpoint(lg) {
+    grid-template-columns: minmax(0, 1fr) 320px;
+    align-items: start;
+  }
+
+  &__main {
+    display: grid;
+    gap: 24px;
+
+    min-width: 0;
+  }
+
+  &__panel {
+
+    h2 {
+      margin: 0 0 24px;
+    }
+  }
+
+  &__intro {
+    max-width: 980px;
+    margin: 0 0 32px;
+  }
+
+  &__single-action {
+    margin-top: 24px;
+  }
+
+  &__button {
+    min-height: 52px;
+    padding: 0 20px;
+    border-radius: 8px;
+  }
+
+  &__button--secondary {
+    color: #3f5bf6;
+    border-color: #3f5bf6;
+    background: #fff;
+  }
+
+  &__license-input,
+  &__license-mask {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0 0 20px;
+    padding: 18px 20px;
+    border: 1px solid #b5bcc4;
+    border-radius: 0;
+    background: #fff;
+  }
+
+  &__license-mask {
+    color: #1d2327;
+  }
+
+  &__legal {
+    margin: 24px 0 0;
+  }
+}
+
+.edac-reports-grid {
+  display: grid;
+  gap: 13px;
+
+  &--two {
+    @include helpers.breakpoint(md) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+.edac-reports-card {
+  padding: 26px 28px 30px;
+  border: 1px solid #d7dce1;
+  border-radius: 10px;
+  background: #fff;
+
+  h3 {
+    margin: 0 0 18px;
+  }
+
+  ul {
+    margin: 0 0 20px 20px;
+    list-style-type: disc;
+  }
+
+  &__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #117d11;
+    flex: 0 0 auto;
+  }
+
+  &__status-icon {
+    display: inline-flex;
+    width: 27px;
+    height: 27px;
+  }
+
+  &__status-icon svg {
+    display: inline-flex;
+    width: 27px;
+    height: 27px;
+  }
+
+  &__status--warning {
+    border-color: #d17b00;
+    color: #d17b00;
+  }
+
+  &__meta {
+    display: grid;
+    gap: 4px;
+    margin: 20px 0 28px;
+  }
+}
+
+.edac-reports-stat {
+  text-align: center;
+  padding-top: 28px;
+
+  &__label {
+    margin-bottom: 10px;
+    color: #1d2327;
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+
+  &__value {
+    color: #1d2327;
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.05;
+  }
+
+  &__caption {
+    margin-top: 12px;
+    color: #1d2327;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.2;
+  }
+}
+
+.edac-reports-preview {
+  display: none;
+  min-width: 0;
+
+  @include helpers.breakpoint(lg) {
+    display: block;
+    width: 320px;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: -15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
+    clip-path: inset(-10px -10px 0 -10px);
+    border-radius: 5px 5px 0 0;
+  }
+}
+
 .ac-simplified-summary {
   max-width: 800px;
   margin-left: auto;
@@ -731,6 +933,10 @@
 
 .edac-settings {
   max-width: 800px;
+
+  &--reports {
+    max-width: 1390px;
+  }
 
   &.pro-callout-wrapper {
     max-width: fit-content;
@@ -745,6 +951,7 @@
     padding: 15px;
     border: solid 1px variables.$color-gray-light;
     margin-top: 20px;
+    border-radius: 10px;
   }
 
   &-general {
@@ -791,6 +998,15 @@
     border: 1px solid variables.$color-gray-light;
     margin-top: 30px;
     max-width: 500px;
+  }
+}
+
+.edac-settings--reports {
+
+  .edac-reports-page__legal {
+    @include helpers.breakpoint(lg) {
+      grid-column: 1 / -1;
+    }
   }
 }
 
@@ -1431,7 +1647,7 @@
 
     &-notice-upgrade-to-edacp {
       text-align: center;
-      
+
       a {
         width: 100%;
       }
@@ -1864,7 +2080,7 @@
         h3 {
           margin-top: 0;
         }
-        
+
         p:last-child {
           margin-bottom: 0;
         }

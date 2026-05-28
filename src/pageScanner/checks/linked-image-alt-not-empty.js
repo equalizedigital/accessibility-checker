@@ -29,10 +29,10 @@ export default {
 		// Check each visible image for non-empty alt text
 		return images.every( ( img ) => {
 			const alt = img.getAttribute( 'alt' );
-			const role = img.getAttribute( 'role' );
+			const roleTokens = ( img.getAttribute( 'role' ) || '' ).toLowerCase().split( /\s+/ );
 			const ariaHidden = img.getAttribute( 'aria-hidden' );
 
-			if ( role === 'presentation' || ariaHidden === 'true' ) {
+			if ( roleTokens.includes( 'presentation' ) || roleTokens.includes( 'none' ) || ariaHidden === 'true' ) {
 				return true;
 			}
 

@@ -2,8 +2,8 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
-Tested up to: 6.9
-Stable tag: 1.39.0
+Tested up to: 7.0
+Stable tag: 1.42.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -266,16 +266,42 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Screenshots ==
 
 1. WordPress post editor showing the Accessibility Checker sidebar panel expanded reporting 27 problems, 41 Needs Review, 11th grade reading level and a Passed Checks score of 70%. Issues identified include empty links, ambiguous anchor text, linked image empty alternative text, missing form label, insufficient color contrast, incorrect heading order, and improper use of link.
-2. Accessibility problems can be viewed on the front end of the website, as shown on the NASA website, with a dashed pink outline around the element and explanation of the issue and how to fix it.
-3. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
-4. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
-5. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
-6. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
-7. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
-8. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
-9. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
+2. Accessibility problems can be viewed on the front end of the website, with a dashed pink outline around the element and an explanation of the issue and how to fix it in an Accessibility Checker dialog.
+3. Example of the front-end highlighter docked to the right, rather than in a dialog overlaid on the website.
+4. Accessibility Checker sidebar for the block editor and metabox in the classic editor. Two different ways to view accessibility scan reports.
+5. Accessibility Analysis opened in the sidebar and metabox. Actions for issues are "View on page," "Show code," and "Dismiss issue".
+6. Dismiss issues to remove them from reports and document manual testing. Document reasons for dismissing issues as False positive, Remediated, or Confirmed accessible, and add an optional comment. Dismissed issues show who they were dismissed by, when, and why. Dismissed issues can be reopened.
+7. Grade-level readability checks and simplified summary insertion for AAA compliance. Reading level for the post and the simplified summary is reported. Simplified summary shown automatically inserted before the post content.
+8. Accessibility Checker 100% passed checks example when no issues can be found or only dismissed issues exist, shown in both the sidebar and metabox.
+9. Accessibility Checker general settings: post types to be checked, simplified summary settings, footer accessibility statement settings, and data deletion.
+10. Accessibility Checker fixes settings: 12 automated fixes for common accessibility issues on WordPress websites.
+11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-05-20 - version 1.42.1
+* Updated - improved permission handling for the ignore feature.
+
+2026-05-18 - version 1.42.0
+* Updated - add support for role="none" in several of the link and image alt related rules.
+* Updated - added support for named anchors as jump links.
+* New - added system info checker for compatibility checking of plugins and themes.
+
+2026-05-13 - version 1.41.0
+* Updated - the possible heading rule now accounts for elements with role="heading" appropriately.
+* Fix - several language translations are now properly detected by WordPress when using them.
+* Fix - harden the frontend highlighter scanner against caching when updated.
+* Fix - email report checks now defer to the pro plugin when installed to avoid conflicts.
+* Fix - Text size too small check no longer produces false positives on screen-reader-only (visually hidden) elements.
+
+2026-04-21 - version 1.40.0
+* New - Screen reader only text format support in the Block Editor and frontend.
+* New - Email reports opt-in added for site summaries.
+* New - Frontend highlighter UI update and positioning options added.
+* Fix - Article landmark labels now correctly display "Landmark: Article".
+* Changed - Missing Table Header checks now correctly skip tables marked with role="presentation" or role="none".
+* Changed - Table header detection now better handles colspan, rowspan, and ARIA header relationships.
+* Changed - Orphaned issue cleanup now runs twice daily for fresher issue data.
 
 2026-03-17 - version 1.39.0
 * New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.

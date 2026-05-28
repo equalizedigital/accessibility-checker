@@ -43,14 +43,14 @@ describe( 'New Window Warning Tooltip', () => {
 
 	afterEach( () => {
 		// Clean up any tooltips
-		document.querySelectorAll( '.anww-tooltip' ).forEach( ( el ) => el.remove() );
+		document.querySelectorAll( '.edac-nww-tooltip' ).forEach( ( el ) => el.remove() );
 	} );
 
 	describe( 'Tooltip Initialization', () => {
 		test( 'creates tooltip element when initialized', () => {
 			NewWindowWarning();
 
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 			expect( anwwLinkTooltip ).not.toBeNull();
 			expect( anwwLinkTooltip.getAttribute( 'role' ) ).toBe( 'tooltip' );
 		} );
@@ -58,7 +58,7 @@ describe( 'New Window Warning Tooltip', () => {
 		test( 'tooltip is initially hidden', () => {
 			NewWindowWarning();
 
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 			expect( anwwLinkTooltip.style.display ).toBe( 'none' );
 		} );
 	} );
@@ -75,7 +75,7 @@ describe( 'New Window Warning Tooltip', () => {
 			const event = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 1000, pageY: 100 } );
 			link.dispatchEvent( event );
 
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Tooltip should be visible and positioned
 			expect( anwwLinkTooltip.style.display ).toBe( 'block' );
@@ -93,7 +93,7 @@ describe( 'New Window Warning Tooltip', () => {
 			const event = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 100, pageY: 100 } );
 			link.dispatchEvent( event );
 
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Tooltip should be positioned and visible
 			expect( anwwLinkTooltip.style.display ).toBe( 'block' );
@@ -125,7 +125,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 			expect( anwwLinkTooltip.style.display ).toBe( 'none' );
 
 			const event = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 100, pageY: 100 } );
@@ -140,7 +140,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			const enterEvent = new MouseEvent( 'mouseenter', { bubbles: true, pageX: 100, pageY: 100 } );
 			link.dispatchEvent( enterEvent );
@@ -182,7 +182,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Should still update aria-label
 			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
@@ -203,7 +203,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Should still update aria-label
 			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
@@ -255,7 +255,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Should still update aria-label
 			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
@@ -276,7 +276,7 @@ describe( 'New Window Warning Tooltip', () => {
 			NewWindowWarning();
 
 			const link = document.querySelector( 'a' );
-			anwwLinkTooltip = document.querySelector( '.anww-tooltip' );
+			anwwLinkTooltip = document.querySelector( '.edac-nww-tooltip' );
 
 			// Should still update aria-label
 			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
