@@ -100,6 +100,53 @@ describe( 'Image Alt Empty Validation', () => {
 			html: '<img src="smiley.jpg" alt="" class="wp-smiley">',
 			shouldPass: true,
 		},
+
+		// Button context - image with empty alt inside button with accessible name
+		{
+			name: 'should pass for img with empty alt inside button with aria-label',
+			html: '<button aria-label="Close"><img src="close.svg" alt=""></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside button with title',
+			html: '<button title="Close"><img src="close.svg" alt=""></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside button with aria-labelledby',
+			html: '<div id="btn-label">Close</div><button aria-labelledby="btn-label"><img src="close.svg" alt=""></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside button with text content',
+			html: '<button><img src="close.svg" alt=""> Close</button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside role="button" element with aria-label',
+			html: '<div role="button" aria-label="Close"><img src="close.svg" alt=""></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside role="button" element with title',
+			html: '<div role="button" title="Close"><img src="close.svg" alt=""></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for img with empty alt inside multi-value role="button" element with aria-label',
+			html: '<div role="button presentation" aria-label="Close"><img src="close.svg" alt=""></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for img with empty alt inside button without accessible name',
+			html: '<button><img src="close.svg" alt=""></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for img with empty alt inside multi-value role="button" element without accessible name',
+			html: '<div role="button presentation"><img src="close.svg" alt=""></div>',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
