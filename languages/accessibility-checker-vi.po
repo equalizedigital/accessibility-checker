@@ -1315,7 +1315,7 @@ msgstr "Nội dung đang được kiểm tra khả năng tiếp cận"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker đã quét %s bài viết về vấn đề khả năng tiếp cận."
+msgstr[0] "Accessibility Checker đã quét %s bài đăng để tìm các vấn đề về khả năng truy cập."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
