@@ -1330,8 +1330,8 @@ msgstr "Zawartość jest sprawdzana pod kątem dostępności"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker przeskanował %s wpis pod kątem problemów z dostępnością."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[2] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker przeskanował %s wpisy pod kątem problemów z dostępnością."
+msgstr[2] "Accessibility Checker przeskanował %s wpisów pod kątem problemów z dostępnością."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
