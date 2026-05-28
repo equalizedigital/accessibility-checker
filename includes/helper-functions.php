@@ -941,6 +941,26 @@ function edac_format_datetime_from_utc( string $utc_datetime ): string {
 }
 
 /**
+ * Normalize a raw Flesch-Kincaid grade level float to a whole-number grade.
+ *
+ * `floor()` alone collapses any FK value in (0, 1) to 0, which misrepresents
+ * very simple content as "not calculable." Values above 0 but below 1 are
+ * normalized to 1 so that compliance checks treat them correctly.
+ *
+ * @since 1.44.0
+ *
+ * @param float $fk_grade Raw Flesch-Kincaid grade level returned by the library.
+ * @return int Normalized grade: 0 when the library returned 0 (not enough content),
+ *             otherwise max(1, floor($fk_grade)).
+ */
+function edac_normalize_fk_grade( float $fk_grade ): int {
+	if ( $fk_grade <= 0 ) {
+		return 0;
+	}
+	return max( 1, (int) floor( $fk_grade ) );
+}
+
+/**
  * Determine the icon name to display for the readability panel.
  *
  * PHP equivalent of the JS getPanelIcon() helper used in the readability sidebar panel.

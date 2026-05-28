@@ -80,7 +80,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 
@@ -671,7 +671,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
