@@ -98,7 +98,7 @@ class AccessibilityReportsPage implements PageInterface {
 			]
 		);
 
-		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/license-keys/', 'accessibility-reports', 'account', false );
 		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
 		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
 		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
