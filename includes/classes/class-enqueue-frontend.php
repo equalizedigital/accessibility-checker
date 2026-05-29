@@ -24,6 +24,8 @@ class Enqueue_Frontend {
 
 	/**
 	 * Enqueue the scripts and styles.
+	 *
+	 * @return void
 	 */
 	public static function enqueue() {
 		self::maybe_enqueue_frontend_highlighter();

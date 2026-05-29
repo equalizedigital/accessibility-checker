@@ -15,7 +15,7 @@ class Settings {
 	/**
 	 * Gets a list of post statuses that are scannable.
 	 *
-	 * @var array
+	 * @return array
 	 */
 	public static function get_scannable_post_statuses() {
 		/**

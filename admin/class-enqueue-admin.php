@@ -25,6 +25,8 @@ class Enqueue_Admin {
 
 	/**
 	 * Enqueue the scripts and styles.
+	 *
+	 * @return void
 	 */
 	public static function enqueue() {
 		self::enqueue_styles();

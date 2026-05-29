@@ -23,6 +23,7 @@ class Admin_Footer_Text {
 	 * Initialize the admin footer text filter.
 	 *
 	 * @since 1.27.0
+	 * @return void
 	 */
 	public function init() {
 		add_filter( 'admin_footer_text', [ $this, 'filter_footer_text' ] );

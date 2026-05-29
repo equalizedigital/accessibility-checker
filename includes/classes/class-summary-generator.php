@@ -246,6 +246,7 @@ class Summary_Generator {
 	 * @param array $summary An associative array containing the summary of accessibility checks.
 	 *
 	 * @since 1.9.0
+	 * @return void
 	 */
 	private function update_issue_density( $summary ) {
 		$issue_density_array = get_post_meta( $this->post_id, '_edac_density_data', false );
@@ -322,6 +323,7 @@ class Summary_Generator {
 	 * @param array $summary An associative array containing the summary of accessibility checks.
 	 *
 	 * @since 1.9.0
+	 * @return void
 	 */
 	private function save_summary_meta_data( $summary ) {
 		update_post_meta( $this->post_id, '_edac_summary', $this->sanitize_summary_meta_data( $summary ) );

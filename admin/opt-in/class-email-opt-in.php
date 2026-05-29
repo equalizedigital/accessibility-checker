@@ -23,6 +23,8 @@ class Email_Opt_In {
 
 	/**
 	 * Checks if the current user already opted in.
+	 *
+	 * @return bool
 	 */
 	public static function user_already_subscribed(): bool {
 		return (bool) get_user_meta(

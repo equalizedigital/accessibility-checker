@@ -89,6 +89,8 @@ class AddNewWindowWarningFix implements FixInterface {
 
 	/**
 	 * Run the fix for adding the comment and search form labels.
+	 *
+	 * @return void
 	 */
 	public function run(): void {
 		if ( ! get_option( 'edac_fix_' . $this->get_slug(), false ) ) {
@@ -125,6 +127,8 @@ class AddNewWindowWarningFix implements FixInterface {
 
 	/**
 	 * Add the styles for the new window warning.
+	 *
+	 * @return void
 	 */
 	public function add_styles() {
 		$font_url = EDAC_PLUGIN_URL . 'assets/fonts';
