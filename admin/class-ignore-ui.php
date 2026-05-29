@@ -29,6 +29,21 @@ class IgnoreUI {
 	 * @return array<string, array{label: string, description: string}>
 	 */
 	public static function get_reasons(): array {
+		$default_reasons = [
+			'false_positive' => [
+				'label'       => __( 'False positive', 'accessibility-checker' ),
+				'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
+			],
+			'remediated'     => [
+				'label'       => __( 'Remediated', 'accessibility-checker' ),
+				'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
+			],
+			'accessible'     => [
+				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
+				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
+			],
+		];
+
 		/**
 		 * Filters the dismiss reasons available in the ignore/dismiss panel.
 		 *
@@ -46,23 +61,13 @@ class IgnoreUI {
 		 *     }
 		 * }
 		 */
-		return apply_filters(
-			'edac_dismiss_reasons',
-			[
-				'false_positive' => [
-					'label'       => __( 'False positive', 'accessibility-checker' ),
-					'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
-				],
-				'remediated'     => [
-					'label'       => __( 'Remediated', 'accessibility-checker' ),
-					'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
-				],
-				'accessible'     => [
-					'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
-					'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
-				],
-			]
-		);
+		$reasons = apply_filters( 'edac_dismiss_reasons', $default_reasons );
+
+		if ( ! is_array( $reasons ) ) {
+			return $default_reasons;
+		}
+
+		return $reasons;
 	}
 
 	/**
