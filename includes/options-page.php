@@ -296,10 +296,10 @@ function edac_register_setting() {
 	);
 
 	// Register settings.
-	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
+	register_setting( 'edac_settings', 'edac_post_types', [ 'sanitize_callback' => 'edac_sanitize_post_types' ] );
 
-	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edac_delete_data', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
@@ -318,18 +318,18 @@ function edac_register_setting() {
 			'default'           => 'after',
 		]
 	);
-	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
+	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_accessibility_policy_page', [ 'sanitize_callback' => 'edac_sanitize_accessibility_policy_page' ] );
 
-	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
+	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', [ 'sanitize_callback' => 'edac_sanitize_frontend_highlighter_position' ] );
 
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
-	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
-	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_pro_archive_scanning' );
-	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_pro_taxonomy_terms' );
-	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_pro_ignore_roles' );
-	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'edac_sanitize_pro_summary_heading' );
+	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', [ 'sanitize_callback' => 'edac_sanitize_pro_scan_speed' ] );
+	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', [ 'sanitize_callback' => 'edac_sanitize_pro_archive_scanning' ] );
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', [ 'sanitize_callback' => 'edac_sanitize_pro_taxonomy_terms' ] );
+	register_setting( 'edac_settings', 'edacp_ignore_user_roles', [ 'sanitize_callback' => 'edac_sanitize_pro_ignore_roles' ] );
+	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', [ 'sanitize_callback' => 'edac_sanitize_pro_summary_heading' ] );
 }
 
 /**
