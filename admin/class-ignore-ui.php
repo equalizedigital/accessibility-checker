@@ -35,7 +35,7 @@ class IgnoreUI {
 		 * Each array entry must be keyed by a unique reason slug and contain
 		 * a `label` (short UI text) and a `description` (longer explanatory text).
 		 *
-		 * @since 1.42.1
+		 * @since 1.xx.x
 		 *
 		 * @param array<string, array{label: string, description: string}> $reasons {
 		 *     Dismiss reasons keyed by reason slug.
