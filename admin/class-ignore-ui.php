@@ -29,6 +29,23 @@ class IgnoreUI {
 	 * @return array<string, array{label: string, description: string}>
 	 */
 	public static function get_reasons(): array {
+		/**
+		 * Filters the dismiss reasons available in the ignore/dismiss panel.
+		 *
+		 * Each array entry must be keyed by a unique reason slug and contain
+		 * a `label` (short UI text) and a `description` (longer explanatory text).
+		 *
+		 * @since 1.42.1
+		 *
+		 * @param array<string, array{label: string, description: string}> $reasons {
+		 *     Dismiss reasons keyed by reason slug.
+		 *
+		 *     @type array $reason {
+		 *         @type string $label       Short label displayed in the radio control.
+		 *         @type string $description Longer description displayed below the label.
+		 *     }
+		 * }
+		 */
 		return apply_filters(
 			'edac_dismiss_reasons',
 			[
