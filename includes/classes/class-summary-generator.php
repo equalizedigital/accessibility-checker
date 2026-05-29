@@ -124,7 +124,7 @@ class Summary_Generator {
 		}
 
 		// Calculate the percentage of passed tests.
-		return round( ( $passed_count / count( $rules ) ) * 100 );
+		return (int) round( ( $passed_count / count( $rules ) ) * 100 );
 	}
 
 	/**
