@@ -370,6 +370,68 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 
 	/**
+	 * Test that edac_filter_admin_post_id overrides the post ID localized into edac_script_vars.
+	 *
+	 * @return void
+	 */
+	public function testAdminPostIdFilterOverridesLocalizedPostId() {
+		global $post, $pagenow, $wp_scripts;
+
+		$original_post  = $this->factory()->post->create_and_get();
+		$alternate_post = $this->factory()->post->create_and_get();
+		$post           = $original_post;
+		$pagenow        = 'post.php';
+
+		$filter_callback = static function () use ( $alternate_post ) {
+			return $alternate_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertStringContainsString( (string) $alternate_post->ID, $localized_data );
+	}
+
+	/**
+	 * Test that edac_filter_post_is_latest_posts_home causes the scan URL to use the home URL.
+	 *
+	 * When show_on_front=posts and page_for_posts=0, the standard WP options cannot identify a
+	 * virtual homepage post. The filter lets extensions signal this so we use get_home_url()
+	 * for the scanner iframe rather than an invalid preview URL.
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenLatestPostsHomeFilterReturnsTrue() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'posts' );
+		update_option( 'page_for_posts', 0 );
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+		delete_option( 'page_for_posts' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		$this->assertStringContainsString( trailingslashit( get_home_url() ), $localized_data );
+	}
+
+	/**
 	 * Helper to set a mock current screen with block editor context.
 	 *
 	 * @param bool $is_block_editor Whether the screen should behave as block editor.

@@ -78,6 +78,14 @@ class Enqueue_Admin {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
+
+			// When the "latest posts" homepage is active (show_on_front=posts), the global
+			// $post can be set to the first blog post from the main query — for example in
+			// the FSE site editor while previewing the home template. Apply a filter so that
+			// extensions can supply the correct post ID (e.g. a Pro virtual-page ID) rather
+			// than letting the wrong post's ID propagate into scan results.
+			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
+
 			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
@@ -112,7 +120,16 @@ class Enqueue_Admin {
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
-				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
+				// When show_on_front=posts and page_for_posts is not set (0), neither WP option
+				// will match — allow extensions to flag the current post as the latest-posts
+				// homepage so we use get_home_url() for the scan rather than a preview link.
+				$is_latest_posts_home = 'posts' === get_option( 'show_on_front' )
+					&& 0 === (int) get_option( 'page_for_posts' )
+					&& apply_filters( 'edac_filter_post_is_latest_posts_home', false, $post_id );
+
+				if ( $is_latest_posts_home ) {
+					$scan_url = add_query_arg( 'edac_pageScanner', 1, trailingslashit( get_home_url() ) );
+				} elseif ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
 					$post_view_link = apply_filters(
