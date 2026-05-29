@@ -2,6 +2,13 @@ export default {
 	id: 'empty_button',
 	excludeHidden: false,
 	selector: 'button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"]',
+	matches: ( node ) => {
+		// Skip elements that are hidden from both screen readers and keyboard navigation.
+		if ( node.getAttribute( 'aria-hidden' ) === 'true' && node.getAttribute( 'tabindex' ) === '-1' ) {
+			return false;
+		}
+		return true;
+	},
 	tags: [ 'accessibility', 'wcag2a', 'wcag2aa' ],
 	metadata: {
 		description: 'Ensures buttons have accessible labels or content.',

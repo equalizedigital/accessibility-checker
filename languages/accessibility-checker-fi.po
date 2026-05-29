@@ -1323,7 +1323,7 @@ msgstr "Sisältöä tarkistetaan saavutettavuuden osalta"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker on skannannut %s julkaisun saavutettavuusongelmien varalta."
-msgstr[1] "Accessibility Checker on skannannut %s artikkelia saavutettavuusongelmien varalta."
+msgstr[1] "Accessibility Checker on skannannut %s julkaisua saavutettavuusongelmien varalta."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1346,7 +1346,7 @@ msgstr "Sisältötyypit on määritetty saavutettavuustarkistuksia varten"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker on määritetty skannaamaan %1$s sisältötyyppi: %2$s."
+msgstr[0] "Accessibility Checker on määritetty skannaamaan %1$s julkaisutyyppiä: %2$s."
 msgstr[1] "Accessibility Checker on määritetty skannaamaan %1$s julkaisutyyppiä: %2$s."
 
 #: admin/site-health/class-free.php:46

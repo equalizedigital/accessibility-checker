@@ -107,6 +107,21 @@ describe( 'Empty Button Validation', () => {
 			html: '<button>👍</button>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for div with role="button", aria-hidden="true", and tabindex="-1"',
+			html: '<div role="button" aria-hidden="true" tabindex="-1"></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for button with aria-hidden="true" and tabindex="-1"',
+			html: '<button aria-hidden="true" tabindex="-1"></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for the Google Maps marker pattern (role="button" with aria-hidden="true" and tabindex="-1")',
+			html: '<div role="button" style="width: 26px; height: 37px; overflow: hidden; position: absolute;" tabindex="-1" aria-hidden="true"><img alt="" src="transparent.png"></div>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -188,6 +203,16 @@ describe( 'Empty Button Validation', () => {
 		{
 			name: 'should fail for button with aria-hidden="true" as interactive elements with aria hidden should still be checked',
 			html: '<button aria-hidden="true"></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with tabindex="-1" but no aria-hidden (still reachable by screen readers)',
+			html: '<button tabindex="-1"></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for div with role="button" with only tabindex="-1" but no aria-hidden',
+			html: '<div role="button" tabindex="-1"></div>',
 			shouldPass: false,
 		},
 		{

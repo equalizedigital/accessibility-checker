@@ -1323,7 +1323,7 @@ msgstr "Le contenu est en cours de vérification pour l'accessibilité"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker a analysé %s publication pour les problèmes d’accessibilité."
-msgstr[1] "Accessibility Checker a analysé %s publications pour les problèmes d'accessibilité."
+msgstr[1] "Accessibility Checker a analysé %s publications pour les problèmes d’accessibilité."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1346,7 +1346,7 @@ msgstr "Les types de publications sont configurés pour la vérification d'acces
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker est configuré pour analyser %1$s type de publication : %2$s."
+msgstr[0] "Accessibility Checker est configuré pour analyser %1$s type de publication : %2$s."
 msgstr[1] "Accessibility Checker est configuré pour analyser %1$s types de publication : %2$s."
 
 #: admin/site-health/class-free.php:46

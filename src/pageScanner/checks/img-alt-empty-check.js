@@ -64,6 +64,23 @@ function isInsideValidCaption( node ) {
 		}
 	}
 
+	// Check if inside button with valid accessible name
+	const button = node.closest( 'button, [role~="button"]' );
+	if ( button ) {
+		if ( button.hasAttribute( 'aria-label' ) && button.getAttribute( 'aria-label' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.hasAttribute( 'aria-labelledby' ) && button.getAttribute( 'aria-labelledby' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.hasAttribute( 'title' ) && button.getAttribute( 'title' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.textContent.trim() !== '' ) {
+			return true;
+		}
+	}
+
 	return false;
 }
 
