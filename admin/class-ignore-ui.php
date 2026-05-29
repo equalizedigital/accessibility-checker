@@ -23,23 +23,29 @@ class IgnoreUI {
 	/**
 	 * Get the dismiss reasons with translatable labels and descriptions.
 	 *
+	 * Filterable via `edac_dismiss_reasons`. Each entry must be an associative
+	 * array with `label` (string) and `description` (string) keys.
+	 *
 	 * @return array<string, array{label: string, description: string}>
 	 */
 	public static function get_reasons(): array {
-		return [
-			'false_positive' => [
-				'label'       => __( 'False positive', 'accessibility-checker' ),
-				'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
-			],
-			'remediated'     => [
-				'label'       => __( 'Remediated', 'accessibility-checker' ),
-				'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
-			],
-			'accessible'     => [
-				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
-				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
-			],
-		];
+		return apply_filters(
+			'edac_dismiss_reasons',
+			[
+				'false_positive' => [
+					'label'       => __( 'False positive', 'accessibility-checker' ),
+					'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
+				],
+				'remediated'     => [
+					'label'       => __( 'Remediated', 'accessibility-checker' ),
+					'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
+				],
+				'accessible'     => [
+					'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
+					'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
+				],
+			]
+		);
 	}
 
 	/**
