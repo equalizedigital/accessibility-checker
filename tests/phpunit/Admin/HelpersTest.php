@@ -13,6 +13,27 @@ use EDAC\Admin\Helpers;
 class HelpersTest extends WP_UnitTestCase {
 
 	/**
+	 * Setup the option and factory for tests.
+	 *
+	 * @return void
+	 */
+	protected function setUp(): void {
+		parent::setUp();
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+	}
+
+	/**
+	 * Cleanup the option after tests.
+	 *
+	 * @return void
+	 */
+	protected function tearDown(): void {
+		parent::tearDown();
+		delete_option( 'edac_post_types' );
+		unset( $GLOBALS['current_screen'] );
+	}
+
+	/**
 	 * Test capability check for widgets and notices being visible
 	 * or not in default configuration.
 	 *
@@ -51,6 +72,55 @@ class HelpersTest extends WP_UnitTestCase {
 			wp_set_current_user( $user_id );
 			$this->assertEquals( $expected, Helpers::current_user_can_see_widgets_and_notices() );
 		}
+	}
+
+	/**
+	 * Test that is_current_post_type_scannable returns true for scannable post types.
+	 */
+	public function test_is_current_post_type_scannable_returns_true_for_scannable_post() {
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		$this->assertTrue( Helpers::is_current_post_type_scannable( [ 'post', 'page' ] ) );
+	}
+
+	/**
+	 * Test that is_current_post_type_scannable returns false for non-scannable post types.
+	 */
+	public function test_is_current_post_type_scannable_returns_false_for_non_scannable_post() {
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		$this->assertFalse( Helpers::is_current_post_type_scannable( [ 'page' ] ) );
+	}
+
+	/**
+	 * Test that is_current_post_type_scannable uses Settings when no post types provided.
+	 */
+	public function test_is_current_post_type_scannable_uses_settings_when_empty_array() {
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		$this->assertTrue( Helpers::is_current_post_type_scannable() );
+	}
+
+	/**
+	 * Test that is_current_post_type_scannable returns false when no post types are scannable.
+	 */
+	public function test_is_current_post_type_scannable_returns_false_when_no_scannable_types() {
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		$this->assertFalse( Helpers::is_current_post_type_scannable() );
+	}
+
+	/**
+	 * Test that is_block_editor returns false when not in block editor context.
+	 */
+	public function test_is_block_editor_returns_false_when_function_not_exists() {
+		$this->assertFalse( Helpers::is_block_editor() );
 	}
 
 	/**

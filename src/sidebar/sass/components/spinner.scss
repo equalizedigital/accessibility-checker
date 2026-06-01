@@ -1,0 +1,15 @@
+/**
+ * Spinner Styles
+ */
+
+.edac-spinner {
+	.spinner {
+		float: none;
+		margin: 0 8px 0 0;
+
+		&.is-active {
+			visibility: visible;
+		}
+	}
+}
+

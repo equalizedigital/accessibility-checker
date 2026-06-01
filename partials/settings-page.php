@@ -29,6 +29,38 @@ $edac_settings_tab_items = apply_filters(
 
 // sort settings tab items.
 if ( is_array( $edac_settings_tab_items ) ) {
+	$edac_settings_tab_items = array_values(
+		array_filter(
+			$edac_settings_tab_items,
+			function ( $tab ) {
+				if ( empty( $tab['capability'] ) ) {
+					return true;
+				}
+
+				return current_user_can( $tab['capability'] );
+			}
+		)
+	);
+
+	$edac_tab_aliases     = [
+		'connected-services' => 'license',
+	];
+	$edac_normalized_tabs = [];
+	$edac_seen_tab_slugs  = [];
+
+	foreach ( $edac_settings_tab_items as $edac_settings_tab_item ) {
+		$edac_settings_tab_item['slug'] = $edac_tab_aliases[ $edac_settings_tab_item['slug'] ] ?? $edac_settings_tab_item['slug'];
+
+		if ( in_array( $edac_settings_tab_item['slug'], $edac_seen_tab_slugs, true ) ) {
+			continue;
+		}
+
+		$edac_seen_tab_slugs[]  = $edac_settings_tab_item['slug'];
+		$edac_normalized_tabs[] = $edac_settings_tab_item;
+	}
+
+	$edac_settings_tab_items = $edac_normalized_tabs;
+
 	usort(
 		$edac_settings_tab_items,
 		function ( $a, $b ) {
@@ -54,10 +86,27 @@ if ( isset( $_GET['tab'] ) ) {
 }
 // phpcs:enable WordPress.Security.NonceVerification.Recommended
 
-$edac_settings_tab = ( array_search( $edac_settings_tab, array_column( $edac_settings_tab_items, 'slug' ), true ) !== false ) ? $edac_settings_tab : $edac_default_tab;
+if ( 'connected-services' === $edac_settings_tab && array_search( 'license', array_column( $edac_settings_tab_items, 'slug' ), true ) !== false ) {
+	$edac_settings_tab = 'license';
+}
+
+if ( 'license' === $edac_settings_tab && array_search( 'license', array_column( $edac_settings_tab_items, 'slug' ), true ) === false && array_search( 'accessibility-reports', array_column( $edac_settings_tab_items, 'slug' ), true ) !== false ) {
+	$edac_settings_tab = 'accessibility-reports';
+}
+
+$edac_settings_tab     = ( array_search( $edac_settings_tab, array_column( $edac_settings_tab_items, 'slug' ), true ) !== false ) ? $edac_settings_tab : $edac_default_tab;
+$edac_settings_classes = [ 'wrap', 'edac-settings' ];
+
+if ( ! EDAC_KEY_VALID ) {
+	$edac_settings_classes[] = 'pro-callout-wrapper';
+}
+
+if ( 'accessibility-reports' === $edac_settings_tab ) {
+	$edac_settings_classes[] = 'edac-settings--reports';
+}
 ?>
 
-<div class="wrap edac-settings <?php echo EDAC_KEY_VALID ? '' : 'pro-callout-wrapper'; ?>">
+<div class="<?php echo esc_attr( implode( ' ', $edac_settings_classes ) ); ?>">
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
@@ -68,6 +117,7 @@ $edac_settings_tab = ( array_search( $edac_settings_tab, array_column( $edac_set
 			$edac_slug      = $edac_settings_tab_item['slug'] ? $edac_settings_tab_item['slug'] : null;
 			$edac_query_var = $edac_slug ? '&tab=' . $edac_slug : '';
 			$edac_label     = $edac_settings_tab_item['label'];
+			$edac_badge     = $edac_settings_tab_item['badge'] ?? '';
 			?>
 			<a
 			<?php
@@ -77,7 +127,12 @@ $edac_settings_tab = ( array_search( $edac_settings_tab, array_column( $edac_set
 				<?php
 				if ( $edac_settings_tab === $edac_slug ) :
 					?>
-				nav-tab-active<?php endif; ?>"><?php echo esc_html( $edac_label ); ?></a>
+				nav-tab-active<?php endif; ?>">
+				<span class="edac-settings-tab__label"><?php echo esc_html( $edac_label ); ?></span>
+				<?php if ( $edac_badge ) : ?>
+					<span class="edac-settings-tab__badge"><?php echo esc_html( $edac_badge ); ?></span>
+				<?php endif; ?>
+			</a>
 			<?php
 		}
 		echo '</nav>';
