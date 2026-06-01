@@ -261,7 +261,7 @@ describe( 'Naked Link Validation', () => {
 		},
 		{
 			name: 'should pass when link has domain and single path segment without protocol',
-			html: "<p>Don’t miss upcoming meetups. Register to attend at <a href=\"https://equalizedigital.com/meetup\">equalizedigital.com/meetup</a>.</p>",
+			html: '<p>Don’t miss upcoming meetups. Register to attend at <a href="https://equalizedigital.com/meetup">equalizedigital.com/meetup</a>.</p>',
 			shouldPass: true,
 		},
 		{
