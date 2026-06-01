@@ -45,6 +45,11 @@ describe( 'Link Improper Rule', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'Fails when anchor href contains only whitespace',
+			html: '<a href="   ">Whitespace link</a>',
+			shouldPass: false,
+		},
+		{
 			name: 'Fails when anchor has malformed URL',
 			html: '<a href="http://example.com:invalid-port">Invalid URL</a>',
 			shouldPass: false,

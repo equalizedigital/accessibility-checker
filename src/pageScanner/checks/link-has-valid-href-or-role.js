@@ -34,7 +34,7 @@ export default {
 		const normalizedHref = trimmedHref.toLowerCase();
 
 		// Fail if href is missing, just '#', or contains invalid protocols
-		if ( ! href ||
+		if ( ! trimmedHref ||
 			trimmedHref === '#' ||
 			normalizedHref.startsWith( 'javascript:' ) ||
 			normalizedHref.startsWith( 'data:' ) ||
