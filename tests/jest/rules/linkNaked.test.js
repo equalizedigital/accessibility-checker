@@ -78,14 +78,14 @@ describe( 'Naked Link Validation', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when mailto link has email address as text',
+			name: 'should pass when mailto link has email address as text',
 			html: '<a href="mailto:test@example.com">test@example.com</a>',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
-			name: 'should fail when tel link has phone number as text',
+			name: 'should pass when tel link has phone number as text',
 			html: '<a href="tel:+1234567890">+1234567890</a>',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
 			name: 'should fail when naked URL appears in paragraph context',
@@ -149,19 +149,19 @@ describe( 'Naked Link Validation', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when text equals uppercase mailto email',
+			name: 'should pass when text equals uppercase mailto email',
 			html: '<a href="mailto:test@example.com">TEST@EXAMPLE.COM</a>',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
-			name: 'should fail when text equals tel number with spaces',
+			name: 'should pass when tel number with spaces is link text',
 			html: '<a href="tel:+1234567890">+1 234 567 890</a>',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
-			name: 'should fail when text equals tel number with parentheses',
+			name: 'should pass when tel number with parentheses is link text',
 			html: '<a href="tel:+12345678900">+1 (234) 567-8900</a>',
-			shouldPass: false,
+			shouldPass: true,
 		},
 		{
 			name: 'should fail when text is identical ftp URL',

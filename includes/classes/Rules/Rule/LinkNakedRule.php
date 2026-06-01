@@ -22,39 +22,33 @@ class LinkNakedRule implements RuleInterface {
 	public static function get_rule(): array {
 
 		return [
-			'title'                 => esc_html__( 'Link is Naked', 'accessibility-checker' ),
+			'title'                 => esc_html__( 'Link Text is URL', 'accessibility-checker' ),
 			'info_url'              => 'https://a11ychecker.com/help10283',
 			'slug'                  => 'link_naked',
-			'rule_type'             => 'error',
+			'rule_type'             => 'warning',
 			'summary'               => esc_html__(
-				'A Naked Links warning appears when there are links on your post or page that are not descriptive of where they will take a user if clicked. This commonly occurs with links that are just a URL, such as "https://example.com" or "www.example.com". To fix a Naked Links warning, you need to change the link text to be descriptive of where the link will take a user if clicked. For example, instead of linking to "https://example.com", you could link to "Visit Example".',
+				'This link uses a URL for its anchor text rather than a meaningful word or phrase.',
 				'accessibility-checker'
 			),
-			// Plural form: used when multiple naked links are found.
 			'summary_plural'        => esc_html__(
-				'These links are not descriptive of their destination (for example they use the raw URL as link text). Provide meaningful link text that describes where the link will take the user.',
+				'These links use URLs for their anchor text rather than meaningful words or phrases.',
 				'accessibility-checker'
 			),
 			'why_it_matters'        => esc_html__(
-				'Naked links (links whose visible text is just a URL) do not provide meaningful context about their destination. Users of screen readers and other assistive technologies rely on descriptive link text to understand where a link will take them; non‑descriptive links reduce usability, increase cognitive load, and can be confusing or misleading.',
+				'Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading.',
 				'accessibility-checker'
 			),
 			'how_to_fix'            => esc_html__(
-				'Replace the URL text with concise, descriptive link text that explains the destination or purpose of the link (for example, "Read the accessibility guide" instead of "https://example.com/guide"). If the URL is needed for context, include it in nearby visible text rather than as the link text itself.',
+				'Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, "Read the accessibility guide" instead of "https://example.com/guide"). If the URL is necessary for context and is very short, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.',
 				'accessibility-checker'
 			),
 			'references'            => [
 				[
-					'text' => __( 'W3C: Techniques for WCAG 2.1 - Descriptive Link Text', 'accessibility-checker' ),
-					'url'  => 'https://www.w3.org/WAI/WCAG21/Techniques/general/G91',
-				],
-				[
-					'text' => __( 'WCAG: Master the Art of Accessible Link Text', 'accessibility-checker' ),
-					'url'  => 'https://www.wcag.com/blog/writing-meaningful-link-text/',
+					'text' => __( 'W3C: Technique G91: Providing link text that describes the purpose of a link', 'accessibility-checker' ),
+					'url'  => 'https://www.w3.org/WAI/WCAG22/Techniques/general/G91',
 				],
 			],
 			'ruleset'               => 'js',
-			// WCAG success criterion related to link purpose in context.
 			'wcag'                  => '2.4.4',
 			'severity'              => 3, // Medium.
 			'affected_disabilities' => [

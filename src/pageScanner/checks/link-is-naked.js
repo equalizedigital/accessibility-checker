@@ -15,15 +15,6 @@ export default {
 		const PROTOCOL_OR_WWW = /^(https?:\/\/|www\.)/i;
 		const URL_PATTERN = /https?:\/\/[^\s]+|www\.[^\s]+/i;
 
-		const normalizePhone = ( str ) => {
-			if ( ! str ) {
-				return '';
-			}
-			const hasPlus = str.trim().startsWith( '+' );
-			const digitsOnly = str.replace( /[^0-9]/g, '' );
-			return ( hasPlus ? '+' : '' ) + digitsOnly;
-		};
-
 		const normalizeUrl = ( url ) => {
 			if ( ! url ) {
 				return '';
@@ -35,17 +26,9 @@ export default {
 				.replace( /\/$/, '' ); // Remove trailing slash
 		};
 
-		// Check mailto: links
-		if ( href.toLowerCase().startsWith( 'mailto:' ) ) {
-			const email = href.substring( 7 ).trim();
-			return textContent.toLowerCase() === email.toLowerCase();
-		}
-
-		// Check tel: links
-		if ( href.toLowerCase().startsWith( 'tel:' ) ) {
-			const telNormalized = normalizePhone( href.substring( 4 ) );
-			const textNormalized = normalizePhone( textContent );
-			return Boolean( telNormalized && textNormalized && telNormalized === textNormalized );
+		// Phone and email links are not flagged — they are valid uses of literal text.
+		if ( href.toLowerCase().startsWith( 'mailto:' ) || href.toLowerCase().startsWith( 'tel:' ) ) {
+			return false;
 		}
 
 		// Check if text contains a full URL pattern (http://, https://, or www.)
@@ -74,7 +57,7 @@ export default {
 		return false;
 	},
 	metadata: {
-		description: "Checks if a link's text is the same as its href attribute, or if mailto/tel links display the raw email/phone number as link text.",
-		help: 'Link text should be descriptive and not simply the URL, email address, or phone number.',
+		description: "Checks if a link's visible text is a URL rather than descriptive anchor text.",
+		help: 'Link text should be descriptive and not simply the URL.',
 	},
 };
