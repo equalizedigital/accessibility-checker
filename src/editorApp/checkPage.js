@@ -24,7 +24,7 @@ const postData = async ( url = '', data = {} ) => {
 };
 
 const saveScanResults = ( postId, violations, densityMetrics ) => {
-	document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
+	document.querySelector( '.edac-panel' )?.classList.add( 'edac-panel-loading' );
 	// eslint-disable-next-line camelcase
 	postData( edac_editor_app.edacApiUrl + '/post-scan-results/' + postId, {
 		violations,
@@ -45,7 +45,7 @@ const saveScanResults = ( postId, violations, densityMetrics ) => {
 			} );
 		}
 
-		document.querySelector( '.edac-panel' ).classList.add( 'edac-panel-loading' );
+		document.querySelector( '.edac-panel' )?.classList.remove( 'edac-panel-loading' );
 	} );
 };
 
@@ -75,6 +75,27 @@ const injectIframe = ( previewUrl, postID ) => {
 
 	// Wait for the preview to load & inject the pageScanner script.
 	iframe.addEventListener( 'load', function() {
+
+		// Detect if the iframe was redirected away from the expected scan URL.
+		// When a post type redirects requests (e.g., a non-publicly-queryable
+		// post type redirecting to the homepage), the final URL will no longer
+		// contain 'edac_pageScanner'. In that case, abort the scan and remove
+		// the iframe.
+		try {
+			const loadedUrl = iframe.contentWindow.location.href;
+			if ( loadedUrl && ! loadedUrl.includes( 'edac_pageScanner' ) ) {
+				// eslint-disable-next-line no-console
+				console.warn( 'EDAC: Scan aborted — iframe redirected away from expected scan URL.', loadedUrl );
+				iframe.remove();
+				return;
+			}
+		} catch ( e ) {
+			// Cross-origin means the iframe was redirected off-site.
+			// We cannot scan a cross-origin document, so abort.
+			iframe.remove();
+			return;
+		}
+
 		// Access the contentDocument of the iframe.
 		const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
@@ -158,6 +179,13 @@ export const init = () => {
 		} );
 	} else {
 		debug( 'Gutenberg is not enabled.' );
+	}
+
+	const editor = wp?.data?.select?.( 'core/editor' );
+	const postStatus = editor?.getEditedPostAttribute( 'status' ) ?? window?.edac_editor_app?.postStatus;
+
+	if ( ! postStatus || postStatus === 'auto-draft' ) {
+		return;
 	}
 
 	// eslint-disable-next-line camelcase

@@ -15,13 +15,37 @@ export default {
 		const href = node.getAttribute( 'href' );
 		const role = node.getAttribute( 'role' ) || '';
 
+		// Parse roles once for efficiency (DRY principle)
+		const roles = role.toLowerCase().split( /\s+/ );
+
 		// Allow roles of button or tab
-		if (
-			role
-				.toLowerCase()
-				.split( /\s+/ )
-				.some( ( r ) => [ 'button', 'tab' ].includes( r ) )
-		) {
+		if ( roles.some( ( r ) => [ 'button', 'tab' ].includes( r ) ) ) {
+			return true;
+		}
+
+		// Allow role="menuitem" with aria-expanded (for expandable menu items)
+		// See: https://wordpress.org/support/topic/improper-use-of-link-5/
+		const hasAriaExpanded = node.hasAttribute( 'aria-expanded' );
+		if ( roles.includes( 'menuitem' ) && hasAriaExpanded ) {
+			return true;
+		}
+
+		// Allow named anchors used as jump targets: no href, has id/name, no visible content,
+		// and not keyboard-focusable.
+		// Per the HTML spec, <a> without href has role="generic" and is not keyboard focusable,
+		// so it does not create a false link for AT or keyboard users.
+		// Use hasAttribute instead of !href to exclude href="" which is keyboard focusable.
+		// Check children.length to exclude anchors wrapping images or other elements.
+		const id = node.getAttribute( 'id' ) || '';
+		const name = node.getAttribute( 'name' ) || '';
+		const hasAnchorTargetName = id.trim() !== '' || name.trim() !== '';
+
+		const tabindex = node.getAttribute( 'tabindex' );
+		const parsedTabindex = null === tabindex ? null : Number.parseInt( tabindex, 10 );
+		const isKeyboardFocusable =
+			null !== tabindex && ( Number.isNaN( parsedTabindex ) || parsedTabindex >= 0 );
+
+		if ( ! node.hasAttribute( 'href' ) && hasAnchorTargetName && ! isKeyboardFocusable && node.children.length === 0 && node.textContent.trim() === '' ) {
 			return true;
 		}
 

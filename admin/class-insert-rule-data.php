@@ -12,6 +12,14 @@ namespace EDAC\Admin;
 /**
  * Class for inserting rule data into the database
  *
+ * The unique identifier for issues changed in version 1.0.5 of the database schema.
+ * Previously, issues were identified by: postid + rule + object + type + siteid
+ * Now, issues are identified by: postid + rule + selector + type + siteid
+ *
+ * This change allows duplicate code objects (e.g., two empty paragraphs) to be
+ * stored as separate issues when they appear in different locations on the page.
+ * The selector field provides the unique location identifier for each issue.
+ *
  * @since 1.10.0
  */
 class Insert_Rule_Data {
@@ -73,15 +81,17 @@ class Insert_Rule_Data {
 		}
 
 		// Check if exists.
+		// Use selector as the unique identifier instead of object to allow duplicate code objects
+		// with different selectors (e.g., two empty paragraphs in different locations).
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and object = %s and siteid = %d',
+				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
 				$table_name,
 				$rule_data['type'],
 				$rule_data['postid'],
 				$rule_data['rule'],
-				$rule_data['object'],
+				$rule_data['selector'],
 				$rule_data['siteid']
 			),
 			ARRAY_A
@@ -97,22 +107,23 @@ class Insert_Rule_Data {
 				}
 
 				// update existing record.
+				// Use selector for WHERE clause instead of object to match on unique identifier.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, selector = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and object = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
 						$table_name,
 						1,
 						$rule_data['landmark'],
 						$rule_data['landmark_selector'],
-						$rule_data['selector'],
+						$rule_data['object'],
 						$rule_data['ancestry'],
 						$rule_data['xpath'],
 						$rule_data['ignre'],
 						$rule_data['siteid'],
 						$rule_data['postid'],
 						$rule_data['rule'],
-						$rule_data['object'],
+						$rule_data['selector'],
 						$rule_data['type']
 					)
 				);
@@ -154,9 +165,25 @@ class Insert_Rule_Data {
 				'ignre'             => absint( $rule_data['ignre'] ),
 				'ignre_user'        => isset( $rule_data['ignre_user'] ) ? absint( $rule_data['ignre_user'] ) : null,
 				'ignre_date'        => isset( $rule_data['ignre_date'] ) ? sanitize_text_field( $rule_data['ignre_date'] ) : null,
-				'ignre_comment'     => isset( $rule_data['ignre_comment'] ) ? sanitize_text_field( $rule_data['ignre_comment'] ) : null,
+				'ignre_comment'     => isset( $rule_data['ignre_comment'] ) ? null : null,
 				'ignre_global'      => absint( $rule_data['ignre_global'] ),
 			];
+
+			if ( isset( $rule_data['ignre_comment'] ) ) {
+				$allowed_html = [
+					'strong' => [],
+					'b'      => [],
+					'em'     => [],
+					'i'      => [],
+					'a'      => [
+						'href'   => true,
+						'target' => true,
+						'rel'    => true,
+					],
+				];
+				
+				$rule_data_sanitized['ignre_comment'] = esc_html( wp_kses( $rule_data['ignre_comment'], $allowed_html ) );
+			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
 			$wpdb->insert( $table_name, $rule_data_sanitized );

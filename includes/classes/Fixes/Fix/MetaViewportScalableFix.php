@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Trys to ensure there is a meta viewport tag with the correct scalable value.
  *
@@ -49,20 +53,6 @@ class MetaViewportScalableFix implements FixInterface {
 	 * @return void
 	 */
 	public function register(): void {
-
-		add_filter(
-			'edac_filter_fixes_settings_sections',
-			function ( $sections ) {
-				$sections['meta-viewport-scalable'] = [
-					'title'       => esc_html__( 'Ensure scalable viewport', 'accessibility-checker' ),
-					'description' => esc_html__( 'Make sure that the viewport tag on the page allows scaling.', 'accessibility-checker' ),
-					'callback'    => [ $this, 'comment_search_label_section_callback' ],
-				];
-
-				return $sections;
-			}
-		);
-
 		add_filter(
 			'edac_filter_fixes_settings_fields',
 			[ $this, 'get_fields_array' ],

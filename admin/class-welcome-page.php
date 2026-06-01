@@ -24,8 +24,38 @@ class Welcome_Page {
 	 */
 	public static function render_summary() {
 
-		$scans_stats = new Scans_Stats();
-		$summary     = $scans_stats->summary();
+		$scans_stats       = new Scans_Stats();
+		$summary           = $scans_stats->summary();
+		$allowed_icon_html = [
+			'span' => [
+				'class'       => true,
+				'aria-hidden' => true,
+				'aria-label'  => true,
+			],
+			'svg'  => [
+				'width'   => true,
+				'height'  => true,
+				'viewbox' => true,
+				'fill'    => true,
+				'xmlns'   => true,
+			],
+			'path' => [
+				'd'               => true,
+				'stroke'          => true,
+				'stroke-width'    => true,
+				'stroke-linecap'  => true,
+				'stroke-linejoin' => true,
+			],
+			'rect' => [
+				'x'            => true,
+				'y'            => true,
+				'width'        => true,
+				'height'       => true,
+				'rx'           => true,
+				'stroke'       => true,
+				'stroke-width' => true,
+			],
+		];
 		?>
 
 		<div id="edac_welcome_page_summary">
@@ -64,17 +94,18 @@ class Welcome_Page {
 
 					<div class="edac-welcome-grid-container">
 						<div class="edac-welcome-grid-c1 edac-welcome-grid-item edac-background-light" style="grid-area: 1 / 1 / span 2;">
-							<div class="edac-circle-progress" role="progressbar" aria-valuenow="<?php echo esc_attr( $summary['passed_percentage'] ); ?>" aria-valuemin="0" aria-valuemax="100" style="text-align: center; background: radial-gradient(closest-side, white 90%, transparent 80% 100%), conic-gradient(#006600 <?php echo esc_attr( $summary['passed_percentage'] ); ?>%, #e2e4e7 0);">
+							<div class="edac-circle-progress" role="progressbar" aria-valuenow="<?php echo esc_attr( $summary['passed_percentage'] ); ?>" aria-valuemin="0" aria-valuemax="100" style="text-align: center; background: radial-gradient(closest-side, white 90%, transparent 80% 100%), conic-gradient(var(--wp-admin-theme-color, #3273aa) <?php echo esc_attr( $summary['passed_percentage'] ); ?>%, #e2e4e7 0);">
 								<div class="edac-progress-percentage edac-xxx-large-text">
 									<?php echo esc_html( $summary['passed_percentage_formatted'] ); ?>
 								</div>
 								<div class="edac-progress-label edac-large-text">
-									<?php esc_html_e( 'Passed Tests', 'accessibility-checker' ); ?>
+									<?php esc_html_e( 'Passed Checks', 'accessibility-checker' ); ?>
 								</div>
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c2 edac-welcome-grid-item <?php echo ( $summary['distinct_errors_without_contrast'] > 0 ) ? 'has-errors' : ' has-no-errors'; ?>">
+						<div class="edac-welcome-grid-c2 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_errors_without_contrast'] > 0 ) ? 'has-errors' : ' has-no-errors'; ?>">
+							<?php echo wp_kses( ( $summary['distinct_errors_without_contrast'] > 0 ) ? edac_icon( 'error' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
 									<?php echo esc_html( $summary['distinct_errors_without_contrast_formatted'] ); ?>
@@ -86,8 +117,8 @@ class Welcome_Page {
 										echo esc_html(
 											sprintf(
 												_n(
-													'Unique Error',
-													'Unique Errors',
+													'Unique Problem',
+													'Unique Problems',
 													$summary['distinct_errors_without_contrast'],
 													'accessibility-checker'
 												),
@@ -99,7 +130,8 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c3 edac-welcome-grid-item <?php echo ( $summary['distinct_contrast_errors'] > 0 ) ? 'has-contrast-errors' : 'has-no-contrast-errors'; ?>">
+						<div class="edac-welcome-grid-c3 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_contrast_errors'] > 0 ) ? 'has-contrast-errors' : 'has-no-contrast-errors'; ?>">
+							<?php echo wp_kses( ( $summary['distinct_contrast_errors'] > 0 ) ? edac_icon( 'error' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
 									<?php echo esc_html( $summary['distinct_contrast_errors_formatted'] ); ?>
@@ -111,8 +143,8 @@ class Welcome_Page {
 										echo esc_html(
 											sprintf(
 												_n(
-													'Unique Color Contrast Error',
-													'Unique Color Contrast Errors',
+													'Unique Contrast Problem',
+													'Unique Contrast Problems',
 													$summary['distinct_contrast_errors'],
 													'accessibility-checker'
 												),
@@ -124,7 +156,8 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c4 edac-welcome-grid-item <?php echo ( $summary['distinct_warnings'] > 0 ) ? 'has-warning' : 'has-no-warning'; ?>">
+						<div class="edac-welcome-grid-c4 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_warnings'] > 0 ) ? 'has-warning' : 'has-no-warning'; ?>">
+							<?php echo wp_kses( ( $summary['distinct_warnings'] > 0 ) ? edac_icon( 'warning' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
 									<?php echo esc_html( $summary['distinct_warnings_formatted'] ); ?>
@@ -136,8 +169,8 @@ class Welcome_Page {
 										echo esc_html(
 											sprintf(
 												_n(
-													'Unique Warning',
-													'Unique Warnings',
+													'Unique Item Needing Review',
+													'Unique Items Needing Review',
 													$summary['distinct_warnings'],
 													'accessibility-checker'
 												),
@@ -149,7 +182,8 @@ class Welcome_Page {
 							</div>
 						</div>
 
-						<div class="edac-welcome-grid-c5 edac-welcome-grid-item <?php echo ( $summary['distinct_ignored'] > 0 ) ? 'has-ignored' : 'has-no-ignored'; ?>">
+						<div class="edac-welcome-grid-c5 edac-welcome-grid-item edac-welcome-grid-item-has-icon <?php echo ( $summary['distinct_ignored'] > 0 ) ? 'has-ignored' : 'has-no-ignored'; ?>">
+							<?php echo wp_kses( ( $summary['distinct_ignored'] > 0 ) ? edac_icon( 'dismissed' ) : edac_icon( 'check' ), $allowed_icon_html ); ?>
 							<div class="edac-inner-row">
 								<div class="edac-stat-number">
 									<?php echo esc_html( $summary['distinct_ignored_formatted'] ); ?>
@@ -161,8 +195,8 @@ class Welcome_Page {
 										echo esc_html(
 											sprintf(
 												_n(
-													'Ignored Item',
-													'Ignored Items',
+													'Dismissed Issue',
+													'Dismissed Issues',
 													$summary['distinct_ignored'],
 													'accessibility-checker'
 												),

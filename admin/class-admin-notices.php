@@ -9,6 +9,10 @@ namespace EDAC\Admin;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Class that handles admin notices
  */
@@ -31,7 +35,8 @@ class Admin_Notices {
 		add_action( 'in_admin_header', [ $this, 'hook_notices' ], 1001 );
 		// Ajax handlers for notices.
 		add_action( 'wp_ajax_edac_black_friday_notice_ajax', [ $this, 'edac_black_friday_notice_ajax' ] );
-		add_action( 'wp_ajax_edac_gaad_notice_ajax', [ $this, 'edac_gaad_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_gaad_presale_notice_ajax', [ $this, 'edac_gaad_presale_notice_ajax' ] );
+		add_action( 'wp_ajax_edac_gaad_sale_notice_ajax', [ $this, 'edac_gaad_sale_notice_ajax' ] );
 		add_action( 'wp_ajax_edac_review_notice_ajax', [ $this, 'edac_review_notice_ajax' ] );
 		// Save fixes transient on save.
 		add_action( 'updated_option', [ $this, 'set_fixes_transient_on_save' ] );
@@ -50,7 +55,8 @@ class Admin_Notices {
 		}
 
 		add_action( 'admin_notices', [ $this, 'edac_black_friday_notice' ] );
-		add_action( 'admin_notices', [ $this, 'edac_gaad_notice' ] );
+		add_action( 'admin_notices', [ $this, 'edac_gaad_presale_notice' ] );
+		add_action( 'admin_notices', [ $this, 'edac_gaad_sale_notice' ] );
 		add_action( 'admin_notices', [ $this, 'edac_review_notice' ] );
 	}
 
@@ -62,7 +68,10 @@ class Admin_Notices {
 	public function edac_remove_admin_notices() {
 
 		$current_screen = get_current_screen();
-		$screens        = [
+		if ( ! $current_screen || ! isset( $current_screen->id ) ) {
+			return;
+		}
+		$screens = [
 			'toplevel_page_accessibility_checker',
 			'accessibility-checker_page_accessibility_checker_issues',
 			'accessibility-checker_page_accessibility_checker_ignored',
@@ -77,6 +86,9 @@ class Admin_Notices {
 		 * @param array $screens The screens where admin notices should be removed.
 		 */
 		$screens = apply_filters( 'edac_filter_remove_admin_notices_screens', $screens );
+		if ( ! is_array( $screens ) ) {
+			$screens = [];
+		}
 
 		if ( in_array( $current_screen->id, $screens, true ) ) {
 			remove_all_actions( 'admin_notices' );
@@ -169,87 +181,156 @@ class Admin_Notices {
 	}
 
 	/**
-	 * GAAD Notice
+	 * GAAD Pre-Sale Notice
+	 *
+	 * Displays May 13–19 to build awareness of Global Accessibility Awareness Day
+	 * and tease the upcoming flash sale.
 	 *
 	 * @return void
 	 */
-	public function edac_gaad_notice() {
-
-		// Define constants for start and end dates.
-		define( 'EDAC_GAAD_NOTICE_START_DATE', '2025-05-13' );
-		define( 'EDAC_GAAD_NOTICE_END_DATE', '2025-05-21' );
-
-		// Check if Accessibility Checker Pro is active.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			return;
-		}
-
-		// Get the value of the 'edac_gaad_notice_dismiss' option and sanitize it.
-		$dismissed = absint( get_option( 'edac_gaad_notice_dismiss_2025', 0 ) );
+	public function edac_gaad_presale_notice() {
 
 		// Check if the notice has been dismissed.
-		if ( $dismissed ) {
+		if ( absint( get_option( 'edac_gaad_presale_notice_dismiss_2026', 0 ) ) ) {
 			return;
 		}
 
-		// Get the current date in the 'Y-m-d' format.
 		$current_date = gmdate( 'Y-m-d' );
+		$start_date   = '2026-05-13';
+		$end_date     = '2026-05-19';
 
-		// Check if the current date is within the specified range.
-		if ( $current_date >= EDAC_GAAD_NOTICE_START_DATE && $current_date <= EDAC_GAAD_NOTICE_END_DATE ) {
-
-			// Get the promotional message from a separate function/file.
-			$message = $this->edac_get_gaad_promo_message();
-
-			// Output the message with appropriate sanitization.
-			echo wp_kses_post( $message );
-
+		if ( $current_date >= $start_date && $current_date <= $end_date ) {
+			echo wp_kses_post( $this->edac_get_gaad_presale_message() );
 		}
 	}
 
 	/**
-	 * Get GAAD Promo Message
+	 * Get GAAD Pre-Sale Message
+	 *
+	 * Awareness-focused copy shown May 13–19 before the sale goes live.
 	 *
 	 * @return string
 	 */
-	public function edac_get_gaad_promo_message() {
+	public function edac_get_gaad_presale_message() {
 
-		// Construct the promotional message.
-		$message  = '<div class="edac_gaad_notice notice notice-info is-dismissible">';
-		$message .= '<p><strong>' . esc_html__( '🎉 Get 25% off Accessibility Checker Pro in honor of Global Accessibility Awareness Day! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Use coupon code GAAD25 from May 13th-May 21st to get access to full-site scanning and other pro features at a special discount. Not sure if upgrading is right for you?', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/contact/', 'admin-notice', 'GAAD25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message  = '<div class="edac_gaad_presale_notice notice notice-info is-dismissible">';
+		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
+
+		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
+			$message .= esc_html__( 'Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
+			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '</p><p>';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/archivewp/', 'admin-notice', 'GAAD2026-archivewp-pre', false ) ) . '">' . esc_html__( 'View ArchiveWP Pricing', 'accessibility-checker' ) . '</a> ';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/learn/courses/', 'admin-notice', 'GAAD2026-courses-pre', false ) ) . '">' . esc_html__( 'View Course Pricing', 'accessibility-checker' ) . '</a></p>';
+		} else {
+			$message .= esc_html__( 'Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
+			$message .= esc_html__( '3 days only • May 20–22', 'accessibility-checker' ) . '</p><p>';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'GAAD2026-pricing-pre', false ) ) . '">' . esc_html__( 'View Pricing', 'accessibility-checker' ) . '</a></p>';
+		}
+
 		$message .= '</div>';
 
 		return $message;
 	}
 
 	/**
-	 * GAAD Admin Notice Ajax
+	 * GAAD Pre-Sale Notice Ajax
 	 *
 	 * @return void
 	 *
-	 *  - '-1' means that nonce could not be varified
+	 *  - '-1' means that nonce could not be verified
 	 *  - '-2' means that update option wasn't successful
 	 */
-	public function edac_gaad_notice_ajax() {
+	public function edac_gaad_presale_notice_ajax() {
 
-		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
-
 			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
-
 		}
 
-		$results = update_option( 'edac_gaad_notice_dismiss_2025', true );
-		// Delete old meta keys if they exist.
+		$results = update_option( 'edac_gaad_presale_notice_dismiss_2026', true );
+
+		if ( ! $results ) {
+			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
+			wp_send_json_error( $error );
+		}
+
+		wp_send_json_success( wp_json_encode( $results ) );
+	}
+
+	/**
+	 * GAAD Sale Notice
+	 *
+	 * Displays May 20–22 during the active flash sale.
+	 *
+	 * @return void
+	 */
+	public function edac_gaad_sale_notice() {
+
+		// Check if the notice has been dismissed.
+		if ( absint( get_option( 'edac_gaad_sale_notice_dismiss_2026', 0 ) ) ) {
+			return;
+		}
+
+		$current_date = gmdate( 'Y-m-d' );
+		$start_date   = '2026-05-20';
+		$end_date     = '2026-05-22';
+
+		if ( $current_date >= $start_date && $current_date <= $end_date ) {
+			echo wp_kses_post( $this->edac_get_gaad_sale_message() );
+		}
+	}
+
+	/**
+	 * Get GAAD Sale Message
+	 *
+	 * Urgency-focused copy shown May 20–22 while the sale is live.
+	 *
+	 * @return string
+	 */
+	public function edac_get_gaad_sale_message() {
+
+		$message  = '<div class="edac_gaad_sale_notice notice notice-info is-dismissible">';
+		$message .= '<p><strong>' . esc_html__( '⚡️ Global Accessibility Awareness Day Flash Sale', 'accessibility-checker' ) . '</strong><br />';
+
+		if ( defined( 'EDACP_VERSION' ) && edac_is_pro() ) {
+			$message .= esc_html__( 'Save 15% on accessibility courses and ArchiveWP with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
+			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '</p><p>';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/archivewp/?discount=GAAD2026&pro=true', 'admin-notice', 'GAAD2026-archivewp', false ) ) . '">' . esc_html__( 'View ArchiveWP Pricing', 'accessibility-checker' ) . '</a> ';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/learn/courses/?discount=GAAD2026&pro=true', 'admin-notice', 'GAAD2026-courses', false ) ) . '">' . esc_html__( 'View Course Pricing', 'accessibility-checker' ) . '</a></p>';
+		} else {
+			$message .= esc_html__( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code ', 'accessibility-checker' ) . '<code>GAAD2026</code>.<br />';
+			$message .= esc_html__( 'Limited-time offer • Ends May 22nd', 'accessibility-checker' ) . '</p><p>';
+			$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/?discount=GAAD2026', 'admin-notice', 'GAAD2026-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		}
+
+		$message .= '</div>';
+
+		return $message;
+	}
+
+	/**
+	 * GAAD Sale Notice Ajax
+	 *
+	 * @return void
+	 *
+	 *  - '-1' means that nonce could not be verified
+	 *  - '-2' means that update option wasn't successful
+	 */
+	public function edac_gaad_sale_notice_ajax() {
+
+		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_key( $_REQUEST['nonce'] ), 'ajax-nonce' ) ) {
+			$error = new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) );
+			wp_send_json_error( $error );
+		}
+
+		$results = update_option( 'edac_gaad_sale_notice_dismiss_2026', true );
+		// Delete old option keys if they exist.
+		delete_option( 'edac_gaad_notice_dismiss_2026' );
+		delete_option( 'edac_gaad_notice_dismiss_2025' );
 		delete_option( 'edac_gaad_notice_dismiss_2024' );
 		delete_option( 'edac_gaad_notice_dismiss' );
 
 		if ( ! $results ) {
-
 			$error = new \WP_Error( '-2', __( 'Update option wasn\'t successful', 'accessibility-checker' ) );
 			wp_send_json_error( $error );
 

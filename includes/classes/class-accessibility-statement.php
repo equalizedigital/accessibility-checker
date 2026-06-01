@@ -7,6 +7,10 @@
 
 namespace EDAC\Inc;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * A class that handles accessibility statement.
  */

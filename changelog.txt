@@ -1,5 +1,88 @@
 *** Accessibility Checker ***
 
+2026-05-28 - version 1.43.0
+* Updated - improved empty alt warnings for images that are inside buttons with accessible names.
+* Updated - improved empty button checks for elements hidden from screen readers and keyboard users.
+* Updated - more strings translated into other languages.
+* Updated - hardened the dismiss issue REST endpoints against edge cases.
+
+2026-05-20 - version 1.42.1
+* Updated - improved permission handling for the ignore feature.
+
+2026-05-18 - version 1.42.0
+* Updated - add support for role="none" in several of the link and image alt related rules.
+* Updated - added support for named anchors as jump links.
+* New - added system info checker for compatibility checking of plugins and themes.
+
+2026-05-13 - version 1.41.0
+* Updated - the possible heading rule now accounts for elements with role="heading" appropriately.
+* Fix - several language translations are now properly detected by WordPress when using them.
+* Fix - harden the frontend highlighter scanner against caching when updated.
+* Fix - email report checks now defer to the pro plugin when installed to avoid conflicts.
+* Fix - Text size too small check no longer produces false positives on screen-reader-only (visually hidden) elements.
+
+2026-04-21 - version 1.40.0
+* New - Screen reader only text format support in the Block Editor and frontend.
+* New - Email reports opt-in added for site summaries.
+* New - Frontend highlighter UI update and positioning options added.
+* Fix - Article landmark labels now correctly display "Landmark: Article".
+* Changed - Missing Table Header checks now correctly skip tables marked with role="presentation" or role="none".
+* Changed - Table header detection now better handles colspan, rowspan, and ARIA header relationships.
+* Changed - Orphaned issue cleanup now runs twice daily for fresher issue data.
+
+2026-03-17 - version 1.39.0
+* New - CSS modifier classes to opt out of the New Window Warning icon and tooltip.
+* New - Setting to hide the legacy metabox in the Block Editor.
+* New - Fix to allow empty search results to display a meaningful message instead of a 404.
+* Fix - Orphaned settings labels on the options page.
+* Fix - Issue modal content clipped when affected code contains long URLs.
+* Fix - Undefined help_id notice in help link generation.
+* Updated - Welcome dashboard UI updated to bring it in line with other UI changes.
+* Updated - Made more strings translatable - particularly those returned by ajax.
+* Enhanced - Missing transcript detection now searches 2 additional levels up.
+
+2026-03-04 - version 1.38.0
+* New - Block Editor Sidebar with accessibility scan data, issues, and quick access panel for faster navigation.
+* New - Dismissed issues now have assignable reasons for the dismissal.
+* New - Dismiss reason and severity now visible on issues (in both sidebar and classic metabox).
+* New - Ability to reopen issues that were dismissed with one click from the sidebar.
+* Updated - Classic Editor metabox visual design to match sidebar styling.
+* Updated - Terminology: "Errors" now "Problems".
+* Updated - Terminology: "Warnings" now "Needs Review".
+* Updated - Terminology: "Ignore" now "Dissmis".
+* Updated - Terminology: "Passed Tests" now "Passed Checks".
+* Updated - in the sidebar contrast errors are now included in the "Problems" sections.
+* Enhanced - Using both color and shape now indicate state of found issues and readability.
+* Fix - Make sure that summary needed is flagged for above 9th grade. Some instances it could flag for summary at 9th.
+* Fix - prevent welcome modal on the first visit from overriding other events on the page load.
+* Fix - various type safety and existed checks in places to prevent edge case errors.
+
+2026-01-23 - version 1.37.0
+* Fix - Duplicate markup on the page can now be properly identified as an issue.
+* Fix - Restrict global ignore management link and fix button label span closure.
+* Fix - Update database schema to use selector as unique identifier for issues.
+* Enhanced - Frontend issue matching with stable selectors and DOM ordering.
+* Enhanced - Better handling of frontend highlighter positioning.
+* Improved - More accurate restoration of styles after deactivating them in frontend highlighter.
+* Improved - When closing frontend highlighter it won't re-render unless needed.
+
+2025-12-15 - version 1.36.0
+* Fix - passed tests percentage logic now accounts times no posts are scanned
+* Fix - don't prevent scan speed saving when pro plugin is enabled.
+* Add - new trigger for invalid alt text - "an image".
+* Add - allow role="menuitem" with aria-expanded in link validation checks
+* New - visit welcome screen on plugin activation.
+
+2025-12-05 - version 1.35.0
+* Fix - Ignored issues no longer count in density scores.
+* Fix - Ignored issues count comparison and message logic in frontend highlighter.
+* Fix - Allow long translations to wrap in new window warning tooltip.
+* Fix - Improve sanitization that would prevent checkboxes saving on first attempt in some cases.
+* Fix - Dashboard widget to conditionally display upcoming meetups and improve meetup data handling.
+* Fix - Make highlighter controls translatable.
+* Tweak - Add better help article link for new window warning fix.
+* Tweak - Use WordPress data functions instead of server time for ignore date formatting.
+
 2025-10-22 - version 1.34.0
 * Tweak - Missing transcript can now detect transcripts for videos when they are not just direct siblings.
 * Tweak - Use post type labels rather than slugs in views where applicable.

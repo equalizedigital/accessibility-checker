@@ -9,6 +9,10 @@ namespace EqualizeDigital\AccessibilityChecker\Fixes\Fix;
 
 use EqualizeDigital\AccessibilityChecker\Fixes\FixInterface;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Prevents links from opening in new windows.
  *
@@ -108,7 +112,9 @@ class AddNewWindowWarningFix implements FixInterface {
 			function ( $data ) {
 
 				$data[ $this->get_slug() ] = [
-					'enabled' => true,
+					'enabled'         => true,
+					'classPrefix'     => 'edac-nww',
+					'localizedString' => __( 'opens a new window', 'accessibility-checker' ),
 				];
 				return $data;
 			}
@@ -137,25 +143,36 @@ class AddNewWindowWarningFix implements FixInterface {
 			}
 
 			:root {
-				--font-base: 'anww', sans-serif;
-				--icon-size: 0.75em;
+				--edac-nww-font-base: 'anww', sans-serif;
+				--edac-nww-icon-size: 0.75em;
 			}
 
+			.anww-external-link-icon,
 			.edac-nww-external-link-icon {
-				font: normal normal normal 1em var(--font-base) !important;
+				font: normal normal normal 1em var(--edac-nww-font-base) !important;
 				speak: never;
 				text-transform: none;
 				-webkit-font-smoothing: antialiased;
 				-moz-osx-font-smoothing: grayscale;
 			}
 
+			.anww-external-link-icon:before,
 			.edac-nww-external-link-icon:before {
 				content: " \e900";
-				font-size: var(--icon-size);
+				font-size: var(--edac-nww-icon-size);
 			}
 
+			.anww-external-link-icon.elementor-button-link-content:before,
 			.edac-nww-external-link-icon.elementor-button-link-content:before {
 				vertical-align: middle;
+			}
+
+			/* Modifier classes: add these to a container element to opt out of specific behaviors. */
+			.anww-no-icon .anww-external-link-icon,
+			.anww-no-icon .edac-nww-external-link-icon,
+			.edac-nww-no-icon .anww-external-link-icon,
+			.edac-nww-no-icon .edac-nww-external-link-icon {
+				display: none !important;
 			}
 		</style>
 		<?php

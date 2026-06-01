@@ -76,7 +76,7 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 				fixSettingsContainer.querySelector( '[aria-live]' ).innerText = __( 'Saving failed.', 'accessibility-checker' );
 			}
 
-			document.dispatchEvent( new CustomEvent( 'edac-fix-settings-saved', { detail: { success: response.ok } } ) );
+			document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: response.ok } } ) );
 		}
 	);
 };

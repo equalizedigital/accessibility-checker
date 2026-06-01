@@ -7,6 +7,10 @@
 
 namespace EDAC\Admin\OptIn;
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
 /**
  * Handler for email opt-in actions like producing the markup for the form and modal where needed.
  *

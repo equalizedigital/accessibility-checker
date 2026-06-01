@@ -40,6 +40,16 @@ describe( 'Image Alt Invalid Validation', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'should fail for alt text that starts with "an image"',
+			html: '<img src="test.jpg" alt="an image of a sunset">',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for alt text that is exactly "an image"',
+			html: '<img src="test.jpg" alt="an image">',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail for alt text that ends with "image"',
 			html: '<img src="test.jpg" alt="cat image">',
 			shouldPass: false,
