@@ -16,3 +16,5 @@ export {
 } from '../sidebar/utils/dismissHelpers';
 export { default as RichTextarea } from '../issueModal/components/RichTextarea';
 export { default as IssueImage, extractImageUrls } from '../issueModal/components/IssueImage';
+export { getSeverityLabel, getSeverityBadgeProps } from '../sidebar/utils/severityHelpers';
+export { getRuleTypeBadgeProps } from '../sidebar/utils/badgeHelpers';
