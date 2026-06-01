@@ -1,5 +1,5 @@
 export default {
-	id: 'link-is-naked',
+	id: 'link-text-is-url',
 	evaluate( node ) {
 		if ( ! node || typeof node.getAttribute !== 'function' ) {
 			return undefined;
@@ -53,7 +53,7 @@ export default {
 			// If no protocol/www (e.g. bare domain or relative path), fall through (do not return false here).
 		}
 
-		// Default: not a naked link per this check
+		// Default: not a URL link text per this check
 		return false;
 	},
 	metadata: {

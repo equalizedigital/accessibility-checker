@@ -46,7 +46,7 @@ class RuleRegistry {
 			'LinkBlankRule',
 			'LinkImproperRule',
 			'LinkMsOfficeFileRule',
-			'LinkNakedRule',
+			'LinkTextIsUrlRule',
 			'LinkNonHtmlFileRule',
 			'LinkPdfRule',
 			'LongDescriptionInvalidRule',

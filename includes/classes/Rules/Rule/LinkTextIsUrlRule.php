@@ -1,6 +1,6 @@
 <?php
 /**
- * LinkNaked.
+ * LinkTextIsUrl.
  *
  * @package EqualizeDigital\AccessibilityChecker
  */
@@ -11,9 +11,9 @@ use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
 use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
 
 /**
- * Link Naked Rule class.
+ * Link Text Is URL Rule class.
  */
-class LinkNakedRule implements RuleInterface {
+class LinkTextIsUrlRule implements RuleInterface {
 	/**
 	 * Get the rule definition.
 	 *
@@ -24,7 +24,7 @@ class LinkNakedRule implements RuleInterface {
 		return [
 			'title'                 => esc_html__( 'Link Text is URL', 'accessibility-checker' ),
 			'info_url'              => 'https://a11ychecker.com/help10283',
-			'slug'                  => 'link_naked',
+			'slug'                  => 'link_text_is_url',
 			'rule_type'             => 'warning',
 			'summary'               => esc_html__(
 				'This link uses a URL for its anchor text rather than a meaningful word or phrase.',
@@ -50,7 +50,7 @@ class LinkNakedRule implements RuleInterface {
 			],
 			'ruleset'               => 'js',
 			'wcag'                  => '2.4.4',
-			'severity'              => 3, // Medium.
+			'severity'              => 2, // High.
 			'affected_disabilities' => [
 				AffectedDisabilities::BLIND,
 				AffectedDisabilities::LOW_VISION,

@@ -1,21 +1,21 @@
 import axe from 'axe-core';
 
 // Store the imported modules in a broader scope
-let nakedLinkRule;
-let linkIsNakedCheck;
+let linkTextIsUrlRule;
+let linkTextIsUrlCheck;
 
 beforeAll( async () => {
 	// Dynamically import the custom rule and check
-	const nakedLinkRuleModule = await import( '../../../src/pageScanner/rules/link-naked.js' );
-	const linkIsNakedCheckModule = await import( '../../../src/pageScanner/checks/link-is-naked.js' );
+	const linkTextIsUrlRuleModule = await import( '../../../src/pageScanner/rules/link-text-is-url.js' );
+	const linkTextIsUrlCheckModule = await import( '../../../src/pageScanner/checks/link-text-is-url.js' );
 
-	nakedLinkRule = nakedLinkRuleModule.default;
-	linkIsNakedCheck = linkIsNakedCheckModule.default;
+	linkTextIsUrlRule = linkTextIsUrlRuleModule.default;
+	linkTextIsUrlCheck = linkTextIsUrlCheckModule.default;
 
 	// Configure axe with the custom rule and check
 	axe.configure( {
-		rules: [ nakedLinkRule ],
-		checks: [ linkIsNakedCheck ],
+		rules: [ linkTextIsUrlRule ],
+		checks: [ linkTextIsUrlCheck ],
 	} );
 } );
 
@@ -24,7 +24,7 @@ beforeEach( () => {
 	document.body.innerHTML = '';
 } );
 
-describe( 'Naked Link Validation', () => {
+describe( 'Link Text Is URL Validation', () => {
 	const testCases = [
 		// Failing cases
 		{
@@ -261,7 +261,7 @@ describe( 'Naked Link Validation', () => {
 		},
 		{
 			name: 'should pass when link has domain and single path segment without protocol',
-			html: '<p>Don’t miss upcoming meetups. Register to attend at <a href="https://equalizedigital.com/meetup">equalizedigital.com/meetup</a>.</p>',
+			html: '<p>Don\'t miss upcoming meetups. Register to attend at <a href="https://equalizedigital.com/meetup">equalizedigital.com/meetup</a>.</p>',
 			shouldPass: true,
 		},
 		{
@@ -356,7 +356,7 @@ describe( 'Naked Link Validation', () => {
 			document.body.innerHTML = testCase.html;
 
 			const results = await axe.run( document.body, {
-				runOnly: [ 'link_naked' ], // Run only our new rule
+				runOnly: [ 'link_text_is_url' ], // Run only our new rule
 			} );
 
 			if ( testCase.shouldPass ) {
