@@ -237,7 +237,8 @@ class AccessibilityReportsPage implements PageInterface {
 									<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
 									<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
 								</div>
-								<p><?php esc_html_e( 'You’ll receive weekly accessibility reports for this site.', 'accessibility-checker' ); ?></p>
+								<p><?php esc_html_e( 'Weekly accessibility reports for this site are being emailed to the account owner of the license key.', 'accessibility-checker' ); ?></p>
+
 								<p class="edac-reports-card__meta">
 									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>
