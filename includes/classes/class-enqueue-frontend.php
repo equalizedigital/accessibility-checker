@@ -103,11 +103,13 @@ class Enqueue_Frontend {
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
 
-		// When the homepage displays latest posts (show_on_front=posts), WordPress populates
-		// the global $post with the first post from the blog query rather than a page object.
-		// Passing that post's ID would attribute homepage scan results to the wrong entry.
-		// Pass null instead so the filter can supply a virtual-page ID (Pro) or bail cleanly.
-		$default_post_id = ( is_home() && is_front_page() && 'posts' === get_option( 'show_on_front' ) )
+		// When the homepage displays latest posts, WordPress populates the global $post with the
+		// first post from the blog query rather than a page object. This happens when
+		// show_on_front=posts, but also in the fallback case where show_on_front=page but no
+		// valid static front page is configured. is_home() && is_front_page() covers both.
+		// Passing the first post's ID would attribute homepage scan results to the wrong entry,
+		// so pass null and let the filter supply a virtual-page ID (Pro) or bail cleanly.
+		$default_post_id = ( is_home() && is_front_page() )
 			? null
 			: ( is_object( $post ) ? $post->ID : null );
 

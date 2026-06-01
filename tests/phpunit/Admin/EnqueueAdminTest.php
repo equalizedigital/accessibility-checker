@@ -432,6 +432,81 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that edac_filter_post_is_latest_posts_home causes the scan URL to use the home URL
+	 * when show_on_front=page but no static front page is configured (fallback case).
+	 *
+	 * WordPress falls back to showing latest posts when show_on_front=page but page_on_front
+	 * is empty. The $is_latest_posts_home condition must cover this case so extensions can
+	 * still signal that get_home_url() should be used as the scan URL.
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenShowOnFrontIsPageWithNoFrontPageConfigured() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'page' );
+		delete_option( 'page_on_front' ); // No static front page configured — WP falls back to latest posts.
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		$this->assertStringContainsString( trailingslashit( get_home_url() ), $localized_data );
+	}
+
+	/**
+	 * Test that the 'active' flag in edac_editor_app reflects the filtered post ID's post type.
+	 *
+	 * Before Fix 3, $active was set to $is_scannable_post which was computed from the global
+	 * $post before the edac_filter_admin_post_id filter ran. If the filter returns a different
+	 * post ID whose type is not scannable, $active must be false so the scanner doesn't run.
+	 *
+	 * @return void
+	 */
+	public function testActiveReflectsFilteredPostIdPostType() {
+		global $post, $pagenow, $wp_scripts;
+
+		// Global $post is a 'post' type (scannable under current option).
+		$scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		// The filter will return a 'page' ID; make 'page' non-scannable for this test.
+		$non_scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$post               = $scannable_post;
+		$pagenow            = 'post.php';
+
+		// Restrict scannable types to 'post' only so 'page' becomes non-scannable.
+		update_option( 'edac_post_types', [ 'post' ] );
+
+		$filter_callback = static function () use ( $non_scannable_post ) {
+			return $non_scannable_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+		// Restore original scannable post types.
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertNotEmpty( $localized_data );
+		// $active must be false because the filtered post type ('page') is not scannable.
+		$this->assertMatchesRegularExpression( '/"active"\s*:\s*false/', $localized_data );
+	}
+
+	/**
 	 * Helper to set a mock current screen with block editor context.
 	 *
 	 * @param bool $is_block_editor Whether the screen should behave as block editor.
