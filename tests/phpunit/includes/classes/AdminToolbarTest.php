@@ -99,6 +99,7 @@ class Admin_Toolbar_Test extends TestCase {
 	 * Test get_default_menu_items() handles missing EDAC_KEY_VALID when pro is defined.
 	 *
 	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_get_default_menu_items_handles_missing_edac_key_valid_constant() {
 		if ( defined( 'EDAC_KEY_VALID' ) ) {
