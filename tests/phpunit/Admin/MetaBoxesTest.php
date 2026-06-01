@@ -14,6 +14,30 @@ use EDAC\Admin\Meta_Boxes;
 class MetaBoxesTest extends WP_UnitTestCase {
 
 	/**
+	 * Set up options used by metabox registration tests.
+	 *
+	 * @return void
+	 */
+	protected function setUp(): void {
+		parent::setUp();
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+		delete_option( 'edac_show_metabox_in_block_editor' );
+	}
+
+	/**
+	 * Clean up options and globals.
+	 *
+	 * @return void
+	 */
+	protected function tearDown(): void {
+		delete_option( 'edac_post_types' );
+		delete_option( 'edac_show_metabox_in_block_editor' );
+		unset( $GLOBALS['current_screen'], $GLOBALS['wp_meta_boxes'] );
+		parent::tearDown();
+	}
+
+
+	/**
 	 * Test the hooks are added only in admin.
 	 *
 	 * @return void
@@ -65,6 +89,51 @@ class MetaBoxesTest extends WP_UnitTestCase {
 		$this->expectOutputRegex( '/role="tablist"/' );
 		$this->expectOutputRegex( '/role="tab"/' );
 		$this->expectOutputRegex( '/role="tabpanel"/' );
+	}
+
+
+	/**
+	 * Test that metaboxes are not registered in the block editor when disabled by setting.
+	 *
+	 * @return void
+	 */
+	public function test_register_meta_boxes_skips_block_editor_when_setting_disabled(): void {
+		$meta_boxes = new Meta_Boxes();
+		$this->set_mock_screen( true );
+		update_option( 'edac_show_metabox_in_block_editor', 0 );
+
+		$meta_boxes->register_meta_boxes();
+
+		$this->assertFalse( isset( $GLOBALS['wp_meta_boxes']['post']['normal']['high']['edac-meta-box'] ) );
+	}
+
+	/**
+	 * Test that metaboxes are still registered in classic editor when block-editor setting is disabled.
+	 *
+	 * @return void
+	 */
+	public function test_register_meta_boxes_keeps_classic_editor_when_setting_disabled(): void {
+		$meta_boxes = new Meta_Boxes();
+		$this->set_mock_screen( false );
+		update_option( 'edac_show_metabox_in_block_editor', 0 );
+
+		$meta_boxes->register_meta_boxes();
+
+		$this->assertTrue( isset( $GLOBALS['wp_meta_boxes']['post']['normal']['high']['edac-meta-box'] ) );
+	}
+
+	/**
+	 * Helper to set a mock current screen with block editor context.
+	 *
+	 * @param bool $is_block_editor Whether the screen should behave as block editor.
+	 */
+	private function set_mock_screen( bool $is_block_editor ): void {
+		// As of WP 7.0, get_current_screen() requires an actual WP_Screen
+		// instance. Use WP_Screen::get() to obtain one without the side effects
+		// of set_current_screen() (e.g. setting $hook_suffix, $typenow, firing
+		// the current_screen action).
+		$GLOBALS['current_screen']                  = WP_Screen::get( 'post' );
+		$GLOBALS['current_screen']->is_block_editor = $is_block_editor;
 	}
 
 	/**

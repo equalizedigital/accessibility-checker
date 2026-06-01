@@ -35,6 +35,10 @@ class Meta_Boxes {
 	 * @return void
 	 */
 	public function register_meta_boxes(): void {
+		if ( Helpers::is_block_editor() && ! get_option( 'edac_show_metabox_in_block_editor', 1 ) ) {
+			return;
+		}
+
 		$post_types = Settings::get_scannable_post_types();
 		if ( $post_types ) {
 			foreach ( $post_types as $post_type ) {
