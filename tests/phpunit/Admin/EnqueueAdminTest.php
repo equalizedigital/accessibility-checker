@@ -503,7 +503,9 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
 		$this->assertNotEmpty( $localized_data );
 		// $active must be false because the filtered post type ('page') is not scannable.
-		$this->assertMatchesRegularExpression( '/"active"\s*:\s*false/', $localized_data );
+		// wp_localize_script serializes PHP false as "" (empty string) in older WP versions
+		// and may serialize it as JSON false in newer ones — accept both forms.
+		$this->assertMatchesRegularExpression( '/"active"\s*:\s*(false|"")/', $localized_data );
 	}
 
 	/**
