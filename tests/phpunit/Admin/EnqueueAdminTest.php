@@ -166,7 +166,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
 		// We should check for both possibilities here to ensure compatibility across versions.
-		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557. for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
@@ -198,7 +198,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
 		// We should check for both possibilities here to ensure compatibility across versions.
-		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557. for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
@@ -428,7 +428,13 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringNotContainsString( 'preview=true', $localized_data );
 		// The scan URL should be based on the home URL, not a preview link.
-		$this->assertStringContainsString( trailingslashit( get_home_url() ), $localized_data );
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
 	}
 
 	/**
@@ -464,7 +470,13 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		$this->assertStringNotContainsString( 'preview=true', $localized_data );
 		// The scan URL should be based on the home URL, not a preview link.
-		$this->assertStringContainsString( trailingslashit( get_home_url() ), $localized_data );
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
 	}
 
 	/**
