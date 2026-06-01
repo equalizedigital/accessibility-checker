@@ -1,3 +1,5 @@
+import { __ } from '@wordpress/i18n';
+
 export default {
 	id: 'link-text-is-url',
 	evaluate( node ) {
@@ -57,7 +59,7 @@ export default {
 		return false;
 	},
 	metadata: {
-		description: "Checks if a link's visible text is a URL rather than descriptive anchor text.",
-		help: 'Link text should be descriptive and not simply the URL.',
+		description: __( "Checks if a link's visible text is a URL rather than descriptive anchor text.", 'accessibility-checker' ),
+		help: __( 'Link text should be descriptive and not simply the URL.', 'accessibility-checker' ),
 	},
 };
