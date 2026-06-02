@@ -67,6 +67,22 @@ class IgnoreUI {
 			return $default_reasons;
 		}
 
+		// Strip any entries that don't conform to the expected structure.
+		foreach ( $reasons as $key => $value ) {
+			if (
+				! is_array( $value ) ||
+				! isset( $value['label'], $value['description'] ) ||
+				! is_string( $value['label'] ) ||
+				! is_string( $value['description'] )
+			) {
+				unset( $reasons[ $key ] );
+			}
+		}
+
+		if ( empty( $reasons ) ) {
+			return $default_reasons;
+		}
+
 		return $reasons;
 	}
 
