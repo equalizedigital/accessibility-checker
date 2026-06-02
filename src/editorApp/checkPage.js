@@ -112,6 +112,7 @@ const injectIframe = ( previewUrl, postID ) => {
 				}
 
 				iframeDocument.defaultView.scanOptions = {
+					...iframeDocument.defaultView.scanOptions,
 					maxAltLength: window.edac_editor_app.maxAltLength,
 					ruleExclusions: window.edac_editor_app.ruleExclusions,
 				};

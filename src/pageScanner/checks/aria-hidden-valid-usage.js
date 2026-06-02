@@ -22,10 +22,14 @@ export default {
 		}
 
 		// Check against configured exclusion selectors.
-		const exclusions = options?.exclusions || [];
+		const exclusions = Array.isArray( options?.exclusions ) ? options.exclusions : [];
 		for ( const selector of exclusions ) {
-			if ( node.matches( selector ) ) {
-				return true;
+			try {
+				if ( node.matches( selector ) ) {
+					return true;
+				}
+			} catch ( e ) {
+				// Skip malformed selectors so the scan remains stable.
 			}
 		}
 

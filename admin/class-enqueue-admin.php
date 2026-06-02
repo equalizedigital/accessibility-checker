@@ -455,10 +455,10 @@ class Enqueue_Admin {
 	 *
 	 * @return array<string, string[]>
 	 */
-	private static function get_rule_exclusions(): array {
+	public static function get_rule_exclusions(): array {
 		$exclusions = [];
 		foreach ( edac_register_rules() as $rule ) {
-			if ( ! empty( $rule['exclusions'] ) ) {
+			if ( ! empty( $rule['slug'] ) && ! empty( $rule['exclusions'] ) && is_array( $rule['exclusions'] ) ) {
 				$exclusions[ $rule['slug'] ] = $rule['exclusions'];
 			}
 		}
