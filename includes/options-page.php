@@ -784,7 +784,6 @@ function edac_include_accessibility_statement_link_cb() {
 function edac_accessibility_policy_page_cb() {
 
 	$policy_page = get_option( 'edac_accessibility_policy_page' );
-	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 	?>
 
 	<input style="width: 100%;" type="text" name="edac_accessibility_policy_page" id="edac_accessibility_policy_page" value="<?php echo esc_attr( $policy_page ); ?>">
