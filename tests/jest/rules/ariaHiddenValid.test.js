@@ -9,10 +9,23 @@ beforeAll( async () => {
 	const ariaHiddenRule = ariaHiddenRuleModule.default;
 	const ariaHiddenCheck = ariaHiddenCheckModule.default;
 
-	// Configure axe with the imported rules
+	// Configure axe with the imported rules.
+	// Pass the WordPress-specific exclusions the same way config/rules.js does
+	// at runtime via window.scanOptions, so tests reflect production behaviour.
 	axe.configure( {
 		rules: [ ariaHiddenRule ],
-		checks: [ ariaHiddenCheck ],
+		checks: [
+			{
+				...ariaHiddenCheck,
+				options: {
+					exclusions: [
+						'.wp-block-spacer',
+						'.wp-block-cover__background.has-background-dim',
+						'.wp-block-post-featured-image__overlay.has-background-dim',
+					],
+				},
+			},
+		],
 	} );
 } );
 
@@ -72,6 +85,16 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass for wp-block-spacer class',
 			html: '<div class="wp-block-spacer" aria-hidden="true"></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for cover block background dim overlay',
+			html: '<span aria-hidden="true" class="wp-block-cover__background has-background-dim"></span>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for post featured image overlay with dim',
+			html: '<span class="wp-block-post-featured-image__overlay has-background-dim has-background-dim-10 has-contrast-2-background-color" style="border-radius:5px" aria-hidden="true"></span>',
 			shouldPass: true,
 		},
 		{
