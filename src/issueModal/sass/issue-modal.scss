@@ -8,6 +8,10 @@
 @use '../../sidebar/sass/components/badge';
 @use '../../sidebar/sass/variables' as *;
 
+// DismissPanel component styles — defined at root scope so they apply in any
+// context (modal, pro drawer, etc.). Modal-specific overrides follow below.
+@use 'dismiss-panel';
+
 .edac-analysis {
 	&__issue-modal {
 
@@ -268,11 +272,16 @@
 			margin: 16px 0;
 		}
 
+		// Modal-specific layout overrides for fix/dismiss panels.
+		// The component-level styles for .edac-analysis__dismiss-panel and its
+		// children live in _dismiss-panel.scss at root scope.
 		.edac-analysis__fix-panel,
 		.edac-analysis__dismiss-panel {
 
 			.components-panel {
 				border: none;
+				// Negative margin compensates for the modal's 24px side padding
+				// so the panel border runs full-width.
 				margin: 0 -24px 0;
 			}
 
@@ -294,27 +303,6 @@
 				.components-panel__body-title button {
 					border-bottom: 1px solid $outline-grey;
 				}
-
-			}
-		}
-
-		.edac-analysis__dismiss-panel {
-			margin-top: 16px;
-
-			.components-base-control__label {
-				font-size: $modal-font-size-small;
-				margin-bottom: .75em;
-				text-transform: none;
-			}
-
-			.components-radio-control__option {
-				border: 1px solid $outline-grey;
-				border-radius: 4px;
-				padding: 16px;
-			}
-
-			.components-radio-control__group-wrapper {
-				margin-bottom: 24px;
 			}
 		}
 
@@ -400,67 +388,7 @@
 			}
 		}
 
-		.edac-analysis__dismissed-comment {
-			margin-top: 16px;
-
-			&-label {
-				font-weight: 600;
-				margin: 0 0 4px;
-			}
-		}
-
-		.edac-analysis__dismissed-meta {
-			display: grid;
-			grid-template-columns: auto 1fr;
-			gap: 6px 16px;
-			margin: 0 0 0;
-			padding: 0;
-			list-style: none;
-
-			dt {
-				font-weight: 600;
-			}
-
-			dd {
-				font-size: 13px;
-				color: #1e1e1e;
-				margin: 0;
-				padding: 0;
-				word-break: break-word;
-			}
-		}
-
-		.edac-analysis__dismissed-actions {
-			margin-top: 20px;
-			padding-top: 16px;
-			border-top: 1px solid $outline-grey;
-
-			.edac-analysis__dismiss-button {
-				margin-top: 0;
-			}
-		}
-
-		.edac-analysis__dismiss-button {
-			margin-top: 12px;
-
-			.components-spinner {
-				margin-right: 8px;
-			}
-		}
-
-		.edac-analysis__dismiss-split-button {
-			display: flex;
-			align-items: flex-end;
-
-			.edac-analysis__dismiss-button {
-				border-radius: 2px 0 0 2px;
-			}
-
-			.edac-analysis__dismiss-dropdown-toggle {
-				border-radius: 0 2px 2px 0;
-				margin-left: 2px;
-			}
-		}
+		// Dismiss component styles are in _dismiss-panel.scss at root scope.
 
 		.edac-analysis__issue-modal-placeholder {
 			padding: 16px;

@@ -1,0 +1,104 @@
+/**
+ * DismissPanel component styles.
+ *
+ * Defined at component-class scope (not nested under a page or modal parent)
+ * so these styles apply wherever DismissPanel is rendered — including the
+ * pro plugin's Issues Explorer drawer and any future contexts.
+ *
+ * Modal-specific layout overrides (negative side margins, large title size)
+ * remain in issue-modal.scss, nested under .edac-analysis__issue-modal.
+ */
+
+@use '../../sidebar/sass/variables' as *;
+
+// Radio reason picker inside the dismiss panel.
+.edac-analysis__dismiss-panel {
+	margin-top: 16px;
+
+	.components-base-control__label {
+		font-size: $modal-font-size-small;
+		margin-bottom: .75em;
+		text-transform: none;
+	}
+
+	.components-radio-control__option {
+		border: 1px solid $outline-grey;
+		border-radius: 4px;
+		padding: 16px;
+	}
+
+	.components-radio-control__group-wrapper {
+		margin-bottom: 24px;
+	}
+}
+
+// Already-dismissed state: shows who dismissed, when, and why.
+.edac-analysis__dismissed-comment {
+	margin-top: 16px;
+
+	&-label {
+		font-weight: 600;
+		margin: 0 0 4px;
+	}
+
+	&-body {
+		font-size: 13px;
+		line-height: 1.5;
+	}
+}
+
+.edac-analysis__dismissed-meta {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	gap: 6px 16px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+
+	dt {
+		font-weight: 600;
+	}
+
+	dd {
+		font-size: 13px;
+		color: #1e1e1e;
+		margin: 0;
+		padding: 0;
+		word-break: break-word;
+	}
+}
+
+// Action buttons shown in the already-dismissed state.
+.edac-analysis__dismissed-actions {
+	margin-top: 20px;
+	padding-top: 16px;
+	border-top: 1px solid $outline-grey;
+
+	.edac-analysis__dismiss-button {
+		margin-top: 0;
+	}
+}
+
+// Primary dismiss/restore button.
+.edac-analysis__dismiss-button {
+	margin-top: 12px;
+
+	.components-spinner {
+		margin-right: 8px;
+	}
+}
+
+// Split-button layout: primary action + dropdown toggle side by side.
+.edac-analysis__dismiss-split-button {
+	display: flex;
+	align-items: flex-end;
+
+	.edac-analysis__dismiss-button {
+		border-radius: 2px 0 0 2px;
+	}
+
+	.edac-analysis__dismiss-dropdown-toggle {
+		border-radius: 0 2px 2px 0;
+		margin-left: 2px;
+	}
+}
