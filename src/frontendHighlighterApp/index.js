@@ -1863,7 +1863,7 @@ class AccessibilityCheckerHighlight {
 
 	saveScanResults( postId, nonce, violations, densityMetrics ) {
 		const self = this;
-		return fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+		return fetch( `${ edacFrontendHighlighterApp.restUrl }/post-scan-results/${ postId }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -1943,7 +1943,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		// Validate required parameters
-		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
+		if ( ! edacFrontendHighlighterApp?.restUrl || ! edacFrontendHighlighterApp?.postID ) {
 			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 			if ( summary ) {
 				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
@@ -1956,7 +1956,7 @@ class AccessibilityCheckerHighlight {
 		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
 		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 
-		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
+		fetch( `${ edacFrontendHighlighterApp.restUrl }/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
