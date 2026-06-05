@@ -43,6 +43,18 @@ export const saveFixSettings = ( fixSettingsContainer ) => {
 
 	const fixesRestUrl = window.edacFrontendHighlighterApp?.fixesRestUrl ?? window.edac_script_vars?.fixesRestUrl;
 
+	if ( ! fixesRestUrl ) {
+		fixSettingsContainer.classList.remove( 'edac-fix-settings--saving' );
+		fixButtons.forEach( ( button ) => {
+			button.disabled = false;
+		} );
+		fixSettingsContainer.classList.add( 'edac-fix-settings--saved--error' );
+		if ( liveRegion ) {
+			liveRegion.innerText = __( 'Saving failed: Missing REST API URL.', 'accessibility-checker' );
+		}
+		return;
+	}
+
 	// make a rest call to save the settings
 	fetch( `${ fixesRestUrl }/fixes/update/`, {
 		method: 'POST',
