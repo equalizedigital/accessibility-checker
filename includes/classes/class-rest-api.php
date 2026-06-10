@@ -356,6 +356,43 @@ class REST_Api {
 				);
 			}
 		);
+
+		// AI alt text generation endpoint.
+		add_action(
+			'rest_api_init',
+			function () use ( $ns, $version ) {
+				register_rest_route(
+					$ns . $version,
+					'/generate-alt-text',
+					[
+						'methods'             => 'POST',
+						'callback'            => [ $this, 'generate_alt_text' ],
+						'args'                => [
+							'attachment_id'   => [
+								'required'          => true,
+								'type'              => 'integer',
+								'validate_callback' => function ( $param ) {
+									return is_numeric( $param ) && $param > 0;
+								},
+								'sanitize_callback' => 'absint',
+							],
+							'num_suggestions' => [
+								'required'          => false,
+								'type'              => 'integer',
+								'default'           => 3,
+								'minimum'           => 1,
+								'maximum'           => 5,
+								'sanitize_callback' => 'absint',
+							],
+						],
+						'permission_callback' => function ( \WP_REST_Request $request ) {
+							$attachment_id = (int) $request->get_param( 'attachment_id' );
+							return current_user_can( 'edit_post', $attachment_id );
+						},
+					]
+				);
+			}
+		);
 	}
 
 	/**
@@ -1340,6 +1377,38 @@ class REST_Api {
 				'ignre_reason'    => $ignre_reason,
 				'ignre_comment'   => $ignre_comment,
 				'large_batch'     => $large_batch,
+			],
+			200
+		);
+	}
+
+	/**
+	 * REST handler that generates AI alt text suggestions for a media attachment.
+	 *
+	 * @param \WP_REST_Request $request The REST request.
+	 * @return \WP_REST_Response
+	 */
+	public function generate_alt_text( \WP_REST_Request $request ): \WP_REST_Response {
+		$attachment_id   = (int) $request->get_param( 'attachment_id' );
+		$num_suggestions = (int) $request->get_param( 'num_suggestions' );
+
+		$result = \EqualizeDigital\AccessibilityChecker\AI\AltTextGenerator::generate( $attachment_id, $num_suggestions );
+
+		if ( is_wp_error( $result ) ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => $result->get_error_message(),
+					'code'    => $result->get_error_code(),
+				],
+				400
+			);
+		}
+
+		return new \WP_REST_Response(
+			[
+				'success'     => true,
+				'suggestions' => $result,
 			],
 			200
 		);

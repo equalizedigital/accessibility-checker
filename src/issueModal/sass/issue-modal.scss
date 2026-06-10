@@ -502,4 +502,133 @@
 			}
 		}
 	}
+
+	// AI Alt Text Panel
+	.edac-ai-alt-panel {
+		margin-top: 0;
+
+		.components-panel {
+			border: none;
+		}
+
+		.components-panel__body {
+			border: none;
+			padding: 0;
+
+			&.is-opened {
+				padding: 0;
+
+				.components-panel__body-title {
+					margin: 0 0 12px;
+				}
+			}
+		}
+
+		.components-panel__body-toggle {
+			padding: 16px 0;
+			color: $info-blue;
+			font-weight: 400;
+
+			&:hover,
+			&:focus {
+				background: transparent;
+				color: $info-blue;
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.edac-ai-alt-panel__intro {
+		font-size: 13px;
+		color: #3c434a;
+		margin: 0 0 12px;
+	}
+
+	.edac-ai-alt-panel__generate-button,
+	.edac-ai-alt-panel__regenerate-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		margin-top: 4px;
+
+		.components-spinner {
+			margin: 0;
+		}
+	}
+
+	.edac-ai-alt-panel__regenerate-button {
+		margin-top: 12px;
+	}
+
+	.edac-ai-alt-panel__suggestions {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		margin-top: 4px;
+	}
+
+	.edac-ai-alt-card {
+		border: 1px solid #dcdcde;
+		border-radius: 4px;
+		padding: 12px;
+		background: #fff;
+		transition: border-color 0.15s ease;
+
+		&--applied {
+			border-color: #00a32a;
+			background: #f0fdf4;
+		}
+	}
+
+	.edac-ai-alt-card__text {
+		font-size: 13px;
+		font-style: italic;
+		margin: 0 0 6px;
+		line-height: 1.5;
+		color: #1e1e1e;
+	}
+
+	.edac-ai-alt-card__meta {
+		font-size: 12px;
+		color: #646970;
+		margin: 0 0 8px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 4px;
+	}
+
+	.edac-ai-alt-card__chars {
+		font-weight: 600;
+
+		&--long {
+			color: #d63638;
+		}
+	}
+
+	.edac-ai-alt-card__chars-warning {
+		font-weight: 400;
+	}
+
+	.edac-ai-alt-card__focus {
+		color: #646970;
+	}
+
+	.edac-ai-alt-card__explanation {
+		font-size: 12px;
+		color: #646970;
+		margin: 0 0 10px;
+		line-height: 1.4;
+	}
+
+	.edac-ai-alt-card__apply-button {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+
+		.components-spinner {
+			margin: 0;
+		}
+	}
 }
+

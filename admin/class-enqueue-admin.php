@@ -212,6 +212,7 @@ class Enqueue_Admin {
 				'readabilityHelpUrl'      => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
 				'dismissReasons'          => IgnoreUI::get_reasons(),
 				'simplifiedSummaryPrompt' => get_option( 'edac_simplified_summary_prompt', 'none' ),
+				'aiAltAvailable'          => \EqualizeDigital\AccessibilityChecker\AI\AltTextGenerator::is_available(),
 			]
 		);
 
