@@ -203,6 +203,14 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'passes video when data-transcript-div points directly at the transcript container element',
+			html: `
+				<video id="able-player-3" src="video.mp4" data-able-player data-transcript-div="able-player-transcript-3"></video>
+				<div id="able-player-transcript-3" class="able-transcript-container" lang="en">Spoken words from the video.</div>
+			`,
+			shouldPass: true,
+		},
+		{
 			name: 'passes video with Able Player WP plugin transcript container id pattern',
 			html: `
 				<video id="able_player_6" src="video.mp4"></video>

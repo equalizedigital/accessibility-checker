@@ -66,8 +66,10 @@ export default {
  * @return {boolean} - True if at least one container has non-empty text content.
  */
 function ablePlayerTranscriptHasContent( scope ) {
-	const containers = scope.querySelectorAll( ABLE_PLAYER_TRANSCRIPT_CONTAINER );
-	return Array.from( containers ).some(
+	const containers = scope.matches( ABLE_PLAYER_TRANSCRIPT_CONTAINER )
+		? [ scope ]
+		: Array.from( scope.querySelectorAll( ABLE_PLAYER_TRANSCRIPT_CONTAINER ) );
+	return containers.some(
 		( container ) => container.textContent.trim().length > 0
 	);
 }
