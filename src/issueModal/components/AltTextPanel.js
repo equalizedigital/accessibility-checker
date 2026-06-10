@@ -24,17 +24,24 @@ const extractAttachmentId = ( markup ) => {
 /**
  * Single suggestion card component.
  *
- * @param {Object}   props              - Component props.
- * @param {Object}   props.suggestion   - Suggestion data (alt, focus, explanation).
- * @param {number}   props.index        - Index of this suggestion.
- * @param {boolean}  props.isApplied    - Whether this suggestion has been applied.
- * @param {boolean}  props.isApplying   - Whether this suggestion is currently being applied.
- * @param {boolean}  props.disabled     - Whether buttons are disabled.
- * @param {Function} props.onApply      - Apply handler.
+ * @param {Object}   props            - Component props.
+ * @param {Object}   props.suggestion - Suggestion data (alt, focus, explanation).
+ * @param {number}   props.index      - Index of this suggestion.
+ * @param {boolean}  props.isApplied  - Whether this suggestion has been applied.
+ * @param {boolean}  props.isApplying - Whether this suggestion is currently being applied.
+ * @param {boolean}  props.disabled   - Whether buttons are disabled.
+ * @param {Function} props.onApply    - Apply handler.
  */
 const SuggestionCard = ( { suggestion, index, isApplied, isApplying, disabled, onApply } ) => {
 	const charCount = suggestion.alt.length;
 	const isTooLong = charCount > MAX_RECOMMENDED_LENGTH;
+
+	let buttonLabel = __( 'Apply', 'accessibility-checker' );
+	if ( isApplied ) {
+		buttonLabel = __( 'Applied ✓', 'accessibility-checker' );
+	} else if ( isApplying ) {
+		buttonLabel = __( 'Applying…', 'accessibility-checker' );
+	}
 
 	return (
 		<div className={ `edac-ai-alt-card ${ isApplied ? 'edac-ai-alt-card--applied' : '' }` }>
@@ -50,12 +57,12 @@ const SuggestionCard = ( { suggestion, index, isApplied, isApplying, disabled, o
 							? sprintf(
 								/* translators: %d: character count */
 								__( '%d characters — exceeds recommended 125', 'accessibility-checker' ),
-								charCount
+								charCount,
 							)
 							: sprintf(
 								/* translators: %d: character count */
 								__( '%d characters', 'accessibility-checker' ),
-								charCount
+								charCount,
 							)
 					}
 				>
@@ -88,16 +95,12 @@ const SuggestionCard = ( { suggestion, index, isApplied, isApplying, disabled, o
 				aria-label={ sprintf(
 					/* translators: %s: the alt text string */
 					__( 'Apply alt text: %s', 'accessibility-checker' ),
-					suggestion.alt
+					suggestion.alt,
 				) }
 				className="edac-ai-alt-card__apply-button"
 			>
 				{ isApplying && <Spinner /> }
-				{ isApplied
-					? __( 'Applied ✓', 'accessibility-checker' )
-					: isApplying
-						? __( 'Applying…', 'accessibility-checker' )
-						: __( 'Apply', 'accessibility-checker' ) }
+				{ buttonLabel }
 			</Button>
 		</div>
 	);
@@ -109,11 +112,11 @@ const SuggestionCard = ( { suggestion, index, isApplied, isApplying, disabled, o
  * Renders inside the IssueDetailsModal for image alt text issues, letting
  * users generate AI-powered alt text suggestions and apply them to the attachment.
  *
- * @param {Object}   props              - Component props.
- * @param {Object}   props.rule         - Rule data including slug.
- * @param {Object}   props.issue        - Issue data including HTML object.
- * @param {boolean}  props.isOpen       - Whether the panel body is open.
- * @param {Function} props.onToggle     - Panel toggle handler.
+ * @param {Object}   props          - Component props.
+ * @param {Object}   props.rule     - Rule data including slug.
+ * @param {Object}   props.issue    - Issue data including HTML object.
+ * @param {boolean}  props.isOpen   - Whether the panel body is open.
+ * @param {Function} props.onToggle - Panel toggle handler.
  */
 const AltTextPanel = ( { rule, issue, isOpen, onToggle } ) => {
 	const [ isGenerating, setIsGenerating ] = useState( false );
