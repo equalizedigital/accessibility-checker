@@ -107,6 +107,11 @@ function hasAblePlayerTranscript( node ) {
 	let level = 0;
 	while ( ancestor && level < TRAVERSAL_LEVEL_LIMIT ) {
 		if ( ancestor.querySelector( ABLE_PLAYER_TRANSCRIPT_CONTAINER ) ) {
+			// A transcript can only be credited to this element when the scope
+			// holds no other media, otherwise it may belong to a different player.
+			if ( ancestor.querySelectorAll( 'audio, video' ).length > 1 ) {
+				return false;
+			}
 			return ablePlayerTranscriptHasContent( ancestor );
 		}
 		ancestor = ancestor.parentElement;

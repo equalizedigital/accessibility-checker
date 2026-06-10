@@ -318,4 +318,26 @@ describe( 'Missing Transcript Rule', () => {
 		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
 		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#able-player-2' );
 	} );
+
+	test( 'flags only the video without its own transcript when two players share an ancestor without explicit transcript association', async () => {
+		document.body.innerHTML = `
+			<div>
+				<div class="able-wrapper">
+					<video id="shared-ancestor-video-1" src="video-one.mp4"></video>
+					<div class="able-transcript">
+						<div class="able-transcript-container" lang="en">Spoken words from the first video.</div>
+					</div>
+				</div>
+				<video id="shared-ancestor-video-2" src="video-two.mp4"></video>
+			</div>
+		`;
+
+		const results = await axe.run( document.body, {
+			runOnly: [ 'missing_transcript' ],
+		} );
+
+		expect( results.violations.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#shared-ancestor-video-2' );
+	} );
 } );
