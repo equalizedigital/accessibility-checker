@@ -167,6 +167,97 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		// Able Player transcripts (https://github.com/equalizedigital/accessibility-checker/issues/1740)
+		{
+			name: 'passes video with data-transcript-div pointing to a non-empty Able Player transcript',
+			html: `
+				<video id="able-player-1" src="video.mp4" data-able-player data-transcript-div="able-player-transcript-1"></video>
+				<div id="able-player-transcript-1">
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en">
+								<span class="able-transcript-caption">Spoken words from the video.</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'flags video with data-transcript-div pointing to an empty Able Player transcript',
+			html: `
+				<video id="able-player-2" src="video.mp4" data-able-player data-transcript-div="able-player-transcript-2"></video>
+				<div id="able-player-transcript-2">
+					<div class="able-transcript-area">
+						<div class="able-window-toolbar">
+							<label for="autoscroll-checkbox-2">Auto scroll</label>
+							<input id="autoscroll-checkbox-2" type="checkbox">
+						</div>
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en"></div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'passes video with Able Player WP plugin transcript container id pattern',
+			html: `
+				<video id="able_player_6" src="video.mp4"></video>
+				<div id="ableplayer-transcript-able_player_6" class="ableplayer-transcript">
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en-US">Spoken words from the video.</div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'flags video with empty Able Player WP plugin transcript container',
+			html: `
+				<video id="able_player_7" src="video.mp4"></video>
+				<div id="ableplayer-transcript-able_player_7" class="ableplayer-transcript">
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en-US"></div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: false,
+		},
+		{
+			name: 'passes video with a non-empty Able Player transcript rendered inside the player wrapper',
+			html: `
+				<div class="able-wrapper">
+					<video src="video.mp4"></video>
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en">Spoken words from the video.</div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: true,
+		},
+		{
+			name: 'flags video with an empty Able Player transcript rendered inside the player wrapper',
+			html: `
+				<div class="able-wrapper">
+					<video src="video.mp4"></video>
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en"></div>
+						</div>
+					</div>
+				</div>
+			`,
+			shouldPass: false,
+		},
 		{
 			name: 'should not find transcript 6 up the DOM tree',
 			html: `
@@ -201,5 +292,30 @@ describe( 'Missing Transcript Rule', () => {
 		} else {
 			expect( results.violations.length ).toBeGreaterThan( 0 );
 		}
+	} );
+
+	test( 'flags only the Able Player video whose own transcript is empty when multiple players are on the page', async () => {
+		document.body.innerHTML = `
+			<video id="able-player-1" src="video-one.mp4" data-able-player data-transcript-div="able-player-transcript-1"></video>
+			<div id="able-player-transcript-1">
+				<div class="able-transcript">
+					<div class="able-transcript-container" lang="en">Spoken words from the first video.</div>
+				</div>
+			</div>
+			<video id="able-player-2" src="video-two.mp4" data-able-player data-transcript-div="able-player-transcript-2"></video>
+			<div id="able-player-transcript-2">
+				<div class="able-transcript">
+					<div class="able-transcript-container" lang="en"></div>
+				</div>
+			</div>
+		`;
+
+		const results = await axe.run( document.body, {
+			runOnly: [ 'missing_transcript' ],
+		} );
+
+		expect( results.violations.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#able-player-2' );
 	} );
 } );
