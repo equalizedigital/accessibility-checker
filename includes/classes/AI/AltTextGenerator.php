@@ -111,6 +111,10 @@ Return only the JSON array with no markdown fencing or other text.',
 		try {
 			$builder = wp_ai_client_prompt( 'accessibility-checker-alt-text' );
 
+			if ( is_wp_error( $builder ) ) {
+				return $builder;
+			}
+
 			if ( method_exists( $builder, 'with_image' ) ) {
 				$builder = $builder->with_image( [ 'url' => $image_url ] );
 			}
@@ -181,6 +185,10 @@ Return only the JSON array with no markdown fencing or other text.',
 				]
 			);
 
+			if ( is_wp_error( $model ) ) {
+				return $model;
+			}
+
 			// Build content: image URL part + text prompt part.
 			$content_args = [
 				[
@@ -230,7 +238,7 @@ Return only the JSON array with no markdown fencing or other text.',
 		$text = preg_replace( '/\s*```\s*$/m', '', $text );
 		$text = trim( $text );
 
-		$data = json_decode( $text, true );
+		$data = json_decode( $text, true, 3 );
 
 		if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $data ) ) {
 			return new \WP_Error(

@@ -170,11 +170,43 @@ const AltTextPanel = ( { rule, issue, isOpen, onToggle } ) => {
 		setError( null );
 
 		try {
+			// Save alt text to the media attachment record.
 			await apiFetch( {
 				path: `/wp/v2/media/${ attachmentId }`,
 				method: 'POST',
 				data: { alt_text: altText },
 			} );
+
+			// Also update any matching Gutenberg image blocks so the saved markup
+			// reflects the new alt text immediately — without this the rendered
+			// DOM would still carry the old value and a rescan would still flag
+			// the issue (blocks store their own alt attribute in post content).
+			if ( window.wp?.data ) {
+				const blockEditorSelect = window.wp.data.select( 'core/block-editor' );
+				const blockEditorDispatch = window.wp.data.dispatch( 'core/block-editor' );
+
+				if ( blockEditorSelect && blockEditorDispatch ) {
+					const findImageBlock = ( blocks ) => {
+						for ( const block of blocks ) {
+							if ( block.name === 'core/image' && block.attributes?.id === attachmentId ) {
+								return block;
+							}
+							if ( block.innerBlocks?.length ) {
+								const found = findImageBlock( block.innerBlocks );
+								if ( found ) {
+									return found;
+								}
+							}
+						}
+						return null;
+					};
+
+					const imageBlock = findImageBlock( blockEditorSelect.getBlocks() );
+					if ( imageBlock ) {
+						blockEditorDispatch.updateBlockAttributes( imageBlock.clientId, { alt: altText } );
+					}
+				}
+			}
 
 			setAppliedIndex( index );
 			// Queue a rescan so the issue status updates after the modal closes.
