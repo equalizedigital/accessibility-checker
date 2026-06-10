@@ -1,0 +1,255 @@
+// stylelint-disable selector-class-pattern
+@use "../../common/sass/variables";
+@use "../../common/sass/helpers";
+@use "sass:color";
+
+// Settings page body background (mirrors ArchiveWP's $color-misty-blue)
+.accessibility_checker_page_accessibility_checker_settings {
+	background-color: #f3f4fe;
+
+	// Toggle-style checkboxes (ArchiveWP _checkbox-styled pattern, brand-adapted)
+	input[type="checkbox"] {
+		appearance: none;
+		position: relative;
+		width: 48px;
+		height: 26px;
+		margin-right: 6px;
+		border-radius: 999px;
+		border: none;
+		background: variables.$color-gray;
+		cursor: pointer;
+		transition: background-color 0.2s ease, box-shadow 0.2s ease;
+		vertical-align: middle;
+
+		&::before {
+			content: "\00d7";
+			position: absolute;
+			top: 50%;
+			left: 4px;
+			width: 20px;
+			height: 20px;
+			border-radius: 999px;
+			background: variables.$color-white;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: variables.$color-gray;
+			font-size: 12px;
+			font-weight: 600;
+			transform: translate(0, -50%);
+			transition: transform 0.2s ease, color 0.2s ease;
+			margin: 0;
+		}
+
+		&:checked {
+			background: variables.$color-blue-dark;
+
+			&::before {
+				content: "\2713";
+				transform: translate(21px, -50%);
+				color: variables.$color-blue-dark;
+			}
+		}
+
+		&:disabled {
+			opacity: 0.6;
+			cursor: not-allowed;
+		}
+
+		&:focus {
+			box-shadow: none;
+			outline: 2px solid variables.$color-blue-dark;
+			outline-offset: 2px;
+		}
+	}
+}
+
+// Expand max-width on the settings page to accommodate the sidebar column
+.accessibility_checker_page_accessibility_checker_settings .edac-settings {
+	max-width: 1200px;
+}
+
+// Two-column layout: sidebar (265px) + content panel
+// Mirrors the .edawp-settings-wrap pattern from ArchiveWP
+.accessibility_checker_page_accessibility_checker_settings .edac-settings:not(.edac-settings--reports) {
+
+	@include helpers.breakpoint(sm) {
+		display: grid;
+		grid-template-columns: 265px minmax(0, 1fr);
+		grid-template-areas:
+			"header header"
+			"sidebar content";
+		column-gap: 20px;
+		align-items: start;
+	}
+
+	> h1 {
+		@include helpers.breakpoint(sm) {
+			grid-area: header;
+			margin-bottom: 10px;
+		}
+	}
+
+	// nav-tab-wrapper becomes the vertical sidebar panel
+	// (mirrors .edawp-settings-header in ArchiveWP)
+	> .nav-tab-wrapper {
+		@include helpers.breakpoint(sm) {
+			grid-area: sidebar;
+			display: block;
+			overflow: visible;
+			background-color: variables.$color-white;
+			border: 1px solid variables.$color-gray-light;
+			border-bottom: 1px solid variables.$color-gray-light;
+			padding: 15px;
+			margin-top: 0;
+		}
+
+		.nav-tab {
+			@include helpers.breakpoint(sm) {
+				float: none;
+				display: flex;
+				align-items: center;
+				width: 100%;
+				margin: 0 0 5px;
+				padding: 8px 10px;
+				border: 1px solid transparent;
+				border-radius: 3px;
+				font-size: 1em;
+				color: #282e34;
+				text-decoration: none;
+				box-sizing: border-box;
+				line-height: 1.5;
+				vertical-align: unset;
+
+				.edac-settings-tab__label,
+				.edac-settings-tab__badge {
+					display: inline-flex;
+					align-items: center;
+				}
+
+				&:hover {
+					background-color: #f3f4fe;
+					border-color: variables.$color-gray-light;
+					color: #282e34;
+				}
+
+				&.nav-tab-active {
+					color: variables.$color-blue-dark;
+					border-color: variables.$color-blue-dark;
+					background-color: #f3f4fe;
+				}
+			}
+		}
+	}
+
+	// Main content panel (mirrors .edawp-settings-panel)
+	> .tab-content {
+		@include helpers.breakpoint(sm) {
+			grid-area: content;
+			margin-top: 0;
+		}
+
+		&:not(:has(.edacp-scan)) {
+			background-color: variables.$color-white;
+			border: 1px solid variables.$color-gray-light;
+			border-radius: 0;
+			padding: 0;
+			margin-top: 20px;
+
+			@include helpers.breakpoint(sm) {
+				margin-top: 0;
+			}
+		}
+	}
+
+	// Stack pro callout below form rather than beside it in this layout
+	.edac-settings-general.edac-show-pro-callout {
+		display: block !important;
+	}
+}
+
+// Panel header at the top of each settings tab content area
+// Mirrors .edawp-settings-panel-header (dark brand color + dual accent stripes)
+.accessibility_checker_page_accessibility_checker_settings .edac-settings-panel-header {
+	display: flex;
+	align-items: center;
+	font-size: 18px;
+	padding: 16px 20px;
+	font-weight: 500;
+	background: variables.$color-blue-dark;
+	color: variables.$color-white;
+	position: relative;
+
+	// Yellow accent stripe (right edge) — mirrors ArchiveWP's $color-orange stripe
+	&::before {
+		content: "";
+		position: absolute;
+		background-color: variables.$color-yellow;
+		width: 5px;
+		bottom: 0;
+		top: 0;
+		right: 0;
+	}
+
+	// Blue accent stripe (next to yellow) — mirrors ArchiveWP's $color-hot-pink stripe
+	&::after {
+		content: "";
+		position: absolute;
+		background-color: #3f5bf6;
+		width: 5px;
+		bottom: 0;
+		top: 0;
+		right: 5px;
+	}
+
+	.dashicons {
+		font-size: 20px;
+		width: 20px;
+		height: 20px;
+		margin-right: 8px;
+	}
+}
+
+// Settings form content padding + section/button refinements
+.accessibility_checker_page_accessibility_checker_settings .edac-settings:not(.edac-settings--reports) .tab-content:not(:has(.edacp-scan)) {
+
+	> .edac-settings-general {
+		padding: 20px;
+
+		// WP Settings API section headings
+		h2 {
+			font-size: 13px;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.06em;
+			color: variables.$color-dark-gray;
+			border-bottom: 1px solid variables.$color-gray-light;
+			padding-bottom: 8px;
+			margin-top: 24px;
+			margin-bottom: 0;
+
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+
+		p.description,
+		.description {
+			color: variables.$color-dark-gray;
+		}
+	}
+
+	// Primary save button aligned with blue-dark brand
+	.button-primary {
+		background-color: variables.$color-blue-dark;
+		border-color: variables.$color-blue-dark;
+		color: variables.$color-white;
+
+		&:hover,
+		&:focus {
+			background-color: color.adjust(variables.$color-blue-dark, $lightness: 8%);
+			border-color: color.adjust(variables.$color-blue-dark, $lightness: 8%);
+			color: variables.$color-white;
+		}
+	}
+}

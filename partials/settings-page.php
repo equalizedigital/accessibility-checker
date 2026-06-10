@@ -141,6 +141,13 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 
 	<div class="tab-content">
 
+		<?php if ( 'accessibility-reports' !== $edac_settings_tab ) : ?>
+			<div class="edac-settings-panel-header">
+				<span class="dashicons dashicons-universal-access-alt" aria-hidden="true"></span>
+				<?php esc_html_e( 'Accessibility Checker', 'accessibility-checker' ); ?>
+			</div>
+		<?php endif; ?>
+
 		<?php if ( null === $edac_settings_tab ) { ?>
 			<div class="edac-settings-general
 			<?php
