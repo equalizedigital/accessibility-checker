@@ -84,24 +84,33 @@ class AltTextGenerator {
 	}
 
 	/**
-	 * Get the image as a base64 data URI, reading from the local filesystem
-	 * first and falling back to downloading the URL.
+	 * Get the image as a base64 data URI.
+	 *
+	 * Uses the 'large' WordPress image size (typically ≤1024 px) to keep the
+	 * request payload small enough to avoid API timeouts, falling back to
+	 * 'full' and then a direct download of whichever URL is available.
 	 *
 	 * @param int $attachment_id Attachment post ID.
 	 * @return string|\WP_Error Data URI string or WP_Error on failure.
 	 */
 	private static function get_image_data_uri( int $attachment_id ) {
-		// Prefer reading from disk — avoids an HTTP round-trip.
-		$file_path = get_attached_file( $attachment_id );
-		if ( $file_path && file_exists( $file_path ) ) {
-			$data_uri = self::file_to_data_uri( $file_path );
-			if ( $data_uri ) {
-				return $data_uri;
+		// Try each size from smallest-useful to largest, stopping at the first
+		// local file we can actually read.
+		foreach ( [ 'large', 'medium_large', 'medium', 'full' ] as $size ) {
+			$local = self::local_path_for_size( $attachment_id, $size );
+			if ( $local ) {
+				$data_uri = self::file_to_data_uri( $local );
+				if ( $data_uri ) {
+					return $data_uri;
+				}
 			}
 		}
 
-		// Fall back to downloading the image URL.
-		$image_url = wp_get_attachment_image_url( $attachment_id, 'full' );
+		// No local file worked — download whichever URL the image has.
+		// Prefer 'large' to keep the payload small.
+		$image_url = wp_get_attachment_image_url( $attachment_id, 'large' )
+			?: wp_get_attachment_image_url( $attachment_id, 'full' );
+
 		if ( ! $image_url ) {
 			return new \WP_Error( 'no_image_url', __( 'Could not retrieve an image URL for this attachment.', 'accessibility-checker' ) );
 		}
@@ -123,6 +132,34 @@ class AltTextGenerator {
 		}
 
 		return $data_uri;
+	}
+
+	/**
+	 * Return the absolute filesystem path for a specific WordPress image size,
+	 * or null if it cannot be resolved to an existing file.
+	 *
+	 * @param int    $attachment_id Attachment post ID.
+	 * @param string $size          WordPress image size name.
+	 * @return string|null
+	 */
+	private static function local_path_for_size( int $attachment_id, string $size ): ?string {
+		if ( 'full' === $size ) {
+			$path = get_attached_file( $attachment_id );
+			return ( $path && file_exists( $path ) ) ? $path : null;
+		}
+
+		$meta = wp_get_attachment_metadata( $attachment_id );
+		if ( empty( $meta['sizes'][ $size ]['file'] ) ) {
+			return null;
+		}
+
+		$upload_dir = wp_upload_dir();
+		$base_dir   = isset( $meta['file'] )
+			? trailingslashit( $upload_dir['basedir'] ) . trailingslashit( dirname( $meta['file'] ) )
+			: trailingslashit( $upload_dir['path'] );
+
+		$path = $base_dir . $meta['sizes'][ $size ]['file'];
+		return file_exists( $path ) ? $path : null;
 	}
 
 	/**
