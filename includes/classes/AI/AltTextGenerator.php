@@ -101,7 +101,34 @@ Return only the JSON array with no markdown fencing or other text.',
 	}
 
 	/**
+	 * Determine the MIME type of an image from its URL.
+	 *
+	 * @param string $image_url Image URL.
+	 * @return string MIME type string, defaulting to image/jpeg.
+	 */
+	private static function get_mime_type( string $image_url ): string {
+		$ext      = strtolower( (string) pathinfo( wp_parse_url( $image_url, PHP_URL_PATH ) ?? '', PATHINFO_EXTENSION ) );
+		$mime_map = [
+			'jpg'  => 'image/jpeg',
+			'jpeg' => 'image/jpeg',
+			'png'  => 'image/png',
+			'gif'  => 'image/gif',
+			'webp' => 'image/webp',
+			'avif' => 'image/avif',
+		];
+
+		return $mime_map[ $ext ] ?? 'image/jpeg';
+	}
+
+	/**
 	 * Generate using the WordPress AI Client (WordPress 7.0+).
+	 *
+	 * wp_ai_client_prompt() signature:
+	 *   wp_ai_client_prompt( string $prompt ) : Prompt_Builder_With_WP_Error
+	 *
+	 * Builder methods:
+	 *   ->with_file( string $file, ?string $mimeType = null ) : self
+	 *   ->generate_text() : string|WP_Error
 	 *
 	 * @param string $image_url Full URL of the image.
 	 * @param string $prompt    The generation prompt.
@@ -109,95 +136,38 @@ Return only the JSON array with no markdown fencing or other text.',
 	 */
 	private static function generate_with_wp_ai_client( string $image_url, string $prompt ) {
 		try {
-			$builder = wp_ai_client_prompt( 'accessibility-checker-alt-text' );
+			$builder = wp_ai_client_prompt( $prompt );
 
 			if ( is_wp_error( $builder ) ) {
 				return $builder;
 			}
 
-			if ( method_exists( $builder, 'with_image' ) ) {
-				$builder = $builder->with_image( [ 'url' => $image_url ] );
+			// Attach the image for multimodal input.
+			if ( method_exists( $builder, 'with_file' ) ) {
+				$builder = $builder->with_file( $image_url, self::get_mime_type( $image_url ) );
 			}
 
-			if ( method_exists( $builder, 'with_message' ) ) {
-				$builder = $builder->with_message( $prompt );
+			// generate_text() is the correct terminate method — returns string|WP_Error.
+			if ( method_exists( $builder, 'generate_text' ) ) {
+				$text = $builder->generate_text();
+				if ( is_wp_error( $text ) ) {
+					return $text;
+				}
+				return self::parse_suggestions( (string) $text );
 			}
 
-			$response = $builder->send();
+			return new \WP_Error( 'missing_generate_text', __( 'The AI client does not support text generation.', 'accessibility-checker' ) );
+
 		} catch ( \Throwable $e ) {
 			return new \WP_Error( 'wp_ai_client_error', $e->getMessage() );
 		}
-
-		if ( is_wp_error( $response ) ) {
-			return $response;
-		}
-
-		$text = self::extract_text_from_response( $response );
-		if ( is_wp_error( $text ) ) {
-			return $text;
-		}
-
-		return self::parse_suggestions( $text );
-	}
-
-	/**
-	 * Extract the generated text string from an AI response object.
-	 *
-	 * Different providers and SDK versions expose the result through different
-	 * method names. Try each known variant in order before giving up.
-	 *
-	 * @param mixed $response Response object returned by the AI SDK.
-	 * @return string|\WP_Error The response text or a WP_Error.
-	 */
-	private static function extract_text_from_response( $response ) {
-		if ( is_string( $response ) ) {
-			return $response;
-		}
-
-		// WordPress AI Client / ai-services candidates object.
-		$methods = [
-			'get_text',
-			'get_first_candidate_text',
-			'get_content',
-			'getText',
-			'getFirstCandidateText',
-		];
-
-		foreach ( $methods as $method ) {
-			if ( method_exists( $response, $method ) ) {
-				$result = $response->$method();
-				if ( is_string( $result ) ) {
-					return $result;
-				}
-			}
-		}
-
-		// Candidates object: try to get first candidate then text from it.
-		if ( method_exists( $response, 'get_candidates' ) ) {
-			$candidates = $response->get_candidates();
-			if ( is_array( $candidates ) && ! empty( $candidates ) ) {
-				$first = reset( $candidates );
-				if ( method_exists( $first, 'get_text' ) ) {
-					return (string) $first->get_text();
-				}
-				if ( method_exists( $first, 'get_content' ) ) {
-					return (string) $first->get_content();
-				}
-			}
-		}
-
-		return new \WP_Error(
-			'unexpected_response',
-			sprintf(
-				/* translators: %s: PHP class name of the unexpected response object */
-				__( 'Unexpected AI response type (%s). Please report this to the plugin author.', 'accessibility-checker' ),
-				is_object( $response ) ? get_class( $response ) : gettype( $response )
-			)
-		);
 	}
 
 	/**
 	 * Generate using the AI Services plugin (Felix Arntz / felixarntz/ai-services).
+	 *
+	 * Response chain:
+	 *   $candidates->get(0)->get_content()->get_parts()->get(0)->get_text()
 	 *
 	 * @param string $image_url Full URL of the image.
 	 * @param string $prompt    The generation prompt.
@@ -241,7 +211,7 @@ Return only the JSON array with no markdown fencing or other text.',
 				return $model;
 			}
 
-			// Build content: image URL part + text prompt part.
+			// Build Content parts: image URL + text prompt.
 			$content_args = [
 				[
 					'role'  => 'user',
@@ -264,7 +234,7 @@ Return only the JSON array with no markdown fencing or other text.',
 				return $candidates;
 			}
 
-			$text = self::extract_text_from_response( $candidates );
+			$text = self::extract_text_from_candidates( $candidates );
 			if ( is_wp_error( $text ) ) {
 				return $text;
 			}
@@ -274,6 +244,69 @@ Return only the JSON array with no markdown fencing or other text.',
 		} catch ( \Throwable $e ) {
 			return new \WP_Error( 'ai_services_error', $e->getMessage() );
 		}
+	}
+
+	/**
+	 * Extract the generated text string from an ai-services Candidates object.
+	 *
+	 * Traversal chain per the ai-services API:
+	 *   Candidates->get(0)->get_content()->get_parts()->get(0)->get_text()
+	 *
+	 * @param mixed $candidates Candidates object returned by generate_text().
+	 * @return string|\WP_Error
+	 */
+	private static function extract_text_from_candidates( $candidates ) {
+		if ( is_string( $candidates ) ) {
+			return $candidates;
+		}
+
+		try {
+			// Standard ai-services Candidates object traversal.
+			if ( method_exists( $candidates, 'get' ) ) {
+				$candidate = $candidates->get( 0 );
+				if ( $candidate && method_exists( $candidate, 'get_content' ) ) {
+					$content = $candidate->get_content();
+					if ( $content && method_exists( $content, 'get_parts' ) ) {
+						$parts = $content->get_parts();
+						if ( $parts && method_exists( $parts, 'get' ) ) {
+							$part = $parts->get( 0 );
+							if ( $part && method_exists( $part, 'get_text' ) ) {
+								return (string) $part->get_text();
+							}
+						}
+					}
+				}
+			}
+
+			// Convenience shortcut if the plugin exposes it.
+			if ( method_exists( $candidates, 'get_first_candidate_text' ) ) {
+				$text = $candidates->get_first_candidate_text();
+				if ( is_string( $text ) ) {
+					return $text;
+				}
+			}
+
+			// Last resort: direct string methods on the object itself.
+			foreach ( [ 'get_text', 'getText', '__toString' ] as $method ) {
+				if ( method_exists( $candidates, $method ) ) {
+					$text = $candidates->$method();
+					if ( is_string( $text ) ) {
+						return $text;
+					}
+				}
+			}
+		} catch ( \Throwable $e ) {
+			return new \WP_Error( 'text_extraction_error', $e->getMessage() );
+		}
+
+		return new \WP_Error(
+			'unexpected_response',
+			sprintf(
+				/* translators: %s: PHP class name of the unexpected response object */
+				__( 'Unexpected AI response type (%s). Please report this to the plugin author.', 'accessibility-checker' ),
+				is_object( $candidates ) ? get_class( $candidates ) : gettype( $candidates )
+			)
+		);
 	}
 
 	/**
