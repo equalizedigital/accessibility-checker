@@ -132,16 +132,68 @@ Return only the JSON array with no markdown fencing or other text.',
 			return $response;
 		}
 
-		$text = '';
-		if ( method_exists( $response, 'get_text' ) ) {
-			$text = $response->get_text();
-		} elseif ( is_string( $response ) ) {
-			$text = $response;
-		} else {
-			return new \WP_Error( 'unexpected_response', __( 'Unexpected response format from AI service.', 'accessibility-checker' ) );
+		$text = self::extract_text_from_response( $response );
+		if ( is_wp_error( $text ) ) {
+			return $text;
 		}
 
 		return self::parse_suggestions( $text );
+	}
+
+	/**
+	 * Extract the generated text string from an AI response object.
+	 *
+	 * Different providers and SDK versions expose the result through different
+	 * method names. Try each known variant in order before giving up.
+	 *
+	 * @param mixed $response Response object returned by the AI SDK.
+	 * @return string|\WP_Error The response text or a WP_Error.
+	 */
+	private static function extract_text_from_response( $response ) {
+		if ( is_string( $response ) ) {
+			return $response;
+		}
+
+		// WordPress AI Client / ai-services candidates object.
+		$methods = [
+			'get_text',
+			'get_first_candidate_text',
+			'get_content',
+			'getText',
+			'getFirstCandidateText',
+		];
+
+		foreach ( $methods as $method ) {
+			if ( method_exists( $response, $method ) ) {
+				$result = $response->$method();
+				if ( is_string( $result ) ) {
+					return $result;
+				}
+			}
+		}
+
+		// Candidates object: try to get first candidate then text from it.
+		if ( method_exists( $response, 'get_candidates' ) ) {
+			$candidates = $response->get_candidates();
+			if ( is_array( $candidates ) && ! empty( $candidates ) ) {
+				$first = reset( $candidates );
+				if ( method_exists( $first, 'get_text' ) ) {
+					return (string) $first->get_text();
+				}
+				if ( method_exists( $first, 'get_content' ) ) {
+					return (string) $first->get_content();
+				}
+			}
+		}
+
+		return new \WP_Error(
+			'unexpected_response',
+			sprintf(
+				/* translators: %s: PHP class name of the unexpected response object */
+				__( 'Unexpected AI response type (%s). Please report this to the plugin author.', 'accessibility-checker' ),
+				is_object( $response ) ? get_class( $response ) : gettype( $response )
+			)
+		);
 	}
 
 	/**
@@ -212,11 +264,9 @@ Return only the JSON array with no markdown fencing or other text.',
 				return $candidates;
 			}
 
-			$text = '';
-			if ( method_exists( $candidates, 'get_first_candidate_text' ) ) {
-				$text = $candidates->get_first_candidate_text();
-			} elseif ( is_string( $candidates ) ) {
-				$text = $candidates;
+			$text = self::extract_text_from_response( $candidates );
+			if ( is_wp_error( $text ) ) {
+				return $text;
 			}
 
 			return self::parse_suggestions( $text );
