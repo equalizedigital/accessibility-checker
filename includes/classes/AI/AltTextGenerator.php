@@ -13,18 +13,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Generates alt text suggestions for images using the WordPress AI connector
- * (WordPress 7.0+ wp_ai_client_prompt) or the AI Services plugin.
+ * (wp_ai_client_prompt) or the AI Services plugin.
  *
- * Two wp_ai_client_prompt() implementations exist with different APIs:
- *
- * Standalone wp-ai-client plugin (deprecated):
- *   wp_ai_client_prompt( $prompt )->with_file( $url, $mime )->generate_text()
+ * WordPress AI connector (WordPress/ai plugin or WP 7.0 built-in):
+ *   wp_ai_client_prompt( $prompt )->with_file( $data_uri )->generate_text()
+ *   with_file() expects a base64 data URI, not a URL.
  *   generate_text() returns string|WP_Error directly.
  *
- * WordPress 7.0 built-in:
- *   wp_ai_client_prompt( $prompt )->with_image( ['url'=>$url] )->send()
- *   send() returns GenerativeAiResult|WP_Error.
- *   Text extracted via: get_candidates()[0]->get_content()->get_parts()[0]->get_text()
+ * AI Services plugin (Felix Arntz / felixarntz/ai-services):
+ *   ai_services()->get_available_service()->get_model()->generate_text( $content )
+ *   Returns a Candidates object; text extracted via ->get(0)->get_content()->...->get_text().
  */
 class AltTextGenerator {
 
@@ -66,19 +64,86 @@ class AltTextGenerator {
 			return new \WP_Error( 'invalid_attachment', __( 'The provided ID is not a valid media attachment.', 'accessibility-checker' ) );
 		}
 
+		$num_suggestions = max( 1, min( 5, $num_suggestions ) );
+		$prompt          = self::build_prompt( $num_suggestions );
+
+		if ( function_exists( 'wp_ai_client_prompt' ) ) {
+			$data_uri = self::get_image_data_uri( $attachment_id );
+			if ( is_wp_error( $data_uri ) ) {
+				return $data_uri;
+			}
+			return self::generate_with_wp_ai_client( $data_uri, $prompt );
+		}
+
 		$image_url = wp_get_attachment_image_url( $attachment_id, 'full' );
 		if ( ! $image_url ) {
 			return new \WP_Error( 'no_image_url', __( 'Could not retrieve an image URL for this attachment.', 'accessibility-checker' ) );
 		}
 
-		$num_suggestions = max( 1, min( 5, $num_suggestions ) );
-		$prompt          = self::build_prompt( $num_suggestions );
+		return self::generate_with_ai_services( $image_url, $prompt );
+	}
 
-		if ( function_exists( 'wp_ai_client_prompt' ) ) {
-			return self::generate_with_wp_ai_client( $image_url, $prompt );
+	/**
+	 * Get the image as a base64 data URI, reading from the local filesystem
+	 * first and falling back to downloading the URL.
+	 *
+	 * @param int $attachment_id Attachment post ID.
+	 * @return string|\WP_Error Data URI string or WP_Error on failure.
+	 */
+	private static function get_image_data_uri( int $attachment_id ) {
+		// Prefer reading from disk — avoids an HTTP round-trip.
+		$file_path = get_attached_file( $attachment_id );
+		if ( $file_path && file_exists( $file_path ) ) {
+			$data_uri = self::file_to_data_uri( $file_path );
+			if ( $data_uri ) {
+				return $data_uri;
+			}
 		}
 
-		return self::generate_with_ai_services( $image_url, $prompt );
+		// Fall back to downloading the image URL.
+		$image_url = wp_get_attachment_image_url( $attachment_id, 'full' );
+		if ( ! $image_url ) {
+			return new \WP_Error( 'no_image_url', __( 'Could not retrieve an image URL for this attachment.', 'accessibility-checker' ) );
+		}
+
+		if ( ! function_exists( 'download_url' ) ) {
+			require_once ABSPATH . 'wp-admin/includes/file.php';
+		}
+
+		$temp_file = download_url( $image_url );
+		if ( is_wp_error( $temp_file ) ) {
+			return $temp_file;
+		}
+
+		$data_uri = self::file_to_data_uri( $temp_file );
+		wp_delete_file( $temp_file );
+
+		if ( ! $data_uri ) {
+			return new \WP_Error( 'file_read_error', __( 'Could not read the image file.', 'accessibility-checker' ) );
+		}
+
+		return $data_uri;
+	}
+
+	/**
+	 * Convert a local file path to a base64 data URI.
+	 *
+	 * @param string $file_path Absolute path to the file.
+	 * @return string|null Data URI or null on failure.
+	 */
+	private static function file_to_data_uri( string $file_path ): ?string {
+		$mime_type = wp_check_filetype( $file_path )['type'] ?? null;
+		if ( ! $mime_type ) {
+			return null;
+		}
+
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents, WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
+		$contents = file_get_contents( $file_path );
+		if ( false === $contents ) {
+			return null;
+		}
+
+		return 'data:' . $mime_type . ';base64,' . base64_encode( $contents );
 	}
 
 	/**
@@ -112,93 +177,29 @@ Return only the JSON array with no markdown fencing or other text.',
 	}
 
 	/**
-	 * Determine the MIME type of an image from its URL extension.
+	 * Generate using the WordPress AI connector (wp_ai_client_prompt).
 	 *
-	 * @param string $image_url Image URL.
-	 * @return string MIME type string, defaulting to image/jpeg.
-	 */
-	private static function get_mime_type( string $image_url ): string {
-		$ext      = strtolower( (string) pathinfo( wp_parse_url( $image_url, PHP_URL_PATH ) ?? '', PATHINFO_EXTENSION ) );
-		$mime_map = [
-			'jpg'  => 'image/jpeg',
-			'jpeg' => 'image/jpeg',
-			'png'  => 'image/png',
-			'gif'  => 'image/gif',
-			'webp' => 'image/webp',
-			'avif' => 'image/avif',
-		];
-
-		return $mime_map[ $ext ] ?? 'image/jpeg';
-	}
-
-	/**
-	 * Generate using the WordPress AI Client.
+	 * The builder API is:
+	 *   wp_ai_client_prompt( $prompt )->with_file( $data_uri )->generate_text()
 	 *
-	 * Detects which builder variant is present and calls the correct
-	 * terminate method:
-	 *   - Standalone wp-ai-client: generate_text() → string
-	 *   - WordPress 7.0 built-in:  send()          → GenerativeAiResult
+	 * with_file() requires a base64 data URI, not a plain URL.
+	 * generate_text() returns string|WP_Error directly.
 	 *
-	 * @param string $image_url Full URL of the image.
-	 * @param string $prompt    The generation prompt.
+	 * @param string $data_uri Base64 data URI of the image.
+	 * @param string $prompt   The generation prompt.
 	 * @return array|\WP_Error
 	 */
-	private static function generate_with_wp_ai_client( string $image_url, string $prompt ) {
+	private static function generate_with_wp_ai_client( string $data_uri, string $prompt ) {
 		try {
-			$builder = wp_ai_client_prompt( $prompt );
+			$result = wp_ai_client_prompt( $prompt )
+				->with_file( $data_uri )
+				->generate_text();
 
-			if ( is_wp_error( $builder ) ) {
-				return $builder;
+			if ( is_wp_error( $result ) ) {
+				return $result;
 			}
 
-			$mime_type = self::get_mime_type( $image_url );
-
-			// ── Standalone wp-ai-client plugin ────────────────────────────────
-			// generate_text() is the terminate method, returns string|WP_Error.
-			if ( method_exists( $builder, 'generate_text' ) ) {
-				if ( method_exists( $builder, 'with_file' ) ) {
-					$builder = $builder->with_file( $image_url, $mime_type );
-				}
-				$text = $builder->generate_text();
-				if ( is_wp_error( $text ) ) {
-					return $text;
-				}
-				return self::parse_suggestions( (string) $text );
-			}
-
-			// ── WordPress 7.0 built-in ────────────────────────────────────────
-			// send() is the terminate method, returns GenerativeAiResult|WP_Error.
-			if ( method_exists( $builder, 'send' ) ) {
-				// Attach image — WP 7.0 uses with_image(), fall back to with_file().
-				if ( method_exists( $builder, 'with_image' ) ) {
-					$builder = $builder->with_image( [ 'url' => $image_url ] );
-				} elseif ( method_exists( $builder, 'with_file' ) ) {
-					$builder = $builder->with_file( $image_url, $mime_type );
-				}
-
-				$result = $builder->send();
-
-				if ( is_wp_error( $result ) ) {
-					return $result;
-				}
-
-				$text = self::extract_text_from_result( $result );
-				if ( is_wp_error( $text ) ) {
-					return $text;
-				}
-
-				return self::parse_suggestions( $text );
-			}
-
-			// Neither known terminate method found — report builder class for diagnosis.
-			return new \WP_Error(
-				'no_generation_method',
-				sprintf(
-					/* translators: %s: PHP class name of the AI builder */
-					__( 'No supported generation method found on the AI builder (%s). Please report this to the plugin author.', 'accessibility-checker' ),
-					get_class( $builder )
-				)
-			);
+			return self::parse_suggestions( (string) $result );
 
 		} catch ( \Throwable $e ) {
 			return new \WP_Error( 'wp_ai_client_error', $e->getMessage() );
@@ -273,7 +274,7 @@ Return only the JSON array with no markdown fencing or other text.',
 				return $candidates;
 			}
 
-			$text = self::extract_text_from_result( $candidates );
+			$text = self::extract_text_from_candidates( $candidates );
 			if ( is_wp_error( $text ) ) {
 				return $text;
 			}
@@ -286,57 +287,39 @@ Return only the JSON array with no markdown fencing or other text.',
 	}
 
 	/**
-	 * Extract a generated text string from any AI result object.
+	 * Extract a generated text string from an ai-services Candidates object.
 	 *
-	 * Handles three known response shapes in priority order:
+	 * Candidates object shape:
+	 *   ->get(0)->get_content()->get_parts()->get(0)->get_text()
 	 *
-	 * 1. String — returned directly by standalone wp-ai-client generate_text().
-	 * 2. ai-services Candidates (object with get()):
-	 *    ->get(0)->get_content()->get_parts()->get(0)->get_text()
-	 * 3. WP 7.0 GenerativeAiResult (get_candidates() returns array):
-	 *    ->get_candidates()[0]->get_content()->get_parts()[0]->get_text()
-	 * 4. Convenience shortcuts: get_first_candidate_text(), get_text(), __toString.
-	 *
-	 * @param mixed $result Response object from any supported AI SDK.
+	 * @param mixed $candidates Candidates object from ai-services generate_text().
 	 * @return string|\WP_Error
 	 */
-	private static function extract_text_from_result( $result ) {
-		if ( is_string( $result ) ) {
-			return $result;
+	private static function extract_text_from_candidates( $candidates ) {
+		if ( is_string( $candidates ) ) {
+			return $candidates;
 		}
 
-		if ( ! is_object( $result ) ) {
+		if ( ! is_object( $candidates ) ) {
 			return new \WP_Error( 'unexpected_response', __( 'Unexpected AI response format. Please try again.', 'accessibility-checker' ) );
 		}
 
 		try {
-			// ── ai-services Candidates object (uses ->get() for indexed access) ──
-			if ( method_exists( $result, 'get' ) && ! method_exists( $result, 'get_candidates' ) ) {
-				$candidate = $result->get( 0 );
+			// ai-services Candidates: indexed access via ->get().
+			if ( method_exists( $candidates, 'get' ) ) {
+				$candidate = $candidates->get( 0 );
 				if ( $candidate ) {
 					$text = self::text_from_candidate( $candidate );
-					if ( is_string( $text ) ) {
+					if ( is_string( $text ) && '' !== $text ) {
 						return $text;
 					}
 				}
 			}
 
-			// ── WP 7.0 GenerativeAiResult (get_candidates() returns plain array) ──
-			if ( method_exists( $result, 'get_candidates' ) ) {
-				$candidates    = $result->get_candidates();
-				$first         = is_array( $candidates ) ? reset( $candidates ) : null;
-				if ( $first ) {
-					$text = self::text_from_candidate( $first );
-					if ( is_string( $text ) ) {
-						return $text;
-					}
-				}
-			}
-
-			// ── Convenience / shortcut methods ───────────────────────────────────
-			foreach ( [ 'get_first_candidate_text', 'get_text', 'getText', '__toString' ] as $method ) {
-				if ( method_exists( $result, $method ) ) {
-					$text = $result->$method();
+			// Convenience / shortcut methods.
+			foreach ( [ 'get_first_candidate_text', 'get_text', 'getText' ] as $method ) {
+				if ( method_exists( $candidates, $method ) ) {
+					$text = $candidates->$method();
 					if ( is_string( $text ) && '' !== $text ) {
 						return $text;
 					}
@@ -351,15 +334,13 @@ Return only the JSON array with no markdown fencing or other text.',
 			sprintf(
 				/* translators: %s: PHP class name of the unexpected response object */
 				__( 'Unexpected AI response type (%s). Please report this to the plugin author.', 'accessibility-checker' ),
-				get_class( $result )
+				get_class( $candidates )
 			)
 		);
 	}
 
 	/**
-	 * Extract text from a single candidate object (shared by both SDK shapes).
-	 *
-	 * Tries the full parts chain then falls back to direct text methods.
+	 * Extract text from a single candidate object.
 	 *
 	 * @param mixed $candidate Candidate object.
 	 * @return string|null Text string or null if not extractable.
@@ -372,7 +353,7 @@ Return only the JSON array with no markdown fencing or other text.',
 		if ( method_exists( $candidate, 'get_content' ) ) {
 			$content = $candidate->get_content();
 			if ( $content && method_exists( $content, 'get_parts' ) ) {
-				$parts     = $content->get_parts();
+				$parts      = $content->get_parts();
 				$first_part = null;
 
 				if ( is_array( $parts ) ) {
@@ -390,7 +371,6 @@ Return only the JSON array with no markdown fencing or other text.',
 			}
 		}
 
-		// Direct text shortcut on the candidate itself.
 		foreach ( [ 'get_text', 'getText' ] as $method ) {
 			if ( method_exists( $candidate, $method ) ) {
 				$text = $candidate->$method();
