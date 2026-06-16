@@ -23,8 +23,9 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  * @param {Function} props.onToggle     - Callback when panel is toggled.
  * @param {Function} props.onIgnore     - Callback when issue is dismissed/restored.
  * @param {Function} props.onCloseModal - Callback to close the parent modal.
+ * @param {boolean}  props.forceGlobal  - When true, the primary dismiss action targets all pages (global dismiss).
  */
-const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => {
+const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -84,14 +85,18 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 		}
 	};
 
+	const dismissIdleLabel = forceGlobal
+		? __( 'Dismiss Globally', 'accessibility-checker' )
+		: __( 'Dismiss Issue', 'accessibility-checker' );
+	const dismissBusyLabel = forceGlobal
+		? __( 'Dismissing globally...', 'accessibility-checker' )
+		: __( 'Dismissing...', 'accessibility-checker' );
 	const dismissButtonLabel = isSubmitting ? (
 		<>
 			<Spinner />
-			{ __( 'Dismissing...', 'accessibility-checker' ) }
+			{ dismissBusyLabel }
 		</>
-	) : (
-		__( 'Dismiss Issue', 'accessibility-checker' )
-	);
+	) : dismissIdleLabel;
 
 	let panelTitle;
 	if ( isIgnored ) {
@@ -203,7 +208,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 							<form
 								onSubmit={ ( e ) => {
 									e.preventDefault();
-									handleToggleIgnore( true );
+									handleToggleIgnore( true, forceGlobal );
 								} }
 							>
 								<RadioControl
@@ -254,7 +259,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 													type="button"
 													onClick={ () => {
 														onClose();
-														handleToggleIgnore( true, false ).then( () => {
+														handleToggleIgnore( true, forceGlobal ).then( () => {
 															// close the entire modal after dismissing.
 															if ( onCloseModal ) {
 																onCloseModal();
@@ -264,16 +269,18 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 												>
 													{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
 												</Button>
-												<Button
-													variant="tertiary"
-													type="button"
-													onClick={ () => {
-														onClose();
-														handleToggleIgnore( true, true );
-													} }
-												>
-													{ __( 'Dismiss Globally (all pages)', 'accessibility-checker' ) }
-												</Button>
+												{ ! forceGlobal && (
+													<Button
+														variant="tertiary"
+														type="button"
+														onClick={ () => {
+															onClose();
+															handleToggleIgnore( true, true );
+														} }
+													>
+														{ __( 'Dismiss Globally (all pages)', 'accessibility-checker' ) }
+													</Button>
+												) }
 											</div>
 										) }
 									/>
