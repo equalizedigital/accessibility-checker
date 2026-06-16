@@ -278,7 +278,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 															handleToggleIgnore( true, true );
 														} }
 													>
-														{ __( 'Dismiss Globally (all pages)', 'accessibility-checker' ) }
+														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
 													</Button>
 												) }
 											</div>
