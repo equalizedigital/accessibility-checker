@@ -824,6 +824,67 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 }
 
 /**
+ * Get the canonical landmark detection rules the scanner uses to populate the
+ * `landmark` database column.
+ *
+ * This is the single source of truth mirrored by `LANDMARK_TAGS`,
+ * `LANDMARK_ROLES`, `CONDITIONAL_LANDMARK_TAGS`, and
+ * `CONDITIONAL_LANDMARK_ROLES` in `src/pageScanner/index.js`. Tag names stay
+ * uppercase to match `Element.tagName`; role names stay lowercase to match
+ * the already-lowercased `role` attribute the scanner compares against.
+ *
+ * Tag-detected and role-detected landmarks are NOT normalized to a shared
+ * value even when conceptually the same landmark — e.g. a `<nav>` element
+ * saves `nav`, but `role="navigation"` saves `navigation`. Same for `<aside>`
+ * (`aside`) vs `role="complementary"` (`complementary`).
+ *
+ * @return array{tags: string[], roles: string[], conditionalTags: string[], conditionalRoles: string[]} Landmark detection rules.
+ */
+function edac_get_landmark_types(): array {
+	return [
+		'tags'             => [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ],
+		'roles'            => [ 'main', 'navigation', 'banner', 'contentinfo', 'complementary' ],
+		'conditionalTags'  => [ 'SECTION', 'ARTICLE', 'FORM' ],
+		'conditionalRoles' => [ 'region', 'article', 'form' ],
+	];
+}
+
+/**
+ * Get the distinct landmark values that can actually be written to the
+ * `landmark` database column, as filter-friendly `{ value, label }` pairs.
+ *
+ * Built from `edac_get_landmark_types()` so the Issues Explorer's Landmark
+ * filter (in the pro plugin) can never drift from what the scanner persists.
+ *
+ * @return array<array{value: string, label: string}> Filter options, value lowercase, label capitalized.
+ */
+function edac_get_landmark_filter_options(): array {
+	$types = edac_get_landmark_types();
+
+	$values = array_unique(
+		array_map(
+			'strtolower',
+			array_merge(
+				$types['tags'],
+				$types['roles'],
+				$types['conditionalTags'],
+				$types['conditionalRoles']
+			)
+		)
+	);
+
+	return array_map(
+		static function ( $value ) {
+			return [
+				'value' => $value,
+				'label' => ucfirst( $value ),
+			];
+		},
+		array_values( $values )
+	);
+}
+
+/**
  * Generate a landmark link with proper URL and ARIA label
  *
  * @param string $landmark The landmark type (e.g., "header", "navigation", "main").
