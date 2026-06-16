@@ -60,6 +60,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 				issue.ignre_global = response.ignre_global ?? ( isGlobal ? 1 : 0 );
 			} else if ( ! ignore ) {
 				issue.ignre = '0';
+				issue.ignre_global = 0;
 				issue.user = '';
 				issue.ignre_user_name = '';
 				issue.ignre_date = '';
@@ -257,6 +258,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 												<Button
 													variant="tertiary"
 													type="button"
+													disabled={ isSubmitting }
 													onClick={ () => {
 														onClose();
 														handleToggleIgnore( true, forceGlobal ).then( () => {
@@ -273,6 +275,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 													<Button
 														variant="tertiary"
 														type="button"
+														disabled={ isSubmitting }
 														onClick={ () => {
 															onClose();
 															handleToggleIgnore( true, true );
