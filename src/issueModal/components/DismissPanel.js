@@ -13,7 +13,6 @@ import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
 import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
-import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 
 /**
  * Dismiss Panel Component
@@ -35,20 +34,6 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 	const isGloballyDismissed = issue?.ignre_global === 1 || issue?.ignre_global === '1';
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
-	const getGlobalIgnoresUrl = () => {
-		if ( window?.ajaxurl ) {
-			const adminUrl = new URL( window.ajaxurl, window.location.origin );
-			adminUrl.pathname = adminUrl.pathname.replace( /admin-ajax\.php$/, 'admin.php' );
-			adminUrl.search = 'page=accessibility_checker_ignored&tab=global';
-			return adminUrl.toString();
-		}
-		if ( window?.edac_editor_app?.edacUrl ) {
-			const baseUrl = window.edac_editor_app.edacUrl.replace( /\/$/, '' );
-			return `${ baseUrl }/wp-admin/admin.php?page=accessibility_checker_ignored&tab=global`;
-		}
-		return 'admin.php?page=accessibility_checker_ignored&tab=global';
-	};
-
 	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
 		setIsSubmitting( true );
 		setError( null );
@@ -178,21 +163,20 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 								) }
 								{ isGloballyDismissed ? (
 									<div className="edac-analysis__dismissed-actions">
-										<p>
-											{ __( 'This issue was dismissed globally. Manage Global Dismissals to reopen it.', 'accessibility-checker' ) }
-										</p>
 										<Button
 											variant="secondary"
-											href={ getGlobalIgnoresUrl() }
-											target="_blank"
-											rel="noreferrer noopener"
+											onClick={ () => handleToggleIgnore( false ) }
+											disabled={ isSubmitting }
 											className="edac-analysis__dismiss-button"
-											onClick={ () => setPendingRefetch( true ) }
 										>
-											{ __( 'Manage Global Dismissals', 'accessibility-checker' ) }
-											<span style={ { marginLeft: '0.5rem' } }>
-												<ExternalLinkIcon />
-											</span>
+											{ isSubmitting ? (
+												<>
+													<Spinner />
+													{ __( 'Removing...', 'accessibility-checker' ) }
+												</>
+											) : (
+												__( 'Remove Global Dismissal', 'accessibility-checker' )
+											) }
 										</Button>
 									</div>
 								) : (
@@ -279,6 +263,16 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal } ) => 
 													} }
 												>
 													{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
+												</Button>
+												<Button
+													variant="tertiary"
+													type="button"
+													onClick={ () => {
+														onClose();
+														handleToggleIgnore( true, true );
+													} }
+												>
+													{ __( 'Dismiss Globally (all pages)', 'accessibility-checker' ) }
 												</Button>
 											</div>
 										) }
