@@ -23,7 +23,7 @@ export const toggleIssueDismiss = async ( issueId, ignore = true, reason = '', c
 			reason: ignore ? reason : '',
 			comment: ignore ? comment : '',
 			ignore_global: ignore && ignoreGlobal ? 1 : 0,
-			largeBatch: ignore && ignoreGlobal,
+			largeBatch: ignoreGlobal,
 		},
 	} );
 };
