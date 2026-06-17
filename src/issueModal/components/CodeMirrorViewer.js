@@ -46,6 +46,7 @@ const CodeMirrorViewer = ( { value } ) => {
 		return () => {
 			if ( editorRef.current?.codemirror ) {
 				editorRef.current.codemirror.toTextArea();
+				editorRef.current = null;
 			}
 		};
 	}, [] );
