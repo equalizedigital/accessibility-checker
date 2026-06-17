@@ -388,10 +388,12 @@
 	}
 }
 
-// CodeMirrorViewer and IssueImage component styles — dual-scoped so they apply
-// in both the free plugin issue modal and the pro plugin Issues Explorer drawer.
+// CodeMirrorViewer and IssueImage component styles — scoped so they apply in
+// the free plugin issue modal, the pro plugin Issues Explorer drawer, and the
+// pro plugin dismiss-all modal.
 .edac-analysis__issue-modal,
-.edacp-ie-drawer {
+.edacp-ie-drawer,
+.edacp-ie-dismiss-modal {
 	.edac-analysis__image-wrapper {
 		margin: 16px 0;
 	}
