@@ -51,8 +51,6 @@ body:
     id: recommended-fix
     attributes:
       label: Recommended fix or expected behavior
-    validations:
-      required: true
 
   - type: dropdown
     id: severity
@@ -62,8 +60,6 @@ body:
         - Yes - there is no workaround for this issue.
         - No - this is an accessibility problem, but it is minor or not a blocker.
         - Unsure
-    validations:
-      required: true
 
   - type: dropdown
     id: wcag-sc
@@ -127,8 +123,6 @@ body:
         - 4.1.1 Parsing
         - 4.1.2 Name, Role, Value
         - 4.1.3 Status Messages
-    validations:
-      required: true
 
   - type: textarea
     id: reproduction
@@ -151,7 +145,7 @@ body:
     id: accessibility-checker-version
     attributes:
       label: Accessibility Checker version
-      placeholder: e.g. 1.24.0
+      placeholder: e.g. 1.43.0
     validations:
       required: true
 
