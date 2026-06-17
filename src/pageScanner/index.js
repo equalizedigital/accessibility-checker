@@ -17,8 +17,8 @@ let tooLongTimeout;
 // window.scanOptions when available — see admin/class-enqueue-admin.php and
 // src/editorApp/checkPage.js. Hardcoded values here are only a fallback for
 // contexts that don't localize scanOptions (e.g. standalone test runs).
-const LANDMARK_TAGS = window?.scanOptions?.landmarkTags || [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
-const LANDMARK_ROLES = window?.scanOptions?.landmarkRoles || [
+const LANDMARK_TAGS = Array.isArray( window?.scanOptions?.landmarkTags ) ? window.scanOptions.landmarkTags : [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
+const LANDMARK_ROLES = Array.isArray( window?.scanOptions?.landmarkRoles ) ? window.scanOptions.landmarkRoles : [
 	'main',
 	'navigation',
 	'banner',
@@ -27,8 +27,8 @@ const LANDMARK_ROLES = window?.scanOptions?.landmarkRoles || [
 ];
 
 // Conditional landmark tags/roles that only become landmarks when they have accessible names
-const CONDITIONAL_LANDMARK_TAGS = window?.scanOptions?.conditionalLandmarkTags || [ 'SECTION', 'ARTICLE', 'FORM' ];
-const CONDITIONAL_LANDMARK_ROLES = window?.scanOptions?.conditionalLandmarkRoles || [ 'region', 'article', 'form' ];
+const CONDITIONAL_LANDMARK_TAGS = Array.isArray( window?.scanOptions?.conditionalLandmarkTags ) ? window.scanOptions.conditionalLandmarkTags : [ 'SECTION', 'ARTICLE', 'FORM' ];
+const CONDITIONAL_LANDMARK_ROLES = Array.isArray( window?.scanOptions?.conditionalLandmarkRoles ) ? window.scanOptions.conditionalLandmarkRoles : [ 'region', 'article', 'form' ];
 
 function getLandmarkForSelector( selector ) {
 	const el = document.querySelector( selector );
