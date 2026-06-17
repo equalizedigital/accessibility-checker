@@ -884,10 +884,10 @@ function edac_get_landmark_filter_options(): array {
 		array_map(
 			'strtolower',
 			array_merge(
-				$types['tags'],
-				$types['roles'],
-				$types['conditionalTags'],
-				$types['conditionalRoles']
+				$types['tags'] ?? [],
+				$types['roles'] ?? [],
+				$types['conditionalTags'] ?? [],
+				$types['conditionalRoles'] ?? []
 			)
 		)
 	);
