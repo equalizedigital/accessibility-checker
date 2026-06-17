@@ -21,9 +21,9 @@ body:
     attributes:
       label: Before submitting
       options:
-        - label: I've read and understood the contribution guidelines.
+        - label: I've read and understood the [contribution guidelines](https://github.com/equalizedigital/accessibility-checker/blob/develop/.github/CONTRIBUTING.md).
           required: true
-        - label: I've searched for related issues and confirmed this is not a duplicate.
+        - label: I've searched for [related issues](https://github.com/equalizedigital/accessibility-checker/issues) and confirmed this is not a duplicate.
           required: true
 
   - type: textarea
