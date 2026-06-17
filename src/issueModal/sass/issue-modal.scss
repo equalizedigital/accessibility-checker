@@ -268,10 +268,6 @@
 			}
 		}
 
-		.edac-analysis__image-wrapper {
-			margin: 16px 0;
-		}
-
 		// Modal-specific layout overrides for fix/dismiss panels.
 		// The component-level styles for .edac-analysis__dismiss-panel and its
 		// children live in _dismiss-panel.scss at root scope.
@@ -372,22 +368,6 @@
 			}
 		}
 
-		.edac-analysis__code-textarea {
-			display: none; // Hidden, CodeMirror replaces it
-		}
-
-		.CodeMirror {
-			height: 100px;
-			border: 1px solid #ddd;
-			border-radius: 4px;
-			font-size: 12px;
-
-			&-focused {
-				outline: 2px solid;
-				outline-offset: 2px;
-			}
-		}
-
 		// Dismiss component styles are in _dismiss-panel.scss at root scope.
 
 		.edac-analysis__issue-modal-placeholder {
@@ -400,34 +380,59 @@
 			text-align: center;
 		}
 
-		.edac-analysis__issue-image {
-			margin-top: 16px;
-
-			&-item {
-				max-width: 100%;
-				height: auto;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-				margin-bottom: 8px;
-
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-
-			img {
-				max-width: 100%;
-				max-height: 300px;
-				height: auto;
-				border: 1px solid #ddd;
-				border-radius: 4px;
-			}
-		}
-
 		.edac-fix-card {
 			&:not(:last-child) {
 				margin-bottom: 24px;
 			}
+		}
+	}
+}
+
+// CodeMirrorViewer and IssueImage component styles — dual-scoped so they apply
+// in both the free plugin issue modal and the pro plugin Issues Explorer drawer.
+.edac-analysis__issue-modal,
+.edacp-ie-drawer {
+	.edac-analysis__image-wrapper {
+		margin: 16px 0;
+	}
+
+	.edac-analysis__code-textarea {
+		display: none; // Hidden, CodeMirror replaces it
+	}
+
+	.CodeMirror {
+		height: 100px;
+		border: 1px solid #ddd;
+		border-radius: 4px;
+		font-size: 12px;
+
+		&-focused {
+			outline: 2px solid;
+			outline-offset: 2px;
+		}
+	}
+
+	.edac-analysis__issue-image {
+		margin-top: 16px;
+
+		&-item {
+			max-width: 100%;
+			height: auto;
+			border: 1px solid #ddd;
+			border-radius: 4px;
+			margin-bottom: 8px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		img {
+			max-width: 100%;
+			max-height: 300px;
+			height: auto;
+			border: 1px solid #ddd;
+			border-radius: 4px;
 		}
 	}
 }
