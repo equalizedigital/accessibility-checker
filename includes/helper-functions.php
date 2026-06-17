@@ -841,6 +841,8 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
  * Third-party code may extend the landmark set via the `edac_landmark_types`
  * filter, but must return an array with all four keys intact.
  *
+ * @since 1.44.0
+ *
  * @return array{tags: string[], roles: string[], conditionalTags: string[], conditionalRoles: string[]} Landmark detection rules.
  */
 function edac_get_landmark_types(): array {
@@ -854,7 +856,7 @@ function edac_get_landmark_types(): array {
 	/**
 	 * Filter the landmark types used by the scanner and Issues Explorer filter.
 	 *
-	 * @since 1.16.0
+	 * @since 1.44.0
 	 *
 	 * @param array $types {
 	 *     @type string[] $tags             Uppercase HTML tag names detected unconditionally.
@@ -874,6 +876,8 @@ function edac_get_landmark_types(): array {
  *
  * Built from `edac_get_landmark_types()` so the Issues Explorer's Landmark
  * filter (in the pro plugin) can never drift from what the scanner persists.
+ *
+ * @since 1.44.0
  *
  * @return array<array{value: string, label: string}> Filter options, value lowercase, label human-readable.
  */
