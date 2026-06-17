@@ -18,5 +18,6 @@ export { default as DismissPanel } from '../issueModal/components/DismissPanel';
 export { default as FixCard } from '../issueModal/components/FixCard';
 export { default as RichTextarea } from '../issueModal/components/RichTextarea';
 export { default as IssueImage, extractImageUrls } from '../issueModal/components/IssueImage';
+export { default as CodeMirrorViewer } from '../issueModal/components/CodeMirrorViewer';
 export { getSeverityLabel } from '../sidebar/utils/severityHelpers';
 export { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../sidebar/utils/badgeHelpers';
