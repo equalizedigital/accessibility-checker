@@ -94,6 +94,8 @@
 	align-items: flex-end;
 
 	.edac-analysis__dismiss-button {
+		flex: 1;
+		justify-content: center;
 		border-radius: 2px 0 0 2px;
 	}
 
