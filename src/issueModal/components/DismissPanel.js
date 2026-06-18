@@ -6,8 +6,8 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { decodeEntities } from '@wordpress/html-entities';
-import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
-import { chevronDown, check, globe } from '@wordpress/icons';
+import { Panel, PanelBody, Button, Spinner, Notice, RadioControl } from '@wordpress/components';
+import { globe } from '@wordpress/icons';
 import { useState } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
@@ -240,48 +240,16 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, forceGlobal = false 
 										{ dismissButtonLabel }
 									</Button>
 									{ ! forceGlobal && (
-										<Dropdown
-											renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
-												<Button
-													variant="primary"
-													type="button"
-													icon={ chevronDown }
-													onClick={ onDropdownToggle }
-													aria-expanded={ isDropdownOpen }
-													aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
-													disabled={ isSubmitting }
-													className="edac-analysis__dismiss-dropdown-toggle"
-												/>
-											) }
-											renderContent={ ( { onClose } ) => (
-												<div className="edac-analysis__dismiss-dropdown-content">
-													<Button
-														variant="tertiary"
-														type="button"
-														icon={ check }
-														disabled={ isSubmitting }
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, false );
-														} }
-													>
-														{ __( 'Dismiss Issue', 'accessibility-checker' ) }
-													</Button>
-													<Button
-														variant="tertiary"
-														type="button"
-														icon={ globe }
-														disabled={ isSubmitting }
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, true );
-														} }
-													>
-														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
-													</Button>
-												</div>
-											) }
-										/>
+										<Button
+											variant="secondary"
+											type="button"
+											icon={ globe }
+											disabled={ isSubmitting }
+											onClick={ () => handleToggleIgnore( true, true ) }
+											className="edac-analysis__dismiss-globally-button"
+										>
+											{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+										</Button>
 									) }
 								</div>
 							</form>
