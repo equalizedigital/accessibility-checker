@@ -94,13 +94,23 @@
 	align-items: flex-end;
 
 	.edac-analysis__dismiss-button {
-		flex: 1;
-		justify-content: center;
 		border-radius: 2px 0 0 2px;
 	}
 
 	.edac-analysis__dismiss-dropdown-toggle {
 		border-radius: 0 2px 2px 0;
 		margin-left: 2px;
+	}
+}
+
+// Dropdown menu listing the individual/global dismiss options.
+.edac-analysis__dismiss-dropdown-content {
+	display: flex;
+	flex-direction: column;
+	min-width: 180px;
+
+	.components-button {
+		width: 100%;
+		justify-content: flex-start;
 	}
 }
