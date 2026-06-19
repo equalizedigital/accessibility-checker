@@ -17,6 +17,12 @@ export default {
 			return true;
 		}
 
+		// If element has an active aria-live attribute, it passes (it's a live region container that may be empty initially).
+		const ariaLive = node.getAttribute( 'aria-live' );
+		if ( ariaLive === 'polite' || ariaLive === 'assertive' ) {
+			return true;
+		}
+
 		// Pass if there are child nodes and any child nodes are not text nodes (not Type of 3).
 		if ( node.childNodes.length && Array.from( node.childNodes ).some( ( child ) => child.nodeType !== 3 ) ) {
 			return true;
