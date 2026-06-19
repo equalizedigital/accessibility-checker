@@ -106,15 +106,15 @@ const injectIframe = ( previewUrl, postID ) => {
 		body.setAttribute( 'data-iframe-post-id', postID );
 
 		if ( iframeDocument ) {
-			if ( window?.edac_editor_app?.maxAltLength ) {
-				// if the frame doesn't have window.scanOptions then create is as an object.
+			if ( window?.edac_editor_app?.maxAltLength || window?.edac_editor_app?.ruleExclusions ) {
 				if ( ! iframeDocument.defaultView.scanOptions ) {
 					iframeDocument.defaultView.scanOptions = {};
 				}
 
-				// set the maxAlthLength for the scanOptions.
 				iframeDocument.defaultView.scanOptions = {
+					...iframeDocument.defaultView.scanOptions,
 					maxAltLength: window.edac_editor_app.maxAltLength,
+					ruleExclusions: window.edac_editor_app.ruleExclusions,
 				};
 			}
 

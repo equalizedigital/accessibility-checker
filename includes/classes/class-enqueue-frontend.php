@@ -163,6 +163,7 @@ class Enqueue_Frontend {
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
+					'ruleExclusions'   => \EDAC\Admin\Enqueue_Admin::get_rule_exclusions(),
 				]
 			);
 

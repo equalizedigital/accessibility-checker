@@ -1779,6 +1779,14 @@ class AccessibilityCheckerHighlight {
 		const scriptId = 'edac-accessibility-checker-scanner-script';
 
 		return new Promise( ( resolve, reject ) => {
+			// Ensure rule exclusions from the localized config are available to the scanner.
+			if ( window.edacFrontendHighlighterApp?.ruleExclusions ) {
+				window.scanOptions = {
+					...window.scanOptions,
+					ruleExclusions: window.edacFrontendHighlighterApp.ruleExclusions,
+				};
+			}
+
 			const runScan = () => {
 				self._runScanOrShowError( densityMetrics )
 					.then( resolve )
