@@ -13,6 +13,7 @@ import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
+import AltTextPanel from './AltTextPanel';
 import Badge from '../../sidebar/components/Badge';
 import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
@@ -118,6 +119,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 	const initializedIssueId = useRef( null );
 	const [ isDismissPanelOpen, setIsDismissPanelOpen ] = useState( false );
 	const [ isFixPanelOpen, setIsFixPanelOpen ] = useState( false );
+	const [ isAltPanelOpen, setIsAltPanelOpen ] = useState( false );
 
 	// Initialize state when modal opens with a NEW issue
 	useEffect( () => {
@@ -454,6 +456,16 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 								issue={ issue }
 								isOpen={ isFixPanelOpen }
 								onToggle={ () => setIsFixPanelOpen( ! isFixPanelOpen ) }
+							/>
+						) }
+
+						{ /* AI Alt Text Panel - Only shows for image alt rules when AI is configured */ }
+						{ isOpen && (
+							<AltTextPanel
+								rule={ rule }
+								issue={ issue }
+								isOpen={ isAltPanelOpen }
+								onToggle={ () => setIsAltPanelOpen( ! isAltPanelOpen ) }
 							/>
 						) }
 

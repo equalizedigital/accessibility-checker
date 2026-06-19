@@ -24,10 +24,12 @@ const ReadabilityAnalysis = () => {
 	const postId = useSelect( ( select ) => select( 'core/editor' ).getCurrentPostId(), [] );
 	const { settingsUrl, readabilityHelpUrl } = window?.edac_sidebar_app || {};
 	const [ isSaving, setIsSaving ] = useState( false );
+	const [ isGenerating, setIsGenerating ] = useState( false );
 	const [ summaryText, setSummaryText ] = useState( '' );
 	const [ summaryGrade, setSummaryGrade ] = useState( 0 );
 	const [ summaryGradeFailed, setSummaryGradeFailed ] = useState( false );
 	const [ notice, setNotice ] = useState( null );
+	const aiAvailable = Boolean( window?.edac_sidebar_app?.aiAltAvailable );
 
 	// Panel ID for state persistence
 	const panelId = 'readability-analysis';
@@ -130,6 +132,38 @@ const ReadabilityAnalysis = () => {
 			} );
 		} finally {
 			setIsSaving( false );
+		}
+	};
+
+	// Handle AI summary generation
+	const handleGenerateSummary = async () => {
+		setIsGenerating( true );
+		setNotice( null );
+		try {
+			const response = await apiFetch( {
+				path: '/accessibility-checker/v1/generate-simplified-summary',
+				method: 'POST',
+				data: { post_id: postId },
+			} );
+			if ( response.success ) {
+				setSummaryText( response.summary );
+				setNotice( {
+					type: 'info',
+					message: __( 'AI summary generated. Review it and click Save Summary when ready.', 'accessibility-checker' ),
+				} );
+			} else {
+				setNotice( {
+					type: 'error',
+					message: response.message || __( 'Failed to generate a summary. Please try again.', 'accessibility-checker' ),
+				} );
+			}
+		} catch ( err ) {
+			setNotice( {
+				type: 'error',
+				message: err?.message || __( 'An error occurred while contacting the AI service. Please try again.', 'accessibility-checker' ),
+			} );
+		} finally {
+			setIsGenerating( false );
 		}
 	};
 
@@ -361,6 +395,19 @@ const ReadabilityAnalysis = () => {
 									<h4 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
 									</h4>
+									{ aiAvailable && (
+										<Button
+											variant="secondary"
+											onClick={ handleGenerateSummary }
+											disabled={ isGenerating }
+											className="edac-readability-ai-button"
+										>
+											{ isGenerating && <Spinner /> }
+											{ isGenerating
+												? __( 'Generating…', 'accessibility-checker' )
+												: __( 'Generate with AI', 'accessibility-checker' ) }
+										</Button>
+									) }
 									<TextareaControl
 										value={ summaryText }
 										onChange={ setSummaryText }
@@ -371,6 +418,7 @@ const ReadabilityAnalysis = () => {
 									<Button
 										variant="primary"
 										onClick={ handleSaveSummary }
+										disabled={ isSaving }
 										className="edac-panel-section__save-button"
 									>
 										{ isSaving && <Spinner /> }
@@ -402,6 +450,19 @@ const ReadabilityAnalysis = () => {
 							<h4 className="edac-panel-section__subheading">
 								{ __( 'Simplified Summary', 'accessibility-checker' ) }
 							</h4>
+							{ aiAvailable && (
+								<Button
+									variant="secondary"
+									onClick={ handleGenerateSummary }
+									disabled={ isGenerating }
+									className="edac-readability-ai-button"
+								>
+									{ isGenerating && <Spinner /> }
+									{ isGenerating
+										? __( 'Generating…', 'accessibility-checker' )
+										: __( 'Generate with AI', 'accessibility-checker' ) }
+								</Button>
+							) }
 							<TextareaControl
 								value={ summaryText }
 								onChange={ setSummaryText }
@@ -412,6 +473,7 @@ const ReadabilityAnalysis = () => {
 							<Button
 								variant="primary"
 								onClick={ handleSaveSummary }
+								disabled={ isSaving }
 								className="edac-panel-section__save-button"
 							>
 								{ isSaving && <Spinner /> }
