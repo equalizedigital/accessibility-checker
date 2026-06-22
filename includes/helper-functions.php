@@ -912,7 +912,7 @@ function edac_get_landmark_filter_options(): array {
 		/* translators: Landmark type label for the Issues Explorer filter. */
 		'banner'        => __( 'Banner', 'accessibility-checker' ),
 		/* translators: Landmark type label for the Issues Explorer filter. */
-		'contentinfo'   => __( 'Content Info', 'accessibility-checker' ),
+		'contentinfo'   => __( 'Contentinfo', 'accessibility-checker' ),
 		/* translators: Landmark type label for the Issues Explorer filter. */
 		'complementary' => __( 'Complementary', 'accessibility-checker' ),
 		/* translators: Landmark type label for the Issues Explorer filter. */
