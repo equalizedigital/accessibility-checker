@@ -191,7 +191,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edacp_ignore_user_roles',
-		__( 'Ignore Permissions', 'accessibility-checker' ),
+		__( 'Dismiss Permissions', 'accessibility-checker' ),
 		'edac_ignore_user_roles_cb',
 		'edac_settings',
 		'edac_permissions',
@@ -682,7 +682,7 @@ function edac_post_types_cb() {
 		<?php } else { ?>
 			<p class="edac-description">
 				<?php
-				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
+				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
 			<?php
@@ -1000,7 +1000,7 @@ function edac_ignore_user_roles_cb() {
 		<?php endif; ?>
 	</fieldset>
 	<p class="edac-description">
-		<?php esc_html_e( 'Choose which user roles have permission to ignore issues.', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Choose which user roles have permission to dismiss issues.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
 }
