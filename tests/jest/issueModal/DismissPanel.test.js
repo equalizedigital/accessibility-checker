@@ -2,6 +2,45 @@ import { act } from 'react';
 import DismissPanel from '../../../src/issueModal/components/DismissPanel';
 import { renderReact } from '../helpers/renderReact';
 
+jest.mock( '@wordpress/components', () => ( {
+	Panel: ( { children } ) => <div className="mock-panel">{ children }</div>,
+	PanelBody: ( { title, opened, onToggle, children } ) => (
+		<section className="mock-panel-body" data-open={ opened }>
+			<button type="button" onClick={ onToggle }>{ title }</button>
+			{ opened && children }
+		</section>
+	),
+	Button: ( { children, onClick, type = 'button', disabled, className } ) => (
+		<button type={ type } onClick={ onClick } disabled={ disabled } className={ className }>
+			{ children }
+		</button>
+	),
+	Spinner: () => <span className="mock-spinner" aria-hidden="true">...</span>,
+	Notice: ( { children } ) => <div className="mock-notice">{ children }</div>,
+	RadioControl: ( { label, selected, options, onChange } ) => (
+		<div className="mock-radio-control">
+			<div>{ label }</div>
+			{ options.map( ( option ) => (
+				<label key={ option.value }>
+					<input
+						type="radio"
+						name="dismiss-reason"
+						checked={ selected === option.value }
+						onChange={ () => onChange( option.value ) }
+					/>
+					{ option.label }
+				</label>
+			) ) }
+		</div>
+	),
+	Dropdown: ( { renderToggle, renderContent } ) => (
+		<div className="mock-dropdown">
+			{ renderToggle( { isOpen: false, onToggle: jest.fn() } ) }
+			{ renderContent( { onClose: jest.fn() } ) }
+		</div>
+	),
+} ) );
+
 jest.mock( '../../../src/issueModal/api', () => ( {
 	toggleIssueDismiss: jest.fn( () => Promise.resolve( { success: true } ) ),
 } ) );
@@ -60,7 +99,7 @@ describe( 'DismissPanel', () => {
 		expect( button ).toBeDefined();
 
 		await act( async () => {
-			button.dispatchEvent( new MouseEvent( 'click', { bubbles: true } ) );
+			button.click();
 		} );
 
 		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 2, false, '', '', true );
