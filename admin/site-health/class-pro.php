@@ -75,7 +75,7 @@ class Pro {
 					'value' => esc_html( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) : __( 'None', 'accessibility-checker' ) ),
 				],
 				'ignores_db_table_count' => [
-					'label' => __( 'Dismisses DB Table Count', 'accessibility-checker' ),
+					'label' => __( 'Dismissals DB Table Count', 'accessibility-checker' ),
 					'value' => absint( edac_database_table_count( 'accessibility_checker_global_ignores' ) ),
 				],
 				'fixes'                  => [
