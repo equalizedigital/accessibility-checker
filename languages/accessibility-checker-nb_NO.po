@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.43.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-06-22T20:17:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Forny lisensen din"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Deaktiver e-postrapporter"
 
@@ -90,7 +90,7 @@ msgstr "Aktiver e-postrapporter"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Gratis lisensnøkkel"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Rapporter aktivert"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Du vil motta ukentlige tilgjengelighetsrapporter for dette nettstedet."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Ukentlige tilgjengelighetsrapporter for dette nettstedet sendes til kontoeieren av lisensnøkkelen."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Neste rapport: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Full dekning"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Begrenset dekning"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Rapportene dine inkluderer alle posttyper og taksonomier."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Full nettstedsskanning aktivert"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Komplette problemoversikter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Detaljert rapportering"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Rapportene dine inkluderer bare deler av nettstedet ditt."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Oppgrader til Pro for å:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Skann alle innholdstyper"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Få komplette problemoversikter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Motta mer detaljerte rapporter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Oppgrader til pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Tilgjengelighetsoversikt"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Denne oversikten reflekterer de nyeste skannedataene som er tilgjengelige for nettstedet ditt."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Totalt antall problemer funnet"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Kontotilkobling"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Ved å koble til dette nettstedet, godtar du Equalize Digitals <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">personvernerklæring <span aria-hidden=\"true\">&#8599;</span></a> og <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">databehandleravtale <span aria-hidden=\"true\">&#8599;</span></a>."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Personvernerklæring (åpnes i et nytt vindu)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Databehandleravtale (åpnes i et nytt vindu)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Ukentlig e-post inkluderer totale feil funnet og endringer siden forrige rapport, dekningsinformasjon, antall problemer, behov for gjennomgang, prosentandel bestått test, og informasjon om de mest problematiske sidene og de mest alvorlige feilene."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Ikke relevant"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Kritisk"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Høy"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Middels"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Lav"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Ukjent"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Black Friday-tilbud! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Oppgrader til en betalt versjon av Accessibility Checker fra 24. november til 3. desember og få 30 % rabatt! Full skanning av nettstedet, rapport over åpne problemer på hele nettstedet, ignoreringslogger og mer."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Oppgrader til en betalt versjon av Accessibility Checker fra 24. november til 3. desember og få 30 % rabatt! Full nettstedsskanning, rapport over åpne problemer på hele nettstedet, logg over avviste advarsler og mer."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Oppgrader nå"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Beståtte tester"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Problem"
@@ -660,6 +666,7 @@ msgstr[1] "Kontrastproblemer"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -691,6 +698,7 @@ msgstr "* Ekte tilgjengelighet krever manuell testing i tillegg til automatisert
 #: admin/class-ignore-ui.php:126
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", åpner et nytt vindu"
@@ -722,6 +730,7 @@ msgstr "Utvid problemer for %s"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Disse innstillingene aktiverer globale rettelser på hele nettstedet ditt."
 
@@ -732,21 +741,25 @@ msgstr "Sider må kanskje lagres på nytt eller en fullstendig nettstedsskanning
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Lagre"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Berørt kode"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Bilde"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landemerke"
 
@@ -755,6 +768,7 @@ msgid "Actions"
 msgstr "Handlinger"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Avvist"
 
@@ -782,6 +796,7 @@ msgstr "Vis problem-ID %d på nettstedet, åpnes i et nytt vindu"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Vis på siden"
@@ -883,8 +898,8 @@ msgstr "Din plassering for forenklet sammendrag er satt til «manuelt», noe som
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Forenklet sammendrag"
@@ -902,12 +917,14 @@ msgstr "Lær mer om å forbedre lesbarheten og krav til forenklet sammendrag"
 msgid "No readability data to return"
 msgstr "Ingen lesbarhetsdata å returnere"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Ingen ignorer-data å returnere"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Ingen avvisningsdata å returnere"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:437
 msgid "* Screen Reader Text"
 msgstr "* Skjermlesertekst"
 
@@ -962,11 +979,13 @@ msgstr "Dato:"
 
 #: admin/class-ignore-ui.php:97
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Gjenåpne problem"
 
 #: admin/class-ignore-ui.php:98
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Avvis problem"
 
@@ -985,6 +1004,7 @@ msgstr "Brukerkontoen din har ikke tillatelse til å avvise dette problemet."
 
 #: admin/class-ignore-ui.php:156
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Avvis problem som:"
 
@@ -1453,12 +1473,12 @@ msgstr "Overskrift for forenklet sammendrag"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Ignorer-tillatelser"
+msgid "Dismiss Permissions"
+msgstr "Avvis tillatelser"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Antall ignorer-DB-tabeller"
+msgid "Dismissals DB Table Count"
+msgstr "Antall rader i «Dismissals DB»-tabell"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1491,10 +1511,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Få Accessibility Checker Pro (åpnes i nytt vindu)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Problem ikke funnet."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "Beklager, du har ikke tillatelse til å avvise ett eller flere problemer i denne batchen."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Kunne ikke oppdatere problemet."
 
@@ -1975,8 +2000,8 @@ msgstr "Attributtet aria-hidden brukes for å skjule innhold fra hjelpeteknologi
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Sjekk om elementet virkelig bør skjules for skjermleserbrukere. Hvis det inneholder viktig innhold eller funksjonalitet, fjern %s. Hvis det er dekorativt eller overflødig, la elementet være og avvis denne advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Sjekk om elementet virkelig skal skjules for skjermleserbrukere. Hvis det inneholder viktig innhold eller funksjonalitet, fjern %s. Hvis det er dekorativt eller overflødig, la elementet være og avvis denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2373,8 +2398,8 @@ msgstr "Skjermlesere er avhengige av alternativ tekst for å beskrive bilder for
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Gå gjennom bildet for å avgjøre om det er dekorativt. Hvis det er dekorativt, er det riktig å bruke et tomt %1$s-attributt, og du kan avvise denne advarselen ved å bruke «Ignorer»-funksjonen i Accessibility Checker eller legge til %2$s eller %3$s i bildet og skanne siden på nytt. Hvis bildet formidler informasjon, legg til beskrivende alt-tekst som kommuniserer bildets formål eller betydning."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Gjennomgå bildet for å avgjøre om det er dekorativt. Hvis det er dekorativt, er det riktig å bruke et tomt %1$s-attributt, og du kan avvise denne advarselen i Accessibility Checker, eller ved å legge til %2$s eller %3$s til bildet og skanne siden på nytt. Hvis bildet formidler informasjon, legg til beskrivende alt-tekst som kommuniserer bildets hensikt eller betydning."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2428,8 +2453,8 @@ msgstr "Alternativ tekst bør være konsis og fokusere på å beskrive bildets f
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Forkort alt-teksten til færre enn %s tegn, samtidig som du fortsatt beskriver bildets funksjon eller formål. Hold beskrivelsene enkle og unngå å gjenta omkringliggende innhold. Hvis bildets alt-tekst ikke trenger å endres, kan du avvise denne advarselen ved å bruke «Ignorer»-funksjonen i Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Forkort alt-teksten til færre enn %s tegn samtidig som den fortsatt beskriver bildets funksjon eller formål. Hold beskrivelser enkle og unngå å gjenta omkringliggende innhold. Hvis bildets alt-tekst ikke trenger å endres, avvis denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2506,8 +2531,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Animerte bilder kan være distraherende, utløse anfall hos noen personer eller skape kognitiv belastning. WCAG-retningslinjene krever at animasjoner som blinker eller går i kontinuerlig loop, gir en mekanisme for å pause, stoppe eller skjule dem."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Erstatt det animerte bildet med et statisk bilde eller en video som inkluderer kontroller. Hvis du må bruke et animert bilde, sørg for at det ikke blinker mer enn tre ganger per sekund og gi pause- eller stoppkontroller hvis det spilles av i mer enn 5 sekunder. Hvis du har bekreftet at bildet er tilgjengelig og kan pauses, kan du avvise denne advarselen ved å bruke «Ignorer»-funksjonen i Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Erstatt det animerte bildet med et statisk bilde eller en video som inkluderer kontroller. Hvis du må bruke et animert bilde, sørg for at det ikke blinker mer enn tre ganger per sekund, og gi pause- eller stoppekontroller hvis det spiller i mer enn 5 sekunder. Hvis du har bekreftet at bildet er tilgjengelig og kan pauses, kan du avvise denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2709,8 +2734,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Dokumenter i Word-, Excel- eller PowerPoint-format er kanskje ikke tilgjengelige for alle brukere, spesielt hvis de ikke er tagget riktig eller ikke følger beste praksis for tilgjengelighet. Tilgjengelighetslover krever at dokumenter som legges ut på nettsider også samsvarer med WCAG. I tillegg bør brukere advares når en lenke åpner en nedlastbar fil i stedet for en nettside."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Sørg for at den lenkede filen er testet og utbedret for tilgjengelighet. Når du vet at den er tilgjengelig, avvis denne advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker. Inkluder filtypen og størrelsen i lenketeksten for å informere brukere (aktiver 'Legg til filstørrelse og type til lenker'-fiksen i Accessibility Checker-innstillingene for å gjøre dette på hele nettstedet). Hvis dokumentet er innebygd ved hjelp av et tillegg, gi også en direkte lenke for å laste det ned. Hvis det er vanskelig å gjøre dokumentet tilgjengelig, vurder å legge innholdet på en nettside i stedet."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Sørg for at den koblede filen er testet og utbedret for tilgjengelighet. Når du vet at den er tilgjengelig, avvis denne advarselen i Accessibility Checker. Inkluder filtypen og størrelsen i lenketeksten for å informere brukere (aktiver 'Legg til filstørrelse og -type i lenker'-fiksen i Accessibility Checker-innstillingene for å gjøre dette nettsted-bredt). Hvis dokumentet er innebygd ved hjelp av en plugin, oppgi også en direkte lenke for å laste det ned. Hvis det er vanskelig å gjøre dokumentet tilgjengelig, vurder å legge innholdet på en nettside i stedet."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2761,8 +2786,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Ikke-HTML-dokumentformater er kanskje ikke fullt tilgjengelige for hjelpeteknologier med mindre de er testet og utbedret. Brukere bør advares når en lenke åpner en nedlastbar fil i stedet for en standard nettside."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Sørg for at det lenkede dokumentet er tilgjengelig. Når du vet at det er tilgjengelig, avvis denne advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker. Inkluder filtypen i den synlige lenketeksten (f.eks. \"Møtenotater (ODT)\") slik at brukerne vet hva de kan forvente (aktiver 'Legg til filstørrelse og type til lenker'-fiksen i Accessibility Checker-innstillingene for å gjøre dette på hele nettstedet). Hvis dokumentet er innebygd, gi også en direkte nedlastingslenke. Hvis det er vanskelig å gjøre dokumentet tilgjengelig, vurder å legge innholdet på en nettside i stedet."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Sørg for at det lenkede dokumentet er tilgjengelig. Når du vet at det er tilgjengelig, avvis denne advarselen i Accessibility Checker. Inkluder filtypen i den synlige lenketeksten (f.eks. «Møtenotater (ODT)») slik at brukere vet hva de kan forvente (aktiver «Legg til filstørrelse og -type i lenker»-fiksen i Accessibility Checker-innstillingene for å gjøre dette nettsted-bredt). Hvis dokumentet er innebygd, oppgi også en direkte nedlastingslenke. Hvis det er vanskelig å gjøre dokumentet tilgjengelig, vurder å legge innholdet på en nettside i stedet."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2781,8 +2806,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF-er er kanskje ikke tilgjengelige for alle brukere, spesielt hvis de ikke er tagget riktig eller ikke oppfyller WCAG-kravene. Tilgjengelighetslover krever at dokumenter som publiseres på nettsider oppfyller de samme tilgjengelighetsstandardene som HTML-innhold. I tillegg bør brukere varsles når en lenke åpner en nedlastbar fil i stedet for en nettside."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Sørg for at den lenkede PDF-filen er testet og utbedret for tilgjengelighet. Når du vet at den er tilgjengelig, kan du avvise advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker. Inkluder filtypen og filstørrelsen i lenketeksten for å informere brukerne (aktiver \"Legg til filstørrelse og filtype i lenker\" i innstillingene for Accessibility Checker for å gjøre dette for hele nettstedet). Hvis dokumentet er innebygd ved hjelp av en plugin, bør du også oppgi en direkte lenke til nedlasting. Hvis det er vanskelig å gjøre PDF-filen tilgjengelig, kan du vurdere å legge innholdet på en nettside i stedet."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Sørg for at den koblede PDF-filen er testet og utbedret for tilgjengelighet. Når du vet at den er tilgjengelig, avvis denne advarselen i Accessibility Checker. Inkluder filtypen og størrelsen i lenketeksten for å informere brukere (aktiver «Legg til filstørrelse og -type i lenker»-fiksen i Accessibility Checker-innstillingene for å gjøre dette nettsted-bredt). Hvis dokumentet er innebygd ved hjelp av en plugin, oppgi også en direkte lenke for å laste det ned. Hvis det er vanskelig å gjøre PDF-en tilgjengelig, vurder å legge innholdet på en nettside i stedet."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2799,6 +2824,30 @@ msgstr "PDF-tilgjengelighet på nettet: Triks og feller (Webinar)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesign og PDF-tilgjengelighetsfeil og hvordan fikse dem (Webinar)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Lenketeksten er URL-adresse"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Denne lenken bruker en URL-adresse som ankertekst i stedet for et meningsfullt ord eller uttrykk."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Disse lenkene bruker URL-adresser som ankertekst i stedet for meningsfulle ord eller uttrykk."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Lenketekst som bare er en URL-adresse, gir kanskje ikke meningsfull kontekst om lenkens destinasjon. I tillegg kan lange URL-adresser være vanskelige å forstå når de leses av en skjermleser, som kan kunngjøre hver bokstav, tall og tegn individuelt. Brukere er avhengige av beskrivende lenketekst for å forstå hvor en lenke vil ta dem; bruk av URL-adresser som lenketekst reduserer brukervennligheten, øker den kognitive belastningen, og kan være forvirrende eller misvisende."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Erstatt URL-adressen i lenketeksten med et kortfattet, beskrivende ord eller uttrykk som forklarer destinasjonen eller formålet med lenken (for eksempel «Les tilgjengelighetsguiden» i stedet for «https://example.com/guide»). Hvis URL-adressen er nødvendig for konteksten og er veldig kort, kan du avvise denne advarselen ved å bruke «Avvis»-funksjonen i Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Teknikk G91: Gi lenketekst som beskriver formålet med en lenke"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3071,8 +3120,8 @@ msgstr "Skjermleserbrukere og andre hjelpeteknologier er avhengige av overskrift
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Gjennomgå den markerte teksten og avgjør om den bør være en overskrift. Hvis den er det, endre elementet til den passende %1$s–%2$s-taggen. Hvis den ikke er ment som en overskrift, kan du avvise denne advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Gjennomgå den flaggede teksten og avgjør om den skal være en overskrift. Hvis den er det, endre elementet til riktig %1$s–%2$s-tagg. Hvis den ikke er ment som en overskrift, kan du avvise denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3095,8 +3144,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Glidebryterne er ofte vanskelige å bruke med skjermlesere og tastaturer. Utilgjengelige glidebryterne kan forstyrre navigasjonen, fange fokus eller bevege seg for raskt for brukere til å engasjere seg med innholdet."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Gjennomgå glidebryteren på forsiden av nettstedet ditt. Sørg for at den er tilgjengelig via tastatur, kan settes på pause, har riktige ARIA-roller og etiketter, og fungerer godt med skjermlesere. Etter å ha bekreftet at glidebryteren er tilgjengelig eller utbedret problemer, kan du avvise denne advarselen ved å bruke \"Ignorer\"-funksjonen i Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Gjennomgå glideren på forsiden av nettstedet ditt. Sørg for at den er tilgjengelig med tastatur, kan pauses, har riktige ARIA-roller og -etiketter, og fungerer bra med skjermlesere. Etter å ha bekreftet at glideren er tilgjengelig eller utbedret eventuelle problemer, kan du avvise denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3251,8 +3300,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Understreket tekst assosieres vanligvis med lenker. Når tekst som ikke er en lenke er understreket, kan det være forvirrende for brukere, spesielt de med kognitive funksjonsnedsettelser eller de som er avhengige av visuelle hint for å identifisere lenker."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Fjern understrekingstaggen eller CSS-stilen for understreking fra teksten. Hvis du vil fremheve tekst, bør du vurdere å bruke fet, kursiv eller fargestil i stedet. Hvis teksten er en del av et funksjonelt element, for eksempel en lenke eller en knapp, kan du beholde understrekingen og avvise advarselen ved hjelp av \"Ignorer\"-funksjonen i Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Fjern understrekings-taggen eller CSS-understrekingsstilen fra teksten. Hvis du vil fremheve tekst, vurder å bruke fet, kursiv eller fargestil i stedet. Hvis denne teksten er en del av et funksjonelt element som en lenke eller knapp, behold understrekingsstilen og avvis denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3271,8 +3320,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Videoer må inkludere nøyaktige undertekster, transkripsjoner og lydbeskrivelser (eller forbedrede transkripsjoner) for å være fullt tilgjengelige for brukere som er døve, hørselshemmede, blinde eller har kognitive funksjonsnedsettelser."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Gå gjennom videoen på forsiden av nettstedet ditt. Sørg for at den inneholder nøyaktige (ikke automatisk genererte) synkroniserte undertekster, en transkripsjon og en lydbeskrivelse hvis det er nødvendig. Etter at du har verifisert tilgjengeligheten eller gjort nødvendige oppdateringer, kan du avvise denne advarselen ved å bruke \"Ignorer\"-funksjonen i Tilgjengelighetskontrollen."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Gjennomgå videoen på forsiden av nettstedet ditt. Sørg for at den inkluderer nøyaktige (ikke automatisk genererte) synkroniserte tekstinger, en transkripsjon og en lydbeskrivelse om nødvendig. Etter å ha bekreftet tilgjengeligheten eller gjort nødvendige oppdateringer, kan du avvise denne advarselen i Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3375,9 +3424,75 @@ msgstr "Delta gratis"
 msgid "(opens in a new window)"
 msgstr "(åpnes i et nytt vindu)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Hoved"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Overskrift"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Bunnntekst"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Nav"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Sidefelt"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Navigasjon"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Banner"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "Innholdsinfo"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Komplementær"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Seksjon"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Artikkel"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Skjema"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Region"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Vis %s landemerke på nettstedet, åpner et nytt vindu"
@@ -3608,22 +3723,22 @@ msgid " (opens in a new window)"
 msgstr " (åpnes i et nytt vindu)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Velg hvilke innholdstyper som skal kontrolleres under en skanning. Vær oppmerksom på at hvis du fjerner en tidligere valgt innholdstype, vil dens skannede informasjon og eventuelle tilpassede ignorerte advarsler som har blitt satt opp, bli slettet."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Velg hvilke innleggstyper som skal sjekkes under en skanning. Vær oppmerksom på at fjerning av en tidligere valgt innleggstype vil fjerne dens skannede informasjon og eventuelle tilpassede avviste advarsler som er konfigurert."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Slett alle Accessibility Checker-data når utvidelsen avinstalleres."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Vis Accessibility Checker-metaboks i blokkredigeringsprogrammet"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Velg hvilke brukerroller som har tillatelse til å ignorere problemer."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "Velg hvilke brukerroller som har tillatelse til å avvise problemer."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Konfigurer hvilke brukerroller som har tilgang til spesifikke Accessibility Checker-funksjoner."
 
@@ -5073,6 +5188,11 @@ msgstr "Lagrer..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Lagring mislyktes: Mangler REST API-URL."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Innstillingene ble lagret. Du må %sgå til redigeringsverktøyet%s og lagre innlegget for å skanne på nytt og fjerne løste problemer fra Accessibility Checker-rapportene."
@@ -5263,30 +5383,31 @@ msgstr "Alvorlighetsgrad:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Ignorert"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Vis forklaring"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Hvorfor det er viktig"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Slik fikser du det"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Mer detaljert dokumentasjon"
 
@@ -5301,6 +5422,7 @@ msgstr "Fiks problem: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Fiks problem"
 
@@ -5351,10 +5473,10 @@ msgstr[1] "%d må gjennomgås"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d ignorert"
-msgstr[1] "%d ignorert"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d avvist"
+msgstr[1] "%d avviste"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5414,111 +5536,159 @@ msgid "Error: Missing required parameters."
 msgstr "Feil: Mangler nødvendige parametere."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Problemrelatert bilde"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Fiksinnstillinger lagret."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Kunne ikke lagre fiksinnstillinger."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Laster fiksinfo ..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Lagre fiks for: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Problem avvist."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Problem gjenåpnet."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Avviser ..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Problem avvist – %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Problem avvist"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Omfang:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Alle sider"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Av:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "På:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Årsak til avvisning:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Dette problemet ble avvist globalt. Administrer globale avvisninger for å gjenåpne det."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Administrer globale avvisninger"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Gjenåpner ..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Kommentar (valgfritt)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Legg til en merknad som forklarer hvorfor dette problemet avvises."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Flere avvisningsalternativer"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Avvis og lukk modal"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Problem #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Problemdetaljer"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Type"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Alvorlighetsgrad"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Kunne ikke laste inn %s-fixinformasjon."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Feil ved lasting av %s-fixinformasjon."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Fiksinnstillinger lagret."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Kunne ikke lagre fiksinnstillinger."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Laster fiksinfo ..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Lagre fiks for: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Problemrelatert bilde"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Problem avvist."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Problem gjenåpnet."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Avvis globalt"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Avviser globalt..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Avviser ..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Problem avvist – %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Problem avvist"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Omfang:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Alle sider"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Av:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "På:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Årsak til avvisning:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Fjerner..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Fjern global avvisning"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Gjenåpner ..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Kommentar (valgfritt)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Legg til en merknad som forklarer hvorfor dette problemet avvises."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Flere avvisningsalternativer"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Avvis og lukk modal"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5607,6 +5777,14 @@ msgstr "fortsett å lese"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "lær mer"
+
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Sjekker om en lenkes synlige tekst er en URL-adresse i stedet for beskrivende ankertekst."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Lenketekst skal være beskrivende og ikke bare URL-adressen."
 
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
