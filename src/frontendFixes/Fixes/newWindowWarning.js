@@ -145,10 +145,21 @@ const getLinkAccessibleName = ( link ) => {
 			if ( node.getAttribute( 'aria-hidden' ) === 'true' ) {
 				return;
 			}
+			if ( node.hasAttribute( 'aria-label' ) ) {
+				const ariaLabel = node.getAttribute( 'aria-label' ).trim();
+				if ( ariaLabel ) {
+					parts.push( ariaLabel );
+				}
+				return;
+			}
 			if ( node.nodeName === 'IMG' ) {
-				const alt = ( node.getAttribute( 'alt' ) || '' ).trim();
-				if ( alt ) {
-					parts.push( alt );
+				const role = node.getAttribute( 'role' );
+				const isDecorative = role && ( role.split( /\s+/ ).includes( 'presentation' ) || role.split( /\s+/ ).includes( 'none' ) );
+				if ( ! isDecorative ) {
+					const alt = ( node.getAttribute( 'alt' ) || '' ).trim();
+					if ( alt ) {
+						parts.push( alt );
+					}
 				}
 			} else {
 				node.childNodes.forEach( traverse );

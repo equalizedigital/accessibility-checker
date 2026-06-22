@@ -132,6 +132,7 @@ const FixCard = ( { slug, onSave, onError } ) => {
 				<div key={ fieldKey } className="edac-fix-field edac-fix-field--textarea">
 					<label className="edac-fix-field__label" htmlFor={ fieldKey } dangerouslySetInnerHTML={ { __html: decodedLabel } } />
 					<TextareaControl
+						id={ fieldKey }
 						value={ value ?? '' }
 						onChange={ ( next ) => handleFieldChange( fieldKey, next ) }
 					/>
