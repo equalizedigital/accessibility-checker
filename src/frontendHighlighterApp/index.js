@@ -1211,7 +1211,7 @@ class AccessibilityCheckerHighlight {
 			const typeIconUri = typeIconDataUris[ matchingObj.rule_type ];
 			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large">
 				${ typeIconUri ? `<img src="${ typeIconUri }" width="16" height="16" style="display:block;width:16px;height:16px;flex-shrink:0" alt="" />` : '' }
-				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Ignored', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
+				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Dismissed', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
 			</span>`;
 
 			content += `</div>`;
@@ -1619,8 +1619,8 @@ class AccessibilityCheckerHighlight {
 		const breakdownParts = [ problemsLabel, reviewLabel ];
 		if ( ignoredCount > 0 ) {
 			breakdownParts.push( sprintf(
-				// translators: %d is the number of ignored issues.
-				_n( '%d Ignored', '%d Ignored', ignoredCount, 'accessibility-checker' ),
+				// translators: %d is the number of dismissed issues.
+				_n( '%d Dismissed', '%d Dismissed', ignoredCount, 'accessibility-checker' ),
 				ignoredCount
 			) );
 		}
