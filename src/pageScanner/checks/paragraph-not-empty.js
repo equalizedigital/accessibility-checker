@@ -17,9 +17,13 @@ export default {
 			return true;
 		}
 
-		// If element has an active aria-live attribute, it passes (it's a live region container that may be empty initially).
+		// If element has an active aria-live attribute or an implicit live region role, it passes (it's a live region container that may be empty initially).
 		const ariaLive = node.getAttribute( 'aria-live' );
 		if ( ariaLive === 'polite' || ariaLive === 'assertive' ) {
+			return true;
+		}
+		const roles = node.getAttribute( 'role' )?.split( /\s+/ ) ?? [];
+		if ( roles.includes( 'status' ) || roles.includes( 'alert' ) || roles.includes( 'log' ) ) {
 			return true;
 		}
 

@@ -88,22 +88,22 @@ describe( 'Link Text Is URL Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should fail when naked URL appears in paragraph context',
+			name: 'should fail when link text is a URL in paragraph context',
 			html: '<p>Read the article, Ambiguous Links, on the The Admin Bar: <a href="https://theadminbar.com/accessibility-weekly/ambiguous-links/">https://theadminbar.com/accessibility-weekly/ambiguous-links/</a></p>',
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when link has other words plus naked URL',
+			name: 'should fail when link text contains other words plus a URL',
 			html: '<p><a href="https://equalizedigital.com/accessibility-checker/">Learn more: https://equalizedigital.com/accessibility-checker/</a></p>',
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when link has naked URL with punctuation',
+			name: 'should fail when link text is a URL with trailing punctuation',
 			html: '<p>Read our documentation at <a href="https://equalizedigital.com/accessibility-checker/documentation/">https://equalizedigital.com/accessibility-checker/documentation.</a></p>',
 			shouldPass: false,
 		},
 		{
-			name: 'should fail when link to file has naked URL as text',
+			name: 'should fail when link text is a URL pointing to a file',
 			html: '<p> <a href="https://a11ycheckrules.wpenginepowered.com/wp-content/uploads/2020/11/accessible-pdf-example.pdf">https://a11ycheckrules.wpenginepowered.com/wp-content/uploads/2020/11/accessible-pdf-example.pdf</a></p>',
 			shouldPass: false,
 		},
