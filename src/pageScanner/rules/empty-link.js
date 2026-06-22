@@ -1,7 +1,7 @@
 export default {
 	id: 'empty_link',
 	selector: 'a[href]',
-	tags: [ 'wcag2a', 'wcag2.4.4', 'wcag4.1.2' ],
+	tags: [ 'wcag2a', 'wcag244', 'wcag412' ],
 	metadata: {
 		description: 'Ensures links have discernible text',
 		help: 'Links must have discernible text',
