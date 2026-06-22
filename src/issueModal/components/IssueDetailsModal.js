@@ -406,6 +406,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 							onIgnore={ onIgnore }
 							onCloseModal={ onClose }
+							isPro={ typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' }
 						/>
 					</div>
 				</div>

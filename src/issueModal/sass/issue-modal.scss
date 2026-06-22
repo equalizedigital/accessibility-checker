@@ -395,6 +395,10 @@
 .edac-analysis__issue-modal,
 .edacp-ie-drawer,
 .edacp-ie-dismiss-modal {
+	.edac-analysis__code-textarea {
+		display: none;
+	}
+
 	.edac-analysis__image-wrapper {
 		margin: 16px 0;
 	}

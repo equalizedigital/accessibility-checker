@@ -24,8 +24,9 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  * @param {Function} props.onIgnore     - Callback when issue is dismissed/restored.
  * @param {Function} props.onCloseModal - Callback to close the parent modal.
  * @param {boolean}  props.forceGlobal  - When true, the primary dismiss action targets all pages (global dismiss).
+ * @param {boolean}  props.isPro        - Whether the current UI is running in Pro.
  */
-const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false } ) => {
+const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false, isPro = typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -33,6 +34,8 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
 	const isGloballyDismissed = issue?.ignre_global === 1 || issue?.ignre_global === '1';
+	const canDismissGlobally = isPro;
+	const dismissGlobally = canDismissGlobally && forceGlobal;
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
@@ -86,10 +89,10 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 		}
 	};
 
-	const dismissIdleLabel = forceGlobal
+	const dismissIdleLabel = dismissGlobally
 		? __( 'Dismiss Globally', 'accessibility-checker' )
 		: __( 'Dismiss Issue', 'accessibility-checker' );
-	const dismissBusyLabel = forceGlobal
+	const dismissBusyLabel = dismissGlobally
 		? __( 'Dismissing globally...', 'accessibility-checker' )
 		: __( 'Dismissing...', 'accessibility-checker' );
 	const dismissButtonLabel = isSubmitting ? (
@@ -209,7 +212,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 							<form
 								onSubmit={ ( e ) => {
 									e.preventDefault();
-									handleToggleIgnore( true, forceGlobal );
+									handleToggleIgnore( true, dismissGlobally );
 								} }
 							>
 								<RadioControl
@@ -240,38 +243,38 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 									>
 										{ dismissButtonLabel }
 									</Button>
-									<Dropdown
-										renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
-											<Button
-												variant="primary"
-												type="button"
-												icon={ chevronDown }
-												onClick={ onDropdownToggle }
-												aria-expanded={ isDropdownOpen }
-												aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
-												disabled={ isSubmitting }
-												className="edac-analysis__dismiss-dropdown-toggle"
-											/>
-										) }
-										renderContent={ ( { onClose } ) => (
-											<div className="edac-analysis__dismiss-dropdown-content">
+									{ canDismissGlobally && (
+										<Dropdown
+											renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
 												<Button
-													variant="tertiary"
+													variant="primary"
 													type="button"
+													icon={ chevronDown }
+													onClick={ onDropdownToggle }
+													aria-expanded={ isDropdownOpen }
+													aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
 													disabled={ isSubmitting }
-													onClick={ () => {
-														onClose();
-														handleToggleIgnore( true, forceGlobal ).then( () => {
-															// close the entire modal after dismissing.
-															if ( onCloseModal ) {
-																onCloseModal();
-															}
-														} );
-													} }
-												>
-													{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
-												</Button>
-												{ ! forceGlobal && (
+													className="edac-analysis__dismiss-dropdown-toggle"
+												/>
+											) }
+											renderContent={ ( { onClose } ) => (
+												<div className="edac-analysis__dismiss-dropdown-content">
+													<Button
+														variant="tertiary"
+														type="button"
+														disabled={ isSubmitting }
+														onClick={ () => {
+															onClose();
+															handleToggleIgnore( true, dismissGlobally ).then( () => {
+																// close the entire modal after dismissing.
+																if ( onCloseModal ) {
+																	onCloseModal();
+																}
+															} );
+														} }
+													>
+														{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
+													</Button>
 													<Button
 														variant="tertiary"
 														type="button"
@@ -283,10 +286,10 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 													>
 														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
 													</Button>
-												) }
-											</div>
-										) }
-									/>
+												</div>
+											) }
+										/>
+									) }
 								</div>
 							</form>
 						) }
