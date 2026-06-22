@@ -1323,7 +1323,7 @@ msgstr "Sisu kontrollitakse ligipääsetavuse osas"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker on skanninud %s postituse ligipääsetavuse probleemide osas."
-msgstr[1] "Accessibility Checker on skaneerinud %s postitust ligipääsetavuse probleemide suhtes."
+msgstr[1] "Accessibility Checker on skanninud %s postitust ligipääsetavuse probleemide osas."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"
@@ -1346,7 +1346,7 @@ msgstr "Postituse tüübid on seadistatud ligipääsetavuse kontrollimiseks"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker on seadistatud skaneerima %1$s postituse tüüpi: %2$s."
+msgstr[0] "Accessibility Checker on konfigureeritud skannima %1$s postituse tüüpi: %2$s."
 msgstr[1] "Accessibility Checker on konfigureeritud skannima %1$s postituse tüüpi: %2$s."
 
 #: admin/site-health/class-free.php:46

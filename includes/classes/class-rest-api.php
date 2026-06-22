@@ -1227,8 +1227,8 @@ class REST_Api {
 		$ignre_comment        = $is_ignoring ? $comment : null;
 		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
 
-		// If largeBatch is set, update using the 'object' instead of ID.
-		// This handles cases where the same issue appears multiple times.
+		// If largeBatch is set, verify edit permission for all matching rows,
+		// then perform a single object-based update.
 		if ( $large_batch ) {
 			// Get the 'object' from the issue id.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
@@ -1242,20 +1242,62 @@ class REST_Api {
 				);
 			}
 
-			// Update all issues with the same object.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
-			$result = $wpdb->query(
+			// Load all matching issue IDs and post IDs so we can permission-gate
+			// every issue in the batch before doing one bulk query.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
+			$issue_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND object = %s',
+					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s',
 					$table_name,
-					$ignre,
-					$ignre_user,
-					$ignre_date,
-					$ignre_reason,
-					$ignre_comment,
-					$ignre_global,
 					$site_id,
 					$object
+				),
+				ARRAY_A
+			);
+
+			if ( empty( $issue_rows ) ) {
+				return new \WP_Error(
+					'issue_not_found',
+					__( 'Issue not found.', 'accessibility-checker' ),
+					[ 'status' => 404 ]
+				);
+			}
+
+			foreach ( $issue_rows as $issue_row ) {
+				$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
+				if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
+					return new \WP_Error(
+						'rest_forbidden',
+						__( 'Sorry, you are not allowed to dismiss one or more issues in this batch.', 'accessibility-checker' ),
+						[ 'status' => rest_authorization_required_code() ]
+					);
+				}
+			}
+
+			// Build an explicit list of vetted IDs so the UPDATE targets only rows we already permission-checked.
+			$issue_ids       = array_map( 'intval', wp_list_pluck( $issue_rows, 'id' ) );
+			$id_placeholders = implode( ', ', array_fill( 0, count( $issue_ids ), '%d' ) );
+
+			// Update only the exact vetted issue IDs in one query after auth checks pass.
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update required, no caching needed.
+			$result = $wpdb->query(
+				// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- Placeholder count is dynamic; $id_placeholders contains only %d tokens, no user input.
+				$wpdb->prepare(
+					// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- SQL is built from a static string concatenated with %d-only placeholders; no user input is interpolated.
+					'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_reason = %s, ignre_comment = %s, ignre_global = %d WHERE siteid = %d AND id IN ( ' . $id_placeholders . ' )',
+					array_merge(
+						[
+							$table_name,
+							$ignre,
+							$ignre_user,
+							$ignre_date,
+							$ignre_reason,
+							$ignre_comment,
+							$ignre_global,
+							$site_id,
+						],
+						$issue_ids
+					)
 				)
 			);
 		} else {

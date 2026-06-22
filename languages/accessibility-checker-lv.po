@@ -1329,9 +1329,9 @@ msgstr "Saturs tiek pārbaudīts pieejamībai"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[0] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
 msgstr[1] "Accessibility Checker ir skenējis %s ierakstu, lai atrastu pieejamības problēmas."
-msgstr[2] "Accessibility Checker ir skenējis %s ierakstus, meklējot pieejamības problēmas."
+msgstr[2] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
 
 #: admin/site-health/class-checks.php:200
 msgid "No post types selected for accessibility checking"

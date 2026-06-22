@@ -1330,7 +1330,7 @@ msgstr "Obsah je kontrolován na přístupnost"
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
 msgstr[0] "Accessibility Checker naskenoval %s příspěvek na problémy s přístupností."
-msgstr[1] "Accessibility Checker has scanned %s posts for accessibility issues."
+msgstr[1] "Accessibility Checker naskenoval %s příspěvky na problémy s přístupností."
 msgstr[2] "Accessibility Checker naskenoval %s příspěvků na problémy s přístupností."
 
 #: admin/site-health/class-checks.php:200

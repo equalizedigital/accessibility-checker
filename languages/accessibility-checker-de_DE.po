@@ -1346,7 +1346,7 @@ msgstr "Beitragstypen sind für Barrierefreiheitsprüfung konfiguriert"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker ist für das Scannen von %1$s Beitragstyp konfiguriert: %2$s."
+msgstr[0] "Accessibility Checker ist so konfiguriert, dass %1$s Beitragstyp gescannt wird: %2$s."
 msgstr[1] "Accessibility Checker ist so konfiguriert, dass %1$s Beitragstypen gescannt werden: %2$s."
 
 #: admin/site-health/class-free.php:46

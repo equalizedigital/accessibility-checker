@@ -671,7 +671,7 @@ function edac_post_types_cb() {
 			}
 			?>
 		</fieldset>
-		<?php if ( EDAC_KEY_VALID === false ) { ?>
+		<?php if ( defined( 'EDAC_KEY_VALID' ) && false === EDAC_KEY_VALID ) { ?>
 			<p class="edac-description">
 				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
@@ -784,7 +784,6 @@ function edac_include_accessibility_statement_link_cb() {
 function edac_accessibility_policy_page_cb() {
 
 	$policy_page = get_option( 'edac_accessibility_policy_page' );
-	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 	?>
 
 	<input style="width: 100%;" type="text" name="edac_accessibility_policy_page" id="edac_accessibility_policy_page" value="<?php echo esc_attr( $policy_page ); ?>">
