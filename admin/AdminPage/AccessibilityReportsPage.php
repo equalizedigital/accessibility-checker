@@ -98,7 +98,7 @@ class AccessibilityReportsPage implements PageInterface {
 			]
 		);
 
-		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'account', false );
+		$dashboard_url       = edac_link_wrapper( 'https://my.equalizedigital.com/license-keys/', 'accessibility-reports', 'account', false );
 		$signup_url          = edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'accessibility-reports', 'signup', false );
 		$privacy_url         = edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'accessibility-reports', 'privacy', false );
 		$data_processing_url = edac_link_wrapper( 'https://equalizedigital.com/data-terms/', 'accessibility-reports', 'dpa', false );
@@ -237,7 +237,8 @@ class AccessibilityReportsPage implements PageInterface {
 									<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
 									<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
 								</div>
-								<p><?php esc_html_e( 'You’ll receive weekly accessibility reports for this site.', 'accessibility-checker' ); ?></p>
+								<p><?php esc_html_e( 'Weekly accessibility reports for this site are being emailed to the account owner of the license key.', 'accessibility-checker' ); ?></p>
+
 								<p class="edac-reports-card__meta">
 									<?php if ( $next_send_date ) : ?>
 										<?php /* translators: %s: next report date. */ ?>

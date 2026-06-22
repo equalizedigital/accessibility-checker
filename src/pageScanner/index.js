@@ -13,9 +13,12 @@ const SCAN_TIMEOUT_IN_SECONDS = 30;
 // Hold the timeout for the scan so it can bail on long-running scans.
 let tooLongTimeout;
 
-// Landmark tags for semantic regions
-const LANDMARK_TAGS = [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
-const LANDMARK_ROLES = [
+// Landmark detection rules, sourced from edac_get_landmark_types() (PHP) via
+// window.scanOptions when available — see admin/class-enqueue-admin.php and
+// src/editorApp/checkPage.js. Hardcoded values here are only a fallback for
+// contexts that don't localize scanOptions (e.g. standalone test runs).
+const LANDMARK_TAGS = Array.isArray( window?.scanOptions?.landmarkTags ) ? window.scanOptions.landmarkTags : [ 'MAIN', 'HEADER', 'FOOTER', 'NAV', 'ASIDE' ];
+const LANDMARK_ROLES = Array.isArray( window?.scanOptions?.landmarkRoles ) ? window.scanOptions.landmarkRoles : [
 	'main',
 	'navigation',
 	'banner',
@@ -23,9 +26,9 @@ const LANDMARK_ROLES = [
 	'complementary',
 ];
 
-// Conditional landmark tags that only become landmarks when they have accessible names
-const CONDITIONAL_LANDMARK_TAGS = [ 'SECTION', 'ARTICLE', 'FORM' ];
-const CONDITIONAL_LANDMARK_ROLES = [ 'region', 'article', 'form' ];
+// Conditional landmark tags/roles that only become landmarks when they have accessible names
+const CONDITIONAL_LANDMARK_TAGS = Array.isArray( window?.scanOptions?.conditionalLandmarkTags ) ? window.scanOptions.conditionalLandmarkTags : [ 'SECTION', 'ARTICLE', 'FORM' ];
+const CONDITIONAL_LANDMARK_ROLES = Array.isArray( window?.scanOptions?.conditionalLandmarkRoles ) ? window.scanOptions.conditionalLandmarkRoles : [ 'region', 'article', 'form' ];
 
 function getLandmarkForSelector( selector ) {
 	const el = document.querySelector( selector );

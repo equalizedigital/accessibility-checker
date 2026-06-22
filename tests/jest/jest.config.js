@@ -2,11 +2,18 @@
 module.exports = {
 	testEnvironment: 'jsdom',
 	transform: {
-		'^.+\\.js$': [ 'babel-jest', { configFile: require.resolve( '../jest/babel.config.js' ) } ]	},
+		'^.+\\.[jt]sx?$': [ 'babel-jest', { configFile: require.resolve( './babel.config.js' ) } ],
+	},
 	transformIgnorePatterns: [
-		'node_modules/(?!(axe-core)/)',
+		'node_modules/(?!(axe-core|@wordpress)/)',
+	],
+	moduleNameMapper: {
+		'\\.(css|scss)$': '<rootDir>/styleMock.js',
+	},
+	setupFilesAfterEnv: [
+		'<rootDir>/setupTests.js',
 	],
 	testMatch: [
-		'**/tests/jest/**/*.test.js',
+		'**/*.test.js',
 	],
 };

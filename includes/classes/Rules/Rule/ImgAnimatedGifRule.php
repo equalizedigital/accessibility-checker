@@ -28,7 +28,7 @@ class ImgAnimatedGifRule implements RuleInterface {
 			'summary'               => esc_html__( 'This element is an animated image file (e.g., GIF or animated WebP).', 'accessibility-checker' ),
 			'summary_plural'        => esc_html__( 'These elements are animated image files (e.g., GIFs or animated WebPs).', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Animated images can be distracting, induce seizures in some individuals, or create cognitive load. WCAG guidelines require that animations that flash or loop continuously provide a mechanism to pause, stop, or hide them.', 'accessibility-checker' ),
-			'how_to_fix'            => esc_html__( 'Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'how_to_fix'            => esc_html__( 'Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 			'references'            => [
 				[
 					'text' => __( 'Should you use animated GIFs?', 'accessibility-checker' ),

@@ -156,6 +156,8 @@ class Enqueue_Frontend {
 					'isPro'            => edac_is_pro(),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
+					'restUrl'          => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
+					'fixesRestUrl'     => esc_url_raw( rest_url( 'edac/v1' ) ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 					'loggedIn'         => is_user_logged_in(),
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
@@ -163,6 +165,7 @@ class Enqueue_Frontend {
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
+					'landmarkTypes'    => edac_get_landmark_types(),
 				]
 			);
 

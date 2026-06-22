@@ -74,6 +74,132 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Helper: enqueue the frontend highlighter as an admin and return the localized data string.
+	 *
+	 * @return string The raw JS localized-data string for edac-frontend-highlighter-app.
+	 */
+	private function enqueueAndGetLocalizedData(): string {
+		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		global $wp_scripts;
+		return (string) $wp_scripts->get_data( 'edac-frontend-highlighter-app', 'data' );
+	}
+
+	/**
+	 * RestUrl is present in the localized data passed to the frontend highlighter script.
+	 */
+	public function testLocalizedDataIncludesRestUrl(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'restUrl', $localized_data );
+	}
+
+	/**
+	 * RestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
+	 */
+	public function testRestUrlMatchesRestUrlFunction(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+		$expected       = rest_url( 'accessibility-checker/v1' );
+
+		$this->assertStringContainsString( 'accessibility-checker', $localized_data );
+		$this->assertStringContainsString( 'v1', $localized_data );
+		// The URL must be derived from rest_url(), not hardcoded — verify the host is present.
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * RestUrl must be an absolute URL, not a root-relative path like /wp-json/...
+	 * A root-relative URL on a subdomain multisite would resolve to the main site.
+	 */
+	public function testRestUrlIsAbsolute(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		// The value following "restUrl" must not be a bare /wp-json path.
+		$this->assertDoesNotMatchRegularExpression( '/"restUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		// And the scheme must be present.
+		$this->assertMatchesRegularExpression( '/"restUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl is present in the localized data passed to the frontend highlighter script.
+	 */
+	public function testLocalizedDataIncludesFixesRestUrl(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertStringContainsString( 'fixesRestUrl', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 */
+	public function testFixesRestUrlContainsEdacV1Namespace(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+		$expected       = rest_url( 'edac/v1' );
+
+		$this->assertStringContainsString( 'edac', $localized_data );
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must be an absolute URL, not a root-relative path.
+	 */
+	public function testFixesRestUrlIsAbsolute(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertDoesNotMatchRegularExpression( '/"fixesRestUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		$this->assertMatchesRegularExpression( '/"fixesRestUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * RestUrl must follow a custom REST base prefix set via the rest_url_prefix filter.
+	 * Verifies the URL is built with rest_url() rather than a hardcoded /wp-json/ string.
+	 * Pretty permalinks are required for the prefix filter to be applied.
+	 */
+	public function testRestUrlRespectsCustomRestPrefix(): void {
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback                        = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+		$this->added_filters['rest_url_prefix'] = $prefix_callback;
+
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must follow a custom REST base prefix set via the rest_url_prefix filter.
+	 */
+	public function testFixesRestUrlRespectsCustomRestPrefix(): void {
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback                        = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+		$this->added_filters['rest_url_prefix'] = $prefix_callback;
+
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
 	 * Ensure the highlighter uses the filtered post ID when determining scannable post types.
 	 */
 	public function testFrontendHighlighterUsesFilteredPostIdForScannableType(): void {
