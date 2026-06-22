@@ -112,6 +112,76 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * FixesRestUrl is present in the edac_script_vars localized to the admin script.
+	 */
+	public function testLocalizedAdminDataIncludesFixesRestUrl(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'fixesRestUrl', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 */
+	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected       = rest_url( 'edac/v1' );
+
+		$this->assertStringContainsString( 'edac', $localized_data );
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must be an absolute URL — a root-relative /wp-json path would break
+	 * subdomain multisite installs by resolving to the main site instead of the subsite.
+	 */
+	public function testAdminFixesRestUrlIsAbsolute(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertDoesNotMatchRegularExpression( '/"fixesRestUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		$this->assertMatchesRegularExpression( '/"fixesRestUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl in edac_script_vars must follow a custom REST base prefix set via
+	 * the rest_url_prefix filter. Verifies the URL is built with rest_url() rather than
+	 * a hardcoded /wp-json/ string.
+	 * Pretty permalinks are required for the prefix filter to be applied.
+	 */
+	public function testAdminFixesRestUrlRespectsCustomRestPrefix(): void {
+		global $wp_scripts;
+
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
 	 * Test that the base script and editor script is enqueued in the editor for an existing page.
 	 *
 	 * @return void

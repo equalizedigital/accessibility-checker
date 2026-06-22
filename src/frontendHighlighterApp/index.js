@@ -1871,7 +1871,11 @@ class AccessibilityCheckerHighlight {
 
 	saveScanResults( postId, nonce, violations, densityMetrics ) {
 		const self = this;
-		return fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+		const restUrl = window.edacFrontendHighlighterApp?.restUrl;
+		if ( ! restUrl ) {
+			return Promise.reject( new Error( 'Missing REST API URL.' ) );
+		}
+		return fetch( `${ restUrl }/post-scan-results/${ postId }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -1951,7 +1955,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		// Validate required parameters
-		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
+		if ( ! window.edacFrontendHighlighterApp?.restUrl || ! window.edacFrontendHighlighterApp?.postID ) {
 			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 			if ( summary ) {
 				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
@@ -1964,7 +1968,7 @@ class AccessibilityCheckerHighlight {
 		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
 		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 
-		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
+		fetch( `${ window.edacFrontendHighlighterApp.restUrl }/clear-issues/${ window.edacFrontendHighlighterApp.postID }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
