@@ -39,7 +39,7 @@ class LinkTextIsUrlRule implements RuleInterface {
 				'accessibility-checker'
 			),
 			'how_to_fix'            => esc_html__(
-				'Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, "Read the accessibility guide" instead of "https://example.com/guide"). If the URL is necessary for context and is very short, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.',
+				'Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, "Read the accessibility guide" instead of "https://example.com/guide"). If the URL is necessary for context and is very short, you can dismiss this warning by using the "Dismiss" feature in Accessibility Checker.',
 				'accessibility-checker'
 			),
 			'references'            => [
