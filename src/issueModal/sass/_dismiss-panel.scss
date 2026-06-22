@@ -64,7 +64,8 @@
 		color: #1e1e1e;
 		margin: 0;
 		padding: 0;
-		word-break: break-word;
+		overflow-wrap: anywhere;
+		word-break: normal;
 	}
 }
 

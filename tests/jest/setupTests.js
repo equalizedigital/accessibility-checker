@@ -11,18 +11,20 @@ if ( typeof global.btoa === 'undefined' ) {
 if ( typeof global.atob === 'undefined' ) {
 	global.atob = ( str ) => Buffer.from( String( str ), 'base64' ).toString( 'binary' );
 }
-window.edac_sidebar_app = window.edac_sidebar_app || {
-	highlightNonce: 'test-highlight-nonce',
-	canManageSettings: true,
-	dismissReasons: {
-		false_positive: { label: 'False Positive', description: 'This issue does not apply to this content.' },
-		remediated: { label: 'Remediated', description: 'This issue has been fixed.' },
-		accessible: { label: 'Accessible', description: 'This content is accessible by other means.' },
-	},
-};
-window.edac_editor_app = window.edac_editor_app || {
-	pro: '0',
-	edacUrl: 'https://example.com',
-};
+beforeEach( () => {
+	window.edac_sidebar_app = {
+		highlightNonce: 'test-highlight-nonce',
+		canManageSettings: true,
+		dismissReasons: {
+			false_positive: { label: 'False Positive', description: 'This issue does not apply to this content.' },
+			remediated: { label: 'Remediated', description: 'This issue has been fixed.' },
+			accessible: { label: 'Accessible', description: 'This content is accessible by other means.' },
+		},
+	};
+	window.edac_editor_app = {
+		pro: '0',
+		edacUrl: 'https://example.com',
+	};
+} );
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true;

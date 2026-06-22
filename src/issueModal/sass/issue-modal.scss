@@ -276,6 +276,7 @@
 
 			.components-panel {
 				border: none;
+
 				// Negative margin compensates for the modal's 24px side padding
 				// so the panel border runs full-width.
 				margin: 0 -24px 0;
@@ -396,10 +397,6 @@
 .edacp-ie-dismiss-modal {
 	.edac-analysis__image-wrapper {
 		margin: 16px 0;
-	}
-
-	.edac-analysis__code-textarea {
-		display: none; // Hidden, CodeMirror replaces it
 	}
 
 	.CodeMirror {

@@ -100,10 +100,12 @@ const FixCard = ( { slug, onSave, onError } ) => {
 
 			onSave?.();
 		} catch ( err ) {
+			const msg = err?.message || __( 'Failed to save fix settings.', 'accessibility-checker' );
 			setNotice( {
 				status: 'error',
-				message: err?.message || __( 'Failed to save fix settings.', 'accessibility-checker' ),
+				message: msg,
 			} );
+			onError?.( msg );
 		} finally {
 			setIsSaving( false );
 		}

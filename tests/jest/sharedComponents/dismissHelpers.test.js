@@ -37,9 +37,14 @@ function loadHelpers( dismissReasons ) {
 }
 
 describe( 'dismissHelpers', () => {
+	let originalSidebarApp;
+
+	beforeEach( () => {
+		originalSidebarApp = window.edac_sidebar_app;
+	} );
+
 	afterEach( () => {
-		// Restore the shared setup value so other suites are unaffected.
-		window.edac_sidebar_app = { highlightNonce: 'test-highlight-nonce', canManageSettings: true };
+		window.edac_sidebar_app = originalSidebarApp;
 	} );
 
 	describe( 'DISMISS_REASONS', () => {
