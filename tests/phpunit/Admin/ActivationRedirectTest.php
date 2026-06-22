@@ -211,7 +211,7 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		
 		// Check that the transient was set.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
-		$this->assertSame( '0', get_option( 'edac_show_metabox_in_block_editor' ) );
+		$this->assertSame( '1', get_option( 'edac_show_metabox_in_block_editor' ) );
 		
 		// Clean up.
 		delete_transient( 'edac_activation_redirect' );
