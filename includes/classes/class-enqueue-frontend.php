@@ -102,7 +102,18 @@ class Enqueue_Frontend {
 
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
-		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', is_object( $post ) ? $post->ID : null );
+
+		// When the homepage displays latest posts, WordPress populates the global $post with the
+		// first post from the blog query rather than a page object. This happens when
+		// show_on_front=posts, but also in the fallback case where show_on_front=page but no
+		// valid static front page is configured. is_home() && is_front_page() covers both.
+		// Passing the first post's ID would attribute homepage scan results to the wrong entry,
+		// so pass null and let the filter supply a virtual-page ID (Pro) or bail cleanly.
+		$default_post_id = ( is_home() && is_front_page() )
+			? null
+			: ( is_object( $post ) ? $post->ID : null );
+
+		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
 
 		if ( null === $post_id ) {
 			return;
