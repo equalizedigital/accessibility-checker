@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.43.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-06-22T20:17:36+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Uuendage oma litsentsi"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Keela e-posti aruanded"
 
@@ -90,7 +90,7 @@ msgstr "Luba e-posti aruanded"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Tasuta litsentsivõti"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Aruanded lubatud"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Saate selle saidi kohta iganädalasi juurdepääsetavuse aruandeid."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Selle saidi iganädalased juurdepääsetavuse aruanded saadetakse litsentsivõtme konto omanikule e-kirjaga."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Järgmine aruanne: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Täielik katvus"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Piiratud katvus"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Teie aruanded hõlmavad kõiki postituse tüüpe ja taksonoomiaid."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Kogu saidi skaneerimine lubatud"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Täielikud probleemide jaotused"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Üksikasjalik aruandlus"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Teie aruanded hõlmavad ainult osa teie saidist."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Uuendage Pro-versioonile, et:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Skaneerida kõiki sisutüüpe"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Saada täielikud probleemide jaotused"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Saada üksikasjalikumaid aruandeid"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Täienda proversiooniks"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Juurdepääsetavuse kokkuvõte"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "See kokkuvõte kajastab teie saidi kohta saadaolevaid uusimaid skaneerimisandmeid."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Leitud probleeme kokku"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Konto ühendus"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Selle saidiga ühendudes nõustute Equalize Digitali <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">privaatsuspoliitika <span aria-hidden=\"true\">&#8599;</span></a> ja <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">andmetöötluslepinguga <span aria-hidden=\"true\">&#8599;</span></a>."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Privaatsuspoliitika (avaneb uues aknas)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Andmetöötlusleping (avaneb uues aknas)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Nädala e-kiri sisaldab leitud probleemide koguarvu ja muudatusi alates viimasest aruandest, katvuse teavet, probleemide arvu, ülevaatamist vajavate elementide arvu, sooritatud testide protsenti ning teavet kõige probleemsemate lehtede ja kõige tõsisemate probleemide kohta."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Puudub"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Kriitiline"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Kõrge"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Keskmine"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Madal"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Teadmata"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Musta reede eripakkumine! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Uuendage Accessibility Checker tasulisele versioonile 24. novembrist 3. detsembrini ja saate 30% allahindlust! Kogu saidi skaneerimine, saidiülesed avatud probleemide aruanded, logide ignoreerimine ja palju muud."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Uuendage Accessibility Checker tasulisele versioonile 24. novembrist 3. detsembrini ja saate 30% allahindlust! Täielik saidi skaneerimine, kogu saidi avatud probleemide aruanne, kõrvaldamise logid ja palju muud."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Uuenda kohe"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Läbitud testid"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Probleem"
@@ -660,6 +666,7 @@ msgstr[1] "Kontrastiprobleemid"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -691,6 +698,7 @@ msgstr "* Tõeline ligipääsetavus nõuab lisaks automatiseeritud skaneeringute
 #: admin/class-ignore-ui.php:126
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", avab uue akna"
@@ -722,6 +730,7 @@ msgstr "Laienda probleeme %s jaoks"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Need seaded võimaldavad globaalseid parandusi üle kogu teie saidi."
 
@@ -732,21 +741,25 @@ msgstr "Lehed võib olla vaja uuesti salvestada või läbi viia täielik saidi k
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Salvesta"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Mõjutatud kood"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Pilt"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Maamärk"
 
@@ -755,6 +768,7 @@ msgid "Actions"
 msgstr "Tegevused"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Tagasi lükatud"
 
@@ -782,6 +796,7 @@ msgstr "Vaata probleemi ID %d veebisaidil, avaneb uues aknas"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Vaata lehel"
@@ -883,8 +898,8 @@ msgstr "Teie lihtsustatud kokkuvõtte asukoht on seatud „käsitsi“, mis nõu
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Lihtsustatud kokkuvõte"
@@ -902,12 +917,14 @@ msgstr "Lisateave loetavuse parandamise ja lihtsustatud kokkuvõtte nõuete koht
 msgid "No readability data to return"
 msgstr "Loetavuse andmeid pole"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Ignoreerimise andmeid pole"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Kõrvaldamise andmeid ei saa tagastada"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:437
 msgid "* Screen Reader Text"
 msgstr "* Ekraanilugeja tekst"
 
@@ -962,11 +979,13 @@ msgstr "Kuupäev:"
 
 #: admin/class-ignore-ui.php:97
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Ava probleem uuesti"
 
 #: admin/class-ignore-ui.php:98
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Lükka probleem tagasi"
 
@@ -985,6 +1004,7 @@ msgstr "Teie kasutajakontol pole luba seda probleemi tagasi lükata."
 
 #: admin/class-ignore-ui.php:156
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Lükka probleem tagasi kui:"
 
@@ -1453,12 +1473,12 @@ msgstr "Lihtsustatud kokkuvõtte pealkiri"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Ignoreerimisõigused"
+msgid "Dismiss Permissions"
+msgstr "Kõrvaldamise õigused"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Ignoreerimiste andmebaasi tabelite arv"
+msgid "Dismissals DB Table Count"
+msgstr "Kõrvaldamiste andmebaasi tabeli arv"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1491,10 +1511,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Hangi Accessibility Checker Pro (avaneb uues aknas)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Probleemi ei leitud."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "Vabandame, teil ei ole luba selles pakis ühte või mitut probleemi kõrvaldada."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Probleemi värskendamine ebaõnnestus."
 
@@ -1975,8 +2000,8 @@ msgstr "Atribuuti aria-hidden kasutatakse sisu varjamiseks abitehnoloogiate eest
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Kontrollige, kas element peaks tõesti olema ekraanilugeja kasutajate eest peidetud. Kui see sisaldab olulist sisu või funktsionaalsust, eemaldage %s. Kui see on dekoratiivne või üleliigne, jätke element rahule ja lükake see hoiatus kõrvale, kasutades Accessibility Checker'i funktsiooni \"Ignore\"."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Kontrollige, kas element peaks tõepoolest olema ekraanilugeja kasutajate eest peidetud. Kui see sisaldab olulist sisu või funktsionaalsust, eemaldage %s. Kui see on dekoratiivne või üleliigne, jätke element rahule ja kõrvaldage see hoiatus Accessibility Checkeris."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2373,8 +2398,8 @@ msgstr "Ekraanilugejad tuginevad alternatiivsele tekstile, et kirjeldada pilte k
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Vaadake pilti, et teha kindlaks, kas see on dekoratiivne. Kui see on dekoratiivne, on korrektne kasutada tühja %1$s atribuuti ja saate selle hoiatuse tühistada, kasutades Accessibility Checkeris funktsiooni „Ignoreeri“ või lisades pildile %2$s või %3$s ja lehte uuesti skannides. Kui pilt edastab teavet, lisage kirjeldav alternatiivtekst, mis edastab pildi eesmärki või tähendust."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Vaadake pilt üle, et kindlaks teha, kas see on dekoratiivne. Kui see on dekoratiivne, on korrektne kasutada tühja %1$s atribuuti ja saate selle hoiatuse Accessibility Checkeris kõrvaldada või lisades pildile %2$s või %3$s ja lehe uuesti skaneerides. Kui pilt edastab teavet, lisage kirjeldav alt-tekst, mis edastab pildi eesmärki või tähendust."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2428,8 +2453,8 @@ msgstr "Alternatiivne tekst peaks olema kokkuvõtlik ja keskenduma pildi eesmär
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Lühenda alt-teksti vähem kui %s tähemärgini, kirjeldades siiski pildi funktsiooni või eesmärki. Hoia kirjeldused lihtsad ja väldi ümbritseva sisu kordamist. Kui pildi alt-teksti ei ole vaja muuta, ignoreeri seda hoiatust, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Lühendage alt-teksti alla %s tähemärgi, kirjeldades siiski pildi funktsiooni või eesmärki. Hoidke kirjeldused lihtsad ja vältige ümbritseva sisu kordamist. Kui pildi alt-teksti ei ole vaja muuta, kõrvaldage see hoiatus Accessibility Checkeris."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2506,8 +2531,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Animeeritud pildid võivad olla häirivad, põhjustada mõnedel inimestel krampe või tekitada kognitiivset koormust. WCAG juhised nõuavad, et animatsioonid, mis vilguvad või kestavad pidevalt, pakuksid mehhanismi nende peatamiseks, peatamiseks või peitmiseks."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Asenda animeeritud pilt staatilise pildi või videoga, mis sisaldab juhtnuppe. Kui pead kasutama animeeritud pilti, veendu, et see ei vilgu rohkem kui kolm korda sekundis ja paku pausi- või peatamisnuppe, kui see mängib kauem kui 5 sekundit. Kui oled kinnitanud, et pilt on ligipääsetav ja peatatav, võid selle hoiatuse ignoreerida, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Asendage animeeritud pilt staatilise pildi või videoga, mis sisaldab juhtnuppe. Kui peate kasutama animeeritud pilti, veenduge, et see ei vilguks rohkem kui kolm korda sekundis ja pakkuge paus- või peatamisnuppe, kui see mängib kauem kui 5 sekundit. Kui olete kinnitanud, et pilt on juurdepääsetav ja peatatav, saate selle hoiatuse Accessibility Checkeris kõrvaldada."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2709,8 +2734,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Wordi, Exceli või PowerPointi formaadis dokumendid ei pruugi olla kõigile kasutajatele ligipääsetavad, eriti kui need pole korrektselt märgendatud või ei järgi ligipääsetavuse parimaid tavasid. Ligipääsetavuse seadused nõuavad, et veebilehtedele postitatud dokumendid vastaksid ka WCAG-le. Lisaks tuleks kasutajaid hoiatada, kui link avab allalaaditava faili veebilehe asemel."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Veenduge, et lingitud fail on testitud ja parandatud ligipääsetavuse osas. Kui teate, et see on ligipääsetav, kustutage see hoiatus, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni. Lisage faililaiend ja suurus lingi teksti, et kasutajaid teavitada (selle tegemiseks kogu saidil lubage Accessibility Checkeri seadetes „Lisa failide suurus ja tüüp linkidele“ parandus). Kui dokument on manustatud plugina abil, lisage ka otsene link selle allalaadimiseks. Kui dokumendi ligipääsetavaks muutmine on keeruline, kaaluge sisu paigutamist veebilehele."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Veenduge, et lingitud fail on testitud ja parandatud juurdepääsetavuse osas. Kui teate, et see on juurdepääsetav, kõrvaldage see hoiatus Accessibility Checkeris. Kaasake lingi teksti faililaiend ja suurus, et teavitada kasutajaid (selleks lubage Accessibility Checkeri seadetes parandus „Lisa faili suurus ja tüüp linkidele“ kogu saidil). Kui dokument on manustatud pistikprogrammi abil, pakkuge ka otselink selle allalaadimiseks. Kui dokumendi juurdepääsetavaks muutmine on keeruline, kaaluge sisu panemist veebilehele."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2761,8 +2786,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Mitte-HTML dokumendi formaadid ei pruugi olla täielikult ligipääsetavad abistavatele tehnoloogiatele, kui neid pole testitud ja parandatud. Kasutajaid tuleks hoiatada, kui link avab allalaaditava faili tavalise veebilehe asemel."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Veenduge, et lingitud dokument on ligipääsetav. Kui teate, et see on ligipääsetav, kustutage see hoiatus, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni. Lisage faililaiend nähtavasse lingi teksti (nt „Koosoleku märkmed (ODT)“), et kasutajad teaksid, mida oodata (selle tegemiseks kogu saidil lubage Accessibility Checkeri seadetes „Lisa failide suurus ja tüüp linkidele“ parandus). Kui dokument on manustatud, lisage ka otsene allalaadimislink. Kui dokumendi ligipääsetavaks muutmine on keeruline, kaaluge sisu paigutamist veebilehele."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Veenduge, et lingitud dokument on juurdepääsetav. Kui teate, et see on juurdepääsetav, kõrvaldage see hoiatus Accessibility Checkeris. Kaasake nähtavasse lingiteksti faililaiend (nt „Koosoleku märkmed (ODT)“), et kasutajad teaksid, mida oodata (selleks lubage Accessibility Checkeri seadetes parandus „Lisa faili suurus ja tüüp linkidele“ kogu saidil). Kui dokument on manustatud, pakkuge ka otselink allalaadimiseks. Kui dokumendi juurdepääsetavaks muutmine on keeruline, kaaluge sisu panemist veebilehele."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2781,8 +2806,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF-d ei pruugi olla kõigile kasutajatele kättesaadavad, eriti kui need ei ole õigesti märgistatud või ei vasta WCAG nõuetele. Juurdepääsetavust käsitlevad seadused nõuavad, et veebilehtedel avaldatud dokumendid vastaksid samadele juurdepääsetavusnormidele kui HTML-sisu. Lisaks tuleks kasutajaid hoiatada, kui link avab veebilehe asemel allalaaditava faili."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Veendu, et lingitud PDF on testitud ja parandatud ligipääsetavuse osas. Kui tead, et see on ligipääsetav, eira seda hoiatust kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni. Lisa faililaiend ja suurus lingi teksti, et teavitada kasutajaid (luba „Lisa failide suurus ja tüüp linkidele“ parandus Accessibility Checkeri seadetes, et teha seda kogu saidil). Kui dokument on manustatud plugina abil, paku ka otsest linki selle allalaadimiseks. Kui PDF-i ligipääsetavaks tegemine on keeruline, kaalu sisu paigutamist veebilehele."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Veenduge, et lingitud PDF on testitud ja parandatud juurdepääsetavuse osas. Kui teate, et see on juurdepääsetav, kõrvaldage see hoiatus Accessibility Checkeris. Kaasake lingi teksti faililaiend ja suurus, et teavitada kasutajaid (selleks lubage Accessibility Checkeri seadetes parandus „Lisa faili suurus ja tüüp linkidele“ kogu saidil). Kui dokument on manustatud pistikprogrammi abil, pakkuge ka otselink selle allalaadimiseks. Kui PDF-i juurdepääsetavaks muutmine on keeruline, kaaluge sisu panemist veebilehele."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2799,6 +2824,30 @@ msgstr "PDF-i ligipääsetavus veebis: Nipid ja lõksud (veebiseminar)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesigni ja PDF-i ligipääsetavuse vead ja nende parandamine (veebiseminar)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Lingitekst on URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "See link kasutab ankrutekstina URL-i, mitte sisukat sõna või fraasi."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Need lingid kasutavad ankrutekstina URL-e, mitte sisukaid sõnu või fraase."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Lingitekst, mis on ainult URL, ei pruugi pakkuda sisukat konteksti lingi sihtkoha kohta. Lisaks võivad pikad URL-id olla ekraanilugeja poolt loetuna raskesti mõistetavad, kuna see võib iga tähe, numbri ja märgi eraldi ette lugeda. Kasutajad tuginevad kirjeldavale lingitekstile, et mõista, kuhu link neid viib; URL-ide kasutamine lingitekstina vähendab kasutatavust, suurendab kognitiivset koormust ja võib olla segane või eksitav."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Asendage URL lingi tekstis lühikese, kirjeldava sõna või fraasiga, mis selgitab lingi sihtkohta või eesmärki (näiteks „Loe juurdepääsetavuse juhendit“ asemel „https://example.com/guide“). Kui URL on konteksti jaoks vajalik ja väga lühike, saate selle hoiatuse kõrvaldada, kasutades Accessibility Checkeris funktsiooni „Kõrvalda“."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Tehnika G91: lingi otstarvet kirjeldava lingiteksti pakkumine"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3071,8 +3120,8 @@ msgstr "Ekraanilugeja kasutajad ja teised abitehnoloogiad tuginevad pealkirja si
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Vaata üle märgistatud tekst ja otsusta, kas see peaks olema pealkiri. Kui on, muuda element sobivaks %1$s–%2$s sildiks. Kui see pole mõeldud pealkirjana, võid selle hoiatuse eirata, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Vaadake märgistatud tekst üle ja otsustage, kas see peaks olema pealkiri. Kui see on, muutke element sobivaks %1$s–%2$s sildiks. Kui see ei ole mõeldud pealkirjaks, saate selle hoiatuse Accessibility Checkeris kõrvaldada."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3095,8 +3144,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Liugureid on sageli raske kasutada ekraanilugejate ja klaviatuuridega. Ligipääsmatud liugurid võivad segada navigeerimist, lõksu fookuse või liikuda liiga kiiresti, et kasutajad saaksid sisuga tegeleda."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Vaata üle liugur oma veebisaidi esilehel. Veendu, et see on klaviatuuriga ligipääsetav, peatatav, omab õigeid ARIA rolle ja silte ning töötab hästi ekraanilugejatega. Pärast seda, kui oled kinnitanud, et liugur on ligipääsetav või oled probleemid lahendanud, võid selle hoiatuse eirata, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Vaadake oma veebisaidi esiosa liugurit. Veenduge, et see on klaviatuuriga juurdepääsetav, peatatav, omab õigeid ARIA rolle ja silte ning töötab hästi ekraanilugejatega. Pärast liuguri juurdepääsetavuse kinnitamist või probleemide parandamist saate selle hoiatuse Accessibility Checkeris kõrvaldada."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3251,8 +3300,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Allakriipsutatud tekst on tavaliselt seotud linkidega. Kui tekst, mis ei ole link, on allajoonitud, võib see kasutajate jaoks olla segadusttekitav, eriti nende jaoks, kellel on kognitiivne puue või kes tuginevad linkide tuvastamisel visuaalsetele vihjetele."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Eemalda tekstilt allajoonimise silt või CSS-i allajoonimise stiil. Kui soovid teksti rõhutada, kaalu selle asemel rasvase kirja, kaldkirja või värvistiili kasutamist. Kui see tekst on osa funktsionaalsest elemendist nagu link või nupp, säilita allajoonimise stiil ja keeldu sellest hoiatusest, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Eemaldage tekstist allakriipsutamise silt või CSS-i allakriipsutamise stiil. Kui soovite teksti rõhutada, kaaluge selle asemel paksus kirjas, kursiivkirjas või värviga stiilimist. Kui see tekst on osa funktsionaalsest elemendist, nagu link või nupp, säilitage allakriipsutuse stiil ja kõrvaldage see hoiatus Accessibility Checkeris."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3271,8 +3320,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Videod peavad sisaldama täpseid subtiitreid, transkriptsioone ja helikirjeldusi (või täiustatud transkriptsioone), et olla täielikult ligipääsetavad kurtidele, vaegkuuljatele, pimedatele või kognitiivsete puuetega kasutajatele."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Vaata video üle oma veebisaidi avalehel. Veendu, et see sisaldab täpseid (mitte automaatselt genereeritud) sünkroniseeritud subtiitreid, transkriptsiooni ja vajadusel helikirjeldust. Pärast ligipääsetavuse kontrollimist või vajalike uuenduste tegemist saad selle hoiatuse kõrvaldada, kasutades Accessibility Checkeri „Ignoreeri“ funktsiooni."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Vaadake oma veebisaidi esiosa videot. Veenduge, et see sisaldab täpseid (mitte automaatselt genereeritud) sünkroniseeritud subtiitreid, transkriptsiooni ja vajadusel helikirjeldust. Pärast juurdepääsetavuse kontrollimist või vajalike uuenduste tegemist saate selle hoiatuse Accessibility Checkeris kõrvaldada."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3375,9 +3424,75 @@ msgstr "Osale tasuta"
 msgid "(opens in a new window)"
 msgstr "(avaneb uues aknas)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Peamine"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Päis"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Jalus"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Nav"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Kõrval"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Navigeerimine"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Bänner"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "Sisuinfo"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Täiendav"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Jaotis"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Artikkel"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Vorm"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Piirkond"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, php-format,js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Vaata %s orientiiril veebilehel, avaneb uues aknas"
@@ -3608,22 +3723,22 @@ msgid " (opens in a new window)"
 msgstr " (avaneb uues aknas)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Valige, milliseid postituse tüüpe tuleks skannimise ajal kontrollida. Pange tähele, et varem valitud postituse tüübi eemaldamine kustutab selle skannitud teabe ja kõik kohandatud eiratud hoiatused, mis on seadistatud."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Valige skaneerimise ajal kontrollitavad postitustüübid. Pange tähele, et varem valitud postitustüübi eemaldamine eemaldab selle skaneeritud teabe ja kõik kohandatud kõrvaldatud hoiatused, mis on seadistatud."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Kustuta kõik Accessibility Checkeri andmed, kui plugin eemaldatakse."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Näita Accessibility Checkeri metaboksi plokiredaktoris"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Vali, millistel kasutajarollidel on õigus probleeme ignoreerida."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "Valige, millistel kasutajarollidel on luba probleeme kõrvaldada."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Seadista, millistel kasutajarollidel on juurdepääs konkreetsetele Accessibility Checker funktsioonidele."
 
@@ -5073,6 +5188,11 @@ msgstr "Salvestamine..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Salvestamine ebaõnnestus: REST API URL puudub."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Sätted salvestati edukalt. Peate %skülastama redaktorit%s ja salvestama postituse, et uuesti skaneerida ja eemaldada parandatud probleemid Accessibility Checkeri aruannetest."
@@ -5263,30 +5383,31 @@ msgstr "Tõsidus:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Ignoreeritud"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Näita selgitust"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Miks see oluline on"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Kuidas parandada"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Üksikasjalikum dokumentatsioon"
 
@@ -5301,6 +5422,7 @@ msgstr "Paranda probleem: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Paranda probleem"
 
@@ -5351,10 +5473,10 @@ msgstr[1] "%d vajavad ülevaatamist"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d ignoreeritud"
-msgstr[1] "%d ignoreeritud"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d kõrvaldatud"
+msgstr[1] "%d kõrvaldatud"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5414,111 +5536,159 @@ msgid "Error: Missing required parameters."
 msgstr "Viga: Puuduvad nõutavad parameetrid."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Probleemiga seotud pilt"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Paranduse sätted salvestatud."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Paranduse sätete salvestamine ebaõnnestus."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Parandusteabe laadimine..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Salvesta parandus: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Probleem edukalt tagasi lükatud."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Probleem edukalt uuesti avatud."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Tagasi lükkamine..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Probleem tagasi lükatud — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Probleem tagasi lükatud"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Ulatus:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Kõik lehed"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Kelle poolt:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Kuupäev:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Tagasilükkamise põhjus:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "See probleem lükati globaalselt tagasi. Selle uuesti avamiseks hallake globaalseid tagasilükkamisi."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Halda globaalseid tagasilükkamisi"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Uuesti avamine..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Kommentaar (valikuline)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Lisage märkus, mis selgitab, miks see probleem tagasi lükatakse."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Rohkem tagasilükkamise valikuid"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Lükka tagasi ja sulge modaalaken"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Probleem #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Probleemi üksikasjad"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Tüüp"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Tõsidus"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Viga %s parandusteabe laadimisel."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Viga %s parandusteabe laadimisel."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Paranduse sätted salvestatud."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Paranduse sätete salvestamine ebaõnnestus."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Parandusteabe laadimine..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Salvesta parandus: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Probleemiga seotud pilt"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Probleem edukalt tagasi lükatud."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Probleem edukalt uuesti avatud."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Lükka globaalselt tagasi"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Kõrvaldamine globaalselt..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Tagasi lükkamine..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Probleem tagasi lükatud — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Probleem tagasi lükatud"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Ulatus:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Kõik lehed"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Kelle poolt:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "Kuupäev:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Tagasilükkamise põhjus:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Eemaldamine..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Eemalda globaalne kõrvaldamine"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Uuesti avamine..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Kommentaar (valikuline)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Lisage märkus, mis selgitab, miks see probleem tagasi lükatakse."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Rohkem tagasilükkamise valikuid"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Lükka tagasi ja sulge modaalaken"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5607,6 +5777,14 @@ msgstr "jätka lugemist"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "loe lähemalt"
+
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Kontrollib, kas lingi nähtav tekst on URL, mitte kirjeldav ankrutekst."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Lingi tekst peaks olema kirjeldav ja mitte lihtsalt URL."
 
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
