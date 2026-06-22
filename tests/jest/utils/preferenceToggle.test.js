@@ -10,7 +10,7 @@ describe( 'createPreferenceToggleHandler', () => {
 			() =>
 				new Promise( ( resolve ) => {
 					resolveSave = resolve;
-				} )
+				} ),
 		);
 
 		const handleClick = createPreferenceToggleHandler( {

@@ -43,7 +43,13 @@ module.exports = {
 			'./src/srOnlyFormat/index.js',
 			'./src/srOnlyFormat/sass/sr-only-format.scss',
 		],
-
+		sharedComponents: {
+			import: './src/sharedComponents/index.js',
+			library: {
+				name: 'edacSharedComponents',
+				type: 'window',
+			},
+		},
 	},
 	optimization: {
 		splitChunks: {

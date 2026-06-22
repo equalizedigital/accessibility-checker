@@ -106,15 +106,19 @@ const injectIframe = ( previewUrl, postID ) => {
 		body.setAttribute( 'data-iframe-post-id', postID );
 
 		if ( iframeDocument ) {
-			if ( window?.edac_editor_app?.maxAltLength ) {
-				// if the frame doesn't have window.scanOptions then create is as an object.
-				if ( ! iframeDocument.defaultView.scanOptions ) {
-					iframeDocument.defaultView.scanOptions = {};
-				}
+			const landmarkTypes = window?.edac_editor_app?.landmarkTypes;
 
-				// set the maxAlthLength for the scanOptions.
+			if ( window?.edac_editor_app?.maxAltLength || landmarkTypes ) {
+				// Pass scan overrides into the iframe's own window so pageScanner.bundle.js
+				// (injected below, into this same iframe document) can read them.
 				iframeDocument.defaultView.scanOptions = {
 					maxAltLength: window.edac_editor_app.maxAltLength,
+					...( landmarkTypes && {
+						landmarkTags: landmarkTypes.tags,
+						landmarkRoles: landmarkTypes.roles,
+						conditionalLandmarkTags: landmarkTypes.conditionalTags,
+						conditionalLandmarkRoles: landmarkTypes.conditionalRoles,
+					} ),
 				};
 			}
 

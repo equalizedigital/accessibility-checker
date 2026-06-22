@@ -1800,6 +1800,14 @@ class AccessibilityCheckerHighlight {
 					self.showScanError( message );
 					reject( new Error( message ) );
 				};
+				if ( window.edacFrontendHighlighterApp?.landmarkTypes ) {
+					window.scanOptions = window.scanOptions || {};
+					const lm = window.edacFrontendHighlighterApp.landmarkTypes;
+					window.scanOptions.landmarkTags = lm.tags;
+					window.scanOptions.landmarkRoles = lm.roles;
+					window.scanOptions.conditionalLandmarkTags = lm.conditionalTags;
+					window.scanOptions.conditionalLandmarkRoles = lm.conditionalRoles;
+				}
 				document.head.appendChild( script );
 			} else {
 				runScan();
