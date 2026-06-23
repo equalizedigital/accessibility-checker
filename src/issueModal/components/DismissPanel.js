@@ -5,6 +5,7 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
+import { speak } from '@wordpress/a11y';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
 import { chevronDown } from '@wordpress/icons';
@@ -46,11 +47,11 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 		try {
 			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : isGloballyDismissed );
 			setIsIgnored( ignore );
-			setSuccessNotice(
-				ignore
-					? __( 'Issue dismissed successfully.', 'accessibility-checker' )
-					: __( 'Issue reopened successfully.', 'accessibility-checker' ),
-			);
+			const successMessage = ignore
+				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
+				: __( 'Issue reopened successfully.', 'accessibility-checker' );
+			setSuccessNotice( successMessage );
+			speak( successMessage, 'polite' );
 			// Keep local issue fields in sync so UI reflects reason/comment immediately.
 			// Use the same keys as both the details processor and dismiss response.
 			if ( ignore && response && response.success ) {
