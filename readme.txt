@@ -279,6 +279,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-06-23 - version 1.44.1
+* Updated - improved the dismiss panel screen reader announcements.
+
 2026-06-22 - version 1.44.0
 * New - Added custom axe rule to detect links whose anchor text is a bare URL rather than meaningful text.
 * Updated - The aria-hidden rule no longer flags separator blocks.
