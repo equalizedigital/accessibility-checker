@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 1.44.0
+Stable tag: 1.44.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-06-23 - version 1.44.1
+* Updated - improved the dismiss panel screen reader announcements.
 
 2026-06-22 - version 1.44.0
 * New - Added custom axe rule to detect links whose anchor text is a bare URL rather than meaningful text.
