@@ -29,7 +29,7 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  */
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false, isPro = typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' } ) => {
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
-	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
+	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'accessible' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );

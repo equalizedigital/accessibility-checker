@@ -16,9 +16,9 @@ beforeEach( () => {
 		highlightNonce: 'test-highlight-nonce',
 		canManageSettings: true,
 		dismissReasons: {
+			accessible: { label: 'Confirmed accessible', description: 'Reviewed and verified to meet accessibility requirements.' },
 			false_positive: { label: 'False Positive', description: 'This issue does not apply to this content.' },
 			remediated: { label: 'Remediated', description: 'This issue has been fixed.' },
-			accessible: { label: 'Accessible', description: 'This content is accessible by other means.' },
 		},
 	};
 	window.edac_editor_app = {
