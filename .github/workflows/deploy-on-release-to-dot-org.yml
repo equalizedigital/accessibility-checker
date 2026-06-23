@@ -57,3 +57,4 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           BUILD_DIR: ./dist/${{ github.event.repository.name }}/
+          VERSION: ${{ github.event.release.tag_name }}

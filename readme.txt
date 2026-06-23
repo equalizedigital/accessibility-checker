@@ -279,6 +279,14 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-06-22 - version 1.44.0
+* New - Added custom axe rule to detect links whose anchor text is a bare URL rather than meaningful text.
+* Updated - The aria-hidden rule no longer flags separator blocks.
+* Updated - Empty paragraph warnings no longer flag elements with aria-live attributes or implicit live region roles.
+* Updated - Block Editor metabox now defaults to visible for new installs.
+* Fix - REST API URL generation now works correctly on subsites and with custom REST base configurations.
+* Fix - New window warning now handles links containing both text and images.
+
 2026-05-28 - version 1.43.0
 * Updated - improved empty alt warnings for images that are inside buttons with accessible names.
 * Updated - improved empty button checks for elements hidden from screen readers and keyboard users.
