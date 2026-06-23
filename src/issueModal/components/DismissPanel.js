@@ -9,7 +9,7 @@ import { speak } from '@wordpress/a11y';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
 import { chevronDown } from '@wordpress/icons';
-import { useState } from '@wordpress/element';
+import { useState, useRef } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
@@ -28,6 +28,7 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  * @param {boolean}  props.isPro        - Whether the current UI is running in Pro.
  */
 const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false, isPro = typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' } ) => {
+	const panelRef = useRef( null );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'false_positive' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -114,7 +115,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 	}
 
 	return (
-		<div className="edac-analysis__dismiss-panel" data-section="dismiss">
+		<div className="edac-analysis__dismiss-panel" data-section="dismiss" ref={ panelRef }>
 			<Panel>
 				<PanelBody
 					title={ panelTitle }
@@ -126,7 +127,10 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 							<Notice
 								status="success"
 								isDismissible={ true }
-								onRemove={ () => setSuccessNotice( null ) }
+								onRemove={ () => {
+									panelRef.current?.querySelector( '.components-panel__body-toggle' )?.focus();
+									setSuccessNotice( null );
+								} }
 							>
 								{ successNotice }
 							</Notice>
