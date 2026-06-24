@@ -128,7 +128,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 								status="success"
 								isDismissible={ true }
 								onRemove={ () => {
-									panelRef.current?.querySelector( '.components-panel__body-toggle' )?.focus();
+									panelRef.current?.querySelector( '.components-panel__body-toggle, button' )?.focus();
 									setSuccessNotice( null );
 								} }
 							>
