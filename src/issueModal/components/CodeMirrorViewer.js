@@ -42,8 +42,16 @@ const CodeMirrorViewer = ( { value } ) => {
 
 		editorRef.current = window.wp.codeEditor.initialize( textareaRef.current, editorSettings );
 
+		// When the user drags the resize handle, CodeMirror's JS viewport
+		// measurements don't update automatically. Observing the wrapper element
+		// and calling refresh() keeps line rendering correct after a resize.
+		const cmEl = editorRef.current.codemirror.getWrapperElement();
+		const observer = new ResizeObserver( () => editorRef.current?.codemirror?.refresh() );
+		observer.observe( cmEl );
+
 		// Cleanup on unmount
 		return () => {
+			observer.disconnect();
 			if ( editorRef.current?.codemirror ) {
 				editorRef.current.codemirror.toTextArea();
 				editorRef.current = null;

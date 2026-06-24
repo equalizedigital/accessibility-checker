@@ -404,7 +404,13 @@
 	}
 
 	.CodeMirror {
-		height: 100px;
+		// min-height keeps the box usable by default; overflow: hidden is
+		// required for CSS resize to work (visible blocks the resize handle).
+		// CodeMirror's own .CodeMirror-scroll handles internal scrolling.
+		min-height: 100px;
+		max-height: 600px;
+		resize: vertical;
+		overflow: hidden;
 		border: 1px solid #ddd;
 		border-radius: 4px;
 		font-size: 12px;
