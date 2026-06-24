@@ -45,13 +45,22 @@ const CodeMirrorViewer = ( { value } ) => {
 		// When the user drags the resize handle, CodeMirror's JS viewport
 		// measurements don't update automatically. Observing the wrapper element
 		// and calling refresh() keeps line rendering correct after a resize.
+		// rAF defers the refresh out of the ResizeObserver callback to avoid
+		// "ResizeObserver loop limit exceeded" errors in some browsers.
 		const cmEl = editorRef.current.codemirror.getWrapperElement();
-		const observer = new ResizeObserver( () => editorRef.current?.codemirror?.refresh() );
-		observer.observe( cmEl );
+		let rafId;
+		const observer = window.ResizeObserver
+			? new ResizeObserver( () => {
+				cancelAnimationFrame( rafId );
+				rafId = requestAnimationFrame( () => editorRef.current?.codemirror?.refresh() );
+			} )
+			: null;
+		observer?.observe( cmEl );
 
 		// Cleanup on unmount
 		return () => {
-			observer.disconnect();
+			cancelAnimationFrame( rafId );
+			observer?.disconnect();
 			if ( editorRef.current?.codemirror ) {
 				editorRef.current.codemirror.toTextArea();
 				editorRef.current = null;
