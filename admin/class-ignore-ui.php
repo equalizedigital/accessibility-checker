@@ -30,7 +30,6 @@ class IgnoreUI {
 	 */
 	public static function get_reasons(): array {
 		$default_reasons = [
-		return [
 			'accessible'     => [
 				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
 				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
