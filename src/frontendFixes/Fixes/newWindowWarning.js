@@ -127,6 +127,52 @@ const addExternalLinkIcon = ( link ) => {
 };
 
 /**
+ * Computes the accessible name for a link by traversing its child nodes in document order.
+ * Collects text content and image alt text (for non-decorative images), skipping aria-hidden elements.
+ * @param {HTMLElement} link - The link element.
+ * @return {string} The computed accessible name.
+ */
+const getLinkAccessibleName = ( link ) => {
+	const parts = [];
+
+	const traverse = ( node ) => {
+		if ( node.nodeType === Node.TEXT_NODE ) {
+			const text = node.textContent.trim();
+			if ( text ) {
+				parts.push( text );
+			}
+		} else if ( node.nodeType === Node.ELEMENT_NODE ) {
+			if ( node.getAttribute( 'aria-hidden' ) === 'true' ) {
+				return;
+			}
+			if ( node.hasAttribute( 'aria-label' ) ) {
+				const ariaLabel = node.getAttribute( 'aria-label' ).trim();
+				if ( ariaLabel ) {
+					parts.push( ariaLabel );
+				}
+				return;
+			}
+			if ( node.nodeName === 'IMG' ) {
+				const role = node.getAttribute( 'role' );
+				const isDecorative = role && ( role.split( /\s+/ ).includes( 'presentation' ) || role.split( /\s+/ ).includes( 'none' ) );
+				if ( ! isDecorative ) {
+					const alt = ( node.getAttribute( 'alt' ) || '' ).trim();
+					if ( alt ) {
+						parts.push( alt );
+					}
+				}
+			} else {
+				node.childNodes.forEach( traverse );
+			}
+		}
+	};
+
+	link.childNodes.forEach( traverse );
+
+	return parts.join( ' ' ).replace( /\s+/g, ' ' ).trim();
+};
+
+/**
  * Updates the aria-label of the specified link.
  * @param {HTMLElement} link - The link element to modify.
  */
@@ -135,11 +181,8 @@ const updateAriaLabel = ( link ) => {
 
 	if ( link.hasAttribute( 'aria-label' ) ) {
 		label = link.getAttribute( 'aria-label' );
-	} else if ( link.querySelector( 'img' ) ) {
-		const img = link.querySelector( 'img' );
-		label = img.getAttribute( 'alt' ) || '';
-	} else if ( link.textContent ) {
-		label = link.textContent.trim();
+	} else {
+		label = getLinkAccessibleName( link );
 	}
 
 	label = label ? `${ label }, ${ localizedString }` : localizedString;

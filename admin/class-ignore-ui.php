@@ -30,6 +30,11 @@ class IgnoreUI {
 	 */
 	public static function get_reasons(): array {
 		$default_reasons = [
+		return [
+			'accessible'     => [
+				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
+				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
+			],
 			'false_positive' => [
 				'label'       => __( 'False positive', 'accessibility-checker' ),
 				'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
@@ -37,10 +42,6 @@ class IgnoreUI {
 			'remediated'     => [
 				'label'       => __( 'Remediated', 'accessibility-checker' ),
 				'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
-			],
-			'accessible'     => [
-				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
-				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
 			],
 		];
 

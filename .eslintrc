@@ -13,7 +13,15 @@
 	},
 	"overrides": [
 		{
-			"files": [ "src/sidebar/**/*.js", "src/sidebar/**/*.jsx", "src/issueModal/**/*.js", "src/issueModal/**/*.jsx" ],
+			"files": [
+				"src/sidebar/**/*.js",
+				"src/sidebar/**/*.jsx",
+				"src/issueModal/**/*.js",
+				"src/issueModal/**/*.jsx",
+				"src/sharedComponents/**/*.js",
+				"tests/jest/**/*.js",
+				"tests/jest/**/*.jsx"
+			],
 			"plugins": [ "react" ],
 			"parserOptions": {
 				"ecmaVersion": 2021,
@@ -23,7 +31,27 @@
 				}
 			},
 			"rules": {
-				"react/jsx-uses-vars": "error"
+				"react/jsx-uses-vars": "error",
+				"jsdoc/check-tag-names": "off"
+			}
+		},
+		{
+			"files": [
+				"tests/jest/setupTests.js",
+				"tests/jest/styleMock.js",
+				"tests/jest/jest.config.js",
+				"tests/jest/babel.config.js"
+			],
+			"env": {
+				"node": true,
+				"browser": true
+			},
+			"globals": {
+				"Buffer": "readonly",
+				"globalThis": "readonly"
+			},
+			"rules": {
+				"no-redeclare": "off"
 			}
 		}
 	]

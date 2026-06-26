@@ -9,7 +9,7 @@ jest.mock(
 	() => ( {
 		createFocusTrap: jest.fn(),
 	} ),
-	{ virtual: true }
+	{ virtual: true },
 );
 
 describe( 'email opt-in modal init', () => {

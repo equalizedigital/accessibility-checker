@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - WCAG, ADA, EAA and Section 508 compliance ===
 Contributors: equalizedigital, alh0319, stevejonesdev
-Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
+Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 1.42.1
+Stable tag: 1.44.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,23 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-06-23 - version 1.44.1
+* Updated - improved the dismiss panel screen reader announcements.
+
+2026-06-22 - version 1.44.0
+* New - Added custom axe rule to detect links whose anchor text is a bare URL rather than meaningful text.
+* Updated - The aria-hidden rule no longer flags separator blocks.
+* Updated - Empty paragraph warnings no longer flag elements with aria-live attributes or implicit live region roles.
+* Updated - Block Editor metabox now defaults to visible for new installs.
+* Fix - REST API URL generation now works correctly on subsites and with custom REST base configurations.
+* Fix - New window warning now handles links containing both text and images.
+
+2026-05-28 - version 1.43.0
+* Updated - improved empty alt warnings for images that are inside buttons with accessible names.
+* Updated - improved empty button checks for elements hidden from screen readers and keyboard users.
+* Updated - more strings translated into other languages.
+* Updated - hardened the dismiss issue REST endpoints against edge cases.
 
 2026-05-20 - version 1.42.1
 * Updated - improved permission handling for the ignore feature.

@@ -21,9 +21,9 @@ jobs:
           php-version: '7.4'
           tools: composer:v2
           coverage: none
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
@@ -57,3 +57,4 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           BUILD_DIR: ./dist/${{ github.event.repository.name }}/
+          VERSION: ${{ github.event.release.tag_name }}
