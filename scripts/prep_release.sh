@@ -34,26 +34,21 @@ DEVELOP_BRANCH=develop
 RELEASE_BRANCH_NAME=release/${BUMPED_VERSION}
 
 # Ensure local tags are fully in sync with remote tags before release prep.
+# Uses process substitution to avoid orphaned temp files on early exit.
 verify_local_tags_match_remote() {
-  local local_tags_file
-  local remote_tags_file
-
-  local_tags_file=$(mktemp)
-  remote_tags_file=$(mktemp)
-
-  # Always clean up temporary files before returning.
-  trap 'rm -f "${local_tags_file}" "${remote_tags_file}"' RETURN
-
-  # --refs avoids peeled annotated-tag entries (^{}) for clean one-line refs.
-  git show-ref --tags | awk '{print $1" "$2}' | sort > "${local_tags_file}"
-  git ls-remote --tags --refs origin | awk '{print $1" "$2}' | sort > "${remote_tags_file}"
-
-  if ! diff -u "${remote_tags_file}" "${local_tags_file}" >/dev/null; then
+  # --refs strips peeled annotated-tag entries (^{}) for clean one-line refs.
+  if ! diff -u \
+    <(git ls-remote --tags --refs origin 2>/dev/null | awk '{print $1" "$2}' | sort) \
+    <(git show-ref --tags 2>/dev/null | awk '{print $1" "$2}' | sort) \
+    >/dev/null; then
     echo
     echo "Error: local tags do not match tags on origin."
-    echo "Please sync tags before running release prep."
+    echo "Please sync tags before running release prep:"
+    echo "  git fetch origin --tags --prune-tags"
     echo
-    diff -u "${remote_tags_file}" "${local_tags_file}" || true
+    diff -u \
+      <(git ls-remote --tags --refs origin 2>/dev/null | awk '{print $1" "$2}' | sort) \
+      <(git show-ref --tags 2>/dev/null | awk '{print $1" "$2}' | sort) || true
     return 1
   fi
 
@@ -206,16 +201,25 @@ echo
 
 # Stash any existing uncommitted work (tracked modifications + untracked files)
 # so that the subsequent git diff picks up only what the tool changes.
+# Track stash ref before/after to guard against popping an unrelated stash when
+# git stash push exits 0 even if there was nothing to save.
 STASH_MESSAGE="prep_release: pre-since-tag stash"
+STASH_BEFORE=$(git rev-parse -q --verify refs/stash || true)
 git stash push --include-untracked -m "${STASH_MESSAGE}"
-STASH_CREATED=$?
+STASH_AFTER=$(git rev-parse -q --verify refs/stash || true)
+STASH_CREATED=false
+if [[ -n "${STASH_AFTER}" && "${STASH_AFTER}" != "${STASH_BEFORE}" ]]; then
+  STASH_CREATED=true
+fi
 
 # Ensure the stash is always restored, even if the script exits early.
+# Setting STASH_CREATED=false before popping prevents the EXIT trap double-pop.
 restore_stash() {
-  if [[ ${STASH_CREATED} -eq 0 ]]; then
+  if [[ "${STASH_CREATED}" == true ]]; then
     echo
     echo "Restoring stashed changes"
     echo
+    STASH_CREATED=false
     git stash pop
   fi
 }
@@ -223,15 +227,14 @@ trap restore_stash EXIT
 
 php tools/update-since-tags.php --version="${BUMPED_VERSION}" --changed-since-last-tag
 
-# Stage only the tracked PHP files that were modified by the tool.
-# git diff --name-only only lists tracked files with unstaged changes,
-# so untracked files are never included.
-SINCE_CHANGES=$(git diff --name-only -- '*.php')
-if [[ -n "${SINCE_CHANGES}" ]]; then
+# Stage only the tracked PHP files modified by the tool.
+# Use NUL-delimited output + mapfile + xargs -0 so paths with spaces are safe.
+mapfile -d '' SINCE_CHANGES < <(git diff --name-only -z -- '*.php')
+if (( ${#SINCE_CHANGES[@]} > 0 )); then
   echo
   echo "Committing @since tag updates"
   echo
-  echo "${SINCE_CHANGES}" | xargs git add --
+  printf '%s\0' "${SINCE_CHANGES[@]}" | xargs -0 git add --
   git commit -m "Update @since placeholders to ${BUMPED_VERSION}"
 else
   echo "No @since placeholder tags found — skipping commit."

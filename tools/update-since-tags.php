@@ -35,7 +35,7 @@ if ( isset( $opts['help'] ) ) {
 	edac_write_line( 'Usage: php tools/update-since-tags.php --version=<x.y.z> [options]' );
 	edac_write_line( '' );
 	edac_write_line( 'Options:' );
-	edac_write_line( '  --root=<path>                Root directory to scan (default: current working directory)' );
+	edac_write_line( '  --root=<path>                Root directory to scan (default: parent of the tools/ directory)' );
 	edac_write_line( '  --placeholder=<value>        Placeholder token after @since (default: x.x.x)' );
 	edac_write_line( '  --changed-since-tag=<tag>    Only scan tracked PHP files changed since this Git tag/ref' );
 	edac_write_line( '  --changed-since-last-tag     Only scan tracked PHP files changed since latest Git tag' );
@@ -51,26 +51,56 @@ if ( ! is_string( $version ) || ! preg_match( '/^\d+\.\d+\.\d+$/', $version ) ) 
 	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
-$root = $opts['root'] ?? dirname( __DIR__ );
-if ( ! is_string( $root ) || ! is_dir( $root ) ) {
-	edac_write_line( 'Error: root directory does not exist: ' . (string) $root, STDERR );
+// getopt() returns false (not null) for optional params given without a value (e.g. --root).
+$root_opt = $opts['root'] ?? dirname( __DIR__ );
+if ( false === $root_opt ) {
+	edac_write_line( 'Error: --root requires a value.', STDERR );
 	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
-$root = rtrim( (string) $root, DIRECTORY_SEPARATOR );
+if ( ! is_string( $root_opt ) || ! is_dir( $root_opt ) ) {
+	edac_write_line( 'Error: root directory does not exist: ' . (string) $root_opt, STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+// Use realpath() so filesystem-root paths like / or C:\ are preserved correctly.
+$root = realpath( $root_opt );
+if ( false === $root ) {
+	edac_write_line( 'Error: could not resolve root directory: ' . $root_opt, STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
 
-$placeholder = $opts['placeholder'] ?? 'x.x.x';
-if ( ! is_string( $placeholder ) || '' === trim( $placeholder ) ) {
+$placeholder_opt = $opts['placeholder'] ?? 'x.x.x';
+if ( false === $placeholder_opt ) {
+	edac_write_line( 'Error: --placeholder requires a value.', STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+if ( ! is_string( $placeholder_opt ) || '' === trim( $placeholder_opt ) ) {
 	edac_write_line( 'Error: --placeholder must be a non-empty string.', STDERR );
 	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
+$placeholder = $placeholder_opt;
 
-$changed_since_tag      = $opts['changed-since-tag'] ?? null;
+// getopt() returns false for optional params given without a value (e.g. --changed-since-tag).
+$changed_since_tag_opt = $opts['changed-since-tag'] ?? null;
+if ( false === $changed_since_tag_opt ) {
+	edac_write_line( 'Error: --changed-since-tag requires a value.', STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+$changed_since_tag      = $changed_since_tag_opt;
 $changed_since_last_tag = isset( $opts['changed-since-last-tag'] );
 $dry_run                = isset( $opts['dry-run'] );
 
 if ( null !== $changed_since_tag && $changed_since_last_tag ) {
 	edac_write_line( 'Error: use either --changed-since-tag or --changed-since-last-tag, not both.', STDERR );
 	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+// Validate the supplied ref actually exists before proceeding.
+if ( null !== $changed_since_tag ) {
+	$ref_check = trim( edac_run_git( $root, 'rev-parse --verify ' . escapeshellarg( (string) $changed_since_tag ) ) );
+	if ( '' === $ref_check ) {
+		edac_write_line( 'Error: invalid Git reference or tag: ' . (string) $changed_since_tag, STDERR );
+		exit( EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
 }
 
 if ( $changed_since_last_tag ) {
@@ -147,28 +177,36 @@ exit( EDAC_SINCE_TOOL_EXIT_OK ); // phpcs:ignore WordPress.Security.EscapeOutput
  * @return string[]
  */
 function edac_get_all_php_files( string $root, array $excluded_dirs ): array {
-	$files    = [];
-	$iterator = new RecursiveIteratorIterator(
-		new RecursiveDirectoryIterator( $root, RecursiveDirectoryIterator::SKIP_DOTS )
+	$files              = [];
+	$directory_iterator = new RecursiveDirectoryIterator( $root, RecursiveDirectoryIterator::SKIP_DOTS );
+
+	// Prune excluded directories before recursing into them for efficiency.
+	$filter = new RecursiveCallbackFilterIterator(
+		$directory_iterator,
+		// phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
+		static function ( SplFileInfo $item, $key, RecursiveCallbackFilterIterator $iterator ) use ( $root, $excluded_dirs ): bool {
+			if ( $item->isDir() ) {
+				$relative_path = ltrim( substr( $item->getPathname(), strlen( $root ) ), DIRECTORY_SEPARATOR );
+				foreach ( $excluded_dirs as $excluded ) {
+					if ( $relative_path === $excluded || 0 === strpos( $relative_path, $excluded . DIRECTORY_SEPARATOR ) ) {
+						return false;
+					}
+				}
+			}
+
+			return true;
+		}
 	);
+
+	$iterator = new RecursiveIteratorIterator( $filter );
 
 	foreach ( $iterator as $item ) {
 		if ( ! $item instanceof SplFileInfo || $item->isDir() ) {
 			continue;
 		}
 
-		$path          = $item->getPathname();
-		$relative_path = ltrim( str_replace( $root, '', $path ), DIRECTORY_SEPARATOR );
-
-		foreach ( $excluded_dirs as $excluded ) {
-			$needle = $excluded . DIRECTORY_SEPARATOR;
-			if ( 0 === strpos( $relative_path, $needle ) || false !== strpos( $relative_path, DIRECTORY_SEPARATOR . $needle ) ) {
-				continue 2;
-			}
-		}
-
 		if ( 'php' === strtolower( (string) $item->getExtension() ) ) {
-			$files[] = $path;
+			$files[] = $item->getPathname();
 		}
 	}
 
@@ -180,13 +218,21 @@ function edac_get_all_php_files( string $root, array $excluded_dirs ): array {
 /**
  * Get tracked PHP files changed between a given ref and HEAD.
  *
+ * Exits with EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR if the git command fails,
+ * so a bad ref or non-repo root does not silently return an empty list.
+ *
  * @param string $root Root directory.
  * @param string $ref  Git ref/tag.
  * @return string[]
  */
 function edac_get_changed_php_files_since_ref( string $root, string $ref ): array {
 	$cmd    = 'diff --name-only ' . escapeshellarg( $ref . '..HEAD' ) . ' -- ' . escapeshellarg( '*.php' );
-	$output = edac_run_git( $root, $cmd );
+	$output = edac_run_git( $root, $cmd, $exit_code );
+
+	if ( 0 !== $exit_code ) {
+		edac_write_line( "Error: git diff failed (exit {$exit_code}) for ref: {$ref}", STDERR );
+		exit( EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+	}
 
 	$files = [];
 	foreach ( preg_split( '/\r?\n/', trim( $output ) ) as $line ) {
@@ -208,15 +254,17 @@ function edac_get_changed_php_files_since_ref( string $root, string $ref ): arra
 /**
  * Run a Git command in the target root and return stdout.
  *
- * @param string $root Root directory.
- * @param string $args Git args.
+ * @param string   $root      Root directory.
+ * @param string   $args      Git args (already shell-escaped as needed).
+ * @param int|null $exit_code Reference populated with the git process exit code.
  * @return string
  */
-function edac_run_git( string $root, string $args ): string {
-	$cmd    = 'git -C ' . escapeshellarg( $root ) . ' ' . $args . ' 2>/dev/null';
-	$output = shell_exec( $cmd ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_shell_exec
+function edac_run_git( string $root, string $args, ?int &$exit_code = null ): string {
+	$cmd    = 'git -C ' . escapeshellarg( $root ) . ' ' . $args;
+	$output = [];
+	exec( $cmd, $output, $exit_code ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_exec
 
-	return is_string( $output ) ? $output : '';
+	return implode( "\n", $output );
 }
 
 /**
