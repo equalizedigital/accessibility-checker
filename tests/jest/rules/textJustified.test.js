@@ -45,13 +45,13 @@ describe( 'Text Justified Rule', () => {
 			html: `<p style="text-align: justify;">${ SHORT_TEXT }</p>`,
 			shouldPass: true,
 		},
+
+		// Failing cases — long text with justify
 		{
 			name: 'should fail for long justified text in a heading',
 			html: `<h2 style="text-align: justify;">${ LONG_TEXT }</h2>`,
 			shouldPass: false,
 		},
-
-		// Failing cases — long text with justify
 		{
 			name: 'should fail for long paragraph with justified text',
 			html: `<p style="text-align: justify;">${ LONG_TEXT }</p>`,

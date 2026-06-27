@@ -47,6 +47,14 @@ describe( 'Link to PDF Rule', () => {
 			html: '<a href="/pdf-resources/guide.html">PDF Resources</a>',
 			shouldPass: true,
 		},
+		{
+			// The selector matches .pdf? and .pdf# but not .pdf& (second query param).
+			// Adding a[href*=".pdf&"] risks false positives (e.g. /?q=compare-pdf&sort=name).
+			// This case is a known gap — tracked for a future rule selector update.
+			name: 'does not flag a PDF served via a query parameter followed by & (known selector gap)',
+			html: '<a href="/download?file=document.pdf&version=2">Download PDF</a>',
+			shouldPass: true,
+		},
 
 		// Failing cases — PDF links
 		{

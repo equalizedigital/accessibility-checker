@@ -42,6 +42,14 @@ describe( 'Link to MS Office File Rule', () => {
 			html: '<a href="/documentation/guide.html">Documentation Guide</a>',
 			shouldPass: true,
 		},
+		{
+			// The selector matches .docx? and .docx# but not .docx& (second query param).
+			// Adding a[href*=".docx&"] risks false positives (e.g. /?q=docx&sort=name).
+			// This case is a known gap — tracked for a future rule selector update.
+			name: 'does not flag an Office file served via a query parameter followed by & (known selector gap)',
+			html: '<a href="/download?file=report.docx&version=2">Download Report</a>',
+			shouldPass: true,
+		},
 
 		// Failing cases — Word documents
 		{

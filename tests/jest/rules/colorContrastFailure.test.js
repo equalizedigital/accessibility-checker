@@ -19,7 +19,7 @@ describe( 'color-contrast-failure rule config', () => {
 	} );
 
 	test( 'delegates to the built-in color-contrast check', () => {
-		expect( colorContrastRule.any ).toContain( 'color-contrast' );
+		expect( colorContrastRule.any ).toEqual( [ 'color-contrast' ] );
 		expect( colorContrastRule.all ).toHaveLength( 0 );
 		expect( colorContrastRule.none ).toHaveLength( 0 );
 	} );
