@@ -99,11 +99,6 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for cover block container element with aria-hidden',
-			html: '<div class="wp-block-cover" aria-hidden="true"><div class="wp-block-cover__inner-container"><p>Content</p></div></div>',
-			shouldPass: true,
-		},
-		{
 			name: 'should pass for element with role="presentation"',
 			html: '<div role="presentation" aria-hidden="true">Content</div>',
 			shouldPass: true,
@@ -203,6 +198,13 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should fail for aria-hidden on semantic elements',
 			html: '<h2 aria-hidden="true">Important heading</h2>',
+			shouldPass: false,
+		},
+		{
+			// The outer .wp-block-cover container holds real content and is not
+			// excluded by the selector — only the decorative child elements are.
+			name: 'should fail for aria-hidden="true" on the outer cover block container (hides real content)',
+			html: '<div class="wp-block-cover" aria-hidden="true"><div class="wp-block-cover__inner-container"><p>Visible content</p></div></div>',
 			shouldPass: false,
 		},
 		{
