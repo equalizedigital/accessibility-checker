@@ -66,6 +66,7 @@ describe( 'color-contrast-failure rule execution', () => {
 	} );
 
 	afterAll( () => {
+		delete HTMLCanvasElement.prototype.getContext;
 		axe.reset();
 	} );
 
@@ -86,6 +87,6 @@ describe( 'color-contrast-failure rule execution', () => {
 		} );
 
 		expect( results.inapplicable.some( ( r ) => r.id === 'color_contrast_failure' ) ).toBe( false );
-		expect( results.incomplete.length ).toBeGreaterThan( 0 );
+		expect( results.incomplete.some( ( r ) => r.id === 'color_contrast_failure' ) ).toBe( true );
 	} );
 } );

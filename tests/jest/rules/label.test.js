@@ -10,6 +10,10 @@ beforeAll( async () => {
 	} );
 } );
 
+afterAll( () => {
+	axe.reset();
+} );
+
 beforeEach( () => {
 	document.body.innerHTML = '';
 } );
@@ -124,6 +128,11 @@ describe( 'Label Rule (Extended)', () => {
 		{
 			name: 'should fail for image input with whitespace-only alt attribute',
 			html: '<input type="image" alt="   ">',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for radio button with no label',
+			html: '<input type="radio" name="choice">',
 			shouldPass: false,
 		},
 		{
