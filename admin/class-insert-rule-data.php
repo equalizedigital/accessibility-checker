@@ -67,7 +67,7 @@ class Insert_Rule_Data {
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
-			'extra_data'        => $extra_data ? wp_json_encode( $extra_data ) : null,
+			'extra_data'        => $this->encode_extra_data( $extra_data ),
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
@@ -163,7 +163,7 @@ class Insert_Rule_Data {
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),
-				'extra_data'        => isset( $rule_data['extra_data'] ) ? sanitize_text_field( $rule_data['extra_data'] ) : null,
+				'extra_data'        => isset( $rule_data['extra_data'] ) ? $this->encode_extra_data( json_decode( $rule_data['extra_data'], true ) ) : null,
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),
@@ -195,5 +195,26 @@ class Insert_Rule_Data {
 			// Return insert id or error.
 			return $wpdb->insert_id;
 		}
+	}
+
+	/**
+	 * Recursively sanitizes an array of extra data and returns it as a JSON string.
+	 *
+	 * @param array|null $data The extra data array to encode.
+	 * @return string|null JSON-encoded sanitized data, or null if input is empty.
+	 */
+	private function encode_extra_data( ?array $data ): ?string {
+		if ( ! $data ) {
+			return null;
+		}
+		array_walk_recursive(
+			$data,
+			function ( &$value ) {
+				if ( is_string( $value ) ) {
+					$value = sanitize_text_field( $value );
+				}
+			}
+		);
+		return wp_json_encode( $data );
 	}
 }

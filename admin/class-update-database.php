@@ -89,12 +89,6 @@ class Update_Database {
 			if ( version_compare( $db_version, '1.0.7', '<' ) ) {
 				$this->migrate_license_key_to_shared_option();
 			}
-
-			// Add extra_data column for storing arbitrary JSON metadata alongside issues.
-			if ( version_compare( $db_version, '1.0.8', '<' ) ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQLPlaceholders.UnsupportedIdentifierPlaceholder -- One-time schema migration; %i is a valid identifier placeholder since WP 6.2.
-				$wpdb->query( $wpdb->prepare( 'ALTER TABLE %i ADD COLUMN IF NOT EXISTS extra_data text NULL', $table_name ) );
-			}
 		}
 
 		// Update database version option.
