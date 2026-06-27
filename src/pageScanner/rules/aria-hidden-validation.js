@@ -1,6 +1,6 @@
 export default {
 	id: 'aria_hidden_validation',
-	selector: '[aria-hidden="true"]',
+	selector: '[aria-hidden="true"]:not([class*="wp-block-cover"])',
 	excludeHidden: false,
 	tags: [
 		'wcag2a',
