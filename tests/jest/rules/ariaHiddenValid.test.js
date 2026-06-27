@@ -84,6 +84,25 @@ describe( 'Aria Hidden Validation', () => {
 			html: '<hr class="wp-block-separator aligncenter has-text-color has-dark-blue-color has-alpha-channel-opacity has-dark-blue-background-color has-background ticss-54cc2426 separator-aria-hidden" aria-hidden="true">',
 			shouldPass: true,
 		},
+		// Cover block cases (PRO-966) — these were incorrectly flagged before the
+		// selector exclusion was added. The core cover block places aria-hidden="true"
+		// on its background overlay and background image elements, which is correct
+		// decorative usage and should not be reported as a violation.
+		{
+			name: 'should pass for cover block background overlay (wp-block-cover__background)',
+			html: '<span class="wp-block-cover__background has-background-dim-100 has-background-dim" aria-hidden="true" style="background-color:#000000"></span>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for cover block background image (wp-block-cover__image-background)',
+			html: '<img class="wp-block-cover__image-background wp-image-123" alt="" src="/photo.jpg" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for cover block container element with aria-hidden',
+			html: '<div class="wp-block-cover" aria-hidden="true"><div class="wp-block-cover__inner-container"><p>Content</p></div></div>',
+			shouldPass: true,
+		},
 		{
 			name: 'should pass for element with role="presentation"',
 			html: '<div role="presentation" aria-hidden="true">Content</div>',
@@ -229,5 +248,60 @@ describe( 'Aria Hidden Validation', () => {
 				expect( results.violations.length ).toBeGreaterThan( 0 );
 			}
 		} );
+	} );
+} );
+
+// Regression tests demonstrating the PRO-966 "before" state: cover block elements
+// were incorrectly flagged when the rule used a bare [aria-hidden="true"] selector.
+// These tests reconfigure axe with the old selector to confirm the violation would
+// have been raised, proving the new :not([class*="wp-block-cover"]) exclusion is
+// what fixes it — not a silent change in axe or the check.
+describe( 'Aria Hidden Validation — PRO-966 regression (cover block before/after)', () => {
+	beforeAll( async () => {
+		const ariaHiddenCheckModule = await import( '../../../src/pageScanner/checks/aria-hidden-valid-usage.js' );
+
+		// Intentionally use the old bare selector — no cover block exclusion.
+		axe.configure( {
+			rules: [ {
+				id: 'aria_hidden_validation',
+				selector: '[aria-hidden="true"]',
+				excludeHidden: false,
+				tags: [ 'wcag2a' ],
+				all: [],
+				any: [ 'aria_hidden_valid_usage' ],
+				none: [],
+			} ],
+			checks: [ ariaHiddenCheckModule.default ],
+		} );
+	} );
+
+	afterAll( () => {
+		axe.reset();
+	} );
+
+	beforeEach( () => {
+		document.body.innerHTML = '';
+	} );
+
+	test( 'BEFORE fix: cover block background overlay was incorrectly flagged', async () => {
+		document.body.innerHTML =
+			'<span class="wp-block-cover__background has-background-dim" aria-hidden="true"></span>';
+
+		const results = await axe.run( document.body, {
+			runOnly: [ 'aria_hidden_validation' ],
+		} );
+
+		expect( results.violations.length ).toBeGreaterThan( 0 );
+	} );
+
+	test( 'BEFORE fix: cover block background image was incorrectly flagged', async () => {
+		document.body.innerHTML =
+			'<img class="wp-block-cover__image-background wp-image-123" alt="" src="/photo.jpg" aria-hidden="true">';
+
+		const results = await axe.run( document.body, {
+			runOnly: [ 'aria_hidden_validation' ],
+		} );
+
+		expect( results.violations.length ).toBeGreaterThan( 0 );
 	} );
 } );
