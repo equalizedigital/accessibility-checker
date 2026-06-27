@@ -949,11 +949,12 @@ function edac_format_datetime_from_utc( string $utc_datetime ): string {
  *
  * @since 1.44.0
  *
- * @param float $fk_grade Raw Flesch-Kincaid grade level returned by the library.
- * @return int Normalized grade: 0 when the library returned 0 (not enough content),
+ * @param float|bool|null $fk_grade Raw Flesch-Kincaid grade level returned by the library.
+ * @return int Normalized grade: 0 when the library returned 0, false, or null (not enough content),
  *             otherwise max(1, floor($fk_grade)).
  */
-function edac_normalize_fk_grade( float $fk_grade ): int {
+function edac_normalize_fk_grade( $fk_grade ): int {
+	$fk_grade = (float) $fk_grade;
 	if ( $fk_grade <= 0 ) {
 		return 0;
 	}

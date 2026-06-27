@@ -19,17 +19,17 @@ class NormalizeFkGradeTest extends WP_UnitTestCase {
 	 *
 	 * @dataProvider data_normalize_fk_grade
 	 *
-	 * @param float $input    Raw FK grade float.
-	 * @param int   $expected Expected normalized integer grade.
+	 * @param float|bool|null $input    Raw FK grade value (float, or false/null from the library on empty content).
+	 * @param int             $expected Expected normalized integer grade.
 	 */
-	public function test_normalize_fk_grade( float $input, int $expected ) {
+	public function test_normalize_fk_grade( $input, int $expected ) {
 		$this->assertSame( $expected, edac_normalize_fk_grade( $input ) );
 	}
 
 	/**
 	 * Data provider for test_normalize_fk_grade.
 	 *
-	 * @return array<string, array{float, int}>
+	 * @return array<string, array{mixed, int}>
 	 */
 	public static function data_normalize_fk_grade(): array {
 		return [
@@ -44,6 +44,8 @@ class NormalizeFkGradeTest extends WP_UnitTestCase {
 			'9.9 floors to 9'            => [ 9.9, 9 ],
 			'10.0 is 10'                 => [ 10.0, 10 ],
 			'whole grade passes through' => [ 5.0, 5 ],
+			'false returns zero'         => [ false, 0 ],
+			'null returns zero'          => [ null, 0 ],
 		];
 	}
 }
