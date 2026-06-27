@@ -63,6 +63,7 @@ class Update_Database {
 				rule text NOT NULL,
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
+				extra_data text NULL,
 				recordcheck mediumint(9) NOT NULL,
 				created timestamp NOT NULL default CURRENT_TIMESTAMP,
 				user bigint(20) NOT NULL,
@@ -87,6 +88,12 @@ class Update_Database {
 			// Migrate free plugin license key to shared option key used by both free and pro.
 			if ( version_compare( $db_version, '1.0.7', '<' ) ) {
 				$this->migrate_license_key_to_shared_option();
+			}
+
+			// Add extra_data column for storing arbitrary JSON metadata alongside issues.
+			if ( version_compare( $db_version, '1.0.8', '<' ) ) {
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange, WordPress.DB.PreparedSQLPlaceholders.UnsupportedIdentifierPlaceholder -- One-time schema migration; %i is a valid identifier placeholder since WP 6.2.
+				$wpdb->query( $wpdb->prepare( 'ALTER TABLE %i ADD COLUMN IF NOT EXISTS extra_data text NULL', $table_name ) );
 			}
 		}
 
