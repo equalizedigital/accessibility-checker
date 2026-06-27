@@ -14,6 +14,7 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPag
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
+use EqualizeDigital\AccessibilityChecker\CleanupScheduler;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -44,6 +45,11 @@ class Plugin {
 		$admin_toolbar = new Admin_Toolbar();
 		$admin_toolbar->init();
 
+		// Initialize the generic cleanup scheduler.
+		$cleanup_scheduler = CleanupScheduler::get_instance();
+		$cleanup_scheduler->init();
+
+		// Keep legacy cleanup initialization for backward compatibility.
 		$cleanup = new Orphaned_Issues_Cleanup();
 		$cleanup->init_hooks();
 
