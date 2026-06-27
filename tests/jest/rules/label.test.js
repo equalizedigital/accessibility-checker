@@ -117,6 +117,16 @@ describe( 'Label Rule (Extended)', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'should fail for image input with no alt attribute',
+			html: '<input type="image">',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for image input with whitespace-only alt attribute',
+			html: '<input type="image" alt="   ">',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail for checkbox with no label',
 			html: '<input type="checkbox">',
 			shouldPass: false,
