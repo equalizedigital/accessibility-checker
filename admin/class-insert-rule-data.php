@@ -67,7 +67,7 @@ class Insert_Rule_Data {
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
-			'extra_data'        => $this->encode_extra_data( $extra_data ),
+			'extra_data'        => self::encode_extra_data( $extra_data ),
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
@@ -113,7 +113,7 @@ class Insert_Rule_Data {
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d, extra_data = %s  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d, extra_data = %s WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
 						$table_name,
 						1,
 						$rule_data['landmark'],
@@ -163,7 +163,7 @@ class Insert_Rule_Data {
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),
-				'extra_data'        => isset( $rule_data['extra_data'] ) ? $this->encode_extra_data( json_decode( $rule_data['extra_data'], true ) ) : null,
+				'extra_data'        => isset( $rule_data['extra_data'] ) ? self::encode_extra_data( json_decode( $rule_data['extra_data'], true ) ) : null,
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),
@@ -198,12 +198,15 @@ class Insert_Rule_Data {
 	}
 
 	/**
-	 * Recursively sanitizes an array of extra data and returns it as a JSON string.
+	 * Recursively sanitizes an array and returns it as a JSON string.
+	 *
+	 * String values are passed through sanitize_text_field(); numeric and boolean
+	 * values are left as-is so they round-trip cleanly through JSON.
 	 *
 	 * @param array|null $data The extra data array to encode.
-	 * @return string|null JSON-encoded sanitized data, or null if input is empty.
+	 * @return string|null JSON-encoded sanitized data, or null if input is empty or encoding fails.
 	 */
-	private function encode_extra_data( ?array $data ): ?string {
+	private static function encode_extra_data( ?array $data ): ?string {
 		if ( ! $data ) {
 			return null;
 		}
@@ -215,6 +218,7 @@ class Insert_Rule_Data {
 				}
 			}
 		);
-		return wp_json_encode( $data );
+		$encoded = wp_json_encode( $data );
+		return false !== $encoded ? $encoded : null;
 	}
 }
