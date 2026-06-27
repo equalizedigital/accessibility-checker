@@ -14,8 +14,8 @@
 
 declare( strict_types=1 );
 
-const EDAC_SINCE_TOOL_EXIT_OK = 0;
-const EDAC_SINCE_TOOL_EXIT_BAD_ARGS = 1;
+const EDAC_SINCE_TOOL_EXIT_OK            = 0;
+const EDAC_SINCE_TOOL_EXIT_BAD_ARGS      = 1;
 const EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR = 2;
 
 $opts = getopt(
@@ -32,65 +32,66 @@ $opts = getopt(
 );
 
 if ( isset( $opts['help'] ) ) {
-	echo "Usage: php tools/update-since-tags.php --version=<x.y.z> [options]\n\n";
-	echo "Options:\n";
-	echo "  --root=<path>                Root directory to scan (default: current working directory)\n";
-	echo "  --placeholder=<value>        Placeholder token after @since (default: x.x.x)\n";
-	echo "  --changed-since-tag=<tag>    Only scan tracked PHP files changed since this Git tag/ref\n";
-	echo "  --changed-since-last-tag     Only scan tracked PHP files changed since latest Git tag\n";
-	echo "  --dry-run                    Show what would be changed without writing files\n";
-	echo "  --help                       Show this help\n";
-	exit( EDAC_SINCE_TOOL_EXIT_OK );
+	edac_write_line( 'Usage: php tools/update-since-tags.php --version=<x.y.z> [options]' );
+	edac_write_line( '' );
+	edac_write_line( 'Options:' );
+	edac_write_line( '  --root=<path>                Root directory to scan (default: current working directory)' );
+	edac_write_line( '  --placeholder=<value>        Placeholder token after @since (default: x.x.x)' );
+	edac_write_line( '  --changed-since-tag=<tag>    Only scan tracked PHP files changed since this Git tag/ref' );
+	edac_write_line( '  --changed-since-last-tag     Only scan tracked PHP files changed since latest Git tag' );
+	edac_write_line( '  --dry-run                    Show what would be changed without writing files' );
+	edac_write_line( '  --help                       Show this help' );
+	exit( EDAC_SINCE_TOOL_EXIT_OK ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 // Backward compatibility for the earlier positional-argument usage.
 $version = $opts['version'] ?? ( $argv[1] ?? '' );
 if ( ! is_string( $version ) || ! preg_match( '/^\d+\.\d+\.\d+$/', $version ) ) {
-	fwrite( STDERR, "Error: --version is required and must be in x.y.z format.\n" );
-	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS );
+	edac_write_line( 'Error: --version is required and must be in x.y.z format.', STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 $root = $opts['root'] ?? dirname( __DIR__ );
 if ( ! is_string( $root ) || ! is_dir( $root ) ) {
-	fwrite( STDERR, 'Error: root directory does not exist: ' . (string) $root . "\n" );
-	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS );
+	edac_write_line( 'Error: root directory does not exist: ' . (string) $root, STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 $root = rtrim( (string) $root, DIRECTORY_SEPARATOR );
 
 $placeholder = $opts['placeholder'] ?? 'x.x.x';
 if ( ! is_string( $placeholder ) || '' === trim( $placeholder ) ) {
-	fwrite( STDERR, "Error: --placeholder must be a non-empty string.\n" );
-	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS );
+	edac_write_line( 'Error: --placeholder must be a non-empty string.', STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
-$changed_since_tag = $opts['changed-since-tag'] ?? null;
+$changed_since_tag      = $opts['changed-since-tag'] ?? null;
 $changed_since_last_tag = isset( $opts['changed-since-last-tag'] );
-$dry_run = isset( $opts['dry-run'] );
+$dry_run                = isset( $opts['dry-run'] );
 
 if ( null !== $changed_since_tag && $changed_since_last_tag ) {
-	fwrite( STDERR, "Error: use either --changed-since-tag or --changed-since-last-tag, not both.\n" );
-	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS );
+	edac_write_line( 'Error: use either --changed-since-tag or --changed-since-last-tag, not both.', STDERR );
+	exit( EDAC_SINCE_TOOL_EXIT_BAD_ARGS ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 if ( $changed_since_last_tag ) {
 	$changed_since_tag = trim( edac_run_git( $root, 'describe --tags --abbrev=0' ) );
 	if ( '' === $changed_since_tag ) {
-		fwrite( STDERR, "Error: no tags found to use with --changed-since-last-tag.\n" );
-		exit( EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR );
+		edac_write_line( 'Error: no tags found to use with --changed-since-last-tag.', STDERR );
+		exit( EDAC_SINCE_TOOL_EXIT_RUNTIME_ERROR ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	}
 }
 
 $excluded_dirs = [ '.git', 'vendor', 'node_modules', 'build', 'dist' ];
-$php_files = ( null !== $changed_since_tag )
+$php_files     = ( null !== $changed_since_tag )
 	? edac_get_changed_php_files_since_ref( $root, (string) $changed_since_tag )
 	: edac_get_all_php_files( $root, $excluded_dirs );
 
 $placeholder_regex = preg_quote( $placeholder, '/' );
-$pattern = '/@since(\s+)' . $placeholder_regex . '/i';
-$replacement = '@since${1}' . $version;
+$pattern           = '/@since(\s+)' . $placeholder_regex . '/i';
+$replacement       = '@since${1}' . $version;
 
 $updated_files = 0;
-$updated_tags = 0;
+$updated_tags  = 0;
 $scanned_files = 0;
 
 foreach ( $php_files as $file_path ) {
@@ -102,7 +103,7 @@ foreach ( $php_files as $file_path ) {
 
 	$contents = file_get_contents( $file_path ); // phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
 	if ( false === $contents ) {
-		fwrite( STDERR, "Warning: unable to read file: {$file_path}\n" );
+		edac_write_line( "Warning: unable to read file: {$file_path}", STDERR );
 		continue;
 	}
 
@@ -119,24 +120,24 @@ foreach ( $php_files as $file_path ) {
 	$display_path = ltrim( str_replace( $root, '', $file_path ), DIRECTORY_SEPARATOR );
 
 	if ( $dry_run ) {
-		echo "Would update {$count} tag(s) in {$display_path}\n";
+		edac_write_line( "Would update {$count} tag(s) in {$display_path}" );
 	} else {
 		$write_result = file_put_contents( $file_path, $new_contents ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents
 		if ( false === $write_result ) {
-			fwrite( STDERR, "Warning: unable to write file: {$file_path}\n" );
+			edac_write_line( "Warning: unable to write file: {$file_path}", STDERR );
 			continue;
 		}
-		echo "Updated {$count} tag(s) in {$display_path}\n";
+		edac_write_line( "Updated {$count} tag(s) in {$display_path}" );
 	}
 
 	++$updated_files;
 	$updated_tags += (int) $count;
 }
 
-$mode = $dry_run ? 'DRY RUN' : 'DONE';
-echo "{$mode}: replaced {$updated_tags} placeholder @since tag(s) across {$updated_files} file(s); scanned {$scanned_files} PHP file(s).\n";
+$status_label = $dry_run ? 'DRY RUN' : 'DONE';
+edac_write_line( "{$status_label}: replaced {$updated_tags} placeholder @since tag(s) across {$updated_files} file(s); scanned {$scanned_files} PHP file(s)." );
 
-exit( EDAC_SINCE_TOOL_EXIT_OK );
+exit( EDAC_SINCE_TOOL_EXIT_OK ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 /**
  * Get all PHP files in the repository, excluding known dependency/build dirs.
@@ -146,7 +147,7 @@ exit( EDAC_SINCE_TOOL_EXIT_OK );
  * @return string[]
  */
 function edac_get_all_php_files( string $root, array $excluded_dirs ): array {
-	$files = [];
+	$files    = [];
 	$iterator = new RecursiveIteratorIterator(
 		new RecursiveDirectoryIterator( $root, RecursiveDirectoryIterator::SKIP_DOTS )
 	);
@@ -156,7 +157,7 @@ function edac_get_all_php_files( string $root, array $excluded_dirs ): array {
 			continue;
 		}
 
-		$path = $item->getPathname();
+		$path          = $item->getPathname();
 		$relative_path = ltrim( str_replace( $root, '', $path ), DIRECTORY_SEPARATOR );
 
 		foreach ( $excluded_dirs as $excluded ) {
@@ -184,7 +185,7 @@ function edac_get_all_php_files( string $root, array $excluded_dirs ): array {
  * @return string[]
  */
 function edac_get_changed_php_files_since_ref( string $root, string $ref ): array {
-	$cmd = 'diff --name-only ' . escapeshellarg( $ref . '..HEAD' ) . ' -- ' . escapeshellarg( '*.php' );
+	$cmd    = 'diff --name-only ' . escapeshellarg( $ref . '..HEAD' ) . ' -- ' . escapeshellarg( '*.php' );
 	$output = edac_run_git( $root, $cmd );
 
 	$files = [];
@@ -212,10 +213,19 @@ function edac_get_changed_php_files_since_ref( string $root, string $ref ): arra
  * @return string
  */
 function edac_run_git( string $root, string $args ): string {
-	$cmd = 'git -C ' . escapeshellarg( $root ) . ' ' . $args . ' 2>/dev/null';
+	$cmd    = 'git -C ' . escapeshellarg( $root ) . ' ' . $args . ' 2>/dev/null';
 	$output = shell_exec( $cmd ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.system_calls_shell_exec
 
 	return is_string( $output ) ? $output : '';
 }
 
-
+/**
+ * Write a line to STDOUT/STDERR for CLI usage.
+ *
+ * @param string   $message Message to output.
+ * @param resource $stream  Output stream, STDOUT by default.
+ * @return void
+ */
+function edac_write_line( string $message, $stream = STDOUT ): void {
+	fwrite( $stream, $message . "\n" ); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_fwrite
+}
