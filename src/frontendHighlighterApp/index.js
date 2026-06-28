@@ -1371,19 +1371,19 @@ class AccessibilityCheckerHighlight {
 			}
 			if ( issueContent ) {
 				issueContent.style.display = 'block';
-			}
 
-			/**
-			 * Fires after the issue detail panel has been rendered.
-			 *
-			 * Pro plugin uses this to append Edit / Delete buttons for manual issues.
-			 *
-			 * @since x.x.x
-			 *
-			 * @param {Object}      issue     The issue data object.
-			 * @param {HTMLElement} contentEl The `.edac-highlight-panel-controls-content-issue` element.
-			 */
-			doAction( 'edac.highlighter.issueDetail', matchingObj, issueContent );
+				/**
+				 * Fires after the issue detail panel has been rendered.
+				 *
+				 * Pro plugin uses this to append Edit / Delete buttons for manual issues.
+				 *
+				 * @since x.x.x
+				 *
+				 * @param {Object}      issue     The issue data object.
+				 * @param {HTMLElement} contentEl The `.edac-highlight-panel-controls-content-issue` element.
+				 */
+				doAction( 'edac.highlighter.issueDetail', matchingObj, issueContent );
+			}
 		}
 	}
 
