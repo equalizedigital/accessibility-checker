@@ -84,9 +84,9 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            node-${{ runner.os }}-
+            ${{ runner.os }}-node_modules-
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
