@@ -808,8 +808,8 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	}
 
 	$sql = 1 === $pre
-		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s"
-		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s";
+		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s AND (source = 'automated' OR source IS NULL)"
+		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s AND (source = 'automated' OR source IS NULL)";
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	$wpdb->query(
@@ -1176,4 +1176,29 @@ function edac_icon( string $name = 'check', string $type = '', bool $aria_hidden
 	return '<span class="' . esc_attr( $class_attr ) . '" ' . $aria_attrs . '>'
 		. $svgs[ $name ]
 		. '</span>';
+}
+
+/**
+ * Returns the map of plugin capabilities to their default WordPress roles.
+ *
+ * Each key is a capability slug; each value is an array of role names that
+ * receive the capability on activation and lose it on deactivation.
+ *
+ * Filterable so the pro plugin (and any third-party add-on) can register
+ * additional capabilities through the same activate/deactivate system
+ * without modifying the free plugin.
+ *
+ * @since x.x.x
+ *
+ * @return array<string, string[]> Capability slug => role names.
+ */
+function edac_get_plugin_capabilities(): array {
+	/**
+	 * Filters the plugin capability map used during activation and deactivation.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param array<string, string[]> $caps Capability slug => array of role names.
+	 */
+	return apply_filters( 'edac_plugin_capabilities', [] );
 }

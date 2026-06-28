@@ -68,6 +68,7 @@ class Insert_Rule_Data {
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
 			'extra_data'        => $extra_data,
+			'source'            => 'automated',
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
@@ -88,7 +89,7 @@ class Insert_Rule_Data {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
+				"SELECT postid, ignre FROM %i WHERE type = %s AND postid = %d AND rule = %s AND selector = %s AND siteid = %d AND (source = 'automated' OR source IS NULL)",
 				$table_name,
 				$rule_data['type'],
 				$rule_data['postid'],
@@ -124,6 +125,7 @@ class Insert_Rule_Data {
 						'xpath'             => $rule_data['xpath'],
 						'ignre'             => $rule_data['ignre'],
 						'extra_data'        => self::encode_extra_data( is_array( $rule_data['extra_data'] ) ? $rule_data['extra_data'] : null ),
+						'source'            => 'automated',
 					],
 					[
 						'siteid'   => $rule_data['siteid'],
@@ -174,6 +176,7 @@ class Insert_Rule_Data {
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),
 				'extra_data'        => self::encode_extra_data( is_array( $extra_data_raw ) ? $extra_data_raw : null ),
+				'source'            => 'automated',
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),

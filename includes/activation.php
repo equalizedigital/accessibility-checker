@@ -34,4 +34,14 @@ function edac_activation() {
 	// Set transient to trigger redirect to welcome page.
 	// This will be checked on admin_init and deleted after redirect.
 	set_transient( 'edac_activation_redirect', true, 60 );
+
+	// Grant plugin capabilities to their default roles.
+	foreach ( edac_get_plugin_capabilities() as $cap => $roles ) {
+		foreach ( $roles as $role_name ) {
+			$role = get_role( $role_name );
+			if ( $role ) {
+				$role->add_cap( $cap );
+			}
+		}
+	}
 }

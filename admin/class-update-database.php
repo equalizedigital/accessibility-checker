@@ -64,6 +64,7 @@ class Update_Database {
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
 				extra_data text NULL,
+				source text NULL,
 				recordcheck mediumint(9) NOT NULL,
 				created timestamp NOT NULL default CURRENT_TIMESTAMP,
 				user bigint(20) NOT NULL,
@@ -92,6 +93,15 @@ class Update_Database {
 
 			// 1.0.8: Added extra_data column. dbDelta() handles ADD COLUMN automatically
 			// when the column appears in the CREATE TABLE DDL above; no data migration required.
+
+			// 1.0.9: Added source column. Backfill existing rows to 'automated' since text
+			// columns cannot carry a DB-level DEFAULT in MySQL 5.7. Also grant plugin
+			// capabilities here so existing users who update (rather than reactivate)
+			// receive them — register_activation_hook does not fire on plugin updates.
+			if ( version_compare( $db_version, '1.0.9', '<' ) ) {
+				$this->migrate_source_column( $table_name );
+				$this->grant_plugin_capabilities();
+			}
 		}
 
 		// Update database version option.
@@ -120,6 +130,52 @@ class Update_Database {
 		}
 
 		delete_option( 'edac_license_key' );
+	}
+
+	/**
+	 * Backfill existing rows so every row has source = 'automated'.
+	 *
+	 * The source column is declared NULL in the CREATE TABLE DDL so dbDelta can add it
+	 * to existing tables without a DEFAULT. PHP always writes the value explicitly on
+	 * insert, but rows created before 1.0.9 need a one-time backfill.
+	 *
+	 * @since x.x.x
+	 * @param string $table_name The full table name including prefix.
+	 * @return void
+	 */
+	private function migrate_source_column( string $table_name ): void {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration query.
+		$wpdb->query(
+			$wpdb->prepare(
+				'UPDATE %i SET source = %s WHERE source IS NULL',
+				$table_name,
+				'automated'
+			)
+		);
+	}
+
+	/**
+	 * Grant plugin capabilities to their default roles.
+	 *
+	 * Called during the 1.0.9 migration so that users who update the plugin
+	 * (rather than deactivate and reactivate) also receive the capabilities.
+	 * Uses edac_get_plugin_capabilities() so that the pro plugin's caps — registered
+	 * via the edac_plugin_capabilities filter at plugins_loaded — are included when
+	 * this migration runs on admin_init.
+	 *
+	 * @since x.x.x
+	 * @return void
+	 */
+	private function grant_plugin_capabilities(): void {
+		foreach ( edac_get_plugin_capabilities() as $cap => $roles ) {
+			foreach ( $roles as $role_name ) {
+				$role = get_role( $role_name );
+				if ( $role ) {
+					$role->add_cap( $cap );
+				}
+			}
+		}
 	}
 
 	/**

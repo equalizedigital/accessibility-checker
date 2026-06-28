@@ -143,11 +143,20 @@ class Enqueue_Frontend {
 
 
 			wp_enqueue_style( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
-			wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
+			wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/frontendHighlighterApp.bundle.js', [ 'wp-hooks' ], EDAC_VERSION, false );
 
-			wp_localize_script(
-				'edac-frontend-highlighter-app',
-				'edacFrontendHighlighterApp',
+			/**
+			 * Filter the data passed to the frontend highlighter JavaScript app.
+			 *
+			 * Pro plugin hooks in to add capability flags such as
+			 * `canCreateManualIssues`, `canEditManualIssues`, and `canDeleteManualIssues`.
+			 *
+			 * @since x.x.x
+			 *
+			 * @param array $app_data The data array passed to wp_localize_script.
+			 */
+			$app_data = apply_filters(
+				'edac_frontend_highlighter_app_data',
 				[
 					'postID'           => $post_id,
 					'nonce'            => wp_create_nonce( 'frontend-highlighter' ),
@@ -168,6 +177,8 @@ class Enqueue_Frontend {
 					'landmarkTypes'    => edac_get_landmark_types(),
 				]
 			);
+
+			wp_localize_script( 'edac-frontend-highlighter-app', 'edacFrontendHighlighterApp', $app_data );
 
 			wp_set_script_translations( 'edac-frontend-highlighter-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
