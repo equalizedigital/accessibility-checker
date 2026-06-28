@@ -95,9 +95,17 @@ jobs:
           tools: composer
           coverage: none
 
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-vendor-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-vendor-
+
       - name: Install Composer dependencies
         run: |
-          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
+          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --prefer-offline --no-progress --no-interaction; else echo "No composer.json"; fi
 
       - name: Install npm dependencies
         run: |

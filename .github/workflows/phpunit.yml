@@ -82,11 +82,20 @@ jobs:
           dependency-versions: "highest"
           # But make it selective.
           composer-options: "yoast/wp-test-utils --with-dependencies"
-          # Bust the cache at least once a month - output format: YYYY-MM-DD.
-          custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-3)) days" "+%F")
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache WordPress test library
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/wordpress-tests-lib
+            /tmp/wordpress
+          key: ${{ runner.os }}-wordpress-${{ matrix.wp_version }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-wordpress-${{ matrix.wp_version }}-
+
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
         run: |

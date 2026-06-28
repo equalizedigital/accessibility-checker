@@ -26,10 +26,18 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-jest-node_modules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-jest-node_modules-
+
       - name: Install dependencies (skipping postinstall)
         run: |
           npm config set ignore-scripts true
-          npm install
+          npm ci --prefer-offline --no-audit
 
       - name: Run Jest tests
         run: npm run test:jest
