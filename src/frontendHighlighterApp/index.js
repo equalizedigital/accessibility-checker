@@ -5,7 +5,7 @@ import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __, _n, sprintf } from '@wordpress/i18n';
-import { doAction, applyFilters } from '@wordpress/hooks';
+import { doAction } from '@wordpress/hooks';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
@@ -185,17 +185,6 @@ class AccessibilityCheckerHighlight {
 			// Docked panel restored on page load — fetch issue data so the panel isn't empty.
 			this.panelOpen();
 		}
-
-		/**
-		 * Fires after the highlighter has finished initialising.
-		 *
-		 * Pro plugin uses this to register its manual-issues JS module.
-		 *
-		 * @since x.x.x
-		 *
-		 * @param {AccessibilityCheckerHighlight} highlighter The highlighter instance.
-		 */
-		doAction( 'edac.highlighter.init', this );
 	}
 
 	toggleMenu() {
@@ -1660,19 +1649,7 @@ class AccessibilityCheckerHighlight {
 			) );
 		}
 
-		/**
-		 * Filters the breakdown summary parts shown in the highlighter panel footer.
-		 *
-		 * Pro plugin uses this to append a "X Manual" summary part.
-		 *
-		 * @since x.x.x
-		 *
-		 * @param {string[]} parts  Summary parts array (Problems, Needs Review, Dismissed).
-		 * @param {Object}   counts Raw counts: errorCount, warningCount, ignoredCount.
-		 */
-		const filteredBreakdownParts = applyFilters( 'edac.highlighter.issueGroups', breakdownParts, { errorCount, warningCount, ignoredCount } );
-
-		div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ filteredBreakdownParts.join( ' · ' ) }</span>`;
+		div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ breakdownParts.join( ' · ' ) }</span>`;
 	}
 
 	/**
