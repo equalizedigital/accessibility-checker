@@ -1200,12 +1200,5 @@ function edac_get_plugin_capabilities(): array {
 	 *
 	 * @param array<string, string[]> $caps Capability slug => array of role names.
 	 */
-	return apply_filters(
-		'edac_plugin_capabilities',
-		[
-			'edac_create_manual_issues' => [ 'administrator', 'editor' ],
-			'edac_edit_manual_issues'   => [ 'administrator', 'editor' ],
-			'edac_delete_manual_issues' => [ 'administrator', 'editor' ],
-		]
-	);
+	return apply_filters( 'edac_plugin_capabilities', [] );
 }
