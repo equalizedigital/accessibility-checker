@@ -5,6 +5,7 @@ import { computePosition, autoUpdate } from '@floating-ui/dom';
 import { createFocusTrap } from 'focus-trap';
 import { isFocusable } from 'tabbable';
 import { __, _n, sprintf } from '@wordpress/i18n';
+import { doAction, applyFilters } from '@wordpress/hooks';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
@@ -184,6 +185,17 @@ class AccessibilityCheckerHighlight {
 			// Docked panel restored on page load — fetch issue data so the panel isn't empty.
 			this.panelOpen();
 		}
+
+		/**
+		 * Fires after the highlighter has finished initialising.
+		 *
+		 * Pro plugin uses this to register its manual-issues JS module.
+		 *
+		 * @since 1.0.9
+		 *
+		 * @param {AccessibilityCheckerHighlight} highlighter The highlighter instance.
+		 */
+		doAction( 'edac.highlighter.init', this );
 	}
 
 	toggleMenu() {
@@ -640,6 +652,17 @@ class AccessibilityCheckerHighlight {
 
 		document.body.insertAdjacentHTML( 'afterbegin', newElement );
 		const panel = document.getElementById( 'edac-highlight-panel' );
+
+		/**
+		 * Fires after the highlighter menu is added to the DOM.
+		 *
+		 * Pro plugin uses this to append additional menu items such as "Add Manual Issue".
+		 *
+		 * @since 1.0.9
+		 *
+		 * @param {HTMLElement} menuEl The `<ul role="menu">` element.
+		 */
+		doAction( 'edac.highlighter.menuItems', document.getElementById( 'edac-highlight-menu' ) );
 
 		// Override --wp-admin-theme-color with the correct value from the user's
 		// admin color scheme, since WordPress does not update this variable on the frontend.
@@ -1349,6 +1372,18 @@ class AccessibilityCheckerHighlight {
 			if ( issueContent ) {
 				issueContent.style.display = 'block';
 			}
+
+			/**
+			 * Fires after the issue detail panel has been rendered.
+			 *
+			 * Pro plugin uses this to append Edit / Delete buttons for manual issues.
+			 *
+			 * @since 1.0.9
+			 *
+			 * @param {Object}      issue     The issue data object.
+			 * @param {HTMLElement} contentEl The `.edac-highlight-panel-controls-content-issue` element.
+			 */
+			doAction( 'edac.highlighter.issueDetail', matchingObj, issueContent );
 		}
 	}
 
@@ -1625,7 +1660,19 @@ class AccessibilityCheckerHighlight {
 			) );
 		}
 
-		div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ breakdownParts.join( ' · ' ) }</span>`;
+		/**
+		 * Filters the breakdown summary parts shown in the highlighter panel footer.
+		 *
+		 * Pro plugin uses this to append a "X Manual" summary part.
+		 *
+		 * @since 1.0.9
+		 *
+		 * @param {string[]} parts  Summary parts array (Problems, Needs Review, Dismissed).
+		 * @param {Object}   counts Raw counts: errorCount, warningCount, ignoredCount.
+		 */
+		const filteredBreakdownParts = applyFilters( 'edac.highlighter.issueGroups', breakdownParts, { errorCount, warningCount, ignoredCount } );
+
+		div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ filteredBreakdownParts.join( ' · ' ) }</span>`;
 	}
 
 	/**

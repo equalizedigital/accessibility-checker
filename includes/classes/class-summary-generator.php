@@ -77,6 +77,7 @@ class Summary_Generator {
 		$summary['ignored']            = $this->count_ignored();
 		$summary['contrast_errors']    = $this->count_contrast_errors();
 		$summary['errors']            -= $summary['contrast_errors'];
+		$summary['manual_issues']      = $this->count_manual_issues();
 		$summary['content_grade']      = $this->calculate_content_grade();
 		$summary['readability']        = $this->get_readability( $summary );
 		$summary['simplified_summary'] = (bool) ( get_post_meta( $this->post_id, '_edac_simplified_summary', true ) );
@@ -141,7 +142,7 @@ class Summary_Generator {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 		$errors_count = $wpdb->get_var(
 			$wpdb->prepare(
-				'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
+				"SELECT count(*) FROM %i WHERE siteid = %d AND postid = %d AND ruletype = %s AND ignre = %d AND (source = 'automated' OR source IS NULL)",
 				$wpdb->prefix . 'accessibility_checker',
 				$this->site_id,
 				$this->post_id,
@@ -165,7 +166,7 @@ class Summary_Generator {
 		global $wpdb;
 
 		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
-		$warnings_where      = 'WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+		$warnings_where      = "WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d AND (source = 'automated' OR source IS NULL)";
 		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $warnings_parameters, 'link_blank' );
 			$warnings_where .= ' and rule != %s';
@@ -239,6 +240,34 @@ class Summary_Generator {
 	}
 
 	/**
+	 * Counts the number of active manual issues for the current post.
+	 *
+	 * Manual issues have source = 'manual' and are not dismissed (ignre = 0).
+	 * Pro plugin creates these via the REST API; the count is stored here so the
+	 * pro UI can display it without an extra DB query.
+	 *
+	 * @return int The count of active manual issues.
+	 *
+	 * @since 1.0.9
+	 */
+	private function count_manual_issues() {
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+		$count = $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT count(*) FROM %i WHERE siteid = %d AND postid = %d AND source = 'manual' AND ignre = %d",
+				$wpdb->prefix . 'accessibility_checker',
+				$this->site_id,
+				$this->post_id,
+				0
+			)
+		);
+
+		return (int) $count;
+	}
+
+	/**
 	 * Updates the issue density metadata for the current post.
 	 * This method calculates and updates the issue density based on the summary of accessibility issues
 	 * and the content length of the post.
@@ -259,7 +288,7 @@ class Summary_Generator {
 				count( $issue_density_array[0] ) > 0
 			)
 		) {
-			$issue_count    = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'];
+			$issue_count    = $summary['warnings'] + $summary['errors'] + $summary['contrast_errors'] + $summary['manual_issues'];
 			$element_count  = $issue_density_array[0][0];
 			$content_length = $issue_density_array[0][1];
 			$issue_density  = edac_get_issue_density( $issue_count, $element_count, $content_length );
@@ -330,6 +359,7 @@ class Summary_Generator {
 		update_post_meta( $this->post_id, '_edac_summary_warnings', absint( $summary['warnings'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_ignored', absint( $summary['ignored'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', absint( $summary['contrast_errors'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_manual_issues', absint( $summary['manual_issues'] ) );
 	}
 
 	/**
@@ -348,6 +378,7 @@ class Summary_Generator {
 			'warnings'           => absint( $summary['warnings'] ?? 0 ),
 			'ignored'            => absint( $summary['ignored'] ?? 0 ),
 			'contrast_errors'    => absint( $summary['contrast_errors'] ?? 0 ),
+			'manual_issues'      => absint( $summary['manual_issues'] ?? 0 ),
 			'content_grade'      => absint( $summary['content_grade'] ?? 0 ),
 			'readability'        => sanitize_text_field( $summary['readability'] ?? '' ),
 			'simplified_summary' => filter_var( $summary['simplified_summary'] ?? false, FILTER_VALIDATE_BOOLEAN ),

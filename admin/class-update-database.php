@@ -64,6 +64,7 @@ class Update_Database {
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
 				extra_data text NULL,
+				source text NULL,
 				recordcheck mediumint(9) NOT NULL,
 				created timestamp NOT NULL default CURRENT_TIMESTAMP,
 				user bigint(20) NOT NULL,
@@ -92,6 +93,12 @@ class Update_Database {
 
 			// 1.0.8: Added extra_data column. dbDelta() handles ADD COLUMN automatically
 			// when the column appears in the CREATE TABLE DDL above; no data migration required.
+
+			// 1.0.9: Added source column. Backfill existing rows to 'automated' since text
+			// columns cannot carry a DB-level DEFAULT in MySQL 5.7.
+			if ( version_compare( $db_version, '1.0.9', '<' ) ) {
+				$this->migrate_source_column( $table_name );
+			}
 		}
 
 		// Update database version option.
@@ -120,6 +127,29 @@ class Update_Database {
 		}
 
 		delete_option( 'edac_license_key' );
+	}
+
+	/**
+	 * Backfill existing rows so every row has source = 'automated'.
+	 *
+	 * The source column is declared NULL in the CREATE TABLE DDL so dbDelta can add it
+	 * to existing tables without a DEFAULT. PHP always writes the value explicitly on
+	 * insert, but rows created before 1.0.9 need a one-time backfill.
+	 *
+	 * @since 1.0.9
+	 * @param string $table_name The full table name including prefix.
+	 * @return void
+	 */
+	private function migrate_source_column( string $table_name ): void {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- One-time migration query.
+		$wpdb->query(
+			$wpdb->prepare(
+				'UPDATE %i SET source = %s WHERE source IS NULL',
+				$table_name,
+				'automated'
+			)
+		);
 	}
 
 	/**

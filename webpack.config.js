@@ -138,5 +138,6 @@ module.exports = {
 		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
 		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
 		'@wordpress/a11y': [ 'wp', 'a11y' ],
+		'@wordpress/hooks': [ 'wp', 'hooks' ],
 	},
 };

@@ -808,8 +808,8 @@ function edac_remove_corrected_posts( $post_ID, $type, $pre = 1, $ruleset = 'php
 	}
 
 	$sql = 1 === $pre
-		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s"
-		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s";
+		? "UPDATE {$wpdb->prefix}accessibility_checker SET recordcheck = %d WHERE siteid = %d AND postid = %d AND type = %s AND (source = 'automated' OR source IS NULL)"
+		: "DELETE FROM {$wpdb->prefix}accessibility_checker WHERE recordcheck = %d AND siteid = %d AND postid = %d AND type = %s AND (source = 'automated' OR source IS NULL)";
 
 	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 	$wpdb->query(
