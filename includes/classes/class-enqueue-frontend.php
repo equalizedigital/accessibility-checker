@@ -151,7 +151,7 @@ class Enqueue_Frontend {
 			 * Pro plugin hooks in to add capability flags such as
 			 * `canCreateManualIssues`, `canEditManualIssues`, and `canDeleteManualIssues`.
 			 *
-			 * @since 1.0.9
+			 * @since x.x.x
 			 *
 			 * @param array $app_data The data array passed to wp_localize_script.
 			 */

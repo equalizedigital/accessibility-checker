@@ -191,7 +191,7 @@ class AccessibilityCheckerHighlight {
 		 *
 		 * Pro plugin uses this to register its manual-issues JS module.
 		 *
-		 * @since 1.0.9
+		 * @since x.x.x
 		 *
 		 * @param {AccessibilityCheckerHighlight} highlighter The highlighter instance.
 		 */
@@ -658,7 +658,7 @@ class AccessibilityCheckerHighlight {
 		 *
 		 * Pro plugin uses this to append additional menu items such as "Add Manual Issue".
 		 *
-		 * @since 1.0.9
+		 * @since x.x.x
 		 *
 		 * @param {HTMLElement} menuEl The `<ul role="menu">` element.
 		 */
@@ -1378,7 +1378,7 @@ class AccessibilityCheckerHighlight {
 			 *
 			 * Pro plugin uses this to append Edit / Delete buttons for manual issues.
 			 *
-			 * @since 1.0.9
+			 * @since x.x.x
 			 *
 			 * @param {Object}      issue     The issue data object.
 			 * @param {HTMLElement} contentEl The `.edac-highlight-panel-controls-content-issue` element.
@@ -1665,7 +1665,7 @@ class AccessibilityCheckerHighlight {
 		 *
 		 * Pro plugin uses this to append a "X Manual" summary part.
 		 *
-		 * @since 1.0.9
+		 * @since x.x.x
 		 *
 		 * @param {string[]} parts  Summary parts array (Problems, Needs Review, Dismissed).
 		 * @param {Object}   counts Raw counts: errorCount, warningCount, ignoredCount.

@@ -136,7 +136,7 @@ class Update_Database {
 	 * to existing tables without a DEFAULT. PHP always writes the value explicitly on
 	 * insert, but rows created before 1.0.9 need a one-time backfill.
 	 *
-	 * @since 1.0.9
+	 * @since x.x.x
 	 * @param string $table_name The full table name including prefix.
 	 * @return void
 	 */

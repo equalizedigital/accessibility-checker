@@ -248,7 +248,7 @@ class Summary_Generator {
 	 *
 	 * @return int The count of active manual issues.
 	 *
-	 * @since 1.0.9
+	 * @since x.x.x
 	 */
 	private function count_manual_issues() {
 		global $wpdb;
