@@ -32,6 +32,7 @@ class Activation_Redirect {
 	 * Initialize the activation redirect.
 	 *
 	 * @since 1.36.0
+	 * @return void
 	 */
 	public function init(): void {
 		add_action( 'admin_init', [ $this, 'maybe_redirect_to_welcome' ] );

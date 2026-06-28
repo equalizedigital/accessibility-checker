@@ -24,6 +24,8 @@ class Accessibility_Statement {
 
 	/**
 	 * Initialize WordPress hooks.
+	 *
+	 * @return void
 	 */
 	public function init_hooks() {
 		add_action( 'wp_footer', [ $this, 'output_accessibility_statement' ] );

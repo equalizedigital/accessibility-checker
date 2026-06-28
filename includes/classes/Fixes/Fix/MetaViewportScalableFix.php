@@ -81,6 +81,8 @@ class MetaViewportScalableFix implements FixInterface {
 
 	/**
 	 * Run the fix setting a scalable meta viewport tag.
+	 *
+	 * @return void
 	 */
 	public function run(): void {
 

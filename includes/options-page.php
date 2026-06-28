@@ -36,6 +36,8 @@ function edac_user_can_ignore() {
 
 /**
  * Add an options page under the Settings submenu
+ *
+ * @return void
  */
 function edac_add_options_page() {
 
@@ -92,6 +94,8 @@ function edac_add_options_page() {
 
 /**
  * Render the welcome page for plugin
+ *
+ * @return void
  */
 function edac_display_welcome_page() {
 	include_once plugin_dir_path( __DIR__ ) . 'partials/welcome-page.php';
@@ -99,6 +103,8 @@ function edac_display_welcome_page() {
 
 /**
  * Render the options page for plugin
+ *
+ * @return void
  */
 function edac_display_options_page() {
 	include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
@@ -106,6 +112,8 @@ function edac_display_options_page() {
 
 /**
  * Register settings
+ *
+ * @return void
  */
 function edac_register_setting() {
 
@@ -288,10 +296,10 @@ function edac_register_setting() {
 	);
 
 	// Register settings.
-	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
+	register_setting( 'edac_settings', 'edac_post_types', [ 'sanitize_callback' => 'edac_sanitize_post_types' ] );
 
-	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edac_delete_data', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
@@ -310,22 +318,24 @@ function edac_register_setting() {
 			'default'           => 'after',
 		]
 	);
-	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', 'edac_sanitize_checkbox' );
-	register_setting( 'edac_settings', 'edac_accessibility_policy_page', 'edac_sanitize_accessibility_policy_page' );
+	register_setting( 'edac_settings', 'edac_add_footer_accessibility_statement', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_include_accessibility_statement_link', [ 'sanitize_callback' => 'edac_sanitize_checkbox' ] );
+	register_setting( 'edac_settings', 'edac_accessibility_policy_page', [ 'sanitize_callback' => 'edac_sanitize_accessibility_policy_page' ] );
 
-	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', 'edac_sanitize_frontend_highlighter_position' );
+	register_setting( 'edac_settings', 'edac_frontend_highlighter_position', [ 'sanitize_callback' => 'edac_sanitize_frontend_highlighter_position' ] );
 
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
-	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
-	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_pro_archive_scanning' );
-	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_pro_taxonomy_terms' );
-	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_pro_ignore_roles' );
-	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'edac_sanitize_pro_summary_heading' );
+	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', [ 'sanitize_callback' => 'edac_sanitize_pro_scan_speed' ] );
+	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', [ 'sanitize_callback' => 'edac_sanitize_pro_archive_scanning' ] );
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', [ 'sanitize_callback' => 'edac_sanitize_pro_taxonomy_terms' ] );
+	register_setting( 'edac_settings', 'edacp_ignore_user_roles', [ 'sanitize_callback' => 'edac_sanitize_pro_ignore_roles' ] );
+	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', [ 'sanitize_callback' => 'edac_sanitize_pro_summary_heading' ] );
 }
 
 /**
  * Render the text for the general section
+ *
+ * @return void
  */
 function edac_general_cb() {
 	echo '<p>';
@@ -363,6 +373,8 @@ function edac_frontend_highlighter_section_cb() {
 
 /**
  * Render the text for the simplified summary section
+ *
+ * @return void
  */
 function edac_simplified_summary_cb() {
 	printf(
@@ -383,6 +395,8 @@ function edac_simplified_summary_cb() {
 
 /**
  * Render the text for the footer accessiblity statement section
+ *
+ * @return void
  */
 function edac_footer_accessibility_statement_cb() {
 	echo '<p>';
@@ -392,6 +406,8 @@ function edac_footer_accessibility_statement_cb() {
 
 /**
  * Render the text for the system settings section
+ *
+ * @return void
  */
 function edac_system_cb() {
 	echo '<p>';
@@ -403,6 +419,8 @@ function edac_system_cb() {
  * Render the dropdown input field for scan speed option.
  *
  * Note: this setting is purposefully using edacp as prefix for back compat reasons.
+ *
+ * @return void
  */
 function edac_full_site_scan_speed_cb() {
 
@@ -516,6 +534,8 @@ function edac_sanitize_scan_speed( $speed ) {
 
 /**
  * Render the radio input field for position option
+ *
+ * @return void
  */
 function edac_simplified_summary_position_cb() {
 	$position = get_option( 'edac_simplified_summary_position' );
@@ -581,6 +601,7 @@ function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
+	return '';
 }
 
 /**
@@ -599,6 +620,8 @@ function edac_sanitize_frontend_highlighter_position( string $position ): string
 
 /**
  * Render the radio input field for position option
+ *
+ * @return void
  */
 function edac_simplified_summary_prompt_cb() {
 	$prompt = get_option( 'edac_simplified_summary_prompt' );
@@ -634,10 +657,13 @@ function edac_sanitize_simplified_summary_prompt( $prompt ) {
 	if ( in_array( $prompt, [ 'when required', 'always', 'none' ], true ) ) {
 		return $prompt;
 	}
+	return '';
 }
 
 /**
  * Render the checkbox input field for post_types option
+ *
+ * @return void
  */
 function edac_post_types_cb() {
 
@@ -740,6 +766,8 @@ function edac_sanitize_post_types( $selected_post_types ) {
 
 /**
  * Render the checkbox input field for add footer accessibility statement option
+ *
+ * @return void
  */
 function edac_add_footer_accessibility_statement_cb() {
 
@@ -756,7 +784,9 @@ function edac_add_footer_accessibility_statement_cb() {
 }
 
 /**
- * Render the checkbox input field for add footer accessibility statement option
+ * Render the checkbox input field for include accessibility statement link option
+ *
+ * @return void
  */
 function edac_include_accessibility_statement_link_cb() {
 
@@ -780,6 +810,8 @@ function edac_include_accessibility_statement_link_cb() {
 
 /**
  * Render the select field for accessibility policy page option
+ *
+ * @return void
  */
 function edac_accessibility_policy_page_cb() {
 
@@ -801,10 +833,13 @@ function edac_sanitize_accessibility_policy_page( $page ) {
 	if ( $page ) {
 		return esc_url( $page );
 	}
+	return '';
 }
 
 /**
  * Render the accessibility statement preview
+ *
+ * @return void
  */
 function edac_accessibility_statement_preview_cb() {
 	echo wp_kses_post(
@@ -814,6 +849,8 @@ function edac_accessibility_statement_preview_cb() {
 
 /**
  * Render the checkbox input field for delete data option
+ *
+ * @return void
  */
 function edac_delete_data_cb() {
 
@@ -832,6 +869,8 @@ function edac_delete_data_cb() {
 
 /**
  * Render the checkbox input field for toggling metabox visibility in the block editor.
+ *
+ * @return void
  */
 function edac_show_metabox_in_block_editor_cb() {
 
@@ -1029,6 +1068,8 @@ function edac_sanitize_ignore_user_roles( $selected_roles ) {
 
 /**
  * Render the text for the permissions section
+ *
+ * @return void
  */
 function edac_permissions_section_cb() {
 	?>

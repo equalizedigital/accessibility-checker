@@ -50,6 +50,8 @@ class FixesPage implements PageInterface {
 
 	/**
 	 * Add the settings sections and fields and setup it's tabs and filter in for the content.
+	 *
+	 * @return void
 	 */
 	public function add_page() {
 
@@ -116,6 +118,8 @@ class FixesPage implements PageInterface {
 
 	/**
 	 * Render the page.
+	 *
+	 * @return void
 	 */
 	public function render_page() {
 		include_once EDAC_PLUGIN_DIR . 'partials/admin-page/fixes-page.php';
@@ -125,6 +129,8 @@ class FixesPage implements PageInterface {
 	 * Register the settings sections for this options page.
 	 *
 	 * Sections are passed through a filter so that other plugins can add their own.
+	 *
+	 * @return void
 	 */
 	public function register_settings_sections() {
 
@@ -172,6 +178,8 @@ class FixesPage implements PageInterface {
 	 * Register the settings fields and settings for this options page.
 	 *
 	 * It passed through a filter so that other plugins can add their own settings.
+	 *
+	 * @return void
 	 */
 	public function register_fields_and_settings() {
 		/**
@@ -215,6 +223,8 @@ class FixesPage implements PageInterface {
 
 	/**
 	 * Callback for the general settings section that renders a description for it.
+	 *
+	 * @return void
 	 */
 	public function fixes_section_general_cb() {
 		echo '<p>' . esc_html__( 'These fixes help improve accessibility by modifying HTML elements and behaviors on your site.', 'accessibility-checker' ) . '</p>';

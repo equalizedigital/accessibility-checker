@@ -37,9 +37,9 @@ class Helpers {
 	/**
 	 * Localizes the format of a number.
 	 *
-	 * @param int     $number number to format.
-	 * @param integer $precision number of decimals.
-	 * @return integer
+	 * @param int|float $number number to format.
+	 * @param integer   $precision number of decimals.
+	 * @return string|false
 	 */
 	public static function format_number( $number, $precision = 0 ) {
 
@@ -62,9 +62,9 @@ class Helpers {
 	/**
 	 * Localizes the format of a percentage.
 	 *
-	 * @param init    $number number to format.
-	 * @param integer $precision number of decimals.
-	 * @return integer
+	 * @param int|float $number number to format.
+	 * @param integer   $precision number of decimals.
+	 * @return string|int|float
 	 */
 	public static function format_percentage( $number, $precision = 2 ) {
 
@@ -91,9 +91,9 @@ class Helpers {
 	/**
 	 * Localizes the format of a date.
 	 *
-	 * @param string  $date date to format.
-	 * @param boolean $include_time whether to include time in the formatted date.
-	 * @return integer
+	 * @param int|string $date date to format, as a Unix timestamp or date string.
+	 * @param boolean    $include_time whether to include time in the formatted date.
+	 * @return string
 	 */
 	public static function format_date( $date, $include_time = false ) {
 
@@ -191,6 +191,7 @@ class Helpers {
 	 * Filter out inactive rules from the results returned.
 	 *
 	 * @param array $results The results to filter.
+	 * @return array
 	 */
 	public static function filter_results_to_only_active_rules( $results ): array {
 		// determine which rules are active.

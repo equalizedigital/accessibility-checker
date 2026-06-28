@@ -18,11 +18,15 @@ interface PageInterface {
 
 	/**
 	 * Add the page to the admin menu and register any settings.
+	 *
+	 * @return void
 	 */
 	public function add_page();
 
 	/**
 	 * Render the page.
+	 *
+	 * @return void
 	 */
 	public function render_page();
 }
