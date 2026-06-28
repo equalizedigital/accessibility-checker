@@ -141,7 +141,7 @@ class Summary_Generator {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
 		$errors_count = $wpdb->get_var(
 			$wpdb->prepare(
-				'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
+				"SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d and (source = 'automated' OR source IS NULL)",
 				$wpdb->prefix . 'accessibility_checker',
 				$this->site_id,
 				$this->post_id,
@@ -165,7 +165,7 @@ class Summary_Generator {
 		global $wpdb;
 
 		$warnings_parameters = [ get_current_blog_id(), $this->post_id, 'warning', 0 ];
-		$warnings_where      = 'WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d';
+		$warnings_where      = "WHERE siteid = %d and postid = %d and ruletype = %s and ignre = %d and (source = 'automated' OR source IS NULL)";
 		if ( defined( 'ANWW_VERSION' ) ) {
 			array_push( $warnings_parameters, 'link_blank' );
 			$warnings_where .= ' and rule != %s';
