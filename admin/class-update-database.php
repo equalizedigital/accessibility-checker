@@ -95,9 +95,12 @@ class Update_Database {
 			// when the column appears in the CREATE TABLE DDL above; no data migration required.
 
 			// 1.0.9: Added source column. Backfill existing rows to 'automated' since text
-			// columns cannot carry a DB-level DEFAULT in MySQL 5.7.
+			// columns cannot carry a DB-level DEFAULT in MySQL 5.7. Also grant plugin
+			// capabilities here so existing users who update (rather than reactivate)
+			// receive them — register_activation_hook does not fire on plugin updates.
 			if ( version_compare( $db_version, '1.0.9', '<' ) ) {
 				$this->migrate_source_column( $table_name );
+				$this->grant_plugin_capabilities();
 			}
 		}
 
@@ -150,6 +153,29 @@ class Update_Database {
 				'automated'
 			)
 		);
+	}
+
+	/**
+	 * Grant plugin capabilities to their default roles.
+	 *
+	 * Called during the 1.0.9 migration so that users who update the plugin
+	 * (rather than deactivate and reactivate) also receive the capabilities.
+	 * Uses edac_get_plugin_capabilities() so that the pro plugin's caps — registered
+	 * via the edac_plugin_capabilities filter at plugins_loaded — are included when
+	 * this migration runs on admin_init.
+	 *
+	 * @since x.x.x
+	 * @return void
+	 */
+	private function grant_plugin_capabilities(): void {
+		foreach ( edac_get_plugin_capabilities() as $cap => $roles ) {
+			foreach ( $roles as $role_name ) {
+				$role = get_role( $role_name );
+				if ( $role ) {
+					$role->add_cap( $cap );
+				}
+			}
+		}
 	}
 
 	/**
