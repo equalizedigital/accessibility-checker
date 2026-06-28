@@ -1177,3 +1177,35 @@ function edac_icon( string $name = 'check', string $type = '', bool $aria_hidden
 		. $svgs[ $name ]
 		. '</span>';
 }
+
+/**
+ * Returns the map of plugin capabilities to their default WordPress roles.
+ *
+ * Each key is a capability slug; each value is an array of role names that
+ * receive the capability on activation and lose it on deactivation.
+ *
+ * Filterable so the pro plugin (and any third-party add-on) can register
+ * additional capabilities through the same activate/deactivate system
+ * without modifying the free plugin.
+ *
+ * @since x.x.x
+ *
+ * @return array<string, string[]> Capability slug => role names.
+ */
+function edac_get_plugin_capabilities(): array {
+	/**
+	 * Filters the plugin capability map used during activation and deactivation.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param array<string, string[]> $caps Capability slug => array of role names.
+	 */
+	return apply_filters(
+		'edac_plugin_capabilities',
+		[
+			'edac_create_manual_issues' => [ 'administrator', 'editor' ],
+			'edac_edit_manual_issues'   => [ 'administrator', 'editor' ],
+			'edac_delete_manual_issues' => [ 'administrator', 'editor' ],
+		]
+	);
+}

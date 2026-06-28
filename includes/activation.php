@@ -35,16 +35,11 @@ function edac_activation() {
 	// This will be checked on admin_init and deleted after redirect.
 	set_transient( 'edac_activation_redirect', true, 60 );
 
-	// Grant manual issues capabilities to administrator and editor.
-	$manual_caps = [
-		'edac_create_manual_issues',
-		'edac_edit_manual_issues',
-		'edac_delete_manual_issues',
-	];
-	foreach ( [ 'administrator', 'editor' ] as $role_name ) {
-		$role = get_role( $role_name );
-		if ( $role ) {
-			foreach ( $manual_caps as $cap ) {
+	// Grant plugin capabilities to their default roles.
+	foreach ( edac_get_plugin_capabilities() as $cap => $roles ) {
+		foreach ( $roles as $role_name ) {
+			$role = get_role( $role_name );
+			if ( $role ) {
 				$role->add_cap( $cap );
 			}
 		}
