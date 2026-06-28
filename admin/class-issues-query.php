@@ -94,6 +94,10 @@ class Issues_Query {
 			$this->query['where_base'] = $wpdb->prepare( 'WHERE siteid=%d and ignre=%d and ignre_global=%d ', [ $siteid, 0, 0 ] );
 		}
 
+		// Exclude manual issues from all scanner counts; source IS NULL covers rows
+		// inserted before the 1.0.9 migration backfill has run.
+		$this->query['where_base'] .= " AND (source = 'automated' OR source IS NULL)";
+
 		$filter_defaults = [
 			'post_types' => [],
 			'rule_types' => [],

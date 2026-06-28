@@ -151,6 +151,12 @@ class Frontend_Highlight {
 			$array['landmark_selector'] = $result['landmark_selector'] ?? '';
 			$array['source']            = $result['source'] ?? 'automated';
 			$array['extra_data']        = isset( $result['extra_data'] ) ? json_decode( $result['extra_data'], true ) : null;
+			if ( is_array( $array['extra_data'] ) && ! empty( $array['extra_data']['screenshot_id'] ) ) {
+				$screenshot_url = wp_get_attachment_url( (int) $array['extra_data']['screenshot_id'] );
+				if ( $screenshot_url ) {
+					$array['extra_data']['screenshot_url'] = $screenshot_url;
+				}
+			}
 
 			$issues[] = $array;
 
