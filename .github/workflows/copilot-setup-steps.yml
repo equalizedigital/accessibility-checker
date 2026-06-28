@@ -64,10 +64,7 @@ jobs:
             ${{ runner.os }}-docker-
 
       - name: Install npm dependencies
-        run: |
-          # Skip postinstall scripts to avoid Cypress download issues in CI
-          npm config set ignore-scripts true
-          npm ci --prefer-offline --no-audit
+        run: npm ci --ignore-scripts --prefer-offline --no-audit
 
       - name: Install Composer dependencies
         run: |

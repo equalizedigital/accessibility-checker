@@ -81,6 +81,7 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Cache node_modules
+        id: cache-node-modules
         uses: actions/cache@v4
         with:
           path: node_modules
@@ -108,16 +109,8 @@ jobs:
           if [ -f composer.json ]; then composer install --no-dev --prefer-dist --prefer-offline --no-progress --no-interaction; else echo "No composer.json"; fi
 
       - name: Install npm dependencies
-        run: |
-          if [ -f package.json ]; then
-            if [ -d node_modules ]; then
-              echo "node_modules cache hit, skipping install"
-            else
-              npm ci --prefer-offline --no-audit
-            fi
-          else
-            echo "No package.json"
-          fi
+        if: steps.cache-node-modules.outputs.cache-hit != 'true' && hashFiles('package.json') != ''
+        run: npm ci --prefer-offline --no-audit
 
       - name: Extract plugin version and commit hash
         id: version

@@ -29,6 +29,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Cache Node.js modules
+        id: cache-node-modules
         uses: actions/cache@v4
         with:
           path: node_modules
@@ -37,6 +38,7 @@ jobs:
             ${{ runner.os }}-node_modules-
       # The lint stage doesn't run the unit tests or use code style, so no need for PHPUnit, WPCS or phpcompatibility.
       - name: 'Install NPM packages'
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci --prefer-offline --no-audit --ignore-scripts
 
       - name: Get only files changed in this PR
