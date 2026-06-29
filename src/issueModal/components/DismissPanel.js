@@ -142,7 +142,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 						) }
 						{ isIgnored ? (
 							<>
-								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_global ) && (
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || isGloballyDismissed ) && (
 									<dl className="edac-analysis__dismissed-meta">
 
 										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
