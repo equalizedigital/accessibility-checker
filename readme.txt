@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 1.44.1
+Stable tag: 1.45.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-06-30 - version 1.45.0
+* Updated - default dismiss reasons are now reordered so first item is confirmed accessible.
+* New - added filter edac_dismiss_reasons to allow adding or removing dismiss reasons.
+* Fix - keep focus well positioned when clearing dismiss notice.
 
 2026-06-23 - version 1.44.1
 * Updated - improved the dismiss panel screen reader announcements.

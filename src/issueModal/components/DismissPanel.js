@@ -27,7 +27,15 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  * @param {boolean}  props.forceGlobal  - When true, the primary dismiss action targets all pages (global dismiss).
  * @param {boolean}  props.isPro        - Whether the current UI is running in Pro.
  */
-const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceGlobal = false, isPro = typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' } ) => {
+const DismissPanel = ( {
+	issue,
+	isOpen,
+	onToggle,
+	onIgnore,
+	onCloseModal,
+	forceGlobal = false,
+	isPro = typeof window !== 'undefined' && ( window.edac_editor_app?.pro === '1' || window.edac_script_vars?.pro === '1' ),
+} ) => {
 	const panelRef = useRef( null );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'accessible' );
@@ -142,7 +150,7 @@ const DismissPanel = ( { issue, isOpen, onToggle, onIgnore, onCloseModal, forceG
 						) }
 						{ isIgnored ? (
 							<>
-								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || issue?.ignre_global ) && (
+								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || isGloballyDismissed ) && (
 									<dl className="edac-analysis__dismissed-meta">
 
 										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (

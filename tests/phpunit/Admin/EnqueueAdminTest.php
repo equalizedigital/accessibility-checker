@@ -126,6 +126,28 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The pro flag in edac_script_vars reflects defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID,
+	 * so non-editor admin pages (e.g. the Issues Explorer) can gate pro-only UI without
+	 * relying on window.edac_editor_app, which is only localized on post.php/post-new.php.
+	 */
+	public function testLocalizedAdminDataIncludesProFlag(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected_pro   = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
+
+		// wp_localize_script() stringifies booleans as "1" / "" (matching the
+		// === '1' checks on the JS side), not JSON true/false.
+		$this->assertStringContainsString( '"pro"', $localized_data );
+		$this->assertMatchesRegularExpression(
+			'/"pro"\s*:\s*"' . ( $expected_pro ? '1' : '' ) . '"/',
+			$localized_data
+		);
+	}
+
+	/**
 	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
 	 */
 	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {

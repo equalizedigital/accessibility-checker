@@ -93,6 +93,7 @@ class Enqueue_Admin {
 					'proUrl'                   => esc_url_raw( edac_generate_link_type( [ 'utm_content' => '__name__' ] ) ),
 					'hasDismissEndpoint'       => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),
 					'showMetaboxInBlockEditor' => ! Helpers::is_block_editor() || (bool) get_option( 'edac_show_metabox_in_block_editor', 1 ),
+					'pro'                      => defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID,
 				]
 			);
 
