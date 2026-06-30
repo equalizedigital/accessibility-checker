@@ -18,6 +18,13 @@ class Settings {
 	 * @var array
 	 */
 	public static function get_scannable_post_statuses() {
+
+		$statuses = Helpers::get_option_as_array( 'edac_post_statuses' );
+
+		if ( empty( $statuses ) ) {
+			$statuses = [ 'publish', 'future', 'draft', 'pending', 'private' ];
+		}
+
 		/**
 		 * Filters the list of post statuses that are scannable.
 		 *
@@ -25,10 +32,7 @@ class Settings {
 		 *
 		 * @param array $scannable_post_statuses List of scannable post statuses.
 		 */
-		return apply_filters(
-			'edac_scannable_post_statuses',
-			[ 'publish', 'future', 'draft', 'pending', 'private' ]
-		);
+		return apply_filters( 'edac_scannable_post_statuses', $statuses );
 	}
 
 

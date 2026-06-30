@@ -26,6 +26,7 @@ if ( true === (bool) $edac_delete_data ) {
 		'edac_activation_date',
 		'edac_simplified_summary_position',
 		'edac_post_types',
+		'edac_post_statuses',
 		'edac_add_footer_accessibility_statement',
 		'edac_accessibility_policy_page',
 		'edac_include_accessibility_statement_link',
