@@ -279,6 +279,11 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-06-30 - version 1.45.0
+* Updated - default dismiss reasons are now reordered so first item is confirmed accessible.
+* New - added filter edac_dismiss_reasons to allow adding or removing dismiss reasons.
+* Fix - keep focus well positioned when clearing dismiss notice.
+
 2026-06-23 - version 1.44.1
 * Updated - improved the dismiss panel screen reader announcements.
 
