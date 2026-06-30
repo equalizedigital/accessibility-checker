@@ -50,6 +50,12 @@ jobs:
           npm run dist:dotorg
           echo "::set-output name=zip-path::./dist/${{ github.event.repository.name }}/${{ github.event.repository.name }}.zip"
 
+      - name: Normalize release version for SVN tag
+        id: normalize-version
+        run: |
+          TAG="${{ github.event.release.tag_name }}"
+          echo "version=${TAG#v}" >> "$GITHUB_OUTPUT"
+
       - name: WordPress plugin deploy
         id: deploy
         uses: 10up/action-wordpress-plugin-deploy@stable
@@ -57,4 +63,4 @@ jobs:
           SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
           SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
           BUILD_DIR: ./dist/${{ github.event.repository.name }}/
-          VERSION: ${{ github.event.release.tag_name }}
+          VERSION: ${{ steps.normalize-version.outputs.version }}
