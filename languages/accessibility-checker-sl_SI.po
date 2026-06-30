@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.43.0\n"
+"Project-Id-Version: Accessibility Checker 1.44.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-22T20:17:36+00:00\n"
+"POT-Creation-Date: 2026-06-30T21:17:17+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -703,7 +703,7 @@ msgstr "* Prava dostopnost zahteva ročno testiranje poleg avtomatiziranih pregl
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
@@ -932,7 +932,7 @@ msgstr "Ni podatkov o berljivosti za vrnitev"
 msgid "No dismissal data to return"
 msgstr "Ni podatkov o zavrnitvah za vrnitev"
 
-#: admin/class-enqueue-admin.php:437
+#: admin/class-enqueue-admin.php:438
 msgid "* Screen Reader Text"
 msgstr "* Besedilo za bralnik zaslona"
 
@@ -953,64 +953,64 @@ msgstr "Poizvedba o težavi ni vrnila rezultatov"
 msgid "Object query returned no results"
 msgstr "Poizvedba o objektu ni vrnila rezultatov"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Lažno pozitivno"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Skener je to označil, vendar se ne nanaša na to vsebino."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Odpravljeno"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Težava je bila odpravljena, vendar stran še ni bila ponovno skenirana."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Potrjeno dostopno"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Pregledano in preverjeno, da ustreza zahtevam glede dostopnosti."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Lažno pozitivno"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Skener je to označil, vendar se ne nanaša na to vsebino."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Odpravljeno"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Težava je bila odpravljena, vendar stran še ni bila ponovno skenirana."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Uporabniško ime:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Datum:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Ponovno odpri težavo"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Zavrni težavo"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Komentar"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Upravljanje globalno zavrnjenih"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Vaš uporabniški račun nima dovoljenja za zavrnitev te težave."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
@@ -3511,7 +3511,7 @@ msgstr "Regija"
 #: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#, php-format,js-format
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Ogled %s orientacijske točke na spletni strani, odpre se novo okno"
 
