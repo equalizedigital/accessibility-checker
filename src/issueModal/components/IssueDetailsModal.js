@@ -328,7 +328,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					) }
 
 					{ /* How to Fix - Show detailed info for Pro, or just link for Free */ }
-					{ window.edac_editor_app?.pro === '1' ? (
+					{ ( typeof window !== 'undefined' && ( window.edac_editor_app?.pro === '1' || window.edac_script_vars?.pro === '1' ) ) ? (
 						<div className="edac-analysis__issue-help-accordion">
 							<PanelBody
 								title={ __( 'Show explanation', 'accessibility-checker' ) }
@@ -406,7 +406,6 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 							onIgnore={ onIgnore }
 							onCloseModal={ onClose }
-							isPro={ typeof window !== 'undefined' && window.edac_editor_app?.pro === '1' }
 						/>
 					</div>
 				</div>
