@@ -330,6 +330,7 @@ class Summary_Generator {
 		update_post_meta( $this->post_id, '_edac_summary_warnings', absint( $summary['warnings'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_ignored', absint( $summary['ignored'] ) );
 		update_post_meta( $this->post_id, '_edac_summary_contrast_errors', absint( $summary['contrast_errors'] ) );
+		update_post_meta( $this->post_id, '_edac_summary_content_grade', absint( $summary['content_grade'] ) );
 	}
 
 	/**
