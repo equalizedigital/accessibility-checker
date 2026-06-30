@@ -16,6 +16,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\EmptySearchFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveEmptyParagraphTagsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\TabindexFix;
@@ -134,6 +135,7 @@ class FixesManager {
 				HTMLLangAndDirFix::class,
 				TabindexFix::class,
 				RemoveTitleIfPrefferedAccessibleNameFix::class,
+				RemoveEmptyParagraphTagsFix::class,
 				LinkUnderline::class,
 				MetaViewportScalableFix::class,
 				PreventLinksOpeningNewWindowFix::class,
