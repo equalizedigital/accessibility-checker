@@ -23,12 +23,16 @@ const ambiguousPhrases = [
 	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
+const normalizedPhrases = ambiguousPhrases.map(
+	( p ) => p.toLowerCase().replace( /[^\p{L}]+/gu, ' ' ).trim()
+);
+
 const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	text = text.toLowerCase().replace( /[^a-z]+/g, ' ' ).trim();
-	return ambiguousPhrases.includes( text );
+	text = text.toLowerCase().replace( /[^\p{L}]+/gu, ' ' ).trim();
+	return normalizedPhrases.includes( text );
 };
 
 export default {
