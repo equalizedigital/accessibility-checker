@@ -29,6 +29,10 @@ body {
 	&.edac-app-wait * {
 		cursor: wait !important;
 	}
+
+	&.edac-tab-order-active .edac-highlight-btn {
+		display: none !important;
+	}
 }
 
 .edac-highlight {
@@ -823,6 +827,199 @@ body {
 					}
 				}
 			}
+
+			// Hide footer (summary + nav) when structure view is active.
+			&.edac-view--structure {
+				.edac-highlight-panel-controls-footer {
+					display: none !important;
+				}
+			}
+		}
+
+		// Hides a view panel — overrides all:unset which would otherwise reset display to inline.
+		.edac-view-hidden {
+			display: none !important;
+		}
+
+		// View toggle tabs (Issues / Structure)
+		.edac-highlight-view-tabs {
+			display: flex !important;
+			flex-shrink: 0 !important;
+			border-bottom: 1px solid variables.$color-gray-light !important;
+			background-color: variables.$color-white !important;
+			margin: 0 !important;
+			padding: 0 !important;
+		}
+
+		.edac-highlight-view-tab {
+			all: unset !important;
+			flex: 1 !important;
+			padding: 10px 16px !important;
+			font-size: 13px !important;
+			font-weight: 500 !important;
+			color: variables.$color-dark-gray !important;
+			cursor: pointer !important;
+			text-align: center !important;
+			border-bottom: 3px solid transparent !important;
+			box-sizing: border-box !important;
+
+			&:hover {
+				color: variables.$color-blue !important;
+			}
+
+			&:focus-visible {
+				outline: 2px solid variables.$color-blue !important;
+				outline-offset: -2px !important;
+			}
+
+			&[aria-selected="true"] {
+				color: variables.$color-blue !important;
+				border-bottom-color: variables.$color-blue !important;
+				font-weight: 600 !important;
+			}
+		}
+
+		// Structure tabpanels — scrollable content areas.
+		#edac-panel-headings,
+		#edac-panel-landmarks,
+		#edac-panel-taborder {
+			display: block !important;
+			overflow-y: auto !important;
+			padding: 6px 0 !important;
+		}
+
+		// Structure tree list
+		.edac-structure-list {
+			display: block !important;
+			list-style: none !important;
+			margin: 0 !important;
+			padding: 0 !important;
+
+			li {
+				display: block !important;
+				list-style: none !important;
+				padding: 0 !important;
+				margin: 0 !important;
+			}
+
+			// Nested landmark lists indent via padding on the child ul.
+			ul {
+				display: block !important;
+				list-style: none !important;
+				margin: 0 !important;
+				padding: 0 0 0 16px !important;
+			}
+		}
+
+		.edac-structure-item {
+			display: block !important;
+
+			&--error .edac-structure-item-btn {
+				border-left: 3px solid variables.$color-red !important;
+
+				.edac-structure-item-level {
+					background-color: variables.$color-red !important;
+					color: variables.$color-white !important;
+				}
+			}
+		}
+
+		.edac-structure-item-btn {
+			all: unset !important;
+			display: flex !important;
+			align-items: baseline !important;
+			gap: 8px !important;
+			padding: 4px 12px 4px calc(12px + var(--depth, 0) * 16px) !important;
+			width: 100% !important;
+			box-sizing: border-box !important;
+			cursor: pointer !important;
+			font-size: 13px !important;
+			line-height: 1.4 !important;
+			color: #1e1e1e !important;
+
+			&:hover {
+				background-color: color-mix(in srgb, variables.$color-blue 8%, transparent) !important;
+			}
+
+			&:focus-visible {
+				outline: 2px solid variables.$color-blue !important;
+				outline-offset: -2px !important;
+			}
+
+			&--active {
+				background-color: rgba(50, 115, 170, 0.12) !important;
+
+				.edac-structure-item-level {
+					background-color: variables.$color-blue-dark !important;
+					color: variables.$color-white !important;
+				}
+			}
+		}
+
+		.edac-structure-item-level {
+			display: inline-block !important;
+			font-size: 10px !important;
+			font-weight: 700 !important;
+			font-family: monospace !important;
+			letter-spacing: 0 !important;
+			padding: 2px 5px !important;
+			border-radius: 3px !important;
+			background-color: variables.$color-gray-light !important;
+			color: #1e1e1e !important;
+			white-space: nowrap !important;
+			flex-shrink: 0 !important;
+
+			&--landmark {
+				background-color: #e8f0f8 !important;
+				color: variables.$color-blue-dark !important;
+			}
+
+			&--tabstop {
+				background-color: #ede8f8 !important;
+				color: #3d1f8a !important;
+			}
+		}
+
+		.edac-structure-item-taborder-type {
+			font-size: 11px !important;
+			font-weight: 600 !important;
+			color: variables.$color-gray !important;
+			white-space: nowrap !important;
+			flex-shrink: 0 !important;
+		}
+
+		.edac-structure-item--warning .edac-structure-item-btn {
+			border-left: 3px solid variables.$color-orange !important;
+
+			.edac-structure-item-level--tabstop {
+				background-color: variables.$color-orange !important;
+				color: variables.$color-white !important;
+			}
+		}
+
+		.edac-structure-item-text {
+			color: #1e1e1e !important;
+			word-break: break-word !important;
+			flex: 1 !important;
+			text-align: left !important;
+		}
+
+		.edac-structure-item-error-icon {
+			display: inline-block !important;
+			width: 14px !important;
+			height: 14px !important;
+			flex-shrink: 0 !important;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M2.247 13.438C1.526 14.688 2.428 16.25 3.871 16.25H16.13c1.441 0 2.344-1.562 1.622-2.812L11.625 2.815C10.902 1.565 9.097 1.565 8.376 2.815L2.247 13.438ZM10 7.5v3.125M10 13.125h.006' stroke='%23970C0C' stroke-width='1.25' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+			background-repeat: no-repeat !important;
+			background-position: center !important;
+			background-size: contain !important;
+		}
+
+		.edac-structure-empty {
+			padding: 16px 15px !important;
+			color: variables.$color-gray !important;
+			font-size: 13px !important;
+			font-style: italic !important;
 		}
 	}
 
