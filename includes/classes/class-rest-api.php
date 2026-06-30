@@ -1327,6 +1327,18 @@ class REST_Api {
 			);
 		}
 
+		/**
+		 * Fires after a global ignore state change succeeds.
+		 *
+		 * Passes enough context for add-ons to sync their own storage (e.g. a
+		 * separate global-ignores table) without requiring changes to this plugin.
+		 *
+		 * @param int  $issue_id     The representative issue row ID from the request.
+		 * @param int  $ignre_global 1 when the issue is now globally dismissed, 0 when reopened.
+		 * @param int  $site_id      Current blog ID.
+		 */
+		do_action( 'edac_after_global_ignore_change', $issue_id, $ignre_global, $site_id );
+
 		return new \WP_REST_Response(
 			[
 				'success'         => true,
