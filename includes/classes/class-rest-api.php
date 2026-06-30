@@ -1328,16 +1328,34 @@ class REST_Api {
 		}
 
 		/**
-		 * Fires after a global ignore state change succeeds.
+		 * Fires after an ignore state change succeeds.
 		 *
-		 * Passes enough context for add-ons to sync their own storage (e.g. a
-		 * separate global-ignores table) without requiring changes to this plugin.
-		 *
-		 * @param int  $issue_id     The representative issue row ID from the request.
-		 * @param int  $ignre_global 1 when the issue is now globally dismissed, 0 when reopened.
-		 * @param int  $site_id      Current blog ID.
+		 * @param array $data {
+		 *     @type int    $issue_id     The representative issue row ID from the request.
+		 *     @type string $action       The action string from the request (e.g. 'dismiss', 'undismiss').
+		 *     @type int    $ignre        1 when the issue is now dismissed, 0 when reopened.
+		 *     @type int    $ignre_global 1 when the change is a global dismiss/reopen, 0 otherwise.
+		 *     @type int    $ignre_user   User ID of the actor, or null when reopening.
+		 *     @type string $ignre_reason Dismissal reason, or null when reopening.
+		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
+		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
+		 *     @type int    $site_id      Current blog ID.
+		 * }
 		 */
-		do_action( 'edac_after_global_ignore_change', $issue_id, $ignre_global, $site_id );
+		do_action(
+			'edac_after_ignore_change',
+			[
+				'issue_id'      => $issue_id,
+				'action'        => $action,
+				'ignre'         => $ignre,
+				'ignre_global'  => $ignre_global,
+				'ignre_user'    => $ignre_user,
+				'ignre_reason'  => $ignre_reason,
+				'ignre_comment' => $ignre_comment,
+				'large_batch'   => $large_batch,
+				'site_id'       => $site_id,
+			]
+		);
 
 		return new \WP_REST_Response(
 			[
