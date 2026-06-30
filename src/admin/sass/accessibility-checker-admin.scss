@@ -1208,30 +1208,56 @@
 
 .edac-review-notice {
   clear: both;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding-block: 12px;
 
-  @include helpers.breakpoint(lg) {
-    display: grid;
-    grid-template-columns: 1fr auto;
-    grid-column-gap: 20px;
-    align-items: center;
+  &-logo {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
   }
 
-  button {
-    &:hover {
-      cursor: pointer;
+  &-content {
+    flex: 1;
+
+    @include helpers.breakpoint(lg) {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
     }
   }
 
-  &-review {
-    font-weight: 600;
+  &-message {
+    margin: 0 0 8px;
 
-    &:after {
-      content: " \f155\f155\f155\f155\f155";
-      font-family: dashicons;
-      position: relative;
-      bottom: -1px;
-      color: variables.$color-yellow;
-      font-size: 10px;
+    @include helpers.breakpoint(lg) {
+      margin: 0;
+    }
+  }
+
+  &-actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &-text-link {
+    background: none;
+    border: none;
+    padding: 0;
+    color: variables.$color-blue;
+    text-decoration: underline;
+    font-size: 13px;
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      color: variables.$color-blue;
+      text-decoration: none;
     }
   }
 }
