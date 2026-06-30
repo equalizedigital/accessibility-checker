@@ -7,6 +7,10 @@
  */
 
 const FIXTURE_REASONS = {
+	accessible: {
+		label: 'Confirmed accessible',
+		description: 'Reviewed and verified to meet accessibility requirements.',
+	},
 	false_positive: {
 		label: 'False positive',
 		description: 'This issue does not apply to this content.',
@@ -14,10 +18,6 @@ const FIXTURE_REASONS = {
 	remediated: {
 		label: 'Remediated',
 		description: 'This issue has been fixed.',
-	},
-	accessible: {
-		label: 'Accessible',
-		description: 'This content is accessible by other means.',
 	},
 };
 
@@ -83,9 +83,9 @@ describe( 'dismissHelpers', () => {
 			const options = getDismissReasonOptions();
 			const values = options.map( ( o ) => o.value );
 
+			expect( values[ 0 ] ).toBe( 'accessible' );
 			expect( values ).toContain( 'false_positive' );
 			expect( values ).toContain( 'remediated' );
-			expect( values ).toContain( 'accessible' );
 		} );
 
 		test( 'returns empty array when no dismiss reasons exist', () => {
@@ -99,7 +99,7 @@ describe( 'dismissHelpers', () => {
 			const { getDismissReasonLabel } = loadHelpers( FIXTURE_REASONS );
 			expect( getDismissReasonLabel( 'false_positive' ) ).toBe( 'False positive' );
 			expect( getDismissReasonLabel( 'remediated' ) ).toBe( 'Remediated' );
-			expect( getDismissReasonLabel( 'accessible' ) ).toBe( 'Accessible' );
+			expect( getDismissReasonLabel( 'accessible' ) ).toBe( 'Confirmed accessible' );
 		} );
 
 		test( 'returns empty string for an unknown reason value', () => {
@@ -116,6 +116,7 @@ describe( 'dismissHelpers', () => {
 	describe( 'getDismissReasonDescription', () => {
 		test( 'returns the description for a known reason value', () => {
 			const { getDismissReasonDescription } = loadHelpers( FIXTURE_REASONS );
+			expect( getDismissReasonDescription( 'accessible' ) ).toBe( 'Reviewed and verified to meet accessibility requirements.' );
 			expect( getDismissReasonDescription( 'false_positive' ) ).toBe( 'This issue does not apply to this content.' );
 			expect( getDismissReasonDescription( 'remediated' ) ).toBe( 'This issue has been fixed.' );
 		} );
@@ -131,4 +132,3 @@ describe( 'dismissHelpers', () => {
 		} );
 	} );
 } );
-

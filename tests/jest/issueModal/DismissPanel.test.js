@@ -50,6 +50,29 @@ jest.mock( '../../../src/issueModal/index', () => ( {
 } ) );
 
 describe( 'DismissPanel', () => {
+	test( 'defaults dismiss reason to confirmed accessible for new dismissals', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 3, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+			/>,
+		);
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 3, true, 'accessible', '', false );
+
+		unmount();
+	} );
+
 	test( 'hides global dismiss controls for free users', () => {
 		window.edac_editor_app.pro = '0';
 
