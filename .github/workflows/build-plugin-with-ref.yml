@@ -81,12 +81,13 @@ jobs:
           cache-dependency-path: package-lock.json
 
       - name: Cache node_modules
+        id: cache-node-modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
-            node-${{ runner.os }}-
+            ${{ runner.os }}-node_modules-
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
@@ -95,21 +96,21 @@ jobs:
           tools: composer
           coverage: none
 
+      - name: Cache Composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: ${{ runner.os }}-composer-vendor-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-vendor-
+
       - name: Install Composer dependencies
         run: |
-          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
+          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --prefer-offline --no-progress --no-interaction; else echo "No composer.json"; fi
 
       - name: Install npm dependencies
-        run: |
-          if [ -f package.json ]; then
-            if [ -d node_modules ]; then
-              echo "node_modules cache hit, skipping install"
-            else
-              npm ci --prefer-offline --no-audit
-            fi
-          else
-            echo "No package.json"
-          fi
+        if: steps.cache-node-modules.outputs.cache-hit != 'true' && hashFiles('package.json') != ''
+        run: npm ci --prefer-offline --no-audit
 
       - name: Extract plugin version and commit hash
         id: version
