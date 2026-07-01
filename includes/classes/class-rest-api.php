@@ -547,12 +547,14 @@ class REST_Api {
 						$landmark          = $violation['landmark'] ?? null;
 						$landmark_selector = $violation['landmarkSelector'] ?? null;
 
-						$selectors = [
+						$selectors  = [
 							'selector' => $violation['selector'] ?? [],
 							'ancestry' => $violation['ancestry'] ?? [],
 							'xpath'    => $violation['xpath'] ?? [],
 						];
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
+						$extra_data = isset( $violation['extraData'] ) && is_array( $violation['extraData'] ) ? $violation['extraData'] : null;
+
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors, $extra_data );
 
 						/**
 						 * Fires after a rule is run against the content.

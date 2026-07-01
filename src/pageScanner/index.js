@@ -384,7 +384,8 @@ function processViolation( violation, item ) {
 	const ancestry = violation.node.ancestry || [];
 	const xpath = violation.node.xpath || [];
 	const html = document.querySelector( selector )?.outerHTML;
-	return {
+
+	const result = {
 		selector,
 		ancestry,
 		xpath,
@@ -395,4 +396,24 @@ function processViolation( violation, item ) {
 		landmark: landmark.type,
 		landmarkSelector: landmark.selector,
 	};
+
+	// item.id matches the plugin rule ID defined in src/pageScanner/rules/color-contrast-failure.js
+	if ( item.id === 'color_contrast_failure' ) {
+		const check = violation.any?.find( ( c ) => c.id === 'color-contrast' );
+		if ( check?.data ) {
+			result.extraData = {
+				fgColor: check.data.fgColor,
+				bgColor: check.data.bgColor,
+				contrastRatio: check.data.contrastRatio,
+				expectedContrastRatio: check.data.expectedContrastRatio,
+				fontSize: check.data.fontSize,
+				fontWeight: check.data.fontWeight,
+			};
+		} else if ( check ) {
+			// eslint-disable-next-line no-console
+			console.warn( '[accessibility-checker] color-contrast check returned no data for node:', violation.node.selector );
+		}
+	}
+
+	return result;
 }
