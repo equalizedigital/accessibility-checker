@@ -38,7 +38,7 @@ const AccessibilityAnalysis = () => {
 	const totalIssueCount = problemCount + warningCount;
 
 	// Determine which icon to show: error > warning > check (success).
-	let iconName = null;
+	let iconName;
 	if ( problemCount > 0 ) {
 		iconName = 'error';
 	} else if ( warningCount > 0 ) {
