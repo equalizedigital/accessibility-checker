@@ -37,12 +37,14 @@ const AccessibilityAnalysis = () => {
 	// Calculate total issue count (problems + warnings).
 	const totalIssueCount = problemCount + warningCount;
 
-	// Determine which icon to show, error if any problems, warning otherwise.
+	// Determine which icon to show: error > warning > check (success).
 	let iconName = null;
 	if ( problemCount > 0 ) {
 		iconName = 'error';
-	} else {
+	} else if ( warningCount > 0 ) {
 		iconName = 'warning';
+	} else {
+		iconName = 'check';
 	}
 
 	const tabs = [
