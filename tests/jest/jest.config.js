@@ -9,6 +9,7 @@ module.exports = {
 	],
 	moduleNameMapper: {
 		'\\.(css|scss)$': '<rootDir>/styleMock.js',
+		'@wordpress/components': '<rootDir>/__mocks__/emptyModule.js',
 	},
 	setupFilesAfterEnv: [
 		'<rootDir>/setupTests.js',
