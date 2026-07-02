@@ -37,12 +37,14 @@ export default {
 		// Theora video, so it stays in videoExtensions. To avoid flagging ordinary Ogg
 		// Vorbis audio (e.g. the Gutenberg Audio block), only count a .ogg match as video
 		// when it isn't attached to an <audio> element or one of its <source> children.
-		const parentTag = node.parentNode ? node.parentNode.nodeName.toLowerCase() : '';
-		const isInAudioContainer = tag === 'audio' || ( tag === 'source' && parentTag === 'audio' );
+		const isInAudioContainer = tag === 'audio' || ( tag === 'source' &&
+			node.parentNode &&
+			node.parentNode.nodeName.toLowerCase() === 'audio' );
+
+		const srcLower = src.toLowerCase();
+		const dataLower = data.toLowerCase();
 
 		const matchesExtension = videoExtensions.some( ( ext ) => {
-			const srcLower = src.toLowerCase();
-			const dataLower = data.toLowerCase();
 			// Check if the extension is at the end of the string or followed by a query parameter
 			const matches = (
 				( srcLower.endsWith( ext ) || srcLower.includes( ext + '?' ) ) ||
@@ -57,7 +59,7 @@ export default {
 		} );
 
 		const matchesKeyword = videoKeywords.some( ( keyword ) =>
-			src.toLowerCase().includes( keyword )
+			srcLower.includes( keyword )
 		);
 
 		const matchesType = type.toLowerCase().startsWith( 'video/' );
