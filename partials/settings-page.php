@@ -112,7 +112,7 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 
 	<?php
 	if ( $edac_settings_tab_items ) {
-		echo '<nav class="nav-tab-wrapper" aria-label="Accessibility Checker Settings">';
+		echo '<nav class="nav-tab-wrapper" aria-label="' . esc_attr__( 'Accessibility Checker Settings', 'accessibility-checker' ) . '">';
 		foreach ( $edac_settings_tab_items as $edac_settings_tab_item ) {
 			$edac_slug      = $edac_settings_tab_item['slug'] ? $edac_settings_tab_item['slug'] : null;
 			$edac_query_var = $edac_slug ? '&tab=' . $edac_slug : '';
