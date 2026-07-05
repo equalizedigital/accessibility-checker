@@ -1728,6 +1728,7 @@
   .edac-welcome-header {
     display: grid;
     justify-items: stretch;
+    direction: ltr;
 
     .edac-welcome-header-right {
       text-align: right;
