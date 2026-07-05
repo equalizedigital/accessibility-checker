@@ -1735,6 +1735,10 @@
       img {
         width: 200px;
       }
+
+      [dir="rtl"] & {
+        text-align: left;
+      }
     }
 
     @media screen and (max-width: variables.$small-screen-width ) {
