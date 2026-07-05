@@ -1031,9 +1031,9 @@
 
     &-left {
       grid-row: 1;
+      grid-column: 1 / 2;
     }
 
-  &-left,
   &-notices {
     grid-column: 1 / -1;
   }
@@ -1728,7 +1728,6 @@
   .edac-welcome-header {
     display: grid;
     justify-items: stretch;
-    direction: ltr;
 
     .edac-welcome-header-right {
       text-align: right;
