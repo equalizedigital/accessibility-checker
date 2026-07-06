@@ -1,9 +1,18 @@
 ---
 name: branch-and-pr
-description: Branching, commit, and PR conventions for the equalizedigital/accessibility-checker repo — branch naming from Linear issues, conventional commits, PR template, base branch.
+description: Branching, commit, and PR conventions for the equalizedigital/accessibility-checker repo — branch naming from Linear issues, conventional commits, PR template, base branch, and the issue → fix → PR → CI/CodeRabbit workflow.
 ---
 
 # Branch & PR conventions (accessibility-checker)
+
+## Standard workflow
+
+1. **Issue** — read the Linear (or GitHub) issue, reproduce the problem, branch from `develop`.
+2. **Fix** — implement with a regression test where feasible.
+3. **Test locally** — run the checks covering the changed surface (see the `tests-and-lint` skill) before pushing.
+4. **Open the PR** against `develop` using the template.
+5. **Wait for CI to complete** — including the CodeRabbit review check: it goes green once CodeRabbit has posted its review *or* decided it has no input. Don't treat the PR as review-ready, and don't ask for human review, until CI (CodeRabbit included) is green.
+6. **Address feedback** — fix CI failures and triage CodeRabbit comments (they're suggestions, not mandates — push back on wrong ones), then re-request review as needed.
 
 ## Branches
 
