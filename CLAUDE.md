@@ -7,11 +7,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 Accessibility Checker is a WordPress plugin by Equalize Digital that provides in-post accessibility scanning and WCAG compliance auditing. Powered by axe-core with custom rules. Has a free version on WordPress.org and a Pro version with additional features.
 
 - **PHP minimum**: 7.4
-- **WordPress minimum**: 6.6
+- **WordPress minimum**: 6.7 (see `readme.txt` for the current value)
 - **Text domain**: `accessibility-checker`
-- **Namespaces**: `EqualizeDigital\AccessibilityChecker` (PSR-4, newer classes) and `EDAC\Inc` (legacy classmap). Both map to `includes/classes/`. The main `Plugin` class is at `EDAC\Inc\Plugin`.
+- **Namespaces**: PSR-4 `EqualizeDigital\AccessibilityChecker\` → `includes/classes/` and `EqualizeDigital\AccessibilityChecker\Admin\` → `admin/` (newer classes). Legacy classmapped namespaces: `EDAC\Inc` (in `includes/classes/`) and `EDAC\Admin` (in `admin/`); the classmap also covers `includes/deprecated/`. The main `Plugin` class is at `EDAC\Inc\Plugin`.
 - **Constants prefix**: `EDAC_` (free), `EDACP_` (pro-related, backwards compatibility)
-- **Hook/filter prefix**: `edac_`
+- **Hook/filter prefix**: `edac_` (free), `edacp_` (pro)
 - **Pro version**: Gated by the `EDAC_KEY_VALID` constant (checks `edacp_license_status` option). Pro-specific options use the `edacp_` prefix.
 
 ## Commands
@@ -76,12 +76,12 @@ npm run dist:dotorg             # Alias for dist:keep-build-folder (WordPress.or
 
 - **`includes/classes/`** — Houses most of the plugin's classes. Uses a mixed autoloading strategy: newer classes follow PSR-4 under `EqualizeDigital\AccessibilityChecker\`, while legacy core classes use classmap under `EDAC\Inc`. Both are configured in `composer.json` and map to the same directory.
   - `class-plugin.php` — Main bootstrap (`EDAC\Inc\Plugin`), registers hooks, loads components
-  - `Rules/` — Accessibility rule system: `RuleRegistry` loads ~43 rules from `Rules/Rule/`, each implements `RuleInterface`
-  - `Fixes/` — Fix system: `FixesManager` (singleton) manages ~15 fixes from `Fixes/Fix/`, each implements `FixInterface`
-  - `Admin/` — Contains `Updates/` subnamespace
-  - `Tokens/` — Token handling infrastructure
-  - `WPCLI/` — WP-CLI commands via `BootstrapCLI.php` and `Command/` subdirectory (`CleanupOrphanedIssues`, `DeleteStats`, `GetSiteStats`, `GetStats`)
-- **`admin/`** — Admin-area classes under `EqualizeDigital\AccessibilityChecker\Admin\`. Mixed naming: legacy files use `class-*.php` (WordPress style), newer use PSR-4 CamelCase.
+  - `Rules/` — Accessibility rule system: `RuleRegistry` loads all rules from `Rules/Rule/`, each implements `RuleInterface`
+  - `Fixes/` — Fix system: `FixesManager` (singleton) manages fixes from `Fixes/Fix/`, each implements `FixInterface`
+  - `MyDot/` — Connector to the MyDot service
+  - `SystemInfo/` — System/debug information
+  - `WPCLI/` — WP-CLI commands via `BootstrapCLI.php` and a `Command/` subdirectory
+- **`admin/`** — Admin-area classes. Mixed naming and namespaces: legacy `class-*.php` files (WordPress style) use `EDAC\Admin`; newer PSR-4 CamelCase files use `EqualizeDigital\AccessibilityChecker\Admin\`.
   - `AdminPage/` — Fixes settings page with `FixesSettingType/` system (Checkbox, Text)
   - `site-health/` — WordPress Site Health integration (free/pro checks, audit history, information)
   - `opt-in/` — Email opt-in system
@@ -95,16 +95,20 @@ Webpack bundles from `src/` into `build/`. Each entry point is a separate bundle
 - **`src/admin/`** — Admin page JavaScript + SCSS
 - **`src/editorApp/`** — Block editor integration
 - **`src/frontendHighlighterApp/`** — Frontend issue highlighting overlay
-- **`src/pageScanner/`** — Page scanning engine
+- **`src/pageScanner/`** — Page scanning engine (axe-core rules and checks; see the `add-a11y-rule` skill)
 - **`src/frontendFixes/`** — Client-side accessibility fixes
 - **`src/emailOptIn/`** — Email opt-in modal and styles
+- **`src/sidebar/`** — Block editor sidebar (React)
+- **`src/issueModal/`** — Issue details modal (React)
+- **`src/sharedComponents/`** — Shared React components
+- **`src/srOnlyFormat/`** — Screen-reader-only text editor format
 - **`src/common/`** — Shared utilities
 
-WordPress packages (`@wordpress/i18n`, `@wordpress/element`, `@wordpress/data`, etc.) are externalized — they come from the WP runtime, not bundled. Only `@wordpress/i18n` is listed in webpack externals.
+WordPress packages (`@wordpress/i18n`, `@wordpress/element`, `@wordpress/data`, `@wordpress/api-fetch`, etc.) are externalized in `webpack.config.js` — they come from the WP runtime, not bundled.
 
 ### Key Patterns
 
-**Hook registration**: Classes have `init()` or `init_hooks()` methods. Never add actions/filters in constructors — always in init methods.
+**Hook registration**: New and refactored classes register actions/filters in `init()` / `init_hooks()` methods, not in constructors. Some legacy classes still hook in constructors — don't refactor them unprompted, but don't copy the pattern into new code.
 
 ```php
 public function __construct() {
@@ -116,7 +120,7 @@ public function init() {
 }
 ```
 
-**Rule/Fix registration**: Rules loaded on-demand via `edac_register_rules()` which calls `RuleRegistry::load_rules()`, filterable via `edac_filter_register_rules`. Fixes registered via `FixesManager::register_fixes()` which fires on `plugins_loaded` at priority 20.
+**Rule/Fix registration**: Rules loaded on-demand via `edac_register_rules()` which calls `RuleRegistry::load_rules()`, filterable via `edac_filter_register_rules`. Fixes registered via `FixesManager::register_fixes()` on `plugins_loaded` at priority 20 — code adding fixes to the manager must hook `plugins_loaded` at a priority below 20.
 
 **Naming conventions**:
 - New PHP classes: `ClassName.php` (CamelCase)
@@ -129,7 +133,7 @@ public function init() {
 
 - **PHPUnit**: Tests in `tests/phpunit/`, config in `phpunit.xml.dist`, bootstrap in `tests/bootstrap.php`. Runs in Docker (MySQL 5.7 + WordPress test suite).
 - **Jest**: Tests in `tests/jest/`, config in `tests/jest/jest.config.js`, jsdom environment.
-- **E2E**: No E2E test suite currently exists. Cypress-based tests may be added in a future `tests/e2e/` directory.
+- **E2E**: Cypress is a devDependency, but no E2E suite is committed yet (a future `tests/e2e/` directory may exist locally/uncommitted).
 
 ### Docker Test Environment
 
@@ -158,5 +162,7 @@ Workflows in `.github/workflows/`:
 ## Workflow Notes
 
 - Commit lock files only when adding/updating packages.
-- Lint and test before committing: `npm run lint && npm run test:jest`.
+- Before committing, run the checks that cover what you changed (see the `tests-and-lint` skill in `.claude/skills/`): Jest + `npm run lint:js` for JS changes, PHPUnit + `npm run lint:php` + `npm run phpstan` for PHP changes. Husky/lint-staged also lints staged files on commit.
+- Hooks added or renamed (`edac_`/`edacp_` prefixes) require regenerating `docs/hooks.md` with `composer generate-hooks-docs` — CI fails if it's stale.
+- Branch/PR conventions (base `develop`, branch naming, PR titles) are documented in the `branch-and-pr` skill.
 - UI code in this plugin must follow WCAG 2.1 AA — proper focus management, keyboard navigation, ARIA attributes, semantic HTML.
