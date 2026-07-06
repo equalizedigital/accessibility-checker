@@ -14,6 +14,10 @@ description: Branching, commit, and PR conventions for the equalizedigital/acces
 5. **Wait for CI to complete** — including the CodeRabbit review check: it goes green once CodeRabbit has posted its review *or* decided it has no input. Don't treat the PR as review-ready, and don't ask for human review, until CI (CodeRabbit included) is green.
 6. **Address feedback** — fix CI failures and triage CodeRabbit comments (they're suggestions, not mandates — push back on wrong ones), then re-request review as needed.
 
+## Replying to review comments
+
+When you fix something a review comment raised, reply to that comment with the commit hash that fixed it and a one-line description of what changed to solve it (e.g. "Fixed in `abc1234` — moved the extension check before the video-tag test so `.ogg` audio no longer matches."). Comments you disagree with get a reply with reasoning, not silence. Never resolve a thread without a reply.
+
 ## Branches
 
 - Base branch for feature/fix PRs: **`develop`** (not `main`). Releases go through `release/x.y.z` branches.
