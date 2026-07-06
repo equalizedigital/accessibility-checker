@@ -145,6 +145,10 @@ class FixesPage implements PageInterface {
 			]
 		);
 
+		if ( ! is_array( $sections ) ) {
+			$sections = [];
+		}
+
 		foreach ( $sections as $section_id => $section ) {
 			if ( ! is_string( $section_id ) || ! isset( $section['title'], $section['callback'] ) ) {
 				continue;

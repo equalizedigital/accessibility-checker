@@ -75,6 +75,16 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for wp-block-separator class with aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-alpha-channel-opacity has-background ticss-54cc2426 separator-aria-hidden" style="background-color:#ff6201;color:#ff6201" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for wp-block-separator class with additional color classes and aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-dark-blue-color has-alpha-channel-opacity has-dark-blue-background-color has-background ticss-54cc2426 separator-aria-hidden" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for element with role="presentation"',
 			html: '<div role="presentation" aria-hidden="true">Content</div>',
 			shouldPass: true,

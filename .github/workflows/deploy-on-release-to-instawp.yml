@@ -1,7 +1,8 @@
 name: Deploy to InstaWP
 on:
-  release:
-    types: [published]
+  workflow_run:
+    workflows: ["Build Accessibility Checker Plugin with Ref Param"]
+    types: [completed]
   workflow_dispatch:
     inputs:
       plugin_zip_path:
@@ -9,41 +10,60 @@ on:
         required: true
         type: string
 
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (
+        github.event_name == 'workflow_run' &&
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'release'
+      )
 
     steps:
       - name: Get release assets
         id: get_release_assets
-        if: github.event_name == 'release'
+        if: github.event_name == 'workflow_run'
         run: |
-          # Get the list of assets from the release
-          ASSETS_URL="${{ github.event.release.assets_url }}"
-          echo "Release assets URL: $ASSETS_URL"
+          RELEASES_URL="https://api.github.com/repos/${{ github.repository }}/releases"
+          echo "Fetching releases from: $RELEASES_URL"
 
-          # Get the list of assets
-          ASSETS=$(curl -s \
+          RELEASE=$(curl -s \
             -H "Authorization: token ${{ github.token }}" \
             -H "Accept: application/vnd.github.v3+json" \
-            "$ASSETS_URL")
+            "$RELEASES_URL?per_page=5" | jq -c '[.[] | select(.draft == false)][0]')
 
-          # Find the first zip file that starts with accessibility-checker in the assets
-          ZIP_URL=$(echo "$ASSETS" | jq -r '.[] | select(.name | test("^accessibility-checker.*\\.zip$")) | .browser_download_url' | head -n 1)
-
-          if [[ -z "$ZIP_URL" ]]; then
-            echo "No accessibility-checker zip file found in release assets"
+          if [[ -z "$RELEASE" || "$RELEASE" == "null" ]]; then
+            echo "No published release found."
             exit 1
           fi
 
-          echo "Found accessibility-checker zip file: $ZIP_URL"
+          RELEASE_TAG=$(echo "$RELEASE" | jq -r '.tag_name')
+          echo "Using release tag: $RELEASE_TAG"
+
+          # Pick the non-woocommerce zip only.
+          ZIP_URL=$(echo "$RELEASE" | jq -r '.assets[]
+            | select(.name | test("^accessibility-checker.*\\.zip$"))
+            | select(.name | test("-ref-woocommerce-") | not)
+            | .browser_download_url' | head -n 1)
+
+          if [[ -z "$ZIP_URL" ]]; then
+            echo "No non-woocommerce accessibility-checker zip file found in release assets."
+            exit 1
+          fi
+
+          echo "Found non-woocommerce accessibility-checker zip file: $ZIP_URL"
           echo "zip_url=$ZIP_URL" >> $GITHUB_OUTPUT
 
       - name: Download and validate plugin zip file
         id: validate_zip
         run: |
           # Determine the ZIP_URL based on the trigger
-          if [[ "${{ github.event_name }}" == "release" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
             ZIP_URL="${{ steps.get_release_assets.outputs.zip_url }}"
           else
             ZIP_URL="${{ github.event.inputs.plugin_zip_path }}"
@@ -73,24 +93,41 @@ jobs:
       - name: Deploy to InstaWP
         run: |
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
-          SITE_ID=${{ secrets.INSTAWP_SITE_ID }}
+          SITE_ID_MAIN=${{ secrets.INSTAWP_SITE_ID_MAIN }}
+          SITE_ID_ARCHIVEWP=${{ secrets.INSTAWP_SITE_ID_ARCHIVEWP }}
+
+          if [[ -z "$API_KEY" || -z "$SITE_ID_MAIN" || -z "$SITE_ID_ARCHIVEWP" ]]; then
+            echo "Required InstaWP secrets are missing. Set INSTAWP_API_KEY, INSTAWP_SITE_ID_MAIN, and INSTAWP_SITE_ID_ARCHIVEWP."
+            exit 1
+          fi
 
           # Determine the PLUGIN_URL based on the trigger
-          if [[ "${{ github.event_name }}" == "release" ]]; then
+          if [[ "${{ github.event_name }}" == "workflow_run" ]]; then
             PLUGIN_URL="${{ steps.get_release_assets.outputs.zip_url }}"
           else
             PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
           fi
 
           echo "Deploying plugin from: $PLUGIN_URL"
+          for SITE_ID in "$SITE_ID_MAIN" "$SITE_ID_ARCHIVEWP"; do
+            echo "Deploying to InstaWP site ID: $SITE_ID"
+            HTTP_CODE=$(curl -sS -o /tmp/instawp-response.json -w "%{http_code}" \
+              -X POST "https://app.instawp.io/api/v2/sites/$SITE_ID/execute-command" \
+              -H "Authorization: Bearer $API_KEY" \
+              -H "Accept: application/json" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"command_id\": 2623,
+                \"commandArguments\": [
+                  {\"PLUGIN_STRING\": \"$PLUGIN_URL\"}
+                ]
+              }")
 
-          curl -X POST "https://app.instawp.io/api/v2/sites/$SITE_ID/execute-command" \
-            -H "Authorization: Bearer $API_KEY" \
-            -H "Accept: application/json" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"command_id\": 2623,
-              \"commandArguments\": [
-                {\"PLUGIN_STRING\": \"$PLUGIN_URL\"}
-              ]
-            }"
+            if [[ "$HTTP_CODE" -lt 200 || "$HTTP_CODE" -ge 300 ]]; then
+              echo "InstaWP deploy failed for site $SITE_ID (HTTP $HTTP_CODE)"
+              cat /tmp/instawp-response.json
+              exit 1
+            fi
+
+            echo "InstaWP deploy succeeded for site $SITE_ID"
+          done

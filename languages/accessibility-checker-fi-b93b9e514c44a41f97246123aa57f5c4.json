@@ -7,11 +7,17 @@
         "messages": {
             "": {
                 "domain": "messages",
-                "lang": "en",
+                "lang": "fi",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
+            "Accessibility Checker": [
+                "Accessibility Checker"
+            ],
             "Save": [
                 "Tallenna"
+            ],
+            "Clear Issues": [
+                "Tyhjenn\u00e4 ongelmat"
             ],
             "Saving...": [
                 "Tallennetaan..."
@@ -28,11 +34,53 @@
             "Fix Settings": [
                 "Korjaa asetukset"
             ],
+            "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?": [
+                "T\u00e4m\u00e4 poistaa kaikki ongelmat t\u00e4st\u00e4 artikkelista. Tallennus vaaditaan k\u00e4ynnist\u00e4m\u00e4\u00e4n uusi skannaus artikkelin sis\u00e4ll\u00f6st\u00e4. Haluatko jatkaa?"
+            ],
+            "Clearing...": [
+                "Tyhjennet\u00e4\u00e4n..."
+            ],
+            "Issues cleared successfully.": [
+                "Ongelmat tyhjennetty onnistuneesti."
+            ],
+            "Failed to clear issues.": [
+                "Ongelmien tyhjennys ep\u00e4onnistui."
+            ],
+            "An error occurred while clearing issues.": [
+                "Virhe tapahtui ongelmia tyhjennett\u00e4ess\u00e4."
+            ],
             "Close fixes modal": [
                 "Sulje korjausikkuna"
             ],
+            "The element is not visible. Try disabling styles.": [
+                "Elementti ei ole n\u00e4kyviss\u00e4. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
+            ],
+            "The element is not focusable. Try disabling styles.": [
+                "Elementti ei ole fokusoitavissa. Kokeile poistaa tyylit k\u00e4yt\u00f6st\u00e4."
+            ],
+            "The element was not found on the page.": [
+                "Elementti\u00e4 ei l\u00f6ytynyt sivulta."
+            ],
+            "Open details for %1$s, %2$s of %3$s": [
+                "Avaa tiedot kohteille %1$s, %2$s\/%3$s"
+            ],
             "Rescan This Page": [
                 "Skannaa t\u00e4m\u00e4 sivu uudelleen"
+            ],
+            "Accessibility Checker Tools": [
+                "Accessibility Checker -ty\u00f6kalut"
+            ],
+            "Close": [
+                "Sulje"
+            ],
+            "Loading...": [
+                "Ladataan..."
+            ],
+            "Previous": [
+                "Edellinen"
+            ],
+            "Next": [
+                "Seuraava"
             ],
             "Disable Page Styles": [
                 "Poista sivun tyylit k\u00e4yt\u00f6st\u00e4"
@@ -42,6 +90,15 @@
             ],
             "An error occurred when loading the issues.": [
                 "Virhe ongelmien lataamisessa."
+            ],
+            "Fix issue: %s": [
+                "Korjaa ongelma: %s"
+            ],
+            "Fix Issue": [
+                "Korjaa ongelma"
+            ],
+            "Full Documentation": [
+                "T\u00e4ydellinen dokumentaatio"
             ],
             "Show Code": [
                 "N\u00e4yt\u00e4 koodi"
@@ -79,6 +136,9 @@
             "detected.": [
                 "havaittu."
             ],
+            "Landmark: %s": [
+                "Maamerkki: %s"
+            ],
             "Scanner function not found.": [
                 "Skannausfunktiota ei l\u00f6ydy."
             ],
@@ -96,6 +156,9 @@
             ],
             "Error saving scan results.": [
                 "Virhe skannaustulosten tallentamisessa."
+            ],
+            "Error: Missing required parameters.": [
+                "Virhe: Pakolliset parametrit puuttuvat."
             ]
         }
     }

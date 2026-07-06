@@ -65,7 +65,7 @@ class Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath, landmark, landmark_selector FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
 			return null;
 		}
@@ -131,18 +131,24 @@ class Frontend_Highlight {
 
 			$rule_type = ( true === (bool) $result['ignre'] ) ? 'ignored' : $rule[0]['rule_type'];
 
-			$array['rule_type']  = $rule_type;
-			$array['slug']       = $rule[0]['slug'];
-			$array['rule_title'] = $rule[0]['title'];
-			$array['summary']    = $rule[0]['summary'];
-			$array['how_to_fix'] = wp_kses_post( $rule[0]['how_to_fix'] ?? '' );
-			$array['link']       = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
-			$array['object']     = html_entity_decode( $result['object'], ENT_QUOTES | ENT_HTML5 );
-			$array['id']         = $result['id'];
-			$array['ignored']    = $result['ignre'];
-			$array['selector']   = $result['selector'] ?? '';
-			$array['ancestry']   = $result['ancestry'] ?? '';
-			$array['xpath']      = $result['xpath'] ?? '';
+			$array['rule_type']         = $rule_type;
+			$array['slug']              = $rule[0]['slug'];
+			$array['rule_title']        = $rule[0]['title'];
+			$array['wcag']              = $rule[0]['wcag'] ?? '';
+			$array['wcag_title']        = $this->get_wcag_title( $rule[0]['wcag'] ?? '' );
+			$array['summary']           = $rule[0]['summary'];
+			$array['why_it_matters']    = wp_kses_post( $rule[0]['why_it_matters'] ?? '' );
+			$array['how_to_fix']        = wp_kses_post( $rule[0]['how_to_fix'] ?? '' );
+			$array['link']              = edac_link_wrapper( $rule[0]['info_url'], 'frontend-highlighter', $rule[0]['slug'], false );
+			$array['object']            = html_entity_decode( $result['object'], ENT_QUOTES | ENT_HTML5 );
+			$array['id']                = $result['id'];
+			$array['ignored']           = $result['ignre'];
+			$array['selector']          = $result['selector'] ?? '';
+			$array['ancestry']          = $result['ancestry'] ?? '';
+			$array['xpath']             = $result['xpath'] ?? '';
+			$array['severity']          = $rule[0]['severity'] ?? '';
+			$array['landmark']          = $result['landmark'] ?? '';
+			$array['landmark_selector'] = $result['landmark_selector'] ?? '';
 
 			$issues[] = $array;
 
@@ -213,5 +219,27 @@ class Frontend_Highlight {
 				]
 			)
 		);
+	}
+
+	/**
+	 * Get the WCAG criterion title for a given WCAG number.
+	 *
+	 * @param string $wcag_number The WCAG number (e.g., '1.1.1').
+	 * @return string The criterion title, or empty string if not found.
+	 */
+	private function get_wcag_title( $wcag_number ) {
+		if ( ! $wcag_number ) {
+			return '';
+		}
+		static $wcag_lookup = null;
+		if ( null === $wcag_lookup ) {
+			$wcag_file = EDAC_PLUGIN_DIR . 'includes/wcag.php';
+			if ( ! file_exists( $wcag_file ) ) {
+				return '';
+			}
+			$wcag_data   = include $wcag_file;
+			$wcag_lookup = is_array( $wcag_data ) ? array_column( $wcag_data, 'title', 'number' ) : [];
+		}
+		return $wcag_lookup[ $wcag_number ] ?? '';
 	}
 }

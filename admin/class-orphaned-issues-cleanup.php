@@ -52,16 +52,31 @@ class Orphaned_Issues_Cleanup {
 	}
 
 	/**
+	 * The recurrence interval for the cleanup event.
+	 *
+	 * @var string
+	 */
+	const RECURRENCE = 'twicedaily';
+
+	/**
 	 * Schedule the cleanup event.
+	 *
+	 * If the event is already scheduled with a different recurrence,
+	 * it will be rescheduled with the current recurrence.
 	 *
 	 * @since 1.29.0
 	 *
 	 * @return void
 	 */
 	public static function schedule_event() {
-		if ( ! wp_next_scheduled( self::EVENT ) ) {
-			wp_schedule_event( time(), 'daily', self::EVENT );
+		$event = wp_get_scheduled_event( self::EVENT );
+
+		if ( $event && self::RECURRENCE === $event->schedule ) {
+			return;
 		}
+
+		wp_clear_scheduled_hook( self::EVENT );
+		wp_schedule_event( time(), self::RECURRENCE, self::EVENT );
 	}
 
 	/**
@@ -72,10 +87,7 @@ class Orphaned_Issues_Cleanup {
 	 * @return void
 	 */
 	public static function unschedule_event() {
-		$timestamp = wp_next_scheduled( self::EVENT );
-		if ( $timestamp ) {
-			wp_unschedule_event( $timestamp, self::EVENT );
-		}
+		wp_clear_scheduled_hook( self::EVENT );
 	}
 
 	/**
@@ -112,7 +124,7 @@ class Orphaned_Issues_Cleanup {
 		if ( ! $table_name ) {
 			return [];
 		}
-		
+
 		$scannable_post_types = Settings::get_scannable_post_types();
 		if ( empty( $scannable_post_types ) ) {
 			// No scannable post types: treat all issues as orphaned for this site.

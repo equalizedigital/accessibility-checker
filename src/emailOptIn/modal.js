@@ -12,10 +12,10 @@ import { createFocusTrap } from 'focus-trap';
 window.edac_email_opt_in_form = window.edac_email_opt_in_form || {};
 
 export const initOptInModal = () => {
-	window.onload = function() {
+	window.addEventListener( 'load', () => {
 		window.addEventListener( 'mousemove', triggerModal, { once: true } );
 		window.addEventListener( 'scroll', triggerModal, { once: true } );
-	};
+	} );
 };
 
 const triggerModal = ( () => {

@@ -53,6 +53,8 @@ class Admin {
 		$update_database->init_hooks();
 
 		add_action( 'admin_enqueue_scripts', [ 'EDAC\Admin\Enqueue_Admin', 'enqueue' ] );
+		add_action( 'enqueue_block_editor_assets', [ 'EDAC\Admin\Enqueue_Admin', 'maybe_enqueue_sr_only_format' ] );
+		add_filter( 'block_editor_settings_all', [ 'EDAC\Admin\Enqueue_Admin', 'maybe_inject_sr_only_editor_styles' ] );
 		add_action( 'wp_trash_post', [ Purge_Post_Data::class, 'delete_post' ] );
 		add_action( 'save_post', [ Post_Save::class, 'delete_issue_data_on_post_trashing' ], 10, 3 );
 		add_filter( 'edac_filter_generate_link_type_ref', [ $this, 'add_ref_param_to_links' ], 5, 1 );
@@ -87,6 +89,27 @@ class Admin {
 		$this->init_ajax();
 
 		$this->meta_boxes->init_hooks();
+
+		add_filter( 'admin_body_class', [ $this, 'sr_only_admin_body_class' ] );
+	}
+
+	/**
+	 * Adds the sr-only-show-always body class when the user has enabled always-show.
+	 *
+	 * @param string $classes The current admin body classes.
+	 * @return string
+	 */
+	public function sr_only_admin_body_class( string $classes ): string {
+		if ( ! get_user_meta( get_current_user_id(), 'show_sr_text_in_editor', true ) ) {
+			return $classes;
+		}
+
+		$classes = trim( $classes );
+		if ( false !== strpos( " {$classes} ", ' sr-only-show-always ' ) ) {
+			return $classes;
+		}
+
+		return trim( $classes . ' sr-only-show-always' );
 	}
 
 	/**

@@ -82,6 +82,10 @@ class BootstrapCLI {
 		 */
 		$commands = apply_filters( 'edac_filter_command_classes', $this->commands );
 
+		if ( ! is_array( $commands ) ) {
+			$commands = [];
+		}
+
 		foreach ( $commands as $command ) {
 			// All commands must follow the interface.
 			if ( ! is_subclass_of( $command, CLICommandInterface::class, true ) ) {

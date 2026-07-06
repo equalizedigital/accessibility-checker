@@ -140,6 +140,53 @@ describe( 'Link Improper Rule', () => {
 			html: '<a href="#" role="menuitem">Menu without aria-expanded</a>',
 			shouldPass: false,
 		},
+
+		// Named anchor (jump target) cases
+		{
+			name: 'Passes when empty anchor is used as a named jump target',
+			html: '<a id="meet-the-team"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes when whitespace-only anchor is used as a named jump target',
+			html: '<a id="section-top">   </a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes when legacy name-only anchor is used as a jump target',
+			html: '<a name="section-top"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Fails when legacy name-only anchor has text',
+			html: '<a name="section-top">Text</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has id and text content but no href',
+			html: '<a id="meet-the-team">Meet the Team</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has id and empty href',
+			html: '<a id="top" href=""></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor has id and child image but no href',
+			html: '<a id="logo"><img src="logo.png" alt="Home"/></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when anchor is keyboard focusable via tabindex and has no href',
+			html: '<a id="meet-the-team" tabindex="0"></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Passes when anchor has tabindex of -1 and no href',
+			html: '<a id="meet-the-team" tabindex="-1"></a>',
+			shouldPass: true,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 

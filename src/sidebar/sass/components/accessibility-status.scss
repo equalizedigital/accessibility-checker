@@ -1,0 +1,129 @@
+@use '../_variables' as *;
+
+/**
+ * Accessibility Status Component Styles
+ */
+
+.edac-accessibility-status {
+
+	.edac-status-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 8px;
+		width: calc(100% + 16px);
+		align-items: stretch;
+		margin: -8px -8px -7px -8px;
+	}
+
+	.edac-status-card {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		height: 100%;
+		border: solid 1px $outline-grey;
+		border-radius: 5px;
+		padding: 8px;
+
+		&--clickable {
+			cursor: pointer;
+			transition: background-color 0.2s ease;
+
+			&:hover {
+				background-color: #f5f5f5;
+			}
+
+			&:focus {
+				outline: 2px solid $info-blue;
+				outline-offset: 2px;
+				border-radius: 4px;
+			}
+		}
+
+		&__header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 1px;
+		}
+
+		&__label {
+			font-size: $sidebar-p-size;
+			line-height: 1;
+			font-weight: 600;
+			color: $info-grey;
+
+			sup {
+				font-size: 0.7em;
+				vertical-align: super;
+			}
+		}
+
+		&__icon {
+			flex-shrink: 0;
+			font-size: 16px;
+			margin: -2.5px -2.5px 0 0;
+
+			.edac-icon {
+				width: 16px;
+				height: 16px;
+			}
+		}
+
+		&__value {
+			font-size: 32px;
+			font-weight: 600;
+			line-height: 1;
+			color: $info-grey;
+		}
+
+		&__progress {
+			width: 100%;
+			height: 6px;
+			border: none;
+			border-radius: 3px;
+			overflow: hidden;
+			appearance: none;
+			-webkit-appearance: none;
+			background-color: $outline-grey;
+
+			// Chrome, Edge, Safari
+			&::-webkit-progress-bar {
+				background-color: $outline-grey;
+				border-radius: 3px;
+				overflow: hidden;
+			}
+
+			&::-webkit-progress-value {
+				background-color: $info-blue;
+				border-radius: 3px;
+				transition: width 0.3s ease;
+			}
+
+			// Firefox
+			&::-moz-progress-bar {
+				background-color: $info-blue;
+				border-radius: 3px;
+			}
+		}
+
+		&__meta {
+			font-size: 10px;
+			color: $info-blue;
+			margin-top: 2px;
+		}
+	}
+
+	.edac-status-footer {
+		margin-top: 16px;
+		padding-top: 12px;
+		border-top: 1px solid $outline-grey;
+
+		&__note {
+			margin: 0 0 8px 0;
+			font-size: 10px;
+			color: $subtext-gray;
+			line-height: 1.4;
+		}
+	}
+}
+

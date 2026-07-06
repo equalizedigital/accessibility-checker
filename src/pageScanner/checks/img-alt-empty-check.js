@@ -9,17 +9,6 @@ export default {
 		// Check if alt attribute is empty string (not missing, but explicitly empty)
 		const hasEmptyAlt = node.hasAttribute( 'alt' ) && node.getAttribute( 'alt' ) === '';
 
-		// Skip if element has presentation role
-		if (
-			hasEmptyAlt &&
-			(
-				node.getAttribute( 'role' ) === 'presentation' ||
-				node.getAttribute( 'role' ) === 'none'
-			)
-		) {
-			return true;
-		}
-
 		// Skip if aria-hidden is true
 		if ( hasEmptyAlt && node.getAttribute( 'aria-hidden' ) === 'true' ) {
 			return true;
@@ -71,6 +60,23 @@ function isInsideValidCaption( node ) {
 		// Check if anchor has text content that's not just the image
 		const anchorText = anchor.textContent.trim();
 		if ( anchorText !== '' && anchorText.length > 5 ) {
+			return true;
+		}
+	}
+
+	// Check if inside button with valid accessible name
+	const button = node.closest( 'button, [role~="button"]' );
+	if ( button ) {
+		if ( button.hasAttribute( 'aria-label' ) && button.getAttribute( 'aria-label' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.hasAttribute( 'aria-labelledby' ) && button.getAttribute( 'aria-labelledby' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.hasAttribute( 'title' ) && button.getAttribute( 'title' ).trim() !== '' ) {
+			return true;
+		}
+		if ( button.textContent.trim() !== '' ) {
 			return true;
 		}
 	}

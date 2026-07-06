@@ -1,0 +1,18 @@
+/**
+ * Readability Analysis Panel Specific Styles
+ */
+
+.edac-readability-analysis-panel {
+	.post-grade-display {
+		margin: 0 0 4px 0;
+		font-size: 13px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+
+	.summary-textarea {
+		margin: 0 0 12px 0;
+	}
+}

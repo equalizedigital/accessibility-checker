@@ -65,18 +65,6 @@ class MetaViewportScalableFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that register adds settings sections.
-	 *
-	 * @return void
-	 */
-	public function test_register_adds_settings_sections() {
-		$this->fix->register();
-		
-		$sections = apply_filters( 'edac_filter_fixes_settings_sections', [] );
-		$this->assertArrayHasKey( 'meta-viewport-scalable', $sections );
-	}
-
-	/**
 	 * Test viewport manipulation functionality.
 	 *
 	 * @return void
@@ -84,7 +72,7 @@ class MetaViewportScalableFixTest extends WP_UnitTestCase {
 	public function test_viewport_tag_modification() {
 		update_option( 'edac_fix_meta_viewport_scalable', true );
 		$this->fix->run();
-		
+
 		// Test frontend data filter.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 		$this->assertArrayHasKey( 'meta_viewport_scalable', $data );

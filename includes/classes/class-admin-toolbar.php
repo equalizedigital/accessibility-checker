@@ -108,9 +108,9 @@ class Admin_Toolbar {
 		];
 
 		// Add Get Pro submenu item (only show if pro is not installed or license is not valid).
-		if ( ! defined( 'EDACP_VERSION' ) || ! EDAC_KEY_VALID ) {
+		if ( ! defined( 'EDACP_VERSION' ) || ! ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) ) {
 			$pro_link = function_exists( 'edac_generate_link_type' ) 
-				? edac_generate_link_type( [ 'utm-content' => 'admin-toolbar' ] )
+				? edac_generate_link_type( [ 'utm_content' => 'admin-toolbar' ] )
 				: 'https://equalizedigital.com/accessibility-checker/pricing/';
 
 			$menu_items[] = [

@@ -27,6 +27,10 @@ function edac_activation() {
 	// This is an add_option on purpose to not overwrite user settings on update.
 	add_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
 
+	// New installs and existing sites that deactivate/reactivate both default to
+	// showing the metabox in the block editor.
+	add_option( 'edac_show_metabox_in_block_editor', '1' );
+
 	// Set transient to trigger redirect to welcome page.
 	// This will be checked on admin_init and deleted after redirect.
 	set_transient( 'edac_activation_redirect', true, 60 );

@@ -154,6 +154,7 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 			'main landmark'          => [ 'main', 'Main' ],
 			'footer landmark'        => [ 'footer', 'Footer' ],
 			'aside landmark'         => [ 'aside', 'Aside' ],
+			'article landmark'       => [ 'article', 'Article' ],
 			'section landmark'       => [ 'section', 'Section' ],
 			'search landmark'        => [ 'search', 'Search' ],
 			'banner landmark'        => [ 'banner', 'Banner' ],
