@@ -10,7 +10,7 @@ WordPress plugin (Equalize Digital) for in-post accessibility scanning and WCAG 
 - Text domain: `accessibility-checker`
 - Namespaces: PSR-4 `EqualizeDigital\AccessibilityChecker\` → `includes/classes/`, `…\Admin\` → `admin/`. Legacy classmap: `EDAC\Inc` (`includes/classes/`), `EDAC\Admin` (`admin/`), plus `includes/deprecated/`. Main class: `EDAC\Inc\Plugin`.
 - Prefixes: constants `EDAC_`/`EDACP_`; hooks, options, globals `edac_`/`edacp_` (pro). Never add unprefixed ones.
-- Pro gating: `EDAC_KEY_VALID` constant (from `edacp_license_status` option).
+- Pro gating: `edac_is_pro()` — requires `EDACP_VERSION` defined and `EDAC_KEY_VALID` defined + truthy (set from the `edacp_license_status` option).
 
 ## Commands
 
