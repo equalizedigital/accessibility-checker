@@ -33,10 +33,34 @@ MAIN_BRANCH=main
 DEVELOP_BRANCH=develop
 RELEASE_BRANCH_NAME=release/${BUMPED_VERSION}
 
+# Ensure local tags are fully in sync with remote tags before release prep.
+# Uses process substitution to avoid orphaned temp files on early exit.
+verify_local_tags_match_remote() {
+  # --refs strips peeled annotated-tag entries (^{}) for clean one-line refs.
+  if ! diff -u \
+    <(git ls-remote --tags --refs origin 2>/dev/null | awk '{print $1" "$2}' | sort) \
+    <(git show-ref --tags 2>/dev/null | awk '{print $1" "$2}' | sort) \
+    >/dev/null; then
+    echo
+    echo "Error: local tags do not match tags on origin."
+    echo "Please sync tags before running release prep:"
+    echo "  git fetch origin --tags --prune-tags"
+    echo
+    diff -u \
+      <(git ls-remote --tags --refs origin 2>/dev/null | awk '{print $1" "$2}' | sort) \
+      <(git show-ref --tags 2>/dev/null | awk '{print $1" "$2}' | sort) || true
+    return 1
+  fi
+
+  echo "Tag sync check passed: local tags match origin."
+  return 0
+}
+
 echo
 echo "Creating release branch"
 echo
-git fetch
+git fetch origin --tags --prune-tags
+verify_local_tags_match_remote
 git checkout ${DEVELOP_BRANCH}
 git pull
 git checkout -b ${RELEASE_BRANCH_NAME}
@@ -56,20 +80,20 @@ echo
 # Function to fetch WordPress versions and calculate required version
 update_wp_requires_version() {
     echo "Fetching WordPress version list..."
-    
+
     # Get current "Tested up to" version from readme.txt
     local tested_up_to=$(grep "Tested up to:" "${README_PATH}" | sed -E 's/Tested up to: ([0-9]+\.[0-9]+).*/\1/')
-    
+
     if [[ -z "${tested_up_to}" ]]; then
         echo "Error: Could not extract 'Tested up to' version from readme.txt" >&2
         return 1
     fi
-    
+
     echo "Current 'Tested up to': ${tested_up_to}"
-    
+
     # Try to fetch WordPress versions from the API first
     local wp_versions_json=$(curl -s --max-time 10 "https://api.wordpress.org/core/version-check/1.7/" 2>/dev/null || echo "")
-    
+
     if [[ -n "${wp_versions_json}" ]]; then
         echo "Using WordPress API for version data..."
         # Parse JSON response to get version list in reverse chronological order
@@ -83,7 +107,7 @@ update_wp_requires_version() {
         echo "API unavailable, trying to parse releases page..."
         # Fallback: try to parse the releases page
         local releases_html=$(curl -s --max-time 15 "https://wordpress.org/download/releases/" 2>/dev/null || echo "")
-        
+
         if [[ -n "${releases_html}" ]]; then
             # Extract version numbers from the releases page
             # Look for patterns like "WordPress 6.8" or "wordpress-6.7.zip"
@@ -97,20 +121,20 @@ update_wp_requires_version() {
             return 1
         fi
     fi
-    
+
     if [[ -z "${versions_list}" ]]; then
         echo "Error: No WordPress versions found in response" >&2
         return 1
     fi
-    
+
     echo "Found WordPress versions (latest first):"
     echo "${versions_list}" | head -10
-    
+
     # Find the current tested version in the list and go back 2 versions (to support last 3 versions)
     local found_current=false
     local version_count=0
     local target_version=""
-    
+
     while IFS= read -r version; do
         if [[ "${found_current}" == true ]]; then
             version_count=$((version_count + 1))
@@ -123,13 +147,13 @@ update_wp_requires_version() {
             echo "Found current tested version ${tested_up_to} in version list"
         fi
     done <<< "${versions_list}"
-    
+
     if [[ "${found_current}" == false ]]; then
         echo "Warning: Current 'Tested up to' version ${tested_up_to} not found in WordPress version list" >&2
         echo "Available versions: $(echo "${versions_list}" | tr '\n' ' ')" >&2
         return 1
     fi
-    
+
     if [[ -z "${target_version}" ]]; then
         echo "Warning: Could not find version 2 releases back from ${tested_up_to}" >&2
         # Try to use the oldest version we found if we don't have enough history
@@ -140,19 +164,19 @@ update_wp_requires_version() {
             return 1
         fi
     fi
-    
+
     # Ensure we don't go below WordPress 5.0 (reasonable minimum)
     local min_major=$(echo "${target_version}" | cut -d. -f1)
     if [[ ${min_major} -lt 5 ]]; then
         target_version="5.0"
         echo "Adjusted to minimum supported version: ${target_version}"
     fi
-    
+
     echo "Setting 'Requires at least' to: ${target_version} (2 versions back from ${tested_up_to} to support last 3 versions)"
-    
+
     # Update the readme.txt file
     sed -i.bak -E "s/(Requires at least: )[0-9]+\.[0-9]+/\1${target_version}/" "${README_PATH}"
-    
+
     return 0
 }
 
@@ -170,6 +194,56 @@ echo "Committing version bump"
 echo
 git add ${MAIN_FILE_PATH} ${PACKAGE_JSON_PATH} ${README_PATH}
 git commit -m "Bump version ${VERSION} -> ${BUMPED_VERSION}"
+
+echo
+echo "Updating @since placeholder tags to ${BUMPED_VERSION}"
+echo
+
+# Stash any existing uncommitted work (tracked modifications + untracked files)
+# so that the subsequent git diff picks up only what the tool changes.
+# Track stash ref before/after to guard against popping an unrelated stash when
+# git stash push exits 0 even if there was nothing to save.
+STASH_MESSAGE="prep_release: pre-since-tag stash"
+STASH_BEFORE=$(git rev-parse -q --verify refs/stash || true)
+git stash push --include-untracked -m "${STASH_MESSAGE}"
+STASH_AFTER=$(git rev-parse -q --verify refs/stash || true)
+STASH_CREATED=false
+if [[ -n "${STASH_AFTER}" && "${STASH_AFTER}" != "${STASH_BEFORE}" ]]; then
+  STASH_CREATED=true
+fi
+
+# Ensure the stash is always restored, even if the script exits early.
+# Setting STASH_CREATED=false before popping prevents the EXIT trap double-pop.
+restore_stash() {
+  if [[ "${STASH_CREATED}" == true ]]; then
+    echo
+    echo "Restoring stashed changes"
+    echo
+    STASH_CREATED=false
+    git stash pop
+  fi
+}
+trap restore_stash EXIT
+
+php tools/update-since-tags.php --version="${BUMPED_VERSION}" --changed-since-last-tag
+
+# Stage only the tracked PHP files modified by the tool.
+# Use NUL-delimited output + mapfile + xargs -0 so paths with spaces are safe.
+mapfile -d '' SINCE_CHANGES < <(git diff --name-only -z -- '*.php')
+if (( ${#SINCE_CHANGES[@]} > 0 )); then
+  echo
+  echo "Committing @since tag updates"
+  echo
+  printf '%s\0' "${SINCE_CHANGES[@]}" | xargs -0 git add --
+  git commit -m "Update @since placeholders to ${BUMPED_VERSION}"
+else
+  echo "No @since placeholder tags found — skipping commit."
+fi
+
+# Restore stashed work now (trap will also fire on EXIT, guard against double-pop).
+restore_stash
+trap - EXIT
+
 git push -u origin ${RELEASE_BRANCH_NAME}
 
 echo
