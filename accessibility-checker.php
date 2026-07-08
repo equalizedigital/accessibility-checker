@@ -8,7 +8,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Accessibility Checker
- * Plugin URI:        https://a11ychecker.com
+ * Plugin URI:        https://equalizedigital.com/accessibility-checker
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
  * Version:           1.45.0
  * Requires PHP:      7.4
