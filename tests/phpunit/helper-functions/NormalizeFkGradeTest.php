@@ -3,14 +3,14 @@
  * Tests for the edac_normalize_fk_grade helper.
  *
  * @package Accessibility_Checker
- * @since x.x.x
+ * @since 1.46.0
  */
 
 /**
  * Tests for edac_normalize_fk_grade.
  *
  * @covers ::edac_normalize_fk_grade
- * @since x.x.x
+ * @since 1.46.0
  */
 class NormalizeFkGradeTest extends WP_UnitTestCase {
 
