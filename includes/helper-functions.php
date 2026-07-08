@@ -1060,7 +1060,7 @@ function edac_format_datetime_from_utc( string $utc_datetime ): string {
  * very simple content as "not calculable." Values above 0 but below 1 are
  * normalized to 1 so that compliance checks treat them correctly.
  *
- * @since x.x.x
+ * @since 1.46.0
  *
  * @param float|bool|null $fk_grade Raw Flesch-Kincaid grade level returned by the library.
  * @return int Normalized grade: 0 when the library returned 0, false, or null (not enough content),

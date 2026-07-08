@@ -228,8 +228,12 @@ trap restore_stash EXIT
 php tools/update-since-tags.php --version="${BUMPED_VERSION}" --changed-since-last-tag
 
 # Stage only the tracked PHP files modified by the tool.
-# Use NUL-delimited output + mapfile + xargs -0 so paths with spaces are safe.
-mapfile -d '' SINCE_CHANGES < <(git diff --name-only -z -- '*.php')
+# Use NUL-delimited output + xargs -0 so paths with spaces are safe. Read with
+# a while loop rather than mapfile -d, which needs Bash 4.4 (macOS ships 3.2).
+SINCE_CHANGES=()
+while IFS= read -r -d '' changed_file; do
+  SINCE_CHANGES+=("${changed_file}")
+done < <(git diff --name-only -z -- '*.php')
 if (( ${#SINCE_CHANGES[@]} > 0 )); then
   echo
   echo "Committing @since tag updates"
