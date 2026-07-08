@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.44.1\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-30T21:17:17+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -928,7 +928,7 @@ msgstr "Nėra skaitomumo duomenų grąžinimui"
 msgid "No dismissal data to return"
 msgstr "Nėra atmetimo duomenų, kuriuos būtų galima grąžinti."
 
-#: admin/class-enqueue-admin.php:438
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Ekrano skaitytuvo tekstas"
 
@@ -2606,29 +2606,27 @@ msgstr "Pridėk alt atributą, kuris apibūdina nuorodos paskirtį. Sutelk dėme
 msgid "Incorrect Heading Order"
 msgstr "Neteisingas antraščių eiliškumas"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Šiame puslapyje antraštės naudojamos netinkama tvarka. Tai yra %1$s po %2$s, praleidžiant vieną ar daugiau antraščių lygių."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Šiame puslapyje antraštės naudojamos ne iš eilės, praleidžiant vieną ar kelis antraščių lygius."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Šiuose puslapiuose antraštės naudojamos netinkama tvarka, praleidžiant vieną ar daugiau antraščių lygių, pavyzdžiui, pereinant nuo %1$s prie %2$s be %3$s tarp jų."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Antraštės padeda visiems naudotojams, ypač tiems, kurie naudojasi ekrano skaitytuvais ar naršo klaviatūra, suprasti puslapio struktūrą. Antraščių lygių praleidimas gali sukelti painiavą ir apsunkinti turinio hierarchijos supratimą ar efektyvų naršymą."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Peržiūrėk savo antraštes, kad jos būtų išdėstytos logine tvarka, nepraleidžiant lygių. Pavyzdžiui, jei po %1$s seka %2$s, pakeisk %2$s į %3$s arba pridėk tarpinį %3$s skyrių, kad išlaikytum tinkamą struktūrą. Jei reikia, naudok CSS arba blokų/puslapių kūrimo nustatymus antraščių stiliui, o ne neteisingam lygiui nustatyti."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C puslapio struktūros pamoka: Antraštės"
 
@@ -3511,6 +3509,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Sveiki atvykę į Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker nustatymai"
 
@@ -5873,6 +5872,11 @@ msgstr "Peržiūrėti %d problemas prieinamumo analizėje"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Peržiūrėti %d elementus, kuriuos reikia peržiūrėti prieinamumo analizėje"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Peržiūrėti skaitymo lygio informaciją: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format
