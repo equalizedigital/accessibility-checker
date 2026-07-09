@@ -789,22 +789,20 @@ function edac_parse_html_for_media( $html ) {
 }
 
 /**
- * Convert raw SVG markup into a data: URI safe for use as an <img> src.
- *
- * The source markup comes from scanned page code stored in the issues
- * table, which can contain arbitrary attributes/children (e.g. <script>,
- * on* handlers, <foreignObject>). Encoding it into a data URI and only
- * ever placing that URI in an <img> src means the browser treats it as an
- * image resource, not as markup to parse for scripting - the same
- * technique already used for untrusted SVGs in the issue modal's image
- * finder (see src/issueModal/components/IssueImage.js).
+ * Convert raw SVG markup into a data: URI, safe as an <img> src - browsers
+ * don't execute scripts or event handlers in SVGs loaded as images. Returns
+ * a bare (payload-less) data URI if given anything other than a string.
  *
  * @since x.x.x
  *
- * @param string $svg_markup Raw SVG markup.
- * @return string Data URI string (unescaped - callers must esc_url()/esc_attr() it before output).
+ * @param mixed $svg_markup Raw SVG markup - expected to be a string.
+ * @return string Unescaped data URI - callers must esc_url() it before output.
  */
-function edac_svg_markup_to_data_uri( $svg_markup ) {
+function edac_svg_markup_to_data_uri( $svg_markup ): string {
+	if ( ! is_string( $svg_markup ) ) {
+		return 'data:image/svg+xml,';
+	}
+
 	return 'data:image/svg+xml,' . rawurlencode( $svg_markup );
 }
 
