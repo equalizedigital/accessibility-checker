@@ -790,217 +790,74 @@ function edac_parse_html_for_media( $html ) {
 
 /**
  * Allowed tags/attributes for edac_sanitize_scanned_html() - wp_kses_allowed_html( 'post' )
- * plus the non-scripting SVG vocabulary actually likely to appear in a
- * flagged icon/logo/decorative graphic: structure, shapes, text, and basic
- * gradients/patterns/masks. Deliberately excludes <script>, <foreignObject>,
- * <image>, <a> (SVG's own href-based link element - ordinary post-content
- * links are still allowed via the 'post' base list), SMIL animation
- * elements, and filter primitives - none of which this plugin's real-world
- * content needs, and never lists any on* attribute for anything.
+ * plus the minimal SVG vocabulary a flagged icon/logo/decorative graphic
+ * actually uses: container, grouping, basic shapes, gradients, text, and the
+ * accessible-name elements (<title>/<desc>). Deliberately excludes <script>,
+ * <foreignObject>, <image>, <a> (SVG's own href-based link element -
+ * ordinary post-content links are still allowed via the 'post' base list),
+ * SMIL animation, filter primitives, and rarely-used structural extras
+ * (<pattern>, <mask>, <marker>, <switch>, <textPath>) - none of which this
+ * plugin's real-world content needs. Never lists any on* attribute for
+ * anything.
+ *
+ * Every allowed SVG element shares one attribute set: wp_kses() only needs
+ * attribute names allow-listed, not semantically scoped per tag, and a
+ * geometry/paint attribute on a tag that ignores it is harmless. The only
+ * exception is href/xlink:href, which stays scoped to <use> (the icon-sprite
+ * pattern) and is protocol-validated - see edac_sanitize_scanned_html().
  *
  * @since x.x.x
  *
  * @return array<string, array<string, bool>>
  */
 function edac_scanned_html_allowed_tags(): array {
-	$allowed = wp_kses_allowed_html( 'post' );
+	$identity = [ 'id', 'class', 'style', 'transform', 'role', 'focusable' ];
+	$aria     = [ 'aria-hidden', 'aria-label', 'aria-labelledby', 'aria-describedby' ];
+	$root     = [ 'xmlns', 'xmlns:xlink', 'version', 'viewbox', 'preserveaspectratio' ];
+	$geometry = [ 'x', 'y', 'width', 'height', 'cx', 'cy', 'r', 'rx', 'ry', 'x1', 'y1', 'x2', 'y2', 'fx', 'fy', 'd', 'points', 'dx', 'dy' ];
+	$paint    = [ 'fill', 'fill-rule', 'fill-opacity', 'stroke', 'stroke-width', 'stroke-linecap', 'stroke-linejoin', 'stroke-dasharray', 'stroke-dashoffset', 'stroke-opacity', 'stroke-miterlimit', 'opacity', 'clip-path', 'clip-rule' ];
+	$gradient = [ 'gradientunits', 'gradienttransform', 'spreadmethod', 'offset', 'stop-color', 'stop-opacity' ];
+	$text     = [ 'text-anchor', 'font-family', 'font-size', 'font-weight', 'font-style' ];
 
-	// Shared by (almost) every SVG element - core presentation attributes
-	// plus the accessibility attributes this plugin most cares about.
-	$common = [
-		'id'               => true,
-		'class'            => true,
-		'style'            => true,
-		'transform'        => true,
-		'role'             => true,
-		'aria-hidden'      => true,
-		'aria-label'       => true,
-		'aria-labelledby'  => true,
-		'aria-describedby' => true,
-		'focusable'        => true,
-		'tabindex'         => true,
-		'lang'             => true,
-		'xml:lang'         => true,
-		'xml:space'        => true,
+	$svg_attributes = array_fill_keys(
+		array_merge( $identity, $aria, $root, $geometry, $paint, $gradient, $text ),
+		true
+	);
+
+	$svg_elements = [
+		'svg',
+		'g',
+		'defs',
+		'symbol',
+		'use',
+		'path',
+		'rect',
+		'circle',
+		'ellipse',
+		'line',
+		'polyline',
+		'polygon',
+		'lineargradient',
+		'radialgradient',
+		'stop',
+		'clippath',
+		'text',
+		'tspan',
+		'title',
+		'desc',
 	];
 
-	// Paint/stroke/fill presentation attributes - valid on most shape and
-	// container elements per the SVG spec; wp_kses doesn't need them to be
-	// semantically scoped per tag, only explicitly allow-listed.
-	$paint = [
-		'fill'              => true,
-		'fill-rule'         => true,
-		'fill-opacity'      => true,
-		'stroke'            => true,
-		'stroke-width'      => true,
-		'stroke-linecap'    => true,
-		'stroke-linejoin'   => true,
-		'stroke-dasharray'  => true,
-		'stroke-dashoffset' => true,
-		'stroke-opacity'    => true,
-		'stroke-miterlimit' => true,
-		'opacity'           => true,
-		'color'             => true,
-		'clip-path'         => true,
-		'clip-rule'         => true,
-		'mask'              => true,
-		'filter'            => true,
-		'marker-start'      => true,
-		'marker-mid'        => true,
-		'marker-end'        => true,
-		'vector-effect'     => true,
-		'shape-rendering'   => true,
-	];
+	$svg = array_fill_keys( $svg_elements, $svg_attributes );
 
-	$common_paint = $common + $paint;
+	// Local same-document fragment reference (#id) for the icon-sprite
+	// pattern. edac_sanitize_scanned_html() registers xlink:href with
+	// wp_kses_uri_attributes() for the duration of the call, so both get
+	// the same bad-protocol/URI validation core already applies to the
+	// plain 'href' attribute.
+	$svg['use']['href']       = true;
+	$svg['use']['xlink:href'] = true;
 
-	// href/xlink:href only ever added to elements whose sole use is a local
-	// same-document fragment reference (#id) - edac_sanitize_scanned_html()
-	// registers xlink:href with wp_kses_uri_attributes() for the duration
-	// of the call, so both get the same bad-protocol/URI validation core
-	// already applies to the plain 'href' attribute.
-	$href = [
-		'href'       => true,
-		'xlink:href' => true,
-	];
-
-	$svg_tags = [
-		'svg'            => $common + [
-			'xmlns'               => true,
-			'xmlns:xlink'         => true,
-			'version'             => true,
-			'viewbox'             => true,
-			'width'               => true,
-			'height'              => true,
-			'preserveaspectratio' => true,
-		],
-		'g'              => $common_paint,
-		'defs'           => $common,
-		'symbol'         => $common + [
-			'viewbox'             => true,
-			'preserveaspectratio' => true,
-		],
-		'switch'         => $common,
-		'use'            => $common_paint + $href + [
-			'x'      => true,
-			'y'      => true,
-			'width'  => true,
-			'height' => true,
-		],
-		'path'           => $common_paint + [ 'd' => true ],
-		'rect'           => $common_paint + [
-			'x'      => true,
-			'y'      => true,
-			'width'  => true,
-			'height' => true,
-			'rx'     => true,
-			'ry'     => true,
-		],
-		'circle'         => $common_paint + [
-			'cx' => true,
-			'cy' => true,
-			'r'  => true,
-		],
-		'ellipse'        => $common_paint + [
-			'cx' => true,
-			'cy' => true,
-			'rx' => true,
-			'ry' => true,
-		],
-		'line'           => $common_paint + [
-			'x1' => true,
-			'y1' => true,
-			'x2' => true,
-			'y2' => true,
-		],
-		'polyline'       => $common_paint + [ 'points' => true ],
-		'polygon'        => $common_paint + [ 'points' => true ],
-		'text'           => $common_paint + [
-			'x'           => true,
-			'y'           => true,
-			'dx'          => true,
-			'dy'          => true,
-			'text-anchor' => true,
-			'font-family' => true,
-			'font-size'   => true,
-			'font-weight' => true,
-			'font-style'  => true,
-		],
-		'tspan'          => $common_paint + [
-			'x'  => true,
-			'y'  => true,
-			'dx' => true,
-			'dy' => true,
-		],
-		'textpath'       => $common_paint + $href + [
-			'startoffset' => true,
-			'method'      => true,
-			'spacing'     => true,
-			'side'        => true,
-		],
-		'lineargradient' => $common + $href + [
-			'x1'                => true,
-			'y1'                => true,
-			'x2'                => true,
-			'y2'                => true,
-			'gradientunits'     => true,
-			'gradienttransform' => true,
-			'spreadmethod'      => true,
-		],
-		'radialgradient' => $common + $href + [
-			'cx'                => true,
-			'cy'                => true,
-			'r'                 => true,
-			'fx'                => true,
-			'fy'                => true,
-			'fr'                => true,
-			'gradientunits'     => true,
-			'gradienttransform' => true,
-			'spreadmethod'      => true,
-		],
-		'stop'           => $common + [
-			'offset'       => true,
-			'stop-color'   => true,
-			'stop-opacity' => true,
-		],
-		'pattern'        => $common + $href + [
-			'x'                   => true,
-			'y'                   => true,
-			'width'               => true,
-			'height'              => true,
-			'patternunits'        => true,
-			'patterncontentunits' => true,
-			'patterntransform'    => true,
-			'viewbox'             => true,
-		],
-		'clippath'       => $common + [ 'clippathunits' => true ],
-		'mask'           => $common + [
-			'x'                => true,
-			'y'                => true,
-			'width'            => true,
-			'height'           => true,
-			'maskunits'        => true,
-			'maskcontentunits' => true,
-		],
-		'marker'         => $common + [
-			'markerwidth'         => true,
-			'markerheight'        => true,
-			'markerunits'         => true,
-			'refx'                => true,
-			'refy'                => true,
-			'orient'              => true,
-			'viewbox'             => true,
-			'preserveaspectratio' => true,
-		],
-		'title'          => $common,
-		'desc'           => $common,
-	];
-
-	foreach ( $svg_tags as $tag => $attrs ) {
-		$allowed[ $tag ] = $attrs;
-	}
-
-	return $allowed;
+	return array_merge( wp_kses_allowed_html( 'post' ), $svg );
 }
 
 /**
@@ -1008,7 +865,8 @@ function edac_scanned_html_allowed_tags(): array {
  * gradientTransform), but wp_kses() - built for case-insensitive HTML -
  * lowercases every attribute name it outputs. Left alone, that silently
  * breaks otherwise-safe SVGs (a lowercased viewbox is simply ignored by
- * browsers). Keyed by the lowercased name wp_kses() produces.
+ * browsers). Keyed by the lowercased name wp_kses() produces. Must stay in
+ * sync with the camelCase attributes in edac_scanned_html_allowed_tags().
  *
  * @since x.x.x
  *
@@ -1021,18 +879,6 @@ function edac_svg_case_sensitive_attributes(): array {
 		'gradientunits'       => 'gradientUnits',
 		'gradienttransform'   => 'gradientTransform',
 		'spreadmethod'        => 'spreadMethod',
-		'patternunits'        => 'patternUnits',
-		'patterncontentunits' => 'patternContentUnits',
-		'patterntransform'    => 'patternTransform',
-		'clippathunits'       => 'clipPathUnits',
-		'maskunits'           => 'maskUnits',
-		'maskcontentunits'    => 'maskContentUnits',
-		'markerwidth'         => 'markerWidth',
-		'markerheight'        => 'markerHeight',
-		'markerunits'         => 'markerUnits',
-		'refx'                => 'refX',
-		'refy'                => 'refY',
-		'startoffset'         => 'startOffset',
 	];
 }
 

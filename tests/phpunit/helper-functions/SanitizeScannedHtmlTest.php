@@ -63,8 +63,9 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 		$svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Warning">'
 			. '<title>Warning</title>'
 			. '<defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">'
-			. '<stop offset="0%" stop-color="#fff" /><stop offset="100%" stop-color="#000" /></linearGradient></defs>'
-			. '<g fill="url(#g1)" stroke="#333" stroke-width="1">'
+			. '<stop offset="0%" stop-color="#fff" /><stop offset="100%" stop-color="#000" /></linearGradient>'
+			. '<clipPath id="c1"><rect x="0" y="0" width="24" height="24" /></clipPath></defs>'
+			. '<g fill="url(#g1)" stroke="#333" stroke-width="1" clip-path="url(#c1)">'
 			. '<circle cx="12" cy="12" r="10" />'
 			. '<path d="M12 6v8" />'
 			. '</g>'
@@ -79,11 +80,58 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<linearGradient', $sanitized );
 		$this->assertStringContainsString( '<stop', $sanitized );
 		$this->assertStringContainsString( 'stop-color="#fff"', $sanitized );
+		$this->assertStringContainsString( '<clipPath', $sanitized );
+		$this->assertStringContainsString( 'clip-path="url(#c1)"', $sanitized );
 		$this->assertStringContainsString( '<circle', $sanitized );
 		$this->assertStringContainsString( 'cx="12"', $sanitized );
 		$this->assertStringContainsString( '<path', $sanitized );
 		$this->assertStringContainsString( 'd="M12 6v8"', $sanitized );
 		$this->assertStringContainsString( 'xlink:href="#g1"', $sanitized );
+	}
+
+	/**
+	 * Tests that every case-sensitive SVG attribute still on the allow-list
+	 * comes back out with its correct camelCase name even though wp_kses()
+	 * lowercases attribute names internally.
+	 */
+	public function test_restores_case_sensitive_svg_attribute_names() {
+		$svg = '<svg viewBox="0 0 10 10" preserveAspectRatio="xMidYMid meet">'
+			. '<linearGradient id="g" gradientUnits="userSpaceOnUse" gradientTransform="rotate(45)" spreadMethod="pad">'
+			. '<stop offset="0" stop-color="#fff" /></linearGradient>'
+			. '<rect width="10" height="10" fill="url(#g)" />'
+			. '</svg>';
+
+		$sanitized = edac_sanitize_scanned_html( $svg );
+
+		$this->assertStringContainsString( 'viewBox=', $sanitized );
+		$this->assertStringContainsString( 'preserveAspectRatio=', $sanitized );
+		$this->assertStringContainsString( 'gradientUnits=', $sanitized );
+		$this->assertStringContainsString( 'gradientTransform=', $sanitized );
+		$this->assertStringContainsString( 'spreadMethod=', $sanitized );
+	}
+
+	/**
+	 * Tests that structural SVG elements deliberately left off the allow-list
+	 * (pattern, mask, marker, switch, textPath) are stripped as tags - kses
+	 * removes the tag itself while keeping any benign child shapes.
+	 */
+	public function test_strips_svg_elements_outside_the_allow_list() {
+		$svg = '<svg viewBox="0 0 10 10">'
+			. '<pattern id="p"><circle r="1" /></pattern>'
+			. '<mask id="m"><rect width="10" height="10" /></mask>'
+			. '<marker id="k"><path d="M0 0" /></marker>'
+			. '<switch><text x="0" y="0">Hi</text></switch>'
+			. '<text><textPath href="#p">curved</textPath></text>'
+			. '</svg>';
+
+		$sanitized = edac_sanitize_scanned_html( $svg );
+
+		$this->assertStringNotContainsString( '<pattern', $sanitized );
+		$this->assertStringNotContainsString( '<mask', $sanitized );
+		$this->assertStringNotContainsString( '<marker', $sanitized );
+		$this->assertStringNotContainsString( '<switch', $sanitized );
+		$this->assertStringNotContainsString( '<textPath', $sanitized );
+		$this->assertStringNotContainsString( '<textpath', $sanitized );
 	}
 
 	/**
