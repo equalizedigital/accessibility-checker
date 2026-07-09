@@ -790,10 +790,13 @@ function edac_parse_html_for_media( $html ) {
 
 /**
  * Allowed tags/attributes for edac_sanitize_scanned_html() - wp_kses_allowed_html( 'post' )
- * plus a broad, non-scripting SVG vocabulary. Deliberately excludes <script>,
- * <foreignObject>, <image>, and <a> (SVG's own href-based link element -
- * ordinary post-content links are still allowed via the 'post' base list),
- * and never lists any on* attribute for anything.
+ * plus the non-scripting SVG vocabulary actually likely to appear in a
+ * flagged icon/logo/decorative graphic: structure, shapes, text, and basic
+ * gradients/patterns/masks. Deliberately excludes <script>, <foreignObject>,
+ * <image>, <a> (SVG's own href-based link element - ordinary post-content
+ * links are still allowed via the 'post' base list), SMIL animation
+ * elements, and filter primitives - none of which this plugin's real-world
+ * content needs, and never lists any on* attribute for anything.
  *
  * @since x.x.x
  *
@@ -991,191 +994,9 @@ function edac_scanned_html_allowed_tags(): array {
 		],
 		'title'          => $common,
 		'desc'           => $common,
-		'metadata'       => $common,
 	];
 
-	// Filter primitives are non-scripting image-processing instructions -
-	// safe to allow broadly. feImage is excluded (it loads an external
-	// resource via href, an SSRF/tracking-pixel vector unrelated to script
-	// execution but still worth not opening up here).
-	$filter_attrs      = $common + [
-		'x'              => true,
-		'y'              => true,
-		'width'          => true,
-		'height'         => true,
-		'filterunits'    => true,
-		'primitiveunits' => true,
-		'in'             => true,
-		'in2'            => true,
-		'result'         => true,
-	];
-	$filter_primitives = [
-		'fegaussianblur'      => $filter_attrs + [ 'stddeviation' => true ],
-		'feoffset'            => $filter_attrs + [
-			'dx' => true,
-			'dy' => true,
-		],
-		'feblend'             => $filter_attrs + [ 'mode' => true ],
-		'fecolormatrix'       => $filter_attrs + [
-			'type'   => true,
-			'values' => true,
-		],
-		'fecomponenttransfer' => $filter_attrs,
-		'fefuncr'             => $common + [
-			'type'        => true,
-			'tablevalues' => true,
-			'slope'       => true,
-			'intercept'   => true,
-			'amplitude'   => true,
-			'exponent'    => true,
-			'offset'      => true,
-		],
-		'fefuncg'             => $common + [
-			'type'        => true,
-			'tablevalues' => true,
-			'slope'       => true,
-			'intercept'   => true,
-			'amplitude'   => true,
-			'exponent'    => true,
-			'offset'      => true,
-		],
-		'fefuncb'             => $common + [
-			'type'        => true,
-			'tablevalues' => true,
-			'slope'       => true,
-			'intercept'   => true,
-			'amplitude'   => true,
-			'exponent'    => true,
-			'offset'      => true,
-		],
-		'fefunca'             => $common + [
-			'type'        => true,
-			'tablevalues' => true,
-			'slope'       => true,
-			'intercept'   => true,
-			'amplitude'   => true,
-			'exponent'    => true,
-			'offset'      => true,
-		],
-		'fecomposite'         => $filter_attrs + [
-			'operator' => true,
-			'k1'       => true,
-			'k2'       => true,
-			'k3'       => true,
-			'k4'       => true,
-		],
-		'feflood'             => $filter_attrs + [
-			'flood-color'   => true,
-			'flood-opacity' => true,
-		],
-		'femerge'             => $filter_attrs,
-		'femergenode'         => $common + [ 'in' => true ],
-		'femorphology'        => $filter_attrs + [
-			'operator' => true,
-			'radius'   => true,
-		],
-		'fetile'              => $filter_attrs,
-		'feturbulence'        => $filter_attrs + [
-			'basefrequency' => true,
-			'numoctaves'    => true,
-			'seed'          => true,
-			'stitchtiles'   => true,
-			'type'          => true,
-		],
-		'fedropshadow'        => $filter_attrs + [
-			'dx'            => true,
-			'dy'            => true,
-			'stddeviation'  => true,
-			'flood-color'   => true,
-			'flood-opacity' => true,
-		],
-		'fedisplacementmap'   => $filter_attrs + [
-			'scale'            => true,
-			'xchannelselector' => true,
-			'ychannelselector' => true,
-		],
-		'feconvolvematrix'    => $filter_attrs + [
-			'order'         => true,
-			'kernelmatrix'  => true,
-			'divisor'       => true,
-			'bias'          => true,
-			'targetx'       => true,
-			'targety'       => true,
-			'edgemode'      => true,
-			'preservealpha' => true,
-		],
-		'fediffuselighting'   => $filter_attrs + [
-			'surfacescale'    => true,
-			'diffuseconstant' => true,
-			'lighting-color'  => true,
-		],
-		'fespecularlighting'  => $filter_attrs + [
-			'surfacescale'     => true,
-			'specularconstant' => true,
-			'specularexponent' => true,
-			'lighting-color'   => true,
-		],
-		'fedistantlight'      => $common + [
-			'azimuth'   => true,
-			'elevation' => true,
-		],
-		'fepointlight'        => $common + [
-			'x' => true,
-			'y' => true,
-			'z' => true,
-		],
-		'fespotlight'         => $common + [
-			'x'                 => true,
-			'y'                 => true,
-			'z'                 => true,
-			'pointsatx'         => true,
-			'pointsaty'         => true,
-			'pointsatz'         => true,
-			'specularexponent'  => true,
-			'limitingconeangle' => true,
-		],
-	];
-	$filter_container  = [
-		'filter' => $filter_attrs,
-	];
-
-	// SMIL animation elements - freely allowed since the danger was always
-	// in on*/onbegin/onend-style event attributes, none of which appear here.
-	$animation_attrs = [
-		'attributename' => true,
-		'attributetype' => true,
-		'begin'         => true,
-		'dur'           => true,
-		'end'           => true,
-		'min'           => true,
-		'max'           => true,
-		'restart'       => true,
-		'repeatcount'   => true,
-		'repeatdur'     => true,
-		'fill'          => true,
-		'calcmode'      => true,
-		'values'        => true,
-		'keytimes'      => true,
-		'keysplines'    => true,
-		'from'          => true,
-		'to'            => true,
-		'by'            => true,
-		'additive'      => true,
-		'accumulate'    => true,
-	];
-	$animation_tags  = [
-		'animate'          => $common + $animation_attrs,
-		'animatetransform' => $common + $animation_attrs + [ 'type' => true ],
-		'animatemotion'    => $common + $animation_attrs + [
-			'path'      => true,
-			'keypoints' => true,
-			'rotate'    => true,
-		],
-		'set'              => $common + $animation_attrs,
-		'mpath'            => $common + $href,
-	];
-
-	foreach ( array_merge( $svg_tags, $filter_container, $filter_primitives, $animation_tags ) as $tag => $attrs ) {
+	foreach ( $svg_tags as $tag => $attrs ) {
 		$allowed[ $tag ] = $attrs;
 	}
 
@@ -1211,36 +1032,6 @@ function edac_svg_case_sensitive_attributes(): array {
 		'markerunits'         => 'markerUnits',
 		'refx'                => 'refX',
 		'refy'                => 'refY',
-		'filterunits'         => 'filterUnits',
-		'primitiveunits'      => 'primitiveUnits',
-		'stddeviation'        => 'stdDeviation',
-		'tablevalues'         => 'tableValues',
-		'xchannelselector'    => 'xChannelSelector',
-		'ychannelselector'    => 'yChannelSelector',
-		'basefrequency'       => 'baseFrequency',
-		'numoctaves'          => 'numOctaves',
-		'stitchtiles'         => 'stitchTiles',
-		'surfacescale'        => 'surfaceScale',
-		'diffuseconstant'     => 'diffuseConstant',
-		'specularconstant'    => 'specularConstant',
-		'specularexponent'    => 'specularExponent',
-		'pointsatx'           => 'pointsAtX',
-		'pointsaty'           => 'pointsAtY',
-		'pointsatz'           => 'pointsAtZ',
-		'limitingconeangle'   => 'limitingConeAngle',
-		'kernelmatrix'        => 'kernelMatrix',
-		'targetx'             => 'targetX',
-		'targety'             => 'targetY',
-		'edgemode'            => 'edgeMode',
-		'preservealpha'       => 'preserveAlpha',
-		'attributename'       => 'attributeName',
-		'attributetype'       => 'attributeType',
-		'repeatcount'         => 'repeatCount',
-		'repeatdur'           => 'repeatDur',
-		'calcmode'            => 'calcMode',
-		'keytimes'            => 'keyTimes',
-		'keysplines'          => 'keySplines',
-		'keypoints'           => 'keyPoints',
 		'startoffset'         => 'startOffset',
 	];
 }
@@ -1275,7 +1066,7 @@ function edac_restore_svg_attribute_case( string $sanitized_html ): string {
  * (the scanned element's outerHTML) - strips constructs that could execute
  * as script (script tags, on* event handler attributes, <foreignObject>)
  * while leaving ordinary post-content HTML and non-scripting SVG markup
- * (shapes, gradients, filters, text, animation) unmodified.
+ * (shapes, gradients, text) unmodified.
  *
  * @since x.x.x
  *
