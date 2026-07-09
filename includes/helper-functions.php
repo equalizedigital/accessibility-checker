@@ -789,6 +789,522 @@ function edac_parse_html_for_media( $html ) {
 }
 
 /**
+ * Allowed tags/attributes for edac_sanitize_scanned_html() - wp_kses_allowed_html( 'post' )
+ * plus a broad, non-scripting SVG vocabulary. Deliberately excludes <script>,
+ * <foreignObject>, <image>, and <a> (SVG's own href-based link element -
+ * ordinary post-content links are still allowed via the 'post' base list),
+ * and never lists any on* attribute for anything.
+ *
+ * @since x.x.x
+ *
+ * @return array<string, array<string, bool>>
+ */
+function edac_scanned_html_allowed_tags(): array {
+	$allowed = wp_kses_allowed_html( 'post' );
+
+	// Shared by (almost) every SVG element - core presentation attributes
+	// plus the accessibility attributes this plugin most cares about.
+	$common = [
+		'id'               => true,
+		'class'            => true,
+		'style'            => true,
+		'transform'        => true,
+		'role'             => true,
+		'aria-hidden'      => true,
+		'aria-label'       => true,
+		'aria-labelledby'  => true,
+		'aria-describedby' => true,
+		'focusable'        => true,
+		'tabindex'         => true,
+		'lang'             => true,
+		'xml:lang'         => true,
+		'xml:space'        => true,
+	];
+
+	// Paint/stroke/fill presentation attributes - valid on most shape and
+	// container elements per the SVG spec; wp_kses doesn't need them to be
+	// semantically scoped per tag, only explicitly allow-listed.
+	$paint = [
+		'fill'              => true,
+		'fill-rule'         => true,
+		'fill-opacity'      => true,
+		'stroke'            => true,
+		'stroke-width'      => true,
+		'stroke-linecap'    => true,
+		'stroke-linejoin'   => true,
+		'stroke-dasharray'  => true,
+		'stroke-dashoffset' => true,
+		'stroke-opacity'    => true,
+		'stroke-miterlimit' => true,
+		'opacity'           => true,
+		'color'             => true,
+		'clip-path'         => true,
+		'clip-rule'         => true,
+		'mask'              => true,
+		'filter'            => true,
+		'marker-start'      => true,
+		'marker-mid'        => true,
+		'marker-end'        => true,
+		'vector-effect'     => true,
+		'shape-rendering'   => true,
+	];
+
+	$common_paint = $common + $paint;
+
+	// href/xlink:href only ever added to elements whose sole use is a local
+	// same-document fragment reference (#id) - edac_sanitize_scanned_html()
+	// registers xlink:href with wp_kses_uri_attributes() for the duration
+	// of the call, so both get the same bad-protocol/URI validation core
+	// already applies to the plain 'href' attribute.
+	$href = [
+		'href'       => true,
+		'xlink:href' => true,
+	];
+
+	$svg_tags = [
+		'svg'            => $common + [
+			'xmlns'               => true,
+			'xmlns:xlink'         => true,
+			'version'             => true,
+			'viewbox'             => true,
+			'width'               => true,
+			'height'              => true,
+			'preserveaspectratio' => true,
+		],
+		'g'              => $common_paint,
+		'defs'           => $common,
+		'symbol'         => $common + [
+			'viewbox'             => true,
+			'preserveaspectratio' => true,
+		],
+		'switch'         => $common,
+		'use'            => $common_paint + $href + [
+			'x'      => true,
+			'y'      => true,
+			'width'  => true,
+			'height' => true,
+		],
+		'path'           => $common_paint + [ 'd' => true ],
+		'rect'           => $common_paint + [
+			'x'      => true,
+			'y'      => true,
+			'width'  => true,
+			'height' => true,
+			'rx'     => true,
+			'ry'     => true,
+		],
+		'circle'         => $common_paint + [
+			'cx' => true,
+			'cy' => true,
+			'r'  => true,
+		],
+		'ellipse'        => $common_paint + [
+			'cx' => true,
+			'cy' => true,
+			'rx' => true,
+			'ry' => true,
+		],
+		'line'           => $common_paint + [
+			'x1' => true,
+			'y1' => true,
+			'x2' => true,
+			'y2' => true,
+		],
+		'polyline'       => $common_paint + [ 'points' => true ],
+		'polygon'        => $common_paint + [ 'points' => true ],
+		'text'           => $common_paint + [
+			'x'           => true,
+			'y'           => true,
+			'dx'          => true,
+			'dy'          => true,
+			'text-anchor' => true,
+			'font-family' => true,
+			'font-size'   => true,
+			'font-weight' => true,
+			'font-style'  => true,
+		],
+		'tspan'          => $common_paint + [
+			'x'  => true,
+			'y'  => true,
+			'dx' => true,
+			'dy' => true,
+		],
+		'textpath'       => $common_paint + $href + [
+			'startoffset' => true,
+			'method'      => true,
+			'spacing'     => true,
+			'side'        => true,
+		],
+		'lineargradient' => $common + $href + [
+			'x1'                => true,
+			'y1'                => true,
+			'x2'                => true,
+			'y2'                => true,
+			'gradientunits'     => true,
+			'gradienttransform' => true,
+			'spreadmethod'      => true,
+		],
+		'radialgradient' => $common + $href + [
+			'cx'                => true,
+			'cy'                => true,
+			'r'                 => true,
+			'fx'                => true,
+			'fy'                => true,
+			'fr'                => true,
+			'gradientunits'     => true,
+			'gradienttransform' => true,
+			'spreadmethod'      => true,
+		],
+		'stop'           => $common + [
+			'offset'       => true,
+			'stop-color'   => true,
+			'stop-opacity' => true,
+		],
+		'pattern'        => $common + $href + [
+			'x'                   => true,
+			'y'                   => true,
+			'width'               => true,
+			'height'              => true,
+			'patternunits'        => true,
+			'patterncontentunits' => true,
+			'patterntransform'    => true,
+			'viewbox'             => true,
+		],
+		'clippath'       => $common + [ 'clippathunits' => true ],
+		'mask'           => $common + [
+			'x'                => true,
+			'y'                => true,
+			'width'            => true,
+			'height'           => true,
+			'maskunits'        => true,
+			'maskcontentunits' => true,
+		],
+		'marker'         => $common + [
+			'markerwidth'         => true,
+			'markerheight'        => true,
+			'markerunits'         => true,
+			'refx'                => true,
+			'refy'                => true,
+			'orient'              => true,
+			'viewbox'             => true,
+			'preserveaspectratio' => true,
+		],
+		'title'          => $common,
+		'desc'           => $common,
+		'metadata'       => $common,
+	];
+
+	// Filter primitives are non-scripting image-processing instructions -
+	// safe to allow broadly. feImage is excluded (it loads an external
+	// resource via href, an SSRF/tracking-pixel vector unrelated to script
+	// execution but still worth not opening up here).
+	$filter_attrs      = $common + [
+		'x'              => true,
+		'y'              => true,
+		'width'          => true,
+		'height'         => true,
+		'filterunits'    => true,
+		'primitiveunits' => true,
+		'in'             => true,
+		'in2'            => true,
+		'result'         => true,
+	];
+	$filter_primitives = [
+		'fegaussianblur'      => $filter_attrs + [ 'stddeviation' => true ],
+		'feoffset'            => $filter_attrs + [
+			'dx' => true,
+			'dy' => true,
+		],
+		'feblend'             => $filter_attrs + [ 'mode' => true ],
+		'fecolormatrix'       => $filter_attrs + [
+			'type'   => true,
+			'values' => true,
+		],
+		'fecomponenttransfer' => $filter_attrs,
+		'fefuncr'             => $common + [
+			'type'        => true,
+			'tablevalues' => true,
+			'slope'       => true,
+			'intercept'   => true,
+			'amplitude'   => true,
+			'exponent'    => true,
+			'offset'      => true,
+		],
+		'fefuncg'             => $common + [
+			'type'        => true,
+			'tablevalues' => true,
+			'slope'       => true,
+			'intercept'   => true,
+			'amplitude'   => true,
+			'exponent'    => true,
+			'offset'      => true,
+		],
+		'fefuncb'             => $common + [
+			'type'        => true,
+			'tablevalues' => true,
+			'slope'       => true,
+			'intercept'   => true,
+			'amplitude'   => true,
+			'exponent'    => true,
+			'offset'      => true,
+		],
+		'fefunca'             => $common + [
+			'type'        => true,
+			'tablevalues' => true,
+			'slope'       => true,
+			'intercept'   => true,
+			'amplitude'   => true,
+			'exponent'    => true,
+			'offset'      => true,
+		],
+		'fecomposite'         => $filter_attrs + [
+			'operator' => true,
+			'k1'       => true,
+			'k2'       => true,
+			'k3'       => true,
+			'k4'       => true,
+		],
+		'feflood'             => $filter_attrs + [
+			'flood-color'   => true,
+			'flood-opacity' => true,
+		],
+		'femerge'             => $filter_attrs,
+		'femergenode'         => $common + [ 'in' => true ],
+		'femorphology'        => $filter_attrs + [
+			'operator' => true,
+			'radius'   => true,
+		],
+		'fetile'              => $filter_attrs,
+		'feturbulence'        => $filter_attrs + [
+			'basefrequency' => true,
+			'numoctaves'    => true,
+			'seed'          => true,
+			'stitchtiles'   => true,
+			'type'          => true,
+		],
+		'fedropshadow'        => $filter_attrs + [
+			'dx'            => true,
+			'dy'            => true,
+			'stddeviation'  => true,
+			'flood-color'   => true,
+			'flood-opacity' => true,
+		],
+		'fedisplacementmap'   => $filter_attrs + [
+			'scale'            => true,
+			'xchannelselector' => true,
+			'ychannelselector' => true,
+		],
+		'feconvolvematrix'    => $filter_attrs + [
+			'order'         => true,
+			'kernelmatrix'  => true,
+			'divisor'       => true,
+			'bias'          => true,
+			'targetx'       => true,
+			'targety'       => true,
+			'edgemode'      => true,
+			'preservealpha' => true,
+		],
+		'fediffuselighting'   => $filter_attrs + [
+			'surfacescale'    => true,
+			'diffuseconstant' => true,
+			'lighting-color'  => true,
+		],
+		'fespecularlighting'  => $filter_attrs + [
+			'surfacescale'     => true,
+			'specularconstant' => true,
+			'specularexponent' => true,
+			'lighting-color'   => true,
+		],
+		'fedistantlight'      => $common + [
+			'azimuth'   => true,
+			'elevation' => true,
+		],
+		'fepointlight'        => $common + [
+			'x' => true,
+			'y' => true,
+			'z' => true,
+		],
+		'fespotlight'         => $common + [
+			'x'                 => true,
+			'y'                 => true,
+			'z'                 => true,
+			'pointsatx'         => true,
+			'pointsaty'         => true,
+			'pointsatz'         => true,
+			'specularexponent'  => true,
+			'limitingconeangle' => true,
+		],
+	];
+	$filter_container  = [
+		'filter' => $filter_attrs,
+	];
+
+	// SMIL animation elements - freely allowed since the danger was always
+	// in on*/onbegin/onend-style event attributes, none of which appear here.
+	$animation_attrs = [
+		'attributename' => true,
+		'attributetype' => true,
+		'begin'         => true,
+		'dur'           => true,
+		'end'           => true,
+		'min'           => true,
+		'max'           => true,
+		'restart'       => true,
+		'repeatcount'   => true,
+		'repeatdur'     => true,
+		'fill'          => true,
+		'calcmode'      => true,
+		'values'        => true,
+		'keytimes'      => true,
+		'keysplines'    => true,
+		'from'          => true,
+		'to'            => true,
+		'by'            => true,
+		'additive'      => true,
+		'accumulate'    => true,
+	];
+	$animation_tags  = [
+		'animate'          => $common + $animation_attrs,
+		'animatetransform' => $common + $animation_attrs + [ 'type' => true ],
+		'animatemotion'    => $common + $animation_attrs + [
+			'path'      => true,
+			'keypoints' => true,
+			'rotate'    => true,
+		],
+		'set'              => $common + $animation_attrs,
+		'mpath'            => $common + $href,
+	];
+
+	foreach ( array_merge( $svg_tags, $filter_container, $filter_primitives, $animation_tags ) as $tag => $attrs ) {
+		$allowed[ $tag ] = $attrs;
+	}
+
+	return $allowed;
+}
+
+/**
+ * SVG attribute names are case-sensitive per spec (e.g. viewBox,
+ * gradientTransform), but wp_kses() - built for case-insensitive HTML -
+ * lowercases every attribute name it outputs. Left alone, that silently
+ * breaks otherwise-safe SVGs (a lowercased viewbox is simply ignored by
+ * browsers). Keyed by the lowercased name wp_kses() produces.
+ *
+ * @since x.x.x
+ *
+ * @return array<string, string>
+ */
+function edac_svg_case_sensitive_attributes(): array {
+	return [
+		'viewbox'             => 'viewBox',
+		'preserveaspectratio' => 'preserveAspectRatio',
+		'gradientunits'       => 'gradientUnits',
+		'gradienttransform'   => 'gradientTransform',
+		'spreadmethod'        => 'spreadMethod',
+		'patternunits'        => 'patternUnits',
+		'patterncontentunits' => 'patternContentUnits',
+		'patterntransform'    => 'patternTransform',
+		'clippathunits'       => 'clipPathUnits',
+		'maskunits'           => 'maskUnits',
+		'maskcontentunits'    => 'maskContentUnits',
+		'markerwidth'         => 'markerWidth',
+		'markerheight'        => 'markerHeight',
+		'markerunits'         => 'markerUnits',
+		'refx'                => 'refX',
+		'refy'                => 'refY',
+		'filterunits'         => 'filterUnits',
+		'primitiveunits'      => 'primitiveUnits',
+		'stddeviation'        => 'stdDeviation',
+		'tablevalues'         => 'tableValues',
+		'xchannelselector'    => 'xChannelSelector',
+		'ychannelselector'    => 'yChannelSelector',
+		'basefrequency'       => 'baseFrequency',
+		'numoctaves'          => 'numOctaves',
+		'stitchtiles'         => 'stitchTiles',
+		'surfacescale'        => 'surfaceScale',
+		'diffuseconstant'     => 'diffuseConstant',
+		'specularconstant'    => 'specularConstant',
+		'specularexponent'    => 'specularExponent',
+		'pointsatx'           => 'pointsAtX',
+		'pointsaty'           => 'pointsAtY',
+		'pointsatz'           => 'pointsAtZ',
+		'limitingconeangle'   => 'limitingConeAngle',
+		'kernelmatrix'        => 'kernelMatrix',
+		'targetx'             => 'targetX',
+		'targety'             => 'targetY',
+		'edgemode'            => 'edgeMode',
+		'preservealpha'       => 'preserveAlpha',
+		'attributename'       => 'attributeName',
+		'attributetype'       => 'attributeType',
+		'repeatcount'         => 'repeatCount',
+		'repeatdur'           => 'repeatDur',
+		'calcmode'            => 'calcMode',
+		'keytimes'            => 'keyTimes',
+		'keysplines'          => 'keySplines',
+		'keypoints'           => 'keyPoints',
+		'startoffset'         => 'startOffset',
+	];
+}
+
+/**
+ * Restore case-sensitive SVG attribute names that wp_kses() lowercased.
+ *
+ * @since x.x.x
+ *
+ * @param string $sanitized_html HTML already run through wp_kses().
+ * @return string
+ */
+function edac_restore_svg_attribute_case( string $sanitized_html ): string {
+	if ( false === stripos( $sanitized_html, '<svg' ) ) {
+		// Cheap early exit - none of these attributes mean anything outside SVG.
+		return $sanitized_html;
+	}
+
+	foreach ( edac_svg_case_sensitive_attributes() as $lowercased => $correct ) {
+		$sanitized_html = preg_replace(
+			'/(<[^>]*?[\s])' . preg_quote( $lowercased, '/' ) . '(\s*=)/i',
+			'$1' . $correct . '$2',
+			$sanitized_html
+		);
+	}
+
+	return $sanitized_html;
+}
+
+/**
+ * Sanitize an HTML/SVG snippet before it's stored as an issue's "object"
+ * (the scanned element's outerHTML) - strips constructs that could execute
+ * as script (script tags, on* event handler attributes, <foreignObject>)
+ * while leaving ordinary post-content HTML and non-scripting SVG markup
+ * (shapes, gradients, filters, text, animation) unmodified.
+ *
+ * @since x.x.x
+ *
+ * @param mixed $html Raw HTML snippet - expected to be a string.
+ * @return string Sanitized HTML, or '' if given anything other than a string.
+ */
+function edac_sanitize_scanned_html( $html ): string {
+	if ( ! is_string( $html ) || '' === $html ) {
+		return '';
+	}
+
+	// xlink:href isn't in core's wp_kses_uri_attributes() list (that list
+	// predates SVG/XLink awareness), so without this filter a value like
+	// xlink:href="javascript:alert(1)" would pass through unchecked even
+	// though the identical case for the plain 'href' attribute is already
+	// protocol-validated by core. Scoped to this call only.
+	$add_xlink_href = static function ( array $uri_attributes ): array {
+		$uri_attributes[] = 'xlink:href';
+		return $uri_attributes;
+	};
+
+	add_filter( 'wp_kses_uri_attributes', $add_xlink_href );
+	$sanitized = wp_kses( $html, edac_scanned_html_allowed_tags() );
+	remove_filter( 'wp_kses_uri_attributes', $add_xlink_href );
+
+	return edac_restore_svg_attribute_case( $sanitized );
+}
+
+/**
  * Remove corrected posts
  *
  * @param int    $post_ID The ID of the post.

@@ -65,7 +65,11 @@ class Insert_Rule_Data {
 			'xpath'             => $selectors['xpath'][0] ?? null,
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
-			'object'            => esc_attr( $rule_obj ),
+			// Sanitize before esc_attr(): the scanned object HTML/SVG is
+			// untrusted (submitted by any user who can edit the post, via
+			// the JS scan-results REST route) and is later html_entity_decode()d
+			// and re-parsed for display - see edac_sanitize_scanned_html().
+			'object'            => esc_attr( edac_sanitize_scanned_html( $rule_obj ) ),
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
