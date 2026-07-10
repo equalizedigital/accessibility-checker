@@ -36,6 +36,7 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 			'javascript: xlink'   => [ '<svg><use xlink:href="javascript:alert(1)" /></svg>', 'javascript:' ],
 			'javascript: href'    => [ '<svg><use href="javascript:alert(1)" /></svg>', 'javascript:' ],
 			'onbegin animate'     => [ '<svg><animate onbegin="alert(1)" attributeName="x" /></svg>', 'onbegin' ],
+			'animate element'     => [ '<svg><animate onbegin="alert(1)" attributeName="x" /></svg>', '<animate' ],
 			'onmouseover handler' => [ '<svg onmouseover="alert(1)"><rect width="10" height="10" /></svg>', 'onmouseover' ],
 		];
 	}
@@ -132,6 +133,34 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 		$this->assertStringNotContainsString( '<switch', $sanitized );
 		$this->assertStringNotContainsString( '<textPath', $sanitized );
 		$this->assertStringNotContainsString( '<textpath', $sanitized );
+	}
+
+	/**
+	 * Tests that non-rendering / scripting-adjacent SVG elements the allow-list
+	 * deliberately omits (raster <image>, the <filter> pipeline and its
+	 * primitives, and SMIL <animate>) are stripped as tags. These are called
+	 * out separately from the structural exclusions above because they are the
+	 * ones with a security or external-fetch rationale, not just "unused."
+	 */
+	public function test_strips_security_sensitive_svg_elements() {
+		$svg = '<svg viewBox="0 0 10 10">'
+			. '<image href="https://evil.example/x.svg" width="10" height="10" />'
+			. '<filter id="f"><feGaussianBlur stdDeviation="1" /><feImage href="https://evil.example/y" /></filter>'
+			. '<animate attributeName="x" from="0" to="10" />'
+			. '<rect width="10" height="10" fill="#000" />'
+			. '</svg>';
+
+		$sanitized = edac_sanitize_scanned_html( $svg );
+
+		$this->assertStringNotContainsStringIgnoringCase( '<image', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( '<filter', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( '<feGaussianBlur', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( '<feImage', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( '<animate', $sanitized );
+
+		// The benign sibling shape must still survive - excluding the above
+		// should not nuke the rest of the graphic.
+		$this->assertStringContainsString( '<rect', $sanitized );
 	}
 
 	/**
