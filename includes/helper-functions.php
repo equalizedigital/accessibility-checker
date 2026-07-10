@@ -898,15 +898,28 @@ function edac_restore_svg_attribute_case( string $sanitized_html ): string {
 		return $sanitized_html;
 	}
 
-	foreach ( edac_svg_case_sensitive_attributes() as $lowercased => $correct ) {
-		$sanitized_html = preg_replace(
-			'/(<[^>]*?[\s])' . preg_quote( $lowercased, '/' ) . '(\s*=)/i',
-			'$1' . $correct . '$2',
-			$sanitized_html
-		);
-	}
+	$replacements = edac_svg_case_sensitive_attributes();
+	$names        = implode( '|', array_map( 'preg_quote', array_keys( $replacements ) ) );
 
-	return $sanitized_html;
+	// Restore every case-sensitive attribute in one outer pass over the tags:
+	// match each tag, then fix all matching attribute names inside it. A flat
+	// preg_replace_callback with alternation cannot do this because it consumes
+	// the opening "<", leaving later attributes on the same tag unanchored.
+	$restored = preg_replace_callback(
+		'/<[^>]+>/',
+		static function ( array $tag ) use ( $replacements, $names ): string {
+			return preg_replace_callback(
+				'/(\s)(' . $names . ')(\s*=)/i',
+				static function ( array $attr ) use ( $replacements ): string {
+					return $attr[1] . ( $replacements[ strtolower( $attr[2] ) ] ?? $attr[2] ) . $attr[3];
+				},
+				$tag[0]
+			);
+		},
+		$sanitized_html
+	);
+
+	return null === $restored ? $sanitized_html : $restored;
 }
 
 /**
@@ -916,6 +929,16 @@ function edac_restore_svg_attribute_case( string $sanitized_html ): string {
  * while leaving ordinary post-content HTML and non-scripting SVG markup
  * (shapes, gradients, text) unmodified.
  *
+ * The stored value is later html_entity_decode()d and re-parsed for display
+ * (see edac_parse_html_for_media() and the Frontend_Highlight AJAX handler).
+ * That downstream decode is why we decode here first: entity-encoded markup
+ * such as `&lt;img src=x onerror=alert(1)&gt;` is inert *text* to wp_kses()
+ * (nothing to strip), but the display-side decode would revive it into a live
+ * tag - a sanitizer bypass. Decoding to a fixed point up front (so multiply
+ * -encoded payloads like `&amp;lt;...` collapse too) means wp_kses() sees the
+ * exact markup a browser will ultimately parse, and its decision is the one
+ * that sticks.
+ *
  * @since x.x.x
  *
  * @param mixed $html Raw HTML snippet - expected to be a string.
@@ -924,6 +947,17 @@ function edac_restore_svg_attribute_case( string $sanitized_html ): string {
 function edac_sanitize_scanned_html( $html ): string {
 	if ( ! is_string( $html ) || '' === $html ) {
 		return '';
+	}
+
+	// Fully decode entities before sanitizing - see docblock. html_entity_decode()
+	// only ever contracts (entities -> single chars), so this cannot expand the
+	// input; the guard just bounds pathological deep nesting.
+	$previous     = null;
+	$decode_guard = 0;
+	while ( $html !== $previous && $decode_guard < 10 ) {
+		$previous = $html;
+		$html     = html_entity_decode( $html, ENT_QUOTES | ENT_HTML5 );
+		++$decode_guard;
 	}
 
 	// xlink:href isn't in core's wp_kses_uri_attributes() list (that list

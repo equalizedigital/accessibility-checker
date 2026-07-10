@@ -201,4 +201,57 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 	public function test_empty_string_input_returns_empty_string() {
 		$this->assertSame( '', edac_sanitize_scanned_html( '' ) );
 	}
+
+	/**
+	 * Tests that entity-encoded markup cannot smuggle a live tag past the
+	 * sanitizer. Such a payload is inert text to wp_kses(), so without the
+	 * up-front decode it would survive sanitization and then revive into a
+	 * live tag when the stored value is html_entity_decode()d for display.
+	 *
+	 * @dataProvider entity_smuggled_data
+	 *
+	 * @param string $payload          Entity-encoded malicious markup.
+	 * @param string $must_not_contain Substring that must not survive sanitization.
+	 */
+	public function test_strips_entity_encoded_smuggled_markup( $payload, $must_not_contain ) {
+		$sanitized = edac_sanitize_scanned_html( $payload );
+
+		$this->assertStringNotContainsStringIgnoringCase( $must_not_contain, $sanitized );
+	}
+
+	/**
+	 * Data provider of entity-encoded XSS payloads, including multiply-encoded
+	 * variants that a single decode would not fully collapse.
+	 */
+	public function entity_smuggled_data() {
+		return [
+			'single-encoded onerror' => [ '<svg><title>&lt;img src=x onerror=alert(1)&gt;</title></svg>', 'onerror' ],
+			'single-encoded script'  => [ '<svg><title>&lt;script&gt;alert(1)&lt;/script&gt;</title></svg>', '<script' ],
+			'double-encoded onerror' => [ '<svg><title>&amp;lt;img src=x onerror=alert(1)&amp;gt;</title></svg>', 'onerror' ],
+			'triple-encoded onerror' => [ '<svg><title>&amp;amp;lt;img src=x onerror=alert(1)&amp;amp;gt;</title></svg>', 'onerror' ],
+			'numeric-entity onerror' => [ '<svg><title>&#60;img src=x onerror=alert(1)&#62;</title></svg>', 'onerror' ],
+		];
+	}
+
+	/**
+	 * Tests the full store -> display round trip an attacker would rely on:
+	 * sanitize + esc_attr() at save time (Insert_Rule_Data), then the
+	 * html_entity_decode() every consumer applies before rendering the stored
+	 * object. After the round trip no live event handler or script tag may
+	 * remain, at any encoding depth.
+	 *
+	 * @dataProvider entity_smuggled_data
+	 *
+	 * @param string $payload Entity-encoded malicious markup.
+	 */
+	public function test_smuggled_markup_is_inert_after_store_and_display_decode( $payload ) {
+		// Insert_Rule_Data stores esc_attr( edac_sanitize_scanned_html( $raw ) ).
+		$stored = esc_attr( edac_sanitize_scanned_html( $payload ) );
+
+		// edac_parse_html_for_media() / Frontend_Highlight decode before rendering.
+		$displayed = html_entity_decode( $stored, ENT_QUOTES | ENT_HTML5 );
+
+		$this->assertDoesNotMatchRegularExpression( '/\son\w+\s*=/i', $displayed );
+		$this->assertStringNotContainsStringIgnoringCase( '<script', $displayed );
+	}
 }
