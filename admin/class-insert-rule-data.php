@@ -163,7 +163,7 @@ class Insert_Rule_Data {
 				'xpath'             => sanitize_text_field( $rule_data['xpath'] ?? '' ),
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
-				'object'            => esc_attr( $rule_data['object'] ),
+				'object'            => esc_attr( edac_sanitize_scanned_html( $rule_data['object'] ) ),
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),
