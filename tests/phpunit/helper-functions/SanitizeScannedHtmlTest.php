@@ -29,14 +29,14 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 	 */
 	public function malicious_svg_data() {
 		return [
-			'onload handler'    => [ '<svg onload="alert(document.cookie)"><circle r="5" /></svg>', 'onload' ],
-			'script child'      => [ '<svg><script>alert(1)</script></svg>', '<script' ],
-			'foreignObject'     => [ '<svg><foreignObject><img src=x onerror="alert(1)"></foreignObject></svg>', 'foreignObject' ],
-			'onclick handler'   => [ '<svg><a onclick="alert(1)"><circle r="5" /></a></svg>', 'onclick' ],
-			'javascript: xlink' => [ '<svg><use xlink:href="javascript:alert(1)" /></svg>', 'javascript:' ],
-			'javascript: href'  => [ '<svg><use href="javascript:alert(1)" /></svg>', 'javascript:' ],
-			'onbegin animate'   => [ '<svg><animate onbegin="alert(1)" attributeName="x" /></svg>', 'onbegin' ],
-			'style expression'  => [ '<svg onmouseover="alert(1)"><rect width="10" height="10" /></svg>', 'onmouseover' ],
+			'onload handler'      => [ '<svg onload="alert(document.cookie)"><circle r="5" /></svg>', 'onload' ],
+			'script child'        => [ '<svg><script>alert(1)</script></svg>', '<script' ],
+			'foreignObject'       => [ '<svg><foreignObject><img src=x onerror="alert(1)"></foreignObject></svg>', 'foreignObject' ],
+			'onclick handler'     => [ '<svg><a onclick="alert(1)"><circle r="5" /></a></svg>', 'onclick' ],
+			'javascript: xlink'   => [ '<svg><use xlink:href="javascript:alert(1)" /></svg>', 'javascript:' ],
+			'javascript: href'    => [ '<svg><use href="javascript:alert(1)" /></svg>', 'javascript:' ],
+			'onbegin animate'     => [ '<svg><animate onbegin="alert(1)" attributeName="x" /></svg>', 'onbegin' ],
+			'onmouseover handler' => [ '<svg onmouseover="alert(1)"><rect width="10" height="10" /></svg>', 'onmouseover' ],
 		];
 	}
 
