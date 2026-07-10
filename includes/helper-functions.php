@@ -796,7 +796,10 @@ function edac_parse_html_for_media( $html ) {
  * @since x.x.x
  *
  * @param mixed $svg_markup Raw SVG markup - expected to be a string.
- * @return string Unescaped data URI - callers must esc_url() it before output.
+ * @return string Unescaped data URI - callers must esc_url() it before output,
+ *                passing a protocols list that includes 'data' (e.g.
+ *                esc_url( $uri, [ 'data', 'http', 'https' ] )); with the
+ *                default protocols esc_url() rejects data: URIs and returns ''.
  */
 function edac_svg_markup_to_data_uri( $svg_markup ): string {
 	if ( ! is_string( $svg_markup ) ) {
