@@ -21,7 +21,7 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 	public function test_strips_dangerous_constructs( $svg, $must_not_contain ) {
 		$sanitized = edac_sanitize_scanned_html( $svg );
 
-		$this->assertStringNotContainsString( $must_not_contain, $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( $must_not_contain, $sanitized );
 	}
 
 	/**
@@ -48,10 +48,10 @@ class SanitizeScannedHtmlTest extends WP_UnitTestCase {
 		$svg       = '<svg onload="alert(1)"><script>alert(2)</script><a onclick="alert(3)"><foreignObject><body>hi</body></foreignObject></a></svg>';
 		$sanitized = edac_sanitize_scanned_html( $svg );
 
-		$this->assertStringNotContainsString( 'onload', $sanitized );
-		$this->assertStringNotContainsString( '<script', $sanitized );
-		$this->assertStringNotContainsString( 'onclick', $sanitized );
-		$this->assertStringNotContainsString( 'foreignObject', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( 'onload', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( '<script', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( 'onclick', $sanitized );
+		$this->assertStringNotContainsStringIgnoringCase( 'foreignObject', $sanitized );
 	}
 
 	/**

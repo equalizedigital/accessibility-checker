@@ -793,12 +793,13 @@ function edac_parse_html_for_media( $html ) {
  * plus the minimal SVG vocabulary a flagged icon/logo/decorative graphic
  * actually uses: container, grouping, basic shapes, gradients, text, and the
  * accessible-name elements (<title>/<desc>). Deliberately excludes <script>,
- * <foreignObject>, <image>, <a> (SVG's own href-based link element -
- * ordinary post-content links are still allowed via the 'post' base list),
- * SMIL animation, filter primitives, and rarely-used structural extras
- * (<pattern>, <mask>, <marker>, <switch>, <textPath>) - none of which this
- * plugin's real-world content needs. Never lists any on* attribute for
- * anything.
+ * <foreignObject>, <image>, SMIL animation, filter primitives, and
+ * rarely-used structural extras (<pattern>, <mask>, <marker>, <switch>,
+ * <textPath>) - none of which this plugin's real-world content needs. Note
+ * that <a> IS allowed, via the 'post' base list: wp_kses() has no namespace
+ * awareness, so that entry also matches <a> inside <svg> markup. That's safe
+ * because no on* attribute is ever allowed on anything and href values get
+ * core's bad-protocol validation.
  *
  * Every allowed SVG element shares one attribute set: wp_kses() only needs
  * attribute names allow-listed, not semantically scoped per tag, and a
@@ -865,8 +866,9 @@ function edac_scanned_html_allowed_tags(): array {
  * gradientTransform), but wp_kses() - built for case-insensitive HTML -
  * lowercases every attribute name it outputs. Left alone, that silently
  * breaks otherwise-safe SVGs (a lowercased viewbox is simply ignored by
- * browsers). Keyed by the lowercased name wp_kses() produces. Must stay in
- * sync with the camelCase attributes in edac_scanned_html_allowed_tags().
+ * browsers). Keyed by the lowercased name wp_kses() produces. Every SVG
+ * attribute with a case-sensitive canonical spelling that appears (lowercased)
+ * in edac_scanned_html_allowed_tags() must have an entry here.
  *
  * @since x.x.x
  *
