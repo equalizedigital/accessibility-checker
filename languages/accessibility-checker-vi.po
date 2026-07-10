@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.44.1\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-30T21:17:17+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Trình kiểm tra khả năng tiếp cận"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -920,7 +920,7 @@ msgstr "Không có dữ liệu khả năng đọc để trả về"
 msgid "No dismissal data to return"
 msgstr "Không có dữ liệu bỏ qua nào được trả về"
 
-#: admin/class-enqueue-admin.php:438
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Văn bản trình đọc màn hình"
 
@@ -2588,29 +2588,27 @@ msgstr "Thêm một thuộc tính alt mô tả mục đích của liên kết. T
 msgid "Incorrect Heading Order"
 msgstr "Thứ tự tiêu đề không chính xác"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Trang này sử dụng các tiêu đề không theo thứ tự. Đây là một %1$s sau một %2$s, bỏ qua một hoặc nhiều cấp độ tiêu đề."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Trang này sử dụng các tiêu đề không đúng thứ tự, bỏ qua một hoặc nhiều cấp độ tiêu đề."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Những trang này sử dụng các tiêu đề không theo thứ tự, bỏ qua một hoặc nhiều cấp độ tiêu đề, chẳng hạn như chuyển từ %1$s sang %2$s mà không có %3$s ở giữa."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Tiêu đề giúp tất cả người dùng—đặc biệt là những người sử dụng trình đọc màn hình hoặc điều hướng bàn phím—hiểu cấu trúc của trang. Việc bỏ qua các cấp độ tiêu đề có thể gây ra sự nhầm lẫn và khiến việc theo dõi hệ thống phân cấp nội dung hoặc điều hướng hiệu quả trở nên khó khăn hơn."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Sửa lại các tiêu đề của bạn để tuân theo thứ tự hợp lý mà không bỏ qua cấp độ. Ví dụ, nếu một %1$s được theo sau bởi một %2$s, hãy thay đổi %2$s thành %3$s hoặc thêm một phần %3$s ở giữa để giữ cấu trúc phù hợp. Nếu cần, hãy sử dụng CSS hoặc cài đặt trình tạo khối/trang để tạo kiểu cho tiêu đề thay vì đặt cấp độ không chính xác."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "Hướng dẫn của W3C về Cấu trúc Trang: Tiêu đề"
 
@@ -3493,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Chào mừng đến với Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
@@ -5843,6 +5842,11 @@ msgstr "Xem %d vấn đề trong Phân tích khả năng truy cập"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Xem %d mục cần xem xét trong Phân tích khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Xem chi tiết cấp độ đọc: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

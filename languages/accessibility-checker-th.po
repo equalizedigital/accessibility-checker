@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.44.1\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-30T21:17:17+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -920,7 +920,7 @@ msgstr "ไม่มีข้อมูลความสามารถในก
 msgid "No dismissal data to return"
 msgstr "ไม่มีข้อมูลการยกเลิกที่จะส่งกลับ"
 
-#: admin/class-enqueue-admin.php:438
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* ข้อความสำหรับเครื่องอ่านหน้าจอ"
 
@@ -2588,29 +2588,27 @@ msgstr "เพิ่มแอตทริบิวต์ alt ที่อธิ�
 msgid "Incorrect Heading Order"
 msgstr "ลำดับหัวข้อไม่ถูกต้อง"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "หน้านี้ใช้หัวข้อไม่เป็นลำดับ นี่คือ%1$sหลังจาก%2$s ข้ามระดับหัวข้อไปหนึ่งหรือมากกว่านั้น."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "หน้านี้ใช้หัวข้อไม่เป็นไปตามลำดับ โดยมีการข้ามระดับหัวข้อไปอย่างน้อยหนึ่งระดับ"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "หน้าเหล่านี้ใช้หัวข้อไม่เป็นลำดับ ข้ามระดับหัวข้อไปหนึ่งหรือมากกว่านั้น เช่น การไปจาก%1$sไปยัง%2$sโดยไม่มี%3$sคั่นกลาง."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "หัวข้อช่วยผู้ใช้ทุกคน โดยเฉพาะผู้ที่ใช้โปรแกรมอ่านหน้าจอหรือการนำทางด้วยแป้นพิมพ์ ให้เข้าใจโครงสร้างของหน้า การข้ามระดับหัวข้อสามารถสร้างความสับสนและทำให้ยากต่อการติดตามลำดับชั้นของเนื้อหาหรือนำทางอย่างมีประสิทธิภาพ."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "แก้ไขหัวข้อของคุณให้เป็นไปตามลำดับที่สมเหตุสมผลโดยไม่ข้ามระดับ ตัวอย่างเช่น ถ้า%1$sตามด้วย%2$s ให้เปลี่ยน%2$sเป็น%3$sหรือเพิ่มส่วน%3$sระหว่างกลางเพื่อรักษาโครงสร้างที่เหมาะสม หากจำเป็น ใช้ CSS หรือการตั้งค่าตัวสร้างบล็อก/หน้าเพื่อจัดรูปแบบหัวข้อแทนการตั้งค่าระดับที่ไม่ถูกต้อง."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "บทช่วยสอนโครงสร้างหน้าของ W3C: หัวข้อ"
 
@@ -3493,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "ยินดีต้อนรับสู่ Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "การตั้งค่า Accessibility Checker"
 
@@ -5843,6 +5842,11 @@ msgstr "ดู %d ปัญหาในการวิเคราะห์ก�
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "ดู %d รายการที่ต้องตรวจสอบในการวิเคราะห์การเข้าถึง"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "ดูรายละเอียดระดับการอ่าน: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

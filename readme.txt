@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.7
 Tested up to: 7.0
-Stable tag: 1.45.0
+Stable tag: 1.46.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,17 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-07-08 - version 1.46.0
+* Updated - the aria-hidden rule no longer flags core Cover blocks.
+* Updated - the Incorrect Heading Order summary no longer claims specific heading levels that may not match the actual issue.
+* Updated - more strings translated into other languages.
+* Fix - .ogg audio files are no longer treated as video content by the video checks.
+* Fix - reading level grades between 0 and 1 are now rounded up to grade 1 instead of being treated as not calculable.
+* Fix - Accessibility Analysis panel now shows a success icon when no issues are found.
+* Fix - Reading Level summary card now conveys its status to screen readers.
+* Fix - corrected the accessible name on the settings page navigation landmark.
+* Fix - settings page logo now displays correctly on right-to-left site languages.
 
 2026-06-30 - version 1.45.0
 * Updated - default dismiss reasons are now reordered so first item is confirmed accessible.

@@ -101,6 +101,16 @@ describe( 'video_present rule', () => {
 			html: '<video><source src="movie.MP4"></video>',
 			shouldPass: false,
 		},
+		{
+			name: 'detects .ogg file used as a native <video> element src',
+			html: '<video src="movie.ogg" controls></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects .ogg source that is not inside an <audio> element',
+			html: '<source src="clip.ogg">',
+			shouldPass: false,
+		},
 
 		// Should not trigger violations
 		{
@@ -133,6 +143,26 @@ describe( 'video_present rule', () => {
 		{
 			name: 'does not detect source element with audio inside audio tag',
 			html: '<audio controls><source src="sound.mp3" type="audio/mpeg"></audio>',
+			shouldPass: true,
+		},
+		{
+			// Direct/minimal case: the <audio> element itself has a .ogg src, exercising the
+			// `tag === 'audio'` path in is-video-detected.js without any wrapping markup.
+			name: 'does not detect a plain <audio> element with a .ogg src',
+			html: '<audio controls src="simple-guitar-melody.ogg"></audio>',
+			shouldPass: true,
+		},
+		{
+			// Regression test for https://github.com/equalizedigital/accessibility-checker/issues/1816 (PRO-1168).
+			// The Gutenberg Audio block's default sample audio is an .ogg (Ogg Vorbis) file, which was
+			// being misidentified as video content because .ogg is also a valid Ogg Theora video extension.
+			name: 'does not detect .ogg audio file in a <figure class="wp-block-audio"> Audio block',
+			html: '<figure class="wp-block-audio"><audio controls src="simple-guitar-melody.ogg"></audio><figcaption>Simple Guitar Melody</figcaption></figure>',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect .ogg source element inside an <audio> element',
+			html: '<audio controls><source src="simple-guitar-melody.ogg" type="audio/ogg"></audio>',
 			shouldPass: true,
 		},
 		{

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.44.1\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-30T21:17:17+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -920,7 +920,7 @@ msgstr "返す読みやすさデータがありません"
 msgid "No dismissal data to return"
 msgstr "却下データがありません"
 
-#: admin/class-enqueue-admin.php:438
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "スクリーンリーダーテキスト"
 
@@ -2588,29 +2588,27 @@ msgstr "リンクの目的を説明するalt属性を追加してください。
 msgid "Incorrect Heading Order"
 msgstr "見出しの順序が正しくありません"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "このページでは見出しの順序が正しくありません。これは%1$sの後に%2$sが来ており、1つ以上の見出しレベルをスキップしています。"
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "このページでは見出しの順序が正しくなく、1つ以上の見出しレベルがスキップされています。"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "これらのページでは見出しの順序が正しくなく、1つ以上の見出しレベルをスキップしています。例えば、%1$sから%2$sに飛んでいて、その間に%3$sがありません。"
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "見出しは全てのユーザー、特にスクリーンリーダーやキーボードナビゲーションを使用するユーザーがページ構造を理解するのに役立ちます。見出しレベルをスキップすると混乱を招き、コンテンツの階層を理解したり効率的にナビゲートしたりすることが難しくなります。"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "見出しを論理的な順序に従って、レベルをスキップせずに修正してください。例えば、%1$sの後に%2$sが続く場合、%2$sを%3$sに変更するか、適切な構造を保つために%3$sセクションを追加してください。必要に応じて、CSSやブロック/ページビルダーの設定を使用して見出しのスタイルを設定し、不適切なレベルを設定しないようにしてください。"
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3Cページ構造チュートリアル：見出し"
 
@@ -3493,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checkerへようこそ"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker設定"
 
@@ -5843,6 +5842,11 @@ msgstr "アクセシビリティ分析で%d個の問題を表示"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "アクセシビリティ分析でレビューが必要な%d個の項目を表示"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "読解レベルの詳細を表示： %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format
