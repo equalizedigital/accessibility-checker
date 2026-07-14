@@ -119,6 +119,90 @@ describe( 'New Window Warning Tooltip', () => {
 			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
 		} );
 
+		describe( 'aria-label computation (updateAriaLabel)', () => {
+			test( 'uses link text content for text-only links', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank">External Link</a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'External Link, opens a new window' );
+			} );
+
+			test( 'uses existing aria-label when link already has one', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank" aria-label="Custom label">External Link</a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'Custom label, opens a new window' );
+			} );
+
+			test( 'uses image alt text for image-only links with meaningful alt', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank"><img src="icon.png" alt="External site icon"></a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'External site icon, opens a new window' );
+			} );
+
+			test( 'uses only the localized string for image-only links with empty alt (decorative)', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank"><img src="icon.png" alt=""></a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'opens a new window' );
+			} );
+
+			// Failure 1 from issue: decorative image (empty alt) + text → should use text only
+			test( 'uses text content when link has decorative image (empty alt) and text — Failure 1', () => {
+				document.body.innerHTML = '<p><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noreferrer noopener"><img class="wp-image-3330" style="width: 150px;" src="https://example.com/icon.png" alt=""><br>Visit the WCAG 2.2 website </a></p>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'Visit the WCAG 2.2 website, opens a new window' );
+			} );
+
+			// Failure 2 from issue: meaningful image alt + text → should combine both
+			test( 'combines image alt text and link text when link has meaningful image and text — Failure 2', () => {
+				document.body.innerHTML = '<p><a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noreferrer noopener"><img class="wp-image-3330" style="width: 150px;" src="https://example.com/icon.png" alt="meaningful image"><br>Visit the WCAG 2.2 website </a></p>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'meaningful image Visit the WCAG 2.2 website, opens a new window' );
+			} );
+
+			test( 'skips aria-hidden elements when computing accessible name', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank">Visible text<span aria-hidden="true">hidden</span></a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'Visible text, opens a new window' );
+			} );
+
+			test( 'uses only the localized string when link has no text and no accessible image alt', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank"></a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'opens a new window' );
+			} );
+		} );
+
 		test( 'shows tooltip on mouseenter', () => {
 			document.body.innerHTML = '<a href="http://example.com" target="_blank">Link</a>';
 

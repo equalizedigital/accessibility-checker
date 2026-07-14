@@ -112,6 +112,98 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * FixesRestUrl is present in the edac_script_vars localized to the admin script.
+	 */
+	public function testLocalizedAdminDataIncludesFixesRestUrl(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'fixesRestUrl', $localized_data );
+	}
+
+	/**
+	 * The pro flag in edac_script_vars reflects defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID,
+	 * so non-editor admin pages (e.g. the Issues Explorer) can gate pro-only UI without
+	 * relying on window.edac_editor_app, which is only localized on post.php/post-new.php.
+	 */
+	public function testLocalizedAdminDataIncludesProFlag(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected_pro   = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
+
+		// wp_localize_script() stringifies booleans as "1" / "" (matching the
+		// === '1' checks on the JS side), not JSON true/false.
+		$this->assertStringContainsString( '"pro"', $localized_data );
+		$this->assertMatchesRegularExpression(
+			'/"pro"\s*:\s*"' . ( $expected_pro ? '1' : '' ) . '"/',
+			$localized_data
+		);
+	}
+
+	/**
+	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 */
+	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected       = rest_url( 'edac/v1' );
+
+		$this->assertStringContainsString( 'edac', $localized_data );
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must be an absolute URL — a root-relative /wp-json path would break
+	 * subdomain multisite installs by resolving to the main site instead of the subsite.
+	 */
+	public function testAdminFixesRestUrlIsAbsolute(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertDoesNotMatchRegularExpression( '/"fixesRestUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		$this->assertMatchesRegularExpression( '/"fixesRestUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl in edac_script_vars must follow a custom REST base prefix set via
+	 * the rest_url_prefix filter. Verifies the URL is built with rest_url() rather than
+	 * a hardcoded /wp-json/ string.
+	 * Pretty permalinks are required for the prefix filter to be applied.
+	 */
+	public function testAdminFixesRestUrlRespectsCustomRestPrefix(): void {
+		global $wp_scripts;
+
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
 	 * Test that the base script and editor script is enqueued in the editor for an existing page.
 	 *
 	 * @return void
@@ -375,40 +467,11 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * @param bool $is_block_editor Whether the screen should behave as block editor.
 	 */
 	private function set_mock_screen( bool $is_block_editor ): void {
-		$GLOBALS['current_screen'] = new class( $is_block_editor ) {
-			/**
-			 * True or false whether the screen is block editor.
-			 *
-			 * @var bool
-			 */
-			private $is_block_editor;
-
-			/**
-			 * Constructor.
-			 *
-			 * @param bool $is_block_editor Whether the screen should behave as block editor.
-			 */
-			public function __construct( bool $is_block_editor ) {
-				$this->is_block_editor = $is_block_editor;
-			}
-
-			/**
-			 * Mock is_block_editor method.
-			 *
-			 * @return bool
-			 */
-			public function is_block_editor(): bool {
-				return $this->is_block_editor;
-			}
-
-			/**
-			 * Mock in_admin method.
-			 *
-			 * @return bool
-			 */
-			public function in_admin(): bool {
-				return true;
-			}
-		};
+		// As of WP 7.0, get_current_screen() requires an actual WP_Screen
+		// instance. Use WP_Screen::get() to obtain one without the side effects
+		// of set_current_screen() (e.g. setting $hook_suffix, $typenow, firing
+		// the current_screen action).
+		$GLOBALS['current_screen']                  = WP_Screen::get( 'post' );
+		$GLOBALS['current_screen']->is_block_editor = $is_block_editor;
 	}
 }

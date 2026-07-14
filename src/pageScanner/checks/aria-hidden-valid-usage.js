@@ -21,11 +21,6 @@ export default {
 			return true;
 		}
 
-		// Check for valid element properties
-		if ( node.classList.contains( 'wp-block-spacer' ) ) {
-			return true;
-		}
-
 		const role = node.getAttribute( 'role' );
 		if ( role?.split( /\s+/ ).includes( 'presentation' ) ) {
 			return true;

@@ -67,6 +67,16 @@ describe( 'Linked Image Missing Alternative Text Rule', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'passes when image has role="none"',
+			html: '<a href="page.html"><img src="decorative.jpg" role="none"></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when image has role="none presentation" (multi-value token)',
+			html: '<a href="page.html"><img src="decorative.jpg" role="none presentation"></a>',
+			shouldPass: true,
+		},
+		{
 			name: 'passes when image has aria-hidden="true"',
 			html: '<a href="page.html"><img src="decorative.jpg" aria-hidden="true"></a>',
 			shouldPass: true,

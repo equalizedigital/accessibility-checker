@@ -303,6 +303,22 @@ describe( 'Table Header Detection Rule - Complex Scenarios', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'Table with ARIA headers id containing selector-special characters',
+			html: `
+				<table>
+					<tr>
+						<th id="name:primary">Name</th>
+						<th id="email.main">Email</th>
+					</tr>
+					<tr>
+						<td headers="name:primary">John Doe</td>
+						<td headers="email.main">john@example.com</td>
+					</tr>
+				</table>
+			`,
+			shouldPass: true,
+		},
+		{
 			name: 'Table with complex headers and scope',
 			html: `
 				<table>

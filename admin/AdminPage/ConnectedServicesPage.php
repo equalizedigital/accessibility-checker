@@ -131,6 +131,7 @@ class ConnectedServicesPage implements PageInterface {
 		$status              = $license_context['status'];
 		$license             = get_option( 'edacp_license_key' );
 		$is_connected        = $license_context['is_connected'];
+		$is_registered       = $license_context['is_registered'];
 		$degraded_context    = $this->get_degraded_notice_context( $license_context );
 		$degraded_notice     = $this->get_degraded_notice_message( $license_context );
 		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
@@ -174,48 +175,66 @@ class ConnectedServicesPage implements PageInterface {
 				<tr valign="top">
 					<th scope="row" valign="top"></th>
 					<td>
-						<input type="hidden" name="action" value="edac_license" />
-						<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-						<?php if ( $is_connected ) : ?>
-							<input
-								type="submit"
-								class="button-primary"
-								name="edac_license_deactivate"
-								value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
-							>
-						<?php else : ?>
-							<input
-								type="submit"
-								class="button-primary"
-								name="edac_license_activate"
-								value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
-							/>
-						<?php endif; ?>
+					<input type="hidden" name="action" value="edac_license" />
+					<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
+					<?php if ( $is_connected ) : ?>
+						<input
+							type="submit"
+							class="button-primary"
+							name="edac_license_deactivate"
+							value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
+						>
+					<?php elseif ( ! $is_connected && 'expired' === $status && $is_registered ) : ?>
+						<input
+							type="submit"
+							class="button-primary"
+							name="edac_license_deactivate"
+							value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
+						>
+					<?php else : ?>
+						<input
+							type="submit"
+							class="button-primary"
+							name="edac_license_activate"
+							value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
+						/>
+					<?php endif; ?>
 					</td>
 					</tr>
 					</tbody>
 				</table>
 			</form>
-			<?php if ( ! $is_connected ) : ?>
-				<p>
-					<?php
-					printf(
-						/* translators: %s: link to my.equalizedigital.com dashboard */
-						esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
-						wp_kses_post( $dashboard_link )
-					);
-					?>
-				</p>
-				<p>
-					<?php
-					printf(
-						/* translators: %s: link to create a free account */
-						esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
-						wp_kses_post( $create_account_link )
-					);
-					?>
-				</p>
-			<?php endif; ?>
+			<?php if ( ! $is_connected && ! $is_registered ) : ?>
+			<p>
+				<?php
+				printf(
+					/* translators: %s: link to my.equalizedigital.com dashboard */
+					esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
+					wp_kses_post( $dashboard_link )
+				);
+				?>
+			</p>
+			<p>
+				<?php
+				printf(
+					/* translators: %s: link to create a free account */
+					esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
+					wp_kses_post( $create_account_link )
+				);
+				?>
+			</p>
+		<?php elseif ( ! $is_connected && 'expired' === $status && $is_registered ) : ?>
+			<p>
+				<?php
+				$renew_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'renew', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Renew your license', 'accessibility-checker' ) . '</a>';
+				printf(
+					/* translators: %s: renew license link */
+					wp_kses_post( __( 'Your license has expired and this site is still connected. %s to restore full access, or disconnect the site above.', 'accessibility-checker' ) ),
+					wp_kses_post( $renew_link )
+				);
+				?>
+			</p>
+		<?php endif; ?>
 
 		<?php endif; ?>
 		<?php
@@ -308,22 +327,29 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Resolve effective license context from current status values.
 	 *
-	 * @param bool   $has_pro_plugin Whether the Pro plugin is installed.
-	 * @param string $pro_status     Current Pro license status.
-	 * @param string $free_status    Current free license status.
-	 * @param string $site_id        Current connected site ID.
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
+	 * @param bool   $has_pro_plugin  Whether the Pro plugin is installed.
+	 * @param string $pro_status      Current Pro license status.
+	 * @param string $free_status     Current free license status.
+	 * @param string $site_id         Current connected site ID.
+	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
+	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,is_registered:bool,fallback_active:bool}
 	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id ): array {
-		$is_pro       = $has_pro_plugin && 'valid' === $pro_status;
-		$status       = $is_pro ? $pro_status : $free_status;
-		$is_connected = 'valid' === $status && '' !== $site_id;
+	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
+		$is_pro = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
+		$status = $is_pro ? $pro_status : $free_status;
+		// is_connected is true when:
+		// 1. License status is valid AND site_id exists, OR
+		// 2. Pro exists but is expired/degraded (fallback_active), AND site_id exists (reports still flowing).
+		$is_connected  = ( 'valid' === $status && '' !== $site_id ) || ( $has_pro_plugin && $fallback_active && '' !== $site_id );
+		$is_registered = '' !== $site_id;
 
 		return [
-			'has_pro_plugin' => $has_pro_plugin,
-			'is_pro'         => $is_pro,
-			'status'         => $status,
-			'is_connected'   => $is_connected,
+			'has_pro_plugin'  => $has_pro_plugin,
+			'is_pro'          => $is_pro,
+			'status'          => $status,
+			'is_connected'    => $is_connected,
+			'is_registered'   => $is_registered,
+			'fallback_active' => $fallback_active,
 		];
 	}
 
@@ -359,14 +385,20 @@ class ConnectedServicesPage implements PageInterface {
 	 * @param string $pro_status        Current Pro status option.
 	 * @param string $effective_status  Effective authority status.
 	 * @param bool   $is_connected      Whether UI currently considers site connected.
+	 * @param bool   $fallback_active   Whether Pro has degraded to fallback mode.
 	 * @return array{show:bool,mode:string}
 	 */
-	private static function resolve_degraded_notice_context( bool $has_pro_plugin, bool $is_pro, string $pro_status, string $effective_status, bool $is_connected ): array {
+	private static function resolve_degraded_notice_context( bool $has_pro_plugin, bool $is_pro, string $pro_status, string $effective_status, bool $is_connected, bool $fallback_active = false ): array {
+		// Show degraded notice when:
+		// - Pro plugin exists AND
+		// - Pro is not currently active as authority AND
+		// - Pro status is set but not valid AND
+		// - Either: Free is valid OR Pro fallback mode is active.
 		$show = $has_pro_plugin
 			&& ! $is_pro
-			&& 'valid' === $effective_status
 			&& '' !== $pro_status
-			&& 'valid' !== $pro_status;
+			&& 'valid' !== $pro_status
+			&& ( 'valid' === $effective_status || $fallback_active );
 
 		if ( ! $show ) {
 			return [
@@ -377,7 +409,7 @@ class ConnectedServicesPage implements PageInterface {
 
 		return [
 			'show' => true,
-			'mode' => ! $is_connected ? 'reconnect' : 'connected',
+			'mode' => $is_connected ? 'connected' : 'reconnect',
 		];
 	}
 
@@ -395,7 +427,7 @@ class ConnectedServicesPage implements PageInterface {
 		}
 
 		if ( 'connected' === $notice_context['mode'] ) {
-			return __( 'Your Pro license is no longer valid. This site is using a valid Free license, and email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features.', 'accessibility-checker' );
+			return __( 'Your Pro license is no longer valid. Email reports remain connected as Free email reports. Renew your Pro license to restore Pro-only features.', 'accessibility-checker' );
 		}
 
 		return __( 'Your Pro license is no longer valid. This site is using a valid Free license, but email reports are not currently connected. Connect this site from the Free License section to resume Free email reports.', 'accessibility-checker' );

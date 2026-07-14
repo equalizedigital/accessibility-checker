@@ -290,9 +290,7 @@ class Summary_Generator {
 		$content_grade = 0;
 
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$content_grade = floor(
-				( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
-			);
+			$content_grade = edac_normalize_fk_grade( ( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content ) );
 		}
 
 		return (int) round( $content_grade );

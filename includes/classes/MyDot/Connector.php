@@ -11,6 +11,7 @@
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
+use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
 
 /**
  * Class Connector
@@ -99,6 +100,25 @@ class Connector {
 	 */
 	private static function should_use_filtered_product_id_for_enrollment(): bool {
 		return defined( 'EDACP_VERSION' ) && 'valid' === get_option( 'edacp_license_status' );
+	}
+
+	/**
+	 * Determine whether Pro should be the sole authority for license checks.
+	 *
+	 * Pro is authoritative whenever the Pro plugin is loaded and a non-empty
+	 * license key is present. Free license checks are fully suppressed in this
+	 * state so that both plugins cannot write conflicting status values to the
+	 * database simultaneously. Pro's own cron handles all revalidation; Free
+	 * never needs to re-run alongside it.
+	 *
+	 * @return bool
+	 */
+	private static function is_pro_license_check_active(): bool {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			return false;
+		}
+
+		return '' !== trim( (string) get_option( 'edacp_license_key', '' ) );
 	}
 
 	/**
@@ -232,10 +252,9 @@ class Connector {
 	 * @return void
 	 */
 	private function activate_license() {
-		// If pro plugin is enabled with a valid license, it takes precedence.
-		// Do not allow free license activation to overwrite pro state.
-		if ( defined( 'EDACP_VERSION' ) && 'valid' === get_option( 'edacp_license_status' ) ) {
-			update_option( 'edac_license_error', __( 'Pro license is active. Please deactivate the Pro license first if you want to use a free license.', 'accessibility-checker' ) );
+		// Pro is authoritative whenever its license check flow is active.
+		if ( self::is_pro_license_check_active() ) {
+			update_option( 'edac_license_error', __( 'Pro license management is active. Please manage your license from Accessibility Checker Pro.', 'accessibility-checker' ) );
 			return;
 		}
 
@@ -246,14 +265,13 @@ class Connector {
 		}
 
 		$api_params = [
-			'edd_action'  => 'activate_license',
-			'license'     => $license,
-			'item_id'     => self::PRODUCT_ID,
-			'url'         => home_url(),
-			'environment' => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
-			'wp_version'  => get_bloginfo( 'version' ),
-			'php_version' => phpversion(),
+			'edd_action' => 'activate_license',
+			'license'    => $license,
+			'item_id'    => self::PRODUCT_ID,
+			'url'        => home_url(),
 		];
+
+		$api_params = array_merge( $api_params, SystemInfo::get_license_request_context() );
 
 		$response = wp_remote_post(
 			self::get_api_endpoint(),
@@ -398,15 +416,8 @@ class Connector {
 	 * @return void
 	 */
 	public function periodic_check_license() {
-		// Guard: Only bail if Pro is active with VALID license.
-		// This allows fallback when Pro license becomes invalid (expired, disabled, etc).
-		//
-		// Safe from race conditions:
-		// - Once Pro's license status changes from 'valid' to anything else, this guard
-		// stops bailing and free plugin resumes checking.
-		// - Both plugins check the same 'edacp_license_status' option atomically
-		// - Concurrent reads of the same option value are thread-safe in WordPress.
-		if ( defined( 'EDACP_VERSION' ) && self::LICENSE_STATUS_VALID === get_option( 'edacp_license_status' ) ) {
+		// Pro is authoritative whenever its own license check flow is active.
+		if ( self::is_pro_license_check_active() ) {
 			return;
 		}
 
@@ -421,11 +432,10 @@ class Connector {
 			'item_id'      => self::PRODUCT_ID,
 			'item_name'    => rawurlencode( self::PRODUCT_NAME ),
 			'url'          => home_url(),
-			'environment'  => function_exists( 'wp_get_environment_type' ) ? wp_get_environment_type() : 'production',
 			'edac_version' => defined( 'EDAC_VERSION' ) ? EDAC_VERSION : '0.0.0',
-			'wp_version'   => get_bloginfo( 'version' ),
-			'php_version'  => phpversion(),
 		];
+
+		$api_params = array_merge( $api_params, SystemInfo::get_license_request_context() );
 
 		// Call the custom API.
 		$response = wp_remote_post(
@@ -458,6 +468,9 @@ class Connector {
 				// Free revalidated successfully after fallback; remove the temporary
 				// fallback marker so UI can reflect connected state again.
 				delete_option( 'edac_fallback_active' );
+			} elseif ( 'expired' === $license_data->license ) {
+				// License expired: set the error option so admin notices fire on the next page load.
+				update_option( 'edac_license_error', 'expired' );
 			}
 		}
 
@@ -472,6 +485,11 @@ class Connector {
 	 * @return void
 	 */
 	public function check_license_cron() {
+		if ( self::is_pro_license_check_active() ) {
+			wp_clear_scheduled_hook( 'edac_check_license_hook' );
+			return;
+		}
+
 		if ( ! wp_next_scheduled( 'edac_check_license_hook' ) ) {
 			wp_schedule_event( time(), 'daily', 'edac_check_license_hook' );
 		}
@@ -1061,6 +1079,12 @@ class Connector {
 		$parts       = null !== $auth_header ? explode( ' ', $auth_header ) : [];
 		if ( ! empty( $auth_header ) ) {
 			if ( count( $parts ) === 2 && 'Bearer' === $parts[0] ) {
+				// Check if the site is registered currently before attempting validation.
+				$site_id = (string) get_option( 'edac_site_id', '' );
+				if ( '' === $site_id ) {
+					return false;
+				}
+
 				// Use the fallback validator which will refresh key if needed.
 				return self::validate_jwt_token_with_fallback( $parts[1] );
 			}

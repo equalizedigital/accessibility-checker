@@ -211,7 +211,7 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		
 		// Check that the transient was set.
 		$this->assertTrue( (bool) get_transient( 'edac_activation_redirect' ) );
-		$this->assertSame( '0', get_option( 'edac_show_metabox_in_block_editor' ) );
+		$this->assertSame( '1', get_option( 'edac_show_metabox_in_block_editor' ) );
 		
 		// Clean up.
 		delete_transient( 'edac_activation_redirect' );
@@ -242,6 +242,32 @@ class ActivationRedirectTest extends WP_UnitTestCase {
 		delete_transient( 'edac_activation_redirect' );
 		delete_option( 'edac_show_metabox_in_block_editor' );
 		delete_option( 'edac_db_version' );
+	}
+
+	/**
+	 * Test that reactivation preserves an existing user preference.
+	 *
+	 * WordPress's add_option() is a no-op when the option already exists, so a
+	 * user who explicitly set the metabox to hidden ('0') should keep that value
+	 * after the plugin is reactivated.
+	 */
+	public function test_activation_preserves_existing_metabox_preference() {
+		// Simulate a user having explicitly hidden the metabox.
+		update_option( 'edac_show_metabox_in_block_editor', '0' );
+		delete_transient( 'edac_activation_redirect' );
+
+		if ( ! class_exists( 'EDAC\Admin\Accessibility_Statement' ) ) {
+			require_once EDAC_PLUGIN_DIR . 'admin/class-accessibility-statement.php';
+		}
+
+		edac_activation();
+
+		// add_option() must not overwrite the existing '0' preference.
+		$this->assertSame( '0', get_option( 'edac_show_metabox_in_block_editor' ) );
+
+		// Clean up.
+		delete_transient( 'edac_activation_redirect' );
+		delete_option( 'edac_show_metabox_in_block_editor' );
 	}
 
 	/**
