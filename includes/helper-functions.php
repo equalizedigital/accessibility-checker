@@ -789,6 +789,27 @@ function edac_parse_html_for_media( $html ) {
 }
 
 /**
+ * Convert raw SVG markup into a data: URI, safe as an <img> src - browsers
+ * don't execute scripts or event handlers in SVGs loaded as images. Returns
+ * a bare (payload-less) data URI if given anything other than a string.
+ *
+ * @since x.x.x
+ *
+ * @param mixed $svg_markup Raw SVG markup - expected to be a string.
+ * @return string Unescaped data URI - callers must esc_url() it before output,
+ *                passing a protocols list that includes 'data' (e.g.
+ *                esc_url( $uri, [ 'data', 'http', 'https' ] )); with the
+ *                default protocols esc_url() rejects data: URIs and returns ''.
+ */
+function edac_svg_markup_to_data_uri( $svg_markup ): string {
+	if ( ! is_string( $svg_markup ) ) {
+		return 'data:image/svg+xml,';
+	}
+
+	return 'data:image/svg+xml,' . rawurlencode( $svg_markup );
+}
+
+/**
  * Remove corrected posts
  *
  * @param int    $post_ID The ID of the post.
