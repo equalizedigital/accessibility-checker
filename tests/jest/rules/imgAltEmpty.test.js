@@ -120,8 +120,9 @@ describe( 'Image Alt Empty Validation', () => {
 		{
 			name: 'should fail for img with empty alt and no dimension attributes (cannot confirm tracking pixel without dimensions)',
 			html: '<img src="maybe-tracker.gif" alt="">',
-    },
-    
+			shouldPass: false,
+		},
+
 		// Button context - image with empty alt inside button with accessible name
 		{
 			name: 'should pass for img with empty alt inside button with aria-label',
