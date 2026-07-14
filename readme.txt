@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - WCAG, ADA, EAA and Section 508 compliance ===
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
-Requires at least: 6.7
+Requires at least: 6.8
 Tested up to: 7.0
-Stable tag: 1.46.0
+Stable tag: 1.47.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-07-14 - version 1.47.0
+* Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
+* Updated - the empty alt text check no longer flags 1x1 tracking pixels.
+* Updated - the link protocol checks now handle href values that contain leading whitespace.
+* Updated - SVG code snippets in the Accessibility Analysis panel are now rendered as images instead of raw markup.
+* Fix - scan results for the homepage are now stored against the homepage instead of the first blog post when the site is set to show latest posts.
+* Fix - the Simplified Summary text areas in the editor sidebar now have a label that assistive technology can announce.
+* Fix - corrected a caching issue that could cause database table name lookups to return the wrong table.
+* Remove - deleted an unused internal helper function.
 
 2026-07-08 - version 1.46.0
 * Updated - the aria-hidden rule no longer flags core Cover blocks.

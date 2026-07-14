@@ -793,7 +793,7 @@ function edac_parse_html_for_media( $html ) {
  * don't execute scripts or event handlers in SVGs loaded as images. Returns
  * a bare (payload-less) data URI if given anything other than a string.
  *
- * @since x.x.x
+ * @since 1.47.0
  *
  * @param mixed $svg_markup Raw SVG markup - expected to be a string.
  * @return string Unescaped data URI - callers must esc_url() it before output,
