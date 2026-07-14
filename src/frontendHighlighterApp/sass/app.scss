@@ -49,11 +49,9 @@ body {
 
 	&-element-selected {
 		outline: dashed 4px transparent !important;
-		outline-offset: 5px !important;
+		outline-offset: 2px !important;
 		outline-color: magenta !important;
-		// White ring between the element and the magenta outline so the indicator
-		// stays visible even when the page background is close to the outline color.
-		box-shadow: 0 0 0 2px variables.$color-white !important;
+		box-shadow: 0 0 0 8px variables.$color-white !important;
 
 		&-min-width {
 			min-width: 25px !important;
