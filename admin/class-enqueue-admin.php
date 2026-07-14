@@ -78,6 +78,11 @@ class Enqueue_Admin {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
+
+			// On a latest-posts homepage the global $post is the first blog post, not the page;
+			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
+			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
+
 			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
@@ -99,8 +104,9 @@ class Enqueue_Admin {
 
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
-				// Is this posttype setup to be checked?
-				$active = $is_scannable_post;
+				// Base the scannable check on the filtered $post_id, not the original global $post.
+				$filtered_post_type = $post_id ? get_post_type( $post_id ) : false;
+				$active             = $filtered_post_type && is_array( $post_types ) && in_array( $filtered_post_type, $post_types, true );
 
 				$pro = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
 
@@ -113,8 +119,15 @@ class Enqueue_Admin {
 				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
-				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
-				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
+				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
+				// show_on_front=page fallback with no static front page) use the live home URL instead.
+				$show_on_front        = get_option( 'show_on_front', 'posts' );
+				$is_latest_posts_home = ( 'posts' === $show_on_front || ( 'page' === $show_on_front && ! get_option( 'page_on_front' ) ) )
+					&& apply_filters( 'edac_filter_post_is_latest_posts_home', false, $post_id );
+
+				if ( $is_latest_posts_home ) {
+					$scan_url = add_query_arg( 'edac_pageScanner', 1, trailingslashit( get_home_url() ) );
+				} elseif ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
 					$post_view_link = apply_filters(

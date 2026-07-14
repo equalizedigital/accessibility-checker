@@ -526,7 +526,15 @@ class Ajax {
 								)
 							) . '" />';
 						} elseif ( $object_svg ) {
-							$html .= $object_svg;
+							// Rendered as an <img> via a data URI, not injected as inline markup -
+							// see edac_svg_markup_to_data_uri()'s docblock for why.
+							$html .= '<img src="' . esc_url( edac_svg_markup_to_data_uri( $object_svg ), [ 'data', 'http', 'https' ] ) . '" alt="' . esc_attr(
+								sprintf(
+									/* translators: %d: issue ID number */
+									__( 'image for issue %d', 'accessibility-checker' ),
+									$id
+								)
+							) . '" />';
 						}
 
 						$html .= '</div>';

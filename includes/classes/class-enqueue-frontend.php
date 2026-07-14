@@ -102,7 +102,14 @@ class Enqueue_Frontend {
 
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
-		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', is_object( $post ) ? $post->ID : null );
+
+		// On a latest-posts homepage the global $post is the first blog post, so using its ID
+		// would misattribute results; pass null and let the filter supply an ID (Pro) or bail.
+		$default_post_id = ( is_home() && is_front_page() )
+			? null
+			: ( is_object( $post ) ? $post->ID : null );
+
+		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
 
 		if ( null === $post_id ) {
 			return;
