@@ -279,6 +279,16 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-07-14 - version 1.47.0
+* Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
+* Updated - the empty alt text check no longer flags 1x1 tracking pixels.
+* Updated - the link protocol checks now handle href values that contain leading whitespace.
+* Updated - SVG code snippets in the Accessibility Analysis panel are now rendered as images instead of raw markup.
+* Fix - scan results for the homepage are now stored against the homepage instead of the first blog post when the site is set to show latest posts.
+* Fix - the Simplified Summary text areas in the editor sidebar now have a label that assistive technology can announce.
+* Fix - corrected a caching issue that could cause database table name lookups to return the wrong table.
+* Remove - deleted an unused internal helper function.
+
 2026-07-08 - version 1.46.0
 * Updated - the aria-hidden rule no longer flags core Cover blocks.
 * Updated - the Incorrect Heading Order summary no longer claims specific heading levels that may not match the actual issue.
