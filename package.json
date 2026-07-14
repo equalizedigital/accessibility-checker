@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.42.1",
+  "version": "1.46.0",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
@@ -50,7 +50,9 @@
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
     "@svgr/webpack": "^8.1.0",
+    "@wordpress/components": "^33.0.0",
     "@wordpress/eslint-plugin": "^17.5.0",
+    "@wordpress/html-entities": "^4.49.0",
     "@wordpress/i18n": "^6.10.0",
     "@wordpress/icons": "^11.5.0",
     "@wordpress/scripts": "^31.0.0",

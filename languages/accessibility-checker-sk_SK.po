@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Obnoviť licenciu"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Zakázať e-mailové reporty"
 
@@ -90,7 +90,7 @@ msgstr "Povoliť e-mailové reporty"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Bezplatný licenčný kľúč"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Reporty povolené"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Budete dostávať týždenné reporty prístupnosti pre tento web."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Týždenné správy o prístupnosti pre túto stránku sa posielajú e-mailom majiteľovi účtu licenčného kľúča."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Ďalší report: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Plné pokrytie"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Obmedzené pokrytie"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Vaše reporty zahŕňajú všetky typy príspevkov a taxonómií."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Skenovanie celého webu povolené"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Kompletný rozpis problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Detailné reporty"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Vaše reporty zahŕňajú len časť vášho webu."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Prejdite na Pro, ak chcete:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Skenovať všetky typy obsahu"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Získať kompletný rozpis problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Dostávať detailnejšie reporty"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Prejsť na pro verziu"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Súhrn prístupnosti"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Tento súhrn odráža najnovšie dostupné údaje skenovania pre váš web."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Celkový počet nájdených problémov"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Prepojenie účtu"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Pripojením k tejto stránke súhlasíte so <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">zásadami ochrany osobných údajov <span aria-hidden=\"true\">&#8599;</span></a> a <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">dohodou o spracovaní údajov <span aria-hidden=\"true\">&#8599;</span></a> spoločnosti Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Zásady ochrany osobných údajov (otvorí sa v novom okne)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Dohoda o spracovaní údajov (otvorí sa v novom okne)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Týždenný e-mail obsahuje celkový počet nájdených problémov a zmien od poslednej správy, informácie o pokrytí, počet problémov, potrebu kontroly, percento úspešných testov a informácie o najproblematickejších stránkach a najzávažnejších problémoch."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "N/A"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Kritické"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Vysoké"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Stredné"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Nízke"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Neznáme"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Špeciálna ponuka na Čierny piatok! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Inovujte na platenú verziu Accessibility Checker od 24. novembra do 3. decembra a získajte zľavu 30 %! Kompletné skenovanie stránok, správa otvorených problémov na celom webe, ignorovanie protokolov a ďalšie."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Inovujte na platenú verziu Accessibility Checker od 24. novembra do 3. decembra a získajte zľavu 30 %! Kompletné skenovanie stránky, celostránkový prehľad otvorených problémov, protokoly zamietnutí a ďalšie."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Inovovať teraz"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Úspešné testy"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Problém"
@@ -662,6 +668,7 @@ msgstr[2] "Problémy s kontrastom"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -692,9 +699,10 @@ msgstr "* Skutočná prístupnosť si vyžaduje manuálne testovanie okrem autom
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", otvorí sa nové okno"
@@ -726,6 +734,7 @@ msgstr "Rozbaliť problémy pre %s"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Tieto nastavenia umožňujú globálne opravy na celom vašom webe."
 
@@ -736,21 +745,25 @@ msgstr "Stránky môže byť potrebné znovu uložiť alebo spustiť úplnú kon
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Uložiť"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Ovplyvnený kód"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Obrázok"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Orientácia"
 
@@ -759,6 +772,7 @@ msgid "Actions"
 msgstr "Akcie"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Zamietnuté"
 
@@ -786,6 +800,7 @@ msgstr "Zobraziť problém s ID %d na webovej stránke, otvorí sa nové okno"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Zobraziť na stránke"
@@ -887,8 +902,8 @@ msgstr "Vaše umiestnenie zjednodušeného zhrnutia je nastavené na „manuáln
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Zjednodušené zhrnutie"
@@ -906,12 +921,14 @@ msgstr "Zistite viac o zlepšovaní čitateľnosti a požiadavkách na zjednodu�
 msgid "No readability data to return"
 msgstr "Žiadne údaje o čitateľnosti na vrátenie"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Žiadne údaje o ignorovaní na vrátenie"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Žiadne údaje o zamietnutí na zobrazenie"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Text pre čítačku obrazovky"
 
@@ -932,63 +949,66 @@ msgstr "Dopyt na problém nevrátil žiadne výsledky"
 msgid "Object query returned no results"
 msgstr "Dopyt na objekt nevrátil žiadne výsledky"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Falošne pozitívne"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Skener to označil, ale netýka sa to tohto obsahu."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Opravené"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Problém bol opravený, ale stránka ešte nebola znova skenovaná."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Potvrdené ako prístupné"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Skontrolované a overené, že spĺňa požiadavky na prístupnosť."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Falošne pozitívne"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Skener to označil, ale netýka sa to tohto obsahu."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Opravené"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Problém bol opravený, ale stránka ešte nebola znova skenovaná."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Používateľské meno:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Dátum:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Znova otvoriť problém"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Zrušiť problém"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Komentár"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Spravovať globálne zrušené"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Váš používateľský účet nemá povolenie na zrušenie tohto problému."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Zrušiť problém ako:"
 
@@ -1462,12 +1482,12 @@ msgstr "Nadpis zjednodušeného súhrnu"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Povolenia na ignorovanie"
+msgid "Dismiss Permissions"
+msgstr "Povolenia na zamietnutie"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Počet DB tabuliek ignorovaných položiek"
+msgid "Dismissals DB Table Count"
+msgstr "Počet záznamov v tabuľke databázy zamietnutí"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1500,10 +1520,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získať Accessibility Checker Pro (otvorí sa v novom okne)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Problém nebol nájdený."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "Je nám ľúto, ale nemáte povolené zamietnuť jeden alebo viac problémov v tejto dávke."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Nepodarilo sa aktualizovať problém."
 
@@ -1984,8 +2009,8 @@ msgstr "Atribút aria-hidden sa používa na skrytie obsahu pred asistenčnými 
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Skontroluj, či by mal byť prvok skutočne skrytý pred používateľmi čítačiek obrazovky. Ak obsahuje dôležitý obsah alebo funkcionalitu, odstráň %s. Ak je dekoratívny alebo redundantný, nechaj prvok tak a zruš toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Skontrolujte, či by mal byť prvok skutočne skrytý pre používateľov čítačky obrazovky. Ak obsahuje dôležitý obsah alebo funkcie, odstráňte %s. Ak je dekoratívny alebo redundantný, nechajte prvok tak, ako je, a toto upozornenie zamietnite v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2382,8 +2407,8 @@ msgstr "Čítačky obrazovky sa spoliehajú na alternatívny text na popis obrá
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Skontrolujte obrázok, či je dekoratívny. Ak je dekoratívny, je správne použiť prázdny atribút %1$s a toto upozornenie môžete zamietnuť pomocou funkcie „Ignorovať“ v Accessibility Checker alebo pridaním %2$s alebo %3$s k obrázku a opätovným skenovaním stránky. Ak obrázok prenáša informácie, pridajte popisný alt text, ktorý oznamuje účel alebo význam obrázka."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Skontrolujte obrázok, či je dekoratívny. Ak je dekoratívny, je správne použiť prázdny atribút %1$s a toto upozornenie môžete zamietnuť v Accessibility Checker alebo pridaním %2$s alebo %3$s k obrázku a opätovným skenovaním stránky. Ak obrázok sprostredkúva informácie, pridajte popisný alt text, ktorý oznamuje účel alebo význam obrázku."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2437,8 +2462,8 @@ msgstr "Alternatívny text by mal byť stručný a zameraný na opis účelu ale
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Skráť alt text na menej ako %s znakov, pričom stále opisuj funkciu alebo účel obrázka. Udržuj opisy jednoduché a vyhni sa opakovaniu okolitého obsahu. Ak alt text obrázka nie je potrebné zmeniť, odmietni toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Skráťte alternatívny text na menej ako %s znakov, pričom stále popisujte funkciu alebo účel obrázka. Zachovajte jednoduché popisy a vyhnite sa opakovaniu okolitého obsahu. Ak alternatívny text obrázka nie je potrebné meniť, zamietnite toto upozornenie v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2515,8 +2540,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Animované obrázky môžu byť rušivé, vyvolávať záchvaty u niektorých jednotlivcov alebo vytvárať kognitívnu záťaž. Smernice WCAG vyžadujú, aby animácie, ktoré blikajú alebo sa nepretržite opakujú, poskytovali mechanizmus na ich pozastavenie, zastavenie alebo skrytie."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Nahraď animovaný obrázok statickým obrázkom alebo videom, ktoré obsahuje ovládacie prvky. Ak musíš použiť animovaný obrázok, uisti sa, že nebliká viac ako trikrát za sekundu a poskytni ovládacie prvky na pozastavenie alebo zastavenie, ak sa prehráva dlhšie ako 5 sekúnd. Ak si potvrdil, že obrázok je prístupný a pozastaviteľný, môžeš toto upozornenie odmietnuť pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Nahraďte animovaný obrázok statickým obrázkom alebo videom, ktoré obsahuje ovládacie prvky. Ak musíte použiť animovaný obrázok, uistite sa, že nebliká viac ako trikrát za sekundu a poskytnite ovládacie prvky pre pozastavenie alebo zastavenie, ak sa prehráva dlhšie ako 5 sekúnd. Ak ste potvrdili, že obrázok je prístupný a je možné ho pozastaviť, môžete toto upozornenie zamietnuť v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2581,29 +2606,27 @@ msgstr "Pridajte atribút alt, ktorý popisuje účel odkazu. Zamerajte sa na to
 msgid "Incorrect Heading Order"
 msgstr "Nesprávne poradie nadpisov"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Táto stránka používa nadpisy v nesprávnom poradí. Toto je %1$s po %2$s, preskakujúc jednu alebo viac úrovní nadpisov."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Táto stránka používa nadpisy v nesprávnom poradí a vynecháva jednu alebo viac úrovní nadpisov."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Tieto stránky používajú nadpisy v nesprávnom poradí, preskakujúc jednu alebo viac úrovní nadpisov, napríklad prechod z %1$s na %2$s bez %3$s medzi nimi."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Nadpisy pomáhajú všetkým používateľom – najmä tým, ktorí používajú čítačky obrazovky alebo klávesovú navigáciu – pochopiť štruktúru stránky. Preskočenie úrovní nadpisov môže vytvoriť zmätok a sťažiť sledovanie hierarchie obsahu alebo efektívnu navigáciu."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Upravte svoje nadpisy tak, aby nasledovali logické poradie bez preskakovania úrovní. Napríklad, ak po %1$s nasleduje %2$s, zmeňte %2$s na %3$s alebo pridajte medzitým sekciu %3$s, aby ste zachovali správnu štruktúru. V prípade potreby použite CSS alebo nastavenia blokového/stránkového editora na štylizovanie nadpisov namiesto nastavenia nesprávnej úrovne."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C Tutoriál o štruktúre stránky: Nadpisy"
 
@@ -2718,8 +2741,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Dokumenty vo formáte Word, Excel alebo PowerPoint nemusia byť prístupné všetkým používateľom, najmä ak nie sú správne označené alebo nedodržiavajú osvedčené postupy prístupnosti. Zákony o prístupnosti vyžadujú, aby dokumenty zverejnené na webových stránkach tiež spĺňali WCAG. Okrem toho by mali byť používatelia upozornení, keď odkaz otvára stiahnuteľný súbor namiesto webovej stránky."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Zabezpeč, aby bol prepojený súbor otestovaný a upravený pre prístupnosť. Keď vieš, že je prístupný, odmietni toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker. Zahrň príponu súboru a veľkosť do textu odkazu, aby si informoval používateľov (zapni opravu „Pridať veľkosť a typ súboru k odkazom“ v nastaveniach Accessibility Checker, aby sa to robilo na celom webe). Ak je dokument vložený pomocou pluginu, poskytni tiež priamy odkaz na jeho stiahnutie. Ak je ťažké urobiť dokument prístupným, zváž umiestnenie obsahu na webovú stránku namiesto toho."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Uistite sa, že prepojený súbor je otestovaný a opravený z hľadiska prístupnosti. Keď viete, že je prístupný, zamietnite toto upozornenie v Accessibility Checker. Do textu odkazu zahrňte príponu a veľkosť súboru, aby ste informovali používateľov (aktivujte opravu „Pridať veľkosť a typ súboru do odkazov“ v nastaveniach Accessibility Checker, aby sa to vykonalo na celej stránke). Ak je dokument vložený pomocou doplnku, poskytnite aj priamy odkaz na jeho stiahnutie. Ak je sprístupnenie dokumentu náročné, zvážte umiestnenie obsahu na webovú stránku."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2770,8 +2793,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Formáty dokumentov, ktoré nie sú HTML, nemusia byť plne prístupné pre asistenčné technológie, pokiaľ nie sú testované a upravené. Používatelia by mali byť upozornení, keď odkaz otvára stiahnuteľný súbor namiesto štandardnej webovej stránky."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Zabezpeč, aby bol prepojený dokument prístupný. Keď vieš, že je prístupný, odmietni toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker. Zahrň príponu súboru do viditeľného textu odkazu (napr. „Poznámky zo stretnutia (ODT)“), aby používatelia vedeli, čo očakávať (zapni opravu „Pridať veľkosť a typ súboru k odkazom“ v nastaveniach Accessibility Checker, aby sa to robilo na celom webe). Ak je dokument vložený, poskytni tiež priamy odkaz na stiahnutie. Ak je ťažké urobiť dokument prístupným, zváž umiestnenie obsahu na webovú stránku namiesto toho."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Uistite sa, že prepojený dokument je prístupný. Keď viete, že je prístupný, zamietnite toto upozornenie v Accessibility Checker. Do viditeľného textu odkazu zahrňte príponu súboru (napr. „Poznámky zo stretnutia (ODT)“), aby používatelia vedeli, čo môžu očakávať (aktivujte opravu „Pridať veľkosť a typ súboru do odkazov“ v nastaveniach Accessibility Checker, aby sa to vykonalo na celej stránke). Ak je dokument vložený, poskytnite aj priamy odkaz na stiahnutie. Ak je sprístupnenie dokumentu náročné, zvážte umiestnenie obsahu na webovú stránku."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2790,8 +2813,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF nemusia byť prístupné pre všetkých používateľov, najmä ak nie sú správne označené alebo nespĺňajú požiadavky WCAG. Zákony o prístupnosti vyžadujú, aby dokumenty zverejnené na webových stránkach spĺňali rovnaké štandardy prístupnosti ako HTML obsah. Okrem toho by používatelia mali byť upozornení, keď odkaz otvára sťahovateľný súbor namiesto webovej stránky."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Uisti sa, že prepojené PDF je otestované a upravené pre prístupnosť. Keď vieš, že je prístupné, zruš toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker. Zahrň príponu súboru a veľkosť do textu odkazu, aby si informoval používateľov (zapni opravu „Pridať veľkosť a typ súboru k odkazom“ v nastaveniach Accessibility Checker, aby sa to robilo na celom webe). Ak je dokument vložený pomocou pluginu, poskytni tiež priamy odkaz na jeho stiahnutie. Ak je náročné urobiť PDF prístupným, zváž umiestnenie obsahu na webovú stránku namiesto toho."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Uistite sa, že prepojený PDF súbor je otestovaný a opravený z hľadiska prístupnosti. Keď viete, že je prístupný, zamietnite toto upozornenie v Accessibility Checker. Do textu odkazu zahrňte príponu a veľkosť súboru, aby ste informovali používateľov (aktivujte opravu „Pridať veľkosť a typ súboru do odkazov“ v nastaveniach Accessibility Checker, aby sa to vykonalo na celej stránke). Ak je dokument vložený pomocou doplnku, poskytnite aj priamy odkaz na jeho stiahnutie. Ak je sprístupnenie PDF súboru náročné, zvážte umiestnenie obsahu na webovú stránku."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2808,6 +2831,30 @@ msgstr "Prístupnosť PDF na webe: Triky a pasce (Webinár)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "Chyby v prístupnosti InDesign a PDF a ako ich opraviť (Webinár)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Text odkazu je URL adresa"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Tento odkaz používa URL adresu ako text kotvy namiesto zmysluplného slova alebo frázy."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Tieto odkazy používajú URL adresy ako text kotvy namiesto zmysluplných slov alebo fráz."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Text odkazu, ktorý je len URL adresou, nemusí poskytovať zmysluplný kontext o cieli odkazu. Okrem toho, dlhé URL adresy môžu byť ťažko zrozumiteľné, ak ich čítačka obrazovky oznamuje každé písmeno, číslo a znak individuálne. Používatelia sa spoliehajú na popisný text odkazu, aby pochopili, kam ich odkaz zavedie; používanie URL adries pre text odkazu znižuje použiteľnosť, zvyšuje kognitívnu záťaž a môže byť mätúce alebo zavádzajúce."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Nahraďte URL adresu v texte odkazu stručným, popisným slovom alebo frázou, ktorá vysvetľuje cieľ alebo účel odkazu (napríklad „Prečítajte si sprievodcu prístupnosťou“ namiesto „https://example.com/guide“). Ak je URL adresa pre kontext nevyhnutná a je veľmi krátka, môžete toto upozornenie zamietnuť pomocou funkcie „Zamietnuť“ v Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Technika G91: Poskytnutie textu odkazu, ktorý popisuje účel odkazu"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3080,8 +3127,8 @@ msgstr "Používatelia čítačiek obrazovky a iných asistenčných technológi
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Skontroluj označený text a urči, či by mal byť nadpisom. Ak áno, zmeň prvok na príslušnú značku %1$s–%2$s. Ak to nemá byť nadpis, môžeš toto upozornenie ignorovať pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Skontrolujte označený text a určte, či by mal byť nadpisom. Ak áno, zmeňte prvok na príslušnú značku %1$s–%2$s. Ak nie je zamýšľaný ako nadpis, môžete toto upozornenie zamietnuť v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3104,8 +3151,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Posuvníky sú často ťažko použiteľné s čítačkami obrazovky a klávesnicami. Neprístupné posuvníky môžu narušiť navigáciu, zachytiť zameranie alebo sa pohybovať príliš rýchlo na to, aby používatelia mohli pracovať s obsahom."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Skontroluj posuvník na prednej strane svojej webovej stránky. Uisti sa, že je prístupný pomocou klávesnice, je možné ho pozastaviť, má správne ARIA roly a označenia a dobre funguje s čítačkami obrazovky. Po potvrdení, že posuvník je prístupný, alebo po odstránení problémov môžeš toto upozornenie ignorovať pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Skontrolujte posuvník na prednej strane vašej webovej stránky. Uistite sa, že je prístupný pomocou klávesnice, je ho možné pozastaviť, má správne ARIA role a popisky a dobre funguje s čítačkami obrazovky. Po potvrdení prístupnosti posuvníka alebo odstránení problémov môžete toto upozornenie zamietnuť v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3260,8 +3307,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Podčiarknutý text sa bežne spája s odkazmi. Keď je nepodlinkový text podčiarknutý, môže to byť mätúce pre používateľov, najmä pre tých s kognitívnymi poruchami alebo tých, ktorí sa spoliehajú na vizuálne indikátory na identifikáciu odkazov."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Odstráň značku podčiarknutia alebo CSS štýl podčiarknutia z textu. Ak chceš zdôrazniť text, zváž použitie tučného písma, kurzívy alebo farebného štýlu. Ak je tento text súčasťou funkčného prvku ako odkaz alebo tlačidlo, ponechaj štýl podčiarknutia a ignoruj toto upozornenie pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Odstráňte značku podčiarknutia alebo štýl podčiarknutia CSS z textu. Ak chcete zvýrazniť text, zvážte namiesto toho použitie tučného písma, kurzívy alebo farby. Ak je tento text súčasťou funkčného prvku, ako je odkaz alebo tlačidlo, ponechajte štýl podčiarknutia a zamietnite toto upozornenie v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3280,8 +3327,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Videá musia obsahovať presné titulky, prepisy a zvukové popisy (alebo rozšírené prepisy), aby boli plne prístupné pre používateľov, ktorí sú nepočujúci, nedoslýchaví, nevidiaci alebo majú kognitívne poruchy."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Skontroluj video na prednej strane svojej webstránky. Uisti sa, že obsahuje presné (nie automaticky generované) synchronizované titulky, prepis a zvukový popis, ak je to potrebné. Po overení prístupnosti alebo vykonaní potrebných aktualizácií môžeš toto upozornenie ignorovať pomocou funkcie „Ignorovať“ v Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Skontrolujte video na prednej strane vašej webovej stránky. Uistite sa, že obsahuje presné (nie automaticky generované) synchronizované titulky, prepis a v prípade potreby aj zvukový popis. Po overení prístupnosti alebo vykonaní potrebných aktualizácií môžete toto upozornenie zamietnuť v Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3384,10 +3431,76 @@ msgstr "Zúčastnite sa zadarmo"
 msgid "(opens in a new window)"
 msgstr "(otvorí sa v novom okne)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Hlavná"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Hlavička"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Pätička"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Nav"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Bočný panel"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Navigácia"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Banner"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "Informácie o obsahu"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Doplnkové"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Sekcia"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Článok"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Formulár"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Oblasť"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Zobraziť %s orientačný bod na webstránke, otvorí sa nové okno"
 
@@ -3396,6 +3509,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Vitajte v Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Nastavenia Accessibility Checker"
 
@@ -3617,22 +3731,22 @@ msgid " (opens in a new window)"
 msgstr " (otvorí sa v novom okne)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Vyberte, ktoré typy príspevkov by mali byť kontrolované počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné ignorované upozornenia, ktoré boli nastavené."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Vyberte, ktoré typy príspevkov sa majú kontrolovať počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné zamietnuté upozornenia, ktoré boli nastavené."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Odstrániť všetky údaje Accessibility Checker pri odinštalovaní pluginu."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Zobraziť metabox Accessibility Checker v editore blokov"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Vyber, ktoré používateľské role majú oprávnenie ignorovať problémy."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "Vyberte, ktoré používateľské role majú povolenie zamietnuť problémy."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Nakonfiguruj, ktoré používateľské role majú prístup k špecifickým funkciám Accessibility Checker."
 
@@ -5082,6 +5196,11 @@ msgstr "Ukladá sa..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Uloženie zlyhalo: Chýba URL adresa REST API."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Nastavenia boli úspešne uložené. Musíte %snavštíviť editor%s a uložiť príspevok, aby sa opätovne skontrolovali a odstránili opravené problémy zo správ Accessibility Checker."
@@ -5272,30 +5391,31 @@ msgstr "Závažnosť:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Ignorované"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Zobraziť vysvetlenie"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Prečo je to dôležité"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Ako opraviť"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Podrobnejšia dokumentácia"
 
@@ -5310,6 +5430,7 @@ msgstr "Opraviť problém: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Opraviť problém"
 
@@ -5363,11 +5484,11 @@ msgstr[2] "%d vyžaduje kontrolu"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d ignorovaný"
-msgstr[1] "%d ignorované"
-msgstr[2] "%d ignorovaných"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d zamietnutý"
+msgstr[1] "%d zamietnuté"
+msgstr[2] "%d zamietnutých"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5427,111 +5548,159 @@ msgid "Error: Missing required parameters."
 msgstr "Chyba: Chýbajú povinné parametre."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Obrázok súvisiaci s problémom"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Nastavenia opravy uložené."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Nepodarilo sa uložiť nastavenia opravy."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Načítavam informácie o oprave..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Uložiť opravu pre: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Problém úspešne zrušený."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Problém úspešne znova otvorený."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Zrušenie..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Problém zrušený — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Problém zrušený"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Rozsah:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Všetky stránky"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Od:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Dňa:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Dôvod zrušenia:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Tento problém bol globálne zamietnutý. Ak ho chcete znova otvoriť, spravujte globálne zamietnutia."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Spravovať globálne zamietnutia"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Znova otváram..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Komentár (voliteľné)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Pridajte poznámku vysvetľujúcu, prečo sa tento problém zamieta."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Ďalšie možnosti zrušenia"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Zrušiť a zavrieť modálne okno"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Problém č. %s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Podrobnosti problému"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Typ"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Závažnosť"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Nepodarilo sa načítať informácie o oprave %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Chyba pri načítaní informácií o oprave %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Nastavenia opravy uložené."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Nepodarilo sa uložiť nastavenia opravy."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Načítavam informácie o oprave..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Uložiť opravu pre: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Obrázok súvisiaci s problémom"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Problém úspešne zrušený."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Problém úspešne znova otvorený."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Zrušiť globálne"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Zamietanie globálne..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Zrušenie..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Problém zrušený — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Problém zrušený"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Rozsah:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Všetky stránky"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Od:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "Dňa:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Dôvod zrušenia:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Odstraňuje sa..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Odstrániť globálne zamietnutie"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Znova otváram..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Komentár (voliteľné)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Pridajte poznámku vysvetľujúcu, prečo sa tento problém zamieta."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Ďalšie možnosti zrušenia"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Zrušiť a zavrieť modálne okno"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5621,6 +5790,14 @@ msgstr "pokračovať v čítaní"
 msgid "learn more"
 msgstr "dozvedieť sa viac"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Kontroluje, či je viditeľný text odkazu URL adresa namiesto popisného textu kotvy."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Text odkazu by mal byť popisný a nie len URL adresa."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Nepodarilo sa načítať údaje o prístupnosti"
@@ -5695,6 +5872,11 @@ msgstr "Zobraziť %d problémov v analýze prístupnosti"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Zobraziť %d položiek vyžadujúcich kontrolu v analýze prístupnosti"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Zobraziť podrobnosti o úrovni čitateľnosti: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

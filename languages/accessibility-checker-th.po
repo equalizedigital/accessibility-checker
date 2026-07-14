@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "ต่ออายุใบอนุญาตของคุณ"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "ปิดใช้งานรายงานทางอีเมล"
 
@@ -90,7 +90,7 @@ msgstr "เปิดใช้งานรายงานทางอีเมล
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "คีย์ใบอนุญาตฟรี"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "เปิดใช้งานรายงานแล้ว"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "คุณจะได้รับรายงานการเข้าถึงรายสัปดาห์สำหรับเว็บไซต์นี้"
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "รายงานการเข้าถึงรายสัปดาห์สำหรับเว็บไซต์นี้กำลังถูกส่งทางอีเมลไปยังเจ้าของบัญชีของคีย์ใบอนุญาต"
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "รายงานถัดไป: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "การครอบคลุมทั้งหมด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "การครอบคลุมแบบจำกัด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "รายงานของคุณรวมประเภทโพสต์และอนุกรมวิธานทั้งหมด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "เปิดใช้งานการสแกนทั้งเว็บไซต์แล้ว"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "รายละเอียดปัญหาที่สมบูรณ์"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "รายงานที่มีรายละเอียด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "รายงานของคุณรวมเพียงส่วนหนึ่งของเว็บไซต์ของคุณ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "อัปเกรดเป็น Pro เพื่อ:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "สแกนเนื้อหาทุกประเภท"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "รับรายละเอียดปัญหาทั้งหมด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "รับรายงานที่มีรายละเอียดมากขึ้น"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "อัปเกรดเป็นแบบโปร"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "สรุปการเข้าถึง"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "สรุปนี้แสดงข้อมูลการสแกนล่าสุดที่พร้อมใช้งานสำหรับเว็บไซต์ของคุณ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "พบปัญหาทั้งหมด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "การเชื่อมต่อบัญชี"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "ในการเชื่อมต่อไซต์นี้ คุณตกลงตาม <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">นโยบายความเป็นส่วนตัว <span aria-hidden=\"true\">&#8599;</span></a> และ <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">ข้อตกลงการประมวลผลข้อมูล <span aria-hidden=\"true\">&#8599;</span></a>ของ Equalize Digital"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "นโยบายความเป็นส่วนตัว (เปิดในหน้าต่างใหม่)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "ข้อตกลงการประมวลผลข้อมูล (เปิดในหน้าต่างใหม่)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "อีเมลรายสัปดาห์จะรวมจำนวนปัญหาทั้งหมดที่พบและการเปลี่ยนแปลงตั้งแต่รายงานฉบับล่าสุด ข้อมูลความครอบคลุม จำนวนปัญหา ที่ต้องตรวจสอบ เปอร์เซ็นต์การทดสอบที่ผ่าน และข้อมูลเกี่ยวกับหน้าที่เป็นปัญหามากที่สุดและปัญหาที่รุนแรงที่สุด"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "ไม่มี"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "วิกฤต"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "สูง"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "ปานกลาง"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "ต่ำ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "ไม่ทราบ"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 โปรโมชั่นพิเศษ Black Friday! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "อัปเกรดเป็น Accessibility Checker เวอร์ชันชำระเงินตั้งแต่วันที่ 24 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! การสแกนทั้งไซต์, รายงานปัญหาที่เปิดอยู่ทั่วทั้งไซต์, บันทึกการละเว้น และอื่น ๆ อีกมากมาย"
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "อัปเกรดเป็น Accessibility Checker เวอร์ชันชำระเงินตั้งแต่วันที่ 24 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! การสแกนเว็บไซต์แบบเต็ม, รายงานปัญหาที่เปิดอยู่ทั่วทั้งเว็บไซต์, บันทึกการยกเลิก และอื่น ๆ"
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "อัปเกรดทันที"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "การทดสอบที่ผ่าน"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "ปัญหา"
@@ -658,6 +664,7 @@ msgstr[0] "ปัญหาความคมชัด"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -684,9 +691,10 @@ msgstr "* การเข้าถึงที่แท้จริงต้อ�
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr "เปิดหน้าต่างใหม่"
@@ -718,6 +726,7 @@ msgstr "ขยายปัญหาสำหรับ %s"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "การตั้งค่าเหล่านี้เปิดใช้งานการแก้ไขทั่วทั้งเว็บไซต์ของคุณ."
 
@@ -728,21 +737,25 @@ msgstr "อาจจำเป็นต้องบันทึกหน้าใ
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "บันทึก"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "โค้ดที่ได้รับผลกระทบ"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "รูปภาพ"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "จุดสังเกต"
 
@@ -751,6 +764,7 @@ msgid "Actions"
 msgstr "การดำเนินการ"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "ยกเลิก"
 
@@ -778,6 +792,7 @@ msgstr "ดูปัญหา ID %d บนเว็บไซต์ (เปิด
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "ดูบนหน้าเว็บ"
@@ -879,8 +894,8 @@ msgstr "ตำแหน่งสรุปแบบง่ายของคุณ
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "สรุปแบบย่อ"
@@ -898,12 +913,14 @@ msgstr "เรียนรู้เพิ่มเติมเกี่ยวก
 msgid "No readability data to return"
 msgstr "ไม่มีข้อมูลความสามารถในการอ่านที่จะส่งคืน"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "ไม่มีข้อมูลการละเว้นที่จะส่งคืน"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "ไม่มีข้อมูลการยกเลิกที่จะส่งกลับ"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* ข้อความสำหรับเครื่องอ่านหน้าจอ"
 
@@ -924,63 +941,66 @@ msgstr "การค้นหาปัญหาไม่พบผลลัพธ
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "ผลบวกปลอม"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "เครื่องสแกนตั้งค่าสถานะนี้ แต่ไม่สามารถใช้กับเนื้อหานี้ได้"
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "แก้ไขแล้ว"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "ปัญหาได้รับการแก้ไขแล้ว แต่หน้ายังไม่ได้สแกนใหม่"
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "ยืนยันการเข้าถึงได้"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "ตรวจสอบและยืนยันว่าเป็นไปตามข้อกำหนดการเข้าถึง"
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "ผลบวกปลอม"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "เครื่องสแกนตั้งค่าสถานะนี้ แต่ไม่สามารถใช้กับเนื้อหานี้ได้"
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "แก้ไขแล้ว"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "ปัญหาได้รับการแก้ไขแล้ว แต่หน้ายังไม่ได้สแกนใหม่"
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "ชื่อผู้ใช้:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "วันที่:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "เปิดปัญหาอีกครั้ง"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "ยกเลิกปัญหา"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "ความคิดเห็น"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "จัดการการยกเลิกทั่วโลก"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "บัญชีผู้ใช้ของคุณไม่มีสิทธิ์ที่จะยกเลิกปัญหานี้"
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "ยกเลิกปัญหาเป็น:"
 
@@ -1444,12 +1464,12 @@ msgstr "หัวข้อบทสรุปแบบย่อ"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "สิทธิ์การละเว้น"
+msgid "Dismiss Permissions"
+msgstr "สิทธิ์ในการยกเลิก"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "จำนวนตารางการละเว้นในฐานข้อมูล"
+msgid "Dismissals DB Table Count"
+msgstr "จำนวนตาราง DB การยกเลิก"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1482,10 +1502,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "รับ Accessibility Checker Pro (เปิดในหน้าต่างใหม่)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "ไม่พบปัญหา"
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "ขออภัย คุณไม่ได้รับอนุญาตให้ยกเลิกปัญหาอย่างน้อยหนึ่งรายการในชุดนี้"
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "ไม่สามารถอัปเดตปัญหาได้"
 
@@ -1966,8 +1991,8 @@ msgstr "แอตทริบิวต์ aria-hidden ใช้เพื่อ�
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ตรวจสอบว่าองค์ประกอบนั้นควรถูกซ่อนจากผู้ใช้โปรแกรมอ่านหน้าจอจริงๆ หรือไม่ หากมีเนื้อหาหรือฟังก์ชันการทำงานที่สำคัญ ให้ลบ %s ออก หากเป็นการตกแต่งหรือซ้ำซ้อน ให้ปล่อยองค์ประกอบไว้และยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "ตรวจสอบว่าองค์ประกอบควรถูกซ่อนจากผู้ใช้โปรแกรมอ่านหน้าจอจริงหรือไม่ หากมีเนื้อหาหรือฟังก์ชันที่สำคัญ ให้ลบ %s หากเป็นเพียงการตกแต่งหรือซ้ำซ้อน ให้ปล่อยองค์ประกอบไว้และยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2364,8 +2389,8 @@ msgstr "โปรแกรมอ่านหน้าจอพึ่งพาข
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "ตรวจสอบรูปภาพเพื่อพิจารณาว่าเป็นรูปภาพตกแต่งหรือไม่ หากเป็นรูปภาพตกแต่ง การใช้แอตทริบิวต์ %1$s ที่ว่างเปล่าถือว่าถูกต้อง และคุณสามารถปิดการเตือนนี้ได้โดยใช้ฟังก์ชัน “ละเว้น” ใน Accessibility Checker หรือเพิ่ม %2$s หรือ %3$s ไปยังรูปภาพแล้วสแกนหน้าซ้ำ หากรูปภาพสื่อถึงข้อมูล ให้เพิ่มข้อความ alt ที่อธิบายวัตถุประสงค์หรือความหมายของรูปภาพ"
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "ตรวจสอบรูปภาพเพื่อพิจารณาว่าเป็นรูปภาพตกแต่งหรือไม่ หากเป็นรูปภาพตกแต่ง การใช้แอตทริบิวต์ %1$s ว่างเปล่านั้นถูกต้อง และคุณสามารถยกเลิกคำเตือนนี้ใน Accessibility Checker หรือโดยการเพิ่ม %2$s หรือ %3$s ไปยังรูปภาพแล้วสแกนหน้าซ้ำ หากรูปภาพสื่อถึงข้อมูล ให้เพิ่มข้อความ alt ที่สื่อถึงวัตถุประสงค์หรือความหมายของรูปภาพ"
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2419,8 +2444,8 @@ msgstr "ข้อความทางเลือกควรกระชับ
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ย่อข้อความ alt ให้สั้นกว่า %s ตัวอักษร แต่ยังคงอธิบายหน้าที่หรือจุดประสงค์ของรูปภาพ รักษาคำอธิบายให้เรียบง่ายและหลีกเลี่ยงการทวนซ้ำเนื้อหาโดยรอบ หากไม่จำเป็นต้องเปลี่ยนข้อความ alt ของรูปภาพ ให้ยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "ย่อข้อความ alt ให้สั้นลงเหลือไม่เกิน %s ตัวอักษร โดยยังคงอธิบายฟังก์ชันหรือวัตถุประสงค์ของรูปภาพอยู่ ให้คำอธิบายที่เรียบง่ายและหลีกเลี่ยงการซ้ำเนื้อหาโดยรอบ หากข้อความ alt ของรูปภาพไม่จำเป็นต้องเปลี่ยนแปลง ให้ยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2497,8 +2522,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "รูปภาพเคลื่อนไหวอาจทำให้เสียสมาธิ ก่อให้เกิดอาการชักในบางคน หรือสร้างภาระทางความคิด แนวทาง WCAG กำหนดว่าภาพเคลื่อนไหวที่กะพริบหรือวนซ้ำอย่างต่อเนื่องต้องมีกลไกให้หยุดชั่วคราว หยุด หรือซ่อนได้."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "แทนที่รูปภาพเคลื่อนไหวด้วยรูปภาพนิ่งหรือวิดีโอที่มีตัวควบคุม ถ้าคุณจำเป็นต้องใช้รูปภาพเคลื่อนไหว ให้แน่ใจว่ามันไม่กะพริบเกินสามครั้งต่อวินาทีและมีตัวควบคุมให้หยุดชั่วคราวหรือหยุดถ้ามันเล่นนานกว่า 5 วินาที ถ้าคุณยืนยันแล้วว่ารูปภาพนั้นเข้าถึงได้และหยุดชั่วคราวได้ คุณสามารถยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "แทนที่รูปภาพเคลื่อนไหวด้วยรูปภาพแบบคงที่หรือวิดีโอที่มีตัวควบคุม หากคุณต้องใช้รูปภาพเคลื่อนไหว ตรวจสอบให้แน่ใจว่าจะไม่กะพริบเกินสามครั้งต่อวินาที และจัดเตรียมตัวควบคุมการหยุดชั่วคราวหรือหยุดหากเล่นนานกว่า 5 วินาที หากคุณยืนยันแล้วว่ารูปภาพสามารถเข้าถึงได้และหยุดชั่วคราวได้ คุณสามารถยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2563,29 +2588,27 @@ msgstr "เพิ่มแอตทริบิวต์ alt ที่อธิ�
 msgid "Incorrect Heading Order"
 msgstr "ลำดับหัวข้อไม่ถูกต้อง"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "หน้านี้ใช้หัวข้อไม่เป็นลำดับ นี่คือ%1$sหลังจาก%2$s ข้ามระดับหัวข้อไปหนึ่งหรือมากกว่านั้น."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "หน้านี้ใช้หัวข้อไม่เป็นไปตามลำดับ โดยมีการข้ามระดับหัวข้อไปอย่างน้อยหนึ่งระดับ"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "หน้าเหล่านี้ใช้หัวข้อไม่เป็นลำดับ ข้ามระดับหัวข้อไปหนึ่งหรือมากกว่านั้น เช่น การไปจาก%1$sไปยัง%2$sโดยไม่มี%3$sคั่นกลาง."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "หัวข้อช่วยผู้ใช้ทุกคน โดยเฉพาะผู้ที่ใช้โปรแกรมอ่านหน้าจอหรือการนำทางด้วยแป้นพิมพ์ ให้เข้าใจโครงสร้างของหน้า การข้ามระดับหัวข้อสามารถสร้างความสับสนและทำให้ยากต่อการติดตามลำดับชั้นของเนื้อหาหรือนำทางอย่างมีประสิทธิภาพ."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "แก้ไขหัวข้อของคุณให้เป็นไปตามลำดับที่สมเหตุสมผลโดยไม่ข้ามระดับ ตัวอย่างเช่น ถ้า%1$sตามด้วย%2$s ให้เปลี่ยน%2$sเป็น%3$sหรือเพิ่มส่วน%3$sระหว่างกลางเพื่อรักษาโครงสร้างที่เหมาะสม หากจำเป็น ใช้ CSS หรือการตั้งค่าตัวสร้างบล็อก/หน้าเพื่อจัดรูปแบบหัวข้อแทนการตั้งค่าระดับที่ไม่ถูกต้อง."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "บทช่วยสอนโครงสร้างหน้าของ W3C: หัวข้อ"
 
@@ -2700,8 +2723,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "เอกสารในรูปแบบ Word, Excel หรือ PowerPoint อาจไม่สามารถเข้าถึงได้สำหรับผู้ใช้ทุกคน โดยเฉพาะถ้าไม่ได้รับการติดแท็กอย่างถูกต้องหรือไม่ปฏิบัติตามแนวทางปฏิบัติที่ดีที่สุดในการเข้าถึง กฎหมายการเข้าถึงกำหนดให้เอกสารที่โพสต์บนหน้าเว็บต้องสอดคล้องกับ WCAG ด้วย นอกจากนี้ ควรเตือนผู้ใช้เมื่อลิงก์เปิดไฟล์ที่ดาวน์โหลดได้แทนหน้าเว็บ."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "ตรวจสอบให้แน่ใจว่าไฟล์ที่ลิงก์ได้รับการทดสอบและแก้ไขเพื่อการเข้าถึง เมื่อคุณรู้ว่าสามารถเข้าถึงได้แล้ว ให้ยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker รวมนามสกุลไฟล์และขนาดในข้อความลิงก์เพื่อแจ้งให้ผู้ใช้ทราบ (เปิดใช้งานการแก้ไข “เพิ่มขนาดไฟล์และประเภทในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั่วทั้งไซต์) หากเอกสารถูกฝังโดยใช้ปลั๊กอิน ให้ระบุลิงก์โดยตรงเพื่อดาวน์โหลดด้วย หากการทำให้เอกสารเข้าถึงได้เป็นเรื่องยาก ให้พิจารณาใส่เนื้อหาลงในหน้าเว็บแทน."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "ตรวจสอบให้แน่ใจว่าไฟล์ที่เชื่อมโยงได้รับการทดสอบและแก้ไขปัญหาการเข้าถึงแล้ว เมื่อคุณทราบว่าสามารถเข้าถึงได้ ให้ยกเลิกคำเตือนนี้ใน Accessibility Checker ระบุส่วนขยายและขนาดไฟล์ในข้อความลิงก์เพื่อแจ้งให้ผู้ใช้ทราบ (เปิดใช้งานการแก้ไข “เพิ่มขนาดและประเภทไฟล์ลงในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั่วทั้งเว็บไซต์) หากเอกสารถูกฝังโดยใช้ปลั๊กอิน ให้ระบุลิงก์โดยตรงเพื่อดาวน์โหลดด้วย หากการทำให้เอกสารเข้าถึงได้ยาก ให้พิจารณาใส่เนื้อหาในหน้าเว็บแทน"
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2752,8 +2775,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "รูปแบบเอกสารที่ไม่ใช่ HTML อาจไม่สามารถเข้าถึงได้อย่างเต็มที่สำหรับเทคโนโลยีสิ่งอำนวยความสะดวก เว้นแต่จะได้รับการทดสอบและแก้ไข ควรเตือนผู้ใช้เมื่อลิงก์เปิดไฟล์ที่ดาวน์โหลดได้แทนหน้าเว็บมาตรฐาน."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "ตรวจสอบให้แน่ใจว่าเอกสารที่ลิงก์สามารถเข้าถึงได้ เมื่อคุณรู้ว่าสามารถเข้าถึงได้แล้ว ให้ยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker รวมนามสกุลไฟล์ในข้อความลิงก์ที่มองเห็นได้ (เช่น “บันทึกการประชุม (ODT)”) เพื่อให้ผู้ใช้รู้ว่าจะเกิดอะไรขึ้น (เปิดใช้งานการแก้ไข “เพิ่มขนาดไฟล์และประเภทในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั่วทั้งไซต์) หากเอกสารถูกฝัง ให้ระบุลิงก์ดาวน์โหลดโดยตรงด้วย หากการทำให้เอกสารเข้าถึงได้เป็นเรื่องยาก ให้พิจารณาใส่เนื้อหาลงในหน้าเว็บแทน."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "ตรวจสอบให้แน่ใจว่าเอกสารที่เชื่อมโยงสามารถเข้าถึงได้ เมื่อคุณทราบว่าสามารถเข้าถึงได้ ให้ยกเลิกคำเตือนนี้ใน Accessibility Checker ระบุส่วนขยายไฟล์ในข้อความลิงก์ที่มองเห็นได้ (เช่น “บันทึกการประชุม (ODT)”) เพื่อให้ผู้ใช้ทราบว่าคาดหวังอะไร (เปิดใช้งานการแก้ไข “เพิ่มขนาดและประเภทไฟล์ลงในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั่วทั้งเว็บไซต์) หากเอกสารถูกฝัง ให้ระบุลิงก์ดาวน์โหลดโดยตรงด้วย หากการทำให้เอกสารเข้าถึงได้ยาก ให้พิจารณาใส่เนื้อหาในหน้าเว็บแทน"
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2772,8 +2795,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF อาจไม่สามารถเข้าถึงได้สำหรับผู้ใช้ทุกคน โดยเฉพาะอย่างยิ่งถ้าไม่ได้ติดแท็กอย่างถูกต้องหรือไม่ผ่านข้อกำหนด WCAG กฎหมายการเข้าถึงกำหนดให้เอกสารที่โพสต์บนเว็บไซต์ต้องมีมาตรฐานการเข้าถึงเดียวกับเนื้อหา HTML นอกจากนี้ ควรแจ้งเตือนผู้ใช้เมื่อลิงก์เปิดไฟล์ที่ดาวน์โหลดได้แทนหน้าเว็บ."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "ตรวจสอบให้แน่ใจว่า PDF ที่ลิงก์ได้รับการทดสอบและแก้ไขเพื่อการเข้าถึง เมื่อคุณรู้ว่าสามารถเข้าถึงได้แล้ว ให้ยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker รวมนามสกุลไฟล์และขนาดในข้อความลิงก์เพื่อแจ้งให้ผู้ใช้ทราบ (เปิดใช้งานการแก้ไข “เพิ่มขนาดไฟล์และประเภทในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั้งเว็บไซต์) หากเอกสารถูกฝังโดยใช้ปลั๊กอิน ให้ระบุลิงก์โดยตรงเพื่อดาวน์โหลดด้วย หากการทำให้ PDF เข้าถึงได้เป็นเรื่องยาก ให้พิจารณาใส่เนื้อหาบนหน้าเว็บแทน."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "ตรวจสอบให้แน่ใจว่า PDF ที่เชื่อมโยงได้รับการทดสอบและแก้ไขปัญหาการเข้าถึงแล้ว เมื่อคุณทราบว่าสามารถเข้าถึงได้ ให้ยกเลิกคำเตือนนี้ใน Accessibility Checker ระบุส่วนขยายและขนาดไฟล์ในข้อความลิงก์เพื่อแจ้งให้ผู้ใช้ทราบ (เปิดใช้งานการแก้ไข “เพิ่มขนาดและประเภทไฟล์ลงในลิงก์” ในการตั้งค่า Accessibility Checker เพื่อทำสิ่งนี้ทั่วทั้งเว็บไซต์) หากเอกสารถูกฝังโดยใช้ปลั๊กอิน ให้ระบุลิงก์โดยตรงเพื่อดาวน์โหลดด้วย หากการทำให้ PDF เข้าถึงได้ยาก ให้พิจารณาใส่เนื้อหาในหน้าเว็บแทน"
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2790,6 +2813,30 @@ msgstr "การเข้าถึง PDF บนเว็บ: เทคนิ�
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "ข้อผิดพลาดในการเข้าถึง InDesign และ PDF และวิธีแก้ไข (เว็บบินาร์)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "ข้อความลิงก์คือ URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "ลิงก์นี้ใช้ URL เป็นข้อความจุดยึด แทนที่จะเป็นคำหรือวลีที่มีความหมาย"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "ลิงก์เหล่านี้ใช้ URL เป็นข้อความจุดยึด แทนที่จะเป็นคำหรือวลีที่มีความหมาย"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "ข้อความลิงก์ที่เป็นเพียง URL อาจไม่ให้บริบทที่มีความหมายเกี่ยวกับปลายทางของลิงก์ นอกจากนี้ URL ที่ยาวอาจเข้าใจยากเมื่อโปรแกรมอ่านหน้าจออ่าน ซึ่งอาจประกาศทุกตัวอักษร ตัวเลข และอักขระทีละตัว ผู้ใช้พึ่งพาข้อความลิงก์ที่บรรยายเพื่อทำความเข้าใจว่าลิงก์จะนำพวกเขาไปที่ใด การใช้ URL สำหรับข้อความลิงก์ของคุณจะลดความสามารถในการใช้งาน เพิ่มภาระทางปัญญา และอาจสร้างความสับสนหรือเข้าใจผิดได้"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "แทนที่ URL ในข้อความลิงก์ด้วยคำหรือวลีที่กระชับและอธิบายปลายทางหรือวัตถุประสงค์ของลิงก์ (เช่น “อ่านคู่มือการเข้าถึง” แทนที่จะเป็น “https://example.com/guide”) หาก URL มีความจำเป็นสำหรับบริบทและสั้นมาก คุณสามารถยกเลิกคำเตือนนี้ได้โดยใช้คุณสมบัติ “ยกเลิก” ใน Accessibility Checker"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: เทคนิค G91: การให้ข้อความลิงก์ที่อธิบายวัตถุประสงค์ของลิงก์"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3062,8 +3109,8 @@ msgstr "ผู้ใช้โปรแกรมอ่านหน้าจอแ
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ตรวจสอบข้อความที่ถูกระบุและพิจารณาว่าควรเป็นหัวข้อหรือไม่ ถ้าควรเป็น ให้เปลี่ยนองค์ประกอบเป็นแท็ก %1$s–%2$s ที่เหมาะสม ถ้าไม่ได้ตั้งใจให้เป็นหัวข้อ คุณสามารถยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "ตรวจสอบข้อความที่ถูกตั้งค่าสถานะและพิจารณาว่าควรเป็นหัวข้อหรือไม่ หากใช่ ให้เปลี่ยนองค์ประกอบเป็นแท็ก %1$s–%2$s ที่เหมาะสม หากไม่ได้ตั้งใจให้เป็นหัวข้อ คุณสามารถยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3086,8 +3133,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "สไลเดอร์มักยากที่จะใช้งานกับโปรแกรมอ่านหน้าจอและแป้นพิมพ์ สไลเดอร์ที่เข้าถึงไม่ได้อาจรบกวนการนำทาง ติดอยู่ที่โฟกัส หรือเคลื่อนที่เร็วเกินไปสำหรับผู้ใช้ที่จะมีส่วนร่วมกับเนื้อหา."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ตรวจสอบสไลเดอร์ที่ด้านหน้าของเว็บไซต์ของคุณ ตรวจสอบให้แน่ใจว่าสามารถเข้าถึงได้ด้วยแป้นพิมพ์ สามารถหยุดชั่วคราวได้ มีบทบาท ARIA และป้ายกำกับที่เหมาะสม และทำงานได้ดีกับโปรแกรมอ่านหน้าจอ หลังจากยืนยันว่าสไลเดอร์สามารถเข้าถึงได้หรือแก้ไขปัญหาแล้ว คุณสามารถยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "ตรวจสอบแถบเลื่อนที่ส่วนหน้าของเว็บไซต์ของคุณ ตรวจสอบให้แน่ใจว่าสามารถเข้าถึงได้ด้วยคีย์บอร์ด สามารถหยุดชั่วคราวได้ มีบทบาทและป้ายกำกับ ARIA ที่เหมาะสม และทำงานได้ดีกับโปรแกรมอ่านหน้าจอ หลังจากยืนยันว่าแถบเลื่อนสามารถเข้าถึงได้หรือแก้ไขปัญหาแล้ว คุณสามารถยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3242,8 +3289,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "ข้อความที่ขีดเส้นใต้มักเกี่ยวข้องกับลิงก์ เมื่อข้อความที่ไม่ใช่ลิงก์ถูกขีดเส้นใต้ อาจทำให้ผู้ใช้สับสน โดยเฉพาะผู้ที่มีความบกพร่องทางการรับรู้หรือผู้ที่พึ่งพาสัญญาณทางสายตาเพื่อระบุลิงก์."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ลบแท็กขีดเส้นใต้หรือสไตล์ CSS ขีดเส้นใต้ออกจากข้อความ หากคุณต้องการเน้นข้อความ ให้พิจารณาใช้การจัดรูปแบบตัวหนา ตัวเอียง หรือสีแทน หากข้อความนี้เป็นส่วนหนึ่งขององค์ประกอบที่ใช้งานได้เช่นลิงก์หรือปุ่ม ให้เก็บสไตล์การขีดเส้นใต้ไว้และยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "ลบแท็กขีดเส้นใต้หรือสไตล์ขีดเส้นใต้ CSS ออกจากข้อความ หากคุณต้องการเน้นข้อความ ให้พิจารณาใช้ตัวหนา ตัวเอียง หรือการจัดรูปแบบสีแทน หากข้อความนี้เป็นส่วนหนึ่งขององค์ประกอบการทำงาน เช่น ลิงก์หรือปุ่ม ให้คงรูปแบบขีดเส้นใต้ไว้และยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3262,8 +3309,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "วิดีโอต้องรวมคำบรรยายที่ถูกต้อง บทคัดย่อ และคำอธิบายเสียง (หรือบทคัดย่อที่เพิ่มประสิทธิภาพ) เพื่อให้สามารถเข้าถึงได้อย่างเต็มที่สำหรับผู้ใช้ที่หูหนวก หูตึง ตาบอด หรือมีความบกพร่องทางการรับรู้."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "ตรวจสอบวิดีโอที่ด้านหน้าของเว็บไซต์ของคุณ ตรวจสอบให้แน่ใจว่ามีคำบรรยายที่ถูกต้อง (ไม่ใช่สร้างอัตโนมัติ) ที่ซิงโครไนซ์ บทคัดย่อ และคำอธิบายเสียงหากจำเป็น หลังจากตรวจสอบการเข้าถึงหรือทำการอัปเดตที่จำเป็นแล้ว คุณสามารถยกเลิกคำเตือนนี้โดยใช้ฟีเจอร์ “ละเว้น” ใน Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "ตรวจสอบวิดีโอที่ส่วนหน้าของเว็บไซต์ของคุณ ตรวจสอบให้แน่ใจว่ามีคำบรรยายภาพที่แม่นยำ (ไม่ใช่ที่สร้างขึ้นอัตโนมัติ) ที่ซิงโครไนซ์กัน สคริปต์ และคำอธิบายเสียงหากจำเป็น หลังจากยืนยันการเข้าถึงหรือทำการอัปเดตที่จำเป็น คุณสามารถยกเลิกคำเตือนนี้ใน Accessibility Checker"
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3366,10 +3413,76 @@ msgstr "เข้าร่วมฟรี"
 msgid "(opens in a new window)"
 msgstr "(เปิดในหน้าต่างใหม่)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "หลัก"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "ส่วนหัว"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "ส่วนท้าย"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "การนำทาง"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "ส่วนเสริม"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "การนำทาง"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "แบนเนอร์"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "ข้อมูลเนื้อหา"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "ส่วนเสริม"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "ส่วน"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "บทความ"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "แบบฟอร์ม"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "ภูมิภาค"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "ดู %s แลนด์มาร์คบนเว็บไซต์ เปิดหน้าต่างใหม่"
 
@@ -3378,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "ยินดีต้อนรับสู่ Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "การตั้งค่า Accessibility Checker"
 
@@ -3599,22 +3713,22 @@ msgid " (opens in a new window)"
 msgstr " (เปิดในหน้าต่างใหม่)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "เลือกประเภทโพสต์ที่ควรตรวจสอบระหว่างการสแกน โปรดทราบว่า การลบประเภทโพสต์ที่เคยเลือกไว้ก่อนหน้านี้จะลบข้อมูลที่สแกนและคำเตือนที่ถูกละเว้นแบบกำหนดเองที่ได้ตั้งค่าไว้."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "เลือกประเภทโพสต์ที่จะตรวจสอบระหว่างการสแกน โปรดทราบว่า การลบประเภทโพสต์ที่เลือกไว้ก่อนหน้านี้จะลบข้อมูลที่สแกนและคำเตือนที่ถูกยกเลิกแบบกำหนดเองที่ตั้งค่าไว้"
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "ลบข้อมูล Accessibility Checker ทั้งหมดเมื่อถอนการติดตั้งปลั๊กอิน."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "แสดงเมตาบ็อกซ์ Accessibility Checker ในตัวแก้ไขบล็อก"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "เลือกบทบาทผู้ใช้ที่มีสิทธิ์ในการละเว้นปัญหา"
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "เลือกบทบาทผู้ใช้ที่มีสิทธิ์ในการยกเลิกปัญหา"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "กำหนดค่าบทบาทผู้ใช้ที่มีสิทธิ์เข้าถึงคุณสมบัติเฉพาะของ Accessibility Checker"
 
@@ -5064,6 +5178,11 @@ msgstr "กำลังบันทึก..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "การบันทึกล้มเหลว: ไม่มี URL ของ REST API"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "บันทึกการตั้งค่าสำเร็จแล้ว คุณต้อง%sเข้าไปที่ตัวแก้ไข%sและบันทึกโพสต์เพื่อสแกนซ้ำและลบปัญหาที่แก้ไขแล้วออกจากรายงานของ Accessibility Checker."
@@ -5254,30 +5373,31 @@ msgstr "ความรุนแรง:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "ละเว้น"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "แสดงคำอธิบาย"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "ทำไมจึงสำคัญ"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "วิธีแก้ไข"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "เอกสารประกอบโดยละเอียดเพิ่มเติม"
 
@@ -5292,6 +5412,7 @@ msgstr "แก้ไขปัญหา: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "แก้ไขปัญหา"
 
@@ -5339,9 +5460,9 @@ msgstr[0] "%d รายการต้องตรวจสอบ"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "ละเว้น %d รายการ"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d รายการถูกยกเลิก"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5401,111 +5522,159 @@ msgid "Error: Missing required parameters."
 msgstr "ข้อผิดพลาด: ขาดพารามิเตอร์ที่จำเป็น"
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "รูปภาพที่เกี่ยวข้องกับปัญหา"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "บันทึกการตั้งค่าการแก้ไขแล้ว"
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "ไม่สามารถบันทึกการตั้งค่าการแก้ไขได้"
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "กำลังโหลดข้อมูลการแก้ไข..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "บันทึกการแก้ไขสำหรับ: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "ยกเลิกปัญหาสำเร็จแล้ว"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "เปิดปัญหาอีกครั้งสำเร็จแล้ว"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "กำลังยกเลิก..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "ปัญหายกเลิกแล้ว — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "ปัญหายกเลิกแล้ว"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "ขอบเขต:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "ทุกหน้า"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "โดย:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "เมื่อ:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "เหตุผลในการยกเลิก:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "ปัญหานี้ถูกปิดไปทั่วโลกแล้ว จัดการการปิดทั่วโลกเพื่อเปิดใหม่"
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "จัดการการปิดทั่วโลก"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "กำลังเปิดอีกครั้ง..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "ความคิดเห็น (ไม่บังคับ)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "เพิ่มบันทึกอธิบายเหตุผลที่ยกเลิกปัญหานี้"
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "ตัวเลือกการยกเลิกเพิ่มเติม"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "ยกเลิกและปิดโมดอล"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "ปัญหา #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "รายละเอียดปัญหา"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "ประเภท"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "ความรุนแรง"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "ไม่สามารถโหลดข้อมูลการแก้ไข %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "ข้อผิดพลาดในการโหลดข้อมูลการแก้ไข %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "บันทึกการตั้งค่าการแก้ไขแล้ว"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "ไม่สามารถบันทึกการตั้งค่าการแก้ไขได้"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "กำลังโหลดข้อมูลการแก้ไข..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "บันทึกการแก้ไขสำหรับ: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "รูปภาพที่เกี่ยวข้องกับปัญหา"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "ยกเลิกปัญหาสำเร็จแล้ว"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "เปิดปัญหาอีกครั้งสำเร็จแล้ว"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "ยกเลิกทั่วโลก"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "กำลังยกเลิกทั่วโลก..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "กำลังยกเลิก..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "ปัญหายกเลิกแล้ว — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "ปัญหายกเลิกแล้ว"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "ขอบเขต:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "ทุกหน้า"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "โดย:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "เมื่อ:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "เหตุผลในการยกเลิก:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "กำลังลบ..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "ลบการยกเลิกทั่วโลก"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "กำลังเปิดอีกครั้ง..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "ความคิดเห็น (ไม่บังคับ)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "เพิ่มบันทึกอธิบายเหตุผลที่ยกเลิกปัญหานี้"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "ตัวเลือกการยกเลิกเพิ่มเติม"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "ยกเลิกและปิดโมดอล"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5595,6 +5764,14 @@ msgstr "อ่านต่อ"
 msgid "learn more"
 msgstr "เรียนรู้เพิ่มเติม"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "ตรวจสอบว่าข้อความที่มองเห็นของลิงก์เป็น URL หรือไม่ แทนที่จะเป็นข้อความจุดยึดที่บรรยาย"
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "ข้อความลิงก์ควรอธิบายและไม่ใช่เพียงแค่ URL"
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "ไม่สามารถโหลดข้อมูลการเข้าถึงได้"
@@ -5665,6 +5842,11 @@ msgstr "ดู %d ปัญหาในการวิเคราะห์ก�
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "ดู %d รายการที่ต้องตรวจสอบในการวิเคราะห์การเข้าถึง"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "ดูรายละเอียดระดับการอ่าน: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

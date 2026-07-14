@@ -43,7 +43,13 @@ module.exports = {
 			'./src/srOnlyFormat/index.js',
 			'./src/srOnlyFormat/sass/sr-only-format.scss',
 		],
-
+		sharedComponents: {
+			import: './src/sharedComponents/index.js',
+			library: {
+				name: 'edacSharedComponents',
+				type: 'window',
+			},
+		},
 	},
 	optimization: {
 		splitChunks: {
@@ -131,5 +137,6 @@ module.exports = {
 		'@wordpress/rich-text': [ 'wp', 'richText' ],
 		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
 		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
+		'@wordpress/a11y': [ 'wp', 'a11y' ],
 	},
 };

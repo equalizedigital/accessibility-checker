@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Trình kiểm tra khả năng tiếp cận"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Gia hạn giấy phép của bạn"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Tắt báo cáo email"
 
@@ -90,7 +90,7 @@ msgstr "Bật báo cáo email"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Khóa giấy phép miễn phí"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Đã bật báo cáo"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Bạn sẽ nhận được báo cáo tiếp cận hàng tuần cho trang web này."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Báo cáo khả năng truy cập hàng tuần cho trang web này đang được gửi email tới chủ tài khoản của khóa cấp phép."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Báo cáo tiếp theo: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Phạm vi đầy đủ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Phạm vi giới hạn"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Báo cáo của bạn bao gồm tất cả các loại bài đăng và phân loại."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Đã bật quét toàn bộ trang"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Phân tích vấn đề chi tiết"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Báo cáo chi tiết"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Báo cáo của bạn chỉ bao gồm một phần trang web của bạn."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Nâng cấp lên Pro để:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Quét tất cả các loại nội dung"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Nhận phân tích vấn đề đầy đủ"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Nhận báo cáo chi tiết hơn"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Nâng cấp lên bản pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Tóm tắt tiếp cận"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Tóm tắt này phản ánh dữ liệu quét mới nhất có sẵn cho trang web của bạn."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Tổng số vấn đề được tìm thấy"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Kết nối tài khoản"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Bằng cách kết nối với trang web này, bạn đồng ý với <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Chính sách quyền riêng tư <span aria-hidden=\"true\">&#8599;</span></a> và <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Thỏa thuận xử lý dữ liệu <span aria-hidden=\"true\">&#8599;</span></a> của Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Chính sách quyền riêng tư (mở trong cửa sổ mới)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Thỏa thuận xử lý dữ liệu (mở trong cửa sổ mới)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Email hàng tuần bao gồm tổng số vấn đề được tìm thấy và các thay đổi kể từ báo cáo cuối cùng, thông tin phạm vi, số lượng vấn đề, cần xem xét, tỷ lệ kiểm tra đạt và thông tin về các trang có vấn đề nhất cùng các vấn đề nghiêm trọng nhất."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Không áp dụng"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Nghiêm trọng"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Cao"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Trung bình"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Thấp"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Không xác định"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Ưu đãi đặc biệt Black Friday! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 24 tháng 11 đến ngày 3 tháng 12 để được giảm giá 30%! Quét toàn bộ trang web, báo cáo các vấn đề mở trên toàn trang web, bỏ qua nhật ký và hơn thế nữa."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Nâng cấp lên phiên bản trả phí của Accessibility Checker từ ngày 24 tháng 11 đến ngày 3 tháng 12 để được giảm giá 30%! Bao gồm quét toàn bộ trang web, báo cáo các vấn đề đang mở trên toàn trang, nhật ký bỏ qua và nhiều tính năng khác."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Nâng cấp ngay"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Các bài kiểm tra đã vượt qua"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Vấn đề"
@@ -658,6 +664,7 @@ msgstr[0] "Vấn đề về độ tương phản"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -684,9 +691,10 @@ msgstr "* Khả năng tiếp cận thực sự yêu cầu kiểm tra thủ công
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", mở một cửa sổ mới"
@@ -718,6 +726,7 @@ msgstr "Mở rộng các vấn đề cho %s"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
 
@@ -728,21 +737,25 @@ msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ t
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Lưu"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Hình ảnh"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Điểm mốc"
 
@@ -751,6 +764,7 @@ msgid "Actions"
 msgstr "Hành động"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Đã bỏ qua"
 
@@ -778,6 +792,7 @@ msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Xem trên trang"
@@ -879,8 +894,8 @@ msgstr "Vị trí Tóm tắt đơn giản của bạn được đặt thành “
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Tóm tắt đơn giản"
@@ -898,12 +913,14 @@ msgstr "Tìm hiểu thêm về cách cải thiện khả năng đọc và các y
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Không có dữ liệu bỏ qua để trả về"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Không có dữ liệu bỏ qua nào được trả về"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Văn bản trình đọc màn hình"
 
@@ -924,63 +941,66 @@ msgstr "Truy vấn vấn đề không trả về kết quả nào"
 msgid "Object query returned no results"
 msgstr "Truy vấn đối tượng không trả về kết quả nào"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Dương tính giả"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Trình quét đã gắn cờ mục này, nhưng nó không áp dụng cho nội dung này."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Đã khắc phục"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Sự cố đã được khắc phục, nhưng trang chưa được quét lại."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Đã xác nhận có thể truy cập"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Đã xem xét và xác minh đáp ứng các yêu cầu về khả năng truy cập."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Dương tính giả"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Trình quét đã gắn cờ mục này, nhưng nó không áp dụng cho nội dung này."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Đã khắc phục"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Sự cố đã được khắc phục, nhưng trang chưa được quét lại."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Tên người dùng:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Ngày:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Mở lại sự cố"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Bỏ qua sự cố"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Bình luận"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Quản lý các mục bị bỏ qua trên toàn cầu"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Tài khoản người dùng của bạn không có quyền bỏ qua sự cố này."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Bỏ qua sự cố dưới dạng:"
 
@@ -1444,12 +1464,12 @@ msgstr "Tiêu đề tóm tắt đơn giản hóa"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
+msgid "Dismiss Permissions"
 msgstr "Quyền bỏ qua"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Số lượng Bảng DB bỏ qua"
+msgid "Dismissals DB Table Count"
+msgstr "Số lượng bảng cơ sở dữ liệu Bỏ qua"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1482,10 +1502,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Nhận Accessibility Checker Pro (mở trong cửa sổ mới)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Không tìm thấy sự cố."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "Rất tiếc, bạn không được phép bỏ qua một hoặc nhiều vấn đề trong đợt này."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Không thể cập nhật sự cố."
 
@@ -1966,8 +1991,8 @@ msgstr "Thuộc tính aria-hidden được sử dụng để ẩn nội dung kh�
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Kiểm tra xem phần tử có thực sự nên bị ẩn khỏi người dùng trình đọc màn hình không. Nếu nó chứa nội dung hoặc chức năng quan trọng, hãy xóa %s. Nếu nó mang tính trang trí hoặc thừa, hãy để nguyên phần tử và bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Kiểm tra xem phần tử có thực sự nên ẩn đối với người dùng trình đọc màn hình không. Nếu phần tử chứa nội dung hoặc chức năng quan trọng, hãy xóa %s. Nếu phần tử chỉ mang tính trang trí hoặc thừa, hãy giữ nguyên phần tử và bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2364,8 +2389,8 @@ msgstr "Trình đọc màn hình dựa vào văn bản thay thế để mô tả
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Xem lại hình ảnh để xác định xem đó có phải là hình ảnh trang trí không. Nếu là hình ảnh trang trí, việc sử dụng thuộc tính %1$s trống là đúng và bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng “Bỏ qua” trong Accessibility Checker hoặc thêm %2$s hoặc %3$s vào hình ảnh và quét lại trang. Nếu hình ảnh truyền tải thông tin, hãy thêm văn bản thay thế mô tả để truyền đạt mục đích hoặc ý nghĩa của hình ảnh."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Xem lại hình ảnh để xác định xem nó có phải là hình ảnh trang trí không. Nếu có, việc sử dụng thuộc tính %1$s trống là đúng và bạn có thể bỏ qua cảnh báo này trong Accessibility Checker hoặc bằng cách thêm %2$s hay %3$s vào hình ảnh và quét lại trang. Nếu hình ảnh truyền tải thông tin, hãy thêm văn bản alt mô tả mục đích hoặc ý nghĩa của hình ảnh."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2419,8 +2444,8 @@ msgstr "Văn bản thay thế nên ngắn gọn và tập trung vào mô tả m�
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Rút ngắn văn bản thay thế xuống dưới %s ký tự nhưng vẫn mô tả được chức năng hoặc mục đích của hình ảnh. Giữ mô tả đơn giản và tránh lặp lại nội dung xung quanh. Nếu văn bản thay thế của hình ảnh không cần thay đổi, hãy bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Rút ngắn văn bản alt xuống dưới %s ký tự mà vẫn mô tả được chức năng hoặc mục đích của hình ảnh. Giữ mô tả đơn giản và tránh lặp lại nội dung xung quanh. Nếu văn bản alt của hình ảnh không cần thay đổi, hãy bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2497,8 +2522,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Hình ảnh động có thể gây mất tập trung, gây co giật ở một số cá nhân, hoặc tạo ra tải nhận thức. Hướng dẫn WCAG yêu cầu rằng các hình ảnh động nhấp nháy hoặc lặp lại liên tục phải cung cấp cơ chế để tạm dừng, dừng hoặc ẩn chúng."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Thay thế hình ảnh động bằng hình ảnh tĩnh hoặc video có các điều khiển. Nếu bạn phải sử dụng hình ảnh động, hãy đảm bảo nó không nhấp nháy quá ba lần mỗi giây và cung cấp các điều khiển tạm dừng hoặc dừng nếu nó phát hơn 5 giây. Nếu bạn đã xác nhận rằng hình ảnh có thể truy cập được và có thể tạm dừng, bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Thay thế hình ảnh động bằng hình ảnh tĩnh hoặc video có điều khiển. Nếu bạn phải sử dụng hình ảnh động, hãy đảm bảo hình ảnh không nhấp nháy quá ba lần mỗi giây và cung cấp các điều khiển tạm dừng hoặc dừng nếu hình ảnh phát trong hơn 5 giây. Nếu bạn đã xác nhận hình ảnh có thể truy cập và có thể tạm dừng, bạn có thể bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2563,29 +2588,27 @@ msgstr "Thêm một thuộc tính alt mô tả mục đích của liên kết. T
 msgid "Incorrect Heading Order"
 msgstr "Thứ tự tiêu đề không chính xác"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Trang này sử dụng các tiêu đề không theo thứ tự. Đây là một %1$s sau một %2$s, bỏ qua một hoặc nhiều cấp độ tiêu đề."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Trang này sử dụng các tiêu đề không đúng thứ tự, bỏ qua một hoặc nhiều cấp độ tiêu đề."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Những trang này sử dụng các tiêu đề không theo thứ tự, bỏ qua một hoặc nhiều cấp độ tiêu đề, chẳng hạn như chuyển từ %1$s sang %2$s mà không có %3$s ở giữa."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Tiêu đề giúp tất cả người dùng—đặc biệt là những người sử dụng trình đọc màn hình hoặc điều hướng bàn phím—hiểu cấu trúc của trang. Việc bỏ qua các cấp độ tiêu đề có thể gây ra sự nhầm lẫn và khiến việc theo dõi hệ thống phân cấp nội dung hoặc điều hướng hiệu quả trở nên khó khăn hơn."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Sửa lại các tiêu đề của bạn để tuân theo thứ tự hợp lý mà không bỏ qua cấp độ. Ví dụ, nếu một %1$s được theo sau bởi một %2$s, hãy thay đổi %2$s thành %3$s hoặc thêm một phần %3$s ở giữa để giữ cấu trúc phù hợp. Nếu cần, hãy sử dụng CSS hoặc cài đặt trình tạo khối/trang để tạo kiểu cho tiêu đề thay vì đặt cấp độ không chính xác."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "Hướng dẫn của W3C về Cấu trúc Trang: Tiêu đề"
 
@@ -2700,8 +2723,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Các tài liệu ở định dạng Word, Excel hoặc PowerPoint có thể không truy cập được cho tất cả người dùng, đặc biệt nếu chúng không được gắn thẻ đúng cách hoặc không tuân theo các phương pháp tốt nhất về khả năng truy cập. Luật về khả năng truy cập yêu cầu các tài liệu được đăng trên trang web cũng phải tuân thủ WCAG. Ngoài ra, người dùng nên được cảnh báo khi một liên kết mở một tệp có thể tải xuống thay vì một trang web."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Đảm bảo rằng tệp được liên kết đã được kiểm tra và khắc phục về khả năng truy cập. Khi bạn biết nó có thể truy cập được, hãy bỏ qua cảnh báo này bằng tính năng \"Bỏ qua\" trong Accessibility Checker. Bao gồm phần mở rộng tệp và kích thước trong văn bản liên kết để thông báo cho người dùng (bật tính năng 'Thêm kích thước & loại tệp vào liên kết' trong cài đặt Accessibility Checker để thực hiện điều này trên toàn trang web). Nếu tài liệu được nhúng bằng plugin, cũng cung cấp một liên kết trực tiếp để tải xuống. Nếu việc làm cho tài liệu có thể truy cập gặp khó khăn, hãy cân nhắc đưa nội dung lên một trang web thay thế."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Đảm bảo tệp được liên kết đã được kiểm tra và khắc phục về khả năng truy cập. Khi bạn biết tệp có thể truy cập được, hãy bỏ qua cảnh báo này trong Accessibility Checker. Thêm phần mở rộng tệp và kích thước vào văn bản liên kết để thông báo cho người dùng (bật tính năng “Thêm kích thước và loại tệp vào liên kết” trong cài đặt Accessibility Checker để thực hiện trên toàn trang web). Nếu tài liệu được nhúng bằng một plugin, cũng cung cấp một liên kết trực tiếp để tải xuống. Nếu việc làm cho tài liệu có thể truy cập trở nên khó khăn, hãy cân nhắc đặt nội dung trên một trang web thay thế."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2752,8 +2775,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Các định dạng tài liệu không phải HTML có thể không hoàn toàn truy cập được đối với các công nghệ hỗ trợ trừ khi được kiểm tra và khắc phục. Người dùng nên được cảnh báo khi một liên kết mở một tệp có thể tải xuống thay vì một trang web tiêu chuẩn."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Đảm bảo tài liệu được liên kết có thể truy cập được. Khi bạn biết nó có thể truy cập được, hãy bỏ qua cảnh báo này bằng tính năng \"Bỏ qua\" trong Accessibility Checker. Bao gồm phần mở rộng tệp trong văn bản liên kết hiển thị (ví dụ: \"Ghi chú cuộc họp (ODT)\") để người dùng biết những gì họ sẽ nhận được (bật tính năng 'Thêm kích thước & loại tệp vào liên kết' trong cài đặt Accessibility Checker để thực hiện điều này trên toàn trang web). Nếu tài liệu được nhúng, hãy cung cấp thêm một liên kết tải xuống trực tiếp. Nếu việc làm cho tài liệu có thể truy cập gặp khó khăn, hãy cân nhắc đưa nội dung lên một trang web thay thế."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Đảm bảo tài liệu được liên kết có thể truy cập được. Khi bạn biết tài liệu có thể truy cập được, hãy bỏ qua cảnh báo này trong Accessibility Checker. Bao gồm phần mở rộng tệp trong văn bản liên kết hiển thị (ví dụ: “Ghi chú cuộc họp (ODT)”) để người dùng biết điều gì sẽ xảy ra (bật tính năng “Thêm kích thước và loại tệp vào liên kết” trong cài đặt Accessibility Checker để thực hiện trên toàn trang web). Nếu tài liệu được nhúng, hãy cung cấp thêm liên kết tải xuống trực tiếp. Nếu việc làm cho tài liệu có thể truy cập trở nên khó khăn, hãy cân nhắc đặt nội dung trên một trang web thay thế."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2772,8 +2795,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "Tệp PDF có thể không truy cập được cho tất cả người dùng, đặc biệt nếu chúng không được gắn thẻ đúng cách hoặc không đáp ứng yêu cầu WCAG. Luật về khả năng tiếp cận yêu cầu các tài liệu đăng trên trang web phải đáp ứng các tiêu chuẩn tiếp cận giống như nội dung HTML. Ngoài ra, người dùng nên được cảnh báo khi một liên kết mở một tệp có thể tải xuống thay vì một trang web."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Đảm bảo tệp PDF được liên kết đã được kiểm tra và khắc phục về khả năng tiếp cận. Khi bạn biết nó đã có thể truy cập được, hãy bỏ qua cảnh báo này bằng tính năng \"Bỏ qua\" trong Accessibility Checker. Thêm phần mở rộng tệp và kích thước vào văn bản liên kết để thông báo cho người dùng (bật tính năng 'Thêm kích thước & loại tệp vào liên kết' trong cài đặt Accessibility Checker để làm điều này trên toàn trang). Nếu tài liệu được nhúng bằng plugin, hãy cung cấp thêm một liên kết trực tiếp để tải xuống. Nếu việc làm cho PDF có thể truy cập gặp khó khăn, hãy cân nhắc đưa nội dung lên một trang web thay thế."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Đảm bảo tệp PDF được liên kết đã được kiểm tra và khắc phục về khả năng truy cập. Khi bạn biết tệp có thể truy cập được, hãy bỏ qua cảnh báo này trong Accessibility Checker. Thêm phần mở rộng tệp và kích thước vào văn bản liên kết để thông báo cho người dùng (bật tính năng “Thêm kích thước và loại tệp vào liên kết” trong cài đặt Accessibility Checker để thực hiện trên toàn trang web). Nếu tài liệu được nhúng bằng một plugin, cũng cung cấp một liên kết trực tiếp để tải xuống. Nếu việc làm cho PDF có thể truy cập trở nên khó khăn, hãy cân nhắc đặt nội dung trên một trang web thay thế."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2790,6 +2813,30 @@ msgstr "Khả năng tiếp cận PDF trên Web: Mẹo và Bẫy (Hội thảo tr
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "Lỗi về khả năng tiếp cận InDesign & PDF và Cách khắc phục (Hội thảo trực tuyến)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Văn bản liên kết là URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Liên kết này sử dụng URL làm văn bản neo thay vì một từ hoặc cụm từ có ý nghĩa."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Các liên kết này sử dụng URL làm văn bản neo thay vì các từ hoặc cụm từ có ý nghĩa."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Văn bản liên kết chỉ là URL có thể không cung cấp ngữ cảnh có ý nghĩa về đích đến của liên kết. Ngoài ra, các URL dài có thể khó hiểu khi được trình đọc màn hình đọc, vì trình đọc màn hình có thể thông báo từng chữ cái, số và ký tự riêng lẻ. Người dùng dựa vào văn bản liên kết mô tả để hiểu liên kết sẽ đưa họ đến đâu; việc sử dụng URL làm văn bản liên kết sẽ làm giảm khả năng sử dụng, tăng gánh nặng nhận thức và có thể gây nhầm lẫn hoặc hiểu sai."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Thay thế URL trong văn bản liên kết bằng một từ hoặc cụm từ ngắn gọn, mô tả giải thích đích đến hoặc mục đích của liên kết (ví dụ: “Đọc hướng dẫn về khả năng truy cập” thay vì “https://example.com/guide”). Nếu URL là cần thiết cho ngữ cảnh và rất ngắn gọn, bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng “Bỏ qua” trong Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Kỹ thuật G91: Cung cấp văn bản liên kết mô tả mục đích của liên kết"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3062,8 +3109,8 @@ msgstr "Người dùng trình đọc màn hình và các công nghệ hỗ trợ
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Xem xét văn bản được đánh dấu và xác định xem nó có nên là tiêu đề hay không. Nếu đúng là tiêu đề, hãy thay đổi phần tử thành thẻ %1$s–%2$s phù hợp. Nếu không có ý định làm tiêu đề, bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Xem lại văn bản được gắn cờ và xác định xem nó có nên là tiêu đề không. Nếu có, hãy thay đổi phần tử thành thẻ %1$s–%2$s thích hợp. Nếu không có ý định làm tiêu đề, bạn có thể bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3086,8 +3133,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Thanh trượt thường khó sử dụng với trình đọc màn hình và bàn phím. Thanh trượt không thể truy cập có thể gây trở ngại cho việc điều hướng, giữ trọng tâm, hoặc di chuyển quá nhanh khiến người dùng không thể tương tác với nội dung."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Xem xét thanh trượt ở giao diện người dùng của trang web của bạn. Đảm bảo nó có thể truy cập bằng bàn phím, có thể tạm dừng, có vai trò và nhãn ARIA phù hợp, và hoạt động tốt với trình đọc màn hình. Sau khi xác nhận thanh trượt có thể truy cập được hoặc khắc phục các vấn đề, bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Kiểm tra thanh trượt ở giao diện người dùng của trang web. Đảm bảo nó có thể truy cập bằng bàn phím, có thể tạm dừng, có vai trò và nhãn ARIA phù hợp, đồng thời hoạt động tốt với trình đọc màn hình. Sau khi xác nhận thanh trượt có thể truy cập hoặc khắc phục sự cố, bạn có thể bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3242,8 +3289,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Văn bản gạch chân thường được liên kết với các liên kết. Khi văn bản không phải liên kết được gạch chân, nó có thể gây nhầm lẫn cho người dùng, đặc biệt là những người có khuyết tật nhận thức hoặc những người dựa vào các dấu hiệu trực quan để nhận biết liên kết."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Xóa thẻ gạch chân hoặc kiểu CSS gạch chân khỏi văn bản. Nếu bạn muốn nhấn mạnh văn bản, hãy cân nhắc sử dụng kiểu in đậm, in nghiêng hoặc màu sắc thay thế. Nếu văn bản này là một phần của phần tử chức năng như liên kết hoặc nút, hãy giữ nguyên kiểu gạch chân và bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Xóa thẻ gạch chân hoặc kiểu gạch chân CSS khỏi văn bản. Nếu bạn muốn nhấn mạnh văn bản, hãy cân nhắc sử dụng kiểu in đậm, in nghiêng hoặc màu sắc thay thế. Nếu văn bản này là một phần của phần tử chức năng như liên kết hoặc nút, hãy giữ nguyên kiểu gạch chân và bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3262,8 +3309,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Video phải bao gồm phụ đề chính xác, bản ghi và mô tả âm thanh (hoặc bản ghi nâng cao) để hoàn toàn có thể truy cập được đối với người dùng khiếm thính, khó nghe, mù hoặc có khuyết tật nhận thức."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Xem lại video trên giao diện người dùng của trang web của bạn. Đảm bảo rằng nó bao gồm phụ đề đồng bộ chính xác (không phải tự động tạo), bản ghi và mô tả âm thanh nếu cần. Sau khi xác minh khả năng tiếp cận hoặc thực hiện các cập nhật cần thiết, bạn có thể bỏ qua cảnh báo này bằng cách sử dụng tính năng \"Bỏ qua\" trong Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Xem lại video trên giao diện người dùng của trang web. Đảm bảo video có phụ đề được đồng bộ hóa chính xác (không phải tự động tạo), bản chép lời và mô tả âm thanh nếu cần. Sau khi xác minh khả năng truy cập hoặc thực hiện các bản cập nhật cần thiết, bạn có thể bỏ qua cảnh báo này trong Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3366,10 +3413,76 @@ msgstr "Tham gia miễn phí"
 msgid "(opens in a new window)"
 msgstr "(mở trong cửa sổ mới)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Chính"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Đầu trang"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Chân trang"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Điều hướng"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Ngoài lề"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Điều hướng"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Biểu ngữ"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "Thông tin nội dung"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Bổ trợ"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Phần"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Bài viết"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Mẫu"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Khu vực"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Xem %s điểm mốc trên trang web, mở cửa sổ mới"
 
@@ -3378,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Chào mừng đến với Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
@@ -3599,22 +3713,22 @@ msgid " (opens in a new window)"
 msgstr " (mở trong cửa sổ mới)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Chọn loại bài viết nào cần được kiểm tra trong quá trình quét. Lưu ý, việc xóa một loại bài viết đã chọn trước đó sẽ xóa thông tin đã quét và mọi cảnh báo bị bỏ qua tùy chỉnh đã được thiết lập."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Chọn loại bài đăng nào nên được kiểm tra trong quá trình quét. Xin lưu ý, việc xóa một loại bài đăng đã chọn trước đó sẽ xóa thông tin đã quét của nó và mọi cảnh báo tùy chỉnh đã bị bỏ qua đã được thiết lập."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Xóa tất cả dữ liệu Accessibility Checker khi gỡ cài đặt plugin."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Hiển thị metabox Accessibility Checker trong Trình chỉnh sửa khối"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
 msgstr "Chọn vai trò người dùng nào có quyền bỏ qua các vấn đề."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Cấu hình vai trò người dùng nào có quyền truy cập vào các tính năng cụ thể của Accessibility Checker."
 
@@ -5064,6 +5178,11 @@ msgstr "Đang lưu..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Lưu thất bại: Thiếu URL REST API."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Đã lưu cài đặt thành công. Bạn phải %struy cập trình soạn thảo%s và lưu bài viết để quét lại và xóa các vấn đề đã được khắc phục khỏi báo cáo của Accessibility Checker."
@@ -5254,30 +5373,31 @@ msgstr "Mức độ nghiêm trọng:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Đã bỏ qua"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Hiển thị giải thích"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Tại sao nó quan trọng"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Cách khắc phục"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Tài liệu chi tiết hơn"
 
@@ -5292,6 +5412,7 @@ msgstr "Khắc phục sự cố: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Khắc phục sự cố"
 
@@ -5339,9 +5460,9 @@ msgstr[0] "%d cần xem xét"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d đã bỏ qua"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "Đã bỏ qua %d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5401,111 +5522,159 @@ msgid "Error: Missing required parameters."
 msgstr "Lỗi: Thiếu các tham số bắt buộc."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Hình ảnh liên quan đến sự cố"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Đã lưu cài đặt sửa lỗi."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Không thể lưu cài đặt sửa lỗi."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Đang tải thông tin sửa lỗi..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Lưu bản sửa lỗi cho: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Đã bỏ qua sự cố thành công."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Đã mở lại sự cố thành công."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Đang bỏ qua..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Sự cố đã bị bỏ qua — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Sự cố đã bị bỏ qua"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Phạm vi:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Tất cả các trang"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Bởi:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Vào:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Lý do bỏ qua:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Vấn đề này đã bị bỏ qua trên toàn cầu. Quản lý Bỏ qua Toàn cầu để mở lại."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Quản lý bỏ qua toàn cầu"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Đang mở lại..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Bình luận (tùy chọn)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Thêm ghi chú giải thích lý do bỏ qua vấn đề này."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Thêm tùy chọn bỏ qua"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Bỏ qua & Đóng hộp thoại"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Sự cố #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Chi tiết sự cố"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Loại"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Mức độ nghiêm trọng"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Không tải được thông tin sửa lỗi %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Lỗi khi tải thông tin sửa lỗi %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Đã lưu cài đặt sửa lỗi."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Không thể lưu cài đặt sửa lỗi."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Đang tải thông tin sửa lỗi..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Lưu bản sửa lỗi cho: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Hình ảnh liên quan đến sự cố"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Đã bỏ qua sự cố thành công."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Đã mở lại sự cố thành công."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Bỏ qua toàn cầu"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Đang bỏ qua trên toàn cầu..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Đang bỏ qua..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Sự cố đã bị bỏ qua — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Sự cố đã bị bỏ qua"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Phạm vi:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Tất cả các trang"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Bởi:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "Vào:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Lý do bỏ qua:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Đang xóa..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Xóa bỏ qua toàn cầu"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Đang mở lại..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Bình luận (tùy chọn)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Thêm ghi chú giải thích lý do bỏ qua vấn đề này."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Thêm tùy chọn bỏ qua"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Bỏ qua & Đóng hộp thoại"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5595,6 +5764,14 @@ msgstr "tiếp tục đọc"
 msgid "learn more"
 msgstr "tìm hiểu thêm"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Kiểm tra xem văn bản hiển thị của liên kết có phải là URL hay không chứ không phải văn bản neo mô tả."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Văn bản liên kết phải mang tính mô tả chứ không chỉ đơn thuần là URL."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Không thể tải dữ liệu khả năng truy cập"
@@ -5665,6 +5842,11 @@ msgstr "Xem %d vấn đề trong Phân tích khả năng truy cập"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Xem %d mục cần xem xét trong Phân tích khả năng truy cập"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Xem chi tiết cấp độ đọc: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

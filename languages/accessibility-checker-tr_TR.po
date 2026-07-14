@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Erişilebilirlik Denetleyicisi"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Lisansınızı yenileyin"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "E-posta raporlarını devre dışı bırak"
 
@@ -90,7 +90,7 @@ msgstr "E-posta raporlarını etkinleştir"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Ücretsiz lisans anahtarı"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Raporlar etkinleştirildi"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Bu site için haftalık erişilebilirlik raporları alacaksınız."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Bu siteye ait haftalık erişilebilirlik raporları, lisans anahtarının hesap sahibine e-posta ile gönderilmektedir."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Sonraki rapor: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Tam kapsam"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Sınırlı kapsam"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Raporlarınız tüm gönderi türlerini ve taksonomileri içerir."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Tüm site taraması etkin"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Eksiksiz sorun detayları"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Detaylı raporlama"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Raporlarınız sitenizin yalnızca bir kısmını içerir."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Pro sürüme yükselterek:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Tüm içerik türlerini tarayın"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Tüm sorun detaylarını alın"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Daha detaylı raporlar alın"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Pro sürümüne yükselt"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Erişilebilirlik özeti"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Bu özet, siteniz için mevcut en son tarama verilerini yansıtır."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Bulunan toplam sorun sayısı"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Hesap bağlantısı"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Bu siteye bağlanarak Equalize Digital'ın <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Gizlilik Politikası <span aria-hidden=\"true\">&#8599;</span></a> ve <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Veri İşleme Anlaşması <span aria-hidden=\"true\">&#8599;</span></a>'nı kabul etmiş olursunuz."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Gizlilik Politikası (yeni pencerede açılır)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Veri İşleme Anlaşması (yeni pencerede açılır)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Haftalık e-posta, bulunan toplam sorunları ve son rapordan bu yana yapılan değişiklikleri, kapsama bilgilerini, sorun sayısını, incelenmesi gerekenleri, başarılı test yüzdesini ve en sorunlu sayfalar ile en ciddi sorunlar hakkındaki bilgileri içerir."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Yok"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Kritik"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Yüksek"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Orta"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Düşük"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Bilinmiyor"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Muhteşem Cuma özel indirimi! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "24 Kasım - 3 Aralık tarihleri arasında Accessibility Checker'ın ücretli sürümüne yükseltin ve %30 indirim kazanın! Tam site taraması, site genelinde açık sorunlar raporu, günlükleri yoksayma ve daha fazlası."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Accessibility Checker'ın ücretli sürümüne 24 Kasım'dan 3 Aralık'a kadar yükseltin ve %30 indirim kazanın! Tam site taraması, site genelinde açık sorunlar raporu, yoksayma kayıtları ve daha fazlası."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Şimdi yükseltin"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Geçen testler"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Sorun"
@@ -660,6 +666,7 @@ msgstr[1] "Kontrast sorunları"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -688,9 +695,10 @@ msgstr "* Gerçek erişilebilirlik, otomatik taramalara ek olarak manuel test ge
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", yeni bir pencere açar"
@@ -722,6 +730,7 @@ msgstr "%s için sorunları genişletin"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Bu ayarlar, tüm siteniz genelinde küresel düzeltmeleri etkinleştirir."
 
@@ -732,21 +741,25 @@ msgstr "Düzeltmelerin raporlarda görüntülenmesi için sayfaların yeniden ka
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Kaydet"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Etkilenen kod"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Görsel"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Dönüm noktası"
 
@@ -755,6 +768,7 @@ msgid "Actions"
 msgstr "Eylemler"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Reddedildi"
 
@@ -782,6 +796,7 @@ msgstr "Web sitesinde %d sorun kimliğini görüntüleyin, yeni bir pencere aça
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Sayfada görüntüle"
@@ -883,8 +898,8 @@ msgstr "Basitleştirilmiş Özet konumunuz “manuel” olarak ayarlanmıştır,
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Basitleştirilmiş özet"
@@ -902,12 +917,14 @@ msgstr "Okunabilirliği iyileştirme ve basitleştirilmiş özet gereksinimleri 
 msgid "No readability data to return"
 msgstr "Döndürülecek okunabilirlik verisi yok"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Döndürülecek göz ardı etme verisi yok"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Döndürülecek yoksayma verisi yok"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Ekran Okuyucu Metni"
 
@@ -928,63 +945,66 @@ msgstr "Sorun sorgusu sonuç döndürmedi"
 msgid "Object query returned no results"
 msgstr "Nesne sorgusu sonuç döndürmedi"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Yanlış pozitif"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Tarayıcı bunu işaretledi, ancak bu içeriğe uygulanmaz."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Düzeltildi"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Sorun düzeltildi, ancak sayfa henüz yeniden taranmadı."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Erişilebilir olduğu onaylandı"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Erişilebilirlik gereksinimlerini karşıladığı incelendi ve doğrulandı."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Yanlış pozitif"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Tarayıcı bunu işaretledi, ancak bu içeriğe uygulanmaz."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Düzeltildi"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Sorun düzeltildi, ancak sayfa henüz yeniden taranmadı."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Kullanıcı Adı:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Tarih:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Sorunu yeniden aç"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Sorunu kapat"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Yorum"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Küresel olarak kapatılanları yönet"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Kullanıcı hesabınızın bu sorunu kapatma izni yok."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Sorunu şu şekilde kapat:"
 
@@ -1453,12 +1473,12 @@ msgstr "Basitleştirilmiş özet başlığı"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Göz ardı etme izinleri"
+msgid "Dismiss Permissions"
+msgstr "Yoksayma izinleri"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Göz Ardı Edilen Veritabanı Tablo Sayısı"
+msgid "Dismissals DB Table Count"
+msgstr "Yoksayımlar VT tablosu sayısı"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1491,10 +1511,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro'yu Edinin (yeni pencerede açılır)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Sorun bulunamadı."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "Üzgünüz, bu toplu işlemdeki bir veya daha fazla sorunu yoksaymanıza izin verilmiyor."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Sorun güncellenemedi."
 
@@ -1975,8 +2000,8 @@ msgstr "aria-hidden özelliği, içeriği yardımcı teknolojilerden gizlemek i�
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Öğenin gerçekten ekran okuyucu kullanıcılarından gizlenmesi gerekip gerekmediğini kontrol edin. Önemli içerik veya işlevsellik içeriyorsa, %s özelliğini kaldırın. Dekoratif veya gereksizse, öğeyi olduğu gibi bırakın ve Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı görmezden gelin."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Ekran okuyucu kullanıcılarından öğenin gerçekten gizlenmesi gerekip gerekmediğini kontrol edin. Önemli içerik veya işlevsellik içeriyorsa, %s değerini kaldırın. Dekoratif veya gereksiz ise, öğeyi olduğu gibi bırakın ve bu uyarıyı Accessibility Checker'da yoksayın."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2373,8 +2398,8 @@ msgstr "Ekran okuyucular, göremeyenlere görüntüleri tanımlamak için altern
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Dekoratif olup olmadığını belirlemek için görseli inceleyin. Dekoratifse, boş bir %1$s özniteliği kullanmak doğrudur ve Accessibility Checker'daki “Yoksay” özelliğini kullanarak veya görsele %2$s veya %3$s ekleyip sayfayı yeniden tarayarak bu uyarıyı kapatabilirsiniz. Görsel bilgi iletiyorsa, görselin amacını veya anlamını açıklayan betimleyici alt metin ekleyin."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Görselin dekoratif olup olmadığını belirlemek için inceleyin. Dekoratif ise, boş bir %1$s özniteliği kullanmak doğrudur ve bu uyarıyı Accessibility Checker'da veya görsele %2$s ya da %3$s ekleyip sayfayı yeniden tarayarak yoksayabilirsiniz. Görsel bilgi aktarıyorsa, görselin amacını veya anlamını ileten açıklayıcı alt metin ekleyin."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2428,8 +2453,8 @@ msgstr "Alternatif metin, görüntünün amacını veya anlamını tanımlamaya 
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Alt metni, görüntünün işlevini veya amacını hala tanımlayarak %s karakterden daha kısa hale getir. Açıklamaları basit tut ve çevredeki içeriği tekrarlamaktan kaçın. Eğer görüntünün alt metninin değiştirilmesine gerek yoksa, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapat."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Alt metni, görselin işlevini veya amacını tanımlamaya devam ederken %s karakterden daha kısa olacak şekilde kısaltın. Açıklamaları basit tutun ve çevredeki içeriği tekrar etmekten kaçının. Görselin alt metninin değiştirilmesi gerekmiyorsa, bu uyarıyı Accessibility Checker'da yoksayın."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2506,8 +2531,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Hareketli görüntüler dikkat dağıtıcı olabilir, bazı bireylerde nöbetlere neden olabilir veya bilişsel yük oluşturabilir. WCAG kılavuzları, sürekli yanıp sönen veya döngü yapan animasyonların duraklatma, durdurma veya gizleme mekanizması sağlamasını gerektirir."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Hareketli görüntüyü statik bir görüntü veya kontrolleri içeren bir video ile değiştir. Hareketli bir görüntü kullanman gerekiyorsa, saniyede üçten fazla yanıp sönmediğinden emin ol ve 5 saniyeden fazla oynatılıyorsa duraklatma veya durdurma kontrolleri sağla. Görüntünün erişilebilir ve duraklatılabilir olduğunu onayladıysan, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapatabilirsin."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Hareketli görseli, statik bir görsel veya kontrollere sahip bir video ile değiştirin. Hareketli bir görsel kullanmanız gerekiyorsa, saniyede üç defadan fazla yanıp sönmediğinden ve 5 saniyeden uzun oynuyorsa duraklatma veya durdurma kontrolleri sağladığından emin olun. Görselin erişilebilir ve duraklatılabilir olduğunu onayladıysanız, bu uyarıyı Accessibility Checker'da yoksayabilirsiniz."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2572,29 +2597,27 @@ msgstr "Bağlantının amacını açıklayan bir alt özniteliği ekleyin. Görs
 msgid "Incorrect Heading Order"
 msgstr "Yanlış başlık sıralaması"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Bu sayfa başlıkları sıra dışı kullanıyor. Bu, bir veya daha fazla başlık seviyesini atlayarak bir %1$s'den sonra bir %2$s'dir."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Bu sayfa, bir veya daha fazla başlık düzeyini atlayarak başlıkları sıra dışı kullanıyor."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Bu sayfalar, bir veya daha fazla başlık seviyesini atlayarak başlıkları sıra dışı kullanıyor, örneğin aralarında bir %3$s olmadan %1$s'den %2$s'e geçiş yapıyor."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Başlıklar, özellikle ekran okuyucuları veya klavye gezintisi kullananlar olmak üzere tüm kullanıcıların sayfanın yapısını anlamasına yardımcı olur. Başlık seviyelerini atlamak kafa karışıklığı yaratabilir ve içerik hiyerarşisini takip etmeyi veya verimli bir şekilde gezinmeyi zorlaştırabilir."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Başlıklarınızı seviye atlamadan mantıklı bir sıra izleyecek şekilde düzenleyin. Örneğin, bir %1$s'i bir %2$s takip ediyorsa, %2$s'i bir %3$s'a değiştirin veya uygun yapıyı korumak için araya bir %3$s bölümü ekleyin. Gerekirse, yanlış seviyeyi ayarlamak yerine başlıkları biçimlendirmek için CSS veya blok/sayfa oluşturucu ayarlarını kullanın."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C Sayfa Yapısı Eğitimi: Başlıklar"
 
@@ -2709,8 +2732,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Word, Excel veya PowerPoint formatındaki belgeler, özellikle doğru şekilde etiketlenmemişse veya erişilebilirlik en iyi uygulamalarını takip etmiyorsa, tüm kullanıcılar için erişilebilir olmayabilir. Erişilebilirlik yasaları, web sayfalarında yayınlanan belgelerin de WCAG'ye uygun olmasını gerektirir. Ayrıca, bir bağlantı bir web sayfası yerine indirilebilir bir dosya açtığında kullanıcılar uyarılmalıdır."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Bağlantılı dosyanın erişilebilirlik açısından test edildiğinden ve düzeltildiğinden emin olun. Erişilebilir olduğunu bildiğinizde, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapatın. Kullanıcıları bilgilendirmek için bağlantı metnine dosya uzantısını ve boyutunu ekleyin (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge bir eklenti kullanılarak gömülüyse, indirmek için doğrudan bir bağlantı da sağlayın. Belgeyi erişilebilir hale getirmek zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Bağlı dosyanın erişilebilirlik açısından test edildiğinden ve düzeltildiğinden emin olun. Erişilebilir olduğunu bildiğinizde, bu uyarıyı Accessibility Checker'da yoksayın. Kullanıcıları bilgilendirmek için bağlantı metnine dosya uzantısını ve boyutunu ekleyin (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge bir eklenti kullanılarak gömülüyse, indirmek için doğrudan bir bağlantı da sağlayın. Belgeyi erişilebilir kılmak zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2761,8 +2784,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "HTML olmayan belge formatları, test edilip düzeltilmedikçe yardımcı teknolojiler için tam olarak erişilebilir olmayabilir. Bir bağlantı standart bir web sayfası yerine indirilebilir bir dosya açtığında kullanıcılar uyarılmalıdır."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Bağlantılı belgenin erişilebilir olduğundan emin olun. Erişilebilir olduğunu bildiğinizde, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapatın. Kullanıcıların ne bekleyeceklerini bilmeleri için görünür bağlantı metnine dosya uzantısını ekleyin (örneğin, “Toplantı Notları (ODT)”) (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge gömülüyse, ayrıca doğrudan indirme bağlantısı da sağlayın. Belgeyi erişilebilir hale getirmek zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Bağlı belgenin erişilebilir olduğundan emin olun. Erişilebilir olduğunu bildiğinizde, bu uyarıyı Accessibility Checker'da yoksayın. Kullanıcıların ne bekleyeceğini bilmesi için görünür bağlantı metnine dosya uzantısını ekleyin (ör. “Toplantı Notları (ODT)”) (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge gömülüyse, doğrudan indirme bağlantısı da sağlayın. Belgeyi erişilebilir kılmak zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2781,8 +2804,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF'ler, özellikle doğru etiketlenmemişse veya WCAG gereksinimlerini karşılamıyorsa, tüm kullanıcılar için erişilebilir olmayabilir. Erişilebilirlik yasaları, web sitelerinde yayınlanan belgelerin HTML içeriği ile aynı erişilebilirlik standartlarını karşılamasını gerektirir. Ayrıca, bir bağlantının web sayfası yerine indirilebilir bir dosya açtığı konusunda kullanıcılar uyarılmalıdır."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Bağlantılı PDF'in erişilebilirlik açısından test edildiğinden ve düzeltildiğinden emin olun. Erişilebilir olduğunu bildiğinizde, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapatın. Kullanıcıları bilgilendirmek için bağlantı metnine dosya uzantısını ve boyutunu ekleyin (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge bir eklenti kullanılarak gömülüyse, indirmek için doğrudan bir bağlantı da sağlayın. PDF'i erişilebilir hale getirmek zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Bağlı PDF'in erişilebilirlik açısından test edildiğinden ve düzeltildiğinden emin olun. Erişilebilir olduğunu bildiğinizde, bu uyarıyı Accessibility Checker'da yoksayın. Kullanıcıları bilgilendirmek için bağlantı metnine dosya uzantısını ve boyutunu ekleyin (bunu site genelinde yapmak için Accessibility Checker ayarlarında “Bağlantılara Dosya Boyutu ve Türü Ekle” düzeltmesini etkinleştirin). Belge bir eklenti kullanılarak gömülüyse, indirmek için doğrudan bir bağlantı da sağlayın. PDF'i erişilebilir kılmak zorsa, içeriği bunun yerine bir web sayfasına koymayı düşünün."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2799,6 +2822,30 @@ msgstr "Web'de PDF Erişilebilirliği: Püf Noktaları ve Tuzaklar (Webinar)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesign ve PDF Erişilebilirlik Hataları ve Bunları Nasıl Düzeltebilirsiniz (Webinar)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Bağlantı metni URL'dir"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Bu bağlantı, anlamlı bir kelime veya cümle yerine bağlantı metni olarak bir URL kullanır."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Bu bağlantılar, anlamlı kelimeler veya ifadeler yerine bağlantı metinleri olarak URL'ler kullanır."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Sadece bir URL olan bağlantı metni, bağlantı hedefi hakkında anlamlı bir bağlam sağlamayabilir. Ek olarak, uzun URL'ler, bir ekran okuyucu tarafından her harf, sayı ve karakterin ayrı ayrı okunması nedeniyle anlaşılması zor olabilir. Kullanıcılar, bir bağlantının onları nereye götüreceğini anlamak için açıklayıcı bağlantı metnine güvenir; bağlantı metniniz için URL'leri kullanmak kullanılabilirliği azaltır, bilişsel yükü artırır ve kafa karıştırıcı veya yanıltıcı olabilir."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Bağlantı metnindeki URL'yi, bağlantının hedefini veya amacını açıklayan kısa ve açıklayıcı bir kelime veya cümle ile değiştirin (örneğin, “Erişilebilirlik rehberini okuyun” yerine “https://example.com/guide”). URL bağlam için gerekliyse ve çok kısaysa, bu uyarıyı Accessibility Checker'daki “Yoksay” özelliğini kullanarak kapatabilirsiniz."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Teknik G91: Bir bağlantının amacını açıklayan bağlantı metni sağlama"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3071,8 +3118,8 @@ msgstr "Ekran okuyucu kullanıcıları ve diğer yardımcı teknolojiler, sayfa 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "İşaretli metni gözden geçirin ve başlık olması gerekip gerekmediğini belirleyin. Eğer öyleyse, öğeyi uygun %1$s-%2$s etiketiyle değiştirin. Başlık olarak tasarlanmamışsa, Erişilebilirlik Denetleyicisi'ndeki \"Yoksay\" özelliğini kullanarak bu uyarıyı reddedebilirsiniz."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "İşaretlenmiş metni inceleyin ve bir başlık olup olmadığını belirleyin. Eğer öyleyse, öğeyi uygun %1$s–%2$s etiketine dönüştürün. Eğer başlık olarak tasarlanmamışsa, bu uyarıyı Accessibility Checker'da yoksayabilirsiniz."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3095,8 +3142,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Kaydırıcılar genellikle ekran okuyucular ve klavyelerle kullanımı zordur. Erişilebilir olmayan kaydırıcılar gezinmeye müdahale edebilir, odağı tuzağa düşürebilir veya kullanıcıların içerikle etkileşime girmesi için çok hızlı hareket edebilir."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Web sitenizin ön yüzündeki kaydırıcıyı inceleyin. Klavye ile erişilebilir, duraklatılabilir, uygun ARIA rollerine ve etiketlerine sahip olduğundan ve ekran okuyucularla iyi çalıştığından emin olun. Kaydırıcının erişilebilir olduğunu onayladıktan veya sorunları düzelttikten sonra, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı kapatabilirsiniz."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Web sitenizin ön ucundaki kaydırıcıyı inceleyin. Klavye ile erişilebilir olduğundan, duraklatılabilir olduğundan, uygun ARIA rollerine ve etiketlerine sahip olduğundan ve ekran okuyucularla iyi çalıştığından emin olun. Kaydırıcının erişilebilir olduğunu onayladıktan veya sorunları giderdikten sonra, bu uyarıyı Accessibility Checker'da yoksayabilirsiniz."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3251,8 +3298,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Altı çizili metin genellikle bağlantılarla ilişkilendirilir. Bağlantı olmayan metnin altı çizildiğinde, özellikle bilişsel engelli veya bağlantıları tanımlamak için görsel ipuçlarına güvenen kullanıcılar için kafa karıştırıcı olabilir."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Metinden altı çizili etiketi veya CSS altı çizili stilini kaldırın. Metni vurgulamak istiyorsanız, bunun yerine kalın, italik veya renk stilini kullanmayı düşünün. Bu metin bir bağlantı veya düğme gibi işlevsel bir öğenin parçasıysa, altı çizili stili koruyun ve Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı görmezden gelin."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Metinden alt çizgi etiketini veya CSS alt çizgi stilini kaldırın. Metni vurgulamak istiyorsanız, bunun yerine kalın, italik veya renk stilini kullanmayı düşünün. Bu metin bir bağlantı veya düğme gibi işlevsel bir öğenin parçasıysa, alt çizgi stilini koruyun ve bu uyarıyı Accessibility Checker'da yoksayın."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3271,8 +3318,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Videoların, işitme engelli, işitme güçlüğü çeken, görme engelli veya bilişsel engelli kullanıcılar için tam erişilebilir olması için doğru altyazılar, transkriptler ve sesli açıklamalar (veya geliştirilmiş transkriptler) içermesi gerekir."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Web sitenizin ön yüzündeki videoyu inceleyin. Doğru (otomatik oluşturulmamış) senkronize altyazılar, bir transkript ve gerekirse sesli açıklama içerdiğinden emin olun. Erişilebilirliği doğruladıktan veya gerekli güncellemeleri yaptıktan sonra, Accessibility Checker'daki “Yoksay” özelliğini kullanarak bu uyarıyı görmezden gelebilirsiniz."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Web sitenizin ön ucundaki videoyu inceleyin. Doğru (otomatik oluşturulmamış) senkronize altyazılar, bir transkript ve gerekirse bir sesli açıklama içerdiğinden emin olun. Erişilebilirliği doğruladıktan veya gerekli güncellemeleri yaptıktan sonra, bu uyarıyı Accessibility Checker'da yoksayabilirsiniz."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3375,10 +3422,76 @@ msgstr "Ücretsiz katıl"
 msgid "(opens in a new window)"
 msgstr "(yeni pencerede açılır)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Ana"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Başlık"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Altbilgi"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Navigasyon"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Kenar Çubuğu"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Navigasyon"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Banner"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "İçerik Bilgisi"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Tamamlayıcı"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Bölüm"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Makale"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Form"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Bölge"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Web sitesinde %s işaretini görüntüle, yeni bir pencere açar"
 
@@ -3387,6 +3500,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checker'a Hoş Geldiniz"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker Ayarları"
 
@@ -3608,22 +3722,22 @@ msgid " (opens in a new window)"
 msgstr " (yeni pencerede açılır)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Bir tarama sırasında hangi gönderi türlerinin kontrol edileceğini seçin. Lütfen dikkat edin, daha önce seçilmiş bir gönderi türünü kaldırmak, taranan bilgilerini ve kurulmuş olan özel göz ardı edilen uyarıları kaldıracaktır."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Tarama sırasında hangi gönderi türlerinin kontrol edilmesi gerektiğini seçin. Lütfen unutmayın, önceden seçilmiş bir gönderi türünün kaldırılması, taranmış bilgilerini ve daha önce ayarlanmış özel olarak yoksayılan uyarıları kaldıracaktır."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Eklenti kaldırıldığında tüm Accessibility Checker verilerini sil."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Blok Düzenleyicide Accessibility Checker metabox'unu göster"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Hangi kullanıcı rollerinin sorunları görmezden gelme iznine sahip olduğunu seç."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "Hangi kullanıcı rollerinin sorunları yoksayma iznine sahip olduğunu seçin."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Hangi kullanıcı rollerinin belirli Accessibility Checker özelliklerine erişimi olduğunu yapılandır."
 
@@ -5073,6 +5187,11 @@ msgstr "Kaydediliyor..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Kaydetme başarısız oldu: REST API URL'si eksik."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Ayarlar başarıyla kaydedildi. Accessibility Checker raporlarından düzeltilmiş sorunları yeniden taramak ve kaldırmak için %seditörü ziyaret etmeli%s ve yazıyı kaydetmelisin."
@@ -5263,30 +5382,31 @@ msgstr "Önem derecesi:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Yoksayıldı"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Açıklamayı göster"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Neden önemli"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Nasıl düzeltilir"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Daha detaylı dokümantasyon"
 
@@ -5301,6 +5421,7 @@ msgstr "Sorunu düzelt: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Sorunu düzelt"
 
@@ -5351,8 +5472,8 @@ msgstr[1] "%d incelenmesi gerekiyor"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
 msgstr[0] "%d yoksayıldı"
 msgstr[1] "%d yoksayıldı"
 
@@ -5414,111 +5535,159 @@ msgid "Error: Missing required parameters."
 msgstr "Hata: Gerekli parametreler eksik."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Sorunla ilgili görsel"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Düzeltme ayarları kaydedildi."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Düzeltme ayarları kaydedilemedi."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Düzeltme bilgileri yükleniyor..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Şunun için düzeltmeyi kaydet: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Sorun başarıyla kapatıldı."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Sorun başarıyla yeniden açıldı."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Kapatılıyor..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Sorun Kapatıldı — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Sorun kapatıldı"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Kapsam:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Tüm sayfalar"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Yapan:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Tarih:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Kapatma nedeni:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Bu sorun genel olarak göz ardı edildi. Yeniden açmak için Genel Göz Ardı Edilenleri Yönetin."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Genel göz ardı edilenleri yönetin"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Yeniden açılıyor..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Yorum (isteğe bağlı)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Bu sorunun neden göz ardı edildiğini açıklayan bir not ekleyin."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Daha fazla kapatma seçeneği"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Kapat ve Modalı Kapat"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Sorun #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Sorun detayları"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Tür"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Şiddet"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "%s düzeltme bilgileri yüklenemedi."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "%s düzeltme bilgileri yüklenirken hata oluştu."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Düzeltme ayarları kaydedildi."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Düzeltme ayarları kaydedilemedi."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Düzeltme bilgileri yükleniyor..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Şunun için düzeltmeyi kaydet: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Sorunla ilgili görsel"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Sorun başarıyla kapatıldı."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Sorun başarıyla yeniden açıldı."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Küresel olarak kapat"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Genel olarak yoksayılıyor..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Kapatılıyor..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Sorun Kapatıldı — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Sorun kapatıldı"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Kapsam:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Tüm sayfalar"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Yapan:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "Tarih:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Kapatma nedeni:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Kaldırılıyor..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Genel yoksaymayı kaldır"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Yeniden açılıyor..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Yorum (isteğe bağlı)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Bu sorunun neden göz ardı edildiğini açıklayan bir not ekleyin."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Daha fazla kapatma seçeneği"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Kapat ve Modalı Kapat"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5608,6 +5777,14 @@ msgstr "okumaya devam et"
 msgid "learn more"
 msgstr "daha fazla bilgi edin"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Bir bağlantının görünür metninin açıklayıcı bağlantı metni yerine bir URL olup olmadığını kontrol eder."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Bağlantı metni açıklayıcı olmalı ve sadece URL olmamalıdır."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Erişilebilirlik verileri yüklenemedi"
@@ -5680,6 +5857,11 @@ msgstr "Erişilebilirlik Analizi'nde %d sorunu görüntüle"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Erişilebilirlik Analizi'nde incelenmesi gereken %d öğeyi görüntüle"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Okuma seviyesi ayrıntılarını görüntüleyin: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

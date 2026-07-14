@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "라이선스를 갱신하세요"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "이메일 보고서 비활성화"
 
@@ -90,7 +90,7 @@ msgstr "이메일 보고서 활성화"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "무료 라이선스 키"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "보고서 활성화됨"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "이 사이트에 대한 주간 접근성 보고서가 발송됩니다."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "이 사이트에 대한 주간 접근성 보고서가 라이선스 키의 계정 소유자에게 이메일로 발송됩니다."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "다음 보고서: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "전체 범위"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "제한된 범위"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "보고서에 모든 게시물 유형 및 분류가 포함됩니다."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "전체 사이트 스캔 활성화됨"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "완전한 문제 분석"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "상세 보고서"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "보고서에 사이트의 일부만 포함됩니다."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Pro 버전으로 업그레이드하여 다음 기능을 이용하세요:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "모든 콘텐츠 유형 스캔"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "전체 문제 분석 받기"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "더 상세한 보고서 받기"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "프로로 업그레이드하기"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "접근성 요약"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "이 요약은 사이트에 사용 가능한 최신 스캔 데이터를 반영합니다."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "발견된 총 문제 수"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "계정 연결"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "이 사이트에 연결함으로써, 귀하는 Equalize Digital의 <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">개인정보처리방침 <span aria-hidden=\"true\">&#8599;</span></a> 및 <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">데이터 처리 계약 <span aria-hidden=\"true\">&#8599;</span></a>에 동의합니다."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "개인정보처리방침 (새 창에서 열림)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "데이터 처리 계약 (새 창에서 열림)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "주간 이메일에는 지난 보고서 이후 발견된 총 문제 및 변경 사항, 적용 범위 정보, 문제 수, 검토 필요 사항, 통과된 테스트 비율, 가장 문제가 많은 페이지 및 가장 심각한 문제에 대한 정보가 포함됩니다."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "해당 없음"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "심각"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "높음"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "중간"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "낮음"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "알 수 없음"
@@ -477,7 +481,7 @@ msgstr "우리 웹사이트에 대한 의견, 질문, 피드백을 환영합니�
 #: admin/class-admin-footer-text.php:46
 #, php-format
 msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
-msgstr "Accessibility Checker를 즐겁게 사용하고 계신가요? %1$s★★★★★ 평가를 남겨주세요.[/%p#07527667] 여러분의 지원에 정말 감사드립니다!"
+msgstr "Accessibility Checker를 즐겁게 사용하고 계신가요? %1$s★★★★★ 평가를 남겨주세요.[/%%p#07527667] 여러분의 지원에 정말 감사드립니다!"
 
 #: admin/class-admin-footer-text.php:47
 msgid "Please leave us a five star rating (opens in new window)"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 블랙 프라이데이 특별 혜택! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "11월 24일부터 12월 3일까지 Accessibility Checker 유료 버전으로 업그레이드하고 30% 할인 혜택을 받으세요! 전체 사이트 스캔, 사이트 전체 미해결 문제 보고서, 로그 무시 등 다양한 기능을 제공합니다."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "11월 24일부터 12월 3일까지 Accessibility Checker 유료 버전으로 업그레이드하고 30% 할인 혜택을 받으세요! 전체 사이트 스캔, 사이트 전반의 미해결 문제 보고서, 해제 로그 등을 포함합니다."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "지금 업그레이드하기"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "통과한 테스트"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "문제"
@@ -658,6 +664,7 @@ msgstr[0] "대비 문제"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -684,9 +691,10 @@ msgstr "* 진정한 접근성은 자동 스캔 외에도 수동 테스트가 필
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", 새 창 열기"
@@ -718,6 +726,7 @@ msgstr "%s에 대한 문제 확장"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "이 설정은 전체 사이트에 걸쳐 전역 수정을 활성화합니다."
 
@@ -728,21 +737,25 @@ msgstr "수정 사항이 보고서에 반영되려면 페이지를 다시 저장
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "저장"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "영향을 받는 코드"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "이미지"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "랜드마크"
 
@@ -751,6 +764,7 @@ msgid "Actions"
 msgstr "작업"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "해제됨"
 
@@ -778,6 +792,7 @@ msgstr "웹사이트에서 문제 ID %d 보기, 새 창에서 열림"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "페이지에서 보기"
@@ -879,8 +894,8 @@ msgstr "간소화된 요약 위치가 “수동” 으로 설정되어 있어 �
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "간단한 요약"
@@ -898,12 +913,14 @@ msgstr "가독성 향상 및 간소화된 요약 요구 사항에 대해 자세�
 msgid "No readability data to return"
 msgstr "반환할 가독성 데이터 없음"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "반환할 무시 데이터 없음"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "반환할 해제 데이터 없음"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* 스크린 리더 텍스트"
 
@@ -924,63 +941,66 @@ msgstr "문제 쿼리 결과 없음"
 msgid "Object query returned no results"
 msgstr "객체 쿼리 결과 없음"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "오탐"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "스캐너가 이 내용을 플래그했지만, 이 콘텐츠에는 적용되지 않습니다."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "수정됨"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "문제가 해결되었지만, 페이지가 아직 다시 스캔되지 않았습니다."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "접근성 확인됨"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "접근성 요구 사항을 충족하는지 검토 및 확인되었습니다."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "오탐"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "스캐너가 이 내용을 플래그했지만, 이 콘텐츠에는 적용되지 않습니다."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "수정됨"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "문제가 해결되었지만, 페이지가 아직 다시 스캔되지 않았습니다."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "사용자 이름:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "날짜:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "문제 다시 열기"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "문제 해제"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "댓글"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "전역적으로 해제된 문제 관리"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "귀하의 사용자 계정에는 이 문제를 해제할 권한이 없습니다."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "다음으로 문제 해제:"
 
@@ -1444,12 +1464,12 @@ msgstr "간단한 요약 제목"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "무시 권한"
+msgid "Dismiss Permissions"
+msgstr "해제 권한"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "무시된 DB 테이블 수"
+msgid "Dismissals DB Table Count"
+msgstr "해제 DB 테이블 개수"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1482,10 +1502,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro 받기 (새 창에서 열림)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "문제를 찾을 수 없습니다."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "죄송합니다. 이 배치에서 하나 이상의 문제를 해제할 수 없습니다."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "문제를 업데이트하지 못했습니다."
 
@@ -1966,8 +1991,8 @@ msgstr "aria-hidden 속성은 보조 기술에서 콘텐츠를 숨기는 데 사
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "이 요소가 정말로 스크린 리더 사용자에게 숨겨져야 하는지 확인해봐. 중요한 내용이나 기능이 있다면 %s을 제거해. 장식용이나 중복된 요소라면 그대로 두고 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 무시해."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "스크린 리더 사용자에게 해당 요소가 실제로 숨겨져야 하는지 확인하십시오. 중요한 콘텐츠나 기능이 포함되어 있다면 %s를 제거하십시오. 장식적이거나 중복된 내용이라면 요소를 그대로 두고 Accessibility Checker에서 이 경고를 해제하십시오."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2364,8 +2389,8 @@ msgstr "스크린 리더는 시각적으로 볼 수 없는 사용자들에게 �
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "이미지가 장식용인지 확인하세요. 장식용이라면 빈 %1$s 속성을 사용하는 것이 맞으며, Accessibility Checker의 “무시” 기능을 사용하거나 이미지에 %2$s 또는 %3$s를 추가하고 페이지를 다시 스캔하여 이 경고를 해제할 수 있습니다. 이미지가 정보를 전달하는 경우, 이미지의 목적이나 의미를 전달하는 설명적인 대체 텍스트를 추가하십시오."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "이미지가 장식용인지 확인하십시오. 장식용이라면 빈 %1$s 속성을 사용하는 것이 맞으며, Accessibility Checker에서 이 경고를 해제하거나 이미지에 %2$s 또는 %3$s를 추가하고 페이지를 다시 스캔하여 해제할 수 있습니다. 이미지가 정보를 전달하는 경우, 이미지의 목적이나 의미를 전달하는 설명적인 대체 텍스트를 추가하십시오."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2419,8 +2444,8 @@ msgstr "대체 텍스트는 간결하고 이미지의 목적이나 의미를 설
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "이미지의 기능이나 목적을 여전히 설명하면서 alt 텍스트를 %s자 미만으로 줄여. 설명은 간단하게 하고 주변 내용을 반복하지 마. 이미지의 alt 텍스트를 변경할 필요가 없다면, Accessibility Checker의 “무시” 기능을 사용해 이 경고를 해제해."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "이미지의 기능이나 목적을 계속 설명하면서 대체 텍스트를 %s자 미만으로 줄이십시오. 설명을 간단하게 유지하고 주변 내용을 반복하지 마십시오. 이미지의 대체 텍스트를 변경할 필요가 없는 경우, Accessibility Checker에서 이 경고를 해제하십시오."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2497,8 +2522,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "애니메이션 이미지는 주의를 산만하게 하고, 일부 사람들에게 발작을 유발하거나 인지 부하를 일으킬 수 있어. WCAG 지침에 따르면 깜박이거나 계속 반복되는 애니메이션에는 일시 정지, 중지 또는 숨기는 메커니즘을 제공해야 해."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "애니메이션 이미지를 정적 이미지나 컨트롤이 있는 비디오로 교체해. 꼭 애니메이션 이미지를 사용해야 한다면, 초당 3번 이상 깜박이지 않도록 하고 5초 이상 재생되면 일시 정지나 중지 컨트롤을 제공해. 이미지가 접근 가능하고 일시 정지할 수 있다고 확인했다면, Accessibility Checker의 “무시” 기능을 사용해 이 경고를 해제할 수 있어."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "움직이는 이미지를 정적 이미지나 컨트롤이 포함된 비디오로 교체하십시오. 움직이는 이미지를 꼭 사용해야 하는 경우, 초당 세 번 이상 깜박이지 않도록 하고 5초 이상 재생되는 경우 일시 정지 또는 중지 컨트롤을 제공하십시오. 이미지가 접근 가능하고 일시 정지 가능함을 확인했다면 Accessibility Checker에서 이 경고를 해제할 수 있습니다."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2563,29 +2588,27 @@ msgstr "링크의 목적을 설명하는 alt 속성을 추가해. 이미지가 �
 msgid "Incorrect Heading Order"
 msgstr "잘못된 제목 순서"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "이 페이지는 제목 순서가 뒤죽박죽이야. 이건 하나 이상의 제목 레벨을 건너뛰어 %1$s 다음에 %2$s이 오는 거야."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "이 페이지는 하나 이상의 헤딩 레벨을 건너뛰어 순서가 맞지 않는 헤딩을 사용하고 있습니다."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "이 페이지들은 제목 순서가 뒤죽박죽이고, %3$s 없이 %1$s에서 %2$s로 바로 가는 것처럼 하나 이상의 제목 레벨을 건너뛰고 있어."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "제목은 모든 사용자, 특히 스크린 리더나 키보드 탐색을 사용하는 사람들이 페이지 구조를 이해하는 데 도움을 줘. 제목 레벨을 건너뛰면 혼란을 일으키고 콘텐츠 계층을 따라가거나 효율적으로 탐색하기 어려워질 수 있어."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "제목 레벨을 건너뛰지 않고 논리적 순서를 따르도록 제목을 수정해. 예를 들어, %1$s 다음에 %2$s이 오면 %2$s을 %3$s로 바꾸거나 적절한 구조를 유지하기 위해 %3$s 섹션을 추가해. 필요하다면 잘못된 레벨을 설정하는 대신 CSS나 블록/페이지 빌더 설정을 사용해 제목 스타일을 지정해."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C 페이지 구조 튜토리얼: 제목"
 
@@ -2700,8 +2723,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Word, Excel, PowerPoint 형식의 문서는 특히 제대로 태그가 되어 있지 않거나 접근성 모범 사례를 따르지 않으면 모든 사용자가 접근하기 어려울 수 있어. 접근성 법률에 따르면 웹 페이지에 게시된 문서도 WCAG를 준수해야 해. 또한 링크가 웹페이지 대신 다운로드 가능한 파일을 열 때는 사용자에게 미리 알려줘야 해."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "연결된 파일이 접근성 테스트를 거치고 개선되었는지 확인해. 접근성이 확보됐다고 확신하면 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 해제해. 사용자에게 알리기 위해 링크 텍스트에 파일 확장자와 크기를 포함해 (Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하면 사이트 전체에 적용돼). 문서가 플러그인을 사용해 삽입된 경우에는 직접 다운로드 링크도 제공해. 문서를 접근 가능하게 만들기 어렵다면, 내용을 웹 페이지에 직접 올리는 것도 고려해 봐."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "연결된 파일이 접근성을 위해 테스트되고 수정되었는지 확인하십시오. 접근 가능함을 알게 되면 Accessibility Checker에서 이 경고를 해제하십시오. 사용자에게 정보를 제공하기 위해 링크 텍스트에 파일 확장자와 크기를 포함하십시오 (이 기능을 사이트 전체에 적용하려면 Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하십시오). 플러그인을 사용하여 문서가 내장된 경우, 다운로드할 수 있는 직접 링크도 제공하십시오. 문서의 접근성을 확보하기 어려운 경우, 콘텐츠를 대신 웹 페이지에 게시하는 것을 고려하십시오."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2752,8 +2775,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "비HTML 문서 형식은 테스트와 개선이 이뤄지지 않으면 보조 기술에 완전히 접근 가능하지 않을 수 있어. 링크가 일반 웹 페이지 대신 다운로드 가능한 파일을 열 때는 사용자에게 미리 알려줘야 해."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "연결된 문서가 접근 가능한지 확인해. 접근성이 확보됐다고 확신하면 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 해제해. 사용자가 예상할 수 있도록 보이는 링크 텍스트에 파일 확장자를 포함해 (예: “회의록 (ODT)”) (Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하면 사이트 전체에 적용돼). 문서가 삽입된 경우에는 직접 다운로드 링크도 제공해. 문서를 접근 가능하게 만들기 어렵다면, 내용을 웹 페이지에 직접 올리는 것도 고려해 봐."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "연결된 문서의 접근성을 확인하십시오. 접근 가능함을 알게 되면 Accessibility Checker에서 이 경고를 해제하십시오. 사용자가 예상할 수 있도록 눈에 보이는 링크 텍스트에 파일 확장자를 포함하십시오 (예: “회의록 (ODT)”) (이 기능을 사이트 전체에 적용하려면 Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하십시오). 문서가 내장된 경우, 직접 다운로드 링크도 제공하십시오. 문서의 접근성을 확보하기 어려운 경우, 콘텐츠를 대신 웹 페이지에 게시하는 것을 고려하십시오."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2772,8 +2795,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF는 특히 올바르게 태그가 지정되지 않았거나 WCAG 요구 사항을 충족하지 못하는 경우 모든 사용자가 접근할 수 없을 수 있어. 접근성 법률에 따르면 웹사이트에 게시된 문서는 HTML 콘텐츠와 동일한 접근성 표준을 충족해야 해. 또한 링크가 웹 페이지 대신 다운로드 가능한 파일을 열 때 사용자에게 경고해야 해."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "연결된 PDF가 접근성을 위해 테스트되고 수정되었는지 확인해. 접근 가능하다는 것을 알게 되면 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 해제해. 사용자에게 알리기 위해 링크 텍스트에 파일 확장자와 크기를 포함해 (Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하면 사이트 전체에 적용할 수 있어). 문서가 플러그인을 사용해 삽입된 경우 직접 다운로드 링크도 제공해. PDF를 접근 가능하게 만드는 것이 어렵다면 대신 웹 페이지에 내용을 올리는 것을 고려해 봐."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "연결된 PDF가 접근성을 위해 테스트되고 수정되었는지 확인하십시오. 접근 가능함을 알게 되면 Accessibility Checker에서 이 경고를 해제하십시오. 사용자에게 정보를 제공하기 위해 링크 텍스트에 파일 확장자와 크기를 포함하십시오 (이 기능을 사이트 전체에 적용하려면 Accessibility Checker 설정에서 “링크에 파일 크기 및 유형 추가” 수정을 활성화하십시오). 플러그인을 사용하여 문서가 내장된 경우, 다운로드할 수 있는 직접 링크도 제공하십시오. PDF의 접근성을 확보하기 어려운 경우, 콘텐츠를 대신 웹 페이지에 게시하는 것을 고려하십시오."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2790,6 +2813,30 @@ msgstr "웹에서의 PDF 접근성: 요령과 함정 (웨비나)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesign 및 PDF 접근성 실수와 해결 방법 (웨비나)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "링크 텍스트는 URL입니다."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "이 링크는 의미 있는 단어나 구문 대신 URL을 앵커 텍스트로 사용합니다."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "이 링크들은 의미 있는 단어나 구문 대신 URL을 앵커 텍스트로 사용합니다."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "URL만으로 된 링크 텍스트는 링크 대상에 대한 의미 있는 컨텍스트를 제공하지 못할 수 있습니다. 또한 긴 URL은 스크린 리더가 각 문자, 숫자 및 기호를 개별적으로 읽을 수 있어 이해하기 어려울 수 있습니다. 사용자는 링크가 어디로 연결될지 이해하기 위해 설명적인 링크 텍스트에 의존합니다. 링크 텍스트에 URL을 사용하면 사용성이 저하되고 인지 부하가 증가하며 혼란을 주거나 오해를 유발할 수 있습니다."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "링크 텍스트의 URL을 링크의 대상이나 목적을 설명하는 간결하고 설명적인 단어나 구문으로 바꾸십시오 (예: “접근성 가이드 읽기” 대신 “https://example.com/guide”). URL이 컨텍스트상 필요하고 매우 짧다면 Accessibility Checker의 “해제” 기능을 사용하여 이 경고를 해제할 수 있습니다."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: 기법 G91: 링크의 목적을 설명하는 링크 텍스트 제공"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3062,8 +3109,8 @@ msgstr "스크린 리더 사용자와 다른 보조 기술은 페이지 구조�
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "표시된 텍스트를 검토하고 제목이어야 하는지 결정해. 만약 제목이라면, 요소를 적절한 %1$s–%2$s 태그로 변경해. 제목으로 의도되지 않았다면, Accessibility Checker의 “무시” 기능을 사용해 이 경고를 무시할 수 있어."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "플래그가 지정된 텍스트를 검토하고 제목으로 사용되어야 하는지 확인하십시오. 제목이라면 요소를 적절한 %1$s–%2$s 태그로 변경하십시오. 제목으로 의도된 것이 아니라면 Accessibility Checker에서 이 경고를 해제할 수 있습니다."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3086,8 +3133,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "슬라이더는 종종 스크린 리더와 키보드로 사용하기 어려워. 접근성이 없는 슬라이더는 탐색을 방해하거나, 포커스를 가두거나, 사용자가 콘텐츠와 상호작용하기에 너무 빠르게 움직일 수 있어."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "웹사이트 프론트엔드에서 슬라이더를 검토해. 키보드로 접근 가능하고, 일시 정지할 수 있으며, 적절한 ARIA 역할과 레이블이 있고, 스크린 리더와 잘 작동하는지 확인해. 슬라이더가 접근 가능한지 확인하거나 문제를 해결한 후, Accessibility Checker의 “무시” 기능을 사용해 이 경고를 무시할 수 있어."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "웹사이트 프런트엔드의 슬라이더를 검토하십시오. 키보드 접근성, 일시 정지 가능 여부, 적절한 ARIA 역할 및 레이블, 스크린 리더와의 호환성을 확인하십시오. 슬라이더의 접근성을 확인하거나 문제를 수정한 후에는 Accessibility Checker에서 이 경고를 해제할 수 있습니다."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3242,8 +3289,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "밑줄 친 텍스트는 보통 링크와 연관돼. 링크가 아닌 텍스트에 밑줄을 치면 사용자들, 특히 인지 장애가 있거나 시각적 단서로 링크를 식별하는 사람들에게 혼란을 줄 수 있어."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "텍스트에서 밑줄 태그나 CSS 밑줄 스타일을 제거해. 텍스트를 강조하고 싶다면 대신 굵게, 기울임꼴, 또는 색상 스타일링을 고려해봐. 이 텍스트가 링크나 버튼 같은 기능적 요소의 일부라면 밑줄 스타일을 유지하고 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 무시해."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "텍스트에서 밑줄 태그 또는 CSS 밑줄 스타일을 제거하십시오. 텍스트를 강조하고 싶다면 대신 굵게, 이탤릭체 또는 색상 스타일을 사용하는 것을 고려하십시오. 이 텍스트가 링크나 버튼과 같은 기능적 요소의 일부인 경우, 밑줄 스타일을 유지하고 Accessibility Checker에서 이 경고를 해제하십시오."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3262,8 +3309,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "비디오는 청각 장애인, 난청인, 시각 장애인 또는 인지 장애가 있는 사용자들이 완전히 접근할 수 있도록 정확한 자막, 대본, 그리고 음성 설명(또는 향상된 대본)을 포함해야 해."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "웹사이트 프론트엔드에서 비디오를 검토해. 정확한(자동 생성이 아닌) 동기화된 자막, 대본, 그리고 필요한 경우 음성 설명이 포함되어 있는지 확인해. 접근성을 확인하거나 필요한 업데이트를 한 후에는 Accessibility Checker의 “무시” 기능을 사용해 이 경고를 무시할 수 있어."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "웹사이트 프런트엔드의 비디오를 검토하십시오. 필요에 따라 정확한(자동 생성되지 않은) 동기화된 캡션, 스크립트, 오디오 설명이 포함되어 있는지 확인하십시오. 접근성을 확인하거나 필요한 업데이트를 완료한 후에는 Accessibility Checker에서 이 경고를 해제할 수 있습니다."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3366,10 +3413,76 @@ msgstr "무료 참석"
 msgid "(opens in a new window)"
 msgstr "(새 창에서 열림)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "메인"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "헤더"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "푸터"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "탐색"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "별도"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "탐색"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "배너"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "콘텐츠 정보"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "보완"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "섹션"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "게시물"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "폼"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "지역"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "웹사이트에서 %s 랜드마크 보기, 새 창에서 열림"
 
@@ -3378,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checker에 오신 것을 환영합니다"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker 설정"
 
@@ -3599,22 +3713,22 @@ msgid " (opens in a new window)"
 msgstr " (새 창에서 열림)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "스캔 중에 확인할 게시물 유형을 선택하세요. 이전에 선택한 게시물 유형을 제거하면 스캔된 정보와 설정된 사용자 정의 무시 경고가 모두 제거됩니다."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "스캔 중에 확인할 게시물 유형을 선택하십시오. 이전에 선택한 게시물 유형을 제거하면 해당 스캔 정보와 설정된 모든 사용자 지정 해제 경고가 제거됩니다."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "플러그인을 제거할 때 모든 Accessibility Checker 데이터를 삭제합니다."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "블록 편집기에서 Accessibility Checker 메타박스 표시"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "문제를 무시할 수 있는 권한이 있는 사용자 역할을 선택해."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "문제를 해제할 권한이 있는 사용자 역할을 선택하십시오."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "특정 Accessibility Checker 기능에 접근할 수 있는 사용자 역할을 구성해."
 
@@ -5064,6 +5178,11 @@ msgstr "저장 중..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "저장 실패: REST API URL이 누락되었습니다."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "설정이 성공적으로 저장되었습니다. %s편집기를 방문%s하여 게시물을 저장해야 Accessibility Checker 보고서에서 수정된 문제를 다시 검사하고 제거할 수 있습니다."
@@ -5254,30 +5373,31 @@ msgstr "심각도:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "무시됨"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "설명 보기"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "중요한 이유"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "해결 방법"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "더 자세한 문서"
 
@@ -5292,6 +5412,7 @@ msgstr "문제 해결: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "문제 해결"
 
@@ -5339,9 +5460,9 @@ msgstr[0] "%d개 검토 필요"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d개 무시됨"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d개 해제됨"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5401,111 +5522,159 @@ msgid "Error: Missing required parameters."
 msgstr "오류: 필수 매개변수가 누락되었어."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "문제 관련 이미지"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "수정 설정이 저장되었습니다."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "수정 설정을 저장하지 못했습니다."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "수정 정보 로드 중..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "%s에 대한 수정 사항 저장"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "문제가 성공적으로 해제되었습니다."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "문제가 성공적으로 다시 열렸습니다."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "해제 중..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "문제 해제됨 — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "문제 해제됨"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "범위:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "모든 페이지"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "작성자:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "날짜:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "해제 사유:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "이 문제는 전역적으로 해제되었습니다. 다시 열려면 전역 해제를 관리하세요."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "전역 해제 관리"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "다시 여는 중..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "댓글 (선택 사항)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "이 문제를 해제하는 이유를 설명하는 메모를 추가하십시오."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "더 많은 해제 옵션"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "해제 및 모달 닫기"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "문제 #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "문제 세부 정보"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "유형"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "심각도"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "%s 수정 정보를 로드하지 못했습니다."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "%s 수정 정보 로드 오류."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "수정 설정이 저장되었습니다."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "수정 설정을 저장하지 못했습니다."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "수정 정보 로드 중..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "%s에 대한 수정 사항 저장"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "문제 관련 이미지"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "문제가 성공적으로 해제되었습니다."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "문제가 성공적으로 다시 열렸습니다."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "전역적으로 해제"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "전역적으로 해제 중..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "해제 중..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "문제 해제됨 — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "문제 해제됨"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "범위:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "모든 페이지"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "작성자:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "날짜:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "해제 사유:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "제거 중..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "전역 해제 제거"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "다시 여는 중..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "댓글 (선택 사항)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "이 문제를 해제하는 이유를 설명하는 메모를 추가하십시오."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "더 많은 해제 옵션"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "해제 및 모달 닫기"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5595,6 +5764,14 @@ msgstr "계속 읽기"
 msgid "learn more"
 msgstr "자세히 알아보기"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "링크의 보이는 텍스트가 설명적인 앵커 텍스트 대신 URL인지 확인합니다."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "링크 텍스트는 설명적이어야 하며 단순히 URL이어서는 안 됩니다."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "접근성 데이터를 로드하지 못했습니다."
@@ -5665,6 +5842,11 @@ msgstr "접근성 분석에서 %d개의 문제 보기"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "접근성 분석에서 검토가 필요한 %d개 항목 보기"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "읽기 수준 세부 정보 보기: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

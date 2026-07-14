@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Проверка доступности"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "Продлить лицензию"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Отключить отчеты по электронной почте"
 
@@ -90,7 +90,7 @@ msgstr "Включить отчеты по электронной почте"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Бесплатный лицензионный ключ"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "Отчеты включены"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Вы будете получать еженедельные отчеты о доступности для этого сайта."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Еженедельные отчеты по доступности для этого сайта отправляются по электронной почте владельцу аккаунта лицензионного ключа."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Следующий отчет: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Полное покрытие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Ограниченное покрытие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Ваши отчеты включают все типы записей и таксономии."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Включено сканирование всего сайта"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Полная детализация проблем"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Подробные отчеты"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Ваши отчеты включают только часть вашего сайта."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Обновитесь до Pro, чтобы:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Сканировать все типы контента"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Получать полную детализацию проблем"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Получать более подробные отчеты"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Перейти на Pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Сводка доступности"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Эта сводка отражает последние доступные данные сканирования для вашего сайта."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Всего найдено проблем"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Подключение аккаунта"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Подключаясь к этому сайту, вы соглашаетесь с <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Политикой конфиденциальности <span aria-hidden=\"true\">&#8599;</span></a> и <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Соглашением об обработке данных <span aria-hidden=\"true\">&#8599;</span></a> Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Политика конфиденциальности (откроется в новом окне)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Соглашение об обработке данных (откроется в новом окне)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Еженедельное электронное письмо включает общее количество найденных проблем и изменений с момента последнего отчета, информацию о покрытии, количество проблем, требующих проверки, процент пройденных тестов, а также информацию о наиболее проблемных страницах и самых серьезных проблемах."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "Н/Д"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "Критический"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "Высокий"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "Средний"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "Низкий"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "Неизвестно"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Специальное предложение на Черную Пятницу! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Обновите Accessibility Checker до платной версии с 24 ноября по 3 декабря и получите скидку 30 %! Полное сканирование сайта, отчет об открытых проблемах по всему сайту, журналы игнорирования и многое другое."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Перейдите на платную версию Accessibility Checker с 24 ноября по 3 декабря и получите скидку 30%! Полное сканирование сайта, отчет об открытых проблемах по всему сайту, журналы отклонений и многое другое."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "Обновляйтесь прямо сейчас"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "Пройденные тесты"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Проблема"
@@ -662,6 +668,7 @@ msgstr[2] "Проблем с контрастом"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -692,9 +699,10 @@ msgstr "* Для обеспечения истинной доступности 
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr ", открывается в новом окне"
@@ -726,6 +734,7 @@ msgstr "Развернуть проблемы для %s"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Эти настройки обеспечивают глобальные исправления для всего Вашего сайта."
 
@@ -736,21 +745,25 @@ msgstr "Возможно, потребуется пересохранить ст
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Сохранить"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Затронутый код"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Изображение"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Ориентир"
 
@@ -759,6 +772,7 @@ msgid "Actions"
 msgstr "Действия"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "Отклонено"
 
@@ -786,6 +800,7 @@ msgstr "Просмотреть ID выпуска %d на сайте, откро�
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "Просмотр на стр"
@@ -887,8 +902,8 @@ msgstr "Ваше местоположение упрощенного резюм�
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Упрощенное резюме"
@@ -906,12 +921,14 @@ msgstr "Узнайте больше об улучшении читабельно
 msgid "No readability data to return"
 msgstr "Нет данных о читаемости, которые можно было бы вернуть"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Нет данных игнорирования для возврата"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "Нет данных об отклонениях для возврата"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "* Текст для чтения с экрана"
 
@@ -932,63 +949,66 @@ msgstr "Запрос не дал никаких результатов"
 msgid "Object query returned no results"
 msgstr "Запрос объекта не дал результатов"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Ложное срабатывание"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Сканер пометил это, но это не относится к данному контенту."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Исправлено"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Проблема устранена, но страница еще не была повторно отсканирована."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Доступность подтверждена"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Проверено и подтверждено соответствие требованиям доступности."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Ложное срабатывание"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Сканер пометил это, но это не относится к данному контенту."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Исправлено"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Проблема устранена, но страница еще не была повторно отсканирована."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Имя пользователя:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Дата:"
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "Вновь открыть проблему"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "Отклонить проблему"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Комментарий"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Управлять глобально отклоненными"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Ваша учетная запись пользователя не имеет разрешения на отклонение этой проблемы."
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "Отклонить проблему как:"
 
@@ -1462,12 +1482,12 @@ msgstr "Упрощенный заголовок суммы"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Игнорируйте разрешения"
+msgid "Dismiss Permissions"
+msgstr "Разрешения на отклонение"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Игнорирует счетчик таблиц БД"
+msgid "Dismissals DB Table Count"
+msgstr "Количество записей в таблице отклонённых проблем в БД"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1500,10 +1520,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Получить Accessibility Checker Pro (откроется в новом окне)"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "Проблема не найдена."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "К сожалению, вам не разрешено отклонять одну или несколько проблем в этой партии."
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "Не удалось обновить проблему."
 
@@ -1984,8 +2009,8 @@ msgstr "Атрибут aria-hidden используется для скрыти�
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Проверьте, должен ли элемент действительно быть скрыт от пользователей программ чтения с экрана. Если он содержит важный контент или функциональность, удалите %s. Если он декоративный или избыточный, оставьте элемент как есть и отклоните это предупреждение, используя функцию “Игнорировать” в Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Проверьте, действительно ли элемент должен быть скрыт от пользователей программ чтения с экрана. Если он содержит важный контент или функциональность, удалите %s. Если он декоративный или избыточный, оставьте элемент как есть и отклоните это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2382,8 +2407,8 @@ msgstr "Программы чтения с экрана полагаются н�
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Проверьте изображение, чтобы определить, является ли оно декоративным. Если оно декоративное, правильно использовать пустой атрибут %1$s, и вы можете скрыть это предупреждение, используя функцию «Игнорировать» в Accessibility Checker или добавив %2$s или %3$s к изображению и повторно просканировав страницу. Если изображение передаёт информацию, добавьте описательный alt-текст, который сообщает о назначении или значении изображения."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Проверьте изображение, чтобы определить, является ли оно декоративным. Если оно декоративное, правильно использовать пустой атрибут %1$s, и вы можете отклонить это предупреждение в Accessibility Checker или добавив %2$s или %3$s к изображению и повторно отсканировав страницу. Если изображение передает информацию, добавьте описательный альтернативный текст, который сообщает о назначении или значении изображения."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2437,8 +2462,8 @@ msgstr "Альтернативный текст должен быть кратк
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Сократи альтернативный текст до менее чем %s символов, продолжая описывать функцию или назначение изображения. Сохраняй описания простыми и избегай повторения окружающего контента. Если альтернативный текст изображения не нужно менять, отклони это предупреждение, используя функцию “Игнорировать” в Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Сократите альтернативный текст до менее чем %s символов, продолжая при этом описывать функцию или назначение изображения. Держите описания простыми и избегайте повторения окружающего контента. Если альтернативный текст изображения не требует изменения, отклоните это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2515,8 +2540,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Анимированные изображения могут отвлекать, вызывать припадки у некоторых людей или создавать когнитивную нагрузку. Руководства WCAG требуют, чтобы анимации, которые мигают или непрерывно повторяются, предоставляли механизм для их приостановки, остановки или скрытия."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Замени анимированное изображение статическим изображением или видео с элементами управления. Если ты должен использовать анимированное изображение, убедись, что оно не мигает более трех раз в секунду, и предоставь элементы управления для паузы или остановки, если оно воспроизводится более 5 секунд. Если ты подтвердил, что изображение доступно и может быть приостановлено, ты можешь отклонить это предупреждение, используя функцию “Игнорировать” в Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Замените анимированное изображение статическим изображением или видео, которое включает элементы управления. Если вы обязательно должны использовать анимированное изображение, убедитесь, что оно не мигает более трех раз в секунду и предоставляет элементы управления паузой или остановкой, если оно воспроизводится более 5 секунд. Если вы подтвердили, что изображение доступно и может быть приостановлено, вы можете отклонить это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2581,29 +2606,27 @@ msgstr "Добавьте атрибут alt, который описывает �
 msgid "Incorrect Heading Order"
 msgstr "Неправильный порядок заголовков"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "На этой странице заголовки используются не по порядку. Это %1$s после %2$s, пропуская один или несколько уровней заголовков."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "На этой странице заголовки используются не по порядку, пропущено один или несколько уровней заголовков."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "На этих страницах заголовки используются не по порядку, пропуская один или несколько уровней, например, переход от %1$s к %2$s без %3$s между ними."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Заголовки помогают всем пользователям, особенно тем, кто использует программы чтения с экрана или навигацию с клавиатуры, понять структуру страницы. Пропуск уровней заголовков может создать путаницу и затруднить понимание иерархии контента или эффективную навигацию."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Пересмотрите свои заголовки, чтобы они следовали логическому порядку без пропуска уровней. Например, если за %1$s следует %2$s, измените %2$s на %3$s или добавьте промежуточный раздел %3$s, чтобы сохранить правильную структуру. При необходимости используйте CSS или настройки конструктора блоков/страниц для стилизации заголовков, а не установки неправильного уровня."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "Учебник W3C по структуре страницы: Заголовки"
 
@@ -2718,8 +2741,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Документы в формате Word, Excel или PowerPoint могут быть недоступны для всех пользователей, особенно если они неправильно размечены или не соответствуют лучшим практикам доступности. Законы о доступности требуют, чтобы документы, размещенные на веб-страницах, также соответствовали WCAG. Кроме того, пользователей следует предупреждать, когда ссылка открывает загружаемый файл вместо веб-страницы."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Убедитесь, что связанный файл проверен и исправлен на доступность. Когда вы убедитесь, что он доступен, отклоните это предупреждение, используя функцию “Игнорировать” в Accessibility Checker. Включите расширение файла и размер в текст ссылки, чтобы информировать пользователей (включите исправление “Добавить размер и тип файла к ссылкам” в настройках Accessibility Checker, чтобы сделать это для всего сайта). Если документ встроен с помощью плагина, также предоставьте прямую ссылку для его скачивания. Если сделать документ доступным сложно, рассмотрите возможность размещения содержимого на веб-странице вместо этого."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Убедитесь, что связанный файл протестирован и исправлен на предмет доступности. Когда вы уверены в его доступности, отклоните это предупреждение в Accessibility Checker. Включите расширение файла и размер в текст ссылки, чтобы информировать пользователей (включите исправление «Добавить размер и тип файла к ссылкам» в настройках Accessibility Checker, чтобы применить это по всему сайту). Если документ встроен с помощью плагина, также предоставьте прямую ссылку для его загрузки. Если обеспечение доступности документа затруднительно, рассмотрите возможность размещения контента на веб-странице."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2770,8 +2793,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Форматы документов, отличные от HTML, могут быть не полностью доступны для вспомогательных технологий, если они не проверены и не исправлены. Пользователей следует предупреждать, когда ссылка открывает загружаемый файл, а не стандартную веб-страницу."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Убедитесь, что связанный документ доступен. Когда вы убедитесь, что он доступен, отклоните это предупреждение, используя функцию “Игнорировать” в Accessibility Checker. Включите расширение файла в видимый текст ссылки (например, “Заметки встречи (ODT)”), чтобы пользователи знали, чего ожидать (включите исправление “Добавить размер и тип файла к ссылкам” в настройках Accessibility Checker, чтобы сделать это для всего сайта). Если документ встроен, предоставьте также прямую ссылку для скачивания. Если сделать документ доступным сложно, рассмотрите возможность размещения содержимого на веб-странице вместо этого."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Убедитесь, что связанный документ доступен. Когда вы уверены в его доступности, отклоните это предупреждение в Accessibility Checker. Включите расширение файла в видимый текст ссылки (например, «Заметки о встрече (ODT)»), чтобы пользователи знали, чего ожидать (включите исправление «Добавить размер и тип файла к ссылкам» в настройках Accessibility Checker, чтобы применить это по всему сайту). Если документ встроен, предоставьте также прямую ссылку для скачивания. Если обеспечение доступности документа затруднительно, рассмотрите возможность размещения контента на веб-странице."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2790,8 +2813,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF-файлы могут быть недоступны для всех пользователей, особенно если они неправильно размечены или не соответствуют требованиям WCAG. Законы о доступности требуют, чтобы документы, размещенные на веб-сайтах, соответствовали тем же стандартам доступности, что и HTML-контент. Кроме того, пользователей следует предупреждать, когда ссылка открывает скачиваемый файл, а не веб-страницу."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Убедись, что связанный PDF-файл проверен и исправлен для обеспечения доступности. Когда ты убедишься, что он доступен, отклони это предупреждение, используя функцию “Игнорировать” в Accessibility Checker. Включи расширение файла и его размер в текст ссылки, чтобы информировать пользователей (включи исправление “Добавить размер и тип файла к ссылкам” в настройках Accessibility Checker, чтобы сделать это для всего сайта). Если документ встроен с помощью плагина, также предоставь прямую ссылку для его скачивания. Если сделать PDF доступным сложно, рассмотри возможность размещения содержимого на веб-странице вместо этого."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Убедитесь, что связанный PDF-файл протестирован и исправлен на предмет доступности. Когда вы уверены в его доступности, отклоните это предупреждение в Accessibility Checker. Включите расширение файла и размер в текст ссылки, чтобы информировать пользователей (включите исправление «Добавить размер и тип файла к ссылкам» в настройках Accessibility Checker, чтобы применить это по всему сайту). Если документ встроен с помощью плагина, также предоставьте прямую ссылку для его загрузки. Если обеспечение доступности PDF-файла затруднительно, рассмотрите возможность размещения контента на веб-странице."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2808,6 +2831,30 @@ msgstr "Доступность PDF в интернете: Приемы и лов
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "Ошибки доступности в InDesign и PDF и как их исправить (Вебинар)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Текст ссылки — это URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Эта ссылка использует URL в качестве своего якорного текста, а не осмысленное слово или фразу."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Эти ссылки используют URL в качестве своего якорного текста, а не осмысленные слова или фразы."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Текст ссылки, который является просто URL-адресом, может не предоставлять осмысленного контекста о месте назначения ссылки. Кроме того, длинные URL-адреса могут быть трудны для понимания при чтении программой чтения с экрана, которая может объявлять каждую букву, цифру и символ по отдельности. Пользователи полагаются на описательный текст ссылки, чтобы понять, куда их приведет ссылка; использование URL-адресов в качестве текста ссылки снижает удобство использования, увеличивает когнитивную нагрузку и может сбивать с толку или вводить в заблуждение."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Замените URL-адрес в тексте ссылки кратким, описательным словом или фразой, объясняющей назначение или цель ссылки (например, «Прочитать руководство по доступности» вместо «https://example.com/guide»). Если URL-адрес необходим для контекста и очень короткий, вы можете отклонить это предупреждение, используя функцию «Отклонить» в Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Техника G91: Предоставление текста ссылки, описывающего ее назначение"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3080,8 +3127,8 @@ msgstr "Пользователи программ чтения с экрана �
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Просмотрите отмеченный текст и определите, должен ли он быть заголовком. Если да, измените элемент на соответствующий тег %1$s–%2$s. Если это не предполагается как заголовок, вы можете отклонить это предупреждение, используя функцию «Игнорировать» в Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Проверьте выделенный текст и определите, должен ли он быть заголовком. Если да, измените элемент на соответствующий тег %1$s–%2$s. Если он не предназначен в качестве заголовка, вы можете отклонить это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3104,8 +3151,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Слайдеры часто сложно использовать с программами чтения с экрана и клавиатурой. Недоступные слайдеры могут мешать навигации, захватывать фокус или двигаться слишком быстро, чтобы пользователи могли взаимодействовать с содержимым."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Проверьте слайдер на фронтенде вашего сайта. Убедитесь, что он доступен с клавиатуры, может быть приостановлен, имеет правильные роли и метки ARIA и хорошо работает с программами чтения с экрана. После подтверждения доступности слайдера или устранения проблем вы можете отклонить это предупреждение, используя функцию «Игнорировать» в Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Проверьте слайдер на лицевой стороне вашего веб-сайта. Убедитесь, что он доступен с клавиатуры, может быть приостановлен, имеет правильные роли и метки ARIA, и хорошо работает с программами чтения с экрана. После подтверждения доступности слайдера или исправления проблем, вы можете отклонить это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3260,8 +3307,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Подчеркнутый текст обычно ассоциируется со ссылками. Когда не являющийся ссылкой текст подчеркнут, это может сбивать с толку пользователей, особенно тех, у кого есть когнитивные нарушения или тех, кто полагается на визуальные подсказки для идентификации ссылок."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Удалите тег подчеркивания или CSS-стиль подчеркивания из текста. Если вы хотите выделить текст, рассмотрите возможность использования жирного шрифта, курсива или цветового оформления вместо этого. Если этот текст является частью функционального элемента, такого как ссылка или кнопка, сохраните стиль подчеркивания и отклоните это предупреждение, используя функцию “Игнорировать” в Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Удалите тег подчеркивания или стиль подчеркивания CSS из текста. Если вы хотите выделить текст, рассмотрите возможность использования полужирного шрифта, курсива или цвета. Если этот текст является частью функционального элемента, такого как ссылка или кнопка, сохраните стиль подчеркивания и отклоните это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3280,8 +3327,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Видео должны включать точные субтитры, транскрипты и аудиоописания (или расширенные транскрипты), чтобы быть полностью доступными для пользователей, которые глухие, слабослышащие, слепые или имеют когнитивные нарушения."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Просмотрите видео на фронтенде вашего сайта. Убедитесь, что оно включает точные (не автоматически сгенерированные) синхронизированные субтитры, транскрипт и аудиоописание, если это необходимо. После проверки доступности или внесения необходимых обновлений вы можете отклонить это предупреждение, используя функцию “Игнорировать” в Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Просмотрите видео на лицевой стороне вашего веб-сайта. Убедитесь, что оно включает точные (не автоматически сгенерированные) синхронизированные субтитры, стенограмму и, при необходимости, аудиоописание. После проверки доступности или внесения необходимых обновлений, вы можете отклонить это предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3384,10 +3431,76 @@ msgstr "Посещайте бесплатно"
 msgid "(opens in a new window)"
 msgstr "(открывается в новом окне)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "Основной"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "Заголовок"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "Нижний колонтитул"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "Навигация"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "Боковая панель"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "Навигация"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "Баннер"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "Информация о контенте"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "Дополнительный"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "Раздел"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "Статья"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "Форма"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "Регион"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Просмотреть %s ориентир на сайте, открывается в новом окне"
 
@@ -3396,6 +3509,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Добро пожаловать в Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Настройки Accessibility Checker"
 
@@ -3617,22 +3731,22 @@ msgid " (opens in a new window)"
 msgstr " (открывается в новом окне)"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Выберите, какие типы сообщений должны быть проверены во время сканирования. Обратите внимание, что при удалении ранее выбранного типа сообщений будет удалена информация о нем, а также все настроенные предупреждения об игнорировании."
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Выберите, какие типы записей должны проверяться во время сканирования. Обратите внимание, что удаление ранее выбранного типа записи приведет к удалению его отсканированной информации и любых настроенных отклоненных предупреждений."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Удалить все данные Accessibility Checker при удалении плагина."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Показать метабокс Accessibility Checker в редакторе блоков"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Выбери, какие роли пользователей имеют разрешение игнорировать проблемы."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
+msgstr "Выберите, какие роли пользователей имеют разрешение отклонять проблемы."
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "Настрой, какие роли пользователей имеют доступ к определенным функциям Accessibility Checker."
 
@@ -5082,6 +5196,11 @@ msgstr "Экономия..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Не удалось сохранить: Отсутствует URL REST API."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Настройки успешно сохранены. Вы должны %sпосетить редактор%s и сохранить запись, чтобы повторно просканировать и удалить исправленные проблемы из отчетов Accessibility Checker."
@@ -5272,30 +5391,31 @@ msgstr "Серьезность:"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Проигнорировано"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Показать объяснение"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Почему это важно"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Как исправить"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Более подробная документация"
 
@@ -5310,6 +5430,7 @@ msgstr "Исправить проблему: %s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Исправить проблему"
 
@@ -5363,11 +5484,11 @@ msgstr[2] "%d требуют проверки"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d проигнорирована"
-msgstr[1] "%d проигнорированы"
-msgstr[2] "%d проигнорированы"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d"
+msgstr[1] "%d"
+msgstr[2] "%d"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5427,111 +5548,159 @@ msgid "Error: Missing required parameters."
 msgstr "Ошибка: Отсутствуют обязательные параметры."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Изображение, связанное с проблемой"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Настройки исправления сохранены."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Не удалось сохранить настройки исправления."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Загрузка информации об исправлении..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Сохранить исправление для: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Проблема успешно отклонена."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Проблема успешно вновь открыта."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Отклонение..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Проблема отклонена — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Проблема отклонена"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Область:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Все страницы"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Кем:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Когда:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Причина отклонения:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Эта проблема была отклонена глобально. Управляйте глобальными отклонениями, чтобы снова открыть ее."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Управление глобальными отклонениями"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Вновь открывается..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Комментарий (необязательно)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Добавьте примечание с объяснением причины отклонения этой проблемы."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Дополнительные параметры отклонения"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Отклонить и закрыть модальное окно"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Проблема #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Детали проблемы"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Тип"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Серьезность"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Не удалось загрузить информацию об исправлении %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Ошибка загрузки информации об исправлении %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Настройки исправления сохранены."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Не удалось сохранить настройки исправления."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Загрузка информации об исправлении..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Сохранить исправление для: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Изображение, связанное с проблемой"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Проблема успешно отклонена."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Проблема успешно вновь открыта."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "Отклонить глобально"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Отклонение глобально..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Отклонение..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Проблема отклонена — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "Проблема отклонена"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "Область:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "Все страницы"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "Кем:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "Когда:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "Причина отклонения:"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "Удаление..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "Удалить глобальное отклонение"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "Вновь открывается..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "Комментарий (необязательно)"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Добавьте примечание с объяснением причины отклонения этой проблемы."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "Дополнительные параметры отклонения"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "Отклонить и закрыть модальное окно"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5621,6 +5790,14 @@ msgstr "Продолжить чтение"
 msgid "learn more"
 msgstr "узнать больше"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Проверяет, является ли видимый текст ссылки URL-адресом, а не описательным якорным текстом."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Текст ссылки должен быть описательным, а не просто URL-адресом."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Не удалось загрузить данные о доступности"
@@ -5695,6 +5872,11 @@ msgstr "Просмотреть %d проблем в анализе доступ�
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Просмотреть %d элементов, требующих проверки в анализе доступности"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Посмотреть подробную информацию об уровне сложности текста: %1$s, %2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

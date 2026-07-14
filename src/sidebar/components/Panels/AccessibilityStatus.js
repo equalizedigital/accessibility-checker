@@ -248,10 +248,19 @@ const AccessibilityStatus = () => {
 						onClick={ handleReadingLevelClick }
 						role="button"
 						tabIndex={ 0 }
-						aria-label={ sprintf(
-							__( 'View reading level details: %s', 'accessibility-checker' ),
-							readingLevelText,
-						) }
+						aria-label={ summaryStatus
+							? sprintf(
+								/* translators: 1: reading level, 2: simplified summary status. */
+								__( 'View reading level details: %1$s, %2$s', 'accessibility-checker' ),
+								readingLevelText,
+								summaryStatus,
+							)
+							: sprintf(
+								/* translators: %s: reading level. */
+								__( 'View reading level details: %s', 'accessibility-checker' ),
+								readingLevelText,
+							)
+						}
 						onKeyDown={ ( e ) => {
 							if ( e.key === 'Enter' || e.key === ' ' ) {
 								if ( e.key === ' ' ) {

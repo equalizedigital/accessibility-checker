@@ -80,7 +80,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
 
@@ -526,7 +526,15 @@ class Ajax {
 								)
 							) . '" />';
 						} elseif ( $object_svg ) {
-							$html .= $object_svg;
+							// Rendered as an <img> via a data URI, not injected as inline markup -
+							// see edac_svg_markup_to_data_uri()'s docblock for why.
+							$html .= '<img src="' . esc_url( edac_svg_markup_to_data_uri( $object_svg ), [ 'data', 'http', 'https' ] ) . '" alt="' . esc_attr(
+								sprintf(
+									/* translators: %d: issue ID number */
+									__( 'image for issue %d', 'accessibility-checker' ),
+									$id
+								)
+							) . '" />';
 						}
 
 						$html .= '</div>';
@@ -671,7 +679,7 @@ class Ajax {
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
 			$text_statistics          = new \DaveChild\TextStatistics\TextStatistics();
-			$simplified_summary_grade = (int) floor( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
+			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
 		$simplified_summary_grade_failed = ( $simplified_summary_grade > 9 ) ? true : false;
@@ -837,7 +845,7 @@ class Ajax {
 		$valid_table  = edac_get_valid_table_name( $table_name );
 
 		if ( ! $first_id || ! $valid_table ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
 		}
 
 		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
@@ -846,7 +854,7 @@ class Ajax {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
 			$batch_object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $valid_table, $first_id ) );
 			if ( ! $batch_object ) {
-				wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+				wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
 			}
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
 			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT postid FROM %i WHERE siteid = %d AND object = %s', $valid_table, $siteid, $batch_object ) );
@@ -858,7 +866,7 @@ class Ajax {
 		}
 
 		if ( empty( $affected_post_ids ) ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
 		}
 
 		foreach ( $affected_post_ids as $affected_post_id ) {
@@ -902,7 +910,7 @@ class Ajax {
 		];
 
 		if ( ! $data ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No ignore data to return', 'accessibility-checker' ) ) );
+			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
 		}
 		wp_send_json_success( wp_json_encode( $data ) );
 	}

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.45.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -30,8 +30,8 @@ msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +71,7 @@ msgid "Renew your license"
 msgstr "续订许可证"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "禁用电子邮件报告"
 
@@ -90,7 +90,7 @@ msgstr "启用电子邮件报告"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "免费许可证密钥"
@@ -122,136 +122,140 @@ msgid "Reports Enabled"
 msgstr "报告已启用"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "您将收到此网站的每周可访问性报告。"
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "本网站的每周辅助功能报告将通过电子邮件发送给许可证密钥的账户所有者。"
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "下一次报告：%s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "完全覆盖"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "有限覆盖"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "您的报告包括所有文章类型和分类法。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "已启用全站扫描"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "完整问题分类"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "详细报告"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "您的报告仅包含您网站的一部分内容。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "升级到专业版可："
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "扫描所有内容类型"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "获取完整问题分类"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "接收更详细的报告"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "升级到专业版"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "可访问性摘要"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "此摘要反映了您网站可用的最新扫描数据。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "发现的问题总数"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "账户连接"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "通过连接此网站，即表示您同意 Equalize Digital 的 <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">隐私政策 <span aria-hidden=\"true\">&#8599;</span></a> 和 <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">数据处理协议 <span aria-hidden=\"true\">&#8599;</span></a>。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "隐私政策（在新窗口中打开）"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "数据处理协议（在新窗口中打开）"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "每周电子邮件包括发现的问题总数和自上次报告以来的更改、覆盖范围信息、问题计数、需要复查的项目、通过测试的百分比，以及关于最常出现问题的页面和最严重问题的信息。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
+#: admin/AdminPage/AccessibilityReportsPage.php:417
 #: build/sidebar.bundle.js:2
 msgid "N/A"
 msgstr "不适用"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
+#: admin/AdminPage/AccessibilityReportsPage.php:507
 #: admin/class-ajax.php:330
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Critical"
 msgstr "严重"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
+#: admin/AdminPage/AccessibilityReportsPage.php:509
 #: admin/class-ajax.php:334
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "High"
 msgstr "高"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
+#: admin/AdminPage/AccessibilityReportsPage.php:511
 #: admin/class-ajax.php:338
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Medium"
 msgstr "中"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
+#: admin/AdminPage/AccessibilityReportsPage.php:513
 #: admin/class-ajax.php:342
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Low"
 msgstr "低"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
+#: admin/AdminPage/AccessibilityReportsPage.php:515
 #: includes/classes/class-rest-api.php:1007
 msgid "Unknown"
 msgstr "未知"
@@ -498,8 +502,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 黑色星期五特惠！🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "在 11 月 24 日至 12 月 3 日期间升级到 Accessibility Checker 付费版，即可享受七折优惠！包括全站扫描、全站开放问题报告、忽略日志等功能。"
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "从 11 月 24 日到 12 月 3 日在 Accessibility Checker 升级到付费版本，即可享受 30% 的折扣！完整站点扫描、全站未解决问题报告、忽略日志及更多功能。"
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -518,6 +522,7 @@ msgstr "立即升级"
 #: admin/class-ajax.php:223
 #: admin/class-ajax.php:634
 #: admin/class-ajax.php:818
+#: admin/class-ajax.php:866
 #: admin/class-frontend-highlight.php:82
 #: admin/class-frontend-highlight.php:100
 #: admin/class-frontend-highlight.php:105
@@ -645,6 +650,7 @@ msgstr "通过的测试"
 #: admin/class-ajax.php:138
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "问题"
@@ -658,6 +664,7 @@ msgstr[0] "对比度问题"
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "Needs Review"
 msgid_plural "Needs Review"
@@ -684,9 +691,10 @@ msgstr "* 除了自动化扫描，真正的可访问性还需要手动测试。%
 
 #: admin/class-ajax.php:198
 #: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid ", opens a new window"
 msgstr "，在新窗口中打开"
@@ -718,6 +726,7 @@ msgstr "展开 %s 的问题"
 
 #: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "这些设置可对整个网站进行全局修复。"
 
@@ -728,21 +737,25 @@ msgstr "可能需要重新保存页面或进行全站扫描，才能在报告中
 #: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "节省"
 
 #: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "受影响的代码"
 
 #: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "图片"
 
 #: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "地标"
 
@@ -751,6 +764,7 @@ msgid "Actions"
 msgstr "操作"
 
 #: admin/class-ajax.php:495
+#: build/frontendHighlighterApp.bundle.js:2
 msgid "Dismissed"
 msgstr "已忽略"
 
@@ -778,6 +792,7 @@ msgstr "在网站上查看问题 ID %d，打开一个新窗口"
 
 #: admin/class-ajax.php:562
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:2
 msgid "View on page"
 msgstr "在页面上查看"
@@ -879,8 +894,8 @@ msgstr "您的简化摘要位置设置为 “手动”，这需要将函数添�
 
 #: admin/class-ajax.php:784
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
+#: includes/options-page.php:931
+#: includes/options-page.php:955
 #: build/sidebar.bundle.js:2
 msgid "Simplified Summary"
 msgstr "简化摘要"
@@ -898,12 +913,14 @@ msgstr "了解更多关于提高可读性和简化摘要要求的信息"
 msgid "No readability data to return"
 msgstr "无可读性数据返回"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "没有要返回的忽略数据"
+#: admin/class-ajax.php:840
+#: admin/class-ajax.php:849
+#: admin/class-ajax.php:861
+#: admin/class-ajax.php:905
+msgid "No dismissal data to return"
+msgstr "无忽略数据可返回"
 
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:439
 msgid "* Screen Reader Text"
 msgstr "屏幕阅读器文本"
 
@@ -924,63 +941,66 @@ msgstr "问题查询未返回结果"
 msgid "Object query returned no results"
 msgstr "对象查询未返回结果"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "误报"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "扫描器已标记此项，但它不适用于此内容。"
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "已修复"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "问题已修复，但页面尚未重新扫描。"
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "已确认可访问"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "已审查并验证符合可访问性要求。"
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "误报"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "扫描器已标记此项，但它不适用于此内容。"
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "已修复"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "问题已修复，但页面尚未重新扫描。"
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "用户名："
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "日期："
 
-#: admin/class-ignore-ui.php:97
+#: admin/class-ignore-ui.php:141
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Reopen Issue"
 msgstr "重新打开问题"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss Issue"
 msgstr "忽略问题"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "评论"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "全局管理已忽略"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "您的用户账户没有权限忽略此问题。"
 
-#: admin/class-ignore-ui.php:156
+#: admin/class-ignore-ui.php:200
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Dismiss issue as:"
 msgstr "忽略问题为："
 
@@ -1444,12 +1464,12 @@ msgstr "简化总结标题"
 
 #: admin/site-health/class-pro.php:74
 #: includes/options-page.php:194
-msgid "Ignore Permissions"
+msgid "Dismiss Permissions"
 msgstr "忽略权限"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "忽略数据库表数量"
+msgid "Dismissals DB Table Count"
+msgstr "忽略数据库表计数"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1482,10 +1502,15 @@ msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "获取 Accessibility Checker Pro（在新窗口中打开）"
 
 #: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1261
 msgid "Issue not found."
 msgstr "未找到问题。"
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1271
+msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
+msgstr "抱歉，您无权忽略此批次中的一个或多个问题。"
+
+#: includes/classes/class-rest-api.php:1325
 msgid "Failed to update the issue."
 msgstr "未能更新问题。"
 
@@ -1966,8 +1991,8 @@ msgstr "aria-hidden 属性用于向辅助技术隐藏内容。虽然这对装饰
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "检查该元素是否真的应该对屏幕阅读器用户隐藏。如果它包含重要内容或功能，请移除 %s。如果它是装饰性或冗余的，保持元素不变，并使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "检查该元素是否应真正对屏幕阅读器用户隐藏。如果它包含重要内容或功能，请移除 %s。如果它仅用于装饰或多余，则保持该元素不变并在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2364,8 +2389,8 @@ msgstr "屏幕阅读器依赖替代文本来为无法看到图像的用户描述
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "检查图片以确定其是否为装饰性图片。如果图片为装饰性图片，则使用空 %1$s 属性是正确的，您可以通过使用 Accessibility Checker 中的 “忽略” 功能，或向图片添加 %2$s 或 %3$s 并重新扫描页面来消除此警告。如果图片传达信息，请添加描述性替代文本，说明图片的用途或含义。"
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "检查图片以确定其是否为装饰性图片。如果它是装饰性的，则使用空的 %1$s 属性是正确的，您可以在 Accessibility Checker 中忽略此警告，或者通过向图片添加 %2$s 或 %3$s 并重新扫描页面来忽略此警告。如果图片传达信息，请添加描述性 alt 文本以说明图片的目的或含义。"
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2419,8 +2444,8 @@ msgstr "替代文本应简洁明了，重点描述图像的用途或含义。过
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "将alt文本缩短至少于 %s 个字符，同时仍能描述图像的功能或用途。保持描述简单，避免重复周围的内容。如果图像的alt文本不需要更改，请使用Accessibility Checker中的 “忽略” 功能来忽略此警告。"
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "将 alt 文本缩短至少于 %s 个字符，同时仍能描述图片的功能或目的。保持描述简洁，避免重复周围的内容。如果图片的 alt 文本无需更改，请在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2497,8 +2522,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "动画图像可能会分散注意力，引起某些人的癫痫发作，或增加认知负担。WCAG指南要求闪烁或持续循环的动画提供暂停、停止或隐藏的机制。"
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "将动画图像替换为静态图像或带有控制功能的视频。如果必须使用动画图像，确保它每秒闪烁不超过三次，并且如果播放时间超过5秒，提供暂停或停止控制。如果你已确认图像是可访问的且可暂停的，可以使用Accessibility Checker中的 “忽略” 功能来忽略此警告。"
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "将动画图片替换为静态图片或带有控件的视频。如果您必须使用动画图片，请确保它每秒闪烁不超过三次，并且如果播放时间超过 5 秒，则提供暂停或停止控件。如果您已确认图片可访问且可暂停，您可以在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2563,29 +2588,27 @@ msgstr "添加描述链接用途的 alt 属性。重点关注链接指向何处�
 msgid "Incorrect Heading Order"
 msgstr "标题顺序不正确"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "此页面使用了顺序错误的标题。这是一个 %1$s 后跟 %2$s，跳过了一个或多个标题级别。"
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "此页面使用的标题顺序混乱，跳过了一个或多个标题级别。"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "这些页面使用了顺序错误的标题，跳过了一个或多个标题级别，例如从 %1$s 直接到 %2$s，中间没有 %3$s。"
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "标题帮助所有用户——尤其是使用屏幕阅读器或键盘导航的用户——理解页面结构。跳过标题级别可能造成混淆，使内容层次更难理解或导航效率降低。"
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "修改你的标题，使其遵循逻辑顺序，不跳过级别。例如，如果 %1$s 后面跟着 %2$s，将 %2$s 改为 %3$s 或添加一个中间的 %3$s 部分以保持正确的结构。如果需要，使用 CSS 或块/页面构建器设置来设置标题样式，而不是设置错误的级别。"
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C 页面结构教程：标题"
 
@@ -2700,8 +2723,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Word、Excel 或 PowerPoint 格式的文档可能并非对所有用户都是可访问的，特别是如果它们没有正确标记或不遵循可访问性最佳实践。可访问性法律要求网页上发布的文档也要符合 WCAG 标准。此外，当链接打开可下载文件而不是网页时，应该警告用户。"
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "确保链接的文件经过测试并已改进可访问性。当你确定它是可访问的时，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在链接文本中包含文件扩展名和大小以通知用户（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是使用插件嵌入的，还要提供直接下载链接。如果使文档可访问很困难，考虑将内容放在网页上。"
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保已对链接文件进行辅助功能测试和修复。当您确认其可访问时，请在 Accessibility Checker 中忽略此警告。在链接文本中包含文件扩展名和大小以告知用户（在 Accessibility Checker 设置中启用 “将文件大小和类型添加到链接” 修复功能可全站应用此设置）。如果文档是使用插件嵌入的，请同时提供直接下载链接。如果使文档可访问很困难，请考虑将内容放在网页上。"
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2752,8 +2775,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "非 HTML 文档格式可能对辅助技术不完全可访问，除非经过测试和改进。当链接打开可下载文件而不是标准网页时，应该警告用户。"
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "确保链接的文档是可访问的。当你确定它是可访问的，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在可见的链接文本中包含文件扩展名（例如，“会议记录 (ODT)”），以便用户知道期待什么（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是嵌入的，还要提供直接下载链接。如果使文档可访问很困难，考虑将内容放在网页上。"
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保链接文档可访问。当您确认其可访问时，请在 Accessibility Checker 中忽略此警告。在可见链接文本中包含文件扩展名（例如，“会议纪要 (ODT)”），以便用户了解内容（在 Accessibility Checker 设置中启用 “将文件大小和类型添加到链接” 修复功能可全站应用此设置）。如果文档是嵌入的，请同时提供直接下载链接。如果使文档可访问很困难，请考虑将内容放在网页上。"
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2772,8 +2795,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF 可能并非对所有用户都可访问，特别是如果它们没有正确标记或不符合 WCAG 要求。可访问性法律要求网站上发布的文档必须满足与 HTML 内容相同的可访问性标准。此外，当链接打开可下载文件而不是网页时，应该提醒用户。"
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "确保链接的 PDF 经过测试并修复了可访问性问题。当你确定它是可访问的，使用 Accessibility Checker 中的 “忽略” 功能来消除此警告。在链接文本中包含文件扩展名和大小以告知用户（在 Accessibility Checker 设置中启用 “向链接添加文件大小和类型” 修复功能可在整个网站范围内实现）。如果文档是使用插件嵌入的，还要提供直接下载链接。如果使 PDF 可访问很困难，考虑将内容放在网页上。"
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "确保已对链接的 PDF 进行辅助功能测试和修复。当您确认其可访问时，请在 Accessibility Checker 中忽略此警告。在链接文本中包含文件扩展名和大小以告知用户（在 Accessibility Checker 设置中启用 “将文件大小和类型添加到链接” 修复功能可全站应用此设置）。如果文档是使用插件嵌入的，请同时提供直接下载链接。如果使 PDF 可访问很困难，请考虑将内容放在网页上。"
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2790,6 +2813,30 @@ msgstr "网络上的 PDF 可访问性：技巧和陷阱（网络研讨会）"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesign 和 PDF 可访问性错误及其修复方法（网络研讨会）"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "链接文本是 URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "此链接使用 URL 作为其锚文本，而非有意义的词语或短语。"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "这些链接使用 URL 作为其锚文本，而非有意义的词语或短语。"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "仅为 URL 的链接文本可能无法提供有关链接目标的有意义上下文。此外，当屏幕阅读器读取长 URL 时，可能会逐个字母、数字和字符地播报，这可能难以理解。用户依赖描述性链接文本来了解链接将带他们去往何处；使用 URL 作为链接文本会降低可用性，增加认知负荷，并可能造成混淆或误导。"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "将链接文本中的 URL 替换为简洁、描述性的词语或短语，以说明链接的目的地或用途（例如，“阅读辅助功能指南” 而非 “https://example.com/guide”）。如果 URL 对于上下文是必需的且非常短，您可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C：技术 G91：提供描述链接目的的链接文本"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3062,8 +3109,8 @@ msgstr "屏幕阅读器用户和其他辅助技术依赖标题标签来理解页
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "检查标记的文本，确定它是否应该是标题。如果是，请将元素更改为适当的 %1$s–%2$s 标签。如果不是标题，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "检查标记的文本并确定其是否应为标题。如果是，请将元素更改为适当的 %1$s–%2$s 标签。如果无意作为标题，您可以在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3086,8 +3133,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "滑块通常难以用屏幕阅读器和键盘操作。不可访问的滑块可能会干扰导航，陷入焦点，或移动得太快以至于用户无法与内容互动。"
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "在你网站的前端审查滑块。确保它可以通过键盘访问，可暂停，具有适当的 ARIA 角色和标签，并且与屏幕阅读器配合良好。确认滑块可访问或修复问题后，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "在网站前端检查滑块。确保它可通过键盘访问、可暂停、具有正确的 ARIA 角色和标签，并能很好地与屏幕阅读器配合使用。在确认滑块可访问或修复问题后，您可以在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3242,8 +3289,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "下划线文本通常与链接相关联。当非链接文本带有下划线时，可能会让用户感到困惑，尤其是认知障碍者或依赖视觉提示来识别链接的用户。"
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "移除文本的下划线标签或 CSS 下划线样式。如果你想强调文本，可以考虑使用粗体、斜体或颜色样式。如果这段文本是链接或按钮等功能元素的一部分，保留下划线样式，并使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "从文本中移除下划线标签或 CSS 下划线样式。如果要强调文本，请考虑使用粗体、斜体或颜色样式。如果此文本是链接或按钮等功能元素的一部分，请保留下划线样式并在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3262,8 +3309,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "视频必须包含准确的字幕、文字稿和音频描述（或增强型文字稿），才能完全适用于聋人、听力障碍者、盲人或认知障碍者。"
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "在你网站的前端查看视频。确保它包含准确的（非自动生成的）同步字幕、文字稿，以及必要的音频描述。在验证可访问性或进行必要的更新后，你可以使用 Accessibility Checker 中的 “忽略” 功能来忽略此警告。"
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "在网站前端检查视频。确保它包含准确（非自动生成）的同步字幕、文本记录以及所需的音频描述。在验证辅助功能或进行必要的更新后，您可以在 Accessibility Checker 中忽略此警告。"
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3366,10 +3413,76 @@ msgstr "免费参加"
 msgid "(opens in a new window)"
 msgstr "（在新窗口中打开）"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:901
+msgid "Main"
+msgstr "主要"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:903
+msgid "Header"
+msgstr "页眉"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:905
+msgid "Footer"
+msgstr "页脚"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:907
+msgid "Nav"
+msgstr "导航"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:909
+msgid "Aside"
+msgstr "侧边栏"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:911
+msgid "Navigation"
+msgstr "导航"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:913
+msgid "Banner"
+msgstr "横幅"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:915
+msgid "Contentinfo"
+msgstr "内容信息"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:917
+msgid "Complementary"
+msgstr "补充"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:919
+msgid "Section"
+msgstr "部分"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:921
+msgid "Article"
+msgstr "文章"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:923
+msgid "Form"
+msgstr "表单"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:925
+msgid "Region"
+msgstr "区域"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:974
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "在网站上查看 %s 地标，将在新窗口中打开"
 
@@ -3378,6 +3491,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "欢迎使用 Accessibility Checker"
 
 #: includes/options-page.php:71
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker 设置"
 
@@ -3599,22 +3713,22 @@ msgid " (opens in a new window)"
 msgstr " （在新窗口中打开）"
 
 #: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "选择在扫描期间应检查哪些文章类型。请注意，移除先前选择的文章类型将删除其扫描信息和任何已设置的自定义忽略警告。"
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "选择在扫描期间应检查哪些文章类型。请注意，移除先前选定的文章类型将移除其扫描信息以及已设置的任何自定义忽略警告。"
 
-#: includes/options-page.php:827
+#: includes/options-page.php:826
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "卸载插件时删除所有 Accessibility Checker 数据。"
 
-#: includes/options-page.php:845
+#: includes/options-page.php:844
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "在区块编辑器中显示 Accessibility Checker 元框"
 
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
+#: includes/options-page.php:1003
+msgid "Choose which user roles have permission to dismiss issues."
 msgstr "选择哪些用户角色有权忽略问题。"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1036
 msgid "Configure which user roles have access to specific Accessibility Checker features."
 msgstr "配置哪些用户角色可以访问特定的 Accessibility Checker 功能。"
 
@@ -5064,6 +5178,11 @@ msgstr "正在保存..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "保存失败：缺少 REST API URL。"
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "设置已成功保存。您必须%s访问编辑器%s并保存文章，以重新扫描并从 Accessibility Checker 报告中移除已修复的问题。"
@@ -5254,30 +5373,31 @@ msgstr "严重性："
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG："
 
 #: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "已忽略"
-
-#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "显示解释"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "重要性"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "如何修复"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "更详细的文档"
 
@@ -5292,6 +5412,7 @@ msgstr "修复问题：%s"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "修复问题"
 
@@ -5339,9 +5460,9 @@ msgstr[0] "%d个需要审查"
 
 #: build/frontendHighlighterApp.bundle.js:2
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d个已忽略"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d 已忽略"
 
 #: build/frontendHighlighterApp.bundle.js:2
 msgid "No issues detected."
@@ -5401,111 +5522,159 @@ msgid "Error: Missing required parameters."
 msgstr "错误：缺少必需参数。"
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "问题相关图片"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "修复设置已保存。"
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "未能保存修复设置。"
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "正在加载修复信息..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "保存修复：%s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "问题已成功忽略。"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "问题已成功重新打开。"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "正在忽略..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "问题已忽略 — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "问题已忽略"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "范围："
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "所有页面"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "由："
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "于："
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "忽略原因："
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "此问题已全局忽略。管理全局忽略以重新打开。"
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "管理全局忽略"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "正在重新打开..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "评论（可选）"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "添加说明此问题为何被驳回的备注。"
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "更多忽略选项"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "忽略并关闭模态框"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "问题 #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "问题详情"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "类型"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "严重性"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "加载 %s 修复信息失败。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "加载 %s 修复信息出错。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "修复设置已保存。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "未能保存修复设置。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "正在加载修复信息..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "保存修复：%s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "问题相关图片"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "问题已成功忽略。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "问题已成功重新打开。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss Globally"
+msgstr "全局忽略"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "正在全局忽略..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "正在忽略..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "问题已忽略 — %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue Dismissed"
+msgstr "问题已忽略"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Scope:"
+msgstr "范围："
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "All pages"
+msgstr "所有页面"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "By:"
+msgstr "由："
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "On:"
+msgstr "于："
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reason for dismissal:"
+msgstr "忽略原因："
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Removing..."
+msgstr "正在移除..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Remove Global Dismissal"
+msgstr "移除全局忽略"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Reopening..."
+msgstr "正在重新打开..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Comment (optional)"
+msgstr "评论（可选）"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "添加说明此问题为何被驳回的备注。"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "More dismiss options"
+msgstr "更多忽略选项"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismiss & Close Modal"
+msgstr "忽略并关闭模态框"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5595,6 +5764,14 @@ msgstr "继续阅读"
 msgid "learn more"
 msgstr "了解更多"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "检查链接的可见文本是否为 URL 而非描述性锚文本。"
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "链接文本应具有描述性，而不仅仅是 URL。"
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "未能加载可访问性数据"
@@ -5665,6 +5842,11 @@ msgstr "在可访问性分析中查看 %d 个问题"
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "在可访问性分析中查看 %d 个需要审查的项目"
+
+#: build/sidebar.bundle.js:2
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "查看阅读分级详情：%1$s，%2$s"
 
 #: build/sidebar.bundle.js:2
 #, js-format

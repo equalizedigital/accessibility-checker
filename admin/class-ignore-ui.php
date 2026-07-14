@@ -23,10 +23,17 @@ class IgnoreUI {
 	/**
 	 * Get the dismiss reasons with translatable labels and descriptions.
 	 *
+	 * Filterable via `edac_dismiss_reasons`. Each entry must be an associative
+	 * array with `label` (string) and `description` (string) keys.
+	 *
 	 * @return array<string, array{label: string, description: string}>
 	 */
 	public static function get_reasons(): array {
-		return [
+		$default_reasons = [
+			'accessible'     => [
+				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
+				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
+			],
 			'false_positive' => [
 				'label'       => __( 'False positive', 'accessibility-checker' ),
 				'description' => __( 'The scanner flagged this, but it does not apply to this content.', 'accessibility-checker' ),
@@ -35,11 +42,48 @@ class IgnoreUI {
 				'label'       => __( 'Remediated', 'accessibility-checker' ),
 				'description' => __( 'The issue has been fixed, but the page has not been rescanned yet.', 'accessibility-checker' ),
 			],
-			'accessible'     => [
-				'label'       => __( 'Confirmed accessible', 'accessibility-checker' ),
-				'description' => __( 'Reviewed and verified to meet accessibility requirements.', 'accessibility-checker' ),
-			],
 		];
+
+		/**
+		 * Filters the dismiss reasons available in the ignore/dismiss panel.
+		 *
+		 * Each array entry must be keyed by a unique reason slug and contain
+		 * a `label` (short UI text) and a `description` (longer explanatory text).
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param array<string, array{label: string, description: string}> $reasons {
+		 *     Dismiss reasons keyed by reason slug.
+		 *
+		 *     @type array $reason {
+		 *         @type string $label       Short label displayed in the radio control.
+		 *         @type string $description Longer description displayed below the label.
+		 *     }
+		 * }
+		 */
+		$reasons = apply_filters( 'edac_dismiss_reasons', $default_reasons );
+
+		if ( ! is_array( $reasons ) ) {
+			return $default_reasons;
+		}
+
+		// Strip any entries that don't conform to the expected structure.
+		foreach ( $reasons as $key => $value ) {
+			if (
+				! is_array( $value ) ||
+				! isset( $value['label'], $value['description'] ) ||
+				! is_string( $value['label'] ) ||
+				! is_string( $value['description'] )
+			) {
+				unset( $reasons[ $key ] );
+			}
+		}
+
+		if ( empty( $reasons ) ) {
+			return $default_reasons;
+		}
+
+		return $reasons;
 	}
 
 	/**
