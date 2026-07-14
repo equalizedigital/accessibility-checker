@@ -362,6 +362,8 @@ const ReadabilityAnalysis = () => {
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
 									</h4>
 									<TextareaControl
+										label={ __( 'Simplified Summary', 'accessibility-checker' ) }
+										hideLabelFromVision={ true }
 										value={ summaryText }
 										onChange={ setSummaryText }
 										placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
@@ -403,6 +405,8 @@ const ReadabilityAnalysis = () => {
 								{ __( 'Simplified Summary', 'accessibility-checker' ) }
 							</h4>
 							<TextareaControl
+								label={ __( 'Simplified Summary', 'accessibility-checker' ) }
+								hideLabelFromVision={ true }
 								value={ summaryText }
 								onChange={ setSummaryText }
 								placeholder={ __( 'Enter simplified summary...', 'accessibility-checker' ) }
