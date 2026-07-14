@@ -166,7 +166,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
 		// We should check for both possibilities here to ensure compatibility across versions.
-		// See: https://github.com/WordPress/wordpress-develop/pull/9557. for more details.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
@@ -198,7 +198,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
 		// In WP 6.9 there were changes to the flags passed to wp_json_encode() that made slashes no longer get escaped by default.
 		// We should check for both possibilities here to ensure compatibility across versions.
-		// See: https://github.com/WordPress/wordpress-develop/pull/9557. for more details.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557 for more details.
 		if ( version_compare( get_bloginfo( 'version' ), '6.9', '>=' ) ) {
 			$this->assertStringContainsString( esc_url_raw( get_permalink( $post->ID ) ), $localized_data );
 		} else {
@@ -396,11 +396,8 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that edac_filter_post_is_latest_posts_home causes the scan URL to use the home URL.
-	 *
-	 * When show_on_front=posts and page_for_posts=0, the standard WP options cannot identify a
-	 * virtual homepage post. The filter lets extensions signal this so we use get_home_url()
-	 * for the scanner iframe rather than an invalid preview URL.
+	 * When the filter flags a latest-posts homepage (show_on_front=posts), the scan URL
+	 * uses get_home_url() rather than an invalid preview link.
 	 *
 	 * @return void
 	 */
@@ -438,12 +435,8 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that edac_filter_post_is_latest_posts_home causes the scan URL to use the home URL
-	 * when show_on_front=page but no static front page is configured (fallback case).
-	 *
-	 * WordPress falls back to showing latest posts when show_on_front=page but page_on_front
-	 * is empty. The $is_latest_posts_home condition must cover this case so extensions can
-	 * still signal that get_home_url() should be used as the scan URL.
+	 * Fallback case: show_on_front=page with no static front page configured also
+	 * counts as a latest-posts homepage, so the scan URL still uses get_home_url().
 	 *
 	 * @return void
 	 */
@@ -480,11 +473,8 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that the 'active' flag in edac_editor_app reflects the filtered post ID's post type.
-	 *
-	 * Before Fix 3, $active was set to $is_scannable_post which was computed from the global
-	 * $post before the edac_filter_admin_post_id filter ran. If the filter returns a different
-	 * post ID whose type is not scannable, $active must be false so the scanner doesn't run.
+	 * The 'active' flag must reflect the filtered post ID's type: when the filter returns a
+	 * non-scannable post type, $active is false so the scanner doesn't run.
 	 *
 	 * @return void
 	 */

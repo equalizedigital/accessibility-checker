@@ -79,11 +79,8 @@ class Enqueue_Admin {
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
 
-			// When the "latest posts" homepage is active (show_on_front=posts), the global
-			// $post can be set to the first blog post from the main query — for example in
-			// the FSE site editor while previewing the home template. Apply a filter so that
-			// extensions can supply the correct post ID (e.g. a Pro virtual-page ID) rather
-			// than letting the wrong post's ID propagate into scan results.
+			// On a latest-posts homepage the global $post is the first blog post, not the page;
+			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
 			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
 
 			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
@@ -105,9 +102,7 @@ class Enqueue_Admin {
 
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
-				// Is this posttype setup to be checked?
-				// Re-evaluate based on the filtered $post_id, which may have been overridden
-				// by edac_filter_admin_post_id (e.g. a Pro virtual-page ID for the homepage).
+				// Base the scannable check on the filtered $post_id, not the original global $post.
 				$filtered_post_type = $post_id ? get_post_type( $post_id ) : false;
 				$active             = $filtered_post_type && is_array( $post_types ) && in_array( $filtered_post_type, $post_types, true );
 
@@ -122,11 +117,8 @@ class Enqueue_Admin {
 				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
-				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
-				// Cover both the explicit "latest posts" setting (show_on_front=posts) and the
-				// fallback where show_on_front=page but no static front page is configured.
-				// Allow extensions to flag the current post as the latest-posts homepage so we
-				// use get_home_url() for the scan rather than a preview link.
+				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
+				// show_on_front=page fallback with no static front page) use the live home URL instead.
 				$show_on_front        = get_option( 'show_on_front', 'posts' );
 				$is_latest_posts_home = ( 'posts' === $show_on_front || ( 'page' === $show_on_front && ! get_option( 'page_on_front' ) ) )
 					&& apply_filters( 'edac_filter_post_is_latest_posts_home', false, $post_id );
