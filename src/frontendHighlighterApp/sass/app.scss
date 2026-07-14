@@ -49,8 +49,9 @@ body {
 
 	&-element-selected {
 		outline: dashed 4px transparent !important;
-		outline-offset: 5px !important;
+		outline-offset: 2px !important;
 		outline-color: magenta !important;
+		box-shadow: 0 0 0 8px variables.$color-white !important;
 
 		&-min-width {
 			min-width: 25px !important;
