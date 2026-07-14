@@ -29,10 +29,10 @@ export default {
 		// Check each visible image for alt attribute
 		return images.every( ( img ) => {
 			const hasAlt = img.hasAttribute( 'alt' );
-			const role = img.getAttribute( 'role' );
+			const roleTokens = ( img.getAttribute( 'role' ) || '' ).toLowerCase().split( /\s+/ );
 			const ariaHidden = img.getAttribute( 'aria-hidden' );
 
-			return hasAlt || role === 'presentation' || ariaHidden === 'true';
+			return hasAlt || roleTokens.includes( 'presentation' ) || roleTokens.includes( 'none' ) || ariaHidden === 'true';
 		} );
 	},
 };

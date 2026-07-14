@@ -2,6 +2,22 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+// Visually hidden (screen-reader only) utility class for live regions and inline SR text.
+// This pattern hides the element visually while keeping it accessible to assistive technologies.
+// Uses !important so the styles survive the panel's `* { all: unset }` reset.
+.edac-sr-only {
+	position: absolute !important;
+	width: 1px !important;
+	height: 1px !important;
+	padding: 0 !important;
+	margin: -1px !important;
+	overflow: hidden !important;
+	clip-path: inset(50%) !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	white-space: nowrap !important;
+	border: 0 !important;
+}
+
 body {
 	&.edac-app-disable-styles {
 		//   padding: .5rem (46px + 46px ) !important; //make sure button is visible
@@ -24,6 +40,7 @@ body {
 		all: unset;
 		letter-spacing: normal !important;
 	}
+
 
 	& {
 		display: inline-block;
@@ -81,6 +98,7 @@ body {
 		position: fixed !important;
 		z-index: 2147483647 !important;
 		bottom: 15px !important;
+		font-weight: 400 !important;
 
 		@media screen and (max-width: variables.$small-screen-width) {
 			width: 100%;
@@ -133,6 +151,48 @@ body {
 			left: 15px !important;
 		}
 
+		&--docked {
+			bottom: 0 !important;
+			right: 0 !important;
+			left: 0 !important;
+			max-width: none !important;
+			width: auto !important;
+
+			&.edac-highlight-panel--right {
+				right: 0 !important;
+				left: auto !important;
+			}
+
+			&.edac-highlight-panel--left {
+				left: 0 !important;
+				right: auto !important;
+			}
+
+			.edac-highlight-panel-controls {
+				position: fixed !important;
+				top: var(--edac-adminbar-height, 0px) !important;
+				bottom: 0 !important;
+				height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
+				max-height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
+				width: min(400px, 100vw) !important;
+				min-width: 0 !important;
+				max-width: 100vw !important;
+				border-radius: 0 !important;
+				box-shadow: none !important;
+				border-left: 1px solid variables.$color-gray-light !important;
+			}
+
+			&.edac-highlight-panel--left .edac-highlight-panel-controls {
+				border-left: none !important;
+				border-right: 1px solid variables.$color-gray-light !important;
+			}
+
+			// Hide the header grab cursor in docked mode.
+			.edac-highlight-panel-controls-header {
+				cursor: default !important;
+			}
+		}
+
 		&-visible {
 			width: 400px !important;
 		}
@@ -159,34 +219,144 @@ body {
 			}
 		}
 
-		&-description {
-			max-height: calc(100vh - 230px) !important;
-			display: block;
-			border: solid 1px variables.$color-gray-light !important;
-			background-color: variables.$color-white !important;
-			margin-bottom: 15px !important;
-			padding: 15px !important;
-			color: variables.$color-white !important;
-			background-color: variables.$color-blue-dark !important;
-			font-size: 14px !important;
-			line-height: 22px !important;
-			font-family: sans-serif !important;
-			text-align: left !important;
-			display: none;
-			overflow-y: scroll !important;
-			box-shadow: 0px 0px 5px rgba(variables.$color-black, .25) !important;
-			-webkit-font-smoothing: antialiased !important;
-			-moz-osx-font-smoothing: grayscale !important;
+		// Re-apply edac-badge styles — all:unset inside the panel strips them
+		.edac-badge {
+			display: inline-flex !important;
+			align-items: center !important;
+			gap: 4px !important;
+			padding: 3px 10px !important;
+			border-radius: 20px !important;
+			font-size: 12px !important;
+			font-weight: 400 !important;
+			white-space: nowrap !important;
+			color: #1e1e1e !important;
 
-			&:focus {
-				//outline: solid 5px rgba(0,208,255,.75);
+			&__icon {
+				font-size: 12px !important;
+				line-height: 1 !important;
 			}
+
+			&__label {
+				line-height: 1 !important;
+			}
+
+			&--large {
+				font-size: 13px !important;
+
+				.edac-badge__icon {
+					font-size: 14px !important;
+				}
+			}
+
+			&--error {
+				background: transparent !important;
+				border: 1px solid #970C0C !important;
+				padding: 2px 10px !important;
+
+				.edac-badge__icon svg {
+					stroke: #970C0C !important;
+				}
+			}
+
+			&--warning {
+				background: transparent !important;
+				border: 1px solid #CF8402 !important;
+				padding: 2px 10px !important;
+
+				.edac-badge__icon svg {
+					stroke: #CF8402 !important;
+				}
+			}
+
+			&--ignored {
+				background: transparent !important;
+				border: 1px solid variables.$color-gray !important;
+			}
+
+			&--severity-critical {
+				background: rgba(#970C0C, 0.1) !important;
+				border: 1px solid #970C0C !important;
+			}
+
+			&--severity-high {
+				background: rgba(#F49D02, 0.1) !important;
+				border: 1px solid #F49D02 !important;
+			}
+
+			&--severity-medium {
+				background: rgba(#F1C500, 0.1) !important;
+				border: 1px solid #F1C500 !important;
+			}
+
+			&--severity-low {
+				background: rgba(#015798, 0.1) !important;
+				border: 1px solid #015798 !important;
+			}
+
+			.edac-badge__icon {
+				display: inline-flex !important;
+				align-items: center !important;
+
+				svg {
+					display: block !important;
+					width: 16px !important;
+					height: 16px !important;
+					overflow: visible !important;
+					stroke: currentcolor !important;
+					fill: none !important;
+				}
+			}
+		}
+
+		&-description {
 
 			&-title {
 				font-size: 16px !important;
-				display: block !important;
+				display: flex !important;
+				align-items: center !important;
+				flex-wrap: wrap !important;
+				gap: 8px !important;
 				font-weight: bold !important;
 				margin-bottom: 5px !important;
+
+				&-text {
+					font-weight: bold !important;
+				}
+			}
+
+			&-wcag {
+				display: flex !important;
+				align-items: center !important;
+				flex-wrap: wrap !important;
+				gap: 8px !important;
+				margin-bottom: 10px !important;
+				font-size: 12px !important;
+
+				&-label {
+					font-weight: bold !important;
+					flex-shrink: 0 !important;
+				}
+			}
+
+			&-meta {
+				display: flex !important;
+				flex-direction: column !important;
+				gap: 8px !important;
+				margin-bottom: 12px !important;
+			}
+
+			&-meta-row {
+				display: flex !important;
+				align-items: center !important;
+				gap: 10px !important;
+				font-size: 13px !important;
+			}
+
+			&-meta-label {
+				font-weight: bold !important;
+				min-width: 70px !important;
+				flex-shrink: 0 !important;
+				font-size: 13px !important;
 			}
 
 			&-type {
@@ -224,45 +394,98 @@ body {
 				margin-bottom: 5px !important;
 			}
 
-			&-status {
-				color: variables.$color-white !important;
+			&-notice {
 				display: block !important;
-				background-color: variables.$color-red !important;
-				padding: 10px 15px !important;
-				margin-top: 10px !important;
 				margin-bottom: 10px !important;
+				padding: 8px 12px !important;
+				border-left: 4px solid variables.$color-yellow !important;
+				background-color: rgba(variables.$color-yellow, 0.15) !important;
+				color: #1e1e1e !important;
+				font-size: 13px !important;
+				font-weight: normal !important;
+				line-height: 1.5 !important;
 			}
 
-			&-reference,
-			&-code-button,
+			&-code-button {
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				gap: 2px !important;
+				margin-top: 8px !important;
+				font-size: 13px !important;
+				color: variables.$color-blue !important;
+				cursor: pointer !important;
+				text-decoration: underline !important;
+
+				&:hover, &:focus {
+					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
+				}
+
+				&-arrow {
+					transform: rotate(180deg) !important;
+					transition: transform 0.2s ease !important;
+				}
+
+				&[aria-expanded="true"] &-arrow {
+					transform: rotate(0deg) !important;
+				}
+			}
+
 			&--button {
 				all: unset;
-				color: variables.$color-blue-dark !important;
-				background-color: variables.$color-yellow !important;
-				padding: 4px 10px !important;
+				color: variables.$color-white !important;
+				background-color: variables.$color-blue !important;
+				padding: 8px 13px !important;
 				display: inline-block !important;
 				margin-top: 10px !important;
 				margin-right: 10px !important;
+				border-radius: 2px !important;
 
-				&:hover, &:focus, &[aria-expanded="true"] {
-					color: variables.$color-blue-dark !important;
-					background-color: variables.$color-white !important;
+				&:hover {
+					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					cursor: pointer !important;
+					text-decoration: none !important;
+				}
+
+				&:focus-visible {
+					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
 					cursor: pointer !important;
 					text-decoration: none !important;
 				}
 			}
 
 			&-reference {
-				text-decoration: none !important;
-			}
+				all: unset !important;
+				display: inline !important;
+				color: variables.$color-blue !important;
+				text-decoration: underline !important;
+				cursor: pointer !important;
+				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
 
-			&-code-button {
+				&:hover, &:focus {
+					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
+				}
 			}
 
 			&-code {
 				color: variables.$color-black !important;
-				display: block;
-				background-color: variables.$color-white !important;
+				font-family: monospace !important;
+				font-size: 12px !important;
+				background-color: #f6f7f7 !important;
+				border: 1px solid #ddd !important;
+				border-radius: 3px !important;
 				padding: 10px 15px !important;
 				display: none;
 				margin-top: 10px !important;
@@ -291,28 +514,79 @@ body {
 				display: block;
 			}
 
+
+
+			&-explanation-toggle {
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				gap: 2px !important;
+				margin-top: 8px !important;
+				font-size: 13px !important;
+				color: variables.$color-blue !important;
+				cursor: pointer !important;
+				text-decoration: underline !important;
+
+				&:hover, &:focus {
+					text-decoration: none !important;
+				}
+
+				&:focus {
+					outline: 2px solid variables.$color-blue !important;
+					outline-offset: 2px !important;
+				}
+
+				&-arrow {
+					transform: rotate(180deg) !important;
+					transition: transform 0.2s ease !important;
+				}
+
+				&[aria-expanded="true"] &-arrow {
+					transform: rotate(0deg) !important;
+				}
+			}
+
+			&-explanation {
+				&[hidden] {
+					display: none !important;
+				}
+			}
+
+			&-content {
+				code {
+					font-family: monospace !important;
+					font-size: 12px !important;
+					background-color: #f6f7f7 !important;
+					border: 1px solid #ddd !important;
+					border-radius: 3px !important;
+					padding: 1px 5px !important;
+					color: #1e1e1e !important;
+				}
+			}
+
 			&-how-to-fix {
-				display: inline-block;
+				display: block !important;
 				margin-bottom: 0 !important;
+				margin-top: 12px !important;
 
 				&-title {
-					display: block;
+					display: block !important;
+					font-size: 15px !important;
 					font-weight: bold !important;
-					margin-top: 10px !important;
 					margin-bottom: 5px !important;
 				}
 			}
 		}
 
 		&-controls {
-			color: variables.$color-white !important;
-			display: block;
-			background-color: variables.$color-blue !important;
-			border: solid 1px variables.$color-gray-light !important;
+			color: #1e1e1e !important;
+			background-color: variables.$color-white !important;
 			display: none;
-			box-shadow: 0px 0px 5px rgba(variables.$color-black, .15) !important;
-			position: relative !important;
-			padding: 15px !important;
+			flex-direction: column !important;
+			max-height: calc(100vh - 80px) !important;
+			box-shadow: 0 4px 20px rgba(variables.$color-black, .35) !important;
+			border-radius: 10px !important;
+			overflow: hidden !important;
 			font-size: 14px !important;
 			line-height: 22px !important;
 			font-family: sans-serif !important;
@@ -323,72 +597,235 @@ body {
 				// outline: solid 1px rgba(0,208,255,.75);
 			}
 
+			&-header {
+				display: flex !important;
+				align-items: center !important;
+				justify-content: space-between !important;
+				background-color: variables.$color-blue !important;
+				padding: 8px 12px !important;
+				gap: 8px !important;
+				cursor: grab !important;
+
+				button, a {
+					cursor: pointer !important;
+				}
+			}
+
+			&-header-actions {
+				display: flex !important;
+				align-items: center !important;
+				gap: 4px !important;
+				flex-shrink: 0 !important;
+			}
+
 			&-title {
-				font-size: 16px !important;
-				display: block !important;
+				display: flex !important;
+				align-items: center !important;
+				gap: 8px !important;
+				font-size: 14px !important;
 				font-weight: bold !important;
-				margin-bottom: 5px !important;
+				flex: 1 !important;
+				color: variables.$color-white !important;
+
+				&-icon {
+					display: inline-block !important;
+					flex-shrink: 0 !important;
+					width: 24px !important;
+					height: 24px !important;
+					background-image: url("data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(%23clip0_0_1)'><path d='M11.6841 23.0679C17.9712 23.0679 23.0679 17.9712 23.0679 11.6841C23.0679 5.39699 17.9712 0.300293 11.6841 0.300293C5.39698 0.300293 0.300285 5.39699 0.300285 11.6841C0.300285 17.9712 5.39698 23.0679 11.6841 23.0679Z' fill='white'/><path d='M11.6808 0.689766C17.8291 0.689871 22.8136 5.67427 22.8136 11.8226C22.8135 17.9708 17.829 22.9553 11.6808 22.9554C5.53246 22.9554 0.548063 17.9709 0.547958 11.8226C0.547958 5.6742 5.5324 0.689766 11.6808 0.689766Z' fill='%23FACB00' stroke='%23002449'/><path d='M18.0318 8.24537C18.0318 7.92632 17.7899 7.66565 17.4917 7.66565H15.7067L15.3 8.39551H17.3499V14.9851H5.73673V8.39551H11.8655L12.27 7.66565H5.59492C5.29672 7.66565 5.05482 7.92423 5.05482 8.24537V15.7192H18.0318V8.24537Z' fill='%23002449'/><path d='M11.1878 13.5254L7.7866 10.4537H9.11286L10.9563 12.0845L14.2448 6.28725H15.3L11.1878 13.5254Z' fill='%23002449'/><path d='M12.952 16.4887L12.8018 16.7806H10.2848L10.1347 16.4887H3.6952C3.6952 16.9453 4.04136 17.3144 4.46677 17.3144H18.622C19.0474 17.3144 19.3935 16.9453 19.3935 16.4887H12.954H12.952Z' fill='%23002449'/></g><defs><clipPath id='clip0_0_1'><rect width='23.4411' height='24' fill='white'/></clipPath></defs></svg>") !important;
+					background-repeat: no-repeat !important;
+					background-size: contain !important;
+				}
 			}
 
 			&-close {
-				width: 25px !important;
-				height: 25px !important;
-				color: variables.$color-blue-dark !important;
-				background-color: variables.$color-yellow !important;
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: 28px !important;
+				height: 28px !important;
+				color: variables.$color-white !important;
 				font-size: 18px !important;
-				line-height: 25px !important;
-				position: absolute !important;
-				top: 0px !important;
-				right: 0px !important;
-				text-align: center !important;
+				cursor: pointer !important;
+				border-radius: 2px !important;
+				border: 1px solid transparent !important;
 
 				&:hover, &:focus {
-					cursor: pointer !important;
-					color: variables.$color-blue-dark !important;
-					background-color: variables.$color-white !important;
+					border-color: variables.$color-white !important;
 				}
+			}
+
+			&-content {
+				flex: 1 !important;
+				overflow-y: auto !important;
+				padding: 15px !important;
+				border-bottom: solid 1px variables.$color-gray-light !important;
+
+				&-empty {
+					margin: 15px !important;
+					padding: 8px 12px !important;
+					border-left: 4px solid variables.$color-yellow !important;
+					background-color: rgba(variables.$color-yellow, 0.15) !important;
+					color: #1e1e1e !important;
+					font-size: 13px !important;
+					font-weight: normal !important;
+					line-height: 1.5 !important;
+				}
+
+				&-issue {
+					display: block;
+				}
+			}
+
+			&-footer {
+				flex-shrink: 0 !important;
+				border-top: solid 1px variables.$color-gray-light !important;
 			}
 
 			&-summary {
 				display: block !important;
+				padding: 12px 15px 0 !important;
+
+				.edac-highlight-summary-total {
+					display: block !important;
+					font-weight: bold !important;
+					font-size: 15px !important;
+				}
+
+				.edac-highlight-summary-breakdown {
+					display: block !important;
+					font-size: 12px !important;
+					opacity: 0.85 !important;
+					margin-top: 2px !important;
+				}
 			}
 
 			&-buttons {
-
-				&.single_button {
-					display: grid !important;
-					grid-template-columns: repeat(2, 1fr) !important;
-				}
+				display: flex !important;
+				align-items: center !important;
+				padding: 10px 15px 15px !important;
+				gap: 8px !important;
 
 				button {
 					all: unset;
 					text-decoration: none !important;
-					color: variables.$color-white !important;
-					background-color: variables.$color-blue-dark !important;
-					padding: 4px 10px !important;
+					color: variables.$color-blue !important;
+					background-color: transparent !important;
+					border: 1px solid variables.$color-blue !important;
+					padding: 8px 13px !important;
 					display: inline-block !important;
-					margin-top: 10px !important;
-					margin-right: 10px !important;
+					flex-shrink: 0 !important;
+					width: 80px !important;
+					text-align: center !important;
+					border-radius: 2px !important;
 
-					&:hover, &:focus {
-						color: variables.$color-blue-dark !important;
-						background-color: variables.$color-white !important;
+					&:hover {
+						background-color: color-mix(in srgb, variables.$color-blue 5%, transparent) !important;
+						cursor: pointer !important;
+					}
+
+					&:focus-visible {
+						background-color: color-mix(in srgb, variables.$color-blue 5%, transparent) !important;
+						outline: 2px solid variables.$color-blue !important;
+						outline-offset: 2px !important;
 						cursor: pointer !important;
 					}
 
 					&:disabled {
 						display: none !important;
 					}
-
 				}
 			}
 
-			.edac-highlight-disable-styles {
-				float: right !important;
-				margin-right: 0 !important;
+			&-pagination {
+				flex: 1 !important;
+				text-align: center !important;
+				font-size: 13px !important;
+				color: #555 !important;
+			}
+
+			.edac-highlight-menu-container {
+				position: relative !important;
+				display: flex !important;
+				align-items: center !important;
+			}
+
+			.edac-highlight-menu-button {
+				all: unset !important;
+				display: flex !important;
+				align-items: center !important;
+				justify-content: center !important;
+				width: 28px !important;
+				height: 28px !important;
+				color: variables.$color-white !important;
+				font-size: 18px !important;
+				cursor: pointer !important;
+				letter-spacing: 1px !important;
+				border-radius: 2px !important;
+				border: 1px solid transparent !important;
+
+				&:hover, &:focus {
+					border-color: variables.$color-white !important;
+				}
+			}
+
+			.edac-highlight-menu {
+				all: unset !important;
+				display: block !important;
+				position: absolute !important;
+				top: calc(100% + 6px) !important;
+				right: 0 !important;
+				background-color: variables.$color-white !important;
+				list-style: none !important;
+				margin: 0 !important;
+				padding: 6px !important;
+				min-width: 200px !important;
+				z-index: 10 !important;
+				box-shadow: 0 4px 16px rgba(variables.$color-black, .15) !important;
+				border-radius: 8px !important;
+				border: 1px solid variables.$color-gray-light !important;
+				overflow: hidden !important;
+
+				&[hidden] {
+					display: none !important;
+				}
+
+				li {
+					all: unset !important;
+					display: block !important;
+				}
+
+				button {
+					all: unset !important;
+					display: flex !important;
+					align-items: center !important;
+					justify-content: space-between !important;
+					width: 100% !important;
+					box-sizing: border-box !important;
+					color: #1e1e1e !important;
+					padding: 8px 10px !important;
+					cursor: pointer !important;
+					white-space: nowrap !important;
+					border-radius: 4px !important;
+					font-size: 13px !important;
+					gap: 12px !important;
+					outline: 2px solid transparent !important;
+
+					&:hover {
+						background-color: color-mix(in srgb, variables.$color-blue 6%, transparent) !important;
+						color: variables.$color-blue !important;
+					}
+
+					&:focus {
+						outline-color: variables.$color-blue !important;
+						color: variables.$color-blue !important;
+					}
+				}
 			}
 		}
 	}
+
 }
 
 
@@ -479,7 +916,9 @@ body {
 
 	&__close:focus,
 	&__close:hover {
-		background: variables.$color-yellow;
+		outline: 2px solid #1e1e1e;
+		outline-offset: 2px;
+		background: transparent;
 	}
 
 	&--open {
@@ -552,5 +991,41 @@ body {
 			text-decoration: none !important;
 			cursor: pointer !important;
 		}
+	}
+}
+
+// Menu icon system using CSS mask-image so icons inherit color from parent button
+.edac-menu-icon {
+	display: inline-block !important;
+	flex-shrink: 0 !important;
+	width: 16px !important;
+	height: 16px !important;
+	background-color: currentcolor !important;
+	mask-repeat: no-repeat !important;
+	mask-size: contain !important;
+	mask-position: center !important;
+
+	&--scan {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") !important;
+	}
+
+	&--refresh {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M23 4v6h-6'/%3E%3Cpath d='M1 20v-6h6'/%3E%3Cpath d='M3.51 9a9 9 0 0 1 14.85-3.36L23 10'/%3E%3Cpath d='M20.49 15a9 9 0 0 1-14.85 3.36L1 14'/%3E%3C/svg%3E") !important;
+	}
+
+	&--trash {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='3 6 5 6 21 6'/%3E%3Cpath d='M19 6l-1 14H6L5 6'/%3E%3Cpath d='M10 11v6'/%3E%3Cpath d='M14 11v6'/%3E%3Cpath d='M9 6V4h6v2'/%3E%3C/svg%3E") !important;
+	}
+
+	&--move {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 9l-3 3 3 3'/%3E%3Cpath d='M19 9l3 3-3 3'/%3E%3Cpath d='M2 12h20'/%3E%3C/svg%3E") !important;
+	}
+
+	&--styles {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='3'/%3E%3Cpath d='M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42'/%3E%3C/svg%3E") !important;
+	}
+
+	&--dock {
+		mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='14' y='2' width='8' height='20' rx='2'/%3E%3Cpath d='M2 12h8'/%3E%3Cpath d='M6 8l-4 4 4 4'/%3E%3C/svg%3E") !important;
 	}
 }

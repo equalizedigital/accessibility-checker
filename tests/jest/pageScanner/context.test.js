@@ -32,7 +32,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 			<div id="query-monitor-main">
 				<button id="query-monitor-button"></button>
 			</div>
-			<div class="edac-panel-container">
+			<div id="edac-highlight-panel">
 				<button id="edac-panel-button"></button>
 			</div>
 		`;

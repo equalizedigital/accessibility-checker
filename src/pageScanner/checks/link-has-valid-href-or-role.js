@@ -30,6 +30,25 @@ export default {
 			return true;
 		}
 
+		// Allow named anchors used as jump targets: no href, has id/name, no visible content,
+		// and not keyboard-focusable.
+		// Per the HTML spec, <a> without href has role="generic" and is not keyboard focusable,
+		// so it does not create a false link for AT or keyboard users.
+		// Use hasAttribute instead of !href to exclude href="" which is keyboard focusable.
+		// Check children.length to exclude anchors wrapping images or other elements.
+		const id = node.getAttribute( 'id' ) || '';
+		const name = node.getAttribute( 'name' ) || '';
+		const hasAnchorTargetName = id.trim() !== '' || name.trim() !== '';
+
+		const tabindex = node.getAttribute( 'tabindex' );
+		const parsedTabindex = null === tabindex ? null : Number.parseInt( tabindex, 10 );
+		const isKeyboardFocusable =
+			null !== tabindex && ( Number.isNaN( parsedTabindex ) || parsedTabindex >= 0 );
+
+		if ( ! node.hasAttribute( 'href' ) && hasAnchorTargetName && ! isKeyboardFocusable && node.children.length === 0 && node.textContent.trim() === '' ) {
+			return true;
+		}
+
 		const trimmedHref = href ? href.trim() : '';
 
 		// Fail if href is missing, just '#', or contains invalid protocols

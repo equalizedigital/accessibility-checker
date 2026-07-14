@@ -191,7 +191,7 @@ function edac_register_setting() {
 
 	add_settings_field(
 		'edacp_ignore_user_roles',
-		__( 'Ignore Permissions', 'accessibility-checker' ),
+		__( 'Dismiss Permissions', 'accessibility-checker' ),
 		'edac_ignore_user_roles_cb',
 		'edac_settings',
 		'edac_permissions',
@@ -205,6 +205,15 @@ function edac_register_setting() {
 		'edac_settings',
 		'edac_system',
 		[ 'label_for' => 'edac_delete_data' ]
+	);
+
+	add_settings_field(
+		'edac_show_metabox_in_block_editor',
+		__( 'Block Editor Metabox', 'accessibility-checker' ),
+		'edac_show_metabox_in_block_editor_cb',
+		'edac_settings',
+		'edac_system',
+		[ 'label_for' => 'edac_show_metabox_in_block_editor' ]
 	);
 
 	add_settings_field(
@@ -266,8 +275,7 @@ function edac_register_setting() {
 		__( 'Accessibility Statement Preview', 'accessibility-checker' ),
 		'edac_accessibility_statement_preview_cb',
 		'edac_settings',
-		'edac_footer_accessibility_statement',
-		[ 'label_for' => 'edac_accessibility_statement_preview' ]
+		'edac_footer_accessibility_statement'
 	);
 
 	add_settings_field(
@@ -283,6 +291,7 @@ function edac_register_setting() {
 	register_setting( 'edac_settings', 'edac_post_types', 'edac_sanitize_post_types' );
 
 	register_setting( 'edac_settings', 'edac_delete_data', 'edac_sanitize_checkbox' );
+	register_setting( 'edac_settings', 'edac_show_metabox_in_block_editor', 'edac_sanitize_checkbox' );
 	register_setting(
 		'edac_settings',
 		'edac_simplified_summary_prompt',
@@ -547,7 +556,7 @@ function edac_frontend_highlighter_position_cb() {
 	?>
 		<fieldset>
 			<label>
-				<input type="radio" name="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
+				<input type="radio" name="edac_frontend_highlighter_position" id="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
 				<?php esc_html_e( 'Bottom Right Corner (default)', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -640,12 +649,15 @@ function edac_post_types_cb() {
 		<fieldset>
 			<?php
 			if ( $all_post_types ) {
+				$position = 0;
 				foreach ( $all_post_types as $post_type ) {
 					$disabled        = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					$post_type_label = edac_get_post_type_label( $post_type );
+					$field_id        = ( 0 === $position ) ? 'edac_post_types' : "edac_post_types_{$post_type}";
+					++$position;
 					?>
 					<label>
-						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" value="<?php echo esc_attr( $post_type ); ?>"
+						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $post_type ); ?>"
 																<?php
 																checked( in_array( $post_type, $selected_post_types, true ), 1 );
 																echo esc_attr( $disabled );
@@ -659,7 +671,7 @@ function edac_post_types_cb() {
 			}
 			?>
 		</fieldset>
-		<?php if ( EDAC_KEY_VALID === false ) { ?>
+		<?php if ( defined( 'EDAC_KEY_VALID' ) && false === EDAC_KEY_VALID ) { ?>
 			<p class="edac-description">
 				<?php
 				echo esc_html__( 'To check content other than posts and pages, please ', 'accessibility-checker' );
@@ -670,7 +682,7 @@ function edac_post_types_cb() {
 		<?php } else { ?>
 			<p class="edac-description">
 				<?php
-				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup.', 'accessibility-checker' );
+				esc_html_e( 'Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup.', 'accessibility-checker' );
 				?>
 			</p>
 			<?php
@@ -736,7 +748,7 @@ function edac_add_footer_accessibility_statement_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="edac_add_footer_accessibility_statement" value="1" <?php checked( $option, 1 ); ?>>
+			<input type="checkbox" name="edac_add_footer_accessibility_statement" id="edac_add_footer_accessibility_statement" value="1" <?php checked( $option, 1 ); ?>>
 			<?php esc_html_e( 'Add Footer Accessibility Statement', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
@@ -754,7 +766,7 @@ function edac_include_accessibility_statement_link_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" value="<?php echo '1'; ?>"
+			<input type="checkbox" name="<?php echo 'edac_include_accessibility_statement_link'; ?>" id="edac_include_accessibility_statement_link" value="<?php echo '1'; ?>"
 													<?php
 													checked( $option, 1 );
 													disabled( $disabled, false );
@@ -772,7 +784,6 @@ function edac_include_accessibility_statement_link_cb() {
 function edac_accessibility_policy_page_cb() {
 
 	$policy_page = get_option( 'edac_accessibility_policy_page' );
-	$policy_page = is_numeric( $policy_page ) ? get_page_link( $policy_page ) : $policy_page;
 	?>
 
 	<input style="width: 100%;" type="text" name="edac_accessibility_policy_page" id="edac_accessibility_policy_page" value="<?php echo esc_attr( $policy_page ); ?>">
@@ -811,8 +822,26 @@ function edac_delete_data_cb() {
 	?>
 	<fieldset>
 		<label>
-			<input type="checkbox" name="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
+			<input type="checkbox" name="edac_delete_data" id="edac_delete_data" value="1" <?php checked( $option, 1 ); ?>>
 			<?php esc_html_e( 'Delete all Accessibility Checker data when the plugin is uninstalled.', 'accessibility-checker' ); ?>
+		</label>
+	</fieldset>
+	<?php
+}
+
+
+/**
+ * Render the checkbox input field for toggling metabox visibility in the block editor.
+ */
+function edac_show_metabox_in_block_editor_cb() {
+
+	$option = get_option( 'edac_show_metabox_in_block_editor', 1 );
+
+	?>
+	<fieldset>
+		<label>
+			<input type="checkbox" name="edac_show_metabox_in_block_editor" id="edac_show_metabox_in_block_editor" value="1" <?php checked( $option, 1 ); ?>>
+			<?php esc_html_e( 'Show Accessibility Checker metabox in the Block Editor', 'accessibility-checker' ); ?>
 		</label>
 	</fieldset>
 	<?php
@@ -951,11 +980,14 @@ function edac_ignore_user_roles_cb() {
 	?>
 	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
 		<?php if ( $roles ) : ?>
+			<?php $index = 0; ?>
 			<?php foreach ( $roles as $key => $role ) : ?>
+				<?php $field_id = ( 0 === $index ) ? 'edac_ignore_user_roles' : "edac_ignore_user_roles_{$index}"; ?>
 				<label>
 					<input
 						type="checkbox"
 						name="edacp_ignore_user_roles[]"
+						id="<?php echo esc_attr( $field_id ); ?>"
 						value="<?php echo esc_attr( $key ); ?>"
 						<?php checked( in_array( $key, $selected_roles, true ), 1 ); ?>
 						<?php disabled( ! edac_is_pro() ); ?>
@@ -963,11 +995,12 @@ function edac_ignore_user_roles_cb() {
 					<?php echo esc_html( $role['name'] ); ?>
 				</label>
 				<br>
+				<?php ++$index; ?>
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</fieldset>
 	<p class="edac-description">
-		<?php esc_html_e( 'Choose which user roles have permission to ignore issues.', 'accessibility-checker' ); ?>
+		<?php esc_html_e( 'Choose which user roles have permission to dismiss issues.', 'accessibility-checker' ); ?>
 	</p>
 	<?php
 }

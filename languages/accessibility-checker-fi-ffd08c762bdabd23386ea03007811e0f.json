@@ -7,7 +7,7 @@
         "messages": {
             "": {
                 "domain": "messages",
-                "lang": "en",
+                "lang": "fi",
                 "plural-forms": "nplurals=2; plural=(n != 1);"
             },
             "opens a new window": [
@@ -18,6 +18,9 @@
             ],
             "new tab": [
                 "uusi v\u00e4lilehti"
+            ],
+            "new document": [
+                "uusi dokumentti"
             ],
             "click": [
                 "napsauta"

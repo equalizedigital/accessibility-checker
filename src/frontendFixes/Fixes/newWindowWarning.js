@@ -1,6 +1,12 @@
-import { __ } from '@wordpress/i18n';
+/**
+ * New Window Warning Fix
+ *
+ * Adds an icon and tooltip to links that open in a new window, improving accessibility by informing users of the behavior.
+ */
 
-const localizedNewWindowWarning = __( 'opens a new window', 'accessibility-checker' );
+const classPrefix = window.edac_frontend_fixes?.new_window_warning?.classPrefix || window.anww_localized?.classPrefix || 'edac-nww';
+const localizedString = window.edac_frontend_fixes?.new_window_warning?.localizedString || window.anww_localized?.localizedString || 'opens a new window';
+const iconClass = `${ classPrefix }-external-link-icon`;
 
 const NewWindowWarning = () => {
 	initializeTooltip();
@@ -19,7 +25,7 @@ let tooltipTimeout;
 const initializeTooltip = () => {
 	anwwLinkTooltip = document.createElement( 'div' );
 	anwwLinkTooltip.setAttribute( 'role', 'tooltip' );
-	anwwLinkTooltip.classList.add( 'anww-tooltip' );
+	anwwLinkTooltip.classList.add( `${ classPrefix }-tooltip` );
 	Object.assign( anwwLinkTooltip.style, {
 		position: 'absolute',
 		background: 'white',
@@ -38,7 +44,7 @@ const initializeTooltip = () => {
 
 	// Hide tooltip when clicking outside or pressing Escape
 	document.addEventListener( 'click', ( event ) => {
-		if ( ! event.target.closest( ".anww-tooltip, a[target='_blank']" ) ) {
+		if ( ! event.target.closest( `.${ classPrefix }-tooltip, a[target='_blank']` ) ) {
 			hideTooltip();
 		}
 	} );
@@ -63,18 +69,20 @@ const initializeTooltip = () => {
  * Processes all anchor links and applies necessary accessibility enhancements.
  */
 const processLinks = () => {
-	// Remove previously appended icons to avoid duplication
-	document.querySelectorAll( '.edac-nww-external-link-icon' ).forEach( ( icon ) => icon.remove() );
-
+	// Only process links that have not yet been enhanced to prevent duplicate icons.
 	document.querySelectorAll( 'a:not([data-nww-processed])' ).forEach( ( link ) => {
 		const onclickAttr = link.getAttribute( 'onclick' );
 
 		// Check if the link opens a new window using target="_blank"
 		if ( link.getAttribute( 'target' ) === '_blank' ) {
-			addExternalLinkIcon( link );
+			if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
+				addExternalLinkIcon( link );
+			}
 			updateAriaLabel( link );
-			addTooltipHandlers( link );
-			link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
+			if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
+				addTooltipHandlers( link );
+			}
+			link.setAttribute( 'data-nww-processed', 'true' );
 			return;
 		}
 
@@ -84,10 +92,14 @@ const processLinks = () => {
 			const targetWindow = windowOpenMatch ? windowOpenMatch[ 1 ] : '';
 
 			if ( targetWindow === '_blank' || targetWindow === '' ) {
-				addExternalLinkIcon( link );
+				if ( ! link.closest( '.anww-no-icon, .edac-nww-no-icon' ) ) {
+					addExternalLinkIcon( link );
+				}
 				updateAriaLabel( link );
-				addTooltipHandlers( link );
-				link.setAttribute( 'data-nww-processed', 'true' ); // Mark link as processed.
+				if ( ! link.closest( '.anww-no-tooltip, .edac-nww-no-tooltip' ) ) {
+					addTooltipHandlers( link );
+				}
+				link.setAttribute( 'data-nww-processed', 'true' );
 			}
 		}
 	} );
@@ -98,22 +110,66 @@ const processLinks = () => {
  * @param {HTMLElement} link - The link element to modify.
  */
 const addExternalLinkIcon = ( link ) => {
-	// Add icon to link.
 	const header = link.querySelector( 'h1, h2, h3, h4, h5, h6' );
 	if ( header ) {
-		header.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+		header.insertAdjacentHTML( 'beforeend', `<i class="${ iconClass }" aria-hidden="true"></i>` );
 		return;
 	}
 
 	// If this link is an Elementor button, place the icon inside its content wrapper.
-	// Note: This relies on Elementor's specific '.elementor-button-content-wrapper' class, which might change in future Elementor updates.
 	const elementorButtonContent = link.querySelector( '.elementor-button-content-wrapper' );
 	if ( elementorButtonContent ) {
-		elementorButtonContent.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon elementor-button-link-content" aria-hidden="true"></i>' );
+		elementorButtonContent.insertAdjacentHTML( 'beforeend', `<i class="${ iconClass } elementor-button-link-content" aria-hidden="true"></i>` );
 		return;
 	}
 
-	link.insertAdjacentHTML( 'beforeend', '<i class="edac-nww-external-link-icon" aria-hidden="true"></i>' );
+	link.insertAdjacentHTML( 'beforeend', `<i class="${ iconClass }" aria-hidden="true"></i>` );
+};
+
+/**
+ * Computes the accessible name for a link by traversing its child nodes in document order.
+ * Collects text content and image alt text (for non-decorative images), skipping aria-hidden elements.
+ * @param {HTMLElement} link - The link element.
+ * @return {string} The computed accessible name.
+ */
+const getLinkAccessibleName = ( link ) => {
+	const parts = [];
+
+	const traverse = ( node ) => {
+		if ( node.nodeType === Node.TEXT_NODE ) {
+			const text = node.textContent.trim();
+			if ( text ) {
+				parts.push( text );
+			}
+		} else if ( node.nodeType === Node.ELEMENT_NODE ) {
+			if ( node.getAttribute( 'aria-hidden' ) === 'true' ) {
+				return;
+			}
+			if ( node.hasAttribute( 'aria-label' ) ) {
+				const ariaLabel = node.getAttribute( 'aria-label' ).trim();
+				if ( ariaLabel ) {
+					parts.push( ariaLabel );
+				}
+				return;
+			}
+			if ( node.nodeName === 'IMG' ) {
+				const role = node.getAttribute( 'role' );
+				const isDecorative = role && ( role.split( /\s+/ ).includes( 'presentation' ) || role.split( /\s+/ ).includes( 'none' ) );
+				if ( ! isDecorative ) {
+					const alt = ( node.getAttribute( 'alt' ) || '' ).trim();
+					if ( alt ) {
+						parts.push( alt );
+					}
+				}
+			} else {
+				node.childNodes.forEach( traverse );
+			}
+		}
+	};
+
+	link.childNodes.forEach( traverse );
+
+	return parts.join( ' ' ).replace( /\s+/g, ' ' ).trim();
 };
 
 /**
@@ -121,19 +177,16 @@ const addExternalLinkIcon = ( link ) => {
  * @param {HTMLElement} link - The link element to modify.
  */
 const updateAriaLabel = ( link ) => {
-	let anwwLabel = '';
+	let label = '';
 
 	if ( link.hasAttribute( 'aria-label' ) ) {
-		anwwLabel = link.getAttribute( 'aria-label' );
-	} else if ( link.querySelector( 'img' ) ) {
-		const img = link.querySelector( 'img' );
-		anwwLabel = img.getAttribute( 'alt' ) || '';
-	} else if ( link.textContent ) {
-		anwwLabel = link.textContent.trim();
+		label = link.getAttribute( 'aria-label' );
+	} else {
+		label = getLinkAccessibleName( link );
 	}
 
-	anwwLabel = anwwLabel ? `${ anwwLabel }, ${ localizedNewWindowWarning }` : localizedNewWindowWarning;
-	link.setAttribute( 'aria-label', anwwLabel );
+	label = label ? `${ label }, ${ localizedString }` : localizedString;
+	link.setAttribute( 'aria-label', label );
 };
 
 /**
@@ -163,7 +216,7 @@ const addTooltipHandlers = ( link ) => {
 const showTooltip = ( link, x, y ) => {
 	clearTimeout( tooltipTimeout );
 
-	anwwLinkTooltip.textContent = localizedNewWindowWarning;
+	anwwLinkTooltip.textContent = localizedString;
 	anwwLinkTooltip.style.display = 'block';
 
 	const tooltipWidth = anwwLinkTooltip.offsetWidth;

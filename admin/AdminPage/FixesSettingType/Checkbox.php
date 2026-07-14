@@ -51,8 +51,8 @@ trait Checkbox {
 			if ( isset( $args['help_id'] ) && ! empty( $args['help_id'] ) && $args['label'] ) :
 				$link = \edac_generate_link_type(
 					[
-						'utm-campaign' => 'fix-description',
-						'utm-content'  => $args['name'],
+						'utm_campaign' => 'fix-description',
+						'utm_content'  => $args['name'],
 					],
 					'help',
 					[

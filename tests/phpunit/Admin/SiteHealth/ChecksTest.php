@@ -92,13 +92,13 @@ class ChecksTest extends WP_UnitTestCase {
 		$mock_stats = $this->getMockBuilder( Scans_Stats::class )
 			->disableOriginalConstructor()
 			->getMock();
-		
+
 		$mock_stats->method( 'summary' )
 			->willReturn(
 				[
 					'errors'   => 0,
 					'warnings' => 0,
-				] 
+				]
 			);
 
 		// Use reflection to set the private stats property.
@@ -110,7 +110,7 @@ class ChecksTest extends WP_UnitTestCase {
 			[
 				'errors'   => 0,
 				'warnings' => 0,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_for_issues();
@@ -137,7 +137,7 @@ class ChecksTest extends WP_UnitTestCase {
 			[
 				'errors'   => 5,
 				'warnings' => 3,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_for_issues();
@@ -152,11 +152,14 @@ class ChecksTest extends WP_UnitTestCase {
 
 	/**
 	 * Test test_for_issues with Pro version available.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_test_for_issues_with_pro_version() {
 		// Only run if constants aren't already defined.
 		$skip_test = defined( 'EDACP_VERSION' ) || defined( 'EDAC_KEY_VALID' );
-		
+
 		if ( ! $skip_test ) {
 			if ( ! defined( 'EDACP_VERSION' ) ) {
 				define( 'EDACP_VERSION', '1.0.0' );
@@ -175,7 +178,7 @@ class ChecksTest extends WP_UnitTestCase {
 			[
 				'errors'   => 2,
 				'warnings' => 1,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_for_issues();
@@ -203,7 +206,7 @@ class ChecksTest extends WP_UnitTestCase {
 			$this->checks,
 			[
 				'posts_scanned' => 0,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_content_scanned();
@@ -228,7 +231,7 @@ class ChecksTest extends WP_UnitTestCase {
 			$this->checks,
 			[
 				'posts_scanned' => 1,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_content_scanned();
@@ -251,7 +254,7 @@ class ChecksTest extends WP_UnitTestCase {
 			$this->checks,
 			[
 				'posts_scanned' => 150,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_content_scanned();
@@ -367,7 +370,7 @@ class ChecksTest extends WP_UnitTestCase {
 			[
 				'errors'   => 1234,
 				'warnings' => 5678,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_for_issues();
@@ -389,7 +392,7 @@ class ChecksTest extends WP_UnitTestCase {
 			$this->checks,
 			[
 				'posts_scanned' => 12345,
-			] 
+			]
 		);
 
 		$result = $this->checks->test_content_scanned();
@@ -412,7 +415,7 @@ class ChecksTest extends WP_UnitTestCase {
 				'errors'        => 1,
 				'warnings'      => 1,
 				'posts_scanned' => 1,
-			] 
+			]
 		);
 
 		// Set up post types option.

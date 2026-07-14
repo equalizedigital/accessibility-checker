@@ -5,7 +5,7 @@
 
 export default {
 	id: 'img_alt_missing',
-	selector: 'img, input[type="image"]',
+	selector: 'img:not([role~="none"]):not([role~="presentation"]), input[type="image"]:not([role~="none"]):not([role~="presentation"])',
 	excludeHidden: true,
 	any: [],
 	all: [],

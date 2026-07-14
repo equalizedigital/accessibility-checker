@@ -18,13 +18,6 @@ export default {
 		// Get the tag name
 		const tagName = node.tagName.toLowerCase();
 
-		// Handle role="presentation"
-		if ( node.hasAttribute( 'role' ) && node.getAttribute( 'role' ) === 'presentation' ) {
-			// Images with role="presentation" are intentionally hidden from screen readers,
-			// so missing alt text is acceptable in this case
-			return false;
-		}
-
 		// Handle aria-hidden="true"
 		if ( node.hasAttribute( 'aria-hidden' ) && node.getAttribute( 'aria-hidden' ) === 'true' ) {
 			// Images with aria-hidden="true" are not exposed to assistive technologies,

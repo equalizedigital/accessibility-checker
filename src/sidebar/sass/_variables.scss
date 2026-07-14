@@ -1,0 +1,32 @@
+// Color variables
+$check-green: #006600;
+$warning-orange: #CF8402;
+$error-red: #970C0C;
+$info-blue: var(--wp-admin-theme-color, #3273aa);
+$info-blue-tint-lightest: color-mix(in srgb, var(--wp-admin-theme-color) 4%, #ffffff);
+$info-blue-tint-light: color-mix(in srgb, var(--wp-admin-theme-color) 8%, #ffffff);
+$info-grey: #1E1E1E;
+$subtext-gray: #595959;
+$outline-grey: #E0E0E0;
+
+// Severity level colors
+$severity-critical: #970C0C;
+$severity-high: #F49D02;
+$severity-medium: #F1C500;
+$severity-low: #015798;
+
+// Typography variables
+$sidebar-font-size-large: 0.8125rem; // 13px
+$sidebar-font-size-medium: 0.75rem; // 12px
+$sidebar-font-size-small: 0.6875rem; // 11px
+$sidebar-font-size-xsmall: 0.625rem; // 10px
+
+$modal-font-size-large: 1.625rem; // 26px
+$modal-font-size-medium: 1.25rem; // 20px
+$modal-font-size-small: 1.0625rem; // 17px
+$modal-font-size-xsmall: 0.875rem; // 14px
+
+// Component-specific typography variables
+$sidebar-h3-size: $sidebar-font-size-large;
+$sidebar-p-size: $sidebar-font-size-small;
+$sidebar-link-size: $sidebar-font-size-small;

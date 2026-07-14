@@ -279,16 +279,18 @@ class Summary_Generator {
 	 * @since 1.9.0
 	 */
 	private function calculate_content_grade() {
-		$content_post  = get_post( $this->post_id );
+		$content_post = get_post( $this->post_id );
+		if ( ! $content_post instanceof \WP_Post ) {
+			return 0;
+		}
+
 		$content       = $content_post->post_content;
 		$content       = wp_filter_nohtml_kses( $content );
 		$content       = str_replace( ']]>', ']]&gt;', $content );
 		$content_grade = 0;
 
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
-			$content_grade = floor(
-				( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content )
-			);
+			$content_grade = edac_normalize_fk_grade( ( new \DaveChild\TextStatistics\TextStatistics() )->fleschKincaidGradeLevel( $content ) );
 		}
 
 		return (int) round( $content_grade );

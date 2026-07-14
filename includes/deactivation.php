@@ -21,4 +21,7 @@ function edac_deactivation() {
 
 	// Unschedule cleanup of orphaned issues.
 	Orphaned_Issues_Cleanup::unschedule_event();
+
+	// Unschedule the daily license check cron event.
+	wp_clear_scheduled_hook( 'edac_check_license_hook' );
 }

@@ -3,12 +3,56 @@
 	"env": {
 		"browser": true,
 		"node": false,
-		"jest": true,
+		"jest": true
 	},
 	"globals": {
 		"wp": true,
 		"jQuery": true,
 		"edac_script_vars": true,
 		"ajaxurl": true
-	}
+	},
+	"overrides": [
+		{
+			"files": [
+				"src/sidebar/**/*.js",
+				"src/sidebar/**/*.jsx",
+				"src/issueModal/**/*.js",
+				"src/issueModal/**/*.jsx",
+				"src/sharedComponents/**/*.js",
+				"tests/jest/**/*.js",
+				"tests/jest/**/*.jsx"
+			],
+			"plugins": [ "react" ],
+			"parserOptions": {
+				"ecmaVersion": 2021,
+				"sourceType": "module",
+				"ecmaFeatures": {
+					"jsx": true
+				}
+			},
+			"rules": {
+				"react/jsx-uses-vars": "error",
+				"jsdoc/check-tag-names": "off"
+			}
+		},
+		{
+			"files": [
+				"tests/jest/setupTests.js",
+				"tests/jest/styleMock.js",
+				"tests/jest/jest.config.js",
+				"tests/jest/babel.config.js"
+			],
+			"env": {
+				"node": true,
+				"browser": true
+			},
+			"globals": {
+				"Buffer": "readonly",
+				"globalThis": "readonly"
+			},
+			"rules": {
+				"no-redeclare": "off"
+			}
+		}
+	]
 }

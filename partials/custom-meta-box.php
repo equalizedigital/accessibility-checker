@@ -25,7 +25,7 @@ $edac_is_virtual_page = edac_is_virtual_page( get_the_ID() );
 					id="edac-summary-tab"
 					class="active"
 				>
-					<?php esc_html_e( 'Summary', 'accessibility-checker' ); ?>
+					<?php esc_html_e( 'Accessibility Status', 'accessibility-checker' ); ?>
 				</button>
 			</li>
 			<li class="edac-tab">
@@ -35,7 +35,7 @@ $edac_is_virtual_page = edac_is_virtual_page( get_the_ID() );
 					aria-controls="edac-details-panel"
 					id="edac-details-tab"
 				>
-					<?php esc_html_e( 'Details', 'accessibility-checker' ); ?>
+					<?php esc_html_e( 'Accessibility Analysis', 'accessibility-checker' ); ?>
 				</button>
 			</li>
 			<li class="edac-tab" <?php echo $edac_is_virtual_page ? 'style="display: none;"' : ''; ?>>
@@ -45,7 +45,7 @@ $edac_is_virtual_page = edac_is_virtual_page( get_the_ID() );
 					aria-controls="edac-readability-panel"
 					id="edac-readability-tab"
 				>
-					<?php esc_html_e( 'Readability', 'accessibility-checker' ); ?>
+					<?php esc_html_e( 'Readability Analysis', 'accessibility-checker' ); ?>
 				</button>
 			</li>
 		</ul>
