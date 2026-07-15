@@ -1,13 +1,14 @@
 name: CS
 
 on:
-  # Run on all pushes (except to main) and on all pull requests.
+  # Run on direct pushes to integration branches and on all pull requests.
   push:
     branches:
-      - '*'
+      - develop
+      - main
+      - master
+      - trunk
   pull_request:
-    branches:
-      - '*'
   # Allow manually triggering the workflow.
   workflow_dispatch:
 

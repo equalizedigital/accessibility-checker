@@ -1,8 +1,13 @@
 name: Test
 
 on:
-  # Run on pushes to select branches and on all pull requests.
+  # Run on direct pushes to integration branches and on all pull requests.
   push:
+    branches:
+      - develop
+      - main
+      - master
+      - trunk
   pull_request:
   # Allow manually triggering the workflow.
   workflow_dispatch:
@@ -87,6 +92,18 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Cache WordPress test library
+        if: matrix.wp_version != 'latest'
+        uses: actions/cache@v4
+        with:
+          path: |
+            /tmp/wordpress-tests-lib
+            /tmp/wordpress
+          key: ${{ runner.os }}-wordpress-${{ matrix.wp_version }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-wordpress-${{ matrix.wp_version }}-
+
       # Some images won't have svn available. Install it if that's the case.
       - name: Install SVN
         run: |
