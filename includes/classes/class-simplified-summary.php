@@ -89,7 +89,10 @@ class Simplified_Summary {
 		if (
 			! $manually_placed &&
 			! empty( $_wp_current_template_content ) &&
-			has_block( 'edac/simplified-summary', $_wp_current_template_content )
+			(
+				has_block( 'edac/simplified-summary', $_wp_current_template_content ) ||
+				has_shortcode( $_wp_current_template_content, 'edac_simplified_summary' )
+			)
 		) {
 			$manually_placed = true;
 		}

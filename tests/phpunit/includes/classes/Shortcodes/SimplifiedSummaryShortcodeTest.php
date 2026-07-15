@@ -69,6 +69,22 @@ class SimplifiedSummaryShortcodeTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Tests that the shortcode does not expose summaries of non-public posts.
+	 *
+	 * @return void
+	 */
+	public function test_shortcode_does_not_render_non_public_posts() {
+		$draft_id = self::factory()->post->create( [ 'post_status' => 'draft' ] );
+		update_post_meta( $draft_id, '_edac_simplified_summary', 'Draft summary.' );
+
+		$private_id = self::factory()->post->create( [ 'post_status' => 'private' ] );
+		update_post_meta( $private_id, '_edac_simplified_summary', 'Private summary.' );
+
+		$this->assertSame( '', do_shortcode( '[edac_simplified_summary post_id="' . $draft_id . '"]' ) );
+		$this->assertSame( '', do_shortcode( '[edac_simplified_summary post_id="' . $private_id . '"]' ) );
+	}
+
+	/**
 	 * Tests that the shortcode returns an empty string outside the loop with no post_id.
 	 *
 	 * @return void

@@ -35,6 +35,19 @@ class SimplifiedSummaryTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Clean up the test fixture.
+	 *
+	 * The core test framework does not reset the block template global.
+	 *
+	 * @return void
+	 */
+	public function tearDown(): void {
+		global $_wp_current_template_content;
+		$_wp_current_template_content = null;
+		parent::tearDown();
+	}
+
+	/**
 	 * Tests output of simplified_summary_markup with a summary.
 	 *
 	 * Verifies that the correct HTML markup is returned when a post
@@ -136,7 +149,23 @@ class SimplifiedSummaryTest extends WP_UnitTestCase {
 
 		$output = $this->simplified_summary->output_simplified_summary( 'Post content.' );
 
-		$_wp_current_template_content = null;
+		$this->assertStringNotContainsString( 'edac-simplified-summary', $output );
+	}
+
+	/**
+	 * Tests that auto-insertion is suppressed when the shortcode is in the current block theme template.
+	 *
+	 * Covers a core Shortcode block containing [edac_simplified_summary] in an FSE template.
+	 *
+	 * @return void
+	 */
+	public function test_output_simplified_summary_suppressed_when_shortcode_in_template() {
+		$this->create_post_in_loop();
+
+		global $_wp_current_template_content;
+		$_wp_current_template_content = '<!-- wp:shortcode -->[edac_simplified_summary]<!-- /wp:shortcode --><!-- wp:post-content /-->';
+
+		$output = $this->simplified_summary->output_simplified_summary( 'Post content.' );
 
 		$this->assertStringNotContainsString( 'edac-simplified-summary', $output );
 	}

@@ -106,13 +106,13 @@ class SimplifiedSummaryBlock {
 	 *
 	 * @since 1.xx.x
 	 *
-	 * @param array    $attributes The block attributes.
-	 * @param string   $content    The block content.
-	 * @param WP_Block $block      The block instance.
+	 * @param array         $attributes The block attributes.
+	 * @param string        $content    The block content.
+	 * @param WP_Block|null $block      The block instance.
 	 * @return string
 	 */
-	public function render( $attributes, $content, $block ) {
-		$post_id = isset( $block->context['postId'] )
+	public function render( $attributes, $content, $block = null ) {
+		$post_id = ( $block instanceof WP_Block && isset( $block->context['postId'] ) )
 			? (int) $block->context['postId']
 			: (int) get_the_ID();
 
@@ -120,6 +120,19 @@ class SimplifiedSummaryBlock {
 			return '';
 		}
 
-		return ( new Simplified_Summary() )->simplified_summary_markup( $post_id );
+		$markup = ( new Simplified_Summary() )->simplified_summary_markup( $post_id );
+
+		if ( ! $markup ) {
+			return '';
+		}
+
+		// The wrapper carries the block supports output (margin classes/styles).
+		// get_block_wrapper_attributes() requires an active block render; guard
+		// against direct calls to this callback outside of one.
+		$wrapper_attributes = null !== \WP_Block_Supports::$block_to_render
+			? get_block_wrapper_attributes()
+			: 'class="wp-block-edac-simplified-summary"';
+
+		return sprintf( '<div %s>%s</div>', $wrapper_attributes, $markup );
 	}
 }

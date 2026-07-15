@@ -130,6 +130,7 @@ class SimplifiedSummaryBlockTest extends WP_UnitTestCase {
 
 		$output = do_blocks( '<!-- wp:edac/simplified-summary /-->' );
 		$this->assertStringContainsString( 'Do blocks summary.', $output );
+		$this->assertStringContainsString( 'wp-block-edac-simplified-summary', $output );
 	}
 
 	/**
