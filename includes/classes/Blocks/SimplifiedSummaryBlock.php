@@ -83,6 +83,18 @@ class SimplifiedSummaryBlock {
 			plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages'
 		);
 
+		wp_localize_script(
+			self::SCRIPT_HANDLE,
+			'edacSimplifiedSummaryBlock',
+			[
+				/** This filter is documented in includes/classes/class-simplified-summary.php */
+				'heading' => apply_filters(
+					'edac_filter_simplified_summary_heading',
+					esc_html__( 'Simplified Summary', 'accessibility-checker' )
+				),
+			]
+		);
+
 		wp_register_style(
 			self::STYLE_HANDLE,
 			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/simplifiedSummaryBlock.css',

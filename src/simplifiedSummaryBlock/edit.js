@@ -6,9 +6,9 @@ import { __ } from '@wordpress/i18n';
  *
  * The summary is authored in the Accessibility Checker sidebar panel, not in
  * the block, so the editor shows a static placeholder mirroring the front end
- * markup shape. The heading can be changed on the front end via the
- * edac_filter_simplified_summary_heading PHP filter, which cannot run here;
- * the default heading is an acceptable preview approximation.
+ * markup shape. The heading is localized server-side with the
+ * edac_filter_simplified_summary_heading filter applied, so a custom heading
+ * (a pro setting) previews exactly as it renders on the front end.
  *
  * @return {Object} The block edit component.
  */
@@ -17,9 +17,13 @@ const Edit = () => {
 		className: 'edac-simplified-summary',
 	} );
 
+	const heading =
+		window.edacSimplifiedSummaryBlock?.heading ||
+		__( 'Simplified Summary', 'accessibility-checker' );
+
 	return (
 		<div { ...blockProps }>
-			<h2>{ __( 'Simplified Summary', 'accessibility-checker' ) }</h2>
+			<h2>{ heading }</h2>
 			<p className="edac-simplified-summary-block__placeholder">
 				{ __(
 					'The simplified summary for this post will display here. Write the summary in the Accessibility Checker sidebar panel.',

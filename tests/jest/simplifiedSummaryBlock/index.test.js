@@ -37,12 +37,23 @@ describe( 'simplified summary block registration', () => {
 } );
 
 describe( 'Edit', () => {
-	test( 'renders the heading and placeholder text', () => {
+	afterEach( () => {
+		delete window.edacSimplifiedSummaryBlock;
+	} );
+
+	test( 'renders the default heading and placeholder text', () => {
 		const { container, unmount } = renderReact( <Edit /> );
 		expect( container.querySelector( 'h2' ).textContent ).toBe( 'Simplified Summary' );
 		expect(
 			container.querySelector( '.edac-simplified-summary-block__placeholder' ).textContent,
 		).toContain( 'will display here' );
+		unmount();
+	} );
+
+	test( 'renders the localized heading when provided', () => {
+		window.edacSimplifiedSummaryBlock = { heading: 'TL;DR' };
+		const { container, unmount } = renderReact( <Edit /> );
+		expect( container.querySelector( 'h2' ).textContent ).toBe( 'TL;DR' );
 		unmount();
 	} );
 
