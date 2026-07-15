@@ -26,7 +26,7 @@ const Edit = () => {
 			<h2>{ heading }</h2>
 			<p className="edac-simplified-summary-block__placeholder">
 				{ __(
-					'The simplified summary for this post will display here. Write the summary in the Accessibility Checker sidebar panel.',
+					'The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box.',
 					'accessibility-checker'
 				) }
 			</p>
