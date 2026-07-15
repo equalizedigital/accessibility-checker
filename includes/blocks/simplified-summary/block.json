@@ -4,7 +4,7 @@
 	"name": "edac/simplified-summary",
 	"title": "Simplified Summary",
 	"description": "Displays this post's simplified summary from Accessibility Checker.",
-	"category": "widgets",
+	"category": "accessibility-checker",
 	"icon": "universal-access-alt",
 	"keywords": [ "accessibility", "summary", "readability" ],
 	"textdomain": "accessibility-checker",

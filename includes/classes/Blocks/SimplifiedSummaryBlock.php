@@ -43,6 +43,13 @@ class SimplifiedSummaryBlock {
 	const STYLE_HANDLE = 'edac-simplified-summary-block-editor';
 
 	/**
+	 * The block category slug.
+	 *
+	 * @var string
+	 */
+	const CATEGORY = 'accessibility-checker';
+
+	/**
 	 * Initialize WordPress hooks.
 	 *
 	 * @since 1.xx.x
@@ -51,6 +58,31 @@ class SimplifiedSummaryBlock {
 	 */
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'register' ] );
+		add_filter( 'block_categories_all', [ $this, 'register_block_category' ] );
+	}
+
+	/**
+	 * Register the Accessibility Checker block category.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param array $categories The registered block categories.
+	 * @return array
+	 */
+	public function register_block_category( $categories ) {
+		foreach ( $categories as $category ) {
+			if ( self::CATEGORY === $category['slug'] ) {
+				return $categories;
+			}
+		}
+
+		$categories[] = [
+			'slug'  => self::CATEGORY,
+			'title' => esc_html__( 'Accessibility Checker', 'accessibility-checker' ),
+			'icon'  => null,
+		];
+
+		return $categories;
 	}
 
 	/**

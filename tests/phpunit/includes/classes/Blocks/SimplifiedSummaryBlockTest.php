@@ -48,6 +48,23 @@ class SimplifiedSummaryBlockTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Tests that the block category is registered once and the block uses it.
+	 *
+	 * @return void
+	 */
+	public function test_register_block_category() {
+		$categories = $this->block->register_block_category( [] );
+		$this->assertContains( SimplifiedSummaryBlock::CATEGORY, wp_list_pluck( $categories, 'slug' ) );
+
+		// Running the filter again must not duplicate the category.
+		$categories = $this->block->register_block_category( $categories );
+		$this->assertCount( 1, $categories );
+
+		$block_type = WP_Block_Type_Registry::get_instance()->get_registered( SimplifiedSummaryBlock::BLOCK_NAME );
+		$this->assertSame( SimplifiedSummaryBlock::CATEGORY, $block_type->category );
+	}
+
+	/**
 	 * Tests that render uses the postId block context.
 	 *
 	 * @return void
