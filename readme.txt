@@ -168,6 +168,7 @@ Current settings in the free plugin include:
 * Control if you want scans to run on both pages and posts.
 * Control when the plugin prompts for a simplified summary.
 * Choose the position of the simplified summary above content, below content, or manually in a template.
+* Place the simplified summary anywhere with the Simplified Summary block or the `[edac_simplified_summary]` shortcode (accepts an optional `post_id` attribute); manual placement automatically disables the automatic insertion for that post.
 * Add footer accessibility statement.
 * Choose positioning for the front-end Accessibility Checker.
 * Show or hide the Accessibility Checker metabox in the block editor.

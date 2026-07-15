@@ -43,6 +43,10 @@ module.exports = {
 			'./src/srOnlyFormat/index.js',
 			'./src/srOnlyFormat/sass/sr-only-format.scss',
 		],
+		simplifiedSummaryBlock: [
+			'./src/simplifiedSummaryBlock/index.js',
+			'./src/simplifiedSummaryBlock/sass/simplified-summary-block.scss',
+		],
 		sharedComponents: {
 			import: './src/sharedComponents/index.js',
 			library: {
@@ -126,6 +130,7 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/blocks': [ 'wp', 'blocks' ],
 		'@wordpress/plugins': [ 'wp', 'plugins' ],
 		'@wordpress/editor': [ 'wp', 'editor' ],
 		'@wordpress/edit-post': [ 'wp', 'editPost' ],
