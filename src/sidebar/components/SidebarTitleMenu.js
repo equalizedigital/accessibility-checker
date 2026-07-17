@@ -1,4 +1,5 @@
 import { __ } from '@wordpress/i18n';
+import { speak } from '@wordpress/a11y';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import apiFetch from '@wordpress/api-fetch';
 import { useRef, useCallback } from '@wordpress/element';
@@ -34,10 +35,25 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 		document.dispatchEvent( new CustomEvent( 'edac-scan-requested', { detail: { success: true } } ) );
 	};
 
-	const handleRefresh = () => {
-		if ( postId ) {
-			refetchData( postId );
+	const handleRefresh = async () => {
+		if ( ! postId ) {
+			return;
 		}
+
+		let refreshSucceeded = false;
+		try {
+			refreshSucceeded = await refetchData( postId );
+		} catch {
+			// The store normally resolves failures, but keep the user informed if that changes.
+			refreshSucceeded = false;
+		}
+
+		if ( refreshSucceeded ) {
+			speak( __( 'Accessibility analysis refreshed.', 'accessibility-checker' ), 'polite' );
+			return;
+		}
+
+		speak( __( 'Accessibility analysis could not be refreshed.', 'accessibility-checker' ), 'assertive' );
 	};
 
 	const handleClearIssues = async () => {
@@ -113,4 +129,3 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 };
 
 export default SidebarTitleMenu;
-
