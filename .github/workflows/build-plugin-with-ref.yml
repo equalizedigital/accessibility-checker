@@ -106,7 +106,7 @@ jobs:
 
       - name: Install Composer dependencies
         run: |
-          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --prefer-offline --no-progress --no-interaction; else echo "No composer.json"; fi
+          if [ -f composer.json ]; then composer install --no-dev --prefer-dist --no-progress --no-interaction; else echo "No composer.json"; fi
 
       - name: Install npm dependencies
         if: steps.cache-node-modules.outputs.cache-hit != 'true' && hashFiles('package.json') != ''
