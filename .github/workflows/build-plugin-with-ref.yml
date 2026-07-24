@@ -255,20 +255,8 @@ jobs:
           path: ${{ env.REF_ZIP_FOLDER }}
           if-no-files-found: error
 
-      # Playground links are built by pattonwebz/wordpress-playground-action, which
-      # resolves the uploaded artifact to a public nightly.link URL and assembles the
-      # blueprint.
-      #
-      # Only the primary build gets a link. Not run on `release`: releases carry the
-      # real zip as a release asset, and nightly.link only serves Actions artifacts.
-      # The ref (woocommerce) build gets no link either - `need_ref_build` is never
-      # true for a pull_request, so a ref link could only ever have surfaced in a
-      # manual-dispatch job log, never in the PR comment.
-      #
-      # plugin-slug is set explicitly rather than inferred: the action strips a
-      # version/hash suffix (accessibility-checker-1.47.0-123-abc1234 -> accessibility-checker)
-      # but would leave the whole "…-1.47.0-ref-woocommerce-abc1234" shape intact,
-      # so pinning it keeps the activation path correct regardless of artifact naming.
+      # Skipped on release: nightly.link serves Actions artifacts, not release assets.
+      # plugin-slug is pinned so the activation path never depends on slug inference.
       - name: Playground link (primary build)
         id: playground_primary
         if: steps.setref.outputs.skip_primary != 'true' && github.event_name != 'release'
