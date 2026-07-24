@@ -119,18 +119,23 @@ jobs:
           HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           VERSION=$(grep "Version:" accessibility-checker.php | head -1 | sed 's/.*Version:[[:space:]]*\([^ ]*\).*/\1/')
-          SHORT_SHA=$(git rev-parse --short HEAD)
+
+          # On a pull_request, actions/checkout builds the ephemeral
+          # refs/pull/N/merge commit, so `git rev-parse HEAD` is a SHA that does
+          # not appear in the PR's commit list and means nothing to a reviewer.
+          # Use head.sha there so the artifact filename, the build comment and
+          # the PR's own commit list all agree on one SHA.
+          if [ -n "${HEAD_SHA}" ]; then
+            SHORT_SHA="${HEAD_SHA:0:8}"
+          else
+            SHORT_SHA=$(git rev-parse --short=8 HEAD)
+          fi
+
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "short_sha=$SHORT_SHA" >> $GITHUB_OUTPUT
+          echo "built_at=$(date -u +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_OUTPUT
           echo "Plugin version: $VERSION"
           echo "Short commit hash: $SHORT_SHA"
-
-          # SHORT_SHA above is the ephemeral refs/pull/N/merge commit that
-          # actions/checkout builds for a pull_request event - it is not in the
-          # PR's commit list, so it means nothing to a reviewer. The PR comment
-          # shows head.sha instead, which is the commit they actually see.
-          echo "pr_short_sha=${HEAD_SHA:0:8}" >> $GITHUB_OUTPUT
-          echo "built_at=$(date -u +'%Y-%m-%d %H:%M UTC')" >> $GITHUB_OUTPUT
 
       - name: Verify EDAC_REF_PARAM is empty before first build
         if: steps.setref.outputs.skip_primary != 'true'
@@ -283,7 +288,7 @@ jobs:
             - **Workflow run**: [View logs]({run_url})
             - **Playground**: [Open with plugin preinstalled]({playground_url})
 
-            <sub>Built from [`${{ steps.version.outputs.pr_short_sha }}`](${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/commits/${{ github.event.pull_request.head.sha }}) · ${{ steps.version.outputs.built_at }}</sub>
+            <sub>Built from [`${{ steps.version.outputs.short_sha }}`](${{ github.server_url }}/${{ github.repository }}/pull/${{ github.event.pull_request.number }}/commits/${{ github.event.pull_request.head.sha }}) · ${{ steps.version.outputs.built_at }}</sub>
 
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
