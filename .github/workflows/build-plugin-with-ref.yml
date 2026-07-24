@@ -286,8 +286,8 @@ jobs:
 
       # Skipped on release: nightly.link serves Actions artifacts, not release assets.
       # plugin-slug is pinned so the activation path never depends on slug inference.
-      - name: Playground link (primary build)
-        id: playground_primary
+      - name: Playground link
+        id: playground
         if: steps.setref.outputs.skip_primary != 'true' && github.event_name != 'release'
         uses: pattonwebz/wordpress-playground-action@v0
         with:
@@ -341,7 +341,7 @@ jobs:
 
       - name: Summary
         env:
-          PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
+          PRIMARY_PLAYGROUND_URL: ${{ steps.playground.outputs.playground-url }}
           MODE: ${{ steps.setref.outputs.mode }}
           SKIP_PRIMARY: ${{ steps.setref.outputs.skip_primary }}
           PRIMARY_ZIP_PATH: ${{ env.PRIMARY_ZIP_PATH }}
