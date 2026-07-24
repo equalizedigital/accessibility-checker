@@ -66,13 +66,23 @@ jobs:
           fi
 
       - name: Show selected mode/ref
+        env:
+          # head_ref is a branch name chosen by whoever opened the PR, and git
+          # permits characters like " and ; in it - so spliced into the script
+          # text it is executable. This is the actionlint/zizmor
+          # template-injection warning this workflow has carried for a while.
+          MODE: ${{ steps.setref.outputs.mode }}
+          HEAD_REF: ${{ github.head_ref }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          REF_PARAM: ${{ steps.setref.outputs.ref_param }}
         run: |
           echo "Triggered on: $GITHUB_EVENT_NAME"
-          echo "Mode: ${{ steps.setref.outputs.mode }}"
-          echo "Head ref: ${{ github.head_ref }}"
-          echo "PR number: ${{ github.event.pull_request.number }}"
-          echo "Release tag: ${{ github.event.release.tag_name }}"
-          echo "Ref param: ${{ steps.setref.outputs.ref_param }}"
+          echo "Mode: ${MODE}"
+          echo "Head ref: ${HEAD_REF}"
+          echo "PR number: ${PR_NUMBER}"
+          echo "Release tag: ${RELEASE_TAG}"
+          echo "Ref param: ${REF_PARAM}"
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -144,6 +154,14 @@ jobs:
 
       - name: Build primary dist zip (empty ref)
         if: steps.setref.outputs.skip_primary != 'true'
+        env:
+          # VERSION comes from the plugin's own `Version:` header, which is part
+          # of the PR diff and so attacker-controlled on a fork PR. A ${{ }}
+          # splice lands in the script text before bash parses it, making a
+          # crafted version string executable; via env: it stays inert data.
+          VERSION: ${{ steps.version.outputs.version }}
+          SHORT_SHA: ${{ steps.version.outputs.short_sha }}
+          PR_NUMBER: ${{ github.event.pull_request.number }}
         run: |
           echo "Building primary zip with empty ref..."
           npm run dist
@@ -158,12 +176,9 @@ jobs:
           mkdir -p builds
 
           # Construct the new filename based on trigger mode
-          VERSION="${{ steps.version.outputs.version }}"
-          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
-
           if [ "${{ github.event_name }}" = "pull_request" ]; then
             # PR: accessibility-checker-{version}-{prnumber}-{hash}.zip
-            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${{ github.event.pull_request.number }}-${SHORT_SHA}.zip"
+            PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${PR_NUMBER}-${SHORT_SHA}.zip"
           elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             # Manual: accessibility-checker-{version}-{hash}.zip
             PRIMARY_ZIP_NAME="accessibility-checker-${VERSION}-${SHORT_SHA}.zip"
@@ -229,6 +244,10 @@ jobs:
 
       - name: Build ref dist zip (custom ref)
         if: steps.check_ref.outputs.need_ref_build == 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+          SHORT_SHA: ${{ steps.version.outputs.short_sha }}
+          REF_VALUE: ${{ steps.setref.outputs.ref_param }}
         run: |
           echo "Building ref zip with custom ref value..."
           npm run dist
@@ -241,10 +260,6 @@ jobs:
             exit 1
           fi
           mkdir -p builds
-
-          VERSION="${{ steps.version.outputs.version }}"
-          SHORT_SHA="${{ steps.version.outputs.short_sha }}"
-          REF_VALUE="${{ steps.setref.outputs.ref_param }}"
 
           # Ref build naming: accessibility-checker-{version}-ref-{refvalue}-{hash}.zip
           REF_ZIP_NAME="accessibility-checker-${VERSION}-ref-${REF_VALUE}-${SHORT_SHA}.zip"
@@ -329,10 +344,13 @@ jobs:
           PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
           MODE: ${{ steps.setref.outputs.mode }}
           SKIP_PRIMARY: ${{ steps.setref.outputs.skip_primary }}
+          PRIMARY_ZIP_PATH: ${{ env.PRIMARY_ZIP_PATH }}
+          REF_ZIP_PATH: ${{ env.REF_ZIP_PATH }}
+          REF_PARAM: ${{ steps.setref.outputs.ref_param }}
         run: |
           echo "=== Build Summary ==="
           echo "Mode: ${{ steps.setref.outputs.mode }}"
-          echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
+          echo "Primary zip (empty ref): ${PRIMARY_ZIP_PATH}"
           if [ -n "${PRIMARY_PLAYGROUND_URL:-}" ]; then
             echo "Playground (primary): ${PRIMARY_PLAYGROUND_URL}"
           elif [ "${MODE}" = "release" ]; then
@@ -343,7 +361,7 @@ jobs:
             echo "Playground (primary): not built for this run"
           fi
           if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
-            echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
+            echo "Ref zip (ref=${REF_PARAM}): ${REF_ZIP_PATH}"
           else
             echo "Ref zip: Not built"
           fi
