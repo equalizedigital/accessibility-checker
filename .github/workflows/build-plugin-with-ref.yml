@@ -257,28 +257,24 @@ jobs:
 
       # Playground links are built by pattonwebz/wordpress-playground-action, which
       # resolves the uploaded artifact to a public nightly.link URL and assembles the
-      # blueprint. Not run on `release`: releases carry the real zip as a release asset,
-      # and nightly.link only serves Actions artifacts.
+      # blueprint.
       #
-      # plugin-slug is set explicitly rather than inferred: the action can strip a
+      # Only the primary build gets a link. Not run on `release`: releases carry the
+      # real zip as a release asset, and nightly.link only serves Actions artifacts.
+      # The ref (woocommerce) build gets no link either - `need_ref_build` is never
+      # true for a pull_request, so a ref link could only ever have surfaced in a
+      # manual-dispatch job log, never in the PR comment.
+      #
+      # plugin-slug is set explicitly rather than inferred: the action strips a
       # version/hash suffix (accessibility-checker-1.47.0-123-abc1234 -> accessibility-checker)
-      # but not the ref build's shape (…-1.47.0-ref-woocommerce-abc1234), which would
-      # otherwise yield a broken activation path.
+      # but would leave the whole "…-1.47.0-ref-woocommerce-abc1234" shape intact,
+      # so pinning it keeps the activation path correct regardless of artifact naming.
       - name: Playground link (primary build)
         id: playground_primary
         if: steps.setref.outputs.skip_primary != 'true' && github.event_name != 'release'
         uses: pattonwebz/wordpress-playground-action@v0
         with:
           artifact-name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
-          plugin-slug: accessibility-checker
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Playground link (ref build)
-        id: playground_ref
-        if: steps.check_ref.outputs.need_ref_build == 'true' && github.event_name != 'release'
-        uses: pattonwebz/wordpress-playground-action@v0
-        with:
-          artifact-name: ${{ env.REF_ZIP_NAME_NO_EXT }}
           plugin-slug: accessibility-checker
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
@@ -300,7 +296,6 @@ jobs:
           # Routed through env: rather than interpolated into the script body - a
           # ${{ }} substitution lands in the JS source text before Node parses it.
           PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
-          REF_PLAYGROUND_URL: ${{ steps.playground_ref.outputs.playground-url }}
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
@@ -325,12 +320,7 @@ jobs:
               ? `\n- **Playground (primary)**: [Open with plugin preinstalled](${primaryPlaygroundUrl})`
               : `\n- **Playground (primary)**: Not available for this run.`;
 
-            const refPlaygroundUrl = process.env.REF_PLAYGROUND_URL;
-            const refPlaygroundLine = refPlaygroundUrl
-              ? `\n- **Playground (ref)**: [Open with plugin preinstalled](${refPlaygroundUrl})`
-              : '';
-
-            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})${primaryPlaygroundLine}${refPlaygroundLine}`;
+            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})${primaryPlaygroundLine}`;
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -361,7 +351,6 @@ jobs:
       - name: Summary
         env:
           PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
-          REF_PLAYGROUND_URL: ${{ steps.playground_ref.outputs.playground-url }}
         run: |
           echo "=== Build Summary ==="
           echo "Mode: ${{ steps.setref.outputs.mode }}"
@@ -373,14 +362,8 @@ jobs:
           fi
           if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
             echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
-            if [ -n "${REF_PLAYGROUND_URL:-}" ]; then
-              echo "Playground (ref): ${REF_PLAYGROUND_URL}"
-            else
-              echo "Playground (ref): not built (release builds ship the zip as a release asset)"
-            fi
           else
             echo "Ref zip: Not built"
-            echo "Playground (ref): Not built"
           fi
           if [ "${{ github.event_name }}" = "release" ]; then
             echo "Uploaded to release: ${{ github.event.release.html_url }}"
