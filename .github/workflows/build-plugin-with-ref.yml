@@ -268,11 +268,11 @@ jobs:
           post-comment: ${{ github.event_name == 'pull_request' }}
           pr-number: ${{ github.event.pull_request.number }}
           comment-template: |
-            ✅ Accessibility Checker build (primary only)
+            ✅ Accessibility Checker build
 
             - **Artifact**: [Download {artifact_name}.zip]({artifact_url})
             - **Workflow run**: [View logs]({run_url})
-            - **Playground (primary)**: [Open with plugin preinstalled]({playground_url})
+            - **Playground**: [Open with plugin preinstalled]({playground_url})
 
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
