@@ -265,6 +265,14 @@ jobs:
           artifact-name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
           plugin-slug: accessibility-checker
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          post-comment: ${{ github.event_name == 'pull_request' }}
+          pr-number: ${{ github.event.pull_request.number }}
+          comment-template: |
+            ✅ Accessibility Checker build (primary only)
+
+            - **Artifact**: [Download {artifact_name}.zip]({artifact_url})
+            - **Workflow run**: [View logs]({run_url})
+            - **Playground (primary)**: [Open with plugin preinstalled]({playground_url})
 
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
@@ -276,43 +284,6 @@ jobs:
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Comment on PR with primary build details
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        env:
-          PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
-        with:
-          script: |
-            const prNumber = context.payload.pull_request.number;
-            const runId = context.runId;
-            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}`;
-            const primaryName = process.env.PRIMARY_ZIP_NAME_NO_EXT;
-
-            // Get the artifact ID for the download URL
-            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              run_id: runId,
-            });
-
-            const artifact = artifacts.data.artifacts.find(a => a.name === primaryName);
-            const downloadUrl = artifact
-              ? `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${runId}/artifacts/${artifact.id}`
-              : runUrl;
-
-            const primaryPlaygroundUrl = process.env.PRIMARY_PLAYGROUND_URL;
-            const primaryPlaygroundLine = primaryPlaygroundUrl
-              ? `\n- **Playground (primary)**: [Open with plugin preinstalled](${primaryPlaygroundUrl})`
-              : `\n- **Playground (primary)**: Not available for this run.`;
-
-            const body = `✅ Accessibility Checker build (primary only)\n\n- **Artifact**: [Download ${primaryName}.zip](${downloadUrl})\n- **Workflow run**: [View logs](${runUrl})${primaryPlaygroundLine}`;
-            await github.rest.issues.createComment({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-              body,
-            });
 
       - name: Remove triggering label from PR
         if: github.event_name == 'pull_request'
