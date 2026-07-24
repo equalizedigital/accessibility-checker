@@ -302,7 +302,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Remove triggering label from PR
-        if: github.event_name == 'pull_request'
+        # always(): a failed build must still drop the label. Re-adding a label
+        # that is already present emits no `labeled` event, so leaving it on
+        # would make the trigger dead until someone removed it by hand.
+        if: always() && github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
