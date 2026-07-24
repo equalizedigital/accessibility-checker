@@ -351,14 +351,20 @@ jobs:
       - name: Summary
         env:
           PRIMARY_PLAYGROUND_URL: ${{ steps.playground_primary.outputs.playground-url }}
+          MODE: ${{ steps.setref.outputs.mode }}
+          SKIP_PRIMARY: ${{ steps.setref.outputs.skip_primary }}
         run: |
           echo "=== Build Summary ==="
           echo "Mode: ${{ steps.setref.outputs.mode }}"
           echo "Primary zip (empty ref): ${{ env.PRIMARY_ZIP_PATH }}"
           if [ -n "${PRIMARY_PLAYGROUND_URL:-}" ]; then
             echo "Playground (primary): ${PRIMARY_PLAYGROUND_URL}"
+          elif [ "${MODE}" = "release" ]; then
+            echo "Playground (primary): not built (releases ship the zip as a release asset)"
+          elif [ "${SKIP_PRIMARY}" = "true" ]; then
+            echo "Playground (primary): not built (this dispatch passed a ref param, so only the ref zip was built)"
           else
-            echo "Playground (primary): not built (release builds ship the zip as a release asset)"
+            echo "Playground (primary): not built for this run"
           fi
           if [ "${{ steps.check_ref.outputs.need_ref_build }}" = "true" ]; then
             echo "Ref zip (ref=${{ steps.setref.outputs.ref_param }}): ${{ env.REF_ZIP_PATH }}"
