@@ -25,16 +25,6 @@ jobs:
         )
       )
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql:5.7
-        env:
-          MYSQL_ROOT_PASSWORD: root
-          MYSQL_DATABASE: wordpress
-        ports:
-          - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -60,57 +50,34 @@ jobs:
       - name: Build plugin (dotorg dist)
         run: npm run dist:dotorg
 
-      - name: Install PHP and required extensions
-        run: |
-          sudo apt-get update && sudo apt-get install -y php php-mysql php-xml php-curl
-          echo "xdebug.max_nesting_level=1024" | sudo tee -a /etc/php/$(php -r 'echo PHP_MAJOR_VERSION.".".PHP_MINOR_VERSION;')/cli/conf.d/20-xdebug.ini
+      # `wp i18n make-pot` is static analysis over the source tree, so it needs
+      # neither a database nor an installed WordPress.
+      - name: Set up PHP with wp-cli
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: wp-cli
+          coverage: none
 
-      - name: Download wp-cli
-        run: |
-          curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-          chmod +x wp-cli.phar
-          sudo mv wp-cli.phar /usr/local/bin/wp
-
-      - name: Download and configure WordPress
-        run: |
-          curl -O https://wordpress.org/latest.tar.gz
-          tar -xzf latest.tar.gz
-          cp -r dist/accessibility-checker wordpress/wp-content/plugins/accessibility-checker
-          cp wordpress/wp-config-sample.php wordpress/wp-config.php
-          sed -i \
-            -e "s/database_name_here/wordpress/" \
-            -e "s/username_here/root/" \
-            -e "s/password_here/root/" \
-            -e "s/'DB_HOST', 'localhost'/'DB_HOST', '127.0.0.1:3306'/" \
-            wordpress/wp-config.php
-          echo "define('FS_METHOD', 'direct');" >> wordpress/wp-config.php
-
-      - name: Wait for MySQL to be ready
-        run: |
-          for i in {1..30}; do
-            if mysqladmin ping -h127.0.0.1 -uroot -proot --silent; then
-              break
-            fi
-            sleep 2
-          done
-
-      - name: Install WordPress
-        run: |
-          cd wordpress
-          wp core install --url=localhost --title=Test --admin_user=admin --admin_password=admin --admin_email=admin@example.com --skip-email --allow-root
-
+      # make-pot writes over the committed copy in dist/, which is also the
+      # baseline the next step diffs against, so that copy is stashed first.
+      # The source argument stays `.` (the plugin root): make-pot resolves its
+      # `#:` references against that, not against the working directory.
       - name: Generate POT file
         run: |
-          cd wordpress/wp-content/plugins/accessibility-checker
-          wp i18n make-pot . ./languages/accessibility-checker.pot --allow-root
+          cd dist/accessibility-checker
+          if [ -f languages/accessibility-checker.pot ]; then
+            cp languages/accessibility-checker.pot "${RUNNER_TEMP}/accessibility-checker.pot.baseline"
+          fi
+          wp i18n make-pot . languages/accessibility-checker.pot
 
       - name: Check if POT file changed (ignoring some headers)
         id: pot_diff
         run: |
-          if [ -f wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ] && [ -f dist/accessibility-checker/languages/accessibility-checker.pot ]; then
+          if [ -f dist/accessibility-checker/languages/accessibility-checker.pot ] && [ -f "${RUNNER_TEMP}/accessibility-checker.pot.baseline" ]; then
             diff_output=$(diff \
-              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot) \
-              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' dist/accessibility-checker/languages/accessibility-checker.pot) || true)
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' dist/accessibility-checker/languages/accessibility-checker.pot) \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' "${RUNNER_TEMP}/accessibility-checker.pot.baseline") || true)
             if [ -n "$diff_output" ]; then
               echo "pot_changed=true" >> $GITHUB_OUTPUT
             else
@@ -137,7 +104,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: accessibility-checker-i18n
-          path: wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot
+          path: dist/accessibility-checker/languages/accessibility-checker.pot
 
       - name: Set up Git for PR
         if: steps.pot_diff.outputs.pot_changed == 'true'
@@ -148,7 +115,7 @@ jobs:
       - name: Copy updated POT file to languages folder
         if: steps.pot_diff.outputs.pot_changed == 'true'
         run: |
-          cp wordpress/wp-content/plugins/accessibility-checker/languages/accessibility-checker.pot ./languages/accessibility-checker.pot
+          cp dist/accessibility-checker/languages/accessibility-checker.pot ./languages/accessibility-checker.pot
 
       - name: Create or Update Pull Request with updated POT file
         if: steps.pot_diff.outputs.pot_changed == 'true'
