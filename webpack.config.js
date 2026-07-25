@@ -69,6 +69,16 @@ module.exports = {
 						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
 					},
 					keep_fnames: /(__|_n|_x|_nx)$/,
+					format: {
+						// Keep `translators:` comments in the built bundles. Terser's
+						// default drops every comment except license banners, and
+						// `wp i18n make-pot` scans build/*.bundle.js rather than src/,
+						// so without this a translators comment written in src/ never
+						// reaches the POT and the string stays undocumented.
+						// This only preserves the comment, it does not extract it, so
+						// the existing *.LICENSE.txt output is unaffected.
+						comments: /translators:/i,
+					},
 				},
 			} ),
 			new CssMinimizerPlugin(),
