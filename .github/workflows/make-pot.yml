@@ -77,8 +77,8 @@ jobs:
         run: |
           if [ -f dist/accessibility-checker/languages/accessibility-checker.pot ] && [ -f "${RUNNER_TEMP}/accessibility-checker.pot.baseline" ]; then
             diff_output=$(diff \
-              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' dist/accessibility-checker/languages/accessibility-checker.pot) \
-              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#|$)' "${RUNNER_TEMP}/accessibility-checker.pot.baseline") || true)
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#:|$)' dist/accessibility-checker/languages/accessibility-checker.pot) \
+              <(grep -vE '^("?(POT-Creation-Date|PO-Revision-Date|X-Generator|Project-Id-Version):|#:|$)' "${RUNNER_TEMP}/accessibility-checker.pot.baseline") || true)
             if [ -n "$diff_output" ]; then
               echo "pot_changed=true" >> $GITHUB_OUTPUT
             else
