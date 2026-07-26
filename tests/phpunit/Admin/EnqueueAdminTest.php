@@ -73,6 +73,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -89,11 +90,29 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+		$this->assertNotContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * Test that the base script loads the accessibility utility on the settings page.
+	 *
+	 * @return void
+	 */
+	public function testEnqueueBaseScriptWithWpA11yOnSettingsPage() {
+
+		global $wp_scripts;
+
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 	}
 
 	/**
