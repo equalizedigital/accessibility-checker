@@ -27,7 +27,7 @@ namespace EqualizeDigital\AccessibilityChecker\Capabilities;
  * needs no new code. What WordPress has no concept of is *who* granted a
  * capability and *when*; that attribution is what this class adds.
  */
-class User_Capability_Grant {
+class UserCapabilityGrant {
 
 	/**
 	 * User meta key prefix under which grant attribution is stored, per

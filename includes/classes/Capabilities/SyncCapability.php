@@ -18,7 +18,7 @@ namespace EqualizeDigital\AccessibilityChecker\Capabilities;
  * routes, future role-configurable features) can reuse the same pattern
  * instead of re-implementing the sync/bypass/migration trio each time.
  */
-class Synced_Capability {
+class SyncCapability {
 
 	/**
 	 * The capability string, e.g. 'edac_ignore_issues'.

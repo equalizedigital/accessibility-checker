@@ -10,7 +10,7 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
-use EqualizeDigital\AccessibilityChecker\Capabilities\Synced_Capability;
+use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,13 +23,13 @@ if ( ! defined( 'ABSPATH' ) ) {
  * the single check every call site (REST, AJAX, menu registration) relies
  * on instead of comparing against the option directly.
  *
- * @return Synced_Capability
+ * @return SyncCapability
  */
-function edac_ignore_capability(): Synced_Capability {
+function edac_ignore_capability(): SyncCapability {
 	static $capability = null;
 
 	if ( null === $capability ) {
-		$capability = new Synced_Capability(
+		$capability = new SyncCapability(
 			'edac_ignore_issues',
 			'edacp_ignore_user_roles',
 			[ 'administrator' ],

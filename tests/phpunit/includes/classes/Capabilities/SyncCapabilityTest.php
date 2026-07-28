@@ -1,11 +1,11 @@
 <?php
 /**
- * Tests for Synced_Capability, independent of any specific feature's use of it.
+ * Tests for SyncCapability, independent of any specific feature's use of it.
  *
  * @package Accessibility_Checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Capabilities\Synced_Capability;
+use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
 
 /**
  * Covers the reusable sync/bypass/migration/REST-callback behavior in
@@ -13,7 +13,7 @@ use EqualizeDigital\AccessibilityChecker\Capabilities\Synced_Capability;
  * these tests can't collide with edac_ignore_issues's own test coverage
  * (IgnoreCapabilityTest) or leftover role state from it.
  */
-class SyncedCapabilityTest extends WP_UnitTestCase {
+class SyncCapabilityTest extends WP_UnitTestCase {
 
 	/**
 	 * Capability string used only by this test class.
@@ -52,7 +52,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_sync_adds_and_removes_capability_by_role() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
 
 		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
 
@@ -68,7 +68,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_register_syncs_on_option_save() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
 		$capability->register();
 
 		add_option( self::TEST_OPTION, [ 'author' ] );
@@ -86,7 +86,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_manage_options_bypasses_sync() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
 		$capability->register();
 		$capability->sync( [ 'author' ] );
 
@@ -104,7 +104,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_permission_callback_proxies_user_can() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
 		$capability->sync( [ 'author' ] );
 
 		$callback = $capability->permission_callback();
@@ -126,7 +126,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_migration_runs_once_for_unset_option() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
 
 		$capability->maybe_migrate();
 
@@ -140,7 +140,7 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_migration_does_not_rerun_for_same_version() {
-		$capability = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
 		$capability->maybe_migrate();
 
 		// Simulate the site's config changing after the one-time migration ran.
@@ -159,13 +159,13 @@ class SyncedCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_version_bump_forces_remigration() {
-		$v1 = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ], 1 );
+		$v1 = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ], 1 );
 		$v1->maybe_migrate();
 
 		// Site never saved the option, so it's still on default_roles from v1.
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 
-		$v2 = new Synced_Capability( self::TEST_CAP, self::TEST_OPTION, [ 'author' ], 2 );
+		$v2 = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'author' ], 2 );
 		$v2->maybe_migrate();
 
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ), 'v2 default_roles should have been applied.' );

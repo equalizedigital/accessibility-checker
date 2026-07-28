@@ -1,11 +1,11 @@
 <?php
 /**
- * Tests for User_Capability_Grant.
+ * Tests for UserCapabilityGrant.
  *
  * @package Accessibility_Checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Capabilities\User_Capability_Grant;
+use EqualizeDigital\AccessibilityChecker\Capabilities\UserCapabilityGrant;
 
 /**
  * Covers direct per-user capability grants, their attribution, and that
@@ -46,7 +46,7 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 
 		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
 
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP );
 
 		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
 	}
@@ -60,10 +60,10 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 	public function test_revoke_removes_the_grant() {
 		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP );
 		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
 
-		User_Capability_Grant::revoke( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::revoke( $user_id, self::TEST_CAP );
 		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
 	}
 
@@ -76,9 +76,9 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 		$granter_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP, $granter_id );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP, $granter_id );
 
-		$info = User_Capability_Grant::get_grant_info( $user_id, self::TEST_CAP );
+		$info = UserCapabilityGrant::get_grant_info( $user_id, self::TEST_CAP );
 
 		$this->assertIsArray( $info );
 		$this->assertSame( $granter_id, $info['granted_by'] );
@@ -96,9 +96,9 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
 		wp_set_current_user( $granter_id );
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP );
 
-		$info = User_Capability_Grant::get_grant_info( $user_id, self::TEST_CAP );
+		$info = UserCapabilityGrant::get_grant_info( $user_id, self::TEST_CAP );
 
 		$this->assertSame( $granter_id, $info['granted_by'] );
 	}
@@ -112,10 +112,10 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 	public function test_revoke_clears_attribution() {
 		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP );
-		User_Capability_Grant::revoke( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::revoke( $user_id, self::TEST_CAP );
 
-		$this->assertNull( User_Capability_Grant::get_grant_info( $user_id, self::TEST_CAP ) );
+		$this->assertNull( UserCapabilityGrant::get_grant_info( $user_id, self::TEST_CAP ) );
 	}
 
 	/**
@@ -129,7 +129,7 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
 
 		$this->assertTrue( user_can( $user_id, self::TEST_CAP ), 'Precondition: user has the capability via their role.' );
-		$this->assertNull( User_Capability_Grant::get_grant_info( $user_id, self::TEST_CAP ) );
+		$this->assertNull( UserCapabilityGrant::get_grant_info( $user_id, self::TEST_CAP ) );
 	}
 
 	/**
@@ -145,13 +145,13 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 		$granted_user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
 		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
-		User_Capability_Grant::grant( $granted_user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $granted_user_id, self::TEST_CAP );
 
 		$this->assertTrue( user_can( $role_user_id, self::TEST_CAP ) );
-		$this->assertFalse( User_Capability_Grant::is_individually_granted( $role_user_id, self::TEST_CAP ), 'Role-derived capability is not an individual grant.' );
+		$this->assertFalse( UserCapabilityGrant::is_individually_granted( $role_user_id, self::TEST_CAP ), 'Role-derived capability is not an individual grant.' );
 
 		$this->assertTrue( user_can( $granted_user_id, self::TEST_CAP ) );
-		$this->assertTrue( User_Capability_Grant::is_individually_granted( $granted_user_id, self::TEST_CAP ) );
+		$this->assertTrue( UserCapabilityGrant::is_individually_granted( $granted_user_id, self::TEST_CAP ) );
 	}
 
 	/**
@@ -166,7 +166,7 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 		$user_id = self::factory()->user->create( [ 'role' => 'editor' ] );
 
 		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
-		User_Capability_Grant::grant( $user_id, self::TEST_CAP );
+		UserCapabilityGrant::grant( $user_id, self::TEST_CAP );
 
 		// Simulate a role-level sync (like Synced_Capability::sync()) that
 		// decides 'editor' should no longer have this capability.
@@ -184,7 +184,7 @@ class UserCapabilityGrantTest extends WP_UnitTestCase {
 	public function test_grant_and_revoke_return_false_for_nonexistent_user() {
 		$bogus_id = 999999;
 
-		$this->assertFalse( User_Capability_Grant::grant( $bogus_id, self::TEST_CAP ) );
-		$this->assertFalse( User_Capability_Grant::revoke( $bogus_id, self::TEST_CAP ) );
+		$this->assertFalse( UserCapabilityGrant::grant( $bogus_id, self::TEST_CAP ) );
+		$this->assertFalse( UserCapabilityGrant::revoke( $bogus_id, self::TEST_CAP ) );
 	}
 }

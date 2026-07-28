@@ -6,7 +6,7 @@
  */
 
 /**
- * Tests for the Synced_Capability-backed edac_user_can_ignore() and the
+ * Tests for the SyncCapability-backed edac_user_can_ignore() and the
  * map_meta_cap manage_options override.
  */
 class IgnoreCapabilityTest extends WP_UnitTestCase {
