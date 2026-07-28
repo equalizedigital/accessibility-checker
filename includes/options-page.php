@@ -10,10 +10,37 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Capabilities\Synced_Capability;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+/**
+ * The edac_ignore_issues capability, synced onto the roles listed in the
+ * edacp_ignore_user_roles option (set on the pro plugin's settings page),
+ * with a manage_options bypass. current_user_can( 'edac_ignore_issues' ) is
+ * the single check every call site (REST, AJAX, menu registration) relies
+ * on instead of comparing against the option directly.
+ *
+ * @return Synced_Capability
+ */
+function edac_ignore_capability(): Synced_Capability {
+	static $capability = null;
+
+	if ( null === $capability ) {
+		$capability = new Synced_Capability(
+			'edac_ignore_issues',
+			'edacp_ignore_user_roles',
+			[ 'administrator' ],
+			1
+		);
+		$capability->register();
+	}
+
+	return $capability;
+}
+edac_ignore_capability();
 
 /**
  * Check if user can ignore or can manage options
@@ -21,80 +48,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return bool
  */
 function edac_user_can_ignore() {
-	return current_user_can( 'edac_ignore_issues' ); // phpcs:ignore WordPress.WP.Capabilities.Unknown -- This is a custom capability, synced from the edacp_ignore_user_roles setting.
+	return edac_ignore_capability()->user_can();
 }
-
-/**
- * Let `manage_options` users always pass an `edac_ignore_issues` check,
- * regardless of whether their role is currently in `edacp_ignore_user_roles`.
- * Keeps `current_user_can( 'edac_ignore_issues' )` as the single check every
- * call site (REST, AJAX, menu registration) can rely on.
- *
- * @param array  $caps    Required primitive capabilities.
- * @param string $cap     Capability being checked.
- * @param int    $user_id User ID.
- * @return array
- */
-function edac_map_ignore_capability( $caps, $cap, $user_id ) {
-	if ( 'edac_ignore_issues' === $cap && user_can( $user_id, 'manage_options' ) ) {
-		return [];
-	}
-	return $caps;
-}
-add_filter( 'map_meta_cap', 'edac_map_ignore_capability', 10, 3 );
-
-/**
- * Sync the `edac_ignore_issues` capability onto exactly the roles allowed
- * to dismiss/ignore issues, so `current_user_can( 'edac_ignore_issues' )`
- * is always the source of truth rather than comparing against the option
- * directly.
- *
- * @param array $roles Role slugs that should have the capability.
- * @return void
- */
-function edac_sync_ignore_capability( $roles ) {
-	$roles = is_array( $roles ) ? $roles : [];
-
-	foreach ( wp_roles()->role_objects as $role_slug => $role ) {
-		if ( in_array( $role_slug, $roles, true ) ) {
-			$role->add_cap( 'edac_ignore_issues' );
-		} else {
-			$role->remove_cap( 'edac_ignore_issues' );
-		}
-	}
-}
-add_action(
-	'add_option_edacp_ignore_user_roles',
-	function ( $option, $value ) {
-		edac_sync_ignore_capability( $value );
-	},
-	10,
-	2
-);
-add_action(
-	'update_option_edacp_ignore_user_roles',
-	function ( $old_value, $value ) {
-		edac_sync_ignore_capability( $value );
-	},
-	10,
-	2
-);
-
-/**
- * One-time migration: existing installs already have `edacp_ignore_user_roles`
- * saved but never had it synced onto a real capability. Run once per site.
- *
- * @return void
- */
-function edac_maybe_migrate_ignore_capability() {
-	if ( get_option( 'edac_ignore_cap_synced' ) ) {
-		return;
-	}
-
-	edac_sync_ignore_capability( get_option( 'edacp_ignore_user_roles', [ 'administrator' ] ) );
-	update_option( 'edac_ignore_cap_synced', 1 );
-}
-add_action( 'admin_init', 'edac_maybe_migrate_ignore_capability' );
 
 /**
  * Add an options page under the Settings submenu

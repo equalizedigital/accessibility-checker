@@ -6,7 +6,7 @@
  */
 
 /**
- * Tests for edac_sync_ignore_capability(), edac_user_can_ignore(), and the
+ * Tests for the Synced_Capability-backed edac_user_can_ignore() and the
  * map_meta_cap manage_options override.
  */
 class IgnoreCapabilityTest extends WP_UnitTestCase {
@@ -31,7 +31,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	public function test_sync_adds_and_removes_capability_by_role() {
 		wp_roles()->get_role( 'editor' )->add_cap( 'edac_ignore_issues' );
 
-		edac_sync_ignore_capability( [ 'author' ] );
+		edac_ignore_capability()->sync( [ 'author' ] );
 
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( 'edac_ignore_issues' ), 'Editor should have lost the capability.' );
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( 'edac_ignore_issues' ), 'Author should have gained the capability.' );
@@ -44,7 +44,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_user_can_ignore_true_for_synced_role() {
-		edac_sync_ignore_capability( [ 'author' ] );
+		edac_ignore_capability()->sync( [ 'author' ] );
 
 		$user_id = self::factory()->user->create( [ 'role' => 'author' ] );
 		wp_set_current_user( $user_id );
@@ -59,7 +59,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_user_can_ignore_false_for_unsynced_role() {
-		edac_sync_ignore_capability( [ 'author' ] );
+		edac_ignore_capability()->sync( [ 'author' ] );
 
 		$user_id = self::factory()->user->create( [ 'role' => 'editor' ] );
 		wp_set_current_user( $user_id );
@@ -75,7 +75,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_manage_options_user_always_can_ignore() {
-		edac_sync_ignore_capability( [ 'author' ] );
+		edac_ignore_capability()->sync( [ 'author' ] );
 
 		$user_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $user_id );
