@@ -323,7 +323,7 @@ class Ajax {
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
 
 			$severity_map = [
 				1 => [
@@ -824,6 +824,10 @@ class Ajax {
 		// nonce security.
 		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
 			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
+		}
+
+		if ( ! edac_user_can_ignore() ) {
+			wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		global $wpdb;
