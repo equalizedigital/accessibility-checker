@@ -340,6 +340,10 @@ class REST_Api {
 								return false;
 							}
 
+							if ( ! edac_user_can_ignore() ) {
+								return false;
+							}
+
 							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 							if ( ! $table_name ) {
 								return false;
@@ -1203,6 +1207,14 @@ class REST_Api {
 	 */
 	public function dismiss_issue( $request ) {
 		global $wpdb;
+
+		if ( ! edac_user_can_ignore() ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
 
 		$issue_id      = (int) $request['issue_id'];
 		$action        = $request->get_param( 'action' );
