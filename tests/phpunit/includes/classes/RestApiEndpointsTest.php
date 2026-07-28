@@ -89,6 +89,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// Give limited user edit_posts but not edit_others_posts so they cannot edit this post.
 		$user = new WP_User( self::$limited_id );
 		$user->add_cap( 'edit_posts' );
+		// Also grant edac_ignore_issues so dismiss tests exercise edit_post
+		// authorization specifically, independent of the ignore capability
+		// (covered separately in IgnoreCapabilityTest and
+		// test_single_issue_dismiss_forbidden_without_ignore_capability).
+		$user->add_cap( 'edac_ignore_issues' );
 
 		self::$post_id = $factory->post->create(
 			[
@@ -587,6 +592,64 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertSame( '1', $updated_issue['ignre'] );
 		$this->assertSame( 'Intentional', $updated_issue['ignre_reason'] );
 		$this->assertSame( 'This is intentional', $updated_issue['ignre_comment'] );
+	}
+
+	/**
+	 * Test: A user who can edit_post but lacks the edac_ignore_issues
+	 * capability is forbidden from dismissing, even though edit_post alone
+	 * used to be sufficient.
+	 *
+	 * @return void
+	 */
+	public function test_single_issue_dismiss_forbidden_without_ignore_capability() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// User can edit their own post, but was never granted edac_ignore_issues.
+		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		( new WP_User( $user_id ) )->add_cap( 'edit_posts' );
+		wp_set_current_user( $user_id );
+
+		$own_post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => $user_id,
+				'post_title'   => 'Test Ignore Capability Post',
+				'post_content' => 'Test content',
+			]
+		);
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $own_post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'single-no-ignore-cap-test',
+				'ruletype'     => 'error',
+				'object'       => 'single-no-ignore-cap-test',
+				'recordcheck'  => 1,
+				'user'         => $user_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$issue_id = $wpdb->insert_id;
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status(), 'A user without edac_ignore_issues should not be able to dismiss even their own editable post.' );
 	}
 
 	/**
