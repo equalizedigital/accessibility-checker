@@ -26,6 +26,7 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
  * @param {Function} props.onCloseModal - Callback to close the parent modal.
  * @param {boolean}  props.forceGlobal  - When true, the primary dismiss action targets all pages (global dismiss).
  * @param {boolean}  props.isPro        - Whether the current UI is running in Pro.
+ * @param {boolean}  props.canDismiss   - Whether the current user is allowed to dismiss/reopen issues.
  */
 const DismissPanel = ( {
 	issue,
@@ -35,6 +36,7 @@ const DismissPanel = ( {
 	onCloseModal,
 	forceGlobal = false,
 	isPro = typeof window !== 'undefined' && ( window.edac_editor_app?.pro === '1' || window.edac_script_vars?.pro === '1' ),
+	canDismiss = true,
 } ) => {
 	const panelRef = useRef( null );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
@@ -122,6 +124,177 @@ const DismissPanel = ( {
 		panelTitle = __( 'Dismiss Issue', 'accessibility-checker' );
 	}
 
+	let dismissBody;
+	if ( isIgnored ) {
+		dismissBody = (
+			<>
+				{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || isGloballyDismissed ) && (
+					<dl className="edac-analysis__dismissed-meta">
+
+						{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
+							<>
+								<dt>{ __( 'Scope:', 'accessibility-checker' ) }</dt>
+								<dd>{ __( 'All pages', 'accessibility-checker' ) }</dd>
+							</>
+						) }
+						{ ( issue?.ignre_user_name || issue?.user ) && (
+							<>
+								<dt>{ __( 'By:', 'accessibility-checker' ) }</dt>
+								<dd>{ decodeEntities( issue.ignre_user_name || issue.user ) }</dd>
+							</>
+						) }
+						{ issue?.ignre_date && (
+							<>
+								<dt>{ __( 'On:', 'accessibility-checker' ) }</dt>
+								<dd>{ decodeEntities( issue.ignre_date ) }</dd>
+							</>
+						) }
+					</dl>
+				) }
+				{ issue?.ignre_comment && (
+					<div className="edac-analysis__dismissed-comment">
+						<p className="edac-analysis__dismissed-comment-label">
+							{ __( 'Reason for dismissal:', 'accessibility-checker' ) }
+						</p>
+						<div className="edac-analysis__dismissed-comment-body">
+							{ issue.ignre_comment }
+						</div>
+					</div>
+				) }
+				{ canDismiss && isGloballyDismissed && (
+					<div className="edac-analysis__dismissed-actions">
+						<Button
+							variant="secondary"
+							onClick={ () => handleToggleIgnore( false ) }
+							disabled={ isSubmitting }
+							className="edac-analysis__dismiss-button"
+						>
+							{ isSubmitting ? (
+								<>
+									<Spinner />
+									{ __( 'Removing...', 'accessibility-checker' ) }
+								</>
+							) : (
+								__( 'Remove Global Dismissal', 'accessibility-checker' )
+							) }
+						</Button>
+					</div>
+				) }
+				{ canDismiss && ! isGloballyDismissed && (
+					<div className="edac-analysis__dismissed-actions">
+						<Button
+							variant="secondary"
+							onClick={ () => handleToggleIgnore( false ) }
+							disabled={ isSubmitting }
+							className="edac-analysis__dismiss-button"
+						>
+							{ isSubmitting ? (
+								<>
+									<Spinner />
+									{ __( 'Reopening...', 'accessibility-checker' ) }
+								</>
+							) : (
+								__( 'Reopen Issue', 'accessibility-checker' )
+							) }
+						</Button>
+					</div>
+				) }
+			</>
+		);
+	} else if ( canDismiss ) {
+		dismissBody = (
+			<form
+				onSubmit={ ( e ) => {
+					e.preventDefault();
+					handleToggleIgnore( true, dismissGlobally );
+				} }
+			>
+				<RadioControl
+					label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
+					selected={ dismissReason }
+					options={ getDismissReasonOptions() }
+					onChange={ setDismissReason }
+				/>
+				<RichTextarea
+					label={ __( 'Comment (optional)', 'accessibility-checker' ) }
+					labelId="edac-dismiss-comment-label"
+					help={ __(
+						'Add a note explaining why this issue is being dismissed.',
+						'accessibility-checker',
+					) }
+					helpId="edac-dismiss-comment-helptext"
+					value={ comment }
+					onChange={ setComment }
+					rows={ 3 }
+					disabled={ isSubmitting }
+				/>
+				<div className="edac-analysis__dismiss-split-button">
+					<Button
+						variant="primary"
+						type="submit"
+						disabled={ isSubmitting }
+						className="edac-analysis__dismiss-button"
+					>
+						{ dismissButtonLabel }
+					</Button>
+					{ canDismissGlobally && (
+						<Dropdown
+							renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
+								<Button
+									variant="primary"
+									type="button"
+									icon={ chevronDown }
+									onClick={ onDropdownToggle }
+									aria-expanded={ isDropdownOpen }
+									aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
+									disabled={ isSubmitting }
+									className="edac-analysis__dismiss-dropdown-toggle"
+								/>
+							) }
+							renderContent={ ( { onClose } ) => (
+								<div className="edac-analysis__dismiss-dropdown-content">
+									<Button
+										variant="tertiary"
+										type="button"
+										disabled={ isSubmitting }
+										onClick={ () => {
+											onClose();
+											handleToggleIgnore( true, dismissGlobally ).then( () => {
+												// close the entire modal after dismissing.
+												if ( onCloseModal ) {
+													onCloseModal();
+												}
+											} );
+										} }
+									>
+										{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
+									</Button>
+									<Button
+										variant="tertiary"
+										type="button"
+										disabled={ isSubmitting }
+										onClick={ () => {
+											onClose();
+											handleToggleIgnore( true, true );
+										} }
+									>
+										{ __( 'Dismiss Globally', 'accessibility-checker' ) }
+									</Button>
+								</div>
+							) }
+						/>
+					) }
+				</div>
+			</form>
+		);
+	} else {
+		dismissBody = (
+			<Notice status="info" isDismissible={ false }>
+				{ __( 'You do not have permission to dismiss issues.', 'accessibility-checker' ) }
+			</Notice>
+		);
+	}
+
 	return (
 		<div className="edac-analysis__dismiss-panel" data-section="dismiss" ref={ panelRef }>
 			<Panel>
@@ -148,164 +321,7 @@ const DismissPanel = ( {
 								{ error }
 							</Notice>
 						) }
-						{ isIgnored ? (
-							<>
-								{ ( issue?.user || issue?.ignre_user_name || issue?.ignre_date || isGloballyDismissed ) && (
-									<dl className="edac-analysis__dismissed-meta">
-
-										{ ( issue?.ignre_global === 1 || issue?.ignre_global === '1' ) && (
-											<>
-												<dt>{ __( 'Scope:', 'accessibility-checker' ) }</dt>
-												<dd>{ __( 'All pages', 'accessibility-checker' ) }</dd>
-											</>
-										) }
-										{ ( issue?.ignre_user_name || issue?.user ) && (
-											<>
-												<dt>{ __( 'By:', 'accessibility-checker' ) }</dt>
-												<dd>{ decodeEntities( issue.ignre_user_name || issue.user ) }</dd>
-											</>
-										) }
-										{ issue?.ignre_date && (
-											<>
-												<dt>{ __( 'On:', 'accessibility-checker' ) }</dt>
-												<dd>{ decodeEntities( issue.ignre_date ) }</dd>
-											</>
-										) }
-									</dl>
-								) }
-								{ issue?.ignre_comment && (
-									<div className="edac-analysis__dismissed-comment">
-										<p className="edac-analysis__dismissed-comment-label">
-											{ __( 'Reason for dismissal:', 'accessibility-checker' ) }
-										</p>
-										<div className="edac-analysis__dismissed-comment-body">
-											{ issue.ignre_comment }
-										</div>
-									</div>
-								) }
-								{ isGloballyDismissed ? (
-									<div className="edac-analysis__dismissed-actions">
-										<Button
-											variant="secondary"
-											onClick={ () => handleToggleIgnore( false ) }
-											disabled={ isSubmitting }
-											className="edac-analysis__dismiss-button"
-										>
-											{ isSubmitting ? (
-												<>
-													<Spinner />
-													{ __( 'Removing...', 'accessibility-checker' ) }
-												</>
-											) : (
-												__( 'Remove Global Dismissal', 'accessibility-checker' )
-											) }
-										</Button>
-									</div>
-								) : (
-									<div className="edac-analysis__dismissed-actions">
-										<Button
-											variant="secondary"
-											onClick={ () => handleToggleIgnore( false ) }
-											disabled={ isSubmitting }
-											className="edac-analysis__dismiss-button"
-										>
-											{ isSubmitting ? (
-												<>
-													<Spinner />
-													{ __( 'Reopening...', 'accessibility-checker' ) }
-												</>
-											) : (
-												__( 'Reopen Issue', 'accessibility-checker' )
-											) }
-										</Button>
-									</div>
-								) }
-							</>
-						) : (
-							<form
-								onSubmit={ ( e ) => {
-									e.preventDefault();
-									handleToggleIgnore( true, dismissGlobally );
-								} }
-							>
-								<RadioControl
-									label={ __( 'Dismiss issue as:', 'accessibility-checker' ) }
-									selected={ dismissReason }
-									options={ getDismissReasonOptions() }
-									onChange={ setDismissReason }
-								/>
-								<RichTextarea
-									label={ __( 'Comment (optional)', 'accessibility-checker' ) }
-									labelId="edac-dismiss-comment-label"
-									help={ __(
-										'Add a note explaining why this issue is being dismissed.',
-										'accessibility-checker',
-									) }
-									helpId="edac-dismiss-comment-helptext"
-									value={ comment }
-									onChange={ setComment }
-									rows={ 3 }
-									disabled={ isSubmitting }
-								/>
-								<div className="edac-analysis__dismiss-split-button">
-									<Button
-										variant="primary"
-										type="submit"
-										disabled={ isSubmitting }
-										className="edac-analysis__dismiss-button"
-									>
-										{ dismissButtonLabel }
-									</Button>
-									{ canDismissGlobally && (
-										<Dropdown
-											renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
-												<Button
-													variant="primary"
-													type="button"
-													icon={ chevronDown }
-													onClick={ onDropdownToggle }
-													aria-expanded={ isDropdownOpen }
-													aria-label={ __( 'More dismiss options', 'accessibility-checker' ) }
-													disabled={ isSubmitting }
-													className="edac-analysis__dismiss-dropdown-toggle"
-												/>
-											) }
-											renderContent={ ( { onClose } ) => (
-												<div className="edac-analysis__dismiss-dropdown-content">
-													<Button
-														variant="tertiary"
-														type="button"
-														disabled={ isSubmitting }
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, dismissGlobally ).then( () => {
-																// close the entire modal after dismissing.
-																if ( onCloseModal ) {
-																	onCloseModal();
-																}
-															} );
-														} }
-													>
-														{ __( 'Dismiss & Close Modal', 'accessibility-checker' ) }
-													</Button>
-													<Button
-														variant="tertiary"
-														type="button"
-														disabled={ isSubmitting }
-														onClick={ () => {
-															onClose();
-															handleToggleIgnore( true, true );
-														} }
-													>
-														{ __( 'Dismiss Globally', 'accessibility-checker' ) }
-													</Button>
-												</div>
-											) }
-										/>
-									) }
-								</div>
-							</form>
-						) }
+						{ dismissBody }
 					</div>
 				</PanelBody>
 			</Panel>
