@@ -94,11 +94,10 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// (covered separately in IgnoreCapabilityTest and
 		// test_single_issue_dismiss_forbidden_without_ignore_capability).
 		$user->add_cap( 'edac_ignore_issues' );
-		// And edac_ignore_issues_globally, so the largeBatch tests below exercise
-		// the per-post edit_post authorization loop specifically, independent of
-		// the global-ignore capability gate (covered separately in
-		// test_large_batch_dismiss_forbidden_without_global_ignore_capability).
-		$user->add_cap( 'edac_ignore_issues_globally' );
+		// Deliberately NOT edac_ignore_issues_globally here - it's granted
+		// per-test below where a largeBatch test specifically needs it, since
+		// holding it now bypasses the per-post edit_post loop entirely
+		// (see dismiss_issue()'s $can_ignore_globally short-circuit).
 
 		self::$post_id = $factory->post->create(
 			[
@@ -719,11 +718,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: Large batch dismissed by user with edit permission on all posts succeeds.
+	 * Test: Large batch dismissed by a user with edac_ignore_issues_globally
+	 * succeeds.
 	 *
-	 * Verifies that when a user has edit_post capability for all posts
-	 * in a large batch, the endpoint dismisses all issues with one bulk
-	 * UPDATE query and returns success.
+	 * Verifies that a user holding the global-ignore capability can dismiss
+	 * an entire batch with one bulk UPDATE query and a 200 response.
 	 *
 	 * @return void
 	 */
@@ -731,6 +730,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		global $wpdb;
 
 		$this->assertNotNull( $this->server );
+
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
 
 		// Create posts for batch test (limited user owns all).
 		// Use 'draft' so the limited user (who only has edit_posts, not edit_published_posts)
@@ -893,22 +894,25 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	/**
 	 * Test: Large batch dismissed by user with partial authorization fails before bulk query.
 	 *
-	 * Verifies that when a user can edit only SOME posts in a large batch,
-	 * the endpoint returns rest_forbidden BEFORE executing the bulk UPDATE query,
-	 * ensuring no data is modified when permission checks fail.
+	 * Verifies that a user with edac_ignore_issues_globally can dismiss a
+	 * batch that includes a post they do NOT personally have edit_post on -
+	 * the whole point of the capability is to bypass that per-post
+	 * ownership check, not just to unlock largeBatch requests in general.
 	 *
 	 * @return void
 	 */
-	public function test_large_batch_dismiss_authorized_on_some() {
+	public function test_large_batch_dismiss_bypasses_per_post_check_with_global_capability() {
 		global $wpdb;
 
 		$this->assertNotNull( $this->server );
 
-		// Create posts: one owned by limited_id, one by admin_id.
-		// Use 'draft' for the limited user's post so they can edit it with only edit_posts
-		// (WordPress requires edit_published_posts to edit published posts, which limited_id lacks).
-		// This correctly models partial authorization: the limited user CAN edit their draft post
-		// but CANNOT edit the admin-owned published post.
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+
+		// Create posts: one owned by limited_id, one by admin_id. limited_id
+		// only has edit_posts (not edit_others_posts), so without the
+		// global-ignore bypass they could edit_post on the first but not the
+		// second - that's exactly the distinction this test proves no longer
+		// matters once edac_ignore_issues_globally is granted.
 		$limited_post = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
@@ -934,7 +938,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$batch_object = 'batch-partial-authorized-test-' . wp_generate_uuid4();
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		// Create first issue on limited_id's post (limited user CAN edit).
+		// Create first issue on limited_id's own post.
 		$wpdb->insert(
 			$table_name,
 			[
@@ -953,7 +957,9 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		);
 		$first_issue_id = $wpdb->insert_id;
 
-		// Create second issue on admin_id's post (limited user CANNOT edit).
+		// Create second issue on admin_id's post - limited_id has no
+		// edit_post on this one, which is exactly what the global capability
+		// should bypass.
 		$wpdb->insert(
 			$table_name,
 			[
@@ -981,26 +987,30 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$response = $this->server->dispatch( $request );
 
-		// Verify response is 403 Forbidden.
-		$this->assertSame( 403, $response->get_status(), 'Large batch dismiss with partial authorization should return 403.' );
+		// Verify response is successful despite limited_id lacking edit_post
+		// on the admin-owned post - the global capability is the gate now.
+		$this->assertSame( 200, $response->get_status(), 'Large batch dismiss with edac_ignore_issues_globally should succeed even across posts the user cannot individually edit.' );
 
-		// Verify NO issues were updated (permission check failed before bulk query).
+		// Verify BOTH issues were updated, including the one on the post
+		// limited_id doesn't own.
 		$updated_issues = $wpdb->get_results(
 			$wpdb->prepare( 'SELECT id, ignre FROM %i WHERE object = %s', $table_name, $batch_object ),
 			ARRAY_A
 		);
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
+		$this->assertCount( 2, $updated_issues, 'Both issues in the batch should be updated.' );
 		foreach ( $updated_issues as $issue ) {
-			$this->assertSame( '0', $issue['ignre'], 'No issues should be updated when permission check fails.' );
+			$this->assertSame( '1', $issue['ignre'], 'Both issues should be dismissed, including the one on the post the user cannot individually edit.' );
 		}
 	}
 
 	/**
-	 * Test: Large batch dismissed by user with no authorization fails.
-	 *
-	 * Verifies that when a user cannot edit ANY posts in a large batch,
-	 * the endpoint returns rest_forbidden immediately and no data is modified.
+	 * Test: Large batch dismissed by a user without edac_ignore_issues_globally
+	 * fails, even though every affected post happens to belong to someone
+	 * else (a scenario that would also fail the per-post edit_post loop, if
+	 * that loop were ever reached - it isn't here, since the capability gate
+	 * runs first for every largeBatch request).
 	 *
 	 * @return void
 	 */

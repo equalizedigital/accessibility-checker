@@ -1228,7 +1228,8 @@ class REST_Api {
 		// edit_post loop below only proves the user can edit each affected post,
 		// it doesn't prove they're allowed to take a global action at all. That
 		// requires the separate, larger-blast-radius capability.
-		if ( $large_batch && ! edac_user_can_ignore_globally() ) {
+		$can_ignore_globally = edac_user_can_ignore_globally();
+		if ( $large_batch && ! $can_ignore_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
 				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
@@ -1288,14 +1289,22 @@ class REST_Api {
 				);
 			}
 
-			foreach ( $issue_rows as $issue_row ) {
-				$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
-				if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
-					return new \WP_Error(
-						'rest_forbidden',
-						__( 'Sorry, you are not allowed to dismiss one or more issues in this batch.', 'accessibility-checker' ),
-						[ 'status' => rest_authorization_required_code() ]
-					);
+			// A user with edac_ignore_issues_globally is already trusted for
+			// this exact "affects posts you may not own" action (enforced
+			// above), so the per-post edit_post lookups below - one
+			// current_user_can() call per affected post - would be pure
+			// overhead for them. Kept as a fallback check for any caller that
+			// somehow reaches this branch without that capability.
+			if ( ! $can_ignore_globally ) {
+				foreach ( $issue_rows as $issue_row ) {
+					$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
+					if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
+						return new \WP_Error(
+							'rest_forbidden',
+							__( 'Sorry, you are not allowed to dismiss one or more issues in this batch.', 'accessibility-checker' ),
+							[ 'status' => rest_authorization_required_code() ]
+						);
+					}
 				}
 			}
 
