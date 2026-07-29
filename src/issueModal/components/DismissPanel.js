@@ -18,15 +18,19 @@ import { getDismissReasonOptions } from '../../sidebar/utils/dismissHelpers';
 /**
  * Dismiss Panel Component
  *
- * @param {Object}   props              - Component props.
- * @param {Object}   props.issue        - The issue object.
- * @param {boolean}  props.isOpen       - Whether the panel is open.
- * @param {Function} props.onToggle     - Callback when panel is toggled.
- * @param {Function} props.onIgnore     - Callback when issue is dismissed/restored.
- * @param {Function} props.onCloseModal - Callback to close the parent modal.
- * @param {boolean}  props.forceGlobal  - When true, the primary dismiss action targets all pages (global dismiss).
- * @param {boolean}  props.isPro        - Whether the current UI is running in Pro.
- * @param {boolean}  props.canDismiss   - Whether the current user is allowed to dismiss/reopen issues.
+ * @param {Object}   props                    - Component props.
+ * @param {Object}   props.issue              - The issue object.
+ * @param {boolean}  props.isOpen             - Whether the panel is open.
+ * @param {Function} props.onToggle           - Callback when panel is toggled.
+ * @param {Function} props.onIgnore           - Callback when issue is dismissed/restored.
+ * @param {Function} props.onCloseModal       - Callback to close the parent modal.
+ * @param {boolean}  props.forceGlobal        - When true, the primary dismiss action targets all pages (global dismiss).
+ * @param {boolean}  props.isPro              - Whether the current UI is running in Pro.
+ * @param {boolean}  props.canDismiss         - Whether the current user is allowed to dismiss/reopen issues.
+ * @param {boolean}  props.canDismissGlobally - Whether the current user is allowed to dismiss/reopen an issue across every
+ *                                            page it appears on. Must come from a real capability check (edac_user_can_ignore_globally()),
+ *                                            not just isPro - showing this control to a user who lacks the capability
+ *                                            only leads to the underlying REST call being rejected server-side.
  */
 const DismissPanel = ( {
 	issue,
@@ -37,6 +41,7 @@ const DismissPanel = ( {
 	forceGlobal = false,
 	isPro = typeof window !== 'undefined' && ( window.edac_editor_app?.pro === '1' || window.edac_script_vars?.pro === '1' ),
 	canDismiss = true,
+	canDismissGlobally = false,
 } ) => {
 	const panelRef = useRef( null );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
@@ -46,8 +51,8 @@ const DismissPanel = ( {
 	const [ successNotice, setSuccessNotice ] = useState( null );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
 	const isGloballyDismissed = issue?.ignre_global === 1 || issue?.ignre_global === '1';
-	const canDismissGlobally = isPro;
-	const dismissGlobally = canDismissGlobally && forceGlobal;
+	const canUseGlobalDismiss = isPro && canDismissGlobally;
+	const dismissGlobally = canUseGlobalDismiss && forceGlobal;
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
 	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
@@ -161,7 +166,7 @@ const DismissPanel = ( {
 						</div>
 					</div>
 				) }
-				{ canDismiss && isGloballyDismissed && (
+				{ canUseGlobalDismiss && isGloballyDismissed && (
 					<div className="edac-analysis__dismissed-actions">
 						<Button
 							variant="secondary"
@@ -237,7 +242,7 @@ const DismissPanel = ( {
 					>
 						{ dismissButtonLabel }
 					</Button>
-					{ canDismissGlobally && (
+					{ canUseGlobalDismiss && (
 						<Dropdown
 							renderToggle={ ( { isOpen: isDropdownOpen, onToggle: onDropdownToggle } ) => (
 								<Button

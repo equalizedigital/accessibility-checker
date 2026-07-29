@@ -407,6 +407,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							onIgnore={ onIgnore }
 							onCloseModal={ onClose }
 							canDismiss={ window.edac_sidebar_app?.canDismiss !== false }
+							canDismissGlobally={ window.edac_sidebar_app?.canDismissGlobally === true }
 						/>
 					</div>
 				</div>

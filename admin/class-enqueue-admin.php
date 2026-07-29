@@ -226,6 +226,7 @@ class Enqueue_Admin {
 				'settingsUrl'             => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
 				'canManageSettings'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
 				'canDismiss'              => edac_user_can_ignore(),
+				'canDismissGlobally'      => edac_user_can_ignore_globally(),
 				'readabilityHelpUrl'      => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
 				'dismissReasons'          => IgnoreUI::get_reasons(),
 				'simplifiedSummaryPrompt' => get_option( 'edac_simplified_summary_prompt', 'none' ),
