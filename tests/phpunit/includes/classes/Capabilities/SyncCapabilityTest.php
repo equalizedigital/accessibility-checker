@@ -23,6 +23,14 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	private const TEST_CAP = 'edac_test_synced_capability';
 
 	/**
+	 * A second capability string, used only by the multi-capability bundle
+	 * tests in this class.
+	 *
+	 * @var string
+	 */
+	private const TEST_CAP_2 = 'edac_test_synced_capability_two';
+
+	/**
 	 * Option name used only by this test class.
 	 *
 	 * @var string
@@ -30,7 +38,7 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	private const TEST_OPTION = 'edac_test_synced_capability_roles';
 
 	/**
-	 * Remove the capability from every role and the option/migration
+	 * Remove the capabilities from every role and the option/migration
 	 * markers after each test so they don't leak into each other.
 	 *
 	 * @return void
@@ -38,9 +46,10 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::TEST_CAP );
+			$role->remove_cap( self::TEST_CAP_2 );
 		}
 		delete_option( self::TEST_OPTION );
-		delete_option( 'edac_capability_version_' . self::TEST_CAP );
+		delete_option( 'edac_capability_version_' . self::TEST_OPTION );
 		wp_set_current_user( 0 );
 		parent::tearDown();
 	}
@@ -170,5 +179,97 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ), 'v2 default_roles should have been applied.' );
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'v1 default_roles should no longer apply after the v2 re-sync.' );
+	}
+
+	/**
+	 * A single string capability (the pre-bundle constructor signature)
+	 * must still work unchanged, since existing single-capability callers
+	 * pass a string, not an array.
+	 *
+	 * @return void
+	 */
+	public function test_single_string_capability_still_works() {
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+		$capability->sync( [ 'author' ] );
+
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+
+		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $author_id );
+		$this->assertTrue( $capability->user_can() );
+	}
+
+	/**
+	 * Passing an array of capabilities should sync all of them together onto
+	 * the same roles - the "bundle" case, e.g. ignore/global-ignore/explorer.
+	 *
+	 * @return void
+	 */
+	public function test_bundle_syncs_multiple_capabilities_together() {
+		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
+		$capability->sync( [ 'author' ] );
+
+		$author = wp_roles()->get_role( 'author' );
+		$this->assertTrue( $author->has_cap( self::TEST_CAP ) );
+		$this->assertTrue( $author->has_cap( self::TEST_CAP_2 ) );
+
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
+	}
+
+	/**
+	 * User_can()/permission_callback() must accept an explicit capability
+	 * argument so bundle consumers can check one specific capability instead
+	 * of only ever getting the first one in the bundle.
+	 *
+	 * @return void
+	 */
+	public function test_bundle_user_can_checks_the_capability_passed_in() {
+		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
+		$capability->sync( [ 'author' ] );
+
+		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $author_id );
+
+		$this->assertTrue( $capability->user_can( self::TEST_CAP ) );
+		$this->assertTrue( $capability->user_can( self::TEST_CAP_2 ) );
+
+		$callback = $capability->permission_callback( self::TEST_CAP_2 );
+		$this->assertTrue( $callback() );
+	}
+
+	/**
+	 * Manage_options bypass must apply to every capability in the bundle,
+	 * not just the first one.
+	 *
+	 * @return void
+	 */
+	public function test_manage_options_bypasses_every_capability_in_bundle() {
+		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
+		$capability->register();
+		$capability->sync( [ 'author' ] );
+
+		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		$this->assertTrue( $capability->user_can( self::TEST_CAP ) );
+		$this->assertTrue( $capability->user_can( self::TEST_CAP_2 ) );
+	}
+
+	/**
+	 * Sync_role_capability() is the generic (role, capability) primitive the
+	 * rest of the class is built on - it should work as a standalone call,
+	 * independent of any option-driven sync.
+	 *
+	 * @return void
+	 */
+	public function test_sync_role_capability_generic_primitive() {
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+
+		$capability->sync_role_capability( 'editor', self::TEST_CAP, true );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+
+		$capability->sync_role_capability( 'editor', self::TEST_CAP, false );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 	}
 }

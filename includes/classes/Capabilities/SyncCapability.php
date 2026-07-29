@@ -1,6 +1,6 @@
 <?php
 /**
- * Class file for a WordPress capability synced onto roles from an option.
+ * Class file for WordPress capabilities synced onto roles from an option.
  *
  * @package Accessibility_Checker
  */
@@ -8,35 +8,42 @@
 namespace EqualizeDigital\AccessibilityChecker\Capabilities;
 
 /**
- * Registers a real WordPress capability, kept in sync with the role list
- * stored in a plugin option, with a manage_options bypass and a
- * version-gated migration for sites that already had the option set
+ * Registers one or more real WordPress capabilities, kept in sync with the
+ * role list stored in a single plugin option, with a manage_options bypass
+ * and a version-gated migration for sites that already had the option set
  * before the capability existed.
  *
- * Extracted from the hand-rolled edac_ignore_issues wiring in
- * includes/options-page.php so other gated features (Explorer REST
- * routes, future role-configurable features) can reuse the same pattern
- * instead of re-implementing the sync/bypass/migration trio each time.
+ * The generic primitive is sync_role_capability(): grant or revoke one
+ * capability on one role. Everything else (sync() looping roles x
+ * capabilities, the admin bypass, the option-watching/migration machinery)
+ * is built on top of that primitive, so a single option can drive a bundle
+ * of capabilities that always travel together (e.g. ignore-issues,
+ * ignore-issues-globally, and issues-explorer-access, all granted to
+ * whichever roles are configured for "can ignore issues").
+ *
+ * This class only ever syncs; it does not answer "can the current user do
+ * X" for the rest of the plugin family - see CapabilityChecker for that.
  */
 class SyncCapability {
 
 	/**
-	 * The capability string, e.g. 'edac_ignore_issues'.
+	 * The capability strings this instance keeps in sync, e.g.
+	 * [ 'edac_ignore_issues' ] or a multi-capability bundle.
 	 *
-	 * @var string
+	 * @var string[]
 	 */
-	private string $capability;
+	private array $capabilities;
 
 	/**
 	 * Name of the option holding the array of role slugs that should have
-	 * this capability.
+	 * these capabilities.
 	 *
 	 * @var string
 	 */
 	private string $option_name;
 
 	/**
-	 * Role slugs to sync the capability onto if the option has never been
+	 * Role slugs to sync the capabilities onto if the option has never been
 	 * set (used only by the migration, not as a fallback for a set-but-empty
 	 * option).
 	 *
@@ -45,9 +52,10 @@ class SyncCapability {
 	private array $default_roles;
 
 	/**
-	 * Bumped when the default_roles for this capability change; sites whose
-	 * stored migration version is lower get re-synced once on their next
-	 * admin_init, even if they already ran an earlier version's migration.
+	 * Bumped when the default_roles (or the capability list) for this bundle
+	 * change; sites whose stored migration version is lower get re-synced
+	 * once on their next admin_init, even if they already ran an earlier
+	 * version's migration.
 	 *
 	 * @var int
 	 */
@@ -56,13 +64,16 @@ class SyncCapability {
 	/**
 	 * Constructor.
 	 *
-	 * @param string $capability    The capability string to register, e.g. 'edac_ignore_issues'.
-	 * @param string $option_name   Option holding the array of role slugs allowed this capability.
-	 * @param array  $default_roles Roles to grant on first-ever sync (site had the option unset).
-	 * @param int    $version       Bump to re-run the migration when default_roles changes.
+	 * @param string|string[] $capabilities  A single capability string, or an array of capability
+	 *                                       strings that should all be synced together from the
+	 *                                       same option (accepting a single string keeps existing
+	 *                                       single-capability callers working unchanged).
+	 * @param string          $option_name   Option holding the array of role slugs allowed these capabilities.
+	 * @param array           $default_roles Roles to grant on first-ever sync (site had the option unset).
+	 * @param int             $version       Bump to re-run the migration when default_roles/capabilities change.
 	 */
-	public function __construct( string $capability, string $option_name, array $default_roles = [], int $version = 1 ) {
-		$this->capability    = $capability;
+	public function __construct( $capabilities, string $option_name, array $default_roles = [], int $version = 1 ) {
+		$this->capabilities  = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
 		$this->option_name   = $option_name;
 		$this->default_roles = $default_roles;
 		$this->version       = $version;
@@ -98,30 +109,35 @@ class SyncCapability {
 	}
 
 	/**
-	 * Whether the current user has this capability.
+	 * Whether the current user has one of this instance's capabilities.
+	 * Defaults to the first (or only) capability in the bundle so existing
+	 * single-capability callers can keep calling user_can() with no argument.
 	 *
+	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
 	 * @return bool
 	 */
-	public function user_can(): bool {
-		return current_user_can( $this->capability ); // phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability, synced by this class.
+	public function user_can( ?string $capability = null ): bool {
+		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability, synced by this class.
+		return current_user_can( $capability ?? $this->capabilities[0] );
 	}
 
 	/**
-	 * A REST route permission_callback closure for this capability, so
-	 * routes can pass this directly instead of wrapping current_user_can()
-	 * in their own inline closure.
+	 * A REST route permission_callback closure for one of this instance's
+	 * capabilities, so routes can pass this directly instead of wrapping
+	 * current_user_can() in their own inline closure.
 	 *
+	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
 	 * @return callable
 	 */
-	public function permission_callback(): callable {
-		return function () {
-			return $this->user_can();
+	public function permission_callback( ?string $capability = null ): callable {
+		return function () use ( $capability ) {
+			return $this->user_can( $capability );
 		};
 	}
 
 	/**
 	 * Map_meta_cap callback: manage_options users always pass a check
-	 * against this capability, regardless of role sync.
+	 * against any capability in this bundle, regardless of role sync.
 	 *
 	 * @param array  $caps    Required primitive capabilities.
 	 * @param string $cap     Capability being checked.
@@ -129,42 +145,69 @@ class SyncCapability {
 	 * @return array
 	 */
 	public function bypass_for_admins( $caps, $cap, $user_id ) {
-		if ( $this->capability === $cap && user_can( $user_id, 'manage_options' ) ) {
+		if ( in_array( $cap, $this->capabilities, true ) && user_can( $user_id, 'manage_options' ) ) {
 			return [];
 		}
 		return $caps;
 	}
 
 	/**
-	 * Add or remove this capability on every role so it matches exactly
-	 * the role list passed in.
+	 * Add or remove one capability on one role. The generic primitive
+	 * everything else in this class is built on - safe to call directly for
+	 * a single (role, capability) pair outside of the option-driven sync.
 	 *
-	 * @param mixed $roles Role slugs that should have the capability.
+	 * @param string $role_slug   Role slug, e.g. 'editor'.
+	 * @param string $capability  Capability string.
+	 * @param bool   $should_have Whether the role should have this capability.
+	 * @return void
+	 */
+	public function sync_role_capability( string $role_slug, string $capability, bool $should_have ): void {
+		$role = wp_roles()->get_role( $role_slug );
+
+		if ( ! $role ) {
+			return;
+		}
+
+		if ( $should_have ) {
+			$role->add_cap( $capability );
+		} else {
+			$role->remove_cap( $capability );
+		}
+	}
+
+	/**
+	 * Add or remove every capability in this bundle on every role so each
+	 * capability matches exactly the role list passed in.
+	 *
+	 * @param mixed $roles Role slugs that should have the capabilities.
 	 * @return void
 	 */
 	public function sync( $roles ): void {
 		$roles = is_array( $roles ) ? $roles : [];
 
-		foreach ( wp_roles()->role_objects as $role_slug => $role ) {
-			if ( in_array( $role_slug, $roles, true ) ) {
-				$role->add_cap( $this->capability );
-			} else {
-				$role->remove_cap( $this->capability );
+		foreach ( array_keys( wp_roles()->role_objects ) as $role_slug ) {
+			$should_have = in_array( $role_slug, $roles, true );
+
+			foreach ( $this->capabilities as $capability ) {
+				$this->sync_role_capability( $role_slug, $capability, $should_have );
 			}
 		}
 	}
 
 	/**
 	 * Run the sync once per migration version. Covers two cases: a site
-	 * that already had option_name set before this capability existed
-	 * (needs an initial sync), and a site whose stored version predates a
-	 * default_roles change (needs a re-sync even though it already ran an
-	 * earlier version's migration once).
+	 * that already had option_name set before this bundle existed (needs an
+	 * initial sync), and a site whose stored version predates a
+	 * default_roles/capabilities change (needs a re-sync even though it
+	 * already ran an earlier version's migration).
+	 *
+	 * Versioned per option (not per capability), since every capability in
+	 * the bundle is always granted together and shares one migration.
 	 *
 	 * @return void
 	 */
 	public function maybe_migrate(): void {
-		$version_option = "edac_capability_version_{$this->capability}";
+		$version_option = "edac_capability_version_{$this->option_name}";
 		$stored_version = (int) get_option( $version_option, 0 );
 
 		if ( $stored_version >= $this->version ) {
