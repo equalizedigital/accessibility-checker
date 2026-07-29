@@ -94,6 +94,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// (covered separately in IgnoreCapabilityTest and
 		// test_single_issue_dismiss_forbidden_without_ignore_capability).
 		$user->add_cap( 'edac_ignore_issues' );
+		// And edac_ignore_issues_globally, so the largeBatch tests below exercise
+		// the per-post edit_post authorization loop specifically, independent of
+		// the global-ignore capability gate (covered separately in
+		// test_large_batch_dismiss_forbidden_without_global_ignore_capability).
+		$user->add_cap( 'edac_ignore_issues_globally' );
 
 		self::$post_id = $factory->post->create(
 			[
@@ -809,6 +814,80 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		foreach ( $updated_issues as $issue ) {
 			$this->assertSame( '1', $issue['ignre'], 'All issues in batch should have ignre = 1.' );
 		}
+	}
+
+	/**
+	 * Test: A user who can edit_post on every affected post, and has
+	 * edac_ignore_issues, but was never granted edac_ignore_issues_globally,
+	 * must still be forbidden from a largeBatch dismiss - per-post edit
+	 * permission is not a substitute for the global-ignore capability, since
+	 * largeBatch updates every row sharing the object regardless of which
+	 * single issue_id the request named.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_forbidden_without_global_ignore_capability() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// User can edit their own post and has edac_ignore_issues, but was
+		// never granted edac_ignore_issues_globally.
+		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		$user    = new WP_User( $user_id );
+		$user->add_cap( 'edit_posts' );
+		$user->add_cap( 'edac_ignore_issues' );
+
+		$post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => $user_id,
+				'post_title'   => 'No Global Ignore Batch Post',
+				'post_content' => 'No Global Ignore Batch Content',
+			]
+		);
+
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$site_id      = get_current_blog_id();
+		$batch_object = 'batch-no-global-cap-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'batch-no-global-cap-test',
+				'ruletype'     => 'error',
+				'object'       => $batch_object,
+				'recordcheck'  => 1,
+				'user'         => $user_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$issue_id = $wpdb->insert_id;
+
+		wp_set_current_user( $user_id );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'largeBatch', true );
+
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status(), 'largeBatch dismiss without edac_ignore_issues_globally should return 403 even when the user can edit every affected post.' );
+
+		$updated_issue = $wpdb->get_row(
+			$wpdb->prepare( 'SELECT ignre FROM %i WHERE id = %d', $table_name, $issue_id ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$this->assertSame( '0', $updated_issue['ignre'], 'Issue should not have been dismissed.' );
 	}
 
 	/**

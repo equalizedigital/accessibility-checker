@@ -1223,6 +1223,19 @@ class REST_Api {
 		$ignore_global = $request->get_param( 'ignore_global' ) ?? 0;
 		$large_batch   = $request->get_param( 'largeBatch' ) ?? false;
 
+		// largeBatch is what actually performs the global action (updating every
+		// row that shares the object, not just $issue_id) - the per-post
+		// edit_post loop below only proves the user can edit each affected post,
+		// it doesn't prove they're allowed to take a global action at all. That
+		// requires the separate, larger-blast-radius capability.
+		if ( $large_batch && ! edac_user_can_ignore_globally() ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
+
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$site_id    = get_current_blog_id();
 
