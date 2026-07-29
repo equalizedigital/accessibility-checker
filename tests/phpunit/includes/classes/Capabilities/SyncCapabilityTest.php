@@ -44,12 +44,23 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function tearDown(): void {
+		global $wpdb;
+
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::TEST_CAP );
 			$role->remove_cap( self::TEST_CAP_2 );
 		}
 		delete_option( self::TEST_OPTION );
-		delete_option( 'edac_capability_version_' . self::TEST_OPTION );
+		// Version markers are keyed by option name + a hash of the capability
+		// set, so different tests in this file produce different keys -
+		// delete anything matching the option prefix rather than one exact key.
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->query(
+			$wpdb->prepare(
+				"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
+				$wpdb->esc_like( 'edac_capability_version_' . self::TEST_OPTION ) . '%'
+			)
+		);
 		wp_set_current_user( 0 );
 		parent::tearDown();
 	}
@@ -257,19 +268,25 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Sync_role_capability() is the generic (role, capability) primitive the
-	 * rest of the class is built on - it should work as a standalone call,
-	 * independent of any option-driven sync.
+	 * Sync_role_capability() is the generic (role, capability) primitive
+	 * sync() is built on. It's private (calling it directly for one
+	 * capability out of a bundle would desync the rest of the bundle for
+	 * that role), so this test reaches it via reflection rather than a
+	 * public call - it's still worth covering in isolation from sync()'s
+	 * roles-loop.
 	 *
 	 * @return void
 	 */
 	public function test_sync_role_capability_generic_primitive() {
 		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
 
-		$capability->sync_role_capability( 'editor', self::TEST_CAP, true );
+		$method = new ReflectionMethod( SyncCapability::class, 'sync_role_capability' );
+		$method->setAccessible( true );
+
+		$method->invoke( $capability, 'editor', self::TEST_CAP, true );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 
-		$capability->sync_role_capability( 'editor', self::TEST_CAP, false );
+		$method->invoke( $capability, 'editor', self::TEST_CAP, false );
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 	}
 }

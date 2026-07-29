@@ -153,15 +153,20 @@ class SyncCapability {
 
 	/**
 	 * Add or remove one capability on one role. The generic primitive
-	 * everything else in this class is built on - safe to call directly for
-	 * a single (role, capability) pair outside of the option-driven sync.
+	 * sync() is built on. Deliberately private: calling it directly for a
+	 * single capability out of a multi-capability bundle would grant/revoke
+	 * that one capability while leaving the rest of the bundle untouched
+	 * for that role, breaking the "these capabilities always travel
+	 * together" guarantee this class exists to provide. Always go through
+	 * sync() (or the option it's wired to) so every capability in the
+	 * bundle stays in lockstep.
 	 *
 	 * @param string $role_slug   Role slug, e.g. 'editor'.
 	 * @param string $capability  Capability string.
 	 * @param bool   $should_have Whether the role should have this capability.
 	 * @return void
 	 */
-	public function sync_role_capability( string $role_slug, string $capability, bool $should_have ): void {
+	private function sync_role_capability( string $role_slug, string $capability, bool $should_have ): void {
 		$role = wp_roles()->get_role( $role_slug );
 
 		if ( ! $role ) {
@@ -195,19 +200,37 @@ class SyncCapability {
 	}
 
 	/**
+	 * Name of the option this bundle's migration-version marker is stored
+	 * under. Includes a hash of the capability list, not just option_name,
+	 * so two different SyncCapability instances that happen to point at the
+	 * same option (e.g. a future feature layered onto an existing option)
+	 * can never collide on one shared version counter and silently skip
+	 * each other's migration.
+	 *
+	 * @return string
+	 */
+	private function version_option_name(): string {
+		$capabilities = $this->capabilities;
+		sort( $capabilities );
+
+		return 'edac_capability_version_' . $this->option_name . '_' . md5( implode( '|', $capabilities ) );
+	}
+
+	/**
 	 * Run the sync once per migration version. Covers two cases: a site
 	 * that already had option_name set before this bundle existed (needs an
 	 * initial sync), and a site whose stored version predates a
 	 * default_roles/capabilities change (needs a re-sync even though it
 	 * already ran an earlier version's migration).
 	 *
-	 * Versioned per option (not per capability), since every capability in
-	 * the bundle is always granted together and shares one migration.
+	 * Versioned per (option, capability set) pair, not per capability,
+	 * since every capability in the bundle is always granted together and
+	 * shares one migration.
 	 *
 	 * @return void
 	 */
 	public function maybe_migrate(): void {
-		$version_option = "edac_capability_version_{$this->option_name}";
+		$version_option = $this->version_option_name();
 		$stored_version = (int) get_option( $version_option, 0 );
 
 		if ( $stored_version >= $this->version ) {
