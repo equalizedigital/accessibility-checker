@@ -54,7 +54,7 @@ class SyncCapability {
 	/**
 	 * Bumped when the default_roles (or the capability list) for this bundle
 	 * change; sites whose stored migration version is lower get re-synced
-	 * once on their next admin_init, even if they already ran an earlier
+	 * once on their next init, even if they already ran an earlier
 	 * version's migration.
 	 *
 	 * @var int
@@ -71,9 +71,18 @@ class SyncCapability {
 	 * @param string          $option_name   Option holding the array of role slugs allowed these capabilities.
 	 * @param array           $default_roles Roles to grant on first-ever sync (site had the option unset).
 	 * @param int             $version       Bump to re-run the migration when default_roles/capabilities change.
+	 *
+	 * @throws \InvalidArgumentException If $capabilities is an empty array - there is nothing for this
+	 *                                   instance to sync/check, and user_can()'s no-argument default
+	 *                                   would otherwise silently check an undefined (null) capability.
 	 */
 	public function __construct( $capabilities, string $option_name, array $default_roles = [], int $version = 1 ) {
-		$this->capabilities  = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
+		$this->capabilities = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
+
+		if ( [] === $this->capabilities ) {
+			throw new \InvalidArgumentException( 'SyncCapability requires at least one capability.' );
+		}
+
 		$this->option_name   = $option_name;
 		$this->default_roles = $default_roles;
 		$this->version       = $version;
@@ -105,7 +114,15 @@ class SyncCapability {
 			2
 		);
 
-		add_action( 'admin_init', [ $this, 'maybe_migrate' ] );
+		// init, not admin_init: admin_menu (where menu capability checks happen)
+		// and rest_api_init (where REST permission_callbacks are registered) both
+		// fire before admin_init on their respective request types, so migrating
+		// on admin_init would leave the very first request after a version bump
+		// building a menu, or serving a REST request, against pre-migration
+		// capabilities. init fires early enough on every request type - admin,
+		// front-end, REST, and cron alike - to have already run by the time any
+		// of those capability checks happen.
+		add_action( 'init', [ $this, 'maybe_migrate' ] );
 	}
 
 	/**
