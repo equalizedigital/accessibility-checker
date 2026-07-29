@@ -10,18 +10,33 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Capabilities\CapabilityChecker;
 use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// The ignore-permissions capability bundle - all three are synced together
+// onto whichever roles are configured in edacp_ignore_user_roles (set on the
+// pro plugin's settings page). There is deliberately no separate settings
+// control for the two newer capabilities; granting a role "can ignore
+// issues" grants all three at once.
+defined( 'EDAC_CAPABILITY_IGNORE_ISSUES' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES', 'edac_ignore_issues' );
+// Larger blast radius than a per-post ignore: suppresses an issue across
+// every post sharing a rule+object, not just the one being viewed.
+defined( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY', 'edac_ignore_issues_globally' );
+// Gates getting into pro's Issues Explorer app at all, independent of
+// whether the user can also ignore issues once inside it.
+defined( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS' ) || define( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS', 'edac_issues_explorer_access' );
+
 /**
- * The edac_ignore_issues capability, synced onto the roles listed in the
- * edacp_ignore_user_roles option (set on the pro plugin's settings page),
- * with a manage_options bypass. current_user_can( 'edac_ignore_issues' ) is
- * the single check every call site (REST, AJAX, menu registration) relies
- * on instead of comparing against the option directly.
+ * The ignore-permissions capability bundle (edac_ignore_issues,
+ * edac_ignore_issues_globally, edac_issues_explorer_access), synced onto the
+ * roles listed in the edacp_ignore_user_roles option, with a manage_options
+ * bypass. Consumers should check individual capabilities via
+ * CapabilityChecker (or the edac_user_can_*() helpers below) rather than
+ * calling into this instance directly.
  *
  * @return SyncCapability
  */
@@ -30,10 +45,14 @@ function edac_ignore_capability(): SyncCapability {
 
 	if ( null === $capability ) {
 		$capability = new SyncCapability(
-			'edac_ignore_issues',
+			[
+				EDAC_CAPABILITY_IGNORE_ISSUES,
+				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY,
+				EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS,
+			],
 			'edacp_ignore_user_roles',
 			[ 'administrator' ],
-			1
+			2 // Bumped from 1: adds the two new bundled capabilities for roles already granted ignore access.
 		);
 		$capability->register();
 	}
@@ -43,12 +62,31 @@ function edac_ignore_capability(): SyncCapability {
 edac_ignore_capability();
 
 /**
- * Check if user can ignore or can manage options
+ * Check if user can ignore issues (per-post) or can manage options.
  *
  * @return bool
  */
 function edac_user_can_ignore() {
-	return edac_ignore_capability()->user_can();
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_IGNORE_ISSUES );
+}
+
+/**
+ * Check if user can globally ignore an issue (suppress it across every post
+ * sharing a rule+object) or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_ignore_globally() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY );
+}
+
+/**
+ * Check if user can access the (pro) Issues Explorer, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_access_issues_explorer() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS );
 }
 
 /**

@@ -18,6 +18,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( 'edac_ignore_issues' );
+			$role->remove_cap( 'edac_ignore_issues_globally' );
+			$role->remove_cap( 'edac_issues_explorer_access' );
 		}
 		parent::tearDown();
 	}
@@ -100,5 +102,70 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_ignore_issues' ) );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( 'edac_ignore_issues' ) );
+	}
+
+	/**
+	 * Syncing the ignore-roles option should grant all three bundled
+	 * capabilities together - there is no separate setting for global-ignore
+	 * or Issues Explorer access, so a role given ignore permission gets all
+	 * three at once.
+	 *
+	 * @return void
+	 */
+	public function test_sync_grants_all_three_bundled_capabilities() {
+		edac_ignore_capability()->sync( [ 'author' ] );
+
+		$author = wp_roles()->get_role( 'author' );
+		$this->assertTrue( $author->has_cap( 'edac_ignore_issues' ) );
+		$this->assertTrue( $author->has_cap( 'edac_ignore_issues_globally' ) );
+		$this->assertTrue( $author->has_cap( 'edac_issues_explorer_access' ) );
+	}
+
+	/**
+	 * A user in a role that was granted the bundle should pass both new
+	 * helper functions, mirroring edac_user_can_ignore().
+	 *
+	 * @return void
+	 */
+	public function test_new_helper_functions_true_for_synced_role() {
+		edac_ignore_capability()->sync( [ 'author' ] );
+
+		$user_id = self::factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $user_id );
+
+		$this->assertTrue( edac_user_can_ignore_globally() );
+		$this->assertTrue( edac_user_can_access_issues_explorer() );
+	}
+
+	/**
+	 * A user in a role that was not granted the bundle should fail both new
+	 * helper functions.
+	 *
+	 * @return void
+	 */
+	public function test_new_helper_functions_false_for_unsynced_role() {
+		edac_ignore_capability()->sync( [ 'author' ] );
+
+		$user_id = self::factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $user_id );
+
+		$this->assertFalse( edac_user_can_ignore_globally() );
+		$this->assertFalse( edac_user_can_access_issues_explorer() );
+	}
+
+	/**
+	 * Manage_options users must always pass the new helper functions too,
+	 * same as edac_user_can_ignore().
+	 *
+	 * @return void
+	 */
+	public function test_manage_options_user_always_passes_new_helpers() {
+		edac_ignore_capability()->sync( [ 'author' ] );
+
+		$user_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+
+		$this->assertTrue( edac_user_can_ignore_globally() );
+		$this->assertTrue( edac_user_can_access_issues_explorer() );
 	}
 }
