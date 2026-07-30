@@ -2,14 +2,14 @@
 
 	.text-format-sr-only {
 		border-radius: 0;
-		box-shadow: 0 0 0 2px #FF00FF;
+		box-shadow: 0 0 0 2px #ff00ff;
 		position: relative;
 	}
 
 	.text-format-sr-only:after {
 		content: "*";
 
-		background: #FF00FF;
+		background: #ff00ff;
 		border-radius: 0;
 		color: #000;
 		font-family: "Verdana", sans-serif;
@@ -32,7 +32,7 @@
 }
 
 .sr-only-show-always .text-format-sr-only {
-	border-bottom: 2px solid #FF00FF;
+	border-bottom: 2px solid #ff00ff;
 	border-radius: 0;
 }
 

@@ -253,21 +253,21 @@ body {
 
 			&--error {
 				background: transparent !important;
-				border: 1px solid #970C0C !important;
+				border: 1px solid #970c0c !important;
 				padding: 2px 10px !important;
 
 				.edac-badge__icon svg {
-					stroke: #970C0C !important;
+					stroke: #970c0c !important;
 				}
 			}
 
 			&--warning {
 				background: transparent !important;
-				border: 1px solid #CF8402 !important;
+				border: 1px solid #cf8402 !important;
 				padding: 2px 10px !important;
 
 				.edac-badge__icon svg {
-					stroke: #CF8402 !important;
+					stroke: #cf8402 !important;
 				}
 			}
 
@@ -277,18 +277,18 @@ body {
 			}
 
 			&--severity-critical {
-				background: rgba(#970C0C, 0.1) !important;
-				border: 1px solid #970C0C !important;
+				background: rgba(#970c0c, 0.1) !important;
+				border: 1px solid #970c0c !important;
 			}
 
 			&--severity-high {
-				background: rgba(#F49D02, 0.1) !important;
-				border: 1px solid #F49D02 !important;
+				background: rgba(#f49d02, 0.1) !important;
+				border: 1px solid #f49d02 !important;
 			}
 
 			&--severity-medium {
-				background: rgba(#F1C500, 0.1) !important;
-				border: 1px solid #F1C500 !important;
+				background: rgba(#f1c500, 0.1) !important;
+				border: 1px solid #f1c500 !important;
 			}
 
 			&--severity-low {
