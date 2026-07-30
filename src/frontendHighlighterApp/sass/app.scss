@@ -88,7 +88,9 @@ body {
 			background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
 		}
 
-		&-selected, &:hover, &:focus {
+		&-selected,
+		&:hover,
+		&:focus {
 			outline: solid 5px rgba(0, 208, 255, 0.75) !important;
 		}
 	}
@@ -209,7 +211,8 @@ body {
 			border-radius: 50% !important;
 			position: relative !important;
 
-			&:hover, &:focus {
+			&:hover,
+			&:focus {
 				cursor: pointer !important;
 				outline: solid 5px rgba(0, 208, 255, 0.75) !important;
 			}
@@ -420,7 +423,8 @@ body {
 				cursor: pointer !important;
 				text-decoration: underline !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					text-decoration: none !important;
 				}
 
@@ -472,7 +476,8 @@ body {
 				cursor: pointer !important;
 				font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					text-decoration: none !important;
 				}
 
@@ -506,7 +511,8 @@ body {
 				right: 1px !important;
 				text-align: center !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					cursor: pointer !important;
 					color: variables.$color-blue-dark !important;
 					background-color: variables.$color-white !important;
@@ -530,7 +536,8 @@ body {
 				cursor: pointer !important;
 				text-decoration: underline !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					text-decoration: none !important;
 				}
 
@@ -611,7 +618,8 @@ body {
 				gap: 8px !important;
 				cursor: grab !important;
 
-				button, a {
+				button,
+				a {
 					cursor: pointer !important;
 				}
 			}
@@ -656,7 +664,8 @@ body {
 				border-radius: 2px !important;
 				border: 1px solid transparent !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					border-color: variables.$color-white !important;
 				}
 			}
@@ -770,7 +779,8 @@ body {
 				border-radius: 2px !important;
 				border: 1px solid transparent !important;
 
-				&:hover, &:focus {
+				&:hover,
+				&:focus {
 					border-color: variables.$color-white !important;
 				}
 			}
@@ -846,7 +856,8 @@ body {
 	color: #000000;
 }
 
-.notyf__dismiss-btn:before, .notyf__dismiss-btn:after {
+.notyf__dismiss-btn:before,
+.notyf__dismiss-btn:after {
 	background: #000000 !important;
 }
 

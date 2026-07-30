@@ -2,7 +2,9 @@
 
 .edac-highlight-panel .edac-fix-settings--fields {
 
-	input, select, textarea {
+	input,
+	select,
+	textarea {
 		/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
 		all: revert;
 	}
@@ -214,7 +216,8 @@
 		border-radius: 2px;
 		outline: 2px solid transparent;
 
-		.dashicons, .dashicons::before {
+		.dashicons,
+		.dashicons::before {
 			vertical-align: middle;
 			display: block;
 			margin: auto;

@@ -554,7 +554,8 @@
 
 						&-image {
 
-							img, svg {
+							img,
+							svg {
 								max-width: 100%;
 								height: auto;
 							}
@@ -563,7 +564,9 @@
 						&-actions {
 							border-right: none;
 
-							&-ignore, &-fix, &-highlight-front {
+							&-ignore,
+							&-fix,
+							&-highlight-front {
 								color: variables.$color-blue;
 								border: none;
 								background: transparent;
