@@ -1,6 +1,7 @@
 {
 	"extends": "@wordpress/stylelint-config/scss-stylistic",
 	"rules": {
-		"selector-class-pattern": null
+		"selector-class-pattern": null,
+		"scss/load-no-partial-leading-underscore": null
 	}
 }
