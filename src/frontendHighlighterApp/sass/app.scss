@@ -117,7 +117,7 @@ body {
 
 				button {
 					padding: 4px 7px !important;
-					margin-right: 0px !important;
+					margin-right: 0 !important;
 				}
 			}
 
@@ -131,7 +131,7 @@ body {
 
 				button {
 					padding: 4px 7px !important;
-					margin-right: 0px !important;
+					margin-right: 0 !important;
 				}
 			}
 
@@ -174,7 +174,7 @@ body {
 
 			.edac-highlight-panel-controls {
 				position: fixed !important;
-				top: var(--edac-adminbar-height, 0px) !important;
+				top: var(--edac-adminbar-height, 0) !important;
 				bottom: 0 !important;
 				height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
 				max-height: calc(100vh - var(--edac-adminbar-height, 0px)) !important;
