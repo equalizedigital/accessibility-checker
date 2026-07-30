@@ -939,7 +939,7 @@
 		font-size: 13px;
 	}
 
-	.tab-content:not( :has( .edacp-scan ) ) {
+	.tab-content:not(:has(.edacp-scan)) {
 		background-color: variables.$color-white;
 		padding: 15px;
 		border: solid 1px variables.$color-gray-light;
