@@ -51,7 +51,7 @@ body {
 	&-element-selected {
 		outline: dashed 4px transparent !important;
 		outline-offset: 2px !important;
-		outline-color: magenta !important;
+		outline-color: #f0f !important;
 		box-shadow: 0 0 0 8px variables.$color-white !important;
 
 		&-min-width {
@@ -454,13 +454,13 @@ body {
 				border-radius: 2px !important;
 
 				&:hover {
-					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					background-color: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
 					cursor: pointer !important;
 					text-decoration: none !important;
 				}
 
 				&:focus-visible {
-					background-color: color-mix(in srgb, variables.$color-blue 90%, black) !important;
+					background-color: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
 					outline: 2px solid variables.$color-blue !important;
 					outline-offset: 2px !important;
 					cursor: pointer !important;
