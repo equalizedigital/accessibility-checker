@@ -928,6 +928,13 @@
 
 	&--reports {
 		max-width: 1390px;
+
+		.edac-reports-page__legal {
+
+			@include helpers.breakpoint(lg) {
+				grid-column: 1 / -1;
+			}
+		}
 	}
 
 	&.pro-callout-wrapper {
@@ -991,16 +998,6 @@
 		border: 1px solid variables.$color-gray-light;
 		margin-top: 30px;
 		max-width: 500px;
-	}
-}
-
-.edac-settings--reports {
-
-	.edac-reports-page__legal {
-
-		@include helpers.breakpoint(lg) {
-			grid-column: 1 / -1;
-		}
 	}
 }
 
