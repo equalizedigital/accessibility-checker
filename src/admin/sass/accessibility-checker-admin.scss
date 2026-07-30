@@ -263,10 +263,7 @@
 					position: absolute;
 
 					/* needed for clipping */
-					clip: rect(0,
-					$progress-circle-size,
-					$progress-circle-size,
-					calc($progress-circle-size / 2));
+					clip: rect(0, $progress-circle-size, $progress-circle-size, calc($progress-circle-size / 2));
 
 					/* clips the whole left half*/
 				}
@@ -306,10 +303,7 @@
 					position: absolute;
 
 					/*needed for clipping*/
-					clip: rect(0,
-					$progress-circle-size,
-					$progress-circle-size,
-					calc($progress-circle-size / 2));
+					clip: rect(0, $progress-circle-size, $progress-circle-size, calc($progress-circle-size / 2));
 					background-color: variables.$color-blue;
 					border-radius: 50%;
 					width: $progress-circle-size;
