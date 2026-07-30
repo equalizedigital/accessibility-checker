@@ -19,6 +19,7 @@
 }
 
 body {
+
 	&.edac-app-disable-styles {
 		//   padding: .5rem (46px + 46px ) !important; //make sure button is visible
 		#wpadminbar {
@@ -214,6 +215,7 @@ body {
 			}
 
 			@media screen and (max-width: variables.$small-screen-width) {
+
 				.edac-highlight-panel--right & {
 					float: right !important;
 				}
@@ -548,12 +550,14 @@ body {
 			}
 
 			&-explanation {
+
 				&[hidden] {
 					display: none !important;
 				}
 			}
 
 			&-content {
+
 				code {
 					font-family: monospace !important;
 					font-size: 12px !important;
@@ -855,6 +859,7 @@ body {
 
 // this is intentionally before the base styles and the highlighter specific styles.
 .edac-fixes-modal {
+
 	* {
 		all: unset;
 	}
@@ -926,6 +931,7 @@ body {
 		display: block;
 
 		.edac-fix-settings {
+
 			&--fields {
 				display: block !important;
 			}
@@ -941,9 +947,11 @@ body {
 		}
 
 		input[type="checkbox"] {
+
 			&:before {
 				content: none;
 			}
+
 			&:checked:before {
 				content: none;
 			}
@@ -965,12 +973,14 @@ body {
 .edac-fix-settings {
 
 	&--fields {
+
 		input[type="checkbox"] {
 			all: revert;
 		}
 	}
 
 	&--button {
+
 		&--save {
 			@extend .edac-highlight-panel-description--button;
 			margin: 0;

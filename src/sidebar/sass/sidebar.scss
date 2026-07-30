@@ -6,6 +6,7 @@
  */
 
 .edac-panel-body {
+
 	h3 {
 		font-size: $sidebar-h3-size;
 	}
@@ -25,7 +26,9 @@
  */
 
 .edac-sidebar__content .components-panel {
+
 	&__body {
+
 		&-title {
 			margin-bottom: 0 !important;
 		}

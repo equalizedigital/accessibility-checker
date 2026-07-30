@@ -215,6 +215,7 @@
 					border-radius: 50%;
 					line-height: $progress-circle-size;
 					display: none;
+
 					a {
 						color: variables.$color-dark-gray;
 						text-decoration: none;
@@ -347,11 +348,13 @@
 			}
 
 			&-errors {
+
 				&.has-errors {
 				}
 			}
 
 			&-contrast {
+
 				&.has-errors {
 				}
 			}
@@ -462,6 +465,7 @@
 			background-color: variables.$color-gray-lightest;
 
 			&-rule {
+
 				&-title {
 					display: flex;
 					align-items: center;
@@ -503,12 +507,14 @@
 
 					&:hover,
 					&:focus {
+
 						.edac-details-rule-title-arrow {
 							color: variables.$color-blue;
 						}
 					}
 
 					&.active {
+
 						.edac-details-rule-title-arrow {
 							transform: rotate(180deg);
 						}
@@ -571,6 +577,7 @@
 						}
 
 						&-image {
+
 							img, svg {
 								max-width: 100%;
 								height: auto;
@@ -720,6 +727,7 @@
 }
 
 .nav-tab-wrapper .nav-tab {
+
 	.edac-settings-tab__label,
 	.edac-settings-tab__badge {
 		display: inline-flex;
@@ -1217,6 +1225,7 @@
 	}
 
 	button {
+
 		&:hover {
 			cursor: pointer;
 		}
@@ -1238,6 +1247,7 @@
 
 .edac_gaad_notice,
 .edac_black_friday_notice {
+
 	.button {
 		margin-top: 5px;
 	}
@@ -1352,6 +1362,7 @@
 	display: flex;
 	align-items: center;
 }
+
 .edac-buttons-container > :nth-child(2) {
 	text-align: center;
 	flex: 1;
@@ -1484,6 +1495,7 @@
 			font-size: variables.$font-size-small;
 
 			span {
+
 				&:nth-child(1),
 				&:nth-child(5) {
 					font-weight: 600;
@@ -1553,6 +1565,7 @@
 					}
 
 					.edac-stats-icon--ok {
+
 						.edac-icon--success {
 							color: variables.$color-green;
 						}
@@ -1563,7 +1576,9 @@
 					}
 
 					&-error {
+
 						&.has-errors {
+
 							.edac-stats-icon--ok { display: none; }
 
 							.edac-stats-icon--issue {
@@ -1577,7 +1592,9 @@
 					}
 
 					&-contrast {
+
 						&.has-errors {
+
 							.edac-stats-icon--ok { display: none; }
 
 							.edac-stats-icon--issue {
@@ -1591,6 +1608,7 @@
 					}
 
 					&-warning {
+
 						&.has-warning {
 							color: variables.$color-blue-dark;
 
@@ -1709,6 +1727,7 @@
 			flex-direction: column !important;
 
 			.edac-cols-right {
+
 				.edac-panel {
 					padding: 0 1rem;
 				}
@@ -1812,6 +1831,7 @@
 		}
 
 		.edac-welcome-grid-item-has-icon {
+
 			.edac-inner-row:nth-child(2) {
 				align-items: flex-end;
 				height: 50%;
@@ -1919,6 +1939,7 @@
 		}
 
 		@media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
+
 			.edac-welcome-grid-container {
 				display: grid;
 				grid-template-columns: repeat(3, 1fr);
@@ -1990,48 +2011,56 @@
 		}
 
 		.has-errors {
+
 			.edac-icon--error {
 				color: variables.$color-red;
 			}
 		}
 
 		.has-no-errors {
+
 			.edac-icon--success {
 				color: variables.$color-green;
 			}
 		}
 
 		.has-contrast-errors {
+
 			.edac-icon--error {
 				color: variables.$color-red;
 			}
 		}
 
 		.has-no-contrast-errors {
+
 			.edac-icon--success {
 				color: variables.$color-green;
 			}
 		}
 
 		.has-warning {
+
 			.edac-icon--warning {
 				color: variables.$color-orange;
 			}
 		}
 
 		.has-no-warning {
+
 			.edac-icon--success {
 				color: variables.$color-green;
 			}
 		}
 
 		.has-ignored {
+
 			.edac-icon--dismissed {
 				color: variables.$color-blue-dark;
 			}
 		}
 
 		.has-no-ignored {
+
 			.edac-icon--success {
 				color: variables.$color-green;
 			}
@@ -2067,6 +2096,7 @@
 	}
 
 	.edac-support-section {
+
 		.edac-flex-container {
 			gap: 1rem;
 
@@ -2109,7 +2139,9 @@
 }
 
 #edac-fixes-page {
+
 	.edac-fix {
+
 		&--hidden {
 			display: none;
 		}
@@ -2135,6 +2167,7 @@
 	}
 
 	.edac-notice {
+
 		&--accessibility-ready-conflict {
 			font-style: italic;
 			font-weight: 600;
@@ -2150,9 +2183,11 @@
 }
 
 .edac-plugin-action-links {
+
 	&__go-pro {
 		color: variables.$color-red;
 		font-weight: bold;
+
 		&:hover,
 		&:focus {
 			color: variables.$color-red;
