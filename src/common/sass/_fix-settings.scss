@@ -1,16 +1,5 @@
 @use "variables";
 
-.edac-highlight-panel .edac-fix-settings--fields {
-
-	input,
-	select,
-	textarea {
-
-		/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
-		all: revert;
-	}
-}
-
 .edac-fix-modal-present #TB_ajaxContent {
 	width: auto !important;
 	height: auto !important;
@@ -64,6 +53,19 @@
 		input[type="text"] {
 			padding: 0.25rem 0.5rem;
 		}
+
+		.edac-highlight-panel & {
+			background: #222;
+			padding: 10px;
+
+			input,
+			select,
+			textarea {
+
+				/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
+				all: revert;
+			}
+		}
 	}
 
 	#TB_ajaxContent & {
@@ -81,14 +83,6 @@
 			margin-bottom: 0;
 		}
 
-	}
-
-	&--fields {
-
-		.edac-highlight-panel & {
-			background: #222;
-			padding: 10px;
-		}
 	}
 
 	&--action-row {
