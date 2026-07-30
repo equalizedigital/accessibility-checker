@@ -41,22 +41,22 @@
 
 	// Severity level variants
 	&--severity-critical {
-		background: color.adjust( $severity-critical, $alpha: -0.9 );
+		background: color.adjust($severity-critical, $alpha: -0.9);
 		border: 1px solid $severity-critical;
 	}
 
 	&--severity-high {
-		background: color.adjust( $severity-high, $alpha: -0.9 );
+		background: color.adjust($severity-high, $alpha: -0.9);
 		border: 1px solid $severity-high;
 	}
 
 	&--severity-medium {
-		background: color.adjust( $severity-medium, $alpha: -0.9 );
+		background: color.adjust($severity-medium, $alpha: -0.9);
 		border: 1px solid $severity-medium;
 	}
 
 	&--severity-low {
-		background: color.adjust( $severity-low, $alpha: -0.9 );
+		background: color.adjust($severity-low, $alpha: -0.9);
 		border: 1px solid $severity-low;
 	}
 
@@ -84,7 +84,7 @@
 	}
 
 	&--success {
-		background: color.adjust( $check-green, $alpha: -0.9 );
+		background: color.adjust($check-green, $alpha: -0.9);
 		border: 1px solid $check-green;
 
 		.edac-icon {
