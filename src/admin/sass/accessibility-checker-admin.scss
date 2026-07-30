@@ -1569,7 +1569,9 @@
 
 						&.has-errors {
 
-							.edac-stats-icon--ok { display: none; }
+							.edac-stats-icon--ok {
+								display: none;
+							}
 
 							.edac-stats-icon--issue {
 								display: flex;
@@ -1585,7 +1587,9 @@
 
 						&.has-errors {
 
-							.edac-stats-icon--ok { display: none; }
+							.edac-stats-icon--ok {
+								display: none;
+							}
 
 							.edac-stats-icon--issue {
 								display: flex;
@@ -1602,7 +1606,9 @@
 						&.has-warning {
 							color: variables.$color-blue-dark;
 
-							.edac-stats-icon--ok { display: none; }
+							.edac-stats-icon--ok {
+								display: none;
+							}
 
 							.edac-stats-icon--issue {
 								display: flex;
