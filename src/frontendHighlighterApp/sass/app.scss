@@ -319,11 +319,11 @@ body {
 				align-items: center !important;
 				flex-wrap: wrap !important;
 				gap: 8px !important;
-				font-weight: bold !important;
+				font-weight: 700 !important;
 				margin-bottom: 5px !important;
 
 				&-text {
-					font-weight: bold !important;
+					font-weight: 700 !important;
 				}
 			}
 
@@ -336,7 +336,7 @@ body {
 				font-size: 12px !important;
 
 				&-label {
-					font-weight: bold !important;
+					font-weight: 700 !important;
 					flex-shrink: 0 !important;
 				}
 			}
@@ -356,7 +356,7 @@ body {
 			}
 
 			&-meta-label {
-				font-weight: bold !important;
+				font-weight: 700 !important;
 				min-width: 70px !important;
 				flex-shrink: 0 !important;
 				font-size: 13px !important;
@@ -393,7 +393,7 @@ body {
 			&-index {
 				font-size: 16px !important;
 				display: block !important;
-				font-weight: bold !important;
+				font-weight: 700 !important;
 				margin-bottom: 5px !important;
 			}
 
@@ -405,7 +405,7 @@ body {
 				background-color: rgba(variables.$color-yellow, 0.15) !important;
 				color: #1e1e1e !important;
 				font-size: 13px !important;
-				font-weight: normal !important;
+				font-weight: 400 !important;
 				line-height: 1.5 !important;
 			}
 
@@ -577,7 +577,7 @@ body {
 				&-title {
 					display: block !important;
 					font-size: 15px !important;
-					font-weight: bold !important;
+					font-weight: 700 !important;
 					margin-bottom: 5px !important;
 				}
 			}
@@ -628,7 +628,7 @@ body {
 				align-items: center !important;
 				gap: 8px !important;
 				font-size: 14px !important;
-				font-weight: bold !important;
+				font-weight: 700 !important;
 				flex: 1 !important;
 				color: variables.$color-white !important;
 
@@ -674,7 +674,7 @@ body {
 					background-color: rgba(variables.$color-yellow, 0.15) !important;
 					color: #1e1e1e !important;
 					font-size: 13px !important;
-					font-weight: normal !important;
+					font-weight: 400 !important;
 					line-height: 1.5 !important;
 				}
 
@@ -694,7 +694,7 @@ body {
 
 				.edac-highlight-summary-total {
 					display: block !important;
-					font-weight: bold !important;
+					font-weight: 700 !important;
 					font-size: 15px !important;
 				}
 
