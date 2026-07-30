@@ -426,11 +426,11 @@
 						width: 33px;
 						height: 33px;
 						display: block;
-						background: url("../images/error-icon-red.png") no-repeat center center;
+						background: url(../images/error-icon-red.png) no-repeat center center;
 						background-size: contain;
 
 						&.active {
-							background-image: url("../images/checkmark-icon-green.png");
+							background-image: url(../images/checkmark-icon-green.png);
 						}
 					}
 
@@ -1779,17 +1779,17 @@
 	#edac_welcome_page_summary {
 
 		.edac-modal-container {
-			background-image: url("../images/welcome-screenshot-standard.png");
+			background-image: url(../images/welcome-screenshot-standard.png);
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: top left;
 
 			@media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
-				background-image: url("../images/welcome-screenshot-medium.png");
+				background-image: url(../images/welcome-screenshot-medium.png);
 			}
 
 			@media screen and (max-width: variables.$small-screen-width ) {
-				background-image: url("../images/welcome-screenshot-small.png");
+				background-image: url(../images/welcome-screenshot-small.png);
 			}
 		}
 

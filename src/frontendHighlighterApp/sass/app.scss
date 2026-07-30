@@ -76,16 +76,16 @@ body {
 		z-index: 2147483646 !important;
 
 		&-error {
-			background: transparent url("../images/highlight-icon-error.svg") center center no-repeat !important;
+			background: transparent url(../images/highlight-icon-error.svg) center center no-repeat !important;
 			background-size: 40px 40px !important;
 		}
 
 		&-warning {
-			background: transparent url("../images/highlight-icon-warning.svg") center center no-repeat !important;
+			background: transparent url(../images/highlight-icon-warning.svg) center center no-repeat !important;
 		}
 
 		&-ignored {
-			background: transparent url("../images/highlight-icon-ignored.svg") center center no-repeat !important;
+			background: transparent url(../images/highlight-icon-ignored.svg) center center no-repeat !important;
 		}
 
 		&-selected,
@@ -205,7 +205,7 @@ body {
 			width: 50px !important;
 			height: 50px !important;
 			display: block;
-			background: transparent url("../images/edac-emblem.png") center center no-repeat !important;
+			background: transparent url(../images/edac-emblem.png) center center no-repeat !important;
 			background-size: contain !important;
 			box-shadow: 0 0 5px rgba(variables.$color-black, 0.5) !important;
 			border-radius: 50% !important;
