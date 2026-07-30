@@ -1773,6 +1773,7 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: top left;
+			min-height: 300px;
 
 			@media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
 				background-image: url(../images/welcome-screenshot-medium.png);
@@ -2052,10 +2053,6 @@
 		.edac-time,
 		.edac-timezone {
 			display: none;
-		}
-
-		.edac-modal-container {
-			min-height: 300px;
 		}
 
 		.edac-modal-content {
