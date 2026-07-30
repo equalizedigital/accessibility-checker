@@ -220,6 +220,7 @@
 						color: variables.$color-dark-gray;
 						text-decoration: none;
 					}
+
 					@include helpers.breakpoint(xs) {
 						display: inline-block;
 					}
@@ -800,6 +801,7 @@
 	gap: 13px;
 
 	&--two {
+
 		@include helpers.breakpoint(md) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
@@ -944,6 +946,7 @@
 	&-general {
 
 		&.edac-show-pro-callout {
+
 			@include helpers.breakpoint(md) {
 				display: grid;
 				grid-template-columns: repeat(2, 1fr);
@@ -991,6 +994,7 @@
 .edac-settings--reports {
 
 	.edac-reports-page__legal {
+
 		@include helpers.breakpoint(lg) {
 			grid-column: 1 / -1;
 		}
@@ -1072,6 +1076,7 @@
 			grid-template-columns: auto;
 
 			&.edac-show-pro-callout {
+
 				@include helpers.breakpoint(lg) {
 					grid-template-columns: fit-content(800px) 500px;
 				}
@@ -1089,6 +1094,7 @@
 	}
 
 	.dac-welcome-documentation-support {
+
 		@include helpers.breakpoint(md) {
 			grid-column: 1 / 2;
 			grid-row: 1;
@@ -1155,6 +1161,7 @@
 		border-radius: 0;
 		position: relative;
 		display: inline-block;
+
 		@include helpers.transition(background 0.3s, color 0.3s);
 
 		// firefox sizing fix to prevent wrapping due to differences in

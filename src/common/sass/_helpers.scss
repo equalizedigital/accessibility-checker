@@ -1,27 +1,34 @@
 @use "variables";
 
 @mixin breakpoint($point) {
+
 	@if $point == xs {
+
 		@media (min-width: variables.$small-screen-width) {
 			@content;
 		}
 	} @else if $point == sm {
+
 		@media (min-width: variables.$medium-screen-width) {
 			@content;
 		}
 	} @else if $point == md {
+
 		@media (min-width: variables.$standard-screen-width) {
 			@content;
 		}
 	} @else if $point == lg {
+
 		@media (min-width: variables.$large-screen-width) {
 			@content;
 		}
 	} @else if $point == xl {
+
 		@media (min-width: variables.$extra-large-screen-width) {
 			@content;
 		}
 	} @else if $point == retina {
+
 		@media only screen and (-webkit-min-device-pixel-ratio: 2),
 			only screen and (min-device-pixel-ratio: 2) {
 			@content;

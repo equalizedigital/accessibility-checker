@@ -953,6 +953,7 @@ body {
 			}
 
 			&--button--save {
+
 				@extend .edac-highlight-panel-description--button;
 			}
 		}
@@ -993,6 +994,7 @@ body {
 	&--button {
 
 		&--save {
+
 			@extend .edac-highlight-panel-description--button;
 			margin: 0;
 
