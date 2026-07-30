@@ -1814,6 +1814,19 @@
 				align-items: flex-start;
 				height: 50%;
 			}
+
+			background-color: variables.$color-gray-lightest;
+
+			.edac-stat-label {
+				font-size: variables.$font-size-small;
+				line-height: variables.$font-size-medium;
+			}
+
+			.edac-stat-number {
+				font-size: variables.$font-size-x-large;
+				line-height: variables.$font-size-x-large;
+				font-weight: 400;
+			}
 		}
 
 		.edac-welcome-grid-item-has-icon {
@@ -1977,22 +1990,6 @@
 
 			@include helpers.breakpoint(xl) {
 				font-size: 2.75rem;
-			}
-		}
-
-		.edac-background-light {
-
-			background-color: variables.$color-gray-lightest;
-
-			.edac-stat-label {
-				font-size: variables.$font-size-small;
-				line-height: variables.$font-size-medium;
-			}
-
-			.edac-stat-number {
-				font-size: variables.$font-size-x-large;
-				line-height: variables.$font-size-x-large;
-				font-weight: 400;
 			}
 		}
 
