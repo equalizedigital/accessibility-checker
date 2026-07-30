@@ -1152,7 +1152,7 @@
 		border-radius: 0;
 		position: relative;
 		display: inline-block;
-		@include helpers.transition(background .3s, color .3s);
+		@include helpers.transition(background 0.3s, color 0.3s);
 
 		// firefox sizing fix to prevent wrapping due to differences in
 		// font sizing and paddings with different fonts
@@ -1302,7 +1302,7 @@
 }
 
 .edac-mt-1 {
-	margin-top: .5rem !important;
+	margin-top: 0.5rem !important;
 }
 
 .edac-mt-3 {
@@ -1310,7 +1310,7 @@
 }
 
 .edac-mb-1 {
-	margin-bottom: .5rem !important;
+	margin-bottom: 0.5rem !important;
 }
 
 .edac-mb-3 {
@@ -1318,7 +1318,7 @@
 }
 
 .edac-ml-1 {
-	margin-left: .5rem !important;
+	margin-left: 0.5rem !important;
 }
 
 .edac-ml-3 {
@@ -1326,7 +1326,7 @@
 }
 
 .edac-mr-1 {
-	margin-right: .5rem !important;
+	margin-right: 0.5rem !important;
 }
 
 .edac-mr-3 {
@@ -1380,7 +1380,7 @@
 			&-close {
 				position: absolute;
 				top: 0;
-				right: .5rem;
+				right: 0.5rem;
 				font-size: variables.$font-size-x-large;
 				cursor: pointer;
 				padding: 0;
@@ -1453,7 +1453,7 @@
 				margin: auto;
 
 				.edac-progress-percentage {
-					margin: 0 .5rem;
+					margin: 0 0.5rem;
 					font-size: variables.$font-size-x-large;
 					font-weight: 600;
 				}
@@ -1502,7 +1502,7 @@
 				}
 
 				&-date {
-					margin: 0 .3rem 0;
+					margin: 0 0.3rem 0;
 					font-size: variables.$font-size-small;
 				}
 			}
@@ -1515,7 +1515,7 @@
 				}
 
 				&-number {
-					margin: 0 .3rem 0;
+					margin: 0 0.3rem 0;
 					font-size: variables.$font-size-small;
 				}
 			}
@@ -1523,13 +1523,13 @@
 			&-stats {
 
 				&-box {
-					margin: .3rem 0;
-					padding: .5rem .75rem;
+					margin: 0.3rem 0;
+					padding: 0.5rem 0.75rem;
 					display: flex;
 					align-items: center;
 					border: 1px solid variables.$color-gray-light;
 					border-radius: 5px;
-					gap: .5rem;
+					gap: 0.5rem;
 
 					.edac-stats-icon {
 						display: flex;
@@ -1630,13 +1630,13 @@
 		&-notice-enable-edacp {
 			text-align: center;
 			border: solid 1px variables.$color-gray;
-			padding: .5rem;
+			padding: 0.5rem;
 		}
 
 		&-notice-enable-edacp {
 			text-align: center;
 			border: solid 3px variables.$color-gray;
-			padding: .5rem;
+			padding: 0.5rem;
 		}
 
 		&-notice-upgrade-to-edacp {
@@ -1800,7 +1800,7 @@
 			}
 
 			.edac-inner-row:nth-child(2) {
-				margin-top: .5rem;
+				margin-top: 0.5rem;
 				align-items: flex-start;
 				height: 50%;
 			}
@@ -1814,7 +1814,7 @@
 			}
 
 			.edac-inner-row:nth-child(3) {
-				margin-top: .5rem;
+				margin-top: 0.5rem;
 				align-items: flex-start;
 				height: 50%;
 			}
@@ -1831,7 +1831,7 @@
 			margin: auto;
 
 			.edac-progress-percentage {
-				margin: 0 .5rem;
+				margin: 0 0.5rem;
 				font-size: 2.75rem;
 				font-weight: 600;
 			}
@@ -1843,7 +1843,7 @@
 
 		.edac-welcome-grid-item {
 			text-align: center;
-			padding: 1rem .75rem;
+			padding: 1rem 0.75rem;
 			position: relative;
 			border: 1px solid variables.$color-gray-light;
 			background-color: variables.$color-white;
@@ -2103,7 +2103,7 @@
 	position: relative;
 
 	.edac-panel-loading::before {
-		background-color: hsla(0, 0%, 100%, .5);
+		background-color: hsla(0, 0%, 100%, 0.5);
 		bottom: 0;
 		content: "";
 		left: 0;

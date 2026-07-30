@@ -89,7 +89,7 @@ body {
 		}
 
 		&-selected, &:hover, &:focus {
-			outline: solid 5px rgba(0, 208, 255, .75) !important;
+			outline: solid 5px rgba(0, 208, 255, 0.75) !important;
 		}
 	}
 
@@ -205,13 +205,13 @@ body {
 			display: block;
 			background: transparent url("../images/edac-emblem.png") center center no-repeat !important;
 			background-size: contain !important;
-			box-shadow: 0 0 5px rgba(variables.$color-black, .5) !important;
+			box-shadow: 0 0 5px rgba(variables.$color-black, 0.5) !important;
 			border-radius: 50% !important;
 			position: relative !important;
 
 			&:hover, &:focus {
 				cursor: pointer !important;
-				outline: solid 5px rgba(0, 208, 255, .75) !important;
+				outline: solid 5px rgba(0, 208, 255, 0.75) !important;
 			}
 
 			@media screen and (max-width: variables.$small-screen-width) {
@@ -589,7 +589,7 @@ body {
 			display: none;
 			flex-direction: column !important;
 			max-height: calc(100vh - 80px) !important;
-			box-shadow: 0 4px 20px rgba(variables.$color-black, .35) !important;
+			box-shadow: 0 4px 20px rgba(variables.$color-black, 0.35) !important;
 			border-radius: 10px !important;
 			overflow: hidden !important;
 			font-size: 14px !important;
@@ -787,7 +787,7 @@ body {
 				padding: 6px !important;
 				min-width: 200px !important;
 				z-index: 10 !important;
-				box-shadow: 0 4px 16px rgba(variables.$color-black, .15) !important;
+				box-shadow: 0 4px 16px rgba(variables.$color-black, 0.15) !important;
 				border-radius: 8px !important;
 				border: 1px solid variables.$color-gray-light !important;
 				overflow: hidden !important;
@@ -878,7 +878,7 @@ body {
 	-moz-osx-font-smoothing: grayscale !important;
 	background-color: #fff !important;
 	border: 1px solid #e2e4e7 !important;
-	box-shadow: 0 0 5px rgba(0, 0, 0, .25) !important;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) !important;
 	color: #000 !important;
 	font-family: sans-serif !important;
 	font-size: 14px !important;
@@ -937,7 +937,7 @@ body {
 			}
 
 			&--action-row {
-				gap: .5em;
+				gap: 0.5em;
 				margin-top: 0.75em;
 			}
 
