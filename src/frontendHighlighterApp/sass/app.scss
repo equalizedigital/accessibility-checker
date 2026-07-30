@@ -36,16 +36,12 @@ body {
 
 	all: unset;
 	letter-spacing: normal !important;
+	display: inline-block;
+	clear: both;
 
 	* {
 		all: unset;
 		letter-spacing: normal !important;
-	}
-
-
-	& {
-		display: inline-block;
-		clear: both;
 	}
 
 	&-element-selected {
