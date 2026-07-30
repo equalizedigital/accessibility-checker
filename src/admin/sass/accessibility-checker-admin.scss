@@ -1191,7 +1191,7 @@
 		}
 
 		&:after {
-			content: '';
+			content: "";
 			position: absolute;
 			height: calc(100% + 3px);
 			width: calc(100% + 3px);
@@ -1424,7 +1424,7 @@
 		gap: 0.5rem;
 
 		&::before {
-			content: '';
+			content: "";
 			display: inline-block;
 			width: 24px;
 			height: 24px;

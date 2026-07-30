@@ -5,12 +5,12 @@
  */
 
 // Import badge styles since we use the Badge component
-@use '../../sidebar/sass/components/badge';
-@use '../../sidebar/sass/variables' as *;
+@use "../../sidebar/sass/components/badge";
+@use "../../sidebar/sass/variables" as *;
 
 // DismissPanel component styles — defined at root scope so they apply in any
 // context (modal, pro drawer, etc.). Modal-specific overrides follow below.
-@use 'dismiss-panel';
+@use "dismiss-panel";
 
 .edac-analysis {
 
@@ -369,7 +369,7 @@
 			margin-top: 16px;
 
 			&::after {
-				content: '';
+				content: "";
 				display: table;
 				clear: both;
 			}

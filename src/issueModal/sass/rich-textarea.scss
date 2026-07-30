@@ -1,4 +1,4 @@
-@use '../../sidebar/sass/variables' as *;
+@use "../../sidebar/sass/variables" as *;
 
 .edac-rich-textarea-label {
 	display: block;
@@ -15,7 +15,7 @@
 	margin-bottom: .75em;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.6;
 	min-height: 100px;
