@@ -255,16 +255,19 @@
 				}
 
 				.left-half-clipper {
+
 					/* a round circle */
 					border-radius: 50%;
 					width: $progress-circle-size;
 					height: $progress-circle-size;
 					position: absolute;
+
 					/* needed for clipping */
 					clip: rect(0,
 					$progress-circle-size,
 					$progress-circle-size,
 					calc($progress-circle-size / 2));
+
 					/* clips the whole left half*/
 				}
 
@@ -274,18 +277,23 @@
 				}
 
 				.value-bar {
+
 					/*This is an overlayed square, that is made round with the border radius,
            then it is cut to display only the left half, then rotated clockwise
            to escape the outer clipping path.*/
 					position: absolute;
+
 					/*needed for clipping*/
 					clip: rect(0, calc($progress-circle-size / 2), $progress-circle-size, 0);
 					width: $progress-circle-size;
 					height: $progress-circle-size;
 					border-radius: 50%;
 					border: $progress-bar-width solid variables.$color-blue;
+
 					/*The border is 0.35 but making it larger removes visual artifacts */
+
 					/*background-color: #4D642D;*/
+
 					/* for debug */
 					box-sizing: border-box;
 				}
@@ -293,8 +301,10 @@
 				/* Progress bar filling the whole right half for values above 50% */
 
 				.edac-summary-total-progress-circle.over50 .first50-bar {
+
 					/*Progress bar for the first 50%, filling the whole right half*/
 					position: absolute;
+
 					/*needed for clipping*/
 					clip: rect(0,
 					$progress-circle-size,
