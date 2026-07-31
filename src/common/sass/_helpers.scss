@@ -29,8 +29,13 @@
 		}
 	} @else if $point == retina {
 
+		// Legacy vendor retina syntax kept for older browser support;
+		// the modern standards-compliant equivalent is
+		// `min-resolution: 2dppx`.
+		// stylelint-disable media-feature-name-no-unknown
 		@media only screen and (-webkit-min-device-pixel-ratio: 2),
 			only screen and (min-device-pixel-ratio: 2) {
+			// stylelint-enable media-feature-name-no-unknown
 			@content;
 		}
 	}
