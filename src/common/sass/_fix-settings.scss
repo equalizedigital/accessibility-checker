@@ -148,6 +148,7 @@
 	.dashicons,
 	.dashicons-before:before {
 		// stylelint-enable selector-pseudo-element-colon-notation
+		// stylelint-disable-next-line font-family-no-missing-generic-family-keyword
 		font-family: dashicons;
 		display: inline-block;
 		line-height: 1;
