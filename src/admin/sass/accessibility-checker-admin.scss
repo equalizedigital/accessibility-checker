@@ -1622,6 +1622,9 @@
 					}
 
 					&-label {
+						// Relative unit kept intentionally so line-height scales
+						// with user font-size preferences (accessibility zoom).
+						// stylelint-disable-next-line declaration-property-unit-allowed-list
 						line-height: 1.5rem;
 						font-size: variables.$font-size-small;
 						flex: 1;
@@ -1708,6 +1711,9 @@
 
 		&-item-name {
 			font-size: 1em;
+			// Relative unit kept intentionally so line-height scales
+			// with user font-size preferences (accessibility zoom).
+			// stylelint-disable-next-line declaration-property-unit-allowed-list
 			line-height: 1.25em;
 		}
 	}
