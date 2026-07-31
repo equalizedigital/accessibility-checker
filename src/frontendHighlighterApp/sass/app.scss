@@ -954,6 +954,9 @@ body {
 
 			&--button--save {
 
+				// .edac-highlight-panel-description--button is a real
+				// class used directly in markup, not a %placeholder.
+				// stylelint-disable-next-line scss/at-extend-no-missing-placeholder
 				@extend .edac-highlight-panel-description--button;
 			}
 		}
@@ -997,6 +1000,9 @@ body {
 
 		&--save {
 
+			// .edac-highlight-panel-description--button is a real
+			// class used directly in markup, not a %placeholder.
+			// stylelint-disable-next-line scss/at-extend-no-missing-placeholder
 			@extend .edac-highlight-panel-description--button;
 			margin: 0;
 
