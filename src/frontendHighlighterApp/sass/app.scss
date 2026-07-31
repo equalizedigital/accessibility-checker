@@ -4,8 +4,9 @@
 
 // stylelint-disable no-descending-specificity
 
-// Visually hidden (screen-reader only) utility class for live regions and inline SR text.
-// This pattern hides the element visually while keeping it accessible to assistive technologies.
+// Visually hidden (screen-reader only) utility class for live regions
+// and inline SR text. This pattern hides the element visually while
+// keeping it accessible to assistive technologies.
 // Uses !important so the styles survive the panel's `* { all: unset }` reset.
 .edac-sr-only {
 	position: absolute !important;
@@ -866,7 +867,8 @@ body {
 	padding: 15px;
 }
 
-// this is intentionally before the base styles and the highlighter specific styles.
+// this is intentionally before the base styles and the highlighter
+// specific styles.
 .edac-fixes-modal {
 
 	* {
@@ -1018,7 +1020,8 @@ body {
 	}
 }
 
-// Menu icon system using CSS mask-image so icons inherit color from parent button
+// Menu icon system using CSS mask-image so icons inherit color from
+// parent button
 .edac-menu-icon {
 	display: inline-block !important;
 	flex-shrink: 0 !important;

@@ -64,7 +64,8 @@
 			select,
 			textarea {
 
-				/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
+				/* Styles on a parent element set `all` to none making
+				everything invisible, need to revert that here. */
 				all: revert;
 			}
 		}
