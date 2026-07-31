@@ -882,6 +882,9 @@ body {
 
 @include meta.load-css("../../common/sass/fix-settings");
 
+// Intentional duplicate: the earlier .edac-fixes-modal block resets
+// styles before fix-settings loads, this one applies the real styling.
+// stylelint-disable-next-line no-duplicate-selectors
 .edac-fixes-modal {
 	display: none;
 	width: 650px;
