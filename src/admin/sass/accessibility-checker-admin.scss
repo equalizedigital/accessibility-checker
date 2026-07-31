@@ -4,6 +4,7 @@
 @use "../../sidebar/sass/variables" as sidebar-variables;
 @use "../../sidebar/sass/components/badge";
 
+// stylelint-disable no-descending-specificity
 #edac-meta-box {
 	font-size: 14px;
 

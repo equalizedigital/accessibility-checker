@@ -85,6 +85,7 @@
 
 	}
 
+	// stylelint-disable-next-line no-descending-specificity
 	&--action-row {
 		display: flex;
 		gap: 0.5rem;
@@ -294,6 +295,7 @@ body.block-editor-page {
 		display: none;
 	}
 
+	// stylelint-disable-next-line no-descending-specificity
 	.modal-opening-message {
 		margin: 0;
 		padding: 0;

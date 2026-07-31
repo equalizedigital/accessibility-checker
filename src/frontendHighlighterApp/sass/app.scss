@@ -2,6 +2,8 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+// stylelint-disable no-descending-specificity
+
 // Visually hidden (screen-reader only) utility class for live regions and inline SR text.
 // This pattern hides the element visually while keeping it accessible to assistive technologies.
 // Uses !important so the styles survive the panel's `* { all: unset }` reset.

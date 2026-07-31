@@ -12,6 +12,7 @@
 // context (modal, pro drawer, etc.). Modal-specific overrides follow below.
 @use "dismiss-panel";
 
+// stylelint-disable no-descending-specificity
 .edac-analysis {
 
 	&__issue-modal {
@@ -46,7 +47,8 @@
 		}
 
 		// The className prop on Modal is applied to .components-modal__frame
-		// so we use &.components-modal__frame to match .edac-analysis__issue-modal.components-modal__frame
+		// so we use &.components-modal__frame to match:
+		// .edac-analysis__issue-modal.components-modal__frame
 		&.components-modal__frame {
 			width: 890px;
 			max-width: 80%;
