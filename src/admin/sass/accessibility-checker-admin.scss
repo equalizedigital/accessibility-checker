@@ -226,6 +226,7 @@
 						display: inline-block;
 					}
 
+					// stylelint-disable-next-line selector-pseudo-element-colon-notation
 					&:after {
 						border: none;
 						position: absolute;
@@ -1132,6 +1133,7 @@
 			margin-bottom: 16px;
 			font-size: 16px;
 
+			// stylelint-disable-next-line selector-pseudo-element-colon-notation
 			&:before {
 				content: url(../images/list-check.png);
 				height: 21px;
@@ -1177,6 +1179,7 @@
 			display: inline;
 		}
 
+		// stylelint-disable-next-line selector-pseudo-element-colon-notation
 		&:after {
 			content: "";
 			position: absolute;
@@ -1221,6 +1224,7 @@
 	&-review {
 		font-weight: 600;
 
+		// stylelint-disable-next-line selector-pseudo-element-colon-notation
 		&:after {
 			content: " \f155\f155\f155\f155\f155";
 			font-family: dashicons;
