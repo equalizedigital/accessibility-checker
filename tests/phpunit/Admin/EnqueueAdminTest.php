@@ -90,7 +90,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
-		$this->assertNotContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );

@@ -83,12 +83,7 @@ class Enqueue_Admin {
 			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
 			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
 
-			$admin_script_dependencies = [ 'jquery' ];
-			if ( 'accessibility_checker_settings' === $page ) {
-				$admin_script_dependencies[] = 'wp-a11y';
-			}
-
-			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', $admin_script_dependencies, EDAC_VERSION, false );
+			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery', 'wp-a11y' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 			wp_localize_script(
 				'edac',
