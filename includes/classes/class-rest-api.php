@@ -344,6 +344,17 @@ class REST_Api {
 								return false;
 							}
 
+							// A largeBatch request from a user who can ignore globally doesn't
+							// need edit_post on the URL's representative issue - dismiss_issue()
+							// already re-verifies (or, for this exact capability, deliberately
+							// bypasses) per-post permission for every affected row once inside
+							// the handler. Gating on the one representative post here would
+							// block the very requests this capability exists to allow, whenever
+							// that post happens not to be one the user personally owns.
+							if ( $request->get_param( 'largeBatch' ) && edac_user_can_ignore_globally() ) {
+								return true;
+							}
+
 							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 							if ( ! $table_name ) {
 								return false;

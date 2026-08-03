@@ -1003,6 +1003,92 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		foreach ( $updated_issues as $issue ) {
 			$this->assertSame( '1', $issue['ignre'], 'Both issues should be dismissed, including the one on the post the user cannot individually edit.' );
 		}
+
+		// The route's own permission_callback does a separate edit_post lookup
+		// against whichever post the URL's issue_id resolves to, before the
+		// handler above (and its per-post bypass) ever runs - $first_issue_id
+		// resolves to limited_id's own post, so this assertion alone can't
+		// prove that lookup also respects the global capability. See
+		// test_large_batch_dismiss_permission_callback_bypasses_edit_post_on_representative_post()
+		// for the case where the URL's own post isn't one the user can edit.
+	}
+
+	/**
+	 * Test: the dismiss-issue route's permission_callback must not require
+	 * edit_post on the URL's own representative post when the request is a
+	 * largeBatch global-ignore - that check runs before dismiss_issue() (and
+	 * its per-post bypass) is ever reached, so gating it on ownership of one
+	 * specific post would block exactly the requests edac_ignore_issues_globally
+	 * exists to allow, any time that one post isn't personally owned by the
+	 * caller.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_permission_callback_bypasses_edit_post_on_representative_post() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+
+		// Post owned by admin - limited_id has no edit_post on this one.
+		$admin_post = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Admin-Only Representative Post',
+				'post_content' => 'Admin-Only Representative Content',
+			]
+		);
+
+		$table_name   = $wpdb->prefix . 'accessibility_checker';
+		$site_id      = get_current_blog_id();
+		$batch_object = 'batch-representative-post-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $admin_post,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'batch-representative-post',
+				'ruletype'     => 'error',
+				'object'       => $batch_object,
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		// The URL's issue_id resolves to $admin_post - the post limited_id
+		// cannot edit - which is exactly what the permission_callback's own
+		// edit_post lookup would otherwise gate on.
+		$issue_id = $wpdb->insert_id;
+
+		wp_set_current_user( self::$limited_id );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'largeBatch', true );
+
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame(
+			200,
+			$response->get_status(),
+			'largeBatch dismiss with edac_ignore_issues_globally should not be blocked by the permission_callback\'s edit_post check on the URL\'s own representative post.'
+		);
+
+		$updated_issue = $wpdb->get_row(
+			$wpdb->prepare( 'SELECT ignre FROM %i WHERE id = %d', $table_name, $issue_id ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$this->assertSame( '1', $updated_issue['ignre'], 'Issue should have been dismissed.' );
 	}
 
 	/**
