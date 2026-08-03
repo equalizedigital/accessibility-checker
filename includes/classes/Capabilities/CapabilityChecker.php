@@ -14,9 +14,10 @@ namespace EqualizeDigital\AccessibilityChecker\Capabilities;
  *
  * Deliberately has no knowledge of SyncCapability, option-backed bundles, or
  * how a capability came to be true for a given user - a role-level sync, a
- * per-user UserCapabilityGrant, or a plain core WP capability all answer
- * identically here. That's the point of the split: SyncCapability owns
- * writing the role/capability relationship, this class only ever reads it.
+ * capability granted directly to one user (by a role-editor plugin, custom
+ * code, etc.), or a plain core WP capability all answer identically here.
+ * That's the point of the split: SyncCapability owns writing the
+ * role/capability relationship, this class only ever reads it.
  */
 class CapabilityChecker {
 
