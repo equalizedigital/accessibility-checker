@@ -93,6 +93,8 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 	 * Clean up after each test.
 	 */
 	protected function tearDown(): void {
+		delete_post_meta( self::$post_id, '_edac_simplified_summary' );
+
 		global $wpdb;
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		if ( $table_name ) {
