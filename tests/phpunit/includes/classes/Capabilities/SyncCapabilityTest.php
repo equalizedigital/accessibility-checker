@@ -268,6 +268,41 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The constructor should reject an empty capabilities array rather than
+	 * silently falling through to user_can()'s no-argument default checking
+	 * an undefined (null) capability.
+	 *
+	 * @return void
+	 */
+	public function test_constructor_throws_on_empty_capabilities_array() {
+		$this->expectException( \InvalidArgumentException::class );
+
+		new SyncCapability( [], self::TEST_OPTION );
+	}
+
+	/**
+	 * Register() must hook maybe_migrate() to init, not admin_init - admin_menu
+	 * and rest_api_init both fire before admin_init on their respective request
+	 * types, so a migration gated on admin_init would miss the first request
+	 * after a version bump for menu builds and REST-only requests entirely.
+	 *
+	 * @return void
+	 */
+	public function test_register_hooks_migration_to_init_not_admin_init() {
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+		$capability->register();
+
+		$this->assertNotFalse(
+			has_action( 'init', [ $capability, 'maybe_migrate' ] ),
+			'maybe_migrate() should be hooked to init.'
+		);
+		$this->assertFalse(
+			has_action( 'admin_init', [ $capability, 'maybe_migrate' ] ),
+			'maybe_migrate() should not be hooked to admin_init.'
+		);
+	}
+
+	/**
 	 * Sync_role_capability() is the generic (role, capability) primitive
 	 * sync() is built on. It's private (calling it directly for one
 	 * capability out of a bundle would desync the rest of the bundle for
