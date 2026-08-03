@@ -113,6 +113,18 @@ class SyncCapability {
 			10,
 			2
 		);
+		// Whatever deleted the option (typically an uninstall routine, gated
+		// behind the "delete data" preference) intends for the roles it
+		// granted to lose these capabilities too - without this, sync()
+		// would only ever run again on the next add_option/update_option,
+		// leaving the capabilities stuck on whichever roles had them at
+		// deletion time indefinitely.
+		add_action(
+			"delete_option_{$this->option_name}",
+			function () {
+				$this->sync( [] );
+			}
+		);
 
 		// init, not admin_init: admin_menu (where menu capability checks happen)
 		// and rest_api_init (where REST permission_callbacks are registered) both

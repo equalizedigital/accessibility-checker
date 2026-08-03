@@ -100,6 +100,30 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Deleting the option (e.g. an uninstall routine's opt-in data cleanup)
+	 * should revoke the capability from every role it was synced onto - the
+	 * option's own removal is the strongest possible signal that a stale
+	 * grant shouldn't be left behind, and there is no other hook left that
+	 * would ever catch this since add_option/update_option only fire again
+	 * on a future save.
+	 *
+	 * @return void
+	 */
+	public function test_deleting_option_revokes_capability_from_all_roles() {
+		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+		$capability->register();
+
+		add_option( self::TEST_OPTION, [ 'editor', 'author' ] );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+
+		delete_option( self::TEST_OPTION );
+
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+	}
+
+	/**
 	 * Manage_options users must always pass user_can(), regardless of
 	 * whether their role was synced.
 	 *
