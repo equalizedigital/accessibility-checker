@@ -1106,6 +1106,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 			],
 			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
 		);
+		$unrelated_rule_issue_id = $wpdb->insert_id;
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
 		wp_set_current_user( self::$limited_id );
@@ -1120,6 +1121,16 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 			200,
 			$response->get_status(),
 			'Large batch dismiss should succeed even though an unrelated-rule issue on an unauthorized post shares the object.'
+		);
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data for assertions.
+		$unrelated_ignre = $wpdb->get_var(
+			$wpdb->prepare( 'SELECT ignre FROM %i WHERE id = %d', $table_name, $unrelated_rule_issue_id )
+		);
+		$this->assertSame(
+			'0',
+			$unrelated_ignre,
+			'The unrelated-rule issue on the unauthorized post must stay open -- the batch succeeding must be because it was excluded by the rule filter, not because permissions were skipped.'
 		);
 	}
 
