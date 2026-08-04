@@ -749,6 +749,143 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test: Large batch dismiss only affects rows sharing the same rule, not just the same object.
+	 *
+	 * Regression test for PRO-1264: a global/large-batch dismiss on an issue must only touch
+	 * other rows with the same `rule` AND `object`. Rows that share only the `object` (a
+	 * different rule against the same DOM node) must be left untouched.
+	 *
+	 * @return void
+	 */
+	public function test_large_batch_dismiss_only_affects_matching_rule() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		$post_1 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Rule Scoping Post 1',
+				'post_content' => 'Rule Scoping Content 1',
+			]
+		);
+
+		$post_2 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Rule Scoping Post 2',
+				'post_content' => 'Rule Scoping Content 2',
+			]
+		);
+
+		$post_3 = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Rule Scoping Post 3',
+				'post_content' => 'Rule Scoping Content 3',
+			]
+		);
+
+		$table_name    = $wpdb->prefix . 'accessibility_checker';
+		$site_id       = get_current_blog_id();
+		$shared_object = 'rule-scoping-test-' . wp_generate_uuid4();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		// Post 1 and Post 2 share the same rule AND object — these should both be dismissed together.
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $post_1,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'missing_alt_text',
+				'ruletype'     => 'error',
+				'object'       => $shared_object,
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$matching_issue_id_1 = $wpdb->insert_id;
+
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $post_2,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'missing_alt_text',
+				'ruletype'     => 'error',
+				'object'       => $shared_object,
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$matching_issue_id_2 = $wpdb->insert_id;
+
+		// Post 3 shares the same object but has a DIFFERENT rule — must NOT be dismissed.
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $post_3,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'color_contrast_failure',
+				'ruletype'     => 'error',
+				'object'       => $shared_object,
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+		$unrelated_rule_issue_id = $wpdb->insert_id;
+
+		// Set limited user (who owns all three posts).
+		wp_set_current_user( self::$limited_id );
+
+		// Dismiss globally, starting from one of the matching-rule issues.
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $matching_issue_id_1 );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'Rule scoping test' );
+		$request->set_param( 'largeBatch', true );
+		$request->set_param( 'ignore_global', 1 );
+
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status(), 'Large batch dismiss should succeed for the authorized user.' );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data for assertions.
+		$rows = $wpdb->get_results(
+			$wpdb->prepare( 'SELECT id, ignre FROM %i WHERE object = %s ORDER BY id', $table_name, $shared_object ),
+			ARRAY_A
+		);
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$rows_by_id = array_column( $rows, 'ignre', 'id' );
+
+		$this->assertSame( '1', $rows_by_id[ $matching_issue_id_1 ], 'The dismissed issue itself should be marked ignored.' );
+		$this->assertSame( '1', $rows_by_id[ $matching_issue_id_2 ], 'The other row sharing rule+object should also be dismissed.' );
+		$this->assertSame(
+			'0',
+			$rows_by_id[ $unrelated_rule_issue_id ],
+			'A row sharing only the object (different rule) must NOT be dismissed by a global/large-batch action.'
+		);
+	}
+
+	/**
 	 * Test: Large batch dismissed by user with partial authorization fails before bulk query.
 	 *
 	 * Verifies that when a user can edit only SOME posts in a large batch,
