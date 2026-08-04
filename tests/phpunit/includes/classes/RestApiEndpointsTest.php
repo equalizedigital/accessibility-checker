@@ -692,7 +692,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$batch_object = 'batch-all-authorized-test-' . wp_generate_uuid4();
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		// Create multiple issues with the same object (batch).
+		// Create multiple issues sharing the same rule AND object (batch).
 		$issue_ids = [];
 		for ( $i = 1; $i <= 3; $i++ ) {
 			$post_id = ( $i <= 2 ) ? $post_1 : $post_2;
@@ -702,7 +702,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 					'postid'       => $post_id,
 					'siteid'       => $site_id,
 					'type'         => 'error',
-					'rule'         => 'batch-auth-test-' . $i,
+					'rule'         => 'batch-auth-test',
 					'ruletype'     => 'error',
 					'object'       => $batch_object,
 					'recordcheck'  => 1,
@@ -930,13 +930,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		// Create first issue on limited_id's post (limited user CAN edit).
+		// Both rows share the same rule AND object so they land in the same batch.
 		$wpdb->insert(
 			$table_name,
 			[
 				'postid'       => $limited_post,
 				'siteid'       => $site_id,
 				'type'         => 'error',
-				'rule'         => 'batch-partial-1',
+				'rule'         => 'batch-partial-test',
 				'ruletype'     => 'error',
 				'object'       => $batch_object,
 				'recordcheck'  => 1,
@@ -955,7 +956,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 				'postid'       => $admin_post,
 				'siteid'       => $site_id,
 				'type'         => 'error',
-				'rule'         => 'batch-partial-2',
+				'rule'         => 'batch-partial-test',
 				'ruletype'     => 'error',
 				'object'       => $batch_object,
 				'recordcheck'  => 1,
