@@ -1227,8 +1227,8 @@ class REST_Api {
 		$ignre_comment        = $is_ignoring ? $comment : null;
 		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
 
-		// If largeBatch is set, verify edit permission for all matching rows,
-		// then perform a single object-based update.
+		// If largeBatch is set, gather every row sharing this issue's rule + object,
+		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
 			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
@@ -1236,7 +1236,7 @@ class REST_Api {
 			$rule               = $representative_row['rule'] ?? '';
 			$object             = $representative_row['object'] ?? '';
 
-			if ( ! $object ) {
+			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
 					__( 'Issue not found.', 'accessibility-checker' ),
