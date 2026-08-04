@@ -37,7 +37,6 @@ class Ajax {
 		add_action( 'wp_ajax_edac_summary_ajax', [ $this, 'summary' ] );
 		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
 		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
-		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
@@ -802,117 +801,6 @@ class Ajax {
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
-	}
-
-	/**
-	 * Insert ignore data into database
-	 *
-	 * Note: There is a new dismiss-issue rest endpoint that covers this functionality
-	 * now and should be used going forward. This ajax was updated to support dismiss
-	 * reasons to align with the new endpoint and allow other things to continue to
-	 * work here gracefully.
-	 *
-	 * This should be removed in a future release.
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that there isn't any ignore data to return
-	 */
-	public function add_ignore() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
-		}
-
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids    = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids        = array_map(
-			function ( $value ) {
-				return (int) $value;
-			},
-			$raw_ids
-		); // Sanitizing array elements to integers.
-		$action     = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
-		$type       = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
-		$siteid     = get_current_blog_id();
-
-		// Capability check: verify edit_post on every post affected by this request.
-		$batch_object = null;
-		$first_id     = reset( $ids );
-		$valid_table  = edac_get_valid_table_name( $table_name );
-
-		if ( ! $first_id || ! $valid_table ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-
-		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
-			// largeBatch updates every row sharing the same object string across the site;
-			// collect all distinct postids that would be affected and check each one.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
-			$batch_object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $valid_table, $first_id ) );
-			if ( ! $batch_object ) {
-				wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-			}
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
-			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT postid FROM %i WHERE siteid = %d AND object = %s', $valid_table, $siteid, $batch_object ) );
-		} else {
-			// Small batch: look up the post for every supplied ID in one query.
-			$id_placeholders   = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
-			$query_args        = array_merge( [ $valid_table ], $ids );
-			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT postid FROM %i WHERE id IN ({$id_placeholders})", $query_args ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder -- Permission check requires direct lookup.
-		}
-
-		if ( empty( $affected_post_ids ) ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-
-		foreach ( $affected_post_ids as $affected_post_id ) {
-			if ( ! current_user_can( 'edit_post', (int) $affected_post_id ) ) {
-				wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
-			}
-		}
-
-		$ignre                = ( 'enable' === $action ) ? 1 : 0;
-		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
-		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
-		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
-		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
-		$ignre_date_formatted = ( 'enable' === $action ) ? edac_format_datetime_from_utc( $ignre_date ) : '';
-		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
-		$ignre_reason         = ( 'enable' === $action && isset( $_REQUEST['reason'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['reason'] ) ) : null;
-		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
-
-		// If largeBatch is set and 'true', we need to perform an update using the 'object'
-		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
-		// into request size limits which caused this to not function at all.
-		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
-			// $batch_object was already resolved during the capability check above.
-			$object = $batch_object;
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
-		} else {
-			// For small batches of IDs, we can just loop through.
-			foreach ( $ids as $id ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $id ) );
-			}
-		}
-
-		$data = [
-			'ids'    => $ids,
-			'action' => $action,
-			'type'   => $type,
-			'user'   => $ignre_username,
-			'date'   => $ignre_date_formatted,
-		];
-
-		if ( ! $data ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-		wp_send_json_success( wp_json_encode( $data ) );
 	}
 
 	/**
