@@ -1264,14 +1264,16 @@ class REST_Api {
 		$ignre_comment        = $is_ignoring ? $comment : null;
 		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
 
-		// If largeBatch is set, verify edit permission for all matching rows,
-		// then perform a single object-based update.
+		// If largeBatch is set, gather every row sharing this issue's rule + object,
+		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
-			// Get the 'object' from the issue id.
+			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
-			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $issue_id ) );
+			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
+			$rule               = $representative_row['rule'] ?? '';
+			$object             = $representative_row['object'] ?? '';
 
-			if ( ! $object ) {
+			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
 					__( 'Issue not found.', 'accessibility-checker' ),
@@ -1284,10 +1286,11 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
 			$issue_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s',
+					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
 					$table_name,
 					$site_id,
-					$object
+					$object,
+					$rule
 				),
 				ARRAY_A
 			);
