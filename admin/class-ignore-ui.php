@@ -171,7 +171,7 @@ class IgnoreUI {
 			}
 		} elseif ( true === $ignore_permission ) {
 				$html .= '<button class="edac-details-rule-records-record-ignore-submit button button-primary" data-id="' . $issue_id . '" data-action="' . esc_attr( $ignore_action ) . '" data-type="' . esc_attr( $ignore_type ) . '">' . $ignore_icon . ' <span class="edac-details-rule-records-record-ignore-submit-label">' . esc_html( $ignore_submit_label ) . '</span></button>';
-				$html .= '<p class="screen-reader-texts" role="status" aria-live="assertive" id="success-message-' . esc_attr( $issue_id ) . '"></p>';
+				$html .= '<p class="screen-reader-text" role="status" aria-live="assertive" id="success-message-' . esc_attr( $issue_id ) . '"></p>';
 		}
 
 		// No permission message.
