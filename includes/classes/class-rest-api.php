@@ -1072,7 +1072,8 @@ class REST_Api {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = isset( $edac_summary['readability'] ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = $post_grade > 9; // Treat Flesch-Kincaid grade 9+ (above roughly 8th-grade reading level recommended for plain language) as a readability failure.
+		// Treat Flesch-Kincaid grades above 9 (grade 10+) as readability failures.
+		$post_grade_failed = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -1080,7 +1081,7 @@ class REST_Api {
 			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
-		$simplified_summary_grade_failed      = $simplified_summary_grade >= 9;
+		$simplified_summary_grade_failed      = $simplified_summary_grade > 9;
 		$simplified_summary_grade_readability = edac_ordinal( $simplified_summary_grade );
 		$simplified_summary_prompt            = get_option( 'edac_simplified_summary_prompt' );
 
