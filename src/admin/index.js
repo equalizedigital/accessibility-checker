@@ -500,6 +500,10 @@ const edacScriptVars = edac_script_vars;
 							console.log( data );
 							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
 						}
+					} ).fail( function( data ) {
+						// eslint-disable-next-line no-console
+						console.log( data );
+						document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
 					} );
 				}
 			);
