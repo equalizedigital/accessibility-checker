@@ -503,7 +503,7 @@ const edacScriptVars = edac_script_vars;
 					} ).fail( function( data ) {
 						// eslint-disable-next-line no-console
 						console.log( data );
-						document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
+						document.querySelector( '#success-message-' + issueId ).textContent = data.restAction === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
 					} );
 				}
 			);
