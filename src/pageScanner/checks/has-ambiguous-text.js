@@ -34,12 +34,6 @@ const checkAmbiguousPhrase = ( text ) => {
 export default {
 	id: 'has_ambiguous_text',
 	evaluate: ( node ) => {
-		if ( node.hasAttribute( 'aria-labelledby' ) ) {
-			const label = node.getAttribute( 'aria-labelledby' );
-			const labelText = document.getElementById( label )?.textContent;
-			return checkAmbiguousPhrase( labelText );
-		}
-
 		if ( node.textContent && node.textContent !== '' ) {
 			return checkAmbiguousPhrase( node.textContent );
 		}
