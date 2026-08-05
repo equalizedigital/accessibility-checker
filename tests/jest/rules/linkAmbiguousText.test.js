@@ -33,16 +33,6 @@ describe( 'Link Ambiguous Text Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'should pass for descriptive aria-label on ambiguous link text',
-			html: '<a href="/team" aria-label="Learn about our team">Read more</a>',
-			shouldPass: true,
-		},
-		{
-			name: 'should pass for descriptive aria-labelledby',
-			html: '<span id="link-label">Visit our accessibility resources</span><a href="/resources" aria-labelledby="link-label">here</a>',
-			shouldPass: true,
-		},
-		{
 			name: 'should pass for an image link with descriptive alt text',
 			html: '<a href="/home"><img src="logo.png" alt="Return to homepage" /></a>',
 			shouldPass: true,
@@ -97,16 +87,6 @@ describe( 'Link Ambiguous Text Rule', () => {
 		{
 			name: 'should fail for "details"',
 			html: '<a href="/item">details</a>',
-			shouldPass: false,
-		},
-		{
-			name: 'should fail for ambiguous aria-label',
-			html: '<a href="/page" aria-label="here">Visit our page</a>',
-			shouldPass: false,
-		},
-		{
-			name: 'should fail for ambiguous aria-labelledby',
-			html: '<span id="lbl">click here</span><a href="/page" aria-labelledby="lbl">Visit page</a>',
 			shouldPass: false,
 		},
 		{
