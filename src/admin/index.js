@@ -368,6 +368,10 @@ const edacScriptVars = edac_script_vars;
 								: '';
 
 							jQuery(
+								'#success-message-' +
+								issueId
+							).html( 'Successfully dismissed issue.' );
+							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
 							).attr( 'data-action', doneIgnoreAction );
@@ -496,6 +500,10 @@ const edacScriptVars = edac_script_vars;
 						} else {
 							// eslint-disable-next-line no-console
 							console.log( data );
+							jQuery(
+								'#success-message-' +
+								issueId
+							).html( 'Failed to dismiss issue.' );
 						}
 					} );
 				}
