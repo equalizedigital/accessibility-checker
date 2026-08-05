@@ -367,10 +367,7 @@ const edacScriptVars = edac_script_vars;
 								? '<strong>Date:</strong> ' + data.ignre_date
 								: '';
 
-							jQuery(
-								'#success-message-' +
-								issueId
-							).html( 'Successfully dismissed issue.' );
+							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? 'Successfully dismissed issue' : 'Successfully undismissed issue';
 							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
@@ -500,10 +497,7 @@ const edacScriptVars = edac_script_vars;
 						} else {
 							// eslint-disable-next-line no-console
 							console.log( data );
-							jQuery(
-								'#success-message-' +
-								issueId
-							).html( 'Failed to dismiss issue.' );
+							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? 'Failed to dismiss issue' : 'Failed to undismiss issue';
 						}
 					} );
 				}
