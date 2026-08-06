@@ -115,7 +115,12 @@ const edacScriptVars = edac_script_vars;
 		const refreshSummaryAndReadability = () => {
 			edacSummaryAjax( () => {
 				edacReadabilityAjax();
-				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+				const edacPanels = document.querySelectorAll( '.edac-panel' );
+				if ( edacPanels ) {
+					Array.from( edacPanels ).forEach( ( panel ) => {
+						panel.classList.remove( 'edac-panel-loading' );
+					} );
+				}
 			} );
 		};
 
