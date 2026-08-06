@@ -26,43 +26,40 @@ const edacScriptVars = edac_script_vars;
 			inlineSettingsProUpsell();
 		}
 
-		// Accessibility Statement disable
-		jQuery(
-			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'
-		).on( 'change', function() {
-			if ( this.checked ) {
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'disabled', false );
-			} else {
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'disabled', true );
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'checked', false );
-			}
-			//
-		} );
+		const footerA11yStatementToggle = document.querySelector( 'input[type=checkbox][name=edac_add_footer_accessibility_statement]' );
+		const footerA11yStatementLink = document.querySelector( 'input[type=checkbox][name=edac_include_accessibility_statement_link]' );
+		if ( footerA11yStatementToggle ) {
+			footerA11yStatementToggle.addEventListener( 'change', function( e ) {
+				if ( e.target.checked ) {
+					footerA11yStatementLink.removeAttribute( 'disabled' );
+				} else {
+					footerA11yStatementLink.setAttribute( 'disabled', true );
+					footerA11yStatementLink.checked = false;
+				}
+			} );
+		}
 
 		// Show Simplified Summary code on options page
-		if (
-			jQuery(
-				'input[type=radio][name=edac_simplified_summary_position]:checked'
-			).val() === 'none'
-		) {
-			jQuery( '#ac-simplified-summary-option-code' ).show();
-		}
-		jQuery( 'input[type=radio][name=edac_simplified_summary_position]' ).on(
-			'load',
-			function() {
-				if ( this.value === 'none' ) {
-					jQuery( '#ac-simplified-summary-option-code' ).show();
-				} else {
-					jQuery( '#ac-simplified-summary-option-code' ).hide();
-				}
+		const summaryPositionFields = document.querySelectorAll( 'input[type=radio][name=edac_simplified_summary_position]' );
+		const summaryPositionFieldChecked = document.querySelector( 'input[type=radio][name=edac_simplified_summary_position]:checked' );
+		const simplifiedSummaryOptionCode = document.querySelector( '#ac-simplified-summary-option-code' );
+		if ( summaryPositionFieldChecked ) {
+			if ( summaryPositionFieldChecked.value === 'none' ) {
+				simplifiedSummaryOptionCode.style.display = 'block';
+			} else {
+				simplifiedSummaryOptionCode.style.display = 'none';
 			}
-		);
+		}
+
+		Array.from( summaryPositionFields ).forEach( ( field ) => {
+			field.addEventListener( 'change', function( item ) {
+				if ( item.target.value === 'none' ) {
+					simplifiedSummaryOptionCode.style.display = 'block';
+				} else {
+					simplifiedSummaryOptionCode.style.display = 'none';
+				}
+			} );
+		} );
 	} );
 
 	jQuery( window ).on( 'load', function() {
