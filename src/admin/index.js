@@ -584,13 +584,13 @@ const edacScriptVars = edac_script_vars;
 		/**
 		 * Black Friday Notice Ajax
 		 */
-		if ( jQuery( '.edac_black_friday_notice' ).length ) {
-			jQuery( '.edac_black_friday_notice .notice-dismiss' ).on(
-				'click',
-				function() {
+		const blackFridayNoticeDismiss = document.querySelectorAll( '.edac_black_friday_notice .notice-dismiss' );
+		if ( blackFridayNoticeDismiss ) {
+			Array.from( blackFridayNoticeDismiss ).forEach( ( dismiss ) => {
+				dismiss.addEventListener( 'click', () => {
 					edacNoticeAjax( 'edac_black_friday_notice_ajax' );
-				}
-			);
+				} );
+			} );
 		}
 
 		function edacNoticeAjax( functionName = null ) {
