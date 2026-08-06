@@ -281,7 +281,7 @@ const edacScriptVars = edac_script_vars;
 							event.preventDefault();
 
 							// var postID = wp.data.select("core/editor").getCurrentPostId();
-							const summary = jQuery( '#edac-readability-text' ).val();
+							const summary = document.querySelector( '#edac-readability-text' ).value;
 
 							jQuery.ajax( {
 								url: edacScriptVars.edacApiUrl + '/simplified-summary/' + postID,
