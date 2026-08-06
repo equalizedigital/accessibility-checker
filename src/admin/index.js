@@ -621,7 +621,9 @@ const edacScriptVars = edac_script_vars;
 		if ( edacDetailsRecordsIgnore.length ) {
 			ignoreSubmit();
 		}
-		if ( jQuery( '#edac-readability-panel' ).length ) {
+
+		const edacReadabilityPanel = document.querySelector( '#edac-readability-panel' );
+		if ( edacReadabilityPanel ) {
 			refreshSummaryAndReadability();
 		}
 
