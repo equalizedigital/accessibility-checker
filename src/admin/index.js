@@ -86,15 +86,19 @@ const edacScriptVars = edac_script_vars;
 			// reset to first meta box tab
 			clearAllTabsAndPanelState();
 
-			const summaryPanel = jQuery( '#edac-summary-panel' );
-			jQuery( summaryPanel )
-				.show()
-				.addClass( 'active' );
-			const summaryTab = '#' + jQuery( summaryPanel ).attr( 'aria-labelledby' );
-			jQuery( summaryTab )
-				.addClass( 'active' )
-				.attr( 'aria-selected', 'true' )
-				.removeAttr( 'tabindex' );
+			const summaryPanel = document.querySelector( '#edac-summary-panel' );
+			if ( summaryPanel ) {
+				summaryPanel.style.display = 'block';
+				summaryPanel.classList.add( 'active' );
+			}
+
+			const summaryTabSelector = '#' + summaryPanel.getAttribute( 'aria-labelledby' );
+			const summaryTab = document.querySelector( summaryTabSelector );
+			if ( summaryTab ) {
+				summaryTab.classList.add( 'active' );
+				summaryTab.setAttribute( 'aria-selected', 'true' );
+				summaryTab.removeAttribute( 'tabindex' );
+			}
 
 			edacDetailsAjax();
 			refreshSummaryAndReadability();
