@@ -610,7 +610,8 @@ const edacScriptVars = edac_script_vars;
 			} );
 		}
 
-		if ( jQuery( '#edac-summary-panel' ).length ) {
+		const edacSummaryPanel = document.querySelector( '#edac-summary-panel' );
+		if ( edacSummaryPanel ) {
 			refreshSummaryAndReadability();
 			edacDetailsAjax();
 			ignoreSubmit();
