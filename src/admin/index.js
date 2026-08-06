@@ -617,7 +617,8 @@ const edacScriptVars = edac_script_vars;
 			ignoreSubmit();
 		}
 
-		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
+		const edacDetailsRecordsIgnore = document.querySelectorAll( '.edac-details-rule-records-record-ignore' );
+		if ( edacDetailsRecordsIgnore.length ) {
 			ignoreSubmit();
 		}
 		if ( jQuery( '#edac-readability-panel' ).length ) {
