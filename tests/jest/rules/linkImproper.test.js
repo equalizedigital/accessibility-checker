@@ -202,6 +202,81 @@ describe( 'Link Improper Rule', () => {
 			html: '<a id="meet-the-team" tabindex="-1"></a>',
 			shouldPass: true,
 		},
+
+		// Presentational role cases. See https://github.com/equalizedigital/accessibility-checker/issues/1748
+		{
+			name: 'Passes with role="none" on a non-focusable dropdown wrapper',
+			html: '<a role="none"><span class="nav-drop-title-wrap">eBranch<span class="dropdown-nav-toggle"><span class="kadence-svg-iconset svg-baseline"><svg aria-hidden="true" class="kadence-svg-icon" fill="currentColor" version="1.1" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><title>Expand</title><path d="M5.293 9.707l6 6c0.391 0.391 1.024 0.391 1.414 0l6-6z"></path> </svg></span></span></span></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with role="presentation" and no href',
+			html: '<a role="presentation"><span>Menu</span></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with multiple roles including none and no href',
+			html: '<a role="foo none bar"><span>Menu</span></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Fails with role="none" when focusable via href="#"',
+			html: '<a href="#" role="none">Click</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails with role="none" when focusable via tabindex',
+			html: '<a role="none" tabindex="0">Click</a>',
+			shouldPass: false,
+		},
+		{
+			// tabindex="-1" is focusable programmatically and by click, so the presentational
+			// role is ignored per the conflict resolution.
+			name: 'Fails with role="none" and tabindex of -1',
+			html: '<a role="none" tabindex="-1">Click</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails with role="none" and a global aria attribute',
+			html: '<a role="none" aria-label="Open menu"><span>Menu</span></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Passes with role="none" and aria-hidden="true"',
+			html: '<a role="none" aria-hidden="true"><span>Menu</span></a>',
+			shouldPass: true,
+		},
+
+		// Slider role cases. See https://github.com/equalizedigital/accessibility-checker/issues/1748
+		{
+			name: 'Passes with role="slider" on a media player volume control',
+			html: '<a class="mejs-horizontal-volume-slider" href="javascript:void(0);" aria-label="Volume Slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100" role="slider"><span class="mejs-offscreen">Use Up/Down Arrow keys to increase or decrease volume.</span><div class="mejs-horizontal-volume-total"><div class="mejs-horizontal-volume-current"></div><div class="mejs-horizontal-volume-handle"></div></div></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with role="slider" and href="#"',
+			html: '<a href="#" role="slider" aria-valuenow="50">Volume</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes with role="slider" and no href',
+			html: '<a role="slider" tabindex="0" aria-valuenow="50">Volume</a>',
+			shouldPass: true,
+		},
+		{
+			// An inactive tab in a roving tabindex tablist is correct markup, so the widget
+			// role exemption must not depend on the anchor being in the tab order.
+			name: 'Passes with role="tab" and tabindex of -1',
+			html: '<a role="tab" tabindex="-1" id="tab-2" aria-controls="panel-2">Tab 2</a>',
+			shouldPass: true,
+		},
+		{
+			// An unparseable tabindex is ignored per the HTML spec, so the anchor is not
+			// focusable and remains a valid jump target.
+			name: 'Passes for a named anchor with an invalid tabindex',
+			html: '<a id="meet-the-team" tabindex=""></a>',
+			shouldPass: true,
+		},
 	] )( '$name', async ( { html, shouldPass, setup } ) => {
 		document.body.innerHTML = html;
 

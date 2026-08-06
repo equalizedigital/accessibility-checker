@@ -13,7 +13,7 @@ export default {
 	],
 	metadata: {
 		description: 'Links must have a meaningful href or an appropriate role if used as buttons.',
-		help: 'Avoid using <a> tags without href or with href="#" unless role="button" is used.',
+		help: 'Avoid using <a> tags without href or with href="#" unless a widget role such as role="button" is used, or the anchor is non-focusable and marked role="none".',
 		impact: 'serious',
 	},
 	all: [],

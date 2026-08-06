@@ -16,18 +16,51 @@ export default {
 		const role = node.getAttribute( 'role' ) || '';
 
 		// Parse roles once for efficiency (DRY principle)
-		const roles = role.toLowerCase().split( /\s+/ );
+		const roleTokens = role.toLowerCase().split( /\s+/ );
 
-		// Allow roles of button or tab
-		if ( roles.some( ( r ) => [ 'button', 'tab' ].includes( r ) ) ) {
+		const tabindex = node.getAttribute( 'tabindex' );
+		const parsedTabindex = null === tabindex ? null : Number.parseInt( tabindex, 10 );
+		// A tabindex whose value is not a valid integer is ignored per the HTML spec, so it
+		// confers no focusability at all.
+		const hasValidTabindex = null !== tabindex && ! Number.isNaN( parsedTabindex );
+		const isKeyboardFocusable = hasValidTabindex && parsedTabindex >= 0;
+
+		// Reachable with the Tab key: an href (including href="") or a non-negative tabindex.
+		const isKeyboardOperable = node.hasAttribute( 'href' ) || isKeyboardFocusable;
+
+		// Focusable at all. Unlike the above this includes tabindex="-1", which is focusable
+		// programmatically and by click even though it is outside the tab order.
+		const isFocusable = node.hasAttribute( 'href' ) || hasValidTabindex;
+
+		// Allow roles of button, tab or slider. None of these is exposed as a link, so the
+		// anchor is not being used improperly regardless of how it is focused. Whether a
+		// non-focusable widget role is itself a defect is a separate question from this rule.
+		if ( roleTokens.some( ( r ) => [ 'button', 'tab', 'slider' ].includes( r ) ) ) {
 			return true;
 		}
 
 		// Allow role="menuitem" with aria-expanded (for expandable menu items)
 		// See: https://wordpress.org/support/topic/improper-use-of-link-5/
 		const hasAriaExpanded = node.hasAttribute( 'aria-expanded' );
-		if ( roles.includes( 'menuitem' ) && hasAriaExpanded ) {
+		if ( roleTokens.includes( 'menuitem' ) && hasAriaExpanded ) {
 			return true;
+		}
+
+		// Allow role="none"/"presentation", which removes the element from the accessibility
+		// tree so it is never exposed as a link. Unlike the named-anchor exemption below,
+		// content is permitted here: the role applies regardless of what the anchor wraps.
+		// Per the presentational roles conflict resolution the role is ignored on an element
+		// that is focusable or carries global ARIA states/properties, so neither may apply.
+		if ( ! isFocusable && ( roleTokens.includes( 'none' ) || roleTokens.includes( 'presentation' ) ) ) {
+			// Approximated as any aria-* attribute, which errs toward reporting. aria-hidden is
+			// excluded because it removes the element from the tree outright, making the role moot.
+			const hasGlobalAria = Array.from( node.attributes ).some(
+				( attr ) => attr.name.startsWith( 'aria-' ) && attr.name !== 'aria-hidden'
+			);
+
+			if ( ! hasGlobalAria ) {
+				return true;
+			}
 		}
 
 		// Allow named anchors used as jump targets: no href, has id/name, no visible content,
@@ -40,12 +73,7 @@ export default {
 		const name = node.getAttribute( 'name' ) || '';
 		const hasAnchorTargetName = id.trim() !== '' || name.trim() !== '';
 
-		const tabindex = node.getAttribute( 'tabindex' );
-		const parsedTabindex = null === tabindex ? null : Number.parseInt( tabindex, 10 );
-		const isKeyboardFocusable =
-			null !== tabindex && ( Number.isNaN( parsedTabindex ) || parsedTabindex >= 0 );
-
-		if ( ! node.hasAttribute( 'href' ) && hasAnchorTargetName && ! isKeyboardFocusable && node.children.length === 0 && node.textContent.trim() === '' ) {
+		if ( ! isKeyboardOperable && hasAnchorTargetName && node.children.length === 0 && node.textContent.trim() === '' ) {
 			return true;
 		}
 

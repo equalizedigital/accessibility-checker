@@ -41,10 +41,12 @@ class LinkImproperRule implements RuleInterface {
 			),
 			'why_it_matters'        => esc_html__( 'Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
-			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
-				esc_html__( 'If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality.', 'accessibility-checker' ),
+			// translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
+				esc_html__( 'If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative and cannot be focused, %3$s or %4$s marks it as presentational so it is not reported.', 'accessibility-checker' ),
 				'<code>&lt;button&gt;</code>',
-				'<code>role="button"</code>'
+				'<code>role="button"</code>',
+				'<code>role="none"</code>',
+				'<code>role="presentation"</code>'
 			),
 			'references'            => [
 				[
