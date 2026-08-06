@@ -187,7 +187,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 
 					jQuery( '#edac-details-panel' ).html( responseJSON );
 
