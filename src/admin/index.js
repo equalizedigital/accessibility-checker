@@ -204,18 +204,20 @@ const edacScriptVars = edac_script_vars;
 					} );
 
 					// Title arrow button on click
-					jQuery( '.edac-details-rule-title-arrow' ).click(
-						function( e ) {
-							e.preventDefault();
-							if (
-								jQuery( this ).attr( 'aria-expanded' ) === 'true'
-							) {
-								jQuery( this ).attr( 'aria-expanded', 'false' );
-							} else {
-								jQuery( this ).attr( 'aria-expanded', 'true' );
-							}
-						}
-					);
+					const detailsRulesTitleArrows = document.querySelectorAll( '.edac-details-rule-title-arrow' );
+					if ( detailsRulesTitleArrows ) {
+						Array.from( detailsRulesTitleArrows ).forEach( ( arrow ) => {
+							arrow.addEventListener( 'click', function( e ) {
+								e.preventDefault();
+								const arrowBtn = e.target.closest( 'button' );
+								if ( arrowBtn.getAttribute( 'aria-expanded' ) === 'true' ) {
+									arrowBtn.setAttribute( 'aria-expanded', 'false' );
+								} else {
+									arrowBtn.setAttribute( 'aria-expanded', 'true' );
+								}
+							} );
+						} );
+					}
 
 					// Ignore on click
 					jQuery(
