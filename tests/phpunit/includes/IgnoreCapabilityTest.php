@@ -20,6 +20,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 			$role->remove_cap( 'edac_ignore_issues' );
 			$role->remove_cap( 'edac_ignore_issues_globally' );
 			$role->remove_cap( 'edac_issues_explorer_access' );
+			$role->remove_cap( 'edac_view_audit_history' );
+			$role->remove_cap( 'edac_export_data' );
 		}
 		parent::tearDown();
 	}
@@ -105,20 +107,22 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Syncing the ignore-roles option should grant all three bundled
-	 * capabilities together - there is no separate setting for global-ignore
-	 * or Issues Explorer access, so a role given ignore permission gets all
-	 * three at once.
+	 * Syncing the ignore-roles option should grant all five bundled
+	 * capabilities together - there is no separate setting for global-ignore,
+	 * Issues Explorer access, audit-history view, or export access, so a role
+	 * given ignore permission gets all five at once.
 	 *
 	 * @return void
 	 */
-	public function test_sync_grants_all_three_bundled_capabilities() {
+	public function test_sync_grants_all_five_bundled_capabilities() {
 		edac_ignore_capability()->sync( [ 'author' ] );
 
 		$author = wp_roles()->get_role( 'author' );
 		$this->assertTrue( $author->has_cap( 'edac_ignore_issues' ) );
 		$this->assertTrue( $author->has_cap( 'edac_ignore_issues_globally' ) );
 		$this->assertTrue( $author->has_cap( 'edac_issues_explorer_access' ) );
+		$this->assertTrue( $author->has_cap( 'edac_view_audit_history' ) );
+		$this->assertTrue( $author->has_cap( 'edac_export_data' ) );
 	}
 
 	/**
@@ -135,6 +139,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		$this->assertTrue( edac_user_can_ignore_globally() );
 		$this->assertTrue( edac_user_can_access_issues_explorer() );
+		$this->assertTrue( edac_user_can_view_audit_history() );
+		$this->assertTrue( edac_user_can_export_data() );
 	}
 
 	/**
@@ -151,6 +157,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		$this->assertFalse( edac_user_can_ignore_globally() );
 		$this->assertFalse( edac_user_can_access_issues_explorer() );
+		$this->assertFalse( edac_user_can_view_audit_history() );
+		$this->assertFalse( edac_user_can_export_data() );
 	}
 
 	/**
@@ -167,5 +175,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		$this->assertTrue( edac_user_can_ignore_globally() );
 		$this->assertTrue( edac_user_can_access_issues_explorer() );
+		$this->assertTrue( edac_user_can_view_audit_history() );
+		$this->assertTrue( edac_user_can_export_data() );
 	}
 }

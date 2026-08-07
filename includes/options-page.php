@@ -29,14 +29,21 @@ defined( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_
 // Gates getting into pro's Issues Explorer app at all, independent of
 // whether the user can also ignore issues once inside it.
 defined( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS' ) || define( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS', 'edac_issues_explorer_access' );
+// Gates the accessibility-checker-audit-history plugin's admin page and
+// history REST route (including the CSV export path).
+defined( 'EDAC_CAPABILITY_VIEW_AUDIT_HISTORY' ) || define( 'EDAC_CAPABILITY_VIEW_AUDIT_HISTORY', 'edac_view_audit_history' );
+// Gates the accessibility-checker-export plugin's admin page and all of its
+// admin-post export handlers.
+defined( 'EDAC_CAPABILITY_EXPORT_DATA' ) || define( 'EDAC_CAPABILITY_EXPORT_DATA', 'edac_export_data' );
 
 /**
  * The ignore-permissions capability bundle (edac_ignore_issues,
- * edac_ignore_issues_globally, edac_issues_explorer_access), synced onto the
- * roles listed in the edacp_ignore_user_roles option, with a manage_options
- * bypass. Consumers should check individual capabilities via
- * CapabilityChecker (or the edac_user_can_*() helpers below) rather than
- * calling into this instance directly.
+ * edac_ignore_issues_globally, edac_issues_explorer_access,
+ * edac_view_audit_history, edac_export_data), synced onto the roles listed
+ * in the edacp_ignore_user_roles option, with a manage_options bypass.
+ * Consumers should check individual capabilities via CapabilityChecker (or
+ * the edac_user_can_*() helpers below) rather than calling into this
+ * instance directly.
  *
  * @return SyncCapability
  */
@@ -49,10 +56,12 @@ function edac_ignore_capability(): SyncCapability {
 				EDAC_CAPABILITY_IGNORE_ISSUES,
 				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY,
 				EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS,
+				EDAC_CAPABILITY_VIEW_AUDIT_HISTORY,
+				EDAC_CAPABILITY_EXPORT_DATA,
 			],
 			'edacp_ignore_user_roles',
 			[ 'administrator' ],
-			2 // Bumped from 1: adds the two new bundled capabilities for roles already granted ignore access.
+			3 // Bumped from 2: adds edac_view_audit_history and edac_export_data for roles already granted ignore access.
 		);
 		$capability->register();
 	}
@@ -87,6 +96,24 @@ function edac_user_can_ignore_globally() {
  */
 function edac_user_can_access_issues_explorer() {
 	return CapabilityChecker::user_can( EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS );
+}
+
+/**
+ * Check if user can view the (audit-history) audit trail, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_view_audit_history() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_VIEW_AUDIT_HISTORY );
+}
+
+/**
+ * Check if user can use the (export) data export plugin, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_export_data() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_EXPORT_DATA );
 }
 
 /**
