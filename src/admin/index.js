@@ -156,12 +156,17 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = JSON.parse( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '.edac-summary' ).html( responseJSON.content );
+						jQuery( '.edac-summary' ).html( responseJSON.content );
 
-					if ( typeof callback === 'function' ) {
-						callback();
+						if ( typeof callback === 'function' ) {
+							callback();
+						}
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
 					}
 				} else {
 					// eslint-disable-next-line no-console
@@ -194,9 +199,14 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = JSON.parse( response.data );
+					try	{
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '#edac-details-panel' ).html( responseJSON );
+						jQuery( '#edac-details-panel' ).html( responseJSON );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 
 					// Rule on click
 					jQuery( '.edac-details-rule-title' ).click( function() {
@@ -278,9 +288,14 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = JSON.parse( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '#edac-readability-panel' ).html( responseJSON );
+						jQuery( '#edac-readability-panel' ).html( responseJSON );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 
 					// Simplified Summary on click
 					jQuery( '.edac-readability-simplified-summary' ).submit(
@@ -558,7 +573,12 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = JSON.parse( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 					jQuery( '.edac-review-notice' ).fadeOut();
 					if ( redirect ) {
 						window.location.href =
