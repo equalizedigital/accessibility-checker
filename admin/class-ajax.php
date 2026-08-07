@@ -673,7 +673,7 @@ class Ajax {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+		$post_grade_failed      = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
