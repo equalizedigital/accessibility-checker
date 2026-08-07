@@ -28,7 +28,7 @@ const edacScriptVars = edac_script_vars;
 
 		const footerA11yStatementToggle = document.querySelector( 'input[type=checkbox][name=edac_add_footer_accessibility_statement]' );
 		const footerA11yStatementLink = document.querySelector( 'input[type=checkbox][name=edac_include_accessibility_statement_link]' );
-		if ( footerA11yStatementToggle ) {
+		if ( footerA11yStatementToggle && footerA11yStatementLink ) {
 			footerA11yStatementToggle.addEventListener( 'change', function( e ) {
 				if ( e.target.checked ) {
 					footerA11yStatementLink.removeAttribute( 'disabled' );
@@ -43,7 +43,7 @@ const edacScriptVars = edac_script_vars;
 		const summaryPositionFields = document.querySelectorAll( 'input[type=radio][name=edac_simplified_summary_position]' );
 		const summaryPositionFieldChecked = document.querySelector( 'input[type=radio][name=edac_simplified_summary_position]:checked' );
 		const simplifiedSummaryOptionCode = document.querySelector( '#ac-simplified-summary-option-code' );
-		if ( summaryPositionFieldChecked ) {
+		if ( summaryPositionFieldChecked && simplifiedSummaryOptionCode ) {
 			if ( summaryPositionFieldChecked.value === 'none' ) {
 				simplifiedSummaryOptionCode.style.display = 'block';
 			} else {
@@ -53,10 +53,12 @@ const edacScriptVars = edac_script_vars;
 
 		Array.from( summaryPositionFields ).forEach( ( field ) => {
 			field.addEventListener( 'change', function( item ) {
-				if ( item.target.value === 'none' ) {
-					simplifiedSummaryOptionCode.style.display = 'block';
-				} else {
-					simplifiedSummaryOptionCode.style.display = 'none';
+				if ( simplifiedSummaryOptionCode ) {
+					if ( item.target.value === 'none' ) {
+						simplifiedSummaryOptionCode.style.display = 'block';
+					} else {
+						simplifiedSummaryOptionCode.style.display = 'none';
+					}
 				}
 			} );
 		} );
@@ -87,13 +89,18 @@ const edacScriptVars = edac_script_vars;
 			clearAllTabsAndPanelState();
 
 			const summaryPanel = document.querySelector( '#edac-summary-panel' );
+			let summaryTabSelector;
+			let summaryTab;
 			if ( summaryPanel ) {
 				summaryPanel.style.display = 'block';
 				summaryPanel.classList.add( 'active' );
+
+				summaryTabSelector = '#' + summaryPanel.getAttribute( 'aria-labelledby' );
+				if ( summaryTabSelector ) {
+					summaryTab = document.querySelector( summaryTabSelector );
+				}
 			}
 
-			const summaryTabSelector = '#' + summaryPanel.getAttribute( 'aria-labelledby' );
-			const summaryTab = document.querySelector( summaryTabSelector );
 			if ( summaryTab ) {
 				summaryTab.classList.add( 'active' );
 				summaryTab.setAttribute( 'aria-selected', 'true' );
