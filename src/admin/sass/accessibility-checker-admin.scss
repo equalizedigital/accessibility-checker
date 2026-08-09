@@ -163,7 +163,7 @@
 				background-color: variables.$color-gray-lightest;
 				box-shadow: inset 0 0 0 1px variables.$color-gray-light;
 				padding: 15px;
-				text-align: left;
+				text-align: start;
 				margin-bottom: 20px;
 				border-left: solid 5px variables.$color-red;
 			}
@@ -389,7 +389,7 @@
 						margin-bottom: 0;
 
 						@include helpers.breakpoint(xs) {
-							text-align: right;
+							text-align: end;
 						}
 					}
 
@@ -399,7 +399,7 @@
 						margin-bottom: 0;
 
 						@include helpers.breakpoint(xs) {
-							text-align: left;
+							text-align: start;
 						}
 
 						br {
@@ -416,7 +416,7 @@
 					font-size: 16px;
 					align-items: center;
 					padding-left: 0;
-					text-align: left;
+					text-align: start;
 
 					&-icon {
 						width: 33px;
@@ -439,7 +439,7 @@
 
 			&-disclaimer {
 				margin-top: 20px;
-				text-align: left;
+				text-align: start;
 			}
 		}
 
@@ -455,7 +455,7 @@
 					gap: 10px;
 					padding: 10px;
 					background-color: variables.$color-white;
-					text-align: left;
+					text-align: start;
 					font-size: 16px;
 					border-bottom: solid 1px variables.$color-gray-light;
 
@@ -555,7 +555,7 @@
 						}
 
 						&-object {
-							text-align: left;
+							text-align: start;
 							word-break: break-word;
 						}
 
@@ -620,7 +620,7 @@
 						&-ignore {
 							grid-column: 1 / 4;
 							border-bottom: solid 1px variables.$color-gray-light;
-							text-align: left;
+							text-align: start;
 							padding: 10px;
 							display: none;
 
@@ -661,7 +661,7 @@
 		}
 
 		.edac-readability {
-			text-align: left;
+			text-align: start;
 
 			&-list {
 				margin-top: 0;
@@ -1125,7 +1125,7 @@
 		display: inline-block;
 		margin-left: 35px;
 		margin-bottom: 25px;
-		text-align: left;
+		text-align: start;
 
 		li {
 			list-style-type: none !important;
@@ -1273,7 +1273,7 @@
 }
 
 .edac-right-text {
-	text-align: right;
+	text-align: end;
 }
 
 .edac-center-text {
@@ -1303,7 +1303,7 @@
 		flex-direction: row !important;
 
 		.edac-cols-right {
-			text-align: right;
+			text-align: end;
 		}
 
 		@media screen and (max-width: variables.$small-screen-width ) {
@@ -1430,7 +1430,7 @@
 
 	h3 {
 		font-weight: 700;
-		text-align: left;
+		text-align: start;
 	}
 
 	.edac-summary {
@@ -1442,7 +1442,7 @@
 		&-header {
 			display: flex;
 			width: 100%;
-			text-align: left;
+			text-align: start;
 
 			&-label {
 				flex: 1;
@@ -1747,14 +1747,14 @@
 		justify-items: stretch;
 
 		.edac-welcome-header-right {
-			text-align: right;
+			text-align: end;
 
 			img {
 				width: 200px;
 			}
 
 			[dir="rtl"] & {
-				text-align: left;
+				text-align: start;
 			}
 		}
 

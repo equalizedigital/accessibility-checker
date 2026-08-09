@@ -68,7 +68,7 @@
 		font-size: $sidebar-font-size-large;
 		font-weight: 600;
 		color: $info-grey;
-		text-align: left;
+		text-align: start;
 
 		&:hover {
 			background-color: #f9f9f9;
@@ -172,7 +172,7 @@
 		background: none;
 		border: none;
 		cursor: pointer;
-		text-align: left;
+		text-align: start;
 		font-size: $sidebar-font-size-large;
 		font-weight: 500;
 		color: $info-grey;
@@ -239,7 +239,7 @@
 		color: $info-blue;
 		font-size: $sidebar-font-size-large;
 		cursor: pointer;
-		text-align: left;
+		text-align: start;
 
 		&:hover {
 			text-decoration: underline;
