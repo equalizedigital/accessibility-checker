@@ -322,7 +322,7 @@
 
 				@include helpers.breakpoint(lg) {
 					width: calc(50% - 12px);
-					float: right;
+					float: inline-end;
 				}
 
 				@include helpers.breakpoint(xl) {
@@ -432,7 +432,7 @@
 
 					img {
 						display: block;
-						float: right;
+						float: inline-end;
 					}
 				}
 			}
