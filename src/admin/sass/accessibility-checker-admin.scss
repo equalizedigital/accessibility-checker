@@ -2078,6 +2078,10 @@
 		inset-inline-start: 50%;
 		transform: translateX(-50%);
 		max-inline-size: 50px;
+
+		[dir="rtl"] & {
+			transform: translateX(50%);
+		}
 	}
 
 	.edac-support-section {
