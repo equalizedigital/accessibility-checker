@@ -80,7 +80,7 @@ describe( 'Underlined Text Validation', () => {
 		},
 		{
 			name: 'should pass for text with bottom border (not text-decoration)',
-			html: '<span style="border-bottom: 1px solid black;">Text with border</span>',
+			html: '<span style="border-block-end: 1px solid black;">Text with border</span>',
 			shouldPass: true,
 		},
 

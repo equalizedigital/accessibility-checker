@@ -63,13 +63,13 @@ class Welcome_Page {
 			<?php if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID ) : ?>
 				<section>
 					<div class="edac-cols edac-cols-header">
-						<div class="edac-cols-left">
+						<div class="edac-cols-start">
 							<h2>
 								<?php esc_html_e( 'Most Recent Test Summary', 'accessibility-checker' ); ?>
 							</h2>
 						</div>
 
-						<p class="edac-cols-right">
+						<p class="edac-cols-end">
 							<?php if ( current_user_can( 'publish_posts' ) ) : ?>
 								<button class="button" id="edac_clear_cached_stats">
 									<?php esc_html_e( 'Update Counts', 'accessibility-checker' ); ?>
@@ -317,11 +317,11 @@ class Welcome_Page {
 
 				<section>
 					<div class="edac-cols edac-cols-header">
-						<h2 class="edac-cols-left">
+						<h2 class="edac-cols-start">
 							<?php esc_html_e( 'Site-Wide Accessibility Reports', 'accessibility-checker' ); ?>
 						</h2>
 
-						<p class="edac-cols-right">
+						<p class="edac-cols-end">
 							<button id="dismiss_welcome_cta" class="button">
 								<?php esc_html_e( 'Hide banner', 'accessibility-checker' ); ?>
 							</button>

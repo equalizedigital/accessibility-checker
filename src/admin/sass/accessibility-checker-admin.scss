@@ -46,7 +46,7 @@
 
 			#edac-clear-issues-button {
 				margin-inline-start: auto;
-				//margin-bottom: 1em;
+				//margin-block-end: 1em;
 			}
 		}
 
@@ -1019,7 +1019,7 @@
 			margin-block-start: 6px;
 		}
 
-		&-left {
+		&-start {
 			grid-row: 1;
 			grid-column: 1 / 2;
 		}
@@ -1028,7 +1028,7 @@
 			grid-column: 1 / -1;
 		}
 
-		&-right {
+		&-end {
 			grid-column: 2 / 3;
 			grid-row: 1;
 
@@ -1269,7 +1269,7 @@
 	font-size: variables.$font-size-small;
 }
 
-.edac-right-text {
+.edac-end-text {
 	text-align: end;
 }
 
@@ -1299,7 +1299,7 @@
 		gap: 1rem;
 		flex-direction: row !important;
 
-		.edac-cols-right {
+		.edac-cols-end {
 			text-align: end;
 		}
 
@@ -1307,7 +1307,7 @@
 			flex-direction: column !important;
 			text-align: center;
 
-			.edac-cols-right {
+			.edac-cols-end {
 				text-align: center;
 			}
 		}
@@ -1721,7 +1721,7 @@
 		>.edac-cols {
 			flex-direction: column !important;
 
-			.edac-cols-right {
+			.edac-cols-end {
 
 				.edac-panel {
 					padding: 0 1rem;
@@ -1743,7 +1743,7 @@
 		display: grid;
 		justify-items: stretch;
 
-		.edac-welcome-header-right {
+		.edac-welcome-header-end {
 			text-align: end;
 
 			img {
@@ -1756,11 +1756,11 @@
 			flex-direction: column-reverse;
 			text-align: center;
 
-			.edac-welcome-header-left {
+			.edac-welcome-header-start {
 				order: 2;
 			}
 
-			.edac-welcome-header-right {
+			.edac-welcome-header-end {
 				text-align: center;
 				order: 3;
 			}

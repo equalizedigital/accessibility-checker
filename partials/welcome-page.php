@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wrap edac-welcome-container">
 
 	<div class="edac-cols">
-	<div class="edac-cols-left edac-welcome">
+	<div class="edac-cols-start edac-welcome">
 		<div class="edac-welcome-header">
-			<div class="edac-welcome-header-left">
+			<div class="edac-welcome-header-start">
 				<h1 class="edac-welcome-title">
 					<?php
 					if ( defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID === true ) {
@@ -39,7 +39,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</h1>
 			</div>
 
-		<div class="edac-welcome-header-right">
+		<div class="edac-welcome-header-end">
 				<a href="<?php edac_link_wrapper( 'https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software', 'welcome-page', 'logo-link' ); ?>" target="_blank">
 					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/accessibility-checker-logo-transparent-bg.svg" alt="<?php esc_attr_e( 'Link to Equalize Digital Website', 'accessibility-checker' ); ?>">
 				</a>
@@ -190,10 +190,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<?php
 	if ( ! defined( 'EDACP_VERSION' ) || ! EDAC_KEY_VALID ) {
-		echo '<div class="edac-cols-right edac-welcome-aside">
+		echo '<div class="edac-cols-end edac-welcome-aside">
 			<div class="edac-has-cta">';
 	} else {
-		echo '<div class="edac-cols-right edac-welcome-aside">
+		echo '<div class="edac-cols-end edac-welcome-aside">
 			<div>';
 	}
 

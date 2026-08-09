@@ -707,12 +707,12 @@ window.addEventListener( 'load', function() {
 
 	// On our welcome page the notices break layout, so we move them to a new container in
 	// the grid we have in the header.
-	const notices = document.querySelectorAll( '.edac-welcome-header-left .notice' );
+	const notices = document.querySelectorAll( '.edac-welcome-header-start .notice' );
 	if ( notices.length ) {
-		// Create a new div after .edac-welcome-header-right element
+		// Create a new div after .edac-welcome-header-end element
 		const noticesContainer = document.createElement( 'div' );
 		noticesContainer.classList.add( 'edac-welcome-header-notices' );
-		document.querySelector( '.edac-welcome-header-right' ).insertAdjacentElement( 'afterend', noticesContainer );
+		document.querySelector( '.edac-welcome-header-end' ).insertAdjacentElement( 'afterend', noticesContainer );
 		// If the new container was created then put the notices into it.
 		if ( document.querySelector( '.edac-welcome-header-notices' ) ) {
 			notices.forEach( function( notice ) {
