@@ -3,7 +3,7 @@
 	margin: 0;
 
 	input {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	._button-wrapper {
@@ -12,13 +12,13 @@
 		justify-content: flex-start;
 		gap: 1rem;
 		align-items: center;
-		margin-top: 0;
+		margin-block-start: 0;
 
 		.edac-welcome-aside & {
 			flex-direction: column;
 
 			button {
-				width: 100%;
+				inline-size: 100%;
 			}
 		}
 	}

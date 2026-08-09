@@ -15,24 +15,20 @@
 		font-family: Verdana, sans-serif;
 		font-size: 11px;
 		line-height: 1.2;
-		padding-left: 3px;
-		padding-right: 3px;
+		padding-inline: 3px;
 		pointer-events: none;
 		text-decoration: none;
 		text-indent: 0;
 		white-space: nowrap;
 
 		position: absolute;
-		bottom: auto;
-		left: -2px;
-		right: auto;
-		top: 100%;
+		inset: logical 100% -2px auto auto;
 		z-index: 1;
 	}
 }
 
 .sr-only-show-always .text-format-sr-only {
-	border-bottom: 2px solid #f0f;
+	border-block-end: 2px solid #f0f;
 	border-radius: 0;
 }
 
@@ -55,14 +51,14 @@ body:not(.sr-only-show-always) .text-format-sr-only:not(.is-selected .text-forma
 		white-space: nowrap;
 
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-block-start: 0;
+		inset-inline-start: 0;
 
 		clip-path: inset(50%);
 		clip: rect($size, $size, $size, $size);
-		margin-top: $size-negative;
-		margin-left: $size-negative;
-		width: $size;
-		height: $size;
+		margin-block-start: $size-negative;
+		margin-inline-start: $size-negative;
+		inline-size: $size;
+		block-size: $size;
 	}
 }

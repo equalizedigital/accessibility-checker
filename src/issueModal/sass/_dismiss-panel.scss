@@ -13,11 +13,11 @@
 
 // Radio reason picker inside the dismiss panel.
 .edac-analysis__dismiss-panel {
-	margin-top: 16px;
+	margin-block-start: 16px;
 
 	.components-base-control__label {
 		font-size: $modal-font-size-small;
-		margin-bottom: 0.75em;
+		margin-block-end: 0.75em;
 		text-transform: none;
 	}
 
@@ -28,13 +28,13 @@
 	}
 
 	.components-radio-control__group-wrapper {
-		margin-bottom: 24px;
+		margin-block-end: 24px;
 	}
 }
 
 // Already-dismissed state: shows who dismissed, when, and why.
 .edac-analysis__dismissed-comment {
-	margin-top: 16px;
+	margin-block-start: 16px;
 
 	&-label {
 		font-weight: 600;
@@ -71,22 +71,22 @@
 
 // Action buttons shown in the already-dismissed state.
 .edac-analysis__dismissed-actions {
-	margin-top: 20px;
-	padding-top: 16px;
-	border-top: 1px solid $outline-grey;
+	margin-block-start: 20px;
+	padding-block-start: 16px;
+	border-block-start: 1px solid $outline-grey;
 
 	.edac-analysis__dismiss-button {
-		margin-top: 0;
+		margin-block-start: 0;
 	}
 }
 
 // Primary dismiss/restore button.
 // stylelint-disable-next-line no-descending-specificity
 .edac-analysis__dismiss-button {
-	margin-top: 12px;
+	margin-block-start: 12px;
 
 	.components-spinner {
-		margin-right: 8px;
+		margin-inline-end: 8px;
 	}
 }
 
@@ -101,6 +101,6 @@
 
 	.edac-analysis__dismiss-dropdown-toggle {
 		border-radius: 0 2px 2px 0;
-		margin-left: 2px;
+		margin-inline-start: 2px;
 	}
 }

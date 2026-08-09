@@ -14,31 +14,31 @@
 .edac-panel-body {
 
 	.edac-refreshing-message {
-		margin-bottom: 12px;
+		margin-block-end: 12px;
 	}
 }
 
 .edac-data-row {
-	width: 100%;
+	inline-size: 100%;
 }
 
 .edac-data-section {
-	margin-bottom: 12px;
+	margin-block-end: 12px;
 
 	&:last-child {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 
 	&__label {
 		display: block;
-		margin-bottom: 4px;
+		margin-block-end: 4px;
 		font-weight: 600;
 	}
 
 	&__count {
 		font-size: 24px;
 		font-weight: 700;
-		margin-right: 8px;
+		margin-inline-end: 8px;
 
 		&--errors {
 			color: $error-red;
@@ -75,7 +75,7 @@
 		display: flex;
 		align-items: flex-start;
 		gap: 12px;
-		margin-bottom: 4px;
+		margin-block-end: 4px;
 	}
 
 	&__title {
@@ -91,7 +91,7 @@
 		line-height: 1.5;
 
 		&:last-child {
-			margin-bottom: 0;
+			margin-block-end: 0;
 		}
 	}
 
@@ -100,14 +100,14 @@
 	}
 
 	&__subsection {
-		margin-top: 16px;
-		padding-top: 12px;
-		border-top: 1px solid $outline-grey;
+		margin-block-start: 16px;
+		padding-block-start: 12px;
+		border-block-start: 1px solid $outline-grey;
 
 		&:first-child {
-			margin-top: 0;
-			padding-top: 0;
-			border-top: none;
+			margin-block-start: 0;
+			padding-block-start: 0;
+			border-block-start: none;
 		}
 	}
 
@@ -124,7 +124,6 @@
  * with icons. The is-compact class is added in 6.9 (and hopefully later).
  */
 .edac-sidebar-menu-group.components-menu-group button:not(.is-compact) > svg {
-	max-width: 24px;
-	margin-left: -24px !important;
-	margin-right: 16px !important;
+	max-inline-size: 24px;
+	margin-inline: -24px 16px !important;
 }

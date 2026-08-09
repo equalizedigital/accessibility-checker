@@ -9,7 +9,7 @@
 	&-panel {
 
 		.components-panel__body.is-opened {
-			padding-bottom: 0;
+			padding-block-end: 0;
 		}
 	}
 
@@ -24,8 +24,7 @@
 	&__panel {
 		display: flex;
 		flex-direction: column;
-		margin-left: -16px;
-		margin-right: -16px;
+		margin-inline: -16px;
 	}
 
 	&__message {
@@ -60,7 +59,7 @@
 		align-items: center;
 		justify-content: space-between;
 		gap: 8px;
-		width: 100%;
+		inline-size: 100%;
 		padding: 12px;
 		border: none;
 		background: transparent;
@@ -77,8 +76,8 @@
 
 	&__group-icon {
 		flex-shrink: 0;
-		width: 20px;
-		height: 20px;
+		inline-size: 20px;
+		block-size: 20px;
 		color: #666;
 		order: 10; // Move chevron to the right
 	}
@@ -104,7 +103,7 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-		border-top: 1px solid #ddd;
+		border-block-start: 1px solid #ddd;
 		background: #fafafa;
 	}
 
@@ -123,12 +122,12 @@
 		justify-content: space-between;
 		padding: 0 8px;
 		font-size: $sidebar-font-size-medium;
-		border-bottom: 1px solid #ddd;
-		margin-bottom: 0;
+		border-block-end: 1px solid #ddd;
+		margin-block-end: 0;
 
 		&:last-child {
-			border-bottom: none;
-			margin-bottom: 0;
+			border-block-end: none;
+			margin-block-end: 0;
 		}
 	}
 
@@ -158,17 +157,17 @@
 	}
 
 	&__rule {
-		border-bottom: 1px solid $outline-grey;
+		border-block-end: 1px solid $outline-grey;
 
 		&:last-child {
-			border-bottom: none;
+			border-block-end: none;
 		}
 	}
 
 	&__rule-toggle {
 		display: flex;
 		align-items: center;
-		width: 100%;
+		inline-size: 100%;
 		background: none;
 		border: none;
 		cursor: pointer;
@@ -176,8 +175,8 @@
 		font-size: $sidebar-font-size-large;
 		font-weight: 500;
 		color: $info-grey;
-		min-height: auto;
-		height: auto;
+		min-block-size: auto;
+		block-size: auto;
 		box-shadow: none !important;
 
 		&:hover {
@@ -199,12 +198,12 @@
 			padding: 16px;
 
 			svg {
-				max-width: 24px;
+				max-inline-size: 24px;
 			}
 		}
 
 		.components-button__icon {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 
@@ -212,14 +211,14 @@
 		flex: 1;
 		font-weight: 500;
 		color: $info-grey;
-		margin-right: 8px;
+		margin-inline-end: 8px;
 	}
 
 	&__rule-content {
 		padding: 8px 8px 9px 8px;
 		overflow: hidden;
 		background: #f9f9f9;
-		border-top: 1px solid $outline-grey;
+		border-block-start: 1px solid $outline-grey;
 
 		&[aria-hidden="true"] {
 			display: none;
@@ -232,7 +231,7 @@
 
 	&__show-ignored {
 		display: block;
-		margin-top: 12px;
+		margin-block-start: 12px;
 		padding: 0 12px;
 		background: none;
 		border: none;
@@ -247,8 +246,8 @@
 	}
 
 	&__ignored-issues {
-		margin-top: 8px;
-		padding-top: 8px;
-		border-top: 1px dashed #ddd;
+		margin-block-start: 8px;
+		padding-block-start: 8px;
+		border-block-start: 1px dashed #ddd;
 	}
 }

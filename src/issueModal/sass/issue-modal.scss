@@ -29,7 +29,7 @@
 		}
 
 		.components-modal__header {
-			height: 60px;
+			block-size: 60px;
 			padding: 0 24px 0;
 
 			&-heading {
@@ -39,23 +39,23 @@
 
 		.components-modal__content {
 			padding: 16px 24px 24px;
-			margin-top: 60px;
+			margin-block-start: 60px;
 		}
 
 		.edac-analysis__modal-content {
-			margin-bottom: 16px;
+			margin-block-end: 16px;
 		}
 
 		// The className prop on Modal is applied to .components-modal__frame
 		// so we use &.components-modal__frame to match:
 		// .edac-analysis__issue-modal.components-modal__frame
 		&.components-modal__frame {
-			width: 890px;
-			max-width: 80%;
+			inline-size: 890px;
+			max-inline-size: 80%;
 
 			.components-modal__content {
 				padding: 0;
-				border-top: $outline-grey 1px solid;
+				border-block-start: $outline-grey 1px solid;
 			}
 		}
 
@@ -69,7 +69,7 @@
 				line-height: 1.5;
 
 				&:last-child {
-					margin-bottom: 0;
+					margin-block-end: 0;
 				}
 			}
 
@@ -80,20 +80,20 @@
 
 		.edac-analysis__issue-modal-left {
 			flex: 1;
-			min-width: 0;
+			min-inline-size: 0;
 			padding: 24px;
 		}
 
 		.edac-analysis__issue-modal-right {
-			width: 200px;
+			inline-size: 200px;
 			flex-shrink: 0;
 		}
 
 		.edac-analysis__issue-sidebar {
 			padding: 24px;
-			border-left: 1px solid $outline-grey;
+			border-inline-start: 1px solid $outline-grey;
 			background: #fafafa;
-			height: 100%;
+			block-size: 100%;
 		}
 
 		.edac-analysis__issue-sidebar-list {
@@ -123,12 +123,12 @@
 		}
 
 		.edac-analysis__issue-sidebar-button {
-			width: 100%;
+			inline-size: 100%;
 			justify-content: center;
 		}
 
 		.edac-analysis__issue-title {
-			margin-top: 0 !important;
+			margin-block-start: 0 !important;
 		}
 
 		.edac-analysis__issue-wcag {
@@ -172,7 +172,7 @@
 
 		.edac-analysis__issue-help-accordion {
 
-			margin-bottom: 21px;
+			margin-block-end: 21px;
 
 			.components-panel__body {
 				border: none;
@@ -197,7 +197,7 @@
 
 				button {
 					padding: 0;
-					width: auto;
+					inline-size: auto;
 					flex-direction: row-reverse;
 					text-decoration: underline;
 					color: $info-blue;
@@ -232,10 +232,10 @@
 			// Sections inside the accordion
 			.edac-analysis__issue-why-it-matters,
 			.edac-analysis__issue-how-to-fix {
-				margin-bottom: 16px;
+				margin-block-end: 16px;
 
 				&:last-child {
-					margin-bottom: 0;
+					margin-block-end: 0;
 				}
 
 				h4 {
@@ -291,7 +291,7 @@
 			}
 
 			.components-panel__body-title {
-				margin-bottom: 0;
+				margin-block-end: 0;
 
 				button {
 					padding: 12px 24px;
@@ -303,7 +303,7 @@
 			.components-panel__body.is-opened {
 
 				.components-panel__body-title button {
-					border-bottom: 1px solid $outline-grey;
+					border-block-end: 1px solid $outline-grey;
 				}
 			}
 		}
@@ -322,18 +322,18 @@
 			}
 
 			> :first-child {
-				margin-top: 16px;
+				margin-block-start: 16px;
 
 				.components-panel__body {
-					border-top: 1px solid $outline-grey;
-					border-bottom: 1px solid $outline-grey;
+					border-block-start: 1px solid $outline-grey;
+					border-block-end: 1px solid $outline-grey;
 				}
 			}
 
 			> :not(:first-child) {
 
 				.components-panel__body {
-					border-bottom: 1px solid $outline-grey;
+					border-block-end: 1px solid $outline-grey;
 				}
 			}
 
@@ -368,7 +368,7 @@
 		}
 
 		.edac-analysis__code-wrapper {
-			margin-top: 16px;
+			margin-block-start: 16px;
 
 			&::after {
 				content: "";
@@ -392,7 +392,7 @@
 		.edac-fix-card {
 
 			&:not(:last-child) {
-				margin-bottom: 24px;
+				margin-block-end: 24px;
 			}
 		}
 	}
@@ -417,9 +417,9 @@
 		// overflow: hidden is required for CSS resize to work (visible blocks
 		// the resize handle). CodeMirror's own .CodeMirror-scroll handles
 		// internal scrolling.
-		height: 160px;
-		min-height: 100px;
-		max-height: 600px;
+		block-size: 160px;
+		min-block-size: 100px;
+		max-block-size: 600px;
 		resize: vertical;
 		overflow: hidden;
 		border: 1px solid #ddd;
@@ -433,24 +433,24 @@
 	}
 
 	.edac-analysis__issue-image {
-		margin-top: 16px;
+		margin-block-start: 16px;
 
 		&-item {
-			max-width: 100%;
-			height: auto;
+			max-inline-size: 100%;
+			block-size: auto;
 			border: 1px solid #ddd;
 			border-radius: 4px;
-			margin-bottom: 8px;
+			margin-block-end: 8px;
 
 			&:last-child {
-				margin-bottom: 0;
+				margin-block-end: 0;
 			}
 		}
 
 		img {
-			max-width: 100%;
-			max-height: 300px;
-			height: auto;
+			max-inline-size: 100%;
+			max-block-size: 300px;
+			block-size: auto;
 			border: 1px solid #ddd;
 			border-radius: 4px;
 		}

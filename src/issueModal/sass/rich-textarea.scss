@@ -2,24 +2,24 @@
 
 .edac-rich-textarea-label {
 	display: block;
-	margin-bottom: 0.75em;
+	margin-block-end: 0.75em;
 	font-weight: 500;
 	font-size: $modal-font-size-small;
 	color: #1e1e1e;
 }
 
 .edac-rich-textarea {
-	width: 100%;
+	inline-size: 100%;
 	box-sizing: border-box;
 	padding: 12px;
-	margin-bottom: 0.75em;
+	margin-block-end: 0.75em;
 	border: 1px solid #e0e0e0;
 	border-radius: 4px;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 	font-size: 14px;
 	line-height: 1.6;
-	min-height: 100px;
-	max-height: 300px;
+	min-block-size: 100px;
+	max-block-size: 300px;
 	overflow-y: auto;
 	resize: vertical;
 

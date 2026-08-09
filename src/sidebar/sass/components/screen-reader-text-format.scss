@@ -1,10 +1,10 @@
 .edac-screen-reader-text-format {
 
 	.components-base-control {
-		width: 100%;
+		inline-size: 100%;
 	}
 
 	.components-base-control__help {
-		margin-bottom: 0;
+		margin-block-end: 0;
 	}
 }

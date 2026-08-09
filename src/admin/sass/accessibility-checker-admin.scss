@@ -10,7 +10,7 @@
 
 	p {
 		font-size: 14px;
-		margin-top: 0;
+		margin-block-start: 0;
 	}
 
 	* {
@@ -19,13 +19,13 @@
 
 	label {
 		font-weight: 700;
-		margin-bottom: 5px;
+		margin-block-end: 5px;
 		display: inline-block;
 		font-size: 14px;
 	}
 
 	textarea {
-		margin-bottom: 1em;
+		margin-block-end: 1em;
 		border: solid 1px #ddd;
 	}
 
@@ -45,36 +45,35 @@
 			gap: 10px;
 
 			#edac-clear-issues-button {
-				margin-left: auto;
+				margin-inline-start: auto;
 				//margin-bottom: 1em;
 			}
 		}
 
 		.edac-tabs {
-			margin-bottom: 0;
-			margin-top: 0;
+			margin-block: 0;
 			position: relative;
 			z-index: 2;
 		}
 
 		.edac-tab {
 			display: inline;
-			margin-bottom: 0;
+			margin-block-end: 0;
 			vertical-align: bottom;
 
 			> button {
-				width: 100%;
+				inline-size: 100%;
 				padding: 16px 18px;
 				display: inline-block;
 				background-color: variables.$color-gray-lightest;
 				border: solid 1px variables.$color-gray-light;
-				border-bottom: none;
+				border-block-end: none;
 				text-decoration: none;
 				font-size: 14px;
 				color: variables.$color-blue;
 
 				@include helpers.breakpoint(xs) {
-					width: auto;
+					inline-size: auto;
 				}
 
 				&:hover,
@@ -118,16 +117,16 @@
 		.edac-summary {
 
 			.edac-icon {
-				width: 37px;
-				height: 37px;
+				inline-size: 37px;
+				block-size: 37px;
 				position: absolute;
-				top: 12px;
-				left: 12px;
+				inset-block-start: 12px;
+				inset-inline-start: 12px;
 				display: block;
 
 				svg {
-					width: 37px;
-					height: 37px;
+					inline-size: 37px;
+					block-size: 37px;
 				}
 			}
 
@@ -164,8 +163,8 @@
 				box-shadow: inset 0 0 0 1px variables.$color-gray-light;
 				padding: 15px;
 				text-align: start;
-				margin-bottom: 20px;
-				border-left: solid 5px variables.$color-red;
+				margin-block-end: 20px;
+				border-inline-start: solid 5px variables.$color-red;
 			}
 
 			&-total {
@@ -182,7 +181,7 @@
 				}
 
 				&-mobile {
-					width: 100%;
+					inline-size: 100%;
 					color: variables.$color-dark-gray;
 
 					@include helpers.breakpoint(xs) {
@@ -190,16 +189,16 @@
 					}
 
 					&-bar {
-						width: 100%;
-						height: $progress-bar-width * 2;
+						inline-size: 100%;
+						block-size: $progress-bar-width * 2;
 						background-color: variables.$color-gray-light;
 						border-radius: 5px;
 						overflow: hidden;
-						margin-top: 20px;
+						margin-block-start: 20px;
 
 						span {
 							display: block;
-							height: $progress-bar-width * 2;
+							block-size: $progress-bar-width * 2;
 							background-color: variables.$color-blue;
 						}
 					}
@@ -210,8 +209,8 @@
 					font-size: 20px;
 					position: relative;
 					padding: 0;
-					width: $progress-circle-size;
-					height: $progress-circle-size;
+					inline-size: $progress-circle-size;
+					block-size: $progress-circle-size;
 					background-color: variables.$color-gray-light;
 					border-radius: 50%;
 					line-height: $progress-circle-size;
@@ -230,13 +229,13 @@
 					&:after {
 						border: none;
 						position: absolute;
-						top: $progress-bar-width;
-						left: $progress-bar-width;
+						inset-block-start: $progress-bar-width;
+						inset-inline-start: $progress-bar-width;
 						text-align: center;
 						display: block;
 						border-radius: 50%;
-						width: $progress-circle-size - ($progress-bar-width * 2);
-						height: $progress-circle-size - ($progress-bar-width * 2);
+						inline-size: $progress-circle-size - ($progress-bar-width * 2);
+						block-size: $progress-circle-size - ($progress-bar-width * 2);
 						background-color: variables.$color-white;
 						content: " ";
 					}
@@ -244,14 +243,14 @@
 					&-label {
 						position: absolute;
 						line-height: 20px;
-						width: $progress-circle-size;
+						inline-size: $progress-circle-size;
 						text-align: center;
 						display: block;
 						color: sidebar-variables.$info-grey;
 						z-index: 2;
 
 						div:first-child {
-							margin-top: 95px;
+							margin-block-start: 95px;
 						}
 					}
 				}
@@ -260,8 +259,8 @@
 
 					/* a round circle */
 					border-radius: 50%;
-					width: $progress-circle-size;
-					height: $progress-circle-size;
+					inline-size: $progress-circle-size;
+					block-size: $progress-circle-size;
 					position: absolute;
 
 					/* needed for clipping */
@@ -284,8 +283,8 @@
 
 					/*needed for clipping*/
 					clip: rect(0, calc($progress-circle-size / 2), $progress-circle-size, 0);
-					width: $progress-circle-size;
-					height: $progress-circle-size;
+					inline-size: $progress-circle-size;
+					block-size: $progress-circle-size;
 					border-radius: 50%;
 					border: $progress-bar-width solid variables.$color-blue;
 
@@ -308,8 +307,8 @@
 					clip: rect(0, $progress-circle-size, $progress-circle-size, calc($progress-circle-size / 2));
 					background-color: variables.$color-blue;
 					border-radius: 50%;
-					width: $progress-circle-size;
-					height: $progress-circle-size;
+					inline-size: $progress-circle-size;
+					block-size: $progress-circle-size;
 				}
 
 				.edac-summary-total-progress-circle:not(.over50) .first50-bar {
@@ -318,21 +317,21 @@
 			}
 
 			&-stats {
-				width: 100%;
+				inline-size: 100%;
 
 				@include helpers.breakpoint(lg) {
-					width: calc(50% - 12px);
+					inline-size: calc(50% - 12px);
 					float: inline-end;
 				}
 
 				@include helpers.breakpoint(xl) {
-					width: calc(60% - 12px);
+					inline-size: calc(60% - 12px);
 				}
 			}
 
 			&-stat {
-				height: 125px;
-				padding-top: 25px;
+				block-size: 125px;
+				padding-block-start: 25px;
 				background-position: 10px 10px;
 				background-repeat: no-repeat;
 				background-size: 30px auto;
@@ -341,18 +340,18 @@
 				position: relative;
 
 				@include helpers.breakpoint(xs) {
-					padding-top: 50px;
-					height: 175px;
+					padding-block-start: 50px;
+					block-size: 175px;
 				}
 
 				&:nth-child(2),
 				&:nth-child(4) {
-					margin-right: 0;
+					margin-inline-end: 0;
 				}
 			}
 
 			&-readability {
-				width: 100%;
+				inline-size: 100%;
 				box-shadow: inset 0 0 0 1px variables.$color-gray-light;
 				clear: both;
 				padding: 14px;
@@ -369,24 +368,24 @@
 					display: flex;
 					align-items: center;
 					gap: 14px;
-					margin-bottom: 15px;
-					padding-right: 14px;
+					margin-block-end: 15px;
+					padding-inline-end: 14px;
 
 					.edac-icon {
 						position: relative;
-						top: auto;
-						left: auto;
+						inset-block-start: auto;
+						inset-inline-start: auto;
 					}
 
 					@include helpers.breakpoint(lg) {
-						border-right: solid 3px variables.$color-gray-light;
-						margin-bottom: 0;
+						border-inline-end: solid 3px variables.$color-gray-light;
+						margin-block-end: 0;
 					}
 
 					.edac-panel-number {
 						color: sidebar-variables.$info-grey;
 						text-align: center;
-						margin-bottom: 0;
+						margin-block-end: 0;
 
 						@include helpers.breakpoint(xs) {
 							text-align: end;
@@ -396,7 +395,7 @@
 					.edac-panel-number-label {
 						color: sidebar-variables.$info-grey;
 						text-align: center;
-						margin-bottom: 0;
+						margin-block-end: 0;
 
 						@include helpers.breakpoint(xs) {
 							text-align: start;
@@ -415,12 +414,12 @@
 				&-summary {
 					font-size: 16px;
 					align-items: center;
-					padding-left: 0;
+					padding-inline-start: 0;
 					text-align: start;
 
 					&-icon {
-						width: 33px;
-						height: 33px;
+						inline-size: 33px;
+						block-size: 33px;
 						display: block;
 						background: url(../images/error-icon-red.png) no-repeat center center;
 						background-size: contain;
@@ -438,7 +437,7 @@
 			}
 
 			&-disclaimer {
-				margin-top: 20px;
+				margin-block-start: 20px;
 				text-align: start;
 			}
 		}
@@ -457,7 +456,7 @@
 					background-color: variables.$color-white;
 					text-align: start;
 					font-size: 16px;
-					border-bottom: solid 1px variables.$color-gray-light;
+					border-block-end: solid 1px variables.$color-gray-light;
 
 					h3 {
 						display: flex;
@@ -468,7 +467,7 @@
 					}
 
 					.edac-badge {
-						margin-left: 0;
+						margin-inline-start: 0;
 					}
 
 					&:hover {
@@ -479,7 +478,7 @@
 						background: none;
 						border: none;
 						border-radius: 0;
-						margin-left: auto;
+						margin-inline-start: auto;
 
 						&:hover,
 						&:focus {
@@ -505,7 +504,7 @@
 				}
 
 				&-count {
-					margin-left: -5px;
+					margin-inline-start: -5px;
 				}
 
 				&-count-ignore {
@@ -529,7 +528,7 @@
 				}
 
 				&-records {
-					width: 100%;
+					inline-size: 100%;
 					display: none;
 
 					&-labels {
@@ -540,7 +539,7 @@
 
 						&-label {
 							padding: 3px;
-							border-right: solid 1px variables.$color-gray-light;
+							border-inline-end: solid 1px variables.$color-gray-light;
 						}
 					}
 
@@ -550,8 +549,8 @@
 
 						&-cell {
 							padding: 10px;
-							border-bottom: solid 1px variables.$color-gray-light;
-							border-right: solid 1px variables.$color-gray-light;
+							border-block-end: solid 1px variables.$color-gray-light;
+							border-inline-end: solid 1px variables.$color-gray-light;
 						}
 
 						&-object {
@@ -563,13 +562,13 @@
 
 							img,
 							svg {
-								max-width: 100%;
-								height: auto;
+								max-inline-size: 100%;
+								block-size: auto;
 							}
 						}
 
 						&-actions {
-							border-right: none;
+							border-inline-end: none;
 
 							&-ignore,
 							&-fix,
@@ -583,8 +582,8 @@
 								padding: 4px 0;
 
 								svg {
-									width: 18px;
-									height: auto;
+									inline-size: 18px;
+									block-size: auto;
 									display: inline-block;
 									margin: 0 5px 0 0;
 
@@ -612,25 +611,25 @@
 								}
 
 								.dashicons {
-									margin-right: 3px;
+									margin-inline-end: 3px;
 								}
 							}
 						}
 
 						&-ignore {
 							grid-column: 1 / 4;
-							border-bottom: solid 1px variables.$color-gray-light;
+							border-block-end: solid 1px variables.$color-gray-light;
 							text-align: start;
 							padding: 10px;
 							display: none;
 
 							&-info {
-								margin-bottom: 10px;
+								margin-block-end: 10px;
 							}
 
 							&-comment {
-								width: 100%;
-								margin-bottom: 10px;
+								inline-size: 100%;
+								margin-block-end: 10px;
 								font-size: 12px;
 							}
 
@@ -644,10 +643,10 @@
 								}
 
 								svg {
-									width: 18px;
-									height: auto;
+									inline-size: 18px;
+									block-size: auto;
 									display: inline-block;
-									margin-right: 2px;
+									margin-inline-end: 2px;
 
 									path {
 										fill: variables.$color-white;
@@ -664,12 +663,11 @@
 			text-align: start;
 
 			&-list {
-				margin-top: 0;
+				margin-block: 0 1em;
 				position: relative;
-				margin-bottom: 1em;
 
 				&-item {
-					padding-left: 30px;
+					padding-inline-start: 30px;
 
 					&-title {
 						font-size: 16px;
@@ -678,7 +676,7 @@
 
 					&-icon {
 						position: absolute;
-						left: 0;
+						inset-inline-start: 0;
 
 						&.edac-icon--success {
 							color: sidebar-variables.$check-green;
@@ -700,10 +698,10 @@
 			}
 
 			&-simplified-summary {
-				width: 100%;
+				inline-size: 100%;
 
 				textarea {
-					width: 100%;
+					inline-size: 100%;
 					display: block;
 				}
 			}
@@ -720,7 +718,7 @@
 	}
 
 	.edac-settings-tab__badge {
-		margin-left: 8px;
+		margin-inline-start: 8px;
 		padding: 2px 12px;
 		border-radius: 999px;
 		background: #ffcc17;
@@ -732,7 +730,7 @@
 }
 
 .edac-reports-page {
-	margin-top: 24px;
+	margin-block-start: 24px;
 	display: grid;
 	gap: 16px;
 
@@ -749,7 +747,7 @@
 		display: grid;
 		gap: 24px;
 
-		min-width: 0;
+		min-inline-size: 0;
 	}
 
 	&__panel {
@@ -760,16 +758,16 @@
 	}
 
 	&__intro {
-		max-width: 980px;
+		max-inline-size: 980px;
 		margin: 0 0 32px;
 	}
 
 	&__single-action {
-		margin-top: 24px;
+		margin-block-start: 24px;
 	}
 
 	&__button {
-		min-height: 52px;
+		min-block-size: 52px;
 		padding: 0 20px;
 		border-radius: 8px;
 	}
@@ -783,8 +781,8 @@
 	&__license-input,
 	&__license-mask {
 		display: block;
-		width: 100%;
-		max-width: none;
+		inline-size: 100%;
+		max-inline-size: none;
 		margin: 0 0 20px;
 		padding: 18px 20px;
 		border: 1px solid #b5bcc4;
@@ -845,14 +843,14 @@
 
 	&__status-icon {
 		display: inline-flex;
-		width: 27px;
-		height: 27px;
+		inline-size: 27px;
+		block-size: 27px;
 	}
 
 	&__status-icon svg {
 		display: inline-flex;
-		width: 27px;
-		height: 27px;
+		inline-size: 27px;
+		block-size: 27px;
 	}
 
 	&__status--warning {
@@ -869,10 +867,10 @@
 
 .edac-reports-stat {
 	text-align: center;
-	padding-top: 28px;
+	padding-block-start: 28px;
 
 	&__label {
-		margin-bottom: 10px;
+		margin-block-end: 10px;
 		color: #1d2327;
 		font-size: 15px;
 		font-weight: 600;
@@ -887,7 +885,7 @@
 	}
 
 	&__caption {
-		margin-top: 12px;
+		margin-block-start: 12px;
 		color: #1d2327;
 		font-size: 20px;
 		font-weight: 400;
@@ -897,18 +895,18 @@
 
 .edac-reports-preview {
 	display: none;
-	min-width: 0;
+	min-inline-size: 0;
 
 	@include helpers.breakpoint(lg) {
 		display: block;
-		width: 320px;
+		inline-size: 320px;
 	}
 
 	&__image {
 		display: block;
-		width: 100%;
-		height: auto;
-		margin-bottom: -15px;
+		inline-size: 100%;
+		block-size: auto;
+		margin-block-end: -15px;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06);
 		clip-path: inset(-10px -10px 0 -10px);
 		border-radius: 5px 5px 0 0;
@@ -916,9 +914,8 @@
 }
 
 .ac-simplified-summary {
-	max-width: 800px;
-	margin-left: auto;
-	margin-right: auto;
+	max-inline-size: 800px;
+	margin-inline: auto;
 }
 
 #ac-simplified-summary-option-code {
@@ -926,10 +923,10 @@
 }
 
 .edac-settings {
-	max-width: 800px;
+	max-inline-size: 800px;
 
 	&--reports {
-		max-width: 1390px;
+		max-inline-size: 1390px;
 
 		.edac-reports-page__legal {
 
@@ -940,7 +937,7 @@
 	}
 
 	&.pro-callout-wrapper {
-		max-width: fit-content;
+		max-inline-size: fit-content;
 	}
 
 	.edac-description {
@@ -951,7 +948,7 @@
 		background-color: variables.$color-white;
 		padding: 15px;
 		border: solid 1px variables.$color-gray-light;
-		margin-top: 20px;
+		margin-block-start: 20px;
 		border-radius: 10px;
 	}
 
@@ -972,7 +969,7 @@
 
 		.form-table {
 			display: block;
-			margin-bottom: 50px;
+			margin-block-end: 50px;
 
 			tbody {
 				display: block;
@@ -980,7 +977,7 @@
 
 			tr {
 				border: solid 1px variables.$color-gray-light;
-				margin-bottom: 10px;
+				margin-block-end: 10px;
 				display: block;
 			}
 
@@ -998,8 +995,8 @@
 	.edac-pro-callout {
 		background-color: #fff;
 		border: 1px solid variables.$color-gray-light;
-		margin-top: 30px;
-		max-width: 500px;
+		margin-block-start: 30px;
+		max-inline-size: 500px;
 	}
 }
 
@@ -1009,7 +1006,7 @@
 
 	&-header {
 		padding: 1rem 2rem;
-		border-bottom: 1px solid variables.$color-gray-light;
+		border-block-end: 1px solid variables.$color-gray-light;
 
 		@include helpers.breakpoint(sm) {
 			display: grid;
@@ -1019,7 +1016,7 @@
 		&-version {
 			display: block;
 			font-size: 12px;
-			margin-top: 6px;
+			margin-block-start: 6px;
 		}
 
 		&-left {
@@ -1053,7 +1050,7 @@
 
 	&-section {
 		padding: 2rem;
-		border-bottom: 1px solid variables.$color-gray-light;
+		border-block-end: 1px solid variables.$color-gray-light;
 
 		@include helpers.breakpoint(md) {
 			display: grid;
@@ -1065,13 +1062,13 @@
 			font-size: 21px;
 
 			&:first-child {
-				margin-top: 0;
+				margin-block-start: 0;
 			}
 		}
 
 		&-divider {
-			border-bottom: 1px solid variables.$color-gray-light;
-			margin-top: 30px;
+			border-block-end: 1px solid variables.$color-gray-light;
+			margin-block-start: 30px;
 		}
 
 		&-documentation-support {
@@ -1087,7 +1084,7 @@
 	}
 
 	.edac-welcome-pro-callout {
-		margin-bottom: 30px;
+		margin-block-end: 30px;
 
 		@include helpers.breakpoint(md) {
 			grid-column: 2 / 3;
@@ -1112,7 +1109,7 @@
 	font-family: "Open Sans", sans-serif;
 
 	&-icon {
-		width: 200px;
+		inline-size: 200px;
 	}
 
 	&-title {
@@ -1124,20 +1121,20 @@
 	&-list {
 		display: inline-block;
 		margin-inline-start: 35px;
-		margin-bottom: 25px;
+		margin-block-end: 25px;
 		text-align: start;
 
 		li {
 			list-style-type: none !important;
 			position: relative;
-			margin-bottom: 16px;
+			margin-block-end: 16px;
 			font-size: 16px;
 
 			// stylelint-disable-next-line selector-pseudo-element-colon-notation
 			&:before {
 				content: url(../images/list-check.png);
-				height: 21px;
-				width: 21px;
+				block-size: 21px;
+				inline-size: 21px;
 				margin-inline-end: 18px;
 				display: inline-block;
 				vertical-align: middle;
@@ -1183,11 +1180,11 @@
 		&:after {
 			content: "";
 			position: absolute;
-			height: calc(100% + 3px);
-			width: calc(100% + 3px);
+			block-size: calc(100% + 3px);
+			inline-size: calc(100% + 3px);
 			z-index: -1;
-			bottom: -8px;
-			right: -8px;
+			inset-block-end: -8px;
+			inset-inline-end: -8px;
 			background: #f3cd1e;
 		}
 
@@ -1199,7 +1196,7 @@
 	}
 
 	&-activate {
-		margin-top: 10px;
+		margin-block-start: 10px;
 		display: block;
 	}
 }
@@ -1230,7 +1227,7 @@
 			// stylelint-disable-next-line font-family-no-missing-generic-family-keyword
 			font-family: dashicons;
 			position: relative;
-			bottom: -1px;
+			inset-block-end: -1px;
 			color: variables.$color-yellow;
 			font-size: 10px;
 		}
@@ -1241,7 +1238,7 @@
 .edac_black_friday_notice {
 
 	.button {
-		margin-top: 5px;
+		margin-block-start: 5px;
 	}
 }
 
@@ -1318,35 +1315,35 @@
 }
 
 .edac-mt-1 {
-	margin-top: 0.5rem !important;
+	margin-block-start: 0.5rem !important;
 }
 
 .edac-mt-3 {
-	margin-top: 1.5rem !important;
+	margin-block-start: 1.5rem !important;
 }
 
 .edac-mb-1 {
-	margin-bottom: 0.5rem !important;
+	margin-block-end: 0.5rem !important;
 }
 
 .edac-mb-3 {
-	margin-bottom: 1.5rem !important;
+	margin-block-end: 1.5rem !important;
 }
 
 .edac-ml-1 {
-	margin-left: 0.5rem !important;
+	margin-inline-start: 0.5rem !important;
 }
 
 .edac-ml-3 {
-	margin-left: 1.5rem !important;
+	margin-inline-start: 1.5rem !important;
 }
 
 .edac-mr-1 {
-	margin-right: 0.5rem !important;
+	margin-inline-end: 0.5rem !important;
 }
 
 .edac-mr-3 {
-	margin-right: 1.5rem !important;
+	margin-inline-end: 1.5rem !important;
 }
 
 
@@ -1366,10 +1363,10 @@
 	.edac-modal {
 
 		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
+		inset-block-start: 0;
+		inset-inline-start: 0;
+		inline-size: 100%;
+		block-size: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		z-index: 1000;
 
@@ -1386,8 +1383,8 @@
 			align-items: center;
 
 			background-color: #fff;
-			width: 80%;
-			max-width: 500px;
+			inline-size: 80%;
+			max-inline-size: 500px;
 
 			//  margin: 40px auto 40px;
 			padding: 1.5rem;
@@ -1395,8 +1392,8 @@
 
 			&-close {
 				position: absolute;
-				top: 0;
-				right: 0.5rem;
+				inset-block-start: 0;
+				inset-inline-end: 0.5rem;
 				font-size: variables.$font-size-x-large;
 				cursor: pointer;
 				padding: 0;
@@ -1418,8 +1415,8 @@
 		&::before {
 			content: "";
 			display: inline-block;
-			width: 24px;
-			height: 24px;
+			inline-size: 24px;
+			block-size: 24px;
 			flex-shrink: 0;
 			/* stylelint-disable-next-line function-url-quotes */
 			background-image: url('data:image/svg+xml;utf8,<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(%23clip0_0_1)"><path d="M11.6841 23.0679C17.9712 23.0679 23.0679 17.9712 23.0679 11.6841C23.0679 5.39699 17.9712 0.300293 11.6841 0.300293C5.39698 0.300293 0.300285 5.39699 0.300285 11.6841C0.300285 17.9712 5.39698 23.0679 11.6841 23.0679Z" fill="white"/><path d="M11.6808 0.689766C17.8291 0.689871 22.8136 5.67427 22.8136 11.8226C22.8135 17.9708 17.829 22.9553 11.6808 22.9554C5.53246 22.9554 0.548063 17.9709 0.547958 11.8226C0.547958 5.6742 5.5324 0.689766 11.6808 0.689766Z" fill="%23FACB00" stroke="%23002449"/><path d="M18.0318 8.24537C18.0318 7.92632 17.7899 7.66565 17.4917 7.66565H15.7067L15.3 8.39551H17.3499V14.9851H5.73673V8.39551H11.8655L12.27 7.66565H5.59492C5.29672 7.66565 5.05482 7.92423 5.05482 8.24537V15.7192H18.0318V8.24537Z" fill="%23002449"/><path d="M11.1878 13.5254L7.7866 10.4537H9.11286L10.9563 12.0845L14.2448 6.28725H15.3L11.1878 13.5254Z" fill="%23002449"/><path d="M12.952 16.4887L12.8018 16.7806H10.2848L10.1347 16.4887H3.6952C3.6952 16.9453 4.04136 17.3144 4.46677 17.3144H18.622C19.0474 17.3144 19.3935 16.9453 19.3935 16.4887H12.954H12.952Z" fill="%23002449"/></g><defs><clipPath id="clip0_0_1"><rect width="23.4411" height="24" fill="white"/></clipPath></defs></svg>');
@@ -1441,7 +1438,7 @@
 
 		&-header {
 			display: flex;
-			width: 100%;
+			inline-size: 100%;
 			text-align: start;
 
 			&-label {
@@ -1463,8 +1460,8 @@
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				width: 150px;
-				height: 150px;
+				inline-size: 150px;
+				block-size: 150px;
 				border-radius: 50%;
 				margin: auto;
 
@@ -1482,7 +1479,7 @@
 		}
 
 		&-metadata {
-			width: 100%;
+			inline-size: 100%;
 			padding: 0.5rem 0 1rem;
 			font-size: variables.$font-size-small;
 
@@ -1632,7 +1629,7 @@
 					}
 
 					&-number {
-						margin-left: auto;
+						margin-inline-start: auto;
 						font-size: variables.$font-size-small;
 						font-weight: 600;
 					}
@@ -1662,7 +1659,7 @@
 			text-align: center;
 
 			a {
-				width: 100%;
+				inline-size: 100%;
 			}
 		}
 	}
@@ -1680,7 +1677,7 @@
 	}
 
 	.edac-widget-footer-link-list-spacer {
-		border-left: 2px solid #ccc;
+		border-inline-start: 2px solid #ccc;
 		padding: 0;
 		margin: 0;
 	}
@@ -1701,11 +1698,11 @@
 	}
 
 	.edac-welcome-aside > div {
-		width: 200px;
+		inline-size: 200px;
 	}
 
 	.edac-welcome-aside > div.edac-has-cta {
-		width: 320px;
+		inline-size: 320px;
 	}
 
 	.edac-upcoming-meetup {
@@ -1732,13 +1729,13 @@
 			}
 
 			.edac-welcome-aside > div {
-				width: unset;
+				inline-size: unset;
 			}
 		}
 	}
 
 	section {
-		border-bottom: 1px solid #e2e4e7;
+		border-block-end: 1px solid #e2e4e7;
 		padding: 2rem;
 	}
 
@@ -1750,7 +1747,7 @@
 			text-align: end;
 
 			img {
-				width: 200px;
+				inline-size: 200px;
 			}
 		}
 
@@ -1781,7 +1778,7 @@
 			background-repeat: no-repeat;
 			background-size: cover;
 			background-position: top left;
-			min-height: 300px;
+			min-block-size: 300px;
 
 			@media screen and (max-width: calc(variables.$medium-screen-width - 1px)) {
 				background-image: url(../images/welcome-screenshot-medium.png);
@@ -1815,13 +1812,13 @@
 
 			.edac-inner-row:nth-child(1) {
 				align-items: flex-end;
-				height: 50%;
+				block-size: 50%;
 			}
 
 			.edac-inner-row:nth-child(2) {
-				margin-top: 0.5rem;
+				margin-block-start: 0.5rem;
 				align-items: flex-start;
-				height: 50%;
+				block-size: 50%;
 			}
 
 			background-color: variables.$color-gray-lightest;
@@ -1842,13 +1839,13 @@
 
 			.edac-inner-row:nth-child(2) {
 				align-items: flex-end;
-				height: 50%;
+				block-size: 50%;
 			}
 
 			.edac-inner-row:nth-child(3) {
-				margin-top: 0.5rem;
+				margin-block-start: 0.5rem;
 				align-items: flex-start;
-				height: 50%;
+				block-size: 50%;
 			}
 		}
 
@@ -1857,8 +1854,8 @@
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
-			width: 250px;
-			height: 250px;
+			inline-size: 250px;
+			block-size: 250px;
 			border-radius: 50%;
 			margin: auto;
 
@@ -1884,19 +1881,19 @@
 
 		.edac-welcome-grid-item .edac-icon {
 			position: absolute;
-			top: 10px;
-			left: 10px;
+			inset-block-start: 10px;
+			inset-inline-start: 10px;
 			display: inline-flex;
 			align-items: center;
 			justify-content: center;
 
 			svg {
-				width: 27px;
-				height: 27px;
+				inline-size: 27px;
+				block-size: 27px;
 
 				@include helpers.breakpoint(xl) {
-					width: 37px;
-					height: 37px;
+					inline-size: 37px;
+					block-size: 37px;
 				}
 			}
 		}
@@ -2064,7 +2061,7 @@
 		}
 
 		.edac-modal-content {
-			min-height: 200px;
+			min-block-size: 200px;
 			border: solid 1px variables.$color-gray-light;
 			padding: 0 1rem;
 		}
@@ -2077,10 +2074,10 @@
 
 	.edac-pro-callout-icon {
 		position: absolute;
-		top: -25px;
-		left: 50%;
+		inset-block-start: -25px;
+		inset-inline-start: 50%;
 		transform: translateX(-50%);
-		max-width: 50px;
+		max-inline-size: 50px;
 	}
 
 	.edac-support-section {
@@ -2100,11 +2097,11 @@
 				padding: 1rem;
 
 				h3 {
-					margin-top: 0;
+					margin-block-start: 0;
 				}
 
 				p:last-child {
-					margin-bottom: 0;
+					margin-block-end: 0;
 				}
 			}
 		}
@@ -2116,12 +2113,9 @@
 
 	.edac-panel-loading::before {
 		background-color: hsla(0, 0%, 100%, 0.5);
-		bottom: 0;
 		content: "";
-		left: 0;
 		position: absolute;
-		right: 0;
-		top: 0;
+		inset: 0;
 		z-index: 9;
 	}
 }

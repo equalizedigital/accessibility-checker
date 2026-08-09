@@ -10,8 +10,8 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	width: 24px;
-	height: 24px;
+	inline-size: 24px;
+	block-size: 24px;
 
 	&--success {
 		color: $check-green;
@@ -35,6 +35,6 @@
 	}
 
 	.components-panel__body-title & {
-		margin-right: 4px;
+		margin-inline-end: 4px;
 	}
 }

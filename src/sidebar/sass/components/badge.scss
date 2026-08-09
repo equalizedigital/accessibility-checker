@@ -16,7 +16,7 @@
 	font-size: $sidebar-font-size-small;
 	font-weight: 400;
 	white-space: nowrap;
-	margin-left: auto;
+	margin-inline-start: auto;
 
 	&__label {
 		line-height: 1;
@@ -33,8 +33,8 @@
 		font-size: $sidebar-font-size-medium;
 
 		.edac-icon {
-			width: 20px;
-			height: 20px;
+			inline-size: 20px;
+			block-size: 20px;
 			font-size: 20px;
 		}
 	}
