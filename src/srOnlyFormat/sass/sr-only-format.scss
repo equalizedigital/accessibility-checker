@@ -22,7 +22,8 @@
 		white-space: nowrap;
 
 		position: absolute;
-		inset: logical 100% -2px auto auto;
+		inset-block: 100% auto;
+		inset-inline: -2px auto;
 		z-index: 1;
 	}
 }
