@@ -853,10 +853,8 @@ body {
 	color: #000;
 }
 
-// stylelint-disable selector-pseudo-element-colon-notation
-.notyf__dismiss-btn:before,
-.notyf__dismiss-btn:after {
-	// stylelint-enable selector-pseudo-element-colon-notation
+.notyf__dismiss-btn::before,
+.notyf__dismiss-btn::after {
 	background: #000 !important;
 }
 
@@ -966,13 +964,11 @@ body {
 
 		input[type="checkbox"] {
 
-			// stylelint-disable-next-line selector-pseudo-element-colon-notation
-			&:before {
+			&::before {
 				content: none;
 			}
 
-			// stylelint-disable-next-line selector-pseudo-element-colon-notation
-			&:checked:before {
+			&:checked::before {
 				content: none;
 			}
 		}
