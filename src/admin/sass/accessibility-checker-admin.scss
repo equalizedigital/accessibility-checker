@@ -1138,13 +1138,13 @@
 				content: url(../images/list-check.png);
 				height: 21px;
 				width: 21px;
-				margin-right: 18px;
+				margin-inline-end: 18px;
 				display: inline-block;
 				vertical-align: middle;
 				line-height: normal;
 				position: absolute;
-				left: -35px;
-				top: -1px;
+				inset-inline-start: -35px;
+				inset-block-start: -1px;
 			}
 		}
 	}
