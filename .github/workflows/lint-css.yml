@@ -1,4 +1,4 @@
-name: Lint JS
+name: Lint CSS
 
 on:
   # Run on direct pushes to integration branches and on all pull requests.
@@ -22,7 +22,7 @@ jobs:
   lint:
     runs-on: ubuntu-latest
 
-    name: "Lint: JS"
+    name: "Lint: CSS"
 
     steps:
       - name: Checkout code
@@ -60,15 +60,15 @@ jobs:
                 pull_number: context.payload.pull_request.number,
               }
             );
-            const jsFiles = changedFiles
+            const cssFiles = changedFiles
               .filter(file => file.status !== 'removed')
               .map(file => file.filename)
-              .filter(filename => filename.endsWith('.js'))
+              .filter(filename => filename.endsWith('.scss') || filename.endsWith('.css'))
               .join(' ');
 
-            core.setOutput('files', jsFiles);
-            return jsFiles;
+            core.setOutput('files', cssFiles);
+            return cssFiles;
 
-      # If this is a PR then lint only js changed in the PR, if not a PR then lint them all.
-      - name: Run eslint
-        run: npx wp-scripts lint-js ${{ steps.changed-files.outputs.files || '' }}
+      # If this is a PR then lint only css/scss changed in the PR, if not a PR then lint them all.
+      - name: Run stylelint
+        run: npx wp-scripts lint-style ${{ steps.changed-files.outputs.files || '' }}

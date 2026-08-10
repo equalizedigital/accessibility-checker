@@ -73,6 +73,10 @@ module.exports = {
 						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
 					},
 					keep_fnames: /(__|_n|_x|_nx)$/,
+					format: {
+						// Keep `translators:` comments in the built bundles.
+						comments: /translators:/i,
+					},
 				},
 			} ),
 			new CssMinimizerPlugin(),

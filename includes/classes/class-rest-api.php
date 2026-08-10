@@ -1072,7 +1072,8 @@ class REST_Api {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = isset( $edac_summary['readability'] ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = $post_grade > 9; // Treat Flesch-Kincaid grade 9+ (above roughly 8th-grade reading level recommended for plain language) as a readability failure.
+		// Treat Flesch-Kincaid grades above 9 (grade 10+) as readability failures.
+		$post_grade_failed = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -1080,7 +1081,7 @@ class REST_Api {
 			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
-		$simplified_summary_grade_failed      = $simplified_summary_grade >= 9;
+		$simplified_summary_grade_failed      = $simplified_summary_grade > 9;
 		$simplified_summary_grade_readability = edac_ordinal( $simplified_summary_grade );
 		$simplified_summary_prompt            = get_option( 'edac_simplified_summary_prompt' );
 
@@ -1227,14 +1228,16 @@ class REST_Api {
 		$ignre_comment        = $is_ignoring ? $comment : null;
 		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
 
-		// If largeBatch is set, verify edit permission for all matching rows,
-		// then perform a single object-based update.
+		// If largeBatch is set, gather every row sharing this issue's rule + object,
+		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
-			// Get the 'object' from the issue id.
+			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
-			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $issue_id ) );
+			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
+			$rule               = $representative_row['rule'] ?? '';
+			$object             = $representative_row['object'] ?? '';
 
-			if ( ! $object ) {
+			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
 					__( 'Issue not found.', 'accessibility-checker' ),
@@ -1247,10 +1250,11 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
 			$issue_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s',
+					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
 					$table_name,
 					$site_id,
-					$object
+					$object,
+					$rule
 				),
 				ARRAY_A
 			);
