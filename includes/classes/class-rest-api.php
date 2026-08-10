@@ -92,7 +92,10 @@ class REST_Api {
 						],
 						'permission_callback' => function ( $request ) {
 							$post_id = (int) $request['id'];
-							return current_user_can( 'edit_post', $post_id ); // able to edit the post.
+							// Able to edit the post, or trusted to run a site-wide scan
+							// (which stores results for content the user does not own).
+							return current_user_can( 'edit_post', $post_id )
+								|| ( function_exists( 'edac_user_can_run_full_site_scan' ) && edac_user_can_run_full_site_scan() );
 						},
 					]
 				);

@@ -17,11 +17,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// The ignore-permissions capability bundle - all three are synced together
+// The ignore-permissions capability bundle - all of these are synced together
 // onto whichever roles are configured in edacp_ignore_user_roles (set on the
 // pro plugin's settings page). There is deliberately no separate settings
-// control for the two newer capabilities; granting a role "can ignore
-// issues" grants all three at once.
+// control for the newer capabilities; granting a role "can ignore issues"
+// grants all of them at once.
 defined( 'EDAC_CAPABILITY_IGNORE_ISSUES' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES', 'edac_ignore_issues' );
 // Larger blast radius than a per-post ignore: suppresses an issue across
 // every post sharing a rule+object, not just the one being viewed.
@@ -35,12 +35,18 @@ defined( 'EDAC_CAPABILITY_VIEW_AUDIT_HISTORY' ) || define( 'EDAC_CAPABILITY_VIEW
 // Gates the accessibility-checker-export plugin's admin page and all of its
 // admin-post export handlers.
 defined( 'EDAC_CAPABILITY_EXPORT_DATA' ) || define( 'EDAC_CAPABILITY_EXPORT_DATA', 'edac_export_data' );
+// Gates running the (pro) Full Site Scan: its scan-control REST routes and
+// saving scan results for posts the user could not otherwise edit. A full
+// site scan is inherently site-wide, so this grant lets a non-editor role
+// scan and store results for content it does not own.
+defined( 'EDAC_CAPABILITY_FULL_SITE_SCAN' ) || define( 'EDAC_CAPABILITY_FULL_SITE_SCAN', 'edac_full_site_scan' );
 
 /**
  * The ignore-permissions capability bundle (edac_ignore_issues,
  * edac_ignore_issues_globally, edac_issues_explorer_access,
- * edac_view_audit_history, edac_export_data), synced onto the roles listed
- * in the edacp_ignore_user_roles option, with a manage_options bypass.
+ * edac_view_audit_history, edac_export_data, edac_full_site_scan), synced onto
+ * the roles listed in the edacp_ignore_user_roles option, with a manage_options
+ * bypass.
  * Consumers should check individual capabilities via CapabilityChecker (or
  * the edac_user_can_*() helpers below) rather than calling into this
  * instance directly.
@@ -58,10 +64,11 @@ function edac_ignore_capability(): SyncCapability {
 				EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS,
 				EDAC_CAPABILITY_VIEW_AUDIT_HISTORY,
 				EDAC_CAPABILITY_EXPORT_DATA,
+				EDAC_CAPABILITY_FULL_SITE_SCAN,
 			],
 			'edacp_ignore_user_roles',
 			[ 'administrator' ],
-			3 // Bumped from 2: adds edac_view_audit_history and edac_export_data for roles already granted ignore access.
+			4 // Bumped from 3: adds edac_full_site_scan for roles already granted ignore access.
 		);
 		$capability->register();
 	}
@@ -114,6 +121,20 @@ function edac_user_can_view_audit_history() {
  */
 function edac_user_can_export_data() {
 	return CapabilityChecker::user_can( EDAC_CAPABILITY_EXPORT_DATA );
+}
+
+/**
+ * Check if user can run the (pro) Full Site Scan, or can manage options.
+ *
+ * Consumers that need to preserve the historical editor-level access to the
+ * scanner should OR this with current_user_can( 'edit_others_posts' ) at the
+ * call site; this helper reports only the dedicated capability (plus the
+ * manage_options bypass), matching the other edac_user_can_*() helpers.
+ *
+ * @return bool
+ */
+function edac_user_can_run_full_site_scan() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_FULL_SITE_SCAN );
 }
 
 /**
