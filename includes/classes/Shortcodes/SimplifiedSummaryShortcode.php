@@ -43,8 +43,9 @@ class SimplifiedSummaryShortcode {
 	 *
 	 * Renders regardless of the edac_simplified_summary_prompt option because
 	 * manual placement is a deliberate act, matching edac_get_simplified_summary().
-	 * An explicit post_id must reference a publicly viewable post so the
-	 * shortcode cannot expose summaries of draft or private posts.
+	 * An explicit post_id must reference a publicly viewable, unprotected post
+	 * so the shortcode cannot expose summaries of draft, private, or
+	 * password-protected posts.
 	 *
 	 * @since 1.xx.x
 	 *
@@ -60,7 +61,7 @@ class SimplifiedSummaryShortcode {
 
 		$explicit_post_id = absint( $atts['post_id'] );
 
-		if ( $explicit_post_id && ! is_post_publicly_viewable( $explicit_post_id ) ) {
+		if ( $explicit_post_id && ( ! is_post_publicly_viewable( $explicit_post_id ) || post_password_required( $explicit_post_id ) ) ) {
 			return '';
 		}
 

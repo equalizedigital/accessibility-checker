@@ -85,6 +85,18 @@ class SimplifiedSummaryShortcodeTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Tests that the shortcode does not expose summaries of password-protected posts.
+	 *
+	 * @return void
+	 */
+	public function test_shortcode_does_not_render_password_protected_posts() {
+		$protected_id = self::factory()->post->create( [ 'post_password' => 'secret' ] );
+		update_post_meta( $protected_id, '_edac_simplified_summary', 'Protected summary.' );
+
+		$this->assertSame( '', do_shortcode( '[edac_simplified_summary post_id="' . $protected_id . '"]' ) );
+	}
+
+	/**
 	 * Tests that the shortcode returns an empty string outside the loop with no post_id.
 	 *
 	 * @return void
