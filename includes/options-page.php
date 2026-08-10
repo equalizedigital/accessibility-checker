@@ -153,13 +153,14 @@ function edac_register_setting() {
 	);
 
 	// Add fields.
+
+	// No label_for: this field is a group of checkboxes labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_post_types',
 		__( 'Post Types To Be Checked', 'accessibility-checker' ),
 		'edac_post_types_cb',
 		'edac_settings',
-		'edac_general',
-		[ 'label_for' => 'edac_post_types' ]
+		'edac_general'
 	);
 
 	add_settings_field(
@@ -189,13 +190,13 @@ function edac_register_setting() {
 		[ 'label_for' => 'edacp_scan_all_taxonomy_terms' ]
 	);
 
+	// No label_for: this field is a group of checkboxes labelled by the <legend> in its callback.
 	add_settings_field(
 		'edacp_ignore_user_roles',
 		__( 'Dismiss Permissions', 'accessibility-checker' ),
 		'edac_ignore_user_roles_cb',
 		'edac_settings',
-		'edac_permissions',
-		[ 'label_for' => 'edac_ignore_user_roles' ]
+		'edac_permissions'
 	);
 
 	add_settings_field(
@@ -216,22 +217,22 @@ function edac_register_setting() {
 		[ 'label_for' => 'edac_show_metabox_in_block_editor' ]
 	);
 
+	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_simplified_summary_prompt',
 		__( 'Prompt for Simplified Summary', 'accessibility-checker' ),
 		'edac_simplified_summary_prompt_cb',
 		'edac_settings',
-		'edac_simplified_summary',
-		[ 'label_for' => 'edac_simplified_summary_prompt' ]
+		'edac_simplified_summary'
 	);
 
+	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_simplified_summary_position',
 		__( 'Simplified Summary Position', 'accessibility-checker' ),
 		'edac_simplified_summary_position_cb',
 		'edac_settings',
-		'edac_simplified_summary',
-		[ 'label_for' => 'edac_simplified_summary_position' ]
+		'edac_simplified_summary'
 	);
 
 	add_settings_field(
@@ -278,13 +279,13 @@ function edac_register_setting() {
 		'edac_footer_accessibility_statement'
 	);
 
+	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_frontend_highlighter_position',
 		__( 'Frontend Accessibility Checker Position', 'accessibility-checker' ),
 		'edac_frontend_highlighter_position_cb',
 		'edac_settings',
-		'edac_frontend_highlighter',
-		[ 'label_for' => 'edac_frontend_highlighter_position' ]
+		'edac_frontend_highlighter'
 	);
 
 	// Register settings.
@@ -521,8 +522,11 @@ function edac_simplified_summary_position_cb() {
 	$position = get_option( 'edac_simplified_summary_position' );
 	?>
 		<fieldset>
+			<legend class="screen-reader-text">
+				<span><?php esc_html_e( 'Simplified Summary Position', 'accessibility-checker' ); ?></span>
+			</legend>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" id="<?php echo 'edac_simplified_summary_position'; ?>" value="before" <?php checked( $position, 'before' ); ?>>
+				<input type="radio" name="<?php echo 'edac_simplified_summary_position'; ?>" value="before" <?php checked( $position, 'before' ); ?>>
 				<?php esc_html_e( 'Before the content', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -555,8 +559,11 @@ function edac_frontend_highlighter_position_cb() {
 	$position = get_option( 'edac_frontend_highlighter_position', 'right' );
 	?>
 		<fieldset>
+			<legend class="screen-reader-text">
+				<span><?php esc_html_e( 'Frontend Accessibility Checker Position', 'accessibility-checker' ); ?></span>
+			</legend>
 			<label>
-				<input type="radio" name="edac_frontend_highlighter_position" id="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
+				<input type="radio" name="edac_frontend_highlighter_position" value="right" <?php checked( $position, 'right' ); ?>>
 				<?php esc_html_e( 'Bottom Right Corner (default)', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -604,8 +611,11 @@ function edac_simplified_summary_prompt_cb() {
 	$prompt = get_option( 'edac_simplified_summary_prompt' );
 	?>
 		<fieldset>
+			<legend class="screen-reader-text">
+				<span><?php esc_html_e( 'Prompt for Simplified Summary', 'accessibility-checker' ); ?></span>
+			</legend>
 			<label>
-				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" id="<?php echo 'edac_simplified_summary_prompt'; ?>" value="when required" <?php checked( $prompt, 'when required' ); ?>>
+				<input type="radio" name="<?php echo 'edac_simplified_summary_prompt'; ?>" value="when required" <?php checked( $prompt, 'when required' ); ?>>
 				<?php esc_html_e( 'When Required', 'accessibility-checker' ); ?>
 			</label>
 			<br>
@@ -647,14 +657,15 @@ function edac_post_types_cb() {
 	$all_post_types      = ( is_array( $post_types ) && is_array( $custom_post_types ) ) ? array_merge( $post_types, $custom_post_types ) : [];
 	?>
 		<fieldset>
+			<legend class="screen-reader-text">
+				<span><?php esc_html_e( 'Post Types To Be Checked', 'accessibility-checker' ); ?></span>
+			</legend>
 			<?php
 			if ( $all_post_types ) {
-				$position = 0;
 				foreach ( $all_post_types as $post_type ) {
 					$disabled        = in_array( $post_type, $post_types, true ) ? '' : 'disabled';
 					$post_type_label = edac_get_post_type_label( $post_type );
-					$field_id        = ( 0 === $position ) ? 'edac_post_types' : "edac_post_types_{$post_type}";
-					++$position;
+					$field_id        = "edac_post_types_{$post_type}";
 					?>
 					<label>
 						<input type="checkbox" name="<?php echo 'edac_post_types[]'; ?>" id="<?php echo esc_attr( $field_id ); ?>" value="<?php echo esc_attr( $post_type ); ?>"
@@ -979,10 +990,12 @@ function edac_ignore_user_roles_cb() {
 
 	?>
 	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
+		<legend class="screen-reader-text">
+			<span><?php esc_html_e( 'Dismiss Permissions', 'accessibility-checker' ); ?></span>
+		</legend>
 		<?php if ( $roles ) : ?>
-			<?php $index = 0; ?>
 			<?php foreach ( $roles as $key => $role ) : ?>
-				<?php $field_id = ( 0 === $index ) ? 'edac_ignore_user_roles' : "edac_ignore_user_roles_{$index}"; ?>
+				<?php $field_id = "edac_ignore_user_roles_{$key}"; ?>
 				<label>
 					<input
 						type="checkbox"
@@ -995,7 +1008,6 @@ function edac_ignore_user_roles_cb() {
 					<?php echo esc_html( $role['name'] ); ?>
 				</label>
 				<br>
-				<?php ++$index; ?>
 			<?php endforeach; ?>
 		<?php endif; ?>
 	</fieldset>
