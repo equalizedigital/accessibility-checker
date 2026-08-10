@@ -146,7 +146,10 @@ class SimplifiedSummaryBlock {
 	 * Uses the postId block context when available (FSE templates, Query
 	 * Loop) and falls back to the global post. Renders regardless of the
 	 * edac_simplified_summary_prompt option because manual placement is a
-	 * deliberate act, matching edac_get_simplified_summary().
+	 * deliberate act, matching edac_get_simplified_summary(). The postId
+	 * context can point at a post other than the one being viewed (Query
+	 * Loop), so password-protection and visibility are checked explicitly
+	 * rather than relying on WP's template-level access gate.
 	 *
 	 * @since 1.xx.x
 	 *
@@ -161,6 +164,14 @@ class SimplifiedSummaryBlock {
 			: (int) get_the_ID();
 
 		if ( ! $post_id ) {
+			return '';
+		}
+
+		if ( post_password_required( $post_id ) ) {
+			return '';
+		}
+
+		if ( get_queried_object_id() !== $post_id && ! is_post_publicly_viewable( $post_id ) ) {
 			return '';
 		}
 

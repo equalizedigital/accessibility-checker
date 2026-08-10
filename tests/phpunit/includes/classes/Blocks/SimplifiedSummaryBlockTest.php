@@ -133,6 +133,71 @@ class SimplifiedSummaryBlockTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Tests that render does not expose a password-protected post's summary
+	 * when the postId comes from block context (e.g. a Query Loop).
+	 *
+	 * @return void
+	 */
+	public function test_render_does_not_render_password_protected_post_via_context() {
+		$post_id = self::factory()->post->create( [ 'post_password' => 'secret' ] );
+		update_post_meta( $post_id, '_edac_simplified_summary', 'Protected summary.' );
+
+		$block = new WP_Block(
+			[ 'blockName' => SimplifiedSummaryBlock::BLOCK_NAME ],
+			[ 'postId' => $post_id ]
+		);
+
+		$this->assertSame( '', $this->block->render( [], '', $block ) );
+	}
+
+	/**
+	 * Tests that render does not expose the current post's summary when that
+	 * post itself is password-protected, since the block can sit outside the
+	 * template area that enforces the password wall.
+	 *
+	 * @return void
+	 */
+	public function test_render_does_not_render_password_protected_current_post() {
+		$post_id = self::factory()->post->create( [ 'post_password' => 'secret' ] );
+		update_post_meta( $post_id, '_edac_simplified_summary', 'Protected summary.' );
+
+		$this->go_to( get_permalink( $post_id ) );
+
+		$block = new WP_Block( [ 'blockName' => SimplifiedSummaryBlock::BLOCK_NAME ] );
+
+		$this->assertSame( '', $this->block->render( [], '', $block ) );
+	}
+
+	/**
+	 * Tests that render does not expose summaries of draft or private posts
+	 * referenced via block context (e.g. a Query Loop) other than the one
+	 * being viewed.
+	 *
+	 * @return void
+	 */
+	public function test_render_does_not_render_non_public_post_via_context() {
+		$draft_id = self::factory()->post->create( [ 'post_status' => 'draft' ] );
+		update_post_meta( $draft_id, '_edac_simplified_summary', 'Draft summary.' );
+
+		$private_id = self::factory()->post->create( [ 'post_status' => 'private' ] );
+		update_post_meta( $private_id, '_edac_simplified_summary', 'Private summary.' );
+
+		$this->go_to( '/' );
+
+		$draft_block = new WP_Block(
+			[ 'blockName' => SimplifiedSummaryBlock::BLOCK_NAME ],
+			[ 'postId' => $draft_id ]
+		);
+		$private_block = new WP_Block(
+			[ 'blockName' => SimplifiedSummaryBlock::BLOCK_NAME ],
+			[ 'postId' => $private_id ]
+		);
+
+		$this->assertSame( '', $this->block->render( [], '', $draft_block ) );
+		$this->assertSame( '', $this->block->render( [], '', $private_block ) );
+	}
+
+	/**
 	 * Tests that the block renders end-to-end through do_blocks.
 	 *
 	 * @return void
