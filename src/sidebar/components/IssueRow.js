@@ -6,9 +6,10 @@
 
 import { __, sprintf } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
-import { moreVertical, seen, code, check, tool } from '@wordpress/icons';
+import { moreVertical, seen, code, check, tool, search } from '@wordpress/icons';
 import Badge from './Badge';
 import { getDismissReasonLabel } from '../utils/dismissHelpers';
+import { highlightIssueInEditor, clearEditorHighlight, canHighlightInEditor } from '../utils/editorHighlightHelpers';
 
 /**
  * Single issue row with actions dropdown
@@ -26,6 +27,10 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 				type="button"
 				className="edac-analysis__issue-link"
 				onClick={ () => onAction( 'details', issue ) }
+				onMouseEnter={ () => highlightIssueInEditor( issue ) }
+				onMouseLeave={ () => clearEditorHighlight() }
+				onFocus={ () => highlightIssueInEditor( issue ) }
+				onBlur={ () => clearEditorHighlight() }
 				aria-haspopup="dialog"
 			>
 				{ __( 'Issue', 'accessibility-checker' ) } #{ issue.id }
@@ -53,6 +58,17 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 						>
 							{ __( 'View on page', 'accessibility-checker' ) }
 						</MenuItem>
+						{ canHighlightInEditor( issue ) && (
+							<MenuItem
+								icon={ search }
+								onClick={ () => {
+									onAction( 'highlight', issue );
+									onClose();
+								} }
+							>
+								{ __( 'Highlight in editor', 'accessibility-checker' ) }
+							</MenuItem>
+						) }
 						<MenuItem
 							icon={ code }
 							onClick={ () => {

@@ -13,6 +13,7 @@ import { restoreFocusWithFallback } from '../utils/focusHelpers';
 import { STORE_NAME } from '../store/accessibility-checker-store';
 import Badge from './Badge';
 import IssueRow from './IssueRow';
+import { highlightIssueInEditor } from '../utils/editorHighlightHelpers';
 
 /**
  * Get the "View on page" URL for an issue
@@ -132,6 +133,19 @@ const RuleAccordion = ( { rule, isExpanded, onToggle, showIgnored = false } ) =>
 			const url = getViewOnPageUrl( issue, viewLink );
 			if ( url ) {
 				window.open( url, '_blank', 'noopener,noreferrer' );
+			}
+			return;
+		}
+
+		// Handle the 'highlight' action to highlight the element in the block editor
+		if ( action === 'highlight' ) {
+			const found = highlightIssueInEditor( issue );
+			if ( ! found ) {
+				wp.data.dispatch( 'core/notices' ).createNotice(
+					'info',
+					__( 'This element is outside the block editor. Use "View on page" to see it on the frontend.', 'accessibility-checker' ),
+					{ type: 'snackbar' },
+				);
 			}
 			return;
 		}
