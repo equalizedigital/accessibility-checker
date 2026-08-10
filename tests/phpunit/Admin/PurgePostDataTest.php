@@ -32,9 +32,10 @@ class PurgePostDataTest extends WP_UnitTestCase {
 		$table_name      = $wpdb->prefix . 'accessibility_checker';
 
 		$sql = "CREATE TABLE $table_name (
-	        id mediumint(9) NOT NULL AUTO_INCREMENT,
-	        postid mediumint(9) NOT NULL,
-	        siteid mediumint(9) NOT NULL,
+	        id bigint(20) NOT NULL AUTO_INCREMENT,
+	        postid bigint(20) NOT NULL,
+	        siteid bigint(20) NOT NULL,
+	        type text NOT NULL,
 	        PRIMARY KEY  (id)
 	    ) $charset_collate;";
 
@@ -48,11 +49,13 @@ class PurgePostDataTest extends WP_UnitTestCase {
 			$table_name,
 			[
 				'postid' => $this->valid_post_id,
-				'siteid' => 1,
+				'siteid' => get_current_blog_id(),
+				'type'   => 'post',
 			],
 			[
 				'%d',
 				'%d',
+				'%s',
 			]
 		);
 	}
@@ -187,5 +190,80 @@ class PurgePostDataTest extends WP_UnitTestCase {
 		foreach ( $post_meta as $key => $value ) {
 			update_post_meta( $post_id, $key, $value );
 		}
+	}
+
+	/**
+	 * Test that delete_status_posts() removes custom table rows and postmeta
+	 * for posts that have the given post status.
+	 */
+	public function testDeleteStatusPostsRemovesDataForGivenStatus() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+
+		// Create a draft post and a published post.
+		$draft_post_id   = $this->factory()->post->create( [ 'post_status' => 'draft' ] );
+		$publish_post_id = $this->factory()->post->create( [ 'post_status' => 'publish' ] );
+
+		// Insert rows into the custom table for both posts.
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- this is just one-time use data for testing.
+			$table_name,
+			[
+				'postid' => $draft_post_id,
+				'siteid' => get_current_blog_id(),
+				'type'   => 'post',
+			],
+			[ '%d', '%d', '%s' ]
+		);
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- this is just one-time use data for testing.
+			$table_name,
+			[
+				'postid' => $publish_post_id,
+				'siteid' => get_current_blog_id(),
+				'type'   => 'post',
+			],
+			[ '%d', '%d', '%s' ]
+		);
+
+		// Set _edac* postmeta on both posts.
+		$this->set_edac_post_meta( $draft_post_id );
+		$this->set_edac_post_meta( $publish_post_id );
+
+		$rows_before = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- caching not required in tests.
+		$this->assertEquals( 3, $rows_before, 'Expected 3 rows before purge (setUp row + 2 new rows).' );
+
+		// Purge draft posts only.
+		Purge_Post_Data::delete_status_posts( 'draft' );
+
+		// Custom table row for draft should be gone; publish row should remain.
+		$draft_row   = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE postid = %d", $draft_post_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Safe variable used for table name, caching not required in tests.
+		$publish_row = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $table_name WHERE postid = %d", $publish_post_id ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Safe variable used for table name, caching not required in tests.
+		$this->assertEquals( 0, $draft_row, 'Draft post row should have been deleted.' );
+		$this->assertEquals( 1, $publish_row, 'Publish post row should NOT have been deleted.' );
+
+		// _edac* postmeta for draft should be gone; publish should remain.
+		$this->assertEmpty( get_post_meta( $draft_post_id, '_edac', true ), 'Draft _edac meta should be deleted.' );
+		$this->assertEmpty( get_post_meta( $draft_post_id, '_edacp', true ), 'Draft _edacp meta should be deleted.' );
+		$this->assertNotEmpty( get_post_meta( $publish_post_id, '_edac', true ), 'Publish _edac meta should remain.' );
+		$this->assertNotEmpty( get_post_meta( $publish_post_id, '_edacp', true ), 'Publish _edacp meta should remain.' );
+
+		// Clean up.
+		wp_delete_post( $draft_post_id, true );
+		wp_delete_post( $publish_post_id, true );
+	}
+
+	/**
+	 * Test that delete_status_posts() is a no-op when given an empty string.
+	 */
+	public function testDeleteStatusPostsWithEmptyStringDoesNothing() {
+		global $wpdb;
+		$table_name  = $wpdb->prefix . 'accessibility_checker';
+		$rows_before = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- caching not required in tests.
+
+		Purge_Post_Data::delete_status_posts( '' );
+
+		$rows_after = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $table_name" ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- caching not required in tests.
+		$this->assertEquals( $rows_before, $rows_after, 'No rows should be deleted for an empty status.' );
 	}
 }
