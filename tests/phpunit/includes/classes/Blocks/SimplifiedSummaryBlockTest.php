@@ -184,7 +184,7 @@ class SimplifiedSummaryBlockTest extends WP_UnitTestCase {
 
 		$this->go_to( '/' );
 
-		$draft_block = new WP_Block(
+		$draft_block   = new WP_Block(
 			[ 'blockName' => SimplifiedSummaryBlock::BLOCK_NAME ],
 			[ 'postId' => $draft_id ]
 		);
