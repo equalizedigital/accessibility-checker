@@ -69,10 +69,53 @@ if ( true === (bool) $edac_delete_data ) {
 		'edac_fix_new_window_warning',
 	];
 
-	$edac_options_to_clear = array_merge( $edac_options, $edac_fix_options );
+	// Capability system options. The free plugin owns the capability system for
+	// the whole Accessibility Checker family, so its uninstall is the single
+	// place the assignments and bookkeeping are torn down. Add-ons never remove
+	// capabilities on their own deactivation or uninstall.
+	$edac_capability_options = [
+		'edac_capability_role_map',
+		'edac_capability_user_grants',
+		'edac_capability_defaults_seeded',
+		'edac_synced_capabilities_edac_capability_role_map',
+		'edac_capability_migration_version_edac_capability_role_map',
+		'edac_synced_user_grants_edac_capability_role_map',
+	];
+
+	// Build the exact set of capabilities the permission system manages from its
+	// own bookkeeping BEFORE those options are deleted. Using this rather than a
+	// broad "edac_*" match means orphaned capabilities from an add-on uninstalled
+	// earlier are still cleaned up, while unrelated edac_* capabilities that are
+	// not part of this system (e.g. edac_upload_pdf) are left untouched.
+	$edac_managed_caps = [];
+	foreach ( [ 'edac_capability_role_map', 'edac_capability_user_grants' ] as $edac_map_option ) {
+		$edac_map = get_option( $edac_map_option, [] );
+		if ( is_array( $edac_map ) ) {
+			$edac_managed_caps = array_merge( $edac_managed_caps, array_keys( $edac_map ) );
+		}
+	}
+	$edac_seeded = get_option( 'edac_capability_defaults_seeded', [] );
+	if ( is_array( $edac_seeded ) ) {
+		$edac_managed_caps = array_merge( $edac_managed_caps, $edac_seeded );
+	}
+	$edac_managed_caps = array_values( array_unique( array_filter( array_map( 'strval', $edac_managed_caps ) ) ) );
+
+	$edac_options_to_clear = array_merge( $edac_options, $edac_fix_options, $edac_capability_options );
 
 	foreach ( $edac_options_to_clear as $edac_option ) {
 		delete_option( $edac_option );
 		delete_site_option( $edac_option );
+	}
+
+	// Remove the managed capabilities from every role.
+	if ( $edac_managed_caps ) {
+		$edac_wp_roles = wp_roles();
+		if ( $edac_wp_roles instanceof WP_Roles ) {
+			foreach ( $edac_wp_roles->role_objects as $edac_role ) {
+				foreach ( $edac_managed_caps as $edac_capability ) {
+					$edac_role->remove_cap( $edac_capability );
+				}
+			}
+		}
 	}
 }
