@@ -348,12 +348,26 @@ function edac_ignore_capability(): SyncCapability {
 	static $capability = null;
 
 	if ( null === $capability ) {
+		// Precompute each capability's floor once (all active add-ons have
+		// contributed metadata by the time this runs on plugins_loaded), so the
+		// floor policy passed to the engine is a cheap array lookup rather than a
+		// metadata rebuild per role/capability during sync.
+		$floors = [];
+		foreach ( edac_capability_metadata() as $slug => $meta ) {
+			$floors[ $slug ] = (string) $meta['floor'];
+		}
+
 		$capability = new SyncCapability(
 			edac_capability_bundle(),
 			'edac_capability_role_map',    // Per-capability role assignments.
 			'edac_capability_user_grants', // Per-capability user grants.
 			EDAC_CAPABILITY_MIGRATION_VERSION,
-			'edacp_ignore_user_roles'      // Legacy option seeded into the map on migration.
+			'edacp_ignore_user_roles',     // Legacy option seeded into the map on migration.
+			// Floor policy: never grant a capability to a role whose live
+			// capabilities do not meet that capability's floor.
+			function ( $role_slug, $cap ) use ( $floors ) {
+				return edac_role_meets_floor( (string) $role_slug, $floors[ $cap ] ?? '' );
+			}
 		);
 		$capability->register();
 	}

@@ -65,6 +65,18 @@ class SyncCapability {
 	private string $legacy_roles_option;
 
 	/**
+	 * Optional floor policy: `fn( string $role_slug, string $capability ): bool`
+	 * returning whether the role is allowed to hold the capability (i.e. its live
+	 * capabilities meet the capability's floor). When set, neither sync nor the
+	 * migration ever grants a capability to a role that fails it, so a stale role
+	 * map or a legacy seed can never grant a capability a role does not qualify
+	 * for. Null disables floor enforcement (the map is applied verbatim).
+	 *
+	 * @var callable|null
+	 */
+	private $floor_check;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string|string[] $capabilities        A single capability or the bundle of capabilities to manage.
@@ -72,6 +84,7 @@ class SyncCapability {
 	 * @param string          $user_grants_option  Option holding [ capability => [user_id, …] ]. '' disables user grants.
 	 * @param string          $migration_version   Plugin version to force a one-time re-sync/seed ('0' disables).
 	 * @param string          $legacy_roles_option Legacy roles option to seed the map from on migration ('' disables).
+	 * @param callable|null   $floor_check         Optional `fn(string $role, string $cap): bool` floor policy; null disables it.
 	 *
 	 * @throws \InvalidArgumentException If $capabilities resolves to an empty array.
 	 */
@@ -80,7 +93,8 @@ class SyncCapability {
 		string $role_map_option,
 		string $user_grants_option = '',
 		string $migration_version = '0',
-		string $legacy_roles_option = ''
+		string $legacy_roles_option = '',
+		?callable $floor_check = null
 	) {
 		$this->capabilities = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
 
@@ -94,6 +108,23 @@ class SyncCapability {
 		$this->user_grants_option  = $user_grants_option;
 		$this->migration_version   = $migration_version;
 		$this->legacy_roles_option = $legacy_roles_option;
+		$this->floor_check         = $floor_check;
+	}
+
+	/**
+	 * Whether a role is allowed to hold a capability under the floor policy.
+	 * Always true when no floor policy was supplied.
+	 *
+	 * @param string $role_slug  Role slug.
+	 * @param string $capability Capability string.
+	 * @return bool
+	 */
+	private function role_allowed( string $role_slug, string $capability ): bool {
+		if ( null === $this->floor_check ) {
+			return true;
+		}
+
+		return (bool) ( $this->floor_check )( $role_slug, $capability );
 	}
 
 	/**
@@ -219,7 +250,14 @@ class SyncCapability {
 				: [];
 
 			foreach ( $all_roles as $role_slug ) {
-				$this->sync_role_capability( $role_slug, $capability, in_array( $role_slug, $roles_for_cap, true ) );
+				// Grant only when the map lists the role AND the role satisfies the
+				// capability's floor; otherwise revoke. This makes a stale or
+				// hand-edited map incapable of granting a capability a role does not
+				// qualify for.
+				$should_have = in_array( $role_slug, $roles_for_cap, true )
+					&& $this->role_allowed( $role_slug, $capability );
+
+				$this->sync_role_capability( $role_slug, $capability, $should_have );
 			}
 		}
 	}
@@ -384,12 +422,27 @@ class SyncCapability {
 		$role_map = (array) get_option( $this->role_map_option, [] );
 
 		// One-time migration: seed the role map from the legacy single-list
-		// roles option so existing sites keep identical effective grants.
+		// roles option so existing sites keep their effective grants - but only
+		// for roles that satisfy each capability's floor, so the migration can
+		// never grant a capability to a role that does not qualify for it (e.g.
+		// a legacy "author" must not inherit a scan capability floored on
+		// edit_others_posts).
 		if ( $version_migration && [] === $role_map && '' !== $this->legacy_roles_option ) {
-			$legacy_roles = (array) get_option( $this->legacy_roles_option, [] );
+			$legacy_roles = array_values( (array) get_option( $this->legacy_roles_option, [] ) );
 			if ( [] !== $legacy_roles ) {
 				foreach ( $current as $capability ) {
-					$role_map[ $capability ] = array_values( $legacy_roles );
+					$qualified = array_values(
+						array_filter(
+							$legacy_roles,
+							function ( $role_slug ) use ( $capability ) {
+								return $this->role_allowed( (string) $role_slug, $capability );
+							}
+						)
+					);
+
+					if ( [] !== $qualified ) {
+						$role_map[ $capability ] = $qualified;
+					}
 				}
 				update_option( $this->role_map_option, $role_map );
 			}

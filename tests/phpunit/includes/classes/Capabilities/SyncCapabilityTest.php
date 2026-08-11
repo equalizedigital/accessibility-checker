@@ -99,6 +99,62 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The floor policy prevents sync_matrix() from granting a capability to a
+	 * role that fails it, even when the role map explicitly lists that role.
+	 *
+	 * @return void
+	 */
+	public function test_sync_matrix_respects_the_floor_policy() {
+		// Floor policy: only 'editor' may hold the capability.
+		$floor      = function ( $role_slug ) {
+			return 'editor' === $role_slug;
+		};
+		$capability = new SyncCapability(
+			self::TEST_CAP,
+			self::ROLE_MAP_OPTION,
+			self::USER_GRANTS_OPTION,
+			'0',
+			self::LEGACY_OPTION,
+			$floor
+		);
+
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'editor', 'author' ] ] );
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'Editor meets the floor and should be granted.' );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ), 'Author fails the floor and must not be granted even though the map lists it.' );
+	}
+
+	/**
+	 * The version-gated migration seeds only the legacy roles that meet each
+	 * capability's floor, so it can never grant a capability a role does not
+	 * qualify for.
+	 *
+	 * @return void
+	 */
+	public function test_migration_seed_respects_the_floor_policy() {
+		update_option( self::LEGACY_OPTION, [ 'editor', 'author' ] );
+
+		$floor      = function ( $role_slug ) {
+			return 'editor' === $role_slug;
+		};
+		$capability = new SyncCapability(
+			self::TEST_CAP,
+			self::ROLE_MAP_OPTION,
+			self::USER_GRANTS_OPTION,
+			'1.0.0',
+			self::LEGACY_OPTION,
+			$floor
+		);
+
+		$capability->reconcile();
+
+		$map = get_option( self::ROLE_MAP_OPTION );
+		$this->assertSame( [ 'editor' ], $map[ self::TEST_CAP ], 'Only the floor-qualified legacy role is seeded.' );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+	}
+
+	/**
 	 * The register() call should wire live sync to the role-map option's hooks.
 	 *
 	 * @return void
