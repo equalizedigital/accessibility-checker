@@ -389,6 +389,17 @@ add_action(
 	21
 );
 
+/*
+ * Capability reader helpers (edac_user_can_*).
+ *
+ * IMPORTANT: these are a cross-plugin API and must not be removed as "unused" —
+ * they have few or no call sites inside the free plugin itself, but each add-on
+ * (Pro, Export in includes/, Audit History in app/) feature-detects them with
+ * function_exists() and calls them, falling back to manage_options when the
+ * installed free-plugin version predates the capability. Deleting one silently
+ * downgrades that feature's gate to manage_options for older/paired installs.
+ */
+
 /**
  * Check if user can ignore issues (per-post) or can manage options.
  *
