@@ -46,15 +46,113 @@ defined( 'EDAC_CAPABILITY_FULL_SITE_SCAN' ) || define( 'EDAC_CAPABILITY_FULL_SIT
 // on any scannable, readable content.
 defined( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER' ) || define( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER', 'edac_view_frontend_highlighter' );
 
+// Plugin version at which the capability bundle migration runs. Sites upgrading
+// the free plugin from below this version get a one-time forced re-sync of the
+// bundle onto their configured roles (see SyncCapability::reconcile()). Set to
+// the release the capability system ships in.
+defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.48.0' );
+
 /**
- * The ignore-permissions capability bundle (edac_ignore_issues,
- * edac_ignore_issues_globally, edac_issues_explorer_access,
- * edac_view_audit_history, edac_export_data, edac_full_site_scan,
- * edac_view_frontend_highlighter), synced onto the roles listed in the
- * edacp_ignore_user_roles option, with a manage_options bypass.
- * Consumers should check individual capabilities via CapabilityChecker (or
- * the edac_user_can_*() helpers below) rather than calling into this
- * instance directly.
+ * Metadata for every Accessibility Checker capability, keyed by slug.
+ *
+ * This is the single registry that drives both the sync bundle and the
+ * Permissions admin UI. The free plugin contributes its own capabilities;
+ * add-on plugins (Pro, Export, Audit History) contribute theirs via the
+ * edac_capabilities filter, so activating or deactivating an add-on changes
+ * the set and the next reconcile grants or revokes its capabilities.
+ *
+ * Each entry is [ 'label', 'description', 'group', 'owner', 'pro' ]. Any slug
+ * still contributed only through the legacy edac_capability_bundle filter is
+ * included with synthesized fallback metadata so it is never dropped.
+ *
+ * @return array<string, array{label:string,description:string,group:string,owner:string,pro:bool}>
+ */
+function edac_capability_metadata(): array {
+	/**
+	 * Filter the Accessibility Checker capability registry.
+	 *
+	 * Add-on plugins register their capabilities' metadata here (contribute at
+	 * load time so the capability is present whenever the registry is assembled,
+	 * regardless of plugin load order).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param array<string, array> $capabilities Capability metadata keyed by slug.
+	 */
+	$capabilities = apply_filters(
+		'edac_capabilities',
+		[
+			EDAC_CAPABILITY_IGNORE_ISSUES             => [
+				'label'       => __( 'Dismiss issues', 'accessibility-checker' ),
+				'description' => __( 'Dismiss and reopen accessibility issues on a post.', 'accessibility-checker' ),
+				'group'       => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'       => 'accessibility-checker',
+				'pro'         => false,
+			],
+			EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER => [
+				'label'       => __( 'Front-end highlighter', 'accessibility-checker' ),
+				'description' => __( 'View the front-end accessibility highlighter on published content.', 'accessibility-checker' ),
+				'group'       => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'       => 'accessibility-checker',
+				'pro'         => false,
+			],
+		]
+	);
+
+	$capabilities = is_array( $capabilities ) ? $capabilities : [];
+
+	// Back-compat: fold in any slug contributed only through the legacy
+	// edac_capability_bundle filter, with synthesized metadata so add-ons that
+	// have not adopted edac_capabilities yet are still assignable and synced.
+	$legacy = apply_filters( 'edac_capability_bundle', [] );
+	foreach ( (array) $legacy as $slug ) {
+		$slug = (string) $slug;
+		if ( '' !== $slug && ! isset( $capabilities[ $slug ] ) ) {
+			$capabilities[ $slug ] = [
+				'label'       => ucwords( str_replace( [ 'edac_', '_' ], [ '', ' ' ], $slug ) ),
+				'description' => '',
+				'group'       => '',
+				'owner'       => '',
+				'pro'         => false,
+			];
+		}
+	}
+
+	// Normalize every entry so consumers can rely on all keys existing.
+	foreach ( $capabilities as $slug => $meta ) {
+		$capabilities[ $slug ] = array_merge(
+			[
+				'label'       => (string) $slug,
+				'description' => '',
+				'group'       => '',
+				'owner'       => '',
+				'pro'         => false,
+			],
+			is_array( $meta ) ? $meta : []
+		);
+	}
+
+	return $capabilities;
+}
+
+/**
+ * The capability bundle: the slugs synced onto roles/users by the permission
+ * system. Derived from edac_capability_metadata() so the registry is the one
+ * source of truth for both syncing and the admin UI.
+ *
+ * @return string[] Sorted, de-duplicated capability slugs.
+ */
+function edac_capability_bundle(): array {
+	$capabilities = array_values( array_filter( array_map( 'strval', array_keys( edac_capability_metadata() ) ) ) );
+	sort( $capabilities );
+
+	return $capabilities;
+}
+
+/**
+ * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
+ * (see below) so every active add-on has contributed to edac_capability_bundle
+ * first; also usable directly (e.g. in tests) as a lazy singleton.
  *
  * @return SyncCapability
  */
@@ -63,25 +161,20 @@ function edac_ignore_capability(): SyncCapability {
 
 	if ( null === $capability ) {
 		$capability = new SyncCapability(
-			[
-				EDAC_CAPABILITY_IGNORE_ISSUES,
-				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY,
-				EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS,
-				EDAC_CAPABILITY_VIEW_AUDIT_HISTORY,
-				EDAC_CAPABILITY_EXPORT_DATA,
-				EDAC_CAPABILITY_FULL_SITE_SCAN,
-				EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER,
-			],
-			'edacp_ignore_user_roles',
-			[ 'administrator' ],
-			5 // Bumped from 4: adds edac_view_frontend_highlighter for roles already granted ignore access.
+			edac_capability_bundle(),
+			'edac_capability_role_map',    // Per-capability role assignments.
+			'edac_capability_user_grants', // Per-capability user grants.
+			EDAC_CAPABILITY_MIGRATION_VERSION,
+			'edacp_ignore_user_roles'      // Legacy option seeded into the map on migration.
 		);
 		$capability->register();
 	}
 
 	return $capability;
 }
-edac_ignore_capability();
+// Assemble after all plugins have loaded so add-ons can contribute to the
+// bundle via the filter regardless of plugin load order.
+add_action( 'plugins_loaded', 'edac_ignore_capability', 20 );
 
 /**
  * Check if user can ignore issues (per-post) or can manage options.

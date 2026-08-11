@@ -1,6 +1,7 @@
 <?php
 /**
- * Class file for WordPress capabilities synced onto roles from an option.
+ * Class file for WordPress capabilities synced onto roles and users from
+ * option-backed assignment maps.
  *
  * @package Accessibility_Checker
  */
@@ -8,139 +9,139 @@
 namespace EqualizeDigital\AccessibilityChecker\Capabilities;
 
 /**
- * Registers one or more real WordPress capabilities, kept in sync with the
- * role list stored in a single plugin option, with a manage_options bypass
- * and a version-gated migration for sites that already had the option set
- * before the capability existed.
+ * Keeps a bundle of real WordPress capabilities in sync with two option-backed
+ * assignment maps - a per-capability role map and a per-capability user-grant
+ * map - with a manage_options bypass and a plugin-version-gated migration.
  *
  * The generic primitive is sync_role_capability(): grant or revoke one
- * capability on one role. Everything else (sync() looping roles x
- * capabilities, the admin bypass, the option-watching/migration machinery)
- * is built on top of that primitive, so a single option can drive a bundle
- * of capabilities that always travel together (e.g. ignore-issues,
- * ignore-issues-globally, and issues-explorer-access, all granted to
- * whichever roles are configured for "can ignore issues").
+ * capability on one role. sync_matrix() applies a whole capability=>roles map on
+ * top of it; sync_user_grants() does the same for capability=>user-ids using a
+ * stored snapshot so unchecking a user revokes the direct grant. reconcile()
+ * ties them together on init and also revokes capabilities that have left the
+ * bundle (an add-on that contributed one was deactivated).
  *
- * This class only ever syncs; it does not answer "can the current user do
- * X" for the rest of the plugin family - see CapabilityChecker for that.
+ * This class only ever writes the role/capability relationship; it does not
+ * answer "can the current user do X" for the rest of the plugin family - see
+ * CapabilityChecker for that.
  */
 class SyncCapability {
 
 	/**
-	 * The capability strings this instance keeps in sync, e.g.
-	 * [ 'edac_ignore_issues' ] or a multi-capability bundle.
+	 * The capability strings this instance manages (the current bundle).
 	 *
 	 * @var string[]
 	 */
 	private array $capabilities;
 
 	/**
-	 * Name of the option holding the array of role slugs that should have
-	 * these capabilities.
+	 * Option holding the per-capability role map: [ capability => [role, …] ].
 	 *
 	 * @var string
 	 */
-	private string $option_name;
+	private string $role_map_option;
 
 	/**
-	 * Role slugs to sync the capabilities onto if the option has never been
-	 * set (used only by the migration, not as a fallback for a set-but-empty
-	 * option).
+	 * Option holding the per-capability user-grant map:
+	 * [ capability => [user_id, …] ]. Empty string disables user grants.
 	 *
-	 * @var string[]
+	 * @var string
 	 */
-	private array $default_roles;
+	private string $user_grants_option;
 
 	/**
-	 * Bumped when the default_roles (or the capability list) for this bundle
-	 * change; sites whose stored migration version is lower get re-synced
-	 * once on their next init, even if they already ran an earlier
-	 * version's migration.
+	 * Plugin version at/after which to force a one-time re-sync (and seed the
+	 * role map from the legacy option). '0' disables the version-gated migration.
 	 *
-	 * @var int
+	 * @var string
 	 */
-	private int $version;
+	private string $migration_version;
+
+	/**
+	 * Legacy single-list roles option (e.g. edacp_ignore_user_roles) used only
+	 * to seed the role map on first migration. Empty string disables seeding.
+	 *
+	 * @var string
+	 */
+	private string $legacy_roles_option;
 
 	/**
 	 * Constructor.
 	 *
-	 * @param string|string[] $capabilities  A single capability string, or an array of capability
-	 *                                       strings that should all be synced together from the
-	 *                                       same option (accepting a single string keeps existing
-	 *                                       single-capability callers working unchanged).
-	 * @param string          $option_name   Option holding the array of role slugs allowed these capabilities.
-	 * @param array           $default_roles Roles to grant on first-ever sync (site had the option unset).
-	 * @param int             $version       Bump to re-run the migration when default_roles/capabilities change.
+	 * @param string|string[] $capabilities        A single capability or the bundle of capabilities to manage.
+	 * @param string          $role_map_option     Option holding [ capability => [role, …] ].
+	 * @param string          $user_grants_option  Option holding [ capability => [user_id, …] ]. '' disables user grants.
+	 * @param string          $migration_version   Plugin version to force a one-time re-sync/seed ('0' disables).
+	 * @param string          $legacy_roles_option Legacy roles option to seed the map from on migration ('' disables).
 	 *
-	 * @throws \InvalidArgumentException If $capabilities is an empty array - there is nothing for this
-	 *                                   instance to sync/check, and user_can()'s no-argument default
-	 *                                   would otherwise silently check an undefined (null) capability.
+	 * @throws \InvalidArgumentException If $capabilities resolves to an empty array.
 	 */
-	public function __construct( $capabilities, string $option_name, array $default_roles = [], int $version = 1 ) {
+	public function __construct(
+		$capabilities,
+		string $role_map_option,
+		string $user_grants_option = '',
+		string $migration_version = '0',
+		string $legacy_roles_option = ''
+	) {
 		$this->capabilities = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
 
 		if ( [] === $this->capabilities ) {
 			throw new \InvalidArgumentException( 'SyncCapability requires at least one capability.' );
 		}
 
-		$this->option_name   = $option_name;
-		$this->default_roles = $default_roles;
-		$this->version       = $version;
+		sort( $this->capabilities );
+
+		$this->role_map_option     = $role_map_option;
+		$this->user_grants_option  = $user_grants_option;
+		$this->migration_version   = $migration_version;
+		$this->legacy_roles_option = $legacy_roles_option;
 	}
 
 	/**
-	 * Wire up the bypass filter, live sync on option save, and the
-	 * version-gated migration. Call once, typically from plugin bootstrap.
+	 * Wire up the admin bypass, live sync on option save, and the init
+	 * reconcile. Call once, typically from plugin bootstrap.
 	 *
 	 * @return void
 	 */
 	public function register(): void {
 		add_filter( 'map_meta_cap', [ $this, 'bypass_for_admins' ], 10, 3 );
 
+		$apply_role_map = function ( $a, $b = null ) {
+			// add_option passes (option, value); update_option passes (old, new).
+			$this->sync_matrix( (array) ( null === $b ? $a : $b ) );
+		};
+		add_action( "add_option_{$this->role_map_option}", $apply_role_map, 10, 2 );
+		add_action( "update_option_{$this->role_map_option}", $apply_role_map, 10, 2 );
 		add_action(
-			"add_option_{$this->option_name}",
-			function ( $option, $value ) {
-				$this->sync( $value );
-			},
-			10,
-			2
-		);
-		add_action(
-			"update_option_{$this->option_name}",
-			function ( $old_value, $value ) {
-				$this->sync( $value );
-			},
-			10,
-			2
-		);
-		// Whatever deleted the option (typically an uninstall routine, gated
-		// behind the "delete data" preference) intends for the roles it
-		// granted to lose these capabilities too - without this, sync()
-		// would only ever run again on the next add_option/update_option,
-		// leaving the capabilities stuck on whichever roles had them at
-		// deletion time indefinitely.
-		add_action(
-			"delete_option_{$this->option_name}",
+			"delete_option_{$this->role_map_option}",
 			function () {
-				$this->sync( [] );
+				$this->sync_matrix( [] );
 			}
 		);
 
-		// init, not admin_init: admin_menu (where menu capability checks happen)
-		// and rest_api_init (where REST permission_callbacks are registered) both
-		// fire before admin_init on their respective request types, so migrating
-		// on admin_init would leave the very first request after a version bump
-		// building a menu, or serving a REST request, against pre-migration
-		// capabilities. init fires early enough on every request type - admin,
-		// front-end, REST, and cron alike - to have already run by the time any
-		// of those capability checks happen.
-		add_action( 'init', [ $this, 'maybe_migrate' ] );
+		if ( '' !== $this->user_grants_option ) {
+			$apply_user_grants = function ( $a, $b = null ) {
+				$this->sync_user_grants( (array) ( null === $b ? $a : $b ) );
+			};
+			add_action( "add_option_{$this->user_grants_option}", $apply_user_grants, 10, 2 );
+			add_action( "update_option_{$this->user_grants_option}", $apply_user_grants, 10, 2 );
+			add_action(
+				"delete_option_{$this->user_grants_option}",
+				function () {
+					$this->sync_user_grants( [] );
+				}
+			);
+		}
+
+		// init, not admin_init: menu (admin_menu) and REST (rest_api_init)
+		// capability checks fire before admin_init on their request types, so
+		// reconciling on admin_init would leave the first such request after a
+		// change checking stale capabilities. init runs early enough on every
+		// request type - admin, front-end, REST and cron.
+		add_action( 'init', [ $this, 'reconcile' ] );
 	}
 
 	/**
 	 * Whether the current user has one of this instance's capabilities.
-	 * Defaults to the first (or only) capability in the bundle so existing
-	 * single-capability callers can keep calling user_can() with no argument.
 	 *
 	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
 	 * @return bool
@@ -152,8 +153,7 @@ class SyncCapability {
 
 	/**
 	 * A REST route permission_callback closure for one of this instance's
-	 * capabilities, so routes can pass this directly instead of wrapping
-	 * current_user_can() in their own inline closure.
+	 * capabilities.
 	 *
 	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
 	 * @return callable
@@ -165,8 +165,8 @@ class SyncCapability {
 	}
 
 	/**
-	 * Map_meta_cap callback: manage_options users always pass a check
-	 * against any capability in this bundle, regardless of role sync.
+	 * Map_meta_cap callback: manage_options users always pass a check against
+	 * any capability in this bundle, regardless of assignment.
 	 *
 	 * @param array  $caps    Required primitive capabilities.
 	 * @param string $cap     Capability being checked.
@@ -181,14 +181,8 @@ class SyncCapability {
 	}
 
 	/**
-	 * Add or remove one capability on one role. The generic primitive
-	 * sync() is built on. Deliberately private: calling it directly for a
-	 * single capability out of a multi-capability bundle would grant/revoke
-	 * that one capability while leaving the rest of the bundle untouched
-	 * for that role, breaking the "these capabilities always travel
-	 * together" guarantee this class exists to provide. Always go through
-	 * sync() (or the option it's wired to) so every capability in the
-	 * bundle stays in lockstep.
+	 * Add or remove one capability on one role. The generic primitive the role
+	 * matrix is built on.
 	 *
 	 * @param string $role_slug   Role slug, e.g. 'editor'.
 	 * @param string $capability  Capability string.
@@ -210,63 +204,203 @@ class SyncCapability {
 	}
 
 	/**
-	 * Add or remove every capability in this bundle on every role so each
-	 * capability matches exactly the role list passed in.
+	 * Apply a per-capability role map: grant each bundle capability to the roles
+	 * listed for it and revoke it from every other role.
 	 *
-	 * @param mixed $roles Role slugs that should have the capabilities.
+	 * @param array $role_map [ capability => [role_slug, …] ].
 	 * @return void
 	 */
-	public function sync( $roles ): void {
-		$roles = is_array( $roles ) ? $roles : [];
+	public function sync_matrix( array $role_map ): void {
+		$all_roles = array_keys( wp_roles()->role_objects );
 
-		foreach ( array_keys( wp_roles()->role_objects ) as $role_slug ) {
-			$should_have = in_array( $role_slug, $roles, true );
+		foreach ( $this->capabilities as $capability ) {
+			$roles_for_cap = isset( $role_map[ $capability ] ) && is_array( $role_map[ $capability ] )
+				? $role_map[ $capability ]
+				: [];
 
-			foreach ( $this->capabilities as $capability ) {
-				$this->sync_role_capability( $role_slug, $capability, $should_have );
+			foreach ( $all_roles as $role_slug ) {
+				$this->sync_role_capability( $role_slug, $capability, in_array( $role_slug, $roles_for_cap, true ) );
 			}
 		}
 	}
 
 	/**
-	 * Name of the option this bundle's migration-version marker is stored
-	 * under. Includes a hash of the capability list, not just option_name,
-	 * so two different SyncCapability instances that happen to point at the
-	 * same option (e.g. a future feature layered onto an existing option)
-	 * can never collide on one shared version counter and silently skip
-	 * each other's migration.
+	 * Apply a per-capability user-grant map, diffing against the snapshot of
+	 * grants we last applied so that removing a user revokes their direct
+	 * capability without touching grants made elsewhere.
 	 *
-	 * @return string
-	 */
-	private function version_option_name(): string {
-		$capabilities = $this->capabilities;
-		sort( $capabilities );
-
-		return 'edac_capability_version_' . $this->option_name . '_' . md5( implode( '|', $capabilities ) );
-	}
-
-	/**
-	 * Run the sync once per migration version. Covers two cases: a site
-	 * that already had option_name set before this bundle existed (needs an
-	 * initial sync), and a site whose stored version predates a
-	 * default_roles/capabilities change (needs a re-sync even though it
-	 * already ran an earlier version's migration).
-	 *
-	 * Versioned per (option, capability set) pair, not per capability,
-	 * since every capability in the bundle is always granted together and
-	 * shares one migration.
-	 *
+	 * @param array $user_map [ capability => [user_id, …] ].
 	 * @return void
 	 */
-	public function maybe_migrate(): void {
-		$version_option = $this->version_option_name();
-		$stored_version = (int) get_option( $version_option, 0 );
-
-		if ( $stored_version >= $this->version ) {
+	public function sync_user_grants( array $user_map ): void {
+		if ( '' === $this->user_grants_option ) {
 			return;
 		}
 
-		$this->sync( get_option( $this->option_name, $this->default_roles ) );
-		update_option( $version_option, $this->version );
+		$snapshot = (array) get_option( $this->user_grants_synced_option_name(), [] );
+		$applied  = [];
+
+		// Union of capabilities we manage now and any we granted before, so
+		// grants for a capability that has left the bundle are also revoked.
+		$cap_slugs = array_unique( array_merge( $this->capabilities, array_keys( $snapshot ) ) );
+
+		foreach ( $cap_slugs as $capability ) {
+			$desired  = isset( $user_map[ $capability ] ) && is_array( $user_map[ $capability ] ) ? array_map( 'intval', $user_map[ $capability ] ) : [];
+			$previous = isset( $snapshot[ $capability ] ) && is_array( $snapshot[ $capability ] ) ? array_map( 'intval', $snapshot[ $capability ] ) : [];
+
+			// A capability no longer in the bundle should hold no grants.
+			if ( ! in_array( $capability, $this->capabilities, true ) ) {
+				$desired = [];
+			}
+
+			foreach ( array_diff( $desired, $previous ) as $user_id ) {
+				$user = get_user_by( 'id', $user_id );
+				if ( $user ) {
+					$user->add_cap( $capability );
+				}
+			}
+			foreach ( array_diff( $previous, $desired ) as $user_id ) {
+				$user = get_user_by( 'id', $user_id );
+				if ( $user ) {
+					$user->remove_cap( $capability );
+				}
+			}
+
+			if ( [] !== $desired ) {
+				$applied[ $capability ] = array_values( $desired );
+			}
+		}
+
+		update_option( $this->user_grants_synced_option_name(), $applied );
+	}
+
+	/**
+	 * Revoke the given capabilities from every role and from every user we
+	 * granted them to. Used to clean up capabilities that have left the bundle.
+	 *
+	 * @param string[] $capabilities Capabilities to remove everywhere.
+	 * @return void
+	 */
+	public function revoke( array $capabilities ): void {
+		if ( [] === $capabilities ) {
+			return;
+		}
+
+		foreach ( array_keys( wp_roles()->role_objects ) as $role_slug ) {
+			foreach ( $capabilities as $capability ) {
+				$this->sync_role_capability( $role_slug, $capability, false );
+			}
+		}
+
+		if ( '' === $this->user_grants_option ) {
+			return;
+		}
+
+		$snapshot = (array) get_option( $this->user_grants_synced_option_name(), [] );
+		$changed  = false;
+		foreach ( $capabilities as $capability ) {
+			if ( empty( $snapshot[ $capability ] ) ) {
+				continue;
+			}
+			foreach ( (array) $snapshot[ $capability ] as $user_id ) {
+				$user = get_user_by( 'id', (int) $user_id );
+				if ( $user ) {
+					$user->remove_cap( $capability );
+				}
+			}
+			unset( $snapshot[ $capability ] );
+			$changed = true;
+		}
+		if ( $changed ) {
+			update_option( $this->user_grants_synced_option_name(), $snapshot );
+		}
+	}
+
+	/**
+	 * Option storing the capability set last synced, so a change to the set (an
+	 * add-on contributed or was deactivated) can be detected and reconciled.
+	 *
+	 * @return string
+	 */
+	private function synced_set_option_name(): string {
+		return 'edac_synced_capabilities_' . $this->role_map_option;
+	}
+
+	/**
+	 * Option storing the plugin version at which the version-gated migration
+	 * last ran for this bundle.
+	 *
+	 * @return string
+	 */
+	private function migration_version_option_name(): string {
+		return 'edac_capability_migration_version_' . $this->role_map_option;
+	}
+
+	/**
+	 * Option storing the snapshot of per-user grants we last applied.
+	 *
+	 * @return string
+	 */
+	private function user_grants_synced_option_name(): string {
+		return 'edac_synced_user_grants_' . $this->role_map_option;
+	}
+
+	/**
+	 * Reconcile roles and users with the current bundle and assignment maps.
+	 * Runs on every init but short-circuits with no writes when nothing has
+	 * changed, so it is cheap to run unconditionally.
+	 *
+	 * Triggers: the capability set changed (grant added / revoke dropped), the
+	 * role or user maps changed, or the site upgraded across the migration
+	 * version boundary (forces a re-sync and seeds the role map from the legacy
+	 * roles option the first time).
+	 *
+	 * @return void
+	 */
+	public function reconcile(): void {
+		$current = $this->capabilities;
+
+		$previous_set = get_option( $this->synced_set_option_name(), null );
+		$set_changed  = ( null === $previous_set ) || ( array_values( (array) $previous_set ) !== $current );
+
+		$migration_option  = $this->migration_version_option_name();
+		$version_migration = '0' !== $this->migration_version
+			&& version_compare( (string) get_option( $migration_option, '0' ), $this->migration_version, '<' );
+
+		if ( ! $set_changed && ! $version_migration ) {
+			// The maps are applied live on save; still re-apply user grants here
+			// so a snapshot/desired drift self-heals, then bail cheaply.
+			$this->sync_user_grants( (array) get_option( $this->user_grants_option, [] ) );
+			return;
+		}
+
+		// Revoke capabilities that dropped out of the bundle from roles and users.
+		if ( is_array( $previous_set ) ) {
+			$this->revoke( array_diff( array_values( $previous_set ), $current ) );
+		}
+
+		$role_map = (array) get_option( $this->role_map_option, [] );
+
+		// One-time migration: seed the role map from the legacy single-list
+		// roles option so existing sites keep identical effective grants.
+		if ( $version_migration && [] === $role_map && '' !== $this->legacy_roles_option ) {
+			$legacy_roles = (array) get_option( $this->legacy_roles_option, [] );
+			if ( [] !== $legacy_roles ) {
+				foreach ( $current as $capability ) {
+					$role_map[ $capability ] = array_values( $legacy_roles );
+				}
+				update_option( $this->role_map_option, $role_map );
+			}
+		}
+
+		$this->sync_matrix( $role_map );
+		$this->sync_user_grants( (array) get_option( $this->user_grants_option, [] ) );
+
+		if ( $set_changed ) {
+			update_option( $this->synced_set_option_name(), $current );
+		}
+		if ( $version_migration ) {
+			update_option( $migration_option, $this->migration_version );
+		}
 	}
 }

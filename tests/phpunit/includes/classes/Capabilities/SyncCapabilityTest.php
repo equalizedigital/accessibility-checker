@@ -8,131 +8,140 @@
 use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
 
 /**
- * Covers the reusable sync/bypass/migration/REST-callback behavior in
- * isolation, using a capability string not used by any real feature so
- * these tests can't collide with edac_ignore_issues's own test coverage
- * (IgnoreCapabilityTest) or leftover role state from it.
+ * Covers the reusable sync/bypass/reconcile/REST-callback behavior in
+ * isolation, using capability strings not used by any real feature so these
+ * tests can't collide with edac_ignore_issues's own coverage or leftover role
+ * state from it.
  */
 class SyncCapabilityTest extends WP_UnitTestCase {
 
-	/**
-	 * Capability string used only by this test class.
-	 *
-	 * @var string
-	 */
-	private const TEST_CAP = 'edac_test_synced_capability';
+	private const TEST_CAP           = 'edac_test_synced_capability';
+	private const TEST_CAP_2         = 'edac_test_synced_capability_two';
+	private const ROLE_MAP_OPTION    = 'edac_test_capability_role_map';
+	private const USER_GRANTS_OPTION = 'edac_test_capability_user_grants';
+	private const LEGACY_OPTION      = 'edac_test_legacy_roles';
 
 	/**
-	 * A second capability string, used only by the multi-capability bundle
-	 * tests in this class.
-	 *
-	 * @var string
-	 */
-	private const TEST_CAP_2 = 'edac_test_synced_capability_two';
-
-	/**
-	 * Option name used only by this test class.
-	 *
-	 * @var string
-	 */
-	private const TEST_OPTION = 'edac_test_synced_capability_roles';
-
-	/**
-	 * Remove the capabilities from every role and the option/migration
-	 * markers after each test so they don't leak into each other.
+	 * Remove the capabilities from every role and clear all option markers so
+	 * tests don't leak into each other.
 	 *
 	 * @return void
 	 */
 	public function tearDown(): void {
-		global $wpdb;
-
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::TEST_CAP );
 			$role->remove_cap( self::TEST_CAP_2 );
 		}
-		delete_option( self::TEST_OPTION );
-		// Version markers are keyed by option name + a hash of the capability
-		// set, so different tests in this file produce different keys -
-		// delete anything matching the option prefix rather than one exact key.
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
-		$wpdb->query(
-			$wpdb->prepare(
-				"DELETE FROM {$wpdb->options} WHERE option_name LIKE %s",
-				$wpdb->esc_like( 'edac_capability_version_' . self::TEST_OPTION ) . '%'
-			)
-		);
+		foreach (
+			[
+				self::ROLE_MAP_OPTION,
+				self::USER_GRANTS_OPTION,
+				self::LEGACY_OPTION,
+				'edac_synced_capabilities_' . self::ROLE_MAP_OPTION,
+				'edac_capability_migration_version_' . self::ROLE_MAP_OPTION,
+				'edac_synced_user_grants_' . self::ROLE_MAP_OPTION,
+			] as $option
+		) {
+			delete_option( $option );
+		}
 		wp_set_current_user( 0 );
 		parent::tearDown();
 	}
 
 	/**
-	 * Sync() should add the capability only to the roles passed in, and
-	 * remove it from roles not included.
+	 * Convenience constructor for the common single-bundle instance.
+	 *
+	 * @param string|string[] $caps              Capability or bundle.
+	 * @param string          $migration_version Migration version.
+	 * @return SyncCapability
+	 */
+	private function make( $caps = self::TEST_CAP, string $migration_version = '0' ): SyncCapability {
+		return new SyncCapability( $caps, self::ROLE_MAP_OPTION, self::USER_GRANTS_OPTION, $migration_version, self::LEGACY_OPTION );
+	}
+
+	/**
+	 * The sync_matrix() call should add a capability only to its mapped roles and
+	 * remove it from roles not listed for it.
 	 *
 	 * @return void
 	 */
-	public function test_sync_adds_and_removes_capability_by_role() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+	public function test_sync_matrix_grants_and_revokes_by_role() {
+		$capability = $this->make();
 
 		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
 
-		$capability->sync( [ 'author' ] );
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'author' ] ] );
 
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 	}
 
 	/**
-	 * Register() should wire live sync to the option's add/update hooks.
+	 * A multi-capability bundle should grant each capability only to the roles
+	 * mapped for that specific capability.
 	 *
 	 * @return void
 	 */
-	public function test_register_syncs_on_option_save() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+	public function test_sync_matrix_is_granular_per_capability() {
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
+
+		$capability->sync_matrix(
+			[
+				self::TEST_CAP   => [ 'editor' ],
+				self::TEST_CAP_2 => [ 'author' ],
+			]
+		);
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP_2 ) );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+	}
+
+	/**
+	 * The register() call should wire live sync to the role-map option's hooks.
+	 *
+	 * @return void
+	 */
+	public function test_register_syncs_on_role_map_save() {
+		$capability = $this->make();
 		$capability->register();
 
-		add_option( self::TEST_OPTION, [ 'author' ] );
+		add_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'author' ] ] );
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 
-		update_option( self::TEST_OPTION, [ 'editor' ] );
+		update_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'editor' ] ] );
 		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 	}
 
 	/**
-	 * Deleting the option (e.g. an uninstall routine's opt-in data cleanup)
-	 * should revoke the capability from every role it was synced onto - the
-	 * option's own removal is the strongest possible signal that a stale
-	 * grant shouldn't be left behind, and there is no other hook left that
-	 * would ever catch this since add_option/update_option only fire again
-	 * on a future save.
+	 * Deleting the role-map option should revoke the capability from every role.
 	 *
 	 * @return void
 	 */
-	public function test_deleting_option_revokes_capability_from_all_roles() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+	public function test_deleting_role_map_revokes_from_all_roles() {
+		$capability = $this->make();
 		$capability->register();
 
-		add_option( self::TEST_OPTION, [ 'editor', 'author' ] );
+		add_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'editor', 'author' ] ] );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
-		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 
-		delete_option( self::TEST_OPTION );
+		delete_option( self::ROLE_MAP_OPTION );
 
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 	}
 
 	/**
-	 * Manage_options users must always pass user_can(), regardless of
-	 * whether their role was synced.
+	 * Manage_options users always pass user_can(), regardless of assignment.
 	 *
 	 * @return void
 	 */
-	public function test_manage_options_bypasses_sync() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+	public function test_manage_options_bypasses_matrix() {
+		$capability = $this->make();
 		$capability->register();
-		$capability->sync( [ 'author' ] );
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'author' ] ] );
 
 		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_id );
@@ -142,16 +151,15 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Permission_callback() should return a callable proxying user_can(),
-	 * suitable for a REST route's permission_callback directly.
+	 * The permission_callback() call should proxy user_can() for the capability.
 	 *
 	 * @return void
 	 */
 	public function test_permission_callback_proxies_user_can() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
-		$capability->sync( [ 'author' ] );
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
+		$capability->sync_matrix( [ self::TEST_CAP_2 => [ 'author' ] ] );
 
-		$callback = $capability->permission_callback();
+		$callback = $capability->permission_callback( self::TEST_CAP_2 );
 		$this->assertIsCallable( $callback );
 
 		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
@@ -164,68 +172,144 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Maybe_migrate() should run the initial sync from default_roles when
-	 * the option was never set and no migration has run yet.
+	 * The reconcile() version-gated migration seeds the role map from the legacy
+	 * single-list roles option, granting every bundle capability to those roles.
 	 *
 	 * @return void
 	 */
-	public function test_migration_runs_once_for_unset_option() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
+	public function test_reconcile_migration_seeds_map_from_legacy_option() {
+		update_option( self::LEGACY_OPTION, [ 'editor' ] );
 
-		$capability->maybe_migrate();
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ], '1.0.0' );
+		$capability->reconcile();
 
+		$map = get_option( self::ROLE_MAP_OPTION );
+		$this->assertSame( [ 'editor' ], $map[ self::TEST_CAP ] );
+		$this->assertSame( [ 'editor' ], $map[ self::TEST_CAP_2 ] );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 	}
 
 	/**
-	 * Maybe_migrate() should not re-run (and shouldn't clobber roles synced
-	 * some other way since) once it has already run for the current version.
+	 * A second reconcile at the same version must not re-seed the map or clobber
+	 * assignments changed since the migration ran.
 	 *
 	 * @return void
 	 */
-	public function test_migration_does_not_rerun_for_same_version() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ] );
-		$capability->maybe_migrate();
+	public function test_reconcile_does_not_rerun_for_same_version() {
+		update_option( self::LEGACY_OPTION, [ 'editor' ] );
 
-		// Simulate the site's config changing after the one-time migration ran.
-		$capability->sync( [ 'author' ] );
+		$capability = $this->make( self::TEST_CAP, '1.0.0' );
+		$capability->reconcile();
 
-		$capability->maybe_migrate();
+		// Config changes after the one-time migration.
+		update_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'author' ] ] );
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'author' ] ] );
 
-		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'Migration should not have re-applied default_roles.' );
+		$capability->reconcile();
+
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'Migration should not have re-seeded from the legacy option.' );
 	}
 
 	/**
-	 * Bumping the version should force maybe_migrate() to re-sync even
-	 * though an earlier version's migration already ran once.
+	 * Crossing a higher migration version forces a re-sync of the current map,
+	 * healing any drift even though the set is unchanged.
 	 *
 	 * @return void
 	 */
-	public function test_version_bump_forces_remigration() {
-		$v1 = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'editor' ], 1 );
-		$v1->maybe_migrate();
-
-		// Site never saved the option, so it's still on default_roles from v1.
+	public function test_reconcile_version_bump_reheals_drift() {
+		$v1 = $this->make( self::TEST_CAP, '1.0.0' );
+		update_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'editor' ] ] );
+		$v1->reconcile();
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 
-		$v2 = new SyncCapability( self::TEST_CAP, self::TEST_OPTION, [ 'author' ], 2 );
-		$v2->maybe_migrate();
+		// Drift: capability stripped from the role by something else.
+		wp_roles()->get_role( 'editor' )->remove_cap( self::TEST_CAP );
 
-		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ), 'v2 default_roles should have been applied.' );
-		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'v1 default_roles should no longer apply after the v2 re-sync.' );
+		$v2 = $this->make( self::TEST_CAP, '2.0.0' );
+		$v2->reconcile();
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'A version bump should re-apply the map and heal drift.' );
 	}
 
 	/**
-	 * A single string capability (the pre-bundle constructor signature)
-	 * must still work unchanged, since existing single-capability callers
-	 * pass a string, not an array.
+	 * The reconcile() call revokes capabilities that have left the bundle (e.g. an
+	 * add-on that contributed one was deactivated) from roles.
+	 *
+	 * @return void
+	 */
+	public function test_reconcile_revokes_capabilities_that_left_the_bundle() {
+		update_option(
+			self::ROLE_MAP_OPTION,
+			[
+				self::TEST_CAP   => [ 'editor' ],
+				self::TEST_CAP_2 => [ 'editor' ],
+			]
+		);
+
+		$two = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ], '1.0.0' );
+		$two->reconcile();
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
+
+		// The bundle shrinks - TEST_CAP_2's contributing plugin was deactivated.
+		$one = $this->make( self::TEST_CAP, '1.0.0' );
+		$one->reconcile();
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ), 'A capability that left the bundle should be revoked.' );
+	}
+
+	/**
+	 * The sync_user_grants() call grants a capability directly to a user and
+	 * revokes it when the user is dropped from the grants (via the snapshot diff).
+	 *
+	 * @return void
+	 */
+	public function test_sync_user_grants_grants_and_revokes_per_user() {
+		$capability = $this->make();
+		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		$other_id   = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+
+		$capability->sync_user_grants( [ self::TEST_CAP => [ $user_id ] ] );
+
+		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
+		$this->assertFalse( user_can( $other_id, self::TEST_CAP ) );
+		$this->assertSame( [ $user_id ], get_option( 'edac_synced_user_grants_' . self::ROLE_MAP_OPTION )[ self::TEST_CAP ] );
+
+		$capability->sync_user_grants( [ self::TEST_CAP => [] ] );
+		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
+	}
+
+	/**
+	 * The revoke() call removes a capability from roles and from granted users.
+	 *
+	 * @return void
+	 */
+	public function test_revoke_removes_from_roles_and_granted_users() {
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
+		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'editor' ] ] );
+		$capability->sync_user_grants( [ self::TEST_CAP => [ $user_id ] ] );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
+
+		$capability->revoke( [ self::TEST_CAP ] );
+
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
+	}
+
+	/**
+	 * A single string capability (not an array) must still work.
 	 *
 	 * @return void
 	 */
 	public function test_single_string_capability_still_works() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
-		$capability->sync( [ 'author' ] );
+		$capability = $this->make( self::TEST_CAP );
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'author' ] ] );
 
 		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
 
@@ -235,54 +319,13 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Passing an array of capabilities should sync all of them together onto
-	 * the same roles - the "bundle" case, e.g. ignore/global-ignore/explorer.
-	 *
-	 * @return void
-	 */
-	public function test_bundle_syncs_multiple_capabilities_together() {
-		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
-		$capability->sync( [ 'author' ] );
-
-		$author = wp_roles()->get_role( 'author' );
-		$this->assertTrue( $author->has_cap( self::TEST_CAP ) );
-		$this->assertTrue( $author->has_cap( self::TEST_CAP_2 ) );
-
-		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
-		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
-	}
-
-	/**
-	 * User_can()/permission_callback() must accept an explicit capability
-	 * argument so bundle consumers can check one specific capability instead
-	 * of only ever getting the first one in the bundle.
-	 *
-	 * @return void
-	 */
-	public function test_bundle_user_can_checks_the_capability_passed_in() {
-		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
-		$capability->sync( [ 'author' ] );
-
-		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
-		wp_set_current_user( $author_id );
-
-		$this->assertTrue( $capability->user_can( self::TEST_CAP ) );
-		$this->assertTrue( $capability->user_can( self::TEST_CAP_2 ) );
-
-		$callback = $capability->permission_callback( self::TEST_CAP_2 );
-		$this->assertTrue( $callback() );
-	}
-
-	/**
-	 * Manage_options bypass must apply to every capability in the bundle,
-	 * not just the first one.
+	 * Manage_options bypass applies to every capability in the bundle.
 	 *
 	 * @return void
 	 */
 	public function test_manage_options_bypasses_every_capability_in_bundle() {
-		$capability = new SyncCapability( [ self::TEST_CAP, self::TEST_CAP_2 ], self::TEST_OPTION );
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
 		$capability->register();
-		$capability->sync( [ 'author' ] );
 
 		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_id );
@@ -292,52 +335,43 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The constructor should reject an empty capabilities array rather than
-	 * silently falling through to user_can()'s no-argument default checking
-	 * an undefined (null) capability.
+	 * The constructor rejects an empty capabilities array.
 	 *
 	 * @return void
 	 */
 	public function test_constructor_throws_on_empty_capabilities_array() {
 		$this->expectException( \InvalidArgumentException::class );
 
-		new SyncCapability( [], self::TEST_OPTION );
+		new SyncCapability( [], self::ROLE_MAP_OPTION );
 	}
 
 	/**
-	 * Register() must hook maybe_migrate() to init, not admin_init - admin_menu
-	 * and rest_api_init both fire before admin_init on their respective request
-	 * types, so a migration gated on admin_init would miss the first request
-	 * after a version bump for menu builds and REST-only requests entirely.
+	 * The register() call must hook reconcile() to init, not admin_init.
 	 *
 	 * @return void
 	 */
-	public function test_register_hooks_migration_to_init_not_admin_init() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+	public function test_register_hooks_reconcile_to_init_not_admin_init() {
+		$capability = $this->make();
 		$capability->register();
 
 		$this->assertNotFalse(
-			has_action( 'init', [ $capability, 'maybe_migrate' ] ),
-			'maybe_migrate() should be hooked to init.'
+			has_action( 'init', [ $capability, 'reconcile' ] ),
+			'reconcile() should be hooked to init.'
 		);
 		$this->assertFalse(
-			has_action( 'admin_init', [ $capability, 'maybe_migrate' ] ),
-			'maybe_migrate() should not be hooked to admin_init.'
+			has_action( 'admin_init', [ $capability, 'reconcile' ] ),
+			'reconcile() should not be hooked to admin_init.'
 		);
 	}
 
 	/**
-	 * Sync_role_capability() is the generic (role, capability) primitive
-	 * sync() is built on. It's private (calling it directly for one
-	 * capability out of a bundle would desync the rest of the bundle for
-	 * that role), so this test reaches it via reflection rather than a
-	 * public call - it's still worth covering in isolation from sync()'s
-	 * roles-loop.
+	 * The sync_role_capability() method is the generic (role, capability) primitive
+	 * the matrix is built on. Private, so reached via reflection.
 	 *
 	 * @return void
 	 */
 	public function test_sync_role_capability_generic_primitive() {
-		$capability = new SyncCapability( self::TEST_CAP, self::TEST_OPTION );
+		$capability = $this->make();
 
 		$method = new ReflectionMethod( SyncCapability::class, 'sync_role_capability' );
 		$method->setAccessible( true );
