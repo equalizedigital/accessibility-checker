@@ -40,13 +40,18 @@ defined( 'EDAC_CAPABILITY_EXPORT_DATA' ) || define( 'EDAC_CAPABILITY_EXPORT_DATA
 // site scan is inherently site-wide, so this grant lets a non-editor role
 // scan and store results for content it does not own.
 defined( 'EDAC_CAPABILITY_FULL_SITE_SCAN' ) || define( 'EDAC_CAPABILITY_FULL_SITE_SCAN', 'edac_full_site_scan' );
+// Gates loading the front-end accessibility highlighter for a user who cannot
+// otherwise edit the post being viewed. The highlighter overlays this post's
+// issues on the live page; this grant lets a non-editor reviewer role see it
+// on any scannable, readable content.
+defined( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER' ) || define( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER', 'edac_view_frontend_highlighter' );
 
 /**
  * The ignore-permissions capability bundle (edac_ignore_issues,
  * edac_ignore_issues_globally, edac_issues_explorer_access,
- * edac_view_audit_history, edac_export_data, edac_full_site_scan), synced onto
- * the roles listed in the edacp_ignore_user_roles option, with a manage_options
- * bypass.
+ * edac_view_audit_history, edac_export_data, edac_full_site_scan,
+ * edac_view_frontend_highlighter), synced onto the roles listed in the
+ * edacp_ignore_user_roles option, with a manage_options bypass.
  * Consumers should check individual capabilities via CapabilityChecker (or
  * the edac_user_can_*() helpers below) rather than calling into this
  * instance directly.
@@ -65,10 +70,11 @@ function edac_ignore_capability(): SyncCapability {
 				EDAC_CAPABILITY_VIEW_AUDIT_HISTORY,
 				EDAC_CAPABILITY_EXPORT_DATA,
 				EDAC_CAPABILITY_FULL_SITE_SCAN,
+				EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER,
 			],
 			'edacp_ignore_user_roles',
 			[ 'administrator' ],
-			4 // Bumped from 3: adds edac_full_site_scan for roles already granted ignore access.
+			5 // Bumped from 4: adds edac_view_frontend_highlighter for roles already granted ignore access.
 		);
 		$capability->register();
 	}
@@ -135,6 +141,21 @@ function edac_user_can_export_data() {
  */
 function edac_user_can_run_full_site_scan() {
 	return CapabilityChecker::user_can( EDAC_CAPABILITY_FULL_SITE_SCAN );
+}
+
+/**
+ * Check if user can load the front-end accessibility highlighter, or can
+ * manage options.
+ *
+ * Consumers that need to preserve the historical editor-level access should OR
+ * this with current_user_can( 'edit_post', $post_id ) at the call site; this
+ * helper reports only the dedicated capability (plus the manage_options
+ * bypass), matching the other edac_user_can_*() helpers.
+ *
+ * @return bool
+ */
+function edac_user_can_use_frontend_highlighter() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER );
 }
 
 /**
