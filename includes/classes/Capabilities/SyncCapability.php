@@ -374,10 +374,12 @@ class SyncCapability {
 			return;
 		}
 
-		// Revoke capabilities that dropped out of the bundle from roles and users.
-		if ( is_array( $previous_set ) ) {
-			$this->revoke( array_diff( array_values( $previous_set ), $current ) );
-		}
+		// Capabilities that leave the bundle (an add-on was deactivated) are
+		// intentionally NOT revoked: deactivating an add-on should not strip its
+		// capability off roles, so re-activating restores the prior state without
+		// churn. The inert capability is only ever cleaned up when the free plugin
+		// itself is uninstalled (see uninstall.php). revoke() remains available
+		// for that and other callers.
 
 		$role_map = (array) get_option( $this->role_map_option, [] );
 

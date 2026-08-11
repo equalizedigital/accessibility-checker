@@ -235,12 +235,13 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The reconcile() call revokes capabilities that have left the bundle (e.g. an
-	 * add-on that contributed one was deactivated) from roles.
+	 * The reconcile() call retains capabilities that have left the bundle (e.g. an
+	 * add-on that contributed one was deactivated): deactivating an add-on must
+	 * not strip its capability off roles, so re-activating restores prior state.
 	 *
 	 * @return void
 	 */
-	public function test_reconcile_revokes_capabilities_that_left_the_bundle() {
+	public function test_reconcile_keeps_capabilities_that_left_the_bundle() {
 		update_option(
 			self::ROLE_MAP_OPTION,
 			[
@@ -258,7 +259,7 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$one->reconcile();
 
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
-		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ), 'A capability that left the bundle should be revoked.' );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ), 'A capability that left the bundle should be retained, not revoked.' );
 	}
 
 	/**
