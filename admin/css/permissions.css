@@ -1,0 +1,113 @@
+/**
+ * Permissions tab styling.
+ *
+ * Scoped to .edac-settings-permissions so it never leaks into other settings
+ * tabs. Loaded as a static stylesheet (no build step) on the Permissions tab.
+ *
+ * @package Accessibility_Checker
+ */
+
+.edac-settings-permissions {
+	max-width: 760px;
+}
+
+.edac-settings-permissions > .edac-description {
+	font-size: 14px;
+	line-height: 1.6;
+	margin-bottom: 20px;
+}
+
+/* Role picker toolbar. */
+.edac-settings-permissions .edac-perm-role-field {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 16px;
+	margin: 0 0 8px;
+	background: #f6f7f7;
+	border: 1px solid #dcdcde;
+	border-radius: 6px;
+}
+
+.edac-settings-permissions .edac-perm-role-field label {
+	font-size: 13px;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	color: #50575e;
+}
+
+.edac-settings-permissions #edac-perm-role {
+	min-width: 240px;
+	max-width: 320px;
+	padding: 4px 8px;
+	font-size: 14px;
+}
+
+/* One wrapper per owning plugin, holding all of its capabilities. */
+.edac-perm-group {
+	margin: 0 0 16px;
+	background: #fff;
+	border: 1px solid #dcdcde;
+	border-radius: 4px;
+}
+
+.edac-perm-group__title {
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #50575e;
+	margin: 0;
+	padding: 12px 16px;
+	background: #f6f7f7;
+	border-bottom: 1px solid #dcdcde;
+	border-radius: 4px 4px 0 0;
+}
+
+/* Capability rows within a group. */
+.edac-perm-cap {
+	padding: 12px 16px;
+}
+
+.edac-perm-cap + .edac-perm-cap {
+	border-top: 1px solid #f0f0f1;
+}
+
+.edac-perm-cap__control {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	cursor: pointer;
+	margin: 0;
+}
+
+.edac-perm-cap--disabled .edac-perm-cap__control {
+	cursor: not-allowed;
+	color: #646970;
+}
+
+.edac-perm-cap__control input[type="checkbox"] {
+	margin: 0;
+}
+
+.edac-perm-cap__label {
+	font-size: 14px;
+	font-weight: 600;
+}
+
+.edac-perm-cap__desc,
+.edac-perm-cap__reason {
+	display: block;
+	margin: 6px 0 0 26px;
+	font-size: 13px;
+	line-height: 1.5;
+}
+
+.edac-perm-cap__desc {
+	color: #646970;
+}
+
+.edac-perm-cap__reason {
+	color: #646970;
+	font-style: italic;
+}
