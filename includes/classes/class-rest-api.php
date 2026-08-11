@@ -91,11 +91,13 @@ class REST_Api {
 							],
 						],
 						'permission_callback' => function ( $request ) {
+							// Saving a scan result for a post requires being able to edit
+							// that specific post. A single-post scan uses the author's own
+							// edit_post; a full site scan is run by a user with
+							// edit_others_posts, which grants edit_post over the content it
+							// crawls. This keeps result storage scoped to editable content.
 							$post_id = (int) $request['id'];
-							// Able to edit the post, or trusted to run a site-wide scan
-							// (which stores results for content the user does not own).
-							return current_user_can( 'edit_post', $post_id )
-								|| ( function_exists( 'edac_user_can_run_full_site_scan' ) && edac_user_can_run_full_site_scan() );
+							return current_user_can( 'edit_post', $post_id );
 						},
 					]
 				);
