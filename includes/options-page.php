@@ -18,14 +18,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-// The ignore-permissions capability bundle - all of these are synced together
-// onto whichever roles are configured in edacp_ignore_user_roles (set on the
-// pro plugin's settings page). There is deliberately no separate settings
-// control for the newer capabilities; granting a role "can ignore issues"
-// grants all of them at once.
-defined( 'EDAC_CAPABILITY_IGNORE_ISSUES' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES', 'edac_ignore_issues' );
-// Larger blast radius than a per-post ignore: suppresses an issue across
+// Per-post dismiss capabilities. "own" is scoped by edit_post (authors dismiss
+// their own posts, editors any post); the less-specific "dismiss issues" grants
+// dismissing on ANY post regardless of ownership (a superset of own, and a
+// deliberate opt-in overstep of core edit_post).
+defined( 'EDAC_CAPABILITY_DISMISS_OWN_ISSUES' ) || define( 'EDAC_CAPABILITY_DISMISS_OWN_ISSUES', 'edac_dismiss_own_issues' );
+defined( 'EDAC_CAPABILITY_DISMISS_ISSUES' ) || define( 'EDAC_CAPABILITY_DISMISS_ISSUES', 'edac_dismiss_issues' );
+// Larger blast radius than a per-post dismiss: suppresses an issue across
 // every post sharing a rule+object, not just the one being viewed.
+defined( 'EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY', 'edac_dismiss_issues_globally' );
+
+// Deprecated legacy slugs (renamed ignore -> dismiss). Retained so the rename
+// migration can find old grants and any external code referencing the constants
+// does not fatal. edac_ignore_issues migrates to edac_dismiss_own_issues.
+defined( 'EDAC_CAPABILITY_IGNORE_ISSUES' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES', 'edac_ignore_issues' );
 defined( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY', 'edac_ignore_issues_globally' );
 // Gates getting into pro's Issues Explorer app at all, independent of
 // whether the user can also ignore issues once inside it.
@@ -49,9 +55,11 @@ defined( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER' ) || define( 'EDAC_CAPABILI
 
 // Plugin version at which the capability bundle migration runs. Sites upgrading
 // the free plugin from below this version get a one-time forced re-sync of the
-// bundle onto their configured roles (see SyncCapability::reconcile()). Set to
-// the release the capability system ships in.
-defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.48.0' );
+// bundle onto their configured roles, plus any pending capability slug renames
+// (see SyncCapability::reconcile()). Bump this whenever a migration must re-run
+// (the 1.49.0 bump carries the ignore -> dismiss rename). The shipping plugin
+// version must be >= this value.
+defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.49.0' );
 
 /**
  * Metadata for every Accessibility Checker capability, keyed by slug.
@@ -83,14 +91,23 @@ function edac_capability_metadata(): array {
 	$capabilities = apply_filters(
 		'edac_capabilities',
 		[
-			EDAC_CAPABILITY_IGNORE_ISSUES             => [
-				'label'         => __( 'Dismiss issues', 'accessibility-checker' ),
-				'description'   => __( 'Dismiss and reopen accessibility issues. Scope follows the role\'s editing rights: authors can dismiss on their own posts, editors on any post.', 'accessibility-checker' ),
+			EDAC_CAPABILITY_DISMISS_OWN_ISSUES        => [
+				'label'         => __( 'Dismiss own issues', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any).', 'accessibility-checker' ),
 				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
 				'owner'         => 'accessibility-checker',
 				'pro'           => false,
 				'floor'         => 'edit_posts',
-				'default_roles' => [ 'editor', 'author' ],
+				'default_roles' => [ 'editor', 'author', 'contributor' ],
+			],
+			EDAC_CAPABILITY_DISMISS_ISSUES            => [
+				'label'         => __( 'Dismiss issues (any post)', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues on any post, including posts the user cannot otherwise edit. A superset of "Dismiss own issues".', 'accessibility-checker' ),
+				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'         => 'accessibility-checker',
+				'pro'           => false,
+				'floor'         => 'edit_posts',
+				'default_roles' => [],
 			],
 			EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER => [
 				'label'         => __( 'Front-end highlighter', 'accessibility-checker' ),
@@ -367,7 +384,14 @@ function edac_ignore_capability(): SyncCapability {
 			// capabilities do not meet that capability's floor.
 			function ( $role_slug, $cap ) use ( $floors ) {
 				return edac_role_meets_floor( (string) $role_slug, $floors[ $cap ] ?? '' );
-			}
+			},
+			// One-time slug renames applied on the migration boundary. The old
+			// edit_post-gated "ignore" grants were own-scoped, so they migrate to
+			// the new own-dismiss capability (never the site-wide one).
+			[
+				EDAC_CAPABILITY_IGNORE_ISSUES          => EDAC_CAPABILITY_DISMISS_OWN_ISSUES,
+				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY => EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY,
+			]
 		);
 		$capability->register();
 	}
@@ -401,22 +425,55 @@ add_action(
  */
 
 /**
- * Check if user can ignore issues (per-post) or can manage options.
+ * Check if user can dismiss issues on posts they can edit (their own), or can
+ * manage options.
  *
  * @return bool
  */
-function edac_user_can_ignore() {
-	return CapabilityChecker::user_can( EDAC_CAPABILITY_IGNORE_ISSUES );
+function edac_user_can_dismiss_own_issues() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_OWN_ISSUES );
 }
 
 /**
- * Check if user can globally ignore an issue (suppress it across every post
+ * Check if user can dismiss issues on ANY post (regardless of ownership), or can
+ * manage options. A superset of edac_user_can_dismiss_own_issues().
+ *
+ * @return bool
+ */
+function edac_user_can_dismiss_issues() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_ISSUES );
+}
+
+/**
+ * Check if user can globally dismiss an issue (suppress it across every post
  * sharing a rule+object) or can manage options.
  *
  * @return bool
  */
+function edac_user_can_dismiss_issues_globally() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY );
+}
+
+/**
+ * Deprecated: use edac_user_can_dismiss_issues()/edac_user_can_dismiss_own_issues().
+ *
+ * Retained as a cross-plugin shim: add-ons feature-detect this name. "Can the
+ * user dismiss at all" = holds either per-post dismiss capability.
+ *
+ * @return bool
+ */
+function edac_user_can_ignore() {
+	return edac_user_can_dismiss_issues() || edac_user_can_dismiss_own_issues();
+}
+
+/**
+ * Deprecated: use edac_user_can_dismiss_issues_globally(). Retained as a
+ * cross-plugin shim for add-ons that feature-detect this name.
+ *
+ * @return bool
+ */
 function edac_user_can_ignore_globally() {
-	return CapabilityChecker::user_can( EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY );
+	return edac_user_can_dismiss_issues_globally();
 }
 
 /**
@@ -494,7 +551,7 @@ function edac_add_options_page() {
 		'dashicons-universal-access-alt'
 	);
 
-	if ( ! edac_user_can_ignore() ) {
+	if ( ! edac_user_can_dismiss_issues() && ! edac_user_can_dismiss_own_issues() ) {
 		return;
 	}
 

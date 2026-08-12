@@ -439,4 +439,38 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$method->invoke( $capability, 'editor', self::TEST_CAP, false );
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
 	}
+
+	/**
+	 * The version migration moves a renamed capability's grants from the old
+	 * slug to the new one and strips the old capability off the role.
+	 *
+	 * @return void
+	 */
+	public function test_migration_renames_capability_grants() {
+		// Pre-state: a site already granting the OLD capability to editor.
+		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
+		update_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'editor' ] ] );
+		// Mark a prior migration so the version boundary is crossed on reconcile.
+		update_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION, '1.0.0' );
+
+		// New bundle knows only the NEW slug, with a rename map old -> new.
+		$capability = new SyncCapability(
+			self::TEST_CAP_2,
+			self::ROLE_MAP_OPTION,
+			self::USER_GRANTS_OPTION,
+			'2.0.0',
+			self::LEGACY_OPTION,
+			null,
+			[ self::TEST_CAP => self::TEST_CAP_2 ]
+		);
+
+		$capability->reconcile();
+
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'The retired slug should be stripped from the role.' );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ), 'The role should now hold the renamed capability.' );
+
+		$role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
+		$this->assertArrayNotHasKey( self::TEST_CAP, $role_map, 'The old slug should be gone from the role map.' );
+		$this->assertSame( [ 'editor' ], $role_map[ self::TEST_CAP_2 ], 'The role map should carry the grant under the new slug.' );
+	}
 }

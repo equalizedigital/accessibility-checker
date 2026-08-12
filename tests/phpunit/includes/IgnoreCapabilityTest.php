@@ -1,19 +1,19 @@
 <?php
 /**
- * Tests for the edac_ignore_issues capability sync and helper functions.
+ * Tests for the edac_dismiss_own_issues capability sync and helper functions.
  *
  * @package accessibility-checker
  */
 
 /**
  * Integration coverage for the real edac_ignore_capability() instance and the
- * edac_user_can_ignore() helper against the capability-role matrix. Uses
- * edac_ignore_issues (a capability the free plugin owns, so it is always in the
+ * edac_user_can_dismiss_own_issues() helper against the capability-role matrix. Uses
+ * edac_dismiss_own_issues (a capability the free plugin owns, so it is always in the
  * bundle in this free-only test environment).
  */
 class IgnoreCapabilityTest extends WP_UnitTestCase {
 
-	private const CAP             = 'edac_ignore_issues';
+	private const CAP             = 'edac_dismiss_own_issues';
 	private const ROLE_MAP_OPTION = 'edac_capability_role_map';
 	private const USER_GRANTS_OPT = 'edac_capability_user_grants';
 
@@ -42,7 +42,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The edac_ignore_issues capability is part of the free bundle.
+	 * The edac_dismiss_own_issues capability is part of the free bundle.
 	 *
 	 * @return void
 	 */
@@ -66,7 +66,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * A user in a granted role passes edac_user_can_ignore().
+	 * A user in a granted role passes edac_user_can_dismiss_own_issues().
 	 *
 	 * @return void
 	 */
@@ -75,11 +75,11 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		wp_set_current_user( self::factory()->user->create( [ 'role' => 'author' ] ) );
 
-		$this->assertTrue( edac_user_can_ignore() );
+		$this->assertTrue( edac_user_can_dismiss_own_issues() );
 	}
 
 	/**
-	 * A user in an ungranted role fails edac_user_can_ignore().
+	 * A user in an ungranted role fails edac_user_can_dismiss_own_issues().
 	 *
 	 * @return void
 	 */
@@ -88,7 +88,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		wp_set_current_user( self::factory()->user->create( [ 'role' => 'editor' ] ) );
 
-		$this->assertFalse( edac_user_can_ignore() );
+		$this->assertFalse( edac_user_can_dismiss_own_issues() );
 	}
 
 	/**
@@ -102,7 +102,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
 
 		$this->assertFalse( wp_roles()->get_role( 'administrator' )->has_cap( self::CAP ), 'Precondition: administrator role itself was not granted.' );
-		$this->assertTrue( edac_user_can_ignore(), 'manage_options users must always be able to ignore/dismiss.' );
+		$this->assertTrue( edac_user_can_dismiss_own_issues(), 'manage_options users must always be able to ignore/dismiss.' );
 	}
 
 	/**
@@ -154,12 +154,12 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		edac_ignore_capability()->sync_user_grants( [ self::CAP => [ $user_id ] ] );
 
 		wp_set_current_user( $user_id );
-		$this->assertTrue( edac_user_can_ignore() );
+		$this->assertTrue( edac_user_can_dismiss_own_issues() );
 
 		edac_ignore_capability()->sync_user_grants( [ self::CAP => [] ] );
 		// Reload the current user so its cached capabilities reflect the revoke.
 		wp_set_current_user( 0 );
 		wp_set_current_user( $user_id );
-		$this->assertFalse( edac_user_can_ignore() );
+		$this->assertFalse( edac_user_can_dismiss_own_issues() );
 	}
 }

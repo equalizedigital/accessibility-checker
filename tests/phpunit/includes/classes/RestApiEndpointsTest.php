@@ -92,11 +92,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// author can only dismiss issues on their own posts.
 		$user = new WP_User( self::$limited_id );
 		$user->add_cap( 'edit_posts' );
-		// Grant edac_ignore_issues; the "no capability" negative case is covered
+		// Grant edac_dismiss_own_issues; the "no capability" negative case is covered
 		// separately in IgnoreCapabilityTest and
 		// test_single_issue_dismiss_forbidden_without_ignore_capability.
-		$user->add_cap( 'edac_ignore_issues' );
-		// Deliberately NOT edac_ignore_issues_globally here - it's granted
+		$user->add_cap( 'edac_dismiss_own_issues' );
+		// Deliberately NOT edac_dismiss_issues_globally here - it's granted
 		// per-test below where a largeBatch test specifically needs it, since
 		// holding it now bypasses the per-post edit_post loop entirely
 		// (see dismiss_issue()'s $can_ignore_globally short-circuit).
@@ -601,7 +601,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: A user who can edit_post but lacks the edac_ignore_issues
+	 * Test: A user who can edit_post but lacks the edac_dismiss_own_issues
 	 * capability is forbidden from dismissing, even though edit_post alone
 	 * used to be sufficient.
 	 *
@@ -612,7 +612,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		// User can edit their own post, but was never granted edac_ignore_issues.
+		// User can edit their own post, but was never granted edac_dismiss_own_issues.
 		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 		( new WP_User( $user_id ) )->add_cap( 'edit_posts' );
 		wp_set_current_user( $user_id );
@@ -655,14 +655,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$response = $this->server->dispatch( $request );
 
-		$this->assertSame( 403, $response->get_status(), 'A user without edac_ignore_issues should not be able to dismiss even their own editable post.' );
+		$this->assertSame( 403, $response->get_status(), 'A user without edac_dismiss_own_issues should not be able to dismiss even their own editable post.' );
 	}
 
 	/**
 	 * Test: Single issue dismiss on a post the user cannot edit fails with 403.
 	 *
 	 * The dismiss capability does NOT override core edit_post: a user holding
-	 * edac_ignore_issues but WITHOUT edit_post on the target post (here the
+	 * edac_dismiss_own_issues but WITHOUT edit_post on the target post (here the
 	 * limited user dismissing an issue on the admin's post) is refused. Authors
 	 * can therefore only dismiss issues on their own editable posts.
 	 *
@@ -708,7 +708,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$issue_id = $wpdb->insert_id;
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
-		// Set limited user (holds edac_ignore_issues but cannot edit admin's post).
+		// Set limited user (holds edac_dismiss_own_issues but cannot edit admin's post).
 		wp_set_current_user( self::$limited_id );
 
 		// Make the dismiss request.
@@ -722,10 +722,75 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: A single-post dismiss never stamps the ignre_global marker unless the
-	 * user holds edac_ignore_issues_globally.
+	 * Test: edac_dismiss_issues (any post) lets a holder dismiss on a post they
+	 * cannot edit.
 	 *
-	 * The limited user (edac_ignore_issues, no global capability) dismisses an
+	 * The limited user is granted the site-wide dismiss capability and dismisses
+	 * an issue on the admin's post (which they cannot edit_post). This is the
+	 * deliberate, opt-in superset of edac_dismiss_own_issues.
+	 *
+	 * @return void
+	 */
+	public function test_single_issue_dismiss_any_post_capability_allows_foreign_post() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		$admin_post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'publish',
+				'post_author'  => self::$admin_id,
+				'post_title'   => 'Test Admin Post Any-Dismiss',
+				'post_content' => 'Test content',
+			]
+		);
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $admin_post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'single-any-test',
+				'ruletype'     => 'error',
+				'object'       => 'single-any-test',
+				'recordcheck'  => 1,
+				'user'         => self::$admin_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+
+		$issue_id = $wpdb->insert_id;
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		// Grant the site-wide dismiss capability to the limited user for this test.
+		$any_user = new WP_User( self::$limited_id );
+		$any_user->add_cap( 'edac_dismiss_issues' );
+
+		wp_set_current_user( self::$limited_id );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+
+		$response = $this->server->dispatch( $request );
+
+		$any_user->remove_cap( 'edac_dismiss_issues' );
+
+		$this->assertSame( 200, $response->get_status(), 'A holder of edac_dismiss_issues may dismiss an issue on a post they cannot edit.' );
+	}
+
+	/**
+	 * Test: A single-post dismiss never stamps the ignre_global marker unless the
+	 * user holds edac_dismiss_issues_globally.
+	 *
+	 * The limited user (edac_dismiss_own_issues, no global capability) dismisses an
 	 * issue on their OWN editable post while requesting ignore_global=1; the row
 	 * is dismissed but the global marker stays 0.
 	 *
@@ -789,7 +854,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: Large batch dismissed by a user with edac_ignore_issues_globally
+	 * Test: Large batch dismissed by a user with edac_dismiss_issues_globally
 	 * succeeds.
 	 *
 	 * Verifies that a user holding the global-ignore capability can dismiss
@@ -802,7 +867,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		// Create posts for batch test (limited user owns all).
 		// Use 'draft' so the limited user (who only has edit_posts, not edit_published_posts)
@@ -890,7 +955,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 	/**
 	 * Test: A user who can edit_post on every affected post, and has
-	 * edac_ignore_issues, but was never granted edac_ignore_issues_globally,
+	 * edac_dismiss_own_issues, but was never granted edac_dismiss_issues_globally,
 	 * must still be forbidden from a largeBatch dismiss - per-post edit
 	 * permission is not a substitute for the global-ignore capability, since
 	 * largeBatch updates every row sharing the object regardless of which
@@ -903,12 +968,12 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		// User can edit their own post and has edac_ignore_issues, but was
-		// never granted edac_ignore_issues_globally.
+		// User can edit their own post and has edac_dismiss_own_issues, but was
+		// never granted edac_dismiss_issues_globally.
 		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 		$user    = new WP_User( $user_id );
 		$user->add_cap( 'edit_posts' );
-		$user->add_cap( 'edac_ignore_issues' );
+		$user->add_cap( 'edac_dismiss_own_issues' );
 
 		$post_id = self::factory()->post->create(
 			[
@@ -951,7 +1016,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$response = $this->server->dispatch( $request );
 
-		$this->assertSame( 403, $response->get_status(), 'largeBatch dismiss without edac_ignore_issues_globally should return 403 even when the user can edit every affected post.' );
+		$this->assertSame( 403, $response->get_status(), 'largeBatch dismiss without edac_dismiss_issues_globally should return 403 even when the user can edit every affected post.' );
 
 		$updated_issue = $wpdb->get_row(
 			$wpdb->prepare( 'SELECT ignre FROM %i WHERE id = %d', $table_name, $issue_id ),
@@ -976,10 +1041,10 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		// largeBatch itself requires edac_ignore_issues_globally now (PRO-1239) -
+		// largeBatch itself requires edac_dismiss_issues_globally now (PRO-1239) -
 		// unrelated to the rule+object scoping this test targets, but a
 		// prerequisite to reach the code path at all.
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		$post_1 = self::factory()->post->create(
 			[
@@ -1124,8 +1189,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		// largeBatch itself requires edac_ignore_issues_globally now (PRO-1239).
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		// largeBatch itself requires edac_dismiss_issues_globally now (PRO-1239).
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		$post_1 = self::factory()->post->create(
 			[
@@ -1254,13 +1319,13 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	/**
 	 * Test: Large batch dismiss does not touch a row that shares only the object
 	 * (different rule) on a post the actor can't individually edit, even though
-	 * PRO-1239 makes edac_ignore_issues_globally bypass the per-post edit_post
+	 * PRO-1239 makes edac_dismiss_issues_globally bypass the per-post edit_post
 	 * loop entirely once granted.
 	 *
 	 * Before the PRO-1264 fix, the batch query matched on object alone, so this
 	 * unrelated-rule row would have been silently touched too. After PRO-1239,
 	 * this test can no longer prove "succeeds despite lacking edit_post on that
-	 * post" (edac_ignore_issues_globally is required just to reach this code
+	 * post" (edac_dismiss_issues_globally is required just to reach this code
 	 * path, and once granted it bypasses per-post checks for every row in
 	 * scope regardless of rule) - but the rule filter excluding that row from
 	 * the batch in the first place remains independently meaningful and is
@@ -1273,7 +1338,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		$limited_post = self::factory()->post->create(
 			[
@@ -1360,14 +1425,14 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertSame(
 			'0',
 			$unrelated_ignre,
-			'A row sharing only the object (different rule) must NOT be dismissed, even though edac_ignore_issues_globally would otherwise bypass the per-post edit_post check for it.'
+			'A row sharing only the object (different rule) must NOT be dismissed, even though edac_dismiss_issues_globally would otherwise bypass the per-post edit_post check for it.'
 		);
 	}
 
 	/**
 	 * Test: Large batch dismissed by user with partial authorization fails before bulk query.
 	 *
-	 * Verifies that a user with edac_ignore_issues_globally can dismiss a
+	 * Verifies that a user with edac_dismiss_issues_globally can dismiss a
 	 * batch that includes a post they do NOT personally have edit_post on -
 	 * the whole point of the capability is to bypass that per-post
 	 * ownership check, not just to unlock largeBatch requests in general.
@@ -1379,13 +1444,13 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		// Create posts: one owned by limited_id, one by admin_id. limited_id
 		// only has edit_posts (not edit_others_posts), so without the
 		// global-ignore bypass they could edit_post on the first but not the
 		// second - that's exactly the distinction this test proves no longer
-		// matters once edac_ignore_issues_globally is granted.
+		// matters once edac_dismiss_issues_globally is granted.
 		$limited_post = self::factory()->post->create(
 			[
 				'post_type'    => 'post',
@@ -1463,7 +1528,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		// Verify response is successful despite limited_id lacking edit_post
 		// on the admin-owned post - the global capability is the gate now.
-		$this->assertSame( 200, $response->get_status(), 'Large batch dismiss with edac_ignore_issues_globally should succeed even across posts the user cannot individually edit.' );
+		$this->assertSame( 200, $response->get_status(), 'Large batch dismiss with edac_dismiss_issues_globally should succeed even across posts the user cannot individually edit.' );
 
 		// Verify BOTH issues were updated, including the one on the post
 		// limited_id doesn't own.
@@ -1492,7 +1557,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	 * edit_post on the URL's own representative post when the request is a
 	 * largeBatch global-ignore - that check runs before dismiss_issue() (and
 	 * its per-post bypass) is ever reached, so gating it on ownership of one
-	 * specific post would block exactly the requests edac_ignore_issues_globally
+	 * specific post would block exactly the requests edac_dismiss_issues_globally
 	 * exists to allow, any time that one post isn't personally owned by the
 	 * caller.
 	 *
@@ -1503,7 +1568,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertNotNull( $this->server );
 
-		( new WP_User( self::$limited_id ) )->add_cap( 'edac_ignore_issues_globally' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 
 		// Post owned by admin - limited_id has no edit_post on this one.
 		$admin_post = self::factory()->post->create(
@@ -1553,7 +1618,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$this->assertSame(
 			200,
 			$response->get_status(),
-			'largeBatch dismiss with edac_ignore_issues_globally should not be blocked by the permission_callback\'s edit_post check on the URL\'s own representative post.'
+			'largeBatch dismiss with edac_dismiss_issues_globally should not be blocked by the permission_callback\'s edit_post check on the URL\'s own representative post.'
 		);
 
 		$updated_issue = $wpdb->get_row(
@@ -1566,7 +1631,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: Large batch dismissed by a user without edac_ignore_issues_globally
+	 * Test: Large batch dismissed by a user without edac_dismiss_issues_globally
 	 * fails, even though every affected post happens to belong to someone
 	 * else (a scenario that would also fail the per-post edit_post loop, if
 	 * that loop were ever reached - it isn't here, since the capability gate

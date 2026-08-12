@@ -345,23 +345,26 @@ class REST_Api {
 								return false;
 							}
 
-							if ( ! edac_user_can_ignore() ) {
-								return false;
-							}
-
 							// largeBatch performs the global action - it updates every row
 							// sharing this issue's rule + object, not just $issue_id - so it
 							// requires the larger-blast-radius capability regardless of who
 							// owns the affected posts (dismiss_issue() re-checks this too).
 							if ( $request->get_param( 'largeBatch' ) ) {
-								return edac_user_can_ignore_globally();
+								return edac_user_can_dismiss_issues_globally();
 							}
 
-							// Single-issue dismiss additionally requires edit_post on the
-							// issue's post. The dedicated capability does NOT override core
-							// editing rights: an author may dismiss issues only on posts they
-							// can edit (their own), while an editor (edit_others_posts) covers
-							// every post. Administrators pass via the manage_options bypass.
+							// Single-issue dismiss. "Dismiss issues (any post)" allows it on
+							// any post; "Dismiss own issues" allows it only where the user can
+							// edit_post the issue's post (authors -> own, editors -> any).
+							// Administrators pass via the manage_options bypass.
+							if ( edac_user_can_dismiss_issues() ) {
+								return true;
+							}
+
+							if ( ! edac_user_can_dismiss_own_issues() ) {
+								return false;
+							}
+
 							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 							if ( ! $table_name ) {
 								return false;
@@ -1227,7 +1230,8 @@ class REST_Api {
 	public function dismiss_issue( $request ) {
 		global $wpdb;
 
-		if ( ! edac_user_can_ignore() ) {
+		$can_dismiss_any = edac_user_can_dismiss_issues();
+		if ( ! $can_dismiss_any && ! edac_user_can_dismiss_own_issues() ) {
 			return new \WP_Error(
 				'rest_forbidden',
 				__( 'Sorry, you are not allowed to dismiss issues.', 'accessibility-checker' ),
@@ -1247,8 +1251,8 @@ class REST_Api {
 		// edit_post loop below only proves the user can edit each affected post,
 		// it doesn't prove they're allowed to take a global action at all. That
 		// requires the separate, larger-blast-radius capability.
-		$can_ignore_globally = edac_user_can_ignore_globally();
-		if ( $large_batch && ! $can_ignore_globally ) {
+		$can_dismiss_globally = edac_user_can_dismiss_issues_globally();
+		if ( $large_batch && ! $can_dismiss_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
 				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
@@ -1274,7 +1278,7 @@ class REST_Api {
 		// action. Only a user with the global-ignore capability may set it - a
 		// single-post dismiss (which needs only edit_post on that one post) must
 		// never stamp a row "global" without edac_ignore_issues_globally.
-		$ignre_global = ( $is_ignoring && $can_ignore_globally ) ? (int) $ignore_global : 0;
+		$ignre_global = ( $is_ignoring && $can_dismiss_globally ) ? (int) $ignore_global : 0;
 
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
 		// verify edit permission for all of them, then update the vetted ids in one query.
@@ -1321,7 +1325,7 @@ class REST_Api {
 			// current_user_can() call per affected post - would be pure
 			// overhead for them. Kept as a fallback check for any caller that
 			// somehow reaches this branch without that capability.
-			if ( ! $can_ignore_globally ) {
+			if ( ! $can_dismiss_globally ) {
 				foreach ( $issue_rows as $issue_row ) {
 					$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
 					if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
