@@ -542,12 +542,47 @@ function edac_user_can_use_frontend_highlighter() {
 }
 
 /**
+ * Whether the current user should see the Accessibility Checker top-level menu.
+ *
+ * The parent `accessibility_checker` menu is the mount point every add-on submenu
+ * (Issues Explorer, Audit History, Export Data, Full Site Scan) hangs off via
+ * add_submenu_page(). If the parent is never registered in a request, those child
+ * pages silently vanish no matter what capability each one individually checks. So
+ * the parent must register whenever the user can reach ANY of its pages - not only
+ * for edit_posts users (PRO-1283).
+ *
+ * Returns true for edit_posts (the historical gate) OR for a holder of any
+ * Accessibility Checker capability in the bundle - dismiss, Issues Explorer,
+ * audit-history, export, full-site-scan, highlighter - which covers add-on
+ * capabilities synced onto lower roles such as Subscriber. Checking only the
+ * dismiss capability (as an earlier fix proposed) would miss exactly the
+ * view/access capabilities that are the point of the bug.
+ *
+ * @return bool
+ */
+function edac_user_can_see_admin_menu(): bool {
+	if ( current_user_can( 'edit_posts' ) ) {
+		return true;
+	}
+
+	foreach ( edac_capability_bundle() as $capability ) {
+		if ( CapabilityChecker::user_can( $capability ) ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
  * Add an options page under the Settings submenu
  */
 function edac_add_options_page() {
 
-	// we don't want to show even the welcome page to subscribers.
-	if ( ! current_user_can( 'edit_posts' ) ) {
+	// Register the menu for edit_posts users and for anyone holding an
+	// Accessibility Checker capability (so add-on pages granted to lower roles are
+	// reachable). The parent menu lands on the informational Welcome page.
+	if ( ! edac_user_can_see_admin_menu() ) {
 		return;
 	}
 

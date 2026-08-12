@@ -168,4 +168,31 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		wp_set_current_user( $user_id );
 		$this->assertFalse( edac_user_can_dismiss_own_issues() );
 	}
+
+	/**
+	 * The top-level menu is shown to a capability holder even without edit_posts
+	 * (PRO-1283): a role granted an Accessibility Checker capability must be able
+	 * to reach its page, which requires the parent menu to register.
+	 *
+	 * @return void
+	 */
+	public function test_admin_menu_visible_for_capability_holder_without_edit_posts() {
+		// A bare subscriber (no edit_posts, no edac capability) does not see it.
+		$bare = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $bare );
+		$this->assertFalse( edac_user_can_see_admin_menu(), 'A subscriber with no capabilities must not see the menu.' );
+
+		// Grant an Accessibility Checker capability directly (bypassing the floor,
+		// as a role-editor plugin might): the menu must now register.
+		$granted = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		( new WP_User( $granted ) )->add_cap( self::CAP );
+		wp_set_current_user( $granted );
+		$this->assertFalse( current_user_can( 'edit_posts' ), 'Precondition: the user lacks edit_posts.' );
+		$this->assertTrue( edac_user_can_see_admin_menu(), 'A capability holder without edit_posts must see the menu.' );
+
+		// An edit_posts user with no edac capability still sees it (historical gate).
+		$editor_caps = self::factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $editor_caps );
+		$this->assertTrue( edac_user_can_see_admin_menu(), 'An edit_posts user must see the menu.' );
+	}
 }
