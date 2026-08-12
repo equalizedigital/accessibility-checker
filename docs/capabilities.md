@@ -32,7 +32,7 @@ Each registry entry is keyed by capability slug and carries this metadata:
 
 | Capability | Gates | Owner | Floor | Default roles |
 | --- | --- | --- | --- | --- |
-| `edac_ignore_issues` | Per-post dismiss/reopen of accessibility issues | accessibility-checker (free) | `edit_posts` | editor, author |
+| `edac_ignore_issues` | Dismiss/reopen accessibility issues; scope follows the role's editing rights — authors on their own posts, editors on any post (see notes) | accessibility-checker (free) | `edit_posts` | editor, author |
 | `edac_view_frontend_highlighter` | The front-end accessibility highlighter on published content | accessibility-checker (free) | *(none)* | editor, author |
 | `edac_ignore_issues_globally` | "Dismiss Globally" — suppresses an issue across every post sharing its rule + element, not just the one being viewed | accessibility-checker-pro | `edit_others_posts` | editor |
 | `edac_issues_explorer_access` | Opening and using the Issues Explorer app | accessibility-checker-pro | *(none)* | editor |
@@ -115,8 +115,15 @@ the defaults and migration are applied.
 
 ## Feature-specific enforcement notes
 
-Most capabilities gate exactly one thing, but two have extra rules worth calling out:
+Most capabilities gate exactly one thing, but a few have extra rules worth calling out:
 
+- **Dismiss issues** (`edac_ignore_issues`) requires **the capability AND `edit_post` on the specific
+  post**. The dedicated capability does not override core editing rights, so an author may dismiss
+  issues only on posts they can edit (their own), while an editor (who has `edit_others_posts`) covers
+  every post. The larger-blast-radius **global** dismiss (updating every post sharing a rule + element
+  in one action) requires the separate `edac_ignore_issues_globally` capability, whose floor is
+  `edit_others_posts`; the `ignre_global` marker is only ever set by a holder of that global
+  capability. Administrators pass via `manage_options`.
 - **Full site scan** requires **`edit_others_posts` AND `edac_full_site_scan`**
   (`edacp_user_can_run_full_site_scan()`). The custom capability is an admin-controlled kill-switch
   layered on top of a hard security floor; it gates the scan page registration, its render, and all
@@ -125,6 +132,10 @@ Most capabilities gate exactly one thing, but two have extra rules worth calling
 - **Saving a post's scan results** (the free `/post-scan-results/{id}` REST route) requires
   **`edit_post` on that specific post**, so single-post scans keep working for authors on their own
   posts, while editors (who have `edit_others_posts`) cover everything.
+- **Exporting Audit History** requires **`edac_export_data` AND `edac_view_audit_history`**. Audit
+  History is another feature's data, so the generic export capability alone does not expose it to a
+  user who cannot otherwise view the audit log. The Issues, Scan-Stats, and Global-Ignores exports
+  remain gated by `edac_export_data` alone.
 
 ## Cross-plugin helper API
 

@@ -85,7 +85,7 @@ function edac_capability_metadata(): array {
 		[
 			EDAC_CAPABILITY_IGNORE_ISSUES             => [
 				'label'         => __( 'Dismiss issues', 'accessibility-checker' ),
-				'description'   => __( 'Dismiss and reopen accessibility issues on a post.', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues. Scope follows the role\'s editing rights: authors can dismiss on their own posts, editors on any post.', 'accessibility-checker' ),
 				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
 				'owner'         => 'accessibility-checker',
 				'pro'           => false,
