@@ -32,13 +32,14 @@ Each registry entry is keyed by capability slug and carries this metadata:
 
 | Capability | Gates | Owner | Floor | Default roles |
 | --- | --- | --- | --- | --- |
-| `edac_ignore_issues` | Dismiss/reopen accessibility issues; scope follows the role's editing rights — authors on their own posts, editors on any post (see notes) | accessibility-checker (free) | `edit_posts` | editor, author |
+| `edac_dismiss_own_issues` | Dismiss/reopen accessibility issues on posts the user can edit (authors → their own; editors → any) | accessibility-checker (free) | `edit_posts` | editor, author, contributor |
+| `edac_dismiss_issues` | Dismiss/reopen accessibility issues on **any** post, regardless of ownership — a superset of "dismiss own" and a deliberate opt-in overstep of core `edit_post` | accessibility-checker (free) | `edit_posts` | *(none)* |
 | `edac_view_frontend_highlighter` | The front-end accessibility highlighter on published content | accessibility-checker (free) | *(none)* | editor, author |
-| `edac_ignore_issues_globally` | "Dismiss Globally" — suppresses an issue across every post sharing its rule + element, not just the one being viewed | accessibility-checker-pro | `edit_others_posts` | editor |
-| `edac_issues_explorer_access` | Opening and using the Issues Explorer app | accessibility-checker-pro | *(none)* | editor |
-| `edac_full_site_scan` | Running / viewing the full-site scan (**in addition to** `edit_others_posts`, see below) | accessibility-checker-pro | `edit_others_posts` | editor |
-| `edac_view_audit_history` | The Audit History admin page and its REST data route (incl. CSV export) | accessibility-checker-audit-history | *(none)* | editor |
-| `edac_export_data` | The Export Data admin page and all of its export actions (Issues, Scan Stats, Global Ignores, Audit History) | accessibility-checker-export | *(none)* | editor |
+| `edac_dismiss_issues_globally` | "Dismiss Globally" — suppresses an issue across every post sharing its rule + element, not just the one being viewed | accessibility-checker-pro | `edit_others_posts` | *(none)* |
+| `edac_issues_explorer_access` | Opening and using the Issues Explorer app | accessibility-checker-pro | *(none)* | *(none)* |
+| `edac_full_site_scan` | Running / viewing the full-site scan (**in addition to** `edit_others_posts`, see below) | accessibility-checker-pro | `edit_others_posts` | *(none)* |
+| `edac_view_audit_history` | The Audit History admin page and its REST data route (incl. CSV export) | accessibility-checker-audit-history | *(none)* | *(none)* |
+| `edac_export_data` | The Export Data admin page and all of its export actions (Issues, Scan Stats, Global Ignores, Audit History) | accessibility-checker-export | *(none)* | *(none)* |
 
 Administrators (`manage_options`) always pass every `edac_*` check, whether or not their role is listed
 in the matrix. This is enforced centrally through `map_meta_cap`, so it applies uniformly to every
@@ -93,9 +94,14 @@ capability's `default_roles` once — tracked in the `edac_capability_defaults_s
 by the floor, and respecting any capability an admin has already unchecked. Real sites migrating from
 the legacy setting are skipped (their existing configuration wins).
 
-**Migration.** A version-gated migration (`EDAC_CAPABILITY_MIGRATION_VERSION`, currently `1.48.0`)
+**Migration.** A version-gated migration (`EDAC_CAPABILITY_MIGRATION_VERSION`, currently `1.49.0`)
 converts the legacy `edacp_ignore_user_roles` option into the new role map. The migration is
-floor-aware: it will not grant a capability to a legacy role that fails the capability's floor.
+floor-aware: it will not grant a capability to a legacy role that fails the capability's floor. The
+same boundary applies one-time capability **slug renames**: the `1.49.0` bump renames `ignore` →
+`dismiss`, moving existing `edac_ignore_issues` grants to `edac_dismiss_own_issues` (their old
+edit_post-gated behavior is own-scoped, so they are never promoted to the site-wide
+`edac_dismiss_issues`) and `edac_ignore_issues_globally` to `edac_dismiss_issues_globally`, stripping
+the retired slugs. The deprecated `EDAC_CAPABILITY_IGNORE_*` constants are retained.
 
 **`reconcile()`** runs on `init`, self-heals the role/user grants from the options, and is where both
 the defaults and migration are applied.
@@ -117,13 +123,16 @@ the defaults and migration are applied.
 
 Most capabilities gate exactly one thing, but a few have extra rules worth calling out:
 
-- **Dismiss issues** (`edac_ignore_issues`) requires **the capability AND `edit_post` on the specific
-  post**. The dedicated capability does not override core editing rights, so an author may dismiss
-  issues only on posts they can edit (their own), while an editor (who has `edit_others_posts`) covers
-  every post. The larger-blast-radius **global** dismiss (updating every post sharing a rule + element
-  in one action) requires the separate `edac_ignore_issues_globally` capability, whose floor is
-  `edit_others_posts`; the `ignre_global` marker is only ever set by a holder of that global
-  capability. Administrators pass via `manage_options`.
+- **Dismiss issues** has two per-post tiers. `edac_dismiss_own_issues` requires **the capability AND
+  `edit_post` on the specific post** — so an author may dismiss only on posts they can edit (their
+  own), while an editor (who has `edit_others_posts`) covers every post. `edac_dismiss_issues` grants
+  dismissing on **any** post regardless of ownership (a deliberate, opt-in superset — the "overstep").
+  A single dismiss is allowed when the user holds `edac_dismiss_issues`, OR holds
+  `edac_dismiss_own_issues` and can `edit_post` the target. The larger-blast-radius **global** dismiss
+  (updating every post sharing a rule + element in one action) requires the separate
+  `edac_dismiss_issues_globally` capability, whose floor is `edit_others_posts`; the `ignre_global`
+  marker is only ever set by a holder of that global capability. Administrators pass via
+  `manage_options`.
 - **Full site scan** requires **`edit_others_posts` AND `edac_full_site_scan`**
   (`edacp_user_can_run_full_site_scan()`). The custom capability is an admin-controlled kill-switch
   layered on top of a hard security floor; it gates the scan page registration, its render, and all
@@ -139,19 +148,25 @@ Most capabilities gate exactly one thing, but a few have extra rules worth calli
 
 ## Cross-plugin helper API
 
-The free plugin exposes seven `edac_user_can_*()` helper functions (in `includes/`). They look unused
-inside the free plugin, but each add-on feature-detects them with `function_exists()` and calls them,
-falling back to `manage_options` when running against an older free plugin that predates the helper.
+The free plugin exposes `edac_user_can_*()` helper functions (in `includes/`). They look unused inside
+the free plugin, but each add-on feature-detects them with `function_exists()` and calls them, falling
+back to `manage_options` when running against an older free plugin that predates the helper.
 **Do not remove them** — they are a load-bearing cross-plugin contract:
 
 | Helper | Capability |
 | --- | --- |
-| `edac_user_can_ignore()` | `edac_ignore_issues` |
-| `edac_user_can_ignore_globally()` | `edac_ignore_issues_globally` |
+| `edac_user_can_dismiss_own_issues()` | `edac_dismiss_own_issues` |
+| `edac_user_can_dismiss_issues()` | `edac_dismiss_issues` (any post) |
+| `edac_user_can_dismiss_issues_globally()` | `edac_dismiss_issues_globally` |
 | `edac_user_can_access_issues_explorer()` | `edac_issues_explorer_access` |
 | `edac_user_can_view_audit_history()` | `edac_view_audit_history` |
 | `edac_user_can_export_data()` | `edac_export_data` |
 | `edac_user_can_run_full_site_scan()` | `edac_full_site_scan` (+ `edit_others_posts`) |
+
+The former `edac_user_can_ignore()` / `edac_user_can_ignore_globally()` remain as **deprecated shims**
+(add-ons still feature-detect the old names): `edac_user_can_ignore()` returns true when the user holds
+either per-post dismiss capability; `edac_user_can_ignore_globally()` maps to
+`edac_user_can_dismiss_issues_globally()`.
 | `edac_user_can_use_frontend_highlighter()` | `edac_view_frontend_highlighter` |
 
 Because the fallback only ever *widens* who can reach a page (to administrators) when a finer-grained
@@ -173,7 +188,8 @@ add_filter(
             'owner'         => 'my-add-on',
             'pro'           => true,
             'floor'         => 'edit_others_posts', // or '' for no floor
-            'default_roles' => [ 'editor' ],
+            'default_roles' => [], // roles auto-granted on first activation; keep this
+                                   // conservative — administrators can grant explicitly.
         ];
         return $capabilities;
     }
