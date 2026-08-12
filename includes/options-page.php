@@ -391,6 +391,15 @@ function edac_ignore_capability(): SyncCapability {
 			[
 				EDAC_CAPABILITY_IGNORE_ISSUES          => EDAC_CAPABILITY_DISMISS_OWN_ISSUES,
 				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY => EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY,
+			],
+			// The legacy "Ignore Permissions" (edacp_ignore_user_roles) setting only
+			// granted the ignore/dismiss family, so a legacy role is seeded ONLY
+			// these on migration - never the audit/export/scan/explorer/highlighter
+			// capabilities it never conferred. Floors still apply (global dismiss
+			// only reaches roles with edit_others_posts).
+			[
+				EDAC_CAPABILITY_DISMISS_OWN_ISSUES,
+				EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY,
 			]
 		);
 		$capability->register();

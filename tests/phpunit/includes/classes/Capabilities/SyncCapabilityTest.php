@@ -473,4 +473,36 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$this->assertArrayNotHasKey( self::TEST_CAP, $role_map, 'The old slug should be gone from the role map.' );
 		$this->assertSame( [ 'editor' ], $role_map[ self::TEST_CAP_2 ], 'The role map should carry the grant under the new slug.' );
 	}
+
+	/**
+	 * When a legacy-capability subset is configured, the legacy-option migration
+	 * seeds ONLY those capabilities, not the whole bundle.
+	 *
+	 * @return void
+	 */
+	public function test_legacy_migration_only_seeds_scoped_capabilities() {
+		delete_option( self::ROLE_MAP_OPTION );
+		delete_option( 'edac_synced_capabilities_' . self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+		update_option( self::LEGACY_OPTION, [ 'editor' ] );
+
+		// Bundle has two caps, but the legacy option is scoped to only TEST_CAP.
+		$capability = new SyncCapability(
+			[ self::TEST_CAP, self::TEST_CAP_2 ],
+			self::ROLE_MAP_OPTION,
+			self::USER_GRANTS_OPTION,
+			'2.0.0',
+			self::LEGACY_OPTION,
+			null,
+			[],
+			[ self::TEST_CAP ]
+		);
+
+		$capability->reconcile();
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ), 'The scoped legacy capability should be seeded.' );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ), 'A bundle capability outside the legacy scope must NOT be seeded from the legacy option.' );
+
+		update_option( self::LEGACY_OPTION, [] );
+	}
 }

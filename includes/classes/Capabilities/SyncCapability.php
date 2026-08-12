@@ -86,6 +86,17 @@ class SyncCapability {
 	private array $capability_renames;
 
 	/**
+	 * Capabilities the legacy single-list roles option seeds on migration. The
+	 * legacy "Ignore Permissions" setting only ever granted the ignore/dismiss
+	 * family, so a legacy role must not inherit the whole current bundle (audit,
+	 * export, full-site scan, …). Empty means "the whole current bundle" for
+	 * back-compat with callers that do not scope it.
+	 *
+	 * @var string[]
+	 */
+	private array $legacy_capabilities;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param string|string[]       $capabilities        A single capability or the bundle of capabilities to manage.
@@ -95,6 +106,7 @@ class SyncCapability {
 	 * @param string                $legacy_roles_option Legacy roles option to seed the map from on migration ('' disables).
 	 * @param callable|null         $floor_check         Optional `fn(string $role, string $cap): bool` floor policy; null disables it.
 	 * @param array<string, string> $capability_renames  [ old_slug => new_slug ] applied once during the version migration.
+	 * @param string[]              $legacy_capabilities Capabilities the legacy roles option seeds ([] = the whole bundle).
 	 *
 	 * @throws \InvalidArgumentException If $capabilities resolves to an empty array.
 	 */
@@ -105,7 +117,8 @@ class SyncCapability {
 		string $migration_version = '0',
 		string $legacy_roles_option = '',
 		?callable $floor_check = null,
-		array $capability_renames = []
+		array $capability_renames = [],
+		array $legacy_capabilities = []
 	) {
 		$this->capabilities = is_array( $capabilities ) ? array_values( $capabilities ) : [ $capabilities ];
 
@@ -121,6 +134,7 @@ class SyncCapability {
 		$this->legacy_roles_option = $legacy_roles_option;
 		$this->floor_check         = $floor_check;
 		$this->capability_renames  = $capability_renames;
+		$this->legacy_capabilities = $legacy_capabilities;
 	}
 
 	/**
@@ -496,14 +510,23 @@ class SyncCapability {
 
 		// One-time migration: seed the role map from the legacy single-list
 		// roles option so existing sites keep their effective grants - but only
-		// for roles that satisfy each capability's floor, so the migration can
-		// never grant a capability to a role that does not qualify for it (e.g.
-		// a legacy "author" must not inherit a scan capability floored on
-		// edit_others_posts).
+		// for the capabilities the legacy setting actually granted (its ignore/
+		// dismiss family, not the whole current bundle), and only for roles that
+		// satisfy each capability's floor, so the migration can never grant a
+		// capability to a role that does not qualify for it (e.g. a legacy
+		// "author" must not inherit a scan capability floored on
+		// edit_others_posts, nor an export capability it never had).
 		if ( $version_migration && [] === $role_map && '' !== $this->legacy_roles_option ) {
 			$legacy_roles = array_values( (array) get_option( $this->legacy_roles_option, [] ) );
+			// Restrict the seed to the configured legacy capabilities, intersected
+			// with what is actually in the current bundle (so floor metadata is
+			// available and inactive add-on caps are not seeded blind). An empty
+			// legacy set falls back to the whole bundle for unscoped callers.
+			$legacy_targets = [] !== $this->legacy_capabilities
+				? array_values( array_intersect( $this->legacy_capabilities, $current ) )
+				: $current;
 			if ( [] !== $legacy_roles ) {
-				foreach ( $current as $capability ) {
+				foreach ( $legacy_targets as $capability ) {
 					$qualified = array_values(
 						array_filter(
 							$legacy_roles,

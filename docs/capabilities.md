@@ -95,8 +95,13 @@ by the floor, and respecting any capability an admin has already unchecked. Real
 the legacy setting are skipped (their existing configuration wins).
 
 **Migration.** A version-gated migration (`EDAC_CAPABILITY_MIGRATION_VERSION`, currently `1.49.0`)
-converts the legacy `edacp_ignore_user_roles` option into the new role map. The migration is
-floor-aware: it will not grant a capability to a legacy role that fails the capability's floor. The
+converts the legacy `edacp_ignore_user_roles` "Ignore Permissions" option into the new role map. It
+seeds each legacy-checked role **only** the capabilities that setting actually granted — the
+ignore/dismiss family (`edac_dismiss_own_issues` and, for roles that meet its `edit_others_posts`
+floor, `edac_dismiss_issues_globally`) — never the audit, export, full-site-scan, Explorer, or
+highlighter capabilities it never conferred, and never the new site-wide `edac_dismiss_issues`. The
+migration is floor-aware: it will not grant a capability to a legacy role that fails the capability's
+floor. The
 same boundary applies one-time capability **slug renames**: the `1.49.0` bump renames `ignore` →
 `dismiss`, moving existing `edac_ignore_issues` grants to `edac_dismiss_own_issues` (their old
 edit_post-gated behavior is own-scoped, so they are never promoted to the site-wide

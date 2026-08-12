@@ -124,8 +124,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 	/**
 	 * The version-gated migration seeds the matrix from the legacy
-	 * edacp_ignore_user_roles option, preserving old whole-bundle behavior for
-	 * every capability the free plugin owns.
+	 * edacp_ignore_user_roles option, but ONLY with the ignore/dismiss family the
+	 * old "Ignore Permissions" setting actually granted - not the whole bundle.
 	 *
 	 * @return void
 	 */
@@ -137,8 +137,14 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 		edac_ignore_capability()->reconcile();
 
-		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::CAP ), 'Migration should grant every free bundle capability to the legacy roles.' );
-		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( 'edac_view_frontend_highlighter' ) );
+		// The legacy role gets the dismiss-own capability (the successor to
+		// per-post "ignore issues").
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::CAP ), 'Migration should grant the dismiss-own capability to the legacy roles.' );
+
+		// It must NOT inherit capabilities the old setting never granted: the
+		// front-end highlighter or the site-wide "dismiss any" cap.
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_view_frontend_highlighter' ), 'The legacy setting never granted the highlighter.' );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_dismiss_issues' ), 'The legacy setting never granted site-wide dismiss.' );
 
 		update_option( 'edacp_ignore_user_roles', [] );
 	}
