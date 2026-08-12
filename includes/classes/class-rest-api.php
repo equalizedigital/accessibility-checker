@@ -349,17 +349,19 @@ class REST_Api {
 								return false;
 							}
 
-							// A largeBatch request from a user who can ignore globally doesn't
-							// need edit_post on the URL's representative issue - dismiss_issue()
-							// already re-verifies (or, for this exact capability, deliberately
-							// bypasses) per-post permission for every affected row once inside
-							// the handler. Gating on the one representative post here would
-							// block the very requests this capability exists to allow, whenever
-							// that post happens not to be one the user personally owns.
-							if ( $request->get_param( 'largeBatch' ) && edac_user_can_ignore_globally() ) {
-								return true;
+							// largeBatch performs the global action - it updates every row
+							// sharing this issue's rule + object, not just $issue_id - so it
+							// requires the larger-blast-radius capability regardless of who
+							// owns the affected posts (dismiss_issue() re-checks this too).
+							if ( $request->get_param( 'largeBatch' ) ) {
+								return edac_user_can_ignore_globally();
 							}
 
+							// Single-issue dismiss additionally requires edit_post on the
+							// issue's post. The dedicated capability does NOT override core
+							// editing rights: an author may dismiss issues only on posts they
+							// can edit (their own), while an editor (edit_others_posts) covers
+							// every post. Administrators pass via the manage_options bypass.
 							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 							if ( ! $table_name ) {
 								return false;
@@ -1268,7 +1270,11 @@ class REST_Api {
 		$ignre_date_formatted = $is_ignoring ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_reason         = $is_ignoring ? $reason : null;
 		$ignre_comment        = $is_ignoring ? $comment : null;
-		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
+		// The ignre_global marker records that a dismiss was taken as a global
+		// action. Only a user with the global-ignore capability may set it - a
+		// single-post dismiss (which needs only edit_post on that one post) must
+		// never stamp a row "global" without edac_ignore_issues_globally.
+		$ignre_global = ( $is_ignoring && $can_ignore_globally ) ? (int) $ignore_global : 0;
 
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
 		// verify edit permission for all of them, then update the vetted ids in one query.

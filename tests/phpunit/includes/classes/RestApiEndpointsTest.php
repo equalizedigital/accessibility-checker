@@ -86,13 +86,15 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		self::$admin_id      = $factory->user->create( [ 'role' => 'administrator' ] );
 		self::$limited_id    = $factory->user->create( [ 'role' => 'subscriber' ] );
 		self::$subscriber_id = $factory->user->create( [ 'role' => 'subscriber' ] );
-		// Give limited user edit_posts but not edit_others_posts so they cannot edit this post.
+		// Give limited user edit_posts but not edit_others_posts so they cannot
+		// edit other authors' posts - used to prove dismiss requires edit_post on
+		// the target post (see test_single_issue_dismiss_unauthorized_user), so an
+		// author can only dismiss issues on their own posts.
 		$user = new WP_User( self::$limited_id );
 		$user->add_cap( 'edit_posts' );
-		// Also grant edac_ignore_issues so dismiss tests exercise edit_post
-		// authorization specifically, independent of the ignore capability
-		// (covered separately in IgnoreCapabilityTest and
-		// test_single_issue_dismiss_forbidden_without_ignore_capability).
+		// Grant edac_ignore_issues; the "no capability" negative case is covered
+		// separately in IgnoreCapabilityTest and
+		// test_single_issue_dismiss_forbidden_without_ignore_capability.
 		$user->add_cap( 'edac_ignore_issues' );
 		// Deliberately NOT edac_ignore_issues_globally here - it's granted
 		// per-test below where a largeBatch test specifically needs it, since
@@ -657,10 +659,12 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: Single issue dismissed by unauthorized user fails with 403.
+	 * Test: Single issue dismiss on a post the user cannot edit fails with 403.
 	 *
-	 * Verifies that a user without edit_post capability for the post
-	 * receives a 403 Forbidden response when attempting to dismiss an issue.
+	 * The dismiss capability does NOT override core edit_post: a user holding
+	 * edac_ignore_issues but WITHOUT edit_post on the target post (here the
+	 * limited user dismissing an issue on the admin's post) is refused. Authors
+	 * can therefore only dismiss issues on their own editable posts.
 	 *
 	 * @return void
 	 */
@@ -704,7 +708,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$issue_id = $wpdb->insert_id;
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 
-		// Set limited user (who cannot edit admin's post).
+		// Set limited user (holds edac_ignore_issues but cannot edit admin's post).
 		wp_set_current_user( self::$limited_id );
 
 		// Make the dismiss request.
@@ -713,8 +717,75 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$response = $this->server->dispatch( $request );
 
-		// Verify response is 403 Forbidden.
-		$this->assertSame( 403, $response->get_status(), 'Single issue dismiss by unauthorized user should return 403.' );
+		// Verify response is 403 Forbidden - the capability does not override edit_post.
+		$this->assertSame( 403, $response->get_status(), 'Single issue dismiss on a post the user cannot edit should return 403.' );
+	}
+
+	/**
+	 * Test: A single-post dismiss never stamps the ignre_global marker unless the
+	 * user holds edac_ignore_issues_globally.
+	 *
+	 * The limited user (edac_ignore_issues, no global capability) dismisses an
+	 * issue on their OWN editable post while requesting ignore_global=1; the row
+	 * is dismissed but the global marker stays 0.
+	 *
+	 * @return void
+	 */
+	public function test_single_issue_dismiss_does_not_set_global_marker_without_capability() {
+		global $wpdb;
+
+		$this->assertNotNull( $this->server );
+
+		// Use 'draft' so the limited user (who only has edit_posts, not
+		// edit_published_posts) can edit their own post.
+		$own_post_id = self::factory()->post->create(
+			[
+				'post_type'    => 'post',
+				'post_status'  => 'draft',
+				'post_author'  => self::$limited_id,
+				'post_title'   => 'Limited Own Post Marker',
+				'post_content' => 'Test content',
+			]
+		);
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$site_id    = get_current_blog_id();
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->insert(
+			$table_name,
+			[
+				'postid'       => $own_post_id,
+				'siteid'       => $site_id,
+				'type'         => 'error',
+				'rule'         => 'single-marker-test',
+				'ruletype'     => 'error',
+				'object'       => 'single-marker-test',
+				'recordcheck'  => 1,
+				'user'         => self::$limited_id,
+				'ignre'        => 0,
+				'ignre_global' => 0,
+			],
+			[ '%d', '%d', '%s', '%s', '%s', '%s', '%d', '%d', '%d', '%d' ]
+		);
+
+		$issue_id = $wpdb->insert_id;
+
+		wp_set_current_user( self::$limited_id );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $issue_id );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'ignore_global', 1 );
+
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status(), 'The user may dismiss an issue on their own editable post.' );
+
+		$row = $wpdb->get_row( $wpdb->prepare( 'SELECT ignre, ignre_global FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+
+		$this->assertSame( '1', (string) $row['ignre'], 'The issue should be dismissed.' );
+		$this->assertSame( '0', (string) $row['ignre_global'], 'A user without the global capability must not set the ignre_global marker.' );
 	}
 
 	/**
