@@ -78,6 +78,11 @@ if ( true === (bool) $edac_delete_data ) {
 		'edac_capability_defaults_seeded',
 		'edac_synced_capabilities_edac_capability_role_map',
 		'edac_capability_migration_version_edac_capability_role_map',
+		// Legacy "Ignore Permissions" roles option. Historically only Pro's
+		// uninstall deleted it, so a free-only site uninstalling with Delete Data
+		// on would leave it (and the capability grants it seeded) behind. Delete it
+		// here too - whichever plugin uninstalls last actually clears it (PRO-1286).
+		'edacp_ignore_user_roles',
 		// Legacy options from the removed per-user grant subsystem. Never shipped
 		// in a release, but delete them defensively so a dev/staging site that ran
 		// an intermediate build does not leave orphaned rows behind.
