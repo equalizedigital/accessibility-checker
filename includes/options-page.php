@@ -737,12 +737,12 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edacp_scan_all_taxonomy_terms',
+		'edacp_scan_all_taxonomies',
 		__( 'Taxonomy Scanning', 'accessibility-checker' ),
 		'edac_scan_all_taxonomy_terms_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edacp_scan_all_taxonomy_terms' ]
+		[ 'label_for' => 'edacp_scan_all_taxonomies' ]
 	);
 
 	add_settings_field(
@@ -866,7 +866,12 @@ function edac_register_setting() {
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
 	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
 	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_pro_archive_scanning' );
-	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_pro_taxonomy_terms' );
+	// Option keys here MUST match the keys the pro scanner reads, or the setting is
+	// inert: VirtualContent\VirtualItemManager reads edacp_enable_archive_scanning and
+	// VirtualContent\Scannable\Taxonomy reads edacp_scan_all_taxonomies. The taxonomy
+	// field previously wrote edacp_scan_all_taxonomy_terms, a key nothing read, so the
+	// control did nothing; it is now repointed to edacp_scan_all_taxonomies.
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomies', 'edac_sanitize_pro_taxonomy_terms' );
 	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'edac_sanitize_pro_summary_heading' );
 }
 
@@ -1023,15 +1028,15 @@ function edac_enable_archive_scanning_cb() {
  * @return void
  */
 function edac_scan_all_taxonomy_terms_cb() {
-	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomy_terms', false );
+	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomies', false );
 	$enable_archives     = get_option( 'edacp_enable_archive_scanning', false );
 	?>
 	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
 		<label>
 			<input
 				type="checkbox"
-				name="edacp_scan_all_taxonomy_terms"
-				id="edacp_scan_all_taxonomy_terms"
+				name="edacp_scan_all_taxonomies"
+				id="edacp_scan_all_taxonomies"
 				value="1"
 				<?php checked( $scan_all_taxonomies, 1 ); ?>
 				<?php disabled( ! $enable_archives || ! edac_is_pro() ); ?>
@@ -1447,7 +1452,7 @@ function edac_sanitize_pro_archive_scanning( $input ) {
  * @return mixed The existing option value
  */
 function edac_sanitize_pro_taxonomy_terms( $input ) {
-	return edac_sanitize_pro_checkbox( $input, 'edacp_scan_all_taxonomy_terms' );
+	return edac_sanitize_pro_checkbox( $input, 'edacp_scan_all_taxonomies' );
 }
 
 /**
