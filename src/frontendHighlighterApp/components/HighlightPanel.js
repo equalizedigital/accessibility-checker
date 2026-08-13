@@ -239,7 +239,6 @@ class HighlightPanel extends HTMLElement {
 					cursor: pointer;
 					border-radius: 2px;
 					border: 1px solid transparent;
-					box-sizing: border-box;
 				}
 
 				.edac-highlight-panel-controls-close:hover,
@@ -296,7 +295,6 @@ class HighlightPanel extends HTMLElement {
 
 				.edac-highlight-panel-controls-buttons button {
 					all: unset;
-					box-sizing: border-box;
 					text-decoration: none;
 					color: var(--wp-admin-theme-color, #3273aa);
 					background-color: transparent;
