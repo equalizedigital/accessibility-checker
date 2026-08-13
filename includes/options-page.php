@@ -307,17 +307,36 @@ function edac_default_capability_role_map(): array {
  * is seeded from its defaults exactly once (tracked in edac_capability_defaults_seeded),
  * so an add-on activated later gets its defaults, an admin who unchecks a default
  * is not re-seeded, and existing assignments (including a legacy migration) are
- * never overwritten. Sites still awaiting the legacy migration are left for the
- * engine to migrate.
+ * never overwritten.
+ *
+ * Fresh installs receive the full suite of default grants. Sites migrating from
+ * the legacy "Ignore Permissions" setting deliberately do NOT: they keep exactly
+ * the grants that setting gave them (the dismiss family, carried by the engine's
+ * migration) and are not handed fresh-install defaults for capabilities the
+ * legacy setting never governed - most notably the front-end highlighter. See
+ * the legacy-pending branch below.
  *
  * @return void
  */
 function edac_seed_default_capabilities(): void {
-	// Leave sites with real legacy config for the engine's migration to seed;
-	// an empty legacy value has nothing to migrate, so defaults still apply.
+	// A site with real legacy config is migrating, not installing fresh. The
+	// engine's migration (reconcile(), priority 10) seeds only the capabilities
+	// the legacy setting actually governed - the dismiss family. A migrating site
+	// must keep exactly those grants and nothing more, so mark every currently
+	// registered capability as already seeded before bailing: the migration owns
+	// their grants and this seeder will never back-fill fresh-install defaults for
+	// them on a later request (e.g. it must never grant the highlighter to
+	// editor/author on an established site). Capabilities contributed by an add-on
+	// activated AFTER migration are not in this snapshot, so they still receive
+	// their own defaults when they first appear. An empty legacy value is a fresh
+	// install with nothing to migrate, so defaults apply normally.
 	$legacy_pending = ! empty( get_option( 'edacp_ignore_user_roles', [] ) )
 		&& null === get_option( 'edac_capability_role_map', null );
 	if ( $legacy_pending ) {
+		$seeded = get_option( 'edac_capability_defaults_seeded', [] );
+		$seeded = is_array( $seeded ) ? $seeded : [];
+		$seeded = array_values( array_unique( array_merge( $seeded, array_keys( edac_capability_metadata() ) ) ) );
+		update_option( 'edac_capability_defaults_seeded', $seeded );
 		return;
 	}
 
