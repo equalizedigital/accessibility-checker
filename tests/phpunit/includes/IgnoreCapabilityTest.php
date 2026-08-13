@@ -148,11 +148,11 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 	/**
 	 * A migrating site keeps ONLY the grants the legacy "Ignore Permissions"
-	 * setting gave it. The defaults seeder must not back-fill fresh-install
-	 * defaults - e.g. the front-end highlighter - on the request after the
-	 * migration populates the role map (the map is no longer null then, so the
-	 * legacy-pending guard would otherwise open). Fresh-install seeding is covered
-	 * separately by test_defaults_are_seeded_onto_roles.
+	 * setting gave it. An upgrading site never runs the activation hook, so only
+	 * the version-gated migration in reconcile() runs - it must migrate the
+	 * dismiss family and never hand the site fresh-install defaults (e.g. the
+	 * front-end highlighter) for capabilities the legacy setting never governed.
+	 * Fresh-install seeding is covered by test_fresh_install_seeds_defaults_onto_roles.
 	 *
 	 * @return void
 	 */
@@ -169,15 +169,10 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		}
 		update_option( 'edacp_ignore_user_roles', [ 'editor' ] );
 
-		// Request 1: the seeder bails (legacy pending) but marks caps seeded, then
-		// the engine migration seeds only the dismiss family.
-		edac_seed_default_capabilities();
+		// Only reconcile() runs on an upgrade (no activation). Run it twice to prove
+		// a subsequent init changes nothing.
 		edac_ignore_capability()->reconcile();
-
-		// Request 2: the seeder runs now that the role map is populated. It must
-		// not grant the highlighter the legacy setting never governed.
-		edac_seed_default_capabilities();
-		edac_ignore_capability()->sync_matrix( (array) get_option( self::ROLE_MAP_OPTION, [] ) );
+		edac_ignore_capability()->reconcile();
 
 		$role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
 
@@ -189,17 +184,42 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( 'edac_view_frontend_highlighter' ), 'The highlighter must not be granted to editor on a migrating site.' );
 		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_view_frontend_highlighter' ), 'The highlighter must not be granted to author on a migrating site.' );
 
-		// The highlighter is recorded as seeded by the bail, so it is never
-		// re-evaluated on any later request.
-		$seeded = (array) get_option( 'edac_capability_defaults_seeded', [] );
-		$this->assertContains( 'edac_view_frontend_highlighter', $seeded, 'The migration bail must mark the highlighter as seeded so it is never back-filled.' );
-
 		// Cleanup so later tests start from the shared no-caps baseline.
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::CAP );
 			$role->remove_cap( 'edac_view_frontend_highlighter' );
 		}
 		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+		update_option( 'edacp_ignore_user_roles', [] );
+	}
+
+	/**
+	 * An established site that set the legacy "Ignore Permissions" option to NO
+	 * roles must not be mistaken for a fresh install and handed the default suite
+	 * (review #10). It runs the migration (empty legacy -> nothing) and gets no
+	 * default grants.
+	 *
+	 * @return void
+	 */
+	public function test_migrating_site_with_empty_legacy_gets_no_defaults() {
+		delete_option( self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_synced_capabilities_' . self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+		update_option( 'edacp_ignore_user_roles', [] );
+
+		edac_ignore_capability()->reconcile();
+
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'An empty-legacy site must not receive the dismiss-own default.' );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( 'edac_view_frontend_highlighter' ), 'An empty-legacy site must not receive the highlighter default.' );
+
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
 		update_option( 'edacp_ignore_user_roles', [] );
 	}
 
@@ -231,26 +251,28 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The defaults seeder grants each capability's default_roles (filtered by
-	 * floor) onto the roles on first seed, and leaves no-default capabilities
-	 * (e.g. the site-wide "dismiss any" cap) unassigned.
+	 * A fresh install (via edac_seed_capability_defaults_on_install(), what the
+	 * activation hook calls) grants each capability's default_roles - filtered by
+	 * floor - onto the roles, leaves no-default capabilities (e.g. the site-wide
+	 * "dismiss any" cap) unassigned, and stamps the migration as satisfied so a
+	 * fresh install is never re-migrated.
 	 *
 	 * @return void
 	 */
-	public function test_defaults_are_seeded_onto_roles() {
-		// Clean slate: nothing seeded, no role map, no legacy config pending.
+	public function test_fresh_install_seeds_defaults_onto_roles() {
+		// Fresh-install slate: nothing seeded, no role map, no legacy config, no stamp.
 		delete_option( self::ROLE_MAP_OPTION );
 		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
 		delete_option( 'edacp_ignore_user_roles' );
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::CAP );
 			$role->remove_cap( 'edac_view_frontend_highlighter' );
 		}
 
-		edac_seed_default_capabilities();
-		// Apply the seeded role map deterministically (the seeder writes the option;
-		// this reflects it onto the roles without depending on the option hook).
-		edac_ignore_capability()->sync_matrix( (array) get_option( self::ROLE_MAP_OPTION, [] ) );
+		// What edac_activation() runs on a genuinely fresh install. It seeds the
+		// role map, marks caps seeded, stamps the migration, and applies to roles.
+		edac_seed_capability_defaults_on_install();
 
 		$role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
 
@@ -269,10 +291,15 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_roles()->get_role( 'contributor' )->has_cap( self::CAP ) );
 		$this->assertFalse( wp_roles()->get_role( 'subscriber' )->has_cap( self::CAP ) );
 
+		// The migration is stamped satisfied, so reconcile() never re-migrates it.
+		$this->assertSame( EDAC_CAPABILITY_MIGRATION_VERSION, get_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION ), 'A fresh install must stamp the migration as satisfied.' );
+
 		// Cleanup so later tests start from the shared no-caps baseline.
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::CAP );
 			$role->remove_cap( 'edac_view_frontend_highlighter' );
 		}
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
 	}
 }
