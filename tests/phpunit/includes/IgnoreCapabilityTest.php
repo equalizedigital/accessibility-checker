@@ -229,4 +229,50 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		wp_set_current_user( $editor_caps );
 		$this->assertTrue( edac_user_can_see_admin_menu(), 'An edit_posts user must see the menu.' );
 	}
+
+	/**
+	 * The defaults seeder grants each capability's default_roles (filtered by
+	 * floor) onto the roles on first seed, and leaves no-default capabilities
+	 * (e.g. the site-wide "dismiss any" cap) unassigned.
+	 *
+	 * @return void
+	 */
+	public function test_defaults_are_seeded_onto_roles() {
+		// Clean slate: nothing seeded, no role map, no legacy config pending.
+		delete_option( self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edacp_ignore_user_roles' );
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+
+		edac_seed_default_capabilities();
+		// Apply the seeded role map deterministically (the seeder writes the option;
+		// this reflects it onto the roles without depending on the option hook).
+		edac_ignore_capability()->sync_matrix( (array) get_option( self::ROLE_MAP_OPTION, [] ) );
+
+		$role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
+
+		// edac_dismiss_own_issues defaults to editor + author + contributor (all
+		// meet its edit_posts floor).
+		$this->assertEqualsCanonicalizing( [ 'editor', 'author', 'contributor' ], $role_map[ self::CAP ], 'dismiss-own should seed to editor, author, contributor.' );
+		// The highlighter defaults to editor + author only.
+		$this->assertEqualsCanonicalizing( [ 'editor', 'author' ], $role_map['edac_view_frontend_highlighter'], 'highlighter should seed to editor and author.' );
+		// The site-wide "dismiss any" cap has no default and must not be seeded.
+		$this->assertArrayNotHasKey( 'edac_dismiss_issues', $role_map, 'dismiss-any has no default and must not be seeded.' );
+
+		// The caps are actually applied to the roles, and the floor keeps them off
+		// a role that does not qualify (subscriber lacks edit_posts).
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ) );
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::CAP ) );
+		$this->assertTrue( wp_roles()->get_role( 'contributor' )->has_cap( self::CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'subscriber' )->has_cap( self::CAP ) );
+
+		// Cleanup so later tests start from the shared no-caps baseline.
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+	}
 }
