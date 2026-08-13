@@ -301,77 +301,45 @@ function edac_default_capability_role_map(): array {
 }
 
 /**
- * Seed a capability's default role assignments the first time it appears.
+ * Seed the default capability role map on a genuinely fresh install.
  *
- * Runs on init before SyncCapability::reconcile() (priority 10). Each capability
- * is seeded from its defaults exactly once (tracked in edac_capability_defaults_seeded),
- * so an add-on activated later gets its defaults, an admin who unchecks a default
- * is not re-seeded, and existing assignments (including a legacy migration) are
- * never overwritten.
+ * Called once from edac_activation() (which detects a first install from the
+ * absence of a prior edac_activation_date). Seeding lives at activation, not on
+ * init, so the two install paths are cleanly separated by their entry point:
  *
- * Fresh installs receive the full suite of default grants. Sites migrating from
- * the legacy "Ignore Permissions" setting deliberately do NOT: they keep exactly
- * the grants that setting gave them (the dismiss family, carried by the engine's
- * migration) and are not handed fresh-install defaults for capabilities the
- * legacy setting never governed - most notably the front-end highlighter. See
- * the legacy-pending branch below.
+ * - A FRESH install runs the activation hook -> this seeds the full default suite
+ *   and stamps the capability migration as already satisfied, so the init-time
+ *   migration in SyncCapability::reconcile() never runs against it.
+ * - A site UPGRADING from the pre-capability release does NOT run the activation
+ *   hook (activation hooks do not fire on plugin update); it is handled entirely
+ *   by that version-gated migration, which carries over only the grants the legacy
+ *   "Ignore Permissions" setting actually gave and never the fresh-install
+ *   defaults.
+ *
+ * This replaces an init-time seeder whose fresh-vs-migrating detection had to
+ * guess from option state - and mis-fired, because edac_activation() used to seed
+ * edacp_ignore_user_roles = ['administrator'], making every fresh install look
+ * like a migrating one and silently skip its default grants.
  *
  * @return void
  */
-function edac_seed_default_capabilities(): void {
-	// A site with real legacy config is migrating, not installing fresh. The
-	// engine's migration (reconcile(), priority 10) seeds only the capabilities
-	// the legacy setting actually governed - the dismiss family. A migrating site
-	// must keep exactly those grants and nothing more, so mark every currently
-	// registered capability as already seeded before bailing: the migration owns
-	// their grants and this seeder will never back-fill fresh-install defaults for
-	// them on a later request (e.g. it must never grant the highlighter to
-	// editor/author on an established site). Capabilities contributed by an add-on
-	// activated AFTER migration are not in this snapshot, so they still receive
-	// their own defaults when they first appear. An empty legacy value is a fresh
-	// install with nothing to migrate, so defaults apply normally.
-	$legacy_pending = ! empty( get_option( 'edacp_ignore_user_roles', [] ) )
-		&& null === get_option( 'edac_capability_role_map', null );
-	if ( $legacy_pending ) {
-		$seeded = get_option( 'edac_capability_defaults_seeded', [] );
-		$seeded = is_array( $seeded ) ? $seeded : [];
-		$seeded = array_values( array_unique( array_merge( $seeded, array_keys( edac_capability_metadata() ) ) ) );
-		update_option( 'edac_capability_defaults_seeded', $seeded );
-		return;
-	}
-
-	$seeded = get_option( 'edac_capability_defaults_seeded', [] );
-	$seeded = is_array( $seeded ) ? $seeded : [];
-
-	$role_map = get_option( 'edac_capability_role_map', [] );
-	$role_map = is_array( $role_map ) ? $role_map : [];
-
+function edac_seed_capability_defaults_on_install(): void {
 	$defaults = edac_default_capability_role_map();
-	$changed  = false;
 
-	foreach ( edac_capability_metadata() as $slug => $meta ) {
-		if ( in_array( $slug, $seeded, true ) ) {
-			continue;
-		}
+	update_option( 'edac_capability_role_map', $defaults );
+	// Record every registered capability as seeded so its default is never offered
+	// again - an admin who later unchecks one is respected.
+	update_option(
+		'edac_capability_defaults_seeded',
+		array_values( array_filter( array_map( 'strval', array_keys( edac_capability_metadata() ) ) ) )
+	);
+	// Stamp the migration as satisfied: a fresh install has no legacy config, and
+	// this marks it current so reconcile() can never treat it as a legacy site.
+	update_option( 'edac_capability_migration_version_edac_capability_role_map', EDAC_CAPABILITY_MIGRATION_VERSION );
 
-		// Only seed a capability that has no assignment yet, so we never clobber
-		// an admin's choice or a migrated legacy value.
-		if ( ! isset( $role_map[ $slug ] ) && ! empty( $defaults[ $slug ] ) ) {
-			$role_map[ $slug ] = $defaults[ $slug ];
-			$changed           = true;
-		}
-
-		$seeded[] = $slug;
-	}
-
-	update_option( 'edac_capability_defaults_seeded', $seeded );
-
-	if ( $changed ) {
-		// Writing the option fires SyncCapability's option hook, which applies it.
-		update_option( 'edac_capability_role_map', $role_map );
-	}
+	// Apply immediately so roles carry the granted caps without waiting for init.
+	edac_ignore_capability()->sync_matrix( $defaults );
 }
-add_action( 'init', 'edac_seed_default_capabilities', 5 );
 
 /**
  * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
