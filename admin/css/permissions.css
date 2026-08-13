@@ -181,12 +181,16 @@
 .edac-perm-cap__reason {
 	display: block;
 	margin: 0.4rem 0 0 1.5rem;
-	color: #737373;
 	font-size: 0.875rem;
 	line-height: 1.5;
 }
 
+.edac-perm-cap__desc {
+	color: #484848;
+}
+
 .edac-perm-cap__reason {
+	color: #737373;
 	font-style: italic;
 }
 
