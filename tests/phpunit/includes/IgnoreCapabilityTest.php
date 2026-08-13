@@ -147,6 +147,63 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A migrating site keeps ONLY the grants the legacy "Ignore Permissions"
+	 * setting gave it. The defaults seeder must not back-fill fresh-install
+	 * defaults - e.g. the front-end highlighter - on the request after the
+	 * migration populates the role map (the map is no longer null then, so the
+	 * legacy-pending guard would otherwise open). Fresh-install seeding is covered
+	 * separately by test_defaults_are_seeded_onto_roles.
+	 *
+	 * @return void
+	 */
+	public function test_migrating_site_is_not_back_filled_with_defaults() {
+		// Migrating-site slate: legacy config present, nothing seeded, no role map,
+		// migration boundary not yet crossed.
+		delete_option( self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_synced_capabilities_' . self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+		update_option( 'edacp_ignore_user_roles', [ 'editor' ] );
+
+		// Request 1: the seeder bails (legacy pending) but marks caps seeded, then
+		// the engine migration seeds only the dismiss family.
+		edac_seed_default_capabilities();
+		edac_ignore_capability()->reconcile();
+
+		// Request 2: the seeder runs now that the role map is populated. It must
+		// not grant the highlighter the legacy setting never governed.
+		edac_seed_default_capabilities();
+		edac_ignore_capability()->sync_matrix( (array) get_option( self::ROLE_MAP_OPTION, [] ) );
+
+		$role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
+
+		// The migrated dismiss capability IS present for the legacy role.
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'The migrated dismiss capability must be granted to the legacy role.' );
+
+		// The highlighter default must NOT be back-filled onto a migrating site.
+		$this->assertArrayNotHasKey( 'edac_view_frontend_highlighter', $role_map, 'A migrating site must not be seeded the highlighter default.' );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( 'edac_view_frontend_highlighter' ), 'The highlighter must not be granted to editor on a migrating site.' );
+		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_view_frontend_highlighter' ), 'The highlighter must not be granted to author on a migrating site.' );
+
+		// The highlighter is recorded as seeded by the bail, so it is never
+		// re-evaluated on any later request.
+		$seeded = (array) get_option( 'edac_capability_defaults_seeded', [] );
+		$this->assertContains( 'edac_view_frontend_highlighter', $seeded, 'The migration bail must mark the highlighter as seeded so it is never back-filled.' );
+
+		// Cleanup so later tests start from the shared no-caps baseline.
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+		delete_option( 'edac_capability_defaults_seeded' );
+		update_option( 'edacp_ignore_user_roles', [] );
+	}
+
+	/**
 	 * The top-level menu is shown to a capability holder even without edit_posts
 	 * (PRO-1283): a role granted an Accessibility Checker capability must be able
 	 * to reach its page, which requires the parent menu to register.
