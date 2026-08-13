@@ -438,7 +438,7 @@ class AccessibilityCheckerHighlight {
 			computePosition( element, tooltip, {
 				placement: 'top-start',
 				middleware: [],
-			} ).then( ( { x, y } ) => {
+			} ).then( ( { x } ) => {
 				const elRect = element.getBoundingClientRect();
 				const elHeight = element.offsetHeight === undefined ? 0 : element.offsetHeight;
 				const tooltipHeight = tooltip.offsetHeight === undefined ? 0 : tooltip.offsetHeight;
@@ -449,15 +449,23 @@ class AccessibilityCheckerHighlight {
 
 				// Start with the position from computePosition
 				const finalLeft = x + left;
-				let finalTop = y;
 
-				// Special handling for zero-height elements (like empty <p> tags)
-				// When an element has no height, computePosition may not calculate y correctly
-				// Use the element's bounding rect top position adjusted for tooltip height
+				// Compute the vertical position directly from the target's viewport
+				// rect + scroll rather than trusting floating-ui's `y`. floating-ui's
+				// "absolute" strategy math doesn't account for a margin-top on the
+				// <html> element itself — which is exactly what WordPress sets
+				// (`html { margin-top: 32px !important }`) to make room for the
+				// admin bar on the front end for logged-in users — so `y` ends up
+				// off by roughly that margin, placing every tooltip too high. Since
+				// placement is a fixed 'top-start' with no flip/shift middleware,
+				// floating-ui isn't doing anything here this direct calculation
+				// doesn't already cover.
+				let finalTop = elRect.top + document.documentElement.scrollTop - tooltipHeight;
+
+				// Special handling for zero-height elements (like empty <p> tags):
+				// leave a small gap instead of sitting flush against the target.
 				if ( elHeight === 0 && elRect.height === 0 ) {
-					// Element has no visual height
-					// Position tooltip above where the element is in the document
-					finalTop = elRect.top + document.documentElement.scrollTop - tooltipHeight - 5;
+					finalTop -= 5;
 				}
 
 				// Note: We do NOT clamp to viewport boundaries
