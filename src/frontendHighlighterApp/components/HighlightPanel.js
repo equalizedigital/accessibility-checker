@@ -30,6 +30,8 @@ import './HighlightIssueView.js';
 
 const DRAG_THRESHOLD = 4;
 
+const TITLE_ICON_URI = "data:image/svg+xml;utf8,<svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(%23clip0_0_1)'><path d='M11.6841 23.0679C17.9712 23.0679 23.0679 17.9712 23.0679 11.6841C23.0679 5.39699 17.9712 0.300293 11.6841 0.300293C5.39698 0.300293 0.300285 5.39699 0.300285 11.6841C0.300285 17.9712 5.39698 23.0679 11.6841 23.0679Z' fill='white'/><path d='M11.6808 0.689766C17.8291 0.689871 22.8136 5.67427 22.8136 11.8226C22.8135 17.9708 17.829 22.9553 11.6808 22.9554C5.53246 22.9554 0.548063 17.9709 0.547958 11.8226C0.547958 5.6742 5.5324 0.689766 11.6808 0.689766Z' fill='%23FACB00' stroke='%23002449'/><path d='M18.0318 8.24537C18.0318 7.92632 17.7899 7.66565 17.4917 7.66565H15.7067L15.3 8.39551H17.3499V14.9851H5.73673V8.39551H11.8655L12.27 7.66565H5.59492C5.29672 7.66565 5.05482 7.92423 5.05482 8.24537V15.7192H18.0318V8.24537Z' fill='%23002449'/><path d='M11.1878 13.5254L7.7866 10.4537H9.11286L10.9563 12.0845L14.2448 6.28725H15.3L11.1878 13.5254Z' fill='%23002449'/><path d='M12.952 16.4887L12.8018 16.7806H10.2848L10.1347 16.4887H3.6952C3.6952 16.9453 4.04136 17.3144 4.46677 17.3144H18.622C19.0474 17.3144 19.3935 16.9453 19.3935 16.4887H12.954H12.952Z' fill='%23002449'/></g><defs><clipPath id='clip0_0_1'><rect width='23.4411' height='24' fill='white'/></clipPath></defs></svg>";
+
 class HighlightPanel extends HTMLElement {
 	static get observedAttributes() {
 		return [ 'open', 'docked', 'position' ];
@@ -118,6 +120,16 @@ class HighlightPanel extends HTMLElement {
 					width: auto;
 				}
 
+				:host([docked]:not([position="left"])) {
+					right: 0;
+					left: auto;
+				}
+
+				:host([docked][position="left"]) {
+					left: 0;
+					right: auto;
+				}
+
 				.edac-sr-only {
 					position: absolute;
 					width: 1px;
@@ -159,6 +171,21 @@ class HighlightPanel extends HTMLElement {
 					box-shadow: none;
 				}
 
+				/*
+				 * This element is itself position:fixed when docked, so it
+				 * needs its own left/right — it can't rely on the (zero-size,
+				 * since its fixed child is out of flow) :host box for that.
+				 */
+				:host([docked]:not([position="left"])) .edac-highlight-panel-controls {
+					right: 0;
+					left: auto;
+				}
+
+				:host([docked][position="left"]) .edac-highlight-panel-controls {
+					left: 0;
+					right: auto;
+				}
+
 				.edac-highlight-panel-controls-header {
 					display: flex;
 					align-items: center;
@@ -181,6 +208,16 @@ class HighlightPanel extends HTMLElement {
 					font-weight: 700;
 					flex: 1;
 					color: #fff;
+				}
+
+				.edac-highlight-panel-controls-title-icon {
+					display: inline-block;
+					flex-shrink: 0;
+					width: 24px;
+					height: 24px;
+					background-image: url("${ TITLE_ICON_URI }");
+					background-repeat: no-repeat;
+					background-size: contain;
 				}
 
 				.edac-highlight-panel-controls-header-actions {
@@ -451,7 +488,7 @@ class HighlightPanel extends HTMLElement {
 			return;
 		}
 
-		this.titleEl.innerHTML = `<span aria-hidden="true">&#9989;</span> ${ this._t( 'panelTitle', 'Accessibility Checker' ) }`;
+		this.titleEl.innerHTML = `<span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span> ${ this._t( 'panelTitle', 'Accessibility Checker' ) }`;
 
 		const issue = this._currentIndex !== null ? this._issues[ this._currentIndex ] : null;
 
