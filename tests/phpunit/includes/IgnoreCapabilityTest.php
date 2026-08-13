@@ -15,7 +15,6 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 	private const CAP             = 'edac_dismiss_own_issues';
 	private const ROLE_MAP_OPTION = 'edac_capability_role_map';
-	private const USER_GRANTS_OPT = 'edac_capability_user_grants';
 
 	/**
 	 * Reset roles, users and the matrix/bookkeeping options after each test.
@@ -29,10 +28,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		foreach (
 			[
 				self::ROLE_MAP_OPTION,
-				self::USER_GRANTS_OPT,
 				'edac_synced_capabilities_' . self::ROLE_MAP_OPTION,
 				'edac_capability_migration_version_' . self::ROLE_MAP_OPTION,
-				'edac_synced_user_grants_' . self::ROLE_MAP_OPTION,
 			] as $option
 		) {
 			delete_option( $option );
@@ -147,26 +144,6 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_roles()->get_role( 'author' )->has_cap( 'edac_dismiss_issues' ), 'The legacy setting never granted site-wide dismiss.' );
 
 		update_option( 'edacp_ignore_user_roles', [] );
-	}
-
-	/**
-	 * A capability granted directly to a user passes the helper for that user.
-	 *
-	 * @return void
-	 */
-	public function test_per_user_grant_passes_helper() {
-		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-
-		edac_ignore_capability()->sync_user_grants( [ self::CAP => [ $user_id ] ] );
-
-		wp_set_current_user( $user_id );
-		$this->assertTrue( edac_user_can_dismiss_own_issues() );
-
-		edac_ignore_capability()->sync_user_grants( [ self::CAP => [] ] );
-		// Reload the current user so its cached capabilities reflect the revoke.
-		wp_set_current_user( 0 );
-		wp_set_current_user( $user_id );
-		$this->assertFalse( edac_user_can_dismiss_own_issues() );
 	}
 
 	/**

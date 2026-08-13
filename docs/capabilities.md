@@ -83,11 +83,14 @@ bordered card per owning plugin. Floor-ineligible capabilities are shown disable
 ## Sync engine, defaults, and migration
 
 The engine is `SyncCapability` (`includes/classes/Capabilities/SyncCapability.php`), constructed by
-`edac_ignore_capability()` on `plugins_loaded`. It reads two options:
+`edac_ignore_capability()` on `plugins_loaded`. It reads a single option:
 
 - `edac_capability_role_map` — `[ capability => [ role, … ] ]`, the role matrix.
-- `edac_capability_user_grants` — `[ capability => [ user_id, … ] ]`, snapshot-diffed so unchecking a
-  user revokes only the direct grant the engine itself applied.
+
+Capabilities are only ever assigned to **roles**. The engine has no per-user grant surface; a site that
+needs to grant a capability to one specific user uses WordPress's own `$user->add_cap()` (see
+[Granting to one specific user](#granting-a-capability-to-one-specific-user)), which lives on the user
+object and is untouched by the engine.
 
 **Defaults.** On first activation, `edac_seed_default_capabilities()` (`init`, priority 5) seeds each
 capability's `default_roles` once — tracked in the `edac_capability_defaults_seeded` option — filtered
@@ -108,21 +111,24 @@ edit_post-gated behavior is own-scoped, so they are never promoted to the site-w
 `edac_dismiss_issues`) and `edac_ignore_issues_globally` to `edac_dismiss_issues_globally`, stripping
 the retired slugs. The deprecated `EDAC_CAPABILITY_IGNORE_*` constants are retained.
 
-**`reconcile()`** runs on `init`, self-heals the role/user grants from the options, and is where both
-the defaults and migration are applied.
+**`reconcile()`** runs on `init`, re-applies the role matrix from the option when the bundle or the map
+has changed (or the migration boundary was crossed), and is where both the defaults and migration are
+applied.
 
 ## Lifecycle: activation, deactivation, uninstall
 
 - **Activating** an add-on registers its capabilities and, on first activation, seeds their defaults.
 - **Deactivating** an add-on does **not** revoke its capabilities. A capability that leaves the bundle
-  is intentionally left on whatever roles/users held it, so reactivating the add-on restores access
+  is intentionally left on whatever roles held it, so reactivating the add-on restores access
   seamlessly (`SyncCapability::reconcile()` no longer strips departed capabilities).
 - **Uninstalling** cleans up. Capability cleanup lives **only in the free plugin's `uninstall.php`**,
   and only when the site's existing `edac_delete_data` setting is on. It removes the capability-system
   options and strips the managed capability set from every role. The managed set is computed as
-  `role_map keys ∪ user_grants keys ∪ defaults_seeded keys` — **not** a broad `edac_*` prefix — so
-  unrelated capabilities such as `edac_upload_pdf` are never touched, while orphans left by an add-on
-  that was uninstalled earlier are still caught. Add-ons carry no capability cleanup of their own.
+  `role_map keys ∪ defaults_seeded keys` — **not** a broad `edac_*` prefix — so unrelated capabilities
+  such as `edac_upload_pdf` are never touched, while orphans left by an add-on that was uninstalled
+  earlier are still caught. Add-ons carry no capability cleanup of their own. Capabilities added
+  directly to a user via `$user->add_cap()` live on the user object, not on a role, so uninstall does
+  not strip them — remove those the same way you added them.
 
 ## Feature-specific enforcement notes
 
@@ -201,19 +207,18 @@ add_filter(
 );
 ```
 
-Once registered, the free plugin syncs the capability onto the assigned roles/users, shows it in the
+Once registered, the free plugin syncs the capability onto the assigned roles, shows it in the
 Permissions matrix under its `group`, seeds its `default_roles` on first activation, and enforces its
 `floor` everywhere.
 
 ## Granting a capability to one specific user
 
-There is no dedicated admin screen for granting one of these capabilities to an individual user,
-independent of their role (the engine supports per-user grants programmatically via
-`edac_capability_user_grants`, but the UI for it was removed). If you need to grant one Editor access
-without granting the whole role, WordPress's own user-capability API works directly and coexists
-safely with the role matrix: a capability added straight to a user's account is stored separately from
-anything granted via their role, so later changes to the role matrix never remove an
-individually-granted capability, and vice versa.
+The plugin grants capabilities to **roles** only — there is no per-user grant surface, neither an admin
+screen nor an engine mechanism. If you need to grant one Editor access without granting the whole role,
+WordPress's own user-capability API works directly and coexists safely with the role matrix: a
+capability added straight to a user's account is stored separately from anything granted via their
+role, so later changes to the role matrix never remove an individually-granted capability, and vice
+versa.
 
 Add a snippet like this to a site-specific plugin (not a theme's `functions.php`, since switching
 themes would silently remove it):

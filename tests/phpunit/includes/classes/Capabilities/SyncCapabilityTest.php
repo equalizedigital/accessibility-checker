@@ -15,11 +15,10 @@ use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
  */
 class SyncCapabilityTest extends WP_UnitTestCase {
 
-	private const TEST_CAP           = 'edac_test_synced_capability';
-	private const TEST_CAP_2         = 'edac_test_synced_capability_two';
-	private const ROLE_MAP_OPTION    = 'edac_test_capability_role_map';
-	private const USER_GRANTS_OPTION = 'edac_test_capability_user_grants';
-	private const LEGACY_OPTION      = 'edac_test_legacy_roles';
+	private const TEST_CAP        = 'edac_test_synced_capability';
+	private const TEST_CAP_2      = 'edac_test_synced_capability_two';
+	private const ROLE_MAP_OPTION = 'edac_test_capability_role_map';
+	private const LEGACY_OPTION   = 'edac_test_legacy_roles';
 
 	/**
 	 * Remove the capabilities from every role and clear all option markers so
@@ -35,11 +34,9 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		foreach (
 			[
 				self::ROLE_MAP_OPTION,
-				self::USER_GRANTS_OPTION,
 				self::LEGACY_OPTION,
 				'edac_synced_capabilities_' . self::ROLE_MAP_OPTION,
 				'edac_capability_migration_version_' . self::ROLE_MAP_OPTION,
-				'edac_synced_user_grants_' . self::ROLE_MAP_OPTION,
 			] as $option
 		) {
 			delete_option( $option );
@@ -56,7 +53,7 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	 * @return SyncCapability
 	 */
 	private function make( $caps = self::TEST_CAP, string $migration_version = '0' ): SyncCapability {
-		return new SyncCapability( $caps, self::ROLE_MAP_OPTION, self::USER_GRANTS_OPTION, $migration_version, self::LEGACY_OPTION );
+		return new SyncCapability( $caps, self::ROLE_MAP_OPTION, $migration_version, self::LEGACY_OPTION );
 	}
 
 	/**
@@ -112,7 +109,6 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$capability = new SyncCapability(
 			self::TEST_CAP,
 			self::ROLE_MAP_OPTION,
-			self::USER_GRANTS_OPTION,
 			'0',
 			self::LEGACY_OPTION,
 			$floor
@@ -140,7 +136,6 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$capability = new SyncCapability(
 			self::TEST_CAP,
 			self::ROLE_MAP_OPTION,
-			self::USER_GRANTS_OPTION,
 			'1.0.0',
 			self::LEGACY_OPTION,
 			$floor
@@ -319,44 +314,19 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The sync_user_grants() call grants a capability directly to a user and
-	 * revokes it when the user is dropped from the grants (via the snapshot diff).
+	 * The revoke() call removes a capability from every role.
 	 *
 	 * @return void
 	 */
-	public function test_sync_user_grants_grants_and_revokes_per_user() {
-		$capability = $this->make();
-		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		$other_id   = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-
-		$capability->sync_user_grants( [ self::TEST_CAP => [ $user_id ] ] );
-
-		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
-		$this->assertFalse( user_can( $other_id, self::TEST_CAP ) );
-		$this->assertSame( [ $user_id ], get_option( 'edac_synced_user_grants_' . self::ROLE_MAP_OPTION )[ self::TEST_CAP ] );
-
-		$capability->sync_user_grants( [ self::TEST_CAP => [] ] );
-		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
-	}
-
-	/**
-	 * The revoke() call removes a capability from roles and from granted users.
-	 *
-	 * @return void
-	 */
-	public function test_revoke_removes_from_roles_and_granted_users() {
+	public function test_revoke_removes_from_roles() {
 		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
-		$user_id    = self::factory()->user->create( [ 'role' => 'subscriber' ] );
 
 		$capability->sync_matrix( [ self::TEST_CAP => [ 'editor' ] ] );
-		$capability->sync_user_grants( [ self::TEST_CAP => [ $user_id ] ] );
 		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
-		$this->assertTrue( user_can( $user_id, self::TEST_CAP ) );
 
 		$capability->revoke( [ self::TEST_CAP ] );
 
 		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
-		$this->assertFalse( user_can( $user_id, self::TEST_CAP ) );
 	}
 
 	/**
@@ -457,7 +427,6 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$capability = new SyncCapability(
 			self::TEST_CAP_2,
 			self::ROLE_MAP_OPTION,
-			self::USER_GRANTS_OPTION,
 			'2.0.0',
 			self::LEGACY_OPTION,
 			null,
@@ -490,7 +459,6 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$capability = new SyncCapability(
 			[ self::TEST_CAP, self::TEST_CAP_2 ],
 			self::ROLE_MAP_OPTION,
-			self::USER_GRANTS_OPTION,
 			'2.0.0',
 			self::LEGACY_OPTION,
 			null,

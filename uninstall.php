@@ -75,10 +75,13 @@ if ( true === (bool) $edac_delete_data ) {
 	// capabilities on their own deactivation or uninstall.
 	$edac_capability_options = [
 		'edac_capability_role_map',
-		'edac_capability_user_grants',
 		'edac_capability_defaults_seeded',
 		'edac_synced_capabilities_edac_capability_role_map',
 		'edac_capability_migration_version_edac_capability_role_map',
+		// Legacy options from the removed per-user grant subsystem. Never shipped
+		// in a release, but delete them defensively so a dev/staging site that ran
+		// an intermediate build does not leave orphaned rows behind.
+		'edac_capability_user_grants',
 		'edac_synced_user_grants_edac_capability_role_map',
 	];
 
@@ -88,11 +91,9 @@ if ( true === (bool) $edac_delete_data ) {
 	// earlier are still cleaned up, while unrelated edac_* capabilities that are
 	// not part of this system (e.g. edac_upload_pdf) are left untouched.
 	$edac_managed_caps = [];
-	foreach ( [ 'edac_capability_role_map', 'edac_capability_user_grants' ] as $edac_map_option ) {
-		$edac_map = get_option( $edac_map_option, [] );
-		if ( is_array( $edac_map ) ) {
-			$edac_managed_caps = array_merge( $edac_managed_caps, array_keys( $edac_map ) );
-		}
+	$edac_role_map     = get_option( 'edac_capability_role_map', [] );
+	if ( is_array( $edac_role_map ) ) {
+		$edac_managed_caps = array_merge( $edac_managed_caps, array_keys( $edac_role_map ) );
 	}
 	$edac_seeded = get_option( 'edac_capability_defaults_seeded', [] );
 	if ( is_array( $edac_seeded ) ) {

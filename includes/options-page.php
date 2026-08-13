@@ -377,7 +377,6 @@ function edac_ignore_capability(): SyncCapability {
 		$capability = new SyncCapability(
 			edac_capability_bundle(),
 			'edac_capability_role_map',    // Per-capability role assignments.
-			'edac_capability_user_grants', // Per-capability user grants.
 			EDAC_CAPABILITY_MIGRATION_VERSION,
 			'edacp_ignore_user_roles',     // Legacy option seeded into the map on migration.
 			// Floor policy: never grant a capability to a role whose live
@@ -411,8 +410,8 @@ function edac_ignore_capability(): SyncCapability {
 // bundle via the filter regardless of plugin load order.
 add_action( 'plugins_loaded', 'edac_ignore_capability', 20 );
 
-// Register the Permissions page request handlers (admin-post save + REST user
-// search) on every request. The tab UI itself is wired later on admin_menu.
+// Register the Permissions page request handler (admin-post save) on every
+// request. The tab UI itself is wired later on admin_menu.
 add_action(
 	'plugins_loaded',
 	function () {

@@ -1,7 +1,7 @@
 <?php
 /**
- * Class file for WordPress capabilities synced onto roles and users from
- * option-backed assignment maps.
+ * Class file for WordPress capabilities synced onto roles from an
+ * option-backed assignment map.
  *
  * @package Accessibility_Checker
  */
@@ -9,16 +9,19 @@
 namespace EqualizeDigital\AccessibilityChecker\Capabilities;
 
 /**
- * Keeps a bundle of real WordPress capabilities in sync with two option-backed
- * assignment maps - a per-capability role map and a per-capability user-grant
- * map - with a manage_options bypass and a plugin-version-gated migration.
+ * Keeps a bundle of real WordPress capabilities in sync with an option-backed
+ * per-capability role map, with a manage_options bypass and a plugin-version-gated
+ * migration.
  *
  * The generic primitive is sync_role_capability(): grant or revoke one
  * capability on one role. sync_matrix() applies a whole capability=>roles map on
- * top of it; sync_user_grants() does the same for capability=>user-ids using a
- * stored snapshot so unchecking a user revokes the direct grant. reconcile()
- * ties them together on init and also revokes capabilities that have left the
- * bundle (an add-on that contributed one was deactivated).
+ * top of it. reconcile() ties it together on init and re-applies the map when the
+ * bundle or the map has changed, or the site crossed the migration boundary.
+ *
+ * Capabilities are only ever assigned to roles. There is no per-user grant
+ * surface in the plugin; a site that needs to grant a capability to one specific
+ * user uses WordPress's own $user->add_cap(), which lives on the user object and
+ * is untouched by this class.
  *
  * This class only ever writes the role/capability relationship; it does not
  * answer "can the current user do X" for the rest of the plugin family - see
@@ -39,14 +42,6 @@ class SyncCapability {
 	 * @var string
 	 */
 	private string $role_map_option;
-
-	/**
-	 * Option holding the per-capability user-grant map:
-	 * [ capability => [user_id, …] ]. Empty string disables user grants.
-	 *
-	 * @var string
-	 */
-	private string $user_grants_option;
 
 	/**
 	 * Plugin version at/after which to force a one-time re-sync (and seed the
@@ -78,8 +73,8 @@ class SyncCapability {
 
 	/**
 	 * Map of renamed capabilities [ old_slug => new_slug ], applied once during
-	 * the version migration: role-map and user-grant entries move from the old
-	 * slug to the new, and the old capability is stripped from every role/user.
+	 * the version migration: role-map entries move from the old slug to the new,
+	 * and the old capability is stripped from every role.
 	 *
 	 * @var array<string, string>
 	 */
@@ -101,7 +96,6 @@ class SyncCapability {
 	 *
 	 * @param string|string[]       $capabilities        A single capability or the bundle of capabilities to manage.
 	 * @param string                $role_map_option     Option holding [ capability => [role, …] ].
-	 * @param string                $user_grants_option  Option holding [ capability => [user_id, …] ]. '' disables user grants.
 	 * @param string                $migration_version   Plugin version to force a one-time re-sync/seed ('0' disables).
 	 * @param string                $legacy_roles_option Legacy roles option to seed the map from on migration ('' disables).
 	 * @param callable|null         $floor_check         Optional `fn(string $role, string $cap): bool` floor policy; null disables it.
@@ -113,7 +107,6 @@ class SyncCapability {
 	public function __construct(
 		$capabilities,
 		string $role_map_option,
-		string $user_grants_option = '',
 		string $migration_version = '0',
 		string $legacy_roles_option = '',
 		?callable $floor_check = null,
@@ -129,7 +122,6 @@ class SyncCapability {
 		sort( $this->capabilities );
 
 		$this->role_map_option     = $role_map_option;
-		$this->user_grants_option  = $user_grants_option;
 		$this->migration_version   = $migration_version;
 		$this->legacy_roles_option = $legacy_roles_option;
 		$this->floor_check         = $floor_check;
@@ -174,20 +166,6 @@ class SyncCapability {
 				$this->sync_matrix( [] );
 			}
 		);
-
-		if ( '' !== $this->user_grants_option ) {
-			$apply_user_grants = function ( $a, $b = null ) {
-				$this->sync_user_grants( (array) ( null === $b ? $a : $b ) );
-			};
-			add_action( "add_option_{$this->user_grants_option}", $apply_user_grants, 10, 2 );
-			add_action( "update_option_{$this->user_grants_option}", $apply_user_grants, 10, 2 );
-			add_action(
-				"delete_option_{$this->user_grants_option}",
-				function () {
-					$this->sync_user_grants( [] );
-				}
-			);
-		}
 
 		// init, not admin_init: menu (admin_menu) and REST (rest_api_init)
 		// capability checks fire before admin_init on their request types, so
@@ -289,58 +267,8 @@ class SyncCapability {
 	}
 
 	/**
-	 * Apply a per-capability user-grant map, diffing against the snapshot of
-	 * grants we last applied so that removing a user revokes their direct
-	 * capability without touching grants made elsewhere.
-	 *
-	 * @param array $user_map [ capability => [user_id, …] ].
-	 * @return void
-	 */
-	public function sync_user_grants( array $user_map ): void {
-		if ( '' === $this->user_grants_option ) {
-			return;
-		}
-
-		$snapshot = (array) get_option( $this->user_grants_synced_option_name(), [] );
-		$applied  = [];
-
-		// Union of capabilities we manage now and any we granted before, so
-		// grants for a capability that has left the bundle are also revoked.
-		$cap_slugs = array_unique( array_merge( $this->capabilities, array_keys( $snapshot ) ) );
-
-		foreach ( $cap_slugs as $capability ) {
-			$desired  = isset( $user_map[ $capability ] ) && is_array( $user_map[ $capability ] ) ? array_map( 'intval', $user_map[ $capability ] ) : [];
-			$previous = isset( $snapshot[ $capability ] ) && is_array( $snapshot[ $capability ] ) ? array_map( 'intval', $snapshot[ $capability ] ) : [];
-
-			// A capability no longer in the bundle should hold no grants.
-			if ( ! in_array( $capability, $this->capabilities, true ) ) {
-				$desired = [];
-			}
-
-			foreach ( array_diff( $desired, $previous ) as $user_id ) {
-				$user = get_user_by( 'id', $user_id );
-				if ( $user ) {
-					$user->add_cap( $capability );
-				}
-			}
-			foreach ( array_diff( $previous, $desired ) as $user_id ) {
-				$user = get_user_by( 'id', $user_id );
-				if ( $user ) {
-					$user->remove_cap( $capability );
-				}
-			}
-
-			if ( [] !== $desired ) {
-				$applied[ $capability ] = array_values( $desired );
-			}
-		}
-
-		update_option( $this->user_grants_synced_option_name(), $applied );
-	}
-
-	/**
-	 * Revoke the given capabilities from every role and from every user we
-	 * granted them to. Used to clean up capabilities that have left the bundle.
+	 * Revoke the given capabilities from every role. Used to clean up
+	 * capabilities that have left the bundle.
 	 *
 	 * @param string[] $capabilities Capabilities to remove everywhere.
 	 * @return void
@@ -354,29 +282,6 @@ class SyncCapability {
 			foreach ( $capabilities as $capability ) {
 				$this->sync_role_capability( $role_slug, $capability, false );
 			}
-		}
-
-		if ( '' === $this->user_grants_option ) {
-			return;
-		}
-
-		$snapshot = (array) get_option( $this->user_grants_synced_option_name(), [] );
-		$changed  = false;
-		foreach ( $capabilities as $capability ) {
-			if ( empty( $snapshot[ $capability ] ) ) {
-				continue;
-			}
-			foreach ( (array) $snapshot[ $capability ] as $user_id ) {
-				$user = get_user_by( 'id', (int) $user_id );
-				if ( $user ) {
-					$user->remove_cap( $capability );
-				}
-			}
-			unset( $snapshot[ $capability ] );
-			$changed = true;
-		}
-		if ( $changed ) {
-			update_option( $this->user_grants_synced_option_name(), $snapshot );
 		}
 	}
 
@@ -401,30 +306,18 @@ class SyncCapability {
 	}
 
 	/**
-	 * Option storing the snapshot of per-user grants we last applied.
-	 *
-	 * @return string
-	 */
-	private function user_grants_synced_option_name(): string {
-		return 'edac_synced_user_grants_' . $this->role_map_option;
-	}
-
-	/**
 	 * Apply the configured capability renames once. For each [ old => new ]:
-	 * move the role-map and user-grant list from the old slug to the new (merging
-	 * and de-duplicating), then strip the old capability off every role. The new
-	 * capability is granted, and the old grant revoked from users, by the
-	 * sync_matrix()/sync_user_grants() calls that follow in reconcile() (the user
-	 * side self-heals from the grant snapshot; the role side does not, so the old
-	 * role cap is removed explicitly here).
+	 * move the role-map list from the old slug to the new (merging and
+	 * de-duplicating), then strip the old capability off every role. The new
+	 * capability is granted by the sync_matrix() call that follows in reconcile();
+	 * the old role cap is removed explicitly here because sync_matrix() only
+	 * manages current-bundle slugs.
 	 *
 	 * @return void
 	 */
 	private function apply_renames(): void {
-		$role_map    = (array) get_option( $this->role_map_option, [] );
-		$user_grants = '' !== $this->user_grants_option ? (array) get_option( $this->user_grants_option, [] ) : [];
-		$role_dirty  = false;
-		$grant_dirty = false;
+		$role_map   = (array) get_option( $this->role_map_option, [] );
+		$role_dirty = false;
 
 		foreach ( $this->capability_renames as $from => $to ) {
 			$from = (string) $from;
@@ -438,14 +331,6 @@ class SyncCapability {
 				$role_dirty = true;
 			}
 
-			if ( isset( $user_grants[ $from ] ) ) {
-				$existing           = isset( $user_grants[ $to ] ) && is_array( $user_grants[ $to ] ) ? $user_grants[ $to ] : [];
-				$moved              = is_array( $user_grants[ $from ] ) ? $user_grants[ $from ] : [];
-				$user_grants[ $to ] = array_values( array_unique( array_merge( $existing, $moved ) ) );
-				unset( $user_grants[ $from ] );
-				$grant_dirty = true;
-			}
-
 			// sync_matrix() only manages current-bundle slugs, so the retired slug
 			// would otherwise linger on roles - strip it explicitly.
 			foreach ( array_keys( wp_roles()->role_objects ) as $role_slug ) {
@@ -456,20 +341,17 @@ class SyncCapability {
 		if ( $role_dirty ) {
 			update_option( $this->role_map_option, $role_map );
 		}
-		if ( $grant_dirty && '' !== $this->user_grants_option ) {
-			update_option( $this->user_grants_option, $user_grants );
-		}
 	}
 
 	/**
-	 * Reconcile roles and users with the current bundle and assignment maps.
-	 * Runs on every init but short-circuits with no writes when nothing has
-	 * changed, so it is cheap to run unconditionally.
+	 * Reconcile roles with the current bundle and role map. Runs on every init
+	 * but short-circuits with no writes when nothing has changed, so it is cheap
+	 * to run unconditionally.
 	 *
 	 * Triggers: the capability set changed (grant added / revoke dropped), the
-	 * role or user maps changed, or the site upgraded across the migration
-	 * version boundary (forces a re-sync and seeds the role map from the legacy
-	 * roles option the first time).
+	 * role map changed, or the site upgraded across the migration version
+	 * boundary (forces a re-sync and seeds the role map from the legacy roles
+	 * option the first time).
 	 *
 	 * @return void
 	 */
@@ -484,9 +366,8 @@ class SyncCapability {
 			&& version_compare( (string) get_option( $migration_option, '0' ), $this->migration_version, '<' );
 
 		if ( ! $set_changed && ! $version_migration ) {
-			// The maps are applied live on save; still re-apply user grants here
-			// so a snapshot/desired drift self-heals, then bail cheaply.
-			$this->sync_user_grants( (array) get_option( $this->user_grants_option, [] ) );
+			// The role map is applied live on save, so there is nothing to
+			// reconcile when neither the set nor the migration boundary changed.
 			return;
 		}
 
@@ -497,11 +378,11 @@ class SyncCapability {
 		// itself is uninstalled (see uninstall.php). revoke() remains available
 		// for that and other callers.
 
-		// One-time slug renames (e.g. ignore -> dismiss): move role-map and
-		// user-grant entries from the old slug to the new and strip the old
-		// capability off every role/user, so a renamed capability keeps its
-		// existing grants without leaving the retired slug behind. Runs inside the
-		// version-migration boundary so it happens exactly once per upgrade.
+		// One-time slug renames (e.g. ignore -> dismiss): move role-map entries
+		// from the old slug to the new and strip the old capability off every
+		// role, so a renamed capability keeps its existing grants without leaving
+		// the retired slug behind. Runs inside the version-migration boundary so it
+		// happens exactly once per upgrade.
 		if ( $version_migration && [] !== $this->capability_renames ) {
 			$this->apply_renames();
 		}
@@ -545,7 +426,6 @@ class SyncCapability {
 		}
 
 		$this->sync_matrix( $role_map );
-		$this->sync_user_grants( (array) get_option( $this->user_grants_option, [] ) );
 
 		if ( $set_changed ) {
 			update_option( $this->synced_set_option_name(), $current );
