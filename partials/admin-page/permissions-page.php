@@ -33,15 +33,27 @@ $edac_just_saved = isset( $_GET['updated'] ) && 'true' === sanitize_key( wp_unsl
 		</div>
 	<?php endif; ?>
 
-	<p class="edac-description">
+	<h2 class="edac-settings-permissions__heading">
+		<?php esc_html_e( 'Permissions Settings', 'accessibility-checker' ); ?>
+	</h2>
+
+	<p class="edac-settings-permissions__intro">
 		<?php esc_html_e( 'Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability.', 'accessibility-checker' ); ?>
 	</p>
 
-	<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
+	<form class="edac-settings-permissions__form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 		<input type="hidden" name="action" value="edac_save_permissions">
 		<?php wp_nonce_field( 'edac_save_permissions' ); ?>
 
 		<div class="edac-perm-role-field">
+			<div class="edac-perm-role-field__header">
+				<h3 class="edac-perm-role-field__title">
+					<?php esc_html_e( 'Choose a Role', 'accessibility-checker' ); ?>
+				</h3>
+				<p class="edac-perm-role-field__description">
+					<?php esc_html_e( 'Select the user role whose Accessibility Checker permissions you want to manage.', 'accessibility-checker' ); ?>
+				</p>
+			</div>
 			<label for="edac-perm-role"><?php esc_html_e( 'Role', 'accessibility-checker' ); ?></label>
 			<select id="edac-perm-role">
 				<option value=""><?php esc_html_e( '— Select a role —', 'accessibility-checker' ); ?></option>
@@ -51,7 +63,8 @@ $edac_just_saved = isset( $_GET['updated'] ) && 'true' === sanitize_key( wp_unsl
 			</select>
 		</div>
 
-		<div id="edac-perm-caps" class="edac-perm-caps" aria-live="polite"></div>
+		<div id="edac-perm-status" class="screen-reader-text" role="status" aria-live="polite" aria-atomic="true"></div>
+		<div id="edac-perm-caps" class="edac-perm-caps"></div>
 
 		<?php
 		// The hidden store is the source of truth for the role matrix: one input
@@ -76,6 +89,8 @@ $edac_just_saved = isset( $_GET['updated'] ) && 'true' === sanitize_key( wp_unsl
 			?>
 		</div>
 
-		<?php submit_button( __( 'Save Permissions', 'accessibility-checker' ) ); ?>
+		<div class="edac-perm-actions">
+			<?php submit_button( __( 'Save Permissions', 'accessibility-checker' ), 'primary', 'submit', false ); ?>
+		</div>
 	</form>
 </div>

@@ -150,8 +150,11 @@ class PermissionsPage implements PageInterface {
 			[
 				'matrix'  => $this->build_matrix_payload(),
 				'strings' => [
-					'selectRole' => __( 'Select a role to see the capabilities it can be granted.', 'accessibility-checker' ),
-					'noCaps'     => __( 'No capabilities are available.', 'accessibility-checker' ),
+					'selectRoleTitle'   => __( 'Select a role', 'accessibility-checker' ),
+					'selectRole'        => __( 'Select a role to see the capabilities it can be granted.', 'accessibility-checker' ),
+					'noCaps'            => __( 'No capabilities are available.', 'accessibility-checker' ),
+					// translators: %s is the selected user role name.
+					'permissionsLoaded' => __( 'Permission settings loaded for %s.', 'accessibility-checker' ),
 				],
 			]
 		);
@@ -191,6 +194,7 @@ class PermissionsPage implements PageInterface {
 				'label'       => $meta['label'],
 				'description' => $meta['description'],
 				'group'       => '' !== $meta['group'] ? $meta['group'] : __( 'Other', 'accessibility-checker' ),
+				'owner'       => $meta['owner'],
 			];
 		}
 

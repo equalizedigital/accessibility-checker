@@ -102,7 +102,7 @@ function edac_capability_metadata(): array {
 			],
 			EDAC_CAPABILITY_DISMISS_ISSUES            => [
 				'label'         => __( 'Dismiss issues (any post)', 'accessibility-checker' ),
-				'description'   => __( 'Dismiss and reopen accessibility issues on any post, including posts the user cannot otherwise edit. A superset of "Dismiss own issues".', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it.', 'accessibility-checker' ),
 				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
 				'owner'         => 'accessibility-checker',
 				'pro'           => false,
@@ -1478,4 +1478,3 @@ function edac_simplified_summary_heading_cb() {
 	>
 	<?php
 }
-

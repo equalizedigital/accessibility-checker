@@ -8,77 +8,157 @@
  */
 
 .edac-settings-permissions {
-	max-width: 760px;
+	max-width: 860px;
+	margin-top: 1.5rem;
 }
 
-.edac-settings-permissions > .edac-description {
-	font-size: 14px;
-	line-height: 1.6;
-	margin-bottom: 20px;
+.edac-settings-permissions__heading {
+	margin: 0 0 0.5rem;
+	color: #484848;
+	font-size: 1.3rem;
+	font-weight: 600;
 }
 
-/* Role picker toolbar. */
+.edac-settings-permissions__intro {
+	margin: 0 0 1.75rem;
+	color: #737373;
+	line-height: 1.5;
+}
+
+/* Role picker panel. */
 .edac-settings-permissions .edac-perm-role-field {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-	padding: 16px;
-	margin: 0 0 8px;
-	background: #f6f7f7;
-	border: 1px solid #dcdcde;
+	margin: 0 0 1.5rem;
+	padding: 1.5rem;
+	background: #fff;
+	border: 1px solid #e2e4e7;
 	border-radius: 6px;
 }
 
+.edac-perm-role-field__header {
+	margin-bottom: 1.25rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #e2e4e7;
+}
+
+.edac-perm-role-field__title {
+	margin: 0 0 0.35rem;
+	color: #484848;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.edac-perm-role-field__description {
+	margin: 0;
+	color: #737373;
+	font-size: 0.875rem;
+}
+
 .edac-settings-permissions .edac-perm-role-field label {
-	font-size: 13px;
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-	color: #50575e;
+	display: block;
+	margin-bottom: 0.4rem;
+	color: #484848;
+	font-size: 0.875rem;
+	font-weight: 600;
 }
 
 .edac-settings-permissions #edac-perm-role {
-	min-width: 240px;
-	max-width: 320px;
-	padding: 4px 8px;
-	font-size: 14px;
+	width: 100%;
+	max-width: none;
+	min-height: 40px;
+	font-size: 0.875rem;
+}
+
+/* Responsive capability card grid. */
+.edac-settings-permissions .edac-perm-caps {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.edac-settings-permissions .edac-perm-empty {
+	display: flex;
+	grid-column: 1 / -1;
+	align-items: center;
+	flex-direction: column;
+	padding: 3rem 1.5rem;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.edac-perm-empty__icon-wrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	color: var(--wp-admin-theme-color, #3273aa);
+	border: 1px dashed #c3c4c7;
+	border-radius: 50%;
+}
+
+.edac-perm-empty__icon-wrap .edac-perm-empty__icon {
+	width: 28px;
+	height: 28px;
+	font-size: 28px;
+	line-height: 1;
+}
+
+.edac-perm-empty__title {
+	margin: 1.25rem 0 0.35rem;
+	color: #1e1e1e;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.edac-perm-empty__message {
+	grid-column: 1 / -1;
+	margin: 0;
+	color: #484848;
+	font-size: 0.875rem;
 }
 
 /* One wrapper per owning plugin, holding all of its capabilities. */
 .edac-perm-group {
-	margin: 0 0 16px;
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 1.5rem;
 	background: #fff;
-	border: 1px solid #dcdcde;
-	border-radius: 4px;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
 }
 
 .edac-perm-group__title {
-	font-size: 12px;
-	font-weight: 600;
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
-	color: #50575e;
 	margin: 0;
-	padding: 12px 16px;
-	background: #f6f7f7;
-	border-bottom: 1px solid #dcdcde;
-	border-radius: 4px 4px 0 0;
+	padding: 0 0 1rem;
+	color: #484848;
+	border-bottom: 1px solid #e2e4e7;
+	font-size: 1rem;
+	font-weight: 600;
 }
 
 /* Capability rows within a group. */
 .edac-perm-cap {
-	padding: 12px 16px;
+	padding: 1rem 0;
+}
+
+.edac-perm-cap:last-child {
+	padding-bottom: 0;
 }
 
 .edac-perm-cap + .edac-perm-cap {
-	border-top: 1px solid #f0f0f1;
+	border-top: 1px solid #e2e4e7;
 }
 
 .edac-perm-cap__control {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	cursor: pointer;
 	margin: 0;
+	gap: 0.5rem;
+	cursor: pointer;
 }
 
 .edac-perm-cap--disabled .edac-perm-cap__control {
@@ -87,27 +167,41 @@
 }
 
 .edac-perm-cap__control input[type="checkbox"] {
+	flex-shrink: 0;
 	margin: 0;
 }
 
 .edac-perm-cap__label {
-	font-size: 14px;
+	color: #484848;
+	font-size: 0.9rem;
 	font-weight: 600;
 }
 
 .edac-perm-cap__desc,
 .edac-perm-cap__reason {
 	display: block;
-	margin: 6px 0 0 26px;
-	font-size: 13px;
+	margin: 0.4rem 0 0 1.5rem;
+	color: #737373;
+	font-size: 0.875rem;
 	line-height: 1.5;
 }
 
-.edac-perm-cap__desc {
-	color: #646970;
+.edac-perm-cap__reason {
+	font-style: italic;
 }
 
-.edac-perm-cap__reason {
-	color: #646970;
-	font-style: italic;
+.edac-perm-actions {
+	padding-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+
+	.edac-settings-permissions .edac-perm-caps {
+		grid-template-columns: 1fr;
+	}
+
+	.edac-perm-cap__desc,
+	.edac-perm-cap__reason {
+		margin-left: 2.0625rem;
+	}
 }
