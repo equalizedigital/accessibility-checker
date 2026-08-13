@@ -1277,7 +1277,7 @@ class REST_Api {
 		// The ignre_global marker records that a dismiss was taken as a global
 		// action. Only a user with the global-ignore capability may set it - a
 		// single-post dismiss (which needs only edit_post on that one post) must
-		// never stamp a row "global" without edac_ignore_issues_globally.
+		// never stamp a row "global" without edac_dismiss_issues_globally.
 		$ignre_global = ( $is_ignoring && $can_dismiss_globally ) ? (int) $ignore_global : 0;
 
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
@@ -1319,7 +1319,7 @@ class REST_Api {
 				);
 			}
 
-			// A user with edac_ignore_issues_globally is already trusted for
+			// A user with edac_dismiss_issues_globally is already trusted for
 			// this exact "affects posts you may not own" action (enforced
 			// above), so the per-post edit_post lookups below - one
 			// current_user_can() call per affected post - would be pure

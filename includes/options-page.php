@@ -213,7 +213,7 @@ function edac_capability_is_editable( string $slug, array $meta = [] ): bool {
  * Whether a role's live capability set satisfies a capability's floor.
  *
  * The "floor" is the WordPress capability a role must already have before an
- * edac_* capability may be assigned to it (e.g. edac_ignore_issues_globally
+ * edac_* capability may be assigned to it (e.g. edac_dismiss_issues_globally
  * requires edit_others_posts). This is checked against the role's actual, live
  * capabilities so it respects sites that customize roles via other plugins,
  * rather than assuming what a stock role can do. An empty floor is always met.
