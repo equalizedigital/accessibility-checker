@@ -237,50 +237,22 @@ class PermissionsPage implements PageInterface {
 
 		check_admin_referer( self::SAVE_ACTION );
 
-		$metadata       = edac_capability_metadata();
-		$editable_roles = array_keys( edac_assignable_roles() );
-
 		// Nonce verified above via check_admin_referer(). Each element of this
-		// array is sanitized in the loop below (sanitize_key).
+		// array is sanitized by edac_sanitize_capability_role_map() (sanitize_key
+		// per role, floor + editable-role re-validation per capability).
 		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		$posted_roles = isset( $_POST['edac_role_map'] ) ? (array) wp_unslash( $_POST['edac_role_map'] ) : [];
 		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 
-		$role_map = get_option( self::ROLE_MAP_OPTION, [] );
-		$role_map = is_array( $role_map ) ? $role_map : [];
+		// Validate through the shared sanitizer so the UI save and the settings
+		// importer apply identical rules. It preserves entries for locked/inactive
+		// capabilities, narrows each editable capability to assignable roles that
+		// meet its floor, and drops anything that fails - so a role that no longer
+		// qualifies (or was never allowed) is never granted. Assignments for an
+		// add-on that is currently inactive are left untouched (only cleared on
+		// uninstall).
+		$role_map = edac_sanitize_capability_role_map( $posted_roles );
 
-		foreach ( $metadata as $slug => $meta ) {
-			// Locked (upsell) rows are display-only; leave their stored value alone.
-			if ( ! edac_capability_is_editable( $slug, $meta ) ) {
-				continue;
-			}
-
-			$roles_for_cap = isset( $posted_roles[ $slug ] ) ? array_map( 'sanitize_key', (array) $posted_roles[ $slug ] ) : [];
-			$roles_for_cap = array_values( array_intersect( $roles_for_cap, $editable_roles ) );
-
-			// Re-validate each role against the capability's floor, so a role that
-			// no longer qualifies (e.g. it lost edit_others_posts after the setting
-			// was saved) is dropped rather than silently kept.
-			$roles_for_cap = array_values(
-				array_filter(
-					$roles_for_cap,
-					function ( $role_slug ) use ( $meta ) {
-						return edac_role_meets_floor( $role_slug, $meta['floor'] );
-					}
-				)
-			);
-
-			if ( $roles_for_cap ) {
-				$role_map[ $slug ] = $roles_for_cap;
-			} else {
-				unset( $role_map[ $slug ] );
-			}
-		}
-
-		// Assignments for capabilities whose add-on is currently inactive are left
-		// untouched (not pruned), so deactivating an add-on and saving this page
-		// does not forget its configuration; re-activating restores it. These
-		// entries are only cleared when the free plugin is uninstalled.
 		update_option( self::ROLE_MAP_OPTION, $role_map );
 
 		$redirect = add_query_arg(

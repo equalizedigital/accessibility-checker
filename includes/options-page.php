@@ -342,6 +342,92 @@ function edac_seed_capability_defaults_on_install(): void {
 }
 
 /**
+ * Validate an incoming capability role map into a safe, storable one.
+ *
+ * Shared by the Permissions save handler and the settings importer so both paths
+ * apply IDENTICAL rules - a hand-edited import file can never grant more than the
+ * UI would. Starting from the stored map preserves entries for locked (upsell) or
+ * inactive-add-on capabilities; for every editable capability the incoming roles
+ * are narrowed to assignable roles (administrators excluded) that meet the
+ * capability's floor on THIS site. So an import can never, for example, grant
+ * edac_dismiss_issues_globally to subscriber.
+ *
+ * Also wired as the `sanitize_option_edac_capability_role_map` filter, so the pro
+ * settings importer - which runs the value through sanitize_option() - validates
+ * the map through here automatically.
+ *
+ * @param mixed $incoming The incoming [ capability => [role, …] ] map.
+ * @return array<string, string[]> The validated map.
+ */
+function edac_sanitize_capability_role_map( $incoming ): array {
+	$incoming       = is_array( $incoming ) ? $incoming : [];
+	$metadata       = edac_capability_metadata();
+	$editable_roles = array_keys( edac_assignable_roles() );
+
+	// Start from the stored map so locked/inactive-add-on entries are preserved.
+	$role_map = get_option( 'edac_capability_role_map', [] );
+	$role_map = is_array( $role_map ) ? $role_map : [];
+
+	foreach ( $metadata as $slug => $meta ) {
+		// Locked (upsell) rows are not accepted from input; leave the stored value.
+		if ( ! edac_capability_is_editable( $slug, $meta ) ) {
+			continue;
+		}
+
+		$roles = isset( $incoming[ $slug ] ) ? array_map( 'sanitize_key', (array) $incoming[ $slug ] ) : [];
+		$roles = array_values( array_intersect( $roles, $editable_roles ) );
+		// Floor re-validation: a role that does not meet the capability's floor on
+		// this site can never be granted it, even from a hand-edited import file.
+		$roles = array_values(
+			array_filter(
+				$roles,
+				function ( $role_slug ) use ( $meta ) {
+					return edac_role_meets_floor( $role_slug, $meta['floor'] );
+				}
+			)
+		);
+
+		if ( $roles ) {
+			$role_map[ $slug ] = $roles;
+		} else {
+			unset( $role_map[ $slug ] );
+		}
+	}
+
+	return $role_map;
+}
+add_filter( 'sanitize_option_edac_capability_role_map', 'edac_sanitize_capability_role_map' );
+
+/**
+ * Apply the stored capability role map onto this site's roles right now.
+ *
+ * A public trigger for the role sync, for callers that write the role map option
+ * outside the normal admin-post save - notably the pro settings importer and the
+ * multisite settings clone (which must resync each target site inside its own
+ * switch_to_blog() context). reconcile() only re-syncs on a bundle/version
+ * change, so a changed role map needs this explicit apply.
+ *
+ * @return void
+ */
+function edac_sync_capability_roles(): void {
+	edac_ignore_capability()->sync_matrix( (array) get_option( 'edac_capability_role_map', [] ) );
+}
+
+// Make the capability role map travel with the pro settings import/export. It is
+// not a register_setting() option (the Permissions tab saves it via admin-post),
+// so it must be added to the import/export set explicitly. On import it is
+// validated through edac_sanitize_capability_role_map() (the sanitize_option
+// filter above) and applied via edac_sync_capability_roles().
+add_filter(
+	'edacp_import_export_option_names',
+	function ( $names ) {
+		$names   = is_array( $names ) ? $names : [];
+		$names[] = 'edac_capability_role_map';
+		return array_values( array_unique( $names ) );
+	}
+);
+
+/**
  * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
  * (see below) so every active add-on has contributed to edac_capability_bundle
  * first; also usable directly (e.g. in tests) as a lazy singleton.

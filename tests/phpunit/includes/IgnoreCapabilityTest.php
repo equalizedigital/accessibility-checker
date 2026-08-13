@@ -302,4 +302,60 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		delete_option( 'edac_capability_defaults_seeded' );
 		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
 	}
+
+	/**
+	 * The shared role-map sanitizer (used by the Permissions save handler AND the
+	 * settings importer, wired as the sanitize_option filter) drops any role that
+	 * fails a capability's floor and any unknown role - so a hand-edited import
+	 * file can never grant more than the UI would.
+	 *
+	 * @return void
+	 */
+	public function test_import_sanitizer_enforces_floor_and_editable_roles() {
+		delete_option( self::ROLE_MAP_OPTION );
+
+		// self::CAP (edac_dismiss_own_issues) has an edit_posts floor. Subscriber
+		// fails it; author meets it; an unknown role is not assignable.
+		$incoming = [
+			self::CAP => [ 'subscriber', 'author', 'bogus_role' ],
+		];
+
+		// Call through the sanitize_option filter to prove the wiring, not just the
+		// function (the importer reaches it via sanitize_option()).
+		$clean = (array) apply_filters( 'sanitize_option_' . self::ROLE_MAP_OPTION, $incoming );
+
+		$this->assertArrayHasKey( self::CAP, $clean, 'A capability with at least one valid role is kept.' );
+		$this->assertContains( 'author', $clean[ self::CAP ], 'author meets the edit_posts floor and is kept.' );
+		$this->assertNotContains( 'subscriber', $clean[ self::CAP ], 'subscriber fails the edit_posts floor and is dropped.' );
+		$this->assertNotContains( 'bogus_role', $clean[ self::CAP ], 'an unknown role is dropped.' );
+
+		delete_option( self::ROLE_MAP_OPTION );
+	}
+
+	/**
+	 * The public edac_sync_capability_roles() helper applies the stored role map
+	 * onto the roles - the trigger importers use after writing the option.
+	 *
+	 * @return void
+	 */
+	public function test_sync_capability_roles_applies_the_stored_map() {
+		delete_option( self::ROLE_MAP_OPTION );
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+		}
+
+		// Seed the option, then strip the cap the option-update hook just applied,
+		// so we can prove the explicit helper re-applies it.
+		update_option( self::ROLE_MAP_OPTION, [ self::CAP => [ 'editor' ] ] );
+		wp_roles()->get_role( 'editor' )->remove_cap( self::CAP );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'Precondition: the cap is not on the role.' );
+
+		edac_sync_capability_roles();
+
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'The helper applies the stored map to the roles.' );
+
+		// Cleanup.
+		edac_ignore_capability()->sync_matrix( [] );
+		delete_option( self::ROLE_MAP_OPTION );
+	}
 }
