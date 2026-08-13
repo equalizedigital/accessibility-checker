@@ -77,6 +77,7 @@ class AccessibilityCheckerHighlight {
 			fixIssue: __( 'Fix Issue', 'accessibility-checker' ),
 			loading: __( 'Loading...', 'accessibility-checker' ),
 			noIssues: __( 'No issues detected.', 'accessibility-checker' ),
+			noIssuesOnPage: __( 'No issues found on this page.', 'accessibility-checker' ),
 			previous: __( 'Previous', 'accessibility-checker' ),
 			next: __( 'Next', 'accessibility-checker' ),
 			moveToLeft: __( 'Move to Left', 'accessibility-checker' ),

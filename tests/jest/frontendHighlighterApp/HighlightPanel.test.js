@@ -68,6 +68,29 @@ describe( 'edac-highlight-panel', () => {
 		expect( el.summaryEl.textContent ).toContain( '2' );
 	} );
 
+	test( 'the empty-state message is static and independent of the dynamic footer summary', () => {
+		const el = mountPanel();
+
+		// Static text is set as soon as i18n/content sync runs, regardless of
+		// issue count or loading state — this must never be overwritten by
+		// _syncSummary()'s "Loading..." / "No issues detected." / setMessage().
+		expect( el.emptyStateEl.textContent ).toBe( 'No issues found on this page.' );
+
+		el.issues = [];
+		expect( el.emptyStateEl.textContent ).toBe( 'No issues found on this page.' );
+		expect( el.summaryEl.textContent ).toBe( 'Loading...' );
+
+		// Neither counted as a problem/review (rule_type) nor as dismissed
+		// (ignored !== '1') — exercises the "zero of everything" branch.
+		el.issues = [ { id: '1', rule_type: 'notice', ignored: '0' } ];
+		expect( el.emptyStateEl.textContent ).toBe( 'No issues found on this page.' );
+		expect( el.summaryEl.textContent ).toBe( 'No issues detected.' );
+
+		el.setMessage( 'Something went wrong.', true );
+		expect( el.emptyStateEl.textContent ).toBe( 'No issues found on this page.' );
+		expect( el.summaryEl.textContent ).toBe( 'Something went wrong.' );
+	} );
+
 	test( 'pagination text reflects currentIndex / total', () => {
 		const el = mountPanel();
 		el.issues = issues;

@@ -254,7 +254,7 @@ class HighlightPanel extends HTMLElement {
 				}
 
 				.edac-highlight-panel-controls-content-empty {
-					margin: 0;
+					margin: 15px;
 					padding: 8px 12px;
 					border-left: 4px solid #f1c500;
 					background-color: rgba(241, 197, 0, 0.15);
@@ -487,6 +487,10 @@ class HighlightPanel extends HTMLElement {
 		}
 
 		this.titleEl.innerHTML = `<span class="edac-highlight-panel-controls-title-icon" aria-hidden="true"></span> ${ this._t( 'panelTitle', 'Accessibility Checker' ) }`;
+		// Static, unlike the footer summary below — shown whenever no issue is
+		// selected, regardless of *why* (still loading, zero issues, or just
+		// not yet auto-selected), matching the original's fixed markup.
+		this.emptyStateEl.textContent = this._t( 'noIssuesOnPage', 'No issues found on this page.' );
 
 		const issue = this._currentIndex !== null ? this._issues[ this._currentIndex ] : null;
 
@@ -515,8 +519,7 @@ class HighlightPanel extends HTMLElement {
 		const total = errorCount + warningCount;
 
 		if ( this._issues.length === 0 ) {
-			this.summaryEl.innerHTML = '';
-			this.emptyStateEl.textContent = this._t( 'loading', 'Loading...' );
+			this.summaryEl.innerHTML = this._t( 'loading', 'Loading...' );
 			this.prevButton.disabled = true;
 			this.nextButton.disabled = true;
 			return;
@@ -524,7 +527,6 @@ class HighlightPanel extends HTMLElement {
 
 		if ( total === 0 && ignoredCount === 0 ) {
 			this.summaryEl.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ this._t( 'noIssues', 'No issues detected.' ) }</span>`;
-			this.emptyStateEl.textContent = this._t( 'noIssues', 'No issues detected.' );
 			this.prevButton.disabled = true;
 			this.nextButton.disabled = true;
 			return;
@@ -770,9 +772,11 @@ class HighlightPanel extends HTMLElement {
 	}
 
 	/**
-	 * Sets the footer summary / empty-state text directly, for scan and
-	 * network status messages (scanning, save failed, etc.) that don't
-	 * come from the issues list itself.
+	 * Sets the footer summary text directly, for scan and network status
+	 * messages (scanning, save failed, etc.) that don't come from the
+	 * issues list itself. Deliberately leaves the empty-state content area
+	 * alone — the original's showScanError() only ever touched the footer
+	 * summary too.
 	 *
 	 * @param {string}  message
 	 * @param {boolean} isError
@@ -780,7 +784,6 @@ class HighlightPanel extends HTMLElement {
 	setMessage( message, isError = false ) {
 		this.summaryEl.textContent = message;
 		this.summaryEl.classList.toggle( 'edac-error', isError );
-		this.emptyStateEl.textContent = message;
 	}
 
 	pauseFocusTrap() {
