@@ -390,6 +390,16 @@ class HighlightPanel extends HTMLElement {
 		this._syncContent();
 	}
 
+	/**
+	 * @param {Function} fn (count, key) => locale-correct pluralized string,
+	 *                      e.g. via WP's _n(). key is one of 'issueFound',
+	 *                      'problem', 'needsReview', 'dismissed'.
+	 */
+	set pluralize( fn ) {
+		this._pluralize = fn;
+		this._syncSummary();
+	}
+
 	get docked() {
 		return this.hasAttribute( 'docked' );
 	}
@@ -484,13 +494,18 @@ class HighlightPanel extends HTMLElement {
 		this.prevButton.disabled = false;
 		this.nextButton.disabled = false;
 
-		const totalLabel = this._t( 'totalFound', '%d issue(s) found' ).replace( '%d', total );
-		const problemsLabel = this._t( 'problems', '%d Problem(s)' ).replace( '%d', errorCount );
-		const reviewLabel = this._t( 'needsReview', '%d Need(s) Review' ).replace( '%d', warningCount );
+		// Pluralization needs real gettext plural rules (not just English
+		// singular/plural), which only the controller's _n() can provide —
+		// so counting stays here, but formatting the count into a locale-
+		// correct string is delegated to a `pluralize` function property.
+		const pluralize = this._pluralize || ( ( count, single ) => `${ count } ${ single }` );
+		const totalLabel = pluralize( total, 'issueFound' );
+		const problemsLabel = pluralize( errorCount, 'problem' );
+		const reviewLabel = pluralize( warningCount, 'needsReview' );
 
 		const breakdownParts = [ problemsLabel, reviewLabel ];
 		if ( ignoredCount > 0 ) {
-			breakdownParts.push( this._t( 'dismissed', '%d Dismissed' ).replace( '%d', ignoredCount ) );
+			breakdownParts.push( pluralize( ignoredCount, 'dismissed' ) );
 		}
 
 		this.summaryEl.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ totalLabel }</span><span class="edac-highlight-summary-breakdown">${ breakdownParts.join( ' · ' ) }</span>`;
@@ -703,6 +718,28 @@ class HighlightPanel extends HTMLElement {
 
 	focusClose() {
 		this.closeButton?.focus();
+	}
+
+	/**
+	 * Sets the footer summary / empty-state text directly, for scan and
+	 * network status messages (scanning, save failed, etc.) that don't
+	 * come from the issues list itself.
+	 *
+	 * @param {string}  message
+	 * @param {boolean} isError
+	 */
+	setMessage( message, isError = false ) {
+		this.summaryEl.textContent = message;
+		this.summaryEl.classList.toggle( 'edac-error', isError );
+		this.emptyStateEl.textContent = message;
+	}
+
+	pauseFocusTrap() {
+		this._focusTrap?.pause();
+	}
+
+	resumeFocusTrap() {
+		this._focusTrap?.unpause();
 	}
 
 	_requestClose() {

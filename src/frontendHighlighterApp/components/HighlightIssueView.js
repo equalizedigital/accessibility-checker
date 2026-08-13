@@ -466,8 +466,10 @@ class HighlightIssueView extends HTMLElement {
 			this._fixEl.querySelector( '.edac-fix-settings--button--open' )
 				.addEventListener( 'click', this._onOpenFixSettings );
 
-			this._fixEl.querySelector( '.edac-fix-settings--button--save' )
-				.addEventListener( 'click', this._onSaveFixSettings );
+			// Deliberately no listener on .edac-fix-settings--button--save here:
+			// edac-fixes-modal's fill() wires it once the container is actually
+			// moved into the modal. Attaching one here too would double-fire
+			// saveFixSettings on click once the container is re-parented.
 		}
 
 		this.shadowRoot.querySelector( '.edac-highlight-panel-description-explanation-toggle' )
@@ -507,14 +509,6 @@ class HighlightIssueView extends HTMLElement {
 			bubbles: true,
 			composed: true,
 			detail: { container, openingElement: e.target },
-		} ) );
-	};
-
-	_onSaveFixSettings = ( e ) => {
-		this.dispatchEvent( new CustomEvent( 'edac-save-fix-settings', {
-			bubbles: true,
-			composed: true,
-			detail: { fieldsContainer: e.target.closest( '.edac-fix-settings' ) },
 		} ) );
 	};
 }
