@@ -376,6 +376,10 @@ class HighlightPanel extends HTMLElement {
 		this._syncMenuItems();
 	}
 
+	get stylesDisabled() {
+		return this._stylesDisabled;
+	}
+
 	set stylesDisabled( value ) {
 		this._stylesDisabled = !! value;
 		this._syncMenuItems();
@@ -695,13 +699,23 @@ class HighlightPanel extends HTMLElement {
 
 	_onOpenChanged() {
 		if ( this.open ) {
-			this._focusTrap?.activate();
-			setTimeout( () => {
-				this.closeButton?.focus();
-			}, 100 );
+			this.refocus();
 		} else if ( this._focusTrap?.active ) {
 			this._focusTrap.deactivate();
 		}
+	}
+
+	/**
+	 * (Re)activate the focus trap and move focus to the close button.
+	 * Unlike setting `open = true`, this runs even when the panel is
+	 * already open — used when a tooltip button opens a specific issue
+	 * without the open/closed state itself changing.
+	 */
+	refocus() {
+		this._focusTrap?.activate();
+		setTimeout( () => {
+			this.closeButton?.focus();
+		}, 100 );
 	}
 
 	// ---- public API ----

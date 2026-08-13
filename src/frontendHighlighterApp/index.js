@@ -153,24 +153,43 @@ class AccessibilityCheckerHighlight {
 		return modal;
 	}
 
+	/**
+	 * Production only ever constructs one instance per page load (guarded
+	 * by initHighlighter()'s highlighterInitialized flag), so these
+	 * document-level listeners are never expected to need cleanup in
+	 * practice. The AbortController exists so destroy() can cleanly tear
+	 * them down for tests that construct multiple instances in the same
+	 * jsdom document.
+	 */
 	_bindEvents() {
-		document.addEventListener( 'edac-toggle-panel', () => this.panelOpen() );
-		document.addEventListener( 'edac-panel-close', () => this.panelClose() );
-		document.addEventListener( 'edac-nav-next', () => this.highlightFocusNext() );
-		document.addEventListener( 'edac-nav-previous', () => this.highlightFocusPrevious() );
-		document.addEventListener( 'edac-open-issue', ( e ) => this.panelOpen( e.detail.issueId ) );
-		document.addEventListener( 'edac-toggle-dock', () => this.toggleDock() );
-		document.addEventListener( 'edac-rescan', () => this.rescanPage() );
-		document.addEventListener( 'edac-clear-issues', () => this.clearIssues() );
+		this._abortController = new AbortController();
+		const { signal } = this._abortController;
+
+		document.addEventListener( 'edac-toggle-panel', () => this.panelOpen(), { signal } );
+		document.addEventListener( 'edac-panel-close', () => this.panelClose(), { signal } );
+		document.addEventListener( 'edac-nav-next', () => this.highlightFocusNext(), { signal } );
+		document.addEventListener( 'edac-nav-previous', () => this.highlightFocusPrevious(), { signal } );
+		document.addEventListener( 'edac-open-issue', ( e ) => this._onOpenIssue( e.detail.issueId ), { signal } );
+		document.addEventListener( 'edac-toggle-dock', () => this.toggleDock(), { signal } );
+		document.addEventListener( 'edac-rescan', () => this.rescanPage(), { signal } );
+		document.addEventListener( 'edac-clear-issues', () => this.clearIssues(), { signal } );
 		document.addEventListener( 'edac-toggle-page-styles', () => {
 			if ( this.stylesDisabled ) {
 				this.enableStyles();
 			} else {
 				this.disableStyles();
 			}
-		} );
-		document.addEventListener( 'edac-panel-position-changed', ( e ) => this._onPanelPositionChanged( e.detail.position ) );
-		document.addEventListener( 'edac-open-fix-settings', ( e ) => this._openFixSettings( e.detail.container, e.detail.openingElement ) );
+		}, { signal } );
+		document.addEventListener( 'edac-panel-position-changed', ( e ) => this._onPanelPositionChanged( e.detail.position ), { signal } );
+		document.addEventListener( 'edac-open-fix-settings', ( e ) => this._openFixSettings( e.detail.container, e.detail.openingElement ), { signal } );
+	}
+
+	/**
+	 * Not called in production — see _bindEvents()'s note. Exists for test
+	 * isolation when multiple instances are constructed in one jsdom document.
+	 */
+	destroy() {
+		this._abortController?.abort();
 	}
 
 	_restoreDockedState() {
@@ -475,6 +494,27 @@ class AccessibilityCheckerHighlight {
 				cleanup,
 			},
 		};
+	}
+
+	/**
+	 * Handles a tooltip button's edac-open-issue click. Tooltip buttons only
+	 * ever exist once issues have already been fetched (they're created
+	 * inside panelOpen()'s AJAX success handler), so this shows the issue
+	 * directly against already-loaded data rather than re-fetching — a
+	 * fresh panelOpen() would be a redundant network round-trip on every
+	 * click, and isn't what the original tooltip onClick did either.
+	 *
+	 * @param {string} id
+	 */
+	_onOpenIssue( id ) {
+		if ( ! this.issues ) {
+			this.panelOpen( id );
+			return;
+		}
+		this.trigger.open = true;
+		this.panel.open = true;
+		this.showIssue( id );
+		this.panel.refocus();
 	}
 
 	/**
