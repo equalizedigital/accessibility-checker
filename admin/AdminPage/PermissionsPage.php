@@ -40,17 +40,28 @@ class PermissionsPage implements PageInterface {
 	/**
 	 * The capability required to view and edit this page.
 	 *
+	 * Deliberately hard-coded to manage_options rather than using the
+	 * constructor's injected (filterable, via edac_filter_settings_capability)
+	 * capability: this page grants OTHER roles capabilities, including the
+	 * site-wide/global dismiss oversteps, so a site that lowers the general
+	 * settings capability (e.g. to let editors into Settings) must not also
+	 * let those editors grant themselves those oversteps. Every other tab is
+	 * fine using the filterable capability; this one is not.
+	 *
 	 * @var string
 	 */
-	private $settings_capability;
+	private const MANAGE_CAPABILITY = 'manage_options';
 
 	/**
 	 * Constructor.
 	 *
-	 * @param string $settings_capability The capability required to access the settings page.
+	 * Accepts $settings_capability for interface compliance with the other
+	 * settings tabs (PageInterface), but intentionally does not use it - see
+	 * the note on self::MANAGE_CAPABILITY.
+	 *
+	 * @param string $settings_capability Unused; see self::MANAGE_CAPABILITY.
 	 */
-	public function __construct( $settings_capability ) {
-		$this->settings_capability = $settings_capability;
+	public function __construct( $settings_capability ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Required by PageInterface; see self::MANAGE_CAPABILITY.
 	}
 
 	/**
@@ -83,7 +94,7 @@ class PermissionsPage implements PageInterface {
 			'slug'       => self::PAGE_TAB_SLUG,
 			'label'      => __( 'Permissions', 'accessibility-checker' ),
 			'order'      => 3,
-			'capability' => $this->settings_capability,
+			'capability' => self::MANAGE_CAPABILITY,
 		];
 
 		return $settings_tab_items;
@@ -100,7 +111,7 @@ class PermissionsPage implements PageInterface {
 			return;
 		}
 
-		if ( ! current_user_can( $this->settings_capability ) ) {
+		if ( ! current_user_can( self::MANAGE_CAPABILITY ) ) {
 			return;
 		}
 
@@ -126,6 +137,10 @@ class PermissionsPage implements PageInterface {
 		// phpcs:enable WordPress.Security.NonceVerification.Recommended
 
 		if ( ! $is_settings_page || ! $is_permissions ) {
+			return;
+		}
+
+		if ( ! current_user_can( self::MANAGE_CAPABILITY ) ) {
 			return;
 		}
 
@@ -231,7 +246,7 @@ class PermissionsPage implements PageInterface {
 	 * @return void
 	 */
 	public function handle_save() {
-		if ( ! current_user_can( $this->settings_capability ) ) {
+		if ( ! current_user_can( self::MANAGE_CAPABILITY ) ) {
 			wp_die( esc_html__( 'You do not have permission to manage Accessibility Checker permissions.', 'accessibility-checker' ) );
 		}
 
