@@ -57,9 +57,9 @@ defined( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER' ) || define( 'EDAC_CAPABILI
 // the free plugin from below this version get a one-time forced re-sync of the
 // bundle onto their configured roles, plus any pending capability slug renames
 // (see SyncCapability::reconcile()). Bump this whenever a migration must re-run
-// (the 1.49.0 bump carries the ignore -> dismiss rename). The shipping plugin
+// (the 1.48.0 bump carries the ignore -> dismiss rename). The shipping plugin
 // version must be >= this value.
-defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.49.0' );
+defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.48.0' );
 
 /**
  * Metadata for every Accessibility Checker capability, keyed by slug.
