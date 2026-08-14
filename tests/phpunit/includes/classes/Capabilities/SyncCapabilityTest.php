@@ -224,6 +224,36 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A site that already has a saved (non-empty) role map when it crosses the
+	 * migration-version boundary must be left completely untouched, even when a
+	 * legacy option is ALSO present and would seed something different. This is
+	 * the affordance that keeps a version bump from silently overwriting
+	 * hand-configured Permissions settings on an already-configured site
+	 * (e.g. a local dev/test site an admin already set up by hand) - the legacy
+	 * seed only ever applies to a genuinely unconfigured (empty) map.
+	 *
+	 * @return void
+	 */
+	public function test_reconcile_never_touches_an_already_configured_role_map() {
+		// Deliberately different from what the legacy seed below would produce,
+		// so any bleed-through would be immediately visible.
+		update_option( self::ROLE_MAP_OPTION, [ self::TEST_CAP => [ 'author' ] ] );
+		update_option( self::LEGACY_OPTION, [ 'editor' ] );
+
+		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ], '1.0.0' );
+		$capability->sync_matrix( [ self::TEST_CAP => [ 'author' ] ] ); // Apply the pre-existing config to roles, as a real site would already have.
+		$capability->reconcile();
+
+		// The stored map is byte-for-byte unchanged - no legacy grant merged in.
+		$this->assertSame( [ self::TEST_CAP => [ 'author' ] ], get_option( self::ROLE_MAP_OPTION ) );
+		// Editor (the legacy role) gained nothing.
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP ) );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::TEST_CAP_2 ) );
+		// The pre-existing grant survives.
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+	}
+
+	/**
 	 * A second reconcile at the same version must not re-seed the map or clobber
 	 * assignments changed since the migration ran.
 	 *
