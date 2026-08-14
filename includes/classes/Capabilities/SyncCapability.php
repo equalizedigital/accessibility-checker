@@ -176,30 +176,6 @@ class SyncCapability {
 	}
 
 	/**
-	 * Whether the current user has one of this instance's capabilities.
-	 *
-	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
-	 * @return bool
-	 */
-	public function user_can( ?string $capability = null ): bool {
-		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability, synced by this class.
-		return current_user_can( $capability ?? $this->capabilities[0] );
-	}
-
-	/**
-	 * A REST route permission_callback closure for one of this instance's
-	 * capabilities.
-	 *
-	 * @param string|null $capability Which capability to check; defaults to the first in the bundle.
-	 * @return callable
-	 */
-	public function permission_callback( ?string $capability = null ): callable {
-		return function () use ( $capability ) {
-			return $this->user_can( $capability );
-		};
-	}
-
-	/**
 	 * Map_meta_cap callback: manage_options users always pass a check against
 	 * any capability in this bundle, regardless of assignment.
 	 *

@@ -185,7 +185,8 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Manage_options users always pass user_can(), regardless of assignment.
+	 * Manage_options users always pass a check against a bundle capability,
+	 * regardless of assignment (via the bypass_for_admins map_meta_cap filter).
 	 *
 	 * @return void
 	 */
@@ -198,28 +199,8 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		wp_set_current_user( $admin_id );
 
 		$this->assertFalse( wp_roles()->get_role( 'administrator' )->has_cap( self::TEST_CAP ), 'Precondition: administrator role itself was not synced.' );
-		$this->assertTrue( $capability->user_can() );
-	}
-
-	/**
-	 * The permission_callback() call should proxy user_can() for the capability.
-	 *
-	 * @return void
-	 */
-	public function test_permission_callback_proxies_user_can() {
-		$capability = $this->make( [ self::TEST_CAP, self::TEST_CAP_2 ] );
-		$capability->sync_matrix( [ self::TEST_CAP_2 => [ 'author' ] ] );
-
-		$callback = $capability->permission_callback( self::TEST_CAP_2 );
-		$this->assertIsCallable( $callback );
-
-		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
-		wp_set_current_user( $author_id );
-		$this->assertTrue( $callback() );
-
-		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		wp_set_current_user( $subscriber_id );
-		$this->assertFalse( $callback() );
+		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability, synced by SyncCapability.
+		$this->assertTrue( current_user_can( self::TEST_CAP ) );
 	}
 
 	/**
@@ -342,7 +323,8 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 
 		$author_id = self::factory()->user->create( [ 'role' => 'author' ] );
 		wp_set_current_user( $author_id );
-		$this->assertTrue( $capability->user_can() );
+		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capability, synced by SyncCapability.
+		$this->assertTrue( current_user_can( self::TEST_CAP ) );
 	}
 
 	/**
@@ -357,8 +339,10 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
 		wp_set_current_user( $admin_id );
 
-		$this->assertTrue( $capability->user_can( self::TEST_CAP ) );
-		$this->assertTrue( $capability->user_can( self::TEST_CAP_2 ) );
+		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capabilities, synced by SyncCapability.
+		$this->assertTrue( current_user_can( self::TEST_CAP ) );
+		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- Custom capabilities, synced by SyncCapability.
+		$this->assertTrue( current_user_can( self::TEST_CAP_2 ) );
 	}
 
 	/**

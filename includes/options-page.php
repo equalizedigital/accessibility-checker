@@ -77,6 +77,11 @@ defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRA
  * @return array<string, array{label:string,description:string,group:string,owner:string,pro:bool}>
  */
 function edac_capability_metadata(): array {
+	static $capabilities_cache = null;
+	if ( null !== $capabilities_cache ) {
+		return $capabilities_cache;
+	}
+
 	/**
 	 * Filter the Accessibility Checker capability registry.
 	 *
@@ -158,7 +163,8 @@ function edac_capability_metadata(): array {
 		);
 	}
 
-	return $capabilities;
+	$capabilities_cache = $capabilities;
+	return $capabilities_cache;
 }
 
 /**
