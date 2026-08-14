@@ -36,14 +36,17 @@ Each registry entry is keyed by capability slug and carries this metadata:
 | `edac_dismiss_issues` | Dismiss/reopen accessibility issues on **any** post, regardless of ownership — a superset of "dismiss own" and a deliberate opt-in overstep of core `edit_post` | accessibility-checker (free) | `edit_posts` | *(none)* |
 | `edac_view_frontend_highlighter` | The front-end accessibility highlighter on published content | accessibility-checker (free) | *(none)* | editor, author |
 | `edac_dismiss_issues_globally` | "Dismiss Globally" — suppresses an issue across every post sharing its rule + element, not just the one being viewed | accessibility-checker-pro | `edit_others_posts` | *(none)* |
-| `edac_issues_explorer_access` | Opening and using the Issues Explorer app | accessibility-checker-pro | *(none)* | *(none)* |
+| `edac_issues_explorer_access` | Opening and using the Issues Explorer app | accessibility-checker-pro | `edit_posts` | *(none)* |
 | `edac_full_site_scan` | Running / viewing the full-site scan (**in addition to** `edit_others_posts`, see below) | accessibility-checker-pro | `edit_others_posts` | *(none)* |
-| `edac_view_audit_history` | The Audit History admin page and its REST data route (incl. CSV export) | accessibility-checker-audit-history | *(none)* | *(none)* |
-| `edac_export_data` | The Export Data admin page and all of its export actions (Issues, Scan Stats, Global Ignores, Audit History) | accessibility-checker-export | *(none)* | *(none)* |
+| `edac_view_audit_history` | The Audit History admin page and its REST data route (incl. CSV export) | accessibility-checker-audit-history | `edit_posts` | *(none)* |
+| `edac_export_data` | The Export Data admin page and all of its export actions (Issues, Scan Stats, Global Ignores, Audit History) | accessibility-checker-export | `edit_posts` | *(none)* |
 
 Administrators (`manage_options`) always pass every `edac_*` check, whether or not their role is listed
 in the matrix. This is enforced centrally through `map_meta_cap`, so it applies uniformly to every
-capability without each feature having to special-case admins.
+capability without each feature having to special-case admins. The bypass is registered per
+`SyncCapability` instance and only covers the **capabilities in its own bundle**, so a capability
+contributed by a currently-deactivated add-on has no bypass registered for it — moot in practice, since
+that add-on's features aren't reachable while it's deactivated either.
 
 ## Floors
 
@@ -92,22 +95,30 @@ needs to grant a capability to one specific user uses WordPress's own `$user->ad
 [Granting to one specific user](#granting-a-capability-to-one-specific-user)), which lives on the user
 object and is untouched by the engine.
 
-**Defaults.** On first activation, `edac_seed_default_capabilities()` (`init`, priority 5) seeds each
-capability's `default_roles` once — tracked in the `edac_capability_defaults_seeded` option — filtered
-by the floor, and respecting any capability an admin has already unchecked.
+**Defaults.** Seeding happens **once, at activation, on a genuinely fresh install** —
+`edac_seed_capability_defaults_on_install()` (`includes/options-page.php`), called from
+`edac_activation()`. It writes the full `default_roles` suite (filtered by each capability's floor) to
+`edac_capability_role_map`, records every currently-registered capability as seeded in
+`edac_capability_defaults_seeded` (so an admin who later unchecks one is respected — no default is ever
+re-offered), and stamps the migration version as already satisfied so `reconcile()` never treats a fresh
+install as a legacy site. There is no init-time seeder. **Note:** none of the add-ons call this seeder
+from their own activation hooks, so a capability contributed by an add-on activated *after* the free
+plugin's initial seeding does not get its `default_roles` applied automatically — `reconcile()` (see
+below) picks the new capability up into the synced bundle, but only applies whatever is already in
+`edac_capability_role_map` (nothing, for a capability no admin has granted yet). It starts ungranted
+until an admin checks it in the Permissions UI.
 
 **Fresh installs vs. migrating sites (design decision).** A *fresh* install receives the full suite of
-default grants. A site *migrating* from the legacy "Ignore Permissions" setting deliberately does
-**not**: it keeps exactly the grants that setting gave it (the dismiss family, carried by the migration
-below) and is never handed fresh-install defaults for capabilities the legacy setting never governed —
-most visibly the front-end highlighter, whose defaults would otherwise land on editor/author on an
-established site. This is enforced in the seeder's legacy-pending branch: when legacy config is present
-but the role map has not yet been migrated, the seeder marks **every currently-registered capability as
-already seeded** and bails, so the migration owns those grants and no default is ever back-filled for
-them on a later request. A capability contributed by an add-on activated *after* migration is not in
-that snapshot, so it still receives its own defaults when it first appears. (Without this, the seeder
-would fire on the request after migration — once the role map is no longer null — and grant the
-highlighter to roles the site never intended.)
+default grants, applied immediately at activation. A site *upgrading* from the legacy "Ignore
+Permissions" setting does **not** run the activation hook (activation hooks don't fire on plugin
+update) and instead goes entirely through the version-gated migration described below: it keeps exactly
+the grants that setting gave it and is never handed fresh-install defaults for capabilities the legacy
+setting never governed — most visibly the front-end highlighter, whose defaults would otherwise land on
+editor/author on an established site. Fresh-vs-migrating is now determined by which entry point ran
+(activation vs. the `reconcile()` migration path on `init`), not by guessing from option state — an
+earlier design that inferred "fresh" from an empty legacy option mis-fired, because `edac_activation()`
+used to seed `edacp_ignore_user_roles = ['administrator']`, making every fresh install look like a
+migrating one and silently skip its default grants. That legacy seed has been removed.
 
 **Migration.** A version-gated migration (`EDAC_CAPABILITY_MIGRATION_VERSION`, currently `1.48.0`)
 converts the legacy `edacp_ignore_user_roles` "Ignore Permissions" option into the new role map. It
@@ -185,12 +196,12 @@ back to `manage_options` when running against an older free plugin that predates
 | `edac_user_can_view_audit_history()` | `edac_view_audit_history` |
 | `edac_user_can_export_data()` | `edac_export_data` |
 | `edac_user_can_run_full_site_scan()` | `edac_full_site_scan` (+ `edit_others_posts`) |
+| `edac_user_can_use_frontend_highlighter()` | `edac_view_frontend_highlighter` |
 
 The former `edac_user_can_ignore()` / `edac_user_can_ignore_globally()` remain as **deprecated shims**
 (add-ons still feature-detect the old names): `edac_user_can_ignore()` returns true when the user holds
 either per-post dismiss capability; `edac_user_can_ignore_globally()` maps to
 `edac_user_can_dismiss_issues_globally()`.
-| `edac_user_can_use_frontend_highlighter()` | `edac_view_frontend_highlighter` |
 
 Because the fallback only ever *widens* who can reach a page (to administrators) when a finer-grained
 capability isn't recognized, no site is ever locked out of a page it could previously access.
