@@ -265,11 +265,23 @@ function edac_floor_requirement_label( string $floor ): string {
  * they already pass every edac_* capability via the admin bypass, so showing
  * them would be a no-op the admin cannot turn off.
  *
+ * Deliberately reimplements get_editable_roles() (wp-admin/includes/user.php:
+ * apply_filters( 'editable_roles', wp_roles()->roles )) rather than calling it -
+ * that file is only autoloaded within the wp-admin bootstrap (is_admin()), so
+ * calling the real function here would fatal on any caller outside it. This
+ * function runs from edac_sanitize_capability_role_map(), which fires on every
+ * update_option( 'edac_capability_role_map', ... ) via the sanitize_option
+ * filter - including REST routes (e.g. the multisite settings-clone route) and
+ * WP-CLI, neither of which load wp-admin.
+ *
  * @return array<string, array> Editable roles keyed by slug, minus admins.
  */
 function edac_assignable_roles(): array {
+	/** This filter is documented in wp-admin/includes/user.php. */
+	$editable_roles = apply_filters( 'editable_roles', wp_roles()->roles );
+
 	return array_filter(
-		get_editable_roles(),
+		$editable_roles,
 		function ( $role ) {
 			return empty( $role['capabilities']['manage_options'] );
 		}
