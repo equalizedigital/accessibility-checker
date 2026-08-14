@@ -322,7 +322,7 @@ class Ajax {
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_dismiss_issues() || edac_user_can_dismiss_own_issues() );
 
 			$severity_map = [
 				1 => [
