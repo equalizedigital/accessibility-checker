@@ -85,6 +85,12 @@ class AssignableRolesOutsideAdminTest extends WP_UnitTestCase {
 		update_option( 'edac_capability_role_map', [ 'edac_dismiss_own_issues' => [ 'editor', 'subscriber' ] ] );
 
 		$stored = get_option( 'edac_capability_role_map' );
+		$this->assertIsArray( $stored, 'The sanitized role map should be stored as an array.' );
+		$this->assertArrayHasKey(
+			'edac_dismiss_own_issues',
+			$stored,
+			'The sanitizer should keep the capability entry when at least one role survives floor validation.'
+		);
 		$this->assertContains( 'editor', $stored['edac_dismiss_own_issues'] );
 		$this->assertNotContains( 'subscriber', $stored['edac_dismiss_own_issues'], 'Floor validation should still run and strip the ineligible role.' );
 

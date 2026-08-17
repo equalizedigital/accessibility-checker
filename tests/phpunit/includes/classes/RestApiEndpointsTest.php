@@ -67,6 +67,11 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Reset current user between tests.
 		wp_set_current_user( 0 );
+		// add_cap() writes directly to the user's wp_capabilities meta, which
+		// WP_UnitTestCase's role restoration does not undo - several tests grant
+		// this to the shared self::$limited_id fixture and never revoke it, which
+		// would otherwise leak across every test that runs afterward.
+		( new WP_User( self::$limited_id ) )->remove_cap( 'edac_dismiss_issues_globally' );
 		parent::tearDown();
 	}
 

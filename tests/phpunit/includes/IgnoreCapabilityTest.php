@@ -29,6 +29,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 			[
 				self::ROLE_MAP_OPTION,
 				'edac_capability_defaults_seeded',
+				'edacp_ignore_user_roles',
 				'edac_synced_capabilities_' . self::ROLE_MAP_OPTION,
 				'edac_capability_migration_version_' . self::ROLE_MAP_OPTION,
 			] as $option
