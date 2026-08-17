@@ -85,6 +85,45 @@ class PermissionsPageCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Render_page() (the PageInterface-required entry point) must be gated
+	 * the same as add_permissions_tab_content() - it was found unguarded
+	 * during a 2026-08-17 manual review pass, rendering the full capability
+	 * role map and grant UI for anyone who could reach it directly.
+	 *
+	 * @return void
+	 */
+	public function test_render_page_denied_for_non_admin_with_lower_settings_capability() {
+		$page = new PermissionsPage( 'edit_posts' );
+
+		$editor_id = self::factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		ob_start();
+		$page->render_page();
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output, 'A non-admin who meets only the injected settings capability must not see the Permissions page rendered.' );
+	}
+
+	/**
+	 * An administrator must still see the page rendered via render_page().
+	 *
+	 * @return void
+	 */
+	public function test_render_page_rendered_for_admin() {
+		$page = new PermissionsPage( 'edit_posts' );
+
+		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		ob_start();
+		$page->render_page();
+		$output = ob_get_clean();
+
+		$this->assertNotSame( '', $output, 'An administrator must see the Permissions page rendered via render_page().' );
+	}
+
+	/**
 	 * The save handler must reject a non-admin even when they meet the
 	 * injected (lower) settings capability - the fix this test guards
 	 * against would have let such a user grant their own role a capability
