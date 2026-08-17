@@ -419,31 +419,21 @@ add_filter( 'sanitize_option_edac_capability_role_map', 'edac_sanitize_capabilit
 /**
  * Apply the stored capability role map onto this site's roles right now.
  *
- * A public trigger for the role sync, for callers that write the role map option
- * outside the normal admin-post save - notably the pro settings importer and the
- * multisite settings clone (which must resync each target site inside its own
- * switch_to_blog() context). reconcile() only re-syncs on a bundle/version
- * change, so a changed role map needs this explicit apply.
+ * A public trigger for the role sync, for any caller that writes the role map
+ * option outside the normal admin-post save (e.g. a WP-CLI command, a custom
+ * migration script). reconcile() only re-syncs on a bundle/version change, so
+ * a changed role map needs this explicit apply.
+ *
+ * Deliberately NOT wired to travel with the pro settings import/export or the
+ * multisite settings clone - permissions/capability grants are security-
+ * relevant and site-specific, so both of those flows now exclude this option
+ * and direct the admin to configure it manually on each site instead.
  *
  * @return void
  */
 function edac_sync_capability_roles(): void {
 	edac_ignore_capability()->sync_matrix( (array) get_option( 'edac_capability_role_map', [] ) );
 }
-
-// Make the capability role map travel with the pro settings import/export. It is
-// not a register_setting() option (the Permissions tab saves it via admin-post),
-// so it must be added to the import/export set explicitly. On import it is
-// validated through edac_sanitize_capability_role_map() (the sanitize_option
-// filter above) and applied via edac_sync_capability_roles().
-add_filter(
-	'edacp_import_export_option_names',
-	function ( $names ) {
-		$names   = is_array( $names ) ? $names : [];
-		$names[] = 'edac_capability_role_map';
-		return array_values( array_unique( $names ) );
-	}
-);
 
 /**
  * The SyncCapability instance managing the bundle. Assembled on plugins_loaded

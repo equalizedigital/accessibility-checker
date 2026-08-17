@@ -387,7 +387,8 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 
 	/**
 	 * The public edac_sync_capability_roles() helper applies the stored role map
-	 * onto the roles - the trigger importers use after writing the option.
+	 * onto the roles - for any caller that writes the option outside the normal
+	 * admin-post save.
 	 *
 	 * @return void
 	 */
