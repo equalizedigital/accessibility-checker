@@ -128,6 +128,9 @@ class Enqueue_Frontend {
 				 * highlighter. You can use the filter to perform additional permission checks
 				 * on who can see it.
 				 *
+				 * Not a deprecation candidate against edac_view_frontend_highlighter - see
+				 * the fuller note at admin/class-frontend-highlight.php::init_hooks().
+				 *
 				 * @since 1.14.0
 				 *
 				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.

@@ -128,10 +128,15 @@ function edac_capability_metadata(): array {
 
 	$capabilities = is_array( $capabilities ) ? $capabilities : [];
 
-	// Back-compat: fold in any slug contributed only through the legacy
+	// Back-compat: fold in any slug contributed only through the deprecated
 	// edac_capability_bundle filter, with synthesized metadata so add-ons that
 	// have not adopted edac_capabilities yet are still assignable and synced.
-	$legacy = apply_filters( 'edac_capability_bundle', [] );
+	$legacy = apply_filters_deprecated(
+		'edac_capability_bundle',
+		[ [] ],
+		'1.xx.x',
+		'edac_capabilities'
+	);
 	foreach ( (array) $legacy as $slug ) {
 		$slug = (string) $slug;
 		if ( '' !== $slug && ! isset( $capabilities[ $slug ] ) ) {
