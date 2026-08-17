@@ -147,7 +147,7 @@ applied.
 - **Uninstalling** cleans up. Capability cleanup lives **only in the free plugin's `uninstall.php`**,
   and only when the site's existing `edac_delete_data` setting is on. It removes the capability-system
   options and strips the managed capability set from every role. The managed set is computed as
-  `role_map keys ∪ defaults_seeded keys` — **not** a broad `edac_*` prefix — so unrelated capabilities
+  `role_map keys ∪ defaults_seeded values` — **not** a broad `edac_*` prefix — so unrelated capabilities
   such as `edac_upload_pdf` are never touched, while orphans left by an add-on that was uninstalled
   earlier are still caught. Add-ons carry no capability cleanup of their own. Capabilities added
   directly to a user via `$user->add_cap()` live on the user object, not on a role, so uninstall does

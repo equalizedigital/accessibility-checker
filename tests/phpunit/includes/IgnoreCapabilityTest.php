@@ -28,6 +28,7 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		foreach (
 			[
 				self::ROLE_MAP_OPTION,
+				'edac_capability_defaults_seeded',
 				'edac_synced_capabilities_' . self::ROLE_MAP_OPTION,
 				'edac_capability_migration_version_' . self::ROLE_MAP_OPTION,
 			] as $option
@@ -295,6 +296,58 @@ class IgnoreCapabilityTest extends WP_UnitTestCase {
 		$this->assertSame( EDAC_CAPABILITY_MIGRATION_VERSION, get_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION ), 'A fresh install must stamp the migration as satisfied.' );
 
 		// Cleanup so later tests start from the shared no-caps baseline.
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+	}
+
+	/**
+	 * The fresh-vs-reactivation branch in edac_activation() itself (not just
+	 * edac_seed_capability_defaults_on_install() called directly, which
+	 * bypasses the ordering this test exists to prove): a genuinely fresh
+	 * install (no edac_activation_date yet) seeds the defaults; a later
+	 * reactivation (edac_activation_date already present, as it would be for
+	 * any site that already ran activation once) must NOT re-seed and must
+	 * not silently restore a default an admin has since revoked.
+	 *
+	 * @return void
+	 */
+	public function test_activation_seeds_once_and_reactivation_does_not_reseed() {
+		delete_option( 'edac_activation_date' );
+		delete_option( self::ROLE_MAP_OPTION );
+		delete_option( 'edac_capability_defaults_seeded' );
+		delete_option( 'edac_capability_migration_version_' . self::ROLE_MAP_OPTION );
+		delete_option( 'edacp_ignore_user_roles' );
+		foreach ( wp_roles()->role_objects as $role ) {
+			$role->remove_cap( self::CAP );
+			$role->remove_cap( 'edac_view_frontend_highlighter' );
+		}
+
+		// First activation: genuinely fresh (edac_activation_date absent).
+		edac_activation();
+
+		$this->assertNotEmpty( get_option( 'edac_activation_date' ), 'Activation must stamp edac_activation_date.' );
+		$this->assertTrue( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'A fresh install must seed the dismiss-own default onto editor.' );
+
+		// An admin explicitly revokes the default grant after the fact - this
+		// must survive a later reactivation, not be silently restored by it.
+		wp_roles()->get_role( 'editor' )->remove_cap( self::CAP );
+		$this->assertFalse( wp_roles()->get_role( 'editor' )->has_cap( self::CAP ), 'Precondition: the admin has revoked the default grant.' );
+
+		// Second activation: edac_activation_date is now already set, so this
+		// is a reactivation, not a fresh install - must not reseed.
+		edac_activation();
+
+		$this->assertFalse(
+			wp_roles()->get_role( 'editor' )->has_cap( self::CAP ),
+			'Reactivation must not reseed defaults and silently restore a grant the admin already revoked.'
+		);
+
+		// Cleanup so later tests start from the shared no-caps baseline.
+		delete_option( 'edac_activation_date' );
 		foreach ( wp_roles()->role_objects as $role ) {
 			$role->remove_cap( self::CAP );
 			$role->remove_cap( 'edac_view_frontend_highlighter' );

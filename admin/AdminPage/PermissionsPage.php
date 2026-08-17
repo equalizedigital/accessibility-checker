@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * writes the edac_capability_role_map option, whose option hooks (registered by
  * SyncCapability) then sync the capabilities onto the selected roles.
  *
- * @since 1.48.0
+ * @since 1.xx.x
  */
 class PermissionsPage implements PageInterface {
 
@@ -176,6 +176,34 @@ class PermissionsPage implements PageInterface {
 	}
 
 	/**
+	 * A stable fingerprint of a role map, used as an optimistic-concurrency
+	 * check on save (not for any security purpose).
+	 *
+	 * The Permissions page bakes the full current role map into hidden inputs
+	 * at render time; handle_save() then overwrites the option with whatever
+	 * the browser submits. Two admins editing around the same time - the
+	 * second one's page still reflecting the pre-first-save state - would
+	 * otherwise have the second save silently discard the first admin's
+	 * changes. This fingerprint is rendered into the form at page-load time
+	 * and re-checked against the option's current value at save time, so a
+	 * save whose starting snapshot is no longer current is rejected instead
+	 * of silently overwriting.
+	 *
+	 * @param array $role_map The role map to fingerprint.
+	 * @return string
+	 */
+	private function role_map_revision( array $role_map ): string {
+		ksort( $role_map );
+		foreach ( $role_map as &$roles ) {
+			$roles = array_values( (array) $roles );
+			sort( $roles );
+		}
+		unset( $roles );
+
+		return md5( (string) wp_json_encode( $role_map ) );
+	}
+
+	/**
 	 * Build the role/capability eligibility matrix consumed by the picker JS.
 	 *
 	 * For every editable role and every capability it reports whether the
@@ -256,8 +284,30 @@ class PermissionsPage implements PageInterface {
 		// array is sanitized by edac_sanitize_capability_role_map() (sanitize_key
 		// per role, floor + editable-role re-validation per capability).
 		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
-		$posted_roles = isset( $_POST['edac_role_map'] ) ? (array) wp_unslash( $_POST['edac_role_map'] ) : [];
+		$posted_roles    = isset( $_POST['edac_role_map'] ) ? (array) wp_unslash( $_POST['edac_role_map'] ) : [];
+		$posted_revision = isset( $_POST['edac_role_map_revision'] ) ? sanitize_text_field( wp_unslash( $_POST['edac_role_map_revision'] ) ) : '';
 		// phpcs:enable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		$current_role_map = (array) get_option( self::ROLE_MAP_OPTION, [] );
+
+		// Optimistic concurrency: the submitted form started from a snapshot of
+		// the role map at page-load time (see role_map_revision() and the
+		// partial's hidden field). If the stored option no longer matches that
+		// snapshot, someone else saved in between - reject rather than silently
+		// overwrite whatever they just changed with this now-stale submission.
+		if ( $posted_revision !== $this->role_map_revision( $current_role_map ) ) {
+			$redirect = add_query_arg(
+				[
+					'page'    => 'accessibility_checker_settings',
+					'tab'     => self::PAGE_TAB_SLUG,
+					'updated' => 'conflict',
+				],
+				admin_url( 'admin.php' )
+			);
+
+			wp_safe_redirect( $redirect );
+			exit;
+		}
 
 		// Validate through the shared sanitizer so the UI save and the settings
 		// importer apply identical rules. It preserves entries for locked/inactive

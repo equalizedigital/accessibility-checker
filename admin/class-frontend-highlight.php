@@ -93,6 +93,13 @@ class Frontend_Highlight {
 			wp_send_json_error( new \WP_Error( '-4', __( 'Post not found', 'accessibility-checker' ) ) );
 		}
 
+		// A password-protected post blocks access regardless of read_post/public-viewable
+		// checks below - those don't know about the password gate, so this must be checked
+		// explicitly or a user who hasn't entered the password can still get highlighter data.
+		if ( post_password_required( $post ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
+		}
+
 		// Check if the user has permission to view this post.
 		if ( is_user_logged_in() ) {
 			// For authenticated users, use read_post capability.

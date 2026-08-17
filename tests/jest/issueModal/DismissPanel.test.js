@@ -179,6 +179,76 @@ describe( 'DismissPanel', () => {
 		unmount();
 	} );
 
+	test( 'shows a permission notice instead of the dismiss form for a user without canDismiss, on an open issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 7, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'You do not have permission to dismiss issues.' );
+		expect( container.querySelector( 'form' ) ).toBeNull();
+
+		unmount();
+	} );
+
+	test( 'hides the Reopen Issue button for a user without canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 8,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Reopen Issue' );
+		expect(
+			Array.from( container.querySelectorAll( 'button' ) ).find( ( el ) => el.textContent.includes( 'Reopen Issue' ) ),
+		).toBeUndefined();
+
+		unmount();
+	} );
+
+	test( 'shows the Reopen Issue button for a user with canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 9,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'Reopen Issue' );
+
+		unmount();
+	} );
+
 	test( 'shows global dismiss controls for a Pro user with canDismissGlobally', () => {
 		window.edac_editor_app.pro = '1';
 

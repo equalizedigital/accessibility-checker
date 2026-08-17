@@ -32,16 +32,4 @@ class CapabilityChecker {
 		// phpcs:ignore WordPress.WP.Capabilities.Unknown -- May be a custom capability synced elsewhere; this class doesn't know or care.
 		return null === $user_id ? current_user_can( $capability ) : user_can( $user_id, $capability );
 	}
-
-	/**
-	 * A REST route permission_callback closure for the given capability.
-	 *
-	 * @param string $capability Capability string to check.
-	 * @return callable
-	 */
-	public static function permission_callback( string $capability ): callable {
-		return function () use ( $capability ) {
-			return self::user_can( $capability );
-		};
-	}
 }

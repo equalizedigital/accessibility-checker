@@ -134,7 +134,12 @@ class Enqueue_Frontend {
 				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
 				! ( $post_id && current_user_can( 'edit_post', $post_id ) ) &&
-				! ( function_exists( 'edac_user_can_use_frontend_highlighter' ) && edac_user_can_use_frontend_highlighter() )
+				! (
+					function_exists( 'edac_user_can_use_frontend_highlighter' ) &&
+					edac_user_can_use_frontend_highlighter() &&
+					current_user_can( 'read_post', $post_id ) &&
+					! post_password_required( $post_id )
+				)
 			)
 		) {
 			return;

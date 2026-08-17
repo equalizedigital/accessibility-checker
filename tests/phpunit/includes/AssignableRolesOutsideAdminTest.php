@@ -56,7 +56,8 @@ class AssignableRolesOutsideAdminTest extends WP_UnitTestCase {
 
 		$start = strpos( $source, 'function edac_assignable_roles' );
 		$this->assertNotFalse( $start, 'edac_assignable_roles() should still exist.' );
-		$end  = strpos( $source, "\n}\n", $start );
+		$end = strpos( $source, "\n}\n", $start );
+		$this->assertNotFalse( $end, 'Could not locate the end of edac_assignable_roles() in the source - if this fails, the function body no longer ends with a line containing only "}" and the detection below needs updating rather than silently scanning a garbled slice.' );
 		$body = substr( $source, $start, $end - $start );
 
 		$this->assertStringNotContainsString(

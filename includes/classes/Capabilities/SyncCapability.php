@@ -207,6 +207,15 @@ class SyncCapability {
 			return;
 		}
 
+		// add_cap()/remove_cap() each persist the whole wp_user_roles option on
+		// every call, regardless of whether anything actually changed - skip the
+		// write when the role's raw capability grant already matches, so a
+		// reconcile() that changes nothing performs zero option writes instead of
+		// one per role x capability pair.
+		if ( $role->has_cap( $capability ) === $should_have ) {
+			return;
+		}
+
 		if ( $should_have ) {
 			$role->add_cap( $capability );
 		} else {

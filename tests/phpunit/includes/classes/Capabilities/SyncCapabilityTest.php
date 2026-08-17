@@ -74,6 +74,35 @@ class SyncCapabilityTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Re-applying a role map that already matches live role state must not
+	 * write the roles option at all - add_cap()/remove_cap() each persist the
+	 * whole option on every call, so a no-op sync_matrix() call should perform
+	 * zero of them, not one skipped write per role x capability pair.
+	 *
+	 * @return void
+	 */
+	public function test_sync_matrix_is_idempotent_when_nothing_changes() {
+		$capability = $this->make();
+		$map        = [ self::TEST_CAP => [ 'author' ] ];
+
+		$capability->sync_matrix( $map );
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ) );
+
+		$writes = 0;
+		$count  = function () use ( &$writes ) {
+			++$writes;
+		};
+		add_action( 'update_option_' . wp_roles()->role_key, $count );
+
+		$capability->sync_matrix( $map );
+
+		remove_action( 'update_option_' . wp_roles()->role_key, $count );
+
+		$this->assertSame( 0, $writes, 'Re-syncing an unchanged map must not write the roles option.' );
+		$this->assertTrue( wp_roles()->get_role( 'author' )->has_cap( self::TEST_CAP ), 'The capability must still be granted after the no-op sync.' );
+	}
+
+	/**
 	 * A multi-capability bundle should grant each capability only to the roles
 	 * mapped for that specific capability.
 	 *

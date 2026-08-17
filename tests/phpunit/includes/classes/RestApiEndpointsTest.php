@@ -1430,7 +1430,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test: Large batch dismissed by user with partial authorization fails before bulk query.
+	 * Test: Large batch dismiss with edac_dismiss_issues_globally succeeds
+	 * across posts the user cannot individually edit.
 	 *
 	 * Verifies that a user with edac_dismiss_issues_globally can dismiss a
 	 * batch that includes a post they do NOT personally have edit_post on -

@@ -75,25 +75,4 @@ class CapabilityCheckerTest extends WP_UnitTestCase {
 
 		$this->assertTrue( CapabilityChecker::user_can( self::TEST_CAP, $user_id ) );
 	}
-
-	/**
-	 * Permission_callback() should return a callable proxying user_can(),
-	 * suitable for a REST route's permission_callback directly.
-	 *
-	 * @return void
-	 */
-	public function test_permission_callback_proxies_user_can() {
-		wp_roles()->get_role( 'editor' )->add_cap( self::TEST_CAP );
-
-		$callback = CapabilityChecker::permission_callback( self::TEST_CAP );
-		$this->assertIsCallable( $callback );
-
-		$user_id = self::factory()->user->create( [ 'role' => 'editor' ] );
-		wp_set_current_user( $user_id );
-		$this->assertTrue( $callback() );
-
-		$subscriber_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
-		wp_set_current_user( $subscriber_id );
-		$this->assertFalse( $callback() );
-	}
 }
