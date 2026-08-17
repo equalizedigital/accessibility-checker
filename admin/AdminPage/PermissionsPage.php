@@ -120,8 +120,16 @@ class PermissionsPage implements PageInterface {
 
 	/**
 	 * Render the page.
+	 *
+	 * Required by PageInterface. Guarded the same way as the tab callback: this
+	 * partial exposes the whole capability role map (and the grant UI that
+	 * writes it), so any caller reaching it must hold self::MANAGE_CAPABILITY.
 	 */
 	public function render_page() {
+		if ( ! current_user_can( self::MANAGE_CAPABILITY ) ) {
+			return;
+		}
+
 		include EDAC_PLUGIN_DIR . 'partials/admin-page/permissions-page.php';
 	}
 

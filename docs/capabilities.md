@@ -140,7 +140,10 @@ applied.
 
 ## Lifecycle: activation, deactivation, uninstall
 
-- **Activating** an add-on registers its capabilities and, on first activation, seeds their defaults.
+- **Activating** an add-on registers its capabilities into the registry, so they join the synced bundle
+  and appear in the Permissions matrix. It does **not** seed their `default_roles` — only the free
+  plugin's own fresh-install activation seeds defaults (see the note under *Defaults* above), so an
+  add-on capability starts ungranted until an administrator checks it.
 - **Deactivating** an add-on does **not** revoke its capabilities. A capability that leaves the bundle
   is intentionally left on whatever roles held it, so reactivating the add-on restores access
   seamlessly (`SyncCapability::reconcile()` no longer strips departed capabilities).
@@ -231,8 +234,9 @@ add_filter(
 ```
 
 Once registered, the free plugin syncs the capability onto the assigned roles, shows it in the
-Permissions matrix under its `group`, seeds its `default_roles` on first activation, and enforces its
-`floor` everywhere.
+Permissions matrix under its `group`, and enforces its `floor` everywhere. `default_roles` are only
+applied by the free plugin's fresh-install seeder, so a capability registered by an add-on activated
+after that point starts ungranted until an administrator checks it.
 
 ## Granting a capability to one specific user
 
