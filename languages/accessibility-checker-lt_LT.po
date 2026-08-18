@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-25T18:10:19+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,10 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -221,7 +224,7 @@ msgid "N/A"
 msgstr "Netaikoma"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
+#: admin/class-ajax.php:336
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -232,7 +235,7 @@ msgid "Critical"
 msgstr "Kritinis"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
+#: admin/class-ajax.php:340
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -243,7 +246,7 @@ msgid "High"
 msgstr "Aukštas"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:344
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -254,7 +257,7 @@ msgid "Medium"
 msgstr "Vidutinis"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
+#: admin/class-ajax.php:348
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -265,7 +268,7 @@ msgid "Low"
 msgstr "Žemas"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Nežinoma"
 
@@ -414,7 +417,7 @@ msgid "Get Pro"
 msgstr "Gauti Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Atsidaro naujame lange."
 
@@ -423,6 +426,40 @@ msgstr "Atsidaro naujame lange."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Skaityti dokumentaciją apie %s. Atsidaro naujame lange."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Leidimai"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Pasirinkite rolę"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Pasirinkite rolę, kad pamatytumėte jai suteikiamas teises."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Nėra galimų teisių."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Leidimų nustatymai įkelti %s rolei."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Kita"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Reikalinga galiojanti licencija."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Neturite leidimo tvarkyti Accessibility Checker leidimų."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -527,15 +564,14 @@ msgstr "Atnaujinti dabar"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:642
-#: admin/class-ajax.php:826
-#: admin/class-ajax.php:874
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Prieiga uždrausta"
 
@@ -611,52 +647,52 @@ msgstr "Daugiau niekada neklausti"
 msgid "The review action value was not set"
 msgstr "Apžvalgos veiksmo reikšmė nebuvo nustatyta"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:646
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "Įrašo ID nebuvo nustatytas"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:650
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Jūs neturite leidimo peržiūrėti šios informacijos apie šį įrašą."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Supaprastinta santrauka šiam turiniui nebuvo įtraukta."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Jūsų turinys yra 9 klasės ar žemesnio skaitymo lygio ir nereikalauja supaprastintos santraukos."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Supaprastintos santraukos skaitymo lygis yra per aukštas."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Šiam turiniui buvo įtraukta supaprastinta santrauka."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% patikrų atlikta"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
 #: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Patikrinti"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Išlaikyti testai"
 
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:137
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
@@ -666,14 +702,14 @@ msgstr[0] "Problema"
 msgstr[1] "Problemos"
 msgstr[2] "Problemų"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Kontrasto problema"
 msgstr[1] "Kontrasto problemos"
 msgstr[2] "Kontrasto problemų"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -686,8 +722,8 @@ msgstr[0] "Reikia peržiūrėti"
 msgstr[1] "Reikia peržiūrėti"
 msgstr[2] "Reikia peržiūrėti"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
@@ -695,20 +731,20 @@ msgstr[0] "Atmesta problema"
 msgstr[1] "Atmestos problemos"
 msgstr[2] "Atmestų problemų"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
 #: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Skaitymo lygis"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Tikrasis prieinamumas reikalauja rankinio testavimo, be automatinių nuskaitymų. %1$sSužinokite, kaip rankiniu būdu patikrinti prieinamumą%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -717,246 +753,239 @@ msgstr "* Tikrasis prieinamumas reikalauja rankinio testavimo, be automatinių n
 msgid ", opens a new window"
 msgstr ", atidaromas naujas langas"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Nėra santraukos grąžinimui"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Neteisingas lentelės pavadinimas"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " iš viso"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Skaitykite dokumentaciją apie %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Išplėsti problemas dėl %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Šie nustatymai įgalina globalius pataisymus visoje jūsų svetainėje."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Kad pataisymai atsispindėtų ataskaitose, gali reikėti iš naujo išsaugoti puslapius arba atlikti pilną svetainės skenavimą."
 
-#: admin/class-ajax.php:455
+#: admin/class-ajax.php:461
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Išsaugoti"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Paveiktas kodas"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Paveikslėlis"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Orientacinis taškas"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Veiksmai"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Atmesta"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Atmesti"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Problemos ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "paveikslėlis problemai %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Peržiūrėti problemą ID %d svetainėje, atsidarys naujas langas"
 
-#: admin/class-ajax.php:570
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Peržiūrėti puslapyje"
 
-#: admin/class-ajax.php:589
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Pataisymas: "
 
-#: admin/class-ajax.php:590
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Pataisyti"
 
-#: admin/class-ajax.php:623
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Nėra detalių grąžinimui"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Įrašo skaitymo lygis: %s"
 
-#: admin/class-ajax.php:696
-#: admin/class-ajax.php:717
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Nėra"
 
-#: admin/class-ajax.php:699
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Jūsų įrašo skaitymo lygis yra aukštesnis nei 9 klasės. Žiniatinklio turinio prieinamumo gairės (WCAG) AAA lygiu reikalauja supaprastintos jūsų įrašo santraukos, kuri yra 9 klasės ar žemesnio lygio."
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Jūsų įraše nėra pakankamai turinio, kad būtų galima apskaičiuoti jo skaitymo lygį."
 
-#: admin/class-ajax.php:703
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Supaprastinta santrauka nėra būtina, kai turinio skaitymo lygis yra 9 klasės ar žemesnis. Nustatymų puslapyje pasirinkite, kada prašyti supaprastintos santraukos."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:716
-#: admin/class-ajax.php:728
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Supaprastinto santraukos skaitymo lygis: %s"
 
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:726
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Nepakanka turinio, kad būtų galima nustatyti tikslų skaitymo lygį."
 
-#: admin/class-ajax.php:733
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Jūsų supaprastintos santraukos skaitymo lygis yra aukštesnis nei 9 klasės."
 
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Jūsų supaprastintos santraukos skaitymo lygis yra 9 klasės arba žemesnis."
 
-#: admin/class-ajax.php:745
-#: admin/class-ajax.php:775
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Supaprastinta santrauka nėra automatiškai įterpiama į turinį."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:748
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Jūsų raginimas supaprastintai santraukai nustatytas į „niekada.“ Jei norite, kad supaprastinta santrauka būtų rodoma automatiškai, galite tai pakeisti %s."
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:766
-#: admin/class-ajax.php:779
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "nustatymų puslapis"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:760
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Supaprastinta santrauka automatiškai įterpiama %s."
 
-#: admin/class-ajax.php:761
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "turinys"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:765
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Nustatykite, kur supaprastinta santrauka įterpiama į turinį %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:778
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Jūsų supaprastintos santraukos vieta nustatyta į „rankiniu būdu“, o tai reikalauja, kad į jūsų puslapio šabloną būtų pridėta funkcija. Jei norite, kad supaprastinta santrauka būtų rodoma automatiškai, galite tai pakeisti %s."
 
-#: admin/class-ajax.php:792
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
 #: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Supaprastinta santrauka"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:800
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Išsaugoti santrauką"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Sužinokite daugiau apie skaitomumo gerinimą ir supaprastintos santraukos reikalavimus"
 
-#: admin/class-ajax.php:801
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Nėra skaitomumo duomenų grąžinimui"
 
-#: admin/class-ajax.php:848
-#: admin/class-ajax.php:857
-#: admin/class-ajax.php:869
-#: admin/class-ajax.php:913
-msgid "No dismissal data to return"
-msgstr "Nėra atmetimo duomenų, kuriuos būtų galima grąžinti."
-
-#: admin/class-enqueue-admin.php:452
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Ekrano skaitytuvo tekstas"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "ID reikšmė nebuvo nustatyta"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Įrašas nerastas"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Problemos užklausa negrąžino rezultatų"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Objekto užklausa negrąžino rezultatų"
 
@@ -1027,7 +1056,7 @@ msgstr "Atmesti problemą kaip:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Nustatymai"
 
@@ -1122,7 +1151,7 @@ msgid "Report Last Updated:"
 msgstr "Ataskaita paskutinį kartą atnaujinta:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Niekada"
 
@@ -1438,7 +1467,7 @@ msgid "Disabled"
 msgstr "Išjungta"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Ištrinti duomenis"
 
@@ -1495,7 +1524,6 @@ msgid "Simplified Sum Heading"
 msgstr "Supaprastintos santraukos antraštė"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Atmetimo leidimai"
 
@@ -1533,16 +1561,20 @@ msgstr "Gauti Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Gauti Accessibility Checker Pro (atsidaro naujame lange)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Apgailestaujame, jums neleidžiama atmesti problemų."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Apgailestaujame, jums neleidžiama atmesti problemų visuotiniu mastu."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Problema nerasta."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "Atsiprašome, jums neleidžiama atmesti vienos ar daugiau problemų šioje partijoje."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Nepavyko atnaujinti problemos."
 
@@ -3518,251 +3550,277 @@ msgstr "Regionas"
 msgid "View %s landmark on website, opens a new window"
 msgstr "Peržiūrėti %s orientyrą svetainėje, atsidaro naujame lange"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Atmesti savo problemas"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Atmesti ir vėl atidaryti prieinamumo problemas įrašuose, kuriuos naudotojas gali redaguoti (savo įrašuose; redaktoriai gali redaguoti bet kuriuos)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Atmesti problemas (bet kokiame įraše)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Atmesti ir vėl atidaryti prieinamumo problemas bet kokiame įraše, net jei naudotojas negali jo redaguoti."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Išorinės dalies paryškinimo įrankis"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Peržiūrėti išorinės dalies prieinamumo paryškinimo įrankį paskelbtame turinyje."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "galimybė redaguoti įrašus"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "galimybė redaguoti kitų naudotojų įrašus"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Reikalinga %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Sveiki atvykę į Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker nustatymai"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Nuskaitymo nustatymai"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Leidimai"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Supaprastintos santraukos nustatymai"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Poraštės prieinamumo pareiškimas"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Priekinės dalies Accessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Sistemos nustatymai"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Įrašų tipai, kurie bus tikrinami"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Nuskaitymo greitis"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Archyvų nuskaitymas"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Taksonomijos nuskaitymas"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Blokų redaktoriaus meta laukelis"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Raginimas pateikti supaprastintą santrauką"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Supaprastintos santraukos pozicija"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Supaprastinta santraukos antraštė"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Pridėti poraštės prieinamumo pareiškimą"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Įtraukti nuorodą į prieinamumo politiką"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Prieinamumo politikos puslapis"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Prieinamumo pareiškimo peržiūra"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Priekinės dalies Accessibility Checker pozicija"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfigūruokite turinio tipus, kurie turėtų būti tikrinami dėl prieinamumo problemų."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Daugiau funkcijų ir pagalba el. paštu teikiama su %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (atsidaro naujame lange)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Naudokite toliau pateiktus nustatymus, kad sukonfigūruotumėte prieinamumo tikrintuvą priekinėje sąsajoje."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Interneto turinio prieinamumo gairės (WCAG) AAA lygyje reikalauja, kad bet koks turinys, kurio skaitymo lygis yra aukštesnis nei 9 klasė, turėtų alternatyvą, kurią būtų lengviau skaityti. Supaprastintas santraukos tekstas pridedamas skaitomumo skirtuke Accessibility Checker meta laukelyje kiekvieno įrašo ar puslapio redagavimo ekrane."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Sužinokite daugiau apie supaprastintas santraukas ir skaitomumo reikalavimus (atsidaro naujame lange)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Sužinokite daugiau apie supaprastintas santraukas ir skaitomumo reikalavimus."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Ar jūs galvojate „Vau, šis įskiepis yra nuostabus“ ir ar jis padeda jums padaryti jūsų svetainę prieinamesnę? Pasidalinkite savo pastangomis padaryti savo svetainę prieinamesnę su savo klientais ir leiskite jiems žinoti, kad naudojate Accessibility Checker, kad užtikrintumėte, jog visi žmonės galėtų naudotis jūsų svetaine. Pridėkite mažą, tik tekstinę nuorodą ir pareiškimą savo svetainės poraštėje."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfigūruokite sistemos lygio nustatymus Accessibility Checker įskiepiui."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Greitas"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normalus"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Lėtas"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Lėčiausias"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Greitesni nuskaitymai reikalauja daugiau išteklių ir gali sukelti didelę apkrovą tavo svetainei."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Įjungti archyvo puslapių nuskaitymą"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Pasirink, ar archyvo puslapiai turėtų būti įtraukti į viso tinklalapio nuskaitymus. Pagal numatytąją nuostatą taksonomijos terminams archyvo duomenims pasirinkti naudojamas atrankos metodas."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Nuskaityti visus taksonomijos terminus, o ne tik pavyzdį"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Tikrinti visus taksonomijos terminų archyvo puslapius, o ne reprezentatyvią imtį. Tam būtina įjungti archyvo puslapių nuskaitymą, ir tai gali pridėti daug URL adresų į nuskaitymo sąrašą."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Prieš turinį"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "Po turinio"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Įterpti rankiniu būdu"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Naudokite šią funkciją, kad rankiniu būdu pridėtumėte supaprastintą santrauką į savo temą ciklo viduje."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija pasirinktinai priima įrašo ID kaip parametrą."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nustatykite, kur norėtumėte, kad supaprastintos santraukos būtų rodomos santykiu su jūsų turiniu, jei jos užpildytos."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Apatiniame dešiniajame kampe (numatytasis)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Apatiniame kairiajame kampe"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nustatykite, kur norėtumėte, kad priekinės sąsajos prieinamumo tikrintuvas būtų rodomas puslapyje."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Kai reikia"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Visada"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ar Accessibility Checker turėtų prašyti supaprastintos santraukos tik tada, kai jūsų įrašo ar puslapio skaitymo lygis yra aukštesnis nei 9 klasė, visada jos prašyti nepriklausomai nuo skaitymo lygio, ar niekada jos neprašyti nepriklausomai nuo skaitymo lygio?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Norėdami patikrinti kitą turinį nei įrašus ir puslapius, prašome "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "atnaujinti į \"pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (atsidaro naujame lange)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Pasirinkite, kokio tipo įrašai turėtų būti tikrinami skenavimo metu. Atkreipkite dėmesį, kad pašalinus anksčiau pasirinktą įrašo tipą bus pašalinta jo nuskaityta informacija ir visi pasirinktiniai atmesti įspėjimai, kurie buvo nustatyti."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Ištrinti visus Accessibility Checker duomenis, kai įskiepis pašalinamas."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Rodyti Accessibility Checker meta laukelį blokų redaktoriuje"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Pasirinkite, kurie naudotojų vaidmenys turi leidimą atmesti problemas."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Konfigūruok, kurios naudotojų rolės turi prieigą prie konkrečių Accessibility Checker funkcijų."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4968,6 +5026,42 @@ msgstr "Nustatymai išsaugoti. Norėdami patvirtinti ir atspindėti šiuos atnau
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Įdiegtas \"Accessibility New Window Warnings\" įskiepis. Čia pateikta nuorodų, atsidarančių naujame lange, pataisa pakeis jo funkcijas. Galite saugiai pašalinti įskiepį ir vietoj jo naudoti šias pataisas."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Leidimai išsaugoti."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Kol redagavote, leidimus pakeitė kitas asmuo, todėl jūsų pakeitimai nebuvo išsaugoti. Peržiūrėkite dabartinius leidimus žemiau ir bandykite dar kartą."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Leidimų nustatymai"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Pasirinkite naudotojo rolę, tada pažymėkite Accessibility Checker teises, kurias norite suteikti. Teisė gali būti suteikta tik tai rolei, kurios esami „WordPress“ leidimai atitinka reikalavimus. Administratoriai visada turi visas teises."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Pasirinkite rolę"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Pasirinkite naudotojo rolę, kurios Accessibility Checker leidimus norite tvarkyti."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Rolė"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Pasirinkite rolę —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Išsaugoti leidimus"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker problemų skydai"
@@ -5726,6 +5820,11 @@ msgstr "Daugiau atmetimo parinkčių"
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Atmesti ir uždaryti modalinį langą"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Neturite leidimo atmesti problemų."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
