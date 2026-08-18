@@ -32,6 +32,8 @@ class REST_Api {
 
 	/**
 	 * Add the class the hooks.
+	 *
+	 * @return void
 	 */
 	public function init_hooks() {
 		add_action( 'init', [ $this, 'init_rest_routes' ] );
@@ -443,7 +445,7 @@ class REST_Api {
 	/**
 	 * REST handler that saves to the DB a list of js rule violations for a post.
 	 *
-	 * @param WP_REST_Request $request  The request passed from the REST call.
+	 * @param \WP_REST_Request $request  The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -706,7 +708,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets stats about the scans by post type
 	 *
-	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */
@@ -747,7 +749,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets stats about the scans by post types
 	 *
-	 * @param WP_REST_Request $request The request passed from the REST call.
+	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
 	 * @return \WP_REST_Response
 	 */

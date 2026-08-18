@@ -75,6 +75,8 @@ class Frontend_Highlight {
 
 	/**
 	 * AJAX handler function for frontend highlighting requests.
+	 *
+	 * @return void
 	 */
 	public function ajax() {
 
