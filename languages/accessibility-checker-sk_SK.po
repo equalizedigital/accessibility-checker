@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-25T18:10:19+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,10 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -221,7 +224,7 @@ msgid "N/A"
 msgstr "N/A"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
+#: admin/class-ajax.php:336
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -232,7 +235,7 @@ msgid "Critical"
 msgstr "Kritické"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
+#: admin/class-ajax.php:340
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -243,7 +246,7 @@ msgid "High"
 msgstr "Vysoké"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:344
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -254,7 +257,7 @@ msgid "Medium"
 msgstr "Stredné"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
+#: admin/class-ajax.php:348
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -265,7 +268,7 @@ msgid "Low"
 msgstr "Nízke"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Neznáme"
 
@@ -414,7 +417,7 @@ msgid "Get Pro"
 msgstr "Získať pro verziu"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Otvára sa v novom okne."
 
@@ -423,6 +426,40 @@ msgstr "Otvára sa v novom okne."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Prečítajte si dokumentáciu pre %s. Otvára sa v novom okne."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Oprávnenia"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Vyberte rolu"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Vyberte rolu, aby ste videli oprávnenia, ktoré jej môžu byť udelené."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Nie sú k dispozícii žiadne oprávnenia."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Nastavenia povolení boli načítané pre rolu %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Ostatné"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Vyžaduje platnú licenciu."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Nemáte povolenie na správu oprávnení nástroja Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -527,15 +564,14 @@ msgstr "Inovovať teraz"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:642
-#: admin/class-ajax.php:826
-#: admin/class-ajax.php:874
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Prístup zamietnutý"
 
@@ -611,52 +647,52 @@ msgstr "Už sa nikdy nepýtať"
 msgid "The review action value was not set"
 msgstr "Hodnota akcie pre recenziu nebola nastavená"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:646
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "ID príspevku nebolo nastavené"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:650
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Nemáte povolenie na zobrazenie týchto informácií pre tento príspevok."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "K tomuto obsahu nebol pridaný zjednodušený súhrn."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Váš obsah má úroveň čítania na úrovni 9. ročníka alebo nižšej a nevyžaduje zjednodušený súhrn."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Úroveň čítania zjednodušeného súhrnu je príliš vysoká."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "K tomuto obsahu bol pridaný zjednodušený súhrn."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% prešlo kontrolami"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
 #: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Prešlo kontrolami"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Úspešné testy"
 
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:137
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
@@ -666,14 +702,14 @@ msgstr[0] "Problém"
 msgstr[1] "Problémy"
 msgstr[2] "Problémy"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Problém s kontrastom"
 msgstr[1] "Problémy s kontrastom"
 msgstr[2] "Problémy s kontrastom"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -686,8 +722,8 @@ msgstr[0] "Vyžaduje kontrolu"
 msgstr[1] "Vyžaduje kontrolu"
 msgstr[2] "Vyžaduje kontrolu"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
@@ -695,20 +731,20 @@ msgstr[0] "Zrušený problém"
 msgstr[1] "Zrušené problémy"
 msgstr[2] "Zrušené problémy"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
 #: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Úroveň čítania"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Skutočná prístupnosť si vyžaduje manuálne testovanie okrem automatických skenov. %1$sZistite, ako manuálne testovať prístupnosť%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -717,246 +753,239 @@ msgstr "* Skutočná prístupnosť si vyžaduje manuálne testovanie okrem autom
 msgid ", opens a new window"
 msgstr ", otvorí sa nové okno"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Žiadny súhrn na vrátenie"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Neplatný názov tabuľky"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " spolu"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Prečítajte si dokumentáciu pre %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Rozbaliť problémy pre %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Tieto nastavenia umožňujú globálne opravy na celom vašom webe."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Stránky môže byť potrebné znovu uložiť alebo spustiť úplnú kontrolu webu, aby sa opravy prejavili v reportoch."
 
-#: admin/class-ajax.php:455
+#: admin/class-ajax.php:461
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Uložiť"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Ovplyvnený kód"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Obrázok"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Orientácia"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Akcie"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Zamietnuté"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Zamietnuť"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "ID problému %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "obrázok pre problém %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Zobraziť problém s ID %d na webovej stránke, otvorí sa nové okno"
 
-#: admin/class-ajax.php:570
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Zobraziť na stránke"
 
-#: admin/class-ajax.php:589
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Oprava: "
 
-#: admin/class-ajax.php:590
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Opraviť"
 
-#: admin/class-ajax.php:623
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Žiadne podrobnosti na vrátenie"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Úroveň čítania príspevku: %s"
 
-#: admin/class-ajax.php:696
-#: admin/class-ajax.php:717
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Žiadne"
 
-#: admin/class-ajax.php:699
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Váš príspevok má úroveň čítania vyššiu ako 9. ročník. Pokyny pre prístupnosť webového obsahu (WCAG) na úrovni AAA vyžadujú zjednodušené zhrnutie vášho príspevku, ktoré je na úrovni 9. ročníka alebo nižšie."
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Váš príspevok neobsahuje dostatok obsahu na výpočet jeho úrovne čítania."
 
-#: admin/class-ajax.php:703
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Zjednodušené zhrnutie nie je potrebné, ak je úroveň čítania obsahu 9. ročník alebo nižšie. Na stránke nastavení si vyberte, kedy sa má zobraziť výzva na zjednodušené zhrnutie."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:716
-#: admin/class-ajax.php:728
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Zjednodušená úroveň čítania súhrnu: %s"
 
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:726
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Nedostatok obsahu na určenie presnej úrovne čítania."
 
-#: admin/class-ajax.php:733
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Váš zjednodušený súhrn má úroveň čítania nad 9. ročník."
 
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Váš zjednodušený súhrn má úroveň čítania na alebo pod 9. ročníkom."
 
-#: admin/class-ajax.php:745
-#: admin/class-ajax.php:775
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Zjednodušené zhrnutie sa automaticky nevkladá do obsahu."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:748
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaša výzva na zjednodušené zhrnutie je nastavená na „nikdy.“ Ak chcete, aby sa zjednodušené zhrnutie zobrazovalo automaticky, môžete to zmeniť na %s."
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:766
-#: admin/class-ajax.php:779
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "stránka nastavení"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:760
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Zjednodušené zhrnutie sa automaticky vkladá %s."
 
-#: admin/class-ajax.php:761
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "obsah"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:765
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Nastavte, kam sa zjednodušené zhrnutie vloží do obsahu na %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:778
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaše umiestnenie zjednodušeného zhrnutia je nastavené na „manuálne“, čo vyžaduje pridanie funkcie do šablóny stránky. Ak chcete, aby sa zjednodušené zhrnutie zobrazovalo automaticky, môžete to zmeniť na %s."
 
-#: admin/class-ajax.php:792
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
 #: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Zjednodušené zhrnutie"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:800
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Uložiť súhrn"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Zistite viac o zlepšovaní čitateľnosti a požiadavkách na zjednodušené zhrnutie"
 
-#: admin/class-ajax.php:801
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Žiadne údaje o čitateľnosti na vrátenie"
 
-#: admin/class-ajax.php:848
-#: admin/class-ajax.php:857
-#: admin/class-ajax.php:869
-#: admin/class-ajax.php:913
-msgid "No dismissal data to return"
-msgstr "Žiadne údaje o zamietnutí na zobrazenie"
-
-#: admin/class-enqueue-admin.php:452
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Text pre čítačku obrazovky"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "Hodnota id nebola nastavená"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Príspevok sa nenašiel"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Dopyt na problém nevrátil žiadne výsledky"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Dopyt na objekt nevrátil žiadne výsledky"
 
@@ -1027,7 +1056,7 @@ msgstr "Zrušiť problém ako:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Nastavenia"
 
@@ -1122,7 +1151,7 @@ msgid "Report Last Updated:"
 msgstr "Report naposledy aktualizovaný:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Nikdy"
 
@@ -1438,7 +1467,7 @@ msgid "Disabled"
 msgstr "Zakázané"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Vymazať údaje"
 
@@ -1495,7 +1524,6 @@ msgid "Simplified Sum Heading"
 msgstr "Nadpis zjednodušeného súhrnu"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Povolenia na zamietnutie"
 
@@ -1533,16 +1561,20 @@ msgstr "Získajte Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Získať Accessibility Checker Pro (otvorí sa v novom okne)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Prepáčte, nemáte oprávnenie ignorovať problémy."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Prepáčte, nemáte oprávnenie ignorovať problémy globálne."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Problém nebol nájdený."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "Je nám ľúto, ale nemáte povolené zamietnuť jeden alebo viac problémov v tejto dávke."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Nepodarilo sa aktualizovať problém."
 
@@ -3518,251 +3550,277 @@ msgstr "Oblasť"
 msgid "View %s landmark on website, opens a new window"
 msgstr "Zobraziť %s orientačný bod na webstránke, otvorí sa nové okno"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Ignorovať vlastné problémy"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Ignorovať a znova otvárať problémy prístupnosti v príspevkoch, ktoré môže používateľ upravovať (vlastné príspevky; redaktori môžu upravovať akékoľvek)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Ignorovať problémy (akýkoľvek príspevok)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Ignorovať a znova otvárať problémy prístupnosti v akomkoľvek príspevku, aj keď ho používateľ inak nemôže upravovať."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Zvýrazňovač na front-ende"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Zobraziť front-endový zvýrazňovač prístupnosti v publikovanom obsahu."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "schopnosť upravovať príspevky"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "schopnosť upravovať príspevky ostatných používateľov"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Vyžaduje %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Vitajte v Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Nastavenia Accessibility Checker"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Nastavenia skenovania"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Oprávnenia"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Nastavenia zjednodušeného súhrnu"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Vyhlásenie o prístupnosti v pätičke"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker pre frontend"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Systémové nastavenia"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Typy príspevkov na kontrolu"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Rýchlosť skenovania"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Skenovanie archívu"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Skenovanie taxonómie"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Metabox editora blokov"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Výzva na zjednodušený súhrn"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Pozícia zjednodušeného súhrnu"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Zjednodušený nadpis súhrnu"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Pridať vyhlásenie o prístupnosti do pätičky"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Zahrnúť odkaz na pravidlá prístupnosti"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Stránka pravidiel prístupnosti"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Náhľad vyhlásenia o prístupnosti"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Pozícia Accessibility Checker pre frontend"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Nakonfiguruj typy obsahu, ktoré by mali byť kontrolované na problémy s prístupnosťou."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Viac funkcií a e-mailová podpora sú dostupné s %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (otvorí sa v novom okne)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Použite nasledujúce nastavenia na konfiguráciu kontroly prístupnosti na frontende."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Smernice pre prístupnosť webového obsahu (WCAG) na úrovni AAA vyžadujú, aby akýkoľvek obsah s úrovňou čitateľnosti nad 9. Ročník mal alternatívu, ktorú je ľahšie čítať. Zjednodušený súhrnný text sa pridáva na karte čitateľnosti v meta boxe Accessibility Checker na obrazovke úprav každého príspevku alebo stránky."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť (otvorí sa v novom okne)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Dozvedieť sa viac o zjednodušených súhrnoch a požiadavkách na čitateľnosť."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Myslíte si „Wow, tento plugin je úžasný“ a pomáha vám urobiť vašu webovú stránku prístupnejšou? Podeľte sa o svoje úsilie spraviť vašu webovú stránku prístupnejšou so svojimi zákazníkmi a dajte im vedieť, že používate Accessibility Checker, aby ste sa uistili, že všetci ľudia môžu používať vašu webovú stránku. Pridajte malý textový odkaz a vyhlásenie v pätičke vašej webovej stránky."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Nakonfiguruj systémové nastavenia pre plugin Accessibility Checker."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Rýchle"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normálne"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Pomalé"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Najpomalšie"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Rýchlejšie skenovania sú náročnejšie na zdroje a môžu spôsobiť vysoké zaťaženie tvojej webovej stránky."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Povoliť skenovanie archívnych stránok"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Vyberte, či majú byť archívne stránky zahrnuté do úplných skenovaní stránky. Predvolene sa na výber taxonómií pre archívne údaje používa metóda vzorkovania."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skenovať všetky taxonomické termíny namiesto len vzorky"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Skontrolovať všetky archívne stránky taxonómií namiesto reprezentatívnej vzorky. Toto vyžaduje, aby bolo skenovanie archívnych stránok povolené, a môže pridať veľké množstvo URL adries do zoznamu skenovania."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Pred obsahom"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "Za obsahom"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Vložiť manuálne"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Použite túto funkciu na manuálne pridanie zjednodušeného súhrnu do vašej témy v rámci slučky."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcia voliteľne prijíma ID príspevku ako parameter."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nastavte, kde by sa mali zobraziť zjednodušené súhrny vo vzťahu k vášmu obsahu, ak sú vyplnené."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Pravý dolný roh (predvolené)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Ľavý dolný roh"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nastavte, kde by sa mala na stránke zobraziť kontrola prístupnosti na frontende."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Keď je to potrebné"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Vždy"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Mal by Accessibility Checker žiadať o zjednodušené zhrnutie iba vtedy, keď je úroveň čitateľnosti vášho príspevku alebo stránky nad 9. ročníkom, vždy o to žiadať bez ohľadu na úroveň čitateľnosti, alebo o to nikdy nežiadať bez ohľadu na úroveň čitateľnosti?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Na kontrolu iného obsahu ako príspevkov a stránok, prosím "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "prejdite na Pro verziu"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (otvorí sa v novom okne)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Vyberte, ktoré typy príspevkov sa majú kontrolovať počas skenovania. Upozorňujeme, že odstránenie predtým vybraného typu príspevku odstráni jeho naskenované informácie a všetky vlastné zamietnuté upozornenia, ktoré boli nastavené."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Odstrániť všetky údaje Accessibility Checker pri odinštalovaní pluginu."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Zobraziť metabox Accessibility Checker v editore blokov"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Vyberte, ktoré používateľské role majú povolenie zamietnuť problémy."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Nakonfiguruj, ktoré používateľské role majú prístup k špecifickým funkciám Accessibility Checker."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4968,6 +5026,42 @@ msgstr "Nastavenia boli uložené. Na potvrdenie a zohľadnenie týchto aktualiz
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Plugin Accessibility New Window Warnings je nainštalovaný. Oprava pre odkazy otvárajúce sa v novom okne, ktorá je tu zahrnutá, prepíše jeho funkčnosť. Môžete bezpečne odstrániť tento plugin a namiesto neho použiť tieto opravy."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Oprávnenia boli uložené."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Oprávnenia boli počas vašej úpravy zmenené niekým iným, preto vaše zmeny neboli uložené. Skontrolujte aktuálne oprávnenia nižšie a skúste to znova."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Nastavenia oprávnení"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Vyberte používateľskú rolu a potom začiarknite oprávnenia nástroja Accessibility Checker, ktoré jej chcete udeliť. Oprávnenie môže byť udelené iba role, ktorej existujúce povolenia vo WordPress spĺňajú danú požiadavku. Administrátori majú vždy všetky oprávnenia."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Vyberte rolu"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Vyberte používateľskú rolu, ktorej oprávnenia nástroja Accessibility Checker chcete spravovať."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Rola"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Vyberte rolu —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Uložiť oprávnenia"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Panely problémov Accessibility Checker"
@@ -5726,6 +5820,11 @@ msgstr "Ďalšie možnosti zrušenia"
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Zrušiť a zavrieť modálne okno"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Nemáte povolenie na ignorovanie problémov."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
