@@ -16,6 +16,13 @@ registry on `plugins_loaded` from that filter (see `edac_capability_metadata()` 
 `includes/options-page.php`); the sorted, de-duplicated list of slugs is the **bundle**
 (`edac_capability_bundle()`) that the sync engine grants and revokes.
 
+`edac_capability_metadata()` also folds in any slug still contributed only through the **deprecated**
+`edac_capability_bundle` filter — a pre-`edac_capabilities` back-compat mechanism, now wired through
+`apply_filters_deprecated()` pointing add-ons at `edac_capabilities` — with synthesized metadata so an
+add-on that hasn't migrated is still assignable and synced. New add-ons should register through
+`edac_capabilities` (see [Extending](#extending-registering-a-capability-from-an-add-on)); this filter
+exists only so an already-shipped add-on that used it keeps working.
+
 Each registry entry is keyed by capability slug and carries this metadata:
 
 | Key | Meaning |
@@ -208,6 +215,24 @@ either per-post dismiss capability; `edac_user_can_ignore_globally()` maps to
 
 Because the fallback only ever *widens* who can reach a page (to administrators) when a finer-grained
 capability isn't recognized, no site is ever locked out of a page it could previously access.
+
+## Other legacy permission filters
+
+A 2026-08 review of every permission-related filter in the plugin family, alongside the
+`edac_capability_bundle` deprecation above, found three more that look superseded by the capability
+registry but were deliberately left as-is:
+
+- **`edac_ignore_permission`** (`admin/class-ajax.php`) — dead code, not just superseded: it wraps the
+  already-deprecated `edac_user_can_ignore()`, and its result is never read by anything else in the
+  method. Flagged for a future cleanup pass rather than removed here.
+- **`edac_filter_frontend_highlighter_visibility`** (two call sites: `class-frontend-highlight.php`,
+  `class-enqueue-frontend.php`) — kept. It gates the highlighter for **logged-out** visitors, who have no
+  WordPress role or capability to check, so `edac_view_frontend_highlighter` cannot express what it does.
+- **`edac_filter_dashboard_widget_capability`** (`admin/class-helpers.php`) — kept. No capability in the
+  `edac_capabilities` registry maps to "can see the dashboard widget" yet, so it isn't a clean
+  deprecation candidate as-is. A future `edac_view_dashboard_widget` capability would make it one.
+
+None of these three had their behavior changed — only code comments noting the review outcome.
 
 ## Extending: registering a capability from an add-on
 
