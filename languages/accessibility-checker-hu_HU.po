@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-25T18:10:19+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,7 +21,10 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -221,7 +224,7 @@ msgid "N/A"
 msgstr "N/A"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
+#: admin/class-ajax.php:336
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -232,7 +235,7 @@ msgid "Critical"
 msgstr "Kritikus"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
+#: admin/class-ajax.php:340
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -243,7 +246,7 @@ msgid "High"
 msgstr "Magas"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
+#: admin/class-ajax.php:344
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -254,7 +257,7 @@ msgid "Medium"
 msgstr "Közepes"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
+#: admin/class-ajax.php:348
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -265,7 +268,7 @@ msgid "Low"
 msgstr "Alacsony"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -414,7 +417,7 @@ msgid "Get Pro"
 msgstr "Pro verzió beszerzése"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Új ablakban nyílik meg."
 
@@ -423,6 +426,40 @@ msgstr "Új ablakban nyílik meg."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Olvassa el a %s dokumentációját. Új ablakban nyílik meg."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Jogosultságok"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Válasszon ki egy szerepkört"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Válasszon ki egy szerepkört a hozzárendelhető jogosultságok megtekintéséhez."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Nincsenek elérhető jogosultságok."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "A(z) %s szerepkör jogosultsági beállításai betöltve."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Egyéb"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Érvényes licenc szükséges hozzá."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Nincs jogosultsága az Accessibility Checker jogosultságainak kezeléséhez."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -527,15 +564,14 @@ msgstr "Frissítés most"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:642
-#: admin/class-ajax.php:826
-#: admin/class-ajax.php:874
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Hozzáférés megtagadva"
 
@@ -611,52 +647,52 @@ msgstr "Ne kérdezzen többé"
 msgid "The review action value was not set"
 msgstr "Az értékelési művelet értéke nem lett beállítva"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:646
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "A bejegyzés azonosítója nem volt beállítva"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:650
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Nincs jogosultsága megtekinteni ezt az információt ehhez a bejegyzéshez."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Ehhez a tartalomhoz nem tartozik egyszerűsített összefoglaló."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "A tartalom olvasási szintje 9. osztályos vagy az alatti, így nem igényel egyszerűsített összefoglalót."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Az egyszerűsített összefoglaló olvasási szintje túl magas."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Ehhez a tartalomhoz egyszerűsített összefoglaló tartozik."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% sikeres ellenőrzés"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
 #: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Sikeres ellenőrzések"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Sikeres tesztek"
 
-#: admin/class-ajax.php:138
+#: admin/class-ajax.php:137
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
@@ -665,13 +701,13 @@ msgid_plural "Problems"
 msgstr[0] "Probléma"
 msgstr[1] "Problémák"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Kontrasztprobléma"
 msgstr[1] "Kontrasztproblémák"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -683,28 +719,28 @@ msgid_plural "Needs Review"
 msgstr[0] "Áttekintésre szorul"
 msgstr[1] "Áttekintésre szorul"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Elvetett probléma"
 msgstr[1] "Elvetett problémák"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
 #: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Olvasási szint"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* A valódi akadálymentességhez az automatizált vizsgálatok mellett manuális tesztelésre is szükség van. %1$sTudjon meg többet a manuális akadálymentességi tesztelésről%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -713,246 +749,239 @@ msgstr "* A valódi akadálymentességhez az automatizált vizsgálatok mellett 
 msgid ", opens a new window"
 msgstr ", új ablakban nyílik meg"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Nincs visszaadható összefoglaló"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Érvénytelen táblanév"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " összesen"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Olvassa el a dokumentációt a %1$s-höz. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Bővítse a %s problémáit"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Ezek a beállítások globális javításokat engedélyeznek az egész webhelyen."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Előfordulhat, hogy az oldalakat újra kell menteni, vagy teljes webhely-ellenőrzést kell futtatni ahhoz, hogy a javítások megjelenjenek a jelentésekben."
 
-#: admin/class-ajax.php:455
+#: admin/class-ajax.php:461
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Mentés"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Érintett kód"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Kép"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landmark"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Műveletek"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Elvetve"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Elvetés"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Probléma azonosítója: %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "kép a %d problémához"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "%d Azonosítójú probléma megtekintése a weboldalon, új ablakban nyílik meg"
 
-#: admin/class-ajax.php:570
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Megtekintés az oldalon"
 
-#: admin/class-ajax.php:589
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Javítás: "
 
-#: admin/class-ajax.php:590
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Javítás"
 
-#: admin/class-ajax.php:623
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Nincsenek visszaadható részletek"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Olvasási szint a bejegyzéshez: %s"
 
-#: admin/class-ajax.php:696
-#: admin/class-ajax.php:717
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Nincs"
 
-#: admin/class-ajax.php:699
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "A bejegyzés olvasási szintje magasabb, mint a 9. osztály. A webes tartalom akadálymentességi irányelvei (WCAG) AAA szinten megkövetelik a bejegyzés egyszerűsített összefoglalását, amely 9. osztályos vagy az alatti szintű."
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "A bejegyzés nem tartalmaz elegendő tartalmat az olvasási szintjének kiszámításához."
 
-#: admin/class-ajax.php:703
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Egyszerűsített összefoglaló nem szükséges, ha a tartalom olvasási szintje 9. osztályos vagy az alatti. Válassza ki a beállítások oldalon, hogy mikor kérjen egyszerűsített összefoglalót."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:716
-#: admin/class-ajax.php:728
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Egyszerűsített összefoglaló olvasási szint: %s"
 
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:726
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Nincs elegendő tartalom a pontos olvasási szint meghatározásához."
 
-#: admin/class-ajax.php:733
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Az egyszerűsített összefoglaló olvasási szintje 9. osztály feletti."
 
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Az egyszerűsített összefoglaló olvasási szintje 9. osztályos vagy az alatti."
 
-#: admin/class-ajax.php:745
-#: admin/class-ajax.php:775
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Az egyszerűsített összefoglaló nem kerül automatikusan beillesztésre a tartalomba."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:748
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Az egyszerűsített összefoglaló kérése „soha” értékre van állítva. Ha szeretné, hogy az egyszerűsített összefoglaló automatikusan megjelenjen, ezt a %s oldalon módosíthatja."
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:766
-#: admin/class-ajax.php:779
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "beállítások oldal"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:760
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Az egyszerűsített összefoglaló automatikusan beillesztésre kerül %s."
 
-#: admin/class-ajax.php:761
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "a tartalom"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:765
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Állítsa be, hogy az egyszerűsített összefoglaló hova kerüljön a tartalomba a %s oldalon."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:778
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Az egyszerűsített összefoglaló helye „manuális” értékre van állítva, amihez egy funkciót kell hozzáadni az oldal sablonjához. Ha szeretné, hogy az egyszerűsített összefoglaló automatikusan megjelenjen, ezt a %s oldalon módosíthatja."
 
-#: admin/class-ajax.php:792
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
 #: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Egyszerűsített összefoglaló"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:800
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Összefoglaló mentése"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Tudjon meg többet az olvashatóság javításáról és az egyszerűsített összefoglaló követelményeiről"
 
-#: admin/class-ajax.php:801
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Nincsenek visszaadható olvashatósági adatok"
 
-#: admin/class-ajax.php:848
-#: admin/class-ajax.php:857
-#: admin/class-ajax.php:869
-#: admin/class-ajax.php:913
-msgid "No dismissal data to return"
-msgstr "Nincs visszaküldhető elvetési adat."
-
-#: admin/class-enqueue-admin.php:452
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Képernyőolvasó szövege"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "Az azonosító érték nem volt beállítva"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "A bejegyzés nem található"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "A probléma lekérdezése nem adott eredményt"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Az objektum lekérdezése nem adott eredményt"
 
@@ -1023,7 +1052,7 @@ msgstr "Probléma elvetése mint:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Beállítások"
 
@@ -1115,7 +1144,7 @@ msgid "Report Last Updated:"
 msgstr "Jelentés utolsó frissítése:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Soha"
 
@@ -1429,7 +1458,7 @@ msgid "Disabled"
 msgstr "Letiltva"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Adatok törlése"
 
@@ -1486,7 +1515,6 @@ msgid "Simplified Sum Heading"
 msgstr "Egyszerűsített összefoglaló címe"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Elvetési jogosultságok"
 
@@ -1524,16 +1552,20 @@ msgstr "Szerezze be az Accessibility Checker Pro-t"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Szerezze be az Accessibility Checker Pro-t (új ablakban nyílik meg)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Sajnáljuk, nincs jogosultsága a hibák elvetéséhez."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Sajnáljuk, nincs jogosultsága a hibák globális elvetéséhez."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Probléma nem található."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "Sajnáljuk, de nem engedélyezett egy vagy több probléma elvetése ebben a kötegben."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Nem sikerült frissíteni a problémát."
 
@@ -3509,251 +3541,277 @@ msgstr "Régió"
 msgid "View %s landmark on website, opens a new window"
 msgstr "%s jelölő megtekintése a weboldalon, új ablakban nyílik meg"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Saját hibák elvetése"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Akadálymentesítési hibák elvetése és újranyitása olyan bejegyzéseknél, amelyeket a felhasználó szerkeszthet (saját bejegyzések; a szerkesztők bármelyiket szerkeszthetik)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Hibák elvetése (bármely bejegyzés)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Akadálymentesítési hibák elvetése és újranyitása bármely bejegyzésnél, még akkor is, ha a felhasználó egyébként nem szerkesztheti azt."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Front-end kiemelő"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "A front-end akadálymentesítési kiemelő megtekintése a közzétett tartalmakon."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "a bejegyzések szerkesztésének képessége"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "más felhasználók bejegyzései szerkesztésének képessége"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Szükséges hozzá: %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Üdvözöljük az Accessibility Checkerben"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker beállítások"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Vizsgálati beállítások"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Jogosultságok"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Egyszerűsített összefoglaló beállításai"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Láblécben megjelenő akadálymentességi nyilatkozat"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Rendszerbeállítások"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Ellenőrizendő bejegyzéstípusok"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Vizsgálat sebessége"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Archívum szkennelés"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Taxonómia szkennelés"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Blokkszerkesztő metabox"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Kérjen egyszerűsített összefoglalót"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Egyszerűsített összefoglaló pozíciója"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Egyszerűsített összefoglaló fejléc"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Akadálymentességi nyilatkozat hozzáadása a láblécben"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Akadálymentességi irányelvekre mutató link beillesztése"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Akadálymentességi irányelvek oldala"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Akadálymentességi nyilatkozat előnézete"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker pozíciója"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Állítsd be, hogy milyen típusú tartalmakat kell ellenőrizni akadálymentességi problémák szempontjából."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "További funkciók és e-mail támogatás %1$s esetén érhető el."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (új ablakban nyílik meg)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Az alábbi beállításokkal konfigurálhatja a frontend akadálymentesítés-ellenőrzőt."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "A Web Akadálymentesítési Útmutató (WCAG) AAA szintje megköveteli, hogy minden olyan tartalom, amelynek olvasási szintje meghaladja a 9. Osztályos szintet, rendelkezzen egy könnyebben olvasható alternatívával. Az egyszerűsített összefoglaló szöveg az Accessibility Checker metadoboz olvashatósági fülén adható hozzá minden bejegyzés vagy oldal szerkesztési képernyőjén."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "További információ az egyszerűsített összefoglalókról és az olvashatósági követelményekről (új ablakban nyílik meg)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "További információ az egyszerűsített összefoglalókról és az olvashatósági követelményekről."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Arra gondol, hogy „Hű, ez a bővítmény fantasztikus”, és segít Önnek a weboldala akadálymentesítésében? Ossza meg erőfeszítéseit az ügyfelekkel, és tudassa velük, hogy az Accessibility Checkert használja annak biztosítására, hogy minden ember használhassa a weboldalát. Adjon hozzá egy kis, csak szöveges linket és nyilatkozatot a weboldala láblécében."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Állítsd be az Accessibility Checker bővítmény rendszerszintű beállításait."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Gyors"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normál"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Lassú"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Leglassabb"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "A gyorsabb vizsgálatok erőforrás-igényesebbek, és nagy terhelést jelenthetnek a webhelyedre."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Archívum oldalak vizsgálatának engedélyezése"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Válaszd ki, hogy az archívum oldalak szerepeljenek-e a teljes webhely szkennelésekben. Alapértelmezés szerint egy mintavételi módszer választja ki a taxonómia kifejezéseket az archívum adatokhoz."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Minden taxonómia kifejezés vizsgálata minta helyett"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Ellenőrizd az összes taxonómia kifejezés archívum oldalt egy reprezentatív minta helyett. Ehhez engedélyezni kell az archívum oldal szkennelést, és ez jelentősen megnövelheti a szkennelési listában szereplő URL-ek számát."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "A tartalom előtt"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "A tartalom után"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Manuális beillesztés"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Ezzel a funkcióval manuálisan adhatja hozzá az egyszerűsített összefoglalót a témájához a cikluson belül."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "A függvény opcionálisan elfogadja a bejegyzés azonosítóját paraméterként."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Állítsa be, hol szeretné, hogy az egyszerűsített összefoglalók megjelenjenek a tartalmához képest, ha ki vannak töltve."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Jobb alsó sarok (alapértelmezett)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Bal alsó sarok"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Állítsa be, hol szeretné, hogy a frontend akadálymentesítés-ellenőrző megjelenjen az oldalon."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Amikor szükséges"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Mindig"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Az Accessibility Checker csak akkor kérjen egyszerűsített összefoglalót, ha a bejegyzés vagy oldal olvasási szintje meghaladja a 9. osztályos szintet, vagy mindig kérje függetlenül az olvasási szinttől, vagy soha ne kérje függetlenül az olvasási szinttől?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Más tartalmak ellenőrzéséhez, mint a bejegyzések és oldalak, kérjük "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "frissítés pro verzióra"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (új ablakban nyílik meg)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Válassza ki, mely bejegyzéstípusokat kell ellenőrizni egy szkennelés során. Felhívjuk figyelmét, hogy egy korábban kiválasztott bejegyzéstípus eltávolítása törli annak szkennelt adatait és a beállított egyedi elvetett figyelmeztetéseket."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Törölje az összes Accessibility Checker adatot a bővítmény eltávolításakor."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Accessibility Checker metabox megjelenítése a blokkszerkesztőben"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Válassza ki, mely felhasználói szerepköröknek van engedélye a problémák elvetésére."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Állítsd be, mely felhasználói szerepkörök férhetnek hozzá az Accessibility Checker egyes funkcióihoz."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4959,6 +5017,42 @@ msgstr "Beállítások mentve. A frissítések megerősítéséhez és a webhely
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Az Accessibility New Window Warnings bővítmény telepítve van. Az itt szereplő javítás az új ablakban megnyíló linkekre felülírja annak funkcionalitását. Biztonságosan eltávolíthatja a bővítményt, és helyette használhatja ezeket a javításokat."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Jogosultságok mentve."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "A jogosultságokat valaki más módosította, miközben Ön szerkesztette őket, így a módosításai nem lettek elmentve. Tekintse át az aktuális jogosultságokat alább, majd próbálja újra."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Jogosultsági beállítások"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Válasszon ki egy felhasználói szerepkört, majd jelölje be a hozzárendelni kívánt Accessibility Checker jogosultságokat. Egy jogosultság csak olyan szerepkörhöz rendelhető hozzá, amelynek meglévő WordPress jogosultságai megfelelnek a követelményeknek. Az adminisztrátorok mindig rendelkeznek minden jogosultsággal."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Válasszon szerepkört"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Válassza ki azt a felhasználói szerepkört, amelynek az Accessibility Checker jogosultságait kezelni szeretné."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Szerepkör"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Válasszon szerepkört —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Jogosultságok mentése"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker problémapanelek"
@@ -5713,6 +5807,11 @@ msgstr "További elvetési lehetőségek"
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Elvetés és modális ablak bezárása"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Nincs jogosultsága a hibák elvetéséhez."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
