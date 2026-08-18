@@ -43,6 +43,13 @@ class Frontend_Highlight {
 		 * highlighter. You can use the filter to perform additional permission checks
 		 * on who can see it.
 		 *
+		 * Reviewed against the edac_view_frontend_highlighter capability during the
+		 * 2026-08 permissions work and kept as-is (not a deprecation candidate): this
+		 * gates the nopriv AJAX action for LOGGED-OUT visitors, who have no WP role
+		 * or capabilities to check in the first place, so the capability system
+		 * cannot express what this filter does. Long-term, consider renaming it to
+		 * make that distinction clearer (e.g. ..._anonymous_visibility).
+		 *
 		 * @since 1.14.0
 		 *
 		 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
@@ -91,6 +98,13 @@ class Frontend_Highlight {
 		$post    = get_post( $post_id );
 		if ( ! $post ) {
 			wp_send_json_error( new \WP_Error( '-4', __( 'Post not found', 'accessibility-checker' ) ) );
+		}
+
+		// A password-protected post blocks access regardless of read_post/public-viewable
+		// checks below - those don't know about the password gate, so this must be checked
+		// explicitly or a user who hasn't entered the password can still get highlighter data.
+		if ( post_password_required( $post ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 		}
 
 		// Check if the user has permission to view this post.

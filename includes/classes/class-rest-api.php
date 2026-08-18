@@ -91,8 +91,13 @@ class REST_Api {
 							],
 						],
 						'permission_callback' => function ( $request ) {
+							// Saving a scan result for a post requires being able to edit
+							// that specific post. A single-post scan uses the author's own
+							// edit_post; a full site scan is run by a user with
+							// edit_others_posts, which grants edit_post over the content it
+							// crawls. This keeps result storage scoped to editable content.
 							$post_id = (int) $request['id'];
-							return current_user_can( 'edit_post', $post_id ); // able to edit the post.
+							return current_user_can( 'edit_post', $post_id );
 						},
 					]
 				);
@@ -337,6 +342,26 @@ class REST_Api {
 							global $wpdb;
 							$issue_id = isset( $request['issue_id'] ) ? (int) $request['issue_id'] : 0;
 							if ( $issue_id <= 0 ) {
+								return false;
+							}
+
+							// largeBatch performs the global action - it updates every row
+							// sharing this issue's rule + object, not just $issue_id - so it
+							// requires the larger-blast-radius capability regardless of who
+							// owns the affected posts (dismiss_issue() re-checks this too).
+							if ( $request->get_param( 'largeBatch' ) ) {
+								return edac_user_can_dismiss_issues_globally();
+							}
+
+							// Single-issue dismiss. "Dismiss issues (any post)" allows it on
+							// any post; "Dismiss own issues" allows it only where the user can
+							// edit_post the issue's post (authors -> own, editors -> any).
+							// Administrators pass via the manage_options bypass.
+							if ( edac_user_can_dismiss_issues() ) {
+								return true;
+							}
+
+							if ( ! edac_user_can_dismiss_own_issues() ) {
 								return false;
 							}
 
@@ -1205,12 +1230,34 @@ class REST_Api {
 	public function dismiss_issue( $request ) {
 		global $wpdb;
 
-		$issue_id      = (int) $request['issue_id'];
-		$action        = $request->get_param( 'action' );
-		$reason        = $request->get_param( 'reason' ) ?? '';
-		$comment       = $request->get_param( 'comment' ) ?? '';
-		$ignore_global = $request->get_param( 'ignore_global' ) ?? 0;
-		$large_batch   = $request->get_param( 'largeBatch' ) ?? false;
+		$can_dismiss_any      = edac_user_can_dismiss_issues();
+		$can_dismiss_globally = edac_user_can_dismiss_issues_globally();
+		if ( ! $can_dismiss_any && ! edac_user_can_dismiss_own_issues() && ! $can_dismiss_globally ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
+
+		$issue_id    = (int) $request['issue_id'];
+		$action      = $request->get_param( 'action' );
+		$reason      = $request->get_param( 'reason' ) ?? '';
+		$comment     = $request->get_param( 'comment' ) ?? '';
+		$large_batch = $request->get_param( 'largeBatch' ) ?? false;
+
+		// largeBatch is what actually performs the global action (updating every
+		// row that shares the object, not just $issue_id) - the per-post
+		// edit_post loop below only proves the user can edit each affected post,
+		// it doesn't prove they're allowed to take a global action at all. That
+		// requires the separate, larger-blast-radius capability.
+		if ( $large_batch && ! $can_dismiss_globally ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
 
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$site_id    = get_current_blog_id();
@@ -1226,7 +1273,12 @@ class REST_Api {
 		$ignre_date_formatted = $is_ignoring ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_reason         = $is_ignoring ? $reason : null;
 		$ignre_comment        = $is_ignoring ? $comment : null;
-		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
+		// The ignre_global marker records that a dismiss was taken as a global
+		// action. It must reflect what actually happened - $large_batch is what
+		// performs the global update below - not the client-supplied
+		// ignore_global param, which would let a request mislabel a single-row
+		// dismiss as global (or vice versa) independent of the real action taken.
+		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
 		// verify edit permission for all of them, then update the vetted ids in one query.
@@ -1267,16 +1319,9 @@ class REST_Api {
 				);
 			}
 
-			foreach ( $issue_rows as $issue_row ) {
-				$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
-				if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
-					return new \WP_Error(
-						'rest_forbidden',
-						__( 'Sorry, you are not allowed to dismiss one or more issues in this batch.', 'accessibility-checker' ),
-						[ 'status' => rest_authorization_required_code() ]
-					);
-				}
-			}
+			// $can_dismiss_globally is guaranteed true here: the early return
+			// above already rejects any $large_batch request without it, so a
+			// per-post edit_post loop over the batch would be pure overhead.
 
 			// Build an explicit list of vetted IDs so the UPDATE targets only rows we already permission-checked.
 			$issue_ids       = array_map( 'intval', wp_list_pluck( $issue_rows, 'id' ) );

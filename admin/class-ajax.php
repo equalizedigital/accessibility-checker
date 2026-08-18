@@ -318,11 +318,18 @@ class Ajax {
 			/**
 			 * Filters if a user can ignore issues.
 			 *
+			 * Candidate for deprecation: wraps edac_user_can_ignore(), itself
+			 * already @deprecated in favor of edac_user_can_dismiss_issues()/
+			 * edac_user_can_dismiss_own_issues(), and $ignore_permission below
+			 * is not currently read by anything else in this method - a real
+			 * dead-code cleanup, not just a superseded permission check.
+			 * Revisit alongside the other legacy permission filters.
+			 *
 			 * @since 1.4.0
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
 
 			$severity_map = [
 				1 => [
