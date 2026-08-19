@@ -96,7 +96,7 @@ register_deactivation_hook( __FILE__, 'edac_deactivation' );
  * regardless of whether HPOS is enabled. No-op when WooCommerce is not
  * active, since this hook is only fired by WooCommerce itself.
  *
- * @since 1.xx.x
+ * @since 1.48.0
  */
 add_action(
 	'before_woocommerce_init',
