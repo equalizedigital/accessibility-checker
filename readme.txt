@@ -1,8 +1,8 @@
 === Equalize Digital Accessibility Checker - WCAG, ADA, EAA and Section 508 compliance ===
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
-Requires at least: 6.8
-Tested up to: 7.0
+Requires at least: 6.9
+Tested up to: 7.1
 Stable tag: 1.48.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
