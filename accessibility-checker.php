@@ -13,7 +13,7 @@
  * Version:           1.47.0
  * Requires PHP:      7.4
  * WC requires at least: 7.1
- * WC tested up to:   11.0
+ * WC tested up to: 11.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
