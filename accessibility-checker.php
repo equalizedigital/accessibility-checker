@@ -12,6 +12,8 @@
  * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
  * Version:           1.47.0
  * Requires PHP:      7.4
+ * WC requires at least: 7.1
+ * WC tested up to:   11.0
  * Author:            Equalize Digital
  * Author URI:        https://equalizedigital.com
  * License:           GPL-2.0+
@@ -86,6 +88,24 @@ define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ign
  */
 register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
+
+/**
+ * Declare compatibility with WooCommerce's High-Performance Order Storage.
+ *
+ * This plugin does not read or write order data, so it is compatible
+ * regardless of whether HPOS is enabled. No-op when WooCommerce is not
+ * active, since this hook is only fired by WooCommerce itself.
+ *
+ * @since 1.xx.x
+ */
+add_action(
+	'before_woocommerce_init',
+	function () {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__ );
+		}
+	}
+);
 
 /* ***************************** CLASS AUTOLOADING *************************** */
 if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {
