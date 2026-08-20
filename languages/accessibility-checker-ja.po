@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.45.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,10 +21,14 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -215,48 +219,56 @@ msgid "Weekly email includes total issues found and changes since the last repor
 msgstr "週次メールには、発見された合計問題数と前回レポートからの変更点、カバレッジ情報、問題の数、要レビュー件数、合格したテストの割合、および最も問題のあるページと最も深刻な問題に関する情報が含まれます。"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:417
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "該当なし"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "重大"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "高"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "中"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "低"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "不明"
 
@@ -405,7 +417,7 @@ msgid "Get Pro"
 msgstr "Proを入手"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "新しいウィンドウで開きます。"
 
@@ -414,6 +426,40 @@ msgstr "新しいウィンドウで開きます。"
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "%sのドキュメントを読む。新しいウィンドウで開きます。"
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "権限"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "権限グループを選択"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "付与可能な権限を確認するには、権限グループを選択してください。"
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "利用可能な権限はありません。"
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "%s の権限設定が読み込まれました。"
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "その他"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "有効なライセンスが必要です。"
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Accessibility Checker の権限を管理する権限がありません。"
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -518,15 +564,14 @@ msgstr "今すぐアップグレード"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-ajax.php:866
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "権限がありません"
 
@@ -602,342 +647,337 @@ msgstr "二度と尋ねない"
 msgid "The review action value was not set"
 msgstr "レビューアクションの値が設定されていませんでした"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "投稿IDが設定されていません"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "この投稿に関する情報を閲覧する権限がありません。"
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "このコンテンツには簡略化された要約が含まれていません。"
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "あなたのコンテンツの読解レベルは中学3年生以下であり、簡略化された要約は必要ありません。"
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "簡略化された要約の読解レベルが高すぎます。"
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "このコンテンツには簡略化された要約が含まれています。"
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% 合格したチェック"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "チェックを通過"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "合格したテスト"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "問題"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "コントラストの問題"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "レビューが必要"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "却下された問題"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "読解レベル"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* 真のアクセシビリティには、自動スキャンに加えて手動テストが必要です。%1$sアクセシビリティを手動でテストする方法を学ぶ%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr "、新しいウィンドウが開きます"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "返す要約がありません"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "無効なテーブル名"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " 合計"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "%1$s のドキュメントを読む。%2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "%s の問題を展開"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "これらの設定は、サイト全体にわたるグローバルな修正を有効にします。"
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "レポートに修正が反映されるには、ページの再保存またはサイト全体のスキャンの実行が必要な場合があります。"
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "保存"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "影響を受けるコード"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "画像"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "ランドマーク"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "アクション"
 
-#: admin/class-ajax.php:495
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "却下済み"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "却下"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "問題ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "問題 %d の画像"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "ページで表示"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "修正: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "修正"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "返す詳細がありません"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "投稿の読解レベル: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "なし"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "投稿の読解レベルが9年生より高いです。WCAG (Web Content Accessibility Guidelines) のAAAレベルでは、投稿の簡略化された要約が9年生以下である必要があります。"
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "投稿には読解レベルを計算するのに十分なコンテンツが含まれていません。"
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "コンテンツの読解レベルが9年生以下の場合、簡略化された要約は不要です。設定ページで、簡略化された要約をいつ促すかを選択してください。"
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "簡易要約の読解レベル: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "正確な読解レベルを判断するのに十分なコンテンツがありません。"
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "簡易要約の読解レベルが9年生以上です。"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "簡易要約の読解レベルが9年生以下です。"
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "簡略化された要約はコンテンツに自動的に挿入されません。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約のプロンプトは「しない」に設定されています。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "設定ページ"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "簡略化された要約は%sに自動的に挿入されます。"
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "コンテンツ"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "簡略化された要約をコンテンツのどこに挿入するかは、%s で設定してください。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約の場所は「手動」に設定されており、ページテンプレートに関数を追加する必要があります。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "簡略版概要"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "要約を保存"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "可読性の向上と簡略化された要約の要件について詳しく学ぶ"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "返す読みやすさデータがありません"
 
-#: admin/class-ajax.php:840
-#: admin/class-ajax.php:849
-#: admin/class-ajax.php:861
-#: admin/class-ajax.php:905
-msgid "No dismissal data to return"
-msgstr "却下データがありません"
-
-#: admin/class-enqueue-admin.php:439
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "スクリーンリーダーテキスト"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "ID値が設定されていません"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "投稿が見つかりません"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "問題のクエリで結果が返されませんでした"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
@@ -974,14 +1014,16 @@ msgid "Date:"
 msgstr "日付："
 
 #: admin/class-ignore-ui.php:141
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "問題を再開"
 
 #: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "問題を却下"
 
@@ -999,14 +1041,14 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "この問題を却下する権限がありません。"
 
 #: admin/class-ignore-ui.php:200
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "問題を却下する理由:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "設定"
 
@@ -1095,7 +1137,7 @@ msgid "Report Last Updated:"
 msgstr "レポート最終更新日:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "なし"
 
@@ -1197,7 +1239,8 @@ msgid "Post Type"
 msgstr "投稿タイプ"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "問題"
 
@@ -1406,7 +1449,7 @@ msgid "Disabled"
 msgstr "無効"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "データを削除"
 
@@ -1463,7 +1506,6 @@ msgid "Simplified Sum Heading"
 msgstr "簡略化された要約の見出し"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "却下権限"
 
@@ -1501,16 +1543,20 @@ msgstr "Accessibility Checker Proを入手"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro を入手する（新しいウィンドウで開きます）"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "申し訳ありませんが、問題を無視する権限がありません。"
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "申し訳ありませんが、問題をグローバルに無視する権限がありません。"
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "問題が見つかりません。"
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "申し訳ありませんが、このバッチで1つ以上の問題を却下することは許可されていません。"
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "問題の更新に失敗しました。"
 
@@ -3414,323 +3460,349 @@ msgid "(opens in a new window)"
 msgstr "（新しいウィンドウで開きます）"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:901
+#: includes/helper-functions.php:922
 msgid "Main"
 msgstr "メイン"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:903
+#: includes/helper-functions.php:924
 msgid "Header"
 msgstr "ヘッダー"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:905
+#: includes/helper-functions.php:926
 msgid "Footer"
 msgstr "フッター"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:907
+#: includes/helper-functions.php:928
 msgid "Nav"
 msgstr "ナビ"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:909
+#: includes/helper-functions.php:930
 msgid "Aside"
 msgstr "アサイド"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:911
+#: includes/helper-functions.php:932
 msgid "Navigation"
 msgstr "ナビゲーション"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:913
+#: includes/helper-functions.php:934
 msgid "Banner"
 msgstr "バナー"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:915
+#: includes/helper-functions.php:936
 msgid "Contentinfo"
 msgstr "コンテンツ情報"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:917
+#: includes/helper-functions.php:938
 msgid "Complementary"
 msgstr "補足"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:919
+#: includes/helper-functions.php:940
 msgid "Section"
 msgstr "セクション"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:921
+#: includes/helper-functions.php:942
 msgid "Article"
 msgstr "記事"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:923
+#: includes/helper-functions.php:944
 msgid "Form"
 msgstr "フォーム"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:925
+#: includes/helper-functions.php:946
 msgid "Region"
 msgstr "地域"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:974
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "%sランドマークをウェブサイトで表示（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "自分の問題を無視"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "ユーザーが編集可能な投稿（自分の投稿、または編集者が編集可能なすべての投稿）において、アクセシビリティの問題を無視または再開します。"
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "問題を無視（すべての投稿）"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "ユーザーが通常編集できない投稿であっても、すべての投稿においてアクセシビリティの問題を無視または再開します。"
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "フロントエンドハイライター"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "公開されたコンテンツ上でフロントエンド・アクセシビリティハイライターを表示します。"
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "投稿を編集する能力"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "他のユーザーの投稿を編集する能力"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "%s が必要です。"
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checkerへようこそ"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker設定"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "スキャン設定"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "権限"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "簡易要約の設定"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "フッターのアクセシビリティ声明"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "フロントエンドAccessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "システム設定"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "チェック対象の投稿タイプ"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "スキャン速度"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "アーカイブスキャン"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "タクソノミースキャン"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "ブロックエディターのメタボックス"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "簡易要約の入力を促す"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "簡易要約の位置"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "簡略化された概要見出し"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "フッターにアクセシビリティ声明を追加"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "アクセシビリティポリシーへのリンクを含める"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "アクセシビリティポリシーページ"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "アクセシビリティ声明のプレビュー"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "フロントエンドAccessibility Checkerの位置"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "アクセシビリティの問題をチェックするコンテンツの種類を設定します。"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "より多くの機能とemailサポートは%1$sで利用可能です。"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "以下の設定を使用してフロントエンドのアクセシビリティチェッカーを構成してください。"
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "ウェブコンテンツアクセシビリティガイドライン（WCAG）のAAAレベルでは、9年生以上の読解レベルを持つコンテンツには、より読みやすい代替版が必要です。簡略化された要約テキストは、各投稿またはページの編集画面のAccessibility Checkerメタボックスの読みやすさタブに追加されます。"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ。"
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "「わあ、このプラグインはすごい」と思い、ウェブサイトをよりアクセシブルにするのに役立っていますか？ウェブサイトをよりアクセシブルにするための取り組みをお客様と共有し、すべての人がウェブサイトを利用できるようにするためにAccessibility Checkerを使用していることを知らせましょう。ウェブサイトのフッターに小さなテキストのみのリンクと声明を追加してください。"
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Accessibility Checkerプラグインのシステムレベル設定を構成します。"
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "高速"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "通常"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "低速"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "最低速"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "高速スキャンはリソースを多く消費し、ウェブサイトに高い負荷をかける可能性があります。"
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "アーカイブページのスキャンを有効にする"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "サイト全体のスキャンにアーカイブページを含めるかどうかを選択してください。デフォルトでは、アーカイブデータのタクソノミー用語を選択するためにサンプリング方法が使用されます。"
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "サンプルだけでなく、すべてのタクソノミー用語をスキャンする"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "代表的なサンプルの代わりに、すべてのタクソノミー用語のアーカイブページをチェックします。これにはアーカイブページのスキャンを有効にする必要があり、スキャンリストに多数のURLが追加される可能性があります。"
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "コンテンツの前"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "コンテンツの後"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "手動で挿入"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "この機能を使用して、ループ内のテーマに簡略化された要約を手動で追加します。"
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "この関数はオプションとして投稿IDをパラメータとして受け入れます。"
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "簡略化された要約を、入力された場合にコンテンツとの関係でどこに表示させたいか設定します。"
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "右下隅（デフォルト）"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "左下隅"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "フロントエンドのアクセシビリティチェッカーをページのどこに表示させたいか設定します。"
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "必要な時"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "常に"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checkerは、投稿やページの読解レベルが9年生以上の場合にのみ簡略化された要約を求めるべきですか、読解レベルに関係なく常に求めるべきですか、それとも読解レベルに関係なく決して求めるべきではありませんか？"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "投稿とページ以外のコンテンツをチェックするには、 "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "Proにアップグレード"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " （新しいウィンドウで開きます）"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "スキャン中にどの投稿タイプをチェックするかを選択してください。以前に選択されていた投稿タイプを削除すると、スキャンされた情報と設定済みのカスタム却下警告が削除されることにご注意ください。"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "プラグインがアンインストールされたときに、すべてのAccessibility Checkerデータを削除します。"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "ブロックエディターでAccessibility Checkerメタボックスを表示"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "どのユーザーロールに問題の却下権限があるかを選択してください。"
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "特定のAccessibility Checker機能へのアクセス権を持つユーザーロールを設定します。"
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4936,22 +5008,58 @@ msgstr "設定が保存されました。これらの更新を確認し、サイ
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Accessibility New Window Warningsプラグインがインストールされています。ここに含まれる新しいウィンドウで開くリンクの修正は、その機能を上書きします。プラグインを安全に削除し、代わりにこれらの修正を使用できます。"
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "権限を保存しました。"
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "編集中に他の誰かが権限を変更したため、変更は保存されませんでした。現在の権限を確認し、もう一度お試しください。"
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "権限設定"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "権限グループを選択し、付与する Accessibility Checker の権限にチェックを入れてください。権限は、既存の WordPress 権限が要件を満たしている権限グループにのみ付与できます。管理者には常にすべての権限が付与されます。"
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "権限グループを選択"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Accessibility Checker の権限を管理する権限グループを選択してください。"
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "権限グループ"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— 権限グループを選択 —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "権限を保存"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker問題パネル"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "アクセシビリティステータス"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "アクセシビリティ分析"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "可読性分析"
 
@@ -4961,8 +5069,9 @@ msgstr "現在見つかっているすべての課題を削除"
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "課題をクリア"
 
@@ -5194,6 +5303,7 @@ msgstr "設定が正常に保存されました。"
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "保存に失敗しました。"
 
@@ -5203,28 +5313,28 @@ msgid "Fix Settings"
 msgstr "修正設定"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "これにより、この投稿のすべての課題がクリアされます。投稿コンテンツの新しいスキャンをトリガーするには保存が必要です。続行しますか？"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "クリア中..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "課題が正常にクリアされました。"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "課題のクリアに失敗しました。"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "問題をクリアする際にエラーが発生しました。"
 
@@ -5252,272 +5362,278 @@ msgstr "EDAC: スキップリンクの履歴更新中にエラーが発生しま
 msgid "Close fixes modal"
 msgstr "修正モーダルを閉じる"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%2$dの%1$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "無題の課題"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "課題 %2$d 中の %1$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "要素が表示されていません。スタイルを無効にしてみてください。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "要素にフォーカスできません。スタイルを無効にしてみてください。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "要素がページに見つかりませんでした。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "左に移動"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "右に移動"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "パネルの位置をリセットしました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "パネルを左に移動しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "パネルを右に移動しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "%1$s、%2$s（%3$s中）の詳細を開く"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "パネルをドック解除"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "パネルをドック"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "このページを再スキャンする"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Accessibility Checkerツール"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "その他のオプション"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "ページスタイルを無効にする"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "スタイルを無効にする"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "閉じる"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "このページには問題が見つかりませんでした。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "読み込み中..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "前へ"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "次へ"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "位置をリセット"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "問題の読み込み中にエラーが発生しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "パネルをドックしました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "パネルをドック解除しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "重大度："
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "説明を表示"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "重要性"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "修正方法"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "詳細なドキュメント"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "影響を受けるコードを表示"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "問題の修正：%s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "問題の修正"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "スタイルを有効にする"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "ページスタイルを有効にする"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "ページスタイルが無効です。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "ページスタイルを再度有効にしました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "表示する設定がありません。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "これらの設定は、サイト全体でグローバルな修正を有効にします。修正をレポートに反映させるには、ページの再保存や全サイトスキャンの実行が必要な場合があります。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
 msgstr[0] "%d件の問題が見つかりました"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
 msgstr[0] "%d個の問題"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
 msgstr[0] "%d件のレビューが必要"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "%d Dismissed"
 msgid_plural "%d Dismissed"
 msgstr[0] "%d件却下されました"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "問題は検出されませんでした。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "ランドマーク：%s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "スクリプトの読み込みに失敗しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "スキャナー機能が見つかりません。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "スキャン中..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "postIdまたはnonceが欠落しています。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "再スキャンが完了しました。違反は見つかりませんでした。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "違反は見つかりませんでした。保存をスキップします。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "アクセシビリティスキャンエラー。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "スキャン結果の保存中にエラーが発生しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "再スキャンはすでに進行中です。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "このページを再スキャンしています。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "再スキャンが完了しました。"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "エラー：必須パラメータがありません。"
 
@@ -5591,7 +5707,9 @@ msgid "Issue reopened successfully."
 msgstr "問題を正常に再開しました。"
 
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Globally"
 msgstr "グローバルに却下"
 
@@ -5605,76 +5723,82 @@ msgstr "グローバルに却下しています..."
 msgid "Dismissing..."
 msgstr "却下中..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 #, js-format
 msgid "Issue Dismissed — %s"
 msgstr "問題却下 — %s"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Issue Dismissed"
 msgstr "問題却下済み"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Scope:"
 msgstr "範囲:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "All pages"
 msgstr "すべてのページ"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "By:"
 msgstr "作成者:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "On:"
 msgstr "日時:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reason for dismissal:"
 msgstr "却下の理由:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "削除しています..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Remove Global Dismissal"
 msgstr "グローバル却下を削除"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopening..."
 msgstr "再開中..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Comment (optional)"
 msgstr "コメント (任意)"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Add a note explaining why this issue is being dismissed."
 msgstr "この問題を却下する理由を説明するメモを追加してください。"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "More dismiss options"
 msgstr "その他の却下オプション"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "却下してモーダルを閉じる"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "問題を無視する権限がありません。"
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5798,219 +5922,224 @@ msgid "issue that needs review"
 msgid_plural "issues that need review"
 msgstr[0] "レビューが必要な問題"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "%1$d %2$s と %3$d %4$s があります。"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "%1$d %2$s があります。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "コンテンツのアクセシビリティの問題を確認して修正します。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "アクセシビリティパネルを開く"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d番目"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "要約が提供されました"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "要約が必要です"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "要約は不要です"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "アクセシビリティ分析で%d個の問題を表示"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "アクセシビリティ分析でレビューが必要な%d個の項目を表示"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
 #, js-format
 msgid "View reading level details: %1$s, %2$s"
 msgstr "読解レベルの詳細を表示： %1$s, %2$s"
 
-#: build/sidebar.bundle.js:2
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "読解レベルの詳細を表示: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "問題"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "%s の問題アクション"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "問題アクション"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "コードを表示"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "問題を再開"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "問題を却下"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "修正を適用"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "合計%d件"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "却下された問題はありません。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "問題は見つかりませんでした。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "合計%d件の問題"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "却下された問題"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "簡易要約を正常に保存しました。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "要約の保存に失敗しました。もう一度お試しください。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "要約の保存中にエラーが発生しました。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "%s年生"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "%d年生"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "利用不可"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "警告"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "この投稿には、読解レベルを計算するのに十分なコンテンツが含まれていません。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "設定で要約プロンプトを調整します。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "9年生以下の読解レベルのコンテンツには、簡易要約は必要ありません。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "9年生以上の読解レベルのコンテンツには、WCAG AAAガイドラインを満たすために簡易要約が必要です。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "可読性要件の詳細はこちら。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "簡易要約の読解レベル"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "改善が必要です。要約が9年生の読解レベルを超えています。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "推奨される9年生の読解レベルを下回っています。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "簡易要約を入力..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "このコンテンツには、簡略化された要約が必要です。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "この設定をロードできません。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "この設定を保存できません。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "設定をロード中..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "スクリーンリーダーテキスト形式"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "編集中にスクリーンリーダーテキストを表示し続けるかどうかを制御します。"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "常にスクリーンリーダーテキストを表示しますか？"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "アクセシビリティデータを読み込み中..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Accessibility Checker アクション"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "スキャン"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "更新"
 

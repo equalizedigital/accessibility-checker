@@ -174,6 +174,13 @@ class Helpers {
 		/**
 		 * Filter the capability required to view the dashboard widget.
 		 *
+		 * Reviewed during the 2026-08 permissions work: no registered capability
+		 * in the edac_capabilities registry maps to "can see the dashboard
+		 * widget" today, so this isn't a clean deprecation candidate as-is.
+		 * Longer term, consider registering a real edac_view_dashboard_widget
+		 * capability (Permissions-UI-configurable, like the others) and
+		 * deprecating this filter in favor of it.
+		 *
 		 * @since 1.9.3
 		 *
 		 * @param string $capability The capability required to view the dashboard widget.

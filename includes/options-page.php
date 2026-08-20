@@ -10,28 +10,653 @@ use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Inc\Accessibility_Statement;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\PermissionsPage;
+use EqualizeDigital\AccessibilityChecker\Capabilities\CapabilityChecker;
+use EqualizeDigital\AccessibilityChecker\Capabilities\SyncCapability;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+// Per-post dismiss capabilities. "own" is scoped by edit_post (authors dismiss
+// their own posts, editors any post); the less-specific "dismiss issues" grants
+// dismissing on ANY post regardless of ownership (a superset of own, and a
+// deliberate opt-in overstep of core edit_post).
+defined( 'EDAC_CAPABILITY_DISMISS_OWN_ISSUES' ) || define( 'EDAC_CAPABILITY_DISMISS_OWN_ISSUES', 'edac_dismiss_own_issues' );
+defined( 'EDAC_CAPABILITY_DISMISS_ISSUES' ) || define( 'EDAC_CAPABILITY_DISMISS_ISSUES', 'edac_dismiss_issues' );
+// Larger blast radius than a per-post dismiss: suppresses an issue across
+// every post sharing a rule+object, not just the one being viewed.
+defined( 'EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY', 'edac_dismiss_issues_globally' );
+
+// Deprecated legacy slugs (renamed ignore -> dismiss). Retained so the rename
+// migration can find old grants and any external code referencing the constants
+// does not fatal. edac_ignore_issues migrates to edac_dismiss_own_issues.
+defined( 'EDAC_CAPABILITY_IGNORE_ISSUES' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES', 'edac_ignore_issues' );
+defined( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY' ) || define( 'EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY', 'edac_ignore_issues_globally' );
+// Gates getting into pro's Issues Explorer app at all, independent of
+// whether the user can also ignore issues once inside it.
+defined( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS' ) || define( 'EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS', 'edac_issues_explorer_access' );
+// Gates the accessibility-checker-audit-history plugin's admin page and
+// history REST route (including the CSV export path).
+defined( 'EDAC_CAPABILITY_VIEW_AUDIT_HISTORY' ) || define( 'EDAC_CAPABILITY_VIEW_AUDIT_HISTORY', 'edac_view_audit_history' );
+// Gates the accessibility-checker-export plugin's admin page and all of its
+// admin-post export handlers.
+defined( 'EDAC_CAPABILITY_EXPORT_DATA' ) || define( 'EDAC_CAPABILITY_EXPORT_DATA', 'edac_export_data' );
+// Gates running the (pro) Full Site Scan: its scan-control REST routes and
+// saving scan results for posts the user could not otherwise edit. A full
+// site scan is inherently site-wide, so this grant lets a non-editor role
+// scan and store results for content it does not own.
+defined( 'EDAC_CAPABILITY_FULL_SITE_SCAN' ) || define( 'EDAC_CAPABILITY_FULL_SITE_SCAN', 'edac_full_site_scan' );
+// Gates loading the front-end accessibility highlighter for a user who cannot
+// otherwise edit the post being viewed. The highlighter overlays this post's
+// issues on the live page; this grant lets a non-editor reviewer role see it
+// on any scannable, readable content.
+defined( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER' ) || define( 'EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER', 'edac_view_frontend_highlighter' );
+
+// Plugin version at which the capability bundle migration runs. Sites upgrading
+// the free plugin from below this version get a one-time forced re-sync of the
+// bundle onto their configured roles, plus any pending capability slug renames
+// (see SyncCapability::reconcile()). Bump this whenever a migration must re-run
+// (the 1.48.0 bump carries the ignore -> dismiss rename). The shipping plugin
+// version must be >= this value.
+defined( 'EDAC_CAPABILITY_MIGRATION_VERSION' ) || define( 'EDAC_CAPABILITY_MIGRATION_VERSION', '1.48.0' );
+
 /**
- * Check if user can ignore or can manage options
+ * Metadata for every Accessibility Checker capability, keyed by slug.
+ *
+ * This is the single registry that drives both the sync bundle and the
+ * Permissions admin UI. The free plugin contributes its own capabilities;
+ * add-on plugins (Pro, Export, Audit History) contribute theirs via the
+ * edac_capabilities filter, so activating or deactivating an add-on changes
+ * the set and the next reconcile grants or revokes its capabilities.
+ *
+ * Each entry is [ 'label', 'description', 'group', 'owner', 'pro' ]. Any slug
+ * still contributed only through the legacy edac_capability_bundle filter is
+ * included with synthesized fallback metadata so it is never dropped.
+ *
+ * @return array<string, array{label:string,description:string,group:string,owner:string,pro:bool}>
+ */
+function edac_capability_metadata(): array {
+	static $capabilities_cache = null;
+	if ( null !== $capabilities_cache ) {
+		return $capabilities_cache;
+	}
+
+	/**
+	 * Filter the Accessibility Checker capability registry.
+	 *
+	 * Add-on plugins register their capabilities' metadata here (contribute at
+	 * load time so the capability is present whenever the registry is assembled,
+	 * regardless of plugin load order).
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param array<string, array> $capabilities Capability metadata keyed by slug.
+	 */
+	$capabilities = apply_filters(
+		'edac_capabilities',
+		[
+			EDAC_CAPABILITY_DISMISS_OWN_ISSUES        => [
+				'label'         => __( 'Dismiss own issues', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any).', 'accessibility-checker' ),
+				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'         => 'accessibility-checker',
+				'pro'           => false,
+				'floor'         => 'edit_posts',
+				'default_roles' => [ 'editor', 'author', 'contributor' ],
+			],
+			EDAC_CAPABILITY_DISMISS_ISSUES            => [
+				'label'         => __( 'Dismiss issues (any post)', 'accessibility-checker' ),
+				'description'   => __( 'Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it.', 'accessibility-checker' ),
+				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'         => 'accessibility-checker',
+				'pro'           => false,
+				'floor'         => 'edit_posts',
+				'default_roles' => [],
+			],
+			EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER => [
+				'label'         => __( 'Front-end highlighter', 'accessibility-checker' ),
+				'description'   => __( 'View the front-end accessibility highlighter on published content.', 'accessibility-checker' ),
+				'group'         => __( 'Accessibility Checker', 'accessibility-checker' ),
+				'owner'         => 'accessibility-checker',
+				'pro'           => false,
+				'floor'         => '',
+				'default_roles' => [ 'editor', 'author' ],
+			],
+		]
+	);
+
+	$capabilities = is_array( $capabilities ) ? $capabilities : [];
+
+	// Back-compat: fold in any slug contributed only through the deprecated
+	// edac_capability_bundle filter, with synthesized metadata so add-ons that
+	// have not adopted edac_capabilities yet are still assignable and synced.
+	$legacy = apply_filters_deprecated(
+		'edac_capability_bundle',
+		[ [] ],
+		'1.xx.x',
+		'edac_capabilities'
+	);
+	foreach ( (array) $legacy as $slug ) {
+		$slug = (string) $slug;
+		if ( '' !== $slug && ! isset( $capabilities[ $slug ] ) ) {
+			$capabilities[ $slug ] = [
+				'label'         => ucwords( str_replace( [ 'edac_', '_' ], [ '', ' ' ], $slug ) ),
+				'description'   => '',
+				'group'         => '',
+				'owner'         => '',
+				'pro'           => false,
+				'floor'         => '',
+				'default_roles' => [],
+			];
+		}
+	}
+
+	// Normalize every entry so consumers can rely on all keys existing.
+	foreach ( $capabilities as $slug => $meta ) {
+		$capabilities[ $slug ] = array_merge(
+			[
+				'label'         => (string) $slug,
+				'description'   => '',
+				'group'         => '',
+				'owner'         => '',
+				'pro'           => false,
+				'floor'         => '',
+				'default_roles' => [],
+			],
+			is_array( $meta ) ? $meta : []
+		);
+	}
+
+	$capabilities_cache = $capabilities;
+	return $capabilities_cache;
+}
+
+/**
+ * The capability bundle: the slugs synced onto roles/users by the permission
+ * system. Derived from edac_capability_metadata() so the registry is the one
+ * source of truth for both syncing and the admin UI.
+ *
+ * @return string[] Sorted, de-duplicated capability slugs.
+ */
+function edac_capability_bundle(): array {
+	$capabilities = array_values( array_filter( array_map( 'strval', array_keys( edac_capability_metadata() ) ) ) );
+	sort( $capabilities );
+
+	return $capabilities;
+}
+
+/**
+ * Whether a capability can be assigned from the Permissions UI.
+ *
+ * A capability is always assignable once its owning plugin is active (i.e. it is
+ * in the registry), except that Accessibility Checker Pro capabilities require a
+ * valid Pro license. Add-ons that gate their own capabilities behind a separate
+ * license can lock their rows via the edac_capability_is_editable filter.
+ *
+ * @param string $slug The capability slug.
+ * @param array  $meta The capability metadata (from edac_capability_metadata()).
+ * @return bool
+ */
+function edac_capability_is_editable( string $slug, array $meta = [] ): bool {
+	$editable = true;
+
+	if ( 'accessibility-checker-pro' === ( $meta['owner'] ?? '' ) && ! ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) ) {
+		$editable = false;
+	}
+
+	/**
+	 * Filter whether a capability is editable in the Permissions UI.
+	 *
+	 * Locked rows are rendered disabled and their stored assignments are left
+	 * untouched on save.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param bool   $editable Whether the capability can be assigned.
+	 * @param string $slug     The capability slug.
+	 * @param array  $meta     The capability metadata.
+	 */
+	return (bool) apply_filters( 'edac_capability_is_editable', $editable, $slug, $meta );
+}
+
+/**
+ * Whether a role's live capability set satisfies a capability's floor.
+ *
+ * The "floor" is the WordPress capability a role must already have before an
+ * edac_* capability may be assigned to it (e.g. edac_dismiss_issues_globally
+ * requires edit_others_posts). This is checked against the role's actual, live
+ * capabilities so it respects sites that customize roles via other plugins,
+ * rather than assuming what a stock role can do. An empty floor is always met.
+ *
+ * @param string $role_slug The role slug (e.g. 'editor').
+ * @param string $floor     The required WordPress capability, or '' for none.
+ * @return bool
+ */
+function edac_role_meets_floor( string $role_slug, string $floor ): bool {
+	if ( '' === $floor ) {
+		return true;
+	}
+
+	$role = wp_roles()->get_role( $role_slug );
+
+	return $role && ! empty( $role->capabilities[ $floor ] );
+}
+
+/**
+ * A human-readable description of a floor capability, for the Permissions UI.
+ *
+ * @param string $floor The required WordPress capability, or '' for none.
+ * @return string Empty string when there is no floor.
+ */
+function edac_floor_requirement_label( string $floor ): string {
+	$labels = [
+		'edit_posts'        => __( 'the ability to edit posts', 'accessibility-checker' ),
+		'edit_others_posts' => __( "the ability to edit other users' posts", 'accessibility-checker' ),
+	];
+
+	if ( '' === $floor ) {
+		return '';
+	}
+
+	/* translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts". */
+	return sprintf( __( 'Requires %s.', 'accessibility-checker' ), $labels[ $floor ] ?? $floor );
+}
+
+/**
+ * Roles that can be assigned Accessibility Checker capabilities in the UI.
+ *
+ * Roles that can manage_options (administrators and equivalents) are excluded:
+ * they already pass every edac_* capability via the admin bypass, so showing
+ * them would be a no-op the admin cannot turn off.
+ *
+ * Deliberately reimplements get_editable_roles() (wp-admin/includes/user.php:
+ * apply_filters( 'editable_roles', wp_roles()->roles )) rather than calling it -
+ * that file is only autoloaded within the wp-admin bootstrap (is_admin()), so
+ * calling the real function here would fatal on any caller outside it. This
+ * function runs from edac_sanitize_capability_role_map(), which fires on every
+ * update_option( 'edac_capability_role_map', ... ) via the sanitize_option
+ * filter - including REST routes (e.g. the multisite settings-clone route) and
+ * WP-CLI, neither of which load wp-admin.
+ *
+ * @return array<string, array> Editable roles keyed by slug, minus admins.
+ */
+function edac_assignable_roles(): array {
+	/** This filter is documented in wp-admin/includes/user.php. */
+	$editable_roles = apply_filters( 'editable_roles', wp_roles()->roles );
+
+	return array_filter(
+		$editable_roles,
+		function ( $role ) {
+			return empty( $role['capabilities']['manage_options'] );
+		}
+	);
+}
+
+/**
+ * The default capability => roles map for a fresh install.
+ *
+ * Built from each capability's declared default_roles, filtered to roles that
+ * actually meet the capability's floor. Add-ons declare their own defaults via
+ * the edac_capabilities metadata filter.
+ *
+ * @return array<string, string[]> Capability slug => role slugs.
+ */
+function edac_default_capability_role_map(): array {
+	$map = [];
+
+	foreach ( edac_capability_metadata() as $slug => $meta ) {
+		$defaults = array_values(
+			array_filter(
+				(array) $meta['default_roles'],
+				function ( $role_slug ) use ( $meta ) {
+					return edac_role_meets_floor( $role_slug, $meta['floor'] );
+				}
+			)
+		);
+
+		if ( $defaults ) {
+			$map[ $slug ] = $defaults;
+		}
+	}
+
+	return $map;
+}
+
+/**
+ * Seed the default capability role map on a genuinely fresh install.
+ *
+ * Called once from edac_activation() (which detects a first install from the
+ * absence of a prior edac_activation_date). Seeding lives at activation, not on
+ * init, so the two install paths are cleanly separated by their entry point:
+ *
+ * - A FRESH install runs the activation hook -> this seeds the full default suite
+ *   and stamps the capability migration as already satisfied, so the init-time
+ *   migration in SyncCapability::reconcile() never runs against it.
+ * - A site UPGRADING from the pre-capability release does NOT run the activation
+ *   hook (activation hooks do not fire on plugin update); it is handled entirely
+ *   by that version-gated migration, which carries over only the grants the legacy
+ *   "Ignore Permissions" setting actually gave and never the fresh-install
+ *   defaults.
+ *
+ * This replaces an init-time seeder whose fresh-vs-migrating detection had to
+ * guess from option state - and mis-fired, because edac_activation() used to seed
+ * edacp_ignore_user_roles = ['administrator'], making every fresh install look
+ * like a migrating one and silently skip its default grants.
+ *
+ * @return void
+ */
+function edac_seed_capability_defaults_on_install(): void {
+	$defaults = edac_default_capability_role_map();
+
+	update_option( 'edac_capability_role_map', $defaults );
+	// Record every registered capability as seeded so its default is never offered
+	// again - an admin who later unchecks one is respected.
+	update_option(
+		'edac_capability_defaults_seeded',
+		array_values( array_filter( array_map( 'strval', array_keys( edac_capability_metadata() ) ) ) )
+	);
+	// Stamp the migration as satisfied: a fresh install has no legacy config, and
+	// this marks it current so reconcile() can never treat it as a legacy site.
+	update_option( 'edac_capability_migration_version_edac_capability_role_map', EDAC_CAPABILITY_MIGRATION_VERSION );
+
+	// Apply immediately so roles carry the granted caps without waiting for init.
+	edac_ignore_capability()->sync_matrix( $defaults );
+}
+
+/**
+ * Validate an incoming capability role map into a safe, storable one.
+ *
+ * Shared by the Permissions save handler and the settings importer so both paths
+ * apply IDENTICAL rules - a hand-edited import file can never grant more than the
+ * UI would. Starting from the stored map preserves entries for locked (upsell) or
+ * inactive-add-on capabilities; for every editable capability the incoming roles
+ * are narrowed to assignable roles (administrators excluded) that meet the
+ * capability's floor on THIS site. So an import can never, for example, grant
+ * edac_dismiss_issues_globally to subscriber.
+ *
+ * Also wired as the `sanitize_option_edac_capability_role_map` filter, so the pro
+ * settings importer - which runs the value through sanitize_option() - validates
+ * the map through here automatically.
+ *
+ * @param mixed $incoming The incoming [ capability => [role, …] ] map.
+ * @return array<string, string[]> The validated map.
+ */
+function edac_sanitize_capability_role_map( $incoming ): array {
+	$incoming       = is_array( $incoming ) ? $incoming : [];
+	$metadata       = edac_capability_metadata();
+	$editable_roles = array_keys( edac_assignable_roles() );
+
+	// Start from the stored map so locked/inactive-add-on entries are preserved.
+	$role_map = get_option( 'edac_capability_role_map', [] );
+	$role_map = is_array( $role_map ) ? $role_map : [];
+
+	foreach ( $metadata as $slug => $meta ) {
+		// Locked (upsell) rows are not accepted from input; leave the stored value.
+		if ( ! edac_capability_is_editable( $slug, $meta ) ) {
+			continue;
+		}
+
+		$roles = isset( $incoming[ $slug ] ) ? array_map( 'sanitize_key', (array) $incoming[ $slug ] ) : [];
+		$roles = array_values( array_intersect( $roles, $editable_roles ) );
+		// Floor re-validation: a role that does not meet the capability's floor on
+		// this site can never be granted it, even from a hand-edited import file.
+		$roles = array_values(
+			array_filter(
+				$roles,
+				function ( $role_slug ) use ( $meta ) {
+					return edac_role_meets_floor( $role_slug, $meta['floor'] );
+				}
+			)
+		);
+
+		if ( $roles ) {
+			$role_map[ $slug ] = $roles;
+		} else {
+			unset( $role_map[ $slug ] );
+		}
+	}
+
+	return $role_map;
+}
+add_filter( 'sanitize_option_edac_capability_role_map', 'edac_sanitize_capability_role_map' );
+
+/**
+ * Apply the stored capability role map onto this site's roles right now.
+ *
+ * A public trigger for the role sync, for any caller that writes the role map
+ * option outside the normal admin-post save (e.g. a WP-CLI command, a custom
+ * migration script). reconcile() only re-syncs on a bundle/version change, so
+ * a changed role map needs this explicit apply.
+ *
+ * Deliberately NOT wired to travel with the pro settings import/export or the
+ * multisite settings clone - permissions/capability grants are security-
+ * relevant and site-specific, so both of those flows now exclude this option
+ * and direct the admin to configure it manually on each site instead.
+ *
+ * @return void
+ */
+function edac_sync_capability_roles(): void {
+	edac_ignore_capability()->sync_matrix( (array) get_option( 'edac_capability_role_map', [] ) );
+}
+
+/**
+ * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
+ * (see below) so every active add-on has contributed to edac_capability_bundle
+ * first; also usable directly (e.g. in tests) as a lazy singleton.
+ *
+ * @return SyncCapability
+ */
+function edac_ignore_capability(): SyncCapability {
+	static $capability = null;
+
+	if ( null === $capability ) {
+		// Precompute each capability's floor once (all active add-ons have
+		// contributed metadata by the time this runs on plugins_loaded), so the
+		// floor policy passed to the engine is a cheap array lookup rather than a
+		// metadata rebuild per role/capability during sync.
+		$floors = [];
+		foreach ( edac_capability_metadata() as $slug => $meta ) {
+			$floors[ $slug ] = (string) $meta['floor'];
+		}
+
+		$capability = new SyncCapability(
+			edac_capability_bundle(),
+			'edac_capability_role_map',    // Per-capability role assignments.
+			EDAC_CAPABILITY_MIGRATION_VERSION,
+			'edacp_ignore_user_roles',     // Legacy option seeded into the map on migration.
+			// Floor policy: never grant a capability to a role whose live
+			// capabilities do not meet that capability's floor.
+			function ( $role_slug, $cap ) use ( $floors ) {
+				return edac_role_meets_floor( (string) $role_slug, $floors[ $cap ] ?? '' );
+			},
+			// One-time slug renames applied on the migration boundary. The old
+			// edit_post-gated "ignore" grants were own-scoped, so they migrate to
+			// the new own-dismiss capability (never the site-wide one).
+			[
+				EDAC_CAPABILITY_IGNORE_ISSUES          => EDAC_CAPABILITY_DISMISS_OWN_ISSUES,
+				EDAC_CAPABILITY_IGNORE_ISSUES_GLOBALLY => EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY,
+			],
+			// The legacy "Ignore Permissions" (edacp_ignore_user_roles) setting only
+			// granted the ignore/dismiss family, so a legacy role is seeded ONLY
+			// these on migration - never the audit/export/scan/explorer/highlighter
+			// capabilities it never conferred. Floors still apply (global dismiss
+			// only reaches roles with edit_others_posts).
+			[
+				EDAC_CAPABILITY_DISMISS_OWN_ISSUES,
+				EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY,
+			]
+		);
+		$capability->register();
+	}
+
+	return $capability;
+}
+// Assemble after all plugins have loaded so add-ons can contribute to the
+// bundle via the filter regardless of plugin load order.
+add_action( 'plugins_loaded', 'edac_ignore_capability', 20 );
+
+// Register the Permissions page request handler (admin-post save) on every
+// request. The tab UI itself is wired later on admin_menu.
+add_action(
+	'plugins_loaded',
+	function () {
+		$settings_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
+		( new PermissionsPage( $settings_capability ) )->register_request_handlers();
+	},
+	21
+);
+
+/*
+ * Capability reader helpers (edac_user_can_*).
+ *
+ * IMPORTANT: these are a cross-plugin API and must not be removed as "unused" —
+ * they have few or no call sites inside the free plugin itself, but each add-on
+ * (Pro, Export in includes/, Audit History in app/) feature-detects them with
+ * function_exists() and calls them, falling back to manage_options when the
+ * installed free-plugin version predates the capability. Deleting one silently
+ * downgrades that feature's gate to manage_options for older/paired installs.
+ */
+
+/**
+ * Check if user can dismiss issues on posts they can edit (their own), or can
+ * manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_dismiss_own_issues() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_OWN_ISSUES );
+}
+
+/**
+ * Check if user can dismiss issues on ANY post (regardless of ownership), or can
+ * manage options. A superset of edac_user_can_dismiss_own_issues().
+ *
+ * @return bool
+ */
+function edac_user_can_dismiss_issues() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_ISSUES );
+}
+
+/**
+ * Check if user can globally dismiss an issue (suppress it across every post
+ * sharing a rule+object) or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_dismiss_issues_globally() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_DISMISS_ISSUES_GLOBALLY );
+}
+
+/**
+ * Deprecated: use edac_user_can_dismiss_issues()/edac_user_can_dismiss_own_issues().
+ *
+ * Retained as a cross-plugin shim: add-ons feature-detect this name. "Can the
+ * user dismiss at all" = holds either per-post dismiss capability.
  *
  * @return bool
  */
 function edac_user_can_ignore() {
+	return edac_user_can_dismiss_issues() || edac_user_can_dismiss_own_issues();
+}
 
-	if ( current_user_can( 'manage_options' ) ) {
+/**
+ * Deprecated: use edac_user_can_dismiss_issues_globally(). Retained as a
+ * cross-plugin shim for add-ons that feature-detect this name.
+ *
+ * @return bool
+ */
+function edac_user_can_ignore_globally() {
+	return edac_user_can_dismiss_issues_globally();
+}
+
+/**
+ * Check if user can access the (pro) Issues Explorer, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_access_issues_explorer() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_ISSUES_EXPLORER_ACCESS );
+}
+
+/**
+ * Check if user can view the (audit-history) audit trail, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_view_audit_history() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_VIEW_AUDIT_HISTORY );
+}
+
+/**
+ * Check if user can use the (export) data export plugin, or can manage options.
+ *
+ * @return bool
+ */
+function edac_user_can_export_data() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_EXPORT_DATA );
+}
+
+/**
+ * Check if user can run the (pro) Full Site Scan, or can manage options.
+ *
+ * Consumers that need to preserve the historical editor-level access to the
+ * scanner should OR this with current_user_can( 'edit_others_posts' ) at the
+ * call site; this helper reports only the dedicated capability (plus the
+ * manage_options bypass), matching the other edac_user_can_*() helpers.
+ *
+ * @return bool
+ */
+function edac_user_can_run_full_site_scan() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_FULL_SITE_SCAN );
+}
+
+/**
+ * Check if user can load the front-end accessibility highlighter, or can
+ * manage options.
+ *
+ * Consumers that need to preserve the historical editor-level access should OR
+ * this with current_user_can( 'edit_post', $post_id ) at the call site; this
+ * helper reports only the dedicated capability (plus the manage_options
+ * bypass), matching the other edac_user_can_*() helpers.
+ *
+ * @return bool
+ */
+function edac_user_can_use_frontend_highlighter() {
+	return CapabilityChecker::user_can( EDAC_CAPABILITY_VIEW_FRONTEND_HIGHLIGHTER );
+}
+
+/**
+ * Whether the current user should see the Accessibility Checker top-level menu.
+ *
+ * The parent `accessibility_checker` menu is the mount point every add-on submenu
+ * (Issues Explorer, Audit History, Export Data, Full Site Scan) hangs off via
+ * add_submenu_page(). If the parent is never registered in a request, those child
+ * pages silently vanish no matter what capability each one individually checks. So
+ * the parent must register whenever the user can reach ANY of its pages - not only
+ * for edit_posts users (PRO-1283).
+ *
+ * Returns true for edit_posts (the historical gate) OR for a holder of any
+ * Accessibility Checker capability in the bundle - dismiss, Issues Explorer,
+ * audit-history, export, full-site-scan, highlighter - which covers add-on
+ * capabilities synced onto lower roles such as Subscriber. Checking only the
+ * dismiss capability (as an earlier fix proposed) would miss exactly the
+ * view/access capabilities that are the point of the bug.
+ *
+ * @return bool
+ */
+function edac_user_can_see_admin_menu(): bool {
+	if ( current_user_can( 'edit_posts' ) ) {
 		return true;
 	}
 
-	$user              = wp_get_current_user();
-	$user_roles        = ( isset( $user->roles ) ) ? $user->roles : [];
-	$ignore_user_roles = get_option( 'edacp_ignore_user_roles' );
-	$interset          = ( $user_roles && $ignore_user_roles ) ? array_intersect( $user_roles, $ignore_user_roles ) : false;
+	foreach ( edac_capability_bundle() as $capability ) {
+		if ( CapabilityChecker::user_can( $capability ) ) {
+			return true;
+		}
+	}
 
-	return ( $interset );
+	return false;
 }
 
 /**
@@ -39,8 +664,10 @@ function edac_user_can_ignore() {
  */
 function edac_add_options_page() {
 
-	// we don't want to show even the welcome page to subscribers.
-	if ( ! current_user_can( 'edit_posts' ) ) {
+	// Register the menu for edit_posts users and for anyone holding an
+	// Accessibility Checker capability (so add-on pages granted to lower roles are
+	// reachable). The parent menu lands on the informational Welcome page.
+	if ( ! edac_user_can_see_admin_menu() ) {
 		return;
 	}
 
@@ -53,7 +680,7 @@ function edac_add_options_page() {
 		'dashicons-universal-access-alt'
 	);
 
-	if ( ! edac_user_can_ignore() ) {
+	if ( ! edac_user_can_dismiss_issues() && ! edac_user_can_dismiss_own_issues() ) {
 		return;
 	}
 
@@ -78,6 +705,9 @@ function edac_add_options_page() {
 
 	$fixes_page = new FixesPage( $settings_capability );
 	$fixes_page->add_page();
+
+	$permissions_page = new PermissionsPage( $settings_capability );
+	$permissions_page->add_page();
 
 	// Deregister the pro setting registration - this is added for backwards compatibility for users
 	// that don't update pro. Added here in 1.31.0 and released with pro 1.16.0.
@@ -114,13 +744,6 @@ function edac_register_setting() {
 		'edac_general',
 		__( 'Scan Settings', 'accessibility-checker' ),
 		'edac_general_cb',
-		'edac_settings'
-	);
-
-	add_settings_section(
-		'edac_permissions',
-		__( 'Permissions', 'accessibility-checker' ),
-		'edac_permissions_section_cb',
 		'edac_settings'
 	);
 
@@ -181,21 +804,12 @@ function edac_register_setting() {
 	);
 
 	add_settings_field(
-		'edacp_scan_all_taxonomy_terms',
+		'edacp_scan_all_taxonomies',
 		__( 'Taxonomy Scanning', 'accessibility-checker' ),
 		'edac_scan_all_taxonomy_terms_cb',
 		'edac_settings',
 		'edac_general',
-		[ 'label_for' => 'edacp_scan_all_taxonomy_terms' ]
-	);
-
-	add_settings_field(
-		'edacp_ignore_user_roles',
-		__( 'Dismiss Permissions', 'accessibility-checker' ),
-		'edac_ignore_user_roles_cb',
-		'edac_settings',
-		'edac_permissions',
-		[ 'label_for' => 'edac_ignore_user_roles' ]
+		[ 'label_for' => 'edacp_scan_all_taxonomies' ]
 	);
 
 	add_settings_field(
@@ -319,8 +933,12 @@ function edac_register_setting() {
 	// Upsell settings - these are using edacp prefix for backwards compatibility.
 	register_setting( 'edac_settings', 'edacp_full_site_scan_speed', 'edac_sanitize_pro_scan_speed' );
 	register_setting( 'edac_settings', 'edacp_enable_archive_scanning', 'edac_sanitize_pro_archive_scanning' );
-	register_setting( 'edac_settings', 'edacp_scan_all_taxonomy_terms', 'edac_sanitize_pro_taxonomy_terms' );
-	register_setting( 'edac_settings', 'edacp_ignore_user_roles', 'edac_sanitize_pro_ignore_roles' );
+	// Option keys here MUST match the keys the pro scanner reads, or the setting is
+	// inert: VirtualContent\VirtualItemManager reads edacp_enable_archive_scanning and
+	// VirtualContent\Scannable\Taxonomy reads edacp_scan_all_taxonomies. The taxonomy
+	// field previously wrote edacp_scan_all_taxonomy_terms, a key nothing read, so the
+	// control did nothing; it is now repointed to edacp_scan_all_taxonomies.
+	register_setting( 'edac_settings', 'edacp_scan_all_taxonomies', 'edac_sanitize_pro_taxonomy_terms' );
 	register_setting( 'edac_settings', 'edacp_simplified_summary_heading', 'edac_sanitize_pro_summary_heading' );
 }
 
@@ -477,15 +1095,15 @@ function edac_enable_archive_scanning_cb() {
  * @return void
  */
 function edac_scan_all_taxonomy_terms_cb() {
-	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomy_terms', false );
+	$scan_all_taxonomies = get_option( 'edacp_scan_all_taxonomies', false );
 	$enable_archives     = get_option( 'edacp_enable_archive_scanning', false );
 	?>
 	<fieldset <?php echo ( edac_is_pro() ? '' : 'class="edac-setting--upsell"' ); ?>>
 		<label>
 			<input
 				type="checkbox"
-				name="edacp_scan_all_taxonomy_terms"
-				id="edacp_scan_all_taxonomy_terms"
+				name="edacp_scan_all_taxonomies"
+				id="edacp_scan_all_taxonomies"
 				value="1"
 				<?php checked( $scan_all_taxonomies, 1 ); ?>
 				<?php disabled( ! $enable_archives || ! edac_is_pro() ); ?>
@@ -901,21 +1519,7 @@ function edac_sanitize_pro_archive_scanning( $input ) {
  * @return mixed The existing option value
  */
 function edac_sanitize_pro_taxonomy_terms( $input ) {
-	return edac_sanitize_pro_checkbox( $input, 'edacp_scan_all_taxonomy_terms' );
-}
-
-/**
- * Wrapper sanitizers for pro ignore roles setting that preserve existing values when pro is disabled
- *
- * @param array $input The input value.
- * @return array The existing option value
- */
-function edac_sanitize_pro_ignore_roles( $input ) {
-	if ( edac_is_pro() ) {
-		return edac_sanitize_ignore_user_roles( $input );
-	}
-
-	return get_option( 'edacp_ignore_user_roles', [ 'administrator' ] );
+	return edac_sanitize_pro_checkbox( $input, 'edacp_scan_all_taxonomies' );
 }
 
 /**
@@ -962,78 +1566,5 @@ function edac_simplified_summary_heading_cb() {
 		value="<?php echo esc_attr( $simplified_summary_heading ); ?>"
 		<?php disabled( ! edac_is_pro() ); ?>
 	>
-	<?php
-}
-
-/**
- * Render the field for ignore user roles.
- *
- * @return void
- */
-function edac_ignore_user_roles_cb() {
-
-	global $wp_roles;
-	// phpcs:ignore Universal.Operators.DisallowShortTernary.Found -- ternary is more readable here.
-	$selected_roles = get_option( 'edacp_ignore_user_roles' ) ?: [];
-	$roles          = $wp_roles->roles;
-
-	?>
-	<fieldset <?php echo edac_is_pro() ? '' : 'class="edac-setting--upsell"'; ?>>
-		<?php if ( $roles ) : ?>
-			<?php $index = 0; ?>
-			<?php foreach ( $roles as $key => $role ) : ?>
-				<?php $field_id = ( 0 === $index ) ? 'edac_ignore_user_roles' : "edac_ignore_user_roles_{$index}"; ?>
-				<label>
-					<input
-						type="checkbox"
-						name="edacp_ignore_user_roles[]"
-						id="<?php echo esc_attr( $field_id ); ?>"
-						value="<?php echo esc_attr( $key ); ?>"
-						<?php checked( in_array( $key, $selected_roles, true ), 1 ); ?>
-						<?php disabled( ! edac_is_pro() ); ?>
-					>
-					<?php echo esc_html( $role['name'] ); ?>
-				</label>
-				<br>
-				<?php ++$index; ?>
-			<?php endforeach; ?>
-		<?php endif; ?>
-	</fieldset>
-	<p class="edac-description">
-		<?php esc_html_e( 'Choose which user roles have permission to dismiss issues.', 'accessibility-checker' ); ?>
-	</p>
-	<?php
-}
-
-/**
- * Sanitize the ignore user roles value before being saved to database
- *
- * @param array $selected_roles user roles to sanitize.
- * @return array
- */
-function edac_sanitize_ignore_user_roles( $selected_roles ) {
-
-	global $wp_roles;
-	$roles = array_keys( $wp_roles->roles );
-
-	if ( $selected_roles ) {
-		foreach ( $selected_roles as $key => $selected_role ) {
-			if ( ! in_array( $selected_role, (array) $roles, true ) ) {
-				unset( $selected_roles[ $key ] );
-			}
-		}
-	}
-
-	return $selected_roles;
-}
-
-/**
- * Render the text for the permissions section
- */
-function edac_permissions_section_cb() {
-	?>
-	<p>
-		<?php esc_html_e( 'Configure which user roles have access to specific Accessibility Checker features.', 'accessibility-checker' ); ?>
-	</p>
 	<?php
 }

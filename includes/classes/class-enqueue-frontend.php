@@ -115,8 +115,12 @@ class Enqueue_Frontend {
 			return;
 		}
 
-		// Don't load in a customizer preview or user can't edit the page. A filter
-		// can override the edit requirement to allow anyone to see it.
+		// Don't load in a customizer preview or if the user lacks the frontend
+		// highlighter capability. A filter can override this to allow anyone to
+		// see it. Deliberately does NOT fall back to current_user_can( 'edit_post' ):
+		// Editors and self-editing Authors satisfy that on virtually any post, which
+		// would let the historical fallback silently override a role's Permissions
+		// tab setting for edac_view_frontend_highlighter (PRO-1290).
 		if (
 			is_customize_preview() ||
 			(
@@ -128,12 +132,20 @@ class Enqueue_Frontend {
 				 * highlighter. You can use the filter to perform additional permission checks
 				 * on who can see it.
 				 *
+				 * Not a deprecation candidate against edac_view_frontend_highlighter - see
+				 * the fuller note at admin/class-frontend-highlight.php::init_hooks().
+				 *
 				 * @since 1.14.0
 				 *
 				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
 				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
-				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
+				! (
+					function_exists( 'edac_user_can_use_frontend_highlighter' ) &&
+					edac_user_can_use_frontend_highlighter() &&
+					current_user_can( 'read_post', $post_id ) &&
+					! post_password_required( $post_id )
+				)
 			)
 		) {
 			return;

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.45.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,10 +21,14 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Проверка доступности"
 
@@ -215,48 +219,56 @@ msgid "Weekly email includes total issues found and changes since the last repor
 msgstr "Еженедельное электронное письмо включает общее количество найденных проблем и изменений с момента последнего отчета, информацию о покрытии, количество проблем, требующих проверки, процент пройденных тестов, а также информацию о наиболее проблемных страницах и самых серьезных проблемах."
 
 #: admin/AdminPage/AccessibilityReportsPage.php:417
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "Н/Д"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "Критический"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "Высокий"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "Средний"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "Низкий"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -405,7 +417,7 @@ msgid "Get Pro"
 msgstr "Получите профи"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Открывается в новом окне."
 
@@ -414,6 +426,40 @@ msgstr "Открывается в новом окне."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Прочитайте документацию для %s. Открывается в новом окне."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Выберите роль"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Выберите роль, чтобы увидеть возможности, которые ей можно предоставить."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Нет доступных возможностей."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Настройки разрешений загружены для %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Другое"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Требуется действующая лицензия."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "У вас нет прав для управления разрешениями Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -518,15 +564,14 @@ msgstr "Обновляйтесь прямо сейчас"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-ajax.php:866
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Разрешение отклонено"
 
@@ -602,53 +647,53 @@ msgstr "Никогда больше не спрашивайте"
 msgid "The review action value was not set"
 msgstr "Значение действия обзора не было установлено"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "Идентификатор поста не был установлен"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "У вас нет разрешения на просмотр этой информации для данной записи."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Упрощенная аннотация не была включена в этот контент."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Ваш контент имеет уровень чтения на уровне 9-го класса или ниже и не требует упрощенного изложения."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Уровень чтения упрощенного резюме слишком высок."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Для этого материала включено упрощенное резюме."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% проверок пройдено"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Пройденные проверки"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Пройденные тесты"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Problem"
@@ -657,27 +702,28 @@ msgstr[0] "Проблема"
 msgstr[1] "Проблемы"
 msgstr[2] "Проблем"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Проблема с контрастом"
 msgstr[1] "Проблемы с контрастом"
 msgstr[2] "Проблем с контрастом"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "Требует проверки"
 msgstr[1] "Требуют проверки"
 msgstr[2] "Требуют проверки"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
@@ -685,267 +731,261 @@ msgstr[0] "Отклоненная проблема"
 msgstr[1] "Отклоненные проблемы"
 msgstr[2] "Отклоненных проблем"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Уровень чтения"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Для обеспечения истинной доступности помимо автоматического сканирования требуется ручное тестирование. %1$sУзнайте, как вручную проверить доступность%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr ", открывается в новом окне"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Нет резюме для возврата"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Недопустимое имя таблицы"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " всего"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Прочитайте документацию для %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Развернуть проблемы для %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Эти настройки обеспечивают глобальные исправления для всего Вашего сайта."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Возможно, потребуется пересохранить страницы или провести полное сканирование сайта, чтобы увидеть исправления в отчетах."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Сохранить"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Затронутый код"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Изображение"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Ориентир"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Действия"
 
-#: admin/class-ajax.php:495
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Отклонено"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Отклонить"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Идентификатор проблемы %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "изображение для проблемы %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Просмотреть ID выпуска %d на сайте, откроется новое окно"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Просмотр на стр"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Исправьте: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Исправьте"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Нет деталей для возврата"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Уровень чтения публикации: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Нет"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Уровень чтения вашей публикации выше 9-го класса. Рекомендации по доступности веб-контента (WCAG) уровня AAA требуют упрощенного резюме вашей публикации, соответствующего 9-му классу или ниже."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Ваша публикация не содержит достаточно контента для расчета уровня чтения."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Упрощенное резюме не требуется, если уровень чтения контента соответствует 9-му классу или ниже. Выберите, когда запрашивать упрощенное резюме, на странице настроек."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Уровень чтения упрощенного резюме: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Недостаточно контента для определения точного уровня чтения."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Уровень чтения вашего упрощенного резюме выше 9-го класса."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Уровень чтения вашего упрощенного резюме соответствует или ниже 9-го класса."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Упрощенное резюме не вставляется автоматически в контент."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Для запроса упрощенного резюме установлено значение «никогда.» Если вы хотите, чтобы упрощенное резюме отображалось автоматически, вы можете изменить это на %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "страница настроек"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Упрощенное резюме автоматически вставляется %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "контент"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Установите, куда вставляется упрощенное резюме в контент, на %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Ваше местоположение упрощенного резюме установлено на «вручную», что требует добавления функции в шаблон вашей страницы. Если вы хотите, чтобы упрощенное резюме отображалось автоматически, вы можете изменить это на %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Упрощенное резюме"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Сохранить сводку"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Узнайте больше об улучшении читабельности и требованиях к упрощенному резюме"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Нет данных о читаемости, которые можно было бы вернуть"
 
-#: admin/class-ajax.php:840
-#: admin/class-ajax.php:849
-#: admin/class-ajax.php:861
-#: admin/class-ajax.php:905
-msgid "No dismissal data to return"
-msgstr "Нет данных об отклонениях для возврата"
-
-#: admin/class-enqueue-admin.php:439
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Текст для чтения с экрана"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "Значение id не было установлено"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Запись не найдена"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Запрос не дал никаких результатов"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Запрос объекта не дал результатов"
 
@@ -982,14 +1022,16 @@ msgid "Date:"
 msgstr "Дата:"
 
 #: admin/class-ignore-ui.php:141
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Вновь открыть проблему"
 
 #: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "Отклонить проблему"
 
@@ -1007,14 +1049,14 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Ваша учетная запись пользователя не имеет разрешения на отклонение этой проблемы."
 
 #: admin/class-ignore-ui.php:200
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "Отклонить проблему как:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Настройки"
 
@@ -1109,7 +1151,7 @@ msgid "Report Last Updated:"
 msgstr "Отчет обновлен в последний раз:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Никогда"
 
@@ -1211,7 +1253,8 @@ msgid "Post Type"
 msgstr "Тип сообщения"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "Проблемы"
 
@@ -1424,7 +1467,7 @@ msgid "Disabled"
 msgstr "Отключено"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Удалить данные"
 
@@ -1481,7 +1524,6 @@ msgid "Simplified Sum Heading"
 msgstr "Упрощенный заголовок суммы"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Разрешения на отклонение"
 
@@ -1519,16 +1561,20 @@ msgstr "Получить Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Получить Accessibility Checker Pro (откроется в новом окне)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Извините, вам не разрешено отклонять проблемы."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Извините, вам не разрешено отклонять проблемы глобально."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Проблема не найдена."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "К сожалению, вам не разрешено отклонять одну или несколько проблем в этой партии."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Не удалось обновить проблему."
 
@@ -3432,323 +3478,349 @@ msgid "(opens in a new window)"
 msgstr "(открывается в новом окне)"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:901
+#: includes/helper-functions.php:922
 msgid "Main"
 msgstr "Основной"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:903
+#: includes/helper-functions.php:924
 msgid "Header"
 msgstr "Заголовок"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:905
+#: includes/helper-functions.php:926
 msgid "Footer"
 msgstr "Нижний колонтитул"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:907
+#: includes/helper-functions.php:928
 msgid "Nav"
 msgstr "Навигация"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:909
+#: includes/helper-functions.php:930
 msgid "Aside"
 msgstr "Боковая панель"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:911
+#: includes/helper-functions.php:932
 msgid "Navigation"
 msgstr "Навигация"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:913
+#: includes/helper-functions.php:934
 msgid "Banner"
 msgstr "Баннер"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:915
+#: includes/helper-functions.php:936
 msgid "Contentinfo"
 msgstr "Информация о контенте"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:917
+#: includes/helper-functions.php:938
 msgid "Complementary"
 msgstr "Дополнительный"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:919
+#: includes/helper-functions.php:940
 msgid "Section"
 msgstr "Раздел"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:921
+#: includes/helper-functions.php:942
 msgid "Article"
 msgstr "Статья"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:923
+#: includes/helper-functions.php:944
 msgid "Form"
 msgstr "Форма"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:925
+#: includes/helper-functions.php:946
 msgid "Region"
 msgstr "Регион"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:974
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Просмотреть %s ориентир на сайте, открывается в новом окне"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Отклонять собственные проблемы"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Отклонять и повторно открывать проблемы доступности в записях, которые пользователь может редактировать (их собственные записи; редакторы могут редактировать любые)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Отклонять проблемы (любая запись)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Отклонять и повторно открывать проблемы доступности в любой записи, даже если пользователь не может её редактировать."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Инструмент выделения на фронтенде"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Просматривать инструмент выделения проблем доступности на фронтенде для опубликованного контента."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "возможность редактировать записи"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "возможность редактировать записи других пользователей"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Требуется %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Добро пожаловать в Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Настройки Accessibility Checker"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Настройки сканирования"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Разрешения"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Упрощенные настройки сводки"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Заявление о доступности нижнего колонтитула"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Проверка доступности на фронтенде"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Системные настройки"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Проверяемые типы сообщений"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Скорость сканирования"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Сканирование архивов"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Сканирование таксономии"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Метабокс редактора блоков"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Подсказка для упрощенного резюме"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Упрощенная краткая позиция"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Упрощенный заголовок сводки"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Добавьте заявление о доступности нижнего колонтитула"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Включите ссылку на политику доступности"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Страница политики доступности"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Предварительный просмотр заявления о доступности"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Положение проверки доступности на фронтенде"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Настрой типы контента, которые следует проверять на проблемы доступности."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Дополнительные возможности и поддержка по электронной почте доступны с %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (открывается в новом окне)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Используйте приведенные ниже настройки, чтобы сконфигурировать фронтальную программу проверки доступности."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Руководства по доступности веб-контента (WCAG) на уровне AAA требуют, чтобы любой контент с уровнем чтения выше 9-го класса имел альтернативу, которую легче читать. Упрощенный текст краткого содержания добавляется на вкладке удобочитаемости в мета-боксе Accessibility Checker на экране редактирования каждой записи или страницы."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Узнайте больше об упрощенных резюме и требованиях к читабельности (открывается в новом окне)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Узнайте больше об упрощенных резюме и требованиях к читабельности."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Вы думаете “Вау, этот плагин потрясающий” и он помогает вам сделать ваш сайт более доступным? Поделитесь своими усилиями по повышению доступности вашего сайта с вашими клиентами и дайте им знать, что вы используете Accessibility Checker, чтобы убедиться, что все люди могут пользоваться вашим сайтом. Добавьте небольшую текстовую ссылку и заявление в футер вашего сайта."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Настрой системные параметры для плагина Accessibility Checker."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Быстро"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Нормально"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Медленно"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Очень медленно"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Более быстрое сканирование требует больше ресурсов и может создать высокую нагрузку на твой сайт."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Включить сканирование страниц архива"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Выбери, должны ли страницы архивов быть включены в полное сканирование сайта. По умолчанию для выбора терминов таксономии для архивных данных используется метод выборки."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Сканировать все термины таксономии вместо выборки"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Проверять все страницы архивов терминов таксономии вместо репрезентативной выборки. Для этого необходимо включить сканирование страниц архивов, что может добавить большое количество URL-адресов в список сканирования."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Перед содержанием"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "После того, как содержание"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Вставьте вручную"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Используйте эту функцию, чтобы вручную добавить упрощенную сводку в Вашу тему внутри цикла."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Функция по желанию принимает ID поста в качестве параметра."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Установите, где Вы хотите, чтобы упрощенные резюме появлялись по отношению к Вашему контенту, если они будут заполнены."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Правый нижний угол (по умолчанию)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Нижний левый угол"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Установите место, где Вы хотите, чтобы на странице появилась внешняя программа проверки доступности."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Когда требуется"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Всегда"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Должен ли Accessibility Checker запрашивать упрощенное краткое содержание только когда уровень чтения вашей записи или страницы выше 9-го класса, всегда запрашивать его независимо от уровня чтения или никогда не запрашивать его независимо от уровня чтения?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Чтобы проверить содержимое, отличное от постов и страниц, пожалуйста "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "перейдите на уровень pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (открывается в новом окне)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Выберите, какие типы записей должны проверяться во время сканирования. Обратите внимание, что удаление ранее выбранного типа записи приведет к удалению его отсканированной информации и любых настроенных отклоненных предупреждений."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Удалить все данные Accessibility Checker при удалении плагина."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Показать метабокс Accessibility Checker в редакторе блоков"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Выберите, какие роли пользователей имеют разрешение отклонять проблемы."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Настрой, какие роли пользователей имеют доступ к определенным функциям Accessibility Checker."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4954,22 +5026,58 @@ msgstr "Настройки сохранены. Чтобы подтвердить
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Плагин Accessibility New Window Warnings установлен. Исправления для ссылок, открывающихся в новом окне, включенные сюда, отменят его функциональность. Вы можете смело удалить плагин и использовать вместо него эти исправления."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Разрешения сохранены."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Разрешения были изменены кем-то другим, пока вы вносили правки, поэтому ваши изменения не были сохранены. Ознакомьтесь с текущими разрешениями ниже и попробуйте еще раз."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Настройки разрешений"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Выберите роль пользователя, затем отметьте возможности Accessibility Checker, которые нужно ей предоставить. Возможность может быть предоставлена только той роли, чьи существующие разрешения WordPress соответствуют её требованиям. Администраторы всегда обладают всеми возможностями."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Выберите роль"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Выберите роль пользователя, чьими разрешениями Accessibility Checker вы хотите управлять."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Роль"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Выберите роль —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Сохранить разрешения"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Панели проблем Accessibility Checker"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "Статус доступности"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "Анализ доступности"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "Анализ читабельности"
 
@@ -4979,8 +5087,9 @@ msgstr "Удалите все найденные в данный момент п
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "Понятные вопросы"
 
@@ -5212,6 +5321,7 @@ msgstr "Настройки успешно сохранены."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "Сохранение не удалось."
 
@@ -5221,28 +5331,28 @@ msgid "Fix Settings"
 msgstr "Исправьте настройки"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Это снимет все проблемы с этим постом. Чтобы запустить новое сканирование содержимого поста, потребуется сохранение. Хотите ли Вы продолжить?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "Очистка..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "Проблемы успешно устранены."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "Не удалось устранить проблемы."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "Произошла ошибка при очистке проблем."
 
@@ -5270,195 +5380,198 @@ msgstr "EDAC: Ошибка обновления истории для пропу
 msgid "Close fixes modal"
 msgstr "Закройте модальное окно с исправлениями"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d из %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "Безымянная проблема"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "Проблема %1$d из %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "Элемент не виден. Попробуйте отключить стили."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "Элемент не фокусируется. Попробуйте отключить стили."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "Элемент не найден на странице."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "Переместить влево"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "Переместить вправо"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "Позиция панели сброшена."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "Панель перемещена влево."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "Панель перемещена вправо."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Открыть подробности для %1$s, %2$s из %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "Открепить панель"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "Прикрепить панель"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "Пересканировать эту страницу"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Инструменты Accessibility Checker"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "Больше опций"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "Отключите стили страниц"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "Отключите стили"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "Закрыть"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "На этой странице проблем не найдено."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "Загрузка..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "Предыдущий"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "Следующий"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "Сбросить позицию"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "Произошла ошибка при загрузке проблем."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "Панель прикреплена."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "Панель откреплена."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "Серьезность:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Показать объяснение"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Почему это важно"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Как исправить"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Более подробная документация"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "Показать затронутый код"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "Исправить проблему: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Исправить проблему"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "Включите стили"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "Включить стили страницы"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "Стили страницы отключены."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "Стили страницы повторно включены."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "Нет никаких настроек для отображения."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Эти настройки обеспечивают глобальные исправления для всего Вашего сайта. Возможно, потребуется пересохранить страницы или провести полное сканирование сайта, чтобы увидеть, как исправления отражаются в отчетах."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
@@ -5466,7 +5579,8 @@ msgstr[0] "Найдена %d проблема"
 msgstr[1] "Найдено %d проблемы"
 msgstr[2] "Найдено %d проблем"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
@@ -5474,7 +5588,8 @@ msgstr[0] "%d проблема"
 msgstr[1] "%d проблемы"
 msgstr[2] "%d проблем"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
@@ -5482,7 +5597,8 @@ msgstr[0] "%d требует проверки"
 msgstr[1] "%d требуют проверки"
 msgstr[2] "%d требуют проверки"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "%d Dismissed"
 msgid_plural "%d Dismissed"
@@ -5490,60 +5606,60 @@ msgstr[0] "%d"
 msgstr[1] "%d"
 msgstr[2] "%d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "Никаких проблем не обнаружено."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "Ориентир: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "Не удалось загрузить скрипт сканера."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "Функция сканирования не найдена."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "Сканирование..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "Отсутствует postId или nonce."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "Повторное сканирование завершено. Нарушений не найдено."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "Нарушений не обнаружено, пропускаем сохранение."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Ошибка проверки доступности."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "Ошибка сохранения результатов сканирования."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "Повторное сканирование уже выполняется."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "Повторное сканирование этой страницы."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "Повторное сканирование завершено."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "Ошибка: Отсутствуют обязательные параметры."
 
@@ -5617,7 +5733,9 @@ msgid "Issue reopened successfully."
 msgstr "Проблема успешно вновь открыта."
 
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Globally"
 msgstr "Отклонить глобально"
 
@@ -5631,76 +5749,82 @@ msgstr "Отклонение глобально..."
 msgid "Dismissing..."
 msgstr "Отклонение..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 #, js-format
 msgid "Issue Dismissed — %s"
 msgstr "Проблема отклонена — %s"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Issue Dismissed"
 msgstr "Проблема отклонена"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Scope:"
 msgstr "Область:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "All pages"
 msgstr "Все страницы"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "By:"
 msgstr "Кем:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "On:"
 msgstr "Когда:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reason for dismissal:"
 msgstr "Причина отклонения:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "Удаление..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Remove Global Dismissal"
 msgstr "Удалить глобальное отклонение"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopening..."
 msgstr "Вновь открывается..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Comment (optional)"
 msgstr "Комментарий (необязательно)"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Add a note explaining why this issue is being dismissed."
 msgstr "Добавьте примечание с объяснением причины отклонения этой проблемы."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "More dismiss options"
 msgstr "Дополнительные параметры отклонения"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Отклонить и закрыть модальное окно"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "У вас нет прав для отклонения проблем."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5828,219 +5952,224 @@ msgstr[0] "проблема, требующая проверки"
 msgstr[1] "проблемы, требующие проверки"
 msgstr[2] "проблем, требующих проверки"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "У вас %1$d %2$s и %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "У вас %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "Проверьте и исправьте проблемы доступности в вашем контенте."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "Открыть панель доступности"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d-й"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "Сводка предоставлена"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "Сводка требуется"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "Сводка не требуется"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "Просмотреть %d проблем в анализе доступности"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Просмотреть %d элементов, требующих проверки в анализе доступности"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
 #, js-format
 msgid "View reading level details: %1$s, %2$s"
 msgstr "Посмотреть подробную информацию об уровне сложности текста: %1$s, %2$s"
 
-#: build/sidebar.bundle.js:2
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Просмотреть детали уровня чтения: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "Проблема"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "Действия с проблемой для %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "Действия с проблемой"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "Показать код"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "Вновь открыть проблему"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "Отклонить проблему"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "Применить исправление"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "%d всего"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "Нет отклоненных проблем."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "Проблем не найдено."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "%d всего проблем"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "Отклоненные проблемы"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "Упрощенная сводка успешно сохранена."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "Не удалось сохранить сводку. Пожалуйста, попробуйте еще раз."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "Произошла ошибка при сохранении сводки."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "%s класс"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "%d-й класс"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "Недоступно"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "Этот пост не содержит достаточного количества контента для расчета уровня чтения."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "Настройте подсказки сводки в настройках."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "Контент на уровне чтения 9-го класса или ниже не требует упрощенной сводки."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "Контент выше уровня чтения 9-го класса требует упрощенной сводки для соответствия рекомендациям WCAG AAA."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "Узнайте больше о требованиях к читабельности."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "Уровень чтения упрощенной сводки"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "Требует улучшения, сводка выше уровня чтения 9-го класса."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "Ниже рекомендованного уровня чтения 9-го класса."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "Введите упрощенную сводку..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "Для этого контента требуется упрощенное резюме."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "Не удалось загрузить эту настройку."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "Не удалось сохранить эту настройку."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "Загрузка настройки..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "Формат текста для чтения с экрана"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "Управление видимостью текста для чтения с экрана во время редактирования."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "Всегда показывать текст для чтения с экрана?"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "Загрузка данных о доступности..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Действия Accessibility Checker"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "Сканировать"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Обновить"
 

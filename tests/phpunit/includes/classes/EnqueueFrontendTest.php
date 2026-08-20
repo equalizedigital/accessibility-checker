@@ -275,4 +275,42 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
 	}
+
+	/**
+	 * An editor without the edac_view_frontend_highlighter capability must NOT get the
+	 * highlighter, even though editors satisfy edit_post on virtually any post (PRO-1290:
+	 * the historical edit_post fallback silently overrode the Permissions tab setting).
+	 */
+	public function testHighlighterDoesNotLoadForEditorWithoutCapability(): void {
+		edac_ignore_capability()->sync_matrix( [] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertFalse( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+	}
+
+	/**
+	 * An editor who does hold the capability still gets the highlighter.
+	 */
+	public function testHighlighterLoadsForEditorWithCapability(): void {
+		edac_ignore_capability()->sync_matrix( [ 'edac_view_frontend_highlighter' => [ 'editor' ] ] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+
+		edac_ignore_capability()->sync_matrix( [] );
+	}
 }

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.45.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,10 +21,14 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -215,48 +219,56 @@ msgid "Weekly email includes total issues found and changes since the last repor
 msgstr "Veckomejlet innehåller totalt antal hittade problem och ändringar sedan senaste rapporten, täckningsinformation, antal problem, granskningsbehov, godkänd testprocent och information om de mest problematiska sidorna samt de allvarligaste problemen."
 
 #: admin/AdminPage/AccessibilityReportsPage.php:417
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "Ej tillämpligt"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "Kritisk"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "Hög"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "Medel"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "Låg"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Okänt"
 
@@ -405,7 +417,7 @@ msgid "Get Pro"
 msgstr "Skaffa pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Öppnas i ett nytt fönster."
 
@@ -414,6 +426,40 @@ msgstr "Öppnas i ett nytt fönster."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Läs dokumentation för %s. Öppnas i ett nytt fönster."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Behörigheter"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Välj en roll"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Välj en roll för att se vilka behörigheter den kan tilldelas."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Inga behörigheter är tillgängliga."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Inställningar för behörighet har laddats för %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Övrigt"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Kräver en giltig licens."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Du har inte behörighet att hantera inställningar för Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -518,15 +564,14 @@ msgstr "Uppgradera nu"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-ajax.php:866
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Åtkomst nekad"
 
@@ -602,53 +647,53 @@ msgstr "Fråga aldrig igen"
 msgid "The review action value was not set"
 msgstr "Recensionsåtgärdsvärdet var inte inställt"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "Inläggs-ID:t var inte inställt"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Du har inte behörighet att se denna information för detta inlägg."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "En förenklad sammanfattning har inte inkluderats för detta innehåll."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Ditt innehåll har en läsnivå på eller under årskurs 9 och kräver inte en förenklad sammanfattning."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Läsnivån för den förenklade sammanfattningen är för hög."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "En förenklad sammanfattning har inkluderats för detta innehåll."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% godkända kontroller"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Godkända kontroller"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Godkända tester"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Problem"
@@ -656,292 +701,287 @@ msgid_plural "Problems"
 msgstr[0] "Problem"
 msgstr[1] "Problem"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Kontrastproblem"
 msgstr[1] "Kontrastproblem"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "Behöver granskas"
 msgstr[1] "Behöver granskas"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Avfärdat ärende"
 msgstr[1] "Avfärdade ärenden"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Läsnivå"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Verklig tillgänglighet kräver manuell testning utöver automatiserade skanningar. %1$sLär dig hur du manuellt testar för tillgänglighet%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr ", öppnar ett nytt fönster"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Ingen sammanfattning att returnera"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Ogiltigt tabellnamn"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " totalt"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Läs dokumentation för %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Utöka problem för %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Dessa inställningar aktiverar globala korrigeringar över hela din webbplats."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Sidor kan behöva sparas om eller en fullständig webbplatsskanning köras för att se korrigeringar återspeglade i rapporter."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Spara"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Påverkad kod"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Bild"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landmärke"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Åtgärder"
 
-#: admin/class-ajax.php:495
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Avfärdade"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Avfärda"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Problem-ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "bild för problem %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Visa problem-ID %d på webbplatsen, öppnas i ett nytt fönster"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Visa på sidan"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Åtgärd: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Åtgärda"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Inga detaljer att returnera"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Läsbarhetsnivå för inlägg: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Inga"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Ditt inlägg har en läsbarhetsnivå högre än årskurs 9. Web Content Accessibility Guidelines (WCAG) på AAA-nivå kräver en förenklad sammanfattning av ditt inlägg som är årskurs 9 eller lägre."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Ditt inlägg innehåller inte tillräckligt med innehåll för att beräkna dess läsbarhetsnivå."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "En förenklad sammanfattning är inte nödvändig när innehållets läsbarhetsnivå är årskurs 9 eller lägre. Välj när du vill uppmana till en förenklad sammanfattning på inställningssidan."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Förenklad sammanfattning läsbarhetsnivå: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Inte tillräckligt med innehåll för att fastställa en korrekt läsbarhetsnivå."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Din förenklade sammanfattning har en läsbarhetsnivå över årskurs 9."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Din förenklade sammanfattning har en läsbarhetsnivå på eller under årskurs 9."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Förenklad sammanfattning infogas inte automatiskt i innehållet."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din uppmaning för förenklad sammanfattning är inställd på “aldrig.” Om du vill att den förenklade sammanfattningen ska visas automatiskt kan du ändra detta på %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "inställningssidan"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Förenklad sammanfattning infogas automatiskt %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "innehållet"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Ställ in var den förenklade sammanfattningen infogas i innehållet på %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din plats för förenklad sammanfattning är inställd på “manuellt” vilket kräver att en funktion läggs till i din sidmall. Om du vill att den förenklade sammanfattningen ska visas automatiskt kan du ändra detta på %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Förenklad sammanfattning"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Spara sammanfattning"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Läs mer om att förbättra läsbarheten och krav på förenklad sammanfattning"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Inga läsbarhetsdata att returnera"
 
-#: admin/class-ajax.php:840
-#: admin/class-ajax.php:849
-#: admin/class-ajax.php:861
-#: admin/class-ajax.php:905
-msgid "No dismissal data to return"
-msgstr "Ingen avvisningsdata att returnera"
-
-#: admin/class-enqueue-admin.php:439
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Skärmläsartext"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "ID-värdet var inte inställt"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Inlägg hittades inte"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Problemfrågan returnerade inga resultat"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Objektfrågan returnerade inga resultat"
 
@@ -978,14 +1018,16 @@ msgid "Date:"
 msgstr "Datum:"
 
 #: admin/class-ignore-ui.php:141
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Återöppna ärende"
 
 #: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "Avfärda ärende"
 
@@ -1003,14 +1045,14 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Ditt användarkonto har inte behörighet att avfärda detta ärende."
 
 #: admin/class-ignore-ui.php:200
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "Avfärda ärende som:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Inställningar"
 
@@ -1102,7 +1144,7 @@ msgid "Report Last Updated:"
 msgstr "Rapport senast uppdaterad:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Aldrig"
 
@@ -1204,7 +1246,8 @@ msgid "Post Type"
 msgstr "Inläggstyp"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "Problem"
 
@@ -1415,7 +1458,7 @@ msgid "Disabled"
 msgstr "Inaktiverad"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Radera data"
 
@@ -1472,7 +1515,6 @@ msgid "Simplified Sum Heading"
 msgstr "Rubrik för förenklad sammanfattning"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Avvisa behörigheter"
 
@@ -1510,16 +1552,20 @@ msgstr "Skaffa Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Hämta Accessibility Checker Pro (öppnas i ett nytt fönster)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Tyvärr har du inte behörighet att avfärda problem."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Tyvärr har du inte behörighet att avfärda problem globalt."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Ärendet hittades inte."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "Tyvärr har du inte behörighet att avvisa ett eller flera problem i denna grupp."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Kunde inte uppdatera ärendet."
 
@@ -3423,323 +3469,349 @@ msgid "(opens in a new window)"
 msgstr "(öppnas i ett nytt fönster)"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:901
+#: includes/helper-functions.php:922
 msgid "Main"
 msgstr "Huvudsaklig"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:903
+#: includes/helper-functions.php:924
 msgid "Header"
 msgstr "Rubrik"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:905
+#: includes/helper-functions.php:926
 msgid "Footer"
 msgstr "Sidfot"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:907
+#: includes/helper-functions.php:928
 msgid "Nav"
 msgstr "Navigering"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:909
+#: includes/helper-functions.php:930
 msgid "Aside"
 msgstr "Sidoinnehåll"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:911
+#: includes/helper-functions.php:932
 msgid "Navigation"
 msgstr "Navigering"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:913
+#: includes/helper-functions.php:934
 msgid "Banner"
 msgstr "Banderoll"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:915
+#: includes/helper-functions.php:936
 msgid "Contentinfo"
 msgstr "Innehållsinformation"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:917
+#: includes/helper-functions.php:938
 msgid "Complementary"
 msgstr "Kompletterande"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:919
+#: includes/helper-functions.php:940
 msgid "Section"
 msgstr "Sektion"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:921
+#: includes/helper-functions.php:942
 msgid "Article"
 msgstr "Artikel"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:923
+#: includes/helper-functions.php:944
 msgid "Form"
 msgstr "Formulär"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:925
+#: includes/helper-functions.php:946
 msgid "Region"
 msgstr "Region"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:974
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Visa %s landmärke på webbplatsen, öppnar ett nytt fönster"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Avfärda egna problem"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Avfärda och återöppna tillgänglighetsproblem i inlägg som användaren kan redigera (sina egna inlägg; redaktörer kan redigera alla)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Avfärda problem (alla inlägg)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Avfärda och återöppna tillgänglighetsproblem i alla inlägg, även om användaren i övrigt inte kan redigera dem."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Highlighter för front-end"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Visa tillgänglighets-highlighter i front-end på publicerat innehåll."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "möjligheten att redigera inlägg"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "möjligheten att redigera andra användares inlägg"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Kräver %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Välkommen till Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Inställningar för Accessibility Checker"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Skanningsinställningar"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Behörigheter"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Inställningar för förenklad sammanfattning"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Tillgänglighetsdeklaration i sidfoten"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Systeminställningar"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Inläggstyper som ska kontrolleras"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Skanningshastighet"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Arkivskanning"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Taxonomiskanning"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Blockredigerarens metabox"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Uppmana till förenklad sammanfattning"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Position för förenklad sammanfattning"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Förenklad sammanfattningsrubrik"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Lägg till tillgänglighetsdeklaration i sidfoten"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Inkludera länk till tillgänglighetspolicy"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Sida för tillgänglighetspolicy"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Förhandsvisning av tillgänglighetsdeklaration"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker-position"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfigurera vilka typer av innehåll som ska kontrolleras för tillgänglighetsproblem."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Fler funktioner och e-postsupport finns tillgängliga med %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (öppnas i ett nytt fönster)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Använd inställningarna nedan för att konfigurera tillgänglighetskontrollanten för frontend."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Riktlinjerna för webbtillgänglighet (WCAG) på AAA-nivå kräver att allt innehåll med en läsnivå över årskurs 9 har ett alternativ som är lättare att läsa. Förenklad sammanfattningstext läggs till på fliken för läsbarhet i Accessibility Checker-metarutan på redigeringsskärmen för varje inlägg eller sida."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Läs mer om förenklade sammanfattningar och läsbarhetskrav (öppnas i ett nytt fönster)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Läs mer om förenklade sammanfattningar och läsbarhetskrav."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Tänker du “Wow, det här pluginet är fantastiskt” och hjälper det dig att göra din webbplats mer tillgänglig? Dela dina ansträngningar för att göra din webbplats mer tillgänglig med dina kunder och låt dem veta att du använder Accessibility Checker för att säkerställa att alla kan använda din webbplats. Lägg till en liten textlänk och ett uttalande i sidfoten på din webbplats."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfigurera systeminställningar för Accessibility Checker-tillägget."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Snabb"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normal"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Långsam"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Långsammast"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Snabbare skanningar är mer resurskrävande och kan belasta din webbplats hårt."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Aktivera skanning av arkivsidor"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Välj om arkivsidor ska inkluderas i fullständiga webbplatsskanningar. Som standard används en urvalsmetod för att välja taxonomitermer för arkivdata."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skanna alla taxonomitermer istället för bara ett urval"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Kontrollera alla taxonomitermers arkivsidor istället för ett representativt urval. Detta kräver att arkivsidsskanning är aktiverad och kan lägga till ett stort antal URL:er till skanningslistan."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Före innehållet"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "Efter innehållet"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Infoga manuellt"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Använd den här funktionen för att manuellt lägga till den förenklade sammanfattningen i ditt tema inom loopen."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funktionen accepterar valfritt inläggs-ID som en parameter."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Ange var du vill att förenklade sammanfattningar ska visas i förhållande till ditt innehåll om de är ifyllda."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Nedre högra hörnet (standard)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Nedre vänstra hörnet"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Ange var du vill att tillgänglighetskontrollanten för frontend ska visas på sidan."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Vid behov"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Alltid"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ska Accessibility Checker bara fråga efter en förenklad sammanfattning när läsnivån på ditt inlägg eller din sida är över årskurs 9, alltid fråga efter det oavsett läsnivå, eller aldrig fråga efter det oavsett läsnivå?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "För att kontrollera annat innehåll än inlägg och sidor, vänligen "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "uppgradera till pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (öppnas i ett nytt fönster)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Välj vilka inläggstyper som ska kontrolleras under en skanning. Observera att om du tar bort en tidigare vald inläggstyp kommer dess skannade information och eventuella anpassade avvisade varningar att tas bort."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Radera all Accessibility Checker-data när tillägget avinstalleras."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Visa Accessibility Checker-metabox i blockredigeraren"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Välj vilka användarroller som har behörighet att avvisa problem."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Konfigurera vilka användarroller som har tillgång till specifika funktioner i Accessibility Checker."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4945,22 +5017,58 @@ msgstr "Inställningar sparade. För att bekräfta och återspegla dessa uppdate
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Tillgänglighetspluginet för varningar om nya fönster är installerat. Fixen för länkar som öppnas i ett nytt fönster som ingår här kommer att åsidosätta dess funktionalitet. Du kan tryggt ta bort pluginet och använda dessa fixar istället."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Behörigheter har sparats."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Behörigheterna ändrades av någon annan medan du redigerade, så dina ändringar sparades inte. Granska de nuvarande behörigheterna nedan och försök igen."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Inställningar för behörighet"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Välj en användarroll och markera sedan de Accessibility Checker-behörigheter som ska tilldelas. En behörighet kan endast ges till en roll vars befintliga WordPress-behörigheter uppfyller kravet. Administratörer har alltid alla behörigheter."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Välj en roll"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Välj den användarroll vars Accessibility Checker-behörigheter du vill hantera."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Roll"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Välj en roll —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Spara behörigheter"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker problemvyer"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "Tillgänglighetsstatus"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "Tillgänglighetsanalys"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "Läsbarhetsanalys"
 
@@ -4970,8 +5078,9 @@ msgstr "Ta bort alla nuvarande hittade problem"
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "Rensa problem"
 
@@ -5203,6 +5312,7 @@ msgstr "Inställningar sparades framgångsrikt."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "Sparande misslyckades."
 
@@ -5212,28 +5322,28 @@ msgid "Fix Settings"
 msgstr "Åtgärdsinställningar"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Detta kommer att rensa alla problem för detta inlägg. En sparning krävs för att utlösa en ny skanning av inläggets innehåll. Vill du fortsätta?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "Rensar..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "Problem rensades framgångsrikt."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "Misslyckades med att rensa problem."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "Ett fel uppstod när problem skulle rensas."
 
@@ -5261,276 +5371,282 @@ msgstr "EDAC: Fel vid uppdatering av historiken för genvägslänken."
 msgid "Close fixes modal"
 msgstr "Stäng åtgärdsmodal"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d av %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "Namnlöst problem"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "Problem %1$d av %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "Elementet är inte synligt. Försök att inaktivera stilar."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "Elementet är inte fokuserbart. Försök att inaktivera stilar."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "Elementet hittades inte på sidan."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "Flytta åt vänster"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "Flytta åt höger"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "Panelposition återställd."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "Panel flyttad till vänster."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "Panel flyttad till höger."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Öppna detaljer för %1$s, %2$s av %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "Lossa panel"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "Fäst panel"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "Skanna om den här sidan"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Accessibility Checker-verktyg"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "Fler alternativ"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "Inaktivera sidans stilar"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "Inaktivera stilar"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "Stäng"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "Inga problem hittades på denna sida."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "Laddar..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "Föregående"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "Nästa"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "Återställ position"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "Ett fel uppstod när problemen skulle laddas."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "Panel fäst."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "Panel lossad."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "Allvarlighetsgrad:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Visa förklaring"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Varför det är viktigt"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Hur man åtgärdar"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Mer detaljerad dokumentation"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "Visa berörd kod"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "Åtgärda problem: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Åtgärda problem"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "Aktivera stilar"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "Aktivera sidstilar"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "Sidstilar inaktiverade."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "Sidstilar återaktiverade."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "Det finns inga inställningar att visa."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Dessa inställningar aktiverar globala åtgärder över hela din webbplats. Sidor kan behöva sparas om eller en fullständig webbplatsskanning kan behöva köras för att se åtgärderna återspeglade i rapporterna."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
 msgstr[0] "%d problem hittades"
 msgstr[1] "%d problem hittades"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
 msgstr[0] "%d problem"
 msgstr[1] "%d problem"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
 msgstr[0] "%d behöver granskas"
 msgstr[1] "%d behöver granskas"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "%d Dismissed"
 msgid_plural "%d Dismissed"
 msgstr[0] "%d avvisad"
 msgstr[1] "%d avvisade"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "Inga problem upptäckta."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "Landmärke: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "Kunde inte ladda skript för skanning."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "Skanningsfunktionen hittades inte."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "Skannar..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "Saknar postId eller nonce."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "Omskanning slutförd. Inga överträdelser hittades."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "Inga överträdelser hittades, hoppar över sparande."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Fel vid tillgänglighetsskanning."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "Fel vid sparande av skanningsresultat."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "Omskanning pågår redan."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "Skanar om den här sidan."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "Omskanning slutförd."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "Fel: Obligatoriska parametrar saknas."
 
@@ -5604,7 +5720,9 @@ msgid "Issue reopened successfully."
 msgstr "Ärendet återöppnades framgångsrikt."
 
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Globally"
 msgstr "Avfärda globalt"
 
@@ -5618,76 +5736,82 @@ msgstr "Avvisar globalt..."
 msgid "Dismissing..."
 msgstr "Avfärdar..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 #, js-format
 msgid "Issue Dismissed — %s"
 msgstr "Ärendet avfärdat — %s"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Issue Dismissed"
 msgstr "Ärendet avfärdat"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Scope:"
 msgstr "Omfattning:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "All pages"
 msgstr "Alla sidor"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "By:"
 msgstr "Av:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "On:"
 msgstr "På:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reason for dismissal:"
 msgstr "Anledning till avfärdande:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "Tar bort..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Remove Global Dismissal"
 msgstr "Ta bort global avvisning"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopening..."
 msgstr "Återöppnar..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Comment (optional)"
 msgstr "Kommentar (valfritt)"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Add a note explaining why this issue is being dismissed."
 msgstr "Lägg till en anteckning som förklarar varför det här ärendet avfärdas."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "More dismiss options"
 msgstr "Fler avfärdningsalternativ"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Avfärda och stäng modal"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Du har inte behörighet att avfärda problem."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5813,219 +5937,224 @@ msgid_plural "issues that need review"
 msgstr[0] "ärende som behöver granskas"
 msgstr[1] "ärenden som behöver granskas"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "Du har %1$d %2$s och %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "Du har %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "Kontrollera och åtgärda tillgänglighetsproblem i ditt innehåll."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "Öppna tillgänglighetspanelen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d:e"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "Sammanfattning tillhandahållen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "Sammanfattning krävs"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "Sammanfattning krävs ej"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "Visa %d problem i tillgänglighetsanalysen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Visa %d objekt som behöver granskas i tillgänglighetsanalysen"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
 #, js-format
 msgid "View reading level details: %1$s, %2$s"
 msgstr "Visa detaljer för läsnivå: %1$s, %2$s"
 
-#: build/sidebar.bundle.js:2
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Visa läsbarhetsdetaljer: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "Ärende"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "Ärendeåtgärder för %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "Ärendeåtgärder"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "Visa kod"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "Återöppna ärende"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "Avfärda ärende"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "Tillämpa fix"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "%d totalt"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "Inga avfärdade ärenden."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "Inga ärenden hittades."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "%d totalt antal ärenden"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "Avfärdade ärenden"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "Förenklad sammanfattning sparades framgångsrikt."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "Kunde inte spara sammanfattningen. Försök igen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "Ett fel uppstod när sammanfattningen skulle sparas."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "%s klass"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "%d:e klass"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "Inte tillgänglig"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "Varning"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "Detta inlägg innehåller inte tillräckligt med innehåll för att beräkna en läsbarhetsnivå."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "Justera sammanfattningsprompter i inställningarna."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "Innehåll på eller under en läsbarhetsnivå för årskurs 9 kräver ingen förenklad sammanfattning."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "Innehåll över en läsbarhetsnivå för årskurs 9 kräver en förenklad sammanfattning för att uppfylla WCAG AAA-riktlinjerna."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "Läs mer om läsbarhetskrav."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "Förenklad sammanfattning läsbarhetsnivå"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "Behöver förbättras, sammanfattningen är över läsbarhetsnivån för årskurs 9."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "Under den rekommenderade läsbarhetsnivån för årskurs 9."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "Ange förenklad sammanfattning..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "En förenklad sammanfattning krävs för detta innehåll."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "Det går inte att läsa in denna inställning."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "Det går inte att spara denna inställning."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "Läser in inställning..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "Skärmläsartextformat"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "Kontrollera om skärmläsartexten förblir synlig medan du redigerar."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "Visa alltid skärmläsartext?"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "Laddar tillgänglighetsdata..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Åtgärder för tillgänglighetskontroll"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "Skanna"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Uppdatera"
 

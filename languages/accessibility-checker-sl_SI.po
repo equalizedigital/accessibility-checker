@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.45.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-08T18:35:29+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,10 +21,14 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
@@ -215,48 +219,56 @@ msgid "Weekly email includes total issues found and changes since the last repor
 msgstr "Tedensko e-poštno sporočilo vključuje skupno število najdenih težav in sprememb od zadnjega poročila, informacije o pokritosti, število problemov, potrebnih za pregled, odstotek uspešnih testov in informacije o najbolj problematičnih straneh in najresnejših težavah."
 
 #: admin/AdminPage/AccessibilityReportsPage.php:417
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "Ni na voljo"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:507
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "Kritično"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:509
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "Visoko"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:511
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "Srednje"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:513
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "Nizko"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1007
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Neznano"
 
@@ -405,7 +417,7 @@ msgid "Get Pro"
 msgstr "Nadgradite na Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Odpre se v novem oknu."
 
@@ -414,6 +426,40 @@ msgstr "Odpre se v novem oknu."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Preberite dokumentacijo za %s. Odpre se v novem oknu."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Dovoljenja"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Izberite vlogo"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Izberite vlogo, da si ogledate zmožnosti, ki ji jih lahko dodelite."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Na voljo ni nobene zmožnosti."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Nastavitve dovoljenj so naložene za %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Drugo"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Zahteva veljavno licenco."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Nimate dovoljenja za upravljanje dovoljenj za Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -518,15 +564,14 @@ msgstr "Nadgradite zdaj"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-ajax.php:866
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Dovoljenje zavrnjeno"
 
@@ -602,53 +647,53 @@ msgstr "Nikoli več ne vprašaj"
 msgid "The review action value was not set"
 msgstr "Vrednost dejanja za oceno ni bila nastavljena"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "ID objave ni bil nastavljen"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Za ogled teh informacij za to objavo nimate dovoljenja."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Za to vsebino ni bila vključena poenostavljena povzetka."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Vaša vsebina ima raven branja na ravni 9. razreda ali nižje in ne potrebuje poenostavljenega povzetka."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Raven branja poenostavljenega povzetka je previsoka."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Za to vsebino je bil vključen poenostavljen povzetek."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% opravljenih preverjanj"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Opravljeni pregledi"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Opravljeni testi"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Problem"
@@ -658,7 +703,7 @@ msgstr[1] "Težavi"
 msgstr[2] "Težave"
 msgstr[3] "Težave"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Težava s kontrastom"
@@ -666,12 +711,13 @@ msgstr[1] "Težavi s kontrastom"
 msgstr[2] "Težave s kontrastom"
 msgstr[3] "Težave s kontrastom"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "Potreben pregled"
@@ -679,8 +725,8 @@ msgstr[1] "Potrebna pregleda"
 msgstr[2] "Potrebni pregledi"
 msgstr[3] "Potrebni pregledi"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
@@ -689,267 +735,261 @@ msgstr[1] "Zavrženi težavi"
 msgstr[2] "Zavržene težave"
 msgstr[3] "Zavržene težave"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Raven branja"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Prava dostopnost zahteva ročno testiranje poleg avtomatiziranih pregledov. %1$sPreberite, kako ročno preveriti dostopnost%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
 #: admin/class-ignore-ui.php:170
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr ", odpre se novo okno"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Ni povzetka za vrnitev"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Neveljavno ime tabele"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " skupaj"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Preberite dokumentacijo za %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Razširi težave za %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Te nastavitve omogočajo globalne popravke po celotnem spletnem mestu."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Morda bo treba strani ponovno shraniti ali izvesti celoten pregled spletnega mesta, da bodo popravki vidni v poročilih."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Shrani"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Prizadeta koda"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Slika"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Znamenitost"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Dejanja"
 
-#: admin/class-ajax.php:495
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Zavrnjeno"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Zavrni"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "ID težave %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "slika za težavo %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Oglejte si težavo z ID %d na spletni strani, odpre se novo okno"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Ogled na strani"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Popravek: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Popravi"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Ni podrobnosti za vrnitev"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Stopnja berljivosti objave: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Brez"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Vaša objava ima stopnjo berljivosti višjo od 9. razreda. Smernice za dostopnost spletnih vsebin (WCAG) na ravni AAA zahtevajo poenostavljen povzetek vaše objave, ki je na ravni 9. razreda ali nižje."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Vaša objava ne vsebuje dovolj vsebine za izračun stopnje berljivosti."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Poenostavljen povzetek ni potreben, če je stopnja berljivosti vsebine 9. razred ali nižje. Na strani z nastavitvami izberite, kdaj naj se prikaže poziv za poenostavljen povzetek."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Poenostavljena raven branja povzetka: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Ni dovolj vsebine za določitev natančne ravni branja."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Vaš poenostavljeni povzetek ima raven branja nad 9. razredom."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Vaš poenostavljeni povzetek ima raven branja na ali pod 9. razredom."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Poenostavljen povzetek se ne vstavi samodejno v vsebino."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaš poziv za poenostavljen povzetek je nastavljen na „nikoli.“ Če želite, da se poenostavljen povzetek prikaže samodejno, lahko to spremenite na %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "stran z nastavitvami"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Poenostavljen povzetek se samodejno vstavi %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "vsebina"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Nastavite, kam se poenostavljen povzetek vstavi v vsebino na %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaša lokacija poenostavljenega povzetka je nastavljena na „ročno“, kar zahteva dodajanje funkcije v predlogo vaše strani. Če želite, da se poenostavljen povzetek prikaže samodejno, lahko to spremenite na %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:931
-#: includes/options-page.php:955
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Poenostavljen povzetek"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Shrani povzetek"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Več o izboljšanju berljivosti in zahtevah za poenostavljen povzetek"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Ni podatkov o berljivosti za vrnitev"
 
-#: admin/class-ajax.php:840
-#: admin/class-ajax.php:849
-#: admin/class-ajax.php:861
-#: admin/class-ajax.php:905
-msgid "No dismissal data to return"
-msgstr "Ni podatkov o zavrnitvah za vrnitev"
-
-#: admin/class-enqueue-admin.php:439
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Besedilo za bralnik zaslona"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "Vrednost ID ni bila nastavljena"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Objava ni bila najdena"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Poizvedba o težavi ni vrnila rezultatov"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Poizvedba o objektu ni vrnila rezultatov"
 
@@ -986,14 +1026,16 @@ msgid "Date:"
 msgstr "Datum:"
 
 #: admin/class-ignore-ui.php:141
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Ponovno odpri težavo"
 
 #: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "Zavrni težavo"
 
@@ -1011,14 +1053,14 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Vaš uporabniški račun nima dovoljenja za zavrnitev te težave."
 
 #: admin/class-ignore-ui.php:200
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "Zavrni težavo kot:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Nastavitve"
 
@@ -1116,7 +1158,7 @@ msgid "Report Last Updated:"
 msgstr "Poročilo nazadnje posodobljeno:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Nikoli"
 
@@ -1218,7 +1260,8 @@ msgid "Post Type"
 msgstr "Vrsta objave"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "Težave"
 
@@ -1433,7 +1476,7 @@ msgid "Disabled"
 msgstr "Onemogočeno"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Izbriši podatke"
 
@@ -1490,7 +1533,6 @@ msgid "Simplified Sum Heading"
 msgstr "Naslov poenostavljenega povzetka"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
 msgid "Dismiss Permissions"
 msgstr "Dovoljenja za zavrnitev"
 
@@ -1528,16 +1570,20 @@ msgstr "Pridobi Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Pridobi Accessibility Checker Pro (se odpre v novem oknu)"
 
-#: includes/classes/class-rest-api.php:1240
-#: includes/classes/class-rest-api.php:1261
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Oprostite, nimate dovoljenja za opustitev težav."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Oprostite, nimate dovoljenja za splošno opustitev težav."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Težava ni najdena."
 
-#: includes/classes/class-rest-api.php:1271
-msgid "Sorry, you are not allowed to dismiss one or more issues in this batch."
-msgstr "Oprostite, ne smete zavrniti ene ali več težav v tej seriji."
-
-#: includes/classes/class-rest-api.php:1325
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Posodobitev težave ni uspela."
 
@@ -3441,323 +3487,349 @@ msgid "(opens in a new window)"
 msgstr "(se odpre v novem oknu)"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:901
+#: includes/helper-functions.php:922
 msgid "Main"
 msgstr "Glavno"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:903
+#: includes/helper-functions.php:924
 msgid "Header"
 msgstr "Glava"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:905
+#: includes/helper-functions.php:926
 msgid "Footer"
 msgstr "Noga"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:907
+#: includes/helper-functions.php:928
 msgid "Nav"
 msgstr "Navigacija"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:909
+#: includes/helper-functions.php:930
 msgid "Aside"
 msgstr "Stransko"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:911
+#: includes/helper-functions.php:932
 msgid "Navigation"
 msgstr "Navigacija"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:913
+#: includes/helper-functions.php:934
 msgid "Banner"
 msgstr "Pasica"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:915
+#: includes/helper-functions.php:936
 msgid "Contentinfo"
 msgstr "Informacije o vsebini"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:917
+#: includes/helper-functions.php:938
 msgid "Complementary"
 msgstr "Komplementarno"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:919
+#: includes/helper-functions.php:940
 msgid "Section"
 msgstr "Razdelek"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:921
+#: includes/helper-functions.php:942
 msgid "Article"
 msgstr "Članek"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:923
+#: includes/helper-functions.php:944
 msgid "Form"
 msgstr "Obrazec"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:925
+#: includes/helper-functions.php:946
 msgid "Region"
 msgstr "Regija"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:974
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Ogled %s orientacijske točke na spletni strani, odpre se novo okno"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Opustitev lastnih težav"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Opustitev in ponovno odpiranje težav z dostopnostjo v objavah, ki jih uporabnik lahko ureja (lastne objave; uredniki lahko urejajo vse)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Opustitev težav (katerakoli objava)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Opustitev in ponovno odpiranje težav z dostopnostjo v kateri koli objavi, tudi če je uporabnik sicer ne more urejati."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Osvetljevalnik na javnem delu"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Ogled osvetljevalnika dostopnosti na javnem delu spletnega mesta pri objavljeni vsebini."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "zmožnost urejanja objav"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "zmožnost urejanja objav drugih uporabnikov"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Zahteva %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Dobrodošli v Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Nastavitve Accessibility Checkerja"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Nastavitve skeniranja"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Dovoljenja"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Nastavitve poenostavljenega povzetka"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Izjava o dostopnosti v nogi"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker na spletni strani"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Sistemske nastavitve"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Vrste prispevkov za preverjanje"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Hitrost skeniranja"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Skeniranje arhiva"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Skeniranje taksonomije"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Metabox urejevalnika blokov"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Poziv za poenostavljen povzetek"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Položaj poenostavljenega povzetka"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Poenostavljen naslov povzetka"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Dodaj izjavo o dostopnosti v nogo"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Vključi povezavo do politike dostopnosti"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Stran s politiko dostopnosti"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Predogled izjave o dostopnosti"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Položaj Accessibility Checkerja na spletni strani"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfiguriraj vrste vsebine, ki jih je treba preveriti glede težav z dostopnostjo."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Več funkcij in e-poštna podpora sta na voljo s %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (odpre se v novem oknu)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Uporabite spodnje nastavitve za konfiguracijo preverjalnika dostopnosti na sprednji strani."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Smernice za dostopnost spletnih vsebin (WCAG) na ravni AAA zahtevajo, da ima vsebina z bralnim nivojem nad 9. Razredom alternativo, ki jo je lažje prebrati. Poenostavljen povzetek besedila je dodan na zavihku berljivosti v metapolju Accessibility Checkerja na zaslonu za urejanje vsakega prispevka ali strani."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti (se odpre v novem oknu)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Ali razmišljaš „Vau, ta vtičnik je neverjetno“ in ti pomaga narediti tvojo spletno stran bolj dostopno? Deli svoje prizadevanja za izboljšanje dostopnosti svoje spletne strani s svojimi strankami in jim sporoči, da uporabljaš Accessibility Checker, da zagotoviš, da lahko vsi ljudje uporabljajo tvojo spletno stran. Dodaj majhno besedilno povezavo in izjavo v nogo svoje spletne strani."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfiguriraj sistemske nastavitve za vtičnik Accessibility Checker."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Hitro"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normalno"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Počasi"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Najpočasneje"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Hitrejša skeniranja so bolj zahtevna za vire in lahko povzročijo veliko obremenitev vaše spletne strani."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Omogoči skeniranje arhivskih strani"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Izberite, ali naj bodo arhivske strani vključene v celotno skeniranje spletnega mesta. Privzeto se za izbiro taksonomskih izrazov za arhivske podatke uporablja metoda vzorčenja."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skeniraj vse taksonomske izraze namesto le vzorca"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Preveri vse arhivske strani taksonomskih izrazov namesto reprezentativnega vzorca. To zahteva, da je skeniranje arhivskih strani omogočeno, in lahko na seznam za skeniranje doda veliko število URL-jev."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Pred vsebino"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "Po vsebini"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Vstavi ročno"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Uporabite to funkcijo za ročno dodajanje poenostavljenega povzetka v vašo temo znotraj zanke."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija opcijsko sprejme ID objave kot parameter."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nastavite, kje želite, da se poenostavljeni povzetki pojavijo v odnosu do vaše vsebine, če so izpolnjeni."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Spodnji desni kot (privzeto)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Spodnji levi kot"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nastavite, kje želite, da se preverjalnik dostopnosti na sprednji strani pojavi na strani."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Ko je potrebno"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Vedno"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ali naj Accessibility Checker zahteva poenostavljen povzetek samo, ko je bralni nivo tvojega prispevka ali strani nad 9. razredom, vedno zahteva ne glede na bralni nivo ali nikoli ne zahteva ne glede na bralni nivo?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Za preverjanje vsebine, ki ni objava ali stran, prosimo "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "nadgradite na Pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (se odpre v novem oknu)"
 
-#: includes/options-page.php:685
+#: includes/options-page.php:1303
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Izberite, katere vrste objav naj se preverijo med skeniranjem. Upoštevajte, da bo odstranitev predhodno izbrane vrste objave odstranila njene skenirane informacije in vsa nastavljena opozorila, ki so bila zavrnjena po meri."
 
-#: includes/options-page.php:826
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Izbriši vse podatke Accessibility Checkerja, ko je vtičnik odstranjen."
 
-#: includes/options-page.php:844
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Prikaži metabox Accessibility Checkerja v urejevalniku blokov"
-
-#: includes/options-page.php:1003
-msgid "Choose which user roles have permission to dismiss issues."
-msgstr "Izberite, katere uporabniške vloge imajo dovoljenje za zavrnitev težav."
-
-#: includes/options-page.php:1036
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Konfiguriraj, katere uporabniške vloge imajo dostop do določenih funkcij Accessibility Checker."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4963,22 +5035,58 @@ msgstr "Nastavitve shranjene. Za potrditev in odsev teh posodobitev v statistiki
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Vtičnik Accessibility New Window Warnings je nameščen. Popravek za povezave, ki se odpirajo v novem oknu, vključen tukaj, bo preglasil njegovo funkcionalnost. Vtičnik lahko varno odstranite in namesto tega uporabite te popravke."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Dovoljenja so shranjena."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Med vašim urejanjem je nekdo drug spremenil dovoljenja, zato vaše spremembe niso bile shranjene. Preglejte trenutna dovoljenja spodaj in poskusite znova."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Nastavitve dovoljenj"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Izberite uporabniško vlogo in nato označite zmožnosti Accessibility Checker, ki jih želite dodeliti. Zmožnost je mogoče dodeliti le vlogi, katere obstoječa WordPress dovoljenja izpolnjujejo njene zahteve. Administratorji imajo vedno vse zmožnosti."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Izberite vlogo"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Izberite uporabniško vlogo, katere dovoljenja za Accessibility Checker želite upravljati."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Vloga"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Izberite vlogo —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Shrani dovoljenja"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Plošče s težavami Accessibility Checkerja"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "Status dostopnosti"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "Analiza dostopnosti"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "Analiza berljivosti"
 
@@ -4988,8 +5096,9 @@ msgstr "Izbriši vse trenutno najdene težave"
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "Počisti težave"
 
@@ -5221,6 +5330,7 @@ msgstr "Nastavitve so uspešno shranjene."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "Shranjevanje ni uspelo."
 
@@ -5230,28 +5340,28 @@ msgid "Fix Settings"
 msgstr "Popravi nastavitve"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "To bo izbrisalo vse težave za to objavo. Za sprožitev novega pregleda vsebine objave bo potrebno shranjevanje. Ali želite nadaljevati?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "Čiščenje..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "Težave so uspešno izbrisane."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "Brisanje težav ni uspelo."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "Pri brisanju težav je prišlo do napake."
 
@@ -5279,195 +5389,198 @@ msgstr "EDAC: Napaka pri posodabljanju zgodovine za povezavo za preskok."
 msgid "Close fixes modal"
 msgstr "Zapri modal s popravki"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d od %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "Neimenovana težava"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "Težava %1$d od %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "Element ni viden. Poskusite onemogočiti sloge."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "Element ni mogoče fokusirati. Poskusite onemogočiti sloge."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "Elementa ni bilo mogoče najti na strani."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "Premakni levo"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "Premakni desno"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "Položaj plošče je ponastavljen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "Plošča je premaknjena v levo."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "Plošča je premaknjena v desno."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Odpri podrobnosti za %1$s, %2$s od %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "Odpni ploščo"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "Pripni ploščo"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "Ponovno preglej to stran"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Orodja Accessibility Checkerja"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "Več možnosti"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "Onemogoči sloge strani"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "Onemogoči sloge"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "Zapri"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "Na tej strani ni najdenih težav."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "Nalaganje ..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "Prejšnja"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "Naslednja"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "Ponastavi položaj"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "Pri nalaganju težav je prišlo do napake."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "Plošča pripeta."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "Plošča odpeta."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "Resnost:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Pokaži razlago"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Zakaj je pomembno"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Kako popraviti"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Podrobnejša dokumentacija"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "Prikaži prizadeto kodo"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "Odpravi težavo: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Odpravi težavo"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "Omogoči sloge"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "Omogoči sloge strani"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "Slogi strani so onemogočeni."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "Slogi strani so znova omogočeni."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "Ni nastavitev za prikaz."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Te nastavitve omogočajo globalne popravke na celotnem vašem spletnem mestu. Morda bo treba strani ponovno shraniti ali izvesti celotno skeniranje spletnega mesta, da bodo popravki vidni v poročilih."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
@@ -5476,7 +5589,8 @@ msgstr[1] "Najdeni sta %d težavi"
 msgstr[2] "Najdene so %d težave"
 msgstr[3] "Najdenih je %d težav"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
@@ -5485,7 +5599,8 @@ msgstr[1] "%d problema"
 msgstr[2] "%d problemi"
 msgstr[3] "%d problemov"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
@@ -5494,7 +5609,8 @@ msgstr[1] "%d potrebujeta pregled"
 msgstr[2] "%d potrebujejo pregled"
 msgstr[3] "%d potrebujejo pregled"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "%d Dismissed"
 msgid_plural "%d Dismissed"
@@ -5503,60 +5619,60 @@ msgstr[1] "%d zavrnjeni"
 msgstr[2] "%d zavrnjeni"
 msgstr[3] "%d zavrnjenih"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "Ni zaznanih težav."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "Znamenitost: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "Nalaganje skripta skenerja ni uspelo."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "Funkcija pregledovalnika ni najdena."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "Pregledovanje..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "Manjka postId ali nonce."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "Ponovno skeniranje končano. Ni najdenih kršitev."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "Ni najdenih kršitev, preskakujem shranjevanje."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Napaka pri pregledu dostopnosti."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "Napaka pri shranjevanju rezultatov pregleda."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "Ponovno skeniranje že poteka."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "Ponovno skeniranje te strani."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "Ponovno skeniranje končano."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "Napaka: Manjkajo zahtevani parametri."
 
@@ -5630,7 +5746,9 @@ msgid "Issue reopened successfully."
 msgstr "Težava uspešno ponovno odprta."
 
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Globally"
 msgstr "Zavrni globalno"
 
@@ -5644,76 +5762,82 @@ msgstr "Zavrnitev globalno..."
 msgid "Dismissing..."
 msgstr "Zavračanje ..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 #, js-format
 msgid "Issue Dismissed — %s"
 msgstr "Težava zavrnjena — %s"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Issue Dismissed"
 msgstr "Težava zavrnjena"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Scope:"
 msgstr "Obseg:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "All pages"
 msgstr "Vse strani"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "By:"
 msgstr "Avtor:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "On:"
 msgstr "Vklopljeno:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reason for dismissal:"
 msgstr "Razlog za zavrnitev:"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "Odstranjevanje..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Remove Global Dismissal"
 msgstr "Odstrani globalno zavrnitev"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopening..."
 msgstr "Ponovno odpiranje ..."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Comment (optional)"
 msgstr "Komentar (neobvezno)"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Add a note explaining why this issue is being dismissed."
 msgstr "Dodajte opombo, ki pojasnjuje, zakaj je ta težava zavrnjena."
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "More dismiss options"
 msgstr "Več možnosti zavrnitve"
 
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss & Close Modal"
 msgstr "Zavrni in zapri modalno okno"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Nimate dovoljenja za opustitev težav."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5843,219 +5967,224 @@ msgstr[1] "težavi, ki ju je treba pregledati"
 msgstr[2] "težave, ki jih je treba pregledati"
 msgstr[3] "težave, ki jih je treba pregledati"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "Imate %1$d %2$s in %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "Imate %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "Preverite in odpravite težave z dostopnostjo v vaši vsebini."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "Odpri ploščo za dostopnost"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "Povzetek je na voljo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "Povzetek je obvezen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "Povzetek ni obvezen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "Oglejte si %d težav v analizi dostopnosti"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Oglejte si %d elementov, ki jih je treba pregledati v analizi dostopnosti"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
 #, js-format
 msgid "View reading level details: %1$s, %2$s"
 msgstr "Oglejte si podrobnosti o stopnji branja: %1$s, %2$s"
 
-#: build/sidebar.bundle.js:2
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Oglejte si podrobnosti ravni branja: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "Težava"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "Dejanja za težavo %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "Dejanja za težavo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "Pokaži kodo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "Ponovno odpri težavo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "Zavrni težavo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "Uporabi popravek"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "%d skupaj"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "Ni zavrnjenih težav."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "Ni najdenih težav."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "%d skupnih težav"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "Zavržene težave"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "Poenostavljeni povzetek uspešno shranjen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "Shranjevanje povzetka ni uspelo. Poskusite znova."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "Pri shranjevanju povzetka je prišlo do napake."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "%s razred"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "%d. razred"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "Ni na voljo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "Opozorilo"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "Ta objava ne vsebuje dovolj vsebine za izračun ravni branja."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "Prilagodite pozive za povzetek v nastavitvah."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "Vsebina na ali pod 9. razredom branja ne zahteva poenostavljenega povzetka."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "Vsebina nad 9. razredom branja zahteva poenostavljen povzetek za izpolnjevanje smernic WCAG AAA."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "Več o zahtevah glede berljivosti."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "Poenostavljena raven branja povzetka"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "Potrebna je izboljšava, povzetek je nad 9. razredom branja."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "Pod priporočeno ravnjo branja 9. razreda."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "Vnesite poenostavljen povzetek ..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "Za to vsebino je potreben poenostavljen povzetek."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "Te preference ni mogoče naložiti."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "Te preference ni mogoče shraniti."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "Nalaganje preference..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "Format besedila bralnika zaslona"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "Nadzorujte, ali ostane besedilo bralnika zaslona vidno med urejanjem."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "Vedno pokaži besedilo bralnika zaslona?"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "Nalaganje podatkov o dostopnosti ..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Dejanja preverjevalnika dostopnosti"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "Skeniraj"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Osveži"
 
