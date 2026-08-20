@@ -45,6 +45,12 @@ describe( 'Scanner Context Exclusions', ( ) => {
 					<button id="query-monitor-fallback-button"></button>
 				</div>
 			</div>
+
+			<!-- A panel container on its own, covering the class selector
+			     independently of the wrapper it usually sits inside -->
+			<div class="qm-panel-container" id="qm-db_queries-container">
+				<button id="query-monitor-panel-button"></button>
+			</div>
 		`;
 
 		// Define context with exclude list matching src/pageScanner/index.js
@@ -71,6 +77,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-container-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-fallback-button"' ) ) ).toBe( false );
+		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-panel-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="edac-panel-button"' ) ) ).toBe( false );
 	} );
 } );
