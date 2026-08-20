@@ -3,8 +3,8 @@
  * Test for scanner context exclusions
  *
  * This test verifies that elements with the selectors in the exclude array
- * are properly excluded from accessibility scans, including the newly added
- * #qm-icon-container selector.
+ * are properly excluded from accessibility scans, including Query Monitor's
+ * fallback output.
  */
 import axe from 'axe-core';
 import { exclusionsArray } from '../../../src/pageScanner/config/exclusions';
@@ -32,8 +32,18 @@ describe( 'Scanner Context Exclusions', ( ) => {
 			<div id="query-monitor-main">
 				<button id="query-monitor-button"></button>
 			</div>
+			<div id="query-monitor-container">
+				<button id="query-monitor-container-button"></button>
+			</div>
 			<div id="edac-highlight-panel">
 				<button id="edac-panel-button"></button>
+			</div>
+
+			<!-- Query Monitor fallback output, as rendered on WP VIP -->
+			<div id="query-monitor-fallbacks">
+				<div class="qm-panel-container" id="qm-alloptions">
+					<button id="query-monitor-fallback-button"></button>
+				</div>
 			</div>
 		`;
 
@@ -59,6 +69,8 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		expect( violationHTML.some( ( html ) => html.includes( 'id="qm-icon-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="wpadminbar-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-button"' ) ) ).toBe( false );
+		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-container-button"' ) ) ).toBe( false );
+		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-fallback-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="edac-panel-button"' ) ) ).toBe( false );
 	} );
 } );
