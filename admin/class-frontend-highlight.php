@@ -109,8 +109,14 @@ class Frontend_Highlight {
 
 		// Check if the user has permission to view this post.
 		if ( is_user_logged_in() ) {
-			// For authenticated users, use read_post capability.
-			if ( ! current_user_can( 'read_post', $post_id ) ) {
+			// For authenticated users, require both read_post and the dedicated
+			// frontend highlighter capability - read_post alone is not sufficient,
+			// or this endpoint would return highlighter data to any logged-in
+			// reader regardless of what the Permissions tab granted (PRO-1290).
+			if (
+				! current_user_can( 'read_post', $post_id ) ||
+				! ( function_exists( 'edac_user_can_use_frontend_highlighter' ) && edac_user_can_use_frontend_highlighter() )
+			) {
 				wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 			}
 		} elseif ( apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) ) {

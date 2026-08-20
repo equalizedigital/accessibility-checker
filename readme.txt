@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - WCAG, ADA, EAA and Section 508 compliance ===
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
-Requires at least: 6.8
-Tested up to: 7.0
-Stable tag: 1.47.0
+Requires at least: 6.9
+Tested up to: 7.1
+Stable tag: 1.48.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -278,6 +278,14 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-08-19 - version 1.48.0
+* Added - a new Permissions settings tab that lets administrators control which roles can dismiss issues, view audit history, export data, run full-site scans, and view the frontend highlighter.
+* Added - individual capabilities for dismissing issues (own vs. any), viewing audit history, exporting data, running full-site scans, and viewing the frontend highlighter, replacing the previous all-or-nothing Pro toggle.
+* Fix - large-batch dismiss actions no longer leak across accessibility rules that share the same object.
+* Fix - the Taxonomy Scanning setting now points at the option the scanner actually reads.
+* Fix - the readability check now uses the correct Flesch-Kincaid grade 9 threshold.
+* Fix - Query Monitor's fallback debug output is no longer scanned and reported as false-positive accessibility issues.
 
 2026-07-14 - version 1.47.0
 * Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
