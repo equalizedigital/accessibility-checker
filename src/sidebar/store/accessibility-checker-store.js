@@ -60,7 +60,8 @@ const initialState = {
 	},
 };
 
-// Debounce timer
+// The refresh currently waiting in the debounce window.
+// Store its resolver so a canceled refresh does not leave a pending promise.
 let pendingRefresh = null;
 
 // Actions
@@ -199,7 +200,7 @@ const actions = {
 
 	refetchData( postId ) {
 		return async ( { dispatch, select } ) => {
-			// Clear any existing debounce timer and settle superseded promise
+			// Cancel and settle the refresh that is still waiting to start.
 			if ( pendingRefresh ) {
 				clearTimeout( pendingRefresh.debounceTimer );
 
@@ -216,6 +217,15 @@ const actions = {
 				};
 
 				pending.debounceTimer = setTimeout( async () => {
+					/*
+					 * This refresh has started and can no longer be superseded by the
+					 * debounce logic. Clear the shared reference only if this refresh
+					 * still owns it, so an older callback cannot clear a newer refresh.
+					 */
+					if ( pendingRefresh === pending ) {
+						pendingRefresh = null;
+					}
+
 					// If this is the initial load, use regular fetch
 					if ( select.isInitialLoad() ) {
 						await dispatch( actions.fetchData( postId ) );
@@ -253,7 +263,7 @@ const actions = {
 					resolve();
 				}, 200 );
 
-				// Set current pending refresh
+				// Track the timer and resolver together until the refresh starts.
 				pendingRefresh = pending;
 			} );
 		};
