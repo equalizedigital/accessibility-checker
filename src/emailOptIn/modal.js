@@ -57,6 +57,13 @@ const bindFocusTrap = () => {
 
 	closeIcon.setAttribute( 'aria-hidden', 'true' );
 
+	// Core Thickbox does not expose #TB_window as a dialog, so add the
+	// semantics here once it exists. The accessible name comes from the
+	// Thickbox title element that core renders.
+	modal.setAttribute( 'role', 'dialog' );
+	modal.setAttribute( 'aria-modal', 'true' );
+	modal.setAttribute( 'aria-labelledby', 'TB_ajaxWindowTitle' );
+
 	const focusTrap = createFocusTrap( modal );
 	focusTrap.activate();
 
