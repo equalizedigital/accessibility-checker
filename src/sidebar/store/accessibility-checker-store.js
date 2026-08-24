@@ -61,7 +61,7 @@ const initialState = {
 };
 
 // Debounce timer
-let debounceTimer = null;
+let pendingRefresh = null;
 
 // Actions
 const actions = {
@@ -199,14 +199,23 @@ const actions = {
 
 	refetchData( postId ) {
 		return async ( { dispatch, select } ) => {
-			// Clear any existing debounce timer
-			if ( debounceTimer ) {
+			// Clear any existing debounce timer and settle superseded promise
+			if ( pendingRefresh ) {
 				clearTimeout( debounceTimer );
+
+				pendingRefresh.resolve( {
+					status: 'superseded',
+				} );
 			}
 
 			// Debounce the refetch by 200ms
 			return new Promise( ( resolve ) => {
-				debounceTimer = setTimeout( async () => {
+				const pending = {
+					resolve,
+					debounceTimer: null,
+				}
+
+				pending.debounceTimer = setTimeout( async () => {
 					// If this is the initial load, use regular fetch
 					if ( select.isInitialLoad() ) {
 						await dispatch( actions.fetchData( postId ) );
@@ -243,6 +252,9 @@ const actions = {
 
 					resolve();
 				}, 200 );
+
+				// Set current pending refresh
+				pendingRefresh = pending;
 			} );
 		};
 	},
