@@ -23,7 +23,7 @@ const findRuleDisplayBtn = ( root, panelId ) => {
 	}
 
 	const rulePanelDisplayButtons = Array.from( root.querySelectorAll( RULE_BUTTON_SELECTOR ) );
-	const rulePanelDisplayButton = rulePanelDisplayButtons .find( ( button ) => button.getAttribute( 'aria-controls' ) === panelId ) || null;
+	const rulePanelDisplayButton = rulePanelDisplayButtons.find( ( button ) => button.getAttribute( 'aria-controls' ) === panelId ) || null;
 
 	return rulePanelDisplayButton;
 };
@@ -92,7 +92,7 @@ export const restoreDismissIssueFocus = ( context, root = document ) => {
 		rulePanelIgnore.style.display = 'block';
 	}
 
-	const focusTarget = findIssueDismissBtn( root, context.issueId )
+	const focusTarget = findIssueDismissBtn( root, context.issueId );
 
 	focusTarget?.focus();
 
