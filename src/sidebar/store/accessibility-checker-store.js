@@ -201,7 +201,7 @@ const actions = {
 		return async ( { dispatch, select } ) => {
 			// Clear any existing debounce timer and settle superseded promise
 			if ( pendingRefresh ) {
-				clearTimeout( debounceTimer );
+				clearTimeout( pendingRefresh.debounceTimer );
 
 				pendingRefresh.resolve( {
 					status: 'superseded',
@@ -213,7 +213,7 @@ const actions = {
 				const pending = {
 					resolve,
 					debounceTimer: null,
-				}
+				};
 
 				pending.debounceTimer = setTimeout( async () => {
 					// If this is the initial load, use regular fetch
