@@ -119,6 +119,44 @@ describe( 'Link Ambiguous Text Rule', () => {
 			html: '<a href="/page">More...</a>',
 			shouldPass: false,
 		},
+
+		// Behavioral suffixes — text describing how a link opens does not
+		// make an ambiguous name descriptive (see #1891).
+		{
+			name: 'should fail for ambiguous aria-label with appended new-window text',
+			html: '<a href="/page" target="_blank" aria-label="Read more, opens a new window">Read more</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for ambiguous aria-label with appended new-tab text',
+			html: '<a href="/page" target="_blank" aria-label="learn more, opens in a new tab">learn more</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for ambiguous aria-label with stacked behavioral suffixes',
+			html: '<a href="/page" aria-label="read more, opens a new window, opens in a new tab">read more</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for ambiguous aria-labelledby with appended new-window text',
+			html: '<span id="nw-lbl">click here, opens a new window</span><a href="/page" aria-labelledby="nw-lbl">Visit page</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for image link with ambiguous alt plus new-window text',
+			html: '<a href="/page"><img src="icon.png" alt="here, opens a new window" /></a>',
+			shouldPass: false,
+		},
+		{
+			name: 'should pass for descriptive aria-label with appended new-window text',
+			html: '<a href="/pricing" target="_blank" aria-label="Read more about pricing, opens a new window">Read more</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'should fail for exact "opens a new window" as the whole label',
+			html: '<a href="/page" aria-label="opens a new window">Visit page</a>',
+			shouldPass: false,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
@@ -135,6 +173,30 @@ describe( 'Link Ambiguous Text Rule', () => {
 				expect( results.violations.length ).toBeGreaterThan( 0 );
 				expect( results.violations[ 0 ].id ).toBe( 'link_ambiguous_text' );
 			}
+		} );
+	} );
+
+	describe( 'customized new-window fix string', () => {
+		afterEach( () => {
+			delete window.edac_frontend_fixes;
+		} );
+
+		test( 'should fail when the suffix matches the string injected for the new-window fix', async () => {
+			// The new-window fix appends the string it reads from this same
+			// global, so a site-customized string must also be recognized.
+			window.edac_frontend_fixes = {
+				new_window_warning: {
+					localizedString: 'link opens in a popup',
+				},
+			};
+			document.body.innerHTML = '<a href="/page" target="_blank" aria-label="Read more, link opens in a popup">Read more</a>';
+
+			const results = await axe.run( document.body, {
+				runOnly: [ 'link_ambiguous_text' ],
+			} );
+
+			expect( results.violations.length ).toBeGreaterThan( 0 );
+			expect( results.violations[ 0 ].id ).toBe( 'link_ambiguous_text' );
 		} );
 	} );
 } );
