@@ -441,7 +441,7 @@ function edac_sync_capability_roles(): void {
 }
 
 /**
- * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
+ * The SyncCapability instance managing the bundle. Assembled on init
  * (see below) so every active add-on has contributed to edac_capability_bundle
  * first; also usable directly (e.g. in tests) as a lazy singleton.
  *
@@ -452,7 +452,7 @@ function edac_ignore_capability(): SyncCapability {
 
 	if ( null === $capability ) {
 		// Precompute each capability's floor once (all active add-ons have
-		// contributed metadata by the time this runs on plugins_loaded), so the
+		// contributed metadata by the time this runs on init), so the
 		// floor policy passed to the engine is a cheap array lookup rather than a
 		// metadata rebuild per role/capability during sync.
 		$floors = [];
