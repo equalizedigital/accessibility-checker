@@ -4,6 +4,7 @@
 [![Security](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/security.yml)
 [![Test](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml)
 [![Coverage Status](https://coveralls.io/repos/github/equalizedigital/accessibility-checker/badge.svg?branch=develop)](https://coveralls.io/github/equalizedigital/accessibility-checker?branch=develop)
+
 [![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/accessibility-checker.svg)](https://wordpress.org/plugins/accessibility-checker/)
 ![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/accessibility-checker.svg)
 [![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/accessibility-checker.svg)](https://wordpress.org/plugins/accessibility-checker/advanced/)
