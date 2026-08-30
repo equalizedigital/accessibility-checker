@@ -40,6 +40,9 @@ class Simplified_Summary {
 		if ( 'none' === $simplified_summary_prompt ) {
 			return $content;
 		}
+		if ( $this->is_manually_placed( get_the_ID() ) ) {
+			return $content;
+		}
 		$simplified_summary          = $this->simplified_summary_markup( get_the_ID() );
 		$simplified_summary_position = get_option( 'edac_simplified_summary_position', $default = false );
 
@@ -52,6 +55,58 @@ class Simplified_Summary {
 			}
 		}
 		return $content;
+	}
+
+	/**
+	 * Check whether the simplified summary has been manually placed for a post.
+	 *
+	 * Detects the edac/simplified-summary block or [edac_simplified_summary]
+	 * shortcode in the post content, and the block in the current block theme
+	 * template. Blocks nested inside template parts or synced patterns cannot
+	 * be detected by has_block(); the filter below is the escape hatch for
+	 * those cases.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param int|\WP_Post|null $post Post ID or post object.
+	 * @return bool
+	 */
+	public function is_manually_placed( $post = null ): bool {
+		$manually_placed = false;
+
+		$post = get_post( $post );
+		if ( $post instanceof \WP_Post ) {
+			if (
+				has_block( 'edac/simplified-summary', $post ) ||
+				has_shortcode( (string) $post->post_content, 'edac_simplified_summary' )
+			) {
+				$manually_placed = true;
+			}
+		}
+
+		// Set by WordPress when rendering a block theme template.
+		global $_wp_current_template_content;
+		if (
+			! $manually_placed &&
+			! empty( $_wp_current_template_content ) &&
+			(
+				has_block( 'edac/simplified-summary', $_wp_current_template_content ) ||
+				has_shortcode( $_wp_current_template_content, 'edac_simplified_summary' )
+			)
+		) {
+			$manually_placed = true;
+		}
+
+		/**
+		 * Filter whether the simplified summary is manually placed, which
+		 * suppresses the automatic insertion on the_content.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param bool           $manually_placed Whether the summary is manually placed.
+		 * @param \WP_Post|null  $post            The post being checked.
+		 */
+		return apply_filters( 'edac_filter_simplified_summary_is_manually_placed', $manually_placed, $post );
 	}
 
 	/**
