@@ -28,7 +28,7 @@ trait Text {
 		?>
 		<label
 			for="<?php echo esc_attr( $args['name'] ); ?>"
-			style="display: block; margin-bottom: 6px;"
+			style="display: block; margin-block-end: 6px;"
 			<?php echo ( $upsell ) ? 'class="edac-fix--disabled edac-fix--upsell"' : ''; ?>
 		>
 			<?php if ( isset( $args['location'] ) && $upsell ) : ?>

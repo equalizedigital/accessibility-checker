@@ -236,7 +236,7 @@ const ReadabilityAnalysis = () => {
 			onToggle={ handlePanelToggle }
 		>
 			{ notice && (
-				<div style={ { marginTop: '16px' } }>
+				<div style={ { marginBlockStart: '16px' } }>
 					<Notice
 						status={ notice.type }
 						isDismissible={ true }
