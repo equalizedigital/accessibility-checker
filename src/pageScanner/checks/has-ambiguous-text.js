@@ -23,12 +23,59 @@ const ambiguousPhrases = [
 	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
+// Phrases that describe how a link opens rather than where it goes.
+// Appended to accessible names by the "Add Label To Links That Open A
+// New Tab/Window" fix and by similar theme/plugin features. They add no
+// information about the link's purpose, so they are ignored when
+// deciding whether a name is ambiguous.
+const behavioralPhrases = [
+	__( 'opens a new window', 'accessibility-checker' ),
+	__( 'opens in a new window', 'accessibility-checker' ),
+	__( 'opens a new tab', 'accessibility-checker' ),
+	__( 'opens in a new tab', 'accessibility-checker' ),
+	__( 'opens new window', 'accessibility-checker' ),
+	__( 'opens new tab', 'accessibility-checker' ),
+];
+
+// The exact string the plugin's own new-window fix appends is injected
+// into the page it runs on; read it from the same source the fix reads
+// so the rule always matches what was actually appended — including
+// translations and strings customized via edac_filter_frontend_fixes_data.
+const getInjectedPhrases = () => [
+	window.edac_frontend_fixes?.new_window_warning?.localizedString,
+	window.anww_localized?.localizedString,
+].filter( Boolean );
+
+const normalizeText = ( text ) =>
+	text.toLowerCase().replace( /[^a-z]+/g, ' ' ).trim();
+
+const stripBehavioralSuffixes = ( text ) => {
+	const suffixes = [ ...behavioralPhrases, ...getInjectedPhrases() ].map( normalizeText );
+	let stripped = text;
+	let changed = true;
+	while ( changed ) {
+		changed = false;
+		for ( const suffix of suffixes ) {
+			if ( stripped !== suffix && stripped.endsWith( ' ' + suffix ) ) {
+				stripped = stripped.slice( 0, -( suffix.length + 1 ) ).trim();
+				changed = true;
+			}
+		}
+	}
+	return stripped;
+};
+
 const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	text = text.toLowerCase().replace( /[^a-z]+/g, ' ' ).trim();
-	return ambiguousPhrases.includes( text );
+	text = normalizeText( text );
+	if ( ambiguousPhrases.includes( text ) ) {
+		return true;
+	}
+	// A name like "read more, opens a new window" is still ambiguous: the
+	// appended text describes behavior, not the link's destination.
+	return ambiguousPhrases.includes( stripBehavioralSuffixes( text ) );
 };
 
 export default {
