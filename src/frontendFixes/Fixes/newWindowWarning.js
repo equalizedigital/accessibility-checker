@@ -25,7 +25,6 @@ const NewWindowWarning = () => {
 	// via AJAX (e.g. multi-page navigation, validation errors), so newly
 	// inserted target="_blank" links get the same treatment. Harmless no-op
 	// if Gravity Forms isn't installed - these events simply never fire.
-	document.addEventListener( 'gform_post_render', processLinks );
 	document.addEventListener( 'gform/post_render', processLinks );
 };
 
