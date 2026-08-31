@@ -10,7 +10,7 @@
  * Plugin Name:          Accessibility Checker
  * Plugin URI:           https://equalizedigital.com/accessibility-checker
  * Description:          Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:              1.48.0
+ * Version:              1.49.0
  * Requires PHP:         7.4
  * WC requires at least: 7.1
  * WC tested up to:      11.0
@@ -38,7 +38,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.48.0' );
+	define( 'EDAC_VERSION', '1.49.0' );
 }
 
 // Current database version.
