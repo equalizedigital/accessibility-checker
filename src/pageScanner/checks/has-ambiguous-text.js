@@ -23,6 +23,7 @@ const ambiguousPhrases = [
 	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
+// When testing against translations always run the normalize before the strip.
 const normalizePhrase = ( text ) => text
 	.normalize( 'NFC' )
 	.toLowerCase()
