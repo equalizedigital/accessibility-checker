@@ -23,16 +23,19 @@ const ambiguousPhrases = [
 	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
-const normalizedPhrases = ambiguousPhrases.map(
-	( p ) => p.toLowerCase().replace( /[^\p{L}]+/gu, ' ' ).trim()
-);
+const normalizePhrase = ( text ) => text
+	.normalize( 'NFC' )
+	.toLowerCase()
+	.replace( /[^\p{L}\p{M}]+/gu, ' ' )
+	.trim();
+
+const normalizedPhrases = ambiguousPhrases.map( normalizePhrase );
 
 const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	text = text.toLowerCase().replace( /[^\p{L}]+/gu, ' ' ).trim();
-	return normalizedPhrases.includes( text );
+	return normalizedPhrases.includes( normalizePhrase( text ) );
 };
 
 export default {
