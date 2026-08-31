@@ -857,7 +857,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets all sidebar data for a post (summary, details, readability).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
@@ -897,7 +897,7 @@ class REST_Api {
 	 *
 	 * Returns cached summary data from post meta. If no cache exists, returns defaults.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -925,7 +925,7 @@ class REST_Api {
 	/**
 	 * Get details data for a post (errors, warnings, passed rules).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -981,7 +981,7 @@ class REST_Api {
 	/**
 	 * Process rules and fetch issue details from the database.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param array  $rules         The rules to process.
 	 * @param int    $post_id       The post ID.
@@ -1063,7 +1063,7 @@ class REST_Api {
 	/**
 	 * Get readability data for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -1128,7 +1128,7 @@ class REST_Api {
 	/**
 	 * Save simplified summary for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return \WP_REST_Response|\WP_Error

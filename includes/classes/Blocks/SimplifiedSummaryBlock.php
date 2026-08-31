@@ -17,7 +17,7 @@ use WP_Block;
  * block theme (FSE) template instead of relying on the automatic insertion
  * that runs on the_content.
  *
- * @since 1.xx.x
+ * @since 1.49.0
  */
 class SimplifiedSummaryBlock {
 
@@ -52,7 +52,7 @@ class SimplifiedSummaryBlock {
 	/**
 	 * Initialize WordPress hooks.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @return void
 	 */
@@ -64,7 +64,7 @@ class SimplifiedSummaryBlock {
 	/**
 	 * Register the Accessibility Checker block category.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param array $categories The registered block categories.
 	 * @return array
@@ -92,7 +92,7 @@ class SimplifiedSummaryBlock {
 	 * registered here with an explicit dependency list and block.json
 	 * references the handle rather than a file.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @return void
 	 */
@@ -151,7 +151,7 @@ class SimplifiedSummaryBlock {
 	 * Loop), so password-protection and visibility are checked explicitly
 	 * rather than relying on WP's template-level access gate.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param array         $attributes The block attributes.
 	 * @param string        $content    The block content.
