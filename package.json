@@ -1,6 +1,6 @@
 {
   "name": "accessibility-checker",
-  "version": "1.42.1",
+  "version": "1.48.0",
   "description": "Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.",
   "author": "Equalize Digital",
   "license": "GPL-2.0+",
@@ -12,12 +12,14 @@
     "dist": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh && composer install",
     "dist:dotorg": "npm run dist:keep-build-folder",
     "dist:keep-build-folder": "npx webpack --mode production && composer install --no-dev && composer dump-autoload --no-dev -o && ./scripts/dist.sh --keep-build-folder",
-    "lint": "./vendor/bin/phpcs && npm run lint:js",
+    "lint": "./vendor/bin/phpcs && npm run lint:js && npm run lint:css",
     "lint-staged-precommit": "lint-staged",
     "lint:php": "./vendor/bin/phpcs",
     "lint:php:fix": "./vendor/bin/phpcbf",
     "lint:js": "wp-scripts lint-js",
     "lint:js:fix": "wp-scripts lint-js --fix",
+    "lint:css": "wp-scripts lint-style",
+    "lint:css:fix": "wp-scripts lint-style --fix",
     "test:php": "./scripts/setup-phpunit.sh",
     "test:php:run": "docker compose exec phpunit vendor/bin/phpunit",
     "test:php:coverage": "docker compose exec phpunit vendor/bin/phpunit  --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html",
@@ -28,7 +30,8 @@
   },
   "lint-staged": {
     "*.php": "./vendor/bin/phpcs",
-    "*.js": "wp-scripts lint-js"
+    "*.js": "wp-scripts lint-js",
+    "*.scss": "wp-scripts lint-style"
   },
   "files": [
     "LICENSE.txt",
@@ -50,7 +53,9 @@
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
     "@svgr/webpack": "^8.1.0",
+    "@wordpress/components": "^33.0.0",
     "@wordpress/eslint-plugin": "^17.5.0",
+    "@wordpress/html-entities": "^4.49.0",
     "@wordpress/i18n": "^6.10.0",
     "@wordpress/icons": "^11.5.0",
     "@wordpress/scripts": "^31.0.0",

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,17 +21,21 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +75,7 @@ msgid "Renew your license"
 msgstr "Подновете лиценза си"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "Деактивиране на имейл доклади"
 
@@ -90,7 +94,7 @@ msgstr "Активиране на имейл доклади"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Безплатен лицензионен ключ"
@@ -122,137 +126,149 @@ msgid "Reports Enabled"
 msgstr "Докладите са активирани"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "Ще получавате седмични доклади за достъпност за този сайт."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Седмични доклади за достъпност за този сайт се изпращат по имейл на собственика на акаунта на лицензния ключ."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Следващ доклад: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Пълно покритие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Ограничено покритие"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Вашите доклади включват всички типове публикации и таксономии."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Пълно сканиране на сайта е активирано"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Пълни разбивки на проблемите"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Подробни доклади"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Вашите доклади включват само част от сайта ви."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Надстройте до Pro, за да:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Сканирате всички типове съдържание"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Получите пълни разбивки на проблемите"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Получавате по-подробни доклади"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Надгради до про"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Резюме за достъпност"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Това резюме отразява последните налични данни от сканиране за вашия сайт."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Общ брой намерени проблеми"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Свързване на акаунт"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Свързвайки се с този сайт, вие се съгласявате с <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Политиката за поверителност <span aria-hidden=\"true\">&#8599;</span></a> и <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Споразумението за обработка на данни <span aria-hidden=\"true\">&#8599;</span></a> на Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Политика за поверителност (отваря се в нов прозорец)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Споразумение за обработка на данни (отваря се в нов прозорец)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Седмичният имейл включва общ брой открити проблеми и промени от последния отчет, информация за покритието, брой проблеми, нуждаещи се от преглед, процент на успешно преминати тестове, както и информация за най-проблемните страници и най-сериозните проблеми."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
-#: build/sidebar.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:417
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "Н/П"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:507
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "Критично"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:509
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "Високо"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:511
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "Средно"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:513
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "Ниско"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
-#: includes/classes/class-rest-api.php:1007
+#: admin/AdminPage/AccessibilityReportsPage.php:515
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Неизвестно"
 
@@ -401,7 +417,7 @@ msgid "Get Pro"
 msgstr "Преминете към Pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Отваря се в нов прозорец."
 
@@ -410,6 +426,40 @@ msgstr "Отваря се в нов прозорец."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Прочетете документацията за %s. Отваря се в нов прозорец."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Разрешения"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Изберете роля"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Изберете роля, за да видите възможностите, които могат да ѝ бъдат предоставени."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Няма налични възможности."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Настройките за разрешения са заредени за %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Други"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Изисква валиден лиценз."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "Нямате разрешение да управлявате разрешенията на Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -498,8 +548,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Специална оферта за Черен петък! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Надстройте до платена версия на Accessibility Checker от 24 ноември до 3 декември и получете 30% отстъпка! Пълно сканиране на сайта, доклад за отворени проблеми в целия сайт, игнориране на регистрационни файлове и други."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Надстройте до платена версия на Accessibility Checker от 24 ноември до 3 декември и получете 30% отстъпка! Пълно сканиране на сайта, доклад за отворени проблеми за целия сайт, журнали за отхвърляния и други."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -514,14 +564,14 @@ msgstr "Надградете сега"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Отказан достъп"
 
@@ -597,400 +647,412 @@ msgstr "Никога повече не питай"
 msgid "The review action value was not set"
 msgstr "Стойността на действието за рецензия не беше зададена"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "ID на публикацията не е зададено"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "Нямате разрешение да преглеждате тази информация за тази публикация."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Не е включено опростено резюме за това съдържание."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Вашето съдържание има ниво на четене равно или под 9-ти клас и не изисква опростено резюме."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Нивото на четене на опростеното резюме е твърде високо."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Включено е опростено резюме за това съдържание."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% преминати проверки"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Успешно преминати проверки"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Преминати тестове"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Проблем"
 msgstr[1] "Проблеми"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Проблем с контраста"
 msgstr[1] "Проблеми с контраста"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "Нуждае се от преглед"
 msgstr[1] "Нуждае се от преглед"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Отхвърлен проблем"
 msgstr[1] "Отхвърлени проблеми"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Ниво на четене"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Истинската достъпност изисква ръчно тестване в допълнение към автоматизираните сканирания. %1$sНаучете как да тествате ръчно за достъпност%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
+#: admin/class-ignore-ui.php:170
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr ", отваря нов прозорец"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Няма резюме за връщане"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Невалидно име на таблица"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " общо"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Прочетете документацията за %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Разширете проблемите за %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Тези настройки активират глобални корекции в целия ви сайт."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Може да се наложи страниците да бъдат запазени отново или да се извърши пълно сканиране на сайта, за да се видят корекциите, отразени в отчетите."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Запази"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Засегнат код"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Изображение"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Ориентир"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Действия"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Отхвърлени"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Отхвърляне"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Идентификатор на проблем %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "изображение за проблем %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Прегледайте проблем с ID %d на уебсайта, отваря се в нов прозорец"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Преглед на страницата"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Корекция: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Корекция"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Няма подробности за връщане"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Ниво на четене след публикуване: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Няма"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Вашата публикация има ниво на четене по-високо от 9-ти клас. Насоките за достъпност на уеб съдържание (WCAG) на ниво AAA изискват опростено резюме на вашата публикация, което е на ниво 9-ти клас или по-ниско."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Вашата публикация не съдържа достатъчно съдържание, за да се изчисли нейното ниво на четене."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Опростено резюме не е необходимо, когато нивото на четене на съдържанието е 9-ти клас или по-ниско. Изберете кога да бъдете подканени за опростено резюме на страницата с настройки."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Опростено резюме на нивото на четене: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Няма достатъчно съдържание за определяне на точно ниво на четене."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Вашето опростено резюме е с ниво на четене над 9-ти клас."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Вашето опростено резюме е с ниво на четене на или под 9-ти клас."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Опростеното резюме не се вмъква автоматично в съдържанието."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Вашата подкана за опростено резюме е настроена на „никога.“ Ако искате опростеното резюме да се показва автоматично, можете да промените това на %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "страница с настройки"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Опростеното резюме се вмъква автоматично %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "съдържанието"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Задайте къде да се вмъква опростеното резюме в съдържанието на %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Местоположението на вашето опростено резюме е зададено на „ръчно“, което изисква добавяне на функция към шаблона на вашата страница. Ако искате опростеното резюме да се показва автоматично, можете да промените това на %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Опростено обобщение"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Запази резюмето"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Научете повече за подобряване на четливостта и изискванията за опростено резюме"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Няма данни за четимост за връщане"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Няма данни за игнориране за връщане"
-
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Текст за екранен четец"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "Стойността на ID не е зададена"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Публикацията не е намерена"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Заявката за проблем не върна резултати"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Заявката за обект не върна резултати"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Фалшиво положително"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "Скенерът отбеляза това, но то не се отнася за това съдържание."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Отстранено"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Проблемът е отстранен, но страницата все още не е сканирана отново."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Потвърдено достъпно"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Прегледано и потвърдено, че отговаря на изискванията за достъпност."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Фалшиво положително"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "Скенерът отбеляза това, но то не се отнася за това съдържание."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Отстранено"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Проблемът е отстранен, но страницата все още не е сканирана отново."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Потребителско име:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Дата:"
 
-#: admin/class-ignore-ui.php:97
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:141
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Отвори отново проблема"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "Отхвърли проблема"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Коментар"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Управление на глобално отхвърлени"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Вашият потребителски акаунт няма разрешение да отхвърли този проблем."
 
-#: admin/class-ignore-ui.php:156
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:200
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "Отхвърли проблема като:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Настройки"
 
@@ -1082,7 +1144,7 @@ msgid "Report Last Updated:"
 msgstr "Отчетът е обновен последно:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Никога"
 
@@ -1184,7 +1246,8 @@ msgid "Post Type"
 msgstr "Тип публикация"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "Проблеми"
 
@@ -1395,7 +1458,7 @@ msgid "Disabled"
 msgstr "Деактивирано"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Изтриване на данни"
 
@@ -1452,13 +1515,12 @@ msgid "Simplified Sum Heading"
 msgstr "Заглавие на опростеното резюме"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Разрешения за игнориране"
+msgid "Dismiss Permissions"
+msgstr "Разрешения за отхвърляне"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Брой таблици с игнорирани в базата данни"
+msgid "Dismissals DB Table Count"
+msgstr "Брой записи в базата данни за отхвърляния"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1490,11 +1552,20 @@ msgstr "Вземете Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Вземете Accessibility Checker Pro (отваря се в нов прозорец)"
 
-#: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "За съжаление нямате право да отхвърляте проблеми."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "За съжаление нямате право да отхвърляте проблеми глобално."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Проблемът не е намерен."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Неуспешно актуализиране на проблема."
 
@@ -1975,8 +2046,8 @@ msgstr "Атрибутът aria-hidden се използва за скриван
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Провери дали елементът наистина трябва да бъде скрит от потребителите на екранни четци. Ако съдържа важно съдържание или функционалност, премахни %s. Ако е декоративен или повтарящ се, остави елемента както е и отхвърли това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Проверете дали елементът наистина трябва да бъде скрит от потребителите на екранни четци. Ако съдържа важно съдържание или функционалност, премахнете %s. Ако е декоративен или излишен, оставете елемента такъв, какъвто е, и отхвърлете това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2373,8 +2444,8 @@ msgstr "Екранните четци разчитат на алтернатив
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Прегледайте изображението, за да определите дали е декоративно. Ако е декоративно, е правилно да използвате празен атрибут %1$s и можете да отхвърлите това предупреждение, като използвате функцията „Игнорирай“ в Accessibility Checker или като добавите %2$s или %3$s към изображението и пресканирате страницата. Ако изображението предава информация, добавете описателен алтернативен текст, който съобщава целта или значението на изображението."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Прегледайте изображението, за да определите дали е декоративно. Ако е декоративно, правилно е да се използва празен %1$s атрибут и можете да отхвърлите това предупреждение в Accessibility Checker или като добавите %2$s или %3$s към изображението и повторно сканирате страницата. Ако изображението предава информация, добавете описателен алтернативен текст, който съобщава целта или значението на изображението."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2428,8 +2499,8 @@ msgstr "Алтернативният текст трябва да бъде кр�
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Съкрати алтернативния текст до по-малко от %s знака, като същевременно продължаваш да описваш функцията или целта на изображението. Запази описанията прости и избягвай да повтаряш околното съдържание. Ако алтернативният текст на изображението не се нуждае от промяна, отхвърли това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Съкратете алтернативния текст до по-малко от %s символа, като същевременно описвате функцията или предназначението на изображението. Дръжте описанията прости и избягвайте повтарянето на заобикалящото съдържание. Ако алтернативният текст на изображението не се нуждае от промяна, отхвърлете това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2506,8 +2577,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Анимираните изображения могат да разсейват, да предизвикват припадъци при някои хора или да създават когнитивно натоварване. Насоките на WCAG изискват анимациите, които премигват или се повтарят непрекъснато, да предоставят механизъм за пауза, спиране или скриване."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Замени анимираното изображение със статично изображение или видео, което включва контроли. Ако трябва да използваш анимирано изображение, увери се, че то не премигва повече от три пъти в секунда и предостави контроли за пауза или спиране, ако се възпроизвежда повече от 5 секунди. Ако си потвърдил, че изображението е достъпно и може да бъде поставено на пауза, можеш да отхвърлиш това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Заменете анимираното изображение със статично изображение или видеоклип, който включва контроли. Ако трябва да използвате анимирано изображение, уверете се, че не мига повече от три пъти в секунда и осигурете контроли за пауза или спиране, ако възпроизвежда повече от 5 секунди. Ако сте потвърдили, че изображението е достъпно и може да бъде поставяно на пауза, можете да отхвърлите това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2572,29 +2643,27 @@ msgstr "Добавете alt атрибут, който описва целта 
 msgid "Incorrect Heading Order"
 msgstr "Неправилен ред на заглавията"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Тази страница използва заглавия в неправилен ред. Това е %1$s след %2$s, прескачайки едно или повече нива на заглавия."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Тази страница използва заглавия в неправилен ред, като пропуска едно или повече нива на заглавията."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Тези страници използват заглавия в неправилен ред, прескачайки едно или повече нива на заглавия, като например преминаване от %1$s към %2$s без %3$s между тях."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Заглавията помагат на всички потребители - особено на тези, които използват екранни четци или клавиатурна навигация - да разберат структурата на страницата. Прескачането на нива на заглавия може да създаде объркване и да затрудни следването на йерархията на съдържанието или ефективната навигация."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Преразгледайте заглавията си, за да следват логичен ред без прескачане на нива. Например, ако %1$s е последвано от %2$s, променете %2$s на %3$s или добавете междинен %3$s раздел, за да запазите правилната структура. Ако е необходимо, използвайте CSS или настройки на блок/страница, за да стилизирате заглавията, вместо да задавате неправилно ниво."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C Урок за структура на страницата: Заглавия"
 
@@ -2709,8 +2778,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Документите във формат Word, Excel или PowerPoint може да не са достъпни за всички потребители, особено ако не са правилно маркирани или не следват най-добрите практики за достъпност. Законите за достъпност изискват документите, публикувани на уеб страници, също да отговарят на WCAG. Освен това потребителите трябва да бъдат предупредени, когато връзка отваря файл за изтегляне вместо уеб страница."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Уверете се, че свързаният файл е тестван и коригиран за достъпност. Когато знаете, че е достъпен, отхвърлете това предупреждение, като използвате функцията „Игнорирай“ в Accessibility Checker. Включете разширението на файла и размера в текста на връзката, за да информирате потребителите (активирайте поправката „Добави размер и тип на файла към връзките“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден с помощта на плъгин, предоставете и директна връзка за изтегляне. Ако е трудно да направите документа достъпен, помислете за поставяне на съдържанието на уеб страница вместо това."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Уверете се, че свързаният файл е тестван и коригиран за достъпност. Когато знаете, че е достъпен, отхвърлете това предупреждение в Accessibility Checker. Включете разширението и размера на файла в текста на връзката, за да информирате потребителите (активирайте корекцията „Добавяне на размер и тип файл към връзки“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден с помощта на плъгин, предоставете и директна връзка за изтегляне. Ако правенето на документа достъпен е трудно, помислете дали да не поставите съдържанието на уеб страница вместо това."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2761,8 +2830,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Форматите на документи, които не са HTML, може да не са напълно достъпни за помощни технологии, освен ако не са тествани и коригирани. Потребителите трябва да бъдат предупредени, когато връзка отваря файл за изтегляне вместо стандартна уеб страница."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Уверете се, че свързаният документ е достъпен. Когато знаете, че е достъпен, отхвърлете това предупреждение, като използвате функцията „Игнорирай“ в Accessibility Checker. Включете файловото разширение във видимия текст на връзката (напр. „Бележки от срещата (ODT)“), за да знаят потребителите какво да очакват (активирайте поправката „Добави размер и тип на файла към връзките“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден, предоставете и директна връзка за изтегляне. Ако е трудно да направите документа достъпен, помислете за поставяне на съдържанието на уеб страница вместо това."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Уверете се, че свързаният документ е достъпен. Когато знаете, че е достъпен, отхвърлете това предупреждение в Accessibility Checker. Включете разширението на файла във видимия текст на връзката (напр. „Протокол от среща (ODT)“), за да знаят потребителите какво да очакват (активирайте корекцията „Добавяне на размер и тип файл към връзки“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден, предоставете и директна връзка за изтегляне. Ако правенето на документа достъпен е трудно, помислете дали да не поставите съдържанието на уеб страница вместо това."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2781,8 +2850,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF файловете може да не са достъпни за всички потребители, особено ако не са правилно маркирани или не отговарят на изискванията на WCAG. Законите за достъпност изискват документите, публикувани в уебсайтове, да отговарят на същите стандарти за достъпност като HTML съдържанието. Освен това потребителите трябва да бъдат предупреждавани, когато връзка отваря файл за изтегляне вместо уеб страница."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Уверете се, че свързаният PDF е тестван и коригиран за достъпност. Когато знаете, че е достъпен, отхвърлете това предупреждение, като използвате функцията „Игнорирай“ в Accessibility Checker. Включете разширението на файла и размера в текста на връзката, за да информирате потребителите (активирайте поправката „Добави размер и тип на файла към връзките“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден с помощта на плъгин, осигурете и директна връзка за изтегляне. Ако създаването на достъпен PDF е трудно, помислете за поставяне на съдържанието на уеб страница вместо това."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Уверете се, че свързаният PDF е тестван и коригиран за достъпност. Когато знаете, че е достъпен, отхвърлете това предупреждение в Accessibility Checker. Включете разширението и размера на файла в текста на връзката, за да информирате потребителите (активирайте корекцията „Добавяне на размер и тип файл към връзки“ в настройките на Accessibility Checker, за да направите това за целия сайт). Ако документът е вграден с помощта на плъгин, предоставете и директна връзка за изтегляне. Ако правенето на PDF достъпен е трудно, помислете дали да не поставите съдържанието на уеб страница вместо това."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2799,6 +2868,30 @@ msgstr "PDF достъпност в мрежата: Трикове и капан
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "Грешки в достъпността на InDesign и PDF и как да ги поправим (Уебинар)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Текстът на връзката е URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Тази връзка използва URL адрес за своя текст, вместо смислена дума или фраза."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Тези връзки използват URL адреси за своя текст, вместо смислени думи или фрази."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Текстът на връзка, който е само URL, може да не предоставя смислен контекст относно дестинацията на връзката. Освен това дългите URL адреси могат да бъдат трудни за разбиране, когато се четат от екранен четец, който може да обявява всяка буква, цифра и символ поотделно. Потребителите разчитат на описателен текст на връзката, за да разберат къде ще ги отведе връзката; използването на URL адреси за текст на връзката намалява използваемостта, увеличава когнитивното натоварване и може да бъде объркващо или подвеждащо."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Заменете URL адреса в текста на връзката с кратка, описателна дума или фраза, която обяснява дестинацията или целта на връзката (например „Прочетете ръководството за достъпност“ вместо „https://example.com/guide“). Ако URL адресът е необходим за контекст и е много кратък, можете да отхвърлите това предупреждение, като използвате функцията „Отхвърляне“ в Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Техника G91: Предоставяне на текст на връзка, който описва целта на връзката"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3071,8 +3164,8 @@ msgstr "Потребителите на екранни четци и други 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Прегледай маркирания текст и определи дали трябва да бъде заглавие. Ако е така, промени елемента на подходящия %1$s–%2$s таг. Ако не е предназначен за заглавие, можеш да отхвърлиш това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Прегледайте маркирания текст и определете дали трябва да бъде заглавие. Ако е, променете елемента на подходящия таг %1$s–%2$s. Ако не е предвиден като заглавие, можете да отхвърлите това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3095,8 +3188,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Слайдерите често са трудни за използване с екранни четци и клавиатури. Недостъпните слайдери могат да пречат на навигацията, да задържат фокуса или да се движат твърде бързо, за да могат потребителите да взаимодействат със съдържанието."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Прегледай слайдера в публичната част на твоя уебсайт. Увери се, че е достъпен с клавиатура, може да се паузира, има правилни ARIA роли и етикети и работи добре с екранни четци. След като потвърдиш, че слайдерът е достъпен или отстраниш проблемите, можеш да отхвърлиш това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Прегледайте плъзгача в предната част на уебсайта си. Уверете се, че е достъпен с клавиатура, може да бъде поставян на пауза, има подходящи ARIA роли и етикети и работи добре с екранни четци. След като потвърдите, че плъзгачът е достъпен или коригирате проблемите, можете да отхвърлите това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3251,8 +3344,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Подчертаният текст обикновено се свързва с връзки. Когато текст, който не е връзка, е подчертан, това може да бъде объркващо за потребителите, особено за тези с когнитивни затруднения или тези, които разчитат на визуални знаци, за да идентифицират връзките."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Премахни тага за подчертаване или CSS стила за подчертаване от текста. Ако искаш да подчертаеш текст, обмисли използването на удебелен шрифт, курсив или цветово стилизиране вместо това. Ако този текст е част от функционален елемент като връзка или бутон, запази стила на подчертаване и отхвърли това предупреждение, използвайки функцията „Игнорирай“ в Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Премахнете тага за подчертаване или CSS стила за подчертаване от текста. Ако искате да подчертаете текст, помислете за използване на удебелен, курсивен или цветен стил вместо това. Ако този текст е част от функционален елемент като връзка или бутон, запазете стила на подчертаване и отхвърлете това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3271,8 +3364,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Видеоклиповете трябва да включват точни субтитри, транскрипции и аудио описания (или разширени транскрипции), за да бъдат напълно достъпни за потребители, които са глухи, с увреден слух, слепи или имат когнитивни увреждания."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Прегледай видеото в публичната част на твоя уебсайт. Увери се, че то включва точни (не автоматично генерирани) синхронизирани субтитри, транскрипция и аудио описание, ако е необходимо. След като провериш достъпността или направиш необходимите актуализации, можеш да отхвърлиш това предупреждение, като използваш функцията „Игнорирай“ в Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Прегледайте видеоклипа в предната част на уебсайта си. Уверете се, че включва точни (не автоматично генерирани) синхронизирани надписи, препис и аудио описание, ако е необходимо. След като проверите достъпността или направите необходимите актуализации, можете да отхвърлите това предупреждение в Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3375,257 +3468,350 @@ msgstr "Присъствай безплатно"
 msgid "(opens in a new window)"
 msgstr "(отваря се в нов прозорец)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:922
+msgid "Main"
+msgstr "Основна"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:924
+msgid "Header"
+msgstr "Горен колонтитул"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:926
+msgid "Footer"
+msgstr "Долен колонтитул"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:928
+msgid "Nav"
+msgstr "Навигация"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:930
+msgid "Aside"
+msgstr "Странична лента"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:932
+msgid "Navigation"
+msgstr "Навигация"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:934
+msgid "Banner"
+msgstr "Банер"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:936
+msgid "Contentinfo"
+msgstr "Информация за съдържанието"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:938
+msgid "Complementary"
+msgstr "Допълнителна"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:940
+msgid "Section"
+msgstr "Раздел"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:942
+msgid "Article"
+msgstr "Статия"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:944
+msgid "Form"
+msgstr "Формуляр"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:946
+msgid "Region"
+msgstr "Регион"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "Прегледайте %s забележителност на уебсайта, отваря се нов прозорец"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Отхвърляне на собствени проблеми"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Отхвърляне и повторно отваряне на проблеми с достъпността в публикации, които потребителят може да редактира (собствените му публикации; редакторите могат да редактират всички)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Отхвърляне на проблеми (всяка публикация)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Отхвърляне и повторно отваряне на проблеми с достъпността във всяка публикация, дори ако потребителят няма други права за редактирането ѝ."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Инструмент за подчертаване във фронтенда"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Преглед на инструмента за подчертаване на достъпността във фронтенда при публикувано съдържание."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "възможността за редактиране на публикации"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "възможността за редактиране на публикации на други потребители"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Изисква %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Добре дошли в Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Настройки на Accessibility Checker"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Настройки на сканиране"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Разрешения"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Настройки на опростеното резюме"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Декларация за достъпност в долния колонтитул"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Системни настройки"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Типове публикации за проверка"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Скорост на сканиране"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Сканиране на архиви"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Сканиране на таксономии"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Метабокс на редактора на блокове"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Подкана за опростено резюме"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Позиция на опростеното резюме"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Опростено заглавие на резюме"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Добавяне на декларация за достъпност в долния колонтитул"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Включване на връзка към политиката за достъпност"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Страница с политика за достъпност"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Преглед на декларацията за достъпност"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Позиция на Frontend Accessibility Checker"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Конфигурирай типовете съдържание, които трябва да бъдат проверени за проблеми с достъпността."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Повече функции и имейл поддръжка са налични с %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (отваря се в нов прозорец)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Използвайте настройките по-долу, за да конфигурирате проверката на достъпността за интерфейса."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Указанията за достъпност на уеб съдържание (WCAG) на ниво AAA изискват всяко съдържание с ниво на четене над 9-ти клас да има алтернатива, която е по-лесна за четене. Опростеният обобщаващ текст се добавя в раздела за четливост в мета полето на Accessibility Checker на екрана за редактиране на всеки пост или страница."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Научете повече за опростените обобщения и изискванията за четимост (отваря се в нов прозорец)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Научете повече за опростените обобщения и изискванията за четимост."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Мислите ли си „Уау, този плъгин е невероятен“ и помага ли ви да направите уебсайта си по-достъпен? Споделете усилията си да направите уебсайта си по-достъпен с вашите клиенти и им съобщете, че използвате Accessibility Checker, за да гарантирате, че всички хора могат да използват вашия уебсайт. Добавете малък текстови линк и изявление в долния колонтитул на вашия уебсайт."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Конфигурирай системни настройки за плъгина Accessibility Checker."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Бързо"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Нормално"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Бавно"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Най-бавно"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "По-бързите сканирания използват повече ресурси и може да натоварят сайта ти."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Активиране на сканиране на архивни страници"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Избери дали архивните страници да бъдат включени в пълното сканиране на сайта. По подразбиране се използва метод за вземане на проби за избор на таксономични термини за архивни данни."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Сканиране на всички таксономични термини вместо само на извадка"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Провери всички архивни страници с таксономични термини вместо представителна извадка. Това изисква да бъде активирано сканирането на архивни страници и може да добави голям брой URL адреси към списъка за сканиране."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Преди съдържанието"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "След съдържанието"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Вмъкнете ръчно"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Използвайте тази функция, за да добавите ръчно опростеното обобщение към вашата тема в рамките на цикъла."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Функцията по избор приема ID на публикацията като параметър."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Задайте къде искате да се появяват опростените обобщения по отношение на вашето съдържание, ако са попълнени."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Долен десен ъгъл (по подразбиране)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Долен ляв ъгъл"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Задайте къде искате да се появи проверката на достъпността за интерфейса на страницата."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Когато е необходимо"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Винаги"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Трябва ли Accessibility Checker да иска опростено резюме само когато нивото на четене на вашия пост или страница е над 9-ти клас, винаги да го иска независимо от нивото на четене, или никога да не го иска независимо от нивото на четене?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "За да проверите съдържание, различно от публикации и страници, моля "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "надградете до pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (отваря се в нов прозорец)"
 
-#: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Изберете кои типове публикации трябва да бъдат проверени по време на сканиране. Моля, имайте предвид, че премахването на предварително избран тип публикация ще премахне сканираната информация и всички персонализирани игнорирани предупреждения, които са били настроени."
+#: includes/options-page.php:1303
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Изберете кои типове публикации да бъдат проверявани по време на сканиране. Моля, обърнете внимание, че премахването на предварително избран тип публикация ще премахне сканираната информация и всички персонализирани отхвърлени предупреждения, които са били настроени."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Изтрийте всички данни на Accessibility Checker при деинсталиране на плъгина."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Показване на метабокса на Accessibility Checker в редактора на блокове"
-
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Избери кои потребителски роли имат разрешение да игнорират проблеми."
-
-#: includes/options-page.php:1037
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Конфигурирай кои потребителски роли имат достъп до специфични функции на Accessibility Checker."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4831,22 +5017,58 @@ msgstr "Настройките са запазени. За да потвърди
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "Инсталиран е плъгинът Accessibility New Window Warnings. Корекцията за връзки, отварящи се в нов прозорец, включена тук, ще замени неговата функционалност. Можете спокойно да премахнете плъгина и да използвате тези корекции вместо него."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Разрешенията са запазени."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "Разрешенията бяха променени от някой друг, докато редактирахте, затова промените ви не бяха запазени. Прегледайте текущите разрешения по-долу и опитайте отново."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Настройки за разрешения"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Изберете потребителска роля, след което отметнете възможностите на Accessibility Checker, които да ѝ предоставите. Дадена възможност може да бъде предоставена само на роля, чиито съществуващи разрешения в WordPress отговарят на нейните изисквания. Администраторите винаги разполагат с всяка възможност."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Изберете роля"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Изберете потребителската роля, чиито разрешения за Accessibility Checker искате да управлявате."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Роля"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Изберете роля —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Запазване на разрешенията"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Панели с проблеми в Accessibility Checker"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "Състояние на достъпност"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "Анализ на достъпността"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "Анализ на четимостта"
 
@@ -4856,8 +5078,9 @@ msgstr "Изтрий всички открити в момента пробле�
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "Изчисти проблемите"
 
@@ -5073,6 +5296,11 @@ msgstr "Запазване..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Записът не бе успешен: липсва URL адрес на REST API."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Настройките са запазени успешно. Трябва да %sпосетите редактора%s и да запазите публикацията, за да сканирате отново и премахнете коригираните проблеми от отчетите на Accessibility Checker."
@@ -5084,6 +5312,7 @@ msgstr "Настройките са запазени успешно."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "Запазването не успя."
 
@@ -5093,28 +5322,28 @@ msgid "Fix Settings"
 msgstr "Настройки за корекции"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Това ще изчисти всички проблеми за тази публикация. Ще е необходимо запазване, за да се задейства ново сканиране на съдържанието на публикацията. Искате ли да продължите?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "Изчистване..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "Проблемите са изчистени успешно."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "Неуспешно изчистване на проблемите."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "Възникна грешка при изчистването на проблемите."
 
@@ -5142,383 +5371,447 @@ msgstr "EDAC: Грешка при актуализиране на история
 msgid "Close fixes modal"
 msgstr "Затваря модалния прозорец с поправки"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d от %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "Неозаглавен проблем"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "Проблем %1$d от %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "Елементът не е видим. Опитайте да деактивирате стиловете."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "Елементът не може да бъде фокусиран. Опитайте да деактивирате стиловете."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "Елементът не е намерен на страницата."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "Преместване наляво"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "Преместване надясно"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "Позицията на панела е нулирана."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "Панелът е преместен наляво."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "Панелът е преместен надясно."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Отворете подробности за %1$s, %2$s от %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "Разкачете панела"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "Закачете панела"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "Сканирай отново тази страница"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Инструменти за проверка на достъпността"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "Още опции"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "Деактивирай стиловете на страницата"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "Деактивирай стиловете"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "Затвори"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "Няма намерени проблеми на тази страница."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "Зареждане..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "Предишен"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "Следващ"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "Нулиране на позицията"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "Възникна грешка при зареждането на проблемите."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "Панелът е закачен."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "Панелът е разкачен."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "Тежест:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Игнорирани"
-
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Покажи обяснение"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Защо е важно"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Как да се поправи"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "По-подробна документация"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "Покажи засегнатия код"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "Отстраняване на проблем: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Отстраняване на проблем"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "Активирай стиловете"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "Активиране на стиловете на страницата"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "Стиловете на страницата са деактивирани."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "Стиловете на страницата са активирани отново."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "Няма настройки за показване."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Тези настройки активират глобални поправки в целия ви сайт. Може да се наложи страниците да бъдат запазени отново или да се извърши пълно сканиране на сайта, за да се видят отразените поправки в отчетите."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
 msgstr[0] "%d намерен проблем"
 msgstr[1] "%d намерени проблема"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
 msgstr[0] "%d проблем"
 msgstr[1] "%d проблема"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
 msgstr[0] "%d се нуждае от преглед"
 msgstr[1] "%d се нуждаят от преглед"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d игнориран"
-msgstr[1] "%d игнорирани"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "Отхвърлено %d"
+msgstr[1] "Отхвърлени %d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "Не са открити проблеми."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "Ориентир: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "Неуспешно зареждане на скрипта за сканиране."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "Функцията за сканиране не е намерена."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "Сканиране..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "Липсва postId или nonce."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "Повторното сканиране приключи. Не са открити нарушения."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "Не са открити нарушения, пропускане на запазването."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Грешка при сканиране на достъпността."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "Грешка при запазване на резултатите от сканирането."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "Повторното сканиране вече е в ход."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "Повторно сканиране на тази страница."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "Повторното сканиране приключи."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "Грешка: Липсват задължителни параметри."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Изображение, свързано с проблема"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Настройките за корекция са запазени."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Неуспешно запазване на настройките за корекция."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Зареждане на информация за корекция..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Запазване на корекция за: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Проблемът е отхвърлен успешно."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Проблемът е отворен отново успешно."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Отхвърляне..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Проблемът е отхвърлен — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Проблемът е отхвърлен"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Обхват:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Всички страници"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "От:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "На:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Причина за отхвърляне:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Този проблем беше отхвърлен глобално. Управлявайте глобалните отхвърляния, за да го отворите отново."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Управление на глобалните отхвърляния"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Повторно отваряне..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Коментар (по избор)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Добавете бележка, обясняваща защо този проблем се отхвърля."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Още опции за отхвърляне"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Отхвърли и затвори модалния прозорец"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Проблем #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Подробности за проблема"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Тип"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Сериозност"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Неуспешно зареждане на информация за корекцията %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Грешка при зареждане на информация за корекцията %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Настройките за корекция са запазени."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Неуспешно запазване на настройките за корекция."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Зареждане на информация за корекция..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Запазване на корекция за: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Изображение, свързано с проблема"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Проблемът е отхвърлен успешно."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Проблемът е отворен отново успешно."
+
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "Отхвърли глобално"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Отхвърляне глобално..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Отхвърляне..."
+
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Проблемът е отхвърлен — %s"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "Проблемът е отхвърлен"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "Обхват:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "Всички страници"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "От:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "На:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "Причина за отхвърляне:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Removing..."
+msgstr "Премахване..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "Премахване на глобално отхвърляне"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "Повторно отваряне..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "Коментар (по избор)"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Добавете бележка, обясняваща защо този проблем се отхвърля."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "More dismiss options"
+msgstr "Още опции за отхвърляне"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss & Close Modal"
+msgstr "Отхвърли и затвори модалния прозорец"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "Нямате разрешение да отхвърляте проблеми."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5608,6 +5901,14 @@ msgstr "продължете да четете"
 msgid "learn more"
 msgstr "научете повече"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Проверява дали видимият текст на връзката е URL адрес, а не описателен анкер текст."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Текстът на връзката трябва да е описателен, а не просто URL адрес."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Неуспешно зареждане на данни за достъпност"
@@ -5636,214 +5937,224 @@ msgid_plural "issues that need review"
 msgstr[0] "проблем, който се нуждае от преглед"
 msgstr[1] "проблеми, които се нуждаят от преглед"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "Имате %1$d %2$s и %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "Имате %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "Проверете и отстранете проблемите с достъпността във вашето съдържание."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "Отвори панела за достъпност"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d-ти"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "Предоставено резюме"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "Изисква се резюме"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "Резюме не се изисква"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "Вижте %d проблема в анализа на достъпността"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Вижте %d елемента, които се нуждаят от преглед в анализа на достъпността"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Вижте подробности за нивото на четене: %1$s, %2$s"
+
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Вижте подробности за нивото на четене: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "Проблем"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "Действия по проблема за %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "Действия по проблема"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "Покажи код"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "Отвори отново проблема"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "Отхвърли проблема"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "Приложи корекция"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "Общо %d"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "Няма отхвърлени проблеми."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "Не са намерени проблеми."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "Общо %d проблема"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "Отхвърлени проблеми"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "Опростеното резюме е запазено успешно."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "Неуспешно запазване на резюмето. Моля, опитайте отново."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "Възникна грешка при запазване на резюмето."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "%s клас"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "%d-ти клас"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "Не е налично"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "Предупреждение"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "Тази публикация не съдържа достатъчно съдържание за изчисляване на ниво на четене."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "Настройте подканите за резюме в настройките."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "Съдържание на или под 9-ти клас на четене не изисква опростено резюме."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "Съдържание над 9-ти клас на четене изисква опростено резюме, за да отговаря на указанията на WCAG AAA."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "Научете повече за изискванията за четимост."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "Опростено резюме на нивото на четене"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "Нуждае се от подобрение, резюмето е над 9-ти клас на четене."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "Под препоръчителното ниво на четене за 9-ти клас."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "Въведете опростено резюме..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "За това съдържание е необходимо опростено резюме."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "Не може да се зареди това предпочитание."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "Не може да се запази това предпочитание."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "Зареждане на предпочитание..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "Формат на текста за екранен четец"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "Контролирайте дали текстът за екранен четец остава видим, докато редактирате."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "Винаги ли да се показва текстът за екранен четец?"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "Зареждане на данни за достъпност..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Действия на Accessibility Checker"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "Сканиране"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Обновяване"
 

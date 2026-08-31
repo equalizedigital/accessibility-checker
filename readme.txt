@@ -1,9 +1,9 @@
 === Equalize Digital Accessibility Checker - WCAG, ADA, EAA and Section 508 compliance ===
 Contributors: equalizedigital, alh0319, stevejonesdev
-Tags: accessibility, EAA, WCAG, ADA, WP accessibility, accessibility scanner
-Requires at least: 6.7
-Tested up to: 7.0
-Stable tag: 1.42.1
+Tags: accessibility, EAA, WCAG, ADA, WP accessibility
+Requires at least: 6.9
+Tested up to: 7.1
+Stable tag: 1.48.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -168,6 +168,7 @@ Current settings in the free plugin include:
 * Control if you want scans to run on both pages and posts.
 * Control when the plugin prompts for a simplified summary.
 * Choose the position of the simplified summary above content, below content, or manually in a template.
+* Place the simplified summary anywhere with the Simplified Summary block or the `[edac_simplified_summary]` shortcode (accepts an optional `post_id` attribute); manual placement automatically disables the automatic insertion for that post.
 * Add footer accessibility statement.
 * Choose positioning for the front-end Accessibility Checker.
 * Show or hide the Accessibility Checker metabox in the block editor.
@@ -278,6 +279,57 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-08-19 - version 1.48.0
+* Added - a new Permissions settings tab that lets administrators control which roles can dismiss issues, view audit history, export data, run full-site scans, and view the frontend highlighter.
+* Added - individual capabilities for dismissing issues (own vs. any), viewing audit history, exporting data, running full-site scans, and viewing the frontend highlighter, replacing the previous all-or-nothing Pro toggle.
+* Fix - large-batch dismiss actions no longer leak across accessibility rules that share the same object.
+* Fix - the Taxonomy Scanning setting now points at the option the scanner actually reads.
+* Fix - the readability check now uses the correct Flesch-Kincaid grade 9 threshold.
+* Fix - Query Monitor's fallback debug output is no longer scanned and reported as false-positive accessibility issues.
+
+2026-07-14 - version 1.47.0
+* Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
+* Updated - the empty alt text check no longer flags 1x1 tracking pixels.
+* Updated - the link protocol checks now handle href values that contain leading whitespace.
+* Updated - SVG code snippets in the Accessibility Analysis panel are now rendered as images instead of raw markup.
+* Fix - scan results for the homepage are now stored against the homepage instead of the first blog post when the site is set to show latest posts.
+* Fix - the Simplified Summary text areas in the editor sidebar now have a label that assistive technology can announce.
+* Fix - corrected a caching issue that could cause database table name lookups to return the wrong table.
+* Remove - deleted an unused internal helper function.
+
+2026-07-08 - version 1.46.0
+* Updated - the aria-hidden rule no longer flags core Cover blocks.
+* Updated - the Incorrect Heading Order summary no longer claims specific heading levels that may not match the actual issue.
+* Updated - more strings translated into other languages.
+* Fix - .ogg audio files are no longer treated as video content by the video checks.
+* Fix - reading level grades between 0 and 1 are now rounded up to grade 1 instead of being treated as not calculable.
+* Fix - Accessibility Analysis panel now shows a success icon when no issues are found.
+* Fix - Reading Level summary card now conveys its status to screen readers.
+* Fix - corrected the accessible name on the settings page navigation landmark.
+* Fix - settings page logo now displays correctly on right-to-left site languages.
+
+2026-06-30 - version 1.45.0
+* Updated - default dismiss reasons are now reordered so first item is confirmed accessible.
+* New - added filter edac_dismiss_reasons to allow adding or removing dismiss reasons.
+* Fix - keep focus well positioned when clearing dismiss notice.
+
+2026-06-23 - version 1.44.1
+* Updated - improved the dismiss panel screen reader announcements.
+
+2026-06-22 - version 1.44.0
+* New - Added custom axe rule to detect links whose anchor text is a bare URL rather than meaningful text.
+* Updated - The aria-hidden rule no longer flags separator blocks.
+* Updated - Empty paragraph warnings no longer flag elements with aria-live attributes or implicit live region roles.
+* Updated - Block Editor metabox now defaults to visible for new installs.
+* Fix - REST API URL generation now works correctly on subsites and with custom REST base configurations.
+* Fix - New window warning now handles links containing both text and images.
+
+2026-05-28 - version 1.43.0
+* Updated - improved empty alt warnings for images that are inside buttons with accessible names.
+* Updated - improved empty button checks for elements hidden from screen readers and keyboard users.
+* Updated - more strings translated into other languages.
+* Updated - hardened the dismiss issue REST endpoints against edge cases.
 
 2026-05-20 - version 1.42.1
 * Updated - improved permission handling for the ignore feature.

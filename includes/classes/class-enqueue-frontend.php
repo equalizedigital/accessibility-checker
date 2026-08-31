@@ -102,14 +102,25 @@ class Enqueue_Frontend {
 
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
-		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', is_object( $post ) ? $post->ID : null );
+
+		// On a latest-posts homepage the global $post is the first blog post, so using its ID
+		// would misattribute results; pass null and let the filter supply an ID (Pro) or bail.
+		$default_post_id = ( is_home() && is_front_page() )
+			? null
+			: ( is_object( $post ) ? $post->ID : null );
+
+		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
 
 		if ( null === $post_id ) {
 			return;
 		}
 
-		// Don't load in a customizer preview or user can't edit the page. A filter
-		// can override the edit requirement to allow anyone to see it.
+		// Don't load in a customizer preview or if the user lacks the frontend
+		// highlighter capability. A filter can override this to allow anyone to
+		// see it. Deliberately does NOT fall back to current_user_can( 'edit_post' ):
+		// Editors and self-editing Authors satisfy that on virtually any post, which
+		// would let the historical fallback silently override a role's Permissions
+		// tab setting for edac_view_frontend_highlighter (PRO-1290).
 		if (
 			is_customize_preview() ||
 			(
@@ -121,12 +132,20 @@ class Enqueue_Frontend {
 				 * highlighter. You can use the filter to perform additional permission checks
 				 * on who can see it.
 				 *
+				 * Not a deprecation candidate against edac_view_frontend_highlighter - see
+				 * the fuller note at admin/class-frontend-highlight.php::init_hooks().
+				 *
 				 * @since 1.14.0
 				 *
 				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
 				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
-				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
+				! (
+					function_exists( 'edac_user_can_use_frontend_highlighter' ) &&
+					edac_user_can_use_frontend_highlighter() &&
+					current_user_can( 'read_post', $post_id ) &&
+					! post_password_required( $post_id )
+				)
 			)
 		) {
 			return;
@@ -156,6 +175,8 @@ class Enqueue_Frontend {
 					'isPro'            => edac_is_pro(),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
+					'restUrl'          => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
+					'fixesRestUrl'     => esc_url_raw( rest_url( 'edac/v1' ) ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 					'loggedIn'         => is_user_logged_in(),
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
@@ -163,6 +184,7 @@ class Enqueue_Frontend {
 					'editorLink'       => get_edit_post_link( $post_id ),
 					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
+					'landmarkTypes'    => edac_get_landmark_types(),
 				]
 			);
 

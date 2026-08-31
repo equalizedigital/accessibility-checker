@@ -1211,7 +1211,7 @@ class AccessibilityCheckerHighlight {
 			const typeIconUri = typeIconDataUris[ matchingObj.rule_type ];
 			const typeBadgeHtml = `<span class="edac-badge edac-badge--${ matchingObj.rule_type } edac-badge--large">
 				${ typeIconUri ? `<img src="${ typeIconUri }" width="16" height="16" style="display:block;width:16px;height:16px;flex-shrink:0" alt="" />` : '' }
-				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Ignored', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
+				<span class="edac-badge__label">${ { error: __( 'Problem', 'accessibility-checker' ), warning: __( 'Needs Review', 'accessibility-checker' ), ignored: __( 'Dismissed', 'accessibility-checker' ) }[ matchingObj.rule_type ] ?? matchingObj.rule_type }</span>
 			</span>`;
 
 			content += `</div>`;
@@ -1619,8 +1619,8 @@ class AccessibilityCheckerHighlight {
 		const breakdownParts = [ problemsLabel, reviewLabel ];
 		if ( ignoredCount > 0 ) {
 			breakdownParts.push( sprintf(
-				// translators: %d is the number of ignored issues.
-				_n( '%d Ignored', '%d Ignored', ignoredCount, 'accessibility-checker' ),
+				// translators: %d is the number of dismissed issues.
+				_n( '%d Dismissed', '%d Dismissed', ignoredCount, 'accessibility-checker' ),
 				ignoredCount
 			) );
 		}
@@ -1800,6 +1800,14 @@ class AccessibilityCheckerHighlight {
 					self.showScanError( message );
 					reject( new Error( message ) );
 				};
+				if ( window.edacFrontendHighlighterApp?.landmarkTypes ) {
+					window.scanOptions = window.scanOptions || {};
+					const lm = window.edacFrontendHighlighterApp.landmarkTypes;
+					window.scanOptions.landmarkTags = lm.tags;
+					window.scanOptions.landmarkRoles = lm.roles;
+					window.scanOptions.conditionalLandmarkTags = lm.conditionalTags;
+					window.scanOptions.conditionalLandmarkRoles = lm.conditionalRoles;
+				}
 				document.head.appendChild( script );
 			} else {
 				runScan();
@@ -1863,7 +1871,11 @@ class AccessibilityCheckerHighlight {
 
 	saveScanResults( postId, nonce, violations, densityMetrics ) {
 		const self = this;
-		return fetch( '/wp-json/accessibility-checker/v1/post-scan-results/' + postId, {
+		const restUrl = window.edacFrontendHighlighterApp?.restUrl;
+		if ( ! restUrl ) {
+			return Promise.reject( new Error( 'Missing REST API URL.' ) );
+		}
+		return fetch( `${ restUrl }/post-scan-results/${ postId }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -1943,7 +1955,7 @@ class AccessibilityCheckerHighlight {
 		}
 
 		// Validate required parameters
-		if ( ! edacFrontendHighlighterApp?.edacUrl || ! edacFrontendHighlighterApp?.postID ) {
+		if ( ! window.edacFrontendHighlighterApp?.restUrl || ! window.edacFrontendHighlighterApp?.postID ) {
 			const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 			if ( summary ) {
 				summary.textContent = __( 'Error: Missing required parameters.', 'accessibility-checker' );
@@ -1956,7 +1968,7 @@ class AccessibilityCheckerHighlight {
 		this.clearIssuesButton.textContent = __( 'Clearing...', 'accessibility-checker' );
 		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
 
-		fetch( `${ edacFrontendHighlighterApp.edacUrl }/wp-json/accessibility-checker/v1/clear-issues/${ edacFrontendHighlighterApp.postID }`, {
+		fetch( `${ window.edacFrontendHighlighterApp.restUrl }/clear-issues/${ window.edacFrontendHighlighterApp.postID }`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',

@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,17 +21,21 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +75,7 @@ msgid "Renew your license"
 msgstr "Verleng uw licentie"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "E-mailrapporten uitschakelen"
 
@@ -90,7 +94,7 @@ msgstr "E-mailrapporten inschakelen"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Gratis licentiesleutel"
@@ -122,137 +126,149 @@ msgid "Reports Enabled"
 msgstr "Rapporten ingeschakeld"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "U ontvangt wekelijkse toegankelijkheidsrapporten voor deze site."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "Wekelijkse toegankelijkheidsrapporten voor deze site worden gemaild naar de accounthouder van de licentiesleutel."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "Volgend rapport: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "Volledige dekking"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "Beperkte dekking"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "Uw rapporten omvatten alle posttypen en taxonomieën."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "Volledige sitescan ingeschakeld"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "Complete probleemoverzichten"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "Gedetailleerde rapportage"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "Uw rapporten omvatten slechts een deel van uw site."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "Upgrade naar Pro om:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "Alle inhoudstypen te scannen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "Volledige probleemoverzichten te krijgen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "Meer gedetailleerde rapporten te ontvangen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Upgraden naar pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "Toegankelijkheidsoverzicht"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Dit overzicht weerspiegelt de meest recente scandata die beschikbaar zijn voor uw site."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "Totaal aantal gevonden problemen"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "Accountverbinding"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Door deze site te verbinden, gaat u akkoord met het <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacybeleid <span aria-hidden=\"true\">&#8599;</span></a> en de <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Gegevensverwerkingsovereenkomst <span aria-hidden=\"true\">&#8599;</span></a> van Equalize Digital."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Privacybeleid (opent in een nieuw venster)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Gegevensverwerkingsovereenkomst (opent in een nieuw venster)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Wekelijkse e-mail bevat het totaal aantal gevonden problemen en wijzigingen sinds het laatste rapport, dekkingsinformatie, tellingen van problemen, items die beoordeling nodig hebben, het percentage geslaagde tests, en informatie over de meest problematische pagina's en de ernstigste problemen."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
-#: build/sidebar.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:417
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "N.v.t."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:507
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "Kritiek"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:509
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "Hoog"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:511
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "Gemiddeld"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:513
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "Laag"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
-#: includes/classes/class-rest-api.php:1007
+#: admin/AdminPage/AccessibilityReportsPage.php:515
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -401,7 +417,7 @@ msgid "Get Pro"
 msgstr "Ga voor pro"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "Opent in een nieuw venster."
 
@@ -410,6 +426,40 @@ msgstr "Opent in een nieuw venster."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "Lees documentatie voor %s. Opent in een nieuw venster."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "Machtigingen"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "Selecteer een rol"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "Selecteer een rol om de mogelijkheden te zien die kunnen worden toegekend."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "Er zijn geen mogelijkheden beschikbaar."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "Machtigingsinstellingen geladen voor %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "Overig"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "Vereist een geldige licentie."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "U heeft geen toestemming om de machtigingen van Accessibility Checker te beheren."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -498,8 +548,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 Black Friday-aanbieding! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "Upgrade naar een betaalde versie van Accessibility Checker van 24 november tot 3 december en krijg 30% korting! Volledige sitesscan, sitewijd rapport met openstaande problemen, negeerlogboeken en meer."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "Upgrade naar een betaalde versie van Accessibility Checker van 24 november tot 3 december en krijg 30% korting! Volledige sitesscan, rapport met openstaande problemen voor de hele site, logboeken van negeringen en meer."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -514,14 +564,14 @@ msgstr "Nu upgraden"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "Toegang geweigerd"
 
@@ -597,400 +647,412 @@ msgstr "Vraag nooit meer"
 msgid "The review action value was not set"
 msgstr "De recensie-actiewaarde was niet ingesteld"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "De post-ID was niet ingesteld"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "U heeft geen toestemming om deze informatie voor dit bericht te bekijken."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "Er is geen vereenvoudigde samenvatting opgenomen voor deze inhoud."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "Uw inhoud heeft een leesniveau van 9e klas of lager en vereist geen vereenvoudigde samenvatting."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "Het leesniveau van de vereenvoudigde samenvatting is te hoog."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "Er is een vereenvoudigde samenvatting opgenomen voor deze inhoud."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% geslaagde controles"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "Controles doorstaan"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "Geslaagde tests"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "Probleem"
 msgstr[1] "Problemen"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "Contrastprobleem"
 msgstr[1] "Contrastproblemen"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "Moet worden beoordeeld"
 msgstr[1] "Moet worden beoordeeld"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
 msgstr[0] "Genegeerd probleem"
 msgstr[1] "Genegeerde problemen"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "Leesniveau"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* Echte toegankelijkheid vereist handmatig testen naast geautomatiseerde scans. %1$sLeer hoe u handmatig test op toegankelijkheid%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
+#: admin/class-ignore-ui.php:170
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr ", opent een nieuw venster"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "Geen samenvatting om terug te geven"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "Ongeldige tabelnaam"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " totaal"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Lees de documentatie voor %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "Problemen uitvouwen voor %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Deze instellingen activeren globale oplossingen voor uw hele website."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Pagina's moeten mogelijk opnieuw worden opgeslagen of er moet een volledige websitescan worden uitgevoerd om de oplossingen in de rapporten te zien."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Opslaan"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Getroffen code"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Afbeelding"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landmark"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "Acties"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Genegeerd"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "Negeren"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "Probleem-ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "afbeelding voor probleem %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Bekijk probleem-ID %d op de website, opent een nieuw venster"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Bekijk op pagina"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "Oplossing: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "Oplossen"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "Geen details om terug te geven"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Leesniveau van bericht: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Geen"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Uw bericht heeft een leesniveau hoger dan groep 7. Web Content Accessibility Guidelines (WCAG) op AAA-niveau vereisen een vereenvoudigde samenvatting van uw bericht die groep 7 of lager is."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Uw bericht bevat niet genoeg inhoud om het leesniveau te berekenen."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Een vereenvoudigde samenvatting is niet nodig wanneer het leesniveau van de inhoud groep 7 of lager is. Kies wanneer u om een vereenvoudigde samenvatting wilt vragen op de instellingenpagina."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Vereenvoudigd samenvatting leesniveau: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Niet genoeg inhoud om een nauwkeurig leesniveau te bepalen."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Uw vereenvoudigde samenvatting heeft een leesniveau boven groep 7."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Uw vereenvoudigde samenvatting heeft een leesniveau van groep 7 of lager."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Vereenvoudigde samenvatting wordt niet automatisch in de inhoud ingevoegd."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Uw prompt voor vereenvoudigde samenvatting is ingesteld op “nooit.” Als u wilt dat de vereenvoudigde samenvatting automatisch wordt weergegeven, kunt u dit wijzigen op de %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "instellingenpagina"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Vereenvoudigde samenvatting wordt automatisch ingevoegd %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "de inhoud"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Stel in waar de vereenvoudigde samenvatting in de inhoud wordt ingevoegd op de %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Uw locatie voor vereenvoudigde samenvatting is ingesteld op “handmatig”, wat vereist dat een functie aan uw paginasjabloon wordt toegevoegd. Als u wilt dat de vereenvoudigde samenvatting automatisch wordt weergegeven, kunt u dit wijzigen op de %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "Vereenvoudigde samenvatting"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Samenvatting opslaan"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Meer informatie over het verbeteren van leesbaarheid en vereisten voor vereenvoudigde samenvatting"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "Geen leesbaarheidsgegevens om terug te geven"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "Geen negeergegevens om terug te geven"
-
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* Tekst voor schermlezers"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "De id-waarde was niet ingesteld"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "Bericht niet gevonden"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "Probleemzoekopdracht leverde geen resultaten op"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "Objectzoekopdracht leverde geen resultaten op"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "Valse positief"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "De scanner heeft dit gemarkeerd, maar het is niet van toepassing op deze inhoud."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "Hersteld"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "Het probleem is opgelost, maar de pagina is nog niet opnieuw gescand."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "Toegankelijkheid bevestigd"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "Beoordeeld en geverifieerd om te voldoen aan de toegankelijkheidsvereisten."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "Valse positief"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "De scanner heeft dit gemarkeerd, maar het is niet van toepassing op deze inhoud."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "Hersteld"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "Het probleem is opgelost, maar de pagina is nog niet opnieuw gescand."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "Gebruikersnaam:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "Datum:"
 
-#: admin/class-ignore-ui.php:97
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:141
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Probleem heropenen"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "Probleem negeren"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "Reactie"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "Wereldwijd genegeerde problemen beheren"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Uw gebruikersaccount heeft geen toestemming om dit probleem te negeren."
 
-#: admin/class-ignore-ui.php:156
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:200
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "Probleem negeren als:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -1082,7 +1144,7 @@ msgid "Report Last Updated:"
 msgstr "Rapport laatst bijgewerkt:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "Nooit"
 
@@ -1184,7 +1246,8 @@ msgid "Post Type"
 msgstr "Berichttype"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "Problemen"
 
@@ -1395,7 +1458,7 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "Gegevens verwijderen"
 
@@ -1452,13 +1515,12 @@ msgid "Simplified Sum Heading"
 msgstr "Kop vereenvoudigde samenvatting"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
-msgid "Ignore Permissions"
-msgstr "Negeerrechten"
+msgid "Dismiss Permissions"
+msgstr "Machtigingen voor negeren"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "Aantal genegeerde DB-tabellen"
+msgid "Dismissals DB Table Count"
+msgstr "Telling DB-tabel negeringen"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1490,11 +1552,20 @@ msgstr "Krijg Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro ophalen (opent in nieuw venster)"
 
-#: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "Sorry, u heeft geen toestemming om problemen te negeren."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "Sorry, u heeft geen toestemming om problemen globaal te negeren."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "Probleem niet gevonden."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "Het probleem kon niet worden bijgewerkt."
 
@@ -1975,8 +2046,8 @@ msgstr "Het aria-hidden attribuut wordt gebruikt om inhoud te verbergen voor ond
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Controleer of het element echt verborgen moet zijn voor schermlezers. Als het belangrijke inhoud of functionaliteit bevat, verwijder dan %s. Als het decoratief of overbodig is, laat het element dan ongewijzigd en negeer deze waarschuwing met de “Negeren”-functie in Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "Controleer of het element werkelijk verborgen moet zijn voor schermlezergebruikers. Als het belangrijke inhoud of functionaliteit bevat, verwijder dan %s. Als het decoratief of overbodig is, laat het element dan ongemoeid en negeer deze waarschuwing in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2373,8 +2444,8 @@ msgstr "Schermlezers vertrouwen op alternatieve tekst om afbeeldingen te beschri
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "Controleer de afbeelding om te bepalen of deze decoratief is. Indien decoratief, is het correct om een leeg %1$s attribuut te gebruiken en kunt u deze waarschuwing negeren door de functie “Negeren” te gebruiken in Accessibility Checker of door %2$s of %3$s toe te voegen aan de afbeelding en de pagina opnieuw te scannen. Als de afbeelding informatie overbrengt, voeg dan beschrijvende alt-tekst toe die het doel of de betekenis van de afbeelding communiceert."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "Controleer de afbeelding om te bepalen of deze decoratief is. Als deze decoratief is, is het correct om een leeg %1$s-attribuut te gebruiken en kunt u deze waarschuwing negeren in Accessibility Checker of door %2$s of %3$s aan de afbeelding toe te voegen en de pagina opnieuw te scannen. Als de afbeelding informatie overbrengt, voeg dan beschrijvende alt-tekst toe die het doel of de betekenis van de afbeelding communiceert."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2428,8 +2499,8 @@ msgstr "Alternatieve tekst moet beknopt zijn en gericht op het beschrijven van h
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Verkort de alt-tekst tot minder dan %s tekens, maar beschrijf nog steeds de functie of het doel van de afbeelding. Houd beschrijvingen eenvoudig en vermijd het herhalen van omringende inhoud. Als de alt-tekst van de afbeelding niet hoeft te worden gewijzigd, negeer dan deze waarschuwing met de functie “Negeren” in Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "Verkort de alt-tekst tot minder dan %s tekens terwijl de functie of het doel van de afbeelding nog steeds wordt beschreven. Houd beschrijvingen eenvoudig en vermijd herhaling van omringende inhoud. Als de alt-tekst van de afbeelding niet hoeft te worden gewijzigd, negeer deze waarschuwing dan in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2506,8 +2577,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "Geanimeerde afbeeldingen kunnen afleidend zijn, aanvallen veroorzaken bij sommige personen, of cognitieve belasting creëren. WCAG-richtlijnen vereisen dat animaties die flitsen of continu herhalen een mechanisme bieden om ze te pauzeren, stoppen of verbergen."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Vervang de geanimeerde afbeelding door een statische afbeelding of een video met bedieningselementen. Als je een geanimeerde afbeelding moet gebruiken, zorg er dan voor dat deze niet meer dan drie keer per seconde flitst en voorzie pauze- of stopbediening als deze langer dan 5 seconden speelt. Als je hebt bevestigd dat de afbeelding toegankelijk is en gepauzeerd kan worden, kun je deze waarschuwing negeren met de functie “Negeren” in Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "Vervang de geanimeerde afbeelding door een statische afbeelding of een video met besturingselementen. Als u een geanimeerde afbeelding moet gebruiken, zorg er dan voor dat deze niet meer dan drie keer per seconde flitst en bied pauze- of stopknoppen als deze langer dan 5 seconden speelt. Als u heeft bevestigd dat de afbeelding toegankelijk en pauzeerbaar is, kunt u deze waarschuwing negeren in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2572,29 +2643,27 @@ msgstr "Voeg een alt-attribuut toe dat het doel van de link beschrijft. Concentr
 msgid "Incorrect Heading Order"
 msgstr "Onjuiste kopvolgorde"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "Deze pagina gebruikt koppen in de verkeerde volgorde. Dit is een %1$s na een %2$s, waarbij een of meer kopniveaus worden overgeslagen."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "Deze pagina gebruikt koppen die niet in de juiste volgorde staan, waarbij een of meer kopniveaus worden overgeslagen."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "Deze pagina's gebruiken koppen in de verkeerde volgorde, waarbij een of meer kopniveaus worden overgeslagen, zoals van %1$s naar %2$s gaan zonder een %3$s ertussen."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "Koppen helpen alle gebruikers - vooral degenen die schermlezers of toetsenbordnavigatie gebruiken - de structuur van de pagina te begrijpen. Het overslaan van kopniveaus kan verwarring veroorzaken en het moeilijker maken om de inhoudshiërarchie te volgen of efficiënt te navigeren."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "Herzie je koppen zodat ze een logische volgorde volgen zonder niveaus over te slaan. Als bijvoorbeeld een %1$s wordt gevolgd door een %2$s, verander dan de %2$s in een %3$s of voeg een tussenliggende %3$s sectie toe om de juiste structuur te behouden. Gebruik indien nodig CSS of blok/pagina-builder instellingen om koppen te stylen in plaats van het verkeerde niveau in te stellen."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "W3C Paginastructuur Tutorial: Koppen"
 
@@ -2709,8 +2778,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "Documenten in Word-, Excel- of PowerPoint-formaat zijn mogelijk niet toegankelijk voor alle gebruikers, vooral als ze niet correct zijn getagd of niet voldoen aan de beste praktijken voor toegankelijkheid. Toegankelijkheidswetten vereisen dat documenten die op webpagina's worden geplaatst ook voldoen aan WCAG. Bovendien moeten gebruikers worden gewaarschuwd wanneer een link een downloadbaar bestand opent in plaats van een webpagina."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Zorg ervoor dat het gelinkte bestand wordt getest en verbeterd voor toegankelijkheid. Wanneer je weet dat het toegankelijk is, negeer dan deze waarschuwing met de “Negeren”-functie in Accessibility Checker. Voeg de bestandsextensie en -grootte toe aan de linktekst om gebruikers te informeren (schakel de “Bestandsgrootte & type toevoegen aan links”-fix in de instellingen van Accessibility Checker in om dit voor de hele site te doen). Als het document is ingesloten met een plugin, geef dan ook een directe link om het te downloaden. Als het moeilijk is om het document toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Zorg ervoor dat het gekoppelde bestand is getest en gerepareerd op toegankelijkheid. Wanneer u weet dat het toegankelijk is, negeer dan deze waarschuwing in Accessibility Checker. Voeg de bestandsextensie en grootte toe aan de linktekst om gebruikers te informeren (schakel de “Bestandsgrootte & type aan links toevoegen”-correctie in de instellingen van Accessibility Checker in om dit sitebreed te doen). Als het document is ingesloten met behulp van een plugin, bied dan ook een directe downloadlink aan. Als het moeilijk is om het document toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2761,8 +2830,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "Niet-HTML-documentformaten zijn mogelijk niet volledig toegankelijk voor ondersteunende technologieën, tenzij ze zijn getest en verbeterd. Gebruikers moeten worden gewaarschuwd wanneer een link een downloadbaar bestand opent in plaats van een standaard webpagina."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "Zorg ervoor dat het gelinkte document toegankelijk is. Wanneer je weet dat het toegankelijk is, negeer dan deze waarschuwing met de “Negeren”-functie in Accessibility Checker. Voeg de bestandsextensie toe aan de zichtbare linktekst (bijv. “Vergadernotities (ODT)”) zodat gebruikers weten wat ze kunnen verwachten (schakel de “Bestandsgrootte & type toevoegen aan links”-fix in de instellingen van Accessibility Checker in om dit voor de hele site te doen). Als het document is ingesloten, geef dan ook een directe downloadlink. Als het moeilijk is om het document toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "Zorg ervoor dat het gekoppelde document toegankelijk is. Wanneer u weet dat het toegankelijk is, negeer dan deze waarschuwing in Accessibility Checker. Voeg de bestandsextensie toe aan de zichtbare linktekst (bijv. “Notulen van de vergadering (ODT)”) zodat gebruikers weten wat ze kunnen verwachten (schakel de “Bestandsgrootte & type aan links toevoegen”-correctie in de instellingen van Accessibility Checker in om dit sitebreed te doen). Als het document is ingesloten, bied dan ook een directe downloadlink aan. Als het moeilijk is om het document toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2781,8 +2850,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "PDF's zijn mogelijk niet toegankelijk voor alle gebruikers, vooral als ze niet correct getagd zijn of niet voldoen aan WCAG-vereisten. Toegankelijkheidswetten vereisen dat documenten die op websites worden geplaatst aan dezelfde toegankelijkheidsnormen voldoen als HTML-inhoud. Bovendien moeten gebruikers worden gewaarschuwd wanneer een link een downloadbaar bestand opent in plaats van een webpagina."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "Zorg ervoor dat de gelinkte PDF getest en verbeterd is voor toegankelijkheid. Wanneer je weet dat deze toegankelijk is, negeer dan deze waarschuwing met de “Negeren”-functie in Accessibility Checker. Voeg de bestandsextensie en -grootte toe aan de linktekst om gebruikers te informeren (schakel de “Bestandsgrootte & type toevoegen aan links”-fix in de instellingen van Accessibility Checker in om dit voor de hele site te doen). Als het document is ingesloten met een plugin, geef dan ook een directe link om het te downloaden. Als het moeilijk is om de PDF toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "Zorg ervoor dat de gekoppelde PDF is getest en gerepareerd op toegankelijkheid. Wanneer u weet dat het toegankelijk is, negeer dan deze waarschuwing in Accessibility Checker. Voeg de bestandsextensie en grootte toe aan de linktekst om gebruikers te informeren (schakel de “Bestandsgrootte & type aan links toevoegen”-correctie in de instellingen van Accessibility Checker in om dit sitebreed te doen). Als het document is ingesloten met behulp van een plugin, bied dan ook een directe downloadlink aan. Als het moeilijk is om de PDF toegankelijk te maken, overweeg dan om de inhoud op een webpagina te plaatsen."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2799,6 +2868,30 @@ msgstr "PDF-toegankelijkheid op het web: Trucs en valkuilen (Webinar)"
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "InDesign & PDF-toegankelijkheidsfouten en hoe ze op te lossen (Webinar)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "Linktekst is URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "Deze link gebruikt een URL als ankertekst in plaats van een betekenisvol woord of een betekenisvolle zin."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "Deze links gebruiken URL's als ankertekst in plaats van betekenisvolle woorden of zinnen."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "Linktekst die alleen een URL is, biedt mogelijk geen zinvolle context over de linkbestemming. Bovendien kunnen lange URL's moeilijk te begrijpen zijn wanneer ze worden voorgelezen door een schermlezer die elke letter, elk cijfer en elk teken afzonderlijk kan aankondigen. Gebruikers vertrouwen op beschrijvende linktekst om te begrijpen waar een link hen naartoe zal brengen; het gebruik van URL's voor uw linktekst vermindert de bruikbaarheid, verhoogt de cognitieve belasting en kan verwarrend of misleidend zijn."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "Vervang de URL in de linktekst door een beknopt, beschrijvend woord of een beschrijvende zin die de bestemming of het doel van de link uitlegt (bijvoorbeeld “Lees de toegankelijkheidsgids” in plaats van “https://example.com/guide”). Als de URL noodzakelijk is voor de context en erg kort is, kunt u deze waarschuwing negeren met de functie “Negeren” in Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: Techniek G91: Het bieden van linktekst die het doel van een link beschrijft"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3071,8 +3164,8 @@ msgstr "Gebruikers van schermlezers en andere ondersteunende technologieën vert
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Bekijk de gemarkeerde tekst en bepaal of het een kop zou moeten zijn. Als dat zo is, verander dan het element naar de juiste %1$s–%2$s tag. Als het niet bedoeld is als kop, kun je deze waarschuwing negeren door de functie “Negeren” in Accessibility Checker te gebruiken."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "Controleer de gemarkeerde tekst en bepaal of het een kop moet zijn. Zo ja, wijzig dan het element naar de juiste %1$s–%2$s-tag. Als het niet bedoeld is als kop, kunt u deze waarschuwing negeren in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3095,8 +3188,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "Schuifregelaars zijn vaak moeilijk te gebruiken met schermlezers en toetsenborden. Ontoegankelijke schuifregelaars kunnen de navigatie verstoren, de focus vasthouden of te snel bewegen voor gebruikers om met de inhoud om te gaan."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Bekijk de schuifregelaar aan de voorkant van je website. Zorg ervoor dat deze toegankelijk is met het toetsenbord, gepauzeerd kan worden, de juiste ARIA-rollen en labels heeft, en goed werkt met schermlezers. Nadat je hebt bevestigd dat de schuifregelaar toegankelijk is of problemen hebt verholpen, kun je deze waarschuwing negeren door de functie “Negeren” in Accessibility Checker te gebruiken."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "Controleer de schuifregelaar op de voorkant van uw website. Zorg ervoor dat deze toegankelijk is via het toetsenbord, pauzeerbaar is, de juiste ARIA-rollen en -labels heeft en goed werkt met schermlezers. Na het bevestigen van de toegankelijkheid van de schuifregelaar of het verhelpen van problemen, kunt u deze waarschuwing negeren in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3251,8 +3344,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "Onderstreepte tekst wordt vaak geassocieerd met links. Wanneer niet-linktekst is onderstreept, kan dit verwarrend zijn voor gebruikers, vooral voor degenen met cognitieve beperkingen of degenen die vertrouwen op visuele aanwijzingen om links te identificeren."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Verwijder de onderstrepingstag of CSS-onderstrepingsstijl van de tekst. Als je tekst wilt benadrukken, overweeg dan vet, cursief of kleurstijlen te gebruiken. Als deze tekst onderdeel is van een functioneel element zoals een link of knop, behoud dan de onderstrepingsstijl en negeer deze waarschuwing met de functie “Negeren” in Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "Verwijder de onderstrepingstag of de CSS-onderstreepstijl van de tekst. Als u tekst wilt benadrukken, overweeg dan om in plaats daarvan vet, cursief of kleurstijlen te gebruiken. Als deze tekst deel uitmaakt van een functioneel element zoals een link of knop, behoud dan de onderstreepstijl en negeer deze waarschuwing in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3271,8 +3364,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "Video's moeten nauwkeurige ondertiteling, transcripties en audiobeschrijvingen (of uitgebreide transcripties) bevatten om volledig toegankelijk te zijn voor gebruikers die doof zijn, slechthorend zijn, blind zijn of cognitieve beperkingen hebben."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "Bekijk de video aan de voorkant van je website. Zorg ervoor dat deze nauwkeurige (niet automatisch gegenereerde) gesynchroniseerde ondertiteling, een transcript en indien nodig een audiobeschrijving bevat. Na het verifiëren van de toegankelijkheid of het maken van noodzakelijke updates, kun je deze waarschuwing negeren door de functie “Negeren” in Accessibility Checker te gebruiken."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "Controleer de video op de voorkant van uw website. Zorg ervoor dat deze accurate (niet automatisch gegenereerde) gesynchroniseerde ondertiteling, een transcript en, indien nodig, een audiobeschrijving bevat. Na het controleren van de toegankelijkheid of het aanbrengen van de nodige updates, kunt u deze waarschuwing negeren in Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3375,257 +3468,350 @@ msgstr "Gratis bijwonen"
 msgid "(opens in a new window)"
 msgstr "(opent in een nieuw venster)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:922
+msgid "Main"
+msgstr "Hoofd"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:924
+msgid "Header"
+msgstr "Koptekst"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:926
+msgid "Footer"
+msgstr "Voettekst"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:928
+msgid "Nav"
+msgstr "Navigatie"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:930
+msgid "Aside"
+msgstr "Zijbalk"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:932
+msgid "Navigation"
+msgstr "Navigatie"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:934
+msgid "Banner"
+msgstr "Banner"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:936
+msgid "Contentinfo"
+msgstr "Inhoudsinformatie"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:938
+msgid "Complementary"
+msgstr "Aanvullend"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:940
+msgid "Section"
+msgstr "Sectie"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:942
+msgid "Article"
+msgstr "Artikel"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:944
+msgid "Form"
+msgstr "Formulier"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:946
+msgid "Region"
+msgstr "Regio"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "%s landmark op website bekijken, opent een nieuw venster"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "Eigen problemen negeren"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "Toegankelijkheidsproblemen negeren en heropenen bij berichten die de gebruiker kan bewerken (hun eigen berichten; redacteuren kunnen alles bewerken)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "Problemen negeren (elk bericht)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "Toegankelijkheidsproblemen negeren en heropenen bij elk bericht, zelfs als de gebruiker dit anders niet kan bewerken."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "Front-end highlighter"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "Bekijk de front-end toegankelijkheidshighlighter op gepubliceerde inhoud."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "de mogelijkheid om berichten te bewerken"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "de mogelijkheid om berichten van andere gebruikers te bewerken"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "Vereist %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "Welkom bij Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker Instellingen"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "Scaninstellingen"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "Machtigingen"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "Instellingen vereenvoudigde samenvatting"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "Toegankelijkheidsverklaring in voettekst"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "Systeeminstellingen"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "Te controleren berichttypen"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "Scansnelheid"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "Archiefscannen"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "Taxonomiescannen"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "Metabox blokeditor"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "Vragen om vereenvoudigde samenvatting"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "Positie vereenvoudigde samenvatting"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "Vereenvoudigde samenvatting kop"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "Toegankelijkheidsverklaring in voettekst toevoegen"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "Link naar toegankelijkheidsbeleid opnemen"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "Pagina toegankelijkheidsbeleid"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "Voorbeeld toegankelijkheidsverklaring"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker Positie"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Configureer de soorten inhoud die moeten worden gecontroleerd op toegankelijkheidsproblemen."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Meer functies en e-mailondersteuning zijn beschikbaar met %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (opent in een nieuw venster)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Gebruik de onderstaande instellingen om de frontend toegankelijkheidscontrole te configureren."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "De Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) op AAA-niveau vereisen dat inhoud met een leesniveau boven de 9e klas een alternatief heeft dat gemakkelijker te lezen is. Vereenvoudigde samenvattingstekst wordt toegevoegd op het tabblad leesbaarheid in het metavak van Accessibility Checker op het bewerkingsscherm van elke post of pagina."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften (opent in een nieuw venster)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Denk je “Wow, deze plugin is geweldig” en helpt het je om je website toegankelijker te maken? Deel je inspanningen om je website toegankelijker te maken met je klanten en laat ze weten dat je Accessibility Checker gebruikt om ervoor te zorgen dat alle mensen je website kunnen gebruiken. Voeg een kleine tekstlink en verklaring toe in de footer van je website."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Configureer systeeminstellingen voor de Accessibility Checker plugin."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Snel"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normaal"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Langzaam"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Langzaamst"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Snellere scans zijn intensiever voor je systeem en kunnen een hoge belasting op je website veroorzaken."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Scannen van archiefpagina's inschakelen"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Kies of archiefpagina's moeten worden opgenomen in volledige sitescans. Standaard wordt een steekproefmethode gebruikt om taxonomietermen voor archiefgegevens te selecteren."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scan alle taxonomietermen in plaats van alleen een steekproef"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Controleer alle taxonomieterm-archiefpagina's in plaats van een representatieve steekproef. Hiervoor moet het scannen van archiefpagina's zijn ingeschakeld en dit kan een groot aantal URL's aan de scanlijst toevoegen."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "Voor de inhoud"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "Na de inhoud"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "Handmatig invoegen"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Gebruik deze functie om de vereenvoudigde samenvatting handmatig aan je thema toe te voegen binnen de loop."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "De functie accepteert optioneel de post-ID als parameter."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Stel in waar je wilt dat vereenvoudigde samenvattingen verschijnen ten opzichte van je inhoud, indien ingevuld."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "Rechtsonder (standaard)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "Linksonder"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Stel in waar je wilt dat de frontend toegankelijkheidscontrole op de pagina verschijnt."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "Wanneer vereist"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "Altijd"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Moet Accessibility Checker alleen om een vereenvoudigde samenvatting vragen wanneer het leesniveau van je bericht of pagina boven de 9e klas ligt, er altijd om vragen ongeacht het leesniveau, of er nooit om vragen ongeacht het leesniveau?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "Om andere inhoud dan posts en pagina's te controleren, gelieve "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "upgrade naar pro"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (opent in een nieuw venster)"
 
-#: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "Kies welke berichttypes moeten worden gecontroleerd tijdens een scan. Let op: het verwijderen van een eerder geselecteerd berichttype zal de gescande informatie en eventuele aangepaste genegeerde waarschuwingen die zijn ingesteld, verwijderen."
+#: includes/options-page.php:1303
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "Kies welke posttypes moeten worden gecontroleerd tijdens een scan. Let op, het verwijderen van een eerder geselecteerd posttype zal de gescande informatie en eventuele aangepaste genegeerde waarschuwingen die zijn ingesteld, verwijderen."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Verwijder alle Accessibility Checker-gegevens wanneer de plugin wordt verwijderd."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Toon Accessibility Checker metabox in de blokeditor"
-
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "Kies welke gebruikersrollen toestemming hebben om problemen te negeren."
-
-#: includes/options-page.php:1037
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "Configureer welke gebruikersrollen toegang hebben tot specifieke Accessibility Checker functies."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4831,22 +5017,58 @@ msgstr "Instellingen opgeslagen. Om deze updates te bevestigen en weer te geven 
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "De Accessibility New Window Warnings plugin is geïnstalleerd. De fix voor links die in een nieuw venster openen, die hier is opgenomen, zal de functionaliteit ervan overschrijven. U kunt de plugin veilig verwijderen en in plaats daarvan deze fixes gebruiken."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "Machtigingen opgeslagen."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "De machtigingen zijn door iemand anders gewijzigd terwijl u aan het bewerken was, dus uw wijzigingen zijn niet opgeslagen. Bekijk de huidige machtigingen hieronder en probeer het opnieuw."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "Machtigingsinstellingen"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "Kies een gebruikersrol en vink vervolgens de Accessibility Checker-mogelijkheden aan om deze toe te kennen. Een mogelijkheid kan alleen worden toegekend aan een rol waarvan de bestaande WordPress-machtigingen aan de vereisten voldoen. Beheerders hebben altijd alle mogelijkheden."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "Kies een rol"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "Selecteer de gebruikersrol waarvan u de Accessibility Checker-machtigingen wilt beheren."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "Rol"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— Selecteer een rol —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "Machtigingen opslaan"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "Accessibility Checker probleempanelen"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "Toegankelijkheidsstatus"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "Toegankelijkheidsanalyse"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "Leesbaarheidsanalyse"
 
@@ -4856,8 +5078,9 @@ msgstr "Verwijder alle momenteel gevonden problemen"
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "Problemen wissen"
 
@@ -5073,6 +5296,11 @@ msgstr "Opslaan..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "Opslaan mislukt: REST API URL ontbreekt."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "Instellingen succesvol opgeslagen. Je moet %sde editor bezoeken%s en het bericht opslaan om opnieuw te scannen en opgeloste problemen uit de Accessibility Checker-rapporten te verwijderen."
@@ -5084,6 +5312,7 @@ msgstr "Instellingen succesvol opgeslagen."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "Opslaan mislukt."
 
@@ -5093,28 +5322,28 @@ msgid "Fix Settings"
 msgstr "Fix-instellingen"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "Dit zal alle problemen voor dit bericht wissen. Er is een opslag nodig om een nieuwe scan van de berichtinhoud te starten. Wilt u doorgaan?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "Wissen..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "Problemen succesvol gewist."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "Wissen van problemen mislukt."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "Er is een fout opgetreden bij het wissen van problemen."
 
@@ -5142,383 +5371,447 @@ msgstr "EDAC: Fout bij het bijwerken van de geschiedenis voor skiplink."
 msgid "Close fixes modal"
 msgstr "Sluit reparaties-modal"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d van %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "Probleem zonder titel"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "Probleem %1$d van %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "Het element is niet zichtbaar. Probeer stijlen uit te schakelen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "Het element is niet focusseerbaar. Probeer stijlen uit te schakelen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "Het element is niet gevonden op de pagina."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "Naar links verplaatsen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "Naar rechts verplaatsen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "Paneelpositie gereset."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "Paneel naar links verplaatst."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "Paneel naar rechts verplaatst."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "Open details voor %1$s, %2$s van %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "Paneel loskoppelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "Paneel koppelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "Deze pagina opnieuw scannen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "Accessibility Checker Tools"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "Meer opties"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "Paginastijlen uitschakelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "Stijlen uitschakelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "Sluiten"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "Geen problemen gevonden op deze pagina."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "Laden..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "Vorige"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "Volgende"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "Positie resetten"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "Er is een fout opgetreden bij het laden van de problemen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "Paneel gekoppeld."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "Paneel losgekoppeld."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "Ernst:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "Genegeerd"
-
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "Uitleg tonen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "Waarom het belangrijk is"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "Hoe op te lossen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "Meer gedetailleerde documentatie"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "Getroffen code tonen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "Probleem oplossen: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Probleem oplossen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "Stijlen inschakelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "Pagina-stijlen inschakelen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "Pagina-stijlen uitgeschakeld."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "Pagina-stijlen opnieuw ingeschakeld."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "Er zijn geen instellingen om weer te geven."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Deze instellingen activeren globale reparaties voor uw hele site. Pagina's moeten mogelijk opnieuw worden opgeslagen of er moet een volledige sitescan worden uitgevoerd om de reparaties in rapporten te zien."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
 msgstr[0] "%d probleem gevonden"
 msgstr[1] "%d problemen gevonden"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
 msgstr[0] "%d probleem"
 msgstr[1] "%d problemen"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
 msgstr[0] "%d moet worden beoordeeld"
 msgstr[1] "%d moeten worden beoordeeld"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
 msgstr[0] "%d genegeerd"
 msgstr[1] "%d genegeerd"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "Geen problemen gedetecteerd."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "Landmark: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "Scannerscript kon niet worden geladen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "Scannerfunctie niet gevonden."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "Bezig met scannen..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "Ontbrekende postId of nonce."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "Opnieuw scannen voltooid. Geen overtredingen gevonden."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "Geen overtredingen gevonden, opslaan wordt overgeslagen."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Fout bij toegankelijkheidsscan."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "Fout bij het opslaan van scanresultaten."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "Opnieuw scannen is al bezig."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "Deze pagina wordt opnieuw gescand."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "Opnieuw scannen voltooid."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "Fout: Verplichte parameters ontbreken."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "Afbeelding gerelateerd aan probleem"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "Oplossingsinstellingen opgeslagen."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "Oplossingsinstellingen konden niet worden opgeslagen."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "Oplossingsinformatie laden..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "Oplossing opslaan voor: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Probleem succesvol genegeerd."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Probleem succesvol heropend."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "Negeren..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Probleem genegeerd — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "Probleem genegeerd"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "Bereik:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "Alle pagina's"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "Door:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "Op:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "Reden voor negeren:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "Dit probleem is wereldwijd genegeerd. Beheer wereldwijde negeringen om het opnieuw te openen."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "Beheer wereldwijde negeringen"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "Heropenen..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "Opmerking (optioneel)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Voeg een notitie toe waarin wordt uitgelegd waarom dit probleem wordt genegeerd."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "Meer negeeropties"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "Negeren en modaal sluiten"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "Probleem #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "Probleemdetails"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "Type"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "Ernst"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "Laden van %s fixinformatie mislukt."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "Fout bij laden van %s fixinformatie."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "Oplossingsinstellingen opgeslagen."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "Oplossingsinstellingen konden niet worden opgeslagen."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "Oplossingsinformatie laden..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "Oplossing opslaan voor: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "Afbeelding gerelateerd aan probleem"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Probleem succesvol genegeerd."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Probleem succesvol heropend."
+
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "Wereldwijd negeren"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "Globaal negeren..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Negeren..."
+
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Probleem genegeerd — %s"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "Probleem genegeerd"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "Bereik:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "Alle pagina's"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "Door:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "Op:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "Reden voor negeren:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Removing..."
+msgstr "Verwijderen..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "Globale negering verwijderen"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "Heropenen..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "Opmerking (optioneel)"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Voeg een notitie toe waarin wordt uitgelegd waarom dit probleem wordt genegeerd."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "More dismiss options"
+msgstr "Meer negeeropties"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss & Close Modal"
+msgstr "Negeren en modaal sluiten"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "U heeft geen toestemming om problemen te negeren."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5608,6 +5901,14 @@ msgstr "lees verder"
 msgid "learn more"
 msgstr "meer informatie"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "Controleert of de zichtbare tekst van een link een URL is in plaats van beschrijvende ankertekst."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "Linktekst moet beschrijvend zijn en niet alleen de URL."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "Toegankelijkheidsgegevens konden niet worden geladen"
@@ -5636,214 +5937,224 @@ msgid_plural "issues that need review"
 msgstr[0] "probleem dat moet worden beoordeeld"
 msgstr[1] "problemen die moeten worden beoordeeld"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "U hebt %1$d %2$s en %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "U hebt %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "Controleer en los toegankelijkheidsproblemen in uw inhoud op."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "Toegankelijkheidspaneel openen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%de"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "Samenvatting verstrekt"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "Samenvatting vereist"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "Samenvatting niet vereist"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "Bekijk %d problemen in Toegankelijkheidsanalyse"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "Bekijk %d items die moeten worden beoordeeld in Toegankelijkheidsanalyse"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "Bekijk details over het leesniveau: %1$s, %2$s"
+
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "Bekijk leesniveaudetails: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "Probleem"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "Probleemacties voor %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "Probleemacties"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "Code tonen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "Probleem heropenen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "Probleem negeren"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "Oplossing toepassen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "%d totaal"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "Geen genegeerde problemen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "Geen problemen gevonden."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "%d totale problemen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "Genegeerde problemen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "Vereenvoudigde samenvatting succesvol opgeslagen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "Samenvatting kon niet worden opgeslagen. Probeer het opnieuw."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "Er is een fout opgetreden bij het opslaan van de samenvatting."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "groep %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "groep %d"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "Niet beschikbaar"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "Waarschuwing"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "Dit bericht bevat niet genoeg inhoud om een leesniveau te berekenen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "Pas samenvattingsprompts aan in instellingen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "Inhoud met een leesniveau van groep 7 of lager vereist geen vereenvoudigde samenvatting."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "Inhoud met een leesniveau boven groep 7 vereist een vereenvoudigde samenvatting om te voldoen aan de WCAG AAA-richtlijnen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "Meer informatie over leesbaarheidsvereisten."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "Vereenvoudigd samenvatting leesniveau"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "Verbetering nodig, samenvatting is boven het leesniveau van groep 7."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "Onder het aanbevolen leesniveau van groep 7."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "Voer vereenvoudigde samenvatting in..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "Voor deze inhoud is een vereenvoudigde samenvatting vereist."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "Deze voorkeur kan niet worden geladen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "Deze voorkeur kan niet worden opgeslagen."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "Voorkeur laden..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "Tekstformaat schermlezer"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "Bepaal of schermlezertekst zichtbaar blijft tijdens het bewerken."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "Altijd schermlezertekst tonen?"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "Toegankelijkheidsgegevens laden..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Accessibility Checker-acties"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "Scannen"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Vernieuwen"
 

@@ -74,6 +74,184 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Highlighter must NOT load on the "latest posts" homepage when no filter overrides the ID.
+	 *
+	 * When show_on_front=posts, the global $post is the first blog post from the main query, not
+	 * the homepage itself. The fix passes null to the filter so the free plugin bails gracefully.
+	 */
+	public function testFrontendHighlighterDoesNotLoadOnLatestPostsHomepage(): void {
+		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		// Create a post so the main query has results.
+		$this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		update_option( 'show_on_front', 'posts' );
+
+		// Simulate visiting the homepage so is_home() / is_front_page() return true.
+		$this->go_to( '/' );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertFalse( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+
+		delete_option( 'show_on_front' );
+	}
+
+	/**
+	 * A filter on edac_filter_frontend_highlight_post_id can enable the highlighter on the
+	 * "latest posts" homepage by supplying a valid post ID (e.g. a Pro virtual-page ID).
+	 */
+	public function testFrontendHighlighterLoadsOnLatestPostsHomepageWhenFilterProvidesId(): void {
+		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		update_option( 'show_on_front', 'posts' );
+
+		$this->go_to( '/' );
+
+		$filter_callback = static function () use ( $post ) {
+			return $post->ID;
+		};
+		$this->added_filters['edac_filter_frontend_highlight_post_id'] = $filter_callback;
+		add_filter( 'edac_filter_frontend_highlight_post_id', $filter_callback );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+
+		delete_option( 'show_on_front' );
+	}
+
+	/**
+	 * Helper: enqueue the frontend highlighter as an admin and return the localized data string.
+	 *
+	 * @return string The raw JS localized-data string for edac-frontend-highlighter-app.
+	 */
+	private function enqueueAndGetLocalizedData(): string {
+		$admin_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		global $wp_scripts;
+		return (string) $wp_scripts->get_data( 'edac-frontend-highlighter-app', 'data' );
+	}
+
+	/**
+	 * RestUrl is present in the localized data passed to the frontend highlighter script.
+	 */
+	public function testLocalizedDataIncludesRestUrl(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'restUrl', $localized_data );
+	}
+
+	/**
+	 * RestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
+	 */
+	public function testRestUrlMatchesRestUrlFunction(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+		$expected       = rest_url( 'accessibility-checker/v1' );
+
+		$this->assertStringContainsString( 'accessibility-checker', $localized_data );
+		$this->assertStringContainsString( 'v1', $localized_data );
+		// The URL must be derived from rest_url(), not hardcoded — verify the host is present.
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * RestUrl must be an absolute URL, not a root-relative path like /wp-json/...
+	 * A root-relative URL on a subdomain multisite would resolve to the main site.
+	 */
+	public function testRestUrlIsAbsolute(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		// The value following "restUrl" must not be a bare /wp-json path.
+		$this->assertDoesNotMatchRegularExpression( '/"restUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		// And the scheme must be present.
+		$this->assertMatchesRegularExpression( '/"restUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl is present in the localized data passed to the frontend highlighter script.
+	 */
+	public function testLocalizedDataIncludesFixesRestUrl(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertStringContainsString( 'fixesRestUrl', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 */
+	public function testFixesRestUrlContainsEdacV1Namespace(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+		$expected       = rest_url( 'edac/v1' );
+
+		$this->assertStringContainsString( 'edac', $localized_data );
+		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must be an absolute URL, not a root-relative path.
+	 */
+	public function testFixesRestUrlIsAbsolute(): void {
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		$this->assertDoesNotMatchRegularExpression( '/"fixesRestUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		$this->assertMatchesRegularExpression( '/"fixesRestUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * RestUrl must follow a custom REST base prefix set via the rest_url_prefix filter.
+	 * Verifies the URL is built with rest_url() rather than a hardcoded /wp-json/ string.
+	 * Pretty permalinks are required for the prefix filter to be applied.
+	 */
+	public function testRestUrlRespectsCustomRestPrefix(): void {
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback                        = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+		$this->added_filters['rest_url_prefix'] = $prefix_callback;
+
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl must follow a custom REST base prefix set via the rest_url_prefix filter.
+	 */
+	public function testFixesRestUrlRespectsCustomRestPrefix(): void {
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback                        = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+		$this->added_filters['rest_url_prefix'] = $prefix_callback;
+
+		$localized_data = $this->enqueueAndGetLocalizedData();
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
+	}
+
+	/**
 	 * Ensure the highlighter uses the filtered post ID when determining scannable post types.
 	 */
 	public function testFrontendHighlighterUsesFilteredPostIdForScannableType(): void {
@@ -96,5 +274,43 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
 
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+	}
+
+	/**
+	 * An editor without the edac_view_frontend_highlighter capability must NOT get the
+	 * highlighter, even though editors satisfy edit_post on virtually any post (PRO-1290:
+	 * the historical edit_post fallback silently overrode the Permissions tab setting).
+	 */
+	public function testHighlighterDoesNotLoadForEditorWithoutCapability(): void {
+		edac_ignore_capability()->sync_matrix( [] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertFalse( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+	}
+
+	/**
+	 * An editor who does hold the capability still gets the highlighter.
+	 */
+	public function testHighlighterLoadsForEditorWithCapability(): void {
+		edac_ignore_capability()->sync_matrix( [ 'edac_view_frontend_highlighter' => [ 'editor' ] ] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+
+		edac_ignore_capability()->sync_matrix( [] );
 	}
 }

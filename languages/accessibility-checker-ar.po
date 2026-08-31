@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.41.0\n"
+"Project-Id-Version: Accessibility Checker 1.47.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-05-19T13:51:49+00:00\n"
+"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -21,17 +21,21 @@ msgstr ""
 #: admin/class-meta-boxes.php:47
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
-#: includes/options-page.php:49
+#: includes/options-page.php:102
+#: includes/options-page.php:111
+#: includes/options-page.php:120
+#: includes/options-page.php:676
 #: partials/welcome-page.php:28
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker"
 msgstr "Accessibility Checker"
 
 #. Plugin URI of the plugin
 #: accessibility-checker.php
-msgid "https://a11ychecker.com"
-msgstr "https://a11ychecker.com"
+msgid "https://equalizedigital.com/accessibility-checker"
+msgstr "https://equalizedigital.com/accessibility-checker"
 
 #. Description of the plugin
 #: accessibility-checker.php
@@ -71,7 +75,7 @@ msgid "Renew your license"
 msgstr "جدد ترخيصك"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:293
+#: admin/AdminPage/AccessibilityReportsPage.php:294
 msgid "Disable Email Reports"
 msgstr "تعطيل تقارير البريد الإلكتروني"
 
@@ -90,7 +94,7 @@ msgstr "تمكين تقارير البريد الإلكتروني"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:189
 #: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "مفتاح ترخيص مجاني"
@@ -122,137 +126,149 @@ msgid "Reports Enabled"
 msgstr "التقارير مُفعّلة"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:240
-msgid "You’ll receive weekly accessibility reports for this site."
-msgstr "ستتلقى تقارير أسبوعية حول إمكانية الوصول لهذا الموقع."
+msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
+msgstr "يتم إرسال تقارير Accessibility الأسبوعية لهذا الموقع بالبريد الإلكتروني إلى مالك حساب مفتاح الترخيص."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:244
+#: admin/AdminPage/AccessibilityReportsPage.php:245
 #, php-format
 msgid "Next report: %s"
 msgstr "التقرير التالي: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Full Coverage"
 msgstr "تغطية كاملة"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:251
+#: admin/AdminPage/AccessibilityReportsPage.php:252
 msgid "Limited Coverage"
 msgstr "تغطية محدودة"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:255
+#: admin/AdminPage/AccessibilityReportsPage.php:256
 msgid "Your reports include all post types and taxonomies."
 msgstr "تتضمن تقاريرك جميع أنواع المنشورات والتصنيفات."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:257
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Full-site scanning enabled"
 msgstr "تم تمكين مسح الموقع بالكامل"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:259
 msgid "Complete issue breakdowns"
 msgstr "تفاصيل كاملة للمشكلات"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:260
 msgid "Detailed reporting"
 msgstr "تقارير مفصلة"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:262
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 msgid "Your reports only include part of your site."
 msgstr "تتضمن تقاريرك جزءًا فقط من موقعك."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:264
 msgid "Upgrade to Pro to:"
 msgstr "قم بالترقية إلى Pro من أجل:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:265
+#: admin/AdminPage/AccessibilityReportsPage.php:266
 msgid "Scan all content types"
 msgstr "فحص جميع أنواع المحتوى"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:267
 msgid "Get full issue breakdowns"
 msgstr "الحصول على تفاصيل كاملة للمشكلات"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:268
 msgid "Receive more detailed reports"
 msgstr "تلقي تقارير أكثر تفصيلاً"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:270
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "الترقية إلى النسخة الاحترافية"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:276
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Accessibility Summary"
 msgstr "ملخص إمكانية الوصول"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "يعكس هذا الملخص أحدث بيانات الفحص المتاحة لموقعك."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:279
+#: admin/AdminPage/AccessibilityReportsPage.php:280
 msgid "Total Issues Found"
 msgstr "إجمالي المشكلات التي تم العثور عليها"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:285
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Account Connection"
 msgstr "اتصال الحساب"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:304
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "بربط هذا الموقع، فإنك توافق على <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">سياسة الخصوصية <span aria-hidden=\"true\">&#8599;</span></a> الخاصة بـ Equalize Digital و<a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">اتفاقية معالجة البيانات <span aria-hidden=\"true\">&#8599;</span></a>."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:307
+#: admin/AdminPage/AccessibilityReportsPage.php:308
 msgid "Privacy Policy (opens in a new window)"
 msgstr "سياسة الخصوصية (تُفتح في نافذة جديدة)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:309
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "اتفاقية معالجة البيانات (تُفتح في نافذة جديدة)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:319
+#: admin/AdminPage/AccessibilityReportsPage.php:320
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "يتضمن البريد الإلكتروني الأسبوعي إجمالي المشكلات المكتشفة والتغييرات منذ التقرير الأخير، ومعلومات التغطية، وعدد المشكلات، والاحتياجات للمراجعة، والنسبة المئوية للاختبارات الناجحة، ومعلومات حول الصفحات الأكثر إشكالية والمشكلات الأكثر خطورة."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:416
-#: build/sidebar.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:417
+#: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "غير متوفر"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:506
-#: admin/class-ajax.php:330
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:507
+#: admin/class-ajax.php:336
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Critical"
 msgstr "حرج"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:508
-#: admin/class-ajax.php:334
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:509
+#: admin/class-ajax.php:340
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "High"
 msgstr "مرتفع"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:510
-#: admin/class-ajax.php:338
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:511
+#: admin/class-ajax.php:344
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Medium"
 msgstr "متوسط"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:512
-#: admin/class-ajax.php:342
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/AdminPage/AccessibilityReportsPage.php:513
+#: admin/class-ajax.php:348
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+#: build/sidebar.bundle.js:10
 msgid "Low"
 msgstr "منخفض"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:514
-#: includes/classes/class-rest-api.php:1007
+#: admin/AdminPage/AccessibilityReportsPage.php:515
+#: includes/classes/class-rest-api.php:1032
 msgid "Unknown"
 msgstr "غير معروف"
 
@@ -401,7 +417,7 @@ msgid "Get Pro"
 msgstr "احصل على النسخة الاحترافية"
 
 #: admin/AdminPage/FixesSettingType/Checkbox.php:67
-#: admin/class-ajax.php:394
+#: admin/class-ajax.php:400
 msgid "Opens in a new window."
 msgstr "يفتح في نافذة جديدة."
 
@@ -410,6 +426,40 @@ msgstr "يفتح في نافذة جديدة."
 #, php-format
 msgid "Read documentation for %s. Opens in a new window."
 msgstr "اقرأ الوثائق الخاصة بـ %s. يفتح في نافذة جديدة."
+
+#: admin/AdminPage/PermissionsPage.php:95
+msgid "Permissions"
+msgstr "الصلاحيات"
+
+#: admin/AdminPage/PermissionsPage.php:176
+msgid "Select a role"
+msgstr "حدد دورًا"
+
+#: admin/AdminPage/PermissionsPage.php:177
+msgid "Select a role to see the capabilities it can be granted."
+msgstr "حدد دورًا لعرض الصلاحيات التي يمكن منحه إياها."
+
+#: admin/AdminPage/PermissionsPage.php:178
+msgid "No capabilities are available."
+msgstr "لا توجد صلاحيات متاحة."
+
+#. translators: %s is the selected user role name.
+#: admin/AdminPage/PermissionsPage.php:180
+#, php-format
+msgid "Permission settings loaded for %s."
+msgstr "تم تحميل إعدادات الأذونات لـ %s."
+
+#: admin/AdminPage/PermissionsPage.php:247
+msgid "Other"
+msgstr "أخرى"
+
+#: admin/AdminPage/PermissionsPage.php:258
+msgid "Requires a valid license."
+msgstr "يتطلب ترخيصًا صالحًا."
+
+#: admin/AdminPage/PermissionsPage.php:286
+msgid "You do not have permission to manage Accessibility Checker permissions."
+msgstr "ليس لديك إذن لإدارة أذونات Accessibility Checker."
 
 #: admin/class-accessibility-statement.php:33
 msgid "Our Commitment to Web Accessibility"
@@ -498,8 +548,8 @@ msgid "🎉 Black Friday special! 🎉"
 msgstr "🎉 عرض خاص للجمعة السوداء! 🎉"
 
 #: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, ignore logs, and more."
-msgstr "قم بالترقية إلى إصدار مدفوع من Accessibility Checker في الفترة من 24 نوفمبر إلى 3 ديسمبر واحصل على خصم 30%! مسح كامل للموقع، وتقرير بالمشكلات المفتوحة على مستوى الموقع، وسجلات التجاهل، والمزيد."
+msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
+msgstr "قم بالترقية إلى نسخة مدفوعة من Accessibility Checker في الفترة من 24 نوفمبر إلى 3 ديسمبر واحصل على خصم 30%! مسح كامل للموقع، تقرير بالمشكلات المفتوحة على مستوى الموقع، سجلات التجاهل، والمزيد."
 
 #: admin/class-admin-notices.php:143
 msgid "Ask a Pre-Sale Question"
@@ -514,14 +564,14 @@ msgstr "قم بالترقية الآن"
 #: admin/class-admin-notices.php:246
 #: admin/class-admin-notices.php:322
 #: admin/class-admin-notices.php:411
-#: admin/class-ajax.php:60
-#: admin/class-ajax.php:223
-#: admin/class-ajax.php:634
-#: admin/class-ajax.php:818
-#: admin/class-frontend-highlight.php:82
-#: admin/class-frontend-highlight.php:100
-#: admin/class-frontend-highlight.php:105
-#: admin/class-frontend-highlight.php:109
+#: admin/class-ajax.php:59
+#: admin/class-ajax.php:222
+#: admin/class-ajax.php:648
+#: admin/class-frontend-highlight.php:89
+#: admin/class-frontend-highlight.php:107
+#: admin/class-frontend-highlight.php:114
+#: admin/class-frontend-highlight.php:119
+#: admin/class-frontend-highlight.php:123
 msgid "Permission Denied"
 msgstr "تم رفض الإذن"
 
@@ -597,54 +647,55 @@ msgstr "لا تسأل مرة أخرى"
 msgid "The review action value was not set"
 msgstr "لم يتم تعيين قيمة إجراء المراجعة"
 
-#: admin/class-ajax.php:64
-#: admin/class-ajax.php:227
-#: admin/class-ajax.php:638
+#: admin/class-ajax.php:63
+#: admin/class-ajax.php:226
+#: admin/class-ajax.php:652
 msgid "The post ID was not set"
 msgstr "لم يتم تعيين معرف المنشور"
 
-#: admin/class-ajax.php:68
-#: admin/class-ajax.php:231
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:67
+#: admin/class-ajax.php:230
+#: admin/class-ajax.php:656
 msgid "You do not have permission to view this information for this post."
 msgstr "ليس لديك إذن لعرض هذه المعلومات لهذا المنشور."
 
-#: admin/class-ajax.php:87
+#: admin/class-ajax.php:86
 msgid "A Simplified summary has not been included for this content."
 msgstr "لم يتم إدراج ملخص مبسط لهذا المحتوى."
 
-#: admin/class-ajax.php:90
+#: admin/class-ajax.php:89
 msgid "Your content has a reading level at or below 9th grade and does not require a simplified summary."
 msgstr "محتواك يتمتع بمستوى قراءة في الصف التاسع أو أقل ولا يتطلب ملخصًا مبسطًا."
 
-#: admin/class-ajax.php:93
+#: admin/class-ajax.php:92
 msgid "The reading level of the simplified summary is too high."
 msgstr "مستوى القراءة للملخص المبسط مرتفع جدًا."
 
-#: admin/class-ajax.php:95
+#: admin/class-ajax.php:94
 msgid "A simplified summary has been included for this content."
 msgstr "تم إدراج ملخص مبسط لهذا المحتوى."
 
 #. translators: %d: percentage of passed checks
-#: admin/class-ajax.php:106
+#: admin/class-ajax.php:105
 #, php-format
 msgid "%d%% Passed Checks"
 msgstr "%d%% عمليات تحقق ناجحة"
 
-#: admin/class-ajax.php:115
+#: admin/class-ajax.php:114
 #: admin/class-welcome-page.php:102
 #: admin/class-widgets.php:111
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Passed Checks"
 msgstr "اجتاز الفحوصات"
 
-#: admin/class-ajax.php:125
+#: admin/class-ajax.php:124
 msgid "Passed Tests"
 msgstr "الاختبارات الناجحة"
 
-#: admin/class-ajax.php:138
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:137
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
 msgstr[0] "مشكلات"
@@ -654,7 +705,7 @@ msgstr[3] "مشكلات"
 msgstr[4] "مشكلات"
 msgstr[5] "مشكلات"
 
-#: admin/class-ajax.php:144
+#: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
 msgstr[0] "مشكلات التباين"
@@ -664,11 +715,13 @@ msgstr[3] "مشكلات التباين"
 msgstr[4] "مشكلات التباين"
 msgstr[5] "مشكلات التباين"
 
-#: admin/class-ajax.php:150
+#: admin/class-ajax.php:149
 #: admin/class-widgets.php:182
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Needs Review"
 msgid_plural "Needs Review"
 msgstr[0] "يحتاج إلى مراجعة"
@@ -678,8 +731,8 @@ msgstr[3] "يحتاج إلى مراجعة"
 msgstr[4] "يحتاج إلى مراجعة"
 msgstr[5] "يحتاج إلى مراجعة"
 
-#: admin/class-ajax.php:156
-#: admin/class-ajax.php:385
+#: admin/class-ajax.php:155
+#: admin/class-ajax.php:391
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
@@ -690,323 +743,332 @@ msgstr[3] "مشكلات متجاهلة"
 msgstr[4] "مشكلات متجاهلة"
 msgstr[5] "مشكلات متجاهلة"
 
-#: admin/class-ajax.php:176
+#: admin/class-ajax.php:175
 #: includes/wcag.php:1763
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reading Level"
 msgstr "مستوى القراءة"
 
 #. translators: 1: opening anchor tag, 2: closing anchor tag with arrow icon and screen reader text
-#: admin/class-ajax.php:187
+#: admin/class-ajax.php:186
 #, php-format
 msgid "* True accessibility requires manual testing in addition to automated scans. %1$sLearn how to manually test for accessibility%2$s"
 msgstr "* تتطلب إمكانية الوصول الحقيقية اختبارًا يدويًا بالإضافة إلى الفحص الآلي. %1$sتعرّف على كيفية الاختبار اليدوي لإمكانية الوصول%2$s"
 
-#: admin/class-ajax.php:198
-#: admin/class-ajax.php:790
-#: admin/class-ignore-ui.php:126
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:197
+#: admin/class-ajax.php:804
+#: admin/class-ignore-ui.php:170
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid ", opens a new window"
 msgstr "، يفتح نافذة جديدة"
 
-#: admin/class-ajax.php:203
+#: admin/class-ajax.php:202
 msgid "No summary to return"
 msgstr "لا يوجد ملخص للإرجاع"
 
-#: admin/class-ajax.php:242
-#: includes/classes/class-rest-api.php:915
+#: admin/class-ajax.php:241
+#: includes/classes/class-rest-api.php:940
 msgid "Invalid table name"
 msgstr "اسم الجدول غير صالح"
 
-#: admin/class-ajax.php:383
+#: admin/class-ajax.php:389
 msgid " total"
 msgstr " المجموع"
 
 #. translators: 1: rule title, 2: "Opens in a new window."
-#: admin/class-ajax.php:392
+#: admin/class-ajax.php:398
 #, php-format
 msgid "Read documentation for %1$s. %2$s"
 msgstr "اقرأ الوثائق الخاصة بـ %1$s. %2$s"
 
 #. translators: %s: rule title
-#: admin/class-ajax.php:400
+#: admin/class-ajax.php:406
 #, php-format
 msgid "Expand issues for %s"
 msgstr "توسيع المشكلات لـ %s"
 
-#: admin/class-ajax.php:426
+#: admin/class-ajax.php:432
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "تمكّن هذه الإعدادات الإصلاحات العامة في جميع أنحاء موقعك."
 
-#: admin/class-ajax.php:427
+#: admin/class-ajax.php:433
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "قد تحتاج الصفحات إلى إعادة حفظ أو إجراء فحص كامل للموقع لرؤية الإصلاحات المنعكسة في التقارير."
 
-#: admin/class-ajax.php:455
-#: build/frontendHighlighterApp.bundle.js:2
+#: admin/class-ajax.php:461
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "حفظ"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "الكود المتأثر"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:486
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "صورة"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:489
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "معلم"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:492
 msgid "Actions"
 msgstr "الإجراءات"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "تم تجاهلها"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:501
 msgid "Dismiss"
 msgstr "تجاهل"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:512
 #, php-format
 msgid "Issue ID %d"
 msgstr "معرّف المشكلة %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
+#: admin/class-ajax.php:530
+#: admin/class-ajax.php:540
 #, php-format
 msgid "image for issue %d"
 msgstr "صورة للمشكلة %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:561
+#: admin/class-ajax.php:575
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "عرض المشكلة ذات المعرف %d على الموقع، يفتح في نافذة جديدة"
 
-#: admin/class-ajax.php:562
+#: admin/class-ajax.php:576
 #: build/issueModal.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "عرض في الصفحة"
 
-#: admin/class-ajax.php:581
+#: admin/class-ajax.php:595
 msgid "Fix: "
 msgstr "إصلاح: "
 
-#: admin/class-ajax.php:582
+#: admin/class-ajax.php:596
 msgid "Fix"
 msgstr "إصلاح"
 
-#: admin/class-ajax.php:615
+#: admin/class-ajax.php:629
 msgid "No details to return"
 msgstr "لا توجد تفاصيل للإرجاع"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:687
+#: admin/class-ajax.php:701
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "مستوى قراءة ما بعد النشر: %s"
 
-#: admin/class-ajax.php:688
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:702
+#: admin/class-ajax.php:723
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "لا شيء"
 
-#: admin/class-ajax.php:691
+#: admin/class-ajax.php:705
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "مستوى قراءة منشورك أعلى من الصف التاسع. تتطلب إرشادات الوصول إلى محتوى الويب (WCAG) على مستوى AAA ملخصًا مبسطًا لمنشورك يكون في الصف التاسع أو أقل."
 
-#: admin/class-ajax.php:693
+#: admin/class-ajax.php:707
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "لا يحتوي منشورك على محتوى كافٍ لحساب مستوى قراءته."
 
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:709
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "الملخص المبسّط ليس ضروريًا عندما يكون مستوى قراءة المحتوى في الصف التاسع أو أقل. اختر متى يتم المطالبة بملخص مبسط في صفحة الإعدادات."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:708
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:722
+#: admin/class-ajax.php:734
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "مستوى قراءة الملخص المبسّط: %s"
 
-#: admin/class-ajax.php:712
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:726
+#: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "لا يوجد محتوى كافٍ لتحديد مستوى قراءة دقيق."
 
-#: admin/class-ajax.php:725
+#: admin/class-ajax.php:739
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "مستوى قراءة الملخص المبسّط أعلى من الصف التاسع."
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:740
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "مستوى قراءة الملخص المبسّط في الصف التاسع أو أقل."
 
-#: admin/class-ajax.php:737
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:751
+#: admin/class-ajax.php:781
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "لا يتم إدراج الملخص المبسّط تلقائيًا في المحتوى."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:754
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "تم تعيين المطالبة بالملخص المبسّط على ”أبدًا.“ إذا كنت ترغب في عرض الملخص المبسّط تلقائيًا، يمكنك تغيير ذلك في %s."
 
-#: admin/class-ajax.php:741
-#: admin/class-ajax.php:758
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:755
+#: admin/class-ajax.php:772
+#: admin/class-ajax.php:785
 msgid "settings page"
 msgstr "صفحة الإعدادات"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:752
+#: admin/class-ajax.php:766
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "يتم إدراج الملخص المبسّط تلقائيًا %s."
 
-#: admin/class-ajax.php:753
+#: admin/class-ajax.php:767
 msgid "the content"
 msgstr "المحتوى"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:757
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "عيّن مكان إدراج الملخص المبسّط في المحتوى على %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:770
+#: admin/class-ajax.php:784
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "تم تعيين موقع الملخص المبسّط الخاص بك على ”يدويًا“، مما يتطلب إضافة دالة إلى قالب صفحتك. إذا كنت ترغب في عرض الملخص المبسّط تلقائيًا، يمكنك تغيير ذلك في %s."
 
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:798
 #: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:932
-#: includes/options-page.php:956
-#: build/sidebar.bundle.js:2
+#: includes/options-page.php:1535
+#: includes/options-page.php:1559
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary"
 msgstr "ملخص مبسط"
 
-#: admin/class-ajax.php:786
-#: build/sidebar.bundle.js:2
+#: admin/class-ajax.php:800
+#: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "حفظ الملخص"
 
-#: admin/class-ajax.php:790
+#: admin/class-ajax.php:804
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "تعرّف على المزيد حول تحسين قابلية القراءة ومتطلبات الملخص المبسّط"
 
-#: admin/class-ajax.php:793
+#: admin/class-ajax.php:807
 msgid "No readability data to return"
 msgstr "لا توجد بيانات قابلية القراءة للإرجاع"
 
-#: admin/class-ajax.php:853
-#: admin/class-ajax.php:874
-msgid "No ignore data to return"
-msgstr "لا توجد بيانات تجاهل للإرجاع"
-
-#: admin/class-enqueue-admin.php:435
+#: admin/class-enqueue-admin.php:454
 msgid "* Screen Reader Text"
 msgstr "* نص قارئ الشاشة"
 
-#: admin/class-frontend-highlight.php:86
+#: admin/class-frontend-highlight.php:93
 msgid "The id value was not set"
 msgstr "لم يتم تعيين قيمة المعرف"
 
-#: admin/class-frontend-highlight.php:93
-#: includes/classes/class-rest-api.php:1053
+#: admin/class-frontend-highlight.php:100
+#: includes/classes/class-rest-api.php:1078
 msgid "Post not found"
 msgstr "لم يتم العثور على المنشور"
 
-#: admin/class-frontend-highlight.php:115
+#: admin/class-frontend-highlight.php:129
 msgid "Issue query returned no results"
 msgstr "استعلام المشكلة لم يرجع أي نتائج"
 
-#: admin/class-frontend-highlight.php:168
+#: admin/class-frontend-highlight.php:182
 msgid "Object query returned no results"
 msgstr "استعلام الكائن لم يرجع أي نتائج"
 
-#: admin/class-ignore-ui.php:31
-msgid "False positive"
-msgstr "إيجابي كاذب"
-
-#: admin/class-ignore-ui.php:32
-msgid "The scanner flagged this, but it does not apply to this content."
-msgstr "أشار الماسح الضوئي إلى هذا، ولكنه لا ينطبق على هذا المحتوى."
-
-#: admin/class-ignore-ui.php:35
-msgid "Remediated"
-msgstr "تم الإصلاح"
-
-#: admin/class-ignore-ui.php:36
-msgid "The issue has been fixed, but the page has not been rescanned yet."
-msgstr "تم إصلاح المشكلة، ولكن لم يتم إعادة فحص الصفحة بعد."
-
-#: admin/class-ignore-ui.php:39
+#: admin/class-ignore-ui.php:34
 msgid "Confirmed accessible"
 msgstr "تم تأكيد إمكانية الوصول"
 
-#: admin/class-ignore-ui.php:40
+#: admin/class-ignore-ui.php:35
 msgid "Reviewed and verified to meet accessibility requirements."
 msgstr "تمت المراجعة والتحقق من استيفاء متطلبات إمكانية الوصول."
 
-#: admin/class-ignore-ui.php:82
+#: admin/class-ignore-ui.php:38
+msgid "False positive"
+msgstr "إيجابي كاذب"
+
+#: admin/class-ignore-ui.php:39
+msgid "The scanner flagged this, but it does not apply to this content."
+msgstr "أشار الماسح الضوئي إلى هذا، ولكنه لا ينطبق على هذا المحتوى."
+
+#: admin/class-ignore-ui.php:42
+msgid "Remediated"
+msgstr "تم الإصلاح"
+
+#: admin/class-ignore-ui.php:43
+msgid "The issue has been fixed, but the page has not been rescanned yet."
+msgstr "تم إصلاح المشكلة، ولكن لم يتم إعادة فحص الصفحة بعد."
+
+#: admin/class-ignore-ui.php:126
 msgid "Username:"
 msgstr "اسم المستخدم:"
 
-#: admin/class-ignore-ui.php:92
+#: admin/class-ignore-ui.php:136
 msgid "Date:"
 msgstr "التاريخ:"
 
-#: admin/class-ignore-ui.php:97
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:141
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "إعادة فتح المشكلة"
 
-#: admin/class-ignore-ui.php:98
+#: admin/class-ignore-ui.php:142
 #: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss Issue"
 msgstr "تجاهل المشكلة"
 
-#: admin/class-ignore-ui.php:119
+#: admin/class-ignore-ui.php:163
 #: includes/classes/Fixes/Fix/CommentSearchLabelFix.php:142
 msgid "Comment"
 msgstr "تعليق"
 
-#: admin/class-ignore-ui.php:126
+#: admin/class-ignore-ui.php:170
 msgid "Manage Globally Dismissed"
 msgstr "إدارة المشكلات المتجاهلة عالميًا"
 
-#: admin/class-ignore-ui.php:134
+#: admin/class-ignore-ui.php:178
 msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "حساب المستخدم الخاص بك لا يملك صلاحية لتجاهل هذه المشكلة."
 
-#: admin/class-ignore-ui.php:156
-#: build/issueModal.bundle.js:2
+#: admin/class-ignore-ui.php:200
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
 msgstr "تجاهل المشكلة كـ:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:72
+#: includes/options-page.php:699
 msgid "Settings"
 msgstr "الإعدادات"
 
@@ -1110,7 +1172,7 @@ msgid "Report Last Updated:"
 msgstr "آخر تحديث للتقرير:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:619
+#: includes/options-page.php:1237
 msgid "Never"
 msgstr "أبدًا"
 
@@ -1212,7 +1274,8 @@ msgid "Post Type"
 msgstr "نوع المنشور"
 
 #: admin/class-widgets.php:176
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Problems"
 msgstr "مشكلات"
 
@@ -1431,7 +1494,7 @@ msgid "Disabled"
 msgstr "معطّل"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:203
+#: includes/options-page.php:817
 msgid "Delete Data"
 msgstr "حذف البيانات"
 
@@ -1488,13 +1551,12 @@ msgid "Simplified Sum Heading"
 msgstr "عنوان الملخص المبسط"
 
 #: admin/site-health/class-pro.php:74
-#: includes/options-page.php:194
-msgid "Ignore Permissions"
+msgid "Dismiss Permissions"
 msgstr "صلاحيات التجاهل"
 
 #: admin/site-health/class-pro.php:78
-msgid "Ignores DB Table Count"
-msgstr "عدد جداول قاعدة بيانات التجاهل"
+msgid "Dismissals DB Table Count"
+msgstr "عدد جدول قاعدة بيانات التجاهلات"
 
 #. translators: %1$s is the site name, %2$s is a link with the plugin name.
 #: includes/classes/class-accessibility-statement.php:49
@@ -1526,11 +1588,20 @@ msgstr "احصل على Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "احصل على Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
-#: includes/classes/class-rest-api.php:1240
+#: includes/classes/class-rest-api.php:1238
+msgid "Sorry, you are not allowed to dismiss issues."
+msgstr "عذرًا، لا يُسمح لك بتجاهل المشكلات."
+
+#: includes/classes/class-rest-api.php:1257
+msgid "Sorry, you are not allowed to dismiss issues globally."
+msgstr "عذرًا، لا يُسمح لك بتجاهل المشكلات بشكل عام."
+
+#: includes/classes/class-rest-api.php:1295
+#: includes/classes/class-rest-api.php:1317
 msgid "Issue not found."
 msgstr "لم يتم العثور على المشكلة."
 
-#: includes/classes/class-rest-api.php:1283
+#: includes/classes/class-rest-api.php:1374
 msgid "Failed to update the issue."
 msgstr "فشل تحديث المشكلة."
 
@@ -2011,8 +2082,8 @@ msgstr "يُستخدم السمة aria-hidden لإخفاء المحتوى عن �
 #. translators: %s is <code>aria-hidden="true"</code.
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:41
 #, php-format
-msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "تحقق مما إذا كان يجب حقًا إخفاء العنصر عن مستخدمي قارئات الشاشة. إذا كان يحتوي على محتوى أو وظائف مهمة، قم بإزالة %s. إذا كان زخرفيًا أو مكررًا، اترك العنصر كما هو وتجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it's decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker."
+msgstr "تحقق مما إذا كان العنصر يجب أن يكون مخفيًا حقًا عن مستخدمي قارئ الشاشة. إذا كان يحتوي على محتوى أو وظائف مهمة، فأزل %s. إذا كان مزخرفًا أو زائدًا عن الحاجة، فاترك العنصر كما هو وتجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/AriaHiddenRule.php:46
 msgid "W3C: ARIA Authoring Practices - aria-hidden"
@@ -2409,8 +2480,8 @@ msgstr "قارئات الشاشة بتعتمد على النص البديل لو
 #. translators: %1$s is <code>alt=""</code>, %2$s is <code>role="presentation"</code>, and %3$s is <code>role="none"</code>.
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:41
 #, php-format
-msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker or adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
-msgstr "راجع الصورة لتحديد ما إذا كانت زخرفية. إذا كانت زخرفية، فمن الصحيح استخدام سمة %1$s فارغة ويمكنك تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker أو إضافة %2$s أو %3$s إلى الصورة وإعادة مسح الصفحة ضوئيًا. إذا كانت الصورة تنقل معلومات، فأضف نصًا بديلًا وصفيًا يوصل الغرض من الصورة أو معناها."
+msgid "Review the image to determine if it is decorative. If it is decorative, it is correct to use an empty %1$s attribute and you can dismiss this warning in Accessibility Checker or by adding %2$s or %3$s to the image and rescanning the page. If the image conveys information, add descriptive alt text that communicates the image's purpose or meaning."
+msgstr "راجع الصورة لتحديد ما إذا كانت زخرفية. إذا كانت زخرفية، فمن الصحيح استخدام سمة %1$s فارغة ويمكنك تجاهل هذا التحذير في Accessibility Checker أو عن طريق إضافة %2$s أو %3$s إلى الصورة وإعادة فحص الصفحة. إذا كانت الصورة تنقل معلومات، فأضف نصًا بديلاً وصفيًا يوضح الغرض أو المعنى من الصورة."
 
 #: includes/classes/Rules/Rule/ImgAltEmptyRule.php:48
 msgid "W3C Tutorial on Images: Decorative Images"
@@ -2464,8 +2535,8 @@ msgstr "يجب أن يكون النص البديل موجزًا ومركزًا �
 #. translators: %s is the maximum character count for alt text.
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:41
 #, php-format
-msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "اختصر النص البديل إلى أقل من %s حرف مع الاستمرار في وصف وظيفة الصورة أو الغرض منها. حافظ على البساطة في الوصف وتجنب تكرار المحتوى المحيط. إذا لم يكن هناك حاجة لتغيير النص البديل للصورة، تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Shorten the alt text to fewer than %s characters while still describing the image's function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image's alt text does not need to be changed, dismiss this warning in Accessibility Checker."
+msgstr "اختصر النص البديل إلى أقل من %s حرفًا مع الاستمرار في وصف وظيفة الصورة أو غرضها. حافظ على الأوصاف بسيطة وتجنب تكرار المحتوى المحيط. إذا لم يكن نص الصورة البديل بحاجة إلى تغيير، فتجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAltLongRule.php:46
 msgid "W3C Tutorial: Informative Images"
@@ -2542,8 +2613,8 @@ msgid "Animated images can be distracting, induce seizures in some individuals, 
 msgstr "يمكن أن تكون الصور المتحركة مشتتة للانتباه، وتسبب نوبات صرع لبعض الأفراد، أو تخلق عبئًا إدراكيًا. تتطلب إرشادات WCAG أن توفر الرسوم المتحركة التي تومض أو تتكرر باستمرار آلية لإيقافها مؤقتًا أو إيقافها أو إخفائها."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:31
-msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "استبدل الصورة المتحركة بصورة ثابتة أو فيديو يتضمن عناصر تحكم. إذا كنت مضطرًا لاستخدام صورة متحركة، تأكد من أنها لا تومض أكثر من ثلاث مرات في الثانية وقم بتوفير عناصر تحكم للإيقاف المؤقت أو الإيقاف إذا كانت تعمل لأكثر من 5 ثوانٍ. إذا تأكدت من أن الصورة يمكن الوصول إليها ويمكن إيقافها مؤقتًا، يمكنك تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Replace the animated image with a static image or a video that includes controls. If you must use an animated image, ensure it does not flash more than three times per second and provide pause or stop controls if it plays for more than 5 seconds. If you have confirmed the image is accessible and pauseable, you can dismiss this warning in Accessibility Checker."
+msgstr "استبدل الصورة المتحركة بصورة ثابتة أو مقطع فيديو يتضمن عناصر تحكم. إذا كان يجب عليك استخدام صورة متحركة، فتأكد من أنها لا تومض أكثر من ثلاث مرات في الثانية، ووفر عناصر تحكم للإيقاف المؤقت أو التوقف إذا كانت تعمل لأكثر من 5 ثوانٍ. إذا كنت قد أكدت أن الصورة يمكن الوصول إليها ويمكن إيقافها مؤقتًا، فيمكنك تجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/ImgAnimatedGifRule.php:34
 msgid "Should you use animated GIFs?"
@@ -2608,29 +2679,27 @@ msgstr "أضف سمة alt تصف الغرض من الرابط. ركز على و�
 msgid "Incorrect Heading Order"
 msgstr "ترتيب العناوين غير صحيح"
 
-#. translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:30
-#, php-format
-msgid "This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels."
-msgstr "تستخدم هذه الصفحة العناوين بترتيب غير صحيح. هذا %1$s بعد %2$s، متخطيًا مستوى أو أكثر من مستويات العناوين."
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:28
+msgid "This page uses headings out of order, skipping one or more heading levels."
+msgstr "تستخدم هذه الصفحة ترويسات غير مرتبة، مع تخطي مستوى ترويسة واحد أو أكثر."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:31
 #, php-format
 msgid "These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between."
 msgstr "تستخدم هذه الصفحات العناوين بترتيب غير صحيح، متخطية مستوى أو أكثر من مستويات العناوين، مثل الانتقال من %1$s إلى %2$s دون وجود %3$s بينهما."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:41
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:36
 msgid "Headings help all users—especially those using screen readers or keyboard navigation—understand the structure of the page. Skipping heading levels can create confusion and make it harder to follow the content hierarchy or navigate efficiently."
 msgstr "تساعد العناوين جميع المستخدمين - خاصة أولئك الذين يستخدمون قارئات الشاشة أو التنقل باستخدام لوحة المفاتيح - على فهم هيكل الصفحة. يمكن أن يؤدي تخطي مستويات العناوين إلى إحداث ارتباك وجعل متابعة التسلسل الهرمي للمحتوى أو التنقل بكفاءة أمرًا أصعب."
 
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:44
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:39
 #, php-format
 msgid "Revise your headings to follow a logical order without skipping levels. For example, if a %1$s is followed by a %2$s, change the %2$s to a %3$s or add an intervening %3$s section to preserve proper structure. If needed, use CSS or block/page builder settings to style headings rather than setting the incorrect level."
 msgstr "راجع عناوينك لتتبع ترتيبًا منطقيًا دون تخطي المستويات. على سبيل المثال، إذا كان %1$s متبوعًا بـ %2$s، غيّر %2$s إلى %3$s أو أضف قسم %3$s بينهما للحفاظ على الهيكل الصحيح. إذا لزم الأمر، استخدم CSS أو إعدادات منشئ الكتل/الصفحات لتنسيق العناوين بدلاً من تعيين المستوى غير الصحيح."
 
-#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:51
+#: includes/classes/Rules/Rule/IncorrectHeadingOrderRule.php:46
 msgid "W3C Page Structure Tutorial: Headings"
 msgstr "دليل W3C لهيكل الصفحة: العناوين"
 
@@ -2745,8 +2814,8 @@ msgid "Documents in Word, Excel, or PowerPoint format may not be accessible to a
 msgstr "قد لا تكون المستندات بتنسيق Word أو Excel أو PowerPoint متاحة لجميع المستخدمين، خاصة إذا لم يتم وضع علامات عليها بشكل صحيح أو لم تتبع أفضل ممارسات إمكانية الوصول. تتطلب قوانين إمكانية الوصول أن تتوافق المستندات المنشورة على صفحات الويب أيضًا مع WCAG. بالإضافة إلى ذلك، يجب تحذير المستخدمين عندما يفتح الرابط ملفًا قابلاً للتنزيل بدلاً من صفحة ويب."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:31
-msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "تأكد من اختبار الملف المرتبط وإصلاحه لإمكانية الوصول. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker. قم بتضمين امتداد الملف وحجمه في نص الرابط لإعلام المستخدمين (قم بتمكين إصلاح ”إضافة حجم الملف ونوعه إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا تم تضمين المستند باستخدام مكون إضافي، قم أيضًا بتوفير رابط مباشر لتنزيله. إذا كان من الصعب جعل المستند قابلاً للوصول، فكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
+msgid "Ensure that the linked file is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "تأكد من اختبار الملف المرتبط ومعالجته لتحقيق Accessibility. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير في Accessibility Checker. قم بتضمين امتداد الملف وحجمه في نص الرابط لإعلام المستخدمين (قم بتمكين الإصلاح ”إضافة حجم ونوع الملف إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا كان المستند مضمّنًا باستخدام مكون إضافي، فوفر أيضًا رابطًا مباشرًا لتنزيله. إذا كان جعل المستند قابلاً للوصول أمرًا صعبًا، ففكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
 
 #: includes/classes/Rules/Rule/LinkMsOfficeFileRule.php:34
 msgid "Microsoft: Accessibility best practices with Excel spreadsheets"
@@ -2797,8 +2866,8 @@ msgid "Non-HTML document formats may not be fully accessible to assistive techno
 msgstr "قد لا تكون تنسيقات المستندات غير HTML قابلة للوصول بالكامل للتقنيات المساعدة ما لم يتم اختبارها وإصلاحها. يجب تحذير المستخدمين عندما يفتح الرابط ملفًا قابلاً للتنزيل بدلاً من صفحة ويب قياسية."
 
 #: includes/classes/Rules/Rule/LinkNonHtmlFileRule.php:31
-msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
-msgstr "تأكد من أن المستند المرتبط قابل للوصول. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker. قم بتضمين امتداد الملف في نص الرابط المرئي (مثل ”ملاحظات الاجتماع (ODT)“) حتى يعرف المستخدمون ما يمكن توقعه (قم بتمكين إصلاح ”إضافة حجم الملف ونوعه إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا تم تضمين المستند، قم بتوفير رابط تنزيل مباشر أيضًا. إذا كان من الصعب جعل المستند قابلاً للوصول، فكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
+msgid "Ensure the linked document is accessible. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension in the visible link text (e.g., “Meeting Notes (ODT)”) so users know what to expect (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded, provide a direct download link as well. If making the document accessible is difficult, consider putting the content on a web page instead."
+msgstr "تأكد من أن المستند المرتبط يمكن الوصول إليه. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير في Accessibility Checker. قم بتضمين امتداد الملف في نص الرابط المرئي (على سبيل المثال، ”ملاحظات الاجتماع (ODT)“) حتى يعرف المستخدمون ما يمكن توقعه (قم بتمكين الإصلاح ”إضافة حجم ونوع الملف إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا كان المستند مضمّنًا، فوفر رابط تنزيل مباشر أيضًا. إذا كان جعل المستند قابلاً للوصول أمرًا صعبًا، ففكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:24
 msgid "Link to PDF"
@@ -2817,8 +2886,8 @@ msgid "PDFs may not be accessible to all users, especially if they are not tagge
 msgstr "قد لا تكون ملفات PDF متاحة لجميع المستخدمين، خاصة إذا لم يتم وضع علامات عليها بشكل صحيح أو فشلت في تلبية متطلبات WCAG. تتطلب قوانين إمكانية الوصول أن تفي المستندات المنشورة على المواقع الإلكترونية بنفس معايير إمكانية الوصول مثل محتوى HTML. بالإضافة إلى ذلك، يجب تحذير المستخدمين عندما يفتح الرابط ملفًا قابلاً للتنزيل بدلاً من صفحة ويب."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:31
-msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning using the \"Ignore\" feature in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
-msgstr "تأكد من اختبار ملف PDF المرتبط وإصلاحه لإمكانية الوصول. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker. قم بتضمين امتداد الملف وحجمه في نص الرابط لإعلام المستخدمين (قم بتمكين إصلاح ”إضافة حجم الملف ونوعه إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا تم تضمين المستند باستخدام مكون إضافي، فقم أيضًا بتوفير رابط مباشر لتنزيله. إذا كان جعل ملف PDF قابلاً للوصول أمرًا صعبًا، فكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
+msgid "Ensure the linked PDF is tested and remediated for accessibility. When you know it is accessible, dismiss this warning in Accessibility Checker. Include the file extension and size in the link text to inform users (enable the 'Add File Size & Type To Links' fix in Accessibility Checker settings to do this site-wide). If the document is embedded using a plugin, also provide a direct link to download it. If making the PDF accessible is difficult, consider putting the content on a web page instead."
+msgstr "تأكد من اختبار ملف PDF المرتبط ومعالجته لتحقيق Accessibility. عندما تعرف أنه يمكن الوصول إليه، تجاهل هذا التحذير في Accessibility Checker. قم بتضمين امتداد الملف وحجمه في نص الرابط لإعلام المستخدمين (قم بتمكين الإصلاح ”إضافة حجم ونوع الملف إلى الروابط“ في إعدادات Accessibility Checker للقيام بذلك على مستوى الموقع). إذا كان المستند مضمّنًا باستخدام مكون إضافي، فوفر أيضًا رابطًا مباشرًا لتنزيله. إذا كان جعل ملف PDF قابلاً للوصول أمرًا صعبًا، ففكر في وضع المحتوى على صفحة ويب بدلاً من ذلك."
 
 #: includes/classes/Rules/Rule/LinkPdfRule.php:34
 msgid "Adobe: Create and verify PDF accessibility (Acrobat Pro)"
@@ -2835,6 +2904,30 @@ msgstr "إمكانية الوصول إلى PDF على الويب: الحيل و�
 #: includes/classes/Rules/Rule/LinkPdfRule.php:46
 msgid "InDesign & PDF Accessibility Mistakes and How to Fix Them (Webinar)"
 msgstr "أخطاء إمكانية الوصول في InDesign وPDF وكيفية إصلاحها (ندوة عبر الإنترنت)"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:25
+msgid "Link Text is URL"
+msgstr "نص الرابط هو URL"
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:29
+msgid "This link uses a URL for its anchor text rather than a meaningful word or phrase."
+msgstr "يستخدم هذا الرابط URL كنص ربط له بدلاً من كلمة أو عبارة ذات معنى."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:33
+msgid "These links use URLs for their anchor text rather than meaningful words or phrases."
+msgstr "تستخدم هذه الروابط عناوين URL كنص ربط لها بدلاً من كلمات أو عبارات ذات معنى."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:37
+msgid "Link text that is just a URL may not provide meaningful context about the link destination. Additionally, long URLs can be difficult to understand when read by a screen reader which may announce every letter, number, and character individually. Users rely on descriptive link text to understand where a link will take them; using URLs for your link text reduces usability, increases cognitive load, and can be confusing or misleading."
+msgstr "قد لا يوفر نص الرابط الذي هو مجرد URL سياقًا ذا معنى حول وجهة الرابط. بالإضافة إلى ذلك، قد يكون من الصعب فهم عناوين URL الطويلة عند قراءتها بواسطة قارئ الشاشة الذي قد يعلن كل حرف ورقم ورمز على حدة. يعتمد المستخدمون على نص الرابط الوصفي لفهم المكان الذي سينقلهم إليه الرابط؛ استخدام عناوين URL كنص للروابط يقلل من قابلية الاستخدام ويزيد من الحمل المعرفي وقد يكون مربكًا أو مضللاً."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:41
+msgid "Replace the URL in the link text with a concise, descriptive word or phrase that explains the destination or purpose of the link (for example, \"Read the accessibility guide\" instead of \"https://example.com/guide\"). If the URL is necessary for context and is very short, you can dismiss this warning by using the \"Dismiss\" feature in Accessibility Checker."
+msgstr "استبدل عنوان URL في نص الرابط بكلمة أو عبارة موجزة ووصفية تشرح وجهة الرابط أو غرضه (على سبيل المثال، ”اقرأ دليل الوصول“ بدلاً من ”https://example.com/guide“). إذا كان عنوان URL ضروريًا للسياق وقصيرًا جدًا، يمكنك تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+
+#: includes/classes/Rules/Rule/LinkTextIsUrlRule.php:47
+msgid "W3C: Technique G91: Providing link text that describes the purpose of a link"
+msgstr "W3C: التقنية G91: توفير نص رابط يصف الغرض من الرابط"
 
 #: includes/classes/Rules/Rule/LongDescriptionInvalidRule.php:24
 msgid "Long Description Invalid"
@@ -3107,8 +3200,8 @@ msgstr "يعتمد مستخدمو قارئ الشاشة والتقنيات ال�
 #. translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h6&gt;</code.
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:33
 #, php-format
-msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "راجع النص الذي تم وضع علامة عليه وحدد ما إذا كان يجب أن يكون عنوانًا. إذا كان كذلك، قم بتغيير العنصر إلى علامة %1$s-%2$s المناسبة. إذا لم يكن المقصود به عنوانًا، فيمكنك استبعاد هذا التحذير باستخدام ميزة \"تجاهل\" في مدقق إمكانية الوصول."
+msgid "Review the flagged text and determine if it should be a heading. If it is, change the element to the appropriate %1$s–%2$s tag. If it is not intended as a heading, you can dismiss this warning in Accessibility Checker."
+msgstr "راجع النص المحدد وحدد ما إذا كان يجب أن يكون عنوانًا. إذا كان كذلك، فغير العنصر إلى وسم %1$s–%2$s المناسب. إذا لم يكن مخصصًا كعنوان، يمكنك تجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/PossibleHeadingRule.php:39
 msgid "W3C: Using HTML headings to identify headings"
@@ -3131,8 +3224,8 @@ msgid "Sliders are often difficult to use with screen readers and keyboards. Ina
 msgstr "غالبًا ما يكون من الصعب استخدام أشرطة التمرير مع قارئات الشاشة ولوحات المفاتيح. يمكن أن تتداخل أشرطة التمرير غير القابلة للوصول مع التنقل، أو تحبس التركيز، أو تتحرك بسرعة كبيرة بحيث لا يتمكن المستخدمون من التفاعل مع المحتوى."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:31
-msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "راجع شريط التمرير في الواجهة الأمامية لموقعك. تأكد من أنه يمكن الوصول إليه باستخدام لوحة المفاتيح، وقابل للإيقاف المؤقت، ويحتوي على أدوار وتسميات ARIA مناسبة، ويعمل بشكل جيد مع قارئات الشاشة. بعد التأكد من إمكانية الوصول إلى شريط التمرير أو معالجة المشكلات، يمكنك تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker."
+msgstr "راجع شريط التمرير في الواجهة الأمامية لموقع الويب الخاص بك. تأكد من إمكانية الوصول إليه باستخدام لوحة المفاتيح، وإمكانية إيقافه مؤقتًا، واحتوائه على أدوار وتسميات ARIA مناسبة، وعمله بشكل جيد مع قارئات الشاشة. بعد التأكد من إمكانية الوصول إلى شريط التمرير أو معالجة المشكلات، يمكنك تجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/SliderPresentRule.php:34
 msgid "W3C: Carousels Tutorial"
@@ -3287,8 +3380,8 @@ msgid "Underlined text is commonly associated with links. When non-link text is 
 msgstr "النص المسطر عادة ما يرتبط بالروابط. عندما يكون النص غير المرتبط مسطرًا، قد يكون مربكًا للمستخدمين، خاصة أولئك الذين يعانون من إعاقات إدراكية أو الذين يعتمدون على الإشارات البصرية لتحديد الروابط."
 
 #: includes/classes/Rules/Rule/UnderlinedTextRule.php:41
-msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning using the \"Ignore\" feature in Accessibility Checker."
-msgstr "قم بإزالة وسم التسطير أو نمط CSS للتسطير من النص. إذا كنت ترغب في التأكيد على النص، فكر في استخدام التنسيق العريض أو المائل أو اللون بدلاً من ذلك. إذا كان هذا النص جزءًا من عنصر وظيفي مثل رابط أو زر، احتفظ بنمط التسطير وتجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Remove the underline tag or CSS underline style from the text. If you want to emphasize text, consider using bold, italic, or color styling instead. If this text is part of a functional element like a link or button, keep the underline styling and dismiss this warning in Accessibility Checker."
+msgstr "قم بإزالة وسم التسطير أو نمط التسطير في CSS من النص. إذا كنت ترغب في التأكيد على النص، ففكر في استخدام التنسيق الغامق أو المائل أو اللون بدلاً من ذلك. إذا كان هذا النص جزءًا من عنصر وظيفي مثل رابط أو زر، فاحتفظ بنمط التسطير وتجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:24
 msgid "A Video is Present"
@@ -3307,8 +3400,8 @@ msgid "Videos must include accurate captions, transcripts, and audio description
 msgstr "يجب أن تتضمن مقاطع الفيديو تسميات توضيحية دقيقة ونصوصًا مكتوبة ووصفًا صوتيًا (أو نصوصًا معززة) لتكون متاحة بالكامل للمستخدمين الصم أو ضعاف السمع أو المكفوفين أو الذين يعانون من إعاقات إدراكية."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:31
-msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the \"Ignore\" feature in Accessibility Checker."
-msgstr "راجع الفيديو في الواجهة الأمامية لموقعك. تأكد من أنه يتضمن تسميات توضيحية متزامنة دقيقة (وليست منشأة تلقائيًا)، ونصًا مكتوبًا، ووصفًا صوتيًا إذا لزم الأمر. بعد التحقق من إمكانية الوصول أو إجراء التحديثات اللازمة، يمكنك تجاهل هذا التحذير باستخدام ميزة ”تجاهل“ في Accessibility Checker."
+msgid "Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker."
+msgstr "راجع الفيديو في الواجهة الأمامية لموقع الويب الخاص بك. تأكد من أنه يتضمن تسميات توضيحية متزامنة ودقيقة (ليست تلقائية)، ونصًا، ووصفًا صوتيًا إذا لزم الأمر. بعد التحقق من إمكانية الوصول أو إجراء التحديثات الضرورية، يمكنك تجاهل هذا التحذير في Accessibility Checker."
 
 #: includes/classes/Rules/Rule/VideoPresentRule.php:34
 msgid "W3C: Media Alternatives"
@@ -3411,257 +3504,350 @@ msgstr "حضور مجاني"
 msgid "(opens in a new window)"
 msgstr "(يفتح في نافذة جديدة)"
 
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:922
+msgid "Main"
+msgstr "رئيسي"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:924
+msgid "Header"
+msgstr "رأس"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:926
+msgid "Footer"
+msgstr "تذييل"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:928
+msgid "Nav"
+msgstr "تنقل"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:930
+msgid "Aside"
+msgstr "جانبي"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:932
+msgid "Navigation"
+msgstr "تصفح"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:934
+msgid "Banner"
+msgstr "راية"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:936
+msgid "Contentinfo"
+msgstr "معلومات المحتوى"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:938
+msgid "Complementary"
+msgstr "تكميلي"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:940
+msgid "Section"
+msgstr "قسم"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:942
+msgid "Article"
+msgstr "مقال"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:944
+msgid "Form"
+msgstr "نموذج"
+
+#. translators: Landmark type label for the Issues Explorer filter.
+#: includes/helper-functions.php:946
+msgid "Region"
+msgstr "منطقة"
+
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:861
+#: includes/helper-functions.php:995
 #: build/issueModal.bundle.js:2
-#, php-format,js-format
+#: build/sharedComponents.bundle.js:2
+#, php-format, js-format
 msgid "View %s landmark on website, opens a new window"
 msgstr "عرض %s علامة مميزة على الموقع، يفتح نافذة جديدة"
 
-#: includes/options-page.php:48
+#: includes/options-page.php:100
+msgid "Dismiss own issues"
+msgstr "تجاهل المشكلات الخاصة"
+
+#: includes/options-page.php:101
+msgid "Dismiss and reopen accessibility issues on posts the user can edit (their own posts; editors can edit any)."
+msgstr "تجاهل وإعادة فتح مشكلات إمكانية الوصول في المقالات التي يمكن للمستخدم تحريرها (مقالاتهم الخاصة؛ يمكن للمحررين تحرير أي مقال)."
+
+#: includes/options-page.php:109
+msgid "Dismiss issues (any post)"
+msgstr "تجاهل المشكلات (أي مقال)"
+
+#: includes/options-page.php:110
+msgid "Dismiss and reopen accessibility issues on any post, even if the user cannot otherwise edit it."
+msgstr "تجاهل وإعادة فتح مشكلات إمكانية الوصول في أي مقال، حتى لو لم يكن بإمكان المستخدم تحريره بطريقة أخرى."
+
+#: includes/options-page.php:118
+msgid "Front-end highlighter"
+msgstr "أداة التمييز في الواجهة الأمامية"
+
+#: includes/options-page.php:119
+msgid "View the front-end accessibility highlighter on published content."
+msgstr "عرض أداة تمييز إمكانية الوصول في الواجهة الأمامية على المحتوى المنشور."
+
+#: includes/options-page.php:254
+msgid "the ability to edit posts"
+msgstr "القدرة على تحرير المقالات"
+
+#: includes/options-page.php:255
+msgid "the ability to edit other users' posts"
+msgstr "القدرة على تحرير مقالات المستخدمين الآخرين"
+
+#. translators: %s: a human-readable capability requirement, e.g. "the ability to edit posts".
+#: includes/options-page.php:263
+#, php-format
+msgid "Requires %s."
+msgstr "يتطلب %s."
+
+#: includes/options-page.php:675
 msgid "Welcome to Accessibility Checker"
 msgstr "مرحبًا بك في Accessibility Checker"
 
-#: includes/options-page.php:71
+#: includes/options-page.php:698
+#: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "إعدادات Accessibility Checker"
 
-#: includes/options-page.php:115
+#: includes/options-page.php:745
 msgid "Scan Settings"
 msgstr "إعدادات الفحص"
 
-#: includes/options-page.php:122
-msgid "Permissions"
-msgstr "الصلاحيات"
-
-#: includes/options-page.php:129
+#: includes/options-page.php:752
 msgid "Simplified Summary Settings"
 msgstr "إعدادات الملخص المبسط"
 
-#: includes/options-page.php:136
+#: includes/options-page.php:759
 msgid "Footer Accessibility Statement"
 msgstr "بيان إمكانية الوصول في التذييل"
 
-#: includes/options-page.php:143
+#: includes/options-page.php:766
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker للواجهة الأمامية"
 
-#: includes/options-page.php:150
+#: includes/options-page.php:773
 msgid "System Settings"
 msgstr "إعدادات النظام"
 
-#: includes/options-page.php:158
+#: includes/options-page.php:781
 msgid "Post Types To Be Checked"
 msgstr "أنواع المقالات التي سيتم فحصها"
 
-#: includes/options-page.php:167
+#: includes/options-page.php:790
 msgid "Scan Speed"
 msgstr "سرعة الفحص"
 
-#: includes/options-page.php:176
+#: includes/options-page.php:799
 msgid "Archive Scanning"
 msgstr "فحص الأرشيف"
 
-#: includes/options-page.php:185
+#: includes/options-page.php:808
 msgid "Taxonomy Scanning"
 msgstr "فحص التصنيف"
 
-#: includes/options-page.php:212
+#: includes/options-page.php:826
 msgid "Block Editor Metabox"
 msgstr "صندوق الوصف الخاص بمحرر الكتل"
 
-#: includes/options-page.php:221
+#: includes/options-page.php:835
 msgid "Prompt for Simplified Summary"
 msgstr "طلب ملخص مبسط"
 
-#: includes/options-page.php:230
+#: includes/options-page.php:844
 msgid "Simplified Summary Position"
 msgstr "موقع الملخص المبسط"
 
-#: includes/options-page.php:239
+#: includes/options-page.php:853
 msgid "Simplified Summary Heading"
 msgstr "عنوان الملخص المبسط"
 
-#: includes/options-page.php:248
-#: includes/options-page.php:752
+#: includes/options-page.php:862
+#: includes/options-page.php:1370
 msgid "Add Footer Accessibility Statement"
 msgstr "إضافة بيان إمكانية الوصول في التذييل"
 
-#: includes/options-page.php:257
-#: includes/options-page.php:775
+#: includes/options-page.php:871
+#: includes/options-page.php:1393
 msgid "Include Link to Accessibility Policy"
 msgstr "تضمين رابط لسياسة إمكانية الوصول"
 
-#: includes/options-page.php:266
+#: includes/options-page.php:880
 msgid "Accessibility Policy page"
 msgstr "صفحة سياسة إمكانية الوصول"
 
-#: includes/options-page.php:275
+#: includes/options-page.php:889
 msgid "Accessibility Statement Preview"
 msgstr "معاينة بيان إمكانية الوصول"
 
-#: includes/options-page.php:283
+#: includes/options-page.php:897
 msgid "Frontend Accessibility Checker Position"
 msgstr "موضع Accessibility Checker للواجهة الأمامية"
 
-#: includes/options-page.php:333
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "قم بتكوين أنواع المحتوى التي يجب فحصها بحثًا عن مشكلات إمكانية الوصول."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:338
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "تتوفر المزيد من الميزات والدعم عبر البريد الإلكتروني مع %1$s."
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:346
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:360
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "استخدم الإعدادات أدناه لتكوين مدقق الوصول في الواجهة الأمامية."
 
-#: includes/options-page.php:370
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "تتطلب إرشادات محتوى الويب لإمكانية الوصول (WCAG) على المستوى AAA أن يكون لأي محتوى بمستوى قراءة أعلى من الصف التاسع بديل أسهل للقراءة. يتم إضافة نص ملخص مبسط في علامة التبويب الخاصة بقابلية القراءة في مربع التحرير الخاص بـ Accessibility Checker في شاشة تحرير كل مقال أو صفحة."
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:380
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "تعرف على المزيد حول الملخصات المبسطة ومتطلبات سهولة القراءة."
 
-#: includes/options-page.php:389
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "هل تفكر ”واو، هذه الإضافة مذهلة“ وهل تساعدك في جعل موقعك الإلكتروني أكثر سهولة في الوصول؟ شارك جهودك لجعل موقعك الإلكتروني أكثر سهولة في الوصول مع عملائك وأخبرهم أنك تستخدم Accessibility Checker لضمان قدرة جميع الأشخاص على استخدام موقعك. أضف رابطًا صغيرًا نصيًا وبيانًا في تذييل موقعك الإلكتروني."
 
-#: includes/options-page.php:398
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "قم بتكوين إعدادات على مستوى النظام لإضافة Accessibility Checker."
 
-#: includes/options-page.php:412
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "سريع"
 
-#: includes/options-page.php:413
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "عادي"
 
-#: includes/options-page.php:414
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "بطيء"
 
-#: includes/options-page.php:415
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "الأبطأ"
 
-#: includes/options-page.php:437
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "عمليات الفحص الأسرع تستهلك موارد أكثر وقد تضع حملًا كبيرًا على موقعك."
 
-#: includes/options-page.php:463
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "تمكين فحص صفحات الأرشيف"
 
-#: includes/options-page.php:467
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "اختر ما إذا كان يجب تضمين صفحات الأرشيف في عمليات فحص الموقع بالكامل. بشكل افتراضي، يتم استخدام طريقة أخذ العينات لاختيار مصطلحات التصنيف لبيانات الأرشيف."
 
-#: includes/options-page.php:493
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "فحص جميع مصطلحات التصنيف بدلاً من عينة فقط"
 
-#: includes/options-page.php:497
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "تحقق من جميع صفحات أرشيف مصطلحات التصنيف بدلاً من عينة تمثيلية. هذا يتطلب تمكين فحص صفحة الأرشيف وقد يضيف عددًا كبيرًا من عناوين URL إلى قائمة الفحص."
 
-#: includes/options-page.php:526
+#: includes/options-page.php:1144
 msgid "Before the content"
 msgstr "قبل المحتوى"
 
-#: includes/options-page.php:531
+#: includes/options-page.php:1149
 msgid "After the content"
 msgstr "بعد المحتوى"
 
-#: includes/options-page.php:536
+#: includes/options-page.php:1154
 msgid "Insert manually"
 msgstr "إدراج يدويًا"
 
-#: includes/options-page.php:540
+#: includes/options-page.php:1158
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "استخدم هذه الوظيفة لإضافة الملخص المبسط يدويًا إلى قالبك داخل الحلقة."
 
-#: includes/options-page.php:542
+#: includes/options-page.php:1160
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "تقبل الوظيفة اختياريًا معرف المنشور كمعامل."
 
-#: includes/options-page.php:545
+#: includes/options-page.php:1163
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "حدد المكان الذي تريد أن تظهر فيه الملخصات المبسطة بالنسبة للمحتوى الخاص بك إذا تم ملؤها."
 
-#: includes/options-page.php:560
+#: includes/options-page.php:1178
 msgid "Bottom Right Corner (default)"
 msgstr "الزاوية السفلية اليمنى (الافتراضي)"
 
-#: includes/options-page.php:565
+#: includes/options-page.php:1183
 msgid "Bottom Left Corner"
 msgstr "الزاوية السفلية اليسرى"
 
-#: includes/options-page.php:569
+#: includes/options-page.php:1187
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "حدد المكان الذي تريد أن يظهر فيه مدقق الوصول في الواجهة الأمامية على الصفحة."
 
-#: includes/options-page.php:609
+#: includes/options-page.php:1227
 msgid "When Required"
 msgstr "عند الحاجة"
 
-#: includes/options-page.php:614
+#: includes/options-page.php:1232
 msgid "Always"
 msgstr "دائمًا"
 
-#: includes/options-page.php:622
+#: includes/options-page.php:1240
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "هل يجب على Accessibility Checker أن يطلب ملخصًا مبسطًا فقط عندما يكون مستوى القراءة لمقالك أو صفحتك أعلى من الصف التاسع، أم يطلبه دائمًا بغض النظر عن مستوى القراءة، أم لا يطلبه أبدًا بغض النظر عن مستوى القراءة؟?"
 
-#: includes/options-page.php:677
+#: includes/options-page.php:1295
 msgid "To check content other than posts and pages, please "
 msgstr "للتحقق من محتوى آخر غير المنشورات والصفحات، يرجى "
 
-#: includes/options-page.php:679
+#: includes/options-page.php:1297
 msgid "upgrade to pro"
 msgstr "الترقية إلى النسخة الاحترافية"
 
-#: includes/options-page.php:680
+#: includes/options-page.php:1298
 msgid " (opens in a new window)"
 msgstr " (يفتح في نافذة جديدة)"
 
-#: includes/options-page.php:685
-msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom ignored warnings that have been setup."
-msgstr "اختر أنواع المنشورات التي يجب فحصها أثناء المسح. يرجى ملاحظة أن إزالة نوع منشور تم تحديده مسبقًا سيؤدي إلى إزالة معلومات المسح الخاصة به وأي تحذيرات مخصصة تم تجاهلها."
+#: includes/options-page.php:1303
+msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
+msgstr "اختر أنواع المشاركات التي يجب فحصها أثناء المسح. يرجى ملاحظة أن إزالة نوع منشور تم تحديده مسبقًا ستزيل معلوماته الممسوحة وأي تحذيرات مخصصة تم تجاهلها."
 
-#: includes/options-page.php:827
+#: includes/options-page.php:1444
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "حذف جميع بيانات Accessibility Checker عند إلغاء تثبيت الإضافة."
 
-#: includes/options-page.php:845
+#: includes/options-page.php:1462
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "إظهار صندوق الوصف الخاص بـ Accessibility Checker في محرر الكتل"
-
-#: includes/options-page.php:1004
-msgid "Choose which user roles have permission to ignore issues."
-msgstr "اختر أي أدوار المستخدمين لديها إذن لتجاهل المشكلات."
-
-#: includes/options-page.php:1037
-msgid "Configure which user roles have access to specific Accessibility Checker features."
-msgstr "قم بتكوين أدوار المستخدمين التي لديها حق الوصول إلى ميزات Accessibility Checker المحددة."
 
 #: includes/wcag.php:15
 msgid "Non-text Content"
@@ -4867,22 +5053,58 @@ msgstr "تم حفظ الإعدادات. للتأكيد وعكس هذه التح�
 msgid "The Accessibility New Window Warnings plugin is installed. The fix for links opening in a new window included here will override its functionality. You can safely remove the plugin and use these fixes instead."
 msgstr "تم تثبيت إضافة تحذيرات النافذة الجديدة للوصول. سيتجاوز الإصلاح الخاص بالروابط التي تفتح في نافذة جديدة والمدرج هنا وظائفها. يمكنك إزالة الإضافة بأمان واستخدام هذه الإصلاحات بدلاً منها."
 
+#: partials/admin-page/permissions-page.php:34
+msgid "Permissions saved."
+msgstr "تم حفظ الأذونات."
+
+#: partials/admin-page/permissions-page.php:40
+msgid "Permissions were changed by someone else while you were editing, so your changes were not saved. Review the current permissions below and try again."
+msgstr "قام شخص آخر بتغيير الأذونات أثناء قيامك بالتحرير، لذا لم يتم حفظ تغييراتك. يرجى مراجعة الأذونات الحالية أدناه والمحاولة مرة أخرى."
+
+#: partials/admin-page/permissions-page.php:45
+msgid "Permissions Settings"
+msgstr "إعدادات الأذونات"
+
+#: partials/admin-page/permissions-page.php:49
+msgid "Choose a user role, then check the Accessibility Checker capabilities to grant it. A capability can only be granted to a role whose existing WordPress permissions meet its requirement. Administrators always have every capability."
+msgstr "اختر دور مستخدم، ثم حدد صلاحيات Accessibility Checker لمنحها له. لا يمكن منح الصلاحية إلا للدور الذي تستوفي أذونات WordPress الحالية الخاصة به متطلباتها. يتمتع المسؤولون دائمًا بكافة الصلاحيات."
+
+#: partials/admin-page/permissions-page.php:69
+msgid "Choose a Role"
+msgstr "اختر دورًا"
+
+#: partials/admin-page/permissions-page.php:72
+msgid "Select the user role whose Accessibility Checker permissions you want to manage."
+msgstr "حدد دور المستخدم الذي تريد إدارة أذونات Accessibility Checker الخاصة به."
+
+#: partials/admin-page/permissions-page.php:75
+msgid "Role"
+msgstr "الدور"
+
+#: partials/admin-page/permissions-page.php:77
+msgid "— Select a role —"
+msgstr "— حدد دورًا —"
+
+#: partials/admin-page/permissions-page.php:111
+msgid "Save Permissions"
+msgstr "حفظ الأذونات"
+
 #: partials/custom-meta-box.php:17
 msgid "Accessibility Checker issues panels"
 msgstr "لوحات مشكلات Accessibility Checker"
 
 #: partials/custom-meta-box.php:28
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Accessibility Status"
 msgstr "حالة إمكانية الوصول"
 
 #: partials/custom-meta-box.php:38
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Analysis"
 msgstr "تحليل إمكانية الوصول"
 
 #: partials/custom-meta-box.php:48
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Readability Analysis"
 msgstr "تحليل قابلية القراءة"
 
@@ -4892,8 +5114,9 @@ msgstr "حذف جميع المشكلات المكتشفة حاليًا"
 
 #: partials/custom-meta-box.php:59
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "Clear Issues"
 msgstr "مسح المشكلات"
 
@@ -5109,6 +5332,11 @@ msgstr "جارٍ الحفظ..."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+msgid "Saving failed: Missing REST API URL."
+msgstr "فشل الحفظ: عنوان URL الخاص بواجهة REST API مفقود."
+
+#: build/admin.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:2
 #, js-format
 msgid "Settings saved successfully. You must %svisit the editor%s and save the post to rescan and remove fixed issues from Accessibility Checker reports."
 msgstr "تم حفظ الإعدادات بنجاح. يجب عليك %sزيارة المحرر%s وحفظ المنشور لإعادة الفحص وإزالة المشكلات المصححة من تقارير Accessibility Checker."
@@ -5120,6 +5348,7 @@ msgstr "تم حفظ الإعدادات بنجاح."
 
 #: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Saving failed."
 msgstr "فشل الحفظ."
 
@@ -5129,28 +5358,28 @@ msgid "Fix Settings"
 msgstr "إعدادات الإصلاح"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
-#: build/sidebar.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
+#: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
 msgstr "سيؤدي هذا إلى مسح جميع المشكلات لهذا المنشور. سيكون الحفظ مطلوبًا لتشغيل فحص جديد لمحتوى المنشور. هل تريد المتابعة؟?"
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Clearing..."
 msgstr "جارٍ المسح..."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Issues cleared successfully."
 msgstr "تم مسح المشكلات بنجاح."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to clear issues."
 msgstr "فشل مسح المشكلات."
 
 #: build/editorApp.bundle.js:2
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "An error occurred while clearing issues."
 msgstr "حدث خطأ أثناء مسح المشكلات."
 
@@ -5178,193 +5407,198 @@ msgstr "EDAC: خطأ في تحديث السجل لرابط التخطي."
 msgid "Close fixes modal"
 msgstr "إغلاق نافذة الإصلاحات"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues.
+#: build/frontendHighlighterApp.bundle.js:5
 #, js-format
 msgid "%1$d of %2$d"
 msgstr "%1$d من %2$d"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:5
 msgid "Untitled issue"
 msgstr "مشكلة بدون عنوان"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %1$d is the current issue number, %2$d is the total number of issues, %3$s is the issue title.
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Issue %1$d of %2$d: %3$s"
 msgstr "المشكلة %1$d من %2$d: %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not visible. Try disabling styles."
 msgstr "العنصر غير مرئي. حاول تعطيل الأنماط."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element is not focusable. Try disabling styles."
 msgstr "العنصر غير قابل للتركيز. حاول تعطيل الأنماط."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "The element was not found on the page."
 msgstr "لم يتم العثور على العنصر في الصفحة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Left"
 msgstr "نقل إلى اليسار"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Move to Right"
 msgstr "نقل إلى اليمين"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel position reset."
 msgstr "تمت إعادة تعيين موضع اللوحة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the left."
 msgstr "تم نقل اللوحة إلى اليسار."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel moved to the right."
 msgstr "تم نقل اللوحة إلى اليمين."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Open details for %1$s, %2$s of %3$s"
 msgstr "فتح التفاصيل لـ %1$s، %2$s من %3$s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Undock Panel"
 msgstr "إلغاء تثبيت اللوحة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Dock Panel"
 msgstr "تثبيت اللوحة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Rescan This Page"
 msgstr "إعادة فحص هذه الصفحة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Accessibility Checker Tools"
 msgstr "أدوات Accessibility Checker"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "More options"
 msgstr "المزيد من الخيارات"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Page Styles"
 msgstr "تعطيل أنماط الصفحة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Disable Styles"
 msgstr "تعطيل الأنماط"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Close"
 msgstr "إغلاق"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "No issues found on this page."
 msgstr "لم يتم العثور على مشكلات في هذه الصفحة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Loading..."
 msgstr "جارٍ التحميل..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Previous"
 msgstr "السابق"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Next"
 msgstr "التالي"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Reset Position"
 msgstr "إعادة تعيين الموضع"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "An error occurred when loading the issues."
 msgstr "حدث خطأ أثناء تحميل المشكلات."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel docked."
 msgstr "اللوحة مثبتة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Panel undocked."
 msgstr "اللوحة غير مثبتة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Severity:"
 msgstr "الخطورة:"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "WCAG:"
 msgstr "WCAG:"
 
-#: build/frontendHighlighterApp.bundle.js:2
-msgid "Ignored"
-msgstr "تم التجاهل"
-
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Show explanation"
 msgstr "إظهار الشرح"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Why It Matters"
 msgstr "لماذا يهم"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "How to Fix"
 msgstr "كيفية الإصلاح"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "More Detailed Documentation"
 msgstr "وثائق أكثر تفصيلاً"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Show Affected Code"
 msgstr "إظهار الكود المتأثر"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #, js-format
 msgid "Fix issue: %s"
 msgstr "إصلاح المشكلة: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "إصلاح المشكلة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "تفعيل الأنماط"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Page Styles"
 msgstr "تمكين أنماط الصفحة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles disabled."
 msgstr "أنماط الصفحة مُعطلة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Page styles re-enabled."
 msgstr "تمت إعادة تمكين أنماط الصفحة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "There are no settings to display."
 msgstr "لا توجد إعدادات لعرضها."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "These settings enable global fixes across your entire site. Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "تمكّن هذه الإعدادات الإصلاحات العامة عبر موقعك بأكمله. قد تحتاج الصفحات إلى إعادة حفظ أو إجراء فحص كامل للموقع لرؤية الإصلاحات المنعكسة في التقارير."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of issues found.
+#: build/frontendHighlighterApp.bundle.js:11
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
@@ -5375,7 +5609,8 @@ msgstr[3] "تم العثور على %d مشكلة"
 msgstr[4] "تم العثور على %d مشكلة"
 msgstr[5] "تم العثور على %d مشكلة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of errors/problems.
+#: build/frontendHighlighterApp.bundle.js:14
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
@@ -5386,7 +5621,8 @@ msgstr[3] "%d مشكلة"
 msgstr[4] "%d مشكلة"
 msgstr[5] "%d مشكلة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of warnings needing review.
+#: build/frontendHighlighterApp.bundle.js:17
 #, js-format
 msgid "%d Needs Review"
 msgid_plural "%d Need Review"
@@ -5397,180 +5633,237 @@ msgstr[3] "%d بحاجة إلى مراجعة"
 msgstr[4] "%d بحاجة إلى مراجعة"
 msgstr[5] "%d بحاجة إلى مراجعة"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#. translators: %d is the number of dismissed issues.
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
-msgid "%d Ignored"
-msgid_plural "%d Ignored"
-msgstr[0] "%d تم تجاهلها"
-msgstr[1] "%d تم تجاهلها"
-msgstr[2] "%d تم تجاهلها"
+msgid "%d Dismissed"
+msgid_plural "%d Dismissed"
+msgstr[0] "%d تم تجاهله"
+msgstr[1] "%d تم تجاهله"
+msgstr[2] "%d تم تجاهلهما"
 msgstr[3] "%d تم تجاهلها"
 msgstr[4] "%d تم تجاهلها"
 msgstr[5] "%d تم تجاهلها"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
 msgstr "لم يتم اكتشاف أي مشاكل."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 #, js-format
 msgid "Landmark: %s"
 msgstr "معلم: %s"
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Failed to load scanner script."
 msgstr "فشل تحميل سكربت الماسح الضوئي."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanner function not found."
 msgstr "وظيفة الفحص غير موجودة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Scanning..."
 msgstr "جارٍ الفحص..."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Missing postId or nonce."
 msgstr "معرف المنشور أو رمز nonce مفقود."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete. No violations found."
 msgstr "اكتملت إعادة الفحص. لم يتم العثور على انتهاكات."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "No violations found, skipping save."
 msgstr "لم يتم العثور على انتهاكات، تخطي الحفظ."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "خطأ في فحص إمكانية الوصول."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
 msgstr "خطأ في حفظ نتائج الفحص."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan already in progress."
 msgstr "إعادة الفحص قيد التقدم بالفعل."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescanning this page."
 msgstr "إعادة فحص هذه الصفحة."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Rescan complete."
 msgstr "اكتملت إعادة الفحص."
 
-#: build/frontendHighlighterApp.bundle.js:2
+#: build/frontendHighlighterApp.bundle.js:20
 msgid "Error: Missing required parameters."
 msgstr "خطأ: معلمات مطلوبة مفقودة."
 
 #: build/issueModal.bundle.js:2
-msgid "Issue related image"
-msgstr "صورة متعلقة بالمشكلة"
-
-#: build/issueModal.bundle.js:2
-msgid "Fix settings saved."
-msgstr "تم حفظ إعدادات الإصلاح."
-
-#: build/issueModal.bundle.js:2
-msgid "Failed to save fix settings."
-msgstr "فشل حفظ إعدادات الإصلاح."
-
-#: build/issueModal.bundle.js:2
-msgid "Loading fix information..."
-msgstr "جارٍ تحميل معلومات الإصلاح..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Save fix for: %s"
-msgstr "حفظ الإصلاح لـ: %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "تم تجاهل المشكلة بنجاح."
-
-#: build/issueModal.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "تمت إعادة فتح المشكلة بنجاح."
-
-#: build/issueModal.bundle.js:2
-msgid "Dismissing..."
-msgstr "جارٍ التجاهل..."
-
-#: build/issueModal.bundle.js:2
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "تم تجاهل المشكلة — %s"
-
-#: build/issueModal.bundle.js:2
-msgid "Issue Dismissed"
-msgstr "تم تجاهل المشكلة"
-
-#: build/issueModal.bundle.js:2
-msgid "Scope:"
-msgstr "النطاق:"
-
-#: build/issueModal.bundle.js:2
-msgid "All pages"
-msgstr "جميع الصفحات"
-
-#: build/issueModal.bundle.js:2
-msgid "By:"
-msgstr "بواسطة:"
-
-#: build/issueModal.bundle.js:2
-msgid "On:"
-msgstr "في:"
-
-#: build/issueModal.bundle.js:2
-msgid "Reason for dismissal:"
-msgstr "سبب التجاهل:"
-
-#: build/issueModal.bundle.js:2
-msgid "This issue was dismissed globally. Manage Global Dismissals to reopen it."
-msgstr "تم تجاهل هذه المشكلة عالميًا. أدر عمليات التجاهل العالمية لإعادة فتحها."
-
-#: build/issueModal.bundle.js:2
-msgid "Manage Global Dismissals"
-msgstr "إدارة التجاهلات العالمية"
-
-#: build/issueModal.bundle.js:2
-msgid "Reopening..."
-msgstr "جارٍ إعادة الفتح..."
-
-#: build/issueModal.bundle.js:2
-msgid "Comment (optional)"
-msgstr "تعليق (اختياري)"
-
-#: build/issueModal.bundle.js:2
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "أضف ملاحظة توضح سبب رفض هذه المشكلة."
-
-#: build/issueModal.bundle.js:2
-msgid "More dismiss options"
-msgstr "المزيد من خيارات التجاهل"
-
-#: build/issueModal.bundle.js:2
-msgid "Dismiss & Close Modal"
-msgstr "تجاهل وإغلاق النافذة المنبثقة"
-
-#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 #, js-format
 msgid "Issue #%s"
 msgstr "المشكلة #%s"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Issue Details"
 msgstr "تفاصيل المشكلة"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Type"
 msgstr "النوع"
 
 #: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
 msgid "Severity"
 msgstr "الخطورة"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Failed to load %s fix information."
+msgstr "فشل تحميل معلومات إصلاح %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Error loading %s fix information."
+msgstr "خطأ في تحميل معلومات إصلاح %s."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Fix settings saved."
+msgstr "تم حفظ إعدادات الإصلاح."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Failed to save fix settings."
+msgstr "فشل حفظ إعدادات الإصلاح."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Loading fix information..."
+msgstr "جارٍ تحميل معلومات الإصلاح..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+#, js-format
+msgid "Save fix for: %s"
+msgstr "حفظ الإصلاح لـ: %s"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue related image"
+msgstr "صورة متعلقة بالمشكلة"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "تم تجاهل المشكلة بنجاح."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "تمت إعادة فتح المشكلة بنجاح."
+
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "تجاهل عالميًا"
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing globally..."
+msgstr "تجاهل عالميًا..."
+
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "جارٍ التجاهل..."
+
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "تم تجاهل المشكلة — %s"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "تم تجاهل المشكلة"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "النطاق:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "جميع الصفحات"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "بواسطة:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "في:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "سبب التجاهل:"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Removing..."
+msgstr "إزالة..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "إزالة التجاهل العالمي"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "جارٍ إعادة الفتح..."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "تعليق (اختياري)"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "أضف ملاحظة توضح سبب رفض هذه المشكلة."
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "More dismiss options"
+msgstr "المزيد من خيارات التجاهل"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss & Close Modal"
+msgstr "تجاهل وإغلاق النافذة المنبثقة"
+
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "You do not have permission to dismiss issues."
+msgstr "ليس لديك إذن بتجاهل المشكلات."
 
 #: build/pageScanner.bundle.js:2
 msgid "new window"
@@ -5660,6 +5953,14 @@ msgstr "متابعة القراءة"
 msgid "learn more"
 msgstr "تعرف على المزيد"
 
+#: build/pageScanner.bundle.js:2
+msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
+msgstr "يتحقق مما إذا كان النص المرئي للرابط هو عنوان URL بدلاً من نص رابط وصفي."
+
+#: build/pageScanner.bundle.js:2
+msgid "Link text should be descriptive and not simply the URL."
+msgstr "يجب أن يكون نص الرابط وصفيًا وليس مجرد عنوان URL."
+
 #: build/sidebar.bundle.js:2
 msgid "Failed to load accessibility data"
 msgstr "فشل تحميل بيانات إمكانية الوصول"
@@ -5696,214 +5997,224 @@ msgstr[3] "مشكلات تحتاج إلى مراجعة"
 msgstr[4] "مشكلات تحتاج إلى مراجعة"
 msgstr[5] "مشكلات تحتاج إلى مراجعة"
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
+#: build/sidebar.bundle.js:5
 #, js-format
 msgid "You have %1$d %2$s and %3$d %4$s."
 msgstr "لديك %1$d %2$s و %3$d %4$s."
 
-#: build/sidebar.bundle.js:2
+#. translators: %1$d = number of errors, %2$s = error text
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "You have %1$d %2$s."
 msgstr "لديك %1$d %2$s."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Check and fix accessibility issues in your content."
 msgstr "تحقق من مشكلات إمكانية الوصول في المحتوى الخاص بك وقم بإصلاحها."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Open Accessibility Panel"
 msgstr "فتح لوحة إمكانية الوصول"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "%dth"
 msgstr "%d"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary provided"
 msgstr "تم توفير الملخص"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
+#: build/sidebar.bundle.js:10
 msgid "Summary required"
 msgstr "الملخص مطلوب"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 msgid "Summary not required"
 msgstr "الملخص غير مطلوب"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d problems in Accessibility Analysis"
 msgstr "عرض %d مشكلة في تحليل إمكانية الوصول"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:8
 #, js-format
 msgid "View %d items needing review in Accessibility Analysis"
 msgstr "عرض %d عنصرًا يحتاج إلى مراجعة في تحليل إمكانية الوصول"
 
-#: build/sidebar.bundle.js:2
+#. translators: 1: reading level, 2: simplified summary status.
+#: build/sidebar.bundle.js:9
+#, js-format
+msgid "View reading level details: %1$s, %2$s"
+msgstr "عرض تفاصيل مستوى القراءة: %1$s، %2$s"
+
+#. translators: %s: reading level.
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "View reading level details: %s"
 msgstr "عرض تفاصيل مستوى القراءة: %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue"
 msgstr "مشكلة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "Issue actions for %s"
 msgstr "إجراءات المشكلة لـ %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Issue actions"
 msgstr "إجراءات المشكلة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Show code"
 msgstr "إظهار الكود"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Reopen issue"
 msgstr "إعادة فتح المشكلة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismiss issue"
 msgstr "تجاهل المشكلة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Apply fix"
 msgstr "تطبيق الإصلاح"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total"
 msgstr "%d إجمالي"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No dismissed issues."
 msgstr "لا توجد مشكلات متجاهلة."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "No issues found."
 msgstr "لم يتم العثور على مشكلات."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%d total issues"
 msgstr "%d إجمالي المشكلات"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Dismissed Issues"
 msgstr "المشكلات المتجاهلة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified summary saved successfully."
 msgstr "تم حفظ الملخص المبسّط بنجاح."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Failed to save summary. Please try again."
 msgstr "فشل حفظ الملخص. يرجى المحاولة مرة أخرى."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "An error occurred while saving the summary."
 msgstr "حدث خطأ أثناء حفظ الملخص."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%s grade"
 msgstr "الصف %s"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 #, js-format
 msgid "%dth grade"
 msgstr "الصف %d"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Not available"
 msgstr "غير متاح"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Warning"
 msgstr "تحذير"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "This post does not contain enough content to calculate a reading level."
 msgstr "لا يحتوي هذا المنشور على محتوى كافٍ لحساب مستوى القراءة."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Adjust summary prompts in settings."
 msgstr "ضبط مطالبات الملخص في الإعدادات."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content at or below a 9th-grade reading level does not require a simplified summary."
 msgstr "المحتوى الذي يكون في مستوى قراءة الصف التاسع أو أقل لا يتطلب ملخصًا مبسطًا."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Content above a 9th-grade reading level requires a simplified summary to meet WCAG AAA guidance."
 msgstr "المحتوى الذي يتجاوز مستوى قراءة الصف التاسع يتطلب ملخصًا مبسطًا لتلبية إرشادات WCAG AAA."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Learn more about readability requirements."
 msgstr "تعرف على المزيد حول متطلبات قابلية القراءة."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Simplified Summary Reading Level"
 msgstr "مستوى قراءة الملخص المبسّط"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Needs improvement, summary is above the 9th-grade reading level."
 msgstr "يحتاج إلى تحسين، الملخص أعلى من مستوى قراءة الصف التاسع."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Below the recommended 9th-grade reading level."
 msgstr "أقل من مستوى القراءة الموصى به للصف التاسع."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Enter simplified summary..."
 msgstr "أدخل ملخصًا مبسطًا..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "A simplified summary is required for this content."
 msgstr "مطلوب ملخص مبسط لهذا المحتوى."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to load this preference."
 msgstr "تعذر تحميل هذا التفضيل."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Unable to save this preference."
 msgstr "تعذر حفظ هذا التفضيل."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading preference..."
 msgstr "جارٍ تحميل التفضيل..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Screen Reader Text Format"
 msgstr "تنسيق نص قارئ الشاشة"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Control whether screen reader text stays visible while you edit."
 msgstr "تحكم فيما إذا كان نص قارئ الشاشة يظل مرئيًا أثناء التحرير."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Always show screen reader text?"
 msgstr "هل تريد دائمًا إظهار نص قارئ الشاشة؟"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Loading accessibility data..."
 msgstr "جارٍ تحميل بيانات إمكانية الوصول..."
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "إجراءات مدقق إمكانية الوصول"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Scan"
 msgstr "مسح"
 
-#: build/sidebar.bundle.js:2
+#: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "تحديث"
 

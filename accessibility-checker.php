@@ -7,17 +7,19 @@
  * @since   1.0.0
  *
  * @wordpress-plugin
- * Plugin Name:       Accessibility Checker
- * Plugin URI:        https://a11ychecker.com
- * Description:       Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
- * Version:           1.42.1
- * Requires PHP:      7.4
- * Author:            Equalize Digital
- * Author URI:        https://equalizedigital.com
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       accessibility-checker
- * Domain Path:       /languages
+ * Plugin Name:          Accessibility Checker
+ * Plugin URI:           https://equalizedigital.com/accessibility-checker
+ * Description:          Audit and check your website for accessibility before you hit publish. In-post accessibility scanner and guidance.
+ * Version:              1.48.0
+ * Requires PHP:         7.4
+ * WC requires at least: 7.1
+ * WC tested up to:      11.0
+ * Author:               Equalize Digital
+ * Author URI:           https://equalizedigital.com
+ * License:              GPL-2.0+
+ * License URI:          http://www.gnu.org/licenses/gpl-2.0.txt
+ * Text Domain:          accessibility-checker
+ * Domain Path:          /languages
  */
 
 use EDAC\Inc\Plugin;
@@ -36,7 +38,7 @@ require_once ABSPATH . 'wp-admin/includes/plugin.php';
 
 // Current plugin version.
 if ( ! defined( 'EDAC_VERSION' ) ) {
-	define( 'EDAC_VERSION', '1.42.1' );
+	define( 'EDAC_VERSION', '1.48.0' );
 }
 
 // Current database version.
@@ -86,6 +88,24 @@ define( 'EDAC_SVG_IGNORE_ICON', file_get_contents( __DIR__ . '/assets/images/ign
  */
 register_activation_hook( __FILE__, 'edac_activation' );
 register_deactivation_hook( __FILE__, 'edac_deactivation' );
+
+/**
+ * Declare compatibility with WooCommerce's High-Performance Order Storage.
+ *
+ * This plugin does not read or write order data, so it is compatible
+ * regardless of whether HPOS is enabled. No-op when WooCommerce is not
+ * active, since this hook is only fired by WooCommerce itself.
+ *
+ * @since 1.48.0
+ */
+add_action(
+	'before_woocommerce_init',
+	function () {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__ );
+		}
+	}
+);
 
 /* ***************************** CLASS AUTOLOADING *************************** */
 if ( file_exists( plugin_dir_path( __FILE__ ) . 'vendor/autoload.php' ) ) {

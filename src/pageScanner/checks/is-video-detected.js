@@ -33,19 +33,38 @@ export default {
 			}
 		}
 
+		// .ogg is the Ogg Vorbis audio extension, but the Ogg container can also carry
+		// Theora video, so it stays in videoExtensions. To avoid flagging ordinary Ogg
+		// Vorbis audio (e.g. the Gutenberg Audio block), only count a .ogg match as video
+		// when it isn't attached to an <audio> element or one of its <source> children.
+		const isInAudioContainer = tag === 'audio' || ( tag === 'source' &&
+			node.parentNode &&
+			node.parentNode.nodeName.toLowerCase() === 'audio' );
+
+		const srcLower = src.toLowerCase();
+		const dataLower = data.toLowerCase();
+
 		const matchesExtension = videoExtensions.some( ( ext ) => {
-			const srcLower = src.toLowerCase();
-			const dataLower = data.toLowerCase();
 			// Check if the extension is at the end of the string or followed by a query parameter
-			return (
+			const matches = (
 				( srcLower.endsWith( ext ) || srcLower.includes( ext + '?' ) ) ||
 				( dataLower.endsWith( ext ) || dataLower.includes( ext + '?' ) )
 			);
+
+			if ( matches && ext === '.ogg' && isInAudioContainer ) {
+				return false;
+			}
+
+			return matches;
 		} );
 
-		const matchesKeyword = videoKeywords.some( ( keyword ) =>
-			src.toLowerCase().includes( keyword )
-		);
+		// Keyword matching (youtube/vimeo/etc.) is only meaningful for embed-style
+		// elements whose src is a URL to a video player. Applying it to any [src]
+		// element (e.g. <img>) causes false positives when a filename merely
+		// contains one of these words, such as a screenshot named
+		// "...-youtube.jpg" used as a featured image.
+		const matchesKeyword = ( tag === 'iframe' || tag === 'embed' ) &&
+			videoKeywords.some( ( keyword ) => srcLower.includes( keyword ) );
 
 		const matchesType = type.toLowerCase().startsWith( 'video/' );
 

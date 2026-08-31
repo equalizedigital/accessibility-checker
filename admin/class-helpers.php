@@ -139,54 +139,6 @@ class Helpers {
 		return [];
 	}
 
-
-	/**
-	 * Determine if a domain is hosted on a local loopback
-	 *
-	 * @param string $domain The domain to check.
-	 * @return boolean
-	 */
-	public static function is_domain_loopback( $domain ) {
-
-		// Check if this is an ipv4 address in the loopback range.
-
-		$record         = gethostbyname( $domain );
-		$loopback_start = ip2long( '127.0.0.0' );
-		$loopback_end   = ip2long( '127.255.255.255' );
-		$ip_long        = ip2long( $record );
-
-		if ( $ip_long >= $loopback_start && $ip_long <= $loopback_end ) {
-			return true;
-		}
-
-		// Check if this is an ipv6 loopback.
-
-		try {
-			$records = dns_get_record( $domain, DNS_AAAA );
-		} catch ( \Throwable $th ) {
-			return false;
-		}
-
-		foreach ( $records as $record ) {
-
-			// Do ipv6 check.
-			if ( isset( $record['type'] ) && 'AAAA' === $record['type'] ) {
-
-				// Normalize the IPv6 address for comparison.
-				$normalized_ipv6 = inet_pton( $record['ipv6'] );
-
-				// Normalize the loopback address.
-				$loopback_ipv6 = inet_pton( '::1' );
-
-				if ( $normalized_ipv6 === $loopback_ipv6 ) {
-					return true;
-				}
-			}
-		}
-
-		return false;
-	}
-
 	/**
 	 * Filter out inactive rules from the results returned.
 	 *
@@ -221,6 +173,13 @@ class Helpers {
 	public static function current_user_can_see_widgets_and_notices(): bool {
 		/**
 		 * Filter the capability required to view the dashboard widget.
+		 *
+		 * Reviewed during the 2026-08 permissions work: no registered capability
+		 * in the edac_capabilities registry maps to "can see the dashboard
+		 * widget" today, so this isn't a clean deprecation candidate as-is.
+		 * Longer term, consider registering a real edac_view_dashboard_widget
+		 * capability (Permissions-UI-configurable, like the others) and
+		 * deprecating this filter in favor of it.
 		 *
 		 * @since 1.9.3
 		 *
