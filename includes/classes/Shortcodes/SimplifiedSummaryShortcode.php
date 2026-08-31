@@ -16,7 +16,7 @@ use EDAC\Inc\Simplified_Summary;
  * shortcode-aware areas. Accepts an optional post_id attribute and falls
  * back to the current post.
  *
- * @since 1.49.0
+ * @since 1.xx.x
  */
 class SimplifiedSummaryShortcode {
 
@@ -30,7 +30,7 @@ class SimplifiedSummaryShortcode {
 	/**
 	 * Initialize WordPress hooks.
 	 *
-	 * @since 1.49.0
+	 * @since 1.xx.x
 	 *
 	 * @return void
 	 */
@@ -47,7 +47,7 @@ class SimplifiedSummaryShortcode {
 	 * so the shortcode cannot expose summaries of draft, private, or
 	 * password-protected posts.
 	 *
-	 * @since 1.49.0
+	 * @since 1.xx.x
 	 *
 	 * @param array|string $atts The shortcode attributes.
 	 * @return string

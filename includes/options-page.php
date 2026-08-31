@@ -89,7 +89,7 @@ function edac_capability_metadata(): array {
 	 * load time so the capability is present whenever the registry is assembled,
 	 * regardless of plugin load order).
 	 *
-	 * @since 1.49.0
+	 * @since 1.xx.x
 	 *
 	 * @param array<string, array> $capabilities Capability metadata keyed by slug.
 	 */
@@ -211,7 +211,7 @@ function edac_capability_is_editable( string $slug, array $meta = [] ): bool {
 	 * Locked rows are rendered disabled and their stored assignments are left
 	 * untouched on save.
 	 *
-	 * @since 1.49.0
+	 * @since 1.xx.x
 	 *
 	 * @param bool   $editable Whether the capability can be assigned.
 	 * @param string $slug     The capability slug.
