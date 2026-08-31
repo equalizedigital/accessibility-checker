@@ -20,6 +20,13 @@ const NewWindowWarning = () => {
 	// target="_blank" agenda/minutes links get the same treatment. Harmless
 	// no-op if BoardScribe isn't installed - the event simply never fires.
 	document.addEventListener( 'edbs:table-rendered', processLinks );
+
+	// Support for Gravity Forms: Re-run processLinks when a form is rendered
+	// via AJAX (e.g. multi-page navigation, validation errors), so newly
+	// inserted target="_blank" links get the same treatment. Harmless no-op
+	// if Gravity Forms isn't installed - these events simply never fire.
+	document.addEventListener( 'gform_post_render', processLinks );
+	document.addEventListener( 'gform/post_render', processLinks );
 };
 
 let anwwLinkTooltip;
