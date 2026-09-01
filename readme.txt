@@ -298,7 +298,6 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 * Fix - the Taxonomy Scanning setting now points at the option the scanner actually reads.
 * Fix - the readability check now uses the correct Flesch-Kincaid grade 9 threshold.
 * Fix - Query Monitor's fallback debug output is no longer scanned and reported as false-positive accessibility issues.
-* Fix - suppressed a static-analysis false positive on the dismiss-issues REST permission callback (no behavior change).
 
 2026-07-14 - version 1.47.0
 * Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
