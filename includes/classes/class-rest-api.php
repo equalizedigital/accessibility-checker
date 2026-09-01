@@ -350,6 +350,7 @@ class REST_Api {
 							// requires the larger-blast-radius capability regardless of who
 							// owns the affected posts (dismiss_issue() re-checks this too).
 							if ( $request->get_param( 'largeBatch' ) ) {
+								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_user_can_dismiss_issues_globally() always returns bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
 								return edac_user_can_dismiss_issues_globally();
 							}
 

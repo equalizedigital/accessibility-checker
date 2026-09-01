@@ -1,0 +1,10 @@
+// Editor-only styles for the simplified summary block placeholder.
+.edac-simplified-summary {
+
+	.edac-simplified-summary-block__placeholder {
+		border: 1px dashed currentcolor;
+		border-radius: 2px;
+		opacity: 0.62;
+		padding: 0.75em 1em;
+	}
+}

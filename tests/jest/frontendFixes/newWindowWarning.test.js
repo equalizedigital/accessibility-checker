@@ -119,6 +119,26 @@ describe( 'New Window Warning Tooltip', () => {
 			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
 		} );
 
+		test( 'processes links inserted after an edbs:table-rendered event (BoardScribe pagination re-render)', () => {
+			document.body.innerHTML = '<div id="edbs-table-1"></div>';
+
+			NewWindowWarning();
+
+			// Simulate a BoardScribe instance re-rendering its table on
+			// pagination: new markup replaces the container's contents,
+			// then the instance dispatches its lifecycle event.
+			document.getElementById( 'edbs-table-1' ).innerHTML =
+				'<a href="http://example.com/minutes.pdf" target="_blank">Minutes</a>';
+			document.getElementById( 'edbs-table-1' ).dispatchEvent(
+				new CustomEvent( 'edbs:table-rendered', { bubbles: true } ),
+			);
+
+			const link = document.querySelector( 'a' );
+			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).not.toBeNull();
+			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
+		} );
+
 		describe( 'aria-label computation (updateAriaLabel)', () => {
 			test( 'uses link text content for text-only links', () => {
 				document.body.innerHTML = '<a href="http://example.com" target="_blank">External Link</a>';
