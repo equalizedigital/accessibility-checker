@@ -1,5 +1,16 @@
 *** Accessibility Checker ***
 
+2026-08-31 - version 1.49.0
+* New - Simplified Summary block and shortcode for manually placing simplified summaries in content.
+* Fix - the "Translation loading for the accessibility-checker domain was triggered too early" notice no longer appears on WordPress 6.7+.
+* Fix - email opt-in modal now stays fully usable and reflows correctly at 400% zoom.
+* Fix - "A Video is Present" no longer triggers a false positive when an image filename contains "youtube" or "vimeo".
+* Fix - the New Window Warning fix now re-applies to BoardScribe table content after it re-renders on pagination.
+* Fix - the New Window Warning fix now re-applies to Gravity Forms forms after an AJAX re-render (e.g. multi-page navigation or validation errors).
+* Fix - the ambiguous text check now uses Unicode-aware regex, correctly matching non-English and special-character text.
+* Fix - fixes REST API endpoints now use a consistent "accessibility-checker" namespace.
+* Fix - suppressed a static-analysis false positive on the dismiss-issues REST permission callback (no behavior change).
+
 2026-08-19 - version 1.48.0
 * Added - a new Permissions settings tab that lets administrators control which roles can dismiss issues, view audit history, export data, run full-site scans, and view the frontend highlighter.
 * Added - individual capabilities for dismissing issues (own vs. any), viewing audit history, exporting data, running full-site scans, and viewing the frontend highlighter, replacing the previous all-or-nothing Pro toggle.
@@ -7,7 +18,6 @@
 * Fix - the Taxonomy Scanning setting now points at the option the scanner actually reads.
 * Fix - the readability check now uses the correct Flesch-Kincaid grade 9 threshold.
 * Fix - Query Monitor's fallback debug output is no longer scanned and reported as false-positive accessibility issues.
-* Fix - resolved a static-analysis false positive on the dismiss-issues REST permission callback; the callback already returned a boolean on every code path.
 
 2026-07-14 - version 1.47.0
 * Updated - the frontend highlighter now draws a white ring around the outline so highlighted elements stay visible on any background color.
