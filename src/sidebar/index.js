@@ -90,15 +90,23 @@ function AccessibilityCheckerSidebar() {
 	return (
 		<PluginSidebar
 			name="accessibility-checker-sidebar"
-			title={
-				<span className="edac-sidebar__title">
-					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
+			title={ __( 'Accessibility Checker', 'accessibility-checker' ) }
+			header={
+				// A custom header keeps the actions menu and spinner outside
+				// the header's <h2>, so screen readers don't announce the menu
+				// button as a heading. The plain-text `title` is still used by
+				// the small-screen header and the Plugins menu, and is the
+				// rendered fallback if `header` is ever unsupported.
+				<div className="edac-sidebar__header">
+					<h2 className="edac-sidebar__header-title">
+						{ __( 'Accessibility Checker', 'accessibility-checker' ) }
+					</h2>
 					{ backgroundRefresh && <Spinner className="edac-sidebar__title-spinner" /> }
 					<SidebarTitleMenu
 						postId={ postId }
 						refetchData={ refetchData }
 					/>
-				</span>
+				</div>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>
