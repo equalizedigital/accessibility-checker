@@ -15,6 +15,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\BlockPDFUploadsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\EmptySearchFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\IframeMissingTitleFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\SkipLinkFix;
@@ -143,6 +144,7 @@ class FixesManager {
 				AddMissingOrEmptyPageTitleFix::class,
 				AddLabelToUnlabelledFormFieldsFix::class,
 				AddNewWindowWarningFix::class,
+				IframeMissingTitleFix::class,
 				EmptySearchFix::class,
 			]
 		);
