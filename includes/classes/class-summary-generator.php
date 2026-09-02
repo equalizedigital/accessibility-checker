@@ -75,7 +75,7 @@ class Summary_Generator {
 		$summary['errors']             = $this->count_errors();
 		$summary['warnings']           = $this->count_warnings();
 		$summary['ignored']            = $this->count_ignored();
-		$summary['contrast_errors']    = $this->count_contrast_errors();
+		$summary['contrast_errors']    = $this->count_contrast_errors( $rules );
 		$summary['errors']            -= $summary['contrast_errors'];
 		$summary['content_grade']      = $this->calculate_content_grade();
 		$summary['readability']        = $this->get_readability( $summary );
@@ -216,11 +216,20 @@ class Summary_Generator {
 	 * Counts the number of contrast errors for the current post.
 	 * This method queries the database to count the number of accessibility issues specifically related to color contrast failures.
 	 *
+	 * Returns 0 without querying if the color contrast rule is not among the currently active
+	 * rules (e.g. it has been filtered out via `edac_filter_register_rules`), since any existing
+	 * violations for a filtered rule should not affect the error count.
+	 *
+	 * @param array $rules The currently active rules, as returned by edac_register_rules().
 	 * @return int The count of contrast errors.
 	 *
 	 * @since 1.9.0
 	 */
-	private function count_contrast_errors() {
+	private function count_contrast_errors( $rules = [] ) {
+		if ( ! in_array( 'color_contrast_failure', wp_list_pluck( $rules, 'slug' ), true ) ) {
+			return 0;
+		}
+
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
