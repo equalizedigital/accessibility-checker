@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
 use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveEmptyParagraphTagsFix;
 
 /**
  * EmptyParagraphTag Rule class.
@@ -28,7 +29,7 @@ class EmptyParagraphTagRule implements RuleInterface {
 			'summary'               => esc_html__( 'This page contains a <p> tag with no content inside.', 'accessibility-checker' ),
 			'summary_plural'        => esc_html__( 'These pages contain <p> tags with no content inside.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Empty paragraph tags can be announced by screen readers as blank lines or pauses, which may confuse users or disrupt reading flow. They can also interfere with visual layout or spacing, especially in assistive technology or mobile contexts.', 'accessibility-checker' ),
-			'how_to_fix'            => esc_html__( 'Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs.', 'accessibility-checker' ),
+			'how_to_fix'            => esc_html__( 'Remove the empty <p> tags from your content. If spacing is needed between sections, use margin, padding, or a visual spacer block instead of inserting blank paragraphs. To automate this site-wide, enable the \'Remove Empty Paragraph Tags\' fix in Accessibility Checker settings.', 'accessibility-checker' ),
 			'references'            => [
 				[
 					'text' => __( 'MDN Web Docs: The Paragraph Element - Accessibility', 'accessibility-checker' ),
@@ -55,6 +56,9 @@ class EmptyParagraphTagRule implements RuleInterface {
 				AffectedDisabilities::LOW_VISION,
 				AffectedDisabilities::DEAFBLIND,
 				AffectedDisabilities::COGNITIVE,
+			],
+			'fixes'                 => [
+				RemoveEmptyParagraphTagsFix::get_slug(),
 			],
 		];
 	}
