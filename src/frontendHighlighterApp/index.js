@@ -2048,16 +2048,60 @@ class AccessibilityCheckerHighlight {
 	}
 }
 
+/**
+ * Set up a listener for Elementor save events and trigger an automatic rescan.
+ *
+ * When a post is saved in the Elementor editor the front-end highlighter report
+ * must update to reflect the latest accessibility-check data.  Elementor runs the
+ * page preview inside an iframe; this function accesses the parent window's
+ * Elementor editor object (`window.parent.elementor`) and attaches a one-time
+ * handler to the `after:save` event exposed by Elementor's saver module so that
+ * `rescanPage()` is called as soon as Elementor finishes saving.
+ *
+ * A try/catch guards the cross-origin boundary: if the parent window is on a
+ * different origin the access attempt will throw a `DOMException` which is
+ * silently swallowed so normal page operation is not affected.
+ *
+ * @param {AccessibilityCheckerHighlight} highlighter The active highlighter instance.
+ */
+const setupElementorSaveListener = ( highlighter ) => {
+	try {
+		// Only proceed when this script is running inside an iframe (Elementor preview).
+		if ( window === window.parent ) {
+			return;
+		}
+
+		const parentElementor = window.parent?.elementor;
+		if ( ! parentElementor?.saver ) {
+			return;
+		}
+
+		// Use Backbone's `listenTo` pattern via `on` – `initHighlighter` is guarded by
+		// `highlighterInitialized` so this handler is only ever registered once per page load.
+		parentElementor.saver.on( 'after:save', () => {
+			highlighter.rescanPage();
+		} );
+	} catch ( e ) {
+		// Accessing a cross-origin parent window throws a SecurityError DOMException.
+		// Re-throw anything unexpected so genuine programming errors remain visible.
+		if ( e instanceof DOMException ) {
+			return;
+		}
+		throw e;
+	}
+};
+
 // Some systems (Cloudflare Rocket Loader) defers scripts for performance but that can
 // cause some DOMContentLoaded events to be missed. This is flag tracks if it run so we
 // can retry at a latter event listener.
 let highlighterInitialized = false;
 const initHighlighter = () => {
 	if ( ! highlighterInitialized ) {
-		new AccessibilityCheckerHighlight();
+		const highlighter = new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
+		setupElementorSaveListener( highlighter );
 		highlighterInitialized = true;
 	}
 };
