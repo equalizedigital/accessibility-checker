@@ -171,7 +171,11 @@ class AddNewWindowWarningFix implements FixInterface {
 			.anww-no-icon .anww-external-link-icon,
 			.anww-no-icon .edac-nww-external-link-icon,
 			.edac-nww-no-icon .anww-external-link-icon,
-			.edac-nww-no-icon .edac-nww-external-link-icon {
+			.edac-nww-no-icon .edac-nww-external-link-icon,
+			.anww-disabled .anww-external-link-icon,
+			.anww-disabled .edac-nww-external-link-icon,
+			.edac-nww-disabled .anww-external-link-icon,
+			.edac-nww-disabled .edac-nww-external-link-icon {
 				display: none !important;
 			}
 		</style>
