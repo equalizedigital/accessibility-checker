@@ -204,6 +204,7 @@ class Enqueue_Admin {
 				'wp-i18n',
 				'wp-api-fetch',
 				'wp-components',
+				'wp-a11y',
 			],
 			EDAC_VERSION,
 			false
