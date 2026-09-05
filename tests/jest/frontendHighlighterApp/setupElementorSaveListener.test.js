@@ -48,7 +48,8 @@ describe( 'setupElementorSaveListener', () => {
 
 	test( 'attaches to elementor.saver and rescans on after:save when elementor is ready immediately', () => {
 		const on = jest.fn();
-		mockWindowParent( { elementor: { saver: { on } } } );
+		const off = jest.fn();
+		mockWindowParent( { elementor: { saver: { on, off } } } );
 		const highlighter = { rescanPage: jest.fn() };
 
 		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
@@ -66,10 +67,46 @@ describe( 'setupElementorSaveListener', () => {
 		expect( jest.getTimerCount() ).toBe( 0 );
 	} );
 
+	test( 'does not rescan when the save was an autosave', () => {
+		const on = jest.fn();
+		const off = jest.fn();
+		mockWindowParent( { elementor: { saver: { on, off } } } );
+		const highlighter = { rescanPage: jest.fn() };
+
+		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
+		jest.advanceTimersByTime( 500 );
+
+		const afterSaveHandler = on.mock.calls[ 0 ][ 1 ];
+		afterSaveHandler( { status: 'autosave' } );
+
+		expect( highlighter.rescanPage ).not.toHaveBeenCalled();
+
+		// A real save afterwards should still rescan.
+		afterSaveHandler( { status: 'publish' } );
+		expect( highlighter.rescanPage ).toHaveBeenCalledTimes( 1 );
+	} );
+
+	test( 'detaches the after:save listener on pagehide so a stale highlighter is never rescanned', () => {
+		const on = jest.fn();
+		const off = jest.fn();
+		mockWindowParent( { elementor: { saver: { on, off } } } );
+		const highlighter = { rescanPage: jest.fn() };
+
+		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
+		jest.advanceTimersByTime( 500 );
+
+		const afterSaveHandler = on.mock.calls[ 0 ][ 1 ];
+
+		window.dispatchEvent( new Event( 'pagehide' ) );
+
+		expect( off ).toHaveBeenCalledWith( 'after:save', afterSaveHandler );
+	} );
+
 	test( 'keeps polling until elementor becomes available, then attaches', () => {
 		const on = jest.fn();
+		const off = jest.fn();
 		let ready = false;
-		mockWindowParent( () => ( ready ? { elementor: { saver: { on } } } : {} ) );
+		mockWindowParent( () => ( ready ? { elementor: { saver: { on, off } } } : {} ) );
 		const highlighter = { rescanPage: jest.fn() };
 
 		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );

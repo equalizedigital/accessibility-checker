@@ -23,9 +23,29 @@ export function setupElementorSaveListener( highlighter, options = {} ) {
 	}
 
 	const attach = ( parentElementor ) => {
-		parentElementor.saver.on( 'after:save', () => {
+		const onAfterSave = ( saveOptions ) => {
+			// Elementor autosaves periodically in the background; it isn't a
+			// deliberate save and its content isn't published. Rescanning (and
+			// persisting) on it would overwrite the post's saved issues with
+			// in-progress draft state — the same problem the Gutenberg
+			// save-detection in src/editorApp/checkPage.js already guards
+			// against by ignoring wp.data's isAutosavingPost().
+			if ( saveOptions?.status === 'autosave' ) {
+				return;
+			}
 			highlighter.rescanPage();
-		} );
+		};
+
+		parentElementor.saver.on( 'after:save', onAfterSave );
+
+		// The preview iframe can be reloaded independently of the parent editor
+		// (e.g. switching preview devices). Backbone's `.on()` stores the callback
+		// on the parent's long-lived saver object, so without this the closure
+		// above — and the highlighter/DOM it references — would be kept alive
+		// and would still fire rescans after this iframe is gone.
+		window.addEventListener( 'pagehide', () => {
+			parentElementor.saver.off( 'after:save', onAfterSave );
+		}, { once: true } );
 	};
 
 	// Elementor's editor may still be initializing when the preview iframe first
