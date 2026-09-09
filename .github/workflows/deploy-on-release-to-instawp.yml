@@ -95,6 +95,10 @@ jobs:
           API_KEY=${{ secrets.INSTAWP_API_KEY }}
           SITE_ID_MAIN=${{ secrets.INSTAWP_SITE_ID_MAIN }}
           SITE_ID_ARCHIVEWP=${{ secrets.INSTAWP_SITE_ID_ARCHIVEWP }}
+          # Shared demo site (also targeted by boardscribe/boardscribe-pro's own
+          # deploy workflows) - optional until its secret is set, so a release
+          # here isn't blocked while that site is still being provisioned.
+          SITE_ID_BOARDSCRIBE=${{ secrets.INSTAWP_SITE_ID_BOARDSCRIBE }}
 
           if [[ -z "$API_KEY" || -z "$SITE_ID_MAIN" || -z "$SITE_ID_ARCHIVEWP" ]]; then
             echo "Required InstaWP secrets are missing. Set INSTAWP_API_KEY, INSTAWP_SITE_ID_MAIN, and INSTAWP_SITE_ID_ARCHIVEWP."
@@ -108,8 +112,15 @@ jobs:
             PLUGIN_URL="${{ github.event.inputs.plugin_zip_path }}"
           fi
 
+          SITE_IDS=("$SITE_ID_MAIN" "$SITE_ID_ARCHIVEWP")
+          if [[ -n "$SITE_ID_BOARDSCRIBE" ]]; then
+            SITE_IDS+=("$SITE_ID_BOARDSCRIBE")
+          else
+            echo "INSTAWP_SITE_ID_BOARDSCRIBE not set - skipping that site."
+          fi
+
           echo "Deploying plugin from: $PLUGIN_URL"
-          for SITE_ID in "$SITE_ID_MAIN" "$SITE_ID_ARCHIVEWP"; do
+          for SITE_ID in "${SITE_IDS[@]}"; do
             echo "Deploying to InstaWP site ID: $SITE_ID"
             HTTP_CODE=$(curl -sS -o /tmp/instawp-response.json -w "%{http_code}" \
               -X POST "https://app.instawp.io/api/v2/sites/$SITE_ID/execute-command" \
