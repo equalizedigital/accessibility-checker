@@ -11,6 +11,11 @@ if ( typeof global.btoa === 'undefined' ) {
 if ( typeof global.atob === 'undefined' ) {
 	global.atob = ( str ) => Buffer.from( String( str ), 'base64' ).toString( 'binary' );
 }
+// jsdom has no layout engine and doesn't implement scrollIntoView at all
+// (calling it throws "is not a function"), unlike real browsers.
+if ( typeof Element !== 'undefined' && typeof Element.prototype.scrollIntoView === 'undefined' ) {
+	Element.prototype.scrollIntoView = () => {};
+}
 beforeEach( () => {
 	window.edac_sidebar_app = {
 		highlightNonce: 'test-highlight-nonce',
