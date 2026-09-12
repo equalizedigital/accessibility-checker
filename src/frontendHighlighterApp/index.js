@@ -1258,9 +1258,7 @@ class AccessibilityCheckerHighlight {
 			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
 
-			// title and content (notice only rendered when there is a status message).
-			// The notice takes a full line of its own when present, so the issue
-			// title renders below it rather than alongside it (PRO-1332).
+			// title and content (notice only rendered when there is a status message)
 			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
 				title: matchingObj.rule_title,
 				notice: this.currentIssueStatus || '',
