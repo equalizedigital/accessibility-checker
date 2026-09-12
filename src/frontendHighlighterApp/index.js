@@ -8,6 +8,7 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { buildDescriptionTitle } from './descriptionTitle';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -1257,11 +1258,17 @@ class AccessibilityCheckerHighlight {
 			content += `<div><button class="edac-highlight-panel-description-code-button" aria-expanded="${ this.codeExpanded }" aria-controls="edac-highlight-panel-description-code">${ __( 'Show Affected Code', 'accessibility-checker' ) } <img src="${ codeArrowUri }" width="16" height="16" class="edac-highlight-panel-description-code-button-arrow" style="display:inline-block;width:16px;height:16px;vertical-align:middle" alt="" /></button></div>`;
 
 
-			// title and content (notice only rendered when there is a status message)
-			const noticeHtml = this.currentIssueStatus
-				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			// title and content (notice only rendered when there is a status message).
+			// The notice takes a full line of its own when present, so the issue
+			// title renders below it rather than alongside it (PRO-1332).
+			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
+				title: matchingObj.rule_title,
+				notice: this.currentIssueStatus || '',
+				typeBadgeHtml,
+			} );
+
+			descriptionTitle.classList.toggle( 'edac-highlight-panel-description-title--has-notice', hasNotice );
+			descriptionTitle.innerHTML = descriptionTitleHtml;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1991,6 +1998,7 @@ class AccessibilityCheckerHighlight {
 				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
 				if ( descriptionTitle ) {
 					descriptionTitle.innerHTML = '';
+					descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
 				}
 				if ( descriptionContent ) {
 					descriptionContent.innerHTML = '';

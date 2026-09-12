@@ -327,6 +327,16 @@ body {
 				&-text {
 					font-weight: 700 !important;
 				}
+
+				// When a status notice ("The element was not found on the page.")
+				// is present, give it a full line of its own so the issue title
+				// wraps below it instead of rendering alongside it (PRO-1332).
+				&--has-notice {
+
+					.edac-highlight-panel-description-notice {
+						flex-basis: 100% !important;
+					}
+				}
 			}
 
 			&-wcag {
