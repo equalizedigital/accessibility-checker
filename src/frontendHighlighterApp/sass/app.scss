@@ -327,6 +327,14 @@ body {
 				&-text {
 					font-weight: 700 !important;
 				}
+
+				// Give the notice its own line so the issue title wraps below it.
+				&--has-notice {
+
+					.edac-highlight-panel-description-notice {
+						flex-basis: 100% !important;
+					}
+				}
 			}
 
 			&-wcag {
