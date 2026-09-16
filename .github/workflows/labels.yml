@@ -44,7 +44,7 @@ jobs:
         working-directory: development-standards
         run: |
           pip install pyyaml
-          python3 fragments/merge.py "base,community,a11y-taxonomy,component-accessibility-checker,ci-automation-full" > /tmp/labels-merged.yml
+          python3 fragments/merge.py "base,community,a11y-taxonomy,component-accessibility-checker,ci-automation" > /tmp/labels-merged.yml
           cat /tmp/labels-merged.yml
 
       - name: Sync labels
