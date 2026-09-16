@@ -18,10 +18,10 @@ on:
 
 jobs:
   sync:
-    uses: equalizedigital/development-standards/.github/workflows/label-sync-reusable.yml@main
+    uses: equalizedigital/development-standards/.github/workflows/label-sync-reusable.yml@d6ec0f97c607fc981a0f3c13e9711faf97a391b6
     with:
       fragments: base,community,a11y-taxonomy,component-accessibility-checker,ci-automation-full
       plugin-name: ""
-      dry-run: ${{ inputs.dry-run || false }}
+      dry-run: ${{ github.event_name != 'workflow_dispatch' || inputs.dry-run }}
     secrets:
       token: ${{ secrets.LABEL_SYNC_TOKEN }}
