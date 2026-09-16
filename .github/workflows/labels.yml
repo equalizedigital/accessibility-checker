@@ -53,6 +53,4 @@ jobs:
           github-token: ${{ secrets.LABEL_SYNC_TOKEN }}
           yaml-file: /tmp/labels-merged.yml
           skip-delete: false
-          exclude: |
-            plugin:*
           dry-run: ${{ github.event_name != 'workflow_dispatch' || inputs.dry-run }}
