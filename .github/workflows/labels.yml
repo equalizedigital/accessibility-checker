@@ -1,0 +1,27 @@
+# Composes this repo's label set from equalizedigital/development-standards
+# fragments and enforces it nightly. Requires the org-level
+# LABEL_SYNC_TOKEN secret. Run a workflow_dispatch dry-run before relying
+# on the nightly schedule to delete anything.
+# See: https://github.com/equalizedigital/development-standards
+
+name: Label Sync
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Preview changes without applying them"
+        type: boolean
+        default: false
+
+jobs:
+  sync:
+    uses: equalizedigital/development-standards/.github/workflows/label-sync-reusable.yml@d6ec0f97c607fc981a0f3c13e9711faf97a391b6
+    with:
+      fragments: base,community,a11y-taxonomy,component-accessibility-checker,ci-automation-full
+      plugin-name: ""
+      dry-run: ${{ github.event_name != 'workflow_dispatch' || inputs.dry-run }}
+    secrets:
+      token: ${{ secrets.LABEL_SYNC_TOKEN }}
