@@ -18,7 +18,7 @@ on:
 
 jobs:
   sync:
-    uses: equalizedigital/development-standards/.github/workflows/label-sync-reusable.yml@d6ec0f97c607fc981a0f3c13e9711faf97a391b6
+    uses: equalizedigital/development-standards/.github/workflows/label-sync-reusable.yml@v1
     with:
       fragments: base,community,a11y-taxonomy,component-accessibility-checker,ci-automation-full
       plugin-name: ""
