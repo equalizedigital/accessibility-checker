@@ -28,6 +28,49 @@ class FilterByValueTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures missing indexes do not trigger notices.
+	 */
+	public function test_edac_filter_by_value_handles_missing_index() {
+		$items = [
+			[
+				'id' => 1,
+			],
+			[
+				'id'     => 2,
+				'status' => 'active',
+			],
+		];
+
+		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Required in this test to turn warnings into failures.
+		$previous_handler = set_error_handler(
+			static function ( $errno, $errstr ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Exception payload is test-only diagnostic data.
+				throw new RuntimeException( $errstr, $errno );
+			},
+			E_NOTICE | E_WARNING
+		);
+
+		try {
+			$this->assertSame(
+				[
+					[
+						'id'     => 2,
+						'status' => 'active',
+					],
+				],
+				edac_filter_by_value( $items, 'status', 'active' )
+			);
+		} finally {
+			if ( null !== $previous_handler ) {
+				// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- Restoring prior test-local error handler.
+				set_error_handler( $previous_handler );
+			} else {
+				restore_error_handler();
+			}
+		}
+	}
+
+	/**
 	 * Data provider for test_edac_filter_by_value.
 	 */
 	public function filter_by_value_data() {
