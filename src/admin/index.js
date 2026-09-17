@@ -9,6 +9,10 @@ import {
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
+import {
+	captureDismissIssueFocusContext,
+	restoreDismissIssueFocus,
+} from './details/dismiss-issue-focus';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -77,10 +81,11 @@ const edacScriptVars = edac_script_vars;
 
 		// Listen for ignore updates from the Gutenberg sidebar modal
 		window.addEventListener( 'edac-ignore-updated', function( event ) {
+			const refreshContext = event.detail?.refreshContext || null;
 			// Small delay to ensure the database update is complete
 			window.setTimeout( function() {
 				refreshSummaryAndReadability();
-				edacDetailsAjax();
+				edacDetailsAjax( refreshContext );
 			}, 300 );
 		} );
 
@@ -159,8 +164,9 @@ const edacScriptVars = edac_script_vars;
 
 		/**
 		 * Ajax Details
+		 * @param {Object|null} dismissFocusContext Context for a metabox dismiss action.
 		 */
-		function edacDetailsAjax() {
+		function edacDetailsAjax( dismissFocusContext = null ) {
 			if ( ! edacScriptVars.showMetaboxInBlockEditor ) {
 				return;
 			}
@@ -232,6 +238,10 @@ const edacScriptVars = edac_script_vars;
 
 					// handle fix button click events.
 					initFixButtonEventHandlers();
+
+					if ( dismissFocusContext ) {
+						restoreDismissIssueFocus( dismissFocusContext );
+					}
 				} else {
 					// eslint-disable-next-line no-console
 					console.log( response );
@@ -336,6 +346,8 @@ const edacScriptVars = edac_script_vars;
 
 					// Map legacy actions to REST endpoint actions.
 					const restAction = ignoreAction === 'enable' ? 'dismiss' : 'undismiss';
+
+					const refreshContext = captureDismissIssueFocusContext( this );
 
 					jQuery.ajax( {
 						url: edacScriptVars.edacApiUrl + '/dismiss-issue/' + issueId,
@@ -475,6 +487,7 @@ const edacScriptVars = edac_script_vars;
 									postId: parseInt( jQuery( '#post_ID' ).val() ),
 									action: data.action,
 									ruleId: data.rule_id,
+									refreshContext,
 								},
 							} );
 							window.dispatchEvent( event );
