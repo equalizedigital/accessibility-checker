@@ -152,6 +152,8 @@ describe( 'email opt-in modal init', () => {
 		document.body.innerHTML = `
 			<div id="wpwrap"><a href="#">Background link</a></div>
 			<div id="already-inert" inert></div>
+			<div id="a11y-speak-polite" aria-live="polite"></div>
+			<div id="a11y-speak-assertive" aria-live="assertive"></div>
 			<div id="TB_overlay"></div>
 			<div id="TB_window">
 				<div id="TB_title">
@@ -173,6 +175,10 @@ describe( 'email opt-in modal init', () => {
 		expect( wpwrap.hasAttribute( 'inert' ) ).toBe( true );
 		expect( document.getElementById( 'TB_window' ).hasAttribute( 'inert' ) ).toBe( false );
 		expect( document.getElementById( 'TB_overlay' ).hasAttribute( 'inert' ) ).toBe( false );
+
+		// wp.a11y.speak() regions must stay live so announcements still reach screen readers.
+		expect( document.getElementById( 'a11y-speak-polite' ).hasAttribute( 'inert' ) ).toBe( false );
+		expect( document.getElementById( 'a11y-speak-assertive' ).hasAttribute( 'inert' ) ).toBe( false );
 
 		// Background must be restored before the trap returns focus to it.
 		focusTrap.deactivate.mockImplementation( () => {

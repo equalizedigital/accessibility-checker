@@ -93,8 +93,10 @@ const bindFocusTrap = () => {
  * Make everything outside the Thickbox window and overlay inert.
  *
  * Thickbox appends its window and overlay directly to the body, so every other
- * body child is background content. Elements that were already inert are left
- * alone so closing the modal doesn't un-inert them.
+ * body child is background content. WordPress's wp.a11y.speak() live regions
+ * are skipped so announcements made while the modal is open still reach screen
+ * readers. Elements that were already inert are left alone so closing the
+ * modal doesn't un-inert them.
  *
  * @return {Element[]} The elements that were made inert.
  */
@@ -102,6 +104,7 @@ const makeBackgroundInert = () => {
 	const inertElements = Array.from( document.body.children ).filter(
 		( element ) => ! [ 'TB_window', 'TB_overlay' ].includes( element.id ) &&
 			! [ 'SCRIPT', 'STYLE', 'LINK' ].includes( element.tagName ) &&
+			! element.id.startsWith( 'a11y-speak-' ) &&
 			! element.hasAttribute( 'inert' )
 	);
 
