@@ -141,15 +141,11 @@ describe( 'email opt-in modal init', () => {
 			freshCreateFocusTrap = require( 'focus-trap' ).createFocusTrap;
 		} );
 
-		let unloadHandler;
+		const one = jest.fn();
 		const focusTrap = { activate: jest.fn(), deactivate: jest.fn() };
 		window.tb_show = jest.fn();
 		window.tb_remove = jest.fn();
-		window.jQuery = jest.fn( () => ( {
-			one: jest.fn( ( event, handler ) => {
-				unloadHandler = handler;
-			} ),
-		} ) );
+		window.jQuery = jest.fn( () => ( { one } ) );
 		window.fetch = jest.fn( () => Promise.resolve( { json: () => ( {} ) } ) );
 		freshCreateFocusTrap.mockReturnValue( focusTrap );
 
@@ -182,7 +178,12 @@ describe( 'email opt-in modal init', () => {
 		focusTrap.deactivate.mockImplementation( () => {
 			expect( wpwrap.hasAttribute( 'inert' ) ).toBe( false );
 		} );
-		unloadHandler();
+
+		// Close via the handler registered for Thickbox's tb_unload event on the document.
+		expect( window.jQuery ).toHaveBeenCalledWith( document );
+		const unloadCall = one.mock.calls.find( ( call ) => call[ 0 ] === 'tb_unload' );
+		expect( unloadCall ).toBeDefined();
+		unloadCall[ 1 ]();
 
 		expect( focusTrap.deactivate ).toHaveBeenCalled();
 		expect( wpwrap.hasAttribute( 'inert' ) ).toBe( false );
