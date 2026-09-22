@@ -25,6 +25,7 @@ describe( 'email opt-in modal init', () => {
 		jest.clearAllTimers();
 		jest.useRealTimers();
 		delete window.tb_show;
+		delete window.tb_remove;
 		delete window.jQuery;
 	} );
 
@@ -83,5 +84,49 @@ describe( 'email opt-in modal init', () => {
 
 		expect( createFocusTrap ).toHaveBeenCalledWith( modal );
 		expect( focusTrap.activate ).toHaveBeenCalled();
+	} );
+
+	test( 'adds dialog semantics to the Thickbox window once it opens', () => {
+		jest.useFakeTimers();
+
+		// The modal only opens once per module instance, so load a fresh copy.
+		let freshInitOptInModal;
+		let freshCreateFocusTrap;
+		jest.isolateModules( () => {
+			freshInitOptInModal = require( '../../../src/emailOptIn/modal' ).initOptInModal;
+			freshCreateFocusTrap = require( 'focus-trap' ).createFocusTrap;
+		} );
+
+		// Stand-ins for the globals core Thickbox and WP admin provide.
+		window.tb_show = jest.fn();
+		window.tb_remove = jest.fn();
+		window.jQuery = jest.fn( () => ( { one: jest.fn() } ) );
+		freshCreateFocusTrap.mockReturnValue( { activate: jest.fn(), deactivate: jest.fn() } );
+
+		// Minimal version of the markup tb_show() builds.
+		document.body.innerHTML = `
+			<div id="TB_window">
+				<div id="TB_title">
+					<div id="TB_ajaxWindowTitle">Accessibility Checker</div>
+					<button type="button" id="TB_closeWindowButton"><span class="tb-close-icon"></span></button>
+				</div>
+				<div id="TB_ajaxContent"></div>
+			</div>`;
+
+		const addEventListenerSpy = jest.spyOn( window, 'addEventListener' );
+		freshInitOptInModal();
+		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'load' )[ 1 ]();
+		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'mousemove' )[ 1 ]();
+
+		expect( window.tb_show ).toHaveBeenCalled();
+
+		// bindFocusTrap() polls every 250ms for the Thickbox window.
+		jest.advanceTimersByTime( 250 );
+
+		const modal = document.getElementById( 'TB_window' );
+		expect( modal.getAttribute( 'role' ) ).toBe( 'dialog' );
+		expect( modal.getAttribute( 'aria-modal' ) ).toBe( 'true' );
+		expect( modal.getAttribute( 'aria-labelledby' ) ).toBe( 'TB_ajaxWindowTitle' );
+		expect( freshCreateFocusTrap ).toHaveBeenCalledWith( modal );
 	} );
 } );
