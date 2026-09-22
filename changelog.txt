@@ -1,12 +1,12 @@
 *** Accessibility Checker ***
 
 2026-09-23 - version 1.50.0
-* New - the frontend highlighter now refreshes correctly after an Elementor save.
-* Updated - frontend highlighter styling has been hardened for better visibility and consistency.
-* Updated - the email opt-in modal now includes proper dialog semantics for better accessibility.
-* Fix - links inside the frontend highlighter now work correctly when clicked.
-* Fix - the page behind the email opt-in modal is no longer interactive while the modal is open.
-* Fix - issue titles now display correctly beneath the "element not found" notice.
+* New - the frontend highlighter automatically refreshes after saving in Elementor.
+* Updated - refined frontend highlighter styling for improved visibility and consistency across themes.
+* Updated - enhanced the email opt-in modal with dialog semantics for a better screen reader experience.
+* Updated - improved link handling inside the frontend highlighter.
+* Updated - focus stays within the email opt-in modal while it's open, making keyboard and screen reader navigation smoother.
+* Updated - issue titles appear beneath the "element not found" notice for added context.
 
 2026-08-31 - version 1.49.0
 * New - Simplified Summary block and shortcode for manually placing simplified summaries in content.
