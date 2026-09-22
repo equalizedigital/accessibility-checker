@@ -21,11 +21,9 @@ updates:
       # Matches the repo's conventional-commit style, e.g. "chore(deps): bump ...".
       prefix: "chore"
       include: "scope"
-    # This repo's label set is owned centrally (equalizedigital/development-standards,
-    # synced by .github/workflows/labels.yml). Disable Dependabot's default labels
-    # ("dependencies" plus the ecosystem/SemVer labels) rather than let it create
-    # labels that the central sync would delete again.
-    labels: []
+    # Dependabot's default labels are wanted here: "dependencies" plus the ecosystem/SemVer labels.
+    # Label definitions are owned centrally in equalizedigital/development-standards and applied by
+    # .github/workflows/labels.yml, so any label this config relies on belongs in those fragments.
     groups:
       actions-minor-patch:
         patterns:
