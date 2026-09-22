@@ -280,6 +280,14 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-09-23 - version 1.50.0
+* New - the frontend highlighter now refreshes correctly after an Elementor save.
+* Updated - frontend highlighter styling has been hardened for better visibility and consistency.
+* Updated - the email opt-in modal now includes proper dialog semantics for better accessibility.
+* Fix - links inside the frontend highlighter now work correctly when clicked.
+* Fix - the page behind the email opt-in modal is no longer interactive while the modal is open.
+* Fix - issue titles now display correctly beneath the "element not found" notice.
+
 2026-08-31 - version 1.49.0
 * New - Simplified Summary block and shortcode for manually placing simplified summaries in content.
 * Fix - the "Translation loading for the accessibility-checker domain was triggered too early" notice no longer appears on WordPress 6.7+.
