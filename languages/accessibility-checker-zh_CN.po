@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.48.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
+"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "低"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "未知"
 
@@ -569,9 +570,9 @@ msgstr "立即升级"
 #: admin/class-ajax.php:648
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "权限被拒绝"
 
@@ -750,7 +751,7 @@ msgid "No summary to return"
 msgstr "无返回摘要"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "表格名称无效"
 
@@ -940,10 +941,12 @@ msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which r
 msgstr "您的简化摘要位置设置为 “手动”，这需要将函数添加到您的页面模板中。如果您希望自动显示简化摘要，可以在 %s 上更改此设置。"
 
 #: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1539
+#: includes/options-page.php:1563
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "简化摘要"
 
@@ -969,15 +972,15 @@ msgid "The id value was not set"
 msgstr "未设置 id 值"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "未找到帖子"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "问题查询未返回结果"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "对象查询未返回结果"
 
@@ -1048,7 +1051,7 @@ msgstr "忽略问题为："
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "设置"
 
@@ -1137,7 +1140,7 @@ msgid "Report Last Updated:"
 msgstr "报告最后更新："
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1241
 msgid "Never"
 msgstr "从未"
 
@@ -1449,7 +1452,7 @@ msgid "Disabled"
 msgstr "已禁用"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:821
 msgid "Delete Data"
 msgstr "删除数据"
 
@@ -1543,20 +1546,20 @@ msgstr "获取 Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "获取 Accessibility Checker Pro（在新窗口中打开）"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "抱歉，您没有权限忽略问题。"
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "抱歉，您没有权限全局忽略问题。"
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "未找到问题。"
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "未能更新问题。"
 
@@ -1884,11 +1887,11 @@ msgstr "从可聚焦元素中移除%1$s属性。"
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "注意：不建议对已经支持无障碍的主题使用此设置。"
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "未找到修复"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "未找到修复。"
 
@@ -3570,237 +3573,237 @@ msgstr "编辑其他用户文章的能力"
 msgid "Requires %s."
 msgstr "需要 %s。"
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "欢迎使用 Accessibility Checker"
 
-#: includes/options-page.php:698
+#: includes/options-page.php:702
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker 设置"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "扫描设置"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "简化摘要设置"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "页脚无障碍声明"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "前端 Accessibility Checker"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "系统设置"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
 msgid "Post Types To Be Checked"
 msgstr "要检查的文章类型"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:794
 msgid "Scan Speed"
 msgstr "扫描速度"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:803
 msgid "Archive Scanning"
 msgstr "归档扫描"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:812
 msgid "Taxonomy Scanning"
 msgstr "分类法扫描"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:830
 msgid "Block Editor Metabox"
 msgstr "区块编辑器元框"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:839
 msgid "Prompt for Simplified Summary"
 msgstr "提示输入简化摘要"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:848
 msgid "Simplified Summary Position"
 msgstr "简化摘要位置"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:857
 msgid "Simplified Summary Heading"
 msgstr "简化摘要标题"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:866
+#: includes/options-page.php:1374
 msgid "Add Footer Accessibility Statement"
 msgstr "添加页脚无障碍声明"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:875
+#: includes/options-page.php:1397
 msgid "Include Link to Accessibility Policy"
 msgstr "包含无障碍政策链接"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:884
 msgid "Accessibility Policy page"
 msgstr "无障碍政策页面"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:893
 msgid "Accessibility Statement Preview"
 msgstr "无障碍声明预览"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:901
 msgid "Frontend Accessibility Checker Position"
 msgstr "前端 Accessibility Checker 位置"
 
-#: includes/options-page.php:951
+#: includes/options-page.php:955
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "配置应检查可访问性问题的内容类型。"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:956
+#: includes/options-page.php:960
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "更多功能和电子邮件支持可通过%1$s获得。"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro（在新窗口中打开）"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:978
+#: includes/options-page.php:982
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "使用以下设置来配置前端无障碍检查器。"
 
-#: includes/options-page.php:988
+#: includes/options-page.php:992
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Web 内容无障碍指南（WCAG）AAA 级要求任何阅读水平高于 9 年级的内容都应有一个更易读的替代版本。简化摘要文本可以在每个文章或页面编辑屏幕的 Accessibility Checker 元框中的可读性选项卡上添加。"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "了解更多关于简化摘要和可读性要求（在新窗口中打开）"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "了解更多关于简化摘要和可读性要求。"
 
-#: includes/options-page.php:1007
+#: includes/options-page.php:1011
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "您是否在想 “哇，这个插件太棒了”，它是否正在帮助您使您的网站更易访问？与您的客户分享您为使网站更易访问所做的努力，让他们知道您正在使用 Accessibility Checker 来确保所有人都能使用您的网站。在您网站的页脚添加一个小型纯文本链接和声明。"
 
-#: includes/options-page.php:1016
+#: includes/options-page.php:1020
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "为 Accessibility Checker 插件配置系统级设置。"
 
-#: includes/options-page.php:1030
+#: includes/options-page.php:1034
 msgid "Fast"
 msgstr "快速"
 
-#: includes/options-page.php:1031
+#: includes/options-page.php:1035
 msgid "Normal"
 msgstr "正常"
 
-#: includes/options-page.php:1032
+#: includes/options-page.php:1036
 msgid "Slow"
 msgstr "慢速"
 
-#: includes/options-page.php:1033
+#: includes/options-page.php:1037
 msgid "Slowest"
 msgstr "最慢"
 
-#: includes/options-page.php:1055
+#: includes/options-page.php:1059
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "更快的扫描会消耗更多资源，可能会给你的网站带来高负载。"
 
-#: includes/options-page.php:1081
+#: includes/options-page.php:1085
 msgid "Enable scanning of archive pages"
 msgstr "启用归档页面扫描"
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1089
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "选择是否在完整网站扫描中包含归档页面。默认情况下，会使用抽样方法选择分类法术语以获取归档数据。"
 
-#: includes/options-page.php:1111
+#: includes/options-page.php:1115
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "扫描所有分类术语而不仅仅是样本"
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1119
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "检查所有分类法术语归档页面，而不是代表性样本。这需要启用归档页面扫描，并可能会向扫描列表添加大量 URL。"
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1148
 msgid "Before the content"
 msgstr "在内容之前"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1153
 msgid "After the content"
 msgstr "在内容之后"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1158
 msgid "Insert manually"
 msgstr "手动插入"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1162
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "使用此功能在循环内手动将简化摘要添加到你的主题中。"
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1164
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "该函数可选择接受文章ID作为参数。"
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1167
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "设置你希望简化摘要在填写时相对于内容的显示位置。"
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1182
 msgid "Bottom Right Corner (default)"
 msgstr "右下角（默认）"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1187
 msgid "Bottom Left Corner"
 msgstr "左下角"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1191
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "设置你希望前端无障碍检查器在页面上出现的位置。"
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1231
 msgid "When Required"
 msgstr "在需要时"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1236
 msgid "Always"
 msgstr "始终"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1244
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker 是否应该只在您的文章或页面的阅读水平高于 9 年级时要求简化摘要，还是无论阅读水平如何都始终要求，或者无论阅读水平如何都从不要求？"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1299
 msgid "To check content other than posts and pages, please "
 msgstr "要检查文章和页面以外的内容，请 "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1301
 msgid "upgrade to pro"
 msgstr "升级为专业版"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1302
 msgid " (opens in a new window)"
 msgstr " （在新窗口中打开）"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1307
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "选择在扫描期间应检查哪些文章类型。请注意，移除先前选定的文章类型将移除其扫描信息以及已设置的任何自定义忽略警告。"
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1448
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "卸载插件时删除所有 Accessibility Checker 数据。"
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1466
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "在区块编辑器中显示 Accessibility Checker 元框"
 
@@ -6143,6 +6146,10 @@ msgstr "扫描"
 msgid "Refresh"
 msgstr "刷新"
 
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "此文章的简化摘要将在此处显示。请在 Accessibility Checker 侧边栏或元框的“可读性”部分编写摘要。"
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "仅限屏幕阅读器"
@@ -6150,3 +6157,28 @@ msgstr "仅限屏幕阅读器"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "始终显示屏幕阅读器文本"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "简化摘要"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "显示来自 Accessibility Checker 的此文章简化摘要。"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "无障碍"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "摘要"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "可读性"

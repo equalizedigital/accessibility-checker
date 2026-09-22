@@ -8,6 +8,8 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { setupElementorSaveListener } from './setupElementorSaveListener';
+import { buildDescriptionTitle } from './descriptionTitle';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -1171,6 +1173,8 @@ class AccessibilityCheckerHighlight {
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
 
 			let content = '';
+			// Elementor cancels preview link navigation unless the anchor has this opt-out class.
+			const isElementorEditorLinkClass = window.elementorFrontend?.isEditMode?.() === true ? ' elementor-clickable' : '';
 
 			const newWindowHtml = `<span aria-hidden="true">↗\uFE0E</span><span class="edac-sr-only">${ __( ', opens a new window', 'accessibility-checker' ) }</span>`;
 
@@ -1196,7 +1200,7 @@ class AccessibilityCheckerHighlight {
 					}
 				}
 
-				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
 			// Metadata row: Type
@@ -1245,11 +1249,11 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
+				content += `<div><a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
+				content += `<a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
 			}
 
 			// Get the code button
@@ -1258,10 +1262,14 @@ class AccessibilityCheckerHighlight {
 
 
 			// title and content (notice only rendered when there is a status message)
-			const noticeHtml = this.currentIssueStatus
-				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
+				title: matchingObj.rule_title,
+				notice: this.currentIssueStatus || '',
+				typeBadgeHtml,
+			} );
+
+			descriptionTitle.classList.toggle( 'edac-highlight-panel-description-title--has-notice', hasNotice );
+			descriptionTitle.innerHTML = descriptionTitleHtml;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1991,6 +1999,7 @@ class AccessibilityCheckerHighlight {
 				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
 				if ( descriptionTitle ) {
 					descriptionTitle.innerHTML = '';
+					descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
 				}
 				if ( descriptionContent ) {
 					descriptionContent.innerHTML = '';
@@ -2054,10 +2063,11 @@ class AccessibilityCheckerHighlight {
 let highlighterInitialized = false;
 const initHighlighter = () => {
 	if ( ! highlighterInitialized ) {
-		new AccessibilityCheckerHighlight();
+		const highlighter = new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
+		setupElementorSaveListener( highlighter );
 		highlighterInitialized = true;
 	}
 };

@@ -25,7 +25,7 @@ const FixCard = ( { slug, onSave, onError } ) => {
 		setIsLoading( true );
 		setError( null );
 
-		apiFetch( { path: `/edac/v1/fix-fields/${ slug }`, method: 'GET' } )
+		apiFetch( { path: `/accessibility-checker/v1/fix-fields/${ slug }`, method: 'GET' } )
 			.then( ( response ) => {
 				if ( cancelled ) {
 					return;
@@ -78,7 +78,7 @@ const FixCard = ( { slug, onSave, onError } ) => {
 		setNotice( null );
 		try {
 			await apiFetch( {
-				path: '/edac/v1/fixes/update',
+				path: '/accessibility-checker/v1/fixes/update',
 				method: 'POST',
 				data: { [ fixInfo.fix_slug ]: formValues },
 			} );

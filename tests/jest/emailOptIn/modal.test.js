@@ -2,8 +2,8 @@
  * Tests for email opt-in modal initialization
  */
 
-import { initOptInModal } from '../../../src/emailOptIn/modal';
 import { createFocusTrap } from 'focus-trap';
+import { initOptInModal } from '../../../src/emailOptIn/modal';
 
 jest.mock(
 	'focus-trap',
@@ -16,7 +16,17 @@ jest.mock(
 describe( 'email opt-in modal init', () => {
 	beforeEach( () => {
 		jest.restoreAllMocks();
+		jest.useRealTimers();
+		document.body.innerHTML = '';
 		window.onload = null;
+	} );
+
+	afterEach( () => {
+		jest.clearAllTimers();
+		jest.useRealTimers();
+		delete window.tb_show;
+		delete window.tb_remove;
+		delete window.jQuery;
 	} );
 
 	test( 'does not overwrite existing window.onload handler', () => {
@@ -45,14 +55,53 @@ describe( 'email opt-in modal init', () => {
 		expect( addEventListenerSpy ).toHaveBeenCalledWith( 'scroll', expect.any( Function ), { once: true } );
 	} );
 
+	test( 'marks the email opt-in ThickBox before activating its focus trap', () => {
+		jest.useFakeTimers();
+
+		const modal = document.createElement( 'div' );
+		modal.id = 'TB_window';
+		modal.innerHTML = '<button class="tb-close-icon">Close</button>';
+
+		const focusTrap = {
+			activate: jest.fn(),
+			deactivate: jest.fn(),
+		};
+		createFocusTrap.mockReturnValue( focusTrap );
+		window.tb_show = jest.fn( () => document.body.appendChild( modal ) );
+		window.jQuery = jest.fn( () => ( { one: jest.fn() } ) );
+
+		const addEventListenerSpy = jest.spyOn( window, 'addEventListener' );
+		initOptInModal();
+
+		const loadCall = addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'load' );
+		loadCall[ 1 ]();
+		const mousemoveCall = addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'mousemove' );
+		mousemoveCall[ 1 ]();
+
+		expect( modal.classList.contains( 'edac-email-opt-in-modal' ) ).toBe( true );
+
+		jest.advanceTimersByTime( 250 );
+
+		expect( createFocusTrap ).toHaveBeenCalledWith( modal );
+		expect( focusTrap.activate ).toHaveBeenCalled();
+	} );
+
 	test( 'adds dialog semantics to the Thickbox window once it opens', () => {
 		jest.useFakeTimers();
+
+		// The modal only opens once per module instance, so load a fresh copy.
+		let freshInitOptInModal;
+		let freshCreateFocusTrap;
+		jest.isolateModules( () => {
+			freshInitOptInModal = require( '../../../src/emailOptIn/modal' ).initOptInModal;
+			freshCreateFocusTrap = require( 'focus-trap' ).createFocusTrap;
+		} );
 
 		// Stand-ins for the globals core Thickbox and WP admin provide.
 		window.tb_show = jest.fn();
 		window.tb_remove = jest.fn();
 		window.jQuery = jest.fn( () => ( { one: jest.fn() } ) );
-		createFocusTrap.mockReturnValue( { activate: jest.fn(), deactivate: jest.fn() } );
+		freshCreateFocusTrap.mockReturnValue( { activate: jest.fn(), deactivate: jest.fn() } );
 
 		// Minimal version of the markup tb_show() builds.
 		document.body.innerHTML = `
@@ -65,7 +114,7 @@ describe( 'email opt-in modal init', () => {
 			</div>`;
 
 		const addEventListenerSpy = jest.spyOn( window, 'addEventListener' );
-		initOptInModal();
+		freshInitOptInModal();
 		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'load' )[ 1 ]();
 		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'mousemove' )[ 1 ]();
 
@@ -78,8 +127,6 @@ describe( 'email opt-in modal init', () => {
 		expect( modal.getAttribute( 'role' ) ).toBe( 'dialog' );
 		expect( modal.getAttribute( 'aria-modal' ) ).toBe( 'true' );
 		expect( modal.getAttribute( 'aria-labelledby' ) ).toBe( 'TB_ajaxWindowTitle' );
-		expect( createFocusTrap ).toHaveBeenCalledWith( modal );
-
-		jest.useRealTimers();
+		expect( freshCreateFocusTrap ).toHaveBeenCalledWith( modal );
 	} );
 } );

@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "edac/simplified-summary",
+	"title": "Simplified Summary",
+	"description": "Displays this post's simplified summary from Accessibility Checker.",
+	"category": "accessibility-checker",
+	"icon": "universal-access-alt",
+	"keywords": [ "accessibility", "summary", "readability" ],
+	"textdomain": "accessibility-checker",
+	"usesContext": [ "postId" ],
+	"supports": {
+		"html": false,
+		"multiple": false,
+		"spacing": {
+			"margin": true
+		}
+	},
+	"editorScript": "edac-simplified-summary-block",
+	"editorStyle": "edac-simplified-summary-block-editor"
+}

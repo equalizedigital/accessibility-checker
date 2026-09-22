@@ -14,6 +14,18 @@ const NewWindowWarning = () => {
 
 	// Support for FacetWP: Re-run the processLinks function when FacetWP refreshes the page
 	document.addEventListener( 'facetwp-loaded', processLinks );
+
+	// Support for BoardScribe: Re-run processLinks when a BoardScribe instance
+	// re-renders its table (e.g. on pagination), so newly inserted
+	// target="_blank" agenda/minutes links get the same treatment. Harmless
+	// no-op if BoardScribe isn't installed - the event simply never fires.
+	document.addEventListener( 'edbs:table-rendered', processLinks );
+
+	// Support for Gravity Forms: Re-run processLinks when a form is rendered
+	// via AJAX (e.g. multi-page navigation, validation errors), so newly
+	// inserted target="_blank" links get the same treatment. Harmless no-op
+	// if Gravity Forms isn't installed - these events simply never fire.
+	document.addEventListener( 'gform/post_render', processLinks );
 };
 
 let anwwLinkTooltip;

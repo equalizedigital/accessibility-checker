@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.48.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
+"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "낮음"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -569,9 +570,9 @@ msgstr "지금 업그레이드하기"
 #: admin/class-ajax.php:648
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "권한이 거부되었습니다"
 
@@ -750,7 +751,7 @@ msgid "No summary to return"
 msgstr "반환할 요약 없음"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "잘못된 테이블 이름"
 
@@ -940,10 +941,12 @@ msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which r
 msgstr "간소화된 요약 위치가 “수동” 으로 설정되어 있어 페이지 템플릿에 함수를 추가해야 합니다. 간소화된 요약을 자동으로 표시하려면 %s에서 변경할 수 있습니다."
 
 #: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1539
+#: includes/options-page.php:1563
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "간단한 요약"
 
@@ -969,15 +972,15 @@ msgid "The id value was not set"
 msgstr "ID 값이 설정되지 않았습니다"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "게시물을 찾을 수 없습니다"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "문제 쿼리 결과 없음"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "객체 쿼리 결과 없음"
 
@@ -1048,7 +1051,7 @@ msgstr "다음으로 문제 해제:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "설정"
 
@@ -1137,7 +1140,7 @@ msgid "Report Last Updated:"
 msgstr "보고서 마지막 업데이트:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1241
 msgid "Never"
 msgstr "없음"
 
@@ -1449,7 +1452,7 @@ msgid "Disabled"
 msgstr "비활성화됨"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:821
 msgid "Delete Data"
 msgstr "데이터 삭제"
 
@@ -1543,20 +1546,20 @@ msgstr "Accessibility Checker Pro 구매하기"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro 받기 (새 창에서 열림)"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "죄송합니다. 이슈를 무시할 권한이 없습니다."
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "죄송합니다. 이슈를 전역적으로 무시할 권한이 없습니다."
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "문제를 찾을 수 없습니다."
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "문제를 업데이트하지 못했습니다."
 
@@ -1884,11 +1887,11 @@ msgstr "포커스 가능한 요소에서 %1$s 속성을 제거합니다."
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "참고: 이 설정은 이미 접근성이 준비된 테마에는 권장되지 않습니다."
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "수정 사항을 찾을 수 없음"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "수정 사항을 찾을 수 없습니다."
 
@@ -3570,237 +3573,237 @@ msgstr "다른 사용자의 포스트 편집 권한"
 msgid "Requires %s."
 msgstr "%s이(가) 필요합니다."
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checker에 오신 것을 환영합니다"
 
-#: includes/options-page.php:698
+#: includes/options-page.php:702
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker 설정"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "스캔 설정"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "간소화된 요약 설정"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "푸터 접근성 선언문"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "프론트엔드 Accessibility Checker"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "시스템 설정"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
 msgid "Post Types To Be Checked"
 msgstr "검사할 게시물 유형"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:794
 msgid "Scan Speed"
 msgstr "스캔 속도"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:803
 msgid "Archive Scanning"
 msgstr "아카이브 스캐닝"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:812
 msgid "Taxonomy Scanning"
 msgstr "분류법 스캐닝"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:830
 msgid "Block Editor Metabox"
 msgstr "블록 편집기 메타박스"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:839
 msgid "Prompt for Simplified Summary"
 msgstr "간소화된 요약 프롬프트"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:848
 msgid "Simplified Summary Position"
 msgstr "간소화된 요약 위치"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:857
 msgid "Simplified Summary Heading"
 msgstr "간소화된 요약 제목"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:866
+#: includes/options-page.php:1374
 msgid "Add Footer Accessibility Statement"
 msgstr "푸터 접근성 선언문 추가"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:875
+#: includes/options-page.php:1397
 msgid "Include Link to Accessibility Policy"
 msgstr "접근성 정책 링크 포함"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:884
 msgid "Accessibility Policy page"
 msgstr "접근성 정책 페이지"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:893
 msgid "Accessibility Statement Preview"
 msgstr "접근성 선언문 미리보기"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:901
 msgid "Frontend Accessibility Checker Position"
 msgstr "프론트엔드 Accessibility Checker 위치"
 
-#: includes/options-page.php:951
+#: includes/options-page.php:955
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "접근성 문제를 확인할 콘텐츠 유형을 구성해."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:956
+#: includes/options-page.php:960
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "더 많은 기능과 email 지원은 %1$s에서 이용 가능합니다."
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (새 창에서 열림)"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:978
+#: includes/options-page.php:982
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "아래 설정을 사용하여 프론트엔드 접근성 검사기를 구성하세요."
 
-#: includes/options-page.php:988
+#: includes/options-page.php:992
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "AAA 수준의 웹 콘텐츠 접근성 지침(WCAG)에 따르면 9학년 이상의 읽기 수준을 가진 콘텐츠는 더 쉽게 읽을 수 있는 대안이 있어야 합니다. 간소화된 요약 텍스트는 각 게시물이나 페이지의 편집 화면에 있는 Accessibility Checker 메타 박스의 가독성 탭에 추가됩니다."
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "간소화된 요약과 가독성 요구사항에 대해 자세히 알아보기(새 창에서 열림)"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "간소화된 요약과 가독성 요구사항에 대해 자세히 알아보기."
 
-#: includes/options-page.php:1007
+#: includes/options-page.php:1011
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "“와, 이 플러그인 정말 대단하다” 고 생각하시나요? 웹사이트를 더 접근성 있게 만드는 데 도움이 되고 있나요? 웹사이트를 더 접근성 있게 만들기 위한 노력을 고객과 공유하고 모든 사람이 웹사이트를 이용할 수 있도록 Accessibility Checker를 사용하고 있다는 것을 알려주세요. 웹사이트 푸터에 작은 텍스트 전용 링크와 성명을 추가하세요."
 
-#: includes/options-page.php:1016
+#: includes/options-page.php:1020
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Accessibility Checker 플러그인의 시스템 수준 설정을 구성해."
 
-#: includes/options-page.php:1030
+#: includes/options-page.php:1034
 msgid "Fast"
 msgstr "빠름"
 
-#: includes/options-page.php:1031
+#: includes/options-page.php:1035
 msgid "Normal"
 msgstr "보통"
 
-#: includes/options-page.php:1032
+#: includes/options-page.php:1036
 msgid "Slow"
 msgstr "느림"
 
-#: includes/options-page.php:1033
+#: includes/options-page.php:1037
 msgid "Slowest"
 msgstr "가장 느림"
 
-#: includes/options-page.php:1055
+#: includes/options-page.php:1059
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "빠른 스캔은 리소스를 더 많이 사용하며 웹사이트에 높은 부하를 줄 수 있어."
 
-#: includes/options-page.php:1081
+#: includes/options-page.php:1085
 msgid "Enable scanning of archive pages"
 msgstr "아카이브 페이지 스캔 활성화"
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1089
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "전체 사이트 스캔에 아카이브 페이지를 포함할지 선택해줘. 기본적으로 아카이브 데이터를 위한 분류 용어를 선택할 때 샘플링 방식이 사용돼."
 
-#: includes/options-page.php:1111
+#: includes/options-page.php:1115
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "샘플이 아닌 모든 분류 용어 스캔"
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1119
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "대표 샘플 대신 모든 분류 용어 아카이브 페이지를 확인해줘. 이 기능을 사용하려면 아카이브 페이지 스캐닝이 활성화되어 있어야 하며, 스캔 목록에 많은 URL이 추가될 수 있어."
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1148
 msgid "Before the content"
 msgstr "콘텐츠 앞"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1153
 msgid "After the content"
 msgstr "콘텐츠 뒤"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1158
 msgid "Insert manually"
 msgstr "수동으로 삽입"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1162
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "이 기능을 사용하여 루프 내에서 테마에 간소화된 요약을 수동으로 추가하세요."
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1164
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "이 함수는 선택적으로 게시물 ID를 매개변수로 받습니다."
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1167
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "간소화된 요약을 콘텐츠와 관련하여 어디에 표시할지 설정하세요(작성된 경우)."
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1182
 msgid "Bottom Right Corner (default)"
 msgstr "오른쪽 하단 모서리(기본값)"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1187
 msgid "Bottom Left Corner"
 msgstr "왼쪽 하단 모서리"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1191
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "프론트엔드 접근성 검사기를 페이지의 어디에 표시할지 설정하세요."
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1231
 msgid "When Required"
 msgstr "필요한 경우"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1236
 msgid "Always"
 msgstr "항상"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1244
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker가 게시물이나 페이지의 읽기 수준이 9학년 이상일 때만 간소화된 요약을 요청해야 할까요, 아니면 읽기 수준에 상관없이 항상 요청해야 할까요, 아니면 읽기 수준에 상관없이 절대 요청하지 말아야 할까요?"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1299
 msgid "To check content other than posts and pages, please "
 msgstr "게시물과 페이지 이외의 콘텐츠를 확인하려면 "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1301
 msgid "upgrade to pro"
 msgstr "pro로 업그레이드"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1302
 msgid " (opens in a new window)"
 msgstr " (새 창에서 열림)"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1307
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "스캔 중에 확인할 게시물 유형을 선택하십시오. 이전에 선택한 게시물 유형을 제거하면 해당 스캔 정보와 설정된 모든 사용자 지정 해제 경고가 제거됩니다."
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1448
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "플러그인을 제거할 때 모든 Accessibility Checker 데이터를 삭제합니다."
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1466
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "블록 편집기에서 Accessibility Checker 메타박스 표시"
 
@@ -6143,6 +6146,10 @@ msgstr "스캔"
 msgid "Refresh"
 msgstr "새로 고침"
 
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "이 포스트의 요약문이 여기에 표시됩니다. Accessibility Checker 사이드바 또는 메타 박스의 가독성 섹션에서 요약문을 작성하세요."
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "스크린 리더 전용"
@@ -6150,3 +6157,28 @@ msgstr "스크린 리더 전용"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "항상 스크린 리더 텍스트 표시"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "요약문"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "Accessibility Checker에서 제공하는 이 포스트의 요약문을 표시합니다."
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "accessibility"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "summary"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "readability"

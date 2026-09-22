@@ -235,7 +235,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	?>
 
 		<?php
-		$edac_meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		$edac_meetup_html = edac_get_upcoming_meetups_html( 'equalize-digital-web-accessibility-meetup-dfw', 2 );
 		if ( ! empty( $edac_meetup_html ) ) :
 			?>
 			<div class="edac-panel">

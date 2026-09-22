@@ -261,34 +261,27 @@ class FixesManager {
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		register_rest_route(
-			'edac/v1',
-			'/fixes',
-			[
+		$namespaces = [
+			'accessibility-checker/v1',
+			'edac/v1', // Retained for backward compatibility while integrations migrate.
+		];
+
+		$routes = [
+			'/fixes'                               => [
 				'methods'             => 'GET',
-				'callback'            => [ $this, 'get_fixes' ],
+				'callback'            => [ $this, 'get_fixes_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fixes/update',
-			[
+			],
+			'/fixes/update'                        => [
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_fix_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)',
-			[
+			],
+			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)' => [
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'get_fix_fields' ],
 				'args'                => [
@@ -300,8 +293,14 @@ class FixesManager {
 				'permission_callback' => function () {
 					return current_user_can( 'edit_posts' );
 				},
-			]
-		);
+			],
+		];
+
+		foreach ( $namespaces as $namespace ) {
+			foreach ( $routes as $route => $args ) {
+				register_rest_route( $namespace, $route, $args );
+			}
+		}
 	}
 
 	/**

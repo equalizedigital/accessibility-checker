@@ -11,6 +11,13 @@ import { createFocusTrap } from 'focus-trap';
 // Ensure the global variable is defined.
 window.edac_email_opt_in_form = window.edac_email_opt_in_form || {};
 
+const getOptInModal = () => {
+	const modal = document.getElementById( 'TB_window' );
+	modal?.classList.add( 'edac-email-opt-in-modal' );
+
+	return modal;
+};
+
 export const initOptInModal = () => {
 	window.addEventListener( 'load', () => {
 		window.addEventListener( 'mousemove', triggerModal, { once: true } );
@@ -28,6 +35,7 @@ const triggerModal = ( () => {
 		hasRun = true;
 
 		tb_show( 'Accessibility Checker', '#TB_inline?width=600&inlineId=edac-opt-in-modal', null );
+		getOptInModal();
 
 		// Loop and check for the close button before trying to bind the focus trap.
 		let attempts = 0;
@@ -49,7 +57,7 @@ const triggerModal = ( () => {
 } )();
 
 const bindFocusTrap = () => {
-	const modal = document.getElementById( 'TB_window' );
+	const modal = getOptInModal();
 	const closeIcon = modal?.querySelector( '.tb-close-icon' );
 	if ( ! modal || ! closeIcon ) {
 		return false;

@@ -148,18 +148,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
 	 */
-	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+	public function testAdminFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
 		global $wp_scripts;
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
-		$expected       = rest_url( 'edac/v1' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
-		$this->assertStringContainsString( 'edac', $localized_data );
-		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 	}
 
 	/**
@@ -193,13 +192,14 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		add_filter( 'rest_url_prefix', $prefix_callback );
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+		$expected = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
 		remove_filter( 'rest_url_prefix', $prefix_callback );
 		delete_option( 'permalink_structure' );
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
 
-		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 

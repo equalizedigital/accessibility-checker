@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.48.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
+"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "低"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "不明"
 
@@ -569,9 +570,9 @@ msgstr "今すぐアップグレード"
 #: admin/class-ajax.php:648
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "権限がありません"
 
@@ -750,7 +751,7 @@ msgid "No summary to return"
 msgstr "返す要約がありません"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "無効なテーブル名"
 
@@ -940,10 +941,12 @@ msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which r
 msgstr "簡略化された要約の場所は「手動」に設定されており、ページテンプレートに関数を追加する必要があります。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
 #: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1539
+#: includes/options-page.php:1563
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "簡略版概要"
 
@@ -969,15 +972,15 @@ msgid "The id value was not set"
 msgstr "ID値が設定されていません"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "投稿が見つかりません"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "問題のクエリで結果が返されませんでした"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
@@ -1048,7 +1051,7 @@ msgstr "問題を却下する理由:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "設定"
 
@@ -1137,7 +1140,7 @@ msgid "Report Last Updated:"
 msgstr "レポート最終更新日:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1241
 msgid "Never"
 msgstr "なし"
 
@@ -1449,7 +1452,7 @@ msgid "Disabled"
 msgstr "無効"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:821
 msgid "Delete Data"
 msgstr "データを削除"
 
@@ -1543,20 +1546,20 @@ msgstr "Accessibility Checker Proを入手"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro を入手する（新しいウィンドウで開きます）"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "申し訳ありませんが、問題を無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "申し訳ありませんが、問題をグローバルに無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "問題が見つかりません。"
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "問題の更新に失敗しました。"
 
@@ -1884,11 +1887,11 @@ msgstr "フォーカス可能な要素から%1$s属性を削除します。"
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "注意：この設定は、既にアクセシビリティ対応のテーマには推奨されません。"
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "修正が見つかりません"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "修正が見つかりません。"
 
@@ -3570,237 +3573,237 @@ msgstr "他のユーザーの投稿を編集する能力"
 msgid "Requires %s."
 msgstr "%s が必要です。"
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checkerへようこそ"
 
-#: includes/options-page.php:698
+#: includes/options-page.php:702
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker設定"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "スキャン設定"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "簡易要約の設定"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "フッターのアクセシビリティ声明"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "フロントエンドAccessibility Checker"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "システム設定"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
 msgid "Post Types To Be Checked"
 msgstr "チェック対象の投稿タイプ"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:794
 msgid "Scan Speed"
 msgstr "スキャン速度"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:803
 msgid "Archive Scanning"
 msgstr "アーカイブスキャン"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:812
 msgid "Taxonomy Scanning"
 msgstr "タクソノミースキャン"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:830
 msgid "Block Editor Metabox"
 msgstr "ブロックエディターのメタボックス"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:839
 msgid "Prompt for Simplified Summary"
 msgstr "簡易要約の入力を促す"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:848
 msgid "Simplified Summary Position"
 msgstr "簡易要約の位置"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:857
 msgid "Simplified Summary Heading"
 msgstr "簡略化された概要見出し"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:866
+#: includes/options-page.php:1374
 msgid "Add Footer Accessibility Statement"
 msgstr "フッターにアクセシビリティ声明を追加"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:875
+#: includes/options-page.php:1397
 msgid "Include Link to Accessibility Policy"
 msgstr "アクセシビリティポリシーへのリンクを含める"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:884
 msgid "Accessibility Policy page"
 msgstr "アクセシビリティポリシーページ"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:893
 msgid "Accessibility Statement Preview"
 msgstr "アクセシビリティ声明のプレビュー"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:901
 msgid "Frontend Accessibility Checker Position"
 msgstr "フロントエンドAccessibility Checkerの位置"
 
-#: includes/options-page.php:951
+#: includes/options-page.php:955
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "アクセシビリティの問題をチェックするコンテンツの種類を設定します。"
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:956
+#: includes/options-page.php:960
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "より多くの機能とemailサポートは%1$sで利用可能です。"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:978
+#: includes/options-page.php:982
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "以下の設定を使用してフロントエンドのアクセシビリティチェッカーを構成してください。"
 
-#: includes/options-page.php:988
+#: includes/options-page.php:992
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "ウェブコンテンツアクセシビリティガイドライン（WCAG）のAAAレベルでは、9年生以上の読解レベルを持つコンテンツには、より読みやすい代替版が必要です。簡略化された要約テキストは、各投稿またはページの編集画面のAccessibility Checkerメタボックスの読みやすさタブに追加されます。"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ（新しいウィンドウで開きます）"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "簡略化された要約と読みやすさの要件について詳しく学ぶ。"
 
-#: includes/options-page.php:1007
+#: includes/options-page.php:1011
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "「わあ、このプラグインはすごい」と思い、ウェブサイトをよりアクセシブルにするのに役立っていますか？ウェブサイトをよりアクセシブルにするための取り組みをお客様と共有し、すべての人がウェブサイトを利用できるようにするためにAccessibility Checkerを使用していることを知らせましょう。ウェブサイトのフッターに小さなテキストのみのリンクと声明を追加してください。"
 
-#: includes/options-page.php:1016
+#: includes/options-page.php:1020
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Accessibility Checkerプラグインのシステムレベル設定を構成します。"
 
-#: includes/options-page.php:1030
+#: includes/options-page.php:1034
 msgid "Fast"
 msgstr "高速"
 
-#: includes/options-page.php:1031
+#: includes/options-page.php:1035
 msgid "Normal"
 msgstr "通常"
 
-#: includes/options-page.php:1032
+#: includes/options-page.php:1036
 msgid "Slow"
 msgstr "低速"
 
-#: includes/options-page.php:1033
+#: includes/options-page.php:1037
 msgid "Slowest"
 msgstr "最低速"
 
-#: includes/options-page.php:1055
+#: includes/options-page.php:1059
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "高速スキャンはリソースを多く消費し、ウェブサイトに高い負荷をかける可能性があります。"
 
-#: includes/options-page.php:1081
+#: includes/options-page.php:1085
 msgid "Enable scanning of archive pages"
 msgstr "アーカイブページのスキャンを有効にする"
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1089
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "サイト全体のスキャンにアーカイブページを含めるかどうかを選択してください。デフォルトでは、アーカイブデータのタクソノミー用語を選択するためにサンプリング方法が使用されます。"
 
-#: includes/options-page.php:1111
+#: includes/options-page.php:1115
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "サンプルだけでなく、すべてのタクソノミー用語をスキャンする"
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1119
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "代表的なサンプルの代わりに、すべてのタクソノミー用語のアーカイブページをチェックします。これにはアーカイブページのスキャンを有効にする必要があり、スキャンリストに多数のURLが追加される可能性があります。"
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1148
 msgid "Before the content"
 msgstr "コンテンツの前"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1153
 msgid "After the content"
 msgstr "コンテンツの後"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1158
 msgid "Insert manually"
 msgstr "手動で挿入"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1162
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "この機能を使用して、ループ内のテーマに簡略化された要約を手動で追加します。"
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1164
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "この関数はオプションとして投稿IDをパラメータとして受け入れます。"
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1167
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "簡略化された要約を、入力された場合にコンテンツとの関係でどこに表示させたいか設定します。"
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1182
 msgid "Bottom Right Corner (default)"
 msgstr "右下隅（デフォルト）"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1187
 msgid "Bottom Left Corner"
 msgstr "左下隅"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1191
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "フロントエンドのアクセシビリティチェッカーをページのどこに表示させたいか設定します。"
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1231
 msgid "When Required"
 msgstr "必要な時"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1236
 msgid "Always"
 msgstr "常に"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1244
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checkerは、投稿やページの読解レベルが9年生以上の場合にのみ簡略化された要約を求めるべきですか、読解レベルに関係なく常に求めるべきですか、それとも読解レベルに関係なく決して求めるべきではありませんか？"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1299
 msgid "To check content other than posts and pages, please "
 msgstr "投稿とページ以外のコンテンツをチェックするには、 "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1301
 msgid "upgrade to pro"
 msgstr "Proにアップグレード"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1302
 msgid " (opens in a new window)"
 msgstr " （新しいウィンドウで開きます）"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1307
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "スキャン中にどの投稿タイプをチェックするかを選択してください。以前に選択されていた投稿タイプを削除すると、スキャンされた情報と設定済みのカスタム却下警告が削除されることにご注意ください。"
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1448
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "プラグインがアンインストールされたときに、すべてのAccessibility Checkerデータを削除します。"
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1466
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "ブロックエディターでAccessibility Checkerメタボックスを表示"
 
@@ -6143,6 +6146,10 @@ msgstr "スキャン"
 msgid "Refresh"
 msgstr "更新"
 
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "この投稿の要約版がここに表示されます。要約は、Accessibility Checker サイドバーまたはメタボックスの「Readability」セクションで作成してください。"
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "スクリーンリーダーのみ"
@@ -6150,3 +6157,28 @@ msgstr "スクリーンリーダーのみ"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "常にスクリーンリーダーテキストを表示"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "要約版"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "Accessibility Checker による、この投稿の要約版を表示します。"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "アクセシビリティ"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "要約"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "可読性"
