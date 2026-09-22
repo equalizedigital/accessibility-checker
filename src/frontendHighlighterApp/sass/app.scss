@@ -2,6 +2,8 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+$highlighter-font-family: sans-serif;
+
 // stylelint-disable no-descending-specificity
 
 // Visually hidden (screen-reader only) utility class for live regions
@@ -108,34 +110,6 @@ body {
 			max-width: calc(100% - 30px) !important;
 		}
 
-		@media screen and (max-width: variables.$extra-small-screen-width) {
-
-			.edac-highlight-panel-controls-buttons {
-				//   display: flex !important;
-				justify-content: space-around;
-
-				button {
-					padding: 4px 7px !important;
-					margin-right: 0 !important;
-				}
-			}
-
-		}
-
-		@media screen and (max-width: calc(variables.$extra-small-screen-width)) {
-
-			.edac-highlight-panel-controls-buttons {
-				display: flex !important;
-				justify-content: space-around;
-
-				button {
-					padding: 4px 7px !important;
-					margin-right: 0 !important;
-				}
-			}
-
-		}
-
 		* {
 			all: unset;
 			letter-spacing: normal !important;
@@ -201,19 +175,30 @@ body {
 		}
 
 		&-toggle {
-			width: 50px !important;
-			height: 50px !important;
-			display: block;
-			background: transparent url(../images/edac-emblem.png) center center no-repeat !important;
-			background-size: contain !important;
-			box-shadow: 0 0 5px rgba(variables.$color-black, 0.5) !important;
-			border-radius: 50% !important;
-			position: relative !important;
 
-			&:hover,
-			&:focus {
-				cursor: pointer !important;
-				outline: solid 5px rgba(0, 208, 255, 0.75) !important;
+			// Scope to outrank global theme button rules.
+			.edac-highlight-panel & {
+				box-sizing: border-box !important;
+				padding: 0 !important;
+				margin: 0 !important;
+				border: 0 !important;
+				min-width: 0 !important;
+				min-height: 0 !important;
+				width: 50px !important;
+				height: 50px !important;
+				// Keep display overridable by the panel open/close handlers.
+				display: block;
+				background: transparent url(../images/edac-emblem.png) center center no-repeat !important;
+				background-size: contain !important;
+				box-shadow: 0 0 5px rgba(variables.$color-black, 0.5) !important;
+				border-radius: 50% !important;
+				position: relative !important;
+
+				&:hover,
+				&:focus {
+					cursor: pointer !important;
+					outline: solid 5px rgba(0, 208, 255, 0.75) !important;
+				}
 			}
 
 			@media screen and (max-width: variables.$small-screen-width) {
@@ -419,24 +404,33 @@ body {
 			}
 
 			&-code-button {
-				all: unset !important;
-				display: flex !important;
-				align-items: center !important;
-				gap: 2px !important;
-				margin-top: 8px !important;
-				font-size: 13px !important;
-				color: variables.$color-blue !important;
-				cursor: pointer !important;
-				text-decoration: underline !important;
 
-				&:hover,
-				&:focus {
-					text-decoration: none !important;
-				}
+				// Scope the reset and typography to outrank global theme button rules.
+				.edac-highlight-panel & {
+					all: unset !important;
+					display: flex !important;
+					align-items: center !important;
+					gap: 2px !important;
+					margin-top: 8px !important;
+					font-family: $highlighter-font-family !important;
+					font-size: 13px !important;
+					font-weight: 400 !important;
+					font-style: normal !important;
+					line-height: 22px !important;
+					text-transform: none !important;
+					color: variables.$color-blue !important;
+					cursor: pointer !important;
+					text-decoration: underline !important;
 
-				&:focus {
-					outline: 2px solid variables.$color-blue !important;
-					outline-offset: 2px !important;
+					&:hover,
+					&:focus {
+						text-decoration: none !important;
+					}
+
+					&:focus {
+						outline: 2px solid variables.$color-blue !important;
+						outline-offset: 2px !important;
+					}
 				}
 
 				&-arrow {
@@ -606,7 +600,7 @@ body {
 			overflow: hidden !important;
 			font-size: 14px !important;
 			line-height: 22px !important;
-			font-family: sans-serif !important;
+			font-family: $highlighter-font-family !important;
 			-webkit-font-smoothing: antialiased !important;
 			-moz-osx-font-smoothing: grayscale !important;
 
@@ -657,21 +651,30 @@ body {
 			}
 
 			&-close {
-				all: unset !important;
-				display: flex !important;
-				align-items: center !important;
-				justify-content: center !important;
-				width: 28px !important;
-				height: 28px !important;
-				color: variables.$color-white !important;
-				font-size: 18px !important;
-				cursor: pointer !important;
-				border-radius: 2px !important;
-				border: 1px solid transparent !important;
 
-				&:hover,
-				&:focus {
-					border-color: variables.$color-white !important;
+				// Scope the close button to outrank global theme button rules.
+				.edac-highlight-panel & {
+					all: unset !important;
+					display: flex !important;
+					align-items: center !important;
+					justify-content: center !important;
+					width: 28px !important;
+					height: 28px !important;
+					color: variables.$color-white !important;
+					font-family: $highlighter-font-family !important;
+					font-size: 18px !important;
+					font-weight: 400 !important;
+					font-style: normal !important;
+					line-height: 22px !important;
+					text-transform: none !important;
+					cursor: pointer !important;
+					border-radius: 2px !important;
+					border: 1px solid transparent !important;
+
+					&:hover,
+					&:focus {
+						border-color: variables.$color-white !important;
+					}
 				}
 			}
 
@@ -726,8 +729,14 @@ body {
 				padding: 10px 15px 15px !important;
 				gap: 8px !important;
 
-				button {
+				.edac-highlight-panel & button {
 					all: unset;
+					font-family: $highlighter-font-family !important;
+					font-size: 14px !important;
+					font-weight: 400 !important;
+					font-style: normal !important;
+					line-height: 22px !important;
+					text-transform: none !important;
 					text-decoration: none !important;
 					color: variables.$color-blue !important;
 					background-color: transparent !important;
@@ -753,6 +762,18 @@ body {
 
 					&:disabled {
 						display: none !important;
+					}
+				}
+
+				@media screen and (max-width: variables.$extra-small-screen-width) {
+
+					.edac-highlight-panel & {
+						justify-content: space-around;
+
+						button {
+							padding: 4px 7px !important;
+							margin-right: 0 !important;
+						}
 					}
 				}
 			}
@@ -902,7 +923,7 @@ body {
 	border: 1px solid #e2e4e7 !important;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) !important;
 	color: #000 !important;
-	font-family: sans-serif !important;
+	font-family: $highlighter-font-family !important;
 	font-size: 14px !important;
 	line-height: 22px !important;
 	margin-bottom: 15px !important;
