@@ -2,6 +2,8 @@
 @use "../../common/sass/variables";
 @use "../../common/sass/helpers";
 
+$highlighter-font-family: sans-serif;
+
 // stylelint-disable no-descending-specificity
 
 // Visually hidden (screen-reader only) utility class for live regions
@@ -174,6 +176,7 @@ body {
 
 		&-toggle {
 
+			// Scope to outrank global theme button rules.
 			.edac-highlight-panel & {
 				box-sizing: border-box !important;
 				padding: 0 !important;
@@ -409,7 +412,7 @@ body {
 					align-items: center !important;
 					gap: 2px !important;
 					margin-top: 8px !important;
-					font-family: sans-serif !important;
+					font-family: $highlighter-font-family !important;
 					font-size: 13px !important;
 					font-weight: 400 !important;
 					font-style: normal !important;
@@ -597,7 +600,7 @@ body {
 			overflow: hidden !important;
 			font-size: 14px !important;
 			line-height: 22px !important;
-			font-family: sans-serif !important;
+			font-family: $highlighter-font-family !important;
 			-webkit-font-smoothing: antialiased !important;
 			-moz-osx-font-smoothing: grayscale !important;
 
@@ -649,6 +652,7 @@ body {
 
 			&-close {
 
+				// Scope the close button to outrank global theme button rules.
 				.edac-highlight-panel & {
 					all: unset !important;
 					display: flex !important;
@@ -657,7 +661,7 @@ body {
 					width: 28px !important;
 					height: 28px !important;
 					color: variables.$color-white !important;
-					font-family: sans-serif !important;
+					font-family: $highlighter-font-family !important;
 					font-size: 18px !important;
 					font-weight: 400 !important;
 					font-style: normal !important;
@@ -727,7 +731,7 @@ body {
 
 				.edac-highlight-panel & button {
 					all: unset;
-					font-family: sans-serif !important;
+					font-family: $highlighter-font-family !important;
 					font-size: 14px !important;
 					font-weight: 400 !important;
 					font-style: normal !important;
@@ -919,7 +923,7 @@ body {
 	border: 1px solid #e2e4e7 !important;
 	box-shadow: 0 0 5px rgba(0, 0, 0, 0.25) !important;
 	color: #000 !important;
-	font-family: sans-serif !important;
+	font-family: $highlighter-font-family !important;
 	font-size: 14px !important;
 	line-height: 22px !important;
 	margin-bottom: 15px !important;
