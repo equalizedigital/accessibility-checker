@@ -129,4 +129,72 @@ describe( 'email opt-in modal init', () => {
 		expect( modal.getAttribute( 'aria-labelledby' ) ).toBe( 'TB_ajaxWindowTitle' );
 		expect( freshCreateFocusTrap ).toHaveBeenCalledWith( modal );
 	} );
+
+	test( 'makes the background inert while open and restores it on close', () => {
+		jest.useFakeTimers();
+
+		// The modal only opens once per module instance, so load a fresh copy.
+		let freshInitOptInModal;
+		let freshCreateFocusTrap;
+		jest.isolateModules( () => {
+			freshInitOptInModal = require( '../../../src/emailOptIn/modal' ).initOptInModal;
+			freshCreateFocusTrap = require( 'focus-trap' ).createFocusTrap;
+		} );
+
+		const one = jest.fn();
+		const focusTrap = { activate: jest.fn(), deactivate: jest.fn() };
+		window.tb_show = jest.fn();
+		window.tb_remove = jest.fn();
+		window.jQuery = jest.fn( () => ( { one } ) );
+		window.fetch = jest.fn( () => Promise.resolve( { json: () => ( {} ) } ) );
+		freshCreateFocusTrap.mockReturnValue( focusTrap );
+
+		document.body.innerHTML = `
+			<div id="wpwrap"><a href="#">Background link</a></div>
+			<div id="already-inert" inert></div>
+			<div id="a11y-speak-polite" aria-live="polite"></div>
+			<div id="a11y-speak-assertive" aria-live="assertive"></div>
+			<div id="TB_overlay"></div>
+			<div id="TB_window">
+				<div id="TB_title">
+					<div id="TB_ajaxWindowTitle">Accessibility Checker</div>
+					<button type="button" id="TB_closeWindowButton"><span class="tb-close-icon"></span></button>
+				</div>
+				<div id="TB_ajaxContent"></div>
+			</div>`;
+
+		const addEventListenerSpy = jest.spyOn( window, 'addEventListener' );
+		freshInitOptInModal();
+		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'load' )[ 1 ]();
+		addEventListenerSpy.mock.calls.find( ( call ) => call[ 0 ] === 'mousemove' )[ 1 ]();
+		jest.advanceTimersByTime( 250 );
+
+		const wpwrap = document.getElementById( 'wpwrap' );
+		const alreadyInert = document.getElementById( 'already-inert' );
+
+		expect( wpwrap.hasAttribute( 'inert' ) ).toBe( true );
+		expect( document.getElementById( 'TB_window' ).hasAttribute( 'inert' ) ).toBe( false );
+		expect( document.getElementById( 'TB_overlay' ).hasAttribute( 'inert' ) ).toBe( false );
+
+		// wp.a11y.speak() regions must stay live so announcements still reach screen readers.
+		expect( document.getElementById( 'a11y-speak-polite' ).hasAttribute( 'inert' ) ).toBe( false );
+		expect( document.getElementById( 'a11y-speak-assertive' ).hasAttribute( 'inert' ) ).toBe( false );
+
+		// Background must be restored before the trap returns focus to it.
+		focusTrap.deactivate.mockImplementation( () => {
+			expect( wpwrap.hasAttribute( 'inert' ) ).toBe( false );
+		} );
+
+		// Close via the handler registered for Thickbox's tb_unload event on the document.
+		expect( window.jQuery ).toHaveBeenCalledWith( document );
+		const unloadCall = one.mock.calls.find( ( call ) => call[ 0 ] === 'tb_unload' );
+		expect( unloadCall ).toBeDefined();
+		unloadCall[ 1 ]();
+
+		expect( focusTrap.deactivate ).toHaveBeenCalled();
+		expect( wpwrap.hasAttribute( 'inert' ) ).toBe( false );
+		expect( alreadyInert.hasAttribute( 'inert' ) ).toBe( true );
+
+		delete window.fetch;
+	} );
 } );
