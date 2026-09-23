@@ -25,6 +25,7 @@
     "test:php:coverage": "docker compose exec phpunit vendor/bin/phpunit  --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html",
     "test:php:stop": "docker compose stop",
     "test:jest": "jest --config=./tests/jest/jest.config.js --passWithNoTests",
+    "test:e2e": "playwright test --config=./tests/playwright/playwright.config.js",
     "prepare": "husky",
     "phpstan": "./vendor/bin/phpstan"
   },
@@ -52,6 +53,7 @@
     "@babel/preset-env": "^7.22.4",
     "@babel/preset-react": "^7.22.3",
     "@floating-ui/dom": "^1.2.9",
+    "@playwright/test": "^1.63.0",
     "@svgr/webpack": "^8.1.0",
     "@wordpress/components": "^33.0.0",
     "@wordpress/eslint-plugin": "^17.5.0",
