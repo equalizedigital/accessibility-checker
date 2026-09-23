@@ -5,6 +5,7 @@
  * Playground runs PHP as WASM in Node — very slow on small hardware — so the
  * timeouts here are deliberately huge and tunable through the environment.
  */
+const path = require( 'path' );
 const { defineConfig, devices } = require( '@playwright/test' );
 
 const SLOW = Number( process.env.E2E_SLOW || 1 );
@@ -25,13 +26,13 @@ module.exports = defineConfig( {
 	reporter: process.env.CI ? [ [ 'github' ] ] : [ [ 'list' ] ],
 	use: {
 		baseURL: process.env.E2E_BASE_URL || 'http://127.0.0.1:9400',
-		storageState: '.auth/admin.json',
+		storageState: path.resolve( __dirname, '.auth', 'admin.json' ),
 		trace: 'retain-on-failure',
 		screenshot: 'only-on-failure',
 		navigationTimeout: scale( 120_000 ),
 		actionTimeout: scale( 60_000 ),
 	},
 	projects: [
-		{ name: 'chromium', use: { ...devices[ 'Desktop Chrome' ] } },
+		{ name: 'chromium', use: { ...devices[ 'Desktop Chrome' ], channel: 'chrome' } },
 	],
 } );

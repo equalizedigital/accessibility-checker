@@ -39,9 +39,23 @@ test.describe( 'front-end highlighter', () => {
 		await expect( panel ).toBeVisible();
 		await expect( panel ).toHaveClass( /edac-highlight-panel--right/ );
 
-		// Controls are icon buttons, so assert on their accessible names.
-		for ( const name of [ 'Accessibility Checker Tool', 'Rescan This Page', 'Clear Issues', 'Disable Styles' ] ) {
-			await expect( panel.getByRole( 'button', { name } ) ).toBeAttached();
+		// The main toggle is always visible; everything else — including the "More
+		// options" menu button itself — lives inside the controls dialog, which only
+		// opens once the toggle is clicked. Rescan/Clear/Disable Styles then sit behind
+		// that menu, which renders `hidden` until opened — a `hidden` element is
+		// excluded from the accessibility tree, so getByRole can't see it either until
+		// the menu button is clicked. Same sequence a real user has to go through.
+		await expect( panel.getByRole( 'button', { name: 'Accessibility Checker Tool' } ) ).toBeAttached();
+
+		await page.locator( '#edac-highlight-panel-toggle' ).click();
+		await page.locator( '#edac-highlight-menu-button' ).click();
+		// These are role="menuitem" (the correct ARIA for a role="menu" widget's
+		// items), not role="button" — even though the underlying element is a
+		// <button>, the explicit role overrides the implicit one. The Disable
+		// Styles item's accessible name is its aria-label ("Disable Page Styles"),
+		// not its shorter visible text — aria-label always wins name computation.
+		for ( const name of [ 'Rescan This Page', 'Clear Issues', 'Disable Page Styles' ] ) {
+			await expect( panel.getByRole( 'menuitem', { name } ) ).toBeAttached();
 		}
 	} );
 

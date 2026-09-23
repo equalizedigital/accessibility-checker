@@ -11,7 +11,11 @@ const WELCOME_PAGE = '/wp-admin/admin.php?page=accessibility_checker';
 
 test.describe( 'email opt-in modal', () => {
 	test( 'opens as a labelled dialog with an inert background, and restores on close', async ( { page } ) => {
-		await page.goto( WELCOME_PAGE, { waitUntil: 'domcontentloaded' } );
+		// initOptInModal() only binds its one-shot mousemove/scroll trigger inside its
+		// own `window.addEventListener('load', ...)` handler — waiting for
+		// 'domcontentloaded' races that: a mouse move before 'load' finishes firing
+		// reaches the page before the listener exists and does nothing.
+		await page.goto( WELCOME_PAGE, { waitUntil: 'load' } );
 
 		// The modal markup is only printed while the current user has not seen it.
 		// On a reused Playground instance, reset the user meta between runs.

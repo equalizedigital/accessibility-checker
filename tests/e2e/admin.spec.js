@@ -46,8 +46,9 @@ test.describe( 'admin', () => {
 		const expected = pluginVersion();
 		expect( expected ).toBeTruthy();
 
-		const row = page.locator( 'tr[data-plugin*="accessibility-checker"]' );
-		await expect( row ).toHaveAttribute( 'class', /active/ );
+		const row = page.locator( 'tr[data-plugin="accessibility-checker/accessibility-checker.php"]' );
+		// \b is required here: /active/ alone also matches inside "inactive".
+		await expect( row ).toHaveAttribute( 'class', /\bactive\b/ );
 		await expect( row ).toContainText( expected );
 	} );
 

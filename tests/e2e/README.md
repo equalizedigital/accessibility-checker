@@ -1,8 +1,6 @@
-# Playwright specs — Accessibility Checker (drafts)
+# Playwright specs — Accessibility Checker
 
-**Status: DRAFT / uncommitted.** Written from a manual test wave against `release/1.50.0`
-in WordPress Playground; the findings and evidence are in
-`/opt/data/.hermes/plans/2026-09-23_0226-release-1.50.0-playground-test-wave.md`.
+Written from a manual test wave against `release/1.50.0` in WordPress Playground.
 
 ## Why a separate suite
 
@@ -18,6 +16,12 @@ reach: a real editor, a real published page, a real modal, a real HTTP request.
 3. Nothing else — `global-setup.js` boots WordPress Playground itself.
 
 ## Running
+
+```bash
+npm run test:e2e
+```
+
+or directly:
 
 ```bash
 E2E_BASE_URL=http://127.0.0.1:9400 npx playwright test --config tests/e2e/playwright.config.js
@@ -41,7 +45,7 @@ Elementor specifically needs `E2E_EDITOR_TIMEOUT` (default 240s) just to render 
 | Spec | Covers | Notes |
 |------|--------|-------|
 | `highlighter.spec.js` | Panel renders with its controls (front end and inside the Elementor preview); description renders title / WCAG link / severity badge; the scan still reports the expected rules on a page with known issues; no `elementor-clickable` on a published page | The last one is the negative case for the clickable-links fix |
-| `elementor.spec.js` | The editor↔preview wiring: `after:save` triggers a rescan; autosave does **not**; the listener detaches on `pagehide`; the listener survives a slow editor init; the scan is scoped to the page edit area | Last three are `test.fixme` drafts — see the comments in-file |
+| `elementor.spec.js` | The editor↔preview wiring: `after:save` triggers a rescan; autosave does **not**; the listener detaches on `pagehide`; the listener survives a slow editor init; the scan is scoped to the page edit area | Only the scan-scope case runs — the other four are `test.fixme`, see the comments in-file. The save/rescan case is fixme'd for an environment reason, not a product bug: Elementor 4.3.1 (the version `global-setup.js`'s blueprint installs) crashes inside its own `beforeSave` hook under WordPress Playground |
 | `email-opt-in.spec.js` | Modal opens with dialog semantics and an inert background, and restores on close | Mirrors the PRO-1013 / dialog-semantics changes |
 | `admin.spec.js` | Admin pages load clean (no PHP notices/fatals); the Meetup link points at the DFW group | Cheap, catches activation-level regressions |
 
@@ -51,8 +55,8 @@ Keyboard-only navigation and AT announcements in the modal; screenshot/visual di
 style hardening; cross-browser (Chromium only); multisite; the PHP 7.4–8.2 matrix (CI
 covers that); Pro plugin interactions; responsive/zoom layouts; translated-locale rendering.
 
-## Not wired into CI (yet)
+## CI
 
-`src/pageScanner/helpers/scanContext.js` scoping is asserted here, but that behaviour only
-exists once the scan-scope PR is in. Until then the scoping spec will fail against
-`release/1.50.0` — that is expected, not a flake.
+A manually-triggered workflow (`.github/workflows/e2e-tests.yml`, "E2E Tests" in the
+Actions tab → "Run workflow") runs this suite. It is not on the standard PR/push triggers —
+Elementor's editor boot alone costs 2–3 minutes, so it stays opt-in rather than on every push.

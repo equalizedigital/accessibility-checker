@@ -34,6 +34,14 @@ function blueprint() {
 				pluginData: { resource: 'wordpress.org/plugins', slug: 'elementor' },
 				options: { activate: true },
 			},
+			// The working copy is only mounted over wp-content/plugins/accessibility-checker
+			// (via --mount below) — mounting a plugin's files does not add it to
+			// active_plugins, so it has to be activated explicitly or every one of its
+			// own admin pages 403s and none of its hooks ever run.
+			{
+				step: 'activatePlugin',
+				pluginPath: 'accessibility-checker/accessibility-checker.php',
+			},
 		],
 	};
 }
@@ -98,7 +106,10 @@ module.exports = async () => {
 				`--port=${ PORT }`,
 				'--login',
 				'--workers=1',
-				`--mount=${ REPO_ROOT }:/wordpress/wp-content/plugins/accessibility-checker`,
+				// mount-before-install (not the post-install --mount): the blueprint's
+				// activatePlugin step below needs the plugin's files on disk already, and
+				// --mount only attaches after the site + blueprint steps have run.
+				`--mount-before-install=${ REPO_ROOT }:/wordpress/wp-content/plugins/accessibility-checker`,
 			],
 			{ stdio: [ 'ignore', 'pipe', 'pipe' ], detached: true }
 		);
@@ -106,7 +117,7 @@ module.exports = async () => {
 		await waitForLog( child, /Ready! WordPress is running/, BOOT_TIMEOUT );
 	}
 
-	const browser = await chromium.launch();
+	const browser = await chromium.launch( { channel: 'chrome' } );
 	const page = await browser.newPage();
 	await page.goto( `${ BASE_URL }/wp-login.php`, { waitUntil: 'domcontentloaded' } );
 	await page.fill( '#user_login', process.env.E2E_ADMIN_USER || 'admin' );

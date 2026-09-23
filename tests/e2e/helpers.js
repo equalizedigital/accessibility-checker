@@ -80,20 +80,26 @@ async function deletePage( page, id ) {
 	if ( ! id ) {
 		return;
 	}
-	await page.evaluate( async ( pageId ) => {
-		await fetch( `/wp-json/wp/v2/pages/${ pageId }?force=true`, {
+	// A fresh Playwright page starts at about:blank, which has no base URL to
+	// resolve a relative fetch() against and no wpApiSettings global — go to an
+	// admin page first, same as getRestNonce().
+	const nonce = await getRestNonce( page );
+	await page.evaluate( async ( args ) => {
+		await fetch( `/wp-json/wp/v2/pages/${ args.pageId }?force=true`, {
 			method: 'DELETE',
-			headers: { 'X-WP-Nonce': window.wpApiSettings?.nonce },
+			headers: { 'X-WP-Nonce': args.nonce },
 		} );
-	}, id );
+	}, { pageId: id, nonce } );
 }
 
 /**
  * Run the plugin's scanner in the current document, exactly as the highlighter
  * does — by injecting its bundle and calling the runner it exposes.
  *
- * Note: axe is configured with `reporter: 'raw'`, so the runner returns an array
- * of rule results rather than the usual `{ violations }` object.
+ * `window.runAccessibilityScan()` resolves `{ rules, rulesMin, violations }`
+ * (see `scan()` in src/pageScanner/index.js); `violations` is the already
+ * flattened, already-failed-only list, each shaped by `processViolation()`
+ * with a camelCase `ruleId`.
  *
  * @param {Object} page Playwright page.
  * @return {Promise<Array<{rule: string, selector: string}>>} Findings.
@@ -108,9 +114,9 @@ async function runScan( page ) {
 
 	return page.evaluate( async () => {
 		const results = await window.runAccessibilityScan( {} );
-		return ( results || [] ).map( ( item ) => ( {
-			rule: item.rule_id || item.id,
-			selector: String( item.dom_selector || item.selector || '' ),
+		return ( results?.violations || [] ).map( ( item ) => ( {
+			rule: item.ruleId,
+			selector: String( item.selector || '' ),
 		} ) );
 	} );
 }
@@ -133,8 +139,12 @@ async function openElementorEditor( page, postId, timeout = 240_000 ) {
 	await preview.locator( 'body' ).waitFor( { timeout } );
 	await page.waitForFunction(
 		( selector ) => {
+			// The preview iframe reloads more than once during editor init, so
+			// contentDocument.body is transiently null between those reloads — an
+			// uncaught throw here would fail waitForFunction immediately instead
+			// of retrying, so every step is optional-chained.
 			const frame = document.querySelector( selector );
-			return Boolean( frame && frame.contentDocument && frame.contentDocument.body.className.includes( 'elementor-page' ) );
+			return Boolean( frame?.contentDocument?.body?.className?.includes( 'elementor-page' ) );
 		},
 		sel.editorPreviewIframe,
 		{ timeout }
@@ -144,17 +154,26 @@ async function openElementorEditor( page, postId, timeout = 240_000 ) {
 }
 
 /**
- * Ask Elementor's own saver to save, which is what the editor's Publish button does.
+ * Ask Elementor's own saver to save, which is what the editor's Publish/Update
+ * button does.
  *
- * `elementor.saver` is a custom event emitter in Elementor 4.x — `_events` is not
- * available, so assert on behaviour, never on a listener count.
+ * `elementor.saver.saveEditor()` is hard-deprecated since Elementor 2.9.0; on
+ * 4.3.1 it actually throws (`ElementorCommonApp.beforeSave` reads `.toJSON()`
+ * off something undefined) rather than just logging a deprecation notice, so
+ * this goes through the command it forwards to instead: `$e.run(
+ * 'document/save/' + status )`. That said — see the note on the "saving in the
+ * Elementor editor rescans the page" test.fixme in elementor.spec.js — the
+ * same crash reproduces there too, from a genuinely dirtied document and even
+ * via the real Publish button, so this appears to be a real Elementor
+ * 4.3.1 / WordPress Playground incompatibility, not something this helper can
+ * route around.
  *
  * @param {Object} page   Playwright page.
- * @param {string} status Status to save with (`publish` or `draft`).
+ * @param {string} status Status to save with (`publish`, `update`, or `draft`).
  */
 async function saveInElementor( page, status = 'publish' ) {
 	await page.evaluate( ( saveStatus ) => {
-		window.elementor.saver.saveEditor( { status: saveStatus } );
+		window.$e.run( `document/save/${ saveStatus }` );
 	}, status );
 }
 
