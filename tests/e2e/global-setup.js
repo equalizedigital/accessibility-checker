@@ -64,6 +64,14 @@ async function isUp( url ) {
 /**
  * Wait for a line matching the pattern on a child process's output.
  *
+ * The child's own output is echoed to this process's stderr as it arrives (not
+ * just buffered for a failure message) so a slow boot can be watched live, and
+ * the last portion of it is attached to a timeout/early-exit error — without
+ * this, either failure mode was previously just "Timed out waiting for
+ * /Ready!.../" or "exited early with code 1" with no way to tell why (e.g. npx
+ * failing to resolve the CLI package, or a WASM/JSPI incompatibility on a very
+ * new Node version).
+ *
  * @param {Object} child   Child process.
  * @param {RegExp} pattern Pattern to wait for.
  * @param {number} timeout Milliseconds to wait.
@@ -71,9 +79,18 @@ async function isUp( url ) {
  */
 function waitForLog( child, pattern, timeout ) {
 	return new Promise( ( resolve, reject ) => {
-		const timer = setTimeout( () => reject( new Error( `Timed out waiting for ${ pattern }` ) ), timeout );
+		let recent = '';
+		const remember = ( chunk ) => {
+			recent = ( recent + String( chunk ) ).slice( -4000 );
+		};
+
+		const timer = setTimeout( () => {
+			reject( new Error( `Timed out waiting for ${ pattern }. Last output:\n${ recent }` ) );
+		}, timeout );
 		const scan = ( chunk ) => {
 			const text = String( chunk );
+			process.stderr.write( `[playground] ${ text }` );
+			remember( text );
 			if ( pattern.test( text ) ) {
 				clearTimeout( timer );
 				resolve();
@@ -83,7 +100,7 @@ function waitForLog( child, pattern, timeout ) {
 		child.stderr.on( 'data', scan );
 		child.on( 'exit', ( code ) => {
 			clearTimeout( timer );
-			reject( new Error( `Playground exited early with code ${ code }` ) );
+			reject( new Error( `Playground exited early with code ${ code }. Last output:\n${ recent }` ) );
 		} );
 	} );
 }

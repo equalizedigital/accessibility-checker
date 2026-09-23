@@ -10,10 +10,18 @@ reach: a real editor, a real published page, a real modal, a real HTTP request.
 
 ## Prerequisites
 
-1. Build the plugin assets (the Playground mount serves `build/`):
+1. **Node 22 or 24.** `@wp-playground/cli` runs PHP as WASM via `--experimental-wasm-jspi`,
+   which is not yet reliable on very new Node majors (Node 26 has been seen failing to
+   find/build a matching native binary). If `nvm` is installed, `nvm use 22` before
+   running the suite.
+2. **Google Chrome installed.** `playwright.config.js` and `global-setup.js` both pin
+   `channel: 'chrome'` (the system browser) rather than Playwright's own bundled
+   Chromium, so there is nothing to `playwright install` — but Chrome itself has to
+   already be on the machine. This also sidesteps Playwright's bundled Chromium not
+   supporting some older Linux distros.
+3. Build the plugin assets (the Playground mount serves `build/`):
    `npm install && npm run build`
-2. `npx playwright install chromium`
-3. Nothing else — `global-setup.js` boots WordPress Playground itself.
+4. Nothing else — `global-setup.js` boots WordPress Playground itself.
 
 ## Running
 
