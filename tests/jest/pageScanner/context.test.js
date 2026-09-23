@@ -80,4 +80,55 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-panel-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="edac-panel-button"' ) ) ).toBe( false );
 	} );
+
+	test( 'should exclude Elementor editor UI but still scan widget content', async ( ) => {
+		// Markup modelled on what Elementor injects into its live-preview iframe.
+		document.body.innerHTML = `
+			<div class="elementor-element elementor-widget elementor-widget-button">
+				<div class="elementor-element-overlay">
+					<ul class="elementor-editor-element-settings">
+						<li class="elementor-editor-element-setting elementor-editor-element-edit"><i id="el-handle" role="button"></i></li>
+					</ul>
+				</div>
+				<div class="elementor-widget-container">
+					<button id="widget-button"></button>
+				</div>
+			</div>
+			<div class="elementor-add-section elementor-add-section-inline">
+				<button id="el-add-inline-button"></button>
+			</div>
+			<div id="elementor-add-new-section" class="elementor-add-section">
+				<button id="el-add-new-button"></button>
+			</div>
+			<div class="elementor-first-add"><button id="el-first-add-button"></button></div>
+			<div class="elementor-empty-view"><button id="el-empty-view-button"></button></div>
+			<div class="elementor-sortable-placeholder"><button id="el-placeholder-button"></button></div>
+			<div class="elementor-document-handle"><button id="el-document-handle-button"></button></div>
+			<div class="pen-menu"><button id="el-pen-menu-button"></button></div>
+		`;
+
+		const results = await axe.run( { exclude: exclusionsArray }, {
+			runOnly: [ 'button-name' ],
+		} );
+
+		const violationHTML = results.violations
+			.flatMap( ( violation ) => violation.nodes )
+			.map( ( node ) => node.html );
+
+		// Real page content inside an Elementor widget is still scanned.
+		expect( violationHTML.some( ( html ) => html.includes( 'id="widget-button"' ) ) ).toBe( true );
+
+		[
+			'el-handle',
+			'el-add-inline-button',
+			'el-add-new-button',
+			'el-first-add-button',
+			'el-empty-view-button',
+			'el-placeholder-button',
+			'el-document-handle-button',
+			'el-pen-menu-button',
+		].forEach( ( id ) => {
+			expect( violationHTML.some( ( html ) => html.includes( `id="${ id }"` ) ) ).toBe( false );
+		} );
+	} );
 } );

@@ -13,4 +13,20 @@ export const exclusionsArray = [
 	'#query-monitor-fallbacks',
 	'.qm-panel-container',
 	'#qm-icon-container',
+	// Elementor editor UI. When the front-end highlighter rescans inside
+	// Elementor's live-preview iframe, the editor injects its own controls into
+	// the previewed page: per-element handles/overlays, the "add section"
+	// drop zones, empty-state placeholders, drag placeholders, theme builder
+	// document handles and the inline text-editing toolbar. None of it is
+	// rendered to visitors, so it must not be reported as page issues.
+	'.elementor-element-overlay',
+	'.elementor-editor-element-settings',
+	'.elementor-add-section',
+	'.elementor-add-section-inline',
+	'#elementor-add-new-section',
+	'.elementor-first-add',
+	'.elementor-empty-view',
+	'.elementor-sortable-placeholder',
+	'.elementor-document-handle',
+	'.pen-menu',
 ];
