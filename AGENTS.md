@@ -85,6 +85,7 @@ Which checks apply:
 - Jest config at `tests/jest/jest.config.js`. `@wordpress/*` imports need explicit `moduleNameMapper` entries — a missing one surfaces as "Cannot find module '@wordpress/…'", and the mapper regexes must be anchored to avoid subpath mismatches.
 - No committed E2E suite.
 - Bug fixes need a regression test. Run the checks covering your change before pushing.
+- **Coverage ratchet (daily):** land at least one new PHPUnit test *per working day* for previously-untested code — smallest unit possible (one function, or one small class/method per PR) so review stays trivial. Take the next unit from `docs/unit-test-backlog.md` and tick it in the same PR. Goal: 80% line coverage (Coveralls) by end of year; currently ~63%, which is ~25 newly-covered lines/day.
 - CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix and the hooks-docs verifier first.
 
 ## Workflow
