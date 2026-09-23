@@ -65,20 +65,58 @@ const bindFocusTrap = () => {
 
 	closeIcon.setAttribute( 'aria-hidden', 'true' );
 
+	// Core Thickbox does not expose #TB_window as a dialog, so add the
+	// semantics here once it exists. The accessible name comes from the
+	// Thickbox title element that core renders.
+	modal.setAttribute( 'role', 'dialog' );
+	modal.setAttribute( 'aria-modal', 'true' );
+	modal.setAttribute( 'aria-labelledby', 'TB_ajaxWindowTitle' );
+
 	const focusTrap = createFocusTrap( modal );
 	focusTrap.activate();
+
+	// The focus trap only covers Tab, so also make the page behind the modal
+	// inert to stop screen reader virtual cursors from reaching it.
+	const inertElements = makeBackgroundInert();
 
 	jQuery( document ).one(
 		'tb_unload',
 		function() {
-			onModalClose( focusTrap );
+			onModalClose( focusTrap, inertElements );
 		}
 	);
 
 	return true;
 };
 
-const onModalClose = ( focusTrap ) => {
+/**
+ * Make everything outside the Thickbox window and overlay inert.
+ *
+ * Thickbox appends its window and overlay directly to the body, so every other
+ * body child is background content. WordPress's wp.a11y.speak() live regions
+ * are skipped so announcements made while the modal is open still reach screen
+ * readers. Elements that were already inert are left alone so closing the
+ * modal doesn't un-inert them.
+ *
+ * @return {Element[]} The elements that were made inert.
+ */
+const makeBackgroundInert = () => {
+	const inertElements = Array.from( document.body.children ).filter(
+		( element ) => ! [ 'TB_window', 'TB_overlay' ].includes( element.id ) &&
+			! [ 'SCRIPT', 'STYLE', 'LINK' ].includes( element.tagName ) &&
+			! element.id.startsWith( 'a11y-speak-' ) &&
+			! element.hasAttribute( 'inert' )
+	);
+
+	inertElements.forEach( ( element ) => element.setAttribute( 'inert', '' ) );
+
+	return inertElements;
+};
+
+const onModalClose = ( focusTrap, inertElements ) => {
+	// Restore the background before deactivating the trap so focus can return
+	// to the element that had it before the modal opened.
+	inertElements.forEach( ( element ) => element.removeAttribute( 'inert' ) );
 	focusTrap.deactivate();
 
 	fetch( window.edac_email_opt_in_form.ajaxurl + '?action=edac_email_opt_in_closed_modal_ajax' )
