@@ -7,6 +7,7 @@ import { exclusionsArray } from './config/exclusions';
 import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
+import { hideOverlaysDuringScan } from './helpers/hideOverlaysDuringScan';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -232,7 +233,10 @@ const scan = async (
 		await preScanAnimatedImages();
 	}
 
+	const restoreOverlays = hideOverlaysDuringScan();
+
 	return await axe.run( context, runOptions )
+		.finally( restoreOverlays )
 		.then( ( rules ) => {
 			const violations = [];
 

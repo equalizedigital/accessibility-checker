@@ -32,4 +32,18 @@ export const exclusionsArray = [
 	'.elementor-sortable-placeholder',
 	'.elementor-document-handle',
 	'.elementor-editor-active .pen-menu',
+	// The editor renders an empty aria-hidden shape divider placeholder in
+	// every container; the front end only outputs one when a shape is set.
+	'.elementor-editor-active .elementor-shape',
+	// Likewise, widget editor templates render an empty <i class=""> when no
+	// icon is chosen, which the front end omits.
+	'.elementor-editor-active i[class=""][aria-hidden="true"]',
+];
+
+// Overlays hidden (not just excluded) while a scan runs, because axe still
+// treats excluded elements as covering the content beneath them when it
+// checks color contrast. See helpers/hideOverlaysDuringScan.js.
+export const overlayHideSelectors = [
+	'.elementor-element-overlay',
+	'.edac-highlight-btn',
 ];

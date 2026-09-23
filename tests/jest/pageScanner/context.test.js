@@ -94,6 +94,8 @@ describe( 'Scanner Context Exclusions', ( ) => {
 				</div>
 				<div class="elementor-widget-container">
 					<button id="widget-button"></button>
+					<span class="elementor-button-icon"><i class="" aria-hidden="true"><button id="el-empty-icon-button">x</button></i></span>
+					<span class="real-icon"><i class="fa fa-star" aria-hidden="true"><button id="real-icon-button">x</button></i></span>
 				</div>
 			</div>
 			<div class="elementor-add-section elementor-add-section-inline">
@@ -107,18 +109,25 @@ describe( 'Scanner Context Exclusions', ( ) => {
 			<div class="elementor-sortable-placeholder"><button id="el-placeholder-button"></button></div>
 			<div class="elementor-document-handle"><button id="el-document-handle-button"></button></div>
 			<div class="pen-menu"><button id="el-pen-menu-button"></button></div>
+			<div class="elementor-shape elementor-shape-top" aria-hidden="true"><button id="el-shape-button"></button></div>
 		`;
 
+		// aria-hidden-focus catches the focusable buttons placed inside the
+		// aria-hidden icons, covering the attribute-selector exclusion. jsdom
+		// can't settle focusability, so it reports those as incomplete; either
+		// result means the element was scanned.
 		const results = await axe.run( { exclude: exclusionsArray }, {
-			runOnly: [ 'button-name' ],
+			runOnly: [ 'button-name', 'aria-hidden-focus' ],
 		} );
 
-		const violationHTML = results.violations
+		const violationHTML = [ ...results.violations, ...results.incomplete ]
 			.flatMap( ( violation ) => violation.nodes )
 			.map( ( node ) => node.html );
 
 		// Real page content inside an Elementor widget is still scanned.
 		expect( violationHTML.some( ( html ) => html.includes( 'id="widget-button"' ) ) ).toBe( true );
+		expect( violationHTML.some( ( html ) => html.includes( 'class="fa fa-star"' ) ) ).toBe( true );
+		expect( violationHTML.some( ( html ) => html.includes( 'id="el-empty-icon-button"' ) ) ).toBe( false );
 
 		[
 			'el-handle',
@@ -129,6 +138,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 			'el-placeholder-button',
 			'el-document-handle-button',
 			'el-pen-menu-button',
+			'el-shape-button',
 		].forEach( ( id ) => {
 			expect( violationHTML.some( ( html ) => html.includes( `id="${ id }"` ) ) ).toBe( false );
 		} );
