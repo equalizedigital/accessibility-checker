@@ -1864,10 +1864,6 @@ class AccessibilityCheckerHighlight {
 				error.edacHandled = true;
 				throw error;
 			}
-			if ( result.violations.length === 0 && self._pendingRescanAnnouncement ) {
-				self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
-				self._pendingRescanAnnouncement = false;
-			}
 			// Saved even when nothing was found: the request replaces this post's
 			// stored issues, so an empty result is what clears resolved ones.
 			return self.saveScanResults( postId, nonce, result.violations, densityMetrics );
@@ -1907,6 +1903,10 @@ class AccessibilityCheckerHighlight {
 			.then( ( data ) => {
 				self.showWait( false );
 				if ( data && data.success ) {
+					if ( violations.length === 0 && self._pendingRescanAnnouncement ) {
+						self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
+						self._pendingRescanAnnouncement = false;
+					}
 					return { status: 'success' };
 				}
 
