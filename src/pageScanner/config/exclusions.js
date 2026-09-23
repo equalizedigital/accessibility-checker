@@ -19,6 +19,9 @@ export const exclusionsArray = [
 	// drop zones, empty-state placeholders, drag placeholders, theme builder
 	// document handles and the inline text-editing toolbar. None of it is
 	// rendered to visitors, so it must not be reported as page issues.
+	// The elementor-prefixed classes are Elementor's own; the inline toolbar
+	// uses the generic Pen editor class, so it is scoped to the
+	// .elementor-editor-active class Elementor adds to the preview body.
 	'.elementor-element-overlay',
 	'.elementor-editor-element-settings',
 	'.elementor-add-section',
@@ -28,5 +31,5 @@ export const exclusionsArray = [
 	'.elementor-empty-view',
 	'.elementor-sortable-placeholder',
 	'.elementor-document-handle',
-	'.pen-menu',
+	'.elementor-editor-active .pen-menu',
 ];

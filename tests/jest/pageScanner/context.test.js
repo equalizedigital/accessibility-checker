@@ -13,6 +13,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 	beforeEach( ( ) => {
 		// Reset the DOM before each test
 		document.body.innerHTML = '';
+		document.body.className = '';
 	} );
 
 	test( 'should exclude configured containers from scan', async ( ) => {
@@ -83,6 +84,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 
 	test( 'should exclude Elementor editor UI but still scan widget content', async ( ) => {
 		// Markup modelled on what Elementor injects into its live-preview iframe.
+		document.body.className = 'elementor-editor-active';
 		document.body.innerHTML = `
 			<div class="elementor-element elementor-widget elementor-widget-button">
 				<div class="elementor-element-overlay">
@@ -130,5 +132,21 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		].forEach( ( id ) => {
 			expect( violationHTML.some( ( html ) => html.includes( `id="${ id }"` ) ) ).toBe( false );
 		} );
+	} );
+
+	test( 'should still scan a generic .pen-menu outside the Elementor editor', async ( ) => {
+		document.body.innerHTML = `
+			<div class="pen-menu"><button id="pen-menu-button"></button></div>
+		`;
+
+		const results = await axe.run( { exclude: exclusionsArray }, {
+			runOnly: [ 'button-name' ],
+		} );
+
+		const violationHTML = results.violations
+			.flatMap( ( violation ) => violation.nodes )
+			.map( ( node ) => node.html );
+
+		expect( violationHTML.some( ( html ) => html.includes( 'id="pen-menu-button"' ) ) ).toBe( true );
 	} );
 } );
