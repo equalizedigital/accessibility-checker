@@ -4,6 +4,7 @@
 import 'axe-core';
 import { rulesArray, checksArray, standardRuleIdsArray, customRuleIdsArray } from './config/rules';
 import { exclusionsArray } from './config/exclusions';
+import { buildScanContext } from './helpers/scanContext';
 import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
@@ -201,7 +202,7 @@ function getIframeOptions() {
 const scan = async (
 	options = { configOptions: {}, runOptions: {} }
 ) => {
-	const context = { exclude: exclusionsArray };
+	const context = buildScanContext( exclusionsArray );
 
 	const defaults = {
 		configOptions: {
