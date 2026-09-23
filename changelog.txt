@@ -4,9 +4,9 @@
 * New - the frontend highlighter automatically refreshes after saving in Elementor.
 * Updated - refined frontend highlighter styling for improved visibility and consistency across themes.
 * Updated - enhanced the email opt-in modal with dialog semantics for a better screen reader experience.
-* Updated - improved link handling inside the frontend highlighter.
+* Fix - improved link handling inside the frontend highlighter.
 * Updated - focus stays within the email opt-in modal while it's open, making keyboard and screen reader navigation smoother.
-* Updated - issue titles appear beneath the "element not found" notice for added context.
+* Fix - issue titles appear beneath the "element not found" notice for added context.
 
 2026-08-31 - version 1.49.0
 * New - Simplified Summary block and shortcode for manually placing simplified summaries in content.
