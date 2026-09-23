@@ -20,7 +20,7 @@ reach: a real editor, a real published page, a real modal, a real HTTP request.
 ## Running
 
 ```bash
-E2E_BASE_URL=http://127.0.0.1:9400 npx playwright test --config tests/playwright/playwright.config.js
+E2E_BASE_URL=http://127.0.0.1:9400 npx playwright test --config tests/e2e/playwright.config.js
 ```
 
 `global-setup.js` starts the Playground CLI (PHP-WASM in Node) with a blueprint that

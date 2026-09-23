@@ -25,7 +25,7 @@
     "test:php:coverage": "docker compose exec phpunit vendor/bin/phpunit  --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html",
     "test:php:stop": "docker compose stop",
     "test:jest": "jest --config=./tests/jest/jest.config.js --passWithNoTests",
-    "test:e2e": "playwright test --config=./tests/playwright/playwright.config.js",
+    "test:e2e": "playwright test --config=./tests/e2e/playwright.config.js",
     "prepare": "husky",
     "phpstan": "./vendor/bin/phpstan"
   },
