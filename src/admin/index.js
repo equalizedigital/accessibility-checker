@@ -11,6 +11,7 @@ import { initRequiredSetup } from './fixes-page/conditional-required-settings';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
 import {
 	captureDismissIssueFocusContext,
+	findRuleDisplayBtn,
 	restoreDismissIssueFocus,
 } from './details/dismiss-issue-focus';
 
@@ -240,7 +241,11 @@ const edacScriptVars = edac_script_vars;
 					initFixButtonEventHandlers();
 
 					if ( dismissFocusContext ) {
-						restoreDismissIssueFocus( dismissFocusContext );
+						const focusedElement = restoreDismissIssueFocus( dismissFocusContext );
+
+						if ( ! focusedElement ) {
+							findRuleDisplayBtn( document, dismissFocusContext.rulePanelId )?.focus();
+						}
 					}
 				} else {
 					// eslint-disable-next-line no-console

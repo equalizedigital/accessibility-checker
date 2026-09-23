@@ -9,6 +9,7 @@ const ISSUE_RECORD_SELECTOR = '.edac-details-rule-records-record';
 const ISSUE_RECORD_ID_PREFIX = 'edac-details-rule-records-record-';
 const ISSUE_RECORD_IGNORE_PREFIX = 'edac-details-rule-records-record-ignore-';
 const ISSUE_RECORD_DISMISS_BUTTON = '.edac-details-rule-records-record-ignore-submit';
+const ISSUE_RECORD_IGNORE_BUTTON = '.edac-details-rule-records-record-actions-ignore';
 
 /**
  * Find the rule button that controls a panel.
@@ -17,7 +18,7 @@ const ISSUE_RECORD_DISMISS_BUTTON = '.edac-details-rule-records-record-ignore-su
  * @param {string}           panelId The controlled panel ID.
  * @return {HTMLElement|null} The matching rule display button.
  */
-const findRuleDisplayBtn = ( root, panelId ) => {
+export const findRuleDisplayBtn = ( root, panelId ) => {
 	if ( ! panelId ) {
 		return null;
 	}
@@ -31,7 +32,7 @@ const findRuleDisplayBtn = ( root, panelId ) => {
 /**
  * Capture stable focus context for the issue being dismissed or reopened.
  *
- * @param {HTMLElement} submitButton The dismiss or reopen submit button.
+ * @param {HTMLElement|null} submitButton The dismiss or reopen submit button.
  * @return {Object|null} The dismissal focus context.
  */
 export const captureDismissIssueFocusContext = ( submitButton ) => {
@@ -65,6 +66,21 @@ const findIssueDismissBtn = ( root, issueId ) => {
 };
 
 /**
+ * Open a panel and update its controlling button's expanded state.
+ *
+ * @param {HTMLElement|null} panel  The panel to open.
+ * @param {HTMLElement|null} button The button controlling the panel.
+ */
+const expandPanel = ( panel, button ) => {
+	if ( ! panel ) {
+		return;
+	}
+
+	panel.style.display = 'block';
+	button?.setAttribute( 'aria-expanded', 'true' );
+};
+
+/**
  * Expand the acted rule and restore focus after its markup is replaced.
  *
  * @param {Object|null} context The dismissal focus context.
@@ -79,17 +95,14 @@ export const restoreDismissIssueFocus = ( context, root = document ) => {
 	const rulePanel = root.getElementById( context.rulePanelId );
 	const ruleDisplayBtn = findRuleDisplayBtn( root, context.rulePanelId );
 	const rulePanelIgnore = root.getElementById( ISSUE_RECORD_IGNORE_PREFIX + context.issueId );
+	const issueIgnoreBtn = rulePanelIgnore?.closest( ISSUE_RECORD_SELECTOR )?.querySelector( ISSUE_RECORD_IGNORE_BUTTON );
+
+	expandPanel( rulePanel, ruleDisplayBtn );
+	expandPanel( rulePanelIgnore, issueIgnoreBtn );
 
 	if ( rulePanel ) {
-		rulePanel.style.display = 'block';
-
-		// Add active class to title and update aria on button
+		// Keep the rule title's visual state in sync with the open panel.
 		ruleDisplayBtn?.closest( RULE_TITLE_SELECTOR )?.classList.add( 'active' );
-		ruleDisplayBtn?.setAttribute( 'aria-expanded', 'true' );
-	}
-
-	if ( rulePanelIgnore ) {
-		rulePanelIgnore.style.display = 'block';
 	}
 
 	const focusTarget = findIssueDismissBtn( root, context.issueId );
