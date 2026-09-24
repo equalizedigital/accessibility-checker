@@ -179,14 +179,29 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * A non-empty policy page is escaped, an empty value returns null.
+	 * A non-empty policy page is run through esc_url, falsy input returns null.
+	 *
+	 * @dataProvider provider_accessibility_policy_pages
+	 *
+	 * @param mixed       $input    Input value.
+	 * @param string|null $expected Expected result.
 	 */
-	public function test_edac_sanitize_accessibility_policy_page(): void {
-		$this->assertSame(
-			'https://example.com/policy',
-			edac_sanitize_accessibility_policy_page( 'https://example.com/policy' )
-		);
-		$this->assertNull( edac_sanitize_accessibility_policy_page( '' ) );
+	public function test_edac_sanitize_accessibility_policy_page( $input, $expected ): void {
+		$this->assertSame( $expected, edac_sanitize_accessibility_policy_page( $input ) );
+	}
+
+	/**
+	 * Data provider for accessibility policy page values.
+	 *
+	 * @return array<string, array<int, mixed>>
+	 */
+	public function provider_accessibility_policy_pages(): array {
+		return [
+			'plain url'         => [ 'https://example.com/policy', 'https://example.com/policy' ],
+			'ampersand escaped' => [ 'https://example.com/?a=1&b=2', 'https://example.com/?a=1&#038;b=2' ],
+			'empty string'      => [ '', null ],
+			'null'              => [ null, null ],
+		];
 	}
 
 	/**
@@ -214,7 +229,24 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 		$this->assertSame( 0, edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' ) );
 
 		update_option( 'edacp_test_checkbox', 1 );
-		$this->assertSame( 1, edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' ) );
+		$result = edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' );
+		$this->assertSame( 1, $result );
+		$this->assertIsInt( $result );
+	}
+
+	/**
+	 * The pro-save action only fires when Pro is active, so nothing is dispatched here.
+	 */
+	public function test_edac_sanitize_pro_checkbox_does_not_dispatch_action_when_not_pro(): void {
+		if ( edac_is_pro() ) {
+			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
+		}
+
+		$before = did_action( 'edac_pro_setting_saving_checkbox' );
+
+		edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' );
+
+		$this->assertSame( $before, did_action( 'edac_pro_setting_saving_checkbox' ) );
 	}
 
 	/**

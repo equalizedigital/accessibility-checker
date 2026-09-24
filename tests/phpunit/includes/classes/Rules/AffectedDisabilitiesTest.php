@@ -55,4 +55,22 @@ class AffectedDisabilitiesTest extends WP_UnitTestCase {
 	public function test_get_label_returns_empty_string_for_unknown_key(): void {
 		$this->assertSame( '', AffectedDisabilities::get_label( 'not_a_disability' ) );
 	}
+
+	/**
+	 * Every public constant resolves to a non-empty label.
+	 *
+	 * Guards against a new disability constant being added without a matching
+	 * label in get_label().
+	 */
+	public function test_every_constant_has_a_label(): void {
+		$reflection = new ReflectionClass( AffectedDisabilities::class );
+
+		foreach ( $reflection->getConstants() as $name => $value ) {
+			$this->assertNotSame(
+				'',
+				AffectedDisabilities::get_label( $value ),
+				sprintf( 'The %s constant has no label.', $name )
+			);
+		}
+	}
 }
