@@ -18,6 +18,7 @@ import Badge from '../../sidebar/components/Badge';
 import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
+import { userCanDismiss, userCanDismissGlobally } from '../../sidebar/utils/dismissHelpers';
 import { shouldDisplayWcagNumber } from '../../sidebar/utils/wcagHelpers';
 
 /**
@@ -406,6 +407,8 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 							onIgnore={ onIgnore }
 							onCloseModal={ onClose }
+							canDismiss={ userCanDismiss() }
+							canDismissGlobally={ userCanDismissGlobally() }
 						/>
 					</div>
 				</div>

@@ -189,14 +189,13 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
 	 */
-	public function testFixesRestUrlContainsEdacV1Namespace(): void {
+	public function testFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
 		$localized_data = $this->enqueueAndGetLocalizedData();
-		$expected       = rest_url( 'edac/v1' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
-		$this->assertStringContainsString( 'edac', $localized_data );
-		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 	}
 
 	/**
@@ -243,11 +242,12 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		$this->added_filters['rest_url_prefix'] = $prefix_callback;
 
 		$localized_data = $this->enqueueAndGetLocalizedData();
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
 		remove_filter( 'rest_url_prefix', $prefix_callback );
 		delete_option( 'permalink_structure' );
 
-		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 
@@ -274,5 +274,43 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
 
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+	}
+
+	/**
+	 * An editor without the edac_view_frontend_highlighter capability must NOT get the
+	 * highlighter, even though editors satisfy edit_post on virtually any post (PRO-1290:
+	 * the historical edit_post fallback silently overrode the Permissions tab setting).
+	 */
+	public function testHighlighterDoesNotLoadForEditorWithoutCapability(): void {
+		edac_ignore_capability()->sync_matrix( [] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertFalse( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+	}
+
+	/**
+	 * An editor who does hold the capability still gets the highlighter.
+	 */
+	public function testHighlighterLoadsForEditorWithCapability(): void {
+		edac_ignore_capability()->sync_matrix( [ 'edac_view_frontend_highlighter' => [ 'editor' ] ] );
+
+		$editor_id = $this->factory()->user->create( [ 'role' => 'editor' ] );
+		wp_set_current_user( $editor_id );
+
+		global $post;
+		$post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
+
+		edac_ignore_capability()->sync_matrix( [] );
 	}
 }

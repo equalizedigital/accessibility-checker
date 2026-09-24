@@ -296,6 +296,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           post-comment: ${{ github.event_name == 'pull_request' }}
           pr-number: ${{ github.event.pull_request.number }}
+          # Fork PRs (e.g. first-time contributors) always get a read-only
+          # GITHUB_TOKEN under the pull_request trigger, so post-comment can
+          # never succeed there no matter what permissions: grants above -
+          # that's what failed run #1871 (PR #1871, mjoslyn/accessibility-checker).
+          # Warn instead of failing the whole build in that case; the
+          # Playground link still lands in the job summary either way.
+          skip-comment-on-missing-permission: 'true'
           comment-template: |
             ✅ Accessibility Checker build
 

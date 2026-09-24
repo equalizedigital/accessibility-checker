@@ -36,6 +36,23 @@ function loadHelpers( dismissReasons ) {
 	return helpers;
 }
 
+/**
+ * Helper to load dismissHelpers with a controlled capability flag value on
+ * window.edac_sidebar_app, for userCanDismiss()/userCanDismissGlobally().
+ *
+ * @param {string} key   Property name to set on window.edac_sidebar_app.
+ * @param {*}      value Value to assign to that property.
+ * @return {Object} The freshly-loaded module exports.
+ */
+function loadHelpersWithCapabilityFlag( key, value ) {
+	let helpers;
+	jest.isolateModules( () => {
+		window.edac_sidebar_app = { [ key ]: value };
+		helpers = require( '../../../src/sidebar/utils/dismissHelpers' );
+	} );
+	return helpers;
+}
+
 describe( 'dismissHelpers', () => {
 	let originalSidebarApp;
 
@@ -110,6 +127,56 @@ describe( 'dismissHelpers', () => {
 		test( 'returns empty string when DISMISS_REASONS is empty', () => {
 			const { getDismissReasonLabel } = loadHelpers( {} );
 			expect( getDismissReasonLabel( 'false_positive' ) ).toBe( '' );
+		} );
+	} );
+
+	describe( 'userCanDismiss', () => {
+		// wp_localize_script() serializes PHP booleans as "1"/"" (never real
+		// true/false) - these cases are the actual values that reach the
+		// browser, not a hypothetical.
+		test.each( [
+			[ '"1" (wp_localize_script true)', '1', true ],
+			[ '"" (wp_localize_script false)', '', false ],
+			[ 'boolean true', true, true ],
+			[ 'boolean false', false, false ],
+			[ 'number 1', 1, true ],
+			[ 'number 0', 0, false ],
+			[ 'undefined (flag missing)', undefined, false ],
+		] )( 'canDismiss = %s -> %s', ( _label, value, expected ) => {
+			const { userCanDismiss } = loadHelpersWithCapabilityFlag( 'canDismiss', value );
+			expect( userCanDismiss() ).toBe( expected );
+		} );
+
+		test( 'returns false when edac_sidebar_app itself is undefined', () => {
+			let helpers;
+			jest.isolateModules( () => {
+				window.edac_sidebar_app = undefined;
+				helpers = require( '../../../src/sidebar/utils/dismissHelpers' );
+			} );
+			expect( helpers.userCanDismiss() ).toBe( false );
+		} );
+	} );
+
+	describe( 'userCanDismissGlobally', () => {
+		test.each( [
+			[ '"1" (wp_localize_script true)', '1', true ],
+			[ '"" (wp_localize_script false)', '', false ],
+			[ 'boolean true', true, true ],
+			[ 'boolean false', false, false ],
+			[ 'undefined (flag missing)', undefined, false ],
+		] )( 'canDismissGlobally = %s -> %s', ( _label, value, expected ) => {
+			const { userCanDismissGlobally } = loadHelpersWithCapabilityFlag( 'canDismissGlobally', value );
+			expect( userCanDismissGlobally() ).toBe( expected );
+		} );
+
+		test( 'is independent of canDismiss - only reads canDismissGlobally', () => {
+			let helpers;
+			jest.isolateModules( () => {
+				window.edac_sidebar_app = { canDismiss: '1', canDismissGlobally: '' };
+				helpers = require( '../../../src/sidebar/utils/dismissHelpers' );
+			} );
+			expect( helpers.userCanDismiss() ).toBe( true );
+			expect( helpers.userCanDismissGlobally() ).toBe( false );
 		} );
 	} );
 

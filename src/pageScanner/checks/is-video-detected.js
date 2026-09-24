@@ -58,9 +58,13 @@ export default {
 			return matches;
 		} );
 
-		const matchesKeyword = videoKeywords.some( ( keyword ) =>
-			srcLower.includes( keyword )
-		);
+		// Keyword matching (youtube/vimeo/etc.) is only meaningful for embed-style
+		// elements whose src is a URL to a video player. Applying it to any [src]
+		// element (e.g. <img>) causes false positives when a filename merely
+		// contains one of these words, such as a screenshot named
+		// "...-youtube.jpg" used as a featured image.
+		const matchesKeyword = ( tag === 'iframe' || tag === 'embed' ) &&
+			videoKeywords.some( ( keyword ) => srcLower.includes( keyword ) );
 
 		const matchesType = type.toLowerCase().startsWith( 'video/' );
 

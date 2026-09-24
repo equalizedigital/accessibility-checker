@@ -318,11 +318,18 @@ class Ajax {
 			/**
 			 * Filters if a user can ignore issues.
 			 *
+			 * Candidate for deprecation: wraps edac_user_can_ignore(), itself
+			 * already @deprecated in favor of edac_user_can_dismiss_issues()/
+			 * edac_user_can_dismiss_own_issues(), and $ignore_permission below
+			 * is not currently read by anything else in this method - a real
+			 * dead-code cleanup, not just a superseded permission check.
+			 * Revisit alongside the other legacy permission filters.
+			 *
 			 * @since 1.4.0
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
 
 			$severity_map = [
 				1 => [
@@ -673,7 +680,7 @@ class Ajax {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+		$post_grade_failed      = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {

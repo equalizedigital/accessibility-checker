@@ -5,6 +5,13 @@
 [![Test](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml/badge.svg)](https://github.com/equalizedigital/accessibility-checker/actions/workflows/phpunit.yml)
 [![Coverage Status](https://coveralls.io/repos/github/equalizedigital/accessibility-checker/badge.svg?branch=develop)](https://coveralls.io/github/equalizedigital/accessibility-checker?branch=develop)
 
+[![WordPress Plugin Version](https://img.shields.io/wordpress/plugin/v/accessibility-checker.svg)](https://wordpress.org/plugins/accessibility-checker/)
+![WordPress Plugin: Tested WP Version](https://img.shields.io/wordpress/plugin/tested/accessibility-checker.svg)
+[![WordPress Plugin Active Installs](https://img.shields.io/wordpress/plugin/installs/accessibility-checker.svg)](https://wordpress.org/plugins/accessibility-checker/advanced/)
+[![WordPress Plugin Downloads](https://img.shields.io/wordpress/plugin/dt/accessibility-checker.svg)](https://wordpress.org/plugins/accessibility-checker/advanced/)
+[![WordPress Plugin Rating](https://img.shields.io/wordpress/plugin/stars/accessibility-checker.svg)](https://wordpress.org/support/plugin/accessibility-checker/reviews/)
+[![GitHub](https://img.shields.io/github/license/equalizedigital/accessibility-checker.svg)](https://github.com/equalizedigital/accessibility-checker/blob/develop/LICENSE.txt)
+
 # Equalize Digital Accessibility Checker
 
 ## What is this?

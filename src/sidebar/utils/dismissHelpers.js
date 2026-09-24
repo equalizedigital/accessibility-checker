@@ -18,6 +18,37 @@
 export const DISMISS_REASONS = window.edac_sidebar_app?.dismissReasons ?? {};
 
 /**
+ * Normalize a capability flag localized by WordPress.
+ *
+ * wp_localize_script() serializes PHP booleans as "1"/"" (never real
+ * true/false), so a strict `!== false` / `=== true` check misreads the
+ * deny case. Treat only an explicit truthy value as granted.
+ *
+ * @param {*} value Localized capability value.
+ * @return {boolean} Whether the capability is granted.
+ */
+const normalizeCapabilityFlag = ( value ) =>
+	value === true || value === 1 || value === '1';
+
+/**
+ * Whether the current user may dismiss/reopen issues, from the PHP-localized
+ * edac_sidebar_app.canDismiss flag (edac_user_can_ignore()).
+ *
+ * @return {boolean} True when dismiss/reopen controls should be shown.
+ */
+export const userCanDismiss = () =>
+	normalizeCapabilityFlag( window.edac_sidebar_app?.canDismiss );
+
+/**
+ * Whether the current user may dismiss issues globally, from the PHP-localized
+ * edac_sidebar_app.canDismissGlobally flag (edac_user_can_ignore_globally()).
+ *
+ * @return {boolean} True when the global-dismiss control should be shown.
+ */
+export const userCanDismissGlobally = () =>
+	normalizeCapabilityFlag( window.edac_sidebar_app?.canDismissGlobally );
+
+/**
  * Get dismiss reason options for RadioControl
  *
  * Returns an array of dismiss reason options with labels and descriptions

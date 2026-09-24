@@ -997,7 +997,7 @@ const postData = async ( url = '', data = {} ) => {
  */
 const initArchivesScanningDependency = () => {
 	const archivesCheckbox = document.getElementById( 'edacp_enable_archive_scanning' );
-	const taxonomiesCheckbox = document.getElementById( 'edacp_scan_all_taxonomy_terms' );
+	const taxonomiesCheckbox = document.getElementById( 'edacp_scan_all_taxonomies' );
 
 	if ( archivesCheckbox && taxonomiesCheckbox ) {
 		function updateTaxonomiesState() {
