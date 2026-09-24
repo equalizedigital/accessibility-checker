@@ -57,7 +57,6 @@ class OptionsPageGroupLabelsTest extends WP_UnitTestCase {
 	public function grouped_field_provider(): array {
 		return [
 			'post types'                  => [ 'edac_general', 'edac_post_types' ],
-			'dismiss permissions'         => [ 'edac_permissions', 'edacp_ignore_user_roles' ],
 			'simplified summary prompt'   => [ 'edac_simplified_summary', 'edac_simplified_summary_prompt' ],
 			'simplified summary position' => [ 'edac_simplified_summary', 'edac_simplified_summary_position' ],
 			'highlighter position'        => [ 'edac_frontend_highlighter', 'edac_frontend_highlighter_position' ],
@@ -72,7 +71,6 @@ class OptionsPageGroupLabelsTest extends WP_UnitTestCase {
 	public function grouped_field_callback_provider(): array {
 		return [
 			'post types'                  => [ 'edac_post_types_cb', 'Post Types To Be Checked' ],
-			'dismiss permissions'         => [ 'edac_ignore_user_roles_cb', 'Dismiss Permissions' ],
 			'simplified summary prompt'   => [ 'edac_simplified_summary_prompt_cb', 'Prompt for Simplified Summary' ],
 			'simplified summary position' => [ 'edac_simplified_summary_position_cb', 'Simplified Summary Position' ],
 			'highlighter position'        => [ 'edac_frontend_highlighter_position_cb', 'Frontend Accessibility Checker Position' ],
@@ -155,7 +153,6 @@ class OptionsPageGroupLabelsTest extends WP_UnitTestCase {
 	public function grouped_field_name_provider(): array {
 		return [
 			'post types'                  => [ 'edac_post_types_cb', 'edac_post_types[]' ],
-			'dismiss permissions'         => [ 'edac_ignore_user_roles_cb', 'edacp_ignore_user_roles[]' ],
 			'simplified summary prompt'   => [ 'edac_simplified_summary_prompt_cb', 'edac_simplified_summary_prompt' ],
 			'simplified summary position' => [ 'edac_simplified_summary_position_cb', 'edac_simplified_summary_position' ],
 			'highlighter position'        => [ 'edac_frontend_highlighter_position_cb', 'edac_frontend_highlighter_position' ],
