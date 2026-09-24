@@ -16,13 +16,55 @@
 class OptionsPageCapabilityHelpersTest extends WP_UnitTestCase {
 
 	/**
-	 * Removes the filters and restores the role capabilities a test changed.
+	 * Role capabilities the tests modify, by role slug.
+	 */
+	private const MODIFIED_CAPS = [
+		'subscriber' => [ 'edit_posts' ],
+		'editor'     => [ 'edit_others_posts' ],
+	];
+
+	/**
+	 * The capability state of the roles above, captured before each test so
+	 * tearDown() can restore it rather than assuming a stock role set.
+	 *
+	 * @var array<string, array<string, mixed>>
+	 */
+	private $original_caps = [];
+
+	/**
+	 * Captures the role capabilities the tests may modify.
+	 */
+	public function setUp(): void {
+		parent::setUp();
+
+		foreach ( self::MODIFIED_CAPS as $role_slug => $caps ) {
+			$role = wp_roles()->get_role( $role_slug );
+
+			foreach ( $caps as $cap ) {
+				$this->original_caps[ $role_slug ][ $cap ] = array_key_exists( $cap, $role->capabilities ) ? $role->capabilities[ $cap ] : null;
+			}
+		}
+	}
+
+	/**
+	 * Removes the filters and puts the role capabilities back as they were.
 	 */
 	public function tearDown(): void {
 		remove_all_filters( 'edac_capability_is_editable' );
 
-		wp_roles()->get_role( 'subscriber' )->remove_cap( 'edit_posts' );
-		wp_roles()->get_role( 'editor' )->add_cap( 'edit_others_posts' );
+		foreach ( $this->original_caps as $role_slug => $caps ) {
+			$role = wp_roles()->get_role( $role_slug );
+
+			foreach ( $caps as $cap => $original ) {
+				if ( null === $original ) {
+					$role->remove_cap( $cap );
+
+					continue;
+				}
+
+				$role->add_cap( $cap, $original );
+			}
+		}
 
 		parent::tearDown();
 	}
