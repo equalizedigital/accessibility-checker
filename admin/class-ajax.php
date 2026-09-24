@@ -383,7 +383,7 @@ class Ajax {
 
 				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
 
-				$html .= '<h3>';
+				$html .= '<h3 id="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '">';
 				$html .= edac_icon( $icon_name );
 				$html .= ' ' . esc_html( $rule['title'] );
 				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
@@ -400,13 +400,7 @@ class Ajax {
 						__( 'Opens in a new window.', 'accessibility-checker' )
 					)
 				) . '"><span class="dashicons dashicons-info"></span></a>';
-				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="' . esc_attr(
-					sprintf(
-						/* translators: %s: rule title */
-						__( 'Expand issues for %s', 'accessibility-checker' ),
-						$rule['title']
-					)
-				) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-labelledby="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 				$html .= '</div>';
 
 				if ( $results ) {
