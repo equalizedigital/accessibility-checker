@@ -62,6 +62,8 @@ describe( 'setupElementorSaveListener', () => {
 		afterSaveHandler();
 
 		expect( highlighter.rescanPage ).toHaveBeenCalledTimes( 1 );
+		// A save-triggered rescan must not force the panel open unprompted.
+		expect( highlighter.rescanPage ).toHaveBeenCalledWith( false );
 
 		// Polling should have stopped once attached.
 		expect( jest.getTimerCount() ).toBe( 0 );
