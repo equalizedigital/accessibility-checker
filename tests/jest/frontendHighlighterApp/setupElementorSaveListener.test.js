@@ -46,7 +46,7 @@ describe( 'setupElementorSaveListener', () => {
 		expect( jest.getTimerCount() ).toBe( 0 );
 	} );
 
-	test( 'attaches to the non-autosave status-scoped save events and rescans when one fires', () => {
+	test( 'attaches a single catch-all listener and rescans on a real, non-autosave save', () => {
 		const on = jest.fn();
 		const off = jest.fn();
 		mockWindowParent( { elementor: { saver: { on, off } } } );
@@ -55,18 +55,13 @@ describe( 'setupElementorSaveListener', () => {
 		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
 		jest.advanceTimersByTime( 500 );
 
-		expect( on ).toHaveBeenCalledWith( 'after:save:draft', expect.any( Function ) );
-		expect( on ).toHaveBeenCalledWith( 'after:save:publish', expect.any( Function ) );
-		expect( on ).toHaveBeenCalledWith( 'after:save:private', expect.any( Function ) );
-		expect( on ).toHaveBeenCalledWith( 'after:save:pending', expect.any( Function ) );
-		// Elementor's generic `after:save` payload carries the resulting post's real
-		// post_status (e.g. 'draft' even for an autosave), never the requested save
-		// type, so it can't be used to tell an autosave apart from a real save.
-		expect( on ).not.toHaveBeenCalledWith( 'after:save', expect.any( Function ) );
+		expect( on ).toHaveBeenCalledTimes( 1 );
+		expect( on ).toHaveBeenCalledWith( 'all', expect.any( Function ) );
 
-		// Simulate Elementor firing a real save.
-		const afterSaveHandler = on.mock.calls[ 0 ][ 1 ];
-		afterSaveHandler();
+		// Simulate Elementor firing a real save. Backbone's 'all' event hands the
+		// original event name as the first argument to the handler.
+		const allHandler = on.mock.calls[ 0 ][ 1 ];
+		allHandler( 'after:save:draft' );
 
 		expect( highlighter.rescanPage ).toHaveBeenCalledTimes( 1 );
 		// A save-triggered rescan must not force the panel open unprompted.
@@ -76,7 +71,13 @@ describe( 'setupElementorSaveListener', () => {
 		expect( jest.getTimerCount() ).toBe( 0 );
 	} );
 
-	test( 'does not rescan on autosave, because no listener is bound to after:save:autosave', () => {
+	test.each( [
+		[ 'publish', 'after:save:publish' ],
+		[ 'private', 'after:save:private' ],
+		[ 'pending', 'after:save:pending' ],
+		[ 'a scheduled post', 'after:save:future' ],
+		[ 'a custom post status from another plugin', 'after:save:some-custom-status' ],
+	] )( 'rescans on %s (%s), not just the small set of Elementor-native statuses', ( _label, eventName ) => {
 		const on = jest.fn();
 		const off = jest.fn();
 		mockWindowParent( { elementor: { saver: { on, off } } } );
@@ -85,16 +86,21 @@ describe( 'setupElementorSaveListener', () => {
 		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
 		jest.advanceTimersByTime( 500 );
 
-		expect( on ).not.toHaveBeenCalledWith( 'after:save:autosave', expect.any( Function ) );
-		expect( highlighter.rescanPage ).not.toHaveBeenCalled();
+		const allHandler = on.mock.calls[ 0 ][ 1 ];
+		allHandler( eventName );
 
-		// A real save afterwards should still rescan.
-		const publishHandler = on.mock.calls.find( ( call ) => call[ 0 ] === 'after:save:publish' )[ 1 ];
-		publishHandler();
-		expect( highlighter.rescanPage ).toHaveBeenCalledTimes( 1 );
+		expect( highlighter.rescanPage ).toHaveBeenCalledWith( false );
 	} );
 
-	test( 'detaches all status-scoped save listeners on pagehide so a stale highlighter is never rescanned', () => {
+	test.each( [
+		'after:save:autosave',
+		'before:save',
+		'before:save:draft',
+		'save',
+		'after:saveError',
+		'page:status:change',
+		'after:save',
+	] )( 'does not rescan on unrelated or autosave saver events (%s)', ( eventName ) => {
 		const on = jest.fn();
 		const off = jest.fn();
 		mockWindowParent( { elementor: { saver: { on, off } } } );
@@ -103,14 +109,27 @@ describe( 'setupElementorSaveListener', () => {
 		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
 		jest.advanceTimersByTime( 500 );
 
-		const afterSaveHandler = on.mock.calls[ 0 ][ 1 ];
+		const allHandler = on.mock.calls[ 0 ][ 1 ];
+		allHandler( eventName );
+
+		expect( highlighter.rescanPage ).not.toHaveBeenCalled();
+	} );
+
+	test( 'detaches the catch-all listener on pagehide so a stale highlighter is never rescanned', () => {
+		const on = jest.fn();
+		const off = jest.fn();
+		mockWindowParent( { elementor: { saver: { on, off } } } );
+		const highlighter = { rescanPage: jest.fn() };
+
+		setupElementorSaveListener( highlighter, { pollIntervalMs: 500, maxAttempts: 20 } );
+		jest.advanceTimersByTime( 500 );
+
+		const allHandler = on.mock.calls[ 0 ][ 1 ];
 
 		window.dispatchEvent( new Event( 'pagehide' ) );
 
-		expect( off ).toHaveBeenCalledWith( 'after:save:draft', afterSaveHandler );
-		expect( off ).toHaveBeenCalledWith( 'after:save:publish', afterSaveHandler );
-		expect( off ).toHaveBeenCalledWith( 'after:save:private', afterSaveHandler );
-		expect( off ).toHaveBeenCalledWith( 'after:save:pending', afterSaveHandler );
+		expect( off ).toHaveBeenCalledTimes( 1 );
+		expect( off ).toHaveBeenCalledWith( 'all', allHandler );
 	} );
 
 	test( 'keeps polling until elementor becomes available, then attaches', () => {
@@ -128,7 +147,7 @@ describe( 'setupElementorSaveListener', () => {
 		ready = true;
 		jest.advanceTimersByTime( 500 );
 
-		expect( on ).toHaveBeenCalledWith( 'after:save:publish', expect.any( Function ) );
+		expect( on ).toHaveBeenCalledWith( 'all', expect.any( Function ) );
 		expect( jest.getTimerCount() ).toBe( 0 );
 	} );
 
