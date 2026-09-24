@@ -56,6 +56,7 @@ class OptionsPageCapabilityHelpersTest extends WP_UnitTestCase {
 	 * A Pro capability becomes editable once the Pro license is valid.
 	 *
 	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
 	public function test_pro_capability_is_editable_with_a_valid_license(): void {
 		if ( defined( 'EDAC_KEY_VALID' ) ) {
