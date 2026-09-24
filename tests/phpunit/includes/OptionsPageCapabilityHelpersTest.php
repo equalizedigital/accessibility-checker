@@ -85,6 +85,11 @@ class OptionsPageCapabilityHelpersTest extends WP_UnitTestCase {
 
 	/**
 	 * A Pro capability is locked while the Pro license is not valid.
+	 *
+	 * EDAC_KEY_VALID is defined once at load by the plugin's own main file from
+	 * the edacp_license_status option, so the licensed branch cannot be reached
+	 * from a test in this process. The guard makes this skip rather than fail in
+	 * an environment that has Pro loaded and licensed.
 	 */
 	public function test_pro_capability_is_locked_without_a_valid_license(): void {
 		if ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) {
@@ -92,22 +97,6 @@ class OptionsPageCapabilityHelpersTest extends WP_UnitTestCase {
 		}
 
 		$this->assertFalse( edac_capability_is_editable( 'edac_issues_explorer_access', [ 'owner' => 'accessibility-checker-pro' ] ) );
-	}
-
-	/**
-	 * A Pro capability becomes editable once the Pro license is valid.
-	 *
-	 * @runInSeparateProcess
-	 * @preserveGlobalState disabled
-	 */
-	public function test_pro_capability_is_editable_with_a_valid_license(): void {
-		if ( defined( 'EDAC_KEY_VALID' ) ) {
-			$this->markTestSkipped( 'EDAC_KEY_VALID is already defined in this process.' );
-		}
-
-		define( 'EDAC_KEY_VALID', true );
-
-		$this->assertTrue( edac_capability_is_editable( 'edac_issues_explorer_access', [ 'owner' => 'accessibility-checker-pro' ] ) );
 	}
 
 	/**
