@@ -33,7 +33,10 @@ export function setupElementorSaveListener( highlighter, options = {} ) {
 			if ( saveOptions?.status === 'autosave' ) {
 				return;
 			}
-			highlighter.rescanPage();
+			// Rescan in the background without forcing the panel open, matching how a
+			// real save is handled on the Gutenberg side (src/editorApp/checkPage.js),
+			// which also rescans silently rather than surfacing the panel unprompted.
+			highlighter.rescanPage( false );
 		};
 
 		parentElementor.saver.on( 'after:save', onAfterSave );

@@ -1924,8 +1924,12 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Trigger a full rescan of the current page and reload issues.
+	 *
+	 * @param {boolean} [openPanel] Whether to open the panel once the rescan completes.
+	 *                              Set to false for rescans triggered as a side effect
+	 *                              of something other than the user asking to see results.
 	 */
-	rescanPage() {
+	rescanPage( openPanel = true ) {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
 			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
@@ -1943,7 +1947,9 @@ class AccessibilityCheckerHighlight {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
 			}
-			this.panelOpen();
+			if ( openPanel ) {
+				this.panelOpen();
+			}
 		} ).finally( () => {
 			this._isRescanning = false;
 		} );
