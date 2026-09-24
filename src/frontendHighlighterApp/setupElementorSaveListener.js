@@ -22,21 +22,41 @@ export function setupElementorSaveListener( highlighter, options = {} ) {
 		return;
 	}
 
+	// Elementor's `after:save` event is fired with the raw AJAX response body,
+	// not the save request's own args — that response's `status` field is the
+	// resulting post's real WP post_status (draft/publish/private/pending, or
+	// `inherit` for an autosave revision), never the literal string 'autosave'.
+	// So `after:save` can't be used to detect an autosave; instead use the
+	// status-scoped variant (`after:save:<status>`), which Elementor derives
+	// from the requested save type instead of the response. Rather than
+	// enumerating the known statuses (publish/draft/private/pending), listen
+	// via Backbone's catch-all 'all' event and match the event name directly —
+	// this also covers `after:save:future` for scheduled posts and any custom
+	// post status a plugin like PublishPress or Edit Flow might introduce,
+	// none of which the accessibility-checker plugin can know about in advance.
+	// `after:save:autosave` is the one status deliberately skipped: autosaving
+	// is periodic background activity, not a deliberate save, and rescanning
+	// (and persisting) on it would overwrite the post's saved issues with
+	// in-progress draft state — the same problem the Gutenberg save-detection
+	// in src/editorApp/checkPage.js already guards against by ignoring
+	// wp.data's isAutosavingPost().
+	const isNonAutosaveSaveEvent = ( eventName ) =>
+		typeof eventName === 'string' &&
+		eventName.startsWith( 'after:save:' ) &&
+		eventName !== 'after:save:autosave';
+
 	const attach = ( parentElementor ) => {
-		const onAfterSave = ( saveOptions ) => {
-			// Elementor autosaves periodically in the background; it isn't a
-			// deliberate save and its content isn't published. Rescanning (and
-			// persisting) on it would overwrite the post's saved issues with
-			// in-progress draft state — the same problem the Gutenberg
-			// save-detection in src/editorApp/checkPage.js already guards
-			// against by ignoring wp.data's isAutosavingPost().
-			if ( saveOptions?.status === 'autosave' ) {
+		const onSaverEvent = ( eventName ) => {
+			if ( ! isNonAutosaveSaveEvent( eventName ) ) {
 				return;
 			}
-			highlighter.rescanPage();
+			// Rescan in the background without forcing the panel open, matching how a
+			// real save is handled on the Gutenberg side (src/editorApp/checkPage.js),
+			// which also rescans silently rather than surfacing the panel unprompted.
+			highlighter.rescanPage( false );
 		};
 
-		parentElementor.saver.on( 'after:save', onAfterSave );
+		parentElementor.saver.on( 'all', onSaverEvent );
 
 		// The preview iframe can be reloaded independently of the parent editor
 		// (e.g. switching preview devices). Backbone's `.on()` stores the callback
@@ -44,7 +64,7 @@ export function setupElementorSaveListener( highlighter, options = {} ) {
 		// above — and the highlighter/DOM it references — would be kept alive
 		// and would still fire rescans after this iframe is gone.
 		window.addEventListener( 'pagehide', () => {
-			parentElementor.saver.off( 'after:save', onAfterSave );
+			parentElementor.saver.off( 'all', onSaverEvent );
 		}, { once: true } );
 	};
 
