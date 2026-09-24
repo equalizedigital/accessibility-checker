@@ -936,6 +936,17 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		this.refreshIssues( id );
+	}
+
+	/**
+	 * Fetches the current issues for this page and updates the panel's contents.
+	 * Does not change the panel's visibility, so it's safe to call whether or
+	 * not the panel is currently open.
+	 *
+	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 */
+	refreshIssues( id ) {
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
@@ -1949,6 +1960,10 @@ class AccessibilityCheckerHighlight {
 			}
 			if ( openPanel ) {
 				this.panelOpen();
+			} else if ( this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				// Panel is already open (e.g. docked) — refresh its contents in place
+				// rather than leaving it showing stale issues, without forcing it open.
+				this.refreshIssues();
 			}
 		} ).finally( () => {
 			this._isRescanning = false;
