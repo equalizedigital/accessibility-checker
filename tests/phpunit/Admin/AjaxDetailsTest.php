@@ -55,6 +55,14 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Clearing prior fixtures for this focused AJAX regression test.
+			$table_name,
+			[
+				'postid' => self::$post_id,
+				'siteid' => get_current_blog_id(),
+				'rule'   => 'empty_link',
+			]
+		);
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for a focused AJAX regression test.
 			$table_name,
 			[
@@ -136,7 +144,12 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 
 		$this->assertSame( 1, $heading->length );
 		$this->assertSame( 1, $button->length );
-		$this->assertStringContainsString( 'Critical', $document->saveHTML( $heading->item( 0 ) ) );
-		$this->assertStringContainsString( 'screen-reader-text', $document->saveHTML( $heading->item( 0 ) ) );
+		$heading_markup = $document->saveHTML( $heading->item( 0 ) );
+		$heading_text   = preg_replace( '/\s+/', ' ', $heading->item( 0 )->textContent );
+
+		$this->assertIsString( $heading_text );
+		$this->assertStringContainsString( '1', $heading_text );
+		$this->assertStringContainsString( 'total', $heading_markup );
+		$this->assertStringContainsString( 'Critical', $heading_text );
 	}
 }
