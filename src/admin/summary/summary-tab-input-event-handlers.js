@@ -98,7 +98,6 @@ export const clearAllTabsAndPanelState = () => {
 	panels.forEach( ( panel ) => {
 		panel.style.display = 'none';
 		panel.classList.remove( 'active' );
-		panel.setAttribute( 'aria-selected', 'false' );
 		const panelTab = document.querySelector( '#' + panel.getAttribute( 'aria-labelledby' ) );
 		if ( panelTab ) {
 			panelTab.classList.remove( 'active' );
