@@ -54,6 +54,15 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 		update_post_meta( $this->post_id, '_edac_rule', 'issue data' );
 		update_post_meta( $this->post_id, '_edacp_rule', 'pro issue data' );
 		update_post_meta( $this->post_id, 'unrelated_meta', 'not ours' );
+
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Test fixture on a test-owned table.
+			$table_name,
+			[
+				'postid' => $this->post_id,
+				'siteid' => get_current_blog_id(),
+				'type'   => 'error',
+			]
+		);
 	}
 
 	/**
@@ -79,6 +88,8 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function test_issue_data_is_deleted_when_a_scannable_post_is_trashed(): void {
+		$this->assertSame( [ $this->post_id ], $this->stored_issue_post_ids() );
+
 		$_POST = [ 'action' => 'editpost' ];
 
 		Post_Save::delete_issue_data_on_post_trashing(
@@ -90,6 +101,7 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 		$this->assertSame( '', get_post_meta( $this->post_id, '_edac_rule', true ) );
 		$this->assertSame( '', get_post_meta( $this->post_id, '_edacp_rule', true ) );
 		$this->assertSame( 'not ours', get_post_meta( $this->post_id, 'unrelated_meta', true ) );
+		$this->assertSame( [], $this->stored_issue_post_ids() );
 	}
 
 	/**
@@ -179,6 +191,7 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 		);
 
 		$this->assertSame( 'issue data', get_post_meta( $this->post_id, '_edac_rule', true ) );
+		$this->assertSame( [ $this->post_id ], $this->stored_issue_post_ids() );
 	}
 
 	/**
@@ -263,5 +276,22 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 				'post_name'   => $post_name,
 			]
 		);
+	}
+
+	/**
+	 * Returns the post IDs of the issue rows still stored.
+	 *
+	 * @return int[]
+	 */
+	private function stored_issue_post_ids(): array {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+
+		$post_ids = $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test-only read of a test-owned table.
+			$wpdb->prepare( 'SELECT postid FROM %i ORDER BY postid ASC', $table_name )
+		);
+
+		return array_map( 'intval', $post_ids );
 	}
 }
