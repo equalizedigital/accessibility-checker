@@ -1865,15 +1865,18 @@ class AccessibilityCheckerHighlight {
 				error.edacHandled = true;
 				throw error;
 			}
-			if ( ! result || ! result.violations || result.violations.length === 0 ) {
+			// A scan that returned no violation list at all has failed: saving an
+			// empty set here would clear issues that are still on the page.
+			if ( ! result || ! Array.isArray( result.violations ) ) {
+				const message = __( 'Accessibility scan error.', 'accessibility-checker' );
 				self.showWait( false );
-				if ( self._pendingRescanAnnouncement ) {
-					self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
-					self._pendingRescanAnnouncement = false;
-				}
-				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
-				return { status: 'no-violations' };
+				self.showScanError( message );
+				const error = new Error( message );
+				error.edacHandled = true;
+				throw error;
 			}
+			// Saved even when nothing was found: the request replaces this post's
+			// stored issues, so an empty result is what clears resolved ones.
 			return self.saveScanResults( postId, nonce, result.violations, densityMetrics );
 		} ).catch( ( error ) => {
 			if ( error?.edacHandled ) {
@@ -1911,6 +1914,10 @@ class AccessibilityCheckerHighlight {
 			.then( ( data ) => {
 				self.showWait( false );
 				if ( data && data.success ) {
+					if ( violations.length === 0 && self._pendingRescanAnnouncement ) {
+						self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
+						self._pendingRescanAnnouncement = false;
+					}
 					return { status: 'success' };
 				}
 
