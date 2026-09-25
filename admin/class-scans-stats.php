@@ -348,6 +348,10 @@ class Scans_Stats {
 		$data['top_pages_with_issues']    = $this->get_top_pages_with_issues( 5 );
 		$data['top_issues_found_on_site'] = $this->get_top_issues_found_on_site( 10 );
 
+		// Get the complete, uncapped per-issue-type breakdown so portfolio-level
+		// aggregates (built downstream from this data) aren't limited to a site's top N.
+		$data['all_issues_found_on_site'] = $this->get_all_issues_found_on_site();
+
 		$data['cache_id']   = $transient_name;
 		$data['cached_at']  = time();
 		$data['expires_at'] = time() + $this->cache_time;
@@ -367,6 +371,7 @@ class Scans_Stats {
 			'expires_at',
 			'cache_hit',
 			'top_pages_with_issues',
+			'all_issues_found_on_site',
 		];
 
 		foreach ( $data as $key => $value ) {
@@ -618,6 +623,69 @@ class Scans_Stats {
 					'rule_slug'     => sanitize_text_field( $rule['slug'] ?? $issue->rule ),
 					'issue_count'   => (int) $issue->issue_count,
 					'severity'      => isset( $rule['severity'] ) ? (int) $rule['severity'] : (int) $issue->severity,
+				];
+			},
+			$issues
+		);
+	}
+
+	/**
+	 * Get the complete per-issue-type breakdown for the site, uncapped.
+	 *
+	 * Unlike get_top_issues_found_on_site(), this returns every rule slug that
+	 * has at least one active (non-ignored) issue on the site, not just the
+	 * top N, so portfolio-level aggregates built from this data aren't
+	 * skewed by sites with a long tail of issue types.
+	 *
+	 * @return array Array of arrays with rule_slug, rule_nicename, severity, issue_count, and distinct_count.
+	 */
+	private function get_all_issues_found_on_site() {
+		global $wpdb;
+
+		$ac_table_name = $wpdb->prefix . 'accessibility_checker';
+		$siteid        = get_current_blog_id();
+
+		$rules_raw    = edac_register_rules();
+		$rules_parsed = [];
+
+		foreach ( $rules_raw as $rule ) {
+			if ( ! isset( $rule['slug'] ) ) {
+				continue;
+			}
+
+			$rules_parsed[ (string) $rule['slug'] ] = $rule;
+		}
+
+		// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Table name is properly escaped via %i placeholder.
+		$sql = $wpdb->prepare(
+			'SELECT rule, COUNT(id) AS issue_count, COUNT(DISTINCT postid) AS distinct_count
+			FROM %i
+			WHERE siteid = %d
+			AND ignre = 0
+			AND ignre_global = 0
+			GROUP BY rule
+			ORDER BY rule ASC',
+			$ac_table_name,
+			$siteid
+		);
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared -- Direct query for stats calculation, SQL is prepared above.
+		$issues = $wpdb->get_results( $sql );
+
+		if ( ! $issues ) {
+			return [];
+		}
+
+		return array_map(
+			function ( $issue ) use ( $rules_parsed ) {
+				$rule = $rules_parsed[ $issue->rule ] ?? [];
+
+				return [
+					'rule_nicename'  => sanitize_text_field( $rule['title'] ?? $issue->rule ),
+					'rule_slug'      => sanitize_text_field( $rule['slug'] ?? $issue->rule ),
+					'issue_count'    => (int) $issue->issue_count,
+					'distinct_count' => (int) $issue->distinct_count,
+					'severity'       => isset( $rule['severity'] ) ? (int) $rule['severity'] : 0,
 				];
 			},
 			$issues
