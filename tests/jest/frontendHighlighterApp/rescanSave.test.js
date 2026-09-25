@@ -11,7 +11,7 @@ jest.mock( 'focus-trap', () => ( {
  */
 describe( 'highlighter rescan saving', () => {
 	const settle = async () => {
-		for ( let i = 0; i < 25; i++ ) {
+		for ( let i = 0; i < 100; i++ ) {
 			await Promise.resolve();
 		}
 	};
@@ -20,6 +20,9 @@ describe( 'highlighter rescan saving', () => {
 		window.fetch.mock.calls
 			.filter( ( [ url ] ) => String( url ).includes( '/post-scan-results/' ) )
 			.map( ( [ , options ] ) => JSON.parse( options.body ) );
+
+	// The issues the (mocked) highlight request returns after a rescan.
+	let storedIssues = [];
 
 	const rescan = async ( scanResult ) => {
 		window.runAccessibilityScan.mockResolvedValue( scanResult );
@@ -44,7 +47,7 @@ describe( 'highlighter rescan saving', () => {
 		jest.spyOn( window, 'XMLHttpRequest' ).mockImplementation( () => ( {
 			open: jest.fn(),
 			status: 200,
-			responseText: JSON.stringify( { success: true, data: JSON.stringify( { issues: [], fixes: {} } ) } ),
+			responseText: JSON.stringify( { success: true, data: JSON.stringify( { issues: storedIssues, fixes: {} } ) } ),
 			send() {
 				this.onload();
 			},
@@ -85,6 +88,7 @@ describe( 'highlighter rescan saving', () => {
 	beforeEach( () => {
 		window.fetch.mockClear();
 		window.runAccessibilityScan.mockReset();
+		storedIssues = [];
 	} );
 
 	test( 'saves an empty result so resolved issues are cleared', async () => {
@@ -115,5 +119,58 @@ describe( 'highlighter rescan saving', () => {
 		expect( summary.textContent ).not.toContain( 'skipping save' );
 		expect( summary.classList.contains( 'edac-error' ) ).toBe( false );
 		expect( document.getElementById( 'edac-highlight-announcer' ).textContent ).toContain( 'No violations found' );
+	} );
+
+	test( 'clears the previous issue details when a rescan leaves no issues', async () => {
+		const title = document.querySelector( '.edac-highlight-panel-description-title' );
+		const content = document.querySelector( '.edac-highlight-panel-description-content' );
+		const issueView = document.querySelector( '.edac-highlight-panel-controls-content-issue' );
+		const emptyView = document.querySelector( '.edac-highlight-panel-controls-content-empty' );
+		title.textContent = 'Missing alt text';
+		content.textContent = 'This image has no alternative text.';
+		issueView.style.display = 'block';
+		emptyView.style.display = 'none';
+
+		await rescan( { violations: [] } );
+
+		expect( title.textContent ).toBe( '' );
+		expect( content.textContent ).toBe( '' );
+		expect( issueView.style.display ).toBe( 'none' );
+		expect( emptyView.style.display ).toBe( 'block' );
+	} );
+
+	test( 'shows the first issue when a rescan still finds issues', async () => {
+		storedIssues = [ { id: 7, rule_title: 'Image missing alt text', rule_type: 'error', object: '<img src="missing.png">' } ];
+		const title = document.querySelector( '.edac-highlight-panel-description-title' );
+		title.textContent = '';
+
+		await rescan( { violations: [ { ruleId: 'image_alt' } ] } );
+
+		expect( document.getElementById( 'edac-highlight-pagination' ).textContent ).toContain( '1 of 1' );
+		expect( title.textContent ).toContain( 'Image missing alt text' );
+	} );
+
+	test( 'clearing issues resets the panel and shows the cleared message', async () => {
+		window.confirm = jest.fn( () => true );
+		window.fetch.mockResolvedValue( { ok: true, json: () => Promise.resolve( {} ) } );
+		const title = document.querySelector( '.edac-highlight-panel-description-title' );
+		const issueView = document.querySelector( '.edac-highlight-panel-controls-content-issue' );
+		const emptyView = document.querySelector( '.edac-highlight-panel-controls-content-empty' );
+		title.textContent = 'Missing alt text';
+		issueView.style.display = 'block';
+		emptyView.style.display = 'none';
+		window.history.replaceState( null, '', '/?edac=7' );
+
+		document.getElementById( 'edac-highlight-clear-issues' ).click();
+		await settle();
+
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		expect( window.fetch ).toHaveBeenCalledWith( expect.stringContaining( '/clear-issues/123' ), expect.anything() );
+		expect( title.textContent ).toBe( '' );
+		expect( issueView.style.display ).toBe( 'none' );
+		expect( emptyView.style.display ).toBe( 'block' );
+		expect( new URL( window.location.href ).searchParams.has( 'edac' ) ).toBe( false );
+		expect( summary.textContent ).toBe( 'Issues cleared successfully.' );
+		delete window.confirm;
 	} );
 } );

@@ -1004,11 +1004,14 @@ class AccessibilityCheckerHighlight {
 
 				this.showIssueCount();
 
-				if ( id !== undefined ) {
+				if ( this.issues.length === 0 ) {
+					// Nothing left to show, so drop the previous issue's details.
+					this.clearIssueState();
+				} else if ( id !== undefined ) {
 					this.showIssue( id );
 				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
 					this.showIssue( this.issues[ this.currentButtonIndex ].id );
-				} else if ( this.issues.length > 0 ) {
+				} else {
 					this.showIssue( this.issues[ 0 ].id );
 				}
 			}
@@ -1957,6 +1960,38 @@ class AccessibilityCheckerHighlight {
 	}
 
 	/**
+	 * Reset the panel's issue state without contacting the server: the selected
+	 * element styling, the issue description, the pagination and the nav buttons.
+	 * Used when there are no issues left to show.
+	 */
+	clearIssueState() {
+		this.removeSelectedClasses();
+		this.issues = [];
+		this.currentButtonIndex = null;
+
+		// Clear issue text from the panel.
+		const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
+		const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
+		if ( descriptionTitle ) {
+			descriptionTitle.innerHTML = '';
+			descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
+		}
+		if ( descriptionContent ) {
+			descriptionContent.innerHTML = '';
+		}
+
+		// Clear the pagination count and hide nav buttons.
+		const pagination = document.getElementById( 'edac-highlight-pagination' );
+		if ( pagination ) {
+			pagination.textContent = '';
+		}
+		this.nextButton.disabled = true;
+		this.previousButton.disabled = true;
+
+		this.descriptionClose();
+	}
+
+	/**
 	 * Clear all saved issues for the current post.
 	 */
 	clearIssues() {
@@ -1997,35 +2032,13 @@ class AccessibilityCheckerHighlight {
 			if ( response.ok ) {
 				this._issuesCleared = true;
 				this.removeHighlightButtons();
-				this.removeSelectedClasses();
-				this.issues = [];
-				this.currentButtonIndex = null;
-
-				// Clear issue text from the panel.
-				const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
-				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
-				if ( descriptionTitle ) {
-					descriptionTitle.innerHTML = '';
-					descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
-				}
-				if ( descriptionContent ) {
-					descriptionContent.innerHTML = '';
-				}
+				this.clearIssueState();
 
 				// Remove the URL parameter.
 				const url = new URL( window.location.href );
 				url.searchParams.delete( 'edac' );
 				history.replaceState( null, '', url.toString() );
 
-				// Clear the pagination count and hide nav buttons.
-				const pagination = document.getElementById( 'edac-highlight-pagination' );
-				if ( pagination ) {
-					pagination.textContent = '';
-				}
-				this.nextButton.disabled = true;
-				this.previousButton.disabled = true;
-
-				this.descriptionClose();
 				this.showIssueCount();
 				if ( summary ) {
 					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );
