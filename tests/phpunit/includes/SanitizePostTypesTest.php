@@ -62,6 +62,12 @@ class SanitizePostTypesTest extends WP_UnitTestCase {
 		update_post_meta( $this->post_id, '_edac_rule', 'post issue data' );
 		update_post_meta( $this->page_id, '_edac_rule', 'page issue data' );
 
+		// Other test classes create this same table and can leave rows behind
+		// (FrontendHighlightAjaxTest does), so start from a known-empty table.
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Resetting a test-owned table.
+			$wpdb->prepare( 'DELETE FROM %i', $table_name )
+		);
+
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Test fixture on a test-owned table.
 			$table_name,
 			[

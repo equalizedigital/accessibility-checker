@@ -55,6 +55,12 @@ class PostSaveDeleteIssueDataTest extends WP_UnitTestCase {
 		update_post_meta( $this->post_id, '_edacp_rule', 'pro issue data' );
 		update_post_meta( $this->post_id, 'unrelated_meta', 'not ours' );
 
+		// Other test classes create this same table and can leave rows behind
+		// (FrontendHighlightAjaxTest does), so start from a known-empty table.
+		$wpdb->query( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Resetting a test-owned table.
+			$wpdb->prepare( 'DELETE FROM %i', $table_name )
+		);
+
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Test fixture on a test-owned table.
 			$table_name,
 			[
