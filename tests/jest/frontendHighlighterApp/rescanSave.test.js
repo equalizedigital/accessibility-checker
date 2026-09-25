@@ -21,6 +21,7 @@ describe( 'highlighter rescan saving', () => {
 			.filter( ( [ url ] ) => String( url ).includes( '/post-scan-results/' ) )
 			.map( ( [ , options ] ) => JSON.parse( options.body ) );
 
+	let announced = [];
 	// The issues the (mocked) highlight request returns after a rescan.
 	let storedIssues = [];
 
@@ -72,6 +73,23 @@ describe( 'highlighter rescan saving', () => {
 		};
 
 		window.dispatchEvent( new Event( 'DOMContentLoaded' ) );
+
+		// Record every message written to the live region. Reading its final text is not
+		// enough: a later message replaces an earlier one, hiding a wrong announcement.
+		const announcer = document.getElementById( 'edac-highlight-announcer' );
+		const { get, set } = Object.getOwnPropertyDescriptor( window.Node.prototype, 'textContent' );
+		Object.defineProperty( announcer, 'textContent', {
+			configurable: true,
+			get() {
+				return get.call( this );
+			},
+			set( value ) {
+				if ( value ) {
+					announced.push( value );
+				}
+				set.call( this, value );
+			},
+		} );
 	} );
 
 	afterAll( () => {
@@ -87,9 +105,20 @@ describe( 'highlighter rescan saving', () => {
 
 	beforeEach( () => {
 		window.fetch.mockClear();
+		window.fetch.mockResolvedValue( { json: () => Promise.resolve( { success: true } ) } );
 		window.runAccessibilityScan.mockReset();
+		// Drop announcements still queued by the previous test so they are not counted here.
+		jest.clearAllTimers();
+		announced = [];
 		storedIssues = [];
 	} );
+
+	const announcements = async () => {
+		// announce() writes after a short delay so assistive tech picks it up.
+		jest.advanceTimersByTime( 100 );
+		await settle();
+		return announced;
+	};
 
 	test( 'saves an empty result so resolved issues are cleared', async () => {
 		await rescan( { violations: [] } );
@@ -137,6 +166,28 @@ describe( 'highlighter rescan saving', () => {
 		expect( content.textContent ).toBe( '' );
 		expect( issueView.style.display ).toBe( 'none' );
 		expect( emptyView.style.display ).toBe( 'block' );
+	} );
+
+	test( 'does not announce a clean rescan when the save is rejected', async () => {
+		window.fetch.mockResolvedValue( { json: () => Promise.resolve( { success: false } ) } );
+
+		await rescan( { violations: [] } );
+
+		const messages = await announcements();
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		expect( messages.some( ( message ) => message.includes( 'Rescan complete' ) ) ).toBe( false );
+		expect( messages ).toContain( 'Saving failed.' );
+		expect( summary.classList.contains( 'edac-error' ) ).toBe( true );
+	} );
+
+	test( 'treats a result with no violation list as a failed scan, not a clean one', async () => {
+		await rescan( {} );
+
+		const messages = await announcements();
+		const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		expect( savedPayloads() ).toHaveLength( 0 );
+		expect( messages.some( ( message ) => message.includes( 'Rescan complete' ) ) ).toBe( false );
+		expect( summary.classList.contains( 'edac-error' ) ).toBe( true );
 	} );
 
 	test( 'shows the first issue when a rescan still finds issues', async () => {

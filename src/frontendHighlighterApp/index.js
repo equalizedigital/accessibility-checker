@@ -1954,6 +1954,10 @@ class AccessibilityCheckerHighlight {
 				this._pendingRescanAnnouncement = false;
 			}
 			this.panelOpen();
+		}, () => {
+			// Scan and save failures have already been shown and announced by
+			// showScanError(), so there is nothing left to do but not leave the
+			// rejection unhandled.
 		} ).finally( () => {
 			this._isRescanning = false;
 		} );
