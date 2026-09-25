@@ -36,11 +36,12 @@ class Insert_Rule_Data {
 	 * @param string|null $landmark          The landmark type (main, header, footer, nav), optional.
 	 * @param string|null $landmark_selector The landmark selector, optional.
 	 * @param array       $selectors         An array of selectors that point to the object, optional.
+	 * @param array|null  $extra_data        Optional arbitrary metadata to store as JSON (e.g. color contrast values).
 	 *
 	 * @return void|int|\WP_Error The ID of the inserted record, void if no
 	 * record was inserted or a WP_Error if the insert failed.
 	 */
-	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [] ) {
+	public function insert( object $post, string $rule, string $ruletype, string $rule_obj, ?string $landmark = null, ?string $landmark_selector = null, array $selectors = [], ?array $extra_data = null ) {
 
 		if ( ! isset( $post->ID, $post->post_type )
 			|| empty( $rule )
@@ -66,6 +67,7 @@ class Insert_Rule_Data {
 			'rule'              => $rule,
 			'ruletype'          => $ruletype,
 			'object'            => esc_attr( $rule_obj ),
+			'extra_data'        => $extra_data,
 			'recordcheck'       => 1,
 			'user'              => get_current_user_id(),
 			'ignre'             => 0,
@@ -108,24 +110,28 @@ class Insert_Rule_Data {
 
 				// update existing record.
 				// Use selector for WHERE clause instead of object to match on unique identifier.
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-				$wpdb->query(
-					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
-						$table_name,
-						1,
-						$rule_data['landmark'],
-						$rule_data['landmark_selector'],
-						$rule_data['object'],
-						$rule_data['ancestry'],
-						$rule_data['xpath'],
-						$rule_data['ignre'],
-						$rule_data['siteid'],
-						$rule_data['postid'],
-						$rule_data['rule'],
-						$rule_data['selector'],
-						$rule_data['type']
-					)
+				// Using wpdb->update() (not raw prepare/query) so that null extra_data is emitted
+				// as SQL NULL rather than '' — wpdb->prepare('%s', null) coerces null to ''.
+				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Direct update; caching not required for a write operation.
+				$wpdb->update(
+					$table_name,
+					[
+						'recordcheck'       => 1,
+						'landmark'          => $rule_data['landmark'],
+						'landmark_selector' => $rule_data['landmark_selector'],
+						'object'            => $rule_data['object'],
+						'ancestry'          => $rule_data['ancestry'],
+						'xpath'             => $rule_data['xpath'],
+						'ignre'             => $rule_data['ignre'],
+						'extra_data'        => self::encode_extra_data( is_array( $rule_data['extra_data'] ) ? $rule_data['extra_data'] : null ),
+					],
+					[
+						'siteid'   => $rule_data['siteid'],
+						'postid'   => $rule_data['postid'],
+						'rule'     => $rule_data['rule'],
+						'selector' => $rule_data['selector'],
+						'type'     => $rule_data['type'],
+					]
 				);
 
 			}
@@ -145,6 +151,13 @@ class Insert_Rule_Data {
 			 */
 			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
+			// Resolve extra_data: keep raw array from this method, but a filter may have set it
+			// to a JSON string — decode in that case before re-encoding through encode_extra_data().
+			$extra_data_raw = $rule_data['extra_data'] ?? null;
+			if ( is_string( $extra_data_raw ) ) {
+				$extra_data_raw = json_decode( $extra_data_raw, true );
+			}
+
 			// Sanitize rule data since it is filtered, and we can't be sure
 			// the data is still as valid as it was when it was first set.
 			// Sanitize the filtered data.
@@ -160,6 +173,7 @@ class Insert_Rule_Data {
 				'rule'              => sanitize_text_field( $rule_data['rule'] ),
 				'ruletype'          => sanitize_text_field( $rule_data['ruletype'] ),
 				'object'            => esc_attr( $rule_data['object'] ),
+				'extra_data'        => self::encode_extra_data( is_array( $extra_data_raw ) ? $extra_data_raw : null ),
 				'recordcheck'       => absint( $rule_data['recordcheck'] ),
 				'user'              => absint( $rule_data['user'] ),
 				'ignre'             => absint( $rule_data['ignre'] ),
@@ -191,5 +205,30 @@ class Insert_Rule_Data {
 			// Return insert id or error.
 			return $wpdb->insert_id;
 		}
+	}
+
+	/**
+	 * Recursively sanitizes an array and returns it as a JSON string.
+	 *
+	 * String values are passed through sanitize_text_field(); numeric and boolean
+	 * values are left as-is so they round-trip cleanly through JSON.
+	 *
+	 * @param array|null $data The extra data array to encode.
+	 * @return string|null JSON-encoded sanitized data, or null if input is empty or encoding fails.
+	 */
+	private static function encode_extra_data( ?array $data ): ?string {
+		if ( ! $data ) {
+			return null;
+		}
+		array_walk_recursive(
+			$data,
+			function ( &$value ) {
+				if ( is_string( $value ) ) {
+					$value = sanitize_text_field( $value );
+				}
+			}
+		);
+		$encoded = wp_json_encode( $data );
+		return false !== $encoded ? $encoded : null;
 	}
 }
