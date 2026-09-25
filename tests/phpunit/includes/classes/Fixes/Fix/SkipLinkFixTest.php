@@ -117,4 +117,20 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 		$this->assertContains( '#main', $skip_data['targets'] );
 		$this->assertContains( '#content', $skip_data['targets'] );
 	}
+
+	/**
+	 * Test frontend data is not added when targets are empty.
+	 *
+	 * @return void
+	 */
+	public function test_frontend_data_skips_empty_targets() {
+		update_option( 'edac_fix_add_skip_link', true );
+		update_option( 'edac_fix_add_skip_link_target_id', ' , , # , ' );
+
+		$this->fix->run();
+
+		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+
+		$this->assertArrayNotHasKey( 'skip_link', $data );
+	}
 }
