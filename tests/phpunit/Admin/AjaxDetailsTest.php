@@ -129,7 +129,11 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 		$response = json_decode( $this->_last_response, true );
 		$this->assertTrue( $response['success'] );
 
-		$html = json_decode( $response['data'] );
+		$encoded_html = $response['data'];
+		$this->assertIsString( $encoded_html );
+		$this->assertJson( $encoded_html );
+
+		$html = json_decode( $encoded_html, true );
 		$this->assertIsString( $html );
 
 		$document              = new DOMDocument();
