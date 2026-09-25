@@ -124,10 +124,11 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 		$html = json_decode( $response['data'] );
 		$this->assertIsString( $html );
 
-		$document = new DOMDocument();
-		libxml_use_internal_errors( true );
+		$document              = new DOMDocument();
+		$internal_errors_state = libxml_use_internal_errors( true );
 		$document->loadHTML( '<div>' . $html . '</div>', LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
 		libxml_clear_errors();
+		libxml_use_internal_errors( $internal_errors_state );
 
 		$xpath   = new DOMXPath( $document );
 		$heading = $xpath->query( '//h3[@id="edac-details-rule-heading-empty_link"]' );
