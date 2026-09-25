@@ -86,6 +86,27 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 	}
 
 	/**
+	 * Clean up shared fixtures for this test class.
+	 *
+	 * @return void
+	 */
+	public static function wpTearDownAfterClass() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Cleaning focused AJAX regression test fixtures.
+			$table_name,
+			[
+				'postid' => self::$post_id,
+				'siteid' => get_current_blog_id(),
+				'rule'   => 'empty_link',
+			]
+		);
+
+		wp_delete_post( self::$post_id, true );
+		wp_delete_user( self::$admin_id );
+	}
+
+	/**
 	 * Set up before each test.
 	 *
 	 * @return void
