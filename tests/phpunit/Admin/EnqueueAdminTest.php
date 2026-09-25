@@ -325,7 +325,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * Test that the sidebar assets enqueue only in the block editor for scannable post types.
 	 */
 	public function testSidebarScriptEnqueuesInBlockEditorForScannablePost() {
-		global $post, $pagenow;
+		global $post, $pagenow, $wp_scripts;
 		$post    = $this->factory()->post->create_and_get();
 		$pagenow = 'post.php';
 
@@ -335,6 +335,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac-sidebar']->deps );
 	}
 
 	/**
