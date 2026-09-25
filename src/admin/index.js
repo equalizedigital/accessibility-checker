@@ -26,43 +26,42 @@ const edacScriptVars = edac_script_vars;
 			inlineSettingsProUpsell();
 		}
 
-		// Accessibility Statement disable
-		jQuery(
-			'input[type=checkbox][name=edac_add_footer_accessibility_statement]'
-		).on( 'change', function() {
-			if ( this.checked ) {
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'disabled', false );
-			} else {
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'disabled', true );
-				jQuery(
-					'input[type=checkbox][name=edac_include_accessibility_statement_link]'
-				).prop( 'checked', false );
-			}
-			//
-		} );
+		const footerA11yStatementToggle = document.querySelector( 'input[type=checkbox][name=edac_add_footer_accessibility_statement]' );
+		const footerA11yStatementLink = document.querySelector( 'input[type=checkbox][name=edac_include_accessibility_statement_link]' );
+		if ( footerA11yStatementToggle && footerA11yStatementLink ) {
+			footerA11yStatementToggle.addEventListener( 'change', function( e ) {
+				if ( e.target.checked ) {
+					footerA11yStatementLink.removeAttribute( 'disabled' );
+				} else {
+					footerA11yStatementLink.setAttribute( 'disabled', true );
+					footerA11yStatementLink.checked = false;
+				}
+			} );
+		}
 
 		// Show Simplified Summary code on options page
-		if (
-			jQuery(
-				'input[type=radio][name=edac_simplified_summary_position]:checked'
-			).val() === 'none'
-		) {
-			jQuery( '#ac-simplified-summary-option-code' ).show();
-		}
-		jQuery( 'input[type=radio][name=edac_simplified_summary_position]' ).on(
-			'load',
-			function() {
-				if ( this.value === 'none' ) {
-					jQuery( '#ac-simplified-summary-option-code' ).show();
-				} else {
-					jQuery( '#ac-simplified-summary-option-code' ).hide();
-				}
+		const summaryPositionFields = document.querySelectorAll( 'input[type=radio][name=edac_simplified_summary_position]' );
+		const summaryPositionFieldChecked = document.querySelector( 'input[type=radio][name=edac_simplified_summary_position]:checked' );
+		const simplifiedSummaryOptionCode = document.querySelector( '#ac-simplified-summary-option-code' );
+		if ( summaryPositionFieldChecked && simplifiedSummaryOptionCode ) {
+			if ( summaryPositionFieldChecked.value === 'none' ) {
+				simplifiedSummaryOptionCode.style.display = 'block';
+			} else {
+				simplifiedSummaryOptionCode.style.display = 'none';
 			}
-		);
+		}
+
+		Array.from( summaryPositionFields ).forEach( ( field ) => {
+			field.addEventListener( 'change', function( item ) {
+				if ( simplifiedSummaryOptionCode ) {
+					if ( item.target.value === 'none' ) {
+						simplifiedSummaryOptionCode.style.display = 'block';
+					} else {
+						simplifiedSummaryOptionCode.style.display = 'none';
+					}
+				}
+			} );
+		} );
 	} );
 
 	jQuery( window ).on( 'load', function() {
@@ -89,15 +88,24 @@ const edacScriptVars = edac_script_vars;
 			// reset to first meta box tab
 			clearAllTabsAndPanelState();
 
-			const summaryPanel = jQuery( '#edac-summary-panel' );
-			jQuery( summaryPanel )
-				.show()
-				.addClass( 'active' );
-			const summaryTab = '#' + jQuery( summaryPanel ).attr( 'aria-labelledby' );
-			jQuery( summaryTab )
-				.addClass( 'active' )
-				.attr( 'aria-selected', 'true' )
-				.removeAttr( 'tabindex' );
+			const summaryPanel = document.querySelector( '#edac-summary-panel' );
+			let summaryTabSelector;
+			let summaryTab;
+			if ( summaryPanel ) {
+				summaryPanel.style.display = 'block';
+				summaryPanel.classList.add( 'active' );
+
+				summaryTabSelector = '#' + summaryPanel.getAttribute( 'aria-labelledby' );
+				if ( summaryTabSelector ) {
+					summaryTab = document.querySelector( summaryTabSelector );
+				}
+			}
+
+			if ( summaryTab ) {
+				summaryTab.classList.add( 'active' );
+				summaryTab.setAttribute( 'aria-selected', 'true' );
+				summaryTab.removeAttribute( 'tabindex' );
+			}
 
 			edacDetailsAjax();
 			refreshSummaryAndReadability();
@@ -114,7 +122,12 @@ const edacScriptVars = edac_script_vars;
 		const refreshSummaryAndReadability = () => {
 			edacSummaryAjax( () => {
 				edacReadabilityAjax();
-				jQuery( '.edac-panel' ).removeClass( 'edac-panel-loading' );
+				const edacPanels = document.querySelectorAll( '.edac-panel' );
+				if ( edacPanels ) {
+					Array.from( edacPanels ).forEach( ( panel ) => {
+						panel.classList.remove( 'edac-panel-loading' );
+					} );
+				}
 			} );
 		};
 
@@ -143,12 +156,17 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '.edac-summary' ).html( responseJSON.content );
+						jQuery( '.edac-summary' ).html( responseJSON.content );
 
-					if ( typeof callback === 'function' ) {
-						callback();
+						if ( typeof callback === 'function' ) {
+							callback();
+						}
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
 					}
 				} else {
 					// eslint-disable-next-line no-console
@@ -181,9 +199,14 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					try	{
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '#edac-details-panel' ).html( responseJSON );
+						jQuery( '#edac-details-panel' ).html( responseJSON );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 
 					// Rule on click
 					jQuery( '.edac-details-rule-title' ).click( function() {
@@ -198,18 +221,20 @@ const edacScriptVars = edac_script_vars;
 					} );
 
 					// Title arrow button on click
-					jQuery( '.edac-details-rule-title-arrow' ).click(
-						function( e ) {
-							e.preventDefault();
-							if (
-								jQuery( this ).attr( 'aria-expanded' ) === 'true'
-							) {
-								jQuery( this ).attr( 'aria-expanded', 'false' );
-							} else {
-								jQuery( this ).attr( 'aria-expanded', 'true' );
-							}
-						}
-					);
+					const detailsRulesTitleArrows = document.querySelectorAll( '.edac-details-rule-title-arrow' );
+					if ( detailsRulesTitleArrows ) {
+						Array.from( detailsRulesTitleArrows ).forEach( ( arrow ) => {
+							arrow.addEventListener( 'click', function( e ) {
+								e.preventDefault();
+								const arrowBtn = e.target.closest( 'button' );
+								if ( arrowBtn.getAttribute( 'aria-expanded' ) === 'true' ) {
+									arrowBtn.setAttribute( 'aria-expanded', 'false' );
+								} else {
+									arrowBtn.setAttribute( 'aria-expanded', 'true' );
+								}
+							} );
+						} );
+					}
 
 					// Ignore on click
 					jQuery(
@@ -263,9 +288,14 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
 
-					jQuery( '#edac-readability-panel' ).html( responseJSON );
+						jQuery( '#edac-readability-panel' ).html( responseJSON );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 
 					// Simplified Summary on click
 					jQuery( '.edac-readability-simplified-summary' ).submit(
@@ -273,7 +303,7 @@ const edacScriptVars = edac_script_vars;
 							event.preventDefault();
 
 							// var postID = wp.data.select("core/editor").getCurrentPostId();
-							const summary = jQuery( '#edac-readability-text' ).val();
+							const summary = document.querySelector( '#edac-readability-text' ).value;
 
 							jQuery.ajax( {
 								url: edacScriptVars.edacApiUrl + '/simplified-summary/' + postID,
@@ -543,7 +573,12 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					try {
+						const responseJSON = JSON.parse( response.data );
+					} catch ( e ) {
+						// eslint-disable-next-line no-console
+						console.error( e );
+					}
 					jQuery( '.edac-review-notice' ).fadeOut();
 					if ( redirect ) {
 						window.location.href =
@@ -576,13 +611,13 @@ const edacScriptVars = edac_script_vars;
 		/**
 		 * Black Friday Notice Ajax
 		 */
-		if ( jQuery( '.edac_black_friday_notice' ).length ) {
-			jQuery( '.edac_black_friday_notice .notice-dismiss' ).on(
-				'click',
-				function() {
+		const blackFridayNoticeDismiss = document.querySelectorAll( '.edac_black_friday_notice .notice-dismiss' );
+		if ( blackFridayNoticeDismiss ) {
+			Array.from( blackFridayNoticeDismiss ).forEach( ( dismiss ) => {
+				dismiss.addEventListener( 'click', () => {
 					edacNoticeAjax( 'edac_black_friday_notice_ajax' );
-				}
-			);
+				} );
+			} );
 		}
 
 		function edacNoticeAjax( functionName = null ) {
@@ -595,23 +630,27 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 				} else {
 					//console.log(response);
 				}
 			} );
 		}
 
-		if ( jQuery( '#edac-summary-panel' ).length ) {
+		const edacSummaryPanel = document.querySelector( '#edac-summary-panel' );
+		if ( edacSummaryPanel ) {
 			refreshSummaryAndReadability();
 			edacDetailsAjax();
 			ignoreSubmit();
 		}
 
-		if ( jQuery( '.edac-details-rule-records-record-ignore' ).length ) {
+		const edacDetailsRecordsIgnore = document.querySelectorAll( '.edac-details-rule-records-record-ignore' );
+		if ( edacDetailsRecordsIgnore.length ) {
 			ignoreSubmit();
 		}
-		if ( jQuery( '#edac-readability-panel' ).length ) {
+
+		const edacReadabilityPanel = document.querySelector( '#edac-readability-panel' );
+		if ( edacReadabilityPanel ) {
 			refreshSummaryAndReadability();
 		}
 
