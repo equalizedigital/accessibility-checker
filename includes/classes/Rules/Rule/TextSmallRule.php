@@ -9,6 +9,7 @@ namespace EqualizeDigital\AccessibilityChecker\Rules\Rule;
 
 use EqualizeDigital\AccessibilityChecker\Rules\RuleInterface;
 use EqualizeDigital\AccessibilityChecker\Rules\AffectedDisabilities;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\MinimumTextSizeFix;
 
 /**
  * TextSmall Rule class.
@@ -48,6 +49,9 @@ class TextSmallRule implements RuleInterface {
 			'severity'              => 3, // Medium.
 			'affected_disabilities' => [
 				AffectedDisabilities::LOW_VISION,
+			],
+			'fixes'                 => [
+				MinimumTextSizeFix::get_slug(),
 			],
 		];
 	}
