@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.9
 Tested up to: 7.1
-Stable tag: 1.50.0
+Stable tag: 1.50.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -279,6 +279,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-09-24 - version 1.50.1
+* Fix - the frontend highlighter no longer forces its panel open on every Elementor save, and no longer rescans on Elementor's periodic autosave.
 
 2026-09-23 - version 1.50.0
 * New - the frontend highlighter automatically refreshes after saving in Elementor.
