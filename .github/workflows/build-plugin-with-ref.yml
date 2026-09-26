@@ -29,7 +29,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           fetch-depth: 0
 
@@ -85,7 +85,7 @@ jobs:
           echo "Ref param: ${REF_PARAM}"
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '20'
           cache: 'npm'
@@ -93,7 +93,7 @@ jobs:
 
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
@@ -101,14 +101,14 @@ jobs:
             ${{ runner.os }}-node_modules-
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
         with:
           php-version: '8.2'
           tools: composer
           coverage: none
 
       - name: Cache Composer dependencies
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
         with:
           path: vendor
           key: ${{ runner.os }}-composer-vendor-${{ hashFiles('**/composer.lock') }}
@@ -204,7 +204,7 @@ jobs:
 
       - name: Upload primary build artifact
         if: steps.setref.outputs.skip_primary != 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
           path: ${{ env.PRIMARY_ZIP_FOLDER }}
@@ -278,7 +278,7 @@ jobs:
 
       - name: Upload ref build artifact
         if: steps.check_ref.outputs.need_ref_build == 'true'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: ${{ env.REF_ZIP_NAME_NO_EXT }}
           path: ${{ env.REF_ZIP_FOLDER }}
@@ -289,7 +289,7 @@ jobs:
       - name: Playground link
         id: playground
         if: steps.setref.outputs.skip_primary != 'true' && github.event_name != 'release'
-        uses: pattonwebz/wordpress-playground-action@v0
+        uses: pattonwebz/wordpress-playground-action@0caa91a147d5d55cca25591cca181bbf560d9e41 # v0.3.1
         with:
           artifact-name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
           plugin-slug: accessibility-checker
@@ -314,7 +314,7 @@ jobs:
 
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
         with:
           files: |
             ${{ env.PRIMARY_ZIP_PATH }}
@@ -328,7 +328,7 @@ jobs:
         # that is already present emits no `labeled` event, so leaving it on
         # would make the trigger dead until someone removed it by hand.
         if: always() && github.event_name == 'pull_request'
-        uses: actions/github-script@v7
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # v7.1.0
         with:
           script: |
             const prNumber = context.payload.pull_request.number;
