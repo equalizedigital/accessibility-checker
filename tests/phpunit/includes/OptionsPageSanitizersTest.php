@@ -208,10 +208,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * With Pro inactive the scan speed wrapper preserves the stored option.
 	 */
 	public function test_edac_sanitize_pro_scan_speed_preserves_value_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		$this->assertSame( '1000', edac_sanitize_pro_scan_speed( '250' ) );
 
 		update_option( 'edacp_full_site_scan_speed', '5000' );
@@ -222,10 +218,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * With Pro inactive the checkbox wrapper returns the stored option value.
 	 */
 	public function test_edac_sanitize_pro_checkbox_preserves_value_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		$this->assertSame( 0, edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' ) );
 
 		update_option( 'edacp_test_checkbox', 1 );
@@ -238,10 +230,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * The pro-save action only fires when Pro is active, so nothing is dispatched here.
 	 */
 	public function test_edac_sanitize_pro_checkbox_does_not_dispatch_action_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		$before = did_action( 'edac_pro_setting_saving_checkbox' );
 
 		edac_sanitize_pro_checkbox( '1', 'edacp_test_checkbox' );
@@ -253,10 +241,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * The archive scanning wrapper reads its own option when Pro is inactive.
 	 */
 	public function test_edac_sanitize_pro_archive_scanning_preserves_value_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		update_option( 'edacp_enable_archive_scanning', 1 );
 		$this->assertSame( 1, edac_sanitize_pro_archive_scanning( '1' ) );
 	}
@@ -265,10 +249,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * The taxonomy terms wrapper reads its own option when Pro is inactive.
 	 */
 	public function test_edac_sanitize_pro_taxonomy_terms_preserves_value_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		update_option( 'edacp_scan_all_taxonomies', 1 );
 		$this->assertSame( 1, edac_sanitize_pro_taxonomy_terms( '1' ) );
 	}
@@ -277,10 +257,6 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	 * The summary heading wrapper falls back to the default heading when Pro is inactive.
 	 */
 	public function test_edac_sanitize_pro_summary_heading_preserves_value_when_not_pro(): void {
-		if ( edac_is_pro() ) {
-			$this->markTestSkipped( 'Pro constants are defined in this environment.' );
-		}
-
 		$this->assertSame(
 			'Simplified Summary',
 			edac_sanitize_pro_summary_heading( 'Custom heading' )

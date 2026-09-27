@@ -289,10 +289,6 @@ class OutputAndEnvironmentHelpersTest extends WP_UnitTestCase {
 	 * valid, so the unlicensed branch is the one reachable in this environment.
 	 */
 	public function test_edac_is_pro_is_false_without_a_valid_pro_key(): void {
-		if ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) {
-			$this->markTestSkipped( 'A valid Pro license key is defined in this process.' );
-		}
-
 		$this->assertFalse( edac_is_pro() );
 	}
 
@@ -300,10 +296,6 @@ class OutputAndEnvironmentHelpersTest extends WP_UnitTestCase {
 	 * Without WooCommerce loaded edac_is_woocommerce_enabled() is false.
 	 */
 	public function test_edac_is_woocommerce_enabled_is_false_without_woocommerce(): void {
-		if ( function_exists( 'WC' ) || class_exists( 'WooCommerce' ) ) {
-			$this->markTestSkipped( 'WooCommerce is loaded in this process.' );
-		}
-
 		$this->assertFalse( edac_is_woocommerce_enabled() );
 	}
 
@@ -311,10 +303,6 @@ class OutputAndEnvironmentHelpersTest extends WP_UnitTestCase {
 	 * Without WooCommerce loaded no post ID can be the checkout page.
 	 */
 	public function test_check_if_post_id_is_woocommerce_checkout_page_is_false_without_woocommerce(): void {
-		if ( function_exists( 'WC' ) || class_exists( 'WooCommerce' ) ) {
-			$this->markTestSkipped( 'WooCommerce is loaded in this process.' );
-		}
-
 		$post_id = self::factory()->post->create();
 
 		$this->assertFalse( edac_check_if_post_id_is_woocommerce_checkout_page( $post_id ) );

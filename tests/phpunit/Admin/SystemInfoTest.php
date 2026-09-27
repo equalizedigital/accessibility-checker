@@ -253,9 +253,7 @@ class SystemInfoTest extends WP_UnitTestCase {
 				return in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true );
 			}
 		);
-		if ( ! $theme ) {
-			$this->markTestSkipped( 'No installed theme with accessibility-ready tag found.' );
-		}
+		$this->assertInstanceOf( WP_Theme::class, $theme, 'An installed theme tagged accessibility-ready is required for this test.' );
 		$this->assertTrue( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
 	/**
@@ -275,9 +273,7 @@ class SystemInfoTest extends WP_UnitTestCase {
 				return ! in_array( 'accessibility-ready', $this->get_theme_tags( $candidate->parent() ), true );
 			}
 		);
-		if ( ! $theme ) {
-			$this->markTestSkipped( 'No installed theme found where both child and parent lack accessibility-ready tag.' );
-		}
+		$this->assertInstanceOf( WP_Theme::class, $theme, 'An installed theme whose parent has no accessibility-ready tag is required for this test.' );
 		$this->assertFalse( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
 	/**
