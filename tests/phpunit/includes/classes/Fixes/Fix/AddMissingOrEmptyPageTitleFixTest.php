@@ -65,15 +65,6 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * This fix doesn't use frontend data filter.
-	 *
-	 * @return bool
-	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return true;
-	}
-
-	/**
 	 * Override test since this fix is pro-only and doesn't run.
 	 *
 	 * @return void

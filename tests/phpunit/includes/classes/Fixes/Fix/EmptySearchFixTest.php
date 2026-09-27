@@ -73,8 +73,8 @@ class EmptySearchFixTest extends WP_UnitTestCase {
 	 *
 	 * @return bool
 	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return true;
+	protected function fix_registers_frontend_data(): bool {
+		return false;
 	}
 
 	/**
