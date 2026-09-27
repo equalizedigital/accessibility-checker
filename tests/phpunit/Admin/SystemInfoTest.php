@@ -35,24 +35,6 @@ class SystemInfoTest extends WP_UnitTestCase {
 		return in_array( 'accessibility-ready', $tags, true );
 	}
 	/**
-	 * Finds the first installed theme matching the given predicate.
-	 *
-	 * @param callable $predicate Matcher callback.
-	 * @return WP_Theme|null
-	 */
-	private function find_installed_theme( $predicate ) {
-		foreach ( wp_get_themes() as $theme ) {
-			if ( ! $theme instanceof WP_Theme || ! $theme->exists() ) {
-				continue;
-			}
-			if ( call_user_func( $predicate, $theme ) ) {
-				return $theme;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * A plugin living in its own directory should return the directory name.
 	 *
 	 * @return void
@@ -248,12 +230,15 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testIsThemeAccessibilityReadyReturnsTrueForInstalledAccessibilityReadyTheme() {
-		$theme = $this->find_installed_theme(
-			function ( $candidate ) {
-				return in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true );
-			}
+		$fixture_root = $this->create_fixture_theme_root();
+		$theme        = new WP_Theme( 'edac-fixture-parent', $fixture_root );
+
+		$this->assertTrue( $theme->exists(), 'The fixture theme should be readable.' );
+		$this->assertContains(
+			'accessibility-ready',
+			$this->get_theme_tags( $theme ),
+			'The fixture theme should carry the tag itself.'
 		);
-		$this->assertInstanceOf( WP_Theme::class, $theme, 'An installed theme tagged accessibility-ready is required for this test.' );
 		$this->assertTrue( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
 	/**
@@ -262,18 +247,22 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testIsThemeAccessibilityReadyReturnsFalseForInstalledThemeWithoutAnyReadyTag() {
-		$theme = $this->find_installed_theme(
-			function ( $candidate ) {
-				if ( in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true ) ) {
-					return false;
-				}
-				if ( ! $candidate->parent() ) {
-					return true;
-				}
-				return ! in_array( 'accessibility-ready', $this->get_theme_tags( $candidate->parent() ), true );
-			}
+		$fixture_root = $this->create_fixture_theme_root();
+		$theme        = new WP_Theme( 'edac-fixture-plain-child', $fixture_root );
+		$parent       = $theme->parent();
+
+		$this->assertTrue( $theme->exists(), 'The fixture child theme should be readable.' );
+		$this->assertInstanceOf( WP_Theme::class, $parent, 'The fixture child theme should have a readable parent.' );
+		$this->assertNotContains(
+			'accessibility-ready',
+			$this->get_theme_tags( $theme ),
+			'The fixture child theme should not carry the tag itself.'
 		);
-		$this->assertInstanceOf( WP_Theme::class, $theme, 'An installed theme whose parent has no accessibility-ready tag is required for this test.' );
+		$this->assertNotContains(
+			'accessibility-ready',
+			$this->get_theme_tags( $parent ),
+			'The fixture parent theme should not carry the tag either.'
+		);
 		$this->assertFalse( SystemInfo::is_theme_accessibility_ready( $theme ) );
 	}
 	/**
@@ -282,7 +271,7 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testIsThemeAccessibilityReadyReturnsTrueWhenInstalledParentThemeHasTag() {
-		$fixture_root = $this->create_fixture_child_theme_with_tagged_parent();
+		$fixture_root = $this->create_fixture_theme_root();
 		$theme        = new WP_Theme( 'edac-fixture-child', $fixture_root );
 
 		$this->assertTrue( $theme->exists(), 'The fixture child theme should be readable.' );
@@ -295,38 +284,35 @@ class SystemInfoTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Writes a fixture child theme and a tagged parent theme into a temp theme root.
+	 * Writes fixture themes into a temp theme root.
 	 *
-	 * The fixtures live in the temp directory rather than in the installed theme directory
-	 * so the test does not depend on which themes the environment happens to ship.
+	 * The fixtures live in the temp directory rather than in the installed theme directory so the
+	 * tests do not depend on which themes the environment happens to ship: a tagged parent, a
+	 * child of it, an untagged parent, and a child of the untagged parent.
 	 *
 	 * @return string The theme root containing the fixtures.
 	 */
-	private function create_fixture_child_theme_with_tagged_parent() {
+	private function create_fixture_theme_root() {
 		$fixture_root = trailingslashit( get_temp_dir() ) . 'edac-theme-fixtures';
 
-		$parent_dir = $fixture_root . '/edac-fixture-parent';
-		$child_dir  = $fixture_root . '/edac-fixture-child';
+		$themes = [
+			'edac-fixture-parent'      => "Theme Name: EDAC Fixture Parent\nVersion: 1.0.0\nTags: accessibility-ready",
+			'edac-fixture-child'       => "Theme Name: EDAC Fixture Child\nVersion: 1.0.0\nTemplate: edac-fixture-parent",
+			'edac-fixture-plain'       => "Theme Name: EDAC Fixture Plain\nVersion: 1.0.0",
+			'edac-fixture-plain-child' => "Theme Name: EDAC Fixture Plain Child\nVersion: 1.0.0\nTemplate: edac-fixture-plain",
+		];
 
-		if ( ! is_dir( $parent_dir ) ) {
-			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Theme fixtures are written to the temp directory.
-			mkdir( $parent_dir, 0777, true );
-		}
-		if ( ! is_dir( $child_dir ) ) {
-			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Theme fixtures are written to the temp directory.
-			mkdir( $child_dir, 0777, true );
-		}
+		foreach ( $themes as $slug => $headers ) {
+			$theme_dir = $fixture_root . '/' . $slug;
 
-		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
-		file_put_contents(
-			$parent_dir . '/style.css',
-			"/*\nTheme Name: EDAC Fixture Parent\nVersion: 1.0.0\nTags: accessibility-ready\n*/\n"
-		);
-		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
-		file_put_contents(
-			$child_dir . '/style.css',
-			"/*\nTheme Name: EDAC Fixture Child\nVersion: 1.0.0\nTemplate: edac-fixture-parent\n*/\n"
-		);
+			if ( ! is_dir( $theme_dir ) ) {
+				// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Theme fixtures are written to the temp directory.
+				mkdir( $theme_dir, 0777, true );
+			}
+
+			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
+			file_put_contents( $theme_dir . '/style.css', "/*\n" . $headers . "\n*/\n" );
+		}
 
 		return $fixture_root;
 	}
