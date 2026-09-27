@@ -35,50 +35,60 @@ class Admin_Toolbar_Test extends TestCase {
 	 * Test add_toolbar_items() does not add menu for non-admin user.
 	 */
 	public function test_add_toolbar_items_for_non_admin_user() {
-		$toolbar = new Admin_Toolbar();
-		// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
-		if ( ! function_exists( 'current_user_can' ) ) {
-			/**
-			 * Mock current_user_can for testing.
-			 *
-			 * @param string $cap Capability.
-			 * @return bool
-			 */
-			function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return false;
-			}
-		}
+		$user_id = $this->set_current_user_with_role( 'subscriber' );
+
+		$toolbar  = new Admin_Toolbar();
 		$mock_bar = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'add_menu' ] )
 			->getMock();
 		$mock_bar->expects( $this->never() )->method( 'add_menu' );
 		$toolbar->add_toolbar_items( $mock_bar );
+
+		wp_set_current_user( 0 );
+		wp_delete_user( $user_id );
 	}
 
 	/**
 	 * Test add_toolbar_items() adds menu for admin user.
-	 *
-	 * This test is skipped if current_user_can cannot be reliably mocked.
 	 */
 	public function test_add_toolbar_items_for_admin_user() {
-		if ( function_exists( 'current_user_can' ) ) {
-			$this->markTestSkipped( 'Cannot reliably mock current_user_can in this environment.' );
-		}
-		$toolbar = new Admin_Toolbar();
-		/**
-		 * Mock current_user_can for testing.
-		 *
-		 * @param string $cap Capability.
-		 * @return bool
-		 */
-		function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-			return true;
-		}
+		$user_id = $this->set_current_user_with_role( 'administrator' );
+
+		$toolbar  = new Admin_Toolbar();
 		$mock_bar = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'add_menu' ] )
 			->getMock();
 		$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
 		$toolbar->add_toolbar_items( $mock_bar );
+
+		wp_set_current_user( 0 );
+		wp_delete_user( $user_id );
+	}
+
+	/**
+	 * Creates a user with the given role and sets them as the current user.
+	 *
+	 * @param string $role Role to assign to the user.
+	 * @return int The created user ID.
+	 */
+	private function set_current_user_with_role( $role ) {
+		require_once ABSPATH . 'wp-admin/includes/user.php';
+
+		$login   = 'edac_toolbar_test_' . $role;
+		$user    = get_user_by( 'login', $login );
+		$user_id = $user ? $user->ID : wp_insert_user(
+			[
+				'user_login' => $login,
+				'user_pass'  => 'password',
+				'role'       => $role,
+			]
+		);
+
+		$this->assertIsInt( $user_id, 'The test user should exist with the expected role.' );
+
+		wp_set_current_user( $user_id );
+
+		return $user_id;
 	}
 
 	/**

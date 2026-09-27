@@ -286,20 +286,53 @@ class SystemInfoTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	public function testIsThemeAccessibilityReadyReturnsTrueWhenInstalledParentThemeHasTag() {
-		$theme = $this->find_installed_theme(
-			function ( $candidate ) {
-				if ( ! $candidate->parent() ) {
-					return false;
-				}
-				$child_has_tag  = in_array( 'accessibility-ready', $this->get_theme_tags( $candidate ), true );
-				$parent_has_tag = in_array( 'accessibility-ready', $this->get_theme_tags( $candidate->parent() ), true );
-				return ! $child_has_tag && $parent_has_tag;
-			}
+		$fixture_root = $this->create_fixture_child_theme_with_tagged_parent();
+		$theme        = new WP_Theme( 'edac-fixture-child', $fixture_root );
+
+		$this->assertTrue( $theme->exists(), 'The fixture child theme should be readable.' );
+		$this->assertNotContains(
+			'accessibility-ready',
+			$this->get_theme_tags( $theme ),
+			'The fixture child theme should not carry the tag itself.'
 		);
-		if ( ! $theme ) {
-			$this->markTestSkipped( 'No installed child theme found where only parent is accessibility-ready.' );
-		}
 		$this->assertTrue( SystemInfo::is_theme_accessibility_ready( $theme ) );
+	}
+
+	/**
+	 * Writes a fixture child theme and a tagged parent theme into a temp theme root.
+	 *
+	 * The fixtures live in the temp directory rather than in the installed theme directory
+	 * so the test does not depend on which themes the environment happens to ship.
+	 *
+	 * @return string The theme root containing the fixtures.
+	 */
+	private function create_fixture_child_theme_with_tagged_parent() {
+		$fixture_root = trailingslashit( get_temp_dir() ) . 'edac-theme-fixtures';
+
+		$parent_dir = $fixture_root . '/edac-fixture-parent';
+		$child_dir  = $fixture_root . '/edac-fixture-child';
+
+		if ( ! is_dir( $parent_dir ) ) {
+			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Theme fixtures are written to the temp directory.
+			mkdir( $parent_dir, 0777, true );
+		}
+		if ( ! is_dir( $child_dir ) ) {
+			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Theme fixtures are written to the temp directory.
+			mkdir( $child_dir, 0777, true );
+		}
+
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
+		file_put_contents(
+			$parent_dir . '/style.css',
+			"/*\nTheme Name: EDAC Fixture Parent\nVersion: 1.0.0\nTags: accessibility-ready\n*/\n"
+		);
+		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
+		file_put_contents(
+			$child_dir . '/style.css',
+			"/*\nTheme Name: EDAC Fixture Child\nVersion: 1.0.0\nTemplate: edac-fixture-parent\n*/\n"
+		);
+
+		return $fixture_root;
 	}
 
 	/**
