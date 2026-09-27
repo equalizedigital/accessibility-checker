@@ -92,10 +92,6 @@ class OptionsPageCapabilityHelpersTest extends WP_UnitTestCase {
 	 * an environment that has Pro loaded and licensed.
 	 */
 	public function test_pro_capability_is_locked_without_a_valid_license(): void {
-		if ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) {
-			$this->markTestSkipped( 'EDAC_KEY_VALID is true in this process, so the locked branch is unreachable from a test here.' );
-		}
-
 		$this->assertFalse( edac_capability_is_editable( 'edac_issues_explorer_access', [ 'owner' => 'accessibility-checker-pro' ] ) );
 	}
 
