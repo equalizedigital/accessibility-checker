@@ -34,9 +34,9 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		$this->common_teardown();
-		// Clean up additional options for skip link.
-		delete_option( 'edac_fix_skip_link_text' );
-		delete_option( 'edac_fix_skip_link_element' );
+		// Clean up the target options the skip link fix reads.
+		delete_option( 'edac_fix_add_skip_link_target_id' );
+		delete_option( 'edac_fix_add_skip_link_nav_target_id' );
 		parent::tearDown();
 	}
 

@@ -51,6 +51,18 @@ class EmptySearchFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Get the options that enable this fix.
+	 *
+	 * The slug is hyphenated, so the trait default would build 'edac_fix_empty-search',
+	 * an option name the fix never reads.
+	 *
+	 * @return array
+	 */
+	protected function get_fix_option_names(): array {
+		return [ 'edac_fix_empty_search' ];
+	}
+
+	/**
 	 * Get the expected type for this fix.
 	 *
 	 * @return string

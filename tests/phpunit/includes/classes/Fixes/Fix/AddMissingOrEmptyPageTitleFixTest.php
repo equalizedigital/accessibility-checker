@@ -47,6 +47,18 @@ class AddMissingOrEmptyPageTitleFixTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Get the options that enable this fix.
+	 *
+	 * The option carries an 'add_' prefix the slug does not, so the trait default
+	 * would build an option name the fix never reads.
+	 *
+	 * @return array
+	 */
+	protected function get_fix_option_names(): array {
+		return [ 'edac_fix_add_missing_or_empty_page_title' ];
+	}
+
+	/**
 	 * Get the expected type for this fix.
 	 *
 	 * @return string
