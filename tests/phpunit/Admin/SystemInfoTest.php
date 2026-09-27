@@ -234,6 +234,7 @@ class SystemInfoTest extends WP_UnitTestCase {
 		$theme        = new WP_Theme( 'edac-fixture-parent', $fixture_root );
 
 		$this->assertTrue( $theme->exists(), 'The fixture theme should be readable.' );
+		$this->assertFalse( $theme->errors(), 'The fixture theme should be a valid theme.' );
 		$this->assertContains(
 			'accessibility-ready',
 			$this->get_theme_tags( $theme ),
@@ -253,6 +254,8 @@ class SystemInfoTest extends WP_UnitTestCase {
 
 		$this->assertTrue( $theme->exists(), 'The fixture child theme should be readable.' );
 		$this->assertInstanceOf( WP_Theme::class, $parent, 'The fixture child theme should have a readable parent.' );
+		$this->assertFalse( $theme->errors(), 'The fixture child theme should be a valid theme.' );
+		$this->assertFalse( $parent->errors(), 'The fixture parent theme should be a valid theme.' );
 		$this->assertNotContains(
 			'accessibility-ready',
 			$this->get_theme_tags( $theme ),
@@ -312,6 +315,10 @@ class SystemInfoTest extends WP_UnitTestCase {
 
 			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
 			file_put_contents( $theme_dir . '/style.css', "/*\n" . $headers . "\n*/\n" );
+
+			// A theme without index.php is flagged by WP_Theme, so every fixture gets one.
+			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Theme fixtures are written to the temp directory.
+			file_put_contents( $theme_dir . '/index.php', "<?php\n" );
 		}
 
 		return $fixture_root;
