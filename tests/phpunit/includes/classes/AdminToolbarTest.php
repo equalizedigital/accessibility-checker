@@ -37,15 +37,18 @@ class Admin_Toolbar_Test extends TestCase {
 	public function test_add_toolbar_items_for_non_admin_user() {
 		$user_id = $this->set_current_user_with_role( 'subscriber' );
 
-		$toolbar  = new Admin_Toolbar();
-		$mock_bar = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'add_menu' ] )
-			->getMock();
-		$mock_bar->expects( $this->never() )->method( 'add_menu' );
-		$toolbar->add_toolbar_items( $mock_bar );
-
-		wp_set_current_user( 0 );
-		wp_delete_user( $user_id );
+		try {
+			$toolbar  = new Admin_Toolbar();
+			$mock_bar = $this->getMockBuilder( stdClass::class )
+				->addMethods( [ 'add_menu' ] )
+				->getMock();
+			$mock_bar->expects( $this->never() )->method( 'add_menu' );
+			$toolbar->add_toolbar_items( $mock_bar );
+		} finally {
+			// This class is a plain test case with no database rollback, so always clean up.
+			wp_set_current_user( 0 );
+			wp_delete_user( $user_id );
+		}
 	}
 
 	/**
@@ -54,15 +57,18 @@ class Admin_Toolbar_Test extends TestCase {
 	public function test_add_toolbar_items_for_admin_user() {
 		$user_id = $this->set_current_user_with_role( 'administrator' );
 
-		$toolbar  = new Admin_Toolbar();
-		$mock_bar = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'add_menu' ] )
-			->getMock();
-		$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
-		$toolbar->add_toolbar_items( $mock_bar );
-
-		wp_set_current_user( 0 );
-		wp_delete_user( $user_id );
+		try {
+			$toolbar  = new Admin_Toolbar();
+			$mock_bar = $this->getMockBuilder( stdClass::class )
+				->addMethods( [ 'add_menu' ] )
+				->getMock();
+			$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
+			$toolbar->add_toolbar_items( $mock_bar );
+		} finally {
+			// This class is a plain test case with no database rollback, so always clean up.
+			wp_set_current_user( 0 );
+			wp_delete_user( $user_id );
+		}
 	}
 
 	/**
