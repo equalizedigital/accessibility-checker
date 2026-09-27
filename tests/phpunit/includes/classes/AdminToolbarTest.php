@@ -74,17 +74,18 @@ class Admin_Toolbar_Test extends TestCase {
 	private function set_current_user_with_role( $role ) {
 		require_once ABSPATH . 'wp-admin/includes/user.php';
 
-		$login   = 'edac_toolbar_test_' . $role;
-		$user    = get_user_by( 'login', $login );
-		$user_id = $user ? $user->ID : wp_insert_user(
+		$user_id = wp_insert_user(
 			[
-				'user_login' => $login,
+				'user_login' => 'edac_toolbar_test_' . $role . '_' . wp_generate_password( 8, false ),
 				'user_pass'  => 'password',
 				'role'       => $role,
 			]
 		);
+		$this->assertIsInt( $user_id, 'The test user should be created.' );
 
-		$this->assertIsInt( $user_id, 'The test user should exist with the expected role.' );
+		$user = get_user_by( 'id', $user_id );
+		$this->assertInstanceOf( WP_User::class, $user, 'The test user should exist.' );
+		$this->assertContains( $role, (array) $user->roles, 'The test user should have the requested role.' );
 
 		wp_set_current_user( $user_id );
 
