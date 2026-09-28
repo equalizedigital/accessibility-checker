@@ -25,12 +25,7 @@ class IncorrectHeadingOrderRule implements RuleInterface {
 			'info_url'              => 'https://a11ychecker.com/help1940',
 			'slug'                  => 'incorrect_heading_order',
 			'rule_type'             => 'error',
-			'summary'               => sprintf(
-			// translators: %1$s is the found heading level (e.g., <h3>), %2$s is the previous heading level (e.g., <h1>.
-				esc_html__( 'This page uses headings out of order. This is an %1$s after an %2$s, skipping one or more heading levels.', 'accessibility-checker' ),
-				'<code>&lt;h3&gt;</code>',
-				'<code>&lt;h1&gt;</code>'
-			),
+			'summary'               => esc_html__( 'This page uses headings out of order, skipping one or more heading levels.', 'accessibility-checker' ),
 			'summary_plural'        => sprintf(
 			// translators: %1$s is <code>&lt;h1&gt;</code>, %2$s is <code>&lt;h3&gt;</code>, %3$s is <code>&lt;h2&gt;</code.
 				esc_html__( 'These pages use headings out of order, skipping one or more heading levels, such as going from %1$s to %2$s without an %3$s between.', 'accessibility-checker' ),

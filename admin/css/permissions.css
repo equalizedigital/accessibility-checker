@@ -1,0 +1,211 @@
+/**
+ * Permissions tab styling.
+ *
+ * Scoped to .edac-settings-permissions so it never leaks into other settings
+ * tabs. Loaded as a static stylesheet (no build step) on the Permissions tab.
+ *
+ * @package Accessibility_Checker
+ */
+
+.edac-settings-permissions {
+	max-width: 860px;
+	margin-top: 1.5rem;
+}
+
+.edac-settings-permissions__heading {
+	margin: 0 0 0.5rem;
+	color: #484848;
+	font-size: 1.3rem;
+	font-weight: 600;
+}
+
+.edac-settings-permissions__intro {
+	margin: 0 0 1.75rem;
+	color: #737373;
+	line-height: 1.5;
+}
+
+/* Role picker panel. */
+.edac-settings-permissions .edac-perm-role-field {
+	margin: 0 0 1.5rem;
+	padding: 1.5rem;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
+}
+
+.edac-perm-role-field__header {
+	margin-bottom: 1.25rem;
+	padding-bottom: 1rem;
+	border-bottom: 1px solid #e2e4e7;
+}
+
+.edac-perm-role-field__title {
+	margin: 0 0 0.35rem;
+	color: #484848;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.edac-perm-role-field__description {
+	margin: 0;
+	color: #737373;
+	font-size: 0.875rem;
+}
+
+.edac-settings-permissions .edac-perm-role-field label {
+	display: block;
+	margin-bottom: 0.4rem;
+	color: #484848;
+	font-size: 0.875rem;
+	font-weight: 600;
+}
+
+.edac-settings-permissions #edac-perm-role {
+	width: 100%;
+	max-width: none;
+	min-height: 40px;
+	font-size: 0.875rem;
+}
+
+/* Responsive capability card grid. */
+.edac-settings-permissions .edac-perm-caps {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1.5rem;
+	margin-bottom: 1.5rem;
+}
+
+.edac-settings-permissions .edac-perm-empty {
+	display: flex;
+	grid-column: 1 / -1;
+	align-items: center;
+	flex-direction: column;
+	padding: 3rem 1.5rem;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
+	text-align: center;
+}
+
+.edac-perm-empty__icon-wrap {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 64px;
+	height: 64px;
+	color: var(--wp-admin-theme-color, #3273aa);
+	border: 1px dashed #c3c4c7;
+	border-radius: 50%;
+}
+
+.edac-perm-empty__icon-wrap .edac-perm-empty__icon {
+	width: 28px;
+	height: 28px;
+	font-size: 28px;
+	line-height: 1;
+}
+
+.edac-perm-empty__title {
+	margin: 1.25rem 0 0.35rem;
+	color: #1e1e1e;
+	font-size: 1.125rem;
+	font-weight: 600;
+}
+
+.edac-perm-empty__message {
+	grid-column: 1 / -1;
+	margin: 0;
+	color: #484848;
+	font-size: 0.875rem;
+}
+
+/* One wrapper per owning plugin, holding all of its capabilities. */
+.edac-perm-group {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	padding: 1.5rem;
+	background: #fff;
+	border: 1px solid #e2e4e7;
+	border-radius: 6px;
+}
+
+.edac-perm-group__title {
+	margin: 0;
+	padding: 0 0 1rem;
+	color: #484848;
+	border-bottom: 1px solid #e2e4e7;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+/* Capability rows within a group. */
+.edac-perm-cap {
+	padding: 1rem 0;
+}
+
+.edac-perm-cap:last-child {
+	padding-bottom: 0;
+}
+
+.edac-perm-cap + .edac-perm-cap {
+	border-top: 1px solid #e2e4e7;
+}
+
+.edac-perm-cap__control {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	gap: 0.5rem;
+	cursor: pointer;
+}
+
+.edac-perm-cap--disabled .edac-perm-cap__control {
+	cursor: not-allowed;
+	color: #646970;
+}
+
+.edac-perm-cap__control input[type="checkbox"] {
+	flex-shrink: 0;
+	margin: 0;
+}
+
+.edac-perm-cap__label {
+	color: #484848;
+	font-size: 0.9rem;
+	font-weight: 600;
+}
+
+.edac-perm-cap__desc,
+.edac-perm-cap__reason {
+	display: block;
+	margin: 0.4rem 0 0 1.5rem;
+	font-size: 0.875rem;
+	line-height: 1.5;
+}
+
+.edac-perm-cap__desc {
+	color: #484848;
+}
+
+.edac-perm-cap__reason {
+	color: #737373;
+	font-style: italic;
+}
+
+.edac-perm-actions {
+	padding-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+
+	.edac-settings-permissions .edac-perm-caps {
+		grid-template-columns: 1fr;
+	}
+
+	.edac-perm-cap__desc,
+	.edac-perm-cap__reason {
+		margin-left: 2.0625rem;
+	}
+}

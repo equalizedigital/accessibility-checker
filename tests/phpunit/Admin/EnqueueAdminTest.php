@@ -73,6 +73,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -89,11 +90,29 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * Test that the base script loads the accessibility utility on the settings page.
+	 *
+	 * @return void
+	 */
+	public function testEnqueueBaseScriptWithWpA11yOnSettingsPage() {
+
+		global $wp_scripts;
+
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 	}
 
 	/**
@@ -148,18 +167,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
 	 */
-	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+	public function testAdminFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
 		global $wp_scripts;
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
-		$expected       = rest_url( 'edac/v1' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
-		$this->assertStringContainsString( 'edac', $localized_data );
-		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 	}
 
 	/**
@@ -193,13 +211,14 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		add_filter( 'rest_url_prefix', $prefix_callback );
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+		$expected = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
 		remove_filter( 'rest_url_prefix', $prefix_callback );
 		delete_option( 'permalink_structure' );
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
 
-		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 
@@ -460,6 +479,147 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
 	}
 
+
+	/**
+	 * Test that edac_filter_admin_post_id overrides the post ID localized into edac_script_vars.
+	 *
+	 * @return void
+	 */
+	public function testAdminPostIdFilterOverridesLocalizedPostId() {
+		global $post, $pagenow, $wp_scripts;
+
+		$original_post  = $this->factory()->post->create_and_get();
+		$alternate_post = $this->factory()->post->create_and_get();
+		$post           = $original_post;
+		$pagenow        = 'post.php';
+
+		$filter_callback = static function () use ( $alternate_post ) {
+			return $alternate_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertStringContainsString( (string) $alternate_post->ID, $localized_data );
+	}
+
+	/**
+	 * When the filter flags a latest-posts homepage (show_on_front=posts), the scan URL
+	 * uses get_home_url() rather than an invalid preview link.
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenLatestPostsHomeFilterReturnsTrue() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'posts' );
+		update_option( 'page_for_posts', 0 );
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+		delete_option( 'page_for_posts' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
+	}
+
+	/**
+	 * Fallback case: show_on_front=page with no static front page configured also
+	 * counts as a latest-posts homepage, so the scan URL still uses get_home_url().
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenShowOnFrontIsPageWithNoFrontPageConfigured() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'page' );
+		delete_option( 'page_on_front' ); // No static front page configured — WP falls back to latest posts.
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
+	}
+
+	/**
+	 * The 'active' flag must reflect the filtered post ID's type: when the filter returns a
+	 * non-scannable post type, $active is false so the scanner doesn't run.
+	 *
+	 * @return void
+	 */
+	public function testActiveReflectsFilteredPostIdPostType() {
+		global $post, $pagenow, $wp_scripts;
+
+		// Global $post is a 'post' type (scannable under current option).
+		$scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		// The filter will return a 'page' ID; make 'page' non-scannable for this test.
+		$non_scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$post               = $scannable_post;
+		$pagenow            = 'post.php';
+
+		// Restrict scannable types to 'post' only so 'page' becomes non-scannable.
+		update_option( 'edac_post_types', [ 'post' ] );
+
+		$filter_callback = static function () use ( $non_scannable_post ) {
+			return $non_scannable_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+		// Restore original scannable post types.
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertNotEmpty( $localized_data );
+		// $active must be false because the filtered post type ('page') is not scannable.
+		// wp_localize_script serializes PHP false as "" (empty string) in older WP versions
+		// and may serialize it as JSON false in newer ones — accept both forms.
+		$this->assertMatchesRegularExpression( '/"active"\s*:\s*(false|"")/', $localized_data );
+	}
 
 	/**
 	 * Helper to set a mock current screen with block editor context.

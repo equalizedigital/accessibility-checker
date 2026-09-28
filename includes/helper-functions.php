@@ -124,17 +124,21 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
+	$newarray = [];
+
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
-			$temp[ $key ] = $items[ $key ][ $index ];
+			if ( ! is_array( $items[ $key ] ) || ! array_key_exists( $index, $items[ $key ] ) ) {
+				continue;
+			}
 
-			if ( $temp[ $key ] === $value ) {
+			if ( $items[ $key ][ $index ] === $value ) {
 				$newarray[ $key ] = $items[ $key ];
 			}
 		}
 	}
 
-	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
+	if ( count( $newarray ) ) {
 		return array_values( $newarray );
 	}
 	return [];
@@ -248,10 +252,10 @@ function edac_get_post_type_label( string $post_type ): string {
  */
 function edac_get_valid_table_name( $table_name ) {
 	global $wpdb;
-	static $found_table_name;
+	static $found_table_names = [];
 
-	if ( isset( $found_table_name ) ) {
-		return $found_table_name;
+	if ( isset( $found_table_names[ $table_name ] ) ) {
+		return $found_table_names[ $table_name ];
 	}
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
@@ -267,8 +271,8 @@ function edac_get_valid_table_name( $table_name ) {
 		return null;
 	}
 
-	$found_table_name = $table_name;
-	return $found_table_name;
+	$found_table_names[ $table_name ] = $table_name;
+	return $table_name;
 }
 
 /**
@@ -789,6 +793,27 @@ function edac_parse_html_for_media( $html ) {
 }
 
 /**
+ * Convert raw SVG markup into a data: URI, safe as an <img> src - browsers
+ * don't execute scripts or event handlers in SVGs loaded as images. Returns
+ * a bare (payload-less) data URI if given anything other than a string.
+ *
+ * @since 1.47.0
+ *
+ * @param mixed $svg_markup Raw SVG markup - expected to be a string.
+ * @return string Unescaped data URI - callers must esc_url() it before output,
+ *                passing a protocols list that includes 'data' (e.g.
+ *                esc_url( $uri, [ 'data', 'http', 'https' ] )); with the
+ *                default protocols esc_url() rejects data: URIs and returns ''.
+ */
+function edac_svg_markup_to_data_uri( $svg_markup ): string {
+	if ( ! is_string( $svg_markup ) ) {
+		return 'data:image/svg+xml,';
+	}
+
+	return 'data:image/svg+xml,' . rawurlencode( $svg_markup );
+}
+
+/**
  * Remove corrected posts
  *
  * @param int    $post_ID The ID of the post.
@@ -1051,6 +1076,27 @@ function edac_format_datetime_from_utc( string $utc_datetime ): string {
 	$format      = $date_format . ' ' . $time_format;
 
 	return wp_date( $format, $timestamp );
+}
+
+/**
+ * Normalize a raw Flesch-Kincaid grade level float to a whole-number grade.
+ *
+ * `floor()` alone collapses any FK value in (0, 1) to 0, which misrepresents
+ * very simple content as "not calculable." Values above 0 but below 1 are
+ * normalized to 1 so that compliance checks treat them correctly.
+ *
+ * @since 1.46.0
+ *
+ * @param float|bool|null $fk_grade Raw Flesch-Kincaid grade level returned by the library.
+ * @return int Normalized grade: 0 when the library returned 0, false, or null (not enough content),
+ *             otherwise max(1, floor($fk_grade)).
+ */
+function edac_normalize_fk_grade( $fk_grade ): int {
+	$fk_grade = (float) $fk_grade;
+	if ( $fk_grade <= 0 ) {
+		return 0;
+	}
+	return max( 1, (int) floor( $fk_grade ) );
 }
 
 /**

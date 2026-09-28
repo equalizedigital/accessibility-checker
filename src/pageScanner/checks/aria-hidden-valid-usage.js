@@ -21,16 +21,6 @@ export default {
 			return true;
 		}
 
-		// Check for valid element properties
-		if ( node.classList.contains( 'wp-block-spacer' ) ) {
-			return true;
-		}
-
-		// Core separator block is decorative and correctly uses aria-hidden
-		if ( node.classList.contains( 'wp-block-separator' ) ) {
-			return true;
-		}
-
 		const role = node.getAttribute( 'role' );
 		if ( role?.split( /\s+/ ).includes( 'presentation' ) ) {
 			return true;
