@@ -124,17 +124,21 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
+	$newarray = [];
+
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
-			$temp[ $key ] = $items[ $key ][ $index ];
+			if ( ! is_array( $items[ $key ] ) || ! array_key_exists( $index, $items[ $key ] ) ) {
+				continue;
+			}
 
-			if ( $temp[ $key ] === $value ) {
+			if ( $items[ $key ][ $index ] === $value ) {
 				$newarray[ $key ] = $items[ $key ];
 			}
 		}
 	}
 
-	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
+	if ( count( $newarray ) ) {
 		return array_values( $newarray );
 	}
 	return [];
@@ -248,10 +252,10 @@ function edac_get_post_type_label( string $post_type ): string {
  */
 function edac_get_valid_table_name( $table_name ) {
 	global $wpdb;
-	static $found_table_name;
+	static $found_table_names = [];
 
-	if ( isset( $found_table_name ) ) {
-		return $found_table_name;
+	if ( isset( $found_table_names[ $table_name ] ) ) {
+		return $found_table_names[ $table_name ];
 	}
 
 	// Check if table name only contains alphanumeric characters, underscores, or hyphens.
@@ -267,8 +271,8 @@ function edac_get_valid_table_name( $table_name ) {
 		return null;
 	}
 
-	$found_table_name = $table_name;
-	return $found_table_name;
+	$found_table_names[ $table_name ] = $table_name;
+	return $table_name;
 }
 
 /**
@@ -793,7 +797,7 @@ function edac_parse_html_for_media( $html ) {
  * don't execute scripts or event handlers in SVGs loaded as images. Returns
  * a bare (payload-less) data URI if given anything other than a string.
  *
- * @since x.x.x
+ * @since 1.47.0
  *
  * @param mixed $svg_markup Raw SVG markup - expected to be a string.
  * @return string Unescaped data URI - callers must esc_url() it before output,
