@@ -44,6 +44,8 @@ const behavioralPhrases = [
 	__( 'opens in a new tab', 'accessibility-checker' ),
 	__( 'opens new window', 'accessibility-checker' ),
 	__( 'opens new tab', 'accessibility-checker' ),
+	__( 'opens in new window', 'accessibility-checker' ),
+	__( 'opens in new tab', 'accessibility-checker' ),
 ];
 
 // The exact string the plugin's own new-window fix appends is injected
@@ -53,17 +55,23 @@ const behavioralPhrases = [
 const getInjectedPhrases = () => [
 	window.edac_frontend_fixes?.new_window_warning?.localizedString,
 	window.anww_localized?.localizedString,
-].filter( Boolean );
+].filter( ( phrase ) => typeof phrase === 'string' );
 
-const stripBehavioralSuffixes = ( text ) => {
-	const suffixes = [ ...behavioralPhrases, ...getInjectedPhrases() ].map( normalizePhrase );
+// Strips behavioral phrases from either end of an already-normalized name.
+const stripBehavioralPhrases = ( text ) => {
+	const phrases = [ ...behavioralPhrases, ...getInjectedPhrases() ]
+		.map( normalizePhrase )
+		.filter( Boolean );
 	let stripped = text;
 	let changed = true;
 	while ( changed ) {
 		changed = false;
-		for ( const suffix of suffixes ) {
-			if ( stripped !== suffix && stripped.endsWith( ' ' + suffix ) ) {
-				stripped = stripped.slice( 0, -( suffix.length + 1 ) ).trim();
+		for ( const phrase of phrases ) {
+			if ( stripped.endsWith( ' ' + phrase ) ) {
+				stripped = stripped.slice( 0, -( phrase.length + 1 ) ).trim();
+				changed = true;
+			} else if ( stripped.startsWith( phrase + ' ' ) ) {
+				stripped = stripped.slice( phrase.length + 1 ).trim();
 				changed = true;
 			}
 		}
@@ -80,8 +88,8 @@ const checkAmbiguousPhrase = ( text ) => {
 		return true;
 	}
 	// A name like "read more, opens a new window" is still ambiguous: the
-	// appended text describes behavior, not the link's destination.
-	return normalizedPhrases.includes( stripBehavioralSuffixes( text ) );
+	// added text describes behavior, not the link's destination.
+	return normalizedPhrases.includes( stripBehavioralPhrases( text ) );
 };
 
 export default {
