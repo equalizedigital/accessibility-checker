@@ -32,11 +32,64 @@ const normalizePhrase = ( text ) => text
 
 const normalizedPhrases = ambiguousPhrases.map( normalizePhrase );
 
+// Phrases that describe how a link opens rather than where it goes.
+// Appended to accessible names by the "Add Label To Links That Open A
+// New Tab/Window" fix and by similar theme/plugin features. They add no
+// information about the link's purpose, so they are ignored when
+// deciding whether a name is ambiguous.
+const behavioralPhrases = [
+	__( 'opens a new window', 'accessibility-checker' ),
+	__( 'opens in a new window', 'accessibility-checker' ),
+	__( 'opens a new tab', 'accessibility-checker' ),
+	__( 'opens in a new tab', 'accessibility-checker' ),
+	__( 'opens new window', 'accessibility-checker' ),
+	__( 'opens new tab', 'accessibility-checker' ),
+	__( 'opens in new window', 'accessibility-checker' ),
+	__( 'opens in new tab', 'accessibility-checker' ),
+];
+
+// The exact string the plugin's own new-window fix appends is injected
+// into the page it runs on; read it from the same source the fix reads
+// so the rule always matches what was actually appended — including
+// translations and strings customized via edac_filter_frontend_fixes_data.
+const getInjectedPhrases = () => [
+	window.edac_frontend_fixes?.new_window_warning?.localizedString,
+	window.anww_localized?.localizedString,
+].filter( ( phrase ) => typeof phrase === 'string' );
+
+// Strips behavioral phrases from either end of an already-normalized name.
+const stripBehavioralPhrases = ( text ) => {
+	const phrases = [ ...behavioralPhrases, ...getInjectedPhrases() ]
+		.map( normalizePhrase )
+		.filter( Boolean );
+	let stripped = text;
+	let changed = true;
+	while ( changed ) {
+		changed = false;
+		for ( const phrase of phrases ) {
+			if ( stripped.endsWith( ' ' + phrase ) ) {
+				stripped = stripped.slice( 0, -( phrase.length + 1 ) ).trim();
+				changed = true;
+			} else if ( stripped.startsWith( phrase + ' ' ) ) {
+				stripped = stripped.slice( phrase.length + 1 ).trim();
+				changed = true;
+			}
+		}
+	}
+	return stripped;
+};
+
 const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	return normalizedPhrases.includes( normalizePhrase( text ) );
+	text = normalizePhrase( text );
+	if ( normalizedPhrases.includes( text ) ) {
+		return true;
+	}
+	// A name like "read more, opens a new window" is still ambiguous: the
+	// added text describes behavior, not the link's destination.
+	return normalizedPhrases.includes( stripBehavioralPhrases( text ) );
 };
 
 export default {
