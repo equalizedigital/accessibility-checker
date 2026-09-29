@@ -121,16 +121,38 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	/**
 	 * Test frontend data is not added when targets are empty.
 	 *
+	 * @dataProvider provide_empty_targets
+	 *
+	 * @param string $target_string The raw target setting value.
+	 *
 	 * @return void
 	 */
-	public function test_frontend_data_skips_empty_targets() {
+	public function test_frontend_data_skips_empty_targets( string $target_string ) {
 		update_option( 'edac_fix_add_skip_link', true );
-		update_option( 'edac_fix_add_skip_link_target_id', ' , , # , ' );
+		update_option( 'edac_fix_add_skip_link_target_id', $target_string );
 
 		$this->fix->run();
+
+		$this->assertFalse( has_filter( 'edac_filter_frontend_fixes_data' ), 'No frontend data filter should be registered.' );
 
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
 
 		$this->assertArrayNotHasKey( 'skip_link', $data );
+	}
+
+	/**
+	 * Data provider for empty target values.
+	 *
+	 * @return array<string, array{0: string}>
+	 */
+	public function provide_empty_targets(): array {
+		return [
+			'empty string'                    => [ '' ],
+			'whitespace only'                 => [ '   ' ],
+			'commas only'                     => [ ',,' ],
+			'commas and whitespace'           => [ ' , , ' ],
+			'hash only'                       => [ '#' ],
+			'hash with whitespace and commas' => [ ' , , # , ' ],
+		];
 	}
 }
