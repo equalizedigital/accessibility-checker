@@ -2,14 +2,14 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.48.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
+"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: accessibility-checker\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "Laag"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -569,9 +570,9 @@ msgstr "Nu upgraden"
 #: admin/class-ajax.php:648
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "Toegang geweigerd"
 
@@ -754,7 +755,7 @@ msgid "No summary to return"
 msgstr "Geen samenvatting om terug te geven"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "Ongeldige tabelnaam"
 
@@ -944,10 +945,12 @@ msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which r
 msgstr "Uw locatie voor vereenvoudigde samenvatting is ingesteld op “handmatig”, wat vereist dat een functie aan uw paginasjabloon wordt toegevoegd. Als u wilt dat de vereenvoudigde samenvatting automatisch wordt weergegeven, kunt u dit wijzigen op de %s."
 
 #: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1539
+#: includes/options-page.php:1563
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Vereenvoudigde samenvatting"
 
@@ -973,15 +976,15 @@ msgid "The id value was not set"
 msgstr "De id-waarde was niet ingesteld"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "Bericht niet gevonden"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "Probleemzoekopdracht leverde geen resultaten op"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "Objectzoekopdracht leverde geen resultaten op"
 
@@ -1052,7 +1055,7 @@ msgstr "Probleem negeren als:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "Instellingen"
 
@@ -1144,7 +1147,7 @@ msgid "Report Last Updated:"
 msgstr "Rapport laatst bijgewerkt:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1241
 msgid "Never"
 msgstr "Nooit"
 
@@ -1458,7 +1461,7 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:821
 msgid "Delete Data"
 msgstr "Gegevens verwijderen"
 
@@ -1552,20 +1555,20 @@ msgstr "Krijg Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro ophalen (opent in nieuw venster)"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "Sorry, u heeft geen toestemming om problemen te negeren."
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "Sorry, u heeft geen toestemming om problemen globaal te negeren."
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "Probleem niet gevonden."
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "Het probleem kon niet worden bijgewerkt."
 
@@ -1893,11 +1896,11 @@ msgstr "Verwijder het %1$s attribuut van focusbare elementen."
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Opmerking: Deze instelling wordt niet aanbevolen voor thema's die al toegankelijk zijn."
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "Fix niet gevonden"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "Oplossing niet gevonden."
 
@@ -3579,237 +3582,237 @@ msgstr "de mogelijkheid om berichten van andere gebruikers te bewerken"
 msgid "Requires %s."
 msgstr "Vereist %s."
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "Welkom bij Accessibility Checker"
 
-#: includes/options-page.php:698
+#: includes/options-page.php:702
 #: partials/settings-page.php:115
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker Instellingen"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "Scaninstellingen"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "Instellingen vereenvoudigde samenvatting"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "Toegankelijkheidsverklaring in voettekst"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "Frontend Accessibility Checker"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "Systeeminstellingen"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
 msgid "Post Types To Be Checked"
 msgstr "Te controleren berichttypen"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:794
 msgid "Scan Speed"
 msgstr "Scansnelheid"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:803
 msgid "Archive Scanning"
 msgstr "Archiefscannen"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:812
 msgid "Taxonomy Scanning"
 msgstr "Taxonomiescannen"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:830
 msgid "Block Editor Metabox"
 msgstr "Metabox blokeditor"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:839
 msgid "Prompt for Simplified Summary"
 msgstr "Vragen om vereenvoudigde samenvatting"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:848
 msgid "Simplified Summary Position"
 msgstr "Positie vereenvoudigde samenvatting"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:857
 msgid "Simplified Summary Heading"
 msgstr "Vereenvoudigde samenvatting kop"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:866
+#: includes/options-page.php:1374
 msgid "Add Footer Accessibility Statement"
 msgstr "Toegankelijkheidsverklaring in voettekst toevoegen"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:875
+#: includes/options-page.php:1397
 msgid "Include Link to Accessibility Policy"
 msgstr "Link naar toegankelijkheidsbeleid opnemen"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:884
 msgid "Accessibility Policy page"
 msgstr "Pagina toegankelijkheidsbeleid"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:893
 msgid "Accessibility Statement Preview"
 msgstr "Voorbeeld toegankelijkheidsverklaring"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:901
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker Positie"
 
-#: includes/options-page.php:951
+#: includes/options-page.php:955
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Configureer de soorten inhoud die moeten worden gecontroleerd op toegankelijkheidsproblemen."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:956
+#: includes/options-page.php:960
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Meer functies en e-mailondersteuning zijn beschikbaar met %1$s."
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (opent in een nieuw venster)"
 
-#: includes/options-page.php:964
+#: includes/options-page.php:968
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:978
+#: includes/options-page.php:982
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Gebruik de onderstaande instellingen om de frontend toegankelijkheidscontrole te configureren."
 
-#: includes/options-page.php:988
+#: includes/options-page.php:992
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "De Richtlijnen voor Toegankelijkheid van Webcontent (WCAG) op AAA-niveau vereisen dat inhoud met een leesniveau boven de 9e klas een alternatief heeft dat gemakkelijker te lezen is. Vereenvoudigde samenvattingstekst wordt toegevoegd op het tabblad leesbaarheid in het metavak van Accessibility Checker op het bewerkingsscherm van elke post of pagina."
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften (opent in een nieuw venster)"
 
-#: includes/options-page.php:998
+#: includes/options-page.php:1002
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Lees meer over vereenvoudigde samenvattingen en leesbaarheidsvoorschriften."
 
-#: includes/options-page.php:1007
+#: includes/options-page.php:1011
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Denk je “Wow, deze plugin is geweldig” en helpt het je om je website toegankelijker te maken? Deel je inspanningen om je website toegankelijker te maken met je klanten en laat ze weten dat je Accessibility Checker gebruikt om ervoor te zorgen dat alle mensen je website kunnen gebruiken. Voeg een kleine tekstlink en verklaring toe in de footer van je website."
 
-#: includes/options-page.php:1016
+#: includes/options-page.php:1020
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Configureer systeeminstellingen voor de Accessibility Checker plugin."
 
-#: includes/options-page.php:1030
+#: includes/options-page.php:1034
 msgid "Fast"
 msgstr "Snel"
 
-#: includes/options-page.php:1031
+#: includes/options-page.php:1035
 msgid "Normal"
 msgstr "Normaal"
 
-#: includes/options-page.php:1032
+#: includes/options-page.php:1036
 msgid "Slow"
 msgstr "Langzaam"
 
-#: includes/options-page.php:1033
+#: includes/options-page.php:1037
 msgid "Slowest"
 msgstr "Langzaamst"
 
-#: includes/options-page.php:1055
+#: includes/options-page.php:1059
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Snellere scans zijn intensiever voor je systeem en kunnen een hoge belasting op je website veroorzaken."
 
-#: includes/options-page.php:1081
+#: includes/options-page.php:1085
 msgid "Enable scanning of archive pages"
 msgstr "Scannen van archiefpagina's inschakelen"
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1089
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Kies of archiefpagina's moeten worden opgenomen in volledige sitescans. Standaard wordt een steekproefmethode gebruikt om taxonomietermen voor archiefgegevens te selecteren."
 
-#: includes/options-page.php:1111
+#: includes/options-page.php:1115
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scan alle taxonomietermen in plaats van alleen een steekproef"
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1119
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Controleer alle taxonomieterm-archiefpagina's in plaats van een representatieve steekproef. Hiervoor moet het scannen van archiefpagina's zijn ingeschakeld en dit kan een groot aantal URL's aan de scanlijst toevoegen."
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1148
 msgid "Before the content"
 msgstr "Voor de inhoud"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1153
 msgid "After the content"
 msgstr "Na de inhoud"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1158
 msgid "Insert manually"
 msgstr "Handmatig invoegen"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1162
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Gebruik deze functie om de vereenvoudigde samenvatting handmatig aan je thema toe te voegen binnen de loop."
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1164
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "De functie accepteert optioneel de post-ID als parameter."
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1167
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Stel in waar je wilt dat vereenvoudigde samenvattingen verschijnen ten opzichte van je inhoud, indien ingevuld."
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1182
 msgid "Bottom Right Corner (default)"
 msgstr "Rechtsonder (standaard)"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1187
 msgid "Bottom Left Corner"
 msgstr "Linksonder"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1191
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Stel in waar je wilt dat de frontend toegankelijkheidscontrole op de pagina verschijnt."
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1231
 msgid "When Required"
 msgstr "Wanneer vereist"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1236
 msgid "Always"
 msgstr "Altijd"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1244
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Moet Accessibility Checker alleen om een vereenvoudigde samenvatting vragen wanneer het leesniveau van je bericht of pagina boven de 9e klas ligt, er altijd om vragen ongeacht het leesniveau, of er nooit om vragen ongeacht het leesniveau?"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1299
 msgid "To check content other than posts and pages, please "
 msgstr "Om andere inhoud dan posts en pagina's te controleren, gelieve "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1301
 msgid "upgrade to pro"
 msgstr "upgrade naar pro"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1302
 msgid " (opens in a new window)"
 msgstr " (opent in een nieuw venster)"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1307
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Kies welke posttypes moeten worden gecontroleerd tijdens een scan. Let op, het verwijderen van een eerder geselecteerd posttype zal de gescande informatie en eventuele aangepaste genegeerde waarschuwingen die zijn ingesteld, verwijderen."
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1448
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Verwijder alle Accessibility Checker-gegevens wanneer de plugin wordt verwijderd."
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1466
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Toon Accessibility Checker metabox in de blokeditor"
 
@@ -6158,6 +6161,10 @@ msgstr "Scannen"
 msgid "Refresh"
 msgstr "Vernieuwen"
 
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "De vereenvoudigde samenvatting voor dit bericht wordt hier weergegeven. Schrijf de samenvatting in de sectie Leesbaarheid van de Accessibility Checker-zijbalk of metabox."
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "Alleen schermlezer"
@@ -6165,3 +6172,28 @@ msgstr "Alleen schermlezer"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "Altijd schermlezertekst tonen"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "Vereenvoudigde samenvatting"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "Geeft de vereenvoudigde samenvatting van dit bericht weer vanuit Accessibility Checker."
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "toegankelijkheid"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "samenvatting"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "leesbaarheid"

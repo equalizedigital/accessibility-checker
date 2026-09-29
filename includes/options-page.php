@@ -441,7 +441,7 @@ function edac_sync_capability_roles(): void {
 }
 
 /**
- * The SyncCapability instance managing the bundle. Assembled on plugins_loaded
+ * The SyncCapability instance managing the bundle. Assembled on init
  * (see below) so every active add-on has contributed to edac_capability_bundle
  * first; also usable directly (e.g. in tests) as a lazy singleton.
  *
@@ -452,7 +452,7 @@ function edac_ignore_capability(): SyncCapability {
 
 	if ( null === $capability ) {
 		// Precompute each capability's floor once (all active add-ons have
-		// contributed metadata by the time this runs on plugins_loaded), so the
+		// contributed metadata by the time this runs on init), so the
 		// floor policy passed to the engine is a cheap array lookup rather than a
 		// metadata rebuild per role/capability during sync.
 		$floors = [];
@@ -493,13 +493,17 @@ function edac_ignore_capability(): SyncCapability {
 	return $capability;
 }
 // Assemble after all plugins have loaded so add-ons can contribute to the
-// bundle via the filter regardless of plugin load order.
-add_action( 'plugins_loaded', 'edac_ignore_capability', 20 );
+// bundle via the filter regardless of plugin load order. Hooked to init
+// (rather than plugins_loaded) because edac_capability_metadata() calls
+// translation functions, and add-ons register their edac_capabilities filter
+// callbacks via add_filter() at plugin load time, so they're already in
+// place well before init fires either way.
+add_action( 'init', 'edac_ignore_capability', 20 );
 
 // Register the Permissions page request handler (admin-post save) on every
 // request. The tab UI itself is wired later on admin_menu.
 add_action(
-	'plugins_loaded',
+	'init',
 	function () {
 		$settings_capability = apply_filters( 'edac_filter_settings_capability', 'manage_options' );
 		( new PermissionsPage( $settings_capability ) )->register_request_handlers();

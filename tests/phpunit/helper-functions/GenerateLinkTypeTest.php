@@ -17,18 +17,6 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 	 * @preserveGlobalState disabled
 	 */
 	public function test_software_param_uses_edac_key_valid_constant() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type function is not available in test environment.' );
-		}
-
-		if ( ! defined( 'EDAC_KEY_VALID' ) ) {
-			$this->markTestSkipped( 'EDAC_KEY_VALID constant is not defined in test environment.' );
-		}
-
-		if ( defined( 'EDACP_KEY_VALID' ) ) {
-			$this->markTestSkipped( 'EDACP_KEY_VALID is already defined and cannot be safely overridden for this test.' );
-		}
-
 		if ( ! defined( 'EDACP_VERSION' ) ) {
 			define( 'EDACP_VERSION', 'test-pro-version' );
 		}
@@ -49,10 +37,6 @@ class GenerateLinkTypeTest extends WP_UnitTestCase {
 	 * Ensure missing help_id does not raise notices and still builds a help URL.
 	 */
 	public function test_help_type_without_help_id_does_not_raise_notice() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type function is not available in test environment.' );
-		}
-
 		$errors = [];
 		// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_set_error_handler -- needed to assert no notices are raised by this regression test.
 		set_error_handler(

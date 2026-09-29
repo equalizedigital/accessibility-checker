@@ -23,6 +23,15 @@ const ambiguousPhrases = [
 	__( 'opens a new window', 'accessibility-checker' ),
 ];
 
+// When testing against translations always run the normalize before the strip.
+const normalizePhrase = ( text ) => text
+	.normalize( 'NFC' )
+	.toLowerCase()
+	.replace( /[^\p{L}\p{M}]+/gu, ' ' )
+	.trim();
+
+const normalizedPhrases = ambiguousPhrases.map( normalizePhrase );
+
 // Phrases that describe how a link opens rather than where it goes.
 // Appended to accessible names by the "Add Label To Links That Open A
 // New Tab/Window" fix and by similar theme/plugin features. They add no
@@ -46,11 +55,8 @@ const getInjectedPhrases = () => [
 	window.anww_localized?.localizedString,
 ].filter( Boolean );
 
-const normalizeText = ( text ) =>
-	text.toLowerCase().replace( /[^a-z]+/g, ' ' ).trim();
-
 const stripBehavioralSuffixes = ( text ) => {
-	const suffixes = [ ...behavioralPhrases, ...getInjectedPhrases() ].map( normalizeText );
+	const suffixes = [ ...behavioralPhrases, ...getInjectedPhrases() ].map( normalizePhrase );
 	let stripped = text;
 	let changed = true;
 	while ( changed ) {
@@ -69,13 +75,13 @@ const checkAmbiguousPhrase = ( text ) => {
 	if ( ! text ) {
 		return false;
 	}
-	text = normalizeText( text );
-	if ( ambiguousPhrases.includes( text ) ) {
+	text = normalizePhrase( text );
+	if ( normalizedPhrases.includes( text ) ) {
 		return true;
 	}
 	// A name like "read more, opens a new window" is still ambiguous: the
 	// appended text describes behavior, not the link's destination.
-	return ambiguousPhrases.includes( stripBehavioralSuffixes( text ) );
+	return normalizedPhrases.includes( stripBehavioralSuffixes( text ) );
 };
 
 export default {

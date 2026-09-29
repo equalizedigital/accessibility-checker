@@ -7,12 +7,39 @@ import { PluginSidebar } from '@wordpress/editor';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useEffect, useRef } from '@wordpress/element';
 import { __ } from '@wordpress/i18n';
-import { Spinner } from '@wordpress/components';
+import { Spinner, Button } from '@wordpress/components';
+import { starFilled, starEmpty } from '@wordpress/icons';
 import QuickAccessPanel from './components/QuickAccessPanel';
 import SidebarContent from './components/SidebarContent';
 import SidebarTitleMenu from './components/SidebarTitleMenu';
 import { STORE_NAME } from './store/accessibility-checker-store';
 import AccessibilityCheckerIcon from '../../assets/images/accessibility-checker-icon.svg';
+
+const SIDEBAR_NAME = 'accessibility-checker-sidebar';
+const SIDEBAR_IDENTIFIER = `accessibility-checker/${ SIDEBAR_NAME }`;
+
+/**
+ * Pin/unpin toggle. A custom PluginSidebar `header` replaces core's default
+ * header contents, which is where core renders this control, so it is
+ * re-created here using the same interface store.
+ */
+function PinToggle() {
+	const isPinned = useSelect( ( select ) => select( 'core/interface' ).isItemPinned( 'core', SIDEBAR_IDENTIFIER ), [] );
+	const { pinItem, unpinItem } = useDispatch( 'core/interface' );
+
+	return (
+		<Button
+			className="edac-sidebar__pin-toggle"
+			icon={ isPinned ? starFilled : starEmpty }
+			label={ isPinned
+				? __( 'Unpin from toolbar', 'accessibility-checker' )
+				: __( 'Pin to toolbar', 'accessibility-checker' ) }
+			onClick={ () => ( isPinned ? unpinItem( 'core', SIDEBAR_IDENTIFIER ) : pinItem( 'core', SIDEBAR_IDENTIFIER ) ) }
+			isPressed={ isPinned }
+			size="compact"
+		/>
+	);
+}
 
 /**
  * Main sidebar component
@@ -87,18 +114,29 @@ function AccessibilityCheckerSidebar() {
 		};
 	}, [ postId, refetchData ] );
 
+	const sidebarTitle = __( 'Accessibility Checker', 'accessibility-checker' );
+
 	return (
 		<PluginSidebar
-			name="accessibility-checker-sidebar"
-			title={
-				<span className="edac-sidebar__title">
-					{ __( 'Accessibility Checker', 'accessibility-checker' ) }
+			name={ SIDEBAR_NAME }
+			title={ sidebarTitle }
+			header={
+				// A custom header keeps the actions menu and spinner outside
+				// the header's <h2>, so screen readers don't announce the menu
+				// button as a heading. The plain-text `title` is still used by
+				// the small-screen header and the Plugins menu, and is the
+				// rendered fallback if `header` is ever unsupported.
+				<div className="edac-sidebar__header">
+					<h2 className="edac-sidebar__header-title">
+						{ sidebarTitle }
+					</h2>
 					{ backgroundRefresh && <Spinner className="edac-sidebar__title-spinner" /> }
 					<SidebarTitleMenu
 						postId={ postId }
 						refetchData={ refetchData }
 					/>
-				</span>
+					<PinToggle />
+				</div>
 			}
 			icon={ <AccessibilityCheckerIcon style={ { width: '24px', height: '24px' } } /> }
 		>

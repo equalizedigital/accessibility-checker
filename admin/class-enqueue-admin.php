@@ -83,9 +83,8 @@ class Enqueue_Admin {
 			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
 			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
 
-			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
+			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery', 'wp-a11y' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
-
 			wp_localize_script(
 				'edac',
 				'edac_script_vars',
@@ -93,7 +92,7 @@ class Enqueue_Admin {
 					'postID'                   => $post_id,
 					'nonce'                    => wp_create_nonce( 'ajax-nonce' ),
 					'edacApiUrl'               => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
-					'fixesRestUrl'             => esc_url_raw( rest_url( 'edac/v1' ) ),
+					'fixesRestUrl'             => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
 					'restNonce'                => wp_create_nonce( 'wp_rest' ),
 					'proUrl'                   => esc_url_raw( edac_generate_link_type( [ 'utm_content' => '__name__' ] ) ),
 					'hasDismissEndpoint'       => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),

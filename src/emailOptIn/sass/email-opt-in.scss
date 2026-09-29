@@ -3,6 +3,7 @@
 	margin: 0;
 
 	input {
+		box-sizing: border-box;
 		width: 100%;
 	}
 
@@ -24,3 +25,31 @@
 	}
 }
 
+#TB_window.edac-email-opt-in-modal {
+	box-sizing: border-box;
+	width: calc(100vw - 2rem) !important;
+	max-width: 630px;
+	max-height: calc(100vh - 2rem);
+	margin: 0 !important;
+	transform: translate(-50%, -50%);
+
+	#TB_ajaxContent {
+		box-sizing: border-box;
+		width: 100% !important;
+		height: auto !important;
+		max-height: calc(100vh - 4rem) !important;
+		overflow-y: auto;
+	}
+}
+
+@media screen and (max-width: 600px) {
+
+	#TB_window.edac-email-opt-in-modal #_form_1_ ._button-wrapper {
+		flex-direction: column;
+		align-items: stretch;
+
+		button {
+			width: 100%;
+		}
+	}
+}
