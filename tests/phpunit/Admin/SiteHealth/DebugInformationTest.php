@@ -235,8 +235,7 @@ class DebugInformationTest extends WP_UnitTestCase {
 		$this->assertSame( '2024-01-02 03:04:05', $fields['activation_date']['value'] );
 		$this->assertSame( 'Enabled', $fields['footer_statement']['value'] );
 		$this->assertSame( 'Enabled', $fields['delete_data']['value'] );
-		// esc_url() prepends http:// to the scheme-less Enabled string.
-		$this->assertSame( 'http://Enabled', $fields['include_statement_link']['value'] );
+		$this->assertSame( 'Enabled', $fields['include_statement_link']['value'] );
 		$this->assertSame( 'post, page', $fields['post_types']['value'] );
 		$this->assertSame( 'before', $fields['simplified_sum_position']['value'] );
 		$this->assertSame( 'always', $fields['simplified_sum_prompt']['value'] );
@@ -269,17 +268,15 @@ class DebugInformationTest extends WP_UnitTestCase {
 	/**
 	 * Tests the include statement link field when the option is not set.
 	 *
-	 * The value goes through esc_url(), which prepends http:// to any string
-	 * without a scheme, so the flag renders as a URL. Recorded as observed so a
-	 * change to how this field is escaped is visible; the expectation flips to
-	 * "Disabled" if that escaping is corrected.
+	 * The value is a flag, so it must be escaped as text, not as a URL (which
+	 * would prepend http:// to the scheme-less string).
 	 *
 	 * @return void
 	 */
-	public function test_free_include_statement_link_reports_the_escaped_flag_when_unset(): void {
+	public function test_free_include_statement_link_reports_disabled_when_unset(): void {
 		$fields = ( new Free() )->get()['fields'];
 
-		$this->assertSame( 'http://Disabled', $fields['include_statement_link']['value'] );
+		$this->assertSame( 'Disabled', $fields['include_statement_link']['value'] );
 	}
 
 	/**
