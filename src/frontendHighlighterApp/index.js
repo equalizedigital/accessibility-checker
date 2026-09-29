@@ -936,6 +936,17 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		this.refreshIssues( id );
+	}
+
+	/**
+	 * Fetches the current issues for this page and updates the panel's contents.
+	 * Does not change the panel's visibility, so it's safe to call whether or
+	 * not the panel is currently open.
+	 *
+	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 */
+	refreshIssues( id ) {
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
@@ -1934,8 +1945,12 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Trigger a full rescan of the current page and reload issues.
+	 *
+	 * @param {boolean} [openPanel] Whether to open the panel once the rescan completes.
+	 *                              Set to false for rescans triggered as a side effect
+	 *                              of something other than the user asking to see results.
 	 */
-	rescanPage() {
+	rescanPage( openPanel = true ) {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
 			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
@@ -1953,7 +1968,13 @@ class AccessibilityCheckerHighlight {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
 			}
-			this.panelOpen();
+			if ( openPanel ) {
+				this.panelOpen();
+			} else if ( this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				// Panel is already open (e.g. docked) — refresh its contents in place
+				// rather than leaving it showing stale issues, without forcing it open.
+				this.refreshIssues();
+			}
 		}, () => {
 			// Scan and save failures have already been shown and announced by
 			// showScanError(), so there is nothing left to do but not leave the

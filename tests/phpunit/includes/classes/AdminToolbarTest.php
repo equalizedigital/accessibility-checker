@@ -35,50 +35,67 @@ class Admin_Toolbar_Test extends TestCase {
 	 * Test add_toolbar_items() does not add menu for non-admin user.
 	 */
 	public function test_add_toolbar_items_for_non_admin_user() {
-		$toolbar = new Admin_Toolbar();
-		// phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
-		if ( ! function_exists( 'current_user_can' ) ) {
-			/**
-			 * Mock current_user_can for testing.
-			 *
-			 * @param string $cap Capability.
-			 * @return bool
-			 */
-			function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-				return false;
-			}
+		$user_id = $this->set_current_user_with_role( 'subscriber' );
+
+		try {
+			$toolbar  = new Admin_Toolbar();
+			$mock_bar = $this->getMockBuilder( stdClass::class )
+				->addMethods( [ 'add_menu' ] )
+				->getMock();
+			$mock_bar->expects( $this->never() )->method( 'add_menu' );
+			$toolbar->add_toolbar_items( $mock_bar );
+		} finally {
+			// This class is a plain test case with no database rollback, so always clean up.
+			wp_set_current_user( 0 );
+			wp_delete_user( $user_id );
 		}
-		$mock_bar = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'add_menu' ] )
-			->getMock();
-		$mock_bar->expects( $this->never() )->method( 'add_menu' );
-		$toolbar->add_toolbar_items( $mock_bar );
 	}
 
 	/**
 	 * Test add_toolbar_items() adds menu for admin user.
-	 *
-	 * This test is skipped if current_user_can cannot be reliably mocked.
 	 */
 	public function test_add_toolbar_items_for_admin_user() {
-		if ( function_exists( 'current_user_can' ) ) {
-			$this->markTestSkipped( 'Cannot reliably mock current_user_can in this environment.' );
+		$user_id = $this->set_current_user_with_role( 'administrator' );
+
+		try {
+			$toolbar  = new Admin_Toolbar();
+			$mock_bar = $this->getMockBuilder( stdClass::class )
+				->addMethods( [ 'add_menu' ] )
+				->getMock();
+			$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
+			$toolbar->add_toolbar_items( $mock_bar );
+		} finally {
+			// This class is a plain test case with no database rollback, so always clean up.
+			wp_set_current_user( 0 );
+			wp_delete_user( $user_id );
 		}
-		$toolbar = new Admin_Toolbar();
-		/**
-		 * Mock current_user_can for testing.
-		 *
-		 * @param string $cap Capability.
-		 * @return bool
-		 */
-		function current_user_can( $cap = '' ) { // phpcs:ignore VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable
-			return true;
-		}
-		$mock_bar = $this->getMockBuilder( stdClass::class )
-			->addMethods( [ 'add_menu' ] )
-			->getMock();
-		$mock_bar->expects( $this->atLeastOnce() )->method( 'add_menu' );
-		$toolbar->add_toolbar_items( $mock_bar );
+	}
+
+	/**
+	 * Creates a user with the given role and sets them as the current user.
+	 *
+	 * @param string $role Role to assign to the user.
+	 * @return int The created user ID.
+	 */
+	private function set_current_user_with_role( $role ) {
+		require_once ABSPATH . 'wp-admin/includes/user.php';
+
+		$user_id = wp_insert_user(
+			[
+				'user_login' => 'edac_toolbar_test_' . $role . '_' . wp_generate_password( 8, false ),
+				'user_pass'  => 'password',
+				'role'       => $role,
+			]
+		);
+		$this->assertIsInt( $user_id, 'The test user should be created.' );
+
+		$user = get_user_by( 'id', $user_id );
+		$this->assertInstanceOf( WP_User::class, $user, 'The test user should exist.' );
+		$this->assertContains( $role, (array) $user->roles, 'The test user should have the requested role.' );
+
+		wp_set_current_user( $user_id );
+
+		return $user_id;
 	}
 
 	/**
@@ -130,10 +147,6 @@ class Admin_Toolbar_Test extends TestCase {
 	 * Test pro menu link uses the expected UTM content parameter key.
 	 */
 	public function test_get_default_menu_items_pro_link_uses_utm_content() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
-		}
-
 		$reflection = new \ReflectionClass( Admin_Toolbar::class );
 		$method     = $reflection->getMethod( 'get_default_menu_items' );
 		$method->setAccessible( true );
