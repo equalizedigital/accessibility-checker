@@ -348,4 +348,33 @@ describe( 'Missing Transcript Rule', () => {
 		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
 		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#shared-ancestor-video-2' );
 	} );
+
+	test( 'credits the iframe Able Player generates for YouTube but flags an unrelated YouTube iframe on the same page', async () => {
+		document.body.innerHTML = `
+			<div>
+				<div class="able-wrapper">
+					<div class="able">
+						<div class="able-media-container">
+							<video id="able-youtube-video" data-youtube-id="abc123" data-able-player></video>
+							<iframe id="able-youtube-iframe" src="https://www.youtube.com/embed/abc123"></iframe>
+						</div>
+					</div>
+					<div class="able-transcript-area">
+						<div class="able-transcript">
+							<div class="able-transcript-container" lang="en">Spoken words from the video.</div>
+						</div>
+					</div>
+				</div>
+				<iframe id="unrelated-youtube-iframe" src="https://www.youtube.com/embed/xyz789"></iframe>
+			</div>
+		`;
+
+		const results = await axe.run( document.body, {
+			runOnly: [ 'missing_transcript' ],
+		} );
+
+		expect( results.violations.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
+		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#unrelated-youtube-iframe' );
+	} );
 } );

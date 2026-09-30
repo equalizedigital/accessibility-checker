@@ -13,6 +13,7 @@ const TRAVERSAL_LEVEL_LIMIT = 5;
 const PARENT_SIBLING_LIMIT = 3;
 
 const ABLE_PLAYER_TRANSCRIPT_CONTAINER = '.able-transcript-container';
+const ABLE_PLAYER_WRAPPER = '.able-wrapper';
 
 export default {
 	id: 'has_transcript',
@@ -103,21 +104,12 @@ function hasAblePlayerTranscript( node ) {
 		}
 	}
 
-	// Transcript rendered inside the player's own DOM: walk up a limited number
-	// of ancestors and judge the first one that contains a transcript container.
-	let ancestor = node.parentElement;
-	let level = 0;
-	while ( ancestor && level < TRAVERSAL_LEVEL_LIMIT ) {
-		if ( ancestor.querySelector( ABLE_PLAYER_TRANSCRIPT_CONTAINER ) ) {
-			// A transcript can only be credited to this element when the scope
-			// holds no other media, otherwise it may belong to a different player.
-			if ( ancestor.querySelectorAll( 'audio, video' ).length > 1 ) {
-				return false;
-			}
-			return ablePlayerTranscriptHasContent( ancestor );
-		}
-		ancestor = ancestor.parentElement;
-		level++;
+	// Transcript rendered inside the player's own DOM. Able Player appends it to
+	// the same .able-wrapper that holds the media element, including the iframe
+	// it generates for YouTube, so anything outside that wrapper is not credited.
+	const wrapper = node.closest( ABLE_PLAYER_WRAPPER );
+	if ( wrapper ) {
+		return ablePlayerTranscriptHasContent( wrapper );
 	}
 
 	return false;
