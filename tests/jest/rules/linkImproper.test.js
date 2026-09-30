@@ -311,3 +311,101 @@ describe( 'Link Improper Rule', () => {
 		}
 	} );
 } );
+
+describe( 'Link Improper Rule: presentational and widget roles, exact elements flagged', () => {
+	const flaggedIds = async () => {
+		const results = await axe.run( document.body, { runOnly: [ 'link_improper' ] } );
+		return results.violations
+			.flatMap( ( violation ) => violation.nodes )
+			.map( ( node ) => node.target[ 0 ].replace( '#', '' ) )
+			.sort();
+	};
+
+	test.each( [
+		// Role token parsing: the first recognized token decides.
+		{ name: 'role="NONE" is case-insensitive', html: '<a id="a" role="NONE"><span>Menu</span></a>', flagged: [] },
+		{ name: 'role with surrounding whitespace', html: '<a id="a" role="  none  "><span>Menu</span></a>', flagged: [] },
+		{ name: 'slider before none wins and passes', html: '<a id="a" href="#" role="slider none" aria-valuenow="1">x</a>', flagged: [] },
+		{ name: 'button before none wins and passes', html: '<a id="a" href="#" role="button none">x</a>', flagged: [] },
+		{ name: 'none before tab is ignored on a focusable anchor', html: '<a id="a" href="#" role="none tab">x</a>', flagged: [ 'a' ] },
+		{ name: 'presentation before slider is ignored on a focusable anchor', html: '<a id="a" href="#" role="presentation slider" aria-valuenow="1">x</a>', flagged: [ 'a' ] },
+		{ name: 'tab-separated none slider is ignored on a focusable anchor', html: '<a id="a" href="#" role="none\tslider" aria-valuenow="1">x</a>', flagged: [ 'a' ] },
+		{ name: 'newline-separated none slider is ignored on a focusable anchor', html: '<a id="a" href="#" role="none\nslider" aria-valuenow="1">x</a>', flagged: [ 'a' ] },
+		{ name: 'unknown role then none still passes when non-focusable', html: '<a id="a" role="foo none"><span>Menu</span></a>', flagged: [] },
+		{ name: 'only unknown roles and no href is flagged', html: '<a id="a" role="foo bar"><span>Menu</span></a>', flagged: [ 'a' ] },
+		{ name: 'empty role attribute and no href is flagged', html: '<a id="a" role=""><span>Menu</span></a>', flagged: [ 'a' ] },
+		{ name: 'role="none" with a real href is still a valid link', html: '<a id="a" role="none" href="/about">About</a>', flagged: [] },
+
+		// Focusability boundaries for presentational roles.
+		{ name: 'presentation with tabindex="0" is flagged', html: '<a id="a" role="presentation" tabindex="0">x</a>', flagged: [ 'a' ] },
+		{ name: 'presentation with tabindex="-1" is flagged', html: '<a id="a" role="presentation" tabindex="-1">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with an empty href is flagged', html: '<a id="a" role="none" href="">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with no content and no href passes', html: '<a id="a" role="none"></a>', flagged: [] },
+		{ name: 'none wrapping an svg passes', html: '<a id="a" role="none"><svg width="10" height="10"><path d="M0 0h10v10z"></path></svg></a>', flagged: [] },
+
+		// Global ARIA boundaries for presentational roles.
+		{ name: 'none with aria-label is flagged', html: '<a id="a" role="none" aria-label="Open">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with aria-labelledby is flagged', html: '<a id="a" role="none" aria-labelledby="l">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with aria-describedby is flagged', html: '<a id="a" role="none" aria-describedby="d">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with aria-live is flagged', html: '<a id="a" role="none" aria-live="polite">x</a>', flagged: [ 'a' ] },
+		// Pinned: any aria-* attribute counts, which errs toward reporting.
+		{ name: 'none with a non-global aria-expanded is flagged', html: '<a id="a" role="none" aria-expanded="false">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with aria-hidden="TRUE" passes', html: '<a id="a" role="none" aria-hidden="TRUE">x</a>', flagged: [] },
+		{ name: 'none with aria-hidden=" true " passes', html: '<a id="a" role="none" aria-hidden=" true ">x</a>', flagged: [] },
+		{ name: 'none with an empty aria-hidden is flagged', html: '<a id="a" role="none" aria-hidden="">x</a>', flagged: [ 'a' ] },
+		{ name: 'none with aria-hidden="false" is flagged', html: '<a id="a" role="none" aria-hidden="false">x</a>', flagged: [ 'a' ] },
+		// axe skips aria-hidden="true" subtrees before the check runs, whatever else the anchor carries.
+		{ name: 'aria-hidden="true" anchors are skipped even with another aria attribute', html: '<a id="a" role="none" aria-hidden="true" aria-label="x">x</a>', flagged: [] },
+		{ name: 'none with only class, id, style, title and data attributes passes', html: '<a id="a" role="none" class="c" style="color:red" title="t" data-x="1">x</a>', flagged: [] },
+
+		// Widget roles are unconditional: no dependence on href, tabindex or ARIA.
+		{ name: 'slider with javascript: href', html: '<a id="a" href="javascript:void(0)" role="slider" aria-valuenow="1">x</a>', flagged: [] },
+		{ name: 'slider with tabindex="-1"', html: '<a id="a" role="slider" tabindex="-1" aria-valuenow="1">x</a>', flagged: [] },
+		{ name: 'SLIDER uppercase', html: '<a id="a" href="#" role="SLIDER" aria-valuenow="1">x</a>', flagged: [] },
+		{ name: 'slider with aria-label', html: '<a id="a" href="#" role="slider" aria-label="Volume" aria-valuenow="1">x</a>', flagged: [] },
+		{ name: 'tab with href="#"', html: '<a id="a" href="#" role="tab">x</a>', flagged: [] },
+		{ name: 'button with javascript: href', html: '<a id="a" href="javascript:void(0)" role="button">x</a>', flagged: [] },
+
+		// Only anchors are evaluated.
+		{
+			name: 'non-anchor elements with these roles are not evaluated',
+			html: '<div id="d" role="none">x</div><span id="s" role="slider" aria-valuenow="1">x</span><button id="b" role="presentation">x</button>',
+			flagged: [],
+		},
+
+		// Mixed pages: every anchor is judged on its own markup.
+		{
+			name: 'plain anchors are still flagged beside presentational and slider anchors',
+			html: `
+				<a id="plain-1">One</a>
+				<a id="none-ok" role="none"><span>Menu</span></a>
+				<a id="plain-2" href="#">Two</a>
+				<a id="slider-ok" href="#" role="slider" aria-valuenow="1">Vol</a>
+				<a id="presentation-ok" role="presentation"><span>Menu</span></a>
+			`,
+			flagged: [ 'plain-1', 'plain-2' ],
+		},
+		{
+			name: 'realistic nav and media player page',
+			html: `
+				<nav><ul>
+					<li><a id="home" href="/">Home</a></li>
+					<li><a id="drop" role="none"><span>Products</span></a><ul><li><a id="sub" href="/products">All</a></li></ul></li>
+					<li><a id="bad-hash" href="#">Menu</a></li>
+					<li><a id="bad-focus" href="#" role="none">Toggle</a></li>
+					<li><a id="bad-aria" role="none" aria-label="Toggle">Toggle</a></li>
+					<li><a id="bad-order" href="#" role="none slider" aria-valuenow="1">Toggle</a></li>
+				</ul></nav>
+				<div class="player">
+					<a id="vol" href="javascript:void(0)" role="slider" aria-valuenow="1"></a>
+					<a id="bad-mute" href="javascript:void(0)">Mute</a>
+				</div>
+			`,
+			flagged: [ 'bad-aria', 'bad-focus', 'bad-hash', 'bad-mute', 'bad-order' ],
+		},
+	] )( '$name', async ( { html, flagged } ) => {
+		document.body.innerHTML = html;
+
+		expect( await flaggedIds() ).toEqual( [ ...flagged ].sort() );
+	} );
+} );
