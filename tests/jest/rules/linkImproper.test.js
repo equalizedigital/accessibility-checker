@@ -247,6 +247,29 @@ describe( 'Link Improper Rule', () => {
 			shouldPass: true,
 		},
 
+		{
+			// The focusable anchor makes the browser ignore role="none", exposing a link, so the
+			// later widget token must not exempt it. An unknown first token still falls through.
+			name: 'Fails with role="none slider" when focusable via href="#"',
+			html: '<a href="#" role="none slider" aria-valuenow="5">Click</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails with role="presentation button" when focusable via href="#"',
+			html: '<a href="#" role="presentation button">Click</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Passes with an unknown role followed by slider and href="#"',
+			html: '<a href="#" role="foo slider" aria-valuenow="5">Volume</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Fails with role="none" and aria-hidden="false"',
+			html: '<a role="none" aria-hidden="false"><span>Menu</span></a>',
+			shouldPass: false,
+		},
+
 		// Slider role cases. See https://github.com/equalizedigital/accessibility-checker/issues/1748
 		{
 			name: 'Passes with role="slider" on a media player volume control',

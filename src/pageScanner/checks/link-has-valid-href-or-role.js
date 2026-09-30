@@ -18,8 +18,14 @@ export default {
 		// Parse roles once for efficiency (DRY principle)
 		const roles = role.toLowerCase().split( /\s+/ );
 
+		// The first of these tokens wins, so a later widget role can't override an
+		// earlier presentational role that is ignored on a focusable anchor.
+		const widgetRoles = [ 'button', 'tab', 'slider' ];
+		const presentationalRoles = [ 'none', 'presentation' ];
+		const effectiveRole = roles.find( ( r ) => [ ...widgetRoles, ...presentationalRoles ].includes( r ) );
+
 		// Allow roles of button, tab or slider
-		if ( roles.some( ( r ) => [ 'button', 'tab', 'slider' ].includes( r ) ) ) {
+		if ( widgetRoles.includes( effectiveRole ) ) {
 			return true;
 		}
 
@@ -36,11 +42,12 @@ export default {
 		// Per the presentational roles conflict resolution the role is ignored on an element
 		// that is focusable or carries global ARIA states or properties, so neither may apply.
 		const isFocusable = node.hasAttribute( 'href' ) || node.hasAttribute( 'tabindex' );
-		if ( ! isFocusable && ( roles.includes( 'none' ) || roles.includes( 'presentation' ) ) ) {
-			// Approximated as any aria-* attribute, which errs toward reporting. aria-hidden is
+		if ( ! isFocusable && presentationalRoles.includes( effectiveRole ) ) {
+			// Approximated as any aria-* attribute, which errs toward reporting. aria-hidden="true" is
 			// excluded because it removes the element from the tree outright, making the role moot.
 			const hasGlobalAria = Array.from( node.attributes ).some(
-				( attr ) => attr.name.startsWith( 'aria-' ) && attr.name !== 'aria-hidden'
+				( attr ) => attr.name.startsWith( 'aria-' ) &&
+					! ( attr.name === 'aria-hidden' && attr.value.trim().toLowerCase() === 'true' )
 			);
 
 			if ( ! hasGlobalAria ) {
