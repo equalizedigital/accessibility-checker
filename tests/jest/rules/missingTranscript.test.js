@@ -395,7 +395,7 @@ describe( 'Missing Transcript Rule', () => {
 		const ableAudio = ( id, transcript ) => wrapper( `<audio id="${ id }" src="${ id }.mp3"></audio>`, transcript );
 		const ableYouTube = ( id, transcript ) => wrapper(
 			`<video id="${ id }" data-youtube-id="abc"></video><iframe id="${ id }-iframe" src="https://www.youtube.com/embed/abc"></iframe>`,
-			transcript
+			transcript,
 		);
 		const plainVideo = ( id ) => `<video id="${ id }" src="${ id }.mp4"></video>`;
 		const plainAudio = ( id ) => `<audio id="${ id }" src="${ id }.mp3"></audio>`;
