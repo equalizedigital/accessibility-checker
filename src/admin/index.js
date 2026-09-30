@@ -524,7 +524,7 @@ const edacScriptVars = edac_script_vars;
 					} ).fail( function( data ) {
 						// eslint-disable-next-line no-console
 						console.log( data );
-						document.querySelector( '#success-message-' + issueId ).textContent = data.responseJSON.message;
+						document.querySelector( '#success-message-' + issueId ).textContent = data?.responseJSON.message ?? __( 'An unknown error occurred' );
 					} );
 				}
 			);
