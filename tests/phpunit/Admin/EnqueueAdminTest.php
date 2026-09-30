@@ -73,6 +73,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -89,11 +90,29 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * Test that the base script loads the accessibility utility on the settings page.
+	 *
+	 * @return void
+	 */
+	public function testEnqueueBaseScriptWithWpA11yOnSettingsPage() {
+
+		global $wp_scripts;
+
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 	}
 
 	/**
@@ -148,18 +167,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
 	 */
-	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+	public function testAdminFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
 		global $wp_scripts;
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
-		$expected       = rest_url( 'edac/v1' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
-		$this->assertStringContainsString( 'edac', $localized_data );
-		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 	}
 
 	/**
@@ -193,13 +211,14 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		add_filter( 'rest_url_prefix', $prefix_callback );
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+		$expected = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
 		remove_filter( 'rest_url_prefix', $prefix_callback );
 		delete_option( 'permalink_structure' );
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
 
-		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 

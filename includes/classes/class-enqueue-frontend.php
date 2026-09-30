@@ -72,7 +72,7 @@ class Enqueue_Frontend {
 
 		wp_enqueue_style(
 			'edac-sr-only-format',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css',
+			EDAC_PLUGIN_URL . 'build/css/srOnlyFormat.css',
 			[],
 			EDAC_VERSION,
 			'all'
@@ -115,8 +115,12 @@ class Enqueue_Frontend {
 			return;
 		}
 
-		// Don't load in a customizer preview or user can't edit the page. A filter
-		// can override the edit requirement to allow anyone to see it.
+		// Don't load in a customizer preview or if the user lacks the frontend
+		// highlighter capability. A filter can override this to allow anyone to
+		// see it. Deliberately does NOT fall back to current_user_can( 'edit_post' ):
+		// Editors and self-editing Authors satisfy that on virtually any post, which
+		// would let the historical fallback silently override a role's Permissions
+		// tab setting for edac_view_frontend_highlighter (PRO-1290).
 		if (
 			is_customize_preview() ||
 			(
@@ -128,12 +132,20 @@ class Enqueue_Frontend {
 				 * highlighter. You can use the filter to perform additional permission checks
 				 * on who can see it.
 				 *
+				 * Not a deprecation candidate against edac_view_frontend_highlighter - see
+				 * the fuller note at admin/class-frontend-highlight.php::init_hooks().
+				 *
 				 * @since 1.14.0
 				 *
 				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
 				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
-				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
+				! (
+					function_exists( 'edac_user_can_use_frontend_highlighter' ) &&
+					edac_user_can_use_frontend_highlighter() &&
+					current_user_can( 'read_post', $post_id ) &&
+					! post_password_required( $post_id )
+				)
 			)
 		) {
 			return;
@@ -149,8 +161,8 @@ class Enqueue_Frontend {
 		if ( $active ) {
 
 
-			wp_enqueue_style( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
-			wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
+			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
+			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
 
 			wp_localize_script(
 				'edac-frontend-highlighter-app',
@@ -164,13 +176,13 @@ class Enqueue_Frontend {
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
 					'restUrl'          => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
-					'fixesRestUrl'     => esc_url_raw( rest_url( 'edac/v1' ) ),
+					'fixesRestUrl'     => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 					'loggedIn'         => is_user_logged_in(),
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
-					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
+					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, EDAC_PLUGIN_URL . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
 					'landmarkTypes'    => edac_get_landmark_types(),
 				]

@@ -318,11 +318,18 @@ class Ajax {
 			/**
 			 * Filters if a user can ignore issues.
 			 *
+			 * Candidate for deprecation: wraps edac_user_can_ignore(), itself
+			 * already @deprecated in favor of edac_user_can_dismiss_issues()/
+			 * edac_user_can_dismiss_own_issues(), and $ignore_permission below
+			 * is not currently read by anything else in this method - a real
+			 * dead-code cleanup, not just a superseded permission check.
+			 * Revisit alongside the other legacy permission filters.
+			 *
 			 * @since 1.4.0
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
 
 			$severity_map = [
 				1 => [
@@ -376,7 +383,7 @@ class Ajax {
 
 				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
 
-				$html .= '<h3>';
+				$html .= '<h3 id="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '">';
 				$html .= edac_icon( $icon_name );
 				$html .= ' ' . esc_html( $rule['title'] );
 				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
@@ -393,13 +400,7 @@ class Ajax {
 						__( 'Opens in a new window.', 'accessibility-checker' )
 					)
 				) . '"><span class="dashicons dashicons-info"></span></a>';
-				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="' . esc_attr(
-					sprintf(
-						/* translators: %s: rule title */
-						__( 'Expand issues for %s', 'accessibility-checker' ),
-						$rule['title']
-					)
-				) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-labelledby="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 				$html .= '</div>';
 
 				if ( $results ) {
@@ -673,7 +674,7 @@ class Ajax {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+		$post_grade_failed      = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {

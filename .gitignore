@@ -28,3 +28,7 @@ coverage/
 *.log
 *.sql
 docs-local
+
+# Claude Code (personal, not committed — .claude/settings.json is shared)
+.claude/settings.local.json
+.claude/worktrees/

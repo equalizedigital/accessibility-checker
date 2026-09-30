@@ -8,6 +8,8 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { setupElementorSaveListener } from './setupElementorSaveListener';
+import { buildDescriptionTitle } from './descriptionTitle';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -934,6 +936,17 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		this.refreshIssues( id );
+	}
+
+	/**
+	 * Fetches the current issues for this page and updates the panel's contents.
+	 * Does not change the panel's visibility, so it's safe to call whether or
+	 * not the panel is currently open.
+	 *
+	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 */
+	refreshIssues( id ) {
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
@@ -1171,6 +1184,8 @@ class AccessibilityCheckerHighlight {
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
 
 			let content = '';
+			// Elementor cancels preview link navigation unless the anchor has this opt-out class.
+			const isElementorEditorLinkClass = window.elementorFrontend?.isEditMode?.() === true ? ' elementor-clickable' : '';
 
 			const newWindowHtml = `<span aria-hidden="true">↗\uFE0E</span><span class="edac-sr-only">${ __( ', opens a new window', 'accessibility-checker' ) }</span>`;
 
@@ -1196,7 +1211,7 @@ class AccessibilityCheckerHighlight {
 					}
 				}
 
-				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
 			// Metadata row: Type
@@ -1245,11 +1260,11 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
+				content += `<div><a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
+				content += `<a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
 			}
 
 			// Get the code button
@@ -1258,10 +1273,14 @@ class AccessibilityCheckerHighlight {
 
 
 			// title and content (notice only rendered when there is a status message)
-			const noticeHtml = this.currentIssueStatus
-				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
+				title: matchingObj.rule_title,
+				notice: this.currentIssueStatus || '',
+				typeBadgeHtml,
+			} );
+
+			descriptionTitle.classList.toggle( 'edac-highlight-panel-description-title--has-notice', hasNotice );
+			descriptionTitle.innerHTML = descriptionTitleHtml;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1916,8 +1935,12 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Trigger a full rescan of the current page and reload issues.
+	 *
+	 * @param {boolean} [openPanel] Whether to open the panel once the rescan completes.
+	 *                              Set to false for rescans triggered as a side effect
+	 *                              of something other than the user asking to see results.
 	 */
-	rescanPage() {
+	rescanPage( openPanel = true ) {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
 			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
@@ -1935,7 +1958,13 @@ class AccessibilityCheckerHighlight {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
 			}
-			this.panelOpen();
+			if ( openPanel ) {
+				this.panelOpen();
+			} else if ( this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				// Panel is already open (e.g. docked) — refresh its contents in place
+				// rather than leaving it showing stale issues, without forcing it open.
+				this.refreshIssues();
+			}
 		} ).finally( () => {
 			this._isRescanning = false;
 		} );
@@ -1991,6 +2020,7 @@ class AccessibilityCheckerHighlight {
 				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
 				if ( descriptionTitle ) {
 					descriptionTitle.innerHTML = '';
+					descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
 				}
 				if ( descriptionContent ) {
 					descriptionContent.innerHTML = '';
@@ -2054,10 +2084,11 @@ class AccessibilityCheckerHighlight {
 let highlighterInitialized = false;
 const initHighlighter = () => {
 	if ( ! highlighterInitialized ) {
-		new AccessibilityCheckerHighlight();
+		const highlighter = new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
+		setupElementorSaveListener( highlighter );
 		highlighterInitialized = true;
 	}
 };

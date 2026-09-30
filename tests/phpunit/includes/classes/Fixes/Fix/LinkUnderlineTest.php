@@ -279,19 +279,17 @@ class LinkUnderlineTest extends WP_UnitTestCase {
 		// This test ensures the filter is properly documented in the code.
 		$reflection = new \ReflectionClass( $this->fix );
 		$file_path  = $reflection->getFileName();
-		
-		// Only read local files, not remote URLs.
-		if ( $file_path && is_readable( $file_path ) && ! filter_var( $file_path, FILTER_VALIDATE_URL ) ) {
-			// phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
-			$method_content = file_get_contents( $file_path );
-			// Test that the filter is documented with proper docblock.
-			$this->assertStringContainsString( '@hook edac_fix_underline_target', $method_content );
-			$this->assertStringContainsString( '@param string $el', $method_content );
-			$this->assertStringContainsString( '@return string', $method_content );
-			$this->assertStringContainsString( '@since 1.16.0', $method_content );
-		} else {
-			$this->markTestSkipped( 'Cannot read fix file for documentation check' );
-		}
+
+		$this->assertIsString( $file_path );
+		$this->assertTrue( is_readable( $file_path ), 'The fix file should be readable.' );
+
+		// phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown
+		$method_content = file_get_contents( $file_path );
+		// Test that the filter is documented with proper docblock.
+		$this->assertStringContainsString( '@hook edac_fix_underline_target', $method_content );
+		$this->assertStringContainsString( '@param string $el', $method_content );
+		$this->assertStringContainsString( '@return string', $method_content );
+		$this->assertStringContainsString( '@since 1.16.0', $method_content );
 	}
 
 	/**
