@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * writes the edac_capability_role_map option, whose option hooks (registered by
  * SyncCapability) then sync the capabilities onto the selected roles.
  *
- * @since 1.xx.x
+ * @since 1.48.0
  */
 class PermissionsPage implements PageInterface {
 
