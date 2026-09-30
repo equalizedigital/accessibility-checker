@@ -96,8 +96,8 @@ class OptionsPageGroupLabelsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * A grouped field is wrapped in a fieldset whose first child is a legend
-	 * carrying the group label.
+	 * A grouped field is wrapped in a fieldset whose first child is a visually
+	 * hidden legend carrying the group label.
 	 *
 	 * @dataProvider grouped_field_callback_provider
 	 *
@@ -112,9 +112,9 @@ class OptionsPageGroupLabelsTest extends WP_UnitTestCase {
 		$output = ob_get_clean();
 
 		$this->assertMatchesRegularExpression(
-			'#<fieldset[^>]*>\s*<legend[^>]*>\s*<span>' . preg_quote( $label, '#' ) . '</span>#',
+			'#<fieldset[^>]*>\s*<legend[^>]*\sclass="(?:[^"]*\s)?screen-reader-text(?:\s[^"]*)?"[^>]*>\s*<span>' . preg_quote( $label, '#' ) . '</span>#',
 			$output,
-			"The {$label} fieldset should open with a legend naming the group."
+			"The {$label} fieldset should open with a screen-reader-text legend naming the group."
 		);
 	}
 

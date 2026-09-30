@@ -780,8 +780,6 @@ function edac_register_setting() {
 	);
 
 	// Add fields.
-
-	// No label_for: this field is a group of checkboxes labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_post_types',
 		__( 'Post Types To Be Checked', 'accessibility-checker' ),
@@ -835,7 +833,6 @@ function edac_register_setting() {
 		[ 'label_for' => 'edac_show_metabox_in_block_editor' ]
 	);
 
-	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_simplified_summary_prompt',
 		__( 'Prompt for Simplified Summary', 'accessibility-checker' ),
@@ -844,7 +841,6 @@ function edac_register_setting() {
 		'edac_simplified_summary'
 	);
 
-	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_simplified_summary_position',
 		__( 'Simplified Summary Position', 'accessibility-checker' ),
@@ -897,7 +893,6 @@ function edac_register_setting() {
 		'edac_footer_accessibility_statement'
 	);
 
-	// No label_for: this field is a group of radios labelled by the <legend> in its callback.
 	add_settings_field(
 		'edac_frontend_highlighter_position',
 		__( 'Frontend Accessibility Checker Position', 'accessibility-checker' ),
