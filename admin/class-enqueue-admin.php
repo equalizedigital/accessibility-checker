@@ -40,7 +40,7 @@ class Enqueue_Admin {
 	 * @return void
 	 */
 	public static function enqueue_styles() {
-		wp_enqueue_style( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
+		wp_enqueue_style( 'edac', EDAC_PLUGIN_URL . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
 	}
 
 	/**
@@ -78,27 +78,34 @@ class Enqueue_Admin {
 
 			global $post;
 			$post_id = is_object( $post ) ? $post->ID : null;
-			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
-			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
+			// On a latest-posts homepage the global $post is the first blog post, not the page;
+			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
+			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
+
+			wp_enqueue_script( 'edac', EDAC_PLUGIN_URL . 'build/admin.bundle.js', [ 'jquery', 'wp-a11y' ], EDAC_VERSION, false );
+			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 			wp_localize_script(
 				'edac',
 				'edac_script_vars',
 				[
 					'postID'                   => $post_id,
 					'nonce'                    => wp_create_nonce( 'ajax-nonce' ),
-					'edacApiUrl'               => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
+					'edacApiUrl'               => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
+					'fixesRestUrl'             => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
 					'restNonce'                => wp_create_nonce( 'wp_rest' ),
 					'proUrl'                   => esc_url_raw( edac_generate_link_type( [ 'utm_content' => '__name__' ] ) ),
 					'hasDismissEndpoint'       => method_exists( \EDAC\Inc\REST_Api::class, 'dismiss_issue' ),
 					'showMetaboxInBlockEditor' => ! Helpers::is_block_editor() || (bool) get_option( 'edac_show_metabox_in_block_editor', 1 ),
+					'pro'                      => defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID,
 				]
 			);
 
 			if ( 'post.php' === $pagenow || 'post-new.php' === $pagenow ) {
 
-				// Is this posttype setup to be checked?
-				$active = $is_scannable_post;
+				// Base the scannable check on the filtered $post_id, not the original global $post.
+				$filtered_post_type = $post_id ? get_post_type( $post_id ) : false;
+				$active             = $filtered_post_type && is_array( $post_types ) && in_array( $filtered_post_type, $post_types, true );
 
 				$pro = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
 
@@ -108,11 +115,18 @@ class Enqueue_Admin {
 					$debug = false;
 				}
 
-				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
-				// If this is the frontpage or homepage, preview URLs won't work. Use the live URL.
-				if ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
+				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
+				// show_on_front=page fallback with no static front page) use the live home URL instead.
+				$show_on_front        = get_option( 'show_on_front', 'posts' );
+				$is_latest_posts_home = ( 'posts' === $show_on_front || ( 'page' === $show_on_front && ! get_option( 'page_on_front' ) ) )
+					&& apply_filters( 'edac_filter_post_is_latest_posts_home', false, $post_id );
+
+				if ( $is_latest_posts_home ) {
+					$scan_url = add_query_arg( 'edac_pageScanner', 1, trailingslashit( get_home_url() ) );
+				} elseif ( (int) get_option( 'page_on_front' ) === $post_id || (int) get_option( 'page_for_posts' ) === $post_id ) {
 					$scan_url = add_query_arg( 'edac_pageScanner', 1, get_permalink( $post_id ) );
 				} else {
 					$post_view_link = apply_filters(
@@ -133,18 +147,19 @@ class Enqueue_Admin {
 					'edac-editor-app',
 					'edac_editor_app',
 					[
-						'postID'       => $post_id,
-						'edacUrl'      => esc_url_raw( get_site_url() ),
-						'edacApiUrl'   => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
-						'baseurl'      => plugin_dir_url( __DIR__ ),
-						'active'       => $active,
-						'pro'          => $pro,
-						'debug'        => $debug,
-						'scanUrl'      => $scan_url,
-						'maxAltLength' => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
-						'version'      => EDAC_VERSION,
-						'postStatus'   => get_post_status( $post_id ),
-						'restNonce'    => wp_create_nonce( 'wp_rest' ),
+						'postID'        => $post_id,
+						'edacUrl'       => esc_url_raw( get_site_url() ),
+						'edacApiUrl'    => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
+						'baseurl'       => EDAC_PLUGIN_URL,
+						'active'        => $active,
+						'pro'           => $pro,
+						'debug'         => $debug,
+						'scanUrl'       => $scan_url,
+						'maxAltLength'  => max( 1, absint( apply_filters( 'edac_max_alt_length', 300 ) ) ),
+						'landmarkTypes' => edac_get_landmark_types(),
+						'version'       => EDAC_VERSION,
+						'postStatus'    => get_post_status( $post_id ),
+						'restNonce'     => wp_create_nonce( 'wp_rest' ),
 					]
 				);
 
@@ -178,7 +193,7 @@ class Enqueue_Admin {
 		// Enqueue the sidebar script with WordPress dependencies.
 		wp_enqueue_script(
 			'edac-sidebar',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/sidebar.bundle.js',
+			EDAC_PLUGIN_URL . 'build/sidebar.bundle.js',
 			[
 				'wp-plugins',
 				'wp-edit-post',
@@ -209,6 +224,8 @@ class Enqueue_Admin {
 				'edacApiUrl'              => esc_url_raw( rest_url() . 'accessibility-checker/v1' ),
 				'settingsUrl'             => esc_url_raw( admin_url( 'admin.php?page=accessibility_checker_settings' ) ),
 				'canManageSettings'       => current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ),
+				'canDismiss'              => edac_user_can_ignore(),
+				'canDismissGlobally'      => edac_user_can_dismiss_issues_globally(),
 				'readabilityHelpUrl'      => esc_url_raw( edac_link_wrapper( 'https://a11ychecker.com/help3265', 'wordpress-general', 'content-analysis-sidebar', false ) ),
 				'dismissReasons'          => IgnoreUI::get_reasons(),
 				'simplifiedSummaryPrompt' => get_option( 'edac_simplified_summary_prompt', 'none' ),
@@ -218,7 +235,7 @@ class Enqueue_Admin {
 		// Enqueue sidebar styles.
 		wp_enqueue_style(
 			'edac-sidebar',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/sidebar.css',
+			EDAC_PLUGIN_URL . 'build/css/sidebar.css',
 			[],
 			EDAC_VERSION,
 			'all'
@@ -250,13 +267,14 @@ class Enqueue_Admin {
 		// Enqueue the issue modal script with WordPress dependencies.
 		wp_enqueue_script(
 			'edac-issue-modal',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/issueModal.bundle.js',
+			EDAC_PLUGIN_URL . 'build/issueModal.bundle.js',
 			[
 				'wp-element',
 				'wp-components',
 				'wp-i18n',
 				'wp-api-fetch',
 				'wp-html-entities',
+				'wp-a11y',
 			],
 			EDAC_VERSION,
 			true
@@ -268,7 +286,7 @@ class Enqueue_Admin {
 		// Enqueue issue modal styles.
 		wp_enqueue_style(
 			'edac-issue-modal',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/issueModal.css',
+			EDAC_PLUGIN_URL . 'build/css/issueModal.css',
 			[ 'wp-components' ],
 			EDAC_VERSION,
 			'all'
@@ -318,7 +336,7 @@ class Enqueue_Admin {
 
 		wp_enqueue_script(
 			'edac-sr-only-format',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
+			EDAC_PLUGIN_URL . 'build/srOnlyFormat.bundle.js',
 			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor', 'wp-api-fetch' ],
 			EDAC_VERSION,
 			false

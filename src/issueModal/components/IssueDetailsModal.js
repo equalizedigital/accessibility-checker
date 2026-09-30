@@ -11,12 +11,14 @@ import { useRef, useEffect, useState, useMemo } from '@wordpress/element';
 import { useSelect } from '@wordpress/data';
 import { store as editorStore } from '@wordpress/editor';
 import IssueImage, { extractImageUrls } from './IssueImage';
+import CodeMirrorViewer from './CodeMirrorViewer';
 import FixPanel from './FixPanel';
 import DismissPanel from './DismissPanel';
 import Badge from '../../sidebar/components/Badge';
 import ExternalLinkIcon from '../../sidebar/components/ExternalLinkIcon';
 import { getSeverityLabel } from '../../sidebar/utils/severityHelpers';
 import { getRuleTypeBadgeProps, getSeverityBadgeProps } from '../../sidebar/utils/badgeHelpers';
+import { userCanDismiss, userCanDismissGlobally } from '../../sidebar/utils/dismissHelpers';
 import { shouldDisplayWcagNumber } from '../../sidebar/utils/wcagHelpers';
 
 /**
@@ -40,65 +42,6 @@ const getViewOnPageUrl = ( issue, viewLink ) => {
 	}
 
 	return url.toString();
-};
-
-/**
- * CodeMirror HTML viewer component
- *
- * @param {Object} props       - Component props.
- * @param {string} props.value - HTML code to display.
- */
-const CodeMirrorViewer = ( { value } ) => {
-	const textareaRef = useRef( null );
-	const editorRef = useRef( null );
-
-	useEffect( () => {
-		if ( ! textareaRef.current || ! window.wp?.codeEditor ) {
-			return;
-		}
-
-		// Initialize CodeMirror
-		const settings = window.wp.codeEditor.defaultSettings || {};
-		const editorSettings = {
-			...settings,
-			codemirror: {
-				...settings.codemirror,
-				mode: 'htmlmixed',
-				readOnly: true,
-				lineNumbers: true,
-				lineWrapping: true,
-				// Disable tab handling so it doesn't capture tab key
-				extraKeys: {
-					Tab: false,
-					'Shift-Tab': false,
-				},
-			},
-		};
-
-		editorRef.current = window.wp.codeEditor.initialize( textareaRef.current, editorSettings );
-
-		// Cleanup on unmount
-		return () => {
-			if ( editorRef.current?.codemirror ) {
-				editorRef.current.codemirror.toTextArea();
-			}
-		};
-	}, [] );
-
-	// Update content when value changes
-	useEffect( () => {
-		if ( editorRef.current?.codemirror ) {
-			editorRef.current.codemirror.setValue( value || '' );
-		}
-	}, [ value ] );
-
-	return (
-		<textarea
-			ref={ textareaRef }
-			defaultValue={ value }
-			className="edac-analysis__code-textarea"
-		/>
-	);
 };
 
 /**
@@ -386,7 +329,7 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 					) }
 
 					{ /* How to Fix - Show detailed info for Pro, or just link for Free */ }
-					{ window.edac_editor_app?.pro === '1' ? (
+					{ ( typeof window !== 'undefined' && ( window.edac_editor_app?.pro === '1' || window.edac_script_vars?.pro === '1' ) ) ? (
 						<div className="edac-analysis__issue-help-accordion">
 							<PanelBody
 								title={ __( 'Show explanation', 'accessibility-checker' ) }
@@ -464,6 +407,8 @@ export const IssueDetailsModal = ( { issue, rule, onClose, isOpen, focusSection,
 							onToggle={ () => setIsDismissPanelOpen( ! isDismissPanelOpen ) }
 							onIgnore={ onIgnore }
 							onCloseModal={ onClose }
+							canDismiss={ userCanDismiss() }
+							canDismissGlobally={ userCanDismissGlobally() }
 						/>
 					</div>
 				</div>

@@ -233,30 +233,34 @@ foreach ( $candidates as $hook_name => $list ) {
 		$list,
 		static function ( $entry ) {
 			// Skip entries from test/build/vendor directories.
-			$excluded_paths = [
-				'/tests/',
-				'/dist/',
-				'/build/',
-				'/docs/',
-				'/.github/',
-				'/node_modules/',
-				'/vendor/',
+			$excluded_dirs = [
+				'tests',
+				'dist',
+				'build',
+				'docs',
+				'.github',
+				'node_modules',
+				'vendor',
 			];
-			
-			foreach ( $excluded_paths as $excluded_path ) {
-				if ( false !== strpos( $entry['file'], $excluded_path ) ) {
+
+			$path_parts = explode( DIRECTORY_SEPARATOR, $entry['file'] );
+
+			foreach ( $excluded_dirs as $excluded_dir ) {
+				if ( in_array( $excluded_dir, $path_parts, true ) ) {
 					return false;
 				}
 			}
 			return true;
 		}
 	);
-	
-	// If we filtered out everything, fall back to the original list.
-	if ( ! empty( $filtered_list ) ) {
-		$list = array_values( $filtered_list );
+
+	// If every candidate was in an excluded directory, this hook has no
+	// production definition/listener, so omit it from the docs entirely.
+	if ( empty( $filtered_list ) ) {
+		continue;
 	}
-	
+	$list = array_values( $filtered_list );
+
 	// If any definition candidates exist, narrow to them. Otherwise keep listeners.
 	$defs = array_filter(
 		$list,

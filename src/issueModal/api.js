@@ -11,7 +11,7 @@ import apiFetch from '@wordpress/api-fetch';
  * @param {boolean} ignore       - True to dismiss, false to restore.
  * @param {string}  reason       - The reason for dismissing the issue.
  * @param {string}  comment      - Optional comment for the dismissal.
- * @param {boolean} ignoreGlobal - True to dismiss all instances of this issue across all pages (Pro only).
+ * @param {boolean} ignoreGlobal - True to apply the action (dismiss or undismiss) across all matching instances on all pages (Pro only).
  * @return {Promise} Promise that resolves with the response data.
  */
 export const toggleIssueDismiss = async ( issueId, ignore = true, reason = '', comment = '', ignoreGlobal = false ) => {
@@ -23,7 +23,7 @@ export const toggleIssueDismiss = async ( issueId, ignore = true, reason = '', c
 			reason: ignore ? reason : '',
 			comment: ignore ? comment : '',
 			ignore_global: ignore && ignoreGlobal ? 1 : 0,
-			largeBatch: ignore && ignoreGlobal,
+			largeBatch: ignoreGlobal,
 		},
 	} );
 };

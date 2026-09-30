@@ -75,6 +75,30 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for wp-block-separator class with aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-alpha-channel-opacity has-background ticss-54cc2426 separator-aria-hidden" style="background-color:#ff6201;color:#ff6201" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for wp-block-separator class with additional color classes and aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-dark-blue-color has-alpha-channel-opacity has-dark-blue-background-color has-background ticss-54cc2426 separator-aria-hidden" aria-hidden="true">',
+			shouldPass: true,
+		},
+		// Cover block cases (PRO-966) — these were incorrectly flagged before the
+		// selector exclusion was added. The core cover block places aria-hidden="true"
+		// on its background overlay and background image elements, which is correct
+		// decorative usage and should not be reported as a violation.
+		{
+			name: 'should pass for cover block background overlay (wp-block-cover__background)',
+			html: '<span class="wp-block-cover__background has-background-dim-100 has-background-dim" aria-hidden="true" style="background-color:#000000"></span>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for cover block background image (wp-block-cover__image-background)',
+			html: '<img class="wp-block-cover__image-background wp-image-123" alt="" src="/photo.jpg" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for element with role="presentation"',
 			html: '<div role="presentation" aria-hidden="true">Content</div>',
 			shouldPass: true,
@@ -177,6 +201,13 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: false,
 		},
 		{
+			// The outer .wp-block-cover container holds real content and is not
+			// excluded by the selector — only the decorative child elements are.
+			name: 'should fail for aria-hidden="true" on the outer cover block container (hides real content)',
+			html: '<div class="wp-block-cover" aria-hidden="true"><div class="wp-block-cover__inner-container"><p>Visible content</p></div></div>',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail for aria-hidden on form controls',
 			html: '<input type="text" aria-hidden="true">',
 			shouldPass: false,
@@ -221,3 +252,4 @@ describe( 'Aria Hidden Validation', () => {
 		} );
 	} );
 } );
+
