@@ -377,4 +377,140 @@ describe( 'Missing Transcript Rule', () => {
 		expect( results.violations[ 0 ].nodes.length ).toBe( 1 );
 		expect( results.violations[ 0 ].nodes[ 0 ].target[ 0 ] ).toBe( '#unrelated-youtube-iframe' );
 	} );
+
+	describe( 'Able Player mixed with other media', () => {
+		const wrapper = ( mediaHtml, transcript = 'Spoken words from the video.' ) => `
+			<div class="able-wrapper">
+				<div class="able">
+					<div class="able-media-container">${ mediaHtml }</div>
+				</div>
+				<div class="able-transcript-area">
+					<div class="able-transcript">
+						<div class="able-transcript-container" lang="en">${ transcript }</div>
+					</div>
+				</div>
+			</div>
+		`;
+		const ableVideo = ( id, transcript ) => wrapper( `<video id="${ id }" src="${ id }.mp4"></video>`, transcript );
+		const ableAudio = ( id, transcript ) => wrapper( `<audio id="${ id }" src="${ id }.mp3"></audio>`, transcript );
+		const ableYouTube = ( id, transcript ) => wrapper(
+			`<video id="${ id }" data-youtube-id="abc"></video><iframe id="${ id }-iframe" src="https://www.youtube.com/embed/abc"></iframe>`,
+			transcript
+		);
+		const plainVideo = ( id ) => `<video id="${ id }" src="${ id }.mp4"></video>`;
+		const plainAudio = ( id ) => `<audio id="${ id }" src="${ id }.mp3"></audio>`;
+		const plainYouTube = ( id ) => `<iframe id="${ id }" src="https://www.youtube.com/embed/xyz"></iframe>`;
+		const plainVimeo = ( id ) => `<iframe id="${ id }" src="https://player.vimeo.com/video/123"></iframe>`;
+		const plainLink = ( id ) => `<a id="${ id }" href="${ id }.mp4">Watch</a>`;
+		const externalPlayer = ( id, transcriptId, transcript = 'Spoken words from the video.' ) => `
+			<video id="${ id }" src="${ id }.mp4" data-able-player data-transcript-div="${ transcriptId }"></video>
+			<div id="${ transcriptId }"><div class="able-transcript-container" lang="en">${ transcript }</div></div>
+		`;
+
+		test.each( [
+			{
+				name: 'plain video after an Able Player',
+				html: `<div>${ ableVideo( 'ap' ) }${ plainVideo( 'plain' ) }</div>`,
+				flagged: [ 'plain' ],
+			},
+			{
+				name: 'plain video before an Able Player',
+				html: `<div>${ plainVideo( 'plain' ) }${ ableVideo( 'ap' ) }</div>`,
+				flagged: [ 'plain' ],
+			},
+			{
+				name: 'Able Player between two plain videos',
+				html: `<div>${ plainVideo( 'before' ) }${ ableVideo( 'ap' ) }${ plainVideo( 'after' ) }</div>`,
+				flagged: [ 'before', 'after' ],
+			},
+			{
+				name: 'Able Player audio next to a plain audio',
+				html: `<div>${ ableAudio( 'ap' ) }${ plainAudio( 'plain' ) }</div>`,
+				flagged: [ 'plain' ],
+			},
+			{
+				name: 'Able Player next to plain YouTube, Vimeo, audio and media link',
+				html: `<div>
+					${ plainYouTube( 'yt' ) }${ ableVideo( 'ap' ) }${ plainVimeo( 'vimeo' ) }
+					${ plainAudio( 'audio' ) }${ plainLink( 'link' ) }
+				</div>`,
+				flagged: [ 'yt', 'vimeo', 'audio', 'link' ],
+			},
+			{
+				name: 'Able Player YouTube (video + generated iframe) between unrelated YouTube iframes',
+				html: `<div>${ plainYouTube( 'yt-1' ) }${ ableYouTube( 'ap' ) }${ plainYouTube( 'yt-2' ) }</div>`,
+				flagged: [ 'yt-1', 'yt-2' ],
+			},
+			{
+				name: 'two populated Able Players side by side',
+				html: `<div>${ ableVideo( 'ap-1' ) }${ ableVideo( 'ap-2' ) }</div>`,
+				flagged: [],
+			},
+			{
+				name: 'two Able Players where only the first is empty',
+				html: `<div>${ ableVideo( 'ap-1', '' ) }${ ableVideo( 'ap-2' ) }</div>`,
+				flagged: [ 'ap-1' ],
+			},
+			{
+				name: 'two Able Players where only the second is empty',
+				html: `<div>${ ableVideo( 'ap-1' ) }${ ableVideo( 'ap-2', '' ) }</div>`,
+				flagged: [ 'ap-2' ],
+			},
+			{
+				name: 'Able Player YouTube with an empty transcript flags both its video and iframe',
+				html: `<div>${ ableYouTube( 'ap-1' ) }${ ableYouTube( 'ap-2', '' ) }</div>`,
+				flagged: [ 'ap-2', 'ap-2-iframe' ],
+			},
+			{
+				name: 'mixed Able Player types (video, audio, YouTube) each use their own transcript',
+				html: `<div>${ ableVideo( 'ap-v' ) }${ ableAudio( 'ap-a', '' ) }${ ableYouTube( 'ap-y' ) }</div>`,
+				flagged: [ 'ap-a' ],
+			},
+			{
+				name: 'external transcript player between plain media',
+				html: `<div>${ plainVideo( 'before' ) }${ externalPlayer( 'ap', 'ap-transcript' ) }${ plainYouTube( 'after' ) }</div>`,
+				flagged: [ 'before', 'after' ],
+			},
+			{
+				name: 'external transcript and in-wrapper players each resolve to their own transcript',
+				html: `<div>
+					${ externalPlayer( 'ext-ok', 'ext-ok-transcript' ) }
+					${ externalPlayer( 'ext-empty', 'ext-empty-transcript', '' ) }
+					${ ableVideo( 'wrapped-ok' ) }
+					${ ableVideo( 'wrapped-empty', '' ) }
+				</div>`,
+				flagged: [ 'ext-empty', 'wrapped-empty' ],
+			},
+			{
+				name: 'shortcode-pattern player next to a plain video and an unrelated iframe',
+				html: `<div>
+					<video id="sc_1" src="sc.mp4"></video>
+					<div id="ableplayer-transcript-sc_1"><div class="able-transcript-container">Spoken words.</div></div>
+					${ plainVideo( 'plain' ) }${ plainYouTube( 'yt' ) }
+				</div>`,
+				flagged: [ 'plain', 'yt' ],
+			},
+			{
+				name: 'plain video with its own transcript mention passes while an empty Able Player beside it is flagged',
+				html: `<div>
+					<section>${ plainVideo( 'plain' ) }<p>Transcript available below.</p></section>
+					<section>${ ableVideo( 'ap', '' ) }</section>
+				</div>`,
+				flagged: [ 'ap' ],
+			},
+		] )( '$name', async ( { html, flagged } ) => {
+			document.body.innerHTML = html;
+
+			const results = await axe.run( document.body, {
+				runOnly: [ 'missing_transcript' ],
+			} );
+
+			const flaggedIds = results.violations
+				.flatMap( ( violation ) => violation.nodes )
+				.map( ( node ) => node.target[ 0 ].replace( '#', '' ) )
+				.sort();
+
+			expect( flaggedIds ).toEqual( [ ...flagged ].sort() );
+		} );
+	} );
 } );
