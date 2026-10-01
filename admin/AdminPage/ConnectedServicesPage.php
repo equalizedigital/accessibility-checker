@@ -147,11 +147,11 @@ class ConnectedServicesPage implements PageInterface {
 			<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
 			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 				<?php settings_fields( 'edac_license' ); ?>
-				<table class="form-table">
+				<table class="form-table" role="presentation">
 					<tbody>
 					<tr valign="top">
 						<th scope="row" valign="top">
-							<?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?>
+							<label for="edacp_license_key"><?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?></label>
 						</th>
 						<td>
 						<input
@@ -160,8 +160,9 @@ class ConnectedServicesPage implements PageInterface {
 							type="text"
 							class="regular-text"
 							value="<?php echo esc_attr( $license ); ?>"
+							aria-describedby="edac_license_status"
 						/>
-						<label class="description" for="edacp_license_key">
+						<p class="description" id="edac_license_status">
 							<?php if ( $is_connected ) : ?>
 								<span style="color:green;"> <?php esc_html_e( 'active', 'accessibility-checker' ); ?></span>
 							<?php elseif ( false !== $status && 'expired' === $status ) : ?>
@@ -169,9 +170,9 @@ class ConnectedServicesPage implements PageInterface {
 							<?php else : ?>
 								<?php esc_html_e( 'Enter your license key', 'accessibility-checker' ); ?>
 							<?php endif; ?>
-						</label>
-					</td>
-				</tr>
+						</p>
+						</td>
+					</tr>
 				<tr valign="top">
 					<th scope="row" valign="top"></th>
 					<td>
