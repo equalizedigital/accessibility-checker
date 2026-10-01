@@ -8,6 +8,7 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Settings;
+use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
 
 /**
  * Class that initializes and handles enqueueing styles and scripts for the frontend.
@@ -164,6 +165,13 @@ class Enqueue_Frontend {
 			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
 			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
 
+			// Mirrors the dismiss-issue REST permission check: "any post" dismissers can always
+			// dismiss, "own issues" dismissers only where they can edit this post.
+			$can_dismiss = is_user_logged_in() && (
+				edac_user_can_dismiss_issues() ||
+				( edac_user_can_dismiss_own_issues() && current_user_can( 'edit_post', $post_id ) )
+			);
+
 			wp_localize_script(
 				'edac-frontend-highlighter-app',
 				'edacFrontendHighlighterApp',
@@ -185,6 +193,9 @@ class Enqueue_Frontend {
 					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, EDAC_PLUGIN_URL . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
 					'landmarkTypes'    => edac_get_landmark_types(),
+					'canDismiss'       => $can_dismiss,
+					'canDismissGlobal' => is_user_logged_in() && edac_is_pro() && edac_user_can_dismiss_issues_globally(),
+					'dismissReasons'   => $can_dismiss ? IgnoreUI::get_reasons() : [],
 				]
 			);
 
