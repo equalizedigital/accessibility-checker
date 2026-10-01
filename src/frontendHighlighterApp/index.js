@@ -1406,9 +1406,11 @@ class AccessibilityCheckerHighlight {
 				}
 			} );
 
+			// Submitting the form (e.g. Enter on a radio) uses the single action when the user
+			// has it; a global-only user's only action is the global one.
 			form.addEventListener( 'submit', ( event ) => {
 				event.preventDefault();
-				this.handleDismiss( issue, true, false, container );
+				this.handleDismiss( issue, true, ! app.canDismiss, container );
 			} );
 
 			form.querySelector( '[data-scope="global"]' )?.addEventListener( 'click', () => {

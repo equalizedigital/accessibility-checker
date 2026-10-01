@@ -46,8 +46,9 @@ export const isIssueGloballyDismissed = ( issue ) => String( issue?.ignre_global
  * @param {Object}  args                  Arguments.
  * @param {Object}  args.issue            The issue being shown.
  * @param {Object}  args.reasons          Dismiss reasons keyed by slug, each with label and description.
- * @param {boolean} args.canDismiss       Whether the user may dismiss/reopen this issue.
- * @param {boolean} args.canDismissGlobal Whether the user may dismiss/reopen across all pages.
+ * @param {boolean} args.canDismiss       Whether the user may dismiss/reopen this issue on this page.
+ * @param {boolean} args.canDismissGlobal Whether the user may dismiss/reopen across all pages. Independent of
+ *                                        canDismiss: a global-only user gets the form with only the global action.
  * @return {string} The markup, or an empty string when there is nothing to show.
  */
 export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, canDismissGlobal = false } ) {
@@ -59,7 +60,7 @@ export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, c
 		return buildDismissedMarkup( { issue, reasons, canDismiss, canDismissGlobal } );
 	}
 
-	if ( ! canDismiss ) {
+	if ( ! canDismiss && ! canDismissGlobal ) {
 		return '';
 	}
 
@@ -90,7 +91,7 @@ export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, c
 			<p id="${ DISMISS_COMMENT_ID }-help" class="edac-highlight-dismiss-help">${ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }</p>
 			<p class="edac-highlight-dismiss-error" role="alert"></p>
 			<div class="edac-highlight-dismiss-actions">
-				<button type="submit" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit" data-scope="single">${ __( 'Dismiss Issue', 'accessibility-checker' ) }</button>
+				${ canDismiss ? `<button type="submit" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit" data-scope="single">${ __( 'Dismiss Issue', 'accessibility-checker' ) }</button>` : '' }
 				${ canDismissGlobal ? `<button type="button" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit edac-highlight-dismiss-submit--global" data-scope="global">${ __( 'Dismiss Globally', 'accessibility-checker' ) }</button>` : '' }
 			</div>
 		</form>

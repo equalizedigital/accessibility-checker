@@ -74,6 +74,15 @@ describe( 'buildDismissMarkup', () => {
 			expect( withGlobal.querySelector( '[data-scope="global"]' ) ).not.toBeNull();
 		} );
 
+		test( 'a global-only user gets the form with only the global action', () => {
+			const el = render( buildDismissMarkup( { issue, reasons, canDismiss: false, canDismissGlobal: true } ) );
+
+			expect( el.querySelector( 'form' ) ).not.toBeNull();
+			expect( el.querySelectorAll( 'input[type="radio"]' ) ).toHaveLength( 2 );
+			expect( el.querySelector( '[data-scope="single"]' ) ).toBeNull();
+			expect( el.querySelector( '[data-scope="global"]' ) ).not.toBeNull();
+		} );
+
 		test( 'escapes reason labels from the filterable reasons list', () => {
 			const el = render( buildDismissMarkup( {
 				issue,

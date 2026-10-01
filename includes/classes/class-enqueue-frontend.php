@@ -172,6 +172,10 @@ class Enqueue_Frontend {
 				( edac_user_can_dismiss_own_issues() && current_user_can( 'edit_post', $post_id ) )
 			);
 
+			// Global dismissal is its own capability and doesn't imply per-post dismissal,
+			// so a global-only user gets the form with just the global action.
+			$can_dismiss_global = is_user_logged_in() && edac_is_pro() && edac_user_can_dismiss_issues_globally();
+
 			wp_localize_script(
 				'edac-frontend-highlighter-app',
 				'edacFrontendHighlighterApp',
@@ -194,8 +198,8 @@ class Enqueue_Frontend {
 					'adminThemeColor'  => self::get_admin_theme_color(),
 					'landmarkTypes'    => edac_get_landmark_types(),
 					'canDismiss'       => $can_dismiss,
-					'canDismissGlobal' => is_user_logged_in() && edac_is_pro() && edac_user_can_dismiss_issues_globally(),
-					'dismissReasons'   => $can_dismiss ? IgnoreUI::get_reasons() : [],
+					'canDismissGlobal' => $can_dismiss_global,
+					'dismissReasons'   => ( $can_dismiss || $can_dismiss_global ) ? IgnoreUI::get_reasons() : [],
 				]
 			);
 
