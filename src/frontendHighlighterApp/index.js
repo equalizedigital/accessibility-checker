@@ -1986,7 +1986,8 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Reset the panel's issue state without contacting the server: the selected
-	 * element styling, the issue description, the pagination and the nav buttons.
+	 * element styling, the issue description, the pagination, the nav buttons and
+	 * the selected issue in the URL.
 	 * Used when there are no issues left to show.
 	 */
 	clearIssueState() {
@@ -2012,6 +2013,11 @@ class AccessibilityCheckerHighlight {
 		}
 		this.nextButton.disabled = true;
 		this.previousButton.disabled = true;
+
+		// The selected issue is gone, so drop it from the shareable URL too.
+		const url = new URL( window.location.href );
+		url.searchParams.delete( 'edac' );
+		history.replaceState( null, '', url.toString() );
 
 		this.descriptionClose();
 	}
@@ -2058,11 +2064,6 @@ class AccessibilityCheckerHighlight {
 				this._issuesCleared = true;
 				this.removeHighlightButtons();
 				this.clearIssueState();
-
-				// Remove the URL parameter.
-				const url = new URL( window.location.href );
-				url.searchParams.delete( 'edac' );
-				history.replaceState( null, '', url.toString() );
 
 				this.showIssueCount();
 				if ( summary ) {

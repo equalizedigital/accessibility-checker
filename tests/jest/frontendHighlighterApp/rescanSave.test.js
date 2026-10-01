@@ -168,6 +168,17 @@ describe( 'highlighter rescan saving', () => {
 		expect( emptyView.style.display ).toBe( 'block' );
 	} );
 
+	test( 'removes the selected issue from the URL when a rescan leaves no issues', async () => {
+		window.history.replaceState( null, '', '/?edac=7&other=keep' );
+
+		await rescan( { violations: [] } );
+
+		const params = new URL( window.location.href ).searchParams;
+		expect( params.has( 'edac' ) ).toBe( false );
+		expect( params.get( 'other' ) ).toBe( 'keep' );
+		window.history.replaceState( null, '', '/' );
+	} );
+
 	test( 'does not announce a clean rescan when the save is rejected', async () => {
 		window.fetch.mockResolvedValue( { json: () => Promise.resolve( { success: false } ) } );
 
