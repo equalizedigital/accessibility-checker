@@ -72,7 +72,7 @@ class Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath, landmark, landmark_selector FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, ignre_user, ignre_date, ignre_reason, ignre_comment, ignre_global, object, ruletype, selector, ancestry, xpath, landmark, landmark_selector FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
 			return null;
 		}
@@ -137,8 +137,9 @@ class Frontend_Highlight {
 
 		$rules = edac_register_rules();
 
-		$issues = [];
-		$fixes  = [];
+		$issues                     = [];
+		$fixes                      = [];
+		$can_view_dismissal_details = is_user_logged_in();
 		foreach ( $results as $result ) {
 			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
@@ -169,6 +170,19 @@ class Frontend_Highlight {
 			$array['severity']          = $rule[0]['severity'] ?? '';
 			$array['landmark']          = $result['landmark'] ?? '';
 			$array['landmark_selector'] = $result['landmark_selector'] ?? '';
+			$array['base_rule_type']    = $rule[0]['rule_type'];
+			$array['ignre_global']      = (int) ( $result['ignre_global'] ?? 0 );
+
+			// Dismissal details (who, when, why) are only shown to logged-in users. Logged-out
+			// visitors can only reach this endpoint via the visibility filter and can't dismiss.
+			if ( $can_view_dismissal_details && $result['ignre'] ) {
+				$ignre_user = ! empty( $result['ignre_user'] ) ? get_userdata( (int) $result['ignre_user'] ) : false;
+
+				$array['ignre_reason']    = $result['ignre_reason'] ?? '';
+				$array['ignre_comment']   = html_entity_decode( $result['ignre_comment'] ?? '', ENT_QUOTES | ENT_HTML5 );
+				$array['ignre_user_name'] = $ignre_user ? $ignre_user->user_login : '';
+				$array['ignre_date']      = edac_format_datetime_from_utc( (string) ( $result['ignre_date'] ?? '' ) );
+			}
 
 			$issues[] = $array;
 

@@ -10,6 +10,7 @@ import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesMod
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
 import { setupElementorSaveListener } from './setupElementorSaveListener';
 import { buildDescriptionTitle } from './descriptionTitle';
+import { applyDismissToIssues, buildDismissMarkup, DISMISS_COMMENT_ID, isIssueGloballyDismissed, requestDismiss, syncProGlobalIgnore } from './dismissIssue';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -626,6 +627,7 @@ class AccessibilityCheckerHighlight {
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
                                                         <div id="edac-highlight-panel-description-fix" class="edac-highlight-panel-description-fix"></div>
+                                                        <div id="edac-highlight-panel-description-dismiss-container" class="edac-highlight-panel-description-dismiss-container"></div>
                                                 </div>
                                         </div>
                                         <div class="edac-highlight-panel-controls-footer">
@@ -1339,6 +1341,8 @@ class AccessibilityCheckerHighlight {
 				} );
 			}
 
+			this.renderDismiss( matchingObj );
+
 			// set explanation toggle listener
 			const explanationToggle = document.querySelector( '.edac-highlight-panel-description-explanation-toggle' );
 			if ( explanationToggle ) {
@@ -1369,6 +1373,143 @@ class AccessibilityCheckerHighlight {
 				issueContent.style.display = 'block';
 			}
 		}
+	}
+
+	/**
+	 * Render the dismiss/reopen controls for an issue and bind their listeners.
+	 *
+	 * @param {Object} issue The issue being shown.
+	 */
+	renderDismiss( issue ) {
+		const container = document.getElementById( 'edac-highlight-panel-description-dismiss-container' );
+		if ( ! container ) {
+			return;
+		}
+
+		const app = window.edacFrontendHighlighterApp || {};
+		container.innerHTML = buildDismissMarkup( {
+			issue,
+			reasons: app.dismissReasons,
+			canDismiss: Boolean( app.canDismiss ),
+			canDismissGlobal: Boolean( app.canDismissGlobal ),
+		} );
+
+		const toggle = container.querySelector( '.edac-highlight-panel-description-dismiss-toggle' );
+		const form = container.querySelector( '.edac-highlight-dismiss-form' );
+		if ( toggle && form ) {
+			toggle.addEventListener( 'click', () => {
+				const expanded = toggle.getAttribute( 'aria-expanded' ) !== 'true';
+				toggle.setAttribute( 'aria-expanded', String( expanded ) );
+				form.hidden = ! expanded;
+				if ( expanded ) {
+					form.querySelector( 'input[type="radio"]:checked, input[type="radio"]' )?.focus();
+				}
+			} );
+
+			// Submitting the form (Enter on a radio, or the submit button) uses the single action
+			// when the user has it; a global-only user's only action is the global one, and its
+			// button is the submit button.
+			form.addEventListener( 'submit', ( event ) => {
+				event.preventDefault();
+				this.handleDismiss( issue, true, ! app.canDismiss, container );
+			} );
+
+			if ( app.canDismiss ) {
+				form.querySelector( '[data-scope="global"]' )?.addEventListener( 'click', () => {
+					this.handleDismiss( issue, true, true, container );
+				} );
+			}
+		}
+
+		container.querySelector( '.edac-highlight-dismiss-reopen' )?.addEventListener( 'click', () => {
+			this.handleDismiss( issue, false, isIssueGloballyDismissed( issue ), container );
+		} );
+	}
+
+	/**
+	 * Dismiss or reopen an issue, then update the panel and highlights in place.
+	 *
+	 * @param {Object}      issue     The issue to act on.
+	 * @param {boolean}     dismiss   True to dismiss, false to reopen.
+	 * @param {boolean}     global    Apply to every matching instance on every page.
+	 * @param {HTMLElement} container The dismiss controls container.
+	 */
+	async handleDismiss( issue, dismiss, global, container ) {
+		const app = window.edacFrontendHighlighterApp || {};
+		const buttons = container.querySelectorAll( 'button' );
+		const errorSlot = container.querySelector( '.edac-highlight-dismiss-error' );
+		const reason = container.querySelector( 'input[name="edac-highlight-dismiss-reason"]:checked' )?.value || '';
+		const comment = container.querySelector( '#' + DISMISS_COMMENT_ID )?.value.trim() || '';
+
+		buttons.forEach( ( button ) => {
+			button.disabled = true;
+		} );
+		if ( errorSlot ) {
+			errorSlot.textContent = '';
+		}
+		this.announce( dismiss
+			? __( 'Dismissing...', 'accessibility-checker' )
+			: __( 'Reopening...', 'accessibility-checker' )
+		);
+
+		let response;
+		try {
+			response = await requestDismiss( {
+				restUrl: app.restUrl,
+				restNonce: app.restNonce,
+				issueId: issue.id,
+				dismiss,
+				reason,
+				comment,
+				global,
+			} );
+		} catch ( err ) {
+			buttons.forEach( ( button ) => {
+				button.disabled = false;
+			} );
+			if ( errorSlot ) {
+				errorSlot.textContent = err.message;
+			}
+			return;
+		}
+
+		let syncError = '';
+		if ( global && app.globalIgnoreUrl ) {
+			try {
+				await syncProGlobalIgnore( { url: app.globalIgnoreUrl, restNonce: app.restNonce, issueId: issue.id, enable: dismiss } );
+			} catch ( err ) {
+				syncError = err.message;
+			}
+		}
+
+		const updated = applyDismissToIssues( this.issues, issue, { dismiss, global, reason, comment, response } );
+		updated.forEach( ( { issue: updatedIssue, previousRuleType } ) => {
+			updatedIssue.tooltip?.classList.replace(
+				'edac-highlight-btn-' + previousRuleType,
+				'edac-highlight-btn-' + updatedIssue.rule_type
+			);
+		} );
+
+		this.showIssueCount();
+		this.descriptionOpen( issue.id );
+
+		// The controls were re-rendered, so move focus to the new primary control.
+		const nextFocus = document.querySelector( '#edac-highlight-panel-description-dismiss-container' )
+			?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
+		( nextFocus || this.closePanel )?.focus();
+
+		if ( syncError ) {
+			const slot = document.querySelector( '#edac-highlight-panel-description-dismiss-container .edac-highlight-dismiss-error' );
+			if ( slot ) {
+				slot.textContent = syncError;
+			}
+			return;
+		}
+
+		this.announce( dismiss
+			? __( 'Issue dismissed successfully.', 'accessibility-checker' )
+			: __( 'Issue reopened successfully.', 'accessibility-checker' )
+		);
 	}
 
 	/**
