@@ -10,7 +10,7 @@ import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesMod
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
 import { setupElementorSaveListener } from './setupElementorSaveListener';
 import { buildDescriptionTitle } from './descriptionTitle';
-import { applyDismissToIssues, buildDismissMarkup, DISMISS_COMMENT_ID, isIssueGloballyDismissed, requestDismiss, syncProGlobalIgnore } from './dismissIssue';
+import { applyDismissToIssues, buildDismissMarkup, DISMISS_COMMENT_ID, isIssueGloballyDismissed, requestDismiss } from './dismissIssue';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -1473,15 +1473,6 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
-		let syncError = '';
-		if ( global && app.globalIgnoreUrl ) {
-			try {
-				await syncProGlobalIgnore( { url: app.globalIgnoreUrl, restNonce: app.restNonce, issueId: issue.id, enable: dismiss } );
-			} catch ( err ) {
-				syncError = err.message;
-			}
-		}
-
 		const updated = applyDismissToIssues( this.issues, issue, { dismiss, global, reason, comment, response } );
 		updated.forEach( ( { issue: updatedIssue, previousRuleType } ) => {
 			updatedIssue.tooltip?.classList.replace(
@@ -1497,14 +1488,6 @@ class AccessibilityCheckerHighlight {
 		const nextFocus = document.querySelector( '#edac-highlight-panel-description-dismiss-container' )
 			?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
 		( nextFocus || this.closePanel )?.focus();
-
-		if ( syncError ) {
-			const slot = document.querySelector( '#edac-highlight-panel-description-dismiss-container .edac-highlight-dismiss-error' );
-			if ( slot ) {
-				slot.textContent = syncError;
-			}
-			return;
-		}
 
 		this.announce( dismiss
 			? __( 'Issue dismissed successfully.', 'accessibility-checker' )
