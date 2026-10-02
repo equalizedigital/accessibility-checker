@@ -164,4 +164,119 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 
 		$this->assertSame( $expected, $next_send_date );
 	}
+
+	/**
+	 * Top issues are shown most severe first, then by count, with severity labels.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_orders_by_severity_then_count() {
+		$rules  = [
+			'low_rule'      => [
+				'title'    => 'Low rule',
+				'severity' => 4,
+			],
+			'critical_few'  => [
+				'title'    => 'Critical few',
+				'severity' => 1,
+			],
+			'critical_many' => [
+				'title'    => 'Critical many',
+				'severity' => 1,
+			],
+			'high_rule'     => [
+				'title'    => 'High rule',
+				'severity' => 2,
+			],
+		];
+		$issues = [
+			[
+				'rule_slug'   => 'low_rule',
+				'issue_count' => 99,
+			],
+			[
+				'rule_slug'   => 'critical_few',
+				'issue_count' => 2,
+			],
+			[
+				'rule_slug'   => 'high_rule',
+				'issue_count' => 5,
+			],
+			[
+				'rule_slug'   => 'critical_many',
+				'issue_count' => 7,
+			],
+		];
+
+		$result = $this->invoke_private_method( 'format_top_issues', [ $issues, $rules ] );
+
+		$this->assertSame(
+			[ 'Critical many', 'Critical few', 'High rule', 'Low rule' ],
+			array_column( $result, 'title' )
+		);
+		$this->assertSame( [ 7, 2, 5, 99 ], array_column( $result, 'count' ) );
+		$this->assertSame( [ 'Critical', 'Critical', 'High', 'Low' ], array_column( $result, 'severity' ) );
+		$this->assertArrayNotHasKey( 'rank', $result[0] );
+	}
+
+	/**
+	 * Only the top five rows are returned, and only the first ten inputs are considered.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_caps_output_at_five_from_first_ten() {
+		$rules  = [];
+		$issues = [];
+		for ( $i = 1; $i <= 12; $i++ ) {
+			$rules[ 'rule_' . $i ] = [
+				'title'    => 'Rule ' . $i,
+				'severity' => 3,
+			];
+			$issues[]              = [
+				'rule_slug'   => 'rule_' . $i,
+				'issue_count' => $i,
+			];
+		}
+
+		$result = $this->invoke_private_method( 'format_top_issues', [ $issues, $rules ] );
+
+		// Rules 11 and 12 are beyond the first ten inputs, so the top five are rules 10 to 6.
+		$this->assertSame(
+			[ 'Rule 10', 'Rule 9', 'Rule 8', 'Rule 7', 'Rule 6' ],
+			array_column( $result, 'title' )
+		);
+	}
+
+	/**
+	 * Rules missing from the index fall back to the slug and an Unknown severity.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_handles_unknown_rules() {
+		$result = $this->invoke_private_method(
+			'format_top_issues',
+			[
+				[
+					[
+						'rule_slug'   => 'mystery_rule',
+						'issue_count' => '3',
+					],
+				],
+				[],
+			]
+		);
+
+		$this->assertSame( 'mystery_rule', $result[0]['title'] );
+		$this->assertSame( 'Unknown', $result[0]['severity'] );
+		$this->assertSame( 3, $result[0]['count'] );
+	}
+
+	/**
+	 * No issues gives an empty list.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_empty() {
+		$this->assertSame( [], $this->invoke_private_method( 'format_top_issues', [ [], [] ] ) );
+	}
 }
