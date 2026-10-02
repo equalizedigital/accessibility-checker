@@ -42,6 +42,14 @@ if ( edacFrontendFixes?.underline?.enabled ) {
 	} );
 }
 
+
+if ( edacFrontendFixes?.remove_text_justification?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "remove-text-justification" */ './Fixes/removeTextJustificationFix' ).then( ( removeTextJustificationFix ) => {
+		removeTextJustificationFix.default();
+	} );
+}
+
 if ( edacFrontendFixes?.prevent_links_opening_new_windows?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningNewWindowFix ) => {
