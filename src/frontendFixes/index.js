@@ -55,3 +55,10 @@ if ( edacFrontendFixes?.new_window_warning?.enabled ) {
 		newWindowWarning.default();
 	} );
 }
+
+if ( edacFrontendFixes?.remove_empty_paragraph_tags?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "remove-empty-paragraph-tags" */ './Fixes/removeEmptyParagraphTagsFix' ).then( ( removeEmptyParagraphTagsFix ) => {
+		removeEmptyParagraphTagsFix.default();
+	} );
+}
