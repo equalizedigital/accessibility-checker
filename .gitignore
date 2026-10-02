@@ -24,6 +24,13 @@ dist
 # Exclude coverage reports
 coverage/
 
+# Playwright artifacts — npm run test:e2e's outputDir resolves relative to the
+# repo root (the cwd it's invoked from), not tests/e2e/, so these are separate
+# from tests/e2e/.gitignore rather than redundant with it.
+/test-results/
+/playwright-report/
+/blob-report/
+
 # Local only working fules
 *.log
 *.sql
