@@ -207,6 +207,33 @@ export async function requestDismiss( { restUrl, restNonce, issueId, dismiss, re
 }
 
 /**
+ * Add or remove the issue's rule + markup in Pro's global ignores table, so later
+ * scans of other pages ignore it (or stop ignoring it).
+ *
+ * @param {Object}  args           Arguments.
+ * @param {string}  args.url       Pro global-ignore route URL.
+ * @param {string}  args.restNonce REST nonce.
+ * @param {string}  args.issueId   The issue id.
+ * @param {boolean} args.enable    True after a global dismiss, false after a global reopen.
+ * @return {Promise<void>} Resolves when saved, rejects with an Error.
+ */
+export async function syncProGlobalIgnore( { url, restNonce, issueId, enable } ) {
+	const response = await fetch( url, {
+		method: 'POST',
+		credentials: 'same-origin',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-WP-Nonce': restNonce,
+		},
+		body: JSON.stringify( { issue_id: Number( issueId ), action: enable ? 'enable' : 'disable' } ),
+	} );
+
+	if ( ! response.ok ) {
+		throw new Error( __( 'The issue was updated, but the setting that applies it to future scans could not be saved. Please try again.', 'accessibility-checker' ) );
+	}
+}
+
+/**
  * Update local issue state after a successful dismiss/reopen.
  *
  * For a global action every issue on the page with the same rule and markup is

@@ -199,6 +199,9 @@ class Enqueue_Frontend {
 					'landmarkTypes'    => edac_get_landmark_types(),
 					'canDismiss'       => $can_dismiss,
 					'canDismissGlobal' => $can_dismiss_global,
+					// Pro's global ignores table is what makes later scans ignore the issue; the
+					// highlighter updates it after a global dismiss or reopen, as the Issues Explorer does.
+					'globalIgnoreUrl'  => $can_dismiss_global ? esc_url_raw( rest_url( 'accessibility-checker-pro/v1/global-ignore' ) ) : '',
 					'dismissReasons'   => ( $can_dismiss || $can_dismiss_global ) ? IgnoreUI::get_reasons() : [],
 				]
 			);
