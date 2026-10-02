@@ -55,6 +55,15 @@ describe( 'buildDismissMarkup', () => {
 			expect( el.querySelector( `label[for="edac-highlight-dismiss-comment"]` ) ).not.toBeNull();
 		} );
 
+		test( 'the global button is the submit button only when it is the sole action', () => {
+			const both = render( buildDismissMarkup( { issue, reasons, canDismiss: true, canDismissGlobal: true } ) );
+			expect( both.querySelector( '[data-scope="single"]' ).type ).toBe( 'submit' );
+			expect( both.querySelector( '[data-scope="global"]' ).type ).toBe( 'button' );
+
+			const globalOnly = render( buildDismissMarkup( { issue, reasons, canDismiss: false, canDismissGlobal: true } ) );
+			expect( globalOnly.querySelector( '[data-scope="global"]' ).type ).toBe( 'submit' );
+		} );
+
 		test( 'pre-selects the previous reason and comment after a reopen', () => {
 			const el = render( buildDismissMarkup( {
 				issue: { ...issue, ignre_reason: 'false_positive', ignre_comment: 'Decorative' },
@@ -201,6 +210,13 @@ describe( 'applyDismissToIssues', () => {
 		{ id: '2', slug: 'img_alt_missing', object: '<img src="a.png">', rule_type: 'error', base_rule_type: 'error', ignored: '0' },
 		{ id: '3', slug: 'img_alt_missing', object: '<img src="b.png">', rule_type: 'error', base_rule_type: 'error', ignored: '0' },
 	];
+
+	test( 'a dismiss shows the comment as the server stored it, decoded once', () => {
+		const issues = makeIssues();
+		applyDismissToIssues( issues, issues[ 0 ], { dismiss: true, global: false, reason: 'accessible', comment: 'PR <b>bold</b> & <img src=x>', response: { ignre_comment: 'PR &lt;b&gt;bold&lt;/b&gt; &amp; ' } } );
+
+		expect( issues[ 0 ].ignre_comment ).toBe( 'PR <b>bold</b> & ' );
+	} );
 
 	test( 'a single dismiss only changes the target issue', () => {
 		const issues = makeIssues();

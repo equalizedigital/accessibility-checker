@@ -72,9 +72,14 @@ describe( 'frontend highlighter dismiss controls for a global-only user', () => 
 			ok: true,
 			json: () => Promise.resolve( { success: true, ignre_global: 1 } ),
 		} );
-		// Enter on a radio submits the form without a submit button being clicked.
-		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+		// Global is the only action, so its button is the form's submit button: Enter on a radio
+		// and clicking it both go through the form's submit event, once.
+		const globalButton = document.querySelector( '[data-scope="global"]' );
+		expect( globalButton.type ).toBe( 'submit' );
+		globalButton.click();
 		await flush();
+
+		expect( window.fetch ).toHaveBeenCalledTimes( 1 );
 
 		expect( JSON.parse( window.fetch.mock.calls[ 0 ][ 1 ].body ) ).toMatchObject( {
 			action: 'dismiss',

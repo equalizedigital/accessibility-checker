@@ -25,6 +25,19 @@ export const escapeHtml = ( value ) => String( value ?? '' )
 	.replace( /'/g, '&#039;' );
 
 /**
+ * Decode the HTML entities the server stores comments with, so they can be
+ * escaped once for display (the issues load decodes them the same way).
+ *
+ * @param {*} value The stored value.
+ * @return {string} The decoded string.
+ */
+export const decodeEntities = ( value ) => {
+	const textarea = document.createElement( 'textarea' );
+	textarea.innerHTML = String( value ?? '' );
+	return textarea.value;
+};
+
+/**
  * Whether an issue is currently dismissed.
  *
  * @param {Object} issue The issue.
@@ -92,7 +105,7 @@ export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, c
 			<p class="edac-highlight-dismiss-error" role="alert"></p>
 			<div class="edac-highlight-dismiss-actions">
 				${ canDismiss ? `<button type="submit" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit" data-scope="single">${ __( 'Dismiss Issue', 'accessibility-checker' ) }</button>` : '' }
-				${ canDismissGlobal ? `<button type="button" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit edac-highlight-dismiss-submit--global" data-scope="global">${ __( 'Dismiss Globally', 'accessibility-checker' ) }</button>` : '' }
+				${ canDismissGlobal ? `<button type="${ canDismiss ? 'button' : 'submit' }" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit edac-highlight-dismiss-submit--global" data-scope="global">${ __( 'Dismiss Globally', 'accessibility-checker' ) }</button>` : '' }
 			</div>
 		</form>
 	</div>`;
@@ -224,7 +237,7 @@ export function applyDismissToIssues( issues, target, { dismiss, global, reason 
 			issue.ignored = '1';
 			issue.rule_type = 'ignored';
 			issue.ignre_reason = response.ignre_reason || reason;
-			issue.ignre_comment = comment;
+			issue.ignre_comment = 'string' === typeof response.ignre_comment ? decodeEntities( response.ignre_comment ) : comment;
 			issue.ignre_user_name = response.ignre_user_name || '';
 			issue.ignre_date = response.ignre_date || '';
 			issue.ignre_global = global ? 1 : 0;

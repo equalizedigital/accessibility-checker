@@ -1406,16 +1406,19 @@ class AccessibilityCheckerHighlight {
 				}
 			} );
 
-			// Submitting the form (e.g. Enter on a radio) uses the single action when the user
-			// has it; a global-only user's only action is the global one.
+			// Submitting the form (Enter on a radio, or the submit button) uses the single action
+			// when the user has it; a global-only user's only action is the global one, and its
+			// button is the submit button.
 			form.addEventListener( 'submit', ( event ) => {
 				event.preventDefault();
 				this.handleDismiss( issue, true, ! app.canDismiss, container );
 			} );
 
-			form.querySelector( '[data-scope="global"]' )?.addEventListener( 'click', () => {
-				this.handleDismiss( issue, true, true, container );
-			} );
+			if ( app.canDismiss ) {
+				form.querySelector( '[data-scope="global"]' )?.addEventListener( 'click', () => {
+					this.handleDismiss( issue, true, true, container );
+				} );
+			}
 		}
 
 		container.querySelector( '.edac-highlight-dismiss-reopen' )?.addEventListener( 'click', () => {
