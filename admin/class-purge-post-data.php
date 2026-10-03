@@ -19,21 +19,35 @@ class Purge_Post_Data {
 	 * Purge deleted posts
 	 *
 	 * @since 1.10.0
+	 * @since 1.51.0 Added the `$preserved_rules` parameter.
 	 *
-	 * @param int $post_id ID of the post.
+	 * @param int      $post_id         ID of the post.
+	 * @param string[] $preserved_rules Optional. Rule slugs whose issues are kept. Default empty, which deletes every issue.
 	 *
 	 * @return void
 	 */
-	public static function delete_post( int $post_id ) {
+	public static function delete_post( int $post_id, array $preserved_rules = [] ) {
 		global $wpdb;
+
+		$preserved_rules = array_values( array_filter( array_map( 'strval', $preserved_rules ) ) );
+
+		$sql    = 'DELETE FROM %i WHERE postid = %d and siteid = %d';
+		$params = [
+			edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
+			$post_id,
+			get_current_blog_id(),
+		];
+
+		if ( $preserved_rules ) {
+			$sql   .= ' AND rule NOT IN (' . implode( ', ', array_fill( 0, count( $preserved_rules ), '%s' ) ) . ')';
+			$params = array_merge( $params, $preserved_rules );
+		}
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
 		$wpdb->query(
 			$wpdb->prepare(
-				'DELETE FROM %i WHERE postid = %d and siteid = %d',
-				edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' ),
-				$post_id,
-				get_current_blog_id()
+				$sql, // phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- Placeholders are built from a fixed string and a count of values.
+				$params
 			)
 		);
 

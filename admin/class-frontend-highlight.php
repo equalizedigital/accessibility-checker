@@ -170,6 +170,22 @@ class Frontend_Highlight {
 			$array['landmark']          = $result['landmark'] ?? '';
 			$array['landmark_selector'] = $result['landmark_selector'] ?? '';
 
+			/**
+			 * Filters an issue before it is sent to the frontend highlighter.
+			 *
+			 * The issue's text comes from its rule. Use this to show text that belongs
+			 * to the individual issue instead, such as an issue an auditor added by hand.
+			 * `rule_title`, `summary`, `wcag_title`, `why_it_matters` and `how_to_fix`
+			 * are rendered as HTML, so escape anything that isn't meant as markup.
+			 *
+			 * @since 1.51.0
+			 *
+			 * @param array $issue   The issue as sent to the highlighter.
+			 * @param array $result  The issue's database row: id, rule, ignre, object, ruletype, selector, ancestry, xpath, landmark and landmark_selector.
+			 * @param int   $post_id The ID of the post the issue is on.
+			 */
+			$array = apply_filters( 'edac_filter_frontend_highlight_issue', $array, $result, $post_id );
+
 			$issues[] = $array;
 
 			if ( ! isset( $fixes[ $rule[0]['slug'] ] ) ) {

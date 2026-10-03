@@ -431,8 +431,22 @@ class REST_Api {
 
 		// if flush is set then clear the issues for that ID.
 		if ( isset( $json['flush'] ) ) {
+			/**
+			 * Filters the rules whose issues are kept when a post's issues are cleared.
+			 *
+			 * Clearing removes every issue for the post so a rescan starts fresh. Issues
+			 * that a scan can't find again, such as ones an auditor added by hand, would
+			 * be lost for good, so their rules can be listed here to keep them.
+			 *
+			 * @since 1.51.0
+			 *
+			 * @param string[] $rules   Rule slugs whose issues are kept. Default empty.
+			 * @param int      $post_id The ID of the post being cleared.
+			 */
+			$preserved_rules = (array) apply_filters( 'edac_flush_preserved_rules', [], $post_id );
+
 			// purge the issues for this post.
-			Purge_Post_Data::delete_post( $post_id );
+			Purge_Post_Data::delete_post( $post_id, $preserved_rules );
 		}
 
 		return new \WP_REST_Response(
