@@ -126,4 +126,39 @@ class FrontendHighlightAjaxTest extends WP_Ajax_UnitTestCase {
 		$response = json_decode( $this->_last_response, true );
 		$this->assertTrue( $response['success'] );
 	}
+
+	/**
+	 * The edac_filter_frontend_highlight_issue filter can change an issue's
+	 * fields and receives the database row and post ID.
+	 */
+	public function testIssueFilterChangesIssueData(): void {
+		edac_ignore_capability()->sync_matrix( [ 'edac_view_frontend_highlighter' => [ 'editor' ] ] );
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'editor' ] ) );
+
+		$received = [];
+		$filter   = static function ( $issue, $result, $post_id ) use ( &$received ) {
+			$received            = [ $result['rule'], $post_id ];
+			$issue['rule_title'] = 'Filtered title';
+			return $issue;
+		};
+		add_filter( 'edac_filter_frontend_highlight_issue', $filter, 10, 3 );
+
+		$_POST['nonce']   = wp_create_nonce( 'frontend-highlighter' );
+		$_POST['post_id'] = self::$post_id;
+
+		try {
+			$this->_handleAjax( 'edac_frontend_highlight_ajax' );
+		} catch ( WPAjaxDieContinueException $exception ) {
+			$this->assertNotEmpty( $this->_last_response );
+		} finally {
+			remove_filter( 'edac_filter_frontend_highlight_issue', $filter, 10 );
+		}
+
+		$response = json_decode( $this->_last_response, true );
+		$this->assertTrue( $response['success'] );
+
+		$issues = json_decode( $response['data'], true )['issues'];
+		$this->assertSame( 'Filtered title', $issues[0]['rule_title'] );
+		$this->assertSame( [ 'empty_paragraph_tag', self::$post_id ], $received );
+	}
 }
