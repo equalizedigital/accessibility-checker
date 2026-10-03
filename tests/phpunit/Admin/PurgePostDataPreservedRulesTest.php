@@ -105,6 +105,17 @@ class PurgePostDataPreservedRulesTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A rule slug of "0" is kept, not dropped as falsy.
+	 */
+	public function test_delete_post_keeps_zero_slug(): void {
+		$this->insert_issue( $this->post_id, '0' );
+
+		Purge_Post_Data::delete_post( $this->post_id, [ '0' ] );
+
+		$this->assertSame( [ '0' ], $this->remaining_rules( $this->post_id ) );
+	}
+
+	/**
 	 * Other posts' issues are untouched.
 	 */
 	public function test_delete_post_only_affects_the_given_post(): void {
@@ -139,6 +150,53 @@ class PurgePostDataPreservedRulesTest extends WP_UnitTestCase {
 
 		$this->assertSame( 200, $response->get_status() );
 		$this->assertSame( [ 'manual_rule' ], $this->remaining_rules( $this->post_id ) );
+	}
+
+	/**
+	 * After a clear that keeps issues, the response reports how many were kept
+	 * and the summary is rebuilt to count them instead of reading zero.
+	 */
+	public function test_flush_rebuilds_summary_and_reports_remaining(): void {
+		// Keep a real, registered rule so the summary counts its issue.
+		$filter = static function ( $rules ) {
+			$rules[] = 'empty_link';
+			return $rules;
+		};
+		add_filter( 'edac_flush_preserved_rules', $filter );
+
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+		do_action( 'rest_api_init' );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-issues/' . $this->post_id );
+		$request->set_param( 'id', $this->post_id );
+		$request->set_body( wp_json_encode( [ 'flush' => true ] ) );
+		$request->set_header( 'Content-Type', 'application/json' );
+		$response = rest_get_server()->dispatch( $request );
+
+		remove_filter( 'edac_flush_preserved_rules', $filter );
+
+		$this->assertSame( 1, $response->get_data()['remaining'] );
+		$counted = (int) get_post_meta( $this->post_id, '_edac_summary_errors', true ) + (int) get_post_meta( $this->post_id, '_edac_summary_warnings', true );
+		$this->assertSame( 1, $counted );
+	}
+
+	/**
+	 * A clear that keeps nothing reports zero remaining and leaves no summary behind.
+	 */
+	public function test_flush_without_preserved_rules_reports_zero(): void {
+		update_post_meta( $this->post_id, '_edac_summary', [ 'errors' => 3 ] );
+
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+		do_action( 'rest_api_init' );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/clear-issues/' . $this->post_id );
+		$request->set_param( 'id', $this->post_id );
+		$request->set_body( wp_json_encode( [ 'flush' => true ] ) );
+		$request->set_header( 'Content-Type', 'application/json' );
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 0, $response->get_data()['remaining'] );
+		$this->assertSame( '', get_post_meta( $this->post_id, '_edac_summary', true ) );
 	}
 
 	/**

@@ -29,7 +29,15 @@ class Purge_Post_Data {
 	public static function delete_post( int $post_id, array $preserved_rules = [] ) {
 		global $wpdb;
 
-		$preserved_rules = array_values( array_filter( array_map( 'strval', $preserved_rules ) ) );
+		// Only drop empty strings: a plain array_filter() would also drop the slug "0".
+		$preserved_rules = array_values(
+			array_filter(
+				array_map( 'strval', $preserved_rules ),
+				static function ( $rule ) {
+					return '' !== $rule;
+				}
+			)
+		);
 
 		$sql    = 'DELETE FROM %i WHERE postid = %d and siteid = %d';
 		$params = [

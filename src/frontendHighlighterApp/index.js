@@ -944,9 +944,10 @@ class AccessibilityCheckerHighlight {
 	 * Does not change the panel's visibility, so it's safe to call whether or
 	 * not the panel is currently open.
 	 *
-	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 * @param {number}  [id]               Issue id to select once the issues are loaded.
+	 * @param {boolean} [selectIssue=true] Whether to select an issue when no id is given.
 	 */
-	refreshIssues( id ) {
+	refreshIssues( id, selectIssue = true ) {
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
@@ -1017,9 +1018,9 @@ class AccessibilityCheckerHighlight {
 
 				if ( id !== undefined ) {
 					this.showIssue( id );
-				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
+				} else if ( selectIssue && this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
 					this.showIssue( this.issues[ this.currentButtonIndex ].id );
-				} else if ( this.issues.length > 0 ) {
+				} else if ( selectIssue && this.issues.length > 0 ) {
 					this.showIssue( this.issues[ 0 ].id );
 				}
 			}
@@ -2007,7 +2008,11 @@ class AccessibilityCheckerHighlight {
 				id: edacFrontendHighlighterApp.postID,
 				flush: true,
 			} ),
-		} ).then( ( response ) => {
+		} ).then(
+			( response ) => response.json()
+				.catch( () => ( {} ) )
+				.then( ( body ) => ( { response, body } ) )
+		).then( ( { response, body } ) => {
 			if ( response.ok ) {
 				this._issuesCleared = true;
 				this.removeHighlightButtons();
@@ -2044,6 +2049,12 @@ class AccessibilityCheckerHighlight {
 				if ( summary ) {
 					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );
 					summary.classList.remove( 'edac-error' );
+				}
+
+				// Some issues can be kept through a clear (see the edac_flush_preserved_rules
+				// filter), such as ones an auditor added by hand. Load them back in.
+				if ( body?.remaining > 0 ) {
+					this.refreshIssues( undefined, false );
 				}
 			} else if ( summary ) {
 				summary.textContent = __( 'Failed to clear issues.', 'accessibility-checker' );
