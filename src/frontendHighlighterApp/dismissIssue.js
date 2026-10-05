@@ -93,19 +93,19 @@ export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, c
 	const arrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
 
 	return `<div class="edac-highlight-panel-description-dismiss">
-		<button type="button" class="edac-highlight-panel-description-dismiss-toggle" aria-expanded="false" aria-controls="${ DISMISS_FORM_ID }">${ __( 'Dismiss Issue', 'accessibility-checker' ) } <img src="${ arrowUri }" width="16" height="16" class="edac-highlight-panel-description-dismiss-toggle-arrow" alt="" /></button>
+		<button type="button" class="edac-highlight-panel-description-dismiss-toggle" aria-expanded="false" aria-controls="${ DISMISS_FORM_ID }">${ escapeHtml( __( 'Dismiss Issue', 'accessibility-checker' ) ) } <img src="${ arrowUri }" width="16" height="16" class="edac-highlight-panel-description-dismiss-toggle-arrow" alt="" /></button>
 		<form id="${ DISMISS_FORM_ID }" class="edac-highlight-dismiss-form" hidden>
 			<fieldset>
-				<legend>${ __( 'Dismiss issue as:', 'accessibility-checker' ) }</legend>
+				<legend>${ escapeHtml( __( 'Dismiss issue as:', 'accessibility-checker' ) ) }</legend>
 				${ reasonsHtml }
 			</fieldset>
-			<label class="edac-highlight-dismiss-comment-label" for="${ DISMISS_COMMENT_ID }">${ __( 'Comment (optional)', 'accessibility-checker' ) }</label>
+			<label class="edac-highlight-dismiss-comment-label" for="${ DISMISS_COMMENT_ID }">${ escapeHtml( __( 'Comment (optional)', 'accessibility-checker' ) ) }</label>
 			<textarea id="${ DISMISS_COMMENT_ID }" class="edac-highlight-dismiss-comment" rows="3" aria-describedby="${ DISMISS_COMMENT_ID }-help">${ escapeHtml( issue.ignre_comment ) }</textarea>
-			<p id="${ DISMISS_COMMENT_ID }-help" class="edac-highlight-dismiss-help">${ __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) }</p>
+			<p id="${ DISMISS_COMMENT_ID }-help" class="edac-highlight-dismiss-help">${ escapeHtml( __( 'Add a note explaining why this issue is being dismissed.', 'accessibility-checker' ) ) }</p>
 			<p class="edac-highlight-dismiss-error" role="alert"></p>
 			<div class="edac-highlight-dismiss-actions">
-				${ canDismiss ? `<button type="submit" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit" data-scope="single">${ __( 'Dismiss Issue', 'accessibility-checker' ) }</button>` : '' }
-				${ canDismissGlobal ? `<button type="${ canDismiss ? 'button' : 'submit' }" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit edac-highlight-dismiss-submit--global" data-scope="global">${ __( 'Dismiss Globally', 'accessibility-checker' ) }</button>` : '' }
+				${ canDismiss ? `<button type="submit" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit" data-scope="single">${ escapeHtml( __( 'Dismiss Issue', 'accessibility-checker' ) ) }</button>` : '' }
+				${ canDismissGlobal ? `<button type="${ canDismiss ? 'button' : 'submit' }" class="edac-highlight-panel-description--button edac-highlight-dismiss-submit edac-highlight-dismiss-submit--global" data-scope="global">${ escapeHtml( __( 'Dismiss Globally', 'accessibility-checker' ) ) }</button>` : '' }
 			</div>
 		</form>
 	</div>`;
@@ -132,18 +132,18 @@ function buildDismissedMarkup( { issue, reasons, canDismiss, canDismissGlobal } 
 
 	let meta = '';
 	if ( isGlobal ) {
-		meta += `<dt>${ __( 'Scope:', 'accessibility-checker' ) }</dt><dd>${ __( 'All pages', 'accessibility-checker' ) }</dd>`;
+		meta += `<dt>${ escapeHtml( __( 'Scope:', 'accessibility-checker' ) ) }</dt><dd>${ escapeHtml( __( 'All pages', 'accessibility-checker' ) ) }</dd>`;
 	}
 	if ( issue.ignre_user_name ) {
-		meta += `<dt>${ __( 'By:', 'accessibility-checker' ) }</dt><dd>${ escapeHtml( issue.ignre_user_name ) }</dd>`;
+		meta += `<dt>${ escapeHtml( __( 'By:', 'accessibility-checker' ) ) }</dt><dd>${ escapeHtml( issue.ignre_user_name ) }</dd>`;
 	}
 	if ( issue.ignre_date ) {
-		meta += `<dt>${ __( 'On:', 'accessibility-checker' ) }</dt><dd>${ escapeHtml( issue.ignre_date ) }</dd>`;
+		meta += `<dt>${ escapeHtml( __( 'On:', 'accessibility-checker' ) ) }</dt><dd>${ escapeHtml( issue.ignre_date ) }</dd>`;
 	}
 
 	const commentHtml = issue.ignre_comment
 		? `<div class="edac-highlight-dismissed-comment">
-			<p class="edac-highlight-dismissed-comment-label">${ __( 'Reason for dismissal:', 'accessibility-checker' ) }</p>
+			<p class="edac-highlight-dismissed-comment-label">${ escapeHtml( __( 'Reason for dismissal:', 'accessibility-checker' ) ) }</p>
 			<div class="edac-highlight-dismissed-comment-body">${ escapeHtml( issue.ignre_comment ) }</div>
 		</div>`
 		: '';
@@ -158,7 +158,7 @@ function buildDismissedMarkup( { issue, reasons, canDismiss, canDismissGlobal } 
 		${ meta ? `<dl class="edac-highlight-dismissed-meta">${ meta }</dl>` : '' }
 		${ commentHtml }
 		<p class="edac-highlight-dismiss-error" role="alert"></p>
-		${ canReopen ? `<button type="button" class="edac-highlight-panel-description--button edac-highlight-dismiss-reopen">${ reopenLabel }</button>` : '' }
+		${ canReopen ? `<button type="button" class="edac-highlight-panel-description--button edac-highlight-dismiss-reopen">${ escapeHtml( reopenLabel ) }</button>` : '' }
 	</div>`;
 }
 
