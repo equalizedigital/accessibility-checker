@@ -1281,15 +1281,27 @@ class REST_Api {
 		// dismiss as global (or vice versa) independent of the real action taken.
 		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
-		// If largeBatch is set, gather every row sharing this issue's rule + object,
-		// verify edit permission for all of them, then update the vetted ids in one query.
-		if ( $large_batch ) {
-			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
-			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
-			$rule               = $representative_row['rule'] ?? '';
-			$object             = $representative_row['object'] ?? '';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+		$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object, ignre_global FROM %i WHERE siteid = %d AND id = %d', $table_name, $site_id, $issue_id ), ARRAY_A );
+		$rule               = $representative_row['rule'] ?? '';
+		$object             = $representative_row['object'] ?? '';
 
+		// Reopening a globally dismissed issue clears the global dismissal for every instance.
+		$affects_all = (bool) $large_batch;
+		if ( ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
+			if ( ! $can_dismiss_globally ) {
+				return new \WP_Error(
+					'rest_forbidden',
+					__( 'Sorry, you are not allowed to reopen globally dismissed issues.', 'accessibility-checker' ),
+					[ 'status' => rest_authorization_required_code() ]
+				);
+			}
+			$affects_all = true;
+		}
+
+		// Gather every row sharing this issue's rule + object, verify edit
+		// permission for all of them, then update the vetted ids in one query.
+		if ( $affects_all ) {
 			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
@@ -1389,6 +1401,8 @@ class REST_Api {
 		 *     @type string $ignre_reason Dismissal reason, or null when reopening.
 		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
 		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
+		 *     @type string $rule         Rule slug stored on the representative row.
+		 *     @type string $object       Object stored on the representative row.
 		 *     @type int    $site_id      Current blog ID.
 		 * }
 		 */
@@ -1402,7 +1416,9 @@ class REST_Api {
 				'ignre_user'    => $ignre_user,
 				'ignre_reason'  => $ignre_reason,
 				'ignre_comment' => $ignre_comment,
-				'large_batch'   => $large_batch,
+				'large_batch'   => $affects_all,
+				'rule'          => $rule,
+				'object'        => $object,
 				'site_id'       => $site_id,
 			]
 		);
@@ -1419,7 +1435,7 @@ class REST_Api {
 				'ignre_date'      => $ignre_date_formatted,
 				'ignre_reason'    => $ignre_reason,
 				'ignre_comment'   => $ignre_comment,
-				'large_batch'     => $large_batch,
+				'large_batch'     => $affects_all,
 			],
 			200
 		);

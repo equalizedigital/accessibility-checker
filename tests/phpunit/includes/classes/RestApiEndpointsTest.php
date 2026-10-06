@@ -1724,4 +1724,145 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 			$this->assertSame( '0', $issue['ignre'], 'No issues should be updated when user lacks edit permission on all posts.' );
 		}
 	}
+
+	/**
+	 * Insert issue rows sharing one rule + object across new draft posts.
+	 *
+	 * @param int    $count  Number of rows.
+	 * @param int    $ignre  Value for ignre.
+	 * @param int    $is_global Value for ignre_global.
+	 * @param string $shared_object Shared object.
+	 * @return int[] Row IDs.
+	 */
+	private function insert_shared_rows( int $count, int $ignre, int $is_global, string $shared_object ): array {
+		global $wpdb;
+		$ids = [];
+		for ( $i = 0; $i < $count; $i++ ) {
+			$post_id = self::factory()->post->create(
+				[
+					'post_status' => 'draft',
+					'post_author' => self::$limited_id,
+				]
+			);
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test fixture.
+			$wpdb->insert(
+				$wpdb->prefix . 'accessibility_checker',
+				[
+					'postid'       => $post_id,
+					'siteid'       => get_current_blog_id(),
+					'type'         => 'post',
+					'rule'         => 'missing_alt_text',
+					'ruletype'     => 'error',
+					'object'       => $shared_object,
+					'recordcheck'  => 1,
+					'user'         => self::$limited_id,
+					'ignre'        => $ignre,
+					'ignre_global' => $is_global,
+				]
+			);
+			$ids[] = $wpdb->insert_id;
+		}
+		return $ids;
+	}
+
+	/**
+	 * Fetch ignre/ignre_global for rows.
+	 *
+	 * @param int[] $ids Row IDs.
+	 * @return array[]
+	 */
+	private function get_ignore_state( array $ids ): array {
+		global $wpdb;
+		$ids = array_map( 'intval', $ids );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test helper, ids are ints.
+		return $wpdb->get_results( 'SELECT id, ignre, ignre_global FROM ' . $wpdb->prefix . 'accessibility_checker WHERE id IN (' . implode( ',', $ids ) . ') ORDER BY id', ARRAY_A );
+	}
+
+	/**
+	 * Single reopen of a global row clears every sibling and reports a batch change.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_global_row_clears_all_instances() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-widen-' . wp_generate_uuid4();
+		$ids    = $this->insert_shared_rows( 3, 1, 1, $object );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '0', $row['ignre'] );
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
+		$this->assertTrue( $payload['large_batch'] );
+		$this->assertSame( 'missing_alt_text', $payload['rule'] );
+		$this->assertSame( $object, $payload['object'] );
+		$this->assertSame( 0, $payload['ignre_global'] );
+		$this->assertTrue( $response->get_data()['large_batch'] );
+	}
+
+	/**
+	 * Reopening a global row without the global capability is refused.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_global_row_forbidden_without_global_capability() {
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 1, 1, 'reopen-forbidden-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '1', $row['ignre'] );
+			$this->assertSame( '1', $row['ignre_global'] );
+		}
+	}
+
+	/**
+	 * Reopening a locally dismissed row leaves identical siblings alone.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_local_row_stays_single() {
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 1, 0, 'reopen-local-' . wp_generate_uuid4() );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$state = $this->get_ignore_state( $ids );
+		$this->assertSame( '0', $state[0]['ignre'] );
+		$this->assertSame( '1', $state[1]['ignre'] );
+		$this->assertSame( '1', $state[2]['ignre'] );
+		$this->assertFalse( $payload['large_batch'] );
+		$this->assertSame( 'missing_alt_text', $payload['rule'] );
+	}
 }
