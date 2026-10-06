@@ -9,7 +9,7 @@ import { speak } from '@wordpress/a11y';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
 import { chevronDown } from '@wordpress/icons';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
@@ -44,6 +44,7 @@ const DismissPanel = ( {
 	canDismissGlobally = false,
 } ) => {
 	const panelRef = useRef( null );
+	const restoreFocusRef = useRef( false );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'accessible' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
@@ -55,6 +56,13 @@ const DismissPanel = ( {
 	const dismissGlobally = canUseGlobalDismiss && forceGlobal;
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
+	useEffect( () => {
+		if ( restoreFocusRef.current ) {
+			restoreFocusRef.current = false;
+			panelRef.current?.querySelector( '.components-panel__body-toggle' )?.focus();
+		}
+	}, [ isIgnored ] );
+
 	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
 		setIsSubmitting( true );
 		setError( null );
@@ -62,6 +70,7 @@ const DismissPanel = ( {
 
 		try {
 			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : isGloballyDismissed );
+			restoreFocusRef.current = true;
 			setIsIgnored( ignore );
 			const successMessage = ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
