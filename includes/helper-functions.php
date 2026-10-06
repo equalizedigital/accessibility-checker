@@ -1039,7 +1039,16 @@ function edac_is_virtual_page( $post_id ) {
  * @return bool True if Pro version is active, false otherwise.
  */
 function edac_is_pro() {
-	return defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
+	$is_pro = defined( 'EDACP_VERSION' ) && defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID;
+
+	/**
+	 * Filters whether Pro is treated as active and licensed.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @param bool $is_pro Whether Pro is active with a valid license.
+	 */
+	return (bool) apply_filters( 'edac_filter_is_pro', $is_pro );
 }
 
 /**

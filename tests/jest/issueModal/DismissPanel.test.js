@@ -179,6 +179,58 @@ describe( 'DismissPanel', () => {
 		unmount();
 	} );
 
+	test( 'lets a free user reopen a globally dismissed issue as a single-row reopen', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		toggleIssueDismiss.mockClear();
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 21, ignre: '1', ignre_global: 1, ignre_reason: 'false_positive' } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const buttons = Array.from( container.querySelectorAll( 'button' ) );
+		expect( buttons.some( ( el ) => el.textContent.includes( 'Remove Global Dismissal' ) ) ).toBe( false );
+		expect( container.textContent ).toContain( 'Dismissed globally with Pro' );
+
+		const reopen = buttons.find( ( el ) => el.textContent.includes( 'Reopen Issue' ) );
+		expect( reopen ).toBeDefined();
+
+		await act( async () => {
+			reopen.click();
+		} );
+
+		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 21, false, '', '', false );
+
+		unmount();
+	} );
+
+	test( 'offers a free user without canDismiss nothing on a globally dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 22, ignre: '1', ignre_global: 1 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Reopen Issue' );
+		expect( container.textContent ).not.toContain( 'Remove Global Dismissal' );
+
+		unmount();
+	} );
+
 	test( 'shows a permission notice instead of the dismiss form for a user without canDismiss, on an open issue', () => {
 		const { container, unmount } = renderReact(
 			<DismissPanel

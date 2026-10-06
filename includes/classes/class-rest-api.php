@@ -350,8 +350,8 @@ class REST_Api {
 							// requires the larger-blast-radius capability regardless of who
 							// owns the affected posts (dismiss_issue() re-checks this too).
 							if ( $request->get_param( 'largeBatch' ) ) {
-								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_user_can_dismiss_issues_globally() always returns bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
-								return edac_user_can_dismiss_issues_globally();
+								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_is_pro() and edac_user_can_dismiss_issues_globally() always return bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
+								return edac_is_pro() && edac_user_can_dismiss_issues_globally();
 							}
 
 							// Single-issue dismiss. "Dismiss issues (any post)" allows it on
@@ -1231,8 +1231,9 @@ class REST_Api {
 	public function dismiss_issue( $request ) {
 		global $wpdb;
 
+		$is_pro               = edac_is_pro();
 		$can_dismiss_any      = edac_user_can_dismiss_issues();
-		$can_dismiss_globally = edac_user_can_dismiss_issues_globally();
+		$can_dismiss_globally = $is_pro && edac_user_can_dismiss_issues_globally();
 		if ( ! $can_dismiss_any && ! edac_user_can_dismiss_own_issues() && ! $can_dismiss_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
@@ -1255,7 +1256,9 @@ class REST_Api {
 		if ( $large_batch && ! $can_dismiss_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
-				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
+				$is_pro
+					? __( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' )
+					: __( 'Global dismissals require Accessibility Checker Pro.', 'accessibility-checker' ),
 				[ 'status' => rest_authorization_required_code() ]
 			);
 		}
@@ -1289,7 +1292,7 @@ class REST_Api {
 		// A reopen only ever clears global dismissals; local ones are left intact.
 		$affects_all        = (bool) $large_batch;
 		$global_reopen_only = ! $is_ignoring && $large_batch;
-		if ( ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
+		if ( $is_pro && ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
 			if ( ! $can_dismiss_globally ) {
 				return new \WP_Error(
 					'rest_forbidden',

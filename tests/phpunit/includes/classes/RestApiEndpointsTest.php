@@ -57,6 +57,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		do_action( 'init' );
 		do_action( 'rest_api_init' );
 		$this->server = rest_get_server();
+		// Global actions require Pro; free-mode tests swap this for __return_false.
+		add_filter( 'edac_filter_is_pro', '__return_true' );
 	}
 
 	/**
@@ -67,6 +69,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Reset current user between tests.
 		wp_set_current_user( 0 );
+		remove_all_filters( 'edac_filter_is_pro' );
 		// add_cap() writes directly to the user's wp_capabilities meta, which
 		// WP_UnitTestCase's role restoration does not undo - several tests grant
 		// this to the shared self::$limited_id fixture and never revoke it, which
@@ -1964,5 +1967,88 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$this->assertSame( 403, $response->get_status() );
 		$this->assertSame( '1', $this->get_ignore_state( $global )[0]['ignre'] );
+	}
+
+	/**
+	 * Without Pro, an explicit largeBatch reopen is a global action and is refused.
+	 *
+	 * @return void
+	 */
+	public function test_explicit_global_reopen_forbidden_without_pro() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 1, 1, 'free-global-reopen-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '1', $row['ignre_global'] );
+		}
+	}
+
+	/**
+	 * Without Pro, a user who can dismiss reopens a globally dismissed row on its own,
+	 * leaving the other instances untouched and needing no global capability.
+	 *
+	 * @return void
+	 */
+	public function test_free_user_reopens_global_row_as_single_row() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 1, 1, 'free-single-reopen-' . wp_generate_uuid4() );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$rows = $this->get_ignore_state( $ids );
+		$this->assertSame( '0', $rows[0]['ignre'] );
+		$this->assertSame( '0', $rows[0]['ignre_global'] );
+		$this->assertSame( '1', $rows[1]['ignre_global'], 'Siblings must stay globally dismissed.' );
+		$this->assertSame( '1', $rows[2]['ignre_global'], 'Siblings must stay globally dismissed.' );
+		$this->assertFalse( $payload['large_batch'] );
+	}
+
+	/**
+	 * Holding the global capability does not let a free user dismiss globally.
+	 *
+	 * @return void
+	 */
+	public function test_global_capability_does_not_unlock_global_dismiss_without_pro() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 0, 0, 'free-cap-dismiss-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
 	}
 }

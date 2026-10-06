@@ -61,7 +61,7 @@ const DismissPanel = ( {
 		setSuccessNotice( null );
 
 		try {
-			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : isGloballyDismissed );
+			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : ( isGloballyDismissed && canUseGlobalDismiss ) );
 			setIsIgnored( ignore );
 			const successMessage = ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
@@ -185,8 +185,13 @@ const DismissPanel = ( {
 						</Button>
 					</div>
 				) }
-				{ canDismiss && ! isGloballyDismissed && (
+				{ canDismiss && ( ! isGloballyDismissed || ! isPro ) && (
 					<div className="edac-analysis__dismissed-actions">
+						{ isGloballyDismissed && (
+							<p className="edac-analysis__dismissed-note">
+								{ __( 'Dismissed globally with Pro. Reopening here reopens only this issue. The global dismissal may reapply if Pro is reactivated.', 'accessibility-checker' ) }
+							</p>
+						) }
 						<Button
 							variant="secondary"
 							onClick={ () => handleToggleIgnore( false ) }
