@@ -179,6 +179,64 @@ describe( 'DismissPanel', () => {
 		unmount();
 	} );
 
+	test( 'tells the user how many instances a global dismiss left as they were', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		toggleIssueDismiss.mockResolvedValueOnce( { success: true, skipped_local: 2, skipped_exempt: 1 } );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 31, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismiss={ true }
+				canDismissGlobally={ true }
+				forceGlobal={ true }
+			/>,
+		);
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+
+		expect( container.querySelector( '.mock-notice' ).textContent ).toContain( '3 instances were kept as they are.' );
+
+		unmount();
+	} );
+
+	test( 'adds no kept-instances sentence when a global dismiss kept nothing', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		toggleIssueDismiss.mockResolvedValueOnce( { success: true, skipped_local: 0, skipped_exempt: 0 } );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 32, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismiss={ true }
+				canDismissGlobally={ true }
+				forceGlobal={ true }
+			/>,
+		);
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+
+		expect( container.querySelector( '.mock-notice' ).textContent ).not.toContain( 'kept' );
+
+		unmount();
+	} );
+
 	test( 'lets a free user reopen a globally dismissed issue as a single-row reopen', async () => {
 		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
 		toggleIssueDismiss.mockClear();

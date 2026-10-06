@@ -4,7 +4,7 @@
  * Handles dismissing and restoring issues with comments and reasons.
  */
 
-import { __, sprintf } from '@wordpress/i18n';
+import { __, _n, sprintf } from '@wordpress/i18n';
 import { speak } from '@wordpress/a11y';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
@@ -63,9 +63,17 @@ const DismissPanel = ( {
 		try {
 			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : ( isGloballyDismissed && canUseGlobalDismiss ) );
 			setIsIgnored( ignore );
-			const successMessage = ignore
+			let successMessage = ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 				: __( 'Issue reopened successfully.', 'accessibility-checker' );
+			const keptCount = ignore && isGlobal ? Number( response?.skipped_local || 0 ) + Number( response?.skipped_exempt || 0 ) : 0;
+			if ( keptCount > 0 ) {
+				successMessage += ' ' + sprintf(
+					// translators: %d: number of instances a global dismiss left as they were.
+					_n( '%d instance was kept as it is.', '%d instances were kept as they are.', keptCount, 'accessibility-checker' ),
+					keptCount,
+				);
+			}
 			setSuccessNotice( successMessage );
 			speak( successMessage, 'polite' );
 			// Keep local issue fields in sync so UI reflects reason/comment immediately.
