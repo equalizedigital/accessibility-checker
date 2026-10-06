@@ -264,4 +264,40 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 		$this->assertSame( '0', $row['ignre'] );
 		$this->assertSame( '0', $row['ignre_global'] );
 	}
+
+	/**
+	 * The global-ignore comment is stored identically on insert and on rescan update.
+	 */
+	public function testGlobalIgnoreCommentStoredIdenticallyOnInsertAndUpdate() {
+		$comment   = '<strong>Bold</strong> <a href="https://example.com">link</a> <script>x()</script>';
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+		$inserter  = new Insert_Rule_Data();
+
+		$callback = function ( $rule_data ) use ( $comment ) {
+			$rule_data['ignre']         = 1;
+			$rule_data['ignre_user']    = $rule_data['user'];
+			$rule_data['ignre_date']    = '2026-01-01 00:00:00';
+			$rule_data['ignre_comment'] = $comment;
+			$rule_data['ignre_global']  = 1;
+			return $rule_data;
+		};
+
+		$inserted_post = $this->factory()->post->create_and_get();
+		add_filter( 'edac_filter_insert_rule_data', $callback );
+		$inserter->insert( $inserted_post, 'missing_alt_text', 'error', '<img src="c1.png">', null, null, $selectors );
+		remove_filter( 'edac_filter_insert_rule_data', $callback );
+
+		$updated_post = $this->factory()->post->create_and_get();
+		$inserter->insert( $updated_post, 'missing_alt_text', 'error', '<img src="c2.png">', null, null, $selectors );
+		add_filter( 'edac_filter_insert_rule_data', $callback );
+		$inserter->insert( $updated_post, 'missing_alt_text', 'error', '<img src="c2.png">', null, null, $selectors );
+		remove_filter( 'edac_filter_insert_rule_data', $callback );
+
+		$inserted = $this->get_rows( $inserted_post->ID )[0]['ignre_comment'];
+		$updated  = $this->get_rows( $updated_post->ID )[0]['ignre_comment'];
+
+		$this->assertStringContainsString( '&lt;strong&gt;Bold&lt;/strong&gt;', $inserted );
+		$this->assertStringNotContainsString( 'script', $inserted );
+		$this->assertSame( $inserted, $updated );
+	}
 }

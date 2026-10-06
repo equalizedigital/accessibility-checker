@@ -130,7 +130,7 @@ class Insert_Rule_Data {
 					$ignore_values = [
 						absint( $rule_data['ignre_user'] ?? 0 ),
 						sanitize_text_field( $rule_data['ignre_date'] ?? '' ),
-						esc_html( sanitize_text_field( $rule_data['ignre_comment'] ?? '' ) ),
+						self::sanitize_ignore_comment( $rule_data['ignre_comment'] ?? '' ),
 					];
 				} elseif ( $was_global && $object_changed && ! $is_global_match ) {
 					$ignre         = 0;
@@ -193,19 +193,7 @@ class Insert_Rule_Data {
 			];
 
 			if ( isset( $rule_data['ignre_comment'] ) ) {
-				$allowed_html = [
-					'strong' => [],
-					'b'      => [],
-					'em'     => [],
-					'i'      => [],
-					'a'      => [
-						'href'   => true,
-						'target' => true,
-						'rel'    => true,
-					],
-				];
-				
-				$rule_data_sanitized['ignre_comment'] = esc_html( wp_kses( $rule_data['ignre_comment'], $allowed_html ) );
+				$rule_data_sanitized['ignre_comment'] = self::sanitize_ignore_comment( $rule_data['ignre_comment'] );
 			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
@@ -214,5 +202,27 @@ class Insert_Rule_Data {
 			// Return insert id or error.
 			return $wpdb->insert_id;
 		}
+	}
+
+	/**
+	 * Sanitize an ignore comment for storage.
+	 *
+	 * @param string $comment Raw comment.
+	 * @return string
+	 */
+	private static function sanitize_ignore_comment( string $comment ): string {
+		$allowed_html = [
+			'strong' => [],
+			'b'      => [],
+			'em'     => [],
+			'i'      => [],
+			'a'      => [
+				'href'   => true,
+				'target' => true,
+				'rel'    => true,
+			],
+		];
+
+		return esc_html( wp_kses( $comment, $allowed_html ) );
 	}
 }
