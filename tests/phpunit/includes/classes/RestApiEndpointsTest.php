@@ -1904,17 +1904,28 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * An explicit largeBatch reopen still clears every matching row.
+	 * An explicit largeBatch reopen leaves locally dismissed siblings dismissed.
 	 *
 	 * @return void
 	 */
-	public function test_explicit_large_batch_reopen_clears_local_siblings() {
+	public function test_explicit_large_batch_reopen_preserves_local_dismissal() {
+		global $wpdb;
 		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
 		wp_set_current_user( self::$limited_id );
 
 		$object = 'reopen-explicit-' . wp_generate_uuid4();
 		$global = $this->insert_shared_rows( 2, 1, 1, $object );
 		$local  = $this->insert_shared_rows( 1, 1, 0, $object );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test fixture.
+		$wpdb->update( $wpdb->prefix . 'accessibility_checker', [ 'ignre_comment' => 'keep me' ], [ 'id' => $local[0] ] );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
 
 		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $global[0] );
 		$request->set_param( 'action', 'undismiss' );
@@ -1922,10 +1933,36 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$response = $this->server->dispatch( $request );
 
 		$this->assertSame( 200, $response->get_status() );
-		foreach ( $this->get_ignore_state( array_merge( $global, $local ) ) as $row ) {
+		foreach ( $this->get_ignore_state( $global ) as $row ) {
 			$this->assertSame( '0', $row['ignre'] );
 			$this->assertSame( '0', $row['ignre_global'] );
 		}
+		$local_state = $this->get_ignore_state( $local );
+		$this->assertSame( '1', $local_state[0]['ignre'], 'Local dismissal must survive.' );
+		$this->assertSame( '0', $local_state[0]['ignre_global'] );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test assertion.
+		$this->assertSame( 'keep me', $wpdb->get_var( $wpdb->prepare( 'SELECT ignre_comment FROM %i WHERE id = %d', $wpdb->prefix . 'accessibility_checker', $local[0] ) ) );
+		$this->assertTrue( $payload['large_batch'] );
 		$this->assertTrue( $response->get_data()['large_batch'] );
+	}
+
+	/**
+	 * An explicit largeBatch reopen without the global capability is forbidden.
+	 *
+	 * @return void
+	 */
+	public function test_explicit_large_batch_reopen_requires_global_capability() {
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-forbidden-' . wp_generate_uuid4();
+		$global = $this->insert_shared_rows( 1, 1, 1, $object );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $global[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		$this->assertSame( '1', $this->get_ignore_state( $global )[0]['ignre'] );
 	}
 }

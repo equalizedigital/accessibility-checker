@@ -1286,9 +1286,9 @@ class REST_Api {
 		$rule               = $representative_row['rule'] ?? '';
 		$object             = $representative_row['object'] ?? '';
 
-		// Reopening a globally dismissed issue clears the global dismissal for every instance.
+		// A reopen only ever clears global dismissals; local ones are left intact.
 		$affects_all        = (bool) $large_batch;
-		$global_reopen_only = false;
+		$global_reopen_only = ! $is_ignoring && $large_batch;
 		if ( ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
 			if ( ! $can_dismiss_globally ) {
 				return new \WP_Error(
