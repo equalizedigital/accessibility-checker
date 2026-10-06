@@ -9,11 +9,6 @@ use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPag
 
 /**
  * Test cases for reports page fallback-aware license handling and preview formatting.
- *
- * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::get_preview_data
- * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::format_top_issues
- * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::format_severity
- * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::mask_license_key
  */
 class AccessibilityReportsPageTest extends WP_UnitTestCase {
 
