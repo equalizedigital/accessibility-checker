@@ -1287,7 +1287,8 @@ class REST_Api {
 		$object             = $representative_row['object'] ?? '';
 
 		// Reopening a globally dismissed issue clears the global dismissal for every instance.
-		$affects_all = (bool) $large_batch;
+		$affects_all        = (bool) $large_batch;
+		$global_reopen_only = false;
 		if ( ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
 			if ( ! $can_dismiss_globally ) {
 				return new \WP_Error(
@@ -1296,7 +1297,8 @@ class REST_Api {
 					[ 'status' => rest_authorization_required_code() ]
 				);
 			}
-			$affects_all = true;
+			$affects_all        = true;
+			$global_reopen_only = true;
 		}
 
 		// Gather every row sharing this issue's rule + object, verify edit
@@ -1315,11 +1317,12 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
 			$issue_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
+					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s AND ( %d = 0 OR ignre_global = 1 )',
 					$table_name,
 					$site_id,
 					$object,
-					$rule
+					$rule,
+					$global_reopen_only ? 1 : 0
 				),
 				ARRAY_A
 			);
