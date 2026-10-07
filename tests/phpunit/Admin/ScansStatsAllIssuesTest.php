@@ -186,17 +186,19 @@ class ScansStatsAllIssuesTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Results are ordered by severity, issue count, then slug.
+	 * Rules of the same severity are ordered by issue count, then slug.
 	 */
-	public function test_orders_by_severity_then_count_then_slug() {
-		$this->add_issue( 'b_rule' );
-		$this->add_issue( 'a_rule' );
-		$this->add_issue( 'c_rule' );
-		$this->add_issue( 'c_rule' );
+	public function test_orders_rules_of_the_same_severity_by_count_then_slug() {
+		$medium = $this->slugs_with_severity( 3 );
+
+		$this->add_issue( $medium[1] );
+		$this->add_issue( $medium[0] );
+		$this->add_issue( $medium[2] );
+		$this->add_issue( $medium[2] );
 
 		$slugs = array_column( $this->get_all(), 'rule_slug' );
 
-		$this->assertSame( [ 'c_rule', 'a_rule', 'b_rule' ], $slugs );
+		$this->assertSame( [ $medium[2], $medium[0], $medium[1] ], $slugs );
 	}
 
 	/**
@@ -255,5 +257,9 @@ class ScansStatsAllIssuesTest extends WP_UnitTestCase {
 
 		$this->assertCount( 10, $summary['top_issues_found_on_site'] );
 		$this->assertSame( $critical, $summary['top_issues_found_on_site'][0]['rule_slug'] );
+		$this->assertSame(
+			array_slice( array_column( $summary['all_issues_found_on_site'], 'rule_slug' ), 0, 10 ),
+			array_column( $summary['top_issues_found_on_site'], 'rule_slug' )
+		);
 	}
 }
