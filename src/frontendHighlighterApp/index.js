@@ -1964,6 +1964,8 @@ class AccessibilityCheckerHighlight {
 
 		this.removeHighlightButtons();
 		this.kickoffScan().then( () => {
+			// The panel refresh below can find no stored rows, which would auto-scan again.
+			this._scanAttempted = true;
 			if ( this._pendingRescanAnnouncement ) {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
