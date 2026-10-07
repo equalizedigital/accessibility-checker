@@ -45,6 +45,15 @@ class OrphanedIssuesCleanupTest extends WP_UnitTestCase {
 		// is not implicitly committed by the table DDL.
 		DatabaseHelpers::create_table();
 
+		// The issues table is shared between test classes and survives the
+		// per-test transaction rollback, so clear this site's rows to keep the
+		// orphan detection order-independent.
+		$wpdb->delete( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- clearing prior fixtures for this test class.
+			$this->table_name,
+			[ 'siteid' => get_current_blog_id() ],
+			[ '%d' ]
+		);
+
 		parent::setUp();
 	}
 
