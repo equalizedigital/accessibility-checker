@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.48.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Greek\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-07 22:10+0000\n"
+"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -567,7 +567,7 @@ msgstr "Αναβαθμίστε τώρα"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -650,13 +650,13 @@ msgstr "Η τιμή της ενέργειας κριτικής δεν ορίστ
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "Το αναγνωριστικό της δημοσίευσης δεν ορίστηκε"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "Δεν έχετε άδεια να δείτε αυτές τις πληροφορίες για αυτή την ανάρτηση."
 
@@ -741,7 +741,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* Η πραγματική προσβασιμότητα απαιτεί χειροκίνητο έλεγχο εκτός από αυτοματοποιημένες σαρώσεις. %1$sΜάθετε πώς να ελέγχετε χειροκίνητα για προσβασιμότητα%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -769,205 +769,199 @@ msgstr " σύνολο"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Διαβάστε την τεκμηρίωση για %1$s. %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "Ανάπτυξη ζητημάτων για %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Αυτές οι ρυθμίσεις ενεργοποιούν καθολικές διορθώσεις σε ολόκληρο τον ιστότοπό σας."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Ενδέχεται να χρειαστεί να αποθηκευτούν ξανά οι σελίδες ή να εκτελεστεί πλήρης σάρωση του ιστότοπου για να εμφανιστούν οι διορθώσεις στις αναφορές."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Αποθήκευση"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Επηρεαζόμενος κώδικας"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Εικόνα"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Ορόσημο"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "Ενέργειες"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Απορρίφθηκε"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "Απόρριψη"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "Αναγνωριστικό ζητήματος %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "εικόνα για το ζήτημα %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Προβολή ζητήματος με ID %d στον ιστότοπο, ανοίγει νέο παράθυρο"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Προβολή στη σελίδα"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "Διόρθωση: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "Διόρθωση"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "Δεν υπάρχουν λεπτομέρειες για επιστροφή"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Επίπεδο αναγνωσιμότητας ανάρτησης: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Κανένα"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Η ανάρτησή σας έχει επίπεδο αναγνωσιμότητας υψηλότερο από την 9η τάξη. Οι Οδηγίες Προσβασιμότητας Περιεχομένου Ιστού (WCAG) σε επίπεδο AAA απαιτούν μια απλοποιημένη περίληψη της ανάρτησής σας που να είναι 9ης τάξης ή χαμηλότερη."
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Η ανάρτησή σας δεν περιέχει αρκετό περιεχόμενο για να υπολογιστεί το επίπεδο αναγνωσιμότητάς της."
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Μια απλοποιημένη περίληψη δεν είναι απαραίτητη όταν το επίπεδο αναγνωσιμότητας του περιεχομένου είναι 9ης τάξης ή χαμηλότερο. Επιλέξτε πότε θα ζητείται μια απλοποιημένη περίληψη στη σελίδα ρυθμίσεων."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Απλοποιημένο επίπεδο ανάγνωσης σύνοψης: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Δεν υπάρχει αρκετό περιεχόμενο για να προσδιοριστεί ένα ακριβές επίπεδο ανάγνωσης."
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Η απλοποιημένη περίληψή σας έχει επίπεδο ανάγνωσης πάνω από την 9η τάξη."
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Η απλοποιημένη περίληψή σας έχει επίπεδο ανάγνωσης στην 9η τάξη ή κάτω από αυτήν."
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Η απλοποιημένη περίληψη δεν εισάγεται αυτόματα στο περιεχόμενο."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Η ρύθμιση για την προτροπή απλοποιημένης περίληψης είναι “ποτέ.” Εάν θέλετε η απλοποιημένη περίληψη να εμφανίζεται αυτόματα, μπορείτε να το αλλάξετε στη %s."
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "σελίδα ρυθμίσεων"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Η απλοποιημένη περίληψη εισάγεται αυτόματα %s."
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "το περιεχόμενο"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Ορίστε πού εισάγεται η απλοποιημένη περίληψη στο περιεχόμενο στη %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Η τοποθεσία της απλοποιημένης περίληψης έχει οριστεί σε “μη αυτόματα”, κάτι που απαιτεί την προσθήκη μιας συνάρτησης στο πρότυπο της σελίδας σας. Εάν θέλετε η απλοποιημένη περίληψη να εμφανίζεται αυτόματα, μπορείτε να το αλλάξετε στη %s."
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:792
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
-#: includes/options-page.php:1539
-#: includes/options-page.php:1563
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Απλοποιημένη περίληψη"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Αποθήκευση περίληψης"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Μάθετε περισσότερα σχετικά με τη βελτίωση της αναγνωσιμότητας και τις απαιτήσεις απλοποιημένης περίληψης"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "Δεν υπάρχουν δεδομένα αναγνωσιμότητας για επιστροφή"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* Κείμενο αναγνώστη οθόνης"
 
@@ -1147,7 +1141,7 @@ msgid "Report Last Updated:"
 msgstr "Τελευταία ενημέρωση αναφοράς:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1241
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "Ποτέ"
 
@@ -1315,11 +1309,25 @@ msgstr "Όνομα"
 msgid "Type your first name"
 msgstr "Πληκτρολογήστε το όνομά σας"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Με την εγγραφή σας, συναινείτε να λαμβάνετε emails σύμφωνα με την %1$sΠολιτική Απορρήτου%2$s μας."
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(ανοίγει σε νέο παράθυρο)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1461,7 +1469,7 @@ msgid "Disabled"
 msgstr "Απενεργοποιημένο"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:821
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "Διαγραφή δεδομένων"
 
@@ -1865,16 +1873,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "Ορίστε το χαρακτηριστικό ID του στοιχείου πλοήγησης. Αυτό είναι χρήσιμο αν η κύρια πλοήγησή σας περιέχει ενέργειες που οι περισσότεροι επισκέπτες του ιστότοπου θα ήθελαν να κάνουν, όπως σύνδεση ή χαρακτηριστικά αναζήτησης."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Εάν το θέμα σας δεν προσθέτει ήδη ένα σύνδεσμο παράλειψης που επιτρέπει στους χρήστες πληκτρολογίου να παρακάμψουν την πλοήγηση και να μεταβούν γρήγορα στο κύριο περιεχόμενο, ενεργοποιήστε τους συνδέσμους παράλειψης εδώ. %1$sΜάθετε περισσότερα για τους συνδέσμους παράλειψης.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "Μετάβαση στο περιεχόμενο"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "Μετάβαση στην πλοήγηση"
 
@@ -2750,17 +2758,17 @@ msgstr "Τα στοιχεία αυτά είναι ετικέτες άγκυρα�
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "Οι ετικέτες άγκυρας (γνωστές και ως σύνδεσμοι) προορίζονται για πλοήγηση σε μια νέα σελίδα ή σε διαφορετικό σημείο της ίδιας σελίδας. Όταν χρησιμοποιούνται για την ενεργοποίηση ενεργειών (όπως η επέκταση ακορντεόν ή το άνοιγμα παραθύρων διαλόγου) χωρίς τους σωστούς ρόλους ή συμπεριφορά, μπερδεύουν τους χρήστες, ιδιαίτερα εκείνους που χρησιμοποιούν αναγνώστες οθόνης ή πληκτρολόγια, οι οποίοι περιμένουν οι σύνδεσμοι να πλοηγούν και όχι να εκτελούν ενέργειες. Επίσης, είναι πιθανό να μη λειτουργούν με το πλήκτρο διαστήματος, το οποίο είναι μια προσδοκία για ένα κουμπί."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "Αν το στοιχείο χρησιμοποιείται για την ενεργοποίηση μιας ενέργειας, αντικατάστησε την ετικέτα άγκυρας με ένα %1$s. Αν δεν μπορείς να την αντικαταστήσεις, βεβαιώσου ότι έχει προστεθεί το %2$s στον σύνδεσμο, μαζί με JavaScript που προσθέτει υποστήριξη για την ενεργοποίησή του με το πλήκτρο διαστήματος, και ότι χρησιμοποιούνται κατάλληλα χαρακτηριστικά ARIA για καταστάσεις εναλλαγής ή άλλες λειτουργίες."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "Αν το στοιχείο χρησιμοποιείται για την ενεργοποίηση μιας ενέργειας, αντικαταστήστε την ετικέτα άγκυρας με ένα %1$s. Αν δεν μπορείτε να την αντικαταστήσετε, βεβαιωθείτε ότι έχει προστεθεί το %2$s στον σύνδεσμο, μαζί με JavaScript που προσθέτει υποστήριξη για την ενεργοποίησή του με το πλήκτρο διαστήματος, και ότι χρησιμοποιούνται κατάλληλα χαρακτηριστικά ARIA για καταστάσεις εναλλαγής ή άλλες λειτουργίες. Αν η άγκυρα είναι καθαρά διακοσμητική, δεν μπορεί να εστιαστεί και δεν έχει καταστάσεις ή ιδιότητες ARIA, το %3$s ή το %4$s την επισημαίνει ως παρουσιαστική, ώστε να μην αναφέρεται."
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: Ρόλος κουμπιού ARIA"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: προσβασιμότητα κουμπιών & συνδέσμων"
 
@@ -3454,90 +3462,77 @@ msgstr "μόνιμος σύνδεσμος προς "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "Παρακολουθήστε δωρεάν"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(ανοίγει σε νέο παράθυρο)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "Κύριο"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "Κεφαλίδα"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "Υποσέλιδο"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "Πλοήγηση"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "Πλευρικό"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "Πλοήγηση"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "Προμετωπίδα"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "Πληροφορίες περιεχομένου"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "Συμπληρωματικό"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "Ενότητα"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "Άρθρο"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "Φόρμα"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "Περιοχή"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3587,7 +3582,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Καλώς ήρθατε στο Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:115
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "Ρυθμίσεις Accessibility Checker"
 
@@ -3612,207 +3607,211 @@ msgid "System Settings"
 msgstr "Ρυθμίσεις συστήματος"
 
 #: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "Τύποι άρθρων προς έλεγχο"
 
-#: includes/options-page.php:794
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "Ταχύτητα σάρωσης"
 
-#: includes/options-page.php:803
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "Σάρωση αρχείων"
 
-#: includes/options-page.php:812
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "Σάρωση ταξινομίας"
 
-#: includes/options-page.php:830
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "Μεταπλαίσιο επεξεργαστή μπλοκ"
 
-#: includes/options-page.php:839
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "Προτροπή για απλοποιημένη περίληψη"
 
-#: includes/options-page.php:848
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "Θέση απλοποιημένης περίληψης"
 
-#: includes/options-page.php:857
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "Απλοποιημένη επικεφαλίδα περίληψης"
 
-#: includes/options-page.php:866
-#: includes/options-page.php:1374
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "Προσθήκη δήλωσης προσβασιμότητας στο υποσέλιδο"
 
-#: includes/options-page.php:875
-#: includes/options-page.php:1397
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "Συμπερίληψη συνδέσμου προς την πολιτική προσβασιμότητας"
 
-#: includes/options-page.php:884
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "Σελίδα πολιτικής προσβασιμότητας"
 
-#: includes/options-page.php:893
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "Προεπισκόπηση δήλωσης προσβασιμότητας"
 
-#: includes/options-page.php:901
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "Θέση Frontend Accessibility Checker"
 
-#: includes/options-page.php:955
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Διαμόρφωσε τους τύπους περιεχομένου που πρέπει να ελεγχθούν για προβλήματα προσβασιμότητας."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:960
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Περισσότερες λειτουργίες και υποστήριξη μέσω email είναι διαθέσιμα με %1$s."
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (ανοίγει σε νέο παράθυρο)"
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:982
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Χρησιμοποιήστε τις παρακάτω ρυθμίσεις για να διαμορφώσετε τον έλεγχο προσβασιμότητας στο frontend."
 
-#: includes/options-page.php:992
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Οι Οδηγίες για την Προσβασιμότητα του Περιεχομένου Ιστού (WCAG) στο επίπεδο AAA απαιτούν οποιοδήποτε περιεχόμενο με επίπεδο ανάγνωσης πάνω από την 9η τάξη να έχει μια εναλλακτική που είναι ευκολότερη στην ανάγνωση. Το απλοποιημένο κείμενο περίληψης προστίθεται στην καρτέλα αναγνωσιμότητας στο πλαίσιο μετα-πληροφοριών του Accessibility Checker στην οθόνη επεξεργασίας κάθε άρθρου ή σελίδας."
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Μάθετε περισσότερα για τις απλοποιημένες περιλήψεις και τις απαιτήσεις αναγνωσιμότητας (ανοίγει σε νέο παράθυρο)"
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Μάθετε περισσότερα για τις απλοποιημένες περιλήψεις και τις απαιτήσεις αναγνωσιμότητας."
 
-#: includes/options-page.php:1011
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Σκέφτεστε “Ουάου, αυτό το πρόσθετο είναι καταπληκτικό” και σας βοηθάει να κάνετε τον ιστότοπό σας πιο προσβάσιμο; Μοιραστείτε τις προσπάθειές σας για να κάνετε τον ιστότοπό σας πιο προσβάσιμο με τους πελάτες σας και ενημερώστε τους ότι χρησιμοποιείτε το Accessibility Checker για να διασφαλίσετε ότι όλοι οι άνθρωποι μπορούν να χρησιμοποιήσουν τον ιστότοπό σας. Προσθέστε έναν μικρό σύνδεσμο μόνο κειμένου και μια δήλωση στο υποσέλιδο του ιστοτόπου σας."
 
-#: includes/options-page.php:1020
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Διαμόρφωσε τις ρυθμίσεις σε επίπεδο συστήματος για το πρόσθετο Accessibility Checker."
 
-#: includes/options-page.php:1034
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Γρήγορη"
 
-#: includes/options-page.php:1035
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Κανονική"
 
-#: includes/options-page.php:1036
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Αργή"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Πιο αργή"
 
-#: includes/options-page.php:1059
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Οι γρηγορότερες σαρώσεις απαιτούν περισσότερους πόρους και μπορεί να επιβαρύνουν σημαντικά τον ιστότοπό σου."
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Ενεργοποίηση σάρωσης σελίδων αρχείου"
 
-#: includes/options-page.php:1089
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Επίλεξε αν οι σελίδες αρχείων θα πρέπει να συμπεριληφθούν στις πλήρεις σαρώσεις του ιστότοπου. Από προεπιλογή, χρησιμοποιείται μια μέθοδος δειγματοληψίας για την επιλογή όρων ταξινομίας για δεδομένα αρχείου."
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Σάρωση όλων των όρων ταξινομίας αντί μόνο ενός δείγματος"
 
-#: includes/options-page.php:1119
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Έλεγξε όλες τις σελίδες αρχείων όρων ταξινομίας αντί για ένα αντιπροσωπευτικό δείγμα. Αυτό απαιτεί να είναι ενεργοποιημένη η σάρωση σελίδων αρχείου και μπορεί να προσθέσει μεγάλο αριθμό URL στη λίστα σάρωσης."
 
-#: includes/options-page.php:1148
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "Πριν το περιεχόμενο"
 
-#: includes/options-page.php:1153
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "Μετά το περιεχόμενο"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "Χειροκίνητη εισαγωγή"
 
-#: includes/options-page.php:1162
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Χρησιμοποιήστε αυτή τη λειτουργία για να προσθέσετε χειροκίνητα την απλοποιημένη περίληψη στο θέμα σας εντός του βρόχου."
 
-#: includes/options-page.php:1164
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Η συνάρτηση προαιρετικά δέχεται το ID του άρθρου ως παράμετρο."
 
-#: includes/options-page.php:1167
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Ορίστε πού θέλετε να εμφανίζονται οι απλοποιημένες περιλήψεις σε σχέση με το περιεχόμενό σας, εάν έχουν συμπληρωθεί."
 
-#: includes/options-page.php:1182
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "Κάτω δεξιά γωνία (προεπιλογή)"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "Κάτω αριστερή γωνία"
 
-#: includes/options-page.php:1191
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Ορίστε πού θέλετε να εμφανίζεται ο έλεγχος προσβασιμότητας frontend στη σελίδα."
 
-#: includes/options-page.php:1231
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "Όταν απαιτείται"
 
-#: includes/options-page.php:1236
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "Πάντα"
 
-#: includes/options-page.php:1244
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Θα πρέπει το Accessibility Checker να ζητά απλοποιημένη περίληψη μόνο όταν το επίπεδο ανάγνωσης του άρθρου ή της σελίδας σας είναι πάνω από την 9η τάξη, να τη ζητά πάντα ανεξάρτητα από το επίπεδο ανάγνωσης, ή να μην τη ζητά ποτέ ανεξάρτητα από το επίπεδο ανάγνωσης;?"
 
-#: includes/options-page.php:1299
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "Για να ελέγξετε περιεχόμενο εκτός από άρθρα και σελίδες, παρακαλούμε "
 
-#: includes/options-page.php:1301
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "αναβάθμιση σε pro"
 
-#: includes/options-page.php:1302
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (ανοίγει σε νέο παράθυρο)"
 
-#: includes/options-page.php:1307
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Επιλέξτε ποιους τύπους δημοσιεύσεων θα πρέπει να ελέγχονται κατά τη διάρκεια μιας σάρωσης. Σημειώστε ότι η αφαίρεση ενός προηγουμένως επιλεγμένου τύπου δημοσίευσης θα καταργήσει τις σαρωμένες πληροφορίες του και τυχόν προσαρμοσμένες απορριφθείσες προειδοποιήσεις που έχουν ρυθμιστεί."
 
-#: includes/options-page.php:1448
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Διαγραφή όλων των δεδομένων του Accessibility Checker κατά την απεγκατάσταση του πρόσθετου."
 
-#: includes/options-page.php:1466
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Εμφάνιση μεταπλαισίου Accessibility Checker στον Επεξεργαστή Μπλοκ"
 
@@ -5622,16 +5621,12 @@ msgid "Missing postId or nonce."
 msgstr "Λείπει το postId ή το nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "Επανέλεγχος ολοκληρώθηκε. Δεν βρέθηκαν παραβιάσεις."
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "Δεν βρέθηκαν παραβιάσεις, παραλείπεται η αποθήκευση."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Σφάλμα σάρωσης προσβασιμότητας."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "Επανέλεγχος ολοκληρώθηκε. Δεν βρέθηκαν παραβιάσεις."
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5905,6 +5900,34 @@ msgid "learn more"
 msgstr "μάθετε περισσότερα"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "ανοίγει σε νέο παράθυρο"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "ανοίγει νέα καρτέλα"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "ανοίγει σε νέα καρτέλα"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "ανοίγει νέο παράθυρο"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "ανοίγει νέα καρτέλα"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "ανοίγει σε νέο παράθυρο"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "ανοίγει σε νέα καρτέλα"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "Ελέγχει αν το ορατό κείμενο ενός συνδέσμου είναι μια διεύθυνση URL αντί για περιγραφικό κείμενο αγκύρωσης."
 
@@ -6160,6 +6183,14 @@ msgstr "Σάρωση"
 #: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Ανανέωση"
+
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "Ξεκαρφίτσωμα από τη γραμμή εργαλείων"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "Καρφίτσωμα στη γραμμή εργαλείων"
 
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
