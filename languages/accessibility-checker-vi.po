@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.48.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Vietnamese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-07 22:10+0000\n"
+"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -567,7 +567,7 @@ msgstr "Nâng cấp ngay"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -650,13 +650,13 @@ msgstr "Giá trị hành động đánh giá không được thiết lập"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "ID bài viết chưa được thiết lập"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "Bạn không có quyền xem thông tin này cho bài viết này."
 
@@ -737,7 +737,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* Khả năng tiếp cận thực sự yêu cầu kiểm tra thủ công ngoài các bản quét tự động. %1$sTìm hiểu cách kiểm tra khả năng tiếp cận thủ công%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -765,205 +765,199 @@ msgstr " tổng cộng"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Đọc tài liệu cho %1$s. %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "Mở rộng các vấn đề cho %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Những cài đặt này cho phép sửa lỗi toàn cục trên toàn bộ trang web của bạn."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Các trang có thể cần được lưu lại hoặc quét toàn bộ trang web cần được thực hiện để thấy các sửa đổi được phản ánh trong báo cáo."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Lưu"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Mã bị ảnh hưởng"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Hình ảnh"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Điểm mốc"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "Hành động"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Đã bỏ qua"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "Bỏ qua"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "ID vấn đề %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "hình ảnh cho vấn đề %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Xem Vấn đề ID %d trên trang web, mở cửa sổ mới"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Xem trên trang"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "Sửa: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "Sửa"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "Không có chi tiết để trả về"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Cấp độ đọc bài viết: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Không có"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Bài viết của bạn có cấp độ đọc cao hơn lớp 9. Hướng dẫn về Khả năng tiếp cận Nội dung Web (WCAG) ở cấp độ AAA yêu cầu tóm tắt đơn giản bài viết của bạn ở cấp độ lớp 9 trở xuống."
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Bài viết của bạn không chứa đủ nội dung để tính cấp độ đọc."
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Tóm tắt đơn giản không cần thiết khi cấp độ đọc nội dung là lớp 9 trở xuống. Chọn thời điểm nhắc tóm tắt đơn giản trên trang cài đặt."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Mức độ đọc tóm tắt đơn giản: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Không đủ nội dung để xác định mức độ đọc chính xác."
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Tóm tắt đơn giản của bạn có mức độ đọc trên lớp 9."
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Tóm tắt đơn giản của bạn có mức độ đọc từ lớp 9 trở xuống."
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Tóm tắt đơn giản không được tự động chèn vào nội dung."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Lời nhắc tóm tắt đơn giản của bạn được đặt thành “không bao giờ.” Nếu bạn muốn tóm tắt đơn giản được hiển thị tự động, bạn có thể thay đổi điều này trên %s."
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "trang cài đặt"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Tóm tắt đơn giản đang được tự động chèn %s."
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "nội dung"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Đặt vị trí Tóm tắt đơn giản được chèn vào nội dung trên %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vị trí Tóm tắt đơn giản của bạn được đặt thành “thủ công”, điều này yêu cầu một hàm được thêm vào mẫu trang của bạn. Nếu bạn muốn tóm tắt đơn giản được hiển thị tự động, bạn có thể thay đổi điều này trên %s."
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:792
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
-#: includes/options-page.php:1539
-#: includes/options-page.php:1563
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Tóm tắt đơn giản"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Lưu tóm tắt"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Tìm hiểu thêm về cách cải thiện khả năng đọc và các yêu cầu tóm tắt đơn giản"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "Không có dữ liệu khả năng đọc để trả về"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* Văn bản trình đọc màn hình"
 
@@ -1140,7 +1134,7 @@ msgid "Report Last Updated:"
 msgstr "Báo cáo cập nhật lần cuối:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1241
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "Chưa bao giờ"
 
@@ -1308,11 +1302,25 @@ msgstr "Tên"
 msgid "Type your first name"
 msgstr "Nhập tên của bạn"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Bằng cách đăng ký, bạn đồng ý nhận email theo %1$sChính sách Quyền riêng tư%2$s của chúng tôi."
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(mở trong cửa sổ mới)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1452,7 +1460,7 @@ msgid "Disabled"
 msgstr "Đã tắt"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:821
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "Xóa dữ liệu"
 
@@ -1856,16 +1864,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "Đặt thuộc tính ID của phần tử điều hướng. Điều này hữu ích nếu điều hướng chính của bạn chứa các hành động mà hầu hết khách truy cập trang web muốn thực hiện như tính năng đăng nhập hoặc tìm kiếm."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Nếu giao diện của bạn chưa thêm liên kết bỏ qua cho phép người dùng bàn phím bỏ qua phần điều hướng và nhanh chóng chuyển đến nội dung chính, hãy bật liên kết bỏ qua tại đây. %1$sTìm hiểu thêm về liên kết bỏ qua.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "Bỏ qua đến nội dung"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "Bỏ qua đến điều hướng"
 
@@ -2741,17 +2749,17 @@ msgstr "Những phần tử này là các thẻ neo thiếu thuộc tính %1$s h
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "Thẻ neo (còn gọi là liên kết) được dùng để điều hướng đến một trang mới hoặc một vị trí khác trên cùng trang. Khi chúng được sử dụng để kích hoạt các hành động (như mở rộng accordion hoặc mở modal) mà không có vai trò hoặc hành vi phù hợp, chúng sẽ gây nhầm lẫn cho người dùng, đặc biệt là những người sử dụng trình đọc màn hình hoặc bàn phím, những người mong đợi liên kết để điều hướng thay vì thực hiện hành động. Chúng cũng có thể không hoạt động với phím cách, vốn là điều mong đợi của một nút bấm."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "Nếu phần tử được sử dụng để kích hoạt một hành động, hãy thay thế thẻ neo bằng một %1$s. Nếu bạn không thể thay thế nó, hãy đảm bảo rằng %2$s được thêm vào liên kết, cùng với JavaScript để hỗ trợ kích hoạt nó bằng phím cách, và các thuộc tính ARIA thích hợp được sử dụng cho trạng thái chuyển đổi hoặc chức năng khác."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "Nếu phần tử được sử dụng để kích hoạt một hành động, hãy thay thế thẻ neo bằng một %1$s. Nếu bạn không thể thay thế nó, hãy đảm bảo rằng %2$s được thêm vào liên kết, cùng với JavaScript để hỗ trợ kích hoạt nó bằng phím cách, và các thuộc tính ARIA thích hợp được sử dụng cho trạng thái chuyển đổi hoặc chức năng khác. Nếu thẻ neo thuần túy mang tính trang trí, không thể lấy tiêu điểm và không có trạng thái hoặc thuộc tính ARIA, %3$s hoặc %4$s sẽ đánh dấu nó là dạng trình bày để nó không bị báo cáo."
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: Vai trò nút ARIA"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: khả năng truy cập cho nút bấm & liên kết"
 
@@ -3445,90 +3453,77 @@ msgstr "đường dẫn tĩnh đến "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "Tham gia miễn phí"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(mở trong cửa sổ mới)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "Chính"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "Đầu trang"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "Chân trang"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "Điều hướng"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "Ngoài lề"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "Điều hướng"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "Biểu ngữ"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "Thông tin nội dung"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "Bổ trợ"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "Phần"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "Bài viết"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "Mẫu"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "Khu vực"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3578,7 +3573,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Chào mừng đến với Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:115
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "Cài đặt Accessibility Checker"
 
@@ -3603,207 +3598,211 @@ msgid "System Settings"
 msgstr "Cài đặt hệ thống"
 
 #: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "Các loại bài viết cần kiểm tra"
 
-#: includes/options-page.php:794
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "Tốc độ quét"
 
-#: includes/options-page.php:803
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "Quét lưu trữ"
 
-#: includes/options-page.php:812
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "Quét phân loại"
 
-#: includes/options-page.php:830
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "Metabox trình chỉnh sửa khối"
 
-#: includes/options-page.php:839
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "Nhắc nhở tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:848
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "Vị trí tóm tắt đơn giản hóa"
 
-#: includes/options-page.php:857
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "Tiêu đề tóm tắt đơn giản"
 
-#: includes/options-page.php:866
-#: includes/options-page.php:1374
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "Thêm tuyên bố khả năng truy cập ở chân trang"
 
-#: includes/options-page.php:875
-#: includes/options-page.php:1397
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "Bao gồm liên kết đến chính sách khả năng truy cập"
 
-#: includes/options-page.php:884
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "Trang chính sách khả năng truy cập"
 
-#: includes/options-page.php:893
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "Xem trước tuyên bố khả năng truy cập"
 
-#: includes/options-page.php:901
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "Vị trí trình kiểm tra khả năng tiếp cận giao diện người dùng"
 
-#: includes/options-page.php:955
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Cấu hình các loại nội dung cần được kiểm tra về vấn đề khả năng tiếp cận."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:960
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Nhiều tính năng hơn và hỗ trợ qua email có sẵn với %1$s."
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:982
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Sử dụng các cài đặt dưới đây để cấu hình trình kiểm tra khả năng tiếp cận phía giao diện người dùng."
 
-#: includes/options-page.php:992
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Hướng dẫn Khả năng Tiếp cận Nội dung Web (WCAG) ở cấp độ AAA yêu cầu bất kỳ nội dung nào có trình độ đọc trên lớp 9 phải có một phiên bản thay thế dễ đọc hơn. Văn bản tóm tắt đơn giản hóa được thêm vào trong tab khả năng đọc trong hộp meta của Accessibility Checker trên màn hình chỉnh sửa của mỗi bài viết hoặc trang."
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Tìm hiểu thêm về các bản tóm tắt đơn giản hóa và yêu cầu về khả năng đọc hiểu."
 
-#: includes/options-page.php:1011
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Bạn có đang nghĩ \"Wow, plugin này thật tuyệt vời\" và nó có đang giúp bạn làm cho trang web của mình dễ tiếp cận hơn không? Chia sẻ nỗ lực của bạn để làm cho trang web dễ tiếp cận hơn với khách hàng và cho họ biết bạn đang sử dụng Accessibility Checker để đảm bảo rằng mọi người đều có thể sử dụng trang web của bạn. Thêm một liên kết và tuyên bố nhỏ chỉ bằng văn bản ở chân trang của trang web của bạn."
 
-#: includes/options-page.php:1020
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Cấu hình cài đặt cấp hệ thống cho plugin Accessibility Checker."
 
-#: includes/options-page.php:1034
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Nhanh"
 
-#: includes/options-page.php:1035
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Bình thường"
 
-#: includes/options-page.php:1036
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Chậm"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Chậm nhất"
 
-#: includes/options-page.php:1059
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Quét nhanh hơn sẽ tiêu tốn nhiều tài nguyên hơn và có thể gây tải nặng cho trang web của bạn."
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Bật quét các trang lưu trữ"
 
-#: includes/options-page.php:1089
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Chọn xem các trang lưu trữ có nên được bao gồm trong quét toàn bộ trang web hay không. Theo mặc định, phương pháp lấy mẫu được sử dụng để chọn các thuật ngữ phân loại cho dữ liệu lưu trữ."
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Quét tất cả các thuật ngữ phân loại thay vì chỉ một mẫu"
 
-#: includes/options-page.php:1119
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Kiểm tra tất cả các trang lưu trữ thuật ngữ phân loại thay vì một mẫu đại diện. Điều này yêu cầu quét trang lưu trữ phải được bật và có thể thêm một số lượng lớn URL vào danh sách quét."
 
-#: includes/options-page.php:1148
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "Trước nội dung"
 
-#: includes/options-page.php:1153
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "Sau nội dung"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "Chèn thủ công"
 
-#: includes/options-page.php:1162
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Sử dụng chức năng này để thêm thủ công bản tóm tắt đơn giản hóa vào giao diện của bạn trong vòng lặp."
 
-#: includes/options-page.php:1164
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Hàm này có thể nhận ID bài viết làm tham số tùy chọn."
 
-#: includes/options-page.php:1167
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Đặt vị trí bạn muốn các bản tóm tắt đơn giản hóa xuất hiện liên quan đến nội dung của bạn nếu được điền."
 
-#: includes/options-page.php:1182
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "Góc dưới bên phải (mặc định)"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "Góc dưới bên trái"
 
-#: includes/options-page.php:1191
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Đặt vị trí bạn muốn trình kiểm tra khả năng tiếp cận phía giao diện người dùng xuất hiện trên trang."
 
-#: includes/options-page.php:1231
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "Khi cần thiết"
 
-#: includes/options-page.php:1236
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "Luôn luôn"
 
-#: includes/options-page.php:1244
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker chỉ nên yêu cầu tóm tắt đơn giản khi trình độ đọc của bài viết hoặc trang của bạn trên lớp 9, luôn yêu cầu nó bất kể trình độ đọc, hoặc không bao giờ yêu cầu nó bất kể trình độ đọc?"
 
-#: includes/options-page.php:1299
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "Để kiểm tra nội dung khác ngoài bài viết và trang, vui lòng "
 
-#: includes/options-page.php:1301
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "nâng cấp lên pro"
 
-#: includes/options-page.php:1302
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (mở trong cửa sổ mới)"
 
-#: includes/options-page.php:1307
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Chọn loại bài đăng nào nên được kiểm tra trong quá trình quét. Xin lưu ý, việc xóa một loại bài đăng đã chọn trước đó sẽ xóa thông tin đã quét của nó và mọi cảnh báo tùy chỉnh đã bị bỏ qua đã được thiết lập."
 
-#: includes/options-page.php:1448
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Xóa tất cả dữ liệu Accessibility Checker khi gỡ cài đặt plugin."
 
-#: includes/options-page.php:1466
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Hiển thị metabox Accessibility Checker trong Trình chỉnh sửa khối"
 
@@ -5609,16 +5608,12 @@ msgid "Missing postId or nonce."
 msgstr "Thiếu postId hoặc nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "Quét lại hoàn tất. Không tìm thấy lỗi vi phạm."
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "Không tìm thấy vi phạm, bỏ qua việc lưu."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Lỗi quét khả năng truy cập."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "Quét lại hoàn tất. Không tìm thấy lỗi vi phạm."
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5892,6 +5887,34 @@ msgid "learn more"
 msgstr "tìm hiểu thêm"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "mở trong cửa sổ mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "mở tab mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "mở trong tab mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "mở cửa sổ mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "mở tab mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "mở trong cửa sổ mới"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "mở trong tab mới"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "Kiểm tra xem văn bản hiển thị của liên kết có phải là URL hay không chứ không phải văn bản neo mô tả."
 
@@ -6145,6 +6168,14 @@ msgstr "Quét"
 #: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Làm mới"
+
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "Bỏ ghim khỏi thanh công cụ"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "Ghim vào thanh công cụ"
 
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
