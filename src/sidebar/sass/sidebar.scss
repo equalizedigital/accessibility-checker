@@ -43,16 +43,7 @@
 	}
 }
 
-.components-panel__header-title:has(.edac-sidebar__title) {
-	display: flex;
-	width: 100%;
-}
-
-.interface-complementary-area-header__title:has(.edac-sidebar__title) {
-	width: 100%;
-}
-
-.edac-sidebar__title {
+.edac-sidebar__header {
 	display: flex;
 	align-items: center;
 	gap: 8px;
@@ -61,10 +52,30 @@
 	min-width: 0;
 }
 
+.edac-sidebar__header .edac-sidebar__header-title {
+	// Nested selector so the reset beats core's .components-panel__header h2
+	// margin rules, which otherwise push the title off-center.
+	// Own the title styles instead of relying on core's
+	// .interface-complementary-area-header__title class, which is not a
+	// public API and could be renamed by Gutenberg.
+	margin: 0;
+	font-size: inherit;
+	color: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .edac-sidebar__title-spinner {
 	margin-left: 8px;
 }
 
-.edac-sidebar__title-menu {
+.edac-sidebar__title-menu-wrapper {
+	display: flex;
+	align-items: center;
 	margin-left: auto;
+}
+
+.edac-sidebar__pin-toggle {
+	flex-shrink: 0;
 }

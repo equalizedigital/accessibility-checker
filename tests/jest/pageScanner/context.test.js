@@ -13,6 +13,7 @@ describe( 'Scanner Context Exclusions', ( ) => {
 	beforeEach( ( ) => {
 		// Reset the DOM before each test
 		document.body.innerHTML = '';
+		document.body.className = '';
 	} );
 
 	test( 'should exclude configured containers from scan', async ( ) => {
@@ -79,5 +80,83 @@ describe( 'Scanner Context Exclusions', ( ) => {
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-fallback-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="query-monitor-panel-button"' ) ) ).toBe( false );
 		expect( violationHTML.some( ( html ) => html.includes( 'id="edac-panel-button"' ) ) ).toBe( false );
+	} );
+
+	test( 'should exclude Elementor editor UI but still scan widget content', async ( ) => {
+		// Markup modelled on what Elementor injects into its live-preview iframe.
+		document.body.className = 'elementor-editor-active';
+		document.body.innerHTML = `
+			<div class="elementor-element elementor-widget elementor-widget-button">
+				<div class="elementor-element-overlay">
+					<ul class="elementor-editor-element-settings">
+						<li class="elementor-editor-element-setting elementor-editor-element-edit"><i id="el-handle" role="button"></i></li>
+					</ul>
+				</div>
+				<div class="elementor-widget-container">
+					<button id="widget-button"></button>
+					<span class="elementor-button-icon"><i class="" aria-hidden="true"><button id="el-empty-icon-button">x</button></i></span>
+					<span class="real-icon"><i class="fa fa-star" aria-hidden="true"><button id="real-icon-button">x</button></i></span>
+				</div>
+			</div>
+			<div class="elementor-add-section elementor-add-section-inline">
+				<button id="el-add-inline-button"></button>
+			</div>
+			<div id="elementor-add-new-section" class="elementor-add-section">
+				<button id="el-add-new-button"></button>
+			</div>
+			<div class="elementor-first-add"><button id="el-first-add-button"></button></div>
+			<div class="elementor-empty-view"><button id="el-empty-view-button"></button></div>
+			<div class="elementor-sortable-placeholder"><button id="el-placeholder-button"></button></div>
+			<div class="elementor-document-handle"><button id="el-document-handle-button"></button></div>
+			<div class="pen-menu"><button id="el-pen-menu-button"></button></div>
+			<div class="elementor-shape elementor-shape-top" aria-hidden="true"><button id="el-shape-button"></button></div>
+		`;
+
+		// aria-hidden-focus catches the focusable buttons placed inside the
+		// aria-hidden icons, covering the attribute-selector exclusion. jsdom
+		// can't settle focusability, so it reports those as incomplete; either
+		// result means the element was scanned.
+		const results = await axe.run( { exclude: exclusionsArray }, {
+			runOnly: [ 'button-name', 'aria-hidden-focus' ],
+		} );
+
+		const violationHTML = [ ...results.violations, ...results.incomplete ]
+			.flatMap( ( violation ) => violation.nodes )
+			.map( ( node ) => node.html );
+
+		// Real page content inside an Elementor widget is still scanned.
+		expect( violationHTML.some( ( html ) => html.includes( 'id="widget-button"' ) ) ).toBe( true );
+		expect( violationHTML.some( ( html ) => html.includes( 'class="fa fa-star"' ) ) ).toBe( true );
+		expect( violationHTML.some( ( html ) => html.includes( 'id="el-empty-icon-button"' ) ) ).toBe( false );
+
+		[
+			'el-handle',
+			'el-add-inline-button',
+			'el-add-new-button',
+			'el-first-add-button',
+			'el-empty-view-button',
+			'el-placeholder-button',
+			'el-document-handle-button',
+			'el-pen-menu-button',
+			'el-shape-button',
+		].forEach( ( id ) => {
+			expect( violationHTML.some( ( html ) => html.includes( `id="${ id }"` ) ) ).toBe( false );
+		} );
+	} );
+
+	test( 'should still scan a generic .pen-menu outside the Elementor editor', async ( ) => {
+		document.body.innerHTML = `
+			<div class="pen-menu"><button id="pen-menu-button"></button></div>
+		`;
+
+		const results = await axe.run( { exclude: exclusionsArray }, {
+			runOnly: [ 'button-name' ],
+		} );
+
+		const violationHTML = results.violations
+			.flatMap( ( violation ) => violation.nodes )
+			.map( ( node ) => node.html );
+
+		expect( violationHTML.some( ( html ) => html.includes( 'id="pen-menu-button"' ) ) ).toBe( true );
 	} );
 } );

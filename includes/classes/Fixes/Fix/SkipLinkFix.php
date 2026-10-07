@@ -134,6 +134,7 @@ class SkipLinkFix implements FixInterface {
 		}
 
 		$targets_list = explode( ',', $targets_string );
+		$targets      = [];
 
 		foreach ( $targets_list as $target ) {
 			// trim whitespace and any leading '#'.
@@ -142,6 +143,9 @@ class SkipLinkFix implements FixInterface {
 				continue;
 			}
 			$targets[] = '#' . $trimmed;
+		}
+		if ( empty( $targets ) ) {
+			return;
 		}
 		add_filter(
 			'edac_filter_frontend_fixes_data',

@@ -72,7 +72,7 @@ class Enqueue_Frontend {
 
 		wp_enqueue_style(
 			'edac-sr-only-format',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css',
+			EDAC_PLUGIN_URL . 'build/css/srOnlyFormat.css',
 			[],
 			EDAC_VERSION,
 			'all'
@@ -161,8 +161,8 @@ class Enqueue_Frontend {
 		if ( $active ) {
 
 
-			wp_enqueue_style( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
-			wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
+			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
+			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
 
 			wp_localize_script(
 				'edac-frontend-highlighter-app',
@@ -182,7 +182,7 @@ class Enqueue_Frontend {
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
-					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
+					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, EDAC_PLUGIN_URL . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
 					'landmarkTypes'    => edac_get_landmark_types(),
 				]
