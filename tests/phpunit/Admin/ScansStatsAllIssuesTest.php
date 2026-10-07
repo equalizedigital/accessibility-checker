@@ -107,6 +107,23 @@ class ScansStatsAllIssuesTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Get the slugs of the registered rules with a given severity.
+	 *
+	 * @param int $severity Severity, 1 (critical) to 4 (low).
+	 * @return string[]
+	 */
+	private function slugs_with_severity( int $severity ): array {
+		$slugs = [];
+		foreach ( edac_register_rules() as $rule ) {
+			if ( isset( $rule['slug'], $rule['severity'] ) && $severity === (int) $rule['severity'] ) {
+				$slugs[] = $rule['slug'];
+			}
+		}
+		sort( $slugs );
+		return $slugs;
+	}
+
+	/**
 	 * Empty table gives an empty breakdown.
 	 */
 	public function test_returns_empty_array_without_issues() {
@@ -197,5 +214,46 @@ class ScansStatsAllIssuesTest extends WP_UnitTestCase {
 		$this->assertCount( 10, $summary['top_issues_found_on_site'] );
 		$this->assertArrayNotHasKey( 'distinct_count', $summary['top_issues_found_on_site'][0] );
 		$this->assertArrayHasKey( 'distinct_count', $summary['all_issues_found_on_site'][0] );
+	}
+
+	/**
+	 * Severity 1 is critical and 4 is low, so the most severe rules come first and
+	 * rules without a known severity come last.
+	 */
+	public function test_orders_most_severe_rules_first() {
+		$critical = $this->slugs_with_severity( 1 )[0];
+		$high     = $this->slugs_with_severity( 2 )[0];
+		$medium   = $this->slugs_with_severity( 3 )[0];
+		$low      = $this->slugs_with_severity( 4 )[0];
+
+		$this->add_issue( 'unregistered_rule' );
+		$this->add_issue( $low );
+		$this->add_issue( $medium );
+		$this->add_issue( $high );
+		$this->add_issue( $critical );
+
+		$slugs = array_column( $this->get_all(), 'rule_slug' );
+
+		$this->assertSame( [ $critical, $high, $medium, $low, 'unregistered_rule' ], $slugs );
+	}
+
+	/**
+	 * Critical rules stay in the top ten when more than ten lower severity rules have issues.
+	 */
+	public function test_top_ten_keeps_critical_rules_when_lower_severity_rules_fill_the_list() {
+		$critical = $this->slugs_with_severity( 1 )[0];
+		$lower    = array_merge( $this->slugs_with_severity( 3 ), $this->slugs_with_severity( 4 ) );
+		$this->assertGreaterThan( 10, count( $lower ) );
+
+		foreach ( $lower as $slug ) {
+			$this->add_issue( $slug );
+			$this->add_issue( $slug, '<b>' );
+		}
+		$this->add_issue( $critical );
+
+		$summary = ( new Scans_Stats( 0 ) )->summary( true );
+
+		$this->assertCount( 10, $summary['top_issues_found_on_site'] );
+		$this->assertSame( $critical, $summary['top_issues_found_on_site'][0]['rule_slug'] );
 	}
 }
