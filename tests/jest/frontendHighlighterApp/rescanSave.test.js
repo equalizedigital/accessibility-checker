@@ -24,6 +24,8 @@ describe( 'highlighter rescan saving', () => {
 	let announced = [];
 	// The issues the (mocked) highlight request returns after a rescan.
 	let storedIssues = [];
+	// Overrides the highlight response, e.g. the "no results" code a post with no rows gets.
+	let highlightResponse = null;
 
 	const rescan = async ( scanResult ) => {
 		window.runAccessibilityScan.mockResolvedValue( scanResult );
@@ -48,7 +50,9 @@ describe( 'highlighter rescan saving', () => {
 		jest.spyOn( window, 'XMLHttpRequest' ).mockImplementation( () => ( {
 			open: jest.fn(),
 			status: 200,
-			responseText: JSON.stringify( { success: true, data: JSON.stringify( { issues: storedIssues, fixes: {} } ) } ),
+			get responseText() {
+				return JSON.stringify( highlightResponse || { success: true, data: JSON.stringify( { issues: storedIssues, fixes: {} } ) } );
+			},
 			send() {
 				this.onload();
 			},
@@ -111,6 +115,7 @@ describe( 'highlighter rescan saving', () => {
 		jest.clearAllTimers();
 		announced = [];
 		storedIssues = [];
+		highlightResponse = null;
 	} );
 
 	const announcements = async () => {
@@ -234,5 +239,17 @@ describe( 'highlighter rescan saving', () => {
 		expect( new URL( window.location.href ).searchParams.has( 'edac' ) ).toBe( false );
 		expect( summary.textContent ).toBe( 'Issues cleared successfully.' );
 		delete window.confirm;
+	} );
+
+	test( 'does not start a second scan when a clean rescan leaves the post with no stored issues', async () => {
+		// The REST code a post with no issue rows gets, which makes the panel auto-scan.
+		highlightResponse = { success: false, data: [ { code: -3 } ] };
+
+		await rescan( { violations: [] } );
+		jest.advanceTimersByTime( 5000 );
+		await settle();
+
+		expect( window.runAccessibilityScan ).toHaveBeenCalledTimes( 1 );
+		expect( savedPayloads() ).toHaveLength( 1 );
 	} );
 } );
