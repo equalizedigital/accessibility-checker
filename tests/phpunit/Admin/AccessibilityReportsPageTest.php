@@ -424,6 +424,43 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Only the first ten inputs are considered before the top five are chosen.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_only_considers_the_first_ten_inputs() {
+		$rules  = [];
+		$issues = [];
+		for ( $i = 1; $i <= 12; $i++ ) {
+			$rules[ 'rule_' . $i ] = [
+				'title'    => 'Rule ' . $i,
+				'severity' => 3,
+			];
+			$issues[]              = [
+				'rule_slug'   => 'rule_' . $i,
+				'issue_count' => $i,
+			];
+		}
+
+		$result = $this->invoke_private_method( 'format_top_issues', [ $issues, $rules ] );
+
+		// Rules 11 and 12 are beyond the first ten inputs, so the top five are rules 10 to 6.
+		$this->assertSame(
+			[ 'Rule 10', 'Rule 9', 'Rule 8', 'Rule 7', 'Rule 6' ],
+			array_column( $result, 'title' )
+		);
+	}
+
+	/**
+	 * No issues gives an empty list.
+	 *
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_format_top_issues_empty() {
+		$this->assertSame( [], $this->invoke_private_method( 'format_top_issues', [ [], [] ] ) );
+	}
+
+	/**
 	 * Ensures every severity number maps to its label, with Unknown as the catch-all.
 	 *
 	 * @param int    $severity Severity number.
