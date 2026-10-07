@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.48.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Danish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-07 22:10+0000\n"
+"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: da_DK\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -567,7 +567,7 @@ msgstr "Opgrader nu"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -650,13 +650,13 @@ msgstr "Anmeldelseshandlingsværdien blev ikke indstillet"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "Post-ID'et blev ikke indstillet"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "Du har ikke tilladelse til at se disse oplysninger for dette indlæg."
 
@@ -741,7 +741,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* Sand tilgængelighed kræver manuel test ud over automatiske scanninger. %1$sLær, hvordan du manuelt tester for tilgængelighed%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -769,205 +769,199 @@ msgstr " i alt"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Læs dokumentation for %1$s. %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "Udvid problemer for %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Disse indstillinger aktiverer globale rettelser på tværs af hele din hjemmeside."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Sider skal muligvis gemmes igen, eller en fuld hjemmesidescanning skal køres for at se rettelser afspejlet i rapporter."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Gem"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Berørt kode"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Billede"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landemærke"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "Handlinger"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Afvist"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "Afvis"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "Problem-ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "billede for problem %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Se Problem-ID %d på hjemmesiden, åbner et nyt vindue"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Se på siden"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "Ret: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "Ret"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "Ingen detaljer at returnere"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Læseforståelsesniveau efter indlæg: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Ingen"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Dit indlæg har et læseniveau højere end 9. klasse. Web Content Accessibility Guidelines (WCAG) på AAA-niveau kræver en forenklet oversigt over dit indlæg, der er 9. klasse eller derunder."
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Dit indlæg indeholder ikke nok indhold til at beregne dets læseniveau."
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "En forenklet oversigt er ikke nødvendig, når indholdets læseniveau er 9. klasse eller derunder. Vælg, hvornår der skal anmodes om en forenklet oversigt på indstillingssiden."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Forenklet resumé læsekarakter: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Ikke nok indhold til at bestemme et nøjagtigt læseniveau."
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Dit forenklede resumé har et læseniveau over 9. klasse."
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Dit forenklede resumé har et læseniveau på eller under 9. klasse."
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Forenklet oversigt indsættes ikke automatisk i indholdet."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din anmodning om forenklet oversigt er indstillet til »aldrig.« Hvis du ønsker, at den forenklede oversigt skal vises automatisk, kan du ændre dette på %s."
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "indstillingsside"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Forenklet oversigt indsættes automatisk %s."
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "indholdet"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Indstil, hvor den forenklede oversigt indsættes i indholdet på %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din placering for forenklet oversigt er indstillet til »manuelt«, hvilket kræver, at en funktion tilføjes din sideskabelon. Hvis du ønsker, at den forenklede oversigt skal vises automatisk, kan du ændre dette på %s."
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:792
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
-#: includes/options-page.php:1539
-#: includes/options-page.php:1563
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Forenklet resumé"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Gem resumé"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Lær mere om forbedring af læsbarhed og krav til forenklet oversigt"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "Ingen læsbarhedsdata at returnere"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* Skærmlæsertekst"
 
@@ -1147,7 +1141,7 @@ msgid "Report Last Updated:"
 msgstr "Rapport sidst opdateret:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1241
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "Aldrig"
 
@@ -1315,11 +1309,25 @@ msgstr "Fornavn"
 msgid "Type your first name"
 msgstr "Skriv dit fornavn"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "Ved at abonnere giver du samtykke til at modtage e-mails i overensstemmelse med vores %1$sPrivatlivspolitik%2$s."
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(åbnes i et nyt vindue)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1461,7 +1469,7 @@ msgid "Disabled"
 msgstr "Deaktiveret"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:821
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "Slet data"
 
@@ -1865,16 +1873,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "Indstil ID-attributten for navigationselementet. Dette er nyttigt, hvis din hovednavigation indeholder handlinger, som de fleste besøgende på webstedet ønsker at foretage, såsom login eller søgefunktioner."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Hvis dit tema ikke allerede tilføjer et springover-link, der giver tastaturbrugere mulighed for at springe over navigationen og hurtigt hoppe til hovedindholdet, skal du aktivere springover-links her. %1$sLær mere om springover-links.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "Spring til indhold"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "Spring til navigation"
 
@@ -2750,17 +2758,17 @@ msgstr "Disse elementer er ankertags, der mangler gyldige %1$s-attributter eller
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "Ankertags (også kendt som links) er beregnet til navigation til en ny side eller et andet sted på samme side. Når de bruges til at udløse handlinger (såsom at udvide accordions eller åbne modaler) uden de korrekte roller eller adfærd, forvirrer de brugere, især dem der bruger skærmlæsere eller tastaturer, som forventer at links navigerer i stedet for at udføre handlinger. De fungerer sandsynligvis heller ikke med mellemrumstasten, hvilket er en forventning til en knap."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "Hvis elementet bruges til at udløse en handling, skal du erstatte ankertaget med en %1$s. Hvis du ikke kan erstatte det, skal du sørge for, at %2$s tilføjes til linket, sammen med JavaScript, der tilføjer understøttelse for at udløse det med mellemrumstasten, og at passende ARIA-attributter bruges til toggle-tilstande eller anden funktionalitet."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "Hvis elementet bruges til at udløse en handling, skal du erstatte ankertaget med en %1$s. Hvis du ikke kan erstatte det, skal du sørge for, at %2$s tilføjes til linket, sammen med JavaScript, der tilføjer understøttelse for at udløse det med mellemrumstasten, og at passende ARIA-attributter bruges til toggle-tilstande eller anden funktionalitet. Hvis ankertaget er rent dekorativt, ikke kan fokuseres og ikke har ARIA-tilstande eller egenskaber, markerer %3$s eller %4$s det som præsentationsmæssigt, så det ikke rapporteres."
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: ARIA-knapperollen"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: tilgængelighed for knapper og links"
 
@@ -3454,90 +3462,77 @@ msgstr "permalink til "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "Deltag gratis"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(åbnes i et nyt vindue)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "Hoved"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "Sidehoved"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "Sidefod"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "Nav"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "Sidebjælke"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "Navigation"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "Banner"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "Indholdsinfo"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "Supplerende"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "Sektion"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "Artikel"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "Formular"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "Region"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3587,7 +3582,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Velkommen til Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:115
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "Indstillinger for Accessibility Checker"
 
@@ -3612,207 +3607,211 @@ msgid "System Settings"
 msgstr "Systemindstillinger"
 
 #: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "Indlægstyper, der skal kontrolleres"
 
-#: includes/options-page.php:794
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "Scanningshastighed"
 
-#: includes/options-page.php:803
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "Arkivscanning"
 
-#: includes/options-page.php:812
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "Taksonomi-scanning"
 
-#: includes/options-page.php:830
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "Blokredigeringsmetaboks"
 
-#: includes/options-page.php:839
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "Prompt for forenklet resumé"
 
-#: includes/options-page.php:848
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "Placering af forenklet resumé"
 
-#: includes/options-page.php:857
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "Forenklet overskrift for sammendrag"
 
-#: includes/options-page.php:866
-#: includes/options-page.php:1374
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "Tilføj tilgængelighedserklæring i sidefod"
 
-#: includes/options-page.php:875
-#: includes/options-page.php:1397
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "Inkluder link til tilgængelighedspolitik"
 
-#: includes/options-page.php:884
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "Side for tilgængelighedspolitik"
 
-#: includes/options-page.php:893
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "Forhåndsvisning af tilgængelighedserklæring"
 
-#: includes/options-page.php:901
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "Frontend Accessibility Checker-position"
 
-#: includes/options-page.php:955
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfigurer de typer af indhold, der skal kontrolleres for tilgængelighedsproblemer."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:960
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Flere funktioner og e-mail-support er tilgængelige med %1$s."
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (åbnes i et nyt vindue)"
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:982
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Brug indstillingerne nedenfor til at konfigurere tilgængelighedstjekkeren på frontend."
 
-#: includes/options-page.php:992
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Retningslinjerne for Webtilgængelighed (WCAG) på AAA-niveau kræver, at alt indhold med et læseniveau over 9. Klasse skal have et alternativ, der er lettere at læse. Forenklet opsummeringstekst tilføjes på læsbarhedsfanen i Accessibility Checker-metaboksen på hver posts eller sides redigeringsskærm."
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Lær mere om forenklede resuméer og læsbarhedskrav (åbner i et nyt vindue)"
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Lær mere om forenklede resuméer og læsbarhedskrav."
 
-#: includes/options-page.php:1011
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Tænker du »Wow, dette plugin er fantastisk«, og hjælper det dig med at gøre din hjemmeside mere tilgængelig? Del dine bestræbelser på at gøre din hjemmeside mere tilgængelig med dine kunder, og lad dem vide, at du bruger Accessibility Checker til at sikre, at alle mennesker kan bruge din hjemmeside. Tilføj et lille tekstlink og en erklæring i sidefoden på din hjemmeside."
 
-#: includes/options-page.php:1020
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfigurer systemindstillinger for Accessibility Checker-pluginet."
 
-#: includes/options-page.php:1034
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Hurtig"
 
-#: includes/options-page.php:1035
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normal"
 
-#: includes/options-page.php:1036
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Langsom"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Langsomst"
 
-#: includes/options-page.php:1059
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Hurtigere scanninger er mere ressourcekrævende og kan belaste dit websted meget."
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Aktivér scanning af arkivsider"
 
-#: includes/options-page.php:1089
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Vælg, om arkivsider skal inkluderes i komplette webstedscanninger. Som standard bruges en stikprøvemetode til at vælge taksonomitermer for arkivdata."
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Scan alle taksonomivilkår i stedet for kun en stikprøve"
 
-#: includes/options-page.php:1119
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Tjek alle taksonomitermers arkivsider i stedet for en repræsentativ stikprøve. Dette kræver, at arkivsidescanningen er aktiveret og kan tilføje et stort antal URL'er til scanningslisten."
 
-#: includes/options-page.php:1148
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "Før indholdet"
 
-#: includes/options-page.php:1153
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "Efter indholdet"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "Indsæt manuelt"
 
-#: includes/options-page.php:1162
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Brug denne funktion til manuelt at tilføje det forenklede resumé til dit tema inden for loopet."
 
-#: includes/options-page.php:1164
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funktionen accepterer valgfrit post-ID'et som en parameter."
 
-#: includes/options-page.php:1167
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Indstil, hvor du ønsker, at forenklede resuméer skal vises i forhold til dit indhold, hvis de er udfyldt."
 
-#: includes/options-page.php:1182
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "Nederste højre hjørne (standard)"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "Nederste venstre hjørne"
 
-#: includes/options-page.php:1191
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Indstil, hvor du ønsker, at frontend-tilgængelighedstjekkeren skal vises på siden."
 
-#: includes/options-page.php:1231
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "Når det kræves"
 
-#: includes/options-page.php:1236
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "Altid"
 
-#: includes/options-page.php:1244
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Skal Accessibility Checker kun bede om en forenklet opsummering, når læseniveauet for dit indlæg eller din side er over 9. klasse, altid bede om det uanset læseniveau, eller aldrig bede om det uanset læseniveau?"
 
-#: includes/options-page.php:1299
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "For at tjekke andet indhold end indlæg og sider, venligst "
 
-#: includes/options-page.php:1301
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "opgrader til pro"
 
-#: includes/options-page.php:1302
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (åbner i et nyt vindue)"
 
-#: includes/options-page.php:1307
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Vælg hvilke posttyper der skal kontrolleres under en scanning. Bemærk venligst, at hvis en tidligere valgt posttype fjernes, fjernes dens scannede information og eventuelle brugerdefinerede afviste advarsler, der er blevet opsat."
 
-#: includes/options-page.php:1448
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Slet alle Accessibility Checker-data, når plugin'et afinstalleres."
 
-#: includes/options-page.php:1466
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Vis Accessibility Checker-metaboks i blokredigeringsprogrammet"
 
@@ -5622,16 +5621,12 @@ msgid "Missing postId or nonce."
 msgstr "Manglende postId eller nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "Genscanning fuldført. Ingen overtrædelser fundet."
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "Ingen overtrædelser fundet, springer over gemning."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Fejl i tilgængelighedsscanning."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "Genscanning fuldført. Ingen overtrædelser fundet."
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5905,6 +5900,34 @@ msgid "learn more"
 msgstr "lær mere"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "åbner i et nyt vindue"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "åbner en ny fane"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "åbner i en ny fane"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "åbner nyt vindue"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "åbner ny fane"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "åbner i nyt vindue"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "åbner i ny fane"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "Kontrollerer, om et links synlige tekst er en URL snarere end en beskrivende ankertekst."
 
@@ -6160,6 +6183,14 @@ msgstr "Scan"
 #: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Opdater"
+
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "Frigør fra værktøjslinje"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "Fastgør til værktøjslinje"
 
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."

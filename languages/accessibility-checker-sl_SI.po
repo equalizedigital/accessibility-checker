@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.48.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Slovenian\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-07 22:10+0000\n"
+"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: sl_SI\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);\n"
@@ -567,7 +567,7 @@ msgstr "Nadgradite zdaj"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -650,13 +650,13 @@ msgstr "Vrednost dejanja za oceno ni bila nastavljena"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "ID objave ni bil nastavljen"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "Za ogled teh informacij za to objavo nimate dovoljenja."
 
@@ -749,7 +749,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* Prava dostopnost zahteva ročno testiranje poleg avtomatiziranih pregledov. %1$sPreberite, kako ročno preveriti dostopnost%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -777,205 +777,199 @@ msgstr " skupaj"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "Preberite dokumentacijo za %1$s. %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "Razširi težave za %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "Te nastavitve omogočajo globalne popravke po celotnem spletnem mestu."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "Morda bo treba strani ponovno shraniti ali izvesti celoten pregled spletnega mesta, da bodo popravki vidni v poročilih."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "Shrani"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Prizadeta koda"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Slika"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Znamenitost"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "Dejanja"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Zavrnjeno"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "Zavrni"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "ID težave %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "slika za težavo %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Oglejte si težavo z ID %d na spletni strani, odpre se novo okno"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Ogled na strani"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "Popravek: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "Popravi"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "Ni podrobnosti za vrnitev"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Stopnja berljivosti objave: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "Brez"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Vaša objava ima stopnjo berljivosti višjo od 9. razreda. Smernice za dostopnost spletnih vsebin (WCAG) na ravni AAA zahtevajo poenostavljen povzetek vaše objave, ki je na ravni 9. razreda ali nižje."
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Vaša objava ne vsebuje dovolj vsebine za izračun stopnje berljivosti."
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Poenostavljen povzetek ni potreben, če je stopnja berljivosti vsebine 9. razred ali nižje. Na strani z nastavitvami izberite, kdaj naj se prikaže poziv za poenostavljen povzetek."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Poenostavljena raven branja povzetka: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Ni dovolj vsebine za določitev natančne ravni branja."
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Vaš poenostavljeni povzetek ima raven branja nad 9. razredom."
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Vaš poenostavljeni povzetek ima raven branja na ali pod 9. razredom."
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Poenostavljen povzetek se ne vstavi samodejno v vsebino."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaš poziv za poenostavljen povzetek je nastavljen na „nikoli.“ Če želite, da se poenostavljen povzetek prikaže samodejno, lahko to spremenite na %s."
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "stran z nastavitvami"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Poenostavljen povzetek se samodejno vstavi %s."
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "vsebina"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Nastavite, kam se poenostavljen povzetek vstavi v vsebino na %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Vaša lokacija poenostavljenega povzetka je nastavljena na „ročno“, kar zahteva dodajanje funkcije v predlogo vaše strani. Če želite, da se poenostavljen povzetek prikaže samodejno, lahko to spremenite na %s."
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:792
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
-#: includes/options-page.php:1539
-#: includes/options-page.php:1563
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "Poenostavljen povzetek"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Shrani povzetek"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Več o izboljšanju berljivosti in zahtevah za poenostavljen povzetek"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "Ni podatkov o berljivosti za vrnitev"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* Besedilo za bralnik zaslona"
 
@@ -1161,7 +1155,7 @@ msgid "Report Last Updated:"
 msgstr "Poročilo nazadnje posodobljeno:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1241
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "Nikoli"
 
@@ -1329,11 +1323,25 @@ msgstr "Ime"
 msgid "Type your first name"
 msgstr "Vnesite svoje ime"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "S prijavo na prejemanje obvestil soglašate s prejemanjem e-poštnih sporočil v skladu z našo %1$sPolitiko zasebnosti%2$s."
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(se odpre v novem oknu)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1479,7 +1487,7 @@ msgid "Disabled"
 msgstr "Onemogočeno"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:821
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "Izbriši podatke"
 
@@ -1883,16 +1891,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "Nastavi ID atribut navigacijskega elementa. To je koristno, če vaša glavna navigacija vsebuje dejanja, ki bi jih večina obiskovalcev spletnega mesta želela izvesti, kot so funkcije prijave ali iskanja."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "Če vaša tema še ne dodaja preskočne povezave, ki uporabnikom tipkovnice omogoča obiti navigacijo in hitro skočiti na glavno vsebino, tukaj omogočite preskočne povezave. %1$sVeč o preskočnih povezavah.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "Preskoči na vsebino"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "Preskoči na navigacijo"
 
@@ -2768,17 +2776,17 @@ msgstr "Ti elementi so sidra (anchor tags), ki jim manjkajo veljavni %1$s atribu
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "Sidra (a.k.a. povezave) so namenjena navigaciji na novo stran ali na drugo mesto na isti strani. Ko se uporabljajo za sprožanje dejanj (kot so razširjanje harmonik ali odpiranje modalnih oken) brez pravilnih vlog ali obnašanja, zmedejo uporabnike, zlasti tiste, ki uporabljajo bralnike zaslona ali tipkovnice, ki pričakujejo, da bodo povezave navigirale, ne pa izvajale dejanja. Prav tako verjetno ne bodo delovale s preslednico, kar je pričakovano pri gumbu."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "Če se element uporablja za sprožanje dejanja, zamenjaj sidro z %1$s. Če ga ne moreš zamenjati, poskrbi, da je povezavi dodan %2$s, skupaj z JavaScriptom, ki doda podporo za sprožanje s preslednico, in da so uporabljeni ustrezni ARIA atributi za stanja preklopa ali drugo funkcionalnost."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "Če se element uporablja za sprožanje dejanja, zamenjajte sidrno oznako z %1$s. Če je ne morete zamenjati, poskrbite, da je povezavi dodan %2$s, skupaj z JavaScriptom, ki doda podporo za sprožanje s preslednico, in da so uporabljeni ustrezni atributi ARIA za stanja preklopa ali drugo funkcionalnost. Če je sidro zgolj dekorativno, ga ni mogoče fokusirati in nima stanj ali lastnosti ARIA, ga %3$s ali %4$s označi kot predstavitvenega, da se o njem ne poroča."
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: ARIA vloga gumba"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: dostopnost gumbov in povezav"
 
@@ -3472,90 +3480,77 @@ msgstr "povezava na "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "Obišči brezplačno"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(se odpre v novem oknu)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "Glavno"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "Glava"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "Noga"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "Navigacija"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "Stransko"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "Navigacija"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "Pasica"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "Informacije o vsebini"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "Komplementarno"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "Razdelek"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "Članek"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "Obrazec"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "Regija"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3605,7 +3600,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Dobrodošli v Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:115
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "Nastavitve Accessibility Checkerja"
 
@@ -3630,207 +3625,211 @@ msgid "System Settings"
 msgstr "Sistemske nastavitve"
 
 #: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "Vrste prispevkov za preverjanje"
 
-#: includes/options-page.php:794
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "Hitrost skeniranja"
 
-#: includes/options-page.php:803
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "Skeniranje arhiva"
 
-#: includes/options-page.php:812
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "Skeniranje taksonomije"
 
-#: includes/options-page.php:830
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "Metabox urejevalnika blokov"
 
-#: includes/options-page.php:839
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "Poziv za poenostavljen povzetek"
 
-#: includes/options-page.php:848
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "Položaj poenostavljenega povzetka"
 
-#: includes/options-page.php:857
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "Poenostavljen naslov povzetka"
 
-#: includes/options-page.php:866
-#: includes/options-page.php:1374
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "Dodaj izjavo o dostopnosti v nogo"
 
-#: includes/options-page.php:875
-#: includes/options-page.php:1397
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "Vključi povezavo do politike dostopnosti"
 
-#: includes/options-page.php:884
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "Stran s politiko dostopnosti"
 
-#: includes/options-page.php:893
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "Predogled izjave o dostopnosti"
 
-#: includes/options-page.php:901
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "Položaj Accessibility Checkerja na spletni strani"
 
-#: includes/options-page.php:955
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "Konfiguriraj vrste vsebine, ki jih je treba preveriti glede težav z dostopnostjo."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:960
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "Več funkcij in e-poštna podpora sta na voljo s %1$s."
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (odpre se v novem oknu)"
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:982
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "Uporabite spodnje nastavitve za konfiguracijo preverjalnika dostopnosti na sprednji strani."
 
-#: includes/options-page.php:992
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "Smernice za dostopnost spletnih vsebin (WCAG) na ravni AAA zahtevajo, da ima vsebina z bralnim nivojem nad 9. Razredom alternativo, ki jo je lažje prebrati. Poenostavljen povzetek besedila je dodan na zavihku berljivosti v metapolju Accessibility Checkerja na zaslonu za urejanje vsakega prispevka ali strani."
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti (se odpre v novem oknu)"
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "Več o poenostavljenih povzetkih in zahtevah glede berljivosti."
 
-#: includes/options-page.php:1011
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "Ali razmišljaš „Vau, ta vtičnik je neverjetno“ in ti pomaga narediti tvojo spletno stran bolj dostopno? Deli svoje prizadevanja za izboljšanje dostopnosti svoje spletne strani s svojimi strankami in jim sporoči, da uporabljaš Accessibility Checker, da zagotoviš, da lahko vsi ljudje uporabljajo tvojo spletno stran. Dodaj majhno besedilno povezavo in izjavo v nogo svoje spletne strani."
 
-#: includes/options-page.php:1020
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "Konfiguriraj sistemske nastavitve za vtičnik Accessibility Checker."
 
-#: includes/options-page.php:1034
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "Hitro"
 
-#: includes/options-page.php:1035
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "Normalno"
 
-#: includes/options-page.php:1036
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "Počasi"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "Najpočasneje"
 
-#: includes/options-page.php:1059
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "Hitrejša skeniranja so bolj zahtevna za vire in lahko povzročijo veliko obremenitev vaše spletne strani."
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "Omogoči skeniranje arhivskih strani"
 
-#: includes/options-page.php:1089
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "Izberite, ali naj bodo arhivske strani vključene v celotno skeniranje spletnega mesta. Privzeto se za izbiro taksonomskih izrazov za arhivske podatke uporablja metoda vzorčenja."
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "Skeniraj vse taksonomske izraze namesto le vzorca"
 
-#: includes/options-page.php:1119
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "Preveri vse arhivske strani taksonomskih izrazov namesto reprezentativnega vzorca. To zahteva, da je skeniranje arhivskih strani omogočeno, in lahko na seznam za skeniranje doda veliko število URL-jev."
 
-#: includes/options-page.php:1148
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "Pred vsebino"
 
-#: includes/options-page.php:1153
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "Po vsebini"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "Vstavi ročno"
 
-#: includes/options-page.php:1162
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "Uporabite to funkcijo za ročno dodajanje poenostavljenega povzetka v vašo temo znotraj zanke."
 
-#: includes/options-page.php:1164
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "Funkcija opcijsko sprejme ID objave kot parameter."
 
-#: includes/options-page.php:1167
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "Nastavite, kje želite, da se poenostavljeni povzetki pojavijo v odnosu do vaše vsebine, če so izpolnjeni."
 
-#: includes/options-page.php:1182
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "Spodnji desni kot (privzeto)"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "Spodnji levi kot"
 
-#: includes/options-page.php:1191
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "Nastavite, kje želite, da se preverjalnik dostopnosti na sprednji strani pojavi na strani."
 
-#: includes/options-page.php:1231
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "Ko je potrebno"
 
-#: includes/options-page.php:1236
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "Vedno"
 
-#: includes/options-page.php:1244
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Ali naj Accessibility Checker zahteva poenostavljen povzetek samo, ko je bralni nivo tvojega prispevka ali strani nad 9. razredom, vedno zahteva ne glede na bralni nivo ali nikoli ne zahteva ne glede na bralni nivo?"
 
-#: includes/options-page.php:1299
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "Za preverjanje vsebine, ki ni objava ali stran, prosimo "
 
-#: includes/options-page.php:1301
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "nadgradite na Pro"
 
-#: includes/options-page.php:1302
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (se odpre v novem oknu)"
 
-#: includes/options-page.php:1307
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "Izberite, katere vrste objav naj se preverijo med skeniranjem. Upoštevajte, da bo odstranitev predhodno izbrane vrste objave odstranila njene skenirane informacije in vsa nastavljena opozorila, ki so bila zavrnjena po meri."
 
-#: includes/options-page.php:1448
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "Izbriši vse podatke Accessibility Checkerja, ko je vtičnik odstranjen."
 
-#: includes/options-page.php:1466
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "Prikaži metabox Accessibility Checkerja v urejevalniku blokov"
 
@@ -5648,16 +5647,12 @@ msgid "Missing postId or nonce."
 msgstr "Manjka postId ali nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "Ponovno skeniranje končano. Ni najdenih kršitev."
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "Ni najdenih kršitev, preskakujem shranjevanje."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "Napaka pri pregledu dostopnosti."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "Ponovno skeniranje končano. Ni najdenih kršitev."
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5931,6 +5926,34 @@ msgid "learn more"
 msgstr "izvedite več"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "se odpre v novem oknu"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "odpre nov zavihek"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "se odpre v novem zavihku"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "odpre novo okno"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "odpre nov zavihek"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "se odpre v novem oknu"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "se odpre v novem zavihku"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "Preveri, ali je vidno besedilo povezave URL namesto opisnega sidrnega besedila."
 
@@ -6190,6 +6213,14 @@ msgstr "Skeniraj"
 #: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "Osveži"
+
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "Odpni iz orodne vrstice"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "Pripni na orodno vrstico"
 
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
