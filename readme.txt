@@ -280,6 +280,20 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
+2026-10-07 - version 1.51.0
+* New - the Missing Transcript check now recognizes Able Player transcripts.
+* Updated - the Privacy Policy link in the email opt-in now tells screen reader users it opens in a new window.
+* Updated - dismissing an issue in the editor metabox keeps context and returns focus appropriately in more situations.
+* Updated - grouped settings fields have a legend for each of them, and saving settings is announced to screen readers.
+* Updated - improved metabox tab panel and classic metabox screen reader announcements.
+* Fix - the ambiguous link text check keeps flagging links when behavioral suffixes like "(opens in a new tab)" are appended.
+* Fix - links with role "none", "presentation" or "slider" are no longer flagged as improper links.
+* Fix - resolved issues are now properly cleared when a rescan finds no issues on a page.
+* Fix - the sidebar actions menu button is no longer part of the header heading.
+* Fix - the skip link fix no longer errors when a target is empty.
+* Fix - a PHP warning from a missing index in the issue filtering helper no longer appears.
+* Fix - the include statement link value in Site Health is now escaped with a more appropriate function.
+
 2026-09-24 - version 1.50.1
 * Fix - the frontend highlighter no longer forces its panel open on every Elementor save, and no longer rescans on Elementor's periodic autosave.
 
