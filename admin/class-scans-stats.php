@@ -569,8 +569,9 @@ class Scans_Stats {
 	 * Get the complete per-issue-type breakdown for the site, uncapped.
 	 *
 	 * Returns every rule that has at least one active (non-ignored) issue on
-	 * the site, ordered by severity, then issue count (both descending), then
-	 * rule slug. Callers wanting a top N can slice the result.
+	 * the site, ordered by severity (1 critical to 4 low, unknown rules last),
+	 * then issue count descending, then rule slug. Callers wanting a top N can
+	 * slice the result.
 	 *
 	 * @return array Array of arrays with rule_nicename, rule_slug, issue_count, distinct_count, and severity.
 	 */
@@ -628,8 +629,12 @@ class Scans_Stats {
 		usort(
 			$result,
 			static function ( $a, $b ) {
-				return [ $b['severity'], $b['issue_count'], $a['rule_slug'] ]
-					<=> [ $a['severity'], $a['issue_count'], $b['rule_slug'] ];
+				// Severity 1 is critical and 4 is low; unknown rules (0) sort last.
+				$a_severity = $a['severity'] > 0 ? $a['severity'] : PHP_INT_MAX;
+				$b_severity = $b['severity'] > 0 ? $b['severity'] : PHP_INT_MAX;
+
+				return [ $a_severity, $b['issue_count'], $a['rule_slug'] ]
+					<=> [ $b_severity, $a['issue_count'], $b['rule_slug'] ];
 			}
 		);
 
