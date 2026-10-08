@@ -280,7 +280,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 
 == Changelog ==
 
-2026-10-07 - version 1.51.0
+2026-10-08 - version 1.51.0
 * New - the Missing Transcript check now recognizes Able Player transcripts.
 * Updated - the Privacy Policy link in the email opt-in now tells screen reader users it opens in a new window.
 * Updated - dismissing an issue in the editor metabox keeps context and returns focus appropriately in more situations.
