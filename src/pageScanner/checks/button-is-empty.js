@@ -41,6 +41,14 @@ export default {
 			return false;
 		}
 
+		// Check for an aria-label bound at runtime by the WordPress Interactivity API.
+		// Core blocks such as the image lightbox render their controls without an
+		// aria-label and only set it from state when opened, so a scan of the
+		// unopened page would otherwise report them as empty buttons.
+		if ( node.getAttribute( 'data-wp-bind--aria-label' )?.trim() ) {
+			return false;
+		}
+
 		// Check for aria-labelledby attribute
 		const ariaLabelledby = node.getAttribute( 'aria-labelledby' );
 		if ( ariaLabelledby ) {
