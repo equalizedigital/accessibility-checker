@@ -57,6 +57,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		do_action( 'init' );
 		do_action( 'rest_api_init' );
 		$this->server = rest_get_server();
+		// Global actions require Pro; free-mode tests swap this for __return_false.
+		add_filter( 'edac_filter_is_pro', '__return_true' );
 	}
 
 	/**
@@ -67,6 +69,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	public function tearDown(): void {
 		// Reset current user between tests.
 		wp_set_current_user( 0 );
+		remove_all_filters( 'edac_filter_is_pro' );
 		// add_cap() writes directly to the user's wp_capabilities meta, which
 		// WP_UnitTestCase's role restoration does not undo - several tests grant
 		// this to the shared self::$limited_id fixture and never revoke it, which
@@ -1723,5 +1726,547 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		foreach ( $updated_issues as $issue ) {
 			$this->assertSame( '0', $issue['ignre'], 'No issues should be updated when user lacks edit permission on all posts.' );
 		}
+	}
+
+	/**
+	 * Insert issue rows sharing one rule + object across new draft posts.
+	 *
+	 * @param int    $count  Number of rows.
+	 * @param int    $ignre  Value for ignre.
+	 * @param int    $is_global Value for ignre_global.
+	 * @param string $shared_object Shared object.
+	 * @return int[] Row IDs.
+	 */
+	private function insert_shared_rows( int $count, int $ignre, int $is_global, string $shared_object ): array {
+		global $wpdb;
+		$ids = [];
+		for ( $i = 0; $i < $count; $i++ ) {
+			$post_id = self::factory()->post->create(
+				[
+					'post_status' => 'draft',
+					'post_author' => self::$limited_id,
+				]
+			);
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test fixture.
+			$wpdb->insert(
+				$wpdb->prefix . 'accessibility_checker',
+				[
+					'postid'       => $post_id,
+					'siteid'       => get_current_blog_id(),
+					'type'         => 'post',
+					'rule'         => 'missing_alt_text',
+					'ruletype'     => 'error',
+					'object'       => $shared_object,
+					'recordcheck'  => 1,
+					'user'         => self::$limited_id,
+					'ignre'        => $ignre,
+					'ignre_global' => $is_global,
+				]
+			);
+			$ids[] = $wpdb->insert_id;
+		}
+		return $ids;
+	}
+
+	/**
+	 * Fetch ignre/ignre_global for rows.
+	 *
+	 * @param int[] $ids Row IDs.
+	 * @return array[]
+	 */
+	private function get_ignore_state( array $ids ): array {
+		global $wpdb;
+		$ids = array_map( 'intval', $ids );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test helper, ids are ints.
+		return $wpdb->get_results( 'SELECT id, ignre, ignre_global FROM ' . $wpdb->prefix . 'accessibility_checker WHERE id IN (' . implode( ',', $ids ) . ') ORDER BY id', ARRAY_A );
+	}
+
+	/**
+	 * Single reopen of a global row clears every sibling and reports a batch change.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_global_row_clears_all_instances() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-widen-' . wp_generate_uuid4();
+		$ids    = $this->insert_shared_rows( 3, 1, 1, $object );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '0', $row['ignre'] );
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
+		$this->assertTrue( $payload['large_batch'] );
+		$this->assertSame( 'missing_alt_text', $payload['rule'] );
+		$this->assertSame( $object, $payload['object'] );
+		$this->assertSame( 0, $payload['ignre_global'] );
+		$this->assertTrue( $response->get_data()['large_batch'] );
+	}
+
+	/**
+	 * Reopening a global row without the global capability is refused.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_global_row_forbidden_without_global_capability() {
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 1, 1, 'reopen-forbidden-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '1', $row['ignre'] );
+			$this->assertSame( '1', $row['ignre_global'] );
+		}
+	}
+
+	/**
+	 * Reopening a locally dismissed row leaves identical siblings alone.
+	 *
+	 * @return void
+	 */
+	public function test_single_reopen_of_local_row_stays_single() {
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 1, 0, 'reopen-local-' . wp_generate_uuid4() );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$state = $this->get_ignore_state( $ids );
+		$this->assertSame( '0', $state[0]['ignre'] );
+		$this->assertSame( '1', $state[1]['ignre'] );
+		$this->assertSame( '1', $state[2]['ignre'] );
+		$this->assertFalse( $payload['large_batch'] );
+		$this->assertSame( 'missing_alt_text', $payload['rule'] );
+	}
+
+	/**
+	 * An implicit global reopen leaves locally dismissed siblings dismissed.
+	 *
+	 * @return void
+	 */
+	public function test_implicit_global_reopen_preserves_local_dismissal() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-preserve-' . wp_generate_uuid4();
+		$global = $this->insert_shared_rows( 2, 1, 1, $object );
+		$local  = $this->insert_shared_rows( 1, 1, 0, $object );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $global[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		foreach ( $this->get_ignore_state( $global ) as $row ) {
+			$this->assertSame( '0', $row['ignre'] );
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
+		$local_state = $this->get_ignore_state( $local );
+		$this->assertSame( '1', $local_state[0]['ignre'], 'Local dismissal must survive.' );
+		$this->assertSame( '0', $local_state[0]['ignre_global'] );
+		$this->assertTrue( $payload['large_batch'] );
+		$this->assertTrue( $response->get_data()['large_batch'] );
+	}
+
+	/**
+	 * An explicit largeBatch reopen leaves locally dismissed siblings dismissed.
+	 *
+	 * @return void
+	 */
+	public function test_explicit_large_batch_reopen_preserves_local_dismissal() {
+		global $wpdb;
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-explicit-' . wp_generate_uuid4();
+		$global = $this->insert_shared_rows( 2, 1, 1, $object );
+		$local  = $this->insert_shared_rows( 1, 1, 0, $object );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test fixture.
+		$wpdb->update( $wpdb->prefix . 'accessibility_checker', [ 'ignre_comment' => 'keep me' ], [ 'id' => $local[0] ] );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $global[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		foreach ( $this->get_ignore_state( $global ) as $row ) {
+			$this->assertSame( '0', $row['ignre'] );
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
+		$local_state = $this->get_ignore_state( $local );
+		$this->assertSame( '1', $local_state[0]['ignre'], 'Local dismissal must survive.' );
+		$this->assertSame( '0', $local_state[0]['ignre_global'] );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test assertion.
+		$this->assertSame( 'keep me', $wpdb->get_var( $wpdb->prepare( 'SELECT ignre_comment FROM %i WHERE id = %d', $wpdb->prefix . 'accessibility_checker', $local[0] ) ) );
+		$this->assertTrue( $payload['large_batch'] );
+		$this->assertTrue( $response->get_data()['large_batch'] );
+	}
+
+	/**
+	 * An explicit largeBatch reopen without the global capability is forbidden.
+	 *
+	 * @return void
+	 */
+	public function test_explicit_large_batch_reopen_requires_global_capability() {
+		wp_set_current_user( self::$limited_id );
+
+		$object = 'reopen-forbidden-' . wp_generate_uuid4();
+		$global = $this->insert_shared_rows( 1, 1, 1, $object );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $global[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		$this->assertSame( '1', $this->get_ignore_state( $global )[0]['ignre'] );
+	}
+
+	/**
+	 * Without Pro, an explicit largeBatch reopen is a global action and is refused.
+	 *
+	 * @return void
+	 */
+	public function test_explicit_global_reopen_forbidden_without_pro() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 1, 1, 'free-global-reopen-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '1', $row['ignre_global'] );
+		}
+	}
+
+	/**
+	 * Without Pro, a user who can dismiss reopens a globally dismissed row on its own,
+	 * leaving the other instances untouched and needing no global capability.
+	 *
+	 * @return void
+	 */
+	public function test_free_user_reopens_global_row_as_single_row() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 1, 1, 'free-single-reopen-' . wp_generate_uuid4() );
+
+		$payload = null;
+		add_action(
+			'edac_after_ignore_change',
+			function ( $data ) use ( &$payload ) {
+				$payload = $data;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'undismiss' );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$rows = $this->get_ignore_state( $ids );
+		$this->assertSame( '0', $rows[0]['ignre'] );
+		$this->assertSame( '0', $rows[0]['ignre_global'] );
+		$this->assertSame( '1', $rows[1]['ignre_global'], 'Siblings must stay globally dismissed.' );
+		$this->assertSame( '1', $rows[2]['ignre_global'], 'Siblings must stay globally dismissed.' );
+		$this->assertFalse( $payload['large_batch'] );
+	}
+
+	/**
+	 * Holding the global capability does not let a free user dismiss globally.
+	 *
+	 * @return void
+	 */
+	public function test_global_capability_does_not_unlock_global_dismiss_without_pro() {
+		remove_all_filters( 'edac_filter_is_pro' );
+		add_filter( 'edac_filter_is_pro', '__return_false' );
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 0, 0, 'free-cap-dismiss-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 403, $response->get_status() );
+		foreach ( $this->get_ignore_state( $ids ) as $row ) {
+			$this->assertSame( '0', $row['ignre_global'] );
+		}
+	}
+
+	/**
+	 * Fetch the dismissal columns for rows.
+	 *
+	 * @param int[] $ids Row IDs.
+	 * @return array[] Keyed by row ID.
+	 */
+	private function get_dismissal_details( array $ids ): array {
+		global $wpdb;
+		$ids = array_map( 'intval', $ids );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.PreparedSQL.InterpolatedNotPrepared -- Test helper, ids are ints.
+		$rows = $wpdb->get_results( 'SELECT id, ignre, ignre_global, ignre_comment, ignre_reason, ignre_user FROM ' . $wpdb->prefix . 'accessibility_checker WHERE id IN (' . implode( ',', $ids ) . ') ORDER BY id', ARRAY_A );
+		return array_column( $rows, null, 'id' );
+	}
+
+	/**
+	 * Mark a row as dismissed on its own, with a comment.
+	 *
+	 * @param int    $id      Row ID.
+	 * @param string $comment Comment to store.
+	 * @return void
+	 */
+	private function make_row_local( int $id, string $comment ): void {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Test fixture.
+		$wpdb->update(
+			$wpdb->prefix . 'accessibility_checker',
+			[
+				'ignre'         => 1,
+				'ignre_global'  => 0,
+				'ignre_comment' => $comment,
+				'ignre_reason'  => 'false_positive',
+				'ignre_user'    => self::$admin_id,
+				'ignre_date'    => '2026-01-01 00:00:00',
+			],
+			[ 'id' => $id ]
+		);
+	}
+
+	/**
+	 * A global dismiss updates open rows and leaves individually dismissed ones alone.
+	 *
+	 * @return void
+	 */
+	public function test_global_dismiss_leaves_local_rows_untouched() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 4, 0, 0, 'global-skips-local-' . wp_generate_uuid4() );
+		$this->make_row_local( $ids[2], 'keep me' );
+		$this->make_row_local( $ids[3], 'keep me too' );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'comment', 'global comment' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$details = $this->get_dismissal_details( $ids );
+		foreach ( [ $ids[0], $ids[1] ] as $id ) {
+			$this->assertSame( '1', $details[ $id ]['ignre'] );
+			$this->assertSame( '1', $details[ $id ]['ignre_global'] );
+			$this->assertSame( 'global comment', $details[ $id ]['ignre_comment'] );
+		}
+		$this->assertSame( '0', $details[ $ids[2] ]['ignre_global'] );
+		$this->assertSame( 'keep me', $details[ $ids[2] ]['ignre_comment'] );
+		$this->assertSame( 'false_positive', $details[ $ids[2] ]['ignre_reason'] );
+		$this->assertSame( (string) self::$admin_id, $details[ $ids[2] ]['ignre_user'] );
+		$this->assertSame( '0', $details[ $ids[3] ]['ignre_global'] );
+		$this->assertSame( 'keep me too', $details[ $ids[3] ]['ignre_comment'] );
+		$this->assertSame( 2, $response->get_data()['skipped_local'] );
+		$this->assertSame( 0, $response->get_data()['skipped_exempt'] );
+	}
+
+	/**
+	 * Dismissing globally again refreshes the comment on rows that are already global.
+	 *
+	 * @return void
+	 */
+	public function test_global_dismiss_again_updates_comment_on_global_rows() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 1, 1, 'global-redismiss-' . wp_generate_uuid4() );
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'comment', 'new comment' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		foreach ( $this->get_dismissal_details( $ids ) as $row ) {
+			$this->assertSame( '1', $row['ignre_global'] );
+			$this->assertSame( 'new comment', $row['ignre_comment'] );
+		}
+	}
+
+	/**
+	 * A global dismiss sent from a locally dismissed row skips it but still handles the others.
+	 *
+	 * @return void
+	 */
+	public function test_global_dismiss_from_local_row_handles_the_other_rows() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 0, 0, 'global-from-local-' . wp_generate_uuid4() );
+		$this->make_row_local( $ids[0], 'stays local' );
+
+		$fired = 0;
+		add_action(
+			'edac_after_ignore_change',
+			function () use ( &$fired ) {
+				++$fired;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$details = $this->get_dismissal_details( $ids );
+		$this->assertSame( '0', $details[ $ids[0] ]['ignre_global'] );
+		$this->assertSame( 'stays local', $details[ $ids[0] ]['ignre_comment'] );
+		$this->assertSame( '1', $details[ $ids[1] ]['ignre_global'] );
+		$this->assertSame( '1', $details[ $ids[2] ]['ignre_global'] );
+		$this->assertSame( 1, $fired );
+	}
+
+	/**
+	 * A global dismiss with only individually dismissed rows is a no-op that fires nothing.
+	 *
+	 * @return void
+	 */
+	public function test_global_dismiss_with_only_local_rows_is_a_no_op() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 2, 0, 0, 'global-all-local-' . wp_generate_uuid4() );
+		$this->make_row_local( $ids[0], 'one' );
+		$this->make_row_local( $ids[1], 'two' );
+
+		$fired = 0;
+		add_action(
+			'edac_after_ignore_change',
+			function () use ( &$fired ) {
+				++$fired;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$this->assertSame( 0, $response->get_data()['updated'] );
+		$this->assertSame( 2, $response->get_data()['skipped_local'] );
+		$this->assertSame( 0, $fired, 'A no-op must not fire the change hook.' );
+		$details = $this->get_dismissal_details( $ids );
+		$this->assertSame( 'one', $details[ $ids[0] ]['ignre_comment'] );
+		$this->assertSame( '0', $details[ $ids[1] ]['ignre_global'] );
+	}
+
+	/**
+	 * Pro can drop rows from a global dismiss, but never the row the request came from
+	 * and never rows that were not in the batch.
+	 *
+	 * @return void
+	 */
+	public function test_global_dismiss_filter_can_drop_rows_but_keeps_the_clicked_one() {
+		( new WP_User( self::$limited_id ) )->add_cap( 'edac_dismiss_issues_globally' );
+		wp_set_current_user( self::$limited_id );
+
+		$ids = $this->insert_shared_rows( 3, 0, 0, 'global-filter-' . wp_generate_uuid4() );
+
+		add_filter(
+			'edac_filter_global_dismiss_issue_rows',
+			function ( $rows ) use ( $ids ) {
+				$rows   = array_values(
+					array_filter(
+						$rows,
+						static function ( $row ) use ( $ids ) {
+							return ! in_array( (int) $row['id'], [ $ids[0], $ids[1] ], true );
+						}
+					)
+				);
+				$rows[] = [
+					'id'           => 999999999,
+					'postid'       => 1,
+					'ignre'        => 0,
+					'ignre_global' => 0,
+				];
+				return $rows;
+			}
+		);
+
+		$request = new \WP_REST_Request( 'POST', '/accessibility-checker/v1/dismiss-issue/' . $ids[0] );
+		$request->set_param( 'action', 'dismiss' );
+		$request->set_param( 'reason', 'accessible' );
+		$request->set_param( 'largeBatch', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+		$details = $this->get_dismissal_details( $ids );
+		$this->assertSame( '1', $details[ $ids[0] ]['ignre_global'], 'The clicked row is always dismissed.' );
+		$this->assertSame( '0', $details[ $ids[1] ]['ignre'], 'A row the filter dropped stays open.' );
+		$this->assertSame( '1', $details[ $ids[2] ]['ignre_global'] );
+		$this->assertSame( 1, $response->get_data()['skipped_exempt'] );
 	}
 }

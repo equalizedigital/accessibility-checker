@@ -80,13 +80,27 @@ class Insert_Rule_Data {
 			return;
 		}
 
+		/**
+		 * Filter the rule data before inserting it into the database.
+		 *
+		 * This data will be sanitized after the filter is applied. It also runs for
+		 * violations that already have a row, so a global ignore applies on rescan.
+		 *
+		 * @since 1.4.0
+		 *
+		 * @param array $rule_data The rule data.
+		 */
+		$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
+
+		$is_global_match = ! empty( $rule_data['ignre'] ) && ! empty( $rule_data['ignre_global'] );
+
 		// Check if exists.
 		// Use selector as the unique identifier instead of object to allow duplicate code objects
 		// with different selectors (e.g., two empty paragraphs in different locations).
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 		$results = $wpdb->get_results(
 			$wpdb->prepare(
-				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
+				'SELECT id, object, ignre, ignre_global FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
 				$table_name,
 				$rule_data['type'],
 				$rule_data['postid'],
@@ -100,50 +114,59 @@ class Insert_Rule_Data {
 		// Loop existing records.
 		if ( $results ) {
 			foreach ( $results as $row ) {
+				$is_local_ignore = (bool) $row['ignre'] && ! (bool) $row['ignre_global'];
+				$was_global      = (bool) $row['ignre_global'];
+				$object_changed  = $row['object'] !== $rule_data['object'];
 
-				// if being ignored, don't overwrite value.
-				if ( true === (bool) $row['ignre'] ) {
-					$rule_data['ignre'] = 1;
+				$ignre         = (int) $row['ignre'];
+				$ignre_global  = (int) $row['ignre_global'];
+				$ignore_fields = '';
+				$ignore_values = [];
+
+				if ( ! $is_local_ignore && $is_global_match && ( ! $was_global || $object_changed ) ) {
+					$ignre         = 1;
+					$ignre_global  = 1;
+					$ignore_fields = ', ignre_user = %d, ignre_date = %s, ignre_comment = %s';
+					$ignore_values = [
+						absint( $rule_data['ignre_user'] ?? 0 ),
+						sanitize_text_field( $rule_data['ignre_date'] ?? '' ),
+						self::sanitize_ignore_comment( $rule_data['ignre_comment'] ?? '' ),
+					];
+				} elseif ( $was_global && $object_changed && ! $is_global_match ) {
+					$ignre         = 0;
+					$ignre_global  = 0;
+					$ignore_fields = ', ignre_user = NULL, ignre_date = NULL, ignre_comment = NULL';
 				}
 
 				// update existing record.
-				// Use selector for WHERE clause instead of object to match on unique identifier.
 				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
 				$wpdb->query(
+					// phpcs:ignore WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- Placeholder count is dynamic.
 					$wpdb->prepare(
-						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d  WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
-						$table_name,
-						1,
-						$rule_data['landmark'],
-						$rule_data['landmark_selector'],
-						$rule_data['object'],
-						$rule_data['ancestry'],
-						$rule_data['xpath'],
-						$rule_data['ignre'],
-						$rule_data['siteid'],
-						$rule_data['postid'],
-						$rule_data['rule'],
-						$rule_data['selector'],
-						$rule_data['type']
+						// phpcs:ignore WordPress.DB.PreparedSQL.NotPrepared -- $ignore_fields is a static string of column assignments with placeholders.
+						'UPDATE %i SET recordcheck = %d, landmark = %s, landmark_selector = %s, object = %s, ancestry = %s, xpath = %s, ignre = %d, ignre_global = %d' . $ignore_fields . ' WHERE id = %d',
+						array_merge(
+							[
+								$table_name,
+								1,
+								$rule_data['landmark'],
+								$rule_data['landmark_selector'],
+								$rule_data['object'],
+								$rule_data['ancestry'],
+								$rule_data['xpath'],
+								$ignre,
+								$ignre_global,
+							],
+							$ignore_values,
+							[ (int) $row['id'] ]
+						)
 					)
 				);
-
 			}
 		}
 
 		// Insert new records.
 		if ( ! $results ) {
-
-			/**
-			 * Filter the rule data before inserting it into the database.
-			 *
-			 * This data will be sanitized after the filter is applied.
-			 *
-			 * @since 1.4.0
-			 *
-			 * @param array $rule_data The rule data.
-			 */
-			$rule_data = apply_filters( 'edac_filter_insert_rule_data', $rule_data );
 
 			// Sanitize rule data since it is filtered, and we can't be sure
 			// the data is still as valid as it was when it was first set.
@@ -170,19 +193,7 @@ class Insert_Rule_Data {
 			];
 
 			if ( isset( $rule_data['ignre_comment'] ) ) {
-				$allowed_html = [
-					'strong' => [],
-					'b'      => [],
-					'em'     => [],
-					'i'      => [],
-					'a'      => [
-						'href'   => true,
-						'target' => true,
-						'rel'    => true,
-					],
-				];
-				
-				$rule_data_sanitized['ignre_comment'] = esc_html( wp_kses( $rule_data['ignre_comment'], $allowed_html ) );
+				$rule_data_sanitized['ignre_comment'] = self::sanitize_ignore_comment( $rule_data['ignre_comment'] );
 			}
 
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery -- Using direct query for adding data to database.
@@ -191,5 +202,27 @@ class Insert_Rule_Data {
 			// Return insert id or error.
 			return $wpdb->insert_id;
 		}
+	}
+
+	/**
+	 * Sanitize an ignore comment for storage.
+	 *
+	 * @param string $comment Raw comment.
+	 * @return string
+	 */
+	private static function sanitize_ignore_comment( string $comment ): string {
+		$allowed_html = [
+			'strong' => [],
+			'b'      => [],
+			'em'     => [],
+			'i'      => [],
+			'a'      => [
+				'href'   => true,
+				'target' => true,
+				'rel'    => true,
+			],
+		];
+
+		return esc_html( wp_kses( $comment, $allowed_html ) );
 	}
 }

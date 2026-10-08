@@ -130,4 +130,174 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 		$final_row_count = $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- caching not required for one time operation.
 		$this->assertEquals( $initial_row_count + 2, $final_row_count );
 	}
+
+	/**
+	 * Register a stub global-ignore filter matching one object.
+	 *
+	 * @param string $match_object Object to match.
+	 * @return callable The registered callback.
+	 */
+	private function add_global_ignore_stub( string $match_object ): callable {
+		$callback = function ( $rule_data ) use ( $match_object ) {
+			if ( esc_attr( $match_object ) === $rule_data['object'] ) {
+				$rule_data['ignre']         = 1;
+				$rule_data['ignre_user']    = $rule_data['user'];
+				$rule_data['ignre_date']    = '2026-01-01 00:00:00';
+				$rule_data['ignre_comment'] = 'Global Ignore';
+				$rule_data['ignre_global']  = 1;
+			}
+			return $rule_data;
+		};
+		add_filter( 'edac_filter_insert_rule_data', $callback );
+		return $callback;
+	}
+
+	/**
+	 * Fetch rows for a post and rule.
+	 *
+	 * @param int $post_id Post ID.
+	 * @return array[]
+	 */
+	private function get_rows( int $post_id ): array {
+		global $wpdb;
+		// phpcs:ignore WordPress.DB -- Test query.
+		return $wpdb->get_results( $wpdb->prepare( 'SELECT * FROM %i WHERE postid = %d ORDER BY id', $this->table_name, $post_id ), ARRAY_A );
+	}
+
+	/**
+	 * A rescan of an open row matching a global entry becomes globally ignored.
+	 */
+	public function testRescanAppliesGlobalIgnoreToExistingOpenRow() {
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="a.png">', null, null, $selectors );
+		$this->assertSame( '0', $this->get_rows( $post->ID )[0]['ignre'] );
+
+		$this->add_global_ignore_stub( '<img src="a.png">' );
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="a.png">', null, null, $selectors );
+
+		$rows = $this->get_rows( $post->ID );
+		$this->assertCount( 1, $rows );
+		$this->assertSame( '1', $rows[0]['ignre'] );
+		$this->assertSame( '1', $rows[0]['ignre_global'] );
+		$this->assertSame( 'Global Ignore', $rows[0]['ignre_comment'] );
+	}
+
+	/**
+	 * A locally dismissed row is not un-ignored or promoted to global on rescan.
+	 */
+	public function testRescanKeepsLocalDismissalLocal() {
+		global $wpdb;
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="b.png">', null, null, $selectors );
+		$wpdb->update( $this->table_name, [ 'ignre' => 1 ], [ 'postid' => $post->ID ] ); // phpcs:ignore WordPress.DB -- Test fixture.
+
+		$this->add_global_ignore_stub( '<img src="b.png">' );
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="b.png">', null, null, $selectors );
+
+		$row = $this->get_rows( $post->ID )[0];
+		$this->assertSame( '1', $row['ignre'] );
+		$this->assertSame( '0', $row['ignre_global'] );
+	}
+
+	/**
+	 * A locally dismissed row stays dismissed when no global entry matches.
+	 */
+	public function testRescanKeepsLocalDismissalWithoutGlobalMatch() {
+		global $wpdb;
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="c.png">', null, null, $selectors );
+		$wpdb->update( $this->table_name, [ 'ignre' => 1 ], [ 'postid' => $post->ID ] ); // phpcs:ignore WordPress.DB -- Test fixture.
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="c.png">', null, null, $selectors );
+
+		$this->assertSame( '1', $this->get_rows( $post->ID )[0]['ignre'] );
+	}
+
+	/**
+	 * Duplicate rows for one selector do not share ignore state.
+	 */
+	public function testDuplicateRowsDoNotBleedIgnoreState() {
+		global $wpdb;
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="d.png">', null, null, $selectors );
+		$row = $this->get_rows( $post->ID )[0];
+		unset( $row['id'] );
+		$wpdb->insert( $this->table_name, $row ); // phpcs:ignore WordPress.DB -- Test fixture duplicate.
+		$first_id = $this->get_rows( $post->ID )[0]['id'];
+		$wpdb->update( $this->table_name, [ 'ignre' => 1 ], [ 'id' => $first_id ] ); // phpcs:ignore WordPress.DB -- Test fixture.
+
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="d.png">', null, null, $selectors );
+
+		$rows = $this->get_rows( $post->ID );
+		$this->assertCount( 2, $rows );
+		$this->assertSame( '1', $rows[0]['ignre'] );
+		$this->assertSame( '0', $rows[1]['ignre'] );
+	}
+
+	/**
+	 * A globally ignored row whose object changed and no longer matches reopens.
+	 */
+	public function testRescanClearsGlobalWhenObjectChangesAndNoMatch() {
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+
+		$callback = $this->add_global_ignore_stub( '<img src="e.png">' );
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="e.png">', null, null, $selectors );
+		$this->assertSame( '1', $this->get_rows( $post->ID )[0]['ignre_global'] );
+
+		remove_filter( 'edac_filter_insert_rule_data', $callback );
+		$inserter->insert( $post, 'missing_alt_text', 'error', '<img src="e2.png">', null, null, $selectors );
+
+		$row = $this->get_rows( $post->ID )[0];
+		$this->assertSame( '0', $row['ignre'] );
+		$this->assertSame( '0', $row['ignre_global'] );
+	}
+
+	/**
+	 * The global-ignore comment is stored identically on insert and on rescan update.
+	 */
+	public function testGlobalIgnoreCommentStoredIdenticallyOnInsertAndUpdate() {
+		$comment   = '<strong>Bold</strong> <a href="https://example.com">link</a> <script>x()</script>';
+		$selectors = [ 'selector' => [ 'div > img' ] ];
+		$inserter  = new Insert_Rule_Data();
+
+		$callback = function ( $rule_data ) use ( $comment ) {
+			$rule_data['ignre']         = 1;
+			$rule_data['ignre_user']    = $rule_data['user'];
+			$rule_data['ignre_date']    = '2026-01-01 00:00:00';
+			$rule_data['ignre_comment'] = $comment;
+			$rule_data['ignre_global']  = 1;
+			return $rule_data;
+		};
+
+		$inserted_post = $this->factory()->post->create_and_get();
+		add_filter( 'edac_filter_insert_rule_data', $callback );
+		$inserter->insert( $inserted_post, 'missing_alt_text', 'error', '<img src="c1.png">', null, null, $selectors );
+		remove_filter( 'edac_filter_insert_rule_data', $callback );
+
+		$updated_post = $this->factory()->post->create_and_get();
+		$inserter->insert( $updated_post, 'missing_alt_text', 'error', '<img src="c2.png">', null, null, $selectors );
+		add_filter( 'edac_filter_insert_rule_data', $callback );
+		$inserter->insert( $updated_post, 'missing_alt_text', 'error', '<img src="c2.png">', null, null, $selectors );
+		remove_filter( 'edac_filter_insert_rule_data', $callback );
+
+		$inserted = $this->get_rows( $inserted_post->ID )[0]['ignre_comment'];
+		$updated  = $this->get_rows( $updated_post->ID )[0]['ignre_comment'];
+
+		$this->assertStringContainsString( '&lt;strong&gt;Bold&lt;/strong&gt;', $inserted );
+		$this->assertStringNotContainsString( 'script', $inserted );
+		$this->assertSame( $inserted, $updated );
+	}
 }

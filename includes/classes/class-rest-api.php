@@ -350,8 +350,8 @@ class REST_Api {
 							// requires the larger-blast-radius capability regardless of who
 							// owns the affected posts (dismiss_issue() re-checks this too).
 							if ( $request->get_param( 'largeBatch' ) ) {
-								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_user_can_dismiss_issues_globally() always returns bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
-								return edac_user_can_dismiss_issues_globally();
+								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_is_pro() and edac_user_can_dismiss_issues_globally() always return bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
+								return edac_is_pro() && edac_user_can_dismiss_issues_globally();
 							}
 
 							// Single-issue dismiss. "Dismiss issues (any post)" allows it on
@@ -1231,8 +1231,9 @@ class REST_Api {
 	public function dismiss_issue( $request ) {
 		global $wpdb;
 
+		$is_pro               = edac_is_pro();
 		$can_dismiss_any      = edac_user_can_dismiss_issues();
-		$can_dismiss_globally = edac_user_can_dismiss_issues_globally();
+		$can_dismiss_globally = $is_pro && edac_user_can_dismiss_issues_globally();
 		if ( ! $can_dismiss_any && ! edac_user_can_dismiss_own_issues() && ! $can_dismiss_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
@@ -1255,7 +1256,9 @@ class REST_Api {
 		if ( $large_batch && ! $can_dismiss_globally ) {
 			return new \WP_Error(
 				'rest_forbidden',
-				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
+				$is_pro
+					? __( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' )
+					: __( 'Global dismissals require Accessibility Checker Pro.', 'accessibility-checker' ),
 				[ 'status' => rest_authorization_required_code() ]
 			);
 		}
@@ -1281,15 +1284,32 @@ class REST_Api {
 		// dismiss as global (or vice versa) independent of the real action taken.
 		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
-		// If largeBatch is set, gather every row sharing this issue's rule + object,
-		// verify edit permission for all of them, then update the vetted ids in one query.
-		if ( $large_batch ) {
-			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
-			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
-			$rule               = $representative_row['rule'] ?? '';
-			$object             = $representative_row['object'] ?? '';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+		$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object, ignre_global FROM %i WHERE siteid = %d AND id = %d', $table_name, $site_id, $issue_id ), ARRAY_A );
+		$rule               = $representative_row['rule'] ?? '';
+		$object             = $representative_row['object'] ?? '';
 
+		// A reopen only ever clears global dismissals; local ones are left intact.
+		$affects_all        = (bool) $large_batch;
+		$global_reopen_only = ! $is_ignoring && $large_batch;
+		if ( $is_pro && ! $is_ignoring && ! $large_batch && ! empty( $representative_row['ignre_global'] ) ) {
+			if ( ! $can_dismiss_globally ) {
+				return new \WP_Error(
+					'rest_forbidden',
+					__( 'Sorry, you are not allowed to reopen globally dismissed issues.', 'accessibility-checker' ),
+					[ 'status' => rest_authorization_required_code() ]
+				);
+			}
+			$affects_all        = true;
+			$global_reopen_only = true;
+		}
+
+		$skipped_local  = 0;
+		$skipped_exempt = 0;
+
+		// Gather every row sharing this issue's rule + object, verify edit
+		// permission for all of them, then update the vetted ids in one query.
+		if ( $affects_all ) {
 			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
@@ -1298,12 +1318,10 @@ class REST_Api {
 				);
 			}
 
-			// Load all matching issue IDs and post IDs so we can permission-gate
-			// every issue in the batch before doing one bulk query.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
-			$issue_rows = $wpdb->get_results(
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows to decide which ones a global action may touch.
+			$matching_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
+					'SELECT id, postid, ignre, ignre_global FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
 					$table_name,
 					$site_id,
 					$object,
@@ -1312,11 +1330,88 @@ class REST_Api {
 				ARRAY_A
 			);
 
-			if ( empty( $issue_rows ) ) {
+			if ( empty( $matching_rows ) ) {
 				return new \WP_Error(
 					'issue_not_found',
 					__( 'Issue not found.', 'accessibility-checker' ),
 					[ 'status' => 404 ]
+				);
+			}
+
+			// A global action never touches a row that was dismissed on its own: a
+			// reopen only clears global dismissals, and a global dismiss leaves
+			// individual dismissals (and their comments) as they are.
+			$issue_rows = [];
+			foreach ( $matching_rows as $matching_row ) {
+				$is_global_row = 1 === (int) $matching_row['ignre_global'];
+				$is_local_row  = 1 === (int) $matching_row['ignre'] && ! $is_global_row;
+				if ( $global_reopen_only ) {
+					if ( $is_global_row ) {
+						$issue_rows[] = $matching_row;
+					}
+					continue;
+				}
+				if ( $is_local_row ) {
+					++$skipped_local;
+					continue;
+				}
+				$issue_rows[] = $matching_row;
+			}
+
+			if ( $is_ignoring && $issue_rows ) {
+				/**
+				 * Filters the rows a global dismiss is about to update.
+				 *
+				 * Lets Pro drop instances that were deliberately kept open. The
+				 * row the request was made from is always kept, and rows that
+				 * were not in the list are ignored.
+				 *
+				 * @since 1.xx.x
+				 *
+				 * @param array  $issue_rows Rows (id, postid, ignre, ignre_global) due to be dismissed.
+				 * @param string $rule       Rule slug shared by the rows.
+				 * @param string $object     Snippet shared by the rows.
+				 * @param int    $issue_id   The row the request was made from.
+				 */
+				$filtered_rows = apply_filters( 'edac_filter_global_dismiss_issue_rows', $issue_rows, $rule, $object, $issue_id );
+				$filtered_rows = is_array( $filtered_rows ) ? $filtered_rows : $issue_rows;
+				$allowed_ids   = array_map( 'intval', wp_list_pluck( $issue_rows, 'id' ) );
+				$kept_rows     = [];
+				foreach ( $filtered_rows as $filtered_row ) {
+					if ( isset( $filtered_row['id'] ) && in_array( (int) $filtered_row['id'], $allowed_ids, true ) ) {
+						$kept_rows[ (int) $filtered_row['id'] ] = $filtered_row;
+					}
+				}
+				foreach ( $issue_rows as $issue_row ) {
+					if ( (int) $issue_row['id'] === $issue_id ) {
+						$kept_rows[ $issue_id ] = $issue_row;
+					}
+				}
+				$skipped_exempt = count( $issue_rows ) - count( $kept_rows );
+				$issue_rows     = array_values( $kept_rows );
+			}
+
+			if ( empty( $issue_rows ) ) {
+				if ( ! $is_ignoring ) {
+					return new \WP_Error(
+						'issue_not_found',
+						__( 'Issue not found.', 'accessibility-checker' ),
+						[ 'status' => 404 ]
+					);
+				}
+
+				// Nothing the global dismiss may touch: report it without firing the change hook.
+				return new \WP_REST_Response(
+					[
+						'success'        => true,
+						'issue_id'       => $issue_id,
+						'action'         => $action,
+						'large_batch'    => true,
+						'updated'        => 0,
+						'skipped_local'  => $skipped_local,
+						'skipped_exempt' => $skipped_exempt,
+					],
+					200
 				);
 			}
 
@@ -1389,6 +1484,8 @@ class REST_Api {
 		 *     @type string $ignre_reason Dismissal reason, or null when reopening.
 		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
 		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
+		 *     @type string $rule         Rule slug stored on the representative row.
+		 *     @type string $object       Object stored on the representative row.
 		 *     @type int    $site_id      Current blog ID.
 		 * }
 		 */
@@ -1402,7 +1499,9 @@ class REST_Api {
 				'ignre_user'    => $ignre_user,
 				'ignre_reason'  => $ignre_reason,
 				'ignre_comment' => $ignre_comment,
-				'large_batch'   => $large_batch,
+				'large_batch'   => $affects_all,
+				'rule'          => $rule,
+				'object'        => $object,
 				'site_id'       => $site_id,
 			]
 		);
@@ -1419,7 +1518,9 @@ class REST_Api {
 				'ignre_date'      => $ignre_date_formatted,
 				'ignre_reason'    => $ignre_reason,
 				'ignre_comment'   => $ignre_comment,
-				'large_batch'     => $large_batch,
+				'large_batch'     => $affects_all,
+				'skipped_local'   => $skipped_local,
+				'skipped_exempt'  => $skipped_exempt,
 			],
 			200
 		);
