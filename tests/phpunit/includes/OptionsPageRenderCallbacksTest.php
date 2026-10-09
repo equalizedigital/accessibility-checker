@@ -28,6 +28,10 @@
  * @covers ::edac_include_accessibility_statement_link_cb
  * @covers ::edac_delete_data_cb
  * @covers ::edac_show_metabox_in_block_editor_cb
+ * @covers ::edac_scan_all_taxonomy_terms_cb
+ * @covers ::edac_simplified_summary_heading_cb
+ * @covers ::edac_accessibility_policy_page_cb
+ * @covers ::edac_accessibility_statement_preview_cb
  */
 class OptionsPageRenderCallbacksTest extends WP_UnitTestCase {
 
@@ -54,6 +58,9 @@ class OptionsPageRenderCallbacksTest extends WP_UnitTestCase {
 		'edac_show_metabox_in_block_editor',
 		'edacp_full_site_scan_speed',
 		'edacp_enable_archive_scanning',
+		'edacp_scan_all_taxonomies',
+		'edacp_simplified_summary_heading',
+		'edac_accessibility_policy_page',
 	];
 
 	/**
@@ -333,5 +340,128 @@ class OptionsPageRenderCallbacksTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( "checked='checked'", $this->tag( $html, 'input', 'id="edac_post_types_page"' ) );
 		$this->assertStringNotContainsString( "checked='checked'", $this->tag( $html, 'input', 'id="edac_post_types_post"' ) );
 		$this->assertStringContainsString( 'disabled', $this->tag( $html, 'input', 'id="edac_post_types_' . self::CUSTOM_POST_TYPE . '"' ) );
+	}
+
+	/**
+	 * The scan-all-taxonomy-terms checkbox reflects the stored option and is a
+	 * disabled upsell without Pro.
+	 *
+	 * Pro is not loaded in this suite, so the control is disabled whether or not
+	 * archive scanning is enabled: the `! $enable_archives` half of the
+	 * disabled() condition is not observable here.
+	 */
+	public function test_scan_all_taxonomy_terms_cb_is_a_disabled_upsell_without_pro(): void {
+		$html  = $this->render( 'edac_scan_all_taxonomy_terms_cb' );
+		$input = $this->tag( $html, 'input', 'id="edacp_scan_all_taxonomies"' );
+
+		$this->assertStringContainsString( 'edac-setting--upsell', $html );
+		$this->assertStringContainsString( "disabled='disabled'", $input );
+		$this->assertStringNotContainsString( "checked='checked'", $input );
+
+		update_option( 'edacp_enable_archive_scanning', 1 );
+		update_option( 'edacp_scan_all_taxonomies', 1 );
+
+		$html  = $this->render( 'edac_scan_all_taxonomy_terms_cb' );
+		$input = $this->tag( $html, 'input', 'id="edacp_scan_all_taxonomies"' );
+
+		// Still disabled: enabling archive scanning is not enough without Pro.
+		$this->assertStringContainsString( "disabled='disabled'", $input );
+		$this->assertStringContainsString( "checked='checked'", $input );
+	}
+
+	/**
+	 * The simplified summary heading input renders the stored value, or the
+	 * default label when unset, and is a disabled upsell without Pro.
+	 *
+	 * @dataProvider provider_summary_headings
+	 *
+	 * @param string $stored   The stored option value, or '' to leave it unset.
+	 * @param string $expected The value attribute the input should render.
+	 * @return void
+	 */
+	public function test_simplified_summary_heading_cb_renders_the_heading( string $stored, string $expected ): void {
+		if ( '' !== $stored ) {
+			update_option( 'edacp_simplified_summary_heading', $stored );
+		}
+
+		$input = $this->tag( $this->render( 'edac_simplified_summary_heading_cb' ), 'input', 'id="edacp_simplified_summary_heading"' );
+
+		$this->assertStringContainsString( 'value="' . $expected . '"', $input );
+		$this->assertStringContainsString( 'edac-setting--upsell', $input );
+		$this->assertStringContainsString( "disabled='disabled'", $input );
+	}
+
+	/**
+	 * Provides a stored summary heading and the value the input should render.
+	 *
+	 * @return array<string, array{0: string, 1: string}>
+	 */
+	public function provider_summary_headings(): array {
+		return [
+			'default' => [ '', 'Simplified Summary' ],
+			'stored'  => [ 'Page Summary', 'Page Summary' ],
+		];
+	}
+
+	/**
+	 * The accessibility policy page input renders the stored value.
+	 *
+	 * @dataProvider provider_policy_pages
+	 *
+	 * @param string $stored   The stored option value, or '' to leave it unset.
+	 * @param string $expected The value attribute the input should render.
+	 * @return void
+	 */
+	public function test_accessibility_policy_page_cb_renders_the_stored_value( string $stored, string $expected ): void {
+		if ( '' !== $stored ) {
+			update_option( 'edac_accessibility_policy_page', $stored );
+		}
+
+		$input = $this->tag( $this->render( 'edac_accessibility_policy_page_cb' ), 'input', 'id="edac_accessibility_policy_page"' );
+
+		$this->assertStringContainsString( 'value="' . $expected . '"', $input );
+	}
+
+	/**
+	 * Provides a stored policy page value and the attribute it should render.
+	 *
+	 * @return array<string, array{0: string, 1: string}>
+	 */
+	public function provider_policy_pages(): array {
+		return [
+			'unset' => [ '', '' ],
+			'url'   => [ 'https://example.com/accessibility-policy', 'https://example.com/accessibility-policy' ],
+		];
+	}
+
+	/**
+	 * A stored value is escaped into the attribute rather than echoed raw.
+	 */
+	public function test_accessibility_policy_page_cb_escapes_the_stored_value(): void {
+		update_option( 'edac_accessibility_policy_page', 'https://example.com/?q="1"' );
+
+		$input = $this->tag( $this->render( 'edac_accessibility_policy_page_cb' ), 'input', 'id="edac_accessibility_policy_page"' );
+
+		$this->assertStringContainsString( '&quot;1&quot;', $input );
+		$this->assertStringNotContainsString( 'q="1"', $input );
+	}
+
+	/**
+	 * The accessibility statement preview prints the statement body.
+	 */
+	public function test_accessibility_statement_preview_cb_prints_the_statement(): void {
+		update_option( 'edac_add_footer_accessibility_statement', 1 );
+
+		$html = $this->render( 'edac_accessibility_statement_preview_cb' );
+
+		$this->assertStringContainsString( (string) get_bloginfo( 'name' ), $html );
+		$this->assertStringContainsString( 'Accessibility Checker', $html );
+	}
+
+	/**
+	 * With no statement configured the preview prints nothing.
+	 */
+	public function test_accessibility_statement_preview_cb_renders_nothing_when_empty(): void {
+		$this->assertSame( '', $this->render( 'edac_accessibility_statement_preview_cb' ) );
 	}
 }
