@@ -55,3 +55,10 @@ if ( edacFrontendFixes?.new_window_warning?.enabled ) {
 		newWindowWarning.default();
 	} );
 }
+
+if ( edacFrontendFixes?.iframe_missing_title?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "iframe-missing-title" */ './Fixes/iframeMissingTitleFix' ).then( ( iframeMissingTitleFix ) => {
+		iframeMissingTitleFix.default();
+	} );
+}
