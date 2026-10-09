@@ -124,17 +124,21 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
+	$newarray = [];
+
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
-			$temp[ $key ] = $items[ $key ][ $index ];
+			if ( ! is_array( $items[ $key ] ) || ! array_key_exists( $index, $items[ $key ] ) ) {
+				continue;
+			}
 
-			if ( $temp[ $key ] === $value ) {
+			if ( $items[ $key ][ $index ] === $value ) {
 				$newarray[ $key ] = $items[ $key ];
 			}
 		}
 	}
 
-	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
+	if ( count( $newarray ) ) {
 		return array_values( $newarray );
 	}
 	return [];
