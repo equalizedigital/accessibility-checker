@@ -111,6 +111,16 @@ window._load_script = function (url, callback, isSubmit) {
 	var _removed = false;
 	var form_to_submit = document.getElementById('_form_1_');
 	var allInputs = form_to_submit.querySelectorAll('input, select, textarea'), tooltips = [], submitted = false;
+	// Keep the live region present before validation adds its message.
+	var validationAnnouncement = document.createElement('div'), announcementTimeout;
+	validationAnnouncement.className = 'screen-reader-text';
+	validationAnnouncement.setAttribute('role', 'alert');
+	validationAnnouncement.setAttribute('aria-atomic', 'true');
+	form_to_submit.appendChild(validationAnnouncement);
+	var clear_validation_announcement = function () {
+		clearTimeout(announcementTimeout);
+		validationAnnouncement.textContent = '';
+	};
 
 	var getUrlParam = function (name) {
 		var params = new URLSearchParams(window.location.search);
@@ -323,6 +333,9 @@ window._load_script = function (url, callback, isSubmit) {
 			}
 		}
 		tooltip ? resize_tooltip(tooltip) : false;
+		if (no_error && tooltips.length === 0) {
+			clear_validation_announcement();
+		}
 		return no_error;
 	};
 	var needs_validate = function (el) {
@@ -340,6 +353,7 @@ window._load_script = function (url, callback, isSubmit) {
 		return false
 	};
 	var validate_form = function (e) {
+		clear_validation_announcement();
 		var err = form_to_submit.querySelector('._form_error'), no_error = true;
 		if (!submitted) {
 			submitted = true;
@@ -395,6 +409,14 @@ window._load_script = function (url, callback, isSubmit) {
 			e.preventDefault();
 		}
 		resize_tooltips();
+		if (!no_error) {
+			// Separate clearing and updating so a repeated error is announced again.
+			announcementTimeout = setTimeout(function () {
+				validationAnnouncement.textContent = tooltips.map(function (tooltip) {
+					return tooltip.tip.textContent;
+				}).join(' ');
+			}, 100);
+		}
 		return no_error;
 	};
 	addEvent(window, 'resize', resize_tooltips);
