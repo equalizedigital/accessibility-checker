@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07 22:10+0000\n"
-"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"POT-Creation-Date: 2026-10-09 14:14+0000\n"
+"PO-Revision-Date: 2026-10-09 14:14+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: sv_SE\n"
@@ -1527,7 +1527,7 @@ msgstr "Rubrik för förenklad sammanfattning"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "Avvisa behörigheter"
+msgstr "Avvisningsbehörigheter"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
