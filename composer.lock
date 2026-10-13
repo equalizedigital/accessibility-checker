@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/equalizedigital/textstatistics.git",
-                "reference": "2276191cfe12eb083b2604faf1038dcb31820e8a"
+                "reference": "5ec006ceed0dc6994d9fcb11feaa5f48c0e8f8e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/equalizedigital/textstatistics/zipball/2276191cfe12eb083b2604faf1038dcb31820e8a",
-                "reference": "2276191cfe12eb083b2604faf1038dcb31820e8a",
+                "url": "https://api.github.com/repos/equalizedigital/textstatistics/zipball/5ec006ceed0dc6994d9fcb11feaa5f48c0e8f8e3",
+                "reference": "5ec006ceed0dc6994d9fcb11feaa5f48c0e8f8e3",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,7 @@
             "support": {
                 "source": "https://github.com/equalizedigital/textstatistics/tree/master"
             },
-            "time": "2024-04-23T20:13:20+00:00"
+            "time": "2026-10-13T22:07:52+00:00"
         }
     ],
     "packages-dev": [
