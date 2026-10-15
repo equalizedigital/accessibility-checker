@@ -1,7 +1,7 @@
 on:
   workflow_dispatch:
   release:
-    types: [released]
+    types: [published]
 
 permissions:
   contents: read
