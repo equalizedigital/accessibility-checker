@@ -6,7 +6,14 @@ on:
 permissions:
   contents: read
 
-steps:
-  - uses: linear/linear-release-action@v0
-    with:
-      access_key: ${{ secrets.LINEAR_ACCESS_KEY }}
+jobs:
+  linear-release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - uses: linear/linear-release-action@30f9ae77461ec29f07fffe0c52edd1909bfbb6f5 # v0
+        with:
+          access_key: ${{ secrets.LINEAR_ACCESS_KEY }}
