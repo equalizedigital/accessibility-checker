@@ -210,7 +210,7 @@ const actions = {
 					// If this is the initial load, use regular fetch
 					if ( select.isInitialLoad() ) {
 						await dispatch( actions.fetchData( postId ) );
-						resolve();
+						resolve( ! select.getError() );
 						return;
 					}
 
@@ -218,6 +218,7 @@ const actions = {
 					dispatch( actions.setBackgroundRefresh( true ) );
 					dispatch( actions.setRefreshing( true ) ); // Backwards compatibility
 
+					let refreshSucceeded = false;
 					try {
 						const response = await apiFetch( {
 							path: `/accessibility-checker/v1/sidebar-data/${ postId }`,
@@ -227,6 +228,7 @@ const actions = {
 						if ( response.success ) {
 							// Compare and only update if different
 							dispatch( actions.setDataIfDifferent( response.data ) );
+							refreshSucceeded = true;
 						} else {
 							// Don't show errors during background refresh unless critical
 							// eslint-disable-next-line no-console
@@ -241,7 +243,7 @@ const actions = {
 						dispatch( actions.setRefreshing( false ) );
 					}
 
-					resolve();
+					resolve( refreshSucceeded );
 				}, 200 );
 			} );
 		};
