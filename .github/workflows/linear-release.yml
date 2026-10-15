@@ -1,0 +1,12 @@
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+permissions:
+  contents: read
+
+steps:
+  - uses: linear/linear-release-action@v0
+    with:
+      access_key: ${{ secrets.LINEAR_ACCESS_KEY }}
