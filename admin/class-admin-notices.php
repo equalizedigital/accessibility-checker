@@ -202,7 +202,7 @@ class Admin_Notices {
 				break;
 			case 'professional':
 				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉', 'accessibility-checker' );
-				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours. Upgrade between November 23rd and December 2nd to save 25%.', 'accessibility-checker' );
+				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd.', 'accessibility-checker' );
 				$buttons = [
 					[ $upgrade_label, $account_url, 'BlackFriday26-pro-upgrade' ],
 				];
