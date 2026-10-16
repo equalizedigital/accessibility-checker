@@ -60,6 +60,7 @@ class Connector {
 	 * This is not raw response data; it's processed/inferred state that combines:
 	 * - License type inference (free vs pro) based on product_id, item_name, or source context
 	 * - License level inference (single-site, multi-site, unlimited, lifetime) from license_limit
+	 * - Plan inference (professional, small-business, agency, ...) from the EDD item_id and price_id
 	 * - Formatted/sanitized response fields (expires, site_count, activations_left, etc.)
 	 *
 	 * Single option (not scattered across multiple wp_options for better atomicity).
@@ -90,6 +91,56 @@ class Connector {
 	private const LICENSE_LEVEL_UNLIMITED   = 'unlimited';
 	private const LICENSE_LEVEL_LIFETIME    = 'lifetime';
 	private const LICENSE_LEVEL_UNKNOWN     = 'unknown';
+
+	/**
+	 * License plan constants.
+	 */
+	private const LICENSE_PLAN_FREE           = 'free';
+	private const LICENSE_PLAN_PROFESSIONAL   = 'professional';
+	private const LICENSE_PLAN_SMALL_BIZ      = 'small-business';
+	private const LICENSE_PLAN_SMALL_BIZ_PLUS = 'small-business-plus';
+	private const LICENSE_PLAN_AGENCY         = 'agency';
+	private const LICENSE_PLAN_ENTERPRISE     = 'enterprise';
+	private const LICENSE_PLAN_UNKNOWN        = 'unknown';
+
+	/**
+	 * EDD download ID of the main, variable-priced Accessibility Checker product.
+	 *
+	 * Professional, Small Business, Agency and the lifetime and custom enterprise licenses
+	 * are all price options of this one download, so its plan comes from the price_id.
+	 */
+	private const MAIN_PRODUCT_ID = 24;
+
+	/**
+	 * Map of price option IDs of the main product to plan slugs.
+	 */
+	private const LICENSE_PLAN_BY_MAIN_PRICE_ID = [
+		1 => self::LICENSE_PLAN_PROFESSIONAL, // 1 site, billed yearly.
+		2 => self::LICENSE_PLAN_SMALL_BIZ,    // 5 sites, billed yearly.
+		3 => self::LICENSE_PLAN_AGENCY,       // 25 sites, billed yearly.
+		5 => self::LICENSE_PLAN_PROFESSIONAL, // Single site lifetime.
+		6 => self::LICENSE_PLAN_PROFESSIONAL, // 1 site, billed monthly.
+		7 => self::LICENSE_PLAN_SMALL_BIZ,    // 5 sites, billed monthly.
+		8 => self::LICENSE_PLAN_AGENCY,       // 25 sites, billed monthly.
+		9 => self::LICENSE_PLAN_ENTERPRISE,   // Custom enterprise plan.
+	];
+
+	/**
+	 * Map of the other EDD download IDs to plan slugs.
+	 *
+	 * Plans sold or upgraded to as their own download have one plan per item, so item_id is enough.
+	 */
+	private const LICENSE_PLAN_BY_ITEM_ID = [
+		self::PRODUCT_ID => self::LICENSE_PLAN_FREE,
+		11974            => self::LICENSE_PLAN_SMALL_BIZ,      // Small Business, yearly.
+		11980            => self::LICENSE_PLAN_SMALL_BIZ,      // Small Business, monthly.
+		19485            => self::LICENSE_PLAN_SMALL_BIZ_PLUS, // Small Business Plus (10 sites), yearly.
+		19487            => self::LICENSE_PLAN_SMALL_BIZ_PLUS, // Small Business Plus (10 sites), monthly.
+		11976            => self::LICENSE_PLAN_AGENCY,         // Agency, yearly.
+		11981            => self::LICENSE_PLAN_AGENCY,         // Agency, monthly.
+		14716            => self::LICENSE_PLAN_ENTERPRISE,     // Enterprise, priced by site count.
+		19589            => self::LICENSE_PLAN_ENTERPRISE,     // Enterprise, monthly.
+	];
 
 	/**
 	 * Determine whether enrollment should use the filtered product ID.
@@ -1256,7 +1307,7 @@ class Connector {
 	 *
 	 * @param object|array $license_data EDD response payload.
 	 * @param string       $source       Activation/check source context ('free' or 'pro').
-	 * @return array Inferred metadata with keys: type, level, item_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
+	 * @return array Inferred metadata with keys: type, level, plan, item_id, price_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
 	 *
 	 * @since 1.40.0
 	 */
@@ -1265,7 +1316,9 @@ class Connector {
 			return [
 				'type'             => self::LICENSE_TYPE_UNKNOWN,
 				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'plan'             => self::LICENSE_PLAN_UNKNOWN,
 				'item_id'          => 0,
+				'price_id'         => 0,
 				'item_name'        => '',
 				'expires'          => '',
 				'license_limit'    => '',
@@ -1283,7 +1336,9 @@ class Connector {
 			return [
 				'type'             => in_array( $source, [ self::LICENSE_TYPE_FREE, self::LICENSE_TYPE_PRO ], true ) ? $source : self::LICENSE_TYPE_UNKNOWN,
 				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'plan'             => self::LICENSE_PLAN_UNKNOWN,
 				'item_id'          => 0,
+				'price_id'         => 0,
 				'item_name'        => '',
 				'expires'          => '',
 				'license_limit'    => '',
@@ -1295,6 +1350,7 @@ class Connector {
 
 		$item_name = sanitize_text_field( (string) ( $data['item_name'] ?? '' ) );
 		$item_id   = absint( $data['item_id'] ?? 0 );
+		$price_id  = absint( $data['price_id'] ?? 0 );
 		$limit_raw = $data['license_limit'] ?? '';
 
 		// Primary: infer from product ID in response — most reliable when free/pro have distinct IDs.
@@ -1344,7 +1400,9 @@ class Connector {
 		return [
 			'type'             => $type,
 			'level'            => $level,
+			'plan'             => self::infer_plan( $item_id, $price_id ),
 			'item_id'          => $item_id,
+			'price_id'         => $price_id,
 			'item_name'        => $item_name,
 			'expires'          => sanitize_text_field( (string) ( $data['expires'] ?? '' ) ),
 			'license_limit'    => sanitize_text_field( (string) $limit_raw ),
@@ -1352,6 +1410,129 @@ class Connector {
 			'activations_left' => sanitize_text_field( (string) ( $data['activations_left'] ?? '' ) ),
 			'last_response_at' => time(),
 		];
+	}
+
+	/**
+	 * Work out the plan slug for an EDD item and price option.
+	 *
+	 * Most plans are their own EDD download, so item_id decides. The main product is one download
+	 * with a price option per plan, so for that item the price_id decides.
+	 *
+	 * @param int $item_id  EDD download ID from the license response.
+	 * @param int $price_id EDD variable price option ID from the license response, 0 when absent.
+	 * @return string Plan slug, or 'unknown' when the product isn't recognised.
+	 */
+	private static function infer_plan( int $item_id, int $price_id ): string {
+		/**
+		 * Filters the map of EDD item IDs to plan slugs, for plans sold as their own download.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param array<int,string> $map Plan slugs keyed by EDD item ID.
+		 */
+		$map  = (array) apply_filters( 'edac_license_plan_map', self::LICENSE_PLAN_BY_ITEM_ID );
+		$plan = isset( $map[ $item_id ] ) ? (string) $map[ $item_id ] : self::LICENSE_PLAN_UNKNOWN;
+
+		if ( self::MAIN_PRODUCT_ID === $item_id ) {
+			$plan = self::LICENSE_PLAN_BY_MAIN_PRICE_ID[ $price_id ] ?? self::LICENSE_PLAN_UNKNOWN;
+		}
+
+		/**
+		 * Filters the plan slug inferred from a license response.
+		 *
+		 * Use this to add or correct plans, for example a new price option of the main product.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param string $plan     Plan slug inferred from the item ID.
+		 * @param int    $item_id  EDD download ID.
+		 * @param int    $price_id EDD variable price option ID, 0 when absent.
+		 */
+		return (string) apply_filters( 'edac_license_plan_from_response', $plan, $item_id, $price_id );
+	}
+
+	/**
+	 * Get the stored license metadata.
+	 *
+	 * Written on activation and on every license check, so a site that hasn't run a
+	 * check since updating may be missing newer keys such as plan and price_id.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return array Stored metadata, or an empty array when no license has been checked.
+	 */
+	public static function get_license_metadata(): array {
+		$metadata = get_option( self::LICENSE_METADATA_OPTION, [] );
+		return is_array( $metadata ) ? $metadata : [];
+	}
+
+	/**
+	 * Get the plan slug for the current license, e.g. 'professional' or 'agency'.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string Plan slug, or 'unknown' when there is no license data.
+	 */
+	public static function get_license_plan(): string {
+		$metadata = self::get_license_metadata();
+		$plan     = isset( $metadata['plan'] ) && is_string( $metadata['plan'] ) && '' !== $metadata['plan']
+			? $metadata['plan']
+			: self::LICENSE_PLAN_UNKNOWN;
+
+		/**
+		 * Filters the plan slug of the current license.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param string $plan     Plan slug.
+		 * @param array  $metadata Stored license metadata.
+		 */
+		return (string) apply_filters( 'edac_license_plan', $plan, $metadata );
+	}
+
+	/**
+	 * Whether the current license is active (not expired, revoked or unactivated).
+	 *
+	 * Pro is authoritative when it holds a license key, otherwise the free license status is used.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return bool
+	 */
+	public static function is_license_active(): bool {
+		$status_option = self::is_pro_license_check_active() ? 'edacp_license_status' : 'edac_license_status';
+		$is_active     = self::LICENSE_STATUS_VALID === get_option( $status_option );
+
+		/**
+		 * Filters whether the current license is active.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param bool $is_active Whether the license status is valid.
+		 */
+		return (bool) apply_filters( 'edac_license_is_active', $is_active );
+	}
+
+	/**
+	 * Get the expiry of the current license.
+	 *
+	 * @since 1.xx.x
+	 *
+	 * @return string The EDD expiry date, 'lifetime', or an empty string when unknown.
+	 */
+	public static function get_license_expires(): string {
+		$metadata = self::get_license_metadata();
+		$expires  = isset( $metadata['expires'] ) ? (string) $metadata['expires'] : '';
+
+		/**
+		 * Filters the expiry of the current license.
+		 *
+		 * @since 1.xx.x
+		 *
+		 * @param string $expires  EDD expiry date, 'lifetime', or an empty string.
+		 * @param array  $metadata Stored license metadata.
+		 */
+		return (string) apply_filters( 'edac_license_expires', $expires, $metadata );
 	}
 
 	/**

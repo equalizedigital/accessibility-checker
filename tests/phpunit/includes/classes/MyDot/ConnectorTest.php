@@ -133,6 +133,177 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Ensures plans sold as their own EDD download map by item ID, and the raw price_id is kept.
+	 *
+	 * @throws ReflectionException If the method cannot be reflected.
+	 */
+	public function test_store_license_metadata_maps_item_id_to_plan_and_keeps_price_id() {
+		$expected = [
+			1666  => 'free',
+			11974 => 'small-business',
+			11980 => 'small-business',
+			19485 => 'small-business-plus',
+			19487 => 'small-business-plus',
+			11976 => 'agency',
+			11981 => 'agency',
+			14716 => 'enterprise',
+			19589 => 'enterprise',
+		];
+
+		foreach ( $expected as $item_id => $plan ) {
+			$license_data = (object) [
+				'item_id'       => $item_id,
+				'item_name'     => 'Accessibility Checker',
+				'license_limit' => '5',
+				'price_id'      => '3',
+			];
+
+			$this->invoke_private_static_method( 'store_license_metadata_from_response', [ $license_data, 'pro' ] );
+
+			$metadata = get_option( 'edac_license_metadata' );
+			$this->assertSame( $plan, $metadata['plan'], "Item {$item_id} should map to {$plan}." );
+			$this->assertSame( 3, $metadata['price_id'] );
+		}
+	}
+
+	/**
+	 * Ensures the main product, which has one price option per plan, maps by price_id.
+	 *
+	 * @throws ReflectionException If the method cannot be reflected.
+	 */
+	public function test_store_license_metadata_maps_main_product_price_id_to_plan() {
+		$expected = [
+			1 => 'professional',
+			2 => 'small-business',
+			3 => 'agency',
+			5 => 'professional',
+			6 => 'professional',
+			7 => 'small-business',
+			8 => 'agency',
+			9 => 'enterprise',
+			4 => 'unknown',
+			0 => 'unknown',
+		];
+
+		foreach ( $expected as $price_id => $plan ) {
+			$license_data = (object) [
+				'item_id'   => 24,
+				'item_name' => 'Accessibility Checker',
+				'price_id'  => (string) $price_id,
+			];
+
+			$this->invoke_private_static_method( 'store_license_metadata_from_response', [ $license_data, 'pro' ] );
+
+			$this->assertSame( $plan, get_option( 'edac_license_metadata' )['plan'], "Price {$price_id} should map to {$plan}." );
+		}
+	}
+
+	/**
+	 * Ensures an unrecognised item ID is 'unknown' and a missing price_id is stored as 0.
+	 *
+	 * @throws ReflectionException If the method cannot be reflected.
+	 */
+	public function test_store_license_metadata_marks_unrecognised_item_as_unknown_plan() {
+		$license_data = (object) [
+			'item_id'   => 999999,
+			'item_name' => 'Something Else',
+		];
+
+		$this->invoke_private_static_method( 'store_license_metadata_from_response', [ $license_data, 'pro' ] );
+
+		$metadata = get_option( 'edac_license_metadata' );
+		$this->assertSame( 'unknown', $metadata['plan'] );
+		$this->assertSame( 0, $metadata['price_id'] );
+	}
+
+	/**
+	 * Ensures the plan can be corrected by the filter, e.g. for a newly added price option.
+	 *
+	 * @throws ReflectionException If the method cannot be reflected.
+	 */
+	public function test_plan_can_be_changed_by_the_plan_from_response_filter() {
+		$refine = static function ( $plan, $item_id, $price_id ) {
+			return ( 24 === $item_id && 10 === $price_id ) ? 'small-business-plus' : $plan;
+		};
+		add_filter( 'edac_license_plan_from_response', $refine, 10, 3 );
+
+		$this->invoke_private_static_method(
+			'store_license_metadata_from_response',
+			[
+				(object) [
+					'item_id'  => 24,
+					'price_id' => 10,
+				],
+				'pro',
+			]
+		);
+		$this->assertSame( 'small-business-plus', get_option( 'edac_license_metadata' )['plan'] );
+
+		$this->invoke_private_static_method(
+			'store_license_metadata_from_response',
+			[
+				(object) [
+					'item_id'  => 24,
+					'price_id' => 2,
+				],
+				'pro',
+			]
+		);
+		$this->assertSame( 'small-business', get_option( 'edac_license_metadata' )['plan'] );
+
+		remove_filter( 'edac_license_plan_from_response', $refine, 10 );
+	}
+
+	/**
+	 * Ensures the public accessors read the stored metadata and are filterable.
+	 */
+	public function test_license_accessors_read_metadata_and_apply_filters() {
+		$this->assertSame( [], Connector::get_license_metadata() );
+		$this->assertSame( 'unknown', Connector::get_license_plan() );
+		$this->assertSame( '', Connector::get_license_expires() );
+
+		update_option(
+			'edac_license_metadata',
+			[
+				'plan'    => 'agency',
+				'expires' => '2027-01-01 23:59:59',
+			]
+		);
+
+		$this->assertSame( 'agency', Connector::get_license_plan() );
+		$this->assertSame( '2027-01-01 23:59:59', Connector::get_license_expires() );
+
+		add_filter(
+			'edac_license_plan',
+			static function () {
+				return 'enterprise';
+			}
+		);
+		$this->assertSame( 'enterprise', Connector::get_license_plan() );
+		remove_all_filters( 'edac_license_plan' );
+	}
+
+	/**
+	 * Ensures is_license_active() follows the free license status when Pro isn't managing the license.
+	 */
+	public function test_is_license_active_follows_free_license_status() {
+		delete_option( 'edac_license_status' );
+		$this->assertFalse( Connector::is_license_active() );
+
+		update_option( 'edac_license_status', 'valid' );
+		$this->assertTrue( Connector::is_license_active() );
+
+		update_option( 'edac_license_status', 'expired' );
+		$this->assertFalse( Connector::is_license_active() );
+
+		add_filter( 'edac_license_is_active', '__return_true' );
+		$this->assertTrue( Connector::is_license_active() );
+		remove_filter( 'edac_license_is_active', '__return_true' );
+
+		delete_option( 'edac_license_status' );
+	}
+
+	/**
 	 * Ensures EDD license_limit of 0 (no activation cap) maps to 'unlimited', not 'single-site'.
 	 *
 	 * @throws ReflectionException If the method cannot be reflected.
