@@ -1426,15 +1426,18 @@ class Connector {
 		/**
 		 * Filters the map of EDD item IDs to plan slugs, for plans sold as their own download.
 		 *
-		 * @since 1.xx.x
+		 * The main product (item 24) isn't looked up here because its plan comes from the price_id.
+		 * Use `edac_license_plan_from_response` to change the plan for that product.
+		 *
+		 * @since x.x.x
 		 *
 		 * @param array<int,string> $map Plan slugs keyed by EDD item ID.
 		 */
-		$map  = (array) apply_filters( 'edac_license_plan_map', self::LICENSE_PLAN_BY_ITEM_ID );
-		$plan = isset( $map[ $item_id ] ) ? (string) $map[ $item_id ] : self::LICENSE_PLAN_UNKNOWN;
-
 		if ( self::MAIN_PRODUCT_ID === $item_id ) {
 			$plan = self::LICENSE_PLAN_BY_MAIN_PRICE_ID[ $price_id ] ?? self::LICENSE_PLAN_UNKNOWN;
+		} else {
+			$map  = (array) apply_filters( 'edac_license_plan_map', self::LICENSE_PLAN_BY_ITEM_ID );
+			$plan = isset( $map[ $item_id ] ) ? (string) $map[ $item_id ] : self::LICENSE_PLAN_UNKNOWN;
 		}
 
 		/**
@@ -1442,7 +1445,7 @@ class Connector {
 		 *
 		 * Use this to add or correct plans, for example a new price option of the main product.
 		 *
-		 * @since 1.xx.x
+		 * @since x.x.x
 		 *
 		 * @param string $plan     Plan slug inferred from the item ID.
 		 * @param int    $item_id  EDD download ID.
@@ -1457,7 +1460,7 @@ class Connector {
 	 * Written on activation and on every license check, so a site that hasn't run a
 	 * check since updating may be missing newer keys such as plan and price_id.
 	 *
-	 * @since 1.xx.x
+	 * @since x.x.x
 	 *
 	 * @return array Stored metadata, or an empty array when no license has been checked.
 	 */
@@ -1469,7 +1472,7 @@ class Connector {
 	/**
 	 * Get the plan slug for the current license, e.g. 'professional' or 'agency'.
 	 *
-	 * @since 1.xx.x
+	 * @since x.x.x
 	 *
 	 * @return string Plan slug, or 'unknown' when there is no license data.
 	 */
@@ -1482,7 +1485,7 @@ class Connector {
 		/**
 		 * Filters the plan slug of the current license.
 		 *
-		 * @since 1.xx.x
+		 * @since x.x.x
 		 *
 		 * @param string $plan     Plan slug.
 		 * @param array  $metadata Stored license metadata.
@@ -1495,7 +1498,7 @@ class Connector {
 	 *
 	 * Pro is authoritative when it holds a license key, otherwise the free license status is used.
 	 *
-	 * @since 1.xx.x
+	 * @since x.x.x
 	 *
 	 * @return bool
 	 */
@@ -1506,7 +1509,7 @@ class Connector {
 		/**
 		 * Filters whether the current license is active.
 		 *
-		 * @since 1.xx.x
+		 * @since x.x.x
 		 *
 		 * @param bool $is_active Whether the license status is valid.
 		 */
@@ -1516,7 +1519,7 @@ class Connector {
 	/**
 	 * Get the expiry of the current license.
 	 *
-	 * @since 1.xx.x
+	 * @since x.x.x
 	 *
 	 * @return string The EDD expiry date, 'lifetime', or an empty string when unknown.
 	 */
@@ -1527,7 +1530,7 @@ class Connector {
 		/**
 		 * Filters the expiry of the current license.
 		 *
-		 * @since 1.xx.x
+		 * @since x.x.x
 		 *
 		 * @param string $expires  EDD expiry date, 'lifetime', or an empty string.
 		 * @param array  $metadata Stored license metadata.
