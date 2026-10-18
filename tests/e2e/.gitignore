@@ -1,0 +1,5 @@
+# Playwright artifacts — never commit these.
+.auth/
+test-results/
+playwright-report/
+blob-report/
