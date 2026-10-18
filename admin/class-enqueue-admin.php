@@ -40,7 +40,7 @@ class Enqueue_Admin {
 	 * @return void
 	 */
 	public static function enqueue_styles() {
-		wp_enqueue_style( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
+		wp_enqueue_style( 'edac', EDAC_PLUGIN_URL . 'build/css/admin.css', [], EDAC_VERSION, 'all' );
 	}
 
 	/**
@@ -83,9 +83,8 @@ class Enqueue_Admin {
 			// let extensions supply the correct ID (e.g. a Pro virtual-page ID).
 			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
 
-			wp_enqueue_script( 'edac', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/admin.bundle.js', [ 'jquery' ], EDAC_VERSION, false );
+			wp_enqueue_script( 'edac', EDAC_PLUGIN_URL . 'build/admin.bundle.js', [ 'jquery', 'wp-a11y' ], EDAC_VERSION, false );
 			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
-
 			wp_localize_script(
 				'edac',
 				'edac_script_vars',
@@ -116,7 +115,7 @@ class Enqueue_Admin {
 					$debug = false;
 				}
 
-				wp_enqueue_script( 'edac-editor-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
 
 				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
@@ -151,7 +150,7 @@ class Enqueue_Admin {
 						'postID'        => $post_id,
 						'edacUrl'       => esc_url_raw( get_site_url() ),
 						'edacApiUrl'    => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
-						'baseurl'       => plugin_dir_url( __DIR__ ),
+						'baseurl'       => EDAC_PLUGIN_URL,
 						'active'        => $active,
 						'pro'           => $pro,
 						'debug'         => $debug,
@@ -194,7 +193,7 @@ class Enqueue_Admin {
 		// Enqueue the sidebar script with WordPress dependencies.
 		wp_enqueue_script(
 			'edac-sidebar',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/sidebar.bundle.js',
+			EDAC_PLUGIN_URL . 'build/sidebar.bundle.js',
 			[
 				'wp-plugins',
 				'wp-edit-post',
@@ -236,7 +235,7 @@ class Enqueue_Admin {
 		// Enqueue sidebar styles.
 		wp_enqueue_style(
 			'edac-sidebar',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/sidebar.css',
+			EDAC_PLUGIN_URL . 'build/css/sidebar.css',
 			[],
 			EDAC_VERSION,
 			'all'
@@ -268,7 +267,7 @@ class Enqueue_Admin {
 		// Enqueue the issue modal script with WordPress dependencies.
 		wp_enqueue_script(
 			'edac-issue-modal',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/issueModal.bundle.js',
+			EDAC_PLUGIN_URL . 'build/issueModal.bundle.js',
 			[
 				'wp-element',
 				'wp-components',
@@ -287,7 +286,7 @@ class Enqueue_Admin {
 		// Enqueue issue modal styles.
 		wp_enqueue_style(
 			'edac-issue-modal',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/issueModal.css',
+			EDAC_PLUGIN_URL . 'build/css/issueModal.css',
 			[ 'wp-components' ],
 			EDAC_VERSION,
 			'all'
@@ -337,7 +336,7 @@ class Enqueue_Admin {
 
 		wp_enqueue_script(
 			'edac-sr-only-format',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/srOnlyFormat.bundle.js',
+			EDAC_PLUGIN_URL . 'build/srOnlyFormat.bundle.js',
 			[ 'wp-rich-text', 'wp-block-editor', 'wp-element', 'wp-i18n', 'wp-plugins', 'wp-editor', 'wp-api-fetch' ],
 			EDAC_VERSION,
 			false

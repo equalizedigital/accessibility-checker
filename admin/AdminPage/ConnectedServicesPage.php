@@ -7,7 +7,7 @@
  * license status management.
  *
  * @package Accessibility_Checker
- * @since 1.x.x
+ * @since 1.40.0
  */
 
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
@@ -19,14 +19,14 @@ use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
  *
  * Manages connected services (license) page display and functionality within the admin settings area.
  *
- * @since 1.xx.x
+ * @since 1.40.0
  */
 class ConnectedServicesPage implements PageInterface {
 
 	/**
 	 * The capability required to access the settings page.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var string
 	 */
@@ -35,7 +35,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Constructor
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $settings_capability The capability required to view/edit license settings.
 	 */
@@ -47,7 +47,7 @@ class ConnectedServicesPage implements PageInterface {
 	 * Register hooks to add the connected services page to the settings tabs
 	 * and handle license-related notices.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -81,7 +81,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Add Connected Services tab to settings tabs array.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param array $tabs Array of registered settings tabs.
 	 *
@@ -95,7 +95,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Conditionally render the tab content if the current tab is 'connected-services'.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $settings_tab The current active settings tab.
 	 *
@@ -110,7 +110,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Register the admin notices function to display license-related messages.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -121,7 +121,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Render the connected services settings page content.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -436,7 +436,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Display admin notices when the license added is invalid or expired.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -461,7 +461,7 @@ class ConnectedServicesPage implements PageInterface {
 	/**
 	 * Get appropriate error message based on the license error code.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $error_code The license error code.
 	 * @param string $license_url URL to the license settings page.

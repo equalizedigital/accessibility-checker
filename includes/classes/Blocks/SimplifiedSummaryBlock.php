@@ -103,7 +103,7 @@ class SimplifiedSummaryBlock {
 
 		wp_register_script(
 			self::SCRIPT_HANDLE,
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/simplifiedSummaryBlock.bundle.js',
+			EDAC_PLUGIN_URL . 'build/simplifiedSummaryBlock.bundle.js',
 			[ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor' ],
 			EDAC_VERSION,
 			true
@@ -129,7 +129,7 @@ class SimplifiedSummaryBlock {
 
 		wp_register_style(
 			self::STYLE_HANDLE,
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/simplifiedSummaryBlock.css',
+			EDAC_PLUGIN_URL . 'build/css/simplifiedSummaryBlock.css',
 			[],
 			EDAC_VERSION
 		);

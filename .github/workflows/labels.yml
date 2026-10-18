@@ -29,14 +29,14 @@ jobs:
     permissions: {}
     steps:
       - name: Check out label definitions (central config repo)
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: equalizedigital/development-standards
           path: development-standards
           token: ${{ secrets.LABEL_SYNC_TOKEN }}
           persist-credentials: false
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: "3.x"
 
@@ -48,7 +48,7 @@ jobs:
           cat /tmp/labels-merged.yml
 
       - name: Sync labels
-        uses: crazy-max/ghaction-github-labeler@v5
+        uses: crazy-max/ghaction-github-labeler@24d110aa46a59976b8a7f35518cb7f14f434c916 # v5.3.0
         with:
           github-token: ${{ secrets.LABEL_SYNC_TOKEN }}
           yaml-file: /tmp/labels-merged.yml
