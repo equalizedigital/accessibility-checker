@@ -110,6 +110,8 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
+	<?php settings_errors(); ?>
+
 	<?php
 	if ( $edac_settings_tab_items ) {
 		echo '<nav class="nav-tab-wrapper" aria-label="' . esc_attr__( 'Accessibility Checker Settings', 'accessibility-checker' ) . '">';

@@ -170,6 +170,21 @@ describe( 'video_present rule', () => {
 			html: '<script type="text/javascript" src="https://www.youtube.com/iframe_api?ver=1.2.6" id="youtube-scripts-js"></script>',
 			shouldPass: true,
 		},
+		{
+			// Regression test for https://linear.app/equalize-digital/issue/PRO-1229.
+			// A featured image whose filename happens to contain "youtube" (e.g. a
+			// screenshot of a YouTube video) was being misidentified as an embedded
+			// video because the keyword match applied to any [src] element, not just
+			// iframe/embed-style elements.
+			name: 'does not detect an <img> whose filename merely contains the keyword "youtube"',
+			html: '<img src="screenshot-2026-05-21-at-16-53-07-claims-department-youtube.jpg" alt="Claims Department" />',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect an <img> whose filename merely contains the keyword "vimeo"',
+			html: '<img src="team-photo-vimeo-conference-2026.png" alt="Team photo" />',
+			shouldPass: true,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
