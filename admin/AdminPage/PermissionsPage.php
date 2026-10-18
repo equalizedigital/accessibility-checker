@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * writes the edac_capability_role_map option, whose option hooks (registered by
  * SyncCapability) then sync the capabilities onto the selected roles.
  *
- * @since 1.xx.x
+ * @since 1.48.0
  */
 class PermissionsPage implements PageInterface {
 
@@ -154,14 +154,14 @@ class PermissionsPage implements PageInterface {
 
 		wp_enqueue_style(
 			'edac-permissions',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'admin/css/permissions.css',
+			EDAC_PLUGIN_URL . 'admin/css/permissions.css',
 			[],
 			EDAC_VERSION
 		);
 
 		wp_enqueue_script(
 			'edac-permissions',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'admin/js/permissions.js',
+			EDAC_PLUGIN_URL . 'admin/js/permissions.js',
 			[],
 			EDAC_VERSION,
 			true
