@@ -103,20 +103,15 @@ class Admin_Notices {
 	 */
 	public function edac_black_friday_notice() {
 
-		// Check if Accessibility Checker Pro is active.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			return;
-		}
-
 		// Check if the notice has been dismissed.
-		if ( absint( get_option( 'edac_black_friday_2025_notice_dismiss', 0 ) ) ) {
+		if ( absint( get_option( 'edac_black_friday_2026_notice_dismiss', 0 ) ) ) {
 			return;
 		}
 
-		// Show from November 24 to December 03.
+		// Show from November 23 to December 02.
 		$current_date = date_i18n( 'Ymd' ); // Use date_i18n for localization.
-		$start_date   = '20251124';
-		$end_date     = '20251203';
+		$start_date   = '20261123';
+		$end_date     = '20261202';
 
 		if ( $current_date >= $start_date && $current_date <= $end_date ) {
 
@@ -130,18 +125,117 @@ class Admin_Notices {
 	}
 
 	/**
+	 * Work out which Black Friday audience the current site belongs to.
+	 *
+	 * An expired Pro license is Lapsed. A valid one is segmented by the plan stored in the
+	 * license metadata (Professional, Small Business, SMB+, or Agency/Enterprise). Licenses whose
+	 * plan hasn't been recorded yet, which happens until the next daily license check after an
+	 * update, are left without a notice rather than guessed.
+	 *
+	 * @return string One of 'free', 'lapsed', 'professional', 'smb', 'smbplus', 'agency', or an empty
+	 *                string when the audience can't be determined and no notice should show.
+	 */
+	public function edac_get_black_friday_segment() {
+
+		$pro_status = (string) get_option( 'edacp_license_status', '' );
+
+		if ( 'expired' === $pro_status ) {
+			return 'lapsed';
+		}
+
+		if ( 'valid' === $pro_status ) {
+			switch ( \EqualizeDigital\AccessibilityChecker\MyDot\Connector::get_license_plan() ) {
+				case 'professional':
+					return 'professional';
+				case 'small-business':
+					return 'smb';
+				case 'agency':
+				case 'enterprise':
+					return 'agency';
+				case 'small-business-plus':
+					return 'smbplus';
+				default:
+					return '';
+			}
+		}
+
+		// Pro is installed but has no usable license state, so don't guess.
+		if ( defined( 'EDACP_VERSION' ) ) {
+			return '';
+		}
+
+		return 'free';
+	}
+
+	/**
 	 * Get Black Friday Promo Message
 	 *
-	 * @return string
+	 * @return string Empty when the current site's audience shouldn't see a notice.
 	 */
 	public function edac_get_black_friday_message() {
 
+		$segment = $this->edac_get_black_friday_segment();
+
+		$presale_url = 'https://my.equalizedigital.com/support/pre-sale-questions/';
+		$pricing_url = 'https://equalizedigital.com/accessibility-checker/pricing/';
+		$account_url = 'https://my.equalizedigital.com/';
+
+		$presale_label = __( 'Ask a Pre-Sale Question', 'accessibility-checker' );
+		$upgrade_label = __( 'Upgrade Now', 'accessibility-checker' );
+
+		switch ( $segment ) {
+			case 'free':
+				$heading = __( '🎉 Black Friday special: save 20% and get a free course! 🎉', 'accessibility-checker' );
+				$body    = __( 'Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice.', 'accessibility-checker' );
+				$buttons = [
+					[ $presale_label, $presale_url, 'BlackFriday26-free-presale' ],
+					[ $upgrade_label, $pricing_url, 'BlackFriday26-free-pricing' ],
+				];
+				break;
+			case 'lapsed':
+				$heading = __( '👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉', 'accessibility-checker' );
+				$body    = __( 'Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course.', 'accessibility-checker' );
+				$buttons = [
+					[ $presale_label, $presale_url, 'BlackFriday26-lapsed-presale' ],
+					[ __( 'Renew Now', 'accessibility-checker' ), $account_url, 'BlackFriday26-lapsed-renew' ],
+				];
+				break;
+			case 'professional':
+				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉', 'accessibility-checker' );
+				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd.', 'accessibility-checker' );
+				$buttons = [
+					[ $upgrade_label, $account_url, 'BlackFriday26-pro-upgrade' ],
+				];
+				break;
+			case 'smb':
+				$heading = __( '🎉 Black Friday: Save 25% on your upgrade! 🎉', 'accessibility-checker' );
+				$body    = __( 'Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support.', 'accessibility-checker' );
+				$buttons = [
+					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), $account_url, 'BlackFriday26-smb-upgrade' ],
+				];
+				break;
+			case 'smbplus':
+				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Agency! 🎉', 'accessibility-checker' );
+				$body    = __( 'Take on more sites with Agency: 25 sites, Multisite tools, and VIP support. Upgrade between November 23rd and December 2nd to save 25%.', 'accessibility-checker' );
+				$buttons = [
+					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), $account_url, 'BlackFriday26-smbplus-upgrade' ],
+				];
+				break;
+			default:
+				// Agency licenses get a 1:1 email instead of a banner, and unknown states show nothing.
+				return '';
+		}
+
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
-		$message .= '<p><strong>' . esc_html__( '🎉 Black Friday special! 🎉', 'accessibility-checker' ) . '</strong><br />';
-		$message .= esc_html__( 'Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more.', 'accessibility-checker' ) . '<br />';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/support/pre-sale-questions/', 'admin-notice', 'BlackFriday25-presale', false ) ) . '">' . esc_html__( 'Ask a Pre-Sale Question', 'accessibility-checker' ) . '</a> ';
-		$message .= '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/accessibility-checker/pricing/', 'admin-notice', 'BlackFriday25-pricing', false ) ) . '">' . esc_html__( 'Upgrade Now', 'accessibility-checker' ) . '</a></p>';
+		$message .= '<p><strong>' . esc_html( $heading ) . '</strong><br />';
+		$message .= esc_html( $body ) . '<br />';
+
+		$links = [];
+		foreach ( $buttons as $button ) {
+			$links[] = '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( $button[1], 'admin-notice', $button[2], false ) ) . '">' . esc_html( $button[0] ) . '</a>';
+		}
+		$message .= implode( ' ', $links ) . '</p>';
 		$message .= '</div>';
 
 		return $message;
@@ -165,8 +259,9 @@ class Admin_Notices {
 
 		}
 
-		$results = update_option( 'edac_black_friday_2025_notice_dismiss', true );
+		$results = update_option( 'edac_black_friday_2026_notice_dismiss', true );
 		// Delete old options if they exist.
+		delete_option( 'edac_black_friday_2025_notice_dismiss' );
 		delete_option( 'edac_black_friday_2024_notice_dismiss' );
 		delete_option( 'edac_black_friday_2023_notice_dismiss' );
 
