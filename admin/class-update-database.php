@@ -63,6 +63,7 @@ class Update_Database {
 				rule text NOT NULL,
 				ruletype text NOT NULL,
 				object mediumtext NOT NULL,
+				extra_data text NULL,
 				recordcheck mediumint(9) NOT NULL,
 				created timestamp NOT NULL default CURRENT_TIMESTAMP,
 				user bigint(20) NOT NULL,
@@ -88,6 +89,9 @@ class Update_Database {
 			if ( version_compare( $db_version, '1.0.7', '<' ) ) {
 				$this->migrate_license_key_to_shared_option();
 			}
+
+			// 1.0.8: Added extra_data column. dbDelta() handles ADD COLUMN automatically
+			// when the column appears in the CREATE TABLE DDL above; no data migration required.
 		}
 
 		// Update database version option.
