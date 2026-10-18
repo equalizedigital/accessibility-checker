@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Thai\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-09 14:14+0000\n"
+"PO-Revision-Date: 2026-10-09 14:14+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: th\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "ต่ำ"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
@@ -566,12 +567,12 @@ msgstr "อัปเกรดทันที"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "การอนุญาตถูกปฏิเสธ"
 
@@ -649,13 +650,13 @@ msgstr "ค่าการดำเนินการรีวิวไม่ไ
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "ไม่ได้กำหนดรหัสโพสต์"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "คุณไม่มีสิทธิ์ดูข้อมูลนี้สำหรับโพสต์นี้"
 
@@ -736,7 +737,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* การเข้าถึงที่แท้จริงต้องมีการทดสอบด้วยตนเองนอกเหนือจากการสแกนอัตโนมัติ %1$sเรียนรู้วิธีทดสอบการเข้าถึงด้วยตนเอง%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -750,7 +751,7 @@ msgid "No summary to return"
 msgstr "ไม่มีบทสรุปที่จะส่งคืน"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "ชื่อตารางไม่ถูกต้อง"
 
@@ -764,203 +765,199 @@ msgstr " ทั้งหมด"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "อ่านเอกสารสำหรับ %1$s %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "ขยายปัญหาสำหรับ %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "การตั้งค่าเหล่านี้เปิดใช้งานการแก้ไขทั่วทั้งเว็บไซต์ของคุณ."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "อาจจำเป็นต้องบันทึกหน้าใหม่หรือทำการสแกนเว็บไซต์ทั้งหมดเพื่อดูการแก้ไขที่แสดงในรายงาน."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "บันทึก"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "โค้ดที่ได้รับผลกระทบ"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "รูปภาพ"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "จุดสังเกต"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "การดำเนินการ"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "ยกเลิก"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "ยกเลิก"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "รหัสปัญหา %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "รูปภาพสำหรับปัญหา %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ดูปัญหา ID %d บนเว็บไซต์ (เปิดในหน้าต่างใหม่)"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "ดูบนหน้าเว็บ"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "แก้ไข: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "แก้ไข"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "ไม่มีรายละเอียดที่จะส่งคืน"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "ระดับการอ่านหลังโพสต์: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "ไม่มี"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "โพสต์ของคุณมีระดับการอ่านสูงกว่าเกรด 9 แนวทางปฏิบัติในการเข้าถึงเนื้อหาเว็บ (WCAG) ระดับ AAA กำหนดให้มีสรุปแบบง่ายของโพสต์ของคุณที่อยู่ในระดับเกรด 9 หรือต่ำกว่า"
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "โพสต์ของคุณไม่มีเนื้อหาเพียงพอที่จะคำนวณระดับการอ่าน"
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "ไม่จำเป็นต้องมีสรุปแบบง่ายเมื่อระดับการอ่านเนื้อหาอยู่ในระดับเกรด 9 หรือต่ำกว่า เลือกเวลาที่จะแจ้งให้สรุปแบบง่ายในหน้าการตั้งค่า"
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "ระดับการอ่านสรุปแบบง่าย: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "เนื้อหาไม่เพียงพอที่จะกำหนดระดับการอ่านที่ถูกต้อง"
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "สรุปแบบง่ายของคุณมีระดับการอ่านสูงกว่าเกรด 9"
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "สรุปแบบง่ายของคุณมีระดับการอ่านที่เกรด 9 หรือต่ำกว่า"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "สรุปแบบง่ายไม่ได้ถูกแทรกเข้าไปในเนื้อหาโดยอัตโนมัติ"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "การแจ้งเตือนสำหรับสรุปแบบง่ายของคุณถูกตั้งค่าเป็น “ไม่เคย” หากคุณต้องการให้สรุปแบบง่ายแสดงโดยอัตโนมัติ คุณสามารถเปลี่ยนการตั้งค่านี้ได้ที่ %s"
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "หน้าการตั้งค่า"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "สรุปแบบง่ายกำลังถูกแทรกโดยอัตโนมัติ %s"
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "เนื้อหา"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "ตั้งค่าตำแหน่งที่จะแทรกสรุปแบบง่ายลงในเนื้อหาบน %s"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "ตำแหน่งสรุปแบบง่ายของคุณถูกตั้งค่าเป็น “ด้วยตนเอง” ซึ่งต้องเพิ่มฟังก์ชันลงในเทมเพลตหน้าของคุณ หากคุณต้องการให้สรุปแบบง่ายแสดงโดยอัตโนมัติ คุณสามารถเปลี่ยนการตั้งค่านี้ได้ที่ %s"
 
-#: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: admin/class-ajax.php:792
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "สรุปแบบย่อ"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "บันทึกสรุป"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับการปรับปรุงความสามารถในการอ่านและข้อกำหนดสรุปแบบง่าย"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "ไม่มีข้อมูลความสามารถในการอ่านที่จะส่งคืน"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* ข้อความสำหรับเครื่องอ่านหน้าจอ"
 
@@ -969,15 +966,15 @@ msgid "The id value was not set"
 msgstr "ไม่ได้กำหนดค่า ID"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "ไม่พบโพสต์"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "การค้นหาปัญหาไม่พบผลลัพธ์"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
@@ -1048,7 +1045,7 @@ msgstr "ยกเลิกปัญหาเป็น:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "การตั้งค่า"
 
@@ -1137,7 +1134,7 @@ msgid "Report Last Updated:"
 msgstr "อัปเดตรายงานล่าสุด:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "ไม่เคย"
 
@@ -1305,11 +1302,25 @@ msgstr "ชื่อ"
 msgid "Type your first name"
 msgstr "พิมพ์ชื่อของคุณ"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "โดยการสมัครสมาชิก คุณยินยอมที่จะรับอีเมลตาม %1$sนโยบายความเป็นส่วนตัว%2$s ของเรา"
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(เปิดในหน้าต่างใหม่)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1449,7 +1460,7 @@ msgid "Disabled"
 msgstr "ปิดใช้งาน"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "ลบข้อมูล"
 
@@ -1503,11 +1514,11 @@ msgstr "จำนวนการสแกนทั้งหมด"
 
 #: admin/site-health/class-pro.php:70
 msgid "Simplified Sum Heading"
-msgstr "หัวข้อบทสรุปแบบย่อ"
+msgstr "หัวข้อสรุปแบบย่อ"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "สิทธิ์ในการยกเลิก"
+msgstr "สิทธิ์ในการปิดการแจ้งเตือน"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
@@ -1543,20 +1554,20 @@ msgstr "รับ Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "รับ Accessibility Checker Pro (เปิดในหน้าต่างใหม่)"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "ขออภัย คุณไม่ได้รับอนุญาตให้ละเว้นปัญหา"
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "ขออภัย คุณไม่ได้รับอนุญาตให้ละเว้นปัญหาแบบทั่วโลก"
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "ไม่พบปัญหา"
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "ไม่สามารถอัปเดตปัญหาได้"
 
@@ -1853,16 +1864,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "ตั้งค่าแอตทริบิวต์ ID ของอิลิเมนต์การนำทาง สิ่งนี้มีประโยชน์หากการนำทางหลักของคุณมีการดำเนินการที่ผู้เข้าชมเว็บไซต์ส่วนใหญ่ต้องการทำ เช่น ฟีเจอร์การเข้าสู่ระบบหรือการค้นหา."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "หากธีมของคุณยังไม่ได้เพิ่มลิงก์ข้ามที่อนุญาตให้ผู้ใช้แป้นพิมพ์ข้ามการนำทางและข้ามไปยังเนื้อหาหลักได้อย่างรวดเร็ว ให้เปิดใช้งานลิงก์ข้ามที่นี่ %1$sเรียนรู้เพิ่มเติมเกี่ยวกับลิงก์ข้าม%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "ข้ามไปยังเนื้อหา"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "ข้ามไปยังการนำทาง"
 
@@ -1884,11 +1895,11 @@ msgstr "ลบแอตทริบิวต์ %1$s ออกจากอิล
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "หมายเหตุ: ไม่แนะนำให้ใช้การตั้งค่านี้สำหรับธีมที่พร้อมสำหรับการเข้าถึงอยู่แล้ว."
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "ไม่พบการแก้ไข"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "ไม่พบการแก้ไข"
 
@@ -2738,17 +2749,17 @@ msgstr "องค์ประกอบเหล่านี้เป็นแท
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "แท็ก anchor (หรือที่เรียกว่าลิงก์) มีไว้สำหรับการนำทางไปยังหน้าใหม่หรือตำแหน่งอื่นในหน้าเดียวกัน เมื่อใช้เพื่อทริกเกอร์การกระทำ (เช่น การขยายแอคคอร์เดียนหรือเปิดโมดัล) โดยไม่มีบทบาทหรือพฤติกรรมที่ถูกต้อง จะทำให้ผู้ใช้สับสน โดยเฉพาะผู้ที่ใช้โปรแกรมอ่านหน้าจอหรือแป้นพิมพ์ ซึ่งคาดหวังว่าลิงก์จะใช้สำหรับการนำทางมากกว่าการทำงาน นอกจากนี้ยังอาจไม่ทำงานกับปุ่มสเปซบาร์ ซึ่งเป็นสิ่งที่คาดหวังจากปุ่ม."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "ถ้าองค์ประกอบนี้ใช้เพื่อทริกเกอร์การกระทำ ให้แทนที่แท็ก anchor ด้วย %1$s ถ้าคุณไม่สามารถแทนที่ได้ ให้แน่ใจว่าได้เพิ่ม %2$s ลงในลิงก์ พร้อมกับ JavaScript ที่เพิ่มการรองรับการทริกเกอร์ด้วยปุ่มสเปซบาร์ และใช้แอตทริบิวต์ ARIA ที่เหมาะสมสำหรับสถานะการสลับหรือฟังก์ชันอื่นๆ."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "หากองค์ประกอบนี้ใช้เพื่อทริกเกอร์การกระทำ ให้แทนที่แท็ก anchor ด้วย %1$s หากคุณไม่สามารถแทนที่ได้ ให้แน่ใจว่าได้เพิ่ม %2$s ลงในลิงก์ พร้อมกับ JavaScript ที่เพิ่มการรองรับการทริกเกอร์ด้วยปุ่มสเปซบาร์ และใช้แอตทริบิวต์ ARIA ที่เหมาะสมสำหรับสถานะการสลับหรือฟังก์ชันอื่น ๆ หาก anchor เป็นเพียงการตกแต่ง ไม่สามารถโฟกัสได้ และไม่มีสถานะหรือคุณสมบัติ ARIA การใช้ %3$s หรือ %4$s จะเป็นการทำเครื่องหมายว่าเป็นส่วนประกอบเพื่อการนำเสนอเพื่อไม่ให้มีการรายงาน"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: บทบาทปุ่ม ARIA"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: การเข้าถึงปุ่มและลิงก์"
 
@@ -3442,90 +3453,77 @@ msgstr "ลิงก์ถาวรไปยัง "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "เข้าร่วมฟรี"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(เปิดในหน้าต่างใหม่)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "หลัก"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "ส่วนหัว"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "ส่วนท้าย"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "การนำทาง"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "ส่วนเสริม"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "การนำทาง"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "แบนเนอร์"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "ข้อมูลเนื้อหา"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "ส่วนเสริม"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "ส่วน"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "บทความ"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "แบบฟอร์ม"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "ภูมิภาค"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3570,86 +3568,90 @@ msgstr "ความสามารถในการแก้ไขโพสต
 msgid "Requires %s."
 msgstr "ต้องมี %s"
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "ยินดีต้อนรับสู่ Accessibility Checker"
 
-#: includes/options-page.php:698
-#: partials/settings-page.php:115
+#: includes/options-page.php:702
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "การตั้งค่า Accessibility Checker"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "การตั้งค่าการสแกน"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "การตั้งค่าสรุปแบบย่อ"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "ข้อความการเข้าถึงในส่วนท้าย"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "Accessibility Checker ส่วนหน้า"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "การตั้งค่าระบบ"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "ประเภทบทความที่จะตรวจสอบ"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "ความเร็วในการสแกน"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "การสแกนอาร์ไคฟ์"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "การสแกนอนุกรมวิธาน"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "เมตาบ็อกซ์ตัวแก้ไขบล็อก"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "แจ้งเตือนสำหรับสรุปแบบย่อ"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "ตำแหน่งสรุปแบบย่อ"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "หัวข้อสรุปแบบง่าย"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "เพิ่มข้อความการเข้าถึงในส่วนท้าย"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "รวมลิงก์ไปยังนโยบายการเข้าถึง"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "หน้านโยบายการเข้าถึง"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "ตัวอย่างข้อความการเข้าถึง"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "ตำแหน่ง Accessibility Checker ส่วนหน้า"
 
@@ -3732,75 +3734,75 @@ msgstr "สแกนเทอมอนุกรมวิธานทั้งห
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "ตรวจสอบหน้าอาร์ไคฟ์คำศัพท์อนุกรมวิธานทั้งหมดแทนที่จะใช้ตัวอย่างที่เป็นตัวแทน นี่ต้องการให้เปิดใช้งานการสแกนหน้าอาร์ไคฟ์และอาจเพิ่ม URL จำนวนมากในรายการสแกน"
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "ก่อนเนื้อหา"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "หลังเนื้อหา"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "แทรกด้วยตนเอง"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "ใช้ฟังก์ชันนี้เพื่อเพิ่มบทสรุปแบบง่ายลงในธีมของคุณภายในลูปด้วยตนเอง."
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "ฟังก์ชันนี้สามารถรับ ID ของโพสต์เป็นพารามิเตอร์ได้."
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "กำหนดว่าคุณต้องการให้บทสรุปแบบง่ายปรากฏในตำแหน่งใดเมื่อเทียบกับเนื้อหาของคุณหากมีการกรอก."
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "มุมขวาล่าง (ค่าเริ่มต้น)"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "มุมซ้ายล่าง"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "กำหนดว่าคุณต้องการให้ตัวตรวจสอบการเข้าถึงที่ส่วนหน้าปรากฏที่ตำแหน่งใดบนหน้า."
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "เมื่อจำเป็น"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "เสมอ"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checker ควรขอให้มีบทสรุปแบบง่ายเฉพาะเมื่อระดับการอ่านของโพสต์หรือหน้าของคุณสูงกว่าเกรด 9 หรือควรขอเสมอโดยไม่คำนึงถึงระดับการอ่าน หรือไม่ควรขอเลยโดยไม่คำนึงถึงระดับการอ่าน?"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "หากต้องการตรวจสอบเนื้อหาอื่นนอกเหนือจากโพสต์และหน้า โปรด "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "อัปเกรดเป็นเวอร์ชัน Pro"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (เปิดในหน้าต่างใหม่)"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "เลือกประเภทโพสต์ที่จะตรวจสอบระหว่างการสแกน โปรดทราบว่า การลบประเภทโพสต์ที่เลือกไว้ก่อนหน้านี้จะลบข้อมูลที่สแกนและคำเตือนที่ถูกยกเลิกแบบกำหนดเองที่ตั้งค่าไว้"
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "ลบข้อมูล Accessibility Checker ทั้งหมดเมื่อถอนการติดตั้งปลั๊กอิน."
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "แสดงเมตาบ็อกซ์ Accessibility Checker ในตัวแก้ไขบล็อก"
 
@@ -5606,16 +5608,12 @@ msgid "Missing postId or nonce."
 msgstr "ไม่มี postId หรือ nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "สแกนซ้ำเสร็จสมบูรณ์ ไม่พบการละเมิด"
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "ไม่พบการละเมิด ข้ามการบันทึก."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "ข้อผิดพลาดในการสแกนการเข้าถึง."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "สแกนซ้ำเสร็จสมบูรณ์ ไม่พบการละเมิด"
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5889,6 +5887,34 @@ msgid "learn more"
 msgstr "เรียนรู้เพิ่มเติม"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "เปิดในหน้าต่างใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "เปิดในแท็บใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "เปิดในแท็บใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "เปิดหน้าต่างใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "เปิดแท็บใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "เปิดในหน้าต่างใหม่"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "เปิดในแท็บใหม่"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "ตรวจสอบว่าข้อความที่มองเห็นของลิงก์เป็น URL หรือไม่ แทนที่จะเป็นข้อความจุดยึดที่บรรยาย"
 
@@ -6143,6 +6169,18 @@ msgstr "สแกน"
 msgid "Refresh"
 msgstr "รีเฟรช"
 
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "เลิกปักหมุดจากแถบเครื่องมือ"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "ปักหมุดที่แถบเครื่องมือ"
+
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "สรุปแบบย่อสำหรับโพสต์นี้จะแสดงที่นี่ เขียนสรุปในส่วนความสามารถในการอ่านของแถบด้านข้างหรือกล่องข้อมูลเสริมของ Accessibility Checker"
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "เฉพาะเครื่องอ่านหน้าจอ"
@@ -6150,3 +6188,28 @@ msgstr "เฉพาะเครื่องอ่านหน้าจอ"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "แสดงข้อความเครื่องอ่านหน้าจอเสมอ"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "สรุปแบบย่อ"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "แสดงสรุปแบบย่อของโพสต์นี้จาก Accessibility Checker"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "การเข้าถึง"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "สรุป"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "ความสามารถในการอ่าน"

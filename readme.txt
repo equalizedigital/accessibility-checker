@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.9
 Tested up to: 7.1
-Stable tag: 1.48.0
+Stable tag: 1.51.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -279,6 +279,42 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-10-08 - version 1.51.0
+* New - the Missing Transcript check now recognizes Able Player transcripts.
+* Updated - the Privacy Policy link in the email opt-in now tells screen reader users it opens in a new window.
+* Updated - dismissing an issue in the editor metabox keeps context and returns focus appropriately in more situations.
+* Updated - grouped settings fields have a legend for each of them, and saving settings is announced to screen readers.
+* Updated - improved metabox tab panel and classic metabox screen reader announcements.
+* Fix - the ambiguous link text check keeps flagging links when behavioral suffixes like "(opens in a new tab)" are appended.
+* Fix - links with role "none", "presentation" or "slider" are no longer flagged as improper links.
+* Fix - resolved issues are now properly cleared when a rescan finds no issues on a page.
+* Fix - the sidebar actions menu button is no longer part of the header heading.
+* Fix - the skip link fix no longer errors when a target is empty.
+* Fix - a PHP warning from a missing index in the issue filtering helper no longer appears.
+* Fix - the include statement link value in Site Health is now escaped with a more appropriate function.
+
+2026-09-24 - version 1.50.1
+* Fix - the frontend highlighter no longer forces its panel open on every Elementor save, and no longer rescans on Elementor's periodic autosave.
+
+2026-09-23 - version 1.50.0
+* New - the frontend highlighter automatically refreshes after saving in Elementor.
+* Updated - refined frontend highlighter styling for improved visibility and consistency across themes.
+* Updated - enhanced the email opt-in modal with dialog semantics for a better screen reader experience.
+* Fix - improved link handling inside the frontend highlighter.
+* Updated - focus stays within the email opt-in modal while it's open, making keyboard and screen reader navigation smoother.
+* Fix - issue titles appear beneath the "element not found" notice for added context.
+
+2026-08-31 - version 1.49.0
+* New - Simplified Summary block and shortcode for manually placing simplified summaries in content.
+* Fix - the "Translation loading for the accessibility-checker domain was triggered too early" notice no longer appears on WordPress 6.7+.
+* Fix - email opt-in modal now stays fully usable and reflows correctly at 400% zoom.
+* Fix - "A Video is Present" no longer triggers a false positive when an image filename contains "youtube" or "vimeo".
+* Fix - the New Window Warning fix now re-applies to BoardScribe table content after it re-renders on pagination.
+* Fix - the New Window Warning fix now re-applies to Gravity Forms forms after an AJAX re-render (e.g. multi-page navigation or validation errors).
+* Fix - the ambiguous text check now uses Unicode-aware regex, correctly matching non-English and special-character text.
+* Fix - fixes REST API endpoints now use a consistent "accessibility-checker" namespace.
+* Fix - suppressed a static-analysis false positive on the dismiss-issues REST permission callback (no behavior change).
 
 2026-08-19 - version 1.48.0
 * Added - a new Permissions settings tab that lets administrators control which roles can dismiss issues, view audit history, export data, run full-site scans, and view the frontend highlighter.

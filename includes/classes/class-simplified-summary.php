@@ -66,7 +66,7 @@ class Simplified_Summary {
 	 * be detected by has_block(); the filter below is the escape hatch for
 	 * those cases.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.49.0
 	 *
 	 * @param int|\WP_Post|null $post Post ID or post object.
 	 * @return bool
@@ -101,7 +101,7 @@ class Simplified_Summary {
 		 * Filter whether the simplified summary is manually placed, which
 		 * suppresses the automatic insertion on the_content.
 		 *
-		 * @since 1.xx.x
+		 * @since 1.49.0
 		 *
 		 * @param bool           $manually_placed Whether the summary is manually placed.
 		 * @param \WP_Post|null  $post            The post being checked.

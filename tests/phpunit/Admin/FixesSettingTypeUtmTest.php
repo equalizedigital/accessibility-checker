@@ -16,10 +16,6 @@ class Edac_FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify text field help link uses underscore UTM keys.
 	 */
 	public function testTextHelpLinkUsesUnderscoreUtmKeys() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
-		}
-
 		ob_start();
 		FixesPage::text(
 			[
@@ -42,10 +38,6 @@ class Edac_FixesSettingTypeUtmTest extends WP_UnitTestCase {
 	 * Verify checkbox help link uses underscore UTM keys.
 	 */
 	public function testCheckboxHelpLinkUsesUnderscoreUtmKeys() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
-		}
-
 		ob_start();
 		FixesPage::checkbox(
 			[

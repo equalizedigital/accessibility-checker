@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.47.0\n"
+"Project-Id-Version: Accessibility Checker 1.50.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-08-18T21:38:29+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-10-09 14:14+0000\n"
+"PO-Revision-Date: 2026-10-09 14:14+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
@@ -19,12 +19,13 @@ msgstr ""
 #. Plugin Name of the plugin
 #: accessibility-checker.php
 #: admin/class-meta-boxes.php:47
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:81
 #: includes/classes/class-accessibility-statement.php:55
 #: includes/classes/class-admin-toolbar.php:57
 #: includes/options-page.php:102
 #: includes/options-page.php:111
 #: includes/options-page.php:120
-#: includes/options-page.php:676
+#: includes/options-page.php:680
 #: partials/welcome-page.php:28
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/sidebar.bundle.js:8
@@ -268,7 +269,7 @@ msgid "Low"
 msgstr "低"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1032
+#: includes/classes/class-rest-api.php:1033
 msgid "Unknown"
 msgstr "不明"
 
@@ -566,12 +567,12 @@ msgstr "今すぐアップグレード"
 #: admin/class-admin-notices.php:411
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
-#: admin/class-frontend-highlight.php:114
-#: admin/class-frontend-highlight.php:119
-#: admin/class-frontend-highlight.php:123
+#: admin/class-frontend-highlight.php:120
+#: admin/class-frontend-highlight.php:125
+#: admin/class-frontend-highlight.php:129
 msgid "Permission Denied"
 msgstr "権限がありません"
 
@@ -649,13 +650,13 @@ msgstr "レビューアクションの値が設定されていませんでした
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "投稿IDが設定されていません"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "この投稿に関する情報を閲覧する権限がありません。"
 
@@ -736,7 +737,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* 真のアクセシビリティには、自動スキャンに加えて手動テストが必要です。%1$sアクセシビリティを手動でテストする方法を学ぶ%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -750,7 +751,7 @@ msgid "No summary to return"
 msgstr "返す要約がありません"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:940
+#: includes/classes/class-rest-api.php:941
 msgid "Invalid table name"
 msgstr "無効なテーブル名"
 
@@ -764,203 +765,199 @@ msgstr " 合計"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "%1$s のドキュメントを読む。%2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "%s の問題を展開"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "これらの設定は、サイト全体にわたるグローバルな修正を有効にします。"
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "レポートに修正が反映されるには、ページの再保存またはサイト全体のスキャンの実行が必要な場合があります。"
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "保存"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "影響を受けるコード"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "画像"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "ランドマーク"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "アクション"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "却下済み"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "却下"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "問題ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "問題 %d の画像"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "ページで表示"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "修正: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "修正"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "返す詳細がありません"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "投稿の読解レベル: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "なし"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "投稿の読解レベルが9年生より高いです。WCAG (Web Content Accessibility Guidelines) のAAAレベルでは、投稿の簡略化された要約が9年生以下である必要があります。"
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "投稿には読解レベルを計算するのに十分なコンテンツが含まれていません。"
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "コンテンツの読解レベルが9年生以下の場合、簡略化された要約は不要です。設定ページで、簡略化された要約をいつ促すかを選択してください。"
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "簡易要約の読解レベル: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "正確な読解レベルを判断するのに十分なコンテンツがありません。"
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "簡易要約の読解レベルが9年生以上です。"
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "簡易要約の読解レベルが9年生以下です。"
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "簡略化された要約はコンテンツに自動的に挿入されません。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約のプロンプトは「しない」に設定されています。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "設定ページ"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "簡略化された要約は%sに自動的に挿入されます。"
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "コンテンツ"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "簡略化された要約をコンテンツのどこに挿入するかは、%s で設定してください。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約の場所は「手動」に設定されており、ページテンプレートに関数を追加する必要があります。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:798
-#: includes/classes/class-simplified-summary.php:77
-#: includes/options-page.php:1535
-#: includes/options-page.php:1559
+#: admin/class-ajax.php:792
+#: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
+#: includes/classes/class-simplified-summary.php:132
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
+#: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "簡略版概要"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "要約を保存"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "可読性の向上と簡略化された要約の要件について詳しく学ぶ"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "返す読みやすさデータがありません"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "スクリーンリーダーテキスト"
 
@@ -969,15 +966,15 @@ msgid "The id value was not set"
 msgstr "ID値が設定されていません"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1078
+#: includes/classes/class-rest-api.php:1079
 msgid "Post not found"
 msgstr "投稿が見つかりません"
 
-#: admin/class-frontend-highlight.php:129
+#: admin/class-frontend-highlight.php:135
 msgid "Issue query returned no results"
 msgstr "問題のクエリで結果が返されませんでした"
 
-#: admin/class-frontend-highlight.php:182
+#: admin/class-frontend-highlight.php:188
 msgid "Object query returned no results"
 msgstr "オブジェクトのクエリで結果が返されませんでした"
 
@@ -1048,7 +1045,7 @@ msgstr "問題を却下する理由:"
 
 #: admin/class-plugin-action-links.php:52
 #: includes/classes/class-admin-toolbar.php:98
-#: includes/options-page.php:699
+#: includes/options-page.php:703
 msgid "Settings"
 msgstr "設定"
 
@@ -1137,7 +1134,7 @@ msgid "Report Last Updated:"
 msgstr "レポート最終更新日:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1237
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "なし"
 
@@ -1305,11 +1302,25 @@ msgstr "名"
 msgid "Type your first name"
 msgstr "名を入力"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "購読することにより、%1$sプライバシーポリシー%2$sに従ってメールを受け取ることに同意したことになります。"
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "（新しいウィンドウで開きます）"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1449,7 +1460,7 @@ msgid "Disabled"
 msgstr "無効"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:817
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "データを削除"
 
@@ -1507,7 +1518,7 @@ msgstr "簡略化された要約の見出し"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "却下権限"
+msgstr "却下の権限"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
@@ -1543,20 +1554,20 @@ msgstr "Accessibility Checker Proを入手"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro を入手する（新しいウィンドウで開きます）"
 
-#: includes/classes/class-rest-api.php:1238
+#: includes/classes/class-rest-api.php:1239
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "申し訳ありませんが、問題を無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1257
+#: includes/classes/class-rest-api.php:1258
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "申し訳ありませんが、問題をグローバルに無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1295
-#: includes/classes/class-rest-api.php:1317
+#: includes/classes/class-rest-api.php:1296
+#: includes/classes/class-rest-api.php:1318
 msgid "Issue not found."
 msgstr "問題が見つかりません。"
 
-#: includes/classes/class-rest-api.php:1374
+#: includes/classes/class-rest-api.php:1375
 msgid "Failed to update the issue."
 msgstr "問題の更新に失敗しました。"
 
@@ -1853,16 +1864,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "ナビゲーション要素のID属性を設定します。これは、メインナビゲーションにログインや検索機能など、ほとんどのサイト訪問者が実行したいアクションが含まれている場合に役立ちます。"
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "あなたのテーマがまだキーボードユーザーがナビゲーションをバイパスしてメインコンテンツにすぐにジャンプできるスキップリンクを追加していない場合、ここでスキップリンクを有効にしてください。%1$sスキップリンクについてもっと学ぶ。%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "コンテンツへスキップ"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "ナビゲーションへスキップ"
 
@@ -1884,11 +1895,11 @@ msgstr "フォーカス可能な要素から%1$s属性を削除します。"
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "注意：この設定は、既にアクセシビリティ対応のテーマには推奨されません。"
 
-#: includes/classes/Fixes/FixesManager.php:322
+#: includes/classes/Fixes/FixesManager.php:321
 msgid "Fix not found"
 msgstr "修正が見つかりません"
 
-#: includes/classes/Fixes/FixesManager.php:358
+#: includes/classes/Fixes/FixesManager.php:357
 msgid "Fix not found."
 msgstr "修正が見つかりません。"
 
@@ -2738,17 +2749,17 @@ msgstr "これらの要素は有効な%1$s属性が欠けているアンカー�
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "アンカータグ（別名リンク）は、新しいページや同じページの別の場所へのナビゲーション用です。正しい役割や動作なしにアコーディオンの展開やモーダルの開閉などのアクションを起こすために使用されると、特にスクリーンリーダーやキーボードを使用するユーザーが、リンクがアクションを実行するのではなくナビゲーションすると期待するため、混乱を招きます。また、ボタンに期待されるスペースバーでの操作もできない可能性があります。"
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "要素がアクションを起こすために使用される場合は、アンカータグを%1$sに置き換えてください。置き換えができない場合は、リンクに%2$sを追加し、スペースバーキーでトリガーできるようにするJavaScriptを追加し、トグル状態やその他の機能に適切なARIA属性を使用してください。"
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "要素がアクションをトリガーするために使用される場合は、アンカータグを %1$s に置き換えてください。置き換えができない場合は、リンクに %2$s を追加し、スペースキーでのトリガーをサポートする JavaScript を実装した上で、トグル状態やその他の機能に適切な ARIA 属性が使用されていることを確認してください。アンカーが純粋に装飾目的であり、フォーカス不可で ARIA の状態やプロパティを持たない場合は、%3$s または %4$s を使用してプレゼンテーション用としてマークすることで、レポートの対象外にできます。"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs：ARIAボタンの役割"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools：アクセシビリティボタンとリンク"
 
@@ -3442,90 +3453,77 @@ msgstr "へのパーマリンク "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "無料で参加"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "（新しいウィンドウで開きます）"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "メイン"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "ヘッダー"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "フッター"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "ナビ"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "アサイド"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "ナビゲーション"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "バナー"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "コンテンツ情報"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "補足"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "セクション"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "記事"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "フォーム"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "地域"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3570,86 +3568,90 @@ msgstr "他のユーザーの投稿を編集する能力"
 msgid "Requires %s."
 msgstr "%s が必要です。"
 
-#: includes/options-page.php:675
+#: includes/options-page.php:679
 msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checkerへようこそ"
 
-#: includes/options-page.php:698
-#: partials/settings-page.php:115
+#: includes/options-page.php:702
+#: partials/settings-page.php:117
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker設定"
 
-#: includes/options-page.php:745
+#: includes/options-page.php:749
 msgid "Scan Settings"
 msgstr "スキャン設定"
 
-#: includes/options-page.php:752
+#: includes/options-page.php:756
 msgid "Simplified Summary Settings"
 msgstr "簡易要約の設定"
 
-#: includes/options-page.php:759
+#: includes/options-page.php:763
 msgid "Footer Accessibility Statement"
 msgstr "フッターのアクセシビリティ声明"
 
-#: includes/options-page.php:766
+#: includes/options-page.php:770
 msgid "Frontend Accessibility Checker"
 msgstr "フロントエンドAccessibility Checker"
 
-#: includes/options-page.php:773
+#: includes/options-page.php:777
 msgid "System Settings"
 msgstr "システム設定"
 
-#: includes/options-page.php:781
+#: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "チェック対象の投稿タイプ"
 
-#: includes/options-page.php:790
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "スキャン速度"
 
-#: includes/options-page.php:799
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "アーカイブスキャン"
 
-#: includes/options-page.php:808
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "タクソノミースキャン"
 
-#: includes/options-page.php:826
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "ブロックエディターのメタボックス"
 
-#: includes/options-page.php:835
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "簡易要約の入力を促す"
 
-#: includes/options-page.php:844
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "簡易要約の位置"
 
-#: includes/options-page.php:853
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "簡略化された概要見出し"
 
-#: includes/options-page.php:862
-#: includes/options-page.php:1370
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "フッターにアクセシビリティ声明を追加"
 
-#: includes/options-page.php:871
-#: includes/options-page.php:1393
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "アクセシビリティポリシーへのリンクを含める"
 
-#: includes/options-page.php:880
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "アクセシビリティポリシーページ"
 
-#: includes/options-page.php:889
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "アクセシビリティ声明のプレビュー"
 
-#: includes/options-page.php:897
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "フロントエンドAccessibility Checkerの位置"
 
@@ -3732,75 +3734,75 @@ msgstr "サンプルだけでなく、すべてのタクソノミー用語をス
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "代表的なサンプルの代わりに、すべてのタクソノミー用語のアーカイブページをチェックします。これにはアーカイブページのスキャンを有効にする必要があり、スキャンリストに多数のURLが追加される可能性があります。"
 
-#: includes/options-page.php:1144
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "コンテンツの前"
 
-#: includes/options-page.php:1149
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "コンテンツの後"
 
-#: includes/options-page.php:1154
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "手動で挿入"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "この機能を使用して、ループ内のテーマに簡略化された要約を手動で追加します。"
 
-#: includes/options-page.php:1160
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "この関数はオプションとして投稿IDをパラメータとして受け入れます。"
 
-#: includes/options-page.php:1163
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "簡略化された要約を、入力された場合にコンテンツとの関係でどこに表示させたいか設定します。"
 
-#: includes/options-page.php:1178
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "右下隅（デフォルト）"
 
-#: includes/options-page.php:1183
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "左下隅"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "フロントエンドのアクセシビリティチェッカーをページのどこに表示させたいか設定します。"
 
-#: includes/options-page.php:1227
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "必要な時"
 
-#: includes/options-page.php:1232
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "常に"
 
-#: includes/options-page.php:1240
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "Accessibility Checkerは、投稿やページの読解レベルが9年生以上の場合にのみ簡略化された要約を求めるべきですか、読解レベルに関係なく常に求めるべきですか、それとも読解レベルに関係なく決して求めるべきではありませんか？"
 
-#: includes/options-page.php:1295
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
 msgstr "投稿とページ以外のコンテンツをチェックするには、 "
 
-#: includes/options-page.php:1297
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "Proにアップグレード"
 
-#: includes/options-page.php:1298
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " （新しいウィンドウで開きます）"
 
-#: includes/options-page.php:1303
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "スキャン中にどの投稿タイプをチェックするかを選択してください。以前に選択されていた投稿タイプを削除すると、スキャンされた情報と設定済みのカスタム却下警告が削除されることにご注意ください。"
 
-#: includes/options-page.php:1444
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "プラグインがアンインストールされたときに、すべてのAccessibility Checkerデータを削除します。"
 
-#: includes/options-page.php:1462
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "ブロックエディターでAccessibility Checkerメタボックスを表示"
 
@@ -5606,16 +5608,12 @@ msgid "Missing postId or nonce."
 msgstr "postIdまたはnonceが欠落しています。"
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "再スキャンが完了しました。違反は見つかりませんでした。"
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "違反は見つかりませんでした。保存をスキップします。"
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "アクセシビリティスキャンエラー。"
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "再スキャンが完了しました。違反は見つかりませんでした。"
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5889,6 +5887,34 @@ msgid "learn more"
 msgstr "詳細を見る"
 
 #: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "新しいウィンドウで開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "新しいタブを開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "新しいタブで開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "新しいウィンドウを開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "新しいタブを開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "新しいウィンドウで開く"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "新しいタブで開く"
+
+#: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
 msgstr "リンクの表示テキストが説明的なアンカーテキストではなくURLであるかどうかを確認します。"
 
@@ -6143,6 +6169,18 @@ msgstr "スキャン"
 msgid "Refresh"
 msgstr "更新"
 
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "ツールバーから固定を解除"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "ツールバーに固定"
+
+#: build/simplifiedSummaryBlock.bundle.js:2
+msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
+msgstr "この投稿の要約版がここに表示されます。要約は、Accessibility Checker サイドバーまたはメタボックスの「Readability」セクションで作成してください。"
+
 #: build/srOnlyFormat.bundle.js:2
 msgid "Screen Reader Only"
 msgstr "スクリーンリーダーのみ"
@@ -6150,3 +6188,28 @@ msgstr "スクリーンリーダーのみ"
 #: build/srOnlyFormat.bundle.js:2
 msgid "Always show screen reader text"
 msgstr "常にスクリーンリーダーテキストを表示"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block title"
+msgid "Simplified Summary"
+msgstr "要約版"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block description"
+msgid "Displays this post's simplified summary from Accessibility Checker."
+msgstr "Accessibility Checker による、この投稿の要約版を表示します。"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "accessibility"
+msgstr "アクセシビリティ"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "summary"
+msgstr "要約"
+
+#: includes/blocks/simplified-summary/block.json
+msgctxt "block keyword"
+msgid "readability"
+msgstr "可読性"

@@ -11,6 +11,9 @@ on:
 
 jobs:
   deploy:
+    # Disabled: this workflow does not work and has never successfully
+    # deployed a release. Left in place for reference rather than deleted.
+    if: false
     runs-on: ubuntu-latest
     steps:
       - name: Get release assets
