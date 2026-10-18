@@ -94,9 +94,9 @@ describe( 'DismissPanel', () => {
 		unmount();
 	} );
 
-	test( 'keeps global undo available when an issue was globally dismissed', async () => {
+	test( 'keeps global undo available for a user who can globally dismiss', async () => {
 		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
-		window.edac_editor_app.pro = '0';
+		window.edac_editor_app.pro = '1';
 
 		const { container, unmount } = renderReact(
 			<DismissPanel
@@ -111,7 +111,8 @@ describe( 'DismissPanel', () => {
 				onToggle={ jest.fn() }
 				onIgnore={ jest.fn() }
 				onCloseModal={ jest.fn() }
-				isPro={ false }
+				isPro={ true }
+				canDismissGlobally={ true }
 			/>,
 		);
 
@@ -126,6 +127,145 @@ describe( 'DismissPanel', () => {
 		} );
 
 		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 2, false, '', '', true );
+
+		unmount();
+	} );
+
+	test( 'hides global dismiss controls for a Pro user without canDismissGlobally', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 4, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ false }
+			/>,
+		);
+
+		expect( container.querySelector( 'button[aria-label="More dismiss options"]' ) ).toBeNull();
+		expect( container.textContent ).not.toContain( 'Dismiss Globally' );
+
+		unmount();
+	} );
+
+	test( 'hides the global undo for a Pro user without canDismissGlobally, even on an already-globally-dismissed issue', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 5,
+					ignre: '1',
+					ignre_global: 1,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'Global dismissal',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismissGlobally={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Remove Global Dismissal' );
+
+		unmount();
+	} );
+
+	test( 'shows a permission notice instead of the dismiss form for a user without canDismiss, on an open issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 7, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'You do not have permission to dismiss issues.' );
+		expect( container.querySelector( 'form' ) ).toBeNull();
+
+		unmount();
+	} );
+
+	test( 'hides the Reopen Issue button for a user without canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 8,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Reopen Issue' );
+		expect(
+			Array.from( container.querySelectorAll( 'button' ) ).find( ( el ) => el.textContent.includes( 'Reopen Issue' ) ),
+		).toBeUndefined();
+
+		unmount();
+	} );
+
+	test( 'shows the Reopen Issue button for a user with canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 9,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'Reopen Issue' );
+
+		unmount();
+	} );
+
+	test( 'shows global dismiss controls for a Pro user with canDismissGlobally', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 6, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'Dismiss Globally' );
 
 		unmount();
 	} );

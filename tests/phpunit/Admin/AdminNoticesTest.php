@@ -42,9 +42,6 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	 * Test that removing admin notices does not error when the current screen is unavailable.
 	 */
 	public function test_edac_remove_admin_notices_handles_missing_screen() {
-		if ( ! function_exists( 'get_current_screen' ) ) {
-			$this->markTestSkipped( 'get_current_screen is not available in this test environment.' );
-		}
 		global $current_screen;
 		$previous_screen = $current_screen ?? null;
 		$current_screen  = null;
@@ -119,9 +116,6 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	 * @preserveGlobalState disabled
 	 */
 	public function test_edac_get_gaad_presale_message_pro_without_valid_key_shows_non_pro_copy() {
-		if ( defined( 'EDACP_VERSION' ) ) {
-			$this->markTestSkipped( 'Cannot test this branch: EDACP_VERSION is already defined in this environment.' );
-		}
 		define( 'EDACP_VERSION', '1.0.0' );
 		$message = $this->admin_notices->edac_get_gaad_presale_message();
 		$this->assertStringContainsString( 'Starting May 20th: Save 15% on Accessibility Checker Pro', $message );
@@ -183,9 +177,6 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	 * @preserveGlobalState disabled
 	 */
 	public function test_edac_get_gaad_sale_message_pro_without_valid_key_shows_non_pro_copy() {
-		if ( defined( 'EDACP_VERSION' ) ) {
-			$this->markTestSkipped( 'Cannot test this branch: EDACP_VERSION is already defined in this environment.' );
-		}
 		define( 'EDACP_VERSION', '1.0.0' );
 		$message = $this->admin_notices->edac_get_gaad_sale_message();
 		$this->assertStringContainsString( '3 days only: Save 15% when you upgrade to Accessibility Checker Pro', $message );

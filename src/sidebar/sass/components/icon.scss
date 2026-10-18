@@ -1,4 +1,4 @@
-@use '../_variables' as *;
+@use "../_variables" as *;
 
 /**
  * Icon Styles
@@ -30,7 +30,7 @@
 	}
 
 	svg {
-		stroke: currentColor;
+		stroke: currentcolor;
 		fill: none;
 	}
 

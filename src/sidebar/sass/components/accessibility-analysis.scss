@@ -1,5 +1,5 @@
-@use 'sass:color';
-@use '../_variables' as *;
+@use "sass:color";
+@use "../_variables" as *;
 
 .edac-analysis {
 	// ==========================================
@@ -7,6 +7,7 @@
 	// ==========================================
 
 	&-panel {
+
 		.components-panel__body.is-opened {
 			padding-bottom: 0;
 		}
@@ -112,7 +113,7 @@
 		margin: 0;
 		padding: 0;
 		border: 1px solid $outline-grey;
-    	border-radius: 8px;
+		border-radius: 8px;
 		background: #fff;
 	}
 

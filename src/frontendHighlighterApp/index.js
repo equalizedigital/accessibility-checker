@@ -8,6 +8,8 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { setupElementorSaveListener } from './setupElementorSaveListener';
+import { buildDescriptionTitle } from './descriptionTitle';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -375,7 +377,8 @@ class AccessibilityCheckerHighlight {
 					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
 						// Only try kickoffScan once per highlightAjax call
 						self._scanAttempted = true;
-						self.kickoffScan();
+						// showScanError() has already reported a failure.
+						self.kickoffScan().catch( () => {} );
 						// After kickoffScan, try highlightAjax again, but only once
 						setTimeout( () => {
 							self.highlightAjax().then( resolve ).catch( reject );
@@ -934,6 +937,17 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		this.refreshIssues( id );
+	}
+
+	/**
+	 * Fetches the current issues for this page and updates the panel's contents.
+	 * Does not change the panel's visibility, so it's safe to call whether or
+	 * not the panel is currently open.
+	 *
+	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 */
+	refreshIssues( id ) {
 		// Get the issues for this page.
 		this.highlightAjax().then(
 			( json ) => {
@@ -1002,11 +1016,14 @@ class AccessibilityCheckerHighlight {
 
 				this.showIssueCount();
 
-				if ( id !== undefined ) {
+				if ( this.issues.length === 0 ) {
+					// Nothing left to show, so drop the previous issue's details.
+					this.clearIssueState();
+				} else if ( id !== undefined ) {
 					this.showIssue( id );
 				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
 					this.showIssue( this.issues[ this.currentButtonIndex ].id );
-				} else if ( this.issues.length > 0 ) {
+				} else {
 					this.showIssue( this.issues[ 0 ].id );
 				}
 			}
@@ -1171,6 +1188,8 @@ class AccessibilityCheckerHighlight {
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
 
 			let content = '';
+			// Elementor cancels preview link navigation unless the anchor has this opt-out class.
+			const isElementorEditorLinkClass = window.elementorFrontend?.isEditMode?.() === true ? ' elementor-clickable' : '';
 
 			const newWindowHtml = `<span aria-hidden="true">↗\uFE0E</span><span class="edac-sr-only">${ __( ', opens a new window', 'accessibility-checker' ) }</span>`;
 
@@ -1196,7 +1215,7 @@ class AccessibilityCheckerHighlight {
 					}
 				}
 
-				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
 			// Metadata row: Type
@@ -1245,11 +1264,11 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
+				content += `<div><a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
+				content += `<a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
 			}
 
 			// Get the code button
@@ -1258,10 +1277,14 @@ class AccessibilityCheckerHighlight {
 
 
 			// title and content (notice only rendered when there is a status message)
-			const noticeHtml = this.currentIssueStatus
-				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
+				title: matchingObj.rule_title,
+				notice: this.currentIssueStatus || '',
+				typeBadgeHtml,
+			} );
+
+			descriptionTitle.classList.toggle( 'edac-highlight-panel-description-title--has-notice', hasNotice );
+			descriptionTitle.innerHTML = descriptionTitleHtml;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1846,15 +1869,18 @@ class AccessibilityCheckerHighlight {
 				error.edacHandled = true;
 				throw error;
 			}
-			if ( ! result || ! result.violations || result.violations.length === 0 ) {
+			// A scan that returned no violation list at all has failed: saving an
+			// empty set here would clear issues that are still on the page.
+			if ( ! result || ! Array.isArray( result.violations ) ) {
+				const message = __( 'Accessibility scan error.', 'accessibility-checker' );
 				self.showWait( false );
-				if ( self._pendingRescanAnnouncement ) {
-					self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
-					self._pendingRescanAnnouncement = false;
-				}
-				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
-				return { status: 'no-violations' };
+				self.showScanError( message );
+				const error = new Error( message );
+				error.edacHandled = true;
+				throw error;
 			}
+			// Saved even when nothing was found: the request replaces this post's
+			// stored issues, so an empty result is what clears resolved ones.
 			return self.saveScanResults( postId, nonce, result.violations, densityMetrics );
 		} ).catch( ( error ) => {
 			if ( error?.edacHandled ) {
@@ -1892,6 +1918,10 @@ class AccessibilityCheckerHighlight {
 			.then( ( data ) => {
 				self.showWait( false );
 				if ( data && data.success ) {
+					if ( violations.length === 0 && self._pendingRescanAnnouncement ) {
+						self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
+						self._pendingRescanAnnouncement = false;
+					}
 					return { status: 'success' };
 				}
 
@@ -1916,8 +1946,12 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Trigger a full rescan of the current page and reload issues.
+	 *
+	 * @param {boolean} [openPanel] Whether to open the panel once the rescan completes.
+	 *                              Set to false for rescans triggered as a side effect
+	 *                              of something other than the user asking to see results.
 	 */
-	rescanPage() {
+	rescanPage( openPanel = true ) {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
 			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
@@ -1931,14 +1965,64 @@ class AccessibilityCheckerHighlight {
 
 		this.removeHighlightButtons();
 		this.kickoffScan().then( () => {
+			// The panel refresh below can find no stored rows, which would auto-scan again.
+			this._scanAttempted = true;
 			if ( this._pendingRescanAnnouncement ) {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
 			}
-			this.panelOpen();
+			if ( openPanel ) {
+				this.panelOpen();
+			} else if ( this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				// Panel is already open (e.g. docked) — refresh its contents in place
+				// rather than leaving it showing stale issues, without forcing it open.
+				this.refreshIssues();
+			}
+		}, () => {
+			// Scan and save failures have already been shown and announced by
+			// showScanError(), so there is nothing left to do but not leave the
+			// rejection unhandled.
 		} ).finally( () => {
 			this._isRescanning = false;
 		} );
+	}
+
+	/**
+	 * Reset the panel's issue state without contacting the server: the selected
+	 * element styling, the issue description, the pagination, the nav buttons and
+	 * the selected issue in the URL.
+	 * Used when there are no issues left to show.
+	 */
+	clearIssueState() {
+		this.removeSelectedClasses();
+		this.issues = [];
+		this.currentButtonIndex = null;
+
+		// Clear issue text from the panel.
+		const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
+		const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
+		if ( descriptionTitle ) {
+			descriptionTitle.innerHTML = '';
+			descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
+		}
+		if ( descriptionContent ) {
+			descriptionContent.innerHTML = '';
+		}
+
+		// Clear the pagination count and hide nav buttons.
+		const pagination = document.getElementById( 'edac-highlight-pagination' );
+		if ( pagination ) {
+			pagination.textContent = '';
+		}
+		this.nextButton.disabled = true;
+		this.previousButton.disabled = true;
+
+		// The selected issue is gone, so drop it from the shareable URL too.
+		const url = new URL( window.location.href );
+		url.searchParams.delete( 'edac' );
+		history.replaceState( null, '', url.toString() );
+
+		this.descriptionClose();
 	}
 
 	/**
@@ -1982,34 +2066,8 @@ class AccessibilityCheckerHighlight {
 			if ( response.ok ) {
 				this._issuesCleared = true;
 				this.removeHighlightButtons();
-				this.removeSelectedClasses();
-				this.issues = [];
-				this.currentButtonIndex = null;
+				this.clearIssueState();
 
-				// Clear issue text from the panel.
-				const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
-				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
-				if ( descriptionTitle ) {
-					descriptionTitle.innerHTML = '';
-				}
-				if ( descriptionContent ) {
-					descriptionContent.innerHTML = '';
-				}
-
-				// Remove the URL parameter.
-				const url = new URL( window.location.href );
-				url.searchParams.delete( 'edac' );
-				history.replaceState( null, '', url.toString() );
-
-				// Clear the pagination count and hide nav buttons.
-				const pagination = document.getElementById( 'edac-highlight-pagination' );
-				if ( pagination ) {
-					pagination.textContent = '';
-				}
-				this.nextButton.disabled = true;
-				this.previousButton.disabled = true;
-
-				this.descriptionClose();
 				this.showIssueCount();
 				if ( summary ) {
 					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );
@@ -2054,10 +2112,11 @@ class AccessibilityCheckerHighlight {
 let highlighterInitialized = false;
 const initHighlighter = () => {
 	if ( ! highlighterInitialized ) {
-		new AccessibilityCheckerHighlight();
+		const highlighter = new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
+		setupElementorSaveListener( highlighter );
 		highlighterInitialized = true;
 	}
 };
