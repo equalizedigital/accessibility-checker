@@ -5,7 +5,7 @@
  * Provides connection and product information for MyDot license management integration.
  *
  * @package Accessibility_Checker
- * @since 1.xx.x
+ * @since 1.40.0
  */
 
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
@@ -18,14 +18,14 @@ use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
  *
  * Handles MyDot product and license integration constants and utilities.
  *
- * @since 1.xx.x
+ * @since 1.40.0
  */
 class Connector {
 
 	/**
 	 * The product name used in MyDot licensing system.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var string
 	 */
@@ -34,7 +34,7 @@ class Connector {
 	/**
 	 * The default MyDot API endpoint for license validation.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var string
 	 */
@@ -43,7 +43,7 @@ class Connector {
 	/**
 	 * The product ID used in MyDot licensing system.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var int
 	 */
@@ -134,7 +134,7 @@ class Connector {
 	/**
 	 * Sets up the license page and handlers.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public function init() {
 		$connected_services = new ConnectedServicesPage( 'manage_options' );
@@ -177,7 +177,7 @@ class Connector {
 	/**
 	 * Register license settings so the edac_license group is allowed by options.php.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -213,7 +213,7 @@ class Connector {
 	/**
 	 * Handle license activate/deactivate from admin-post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -247,7 +247,7 @@ class Connector {
 	/**
 	 * Activate the license via API and store status/error.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -368,7 +368,7 @@ class Connector {
 	/**
 	 * Deactivate the license via API and always clear local stored values.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -500,7 +500,7 @@ class Connector {
 	 *
 	 * Can be disabled by returning `false` to the `edac_verify_ssl_for_licensing` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool Whether to verify SSL. Defaults to `true`.
 	 */
@@ -513,7 +513,7 @@ class Connector {
 	 *
 	 * Can be overridden by filtering the value with the `edac_mydot_api_endpoint` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The API endpoint URL (with protocol). Defaults to `https://my.equalizedigital.com`.
 	 */
@@ -521,7 +521,7 @@ class Connector {
 		/**
 		 * Filters the MyDot API endpoint URL.
 		 *
-		 * @since 1.xx.x
+		 * @since 1.40.0
 		 *
 		 * @param string $default The default or environment-overridden API endpoint URL.
 		 */
@@ -533,7 +533,7 @@ class Connector {
 	 *
 	 * Can be overridden by filtering the value with the `edac_mydot_product_id` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return int The product ID. Defaults to 1666.
 	 */
@@ -541,7 +541,7 @@ class Connector {
 		/**
 		 * Filters the MyDot product ID.
 		 *
-		 * @since 1.xx.x
+		 * @since 1.40.0
 		 *
 		 * @param int $default The default product ID.
 		 */
@@ -557,7 +557,7 @@ class Connector {
 	 *
 	 * @return string The license key or empty string if none stored.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public static function get_license_key(): string {
 		return (string) get_option( 'edacp_license_key', '' );
@@ -566,7 +566,7 @@ class Connector {
 	/**
 	 * Handle admin-post for site registration (button on License page).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -587,7 +587,7 @@ class Connector {
 	/**
 	 * Handle admin-post for site unregistration (button on License page).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -608,7 +608,7 @@ class Connector {
 	/**
 	 * Handle the site registration process including UI feedback.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True when registration succeeded and state was saved.
 	 */
@@ -722,7 +722,7 @@ class Connector {
 	/**
 	 * Handle the site unregistration process including UI feedback.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string      $license      Optional license key passed from deactivation hooks.
 	 * @param string      $url          Optional site URL from deactivation hooks.
@@ -786,7 +786,7 @@ class Connector {
 	/**
 	 * Register a site with the MyDot API.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $license_key     The license key to register the site with.
 	 * @param string $site_url        The URL of the site to register.
@@ -846,7 +846,7 @@ class Connector {
 	/**
 	 * Unregister a site from the MyDot API.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $site_id     The site ID for the registered site.
 	 * @param string $site_url    The URL of the site to unregister.
@@ -904,7 +904,7 @@ class Connector {
 	/**
 	 * Get the expected issuer for JWT validation (RFC 8725).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The issuer URL/identifier.
 	 */
@@ -916,7 +916,7 @@ class Connector {
 	/**
 	 * Get the expected audience for JWT validation (RFC 8725).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The audience identifier (site URL or API endpoint identifier).
 	 */
@@ -937,7 +937,7 @@ class Connector {
 	 * - Audience (aud claim) per RFC 8725 to ensure token is for this recipient
 	 * - Not Before (nbf claim) if present
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $token The JWT token to validate.
 	 * @return bool True if the token is valid, false otherwise.
@@ -1040,7 +1040,7 @@ class Connector {
 	 * If validation fails, attempt to refresh the public key from the issuer and retry.
 	 * This handles cases where the issuer rotated keys but the site's cron hasn't run yet.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $token The JWT token to validate.
 	 * @return bool True if valid (either on first try or after key refresh), false otherwise.
@@ -1064,7 +1064,7 @@ class Connector {
 	/**
 	 * Permission helper for validating JWT token in REST request with fallback (Option 2 + 3).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return bool True if valid JWT token is present, false otherwise.
@@ -1102,7 +1102,7 @@ class Connector {
 	 *
 	 * Uses a simple GET request since public keys don't require authentication.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True if public key was updated or is current, false on error.
 	 */
@@ -1143,7 +1143,7 @@ class Connector {
 	 *
 	 * Uses a simple GET request since public keys don't require authentication.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True if key was retrieved and stored, false otherwise.
 	 */
@@ -1230,7 +1230,7 @@ class Connector {
 	/**
 	 * Strict Base64URL decode that returns false on invalid input.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $b64url The Base64URL encoded string.
 	 * @return string|false The decoded string, or false on failure.
@@ -1258,7 +1258,7 @@ class Connector {
 	 * @param string       $source       Activation/check source context ('free' or 'pro').
 	 * @return array Inferred metadata with keys: type, level, item_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public static function infer_license_metadata_from_response( $license_data, string $source ): array {
 		if ( ! is_object( $license_data ) && ! is_array( $license_data ) ) {
