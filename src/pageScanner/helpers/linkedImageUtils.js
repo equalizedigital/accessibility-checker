@@ -7,7 +7,7 @@ import { isVisiblyHidden } from './helpers.js';
  */
 export const getVisibleImages = ( node ) => {
 	const allImages = node.querySelectorAll( 'img' );
-	return Array.from( allImages ).filter( ( img ) => ! isVisiblyHidden( img ) );
+	return Array.from( allImages ).filter( ( img ) => ! isVisiblyHidden( img, node ) );
 };
 
 /**
