@@ -10,10 +10,14 @@ export default {
 				hiddenTexts.push( el.cloneNode( true ).textContent );
 			} );
 
+			// visibility is inherited, so when the button itself is hidden (closed tab, accordion)
+			// every child reports hidden too. Only count it when the button is visible.
+			const isButtonVisible = window.getComputedStyle( element ).visibility !== 'hidden';
+
 			// Get visually hidden content
 			Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
 				const style = window.getComputedStyle( el );
-				if ( style.display === 'none' || style.visibility === 'hidden' ) {
+				if ( style.display === 'none' || ( isButtonVisible && style.visibility === 'hidden' ) ) {
 					hiddenTexts.push( el.textContent );
 				}
 			} );
