@@ -68,7 +68,7 @@ class Meta_Boxes {
 		 * @since 1.10.0
 		 */
 		do_action( 'edac_before_meta_box' );
-		include_once plugin_dir_path( __DIR__ ) . 'partials/custom-meta-box.php';
+		include_once EDAC_PLUGIN_DIR . 'partials/custom-meta-box.php';
 		/**
 		 * Fires after the meta box is rendered.
 		 *
