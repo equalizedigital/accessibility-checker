@@ -136,11 +136,11 @@ class FixesManagerTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Test that current and legacy REST routes share the same configuration.
+	 * Test that fixes REST routes are registered only under the accessibility-checker/v1 namespace.
 	 *
 	 * @return void
 	 */
-	public function test_register_rest_routes_preserves_legacy_namespace() {
+	public function test_register_rest_routes_uses_only_current_namespace() {
 		$registered_routes = rest_get_server()->get_routes();
 		$expected_routes   = [
 			'/fixes'                               => 'GET',
@@ -150,29 +150,24 @@ class FixesManagerTest extends WP_UnitTestCase {
 
 		foreach ( $expected_routes as $route => $method ) {
 			$current_route = '/accessibility-checker/v1' . $route;
-			$legacy_route  = '/edac/v1' . $route;
 
 			$this->assertArrayHasKey( $current_route, $registered_routes );
-			$this->assertArrayHasKey( $legacy_route, $registered_routes );
+			$this->assertArrayNotHasKey( '/edac/v1' . $route, $registered_routes );
 
 			$current_handler = $registered_routes[ $current_route ][0];
-			$legacy_handler  = $registered_routes[ $legacy_route ][0];
 
 			$this->assertArrayHasKey( $method, $current_handler['methods'] );
-			$this->assertArrayHasKey( $method, $legacy_handler['methods'] );
 			$this->assertTrue( is_callable( $current_handler['callback'] ) );
-			$this->assertTrue( is_callable( $legacy_handler['callback'] ) );
-			$this->assertSame( $current_handler['callback'], $legacy_handler['callback'] );
-			$this->assertSame( $current_handler['permission_callback'], $legacy_handler['permission_callback'] );
+			$this->assertTrue( is_callable( $current_handler['permission_callback'] ) );
 		}
 	}
 
 	/**
-	 * Test that authorized requests receive the same fixes payload from both namespaces.
+	 * Test that the fixes route responds under the current namespace and the legacy one is gone.
 	 *
 	 * @return void
 	 */
-	public function test_fixes_routes_return_the_same_response() {
+	public function test_fixes_route_is_not_served_from_legacy_namespace() {
 		rest_get_server();
 
 		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
@@ -183,8 +178,8 @@ class FixesManagerTest extends WP_UnitTestCase {
 			$legacy_response  = rest_do_request( '/edac/v1/fixes' );
 
 			$this->assertSame( 200, $current_response->get_status() );
-			$this->assertSame( 200, $legacy_response->get_status() );
-			$this->assertSame( $current_response->get_data(), $legacy_response->get_data() );
+			$this->assertSame( 404, $legacy_response->get_status() );
+			$this->assertSame( 'rest_no_route', $legacy_response->get_data()['code'] );
 		} finally {
 			wp_set_current_user( 0 );
 			wp_delete_user( $admin_id );
