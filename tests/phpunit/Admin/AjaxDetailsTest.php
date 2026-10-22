@@ -138,6 +138,56 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 	 * @return void
 	 */
 	public function test_details_expand_button_is_labelled_by_rule_heading(): void {
+		$xpath    = $this->get_details_xpath();
+		$document = $xpath->document;
+		$heading  = $xpath->query( '//h3[@id="edac-details-rule-heading-empty_link"]' );
+		$button   = $xpath->query( '//button[@aria-labelledby="edac-details-rule-heading-empty_link"]' );
+
+		$this->assertSame( 1, $heading->length );
+		$this->assertSame( 1, $button->length );
+		$heading_markup = $document->saveHTML( $heading->item( 0 ) );
+		$heading_text   = preg_replace( '/\s+/', ' ', $heading->item( 0 )->textContent );
+
+		$this->assertIsString( $heading_text );
+		$this->assertStringContainsString( '1', $heading_text );
+		$this->assertStringContainsString( 'total', $heading_markup );
+		$this->assertStringContainsString( 'Critical', $heading_text );
+	}
+
+	/**
+	 * Verify each issue cell has a screen reader only heading for its column.
+	 *
+	 * @return void
+	 */
+	public function test_details_record_cells_have_screen_reader_headings(): void {
+		$xpath   = $this->get_details_xpath();
+		$expects = [
+			'edac-details-rule-records-record-object'   => 'Affected Code',
+			'edac-details-rule-records-record-image'    => 'Image',
+			'edac-details-rule-records-record-landmark' => 'Landmark',
+			'edac-details-rule-records-record-actions'  => 'Actions',
+		];
+
+		foreach ( $expects as $cell_class => $label ) {
+			$cells = $xpath->query( '//div[contains(concat(" ", normalize-space(@class), " "), " ' . $cell_class . ' ")]' );
+			$this->assertSame( 1, $cells->length, $cell_class );
+
+			$headings = $xpath->query( './h5[@class="screen-reader-text"]', $cells->item( 0 ) );
+			$this->assertSame( 1, $headings->length, $cell_class );
+			$this->assertSame( $label, trim( $headings->item( 0 )->textContent ) );
+		}
+
+		// The field headings belong to the record right after its Issue ID heading.
+		$record_headings = $xpath->query( '//h4[@class="screen-reader-text"]/following-sibling::div[1][@class="edac-details-rule-records-record"]//h5[@class="screen-reader-text"]' );
+		$this->assertSame( count( $expects ), $record_headings->length );
+	}
+
+	/**
+	 * Run the details AJAX request and return an XPath for the returned HTML.
+	 *
+	 * @return DOMXPath
+	 */
+	private function get_details_xpath(): DOMXPath {
 		$_POST['nonce']   = wp_create_nonce( 'ajax-nonce' );
 		$_POST['post_id'] = self::$post_id;
 
@@ -166,18 +216,6 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 			libxml_use_internal_errors( $internal_errors_state );
 		}
 
-		$xpath   = new DOMXPath( $document );
-		$heading = $xpath->query( '//h3[@id="edac-details-rule-heading-empty_link"]' );
-		$button  = $xpath->query( '//button[@aria-labelledby="edac-details-rule-heading-empty_link"]' );
-
-		$this->assertSame( 1, $heading->length );
-		$this->assertSame( 1, $button->length );
-		$heading_markup = $document->saveHTML( $heading->item( 0 ) );
-		$heading_text   = preg_replace( '/\s+/', ' ', $heading->item( 0 )->textContent );
-
-		$this->assertIsString( $heading_text );
-		$this->assertStringContainsString( '1', $heading_text );
-		$this->assertStringContainsString( 'total', $heading_markup );
-		$this->assertStringContainsString( 'Critical', $heading_text );
+		return new DOMXPath( $document );
 	}
 }
