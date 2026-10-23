@@ -313,4 +313,103 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 
 		edac_ignore_capability()->sync_matrix( [] );
 	}
+
+	/**
+	 * Data for the isolated scan request detection.
+	 *
+	 * @return array<string, array{0: array<string, string>, 1: bool}>
+	 */
+	public function isolatedScanRequestProvider(): array {
+		return [
+			'scanner and isolated markers'     => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '1',
+				],
+				true,
+			],
+			'scanner marker only'              => [
+				[ 'edac_pageScanner' => '1' ],
+				false,
+			],
+			'isolated marker only'             => [
+				[ 'edac_isolated' => '1' ],
+				false,
+			],
+			'neither marker'                   => [
+				[],
+				false,
+			],
+			'isolated marker with other value' => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '0',
+				],
+				false,
+			],
+			'scanner marker with other value'  => [
+				[
+					'edac_pageScanner' => '0',
+					'edac_isolated'    => '1',
+				],
+				false,
+			],
+		];
+	}
+
+	/**
+	 * Only requests carrying both the scanner and isolated markers count as isolated scans.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsIsolatedScanRequest( array $query, bool $expected ): void {
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = $query;
+
+		$result = Enqueue_Frontend::is_isolated_scan_request();
+
+		$_GET = $original_get;
+
+		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * The isolation header hook is registered on send_headers.
+	 */
+	public function testIsolationHeaderHookIsRegistered(): void {
+		$this->assertNotFalse(
+			has_action( 'send_headers', [ 'EDAC\Inc\Enqueue_Frontend', 'maybe_send_scan_isolation_header' ] )
+		);
+	}
+
+	/**
+	 * The header sent to the scan iframe matches the policy core sends on block editor screens.
+	 */
+	public function testScanIsolationHeaderMatchesCoreEditorPolicy(): void {
+		$this->assertSame(
+			'Document-Isolation-Policy: isolate-and-credentialless',
+			Enqueue_Frontend::SCAN_ISOLATION_HEADER
+		);
+	}
+
+	/**
+	 * No header is attempted for a scan request that doesn't come from an isolated editor.
+	 *
+	 * The test bootstrap has already produced output, so any attempt to send a header here
+	 * raises a "headers already sent" warning, which PHPUnit turns into a failure.
+	 */
+	public function testNoHeaderIsAttemptedForNonIsolatedScanRequests(): void {
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = [ 'edac_pageScanner' => '1' ];
+
+		Enqueue_Frontend::maybe_send_scan_isolation_header();
+
+		$is_isolated = Enqueue_Frontend::is_isolated_scan_request();
+		$_GET        = $original_get;
+
+		$this->assertFalse( $is_isolated );
+	}
 }
