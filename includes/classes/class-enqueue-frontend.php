@@ -19,6 +19,8 @@ class Enqueue_Frontend {
 	 *
 	 * Matches the policy WordPress core sends on block editor screens.
 	 *
+	 * @since 1.51.1
+	 *
 	 * @var string
 	 */
 	public const SCAN_ISOLATION_HEADER = 'Document-Isolation-Policy: isolate-and-credentialless';
@@ -72,6 +74,8 @@ class Enqueue_Frontend {
 	 * is true, so the scan iframe can be given a matching isolation policy. See
 	 * `getScanIframeUrl()` in `src/editorApp/checkPage.js`.
 	 *
+	 * @since 1.51.1
+	 *
 	 * @return bool
 	 */
 	public static function is_isolated_scan_request(): bool {
@@ -95,6 +99,8 @@ class Enqueue_Frontend {
 	 * Only sent when the editor reports it is isolated, so normal page views, the full
 	 * site scan, and non-isolated editors are unaffected.
 	 *
+	 * @since 1.51.1
+	 *
 	 * @return void
 	 */
 	public static function maybe_send_scan_isolation_header(): void {
@@ -109,6 +115,8 @@ class Enqueue_Frontend {
 	 * Send a response header.
 	 *
 	 * Kept separate from the callers so tests can capture the header that would be sent.
+	 *
+	 * @since 1.51.1
 	 *
 	 * @param string $header The full header line, such as 'Name: value'.
 	 *
