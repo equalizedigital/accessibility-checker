@@ -1,7 +1,7 @@
 *** Accessibility Checker ***
 
 2026-10-23 - version 1.51.1
-* Fix - the editor scan now runs after saving in the block editor on WordPress 7.1 and newer in Chromium-based browsers, so results update when you save.
+* Fix - scan results now update after saving in the block editor in some environments.
 
 2026-10-08 - version 1.51.0
 * New - the Missing Transcript check now recognizes Able Player transcripts.
