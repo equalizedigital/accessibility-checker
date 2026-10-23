@@ -126,4 +126,61 @@ class FrontendHighlightAjaxTest extends WP_Ajax_UnitTestCase {
 		$response = json_decode( $this->_last_response, true );
 		$this->assertTrue( $response['success'] );
 	}
+
+	/**
+	 * A dismissed issue carries the details the highlighter's dismiss panel shows,
+	 * plus its original rule type so a reopen can restore it.
+	 */
+	public function testDismissedIssueIncludesDismissalDetails(): void {
+		$admin_id = self::factory()->user->create(
+			[
+				'role'       => 'administrator',
+				'user_login' => 'dismisser',
+			]
+		);
+		wp_set_current_user( $admin_id );
+
+		global $wpdb;
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prefix . 'accessibility_checker',
+			[
+				'postid'        => self::$post_id,
+				'siteid'        => get_current_blog_id(),
+				'rule'          => 'empty_paragraph_tag',
+				'ruletype'      => 'error',
+				'object'        => 'dismissed',
+				'selector'      => 'body',
+				'ignre'         => 1,
+				'ignre_user'    => $admin_id,
+				'ignre_date'    => '2026-09-30 10:00:00',
+				'ignre_reason'  => 'false_positive',
+				'ignre_comment' => esc_html( 'Not <b>real</b>' ),
+				'ignre_global'  => 0,
+			]
+		);
+		$dismissed_id = (string) $wpdb->insert_id;
+
+		$_POST['nonce']   = wp_create_nonce( 'frontend-highlighter' );
+		$_POST['post_id'] = self::$post_id;
+
+		try {
+			$this->_handleAjax( 'edac_frontend_highlight_ajax' );
+		} catch ( WPAjaxDieContinueException $exception ) {
+			$this->assertNotEmpty( $this->_last_response );
+		}
+
+		$response = json_decode( $this->_last_response, true );
+		$this->assertTrue( $response['success'] );
+
+		$issues = json_decode( $response['data'], true )['issues'];
+		$issue  = current( wp_list_filter( $issues, [ 'id' => $dismissed_id ] ) );
+
+		$this->assertSame( 'ignored', $issue['rule_type'] );
+		$this->assertSame( 'warning', $issue['base_rule_type'] ); // empty_paragraph_tag's rule type.
+		$this->assertSame( 'false_positive', $issue['ignre_reason'] );
+		$this->assertSame( 'Not <b>real</b>', $issue['ignre_comment'] );
+		$this->assertSame( 'dismisser', $issue['ignre_user_name'] );
+		$this->assertNotEmpty( $issue['ignre_date'] );
+		$this->assertSame( 0, $issue['ignre_global'] );
+	}
 }
