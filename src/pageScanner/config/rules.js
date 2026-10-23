@@ -68,6 +68,8 @@ import imageAnimated from '../rules/img-animated';
 import imageAnimatedCheck from '../checks/img-animated-check';
 import linkTextIsUrl from '../rules/link-text-is-url';
 import linkTextIsUrlCheck from '../checks/link-text-is-url';
+import linkDuplicateAdjacent from '../rules/link-duplicate-adjacent';
+import linkHasAdjacentDuplicate from '../checks/link-has-adjacent-duplicate';
 import alwaysFail from '../checks/always-fail';
 
 // Define all the custom rules to be used.
@@ -107,6 +109,7 @@ export const rulesArray = [
 	ariaHiddenValidation,
 	ariaBrokenReference,
 	linkTextIsUrl,
+	linkDuplicateAdjacent,
 ];
 
 // Define all the custom checks to be used.
@@ -152,6 +155,7 @@ export const checksArray = [
 	ariaDescribedByNotFoundCheck,
 	ariaOwnsNotFoundCheck,
 	linkTextIsUrlCheck,
+	linkHasAdjacentDuplicate,
 ];
 
 // Define the standard axe core rules to be used.
