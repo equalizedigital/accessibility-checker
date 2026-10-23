@@ -212,6 +212,41 @@ describe( 'New Window Warning Tooltip', () => {
 				expect( link.getAttribute( 'aria-label' ) ).toBe( 'Visible text, opens a new window' );
 			} );
 
+			test( 'leaves an aria-label that already says "new window" unchanged', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank" aria-label="View Agenda (opens in a new window)">View Agenda</a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+				expect( link.getAttribute( 'aria-label' ) ).toBe( 'View Agenda (opens in a new window)' );
+			} );
+
+			test( 'leaves an aria-label that already says "new tab" unchanged', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank" aria-label="Annual report (opens in a new tab)">Annual report</a>';
+
+				NewWindowWarning();
+
+				expect( document.querySelector( 'a' ).getAttribute( 'aria-label' ) ).toBe( 'Annual report (opens in a new tab)' );
+			} );
+
+			test( 'leaves link text that already says "new window" without adding an aria-label', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank">Read more (opens in a new window)</a>';
+
+				NewWindowWarning();
+
+				expect( document.querySelector( 'a' ).hasAttribute( 'aria-label' ) ).toBe( false );
+			} );
+
+			test( 'still adds the icon and tooltip handlers to a link whose label already says "new window"', () => {
+				document.body.innerHTML = '<a href="http://example.com" target="_blank" aria-label="View Agenda (opens in a new window)">View Agenda</a>';
+
+				NewWindowWarning();
+
+				const link = document.querySelector( 'a' );
+				expect( link.querySelector( '.edac-nww-external-link-icon' ) ).not.toBeNull();
+				expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
+			} );
+
 			test( 'uses only the localized string when link has no text and no accessible image alt', () => {
 				document.body.innerHTML = '<a href="http://example.com" target="_blank"></a>';
 
