@@ -37,4 +37,4 @@ tests_add_filter( 'muplugins_loaded', '_manually_load_plugin' );
 require "{$_tests_dir}/includes/bootstrap.php";
 
 // Constant pointing to some assets used in tests.
-define( 'EDAC_TEST_ASSETS_DIR', plugin_dir_path( __FILE__ ) . 'assets/' );
+define( 'EDAC_TEST_ASSETS_DIR', __DIR__ . '/assets/' );
