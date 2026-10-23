@@ -63,8 +63,13 @@ describe( 'getScanIframeUrl', () => {
 describe( 'init', () => {
 	const scanUrl = 'https://example.com/?p=1&preview=true&edac_pageScanner=1';
 
+	let addListenerSpy;
+
 	beforeEach( () => {
 		document.body.innerHTML = '';
+
+		// Track the listeners init() registers on `top` so they can be removed afterwards.
+		addListenerSpy = jest.spyOn( top, 'addEventListener' );
 
 		window.edac_editor_app = {
 			scanUrl,
@@ -82,6 +87,14 @@ describe( 'init', () => {
 	} );
 
 	afterEach( () => {
+		// Undo what init() leaves behind on `top` so later tests start from a clean state.
+		addListenerSpy.mock.calls
+			.filter( ( [ type ] ) => type === 'edac_scan_complete' )
+			.forEach( ( [ type, listener ] ) => top.removeEventListener( type, listener ) );
+		addListenerSpy.mockRestore();
+		top.edacScanCompleteListenerAdded = false;
+		delete top.edacPostSaveStateSubscribed;
+
 		delete window.crossOriginIsolated;
 		delete window.edac_editor_app;
 		delete window.wp;
