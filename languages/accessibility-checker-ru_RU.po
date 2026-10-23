@@ -9,8 +9,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07 22:10+0000\n"
-"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"POT-Creation-Date: 2026-10-09 14:14+0000\n"
+"PO-Revision-Date: 2026-10-09 14:14+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: ru_RU\n"
@@ -1532,11 +1532,11 @@ msgstr "Общее количество сканирований"
 
 #: admin/site-health/class-pro.php:70
 msgid "Simplified Sum Heading"
-msgstr "Упрощенный заголовок суммы"
+msgstr "Заголовок краткой сводки"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "Разрешения на отклонение"
+msgstr "Права на отклонение"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
