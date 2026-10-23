@@ -14,6 +14,14 @@ use EDAC\Admin\Settings;
  */
 class Enqueue_Frontend {
 
+	/**
+	 * The header sent on scan requests from a cross-origin isolated editor.
+	 *
+	 * Matches the policy WordPress core sends on block editor screens.
+	 *
+	 * @var string
+	 */
+	public const SCAN_ISOLATION_HEADER = 'Document-Isolation-Policy: isolate-and-credentialless';
 
 	/**
 	 * Constructor
@@ -55,6 +63,46 @@ class Enqueue_Frontend {
 		];
 
 		return $scheme_colors[ $scheme ] ?? '#3858e9';
+	}
+
+	/**
+	 * Whether the current request is a scan iframe loaded from a cross-origin isolated editor.
+	 *
+	 * The editor adds 'edac_isolated=1' to the scan URL only when `window.crossOriginIsolated`
+	 * is true, so the scan iframe can be given a matching isolation policy. See
+	 * `getScanIframeUrl()` in `src/editorApp/checkPage.js`.
+	 *
+	 * @return bool
+	 */
+	public static function is_isolated_scan_request(): bool {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		return isset( $_GET['edac_pageScanner'], $_GET['edac_isolated'] )
+			&& '1' === $_GET['edac_pageScanner']
+			&& '1' === $_GET['edac_isolated'];
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+	}
+
+	/**
+	 * Send a Document-Isolation-Policy header on scan requests from an isolated editor.
+	 *
+	 * Since WordPress 7.1, block editor screens are served with
+	 * `Document-Isolation-Policy: isolate-and-credentialless` in Chromium 137+. A
+	 * same-origin iframe without the same policy is placed in a different agent
+	 * cluster, so the editor can't access its document or location and the scan can't
+	 * run. Sending the same policy on the scan request puts the iframe in the same
+	 * agent cluster as the editor.
+	 *
+	 * Only sent when the editor reports it is isolated, so normal page views, the full
+	 * site scan, and non-isolated editors are unaffected.
+	 *
+	 * @return void
+	 */
+	public static function maybe_send_scan_isolation_header(): void {
+		if ( ! self::is_isolated_scan_request() ) {
+			return;
+		}
+
+		header( self::SCAN_ISOLATION_HEADER );
 	}
 
 	/**
