@@ -396,20 +396,60 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * No header is attempted for a scan request that doesn't come from an isolated editor.
+	 * Run the header callback for a request and return the headers it would send.
 	 *
-	 * The test bootstrap has already produced output, so any attempt to send a header here
-	 * raises a "headers already sent" warning, which PHPUnit turns into a failure.
+	 * The test bootstrap has already produced output, so real headers can't be inspected from here.
+	 * A subclass records what is passed to send_header() instead.
+	 *
+	 * @param array<string, string> $query The query string values for the request.
+	 *
+	 * @return array<int, string> The header lines that were sent.
 	 */
-	public function testNoHeaderIsAttemptedForNonIsolatedScanRequests(): void {
+	private function get_scan_headers_sent_for( array $query ): array {
+		$spy = new class() extends Enqueue_Frontend {
+
+			/**
+			 * Header lines recorded instead of being sent.
+			 *
+			 * @var array<int, string>
+			 */
+			public static $sent = [];
+
+			/**
+			 * Record the header instead of sending it.
+			 *
+			 * @param string $header The full header line.
+			 */
+			protected static function send_header( string $header ): void {
+				self::$sent[] = $header;
+			}
+		};
+
+		$spy_class        = get_class( $spy );
+		$spy_class::$sent = [];
+
 		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		$_GET         = [ 'edac_pageScanner' => '1' ];
+		$_GET         = $query;
 
-		Enqueue_Frontend::maybe_send_scan_isolation_header();
+		$spy_class::maybe_send_scan_isolation_header();
 
-		$is_isolated = Enqueue_Frontend::is_isolated_scan_request();
-		$_GET        = $original_get;
+		$_GET = $original_get;
 
-		$this->assertFalse( $is_isolated );
+		return $spy_class::$sent;
+	}
+
+	/**
+	 * The isolation header is sent for isolated scan requests and for no other request.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsolationHeaderIsSentOnlyForIsolatedScanRequests( array $query, bool $expected ): void {
+		$this->assertSame(
+			$expected ? [ Enqueue_Frontend::SCAN_ISOLATION_HEADER ] : [],
+			$this->get_scan_headers_sent_for( $query )
+		);
 	}
 }
