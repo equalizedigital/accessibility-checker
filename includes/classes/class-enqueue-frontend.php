@@ -102,7 +102,20 @@ class Enqueue_Frontend {
 			return;
 		}
 
-		header( self::SCAN_ISOLATION_HEADER );
+		static::send_header( self::SCAN_ISOLATION_HEADER );
+	}
+
+	/**
+	 * Send a response header.
+	 *
+	 * Kept separate from the callers so tests can capture the header that would be sent.
+	 *
+	 * @param string $header The full header line, such as 'Name: value'.
+	 *
+	 * @return void
+	 */
+	protected static function send_header( string $header ): void {
+		header( $header );
 	}
 
 	/**
