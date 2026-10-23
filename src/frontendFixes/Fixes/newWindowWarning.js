@@ -4,9 +4,20 @@
  * Adds an icon and tooltip to links that open in a new window, improving accessibility by informing users of the behavior.
  */
 
+import { __ } from '@wordpress/i18n';
+
 const classPrefix = window.edac_frontend_fixes?.new_window_warning?.classPrefix || window.anww_localized?.classPrefix || 'edac-nww';
 const localizedString = window.edac_frontend_fixes?.new_window_warning?.localizedString || window.anww_localized?.localizedString || 'opens a new window';
 const iconClass = `${ classPrefix }-external-link-icon`;
+
+// Same phrases the link_target_blank_without_informing scanner check accepts as
+// "this link tells the user it opens a new window", so the fix and the scanner
+// agree on what counts as already informed.
+const informedPhrases = [
+	__( 'new window', 'accessibility-checker' ),
+	__( 'new tab', 'accessibility-checker' ),
+	__( 'new document', 'accessibility-checker' ),
+];
 
 const NewWindowWarning = () => {
 	initializeTooltip();
@@ -195,6 +206,13 @@ const updateAriaLabel = ( link ) => {
 		label = link.getAttribute( 'aria-label' );
 	} else {
 		label = getLinkAccessibleName( link );
+	}
+
+	// A link that already says it opens a new window (e.g. a plugin that wrote
+	// its own aria-label) would have the notice announced twice. Leave it as is.
+	const lowerCaseLabel = label.toLowerCase();
+	if ( [ ...informedPhrases, localizedString ].some( ( phrase ) => lowerCaseLabel.includes( phrase.toLowerCase() ) ) ) {
+		return;
 	}
 
 	label = label ? `${ label }, ${ localizedString }` : localizedString;
