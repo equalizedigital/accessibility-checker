@@ -180,6 +180,9 @@ class Admin_Notices {
 		$pricing_url = 'https://equalizedigital.com/accessibility-checker/pricing/';
 		$account_url = 'https://my.equalizedigital.com/';
 
+		$new_code      = 'BF2674B96A3C';
+		$pro_code      = 'BF26856B22FF';
+		$smb_code      = 'BF2622E6189C';
 		$presale_label = __( 'Ask a Pre-Sale Question', 'accessibility-checker' );
 		$upgrade_label = __( 'Upgrade Now', 'accessibility-checker' );
 
@@ -189,7 +192,7 @@ class Admin_Notices {
 				$body    = __( 'Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice.', 'accessibility-checker' );
 				$buttons = [
 					[ $presale_label, $presale_url, 'BlackFriday26-free-presale' ],
-					[ $upgrade_label, $pricing_url, 'BlackFriday26-free-pricing' ],
+					[ $upgrade_label, add_query_arg( 'discount', $new_code, $pricing_url ), 'BlackFriday26-free-pricing' ],
 				];
 				break;
 			case 'lapsed':
@@ -197,28 +200,28 @@ class Admin_Notices {
 				$body    = __( 'Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course.', 'accessibility-checker' );
 				$buttons = [
 					[ $presale_label, $presale_url, 'BlackFriday26-lapsed-presale' ],
-					[ __( 'Renew Now', 'accessibility-checker' ), $account_url, 'BlackFriday26-lapsed-renew' ],
+					[ __( 'Renew Now', 'accessibility-checker' ), add_query_arg( 'discount', $new_code, $account_url ), 'BlackFriday26-lapsed-renew' ],
 				];
 				break;
 			case 'professional':
 				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉', 'accessibility-checker' );
 				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd.', 'accessibility-checker' );
 				$buttons = [
-					[ $upgrade_label, $account_url, 'BlackFriday26-pro-upgrade' ],
+					[ $upgrade_label, add_query_arg( 'discount', $pro_code, $account_url ), 'BlackFriday26-pro-upgrade' ],
 				];
 				break;
 			case 'smb':
 				$heading = __( '🎉 Black Friday: Save 25% on your upgrade! 🎉', 'accessibility-checker' );
 				$body    = __( 'Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support.', 'accessibility-checker' );
 				$buttons = [
-					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), $account_url, 'BlackFriday26-smb-upgrade' ],
+					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), add_query_arg( 'discount', $smb_code, $account_url ), 'BlackFriday26-smb-upgrade' ],
 				];
 				break;
 			case 'smbplus':
 				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Agency! 🎉', 'accessibility-checker' );
 				$body    = __( 'Take on more sites with Agency: 25 sites, Multisite tools, and VIP support. Upgrade between November 23rd and December 2nd to save 25%.', 'accessibility-checker' );
 				$buttons = [
-					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), $account_url, 'BlackFriday26-smbplus-upgrade' ],
+					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), add_query_arg( 'discount', $smb_code, $account_url ), 'BlackFriday26-smbplus-upgrade' ],
 				];
 				break;
 			default:
