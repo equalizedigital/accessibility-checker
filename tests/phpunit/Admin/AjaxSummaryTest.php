@@ -186,7 +186,8 @@ class AjaxSummaryTest extends WP_Ajax_UnitTestCase {
 
 		$this->assertStringContainsString( '<ul class="edac-summary-grid">', $html );
 		$this->assertStringContainsString( '<span class="screen-reader-text">100% Passed Checks</span>', $html );
-		$this->assertStringContainsString( 'edac-summary-total-progress-circle over50', $html );
+		// Two spaces: the handler pads both the class attribute and the modifier.
+		$this->assertStringContainsString( 'edac-summary-total-progress-circle  over50', $html );
 		$this->assertStringNotContainsString( ' has-errors', $html );
 		$this->assertStringContainsString( 'True accessibility requires manual testing', $html );
 	}
