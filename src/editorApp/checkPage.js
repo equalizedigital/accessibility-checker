@@ -50,6 +50,36 @@ const saveScanResults = ( postId, violations, densityMetrics ) => {
 };
 
 /**
+ * Get the URL to load in the scan iframe.
+ *
+ * When the editor is cross-origin isolated (WordPress 7.1+ sends a
+ * Document-Isolation-Policy header on block editor screens in Chromium 137+),
+ * the browser treats a same-origin iframe that is not isolated the same way as
+ * cross-origin. The editor then can't read the iframe, so the scan can't run.
+ * Adding a marker to the URL tells the server to send a matching policy header
+ * on the scan request, which puts the iframe in the same agent cluster.
+ *
+ * `window.crossOriginIsolated` is used (not just the presence of a header) because
+ * browsers ignore the header in insecure contexts, where nothing needs passing on.
+ *
+ * @param {string} previewUrl The URL that will be scanned.
+ * @return {string} The URL to load in the iframe.
+ */
+export const getScanIframeUrl = ( previewUrl ) => {
+	if ( window.crossOriginIsolated !== true ) {
+		return previewUrl;
+	}
+
+	try {
+		const url = new URL( previewUrl, window.location.href );
+		url.searchParams.set( 'edac_isolated', '1' );
+		return url.toString();
+	} catch ( e ) {
+		return previewUrl;
+	}
+};
+
+/**
  * Inject an iframe into the page and load the previewUrl for scanning.
  *
  * @param {string} previewUrl The URL to load in the iframe.
@@ -65,7 +95,7 @@ const injectIframe = ( previewUrl, postID ) => {
 	// inject the iframe
 	const iframe = document.createElement( 'iframe' );
 	iframe.setAttribute( 'id', uniqueId );
-	iframe.setAttribute( 'src', previewUrl );
+	iframe.setAttribute( 'src', getScanIframeUrl( previewUrl ) );
 	iframe.style.width = screen.width + 'px';
 	iframe.style.height = screen.height + 'px';
 	iframe.style.position = 'absolute';
