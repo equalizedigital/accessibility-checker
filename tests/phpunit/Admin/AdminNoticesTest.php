@@ -51,10 +51,40 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		}
 	}
 	/**
-	 * Test that each license state maps to the right Black Friday segment.
+	 * Test that a site without Pro active is Free, unless the stored license is expired.
 	 */
-	public function test_black_friday_segments() {
+	public function test_black_friday_segment_is_free_without_pro() {
+		if ( defined( 'EDACP_VERSION' ) ) {
+			$this->markTestSkipped( 'EDACP_VERSION is already defined in this environment.' );
+		}
 		$this->assertSame( 'free', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->set_license_state( 'valid', 'agency' );
+		$this->assertSame( 'free', $this->admin_notices->edac_get_black_friday_segment() );
+		$message = $this->admin_notices->edac_get_black_friday_message();
+		$this->assertStringContainsString( 'save 20% and get a free course', $message );
+		$this->assertStringContainsString( 'BlackFriday26-free-presale', $message );
+		$this->assertStringNotContainsString( 'pre-sale-questions/?discount', $message );
+		$this->assertStringContainsString( 'BlackFriday26-free-pricing', $message );
+		$this->assertStringContainsString( 'discount=BF2674B96A3C', $message );
+		$this->set_license_state( 'expired' );
+		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
+		$message = $this->admin_notices->edac_get_black_friday_message();
+		$this->assertStringContainsString( 'Welcome back', $message );
+		$this->assertStringContainsString( 'BlackFriday26-lapsed-presale', $message );
+		$this->assertStringContainsString( 'BlackFriday26-lapsed-renew', $message );
+		$this->assertStringContainsString( 'discount=BF2674B96A3C', $message );
+	}
+
+	/**
+	 * Test that each license state maps to the right Black Friday segment when Pro is active.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 */
+	public function test_black_friday_segments_with_pro() {
+		define( 'EDACP_VERSION', '1.0.0' );
+		// Pro active with no license state yet gets no notice.
+		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'expired' );
 		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'valid', 'professional' );
@@ -66,28 +96,22 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->set_license_state( 'valid', 'enterprise' );
 		$this->assertSame( 'agency', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'valid', 'small-business-plus' );
-		$this->assertSame( 'smbplus', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->assertSame( 'smb', $this->admin_notices->edac_get_black_friday_segment() );
 		// A valid license with no recorded plan yet, or an unrecognised one, gets no notice.
 		$this->set_license_state( 'valid', 'unknown' );
 		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
 		delete_option( 'edac_license_metadata' );
 		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
 	}
+
 	/**
-	 * Test the copy and tracking for each segment, and that agency shows no notice.
+	 * Test the copy and tracking for each paid segment, and that agency shows no notice.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
 	 */
-	public function test_black_friday_message_per_segment() {
-		$message = $this->admin_notices->edac_get_black_friday_message();
-		$this->assertStringContainsString( 'save 20% and get a free course', $message );
-		$this->assertStringContainsString( 'BlackFriday26-free-presale', $message );
-		$this->assertStringNotContainsString( 'pre-sale-questions/?discount', $message );
-		$this->assertStringContainsString( 'BlackFriday26-free-pricing', $message );
-		$this->assertStringContainsString( 'discount=BF2674B96A3C', $message );
-		$this->set_license_state( 'expired' );
-		$message = $this->admin_notices->edac_get_black_friday_message();
-		$this->assertStringContainsString( 'Welcome back', $message );
-		$this->assertStringContainsString( 'BlackFriday26-lapsed-renew', $message );
-		$this->assertStringContainsString( 'discount=BF2674B96A3C', $message );
+	public function test_black_friday_message_per_paid_segment() {
+		define( 'EDACP_VERSION', '1.0.0' );
 		$this->set_license_state( 'valid', 'professional' );
 		$message = $this->admin_notices->edac_get_black_friday_message();
 		$this->assertStringContainsString( 'Small Business', $message );
@@ -99,14 +123,15 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'Upgrade &amp; Save 25%', $message );
 		$this->assertStringContainsString( 'BlackFriday26-smb-upgrade', $message );
 		$this->assertStringContainsString( 'discount=BF2622E6189C', $message );
+		// SMB+ gets the Small Business notice.
 		$this->set_license_state( 'valid', 'small-business-plus' );
 		$message = $this->admin_notices->edac_get_black_friday_message();
-		$this->assertStringContainsString( 'upgrade to Agency', $message );
-		$this->assertStringContainsString( 'BlackFriday26-smbplus-upgrade', $message );
+		$this->assertStringContainsString( 'BlackFriday26-smb-upgrade', $message );
 		$this->assertStringContainsString( 'discount=BF2622E6189C', $message );
 		$this->set_license_state( 'valid', 'agency' );
 		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_message() );
 	}
+
 	/**
 	 * Test that removing admin notices does not error when the current screen is unavailable.
 	 */

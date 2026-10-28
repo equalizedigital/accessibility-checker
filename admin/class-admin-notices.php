@@ -127,13 +127,14 @@ class Admin_Notices {
 	/**
 	 * Work out which Black Friday audience the current site belongs to.
 	 *
-	 * An expired Pro license is Lapsed. A valid one is segmented by the plan stored in the
-	 * license metadata (Professional, Small Business, SMB+, or Agency/Enterprise). Licenses whose
-	 * plan hasn't been recorded yet, which happens until the next daily license check after an
-	 * update, are left without a notice rather than guessed.
+	 * An expired Pro license is Lapsed. Without Pro active the site is Free. A valid license is
+	 * segmented by the plan stored in the license metadata (Professional, Small Business, SMB+,
+	 * or Agency/Enterprise); SMB+ gets the Small Business notice. Licenses whose plan hasn't been
+	 * recorded yet, which happens until the next daily license check after an update, are left
+	 * without a notice rather than guessed.
 	 *
-	 * @return string One of 'free', 'lapsed', 'professional', 'smb', 'smbplus', 'agency', or an empty
-	 *                string when the audience can't be determined and no notice should show.
+	 * @return string One of 'free', 'lapsed', 'professional', 'smb', 'agency', or an empty string
+	 *                when the audience can't be determined and no notice should show.
 	 */
 	public function edac_get_black_friday_segment() {
 
@@ -143,28 +144,27 @@ class Admin_Notices {
 			return 'lapsed';
 		}
 
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			return 'free';
+		}
+
 		if ( 'valid' === $pro_status ) {
 			switch ( \EqualizeDigital\AccessibilityChecker\MyDot\Connector::get_license_plan() ) {
 				case 'professional':
 					return 'professional';
 				case 'small-business':
+				case 'small-business-plus':
 					return 'smb';
 				case 'agency':
 				case 'enterprise':
 					return 'agency';
-				case 'small-business-plus':
-					return 'smbplus';
 				default:
 					return '';
 			}
 		}
 
-		// Pro is installed but has no usable license state, so don't guess.
-		if ( defined( 'EDACP_VERSION' ) ) {
-			return '';
-		}
-
-		return 'free';
+		// Pro is active but has no usable license state, so don't guess.
+		return '';
 	}
 
 	/**
@@ -225,13 +225,6 @@ class Admin_Notices {
 				$body    = __( 'Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support.', 'accessibility-checker' );
 				$buttons = [
 					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), add_query_arg( 'discount', $smb_code, $account_url ), 'BlackFriday26-smb-upgrade' ],
-				];
-				break;
-			case 'smbplus':
-				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Agency! 🎉', 'accessibility-checker' );
-				$body    = __( 'Take on more sites with Agency: 25 sites, Multisite tools, and VIP support. Upgrade between November 23rd and December 2nd to save 25%.', 'accessibility-checker' );
-				$buttons = [
-					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), add_query_arg( 'discount', $smb_code, $account_url ), 'BlackFriday26-smbplus-upgrade' ],
 				];
 				break;
 			default:
