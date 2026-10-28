@@ -93,6 +93,7 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'Small Business', $message );
 		$this->assertStringContainsString( 'BlackFriday26-pro-upgrade', $message );
 		$this->assertStringContainsString( 'discount=BF26856B22FF', $message );
+		$this->assertStringContainsString( 'pro=true', $message );
 		$this->set_license_state( 'valid', 'small-business' );
 		$message = $this->admin_notices->edac_get_black_friday_message();
 		$this->assertStringContainsString( 'Upgrade &amp; Save 25%', $message );

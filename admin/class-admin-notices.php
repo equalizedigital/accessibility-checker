@@ -207,7 +207,17 @@ class Admin_Notices {
 				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉', 'accessibility-checker' );
 				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd.', 'accessibility-checker' );
 				$buttons = [
-					[ $upgrade_label, add_query_arg( 'discount', $pro_code, $account_url ), 'BlackFriday26-pro-upgrade' ],
+					[
+						$upgrade_label,
+						add_query_arg(
+							[
+								'discount' => $pro_code,
+								'pro'      => 'true',
+							],
+							$account_url 
+						),
+						'BlackFriday26-pro-upgrade',
+					],
 				];
 				break;
 			case 'smb':
