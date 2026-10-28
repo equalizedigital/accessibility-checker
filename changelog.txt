@@ -1,5 +1,8 @@
 *** Accessibility Checker ***
 
+2026-10-23 - version 1.51.1
+* Fix - scan results now update after saving in the block editor in some environments.
+
 2026-10-08 - version 1.51.0
 * New - the Missing Transcript check now recognizes Able Player transcripts.
 * Updated - the Privacy Policy link in the email opt-in now tells screen reader users it opens in a new window.
