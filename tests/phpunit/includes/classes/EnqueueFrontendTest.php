@@ -44,7 +44,7 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		delete_option( 'edac_post_types' );
 
 		global $wp_scripts, $wp_styles, $post;
-		unset( $wp_scripts, $wp_styles, $post );
+		unset( $wp_scripts, $wp_styles, $post, $GLOBALS['current_screen'] );
 
 		wp_set_current_user( 0 );
 
@@ -312,6 +312,105 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
 
 		edac_ignore_capability()->sync_matrix( [] );
+	}
+
+	/**
+	 * Sets the current screen so is_admin() is deterministic for the asset tests.
+	 *
+	 * Enqueue_Frontend::enqueue_sr_only_styles() bails inside wp-admin, and a
+	 * current screen can be left behind by other test files in the suite, so the
+	 * screen is set here rather than assumed. WP_Screen::get() is used instead of
+	 * set_current_screen() so no screen hooks fire as a side effect.
+	 *
+	 * @param string $screen Screen to set as the current one.
+	 */
+	private function set_current_screen_context( string $screen ): void {
+		$GLOBALS['current_screen'] = WP_Screen::get( $screen );
+	}
+
+	/**
+	 * The screen reader only stylesheet is enqueued on the front end.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::enqueue_sr_only_styles
+	 */
+	public function testSrOnlyStylesEnqueueOnTheFrontEnd(): void {
+		global $wp_styles;
+
+		$this->set_current_screen_context( 'front' );
+
+		Enqueue_Frontend::enqueue_sr_only_styles();
+
+		$this->assertTrue( wp_style_is( 'edac-sr-only-format', 'enqueued' ) );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/srOnlyFormat.css', $wp_styles->registered['edac-sr-only-format']->src );
+		$this->assertSame( EDAC_VERSION, $wp_styles->registered['edac-sr-only-format']->ver );
+		$this->assertSame( 'all', $wp_styles->registered['edac-sr-only-format']->args );
+	}
+
+	/**
+	 * The screen reader only stylesheet is not enqueued inside wp-admin.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::enqueue_sr_only_styles
+	 */
+	public function testSrOnlyStylesDoNotEnqueueInAdmin(): void {
+		$this->set_current_screen_context( 'post' );
+
+		Enqueue_Frontend::enqueue_sr_only_styles();
+
+		$this->assertFalse( wp_style_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * A stored empty colour scheme falls back to the default WordPress scheme colour.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::get_admin_theme_color
+	 */
+	public function testAdminThemeColorFallsBackWhenTheStoredSchemeIsEmpty(): void {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+		update_user_meta( $user_id, 'admin_color', '' );
+
+		$this->assertSame( '#0073aa', Enqueue_Frontend::get_admin_theme_color() );
+	}
+
+	/**
+	 * Each WordPress admin colour scheme maps to its primary colour.
+	 *
+	 * The colour tints the front end highlighter, so a stored scheme must never
+	 * resolve to an empty value: unknown schemes fall back to the modern colour.
+	 *
+	 * @dataProvider provideAdminColourSchemes
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::get_admin_theme_color
+	 *
+	 * @param string $scheme   Stored admin_color user option.
+	 * @param string $expected Expected hex colour.
+	 */
+	public function testAdminThemeColorMapsEachColourScheme( string $scheme, string $expected ): void {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+		update_user_meta( $user_id, 'admin_color', $scheme );
+
+		$this->assertSame( $expected, Enqueue_Frontend::get_admin_theme_color() );
+	}
+
+	/**
+	 * Provides the WordPress admin colour schemes and their primary colours.
+	 *
+	 * @return array<string, string[]>
+	 */
+	public function provideAdminColourSchemes(): array {
+		return [
+			'fresh'          => [ 'fresh', '#0073aa' ],
+			'light'          => [ 'light', '#04a4cc' ],
+			'modern'         => [ 'modern', '#3858e9' ],
+			'blue'           => [ 'blue', '#096484' ],
+			'coffee'         => [ 'coffee', '#46403c' ],
+			'ectoplasm'      => [ 'ectoplasm', '#523f6d' ],
+			'midnight'       => [ 'midnight', '#e14d43' ],
+			'ocean'          => [ 'ocean', '#627c83' ],
+			'sunrise'        => [ 'sunrise', '#cf4944' ],
+			'unknown scheme' => [ 'unknown-scheme', '#3858e9' ],
+		];
 	}
 
 	/**
