@@ -26,6 +26,13 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 	 */
 	private $menu_globals = [];
 
+	/**
+	 * The real admin_init registry, stashed by isolate_admin_init() and put back by restore_admin_init().
+	 *
+	 * @var WP_Hook|null
+	 */
+	private $admin_init_backup = null;
+
 	/** Snapshot the menu globals, then start them empty. */
 	protected function setUp(): void {
 		parent::setUp();
@@ -217,12 +224,19 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		$deferred = array_diff_key( $this->admin_init_closures(), $closures_before );
 
 		$this->assertCount( 1, $deferred, 'edac_add_options_page() must defer exactly one admin_init callback.' );
-		$this->assertNotFalse( has_action( 'admin_init', 'edacp_register_setting' ), "Precondition: pro's registration is present before the deferred callback runs." );
 
-		do_action( 'admin_init' );
+		$this->isolate_admin_init( reset( $deferred ) );
 
-		$this->assertFalse( has_action( 'admin_init', 'edacp_register_setting' ), "The deferred callback must remove pro's admin_init registration." );
-		$this->assertFalse( $GLOBALS['edac_test_pro_setting_registered'], "The deferred callback must run before Pro's later-priority registration." );
+		try {
+			$this->assertNotFalse( has_action( 'admin_init', 'edacp_register_setting' ), "Precondition: pro's registration is present before the deferred callback runs." );
+
+			do_action( 'admin_init' );
+
+			$this->assertFalse( has_action( 'admin_init', 'edacp_register_setting' ), "The deferred callback must remove pro's admin_init registration." );
+			$this->assertFalse( $GLOBALS['edac_test_pro_setting_registered'], "The deferred callback must run before Pro's later-priority registration." );
+		} finally {
+			$this->restore_admin_init();
+		}
 	}
 
 	/** The shipped registry seeds exactly the capabilities that declare a default role meeting their own floor: dismiss-own to the three roles that can edit posts, the front-end highlighter to editor and author; anything with no declared default roles is absent rather than present-and-empty. */
@@ -415,5 +429,46 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		}
 
 		return $closures;
+	}
+
+	/**
+	 * Replace the admin_init registry with one carrying only this test's callbacks.
+	 *
+	 * The suite process already holds every admin_init callback that core's
+	 * wp-admin/includes/admin-filters.php and the plugin registered during bootstrap — header
+	 * writers, privacy-policy writers, redirect handlers, the database updater — none of which
+	 * this test is about, and several of which break when fired outside a real admin request:
+	 * `wp_admin_headers()` calls header() unguarded after the bootstrap's output (converted
+	 * warning), and `wp_add_privacy_policy_content()` reports unexpected incorrect usage because
+	 * `is_admin()` is false in the CLI suite. Firing the real action also runs those callbacks'
+	 * side effects. So the registry is swapped for a fresh WP_Hook holding exactly the deferred
+	 * closure under test (priority 10) and the pro stand-in (priority 11), which keeps the real
+	 * do_action() machinery — and therefore the priority ordering the test asserts — while
+	 * isolating everything else. restore_admin_init() puts the original back.
+	 *
+	 * @param Closure $deferred The deregistration closure registered by edac_add_options_page().
+	 * @return void
+	 */
+	private function isolate_admin_init( Closure $deferred ): void {
+		global $wp_filter;
+
+		$this->admin_init_backup = $wp_filter['admin_init'] ?? null;
+
+		$wp_filter['admin_init'] = new WP_Hook();
+		add_action( 'admin_init', $deferred );
+		add_action( 'admin_init', 'edacp_register_setting', 11 );
+	}
+
+	/** Put the real admin_init registry back after isolate_admin_init(). */
+	private function restore_admin_init(): void {
+		global $wp_filter;
+
+		if ( null === $this->admin_init_backup ) {
+			unset( $wp_filter['admin_init'] );
+		} else {
+			$wp_filter['admin_init'] = $this->admin_init_backup;
+		}
+
+		$this->admin_init_backup = null;
 	}
 }
