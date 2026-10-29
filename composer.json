@@ -17,8 +17,7 @@
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true,
-            "composer/installers": true
+            "phpstan/extension-installer": true
         }
     },
     "minimum-stability": "dev",
@@ -47,7 +46,6 @@
     "require": {
         "davechild/textstatistics": "dev-master",
         "php": ">=7.4",
-        "composer/installers": "^1.12.0",
         "ext-openssl": "*",
         "ext-json": "*"
 	},
