@@ -5,6 +5,14 @@ on:
     branches: [ develop ]
   pull_request:
     branches: [ main ]
+  # Lets coverage-on-label.yml (and anything else) run this same job on demand
+  # without duplicating any of the steps below.
+  workflow_call:
+
+permissions:
+  contents: read
+  # Needed by the "Comment coverage results on the pull request" step.
+  pull-requests: write
 
 jobs:
   test:
@@ -24,7 +32,7 @@ jobs:
       uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
     - name: Setup PHP
-      uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+      uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
       with:
         php-version: '7.4'
         coverage: xdebug
@@ -48,32 +56,139 @@ jobs:
 
     - name: Install WP
       shell: bash
-      run: tests/bin/install-wp-tests.sh wordpress_tests root '' 127.0.0.1:3306 ${{ matrix.wp_version }}
+      run: tests/bin/install-wp-tests.sh wordpress_tests root '' 127.0.0.1:3306
 
-    - name: Run PHPUnit and generate reports in clover and html format
-      run: ./vendor/bin/phpunit --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html
+    - name: Run PHPUnit and generate reports in clover, html and text format
+      run: ./vendor/bin/phpunit --coverage-clover=./coverage/clover.xml --coverage-html=./coverage/html --coverage-text=./coverage/coverage.txt
 
-    - name : Attach zipped coverage report as workflow artifact
-      uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+    - name: Attach coverage report as workflow artifact
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: coverage-html
-        path: ./coverage/coverage-html.zip
+        path: ./coverage/html
+        if-no-files-found: error
 
-    - name: Convert coverage clover format to Coveralls format
-      run: |
-        composer global require php-coveralls/php-coveralls
-        ~/.composer/vendor/bin/php-coveralls -v -x ./coverage/clover.xml -o ./coverage/coveralls.json
+    # A pull_request run from a fork gets no repository secrets, so there is
+    # nothing to authenticate the Coveralls upload with. Rather than let the
+    # upload fail, record whether we can do it at all and let later steps
+    # branch on that. Keeping the secret in this step's env only means it is
+    # not exposed to any other step in the job.
+    - name: Check whether this run can reach Coveralls
+      id: coveralls
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
-        GITHUB_EVENT_NAME: ${{ github.event_name }}
-        GITHUB_RUN_ID: ${{ github.run_id }}
+      run: |
+        set -euo pipefail
+        if [ -n "${COVERALLS_REPO_TOKEN:-}" ]; then
+          echo "can-upload=true" >> "$GITHUB_OUTPUT"
+        else
+          echo "can-upload=false" >> "$GITHUB_OUTPUT"
+          echo "No Coveralls credentials in this run (fork PR) - the upload will be skipped."
+        fi
 
     - name: Upload coverage to Coveralls
+      if: steps.coveralls.outputs.can-upload == 'true'
       uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329 # v2.3.8
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        path-to-lcov: ./coverage/coveralls.json
+        file: ./coverage/clover.xml
+        format: clover
       env:
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         GITHUB_EVENT_NAME: ${{ github.event_name }}
         GITHUB_RUN_ID: ${{ github.run_id }}
+
+    # The run summary is written with no API calls, so it works on every run
+    # including fork PRs - this is where the numbers live when the Coveralls
+    # upload has been skipped.
+    - name: Summarise coverage on the run
+      env:
+        CAN_UPLOAD: ${{ steps.coveralls.outputs.can-upload }}
+        FENCE: "```"
+      run: |
+        set -euo pipefail
+
+        # PHPUnit's own text report: the "Summary:" block is the headline.
+        # The report may carry ANSI colour codes and is padded with trailing
+        # spaces, so strip both before matching.
+        summary=""
+        if [ -f coverage/coverage.txt ]; then
+          summary=$(sed -E 's/\x1b\[[0-9;]*[a-zA-Z]//g' coverage/coverage.txt \
+            | awk '/^ *Summary:/{f=1;next} f && /^ *$/{exit} f' \
+            | sed 's/[[:space:]]*$//') || summary=""
+        fi
+        if [ -z "$summary" ]; then
+          summary="Coverage summary not found in the report - use the coverage-html artifact on this run."
+        fi
+        printf '%s\n' "$summary" > coverage/summary.txt
+
+        {
+          printf '### Coverage\n\n'
+          printf '%s\n' "$FENCE"
+          printf '%s\n' "$summary"
+          printf '%s\n\n' "$FENCE"
+          printf -- '- HTML report: the coverage-html artifact on this run\n'
+          if [ "$CAN_UPLOAD" != "true" ]; then
+            printf -- '- Coveralls upload skipped: this run has no Coveralls credentials (fork PR).\n'
+          fi
+        } >> "$GITHUB_STEP_SUMMARY"
+
+        # An annotation so the result is visible from the PR's checks page,
+        # which is the only PR-visible surface a fork PR run has.
+        if [ "$CAN_UPLOAD" != "true" ]; then
+          echo "::notice title=Coverage::Coverage measured - see the summary of this run for the report. Coveralls upload skipped for this PR."
+        fi
+
+    # Only meaningful for pull_request runs (the push trigger has no PR to
+    # comment on), and only possible for PRs whose head branch is in this
+    # repository - a fork PR gets a read-only GITHUB_TOKEN and cannot write.
+    # Updates one comment in place rather than adding a new one on every
+    # re-run. Everything the shell touches is passed via env: so a PR branch
+    # name can never be interpolated into the script itself.
+    - name: Comment coverage results on the pull request
+      if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.fork == false && github.actor != 'dependabot[bot]'
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REPO: ${{ github.repository }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
+        BRANCH: ${{ github.head_ref }}
+        RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        COVERALLS_URL: https://coveralls.io/github/${{ github.repository }}
+        MARKER: "<!-- ac-coverage-report -->"
+        FENCE: "```"
+      run: |
+        set -euo pipefail
+        body=coverage/comment.md
+
+        summary=""
+        if [ -f coverage/summary.txt ]; then
+          summary=$(cat coverage/summary.txt) || summary=""
+        fi
+        if [ -z "$summary" ]; then
+          summary="Coverage summary not found in the report - use the coverage-html artifact on the run."
+        fi
+
+        {
+          printf '%s\n' "$MARKER"
+          printf '### Coverage report\n\n'
+          printf '%s\n' "$FENCE"
+          printf '%s\n' "$summary"
+          printf '%s\n\n' "$FENCE"
+          printf -- '- HTML report: [coverage-html artifact](%s#artifacts)\n' "$RUN_URL"
+          printf -- '- Coveralls: %s?branch=%s\n' "$COVERALLS_URL" "$BRANCH"
+          printf -- '- Workflow run: %s\n' "$RUN_URL"
+        } > "$body"
+
+        # Reuse the previous comment from this workflow if there is one.
+        existing=$(gh api --paginate "repos/${REPO}/issues/${PR_NUMBER}/comments" \
+          --jq '.[] | select(.body | startswith("<!-- ac-coverage-report -->")) | .id' | head -n 1) || existing=""
+
+        if [ -n "$existing" ]; then
+          gh api -X PATCH "repos/${REPO}/issues/comments/${existing}" -F body=@"$body" > /dev/null
+          echo "Updated existing coverage comment ${existing} on PR #${PR_NUMBER}"
+        else
+          gh api -X POST "repos/${REPO}/issues/${PR_NUMBER}/comments" -F body=@"$body" > /dev/null
+          echo "Posted coverage comment on PR #${PR_NUMBER}"
+        fi
+
+        cat "$body"
