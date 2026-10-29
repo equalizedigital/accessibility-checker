@@ -1,0 +1,62 @@
+# Runs the coverage job against an arbitrary pull request on demand, by adding
+# the `gha-coverage` label to it - the same convention as `gha-build` in
+# build-plugin-with-ref.yml. The label is removed again by the last job so it
+# can be re-applied to re-run; a label that is already present emits no
+# `labeled` event, which would leave the trigger dead.
+#
+# Why a separate file: the Coverage Report workflow's pull_request trigger is
+# scoped to `branches: [main]`, and a workflow can only have one `pull_request`
+# key. Rather than widen that trigger to every PR against every branch, this
+# listens for label events only and hands off to the same job via
+# `workflow_call` - so there is exactly one copy of the coverage steps.
+#
+# Only PRs whose head branch is in this repository produce a full run: a fork PR
+# gets no repository secrets and a read-only GITHUB_TOKEN, so the Coveralls
+# upload, the PR comment and the label removal all fail there. The coverage
+# numbers still land in the run summary. See README.md in this directory.
+
+name: Coverage on label
+
+on:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  coverage:
+    # Matches the label that was just added rather than "is this label present
+    # anywhere on the PR" - otherwise adding any other label to a PR that
+    # already carries this one would re-run the whole coverage job.
+    if: github.event.label.name == 'gha-coverage'
+    uses: ./.github/workflows/code-coverage-and-coveralls.yml
+    secrets: inherit
+    concurrency:
+      group: coverage-pr-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
+
+  remove-label:
+    needs: coverage
+    # always(): a failed coverage run must still drop the label. Re-adding a
+    # label that is already present emits no `labeled` event, so leaving it on
+    # would make the trigger dead until someone removed it by hand.
+    if: always() && github.event.label.name == 'gha-coverage'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            try {
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                name: 'gha-coverage',
+              });
+              console.log(`Removed label 'gha-coverage' from PR #${prNumber}`);
+            } catch (e) {
+              console.log(`Could not remove label 'gha-coverage' from PR #${prNumber}: ${e.message}`);
+            }
