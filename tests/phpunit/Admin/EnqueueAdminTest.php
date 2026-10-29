@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Enqueue_Admin;
+use EDAC\Admin\OptIn\Email_Opt_In;
 
 /**
  * Tests for functionality of the Enqueue_Admin class.
@@ -619,6 +620,137 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		// wp_localize_script serializes PHP false as "" (empty string) in older WP versions
 		// and may serialize it as JSON false in newer ones — accept both forms.
 		$this->assertMatchesRegularExpression( '/"active"\s*:\s*(false|"")/', $localized_data );
+	}
+
+	/**
+	 * Test that the base admin stylesheet is enqueued from the built asset path.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::enqueue_styles
+	 */
+	public function testEnqueueStylesEnqueuesTheBuiltAdminStylesheet() {
+		global $wp_styles;
+
+		Enqueue_Admin::enqueue_styles();
+
+		$this->assertTrue( wp_style_is( 'edac', 'enqueued' ) );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/admin.css', $wp_styles->registered['edac']->src );
+		$this->assertSame( EDAC_VERSION, $wp_styles->registered['edac']->ver );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue outside the post editor.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueOutsideThePostEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'edit.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue for a non-scannable post type.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueForANonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal script and styles enqueue on a scannable post editor.
+	 *
+	 * The modal bundle is shared by the sidebar and other admin areas, so its declared
+	 * script dependencies and its built asset paths are a contract other code relies on.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalEnqueuesScriptAndStylesForAScannablePost() {
+		global $post, $pagenow, $wp_scripts, $wp_styles;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertTrue( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertSame(
+			[
+				'wp-element',
+				'wp-components',
+				'wp-i18n',
+				'wp-api-fetch',
+				'wp-html-entities',
+				'wp-a11y',
+			],
+			$wp_scripts->registered['edac-issue-modal']->deps
+		);
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/issueModal.bundle.js', $wp_scripts->registered['edac-issue-modal']->src );
+		$this->assertSame( [ 'wp-components' ], $wp_styles->registered['edac-issue-modal']->deps );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/issueModal.css', $wp_styles->registered['edac-issue-modal']->src );
+	}
+
+	/**
+	 * Test that the email opt-in assets do not enqueue outside the welcome page.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueOutsideTheWelcomePage() {
+		global $pagenow;
+		$pagenow = 'index.php';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets are skipped for a user who already opted in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueForAUserWhoAlreadyOptedIn() {
+		$_GET['page'] = 'accessibility_checker';
+		update_user_meta( $this->test_admin_user_id, Email_Opt_In::EDAC_USER_OPTIN_META_KEY, 1 );
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets enqueue on the welcome page before a user opts in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::get_current_page_slug
+	 */
+	public function testEmailOptInEnqueuesOnTheWelcomePage() {
+		$_GET['page'] = 'accessibility_checker';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertTrue( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'email-opt-in-form', 'enqueued' ) );
 	}
 
 	/**

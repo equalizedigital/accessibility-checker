@@ -358,4 +358,143 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( 'Connected as Free', $output );
 		$this->assertStringNotContainsString( 'Free License Key', $output );
 	}
+
+	/**
+	 * The add_page() method wires the connected services tab and the three
+	 * callbacks that render its content: the tab filter, the tab-content action,
+	 * the Pro license-page notice and the notice display (at priority 1001, so it
+	 * runs after the default admin notices).
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::add_page
+	 */
+	public function test_add_page_wires_the_tab_and_the_license_notices() {
+		$this->page->add_page();
+
+		$this->assertNotFalse( has_filter( 'edac_filter_settings_tab_items', [ $this->page, 'add_connected_services_tab' ] ) );
+		$this->assertSame( 10, has_action( 'edac_settings_tab_content', [ $this->page, 'maybe_render_tab_content' ] ) );
+		$this->assertSame( 10, has_action( 'edacp_license_page_before_form', [ $this->page, 'render_pro_license_degraded_notice' ] ) );
+		$this->assertSame( 1001, has_action( 'in_admin_header', [ $this->page, 'register_admin_notices' ] ) );
+	}
+
+	/**
+	 * The tab callback leaves the tabs it is handed untouched: the free plugin no
+	 * longer owns a license tab, so it returns the array unchanged rather than
+	 * adding, removing or reordering anything.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::add_connected_services_tab
+	 */
+	public function test_add_connected_services_tab_leaves_the_tabs_unchanged() {
+		$tabs = [
+			[
+				'slug'  => 'general',
+				'label' => 'General',
+				'order' => 1,
+			],
+		];
+
+		$this->assertSame( $tabs, $this->page->add_connected_services_tab( $tabs ) );
+	}
+
+	/**
+	 * The tab content callback renders the connected services page on that tab
+	 * only, so the page markup is not echoed into every other settings tab. The
+	 * page render is intercepted so the assertion is about the branch, not the
+	 * markup.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::maybe_render_tab_content
+	 */
+	public function test_maybe_render_tab_content_renders_on_the_connected_services_tab_only() {
+		$probe = new class( 'manage_options' ) extends ConnectedServicesPage {
+			/**
+			 * How many times the tab callback reached the page render.
+			 *
+			 * @var int
+			 */
+			public $render_calls = 0;
+
+			/**
+			 * Record the call instead of rendering the page.
+			 *
+			 * @return void
+			 */
+			public function render_page() {
+				++$this->render_calls;
+			}
+		};
+
+		$probe->maybe_render_tab_content( 'general' );
+		$probe->maybe_render_tab_content( null );
+		$this->assertSame( 0, $probe->render_calls );
+
+		$probe->maybe_render_tab_content( 'connected-services' );
+		$this->assertSame( 1, $probe->render_calls );
+	}
+
+	/**
+	 * The register_admin_notices() method hooks the page's own notice display onto
+	 * admin_notices, which add_page() only runs once the admin header renders.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::register_admin_notices
+	 */
+	public function test_register_admin_notices_registers_the_notice_display() {
+		$this->assertFalse( has_action( 'admin_notices', [ $this->page, 'admin_notices' ] ) );
+
+		$this->page->register_admin_notices();
+
+		$this->assertSame( 10, has_action( 'admin_notices', [ $this->page, 'admin_notices' ] ) );
+	}
+
+	/**
+	 * The license context is derived from the stored option values, so the page
+	 * reports what is actually saved: a connected Free license reports valid and
+	 * connected, a stored Pro status is not treated as authority without the Pro
+	 * plugin, and an empty install reports no status and no connection.
+	 *
+	 * @param array  $options                 Option name/value pairs to store before reading the context.
+	 * @param bool   $expected_is_pro         Expected effective Pro authority.
+	 * @param string $expected_status         Expected effective license status.
+	 * @param bool   $expected_is_connected   Expected effective connection state.
+	 *
+	 * @dataProvider provider_stored_license_options
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::get_license_context
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_license_context_reads_the_stored_license_options( array $options, bool $expected_is_pro, string $expected_status, bool $expected_is_connected ) {
+		foreach ( $options as $option_name => $option_value ) {
+			update_option( $option_name, $option_value );
+		}
+
+		$context = $this->invoke_private_method( 'get_license_context' );
+
+		$this->assertSame( $expected_is_pro, $context['is_pro'] );
+		$this->assertSame( $expected_status, $context['status'] );
+		$this->assertSame( $expected_is_connected, $context['is_connected'] );
+	}
+
+	/**
+	 * Stored license option combinations and the context they resolve to on a
+	 * site running the free plugin alone.
+	 *
+	 * @return array[]
+	 */
+	public function provider_stored_license_options() {
+		return [
+			'free license connected'        => [
+				[
+					'edac_license_status' => 'valid',
+					'edac_site_id'        => 'site-123',
+				],
+				false,
+				'valid',
+				true,
+			],
+			'pro status stored without pro' => [
+				[ 'edacp_license_status' => 'valid' ],
+				false,
+				'',
+				false,
+			],
+			'nothing stored'                => [ [], false, '', false ],
+		];
+	}
 }
