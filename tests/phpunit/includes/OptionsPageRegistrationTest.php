@@ -62,6 +62,23 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		$this->assertArrayNotHasKey( 'accessibility_checker', (array) $GLOBALS['submenu'], 'No submenu may be registered when the menu itself is withheld.' );
 	}
 
+	/**
+	 * Any bundled Accessibility Checker capability opens the parent menu for lower-role users, including add-on pages unrelated to dismissing issues.
+	 *
+	 * @dataProvider provider_admin_menu_capabilities
+	 * @param string $capability The bundled capability held by the fixture user.
+	 */
+	public function test_the_menu_is_registered_for_a_bundled_capability_without_edit_posts( string $capability ): void {
+		$this->become_user_with( [ 'read', $capability ] );
+
+		$this->assertFalse( current_user_can( 'edit_posts' ), 'Precondition: the fixture user lacks edit_posts.' );
+		$this->assertContains( $capability, edac_capability_bundle(), 'Precondition: the capability is part of the Accessibility Checker bundle.' );
+
+		edac_add_options_page();
+
+		$this->assertNotNull( $this->find_menu_entry(), sprintf( 'Holding %s without edit_posts must open the parent menu.', $capability ) );
+	}
+
 	/** The top-level menu lands on the Welcome page and is registered with the read capability, so any logged-in user who passes the guard can reach it. */
 	public function test_the_menu_is_registered_for_a_user_with_edit_posts(): void {
 		$this->become_user_with( [ 'read', 'edit_posts' ] );
@@ -209,6 +226,19 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		} finally {
 			$contributor->add_cap( 'edit_posts' );
 		}
+	}
+
+	/**
+	 * Bundled Accessibility Checker capabilities granted individually to test each menu-access path.
+	 *
+	 * @return array<string, array{0: string}>
+	 */
+	public function provider_admin_menu_capabilities(): array {
+		return [
+			'dismiss any post'      => [ 'edac_dismiss_issues' ],
+			'dismiss own posts'     => [ 'edac_dismiss_own_issues' ],
+			'front-end highlighter' => [ 'edac_view_frontend_highlighter' ],
+		];
 	}
 
 	/**
