@@ -86,6 +86,7 @@ Which checks apply:
 - Jest tests live beside their area: `tests/jest/rules/` (pageScanner rules), `tests/jest/pageScanner/` (`context.test.js` and `helpers/`), and same-named directories for the other `src/` entries — `admin`, `emailOptIn`, `frontendFixes`, `frontendHighlighterApp`, `issueModal`, `sharedComponents`, `simplifiedSummaryBlock`. Shared helpers and fixtures: `tests/jest/helpers/`, `tests/jest/utils/`, `tests/jest/__mocks__/`, `tests/jest/mock-assets/`. `testMatch` is `**/*.test.js`.
 - No committed E2E suite.
 - Bug fixes need a regression test. Run the checks covering your change before pushing.
+- **Coverage ratchet (daily):** land at least one new PHPUnit test *per working day* for previously-untested code — smallest unit possible (one function, or one small class/method per PR) so review stays trivial. Take the next unit from `docs/unit-test-backlog.md` and tick it in the same PR. Goal: 80% line coverage (Coveralls) by end of year; currently ~63%, which is ~25 newly-covered lines/day.
 - CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix and the hooks-docs verifier first.
 
 ## Workflow
