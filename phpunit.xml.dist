@@ -22,6 +22,9 @@
 			<directory>./vendor/</directory>
 			<directory>./node_modules/</directory>
 			<directory>./dist/</directory>
+			<!-- Dev-only CLI tooling. Nothing in the suite loads it, so it always reported
+			     0% and held the coverage number down by ~2.7 points. -->
+			<directory>./tools/</directory>
 			<file>./includes/wcag.php</file>
 		</exclude>
 	</coverage>

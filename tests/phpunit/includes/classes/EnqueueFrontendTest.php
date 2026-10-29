@@ -412,4 +412,143 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 			'unknown scheme' => [ 'unknown-scheme', '#3858e9' ],
 		];
 	}
+
+	/**
+	 * Data for the isolated scan request detection.
+	 *
+	 * @return array<string, array{0: array<string, string>, 1: bool}>
+	 */
+	public function isolatedScanRequestProvider(): array {
+		return [
+			'scanner and isolated markers'     => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '1',
+				],
+				true,
+			],
+			'scanner marker only'              => [
+				[ 'edac_pageScanner' => '1' ],
+				false,
+			],
+			'isolated marker only'             => [
+				[ 'edac_isolated' => '1' ],
+				false,
+			],
+			'neither marker'                   => [
+				[],
+				false,
+			],
+			'isolated marker with other value' => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '0',
+				],
+				false,
+			],
+			'scanner marker with other value'  => [
+				[
+					'edac_pageScanner' => '0',
+					'edac_isolated'    => '1',
+				],
+				false,
+			],
+		];
+	}
+
+	/**
+	 * Only requests carrying both the scanner and isolated markers count as isolated scans.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsIsolatedScanRequest( array $query, bool $expected ): void {
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = $query;
+
+		$result = Enqueue_Frontend::is_isolated_scan_request();
+
+		$_GET = $original_get;
+
+		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * The isolation header hook is registered on send_headers.
+	 */
+	public function testIsolationHeaderHookIsRegistered(): void {
+		$this->assertNotFalse(
+			has_action( 'send_headers', [ 'EDAC\Inc\Enqueue_Frontend', 'maybe_send_scan_isolation_header' ] )
+		);
+	}
+
+	/**
+	 * The header sent to the scan iframe matches the policy core sends on block editor screens.
+	 */
+	public function testScanIsolationHeaderMatchesCoreEditorPolicy(): void {
+		$this->assertSame(
+			'Document-Isolation-Policy: isolate-and-credentialless',
+			Enqueue_Frontend::SCAN_ISOLATION_HEADER
+		);
+	}
+
+	/**
+	 * Run the header callback for a request and return the headers it would send.
+	 *
+	 * The test bootstrap has already produced output, so real headers can't be inspected from here.
+	 * A subclass records what is passed to send_header() instead.
+	 *
+	 * @param array<string, string> $query The query string values for the request.
+	 *
+	 * @return array<int, string> The header lines that were sent.
+	 */
+	private function get_scan_headers_sent_for( array $query ): array {
+		$spy = new class() extends Enqueue_Frontend {
+
+			/**
+			 * Header lines recorded instead of being sent.
+			 *
+			 * @var array<int, string>
+			 */
+			public static $sent = [];
+
+			/**
+			 * Record the header instead of sending it.
+			 *
+			 * @param string $header The full header line.
+			 */
+			protected static function send_header( string $header ): void {
+				self::$sent[] = $header;
+			}
+		};
+
+		$spy_class        = get_class( $spy );
+		$spy_class::$sent = [];
+
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = $query;
+
+		$spy_class::maybe_send_scan_isolation_header();
+
+		$_GET = $original_get;
+
+		return $spy_class::$sent;
+	}
+
+	/**
+	 * The isolation header is sent for isolated scan requests and for no other request.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsolationHeaderIsSentOnlyForIsolatedScanRequests( array $query, bool $expected ): void {
+		$this->assertSame(
+			$expected ? [ Enqueue_Frontend::SCAN_ISOLATION_HEADER ] : [],
+			$this->get_scan_headers_sent_for( $query )
+		);
+	}
 }
