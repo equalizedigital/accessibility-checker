@@ -499,6 +499,173 @@ body {
 				margin-top: 10px !important;
 			}
 
+			&-dismiss-container {
+				display: block !important;
+			}
+
+			&-dismiss {
+				display: block !important;
+				margin-top: 12px !important;
+				padding-top: 12px !important;
+				border-top: 1px solid #ddd !important;
+				font-size: 13px !important;
+				line-height: 1.5 !important;
+
+				fieldset,
+				form,
+				dl,
+				p,
+				.edac-highlight-dismiss-reason,
+				.edac-highlight-dismissed-comment {
+					display: block !important;
+				}
+
+				form[hidden] {
+					display: none !important;
+				}
+
+				legend,
+				label,
+				.edac-highlight-dismissed-heading,
+				.edac-highlight-dismissed-comment-label {
+					font-weight: 600 !important;
+				}
+
+				legend {
+					display: block !important;
+					margin: 10px 0 6px !important;
+				}
+
+				.edac-highlight-dismiss-reason {
+					margin-bottom: 6px !important;
+
+					input[type="radio"] {
+						all: revert !important;
+						margin: 0 6px 0 0 !important;
+						vertical-align: middle !important;
+					}
+
+					label {
+						cursor: pointer !important;
+					}
+				}
+
+				.edac-highlight-dismiss-reason-description,
+				.edac-highlight-dismiss-help {
+					margin: 2px 0 0 22px !important;
+					color: #50575e !important;
+					font-size: 12px !important;
+				}
+
+				.edac-highlight-dismiss-help {
+					margin-left: 0 !important;
+				}
+
+				.edac-highlight-dismiss-comment-label {
+					display: block !important;
+					margin-top: 10px !important;
+				}
+
+				textarea {
+					all: revert !important;
+					display: block !important;
+					box-sizing: border-box !important;
+					width: 100% !important;
+					margin-top: 4px !important;
+					padding: 6px 8px !important;
+					border: 1px solid #8c8f94 !important;
+					border-radius: 2px !important;
+					font-family: $highlighter-font-family !important;
+					font-size: 13px !important;
+					color: #1e1e1e !important;
+					background-color: variables.$color-white !important;
+					resize: vertical !important;
+
+					&:focus {
+						outline: 2px solid variables.$color-blue !important;
+						outline-offset: 1px !important;
+					}
+				}
+
+				.edac-highlight-dismiss-error {
+					color: variables.$color-red !important;
+					font-weight: 600 !important;
+					margin-top: 6px !important;
+
+					&:empty {
+						display: none !important;
+					}
+				}
+
+				.edac-highlight-dismiss-submit,
+				.edac-highlight-dismiss-reopen {
+
+					&:disabled {
+						opacity: 0.6 !important;
+						cursor: default !important;
+					}
+				}
+
+				.edac-highlight-dismissed-meta {
+					display: grid !important;
+					grid-template-columns: auto 1fr !important;
+					gap: 2px 8px !important;
+					margin-top: 6px !important;
+
+					dt {
+						font-weight: 600 !important;
+					}
+				}
+
+				.edac-highlight-dismissed-comment {
+					margin-top: 8px !important;
+				}
+
+				.edac-highlight-dismissed-comment-body {
+					display: block !important;
+					white-space: pre-wrap !important;
+				}
+			}
+
+			&-dismiss-toggle {
+
+				// Scope the reset and typography to outrank global theme button rules.
+				.edac-highlight-panel & {
+					all: unset !important;
+					display: flex !important;
+					align-items: center !important;
+					gap: 2px !important;
+					font-family: $highlighter-font-family !important;
+					font-size: 13px !important;
+					line-height: 22px !important;
+					color: variables.$color-blue !important;
+					cursor: pointer !important;
+					text-decoration: underline !important;
+
+					&:hover,
+					&:focus {
+						text-decoration: none !important;
+					}
+
+					&:focus {
+						outline: 2px solid variables.$color-blue !important;
+						outline-offset: 2px !important;
+					}
+				}
+
+				&-arrow {
+					display: inline-block !important;
+					width: 16px !important;
+					height: 16px !important;
+					transform: rotate(180deg) !important;
+					transition: transform 0.2s ease !important;
+				}
+
+				&[aria-expanded="true"] &-arrow {
+					transform: rotate(0deg) !important;
+				}
+			}
+
 			&-close {
 				width: 25px !important;
 				height: 25px !important;
