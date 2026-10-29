@@ -442,9 +442,13 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 	 * warning), and `wp_add_privacy_policy_content()` reports unexpected incorrect usage because
 	 * `is_admin()` is false in the CLI suite. Firing the real action also runs those callbacks'
 	 * side effects. So the registry is swapped for a fresh WP_Hook holding exactly the deferred
-	 * closure under test (priority 10) and the pro stand-in (priority 11), which keeps the real
-	 * do_action() machinery — and therefore the priority ordering the test asserts — while
-	 * isolating everything else. restore_admin_init() puts the original back.
+	 * closure under test at the priority it was really registered with, and the pro stand-in
+	 * (priority 11), which keeps the real do_action() machinery — and therefore the priority
+	 * ordering the test asserts — while isolating everything else. Pro goes in first because pro
+	 * registers on plugin load and the deferral is only added once the menu is built, so the
+	 * fixture keeps production's registration order as well as its priorities; if the deferral's
+	 * priority ever changes to match pro's, the test fails rather than passing on fixture order.
+	 * restore_admin_init() puts the original back.
 	 *
 	 * @param Closure $deferred The deregistration closure registered by edac_add_options_page().
 	 * @return void
@@ -452,11 +456,15 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 	private function isolate_admin_init( Closure $deferred ): void {
 		global $wp_filter;
 
+		$priority = has_action( 'admin_init', $deferred );
+
+		$this->assertNotFalse( $priority, 'Precondition: the deferred callback is registered before the registry is isolated.' );
+
 		$this->admin_init_backup = $wp_filter['admin_init'] ?? null;
 
 		$wp_filter['admin_init'] = new WP_Hook();
-		add_action( 'admin_init', $deferred );
 		add_action( 'admin_init', 'edacp_register_setting', 11 );
+		add_action( 'admin_init', $deferred, $priority );
 	}
 
 	/** Put the real admin_init registry back after isolate_admin_init(). */
