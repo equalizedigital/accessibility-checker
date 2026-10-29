@@ -5,6 +5,9 @@
  * @package Accessibility_Checker
  */
 
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\FixesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\PermissionsPage;
+
 /**
  * Covers edac_add_options_page() and edac_default_capability_role_map() from
  * includes/options-page.php: the guards that gate the menu and the settings
@@ -46,6 +49,7 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 			}
 		}
 
+		unset( $GLOBALS['edac_test_pro_setting_registered'] );
 		remove_all_filters( 'edac_filter_settings_capability' );
 		wp_set_current_user( 0 );
 
@@ -134,6 +138,24 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		);
 	}
 
+	/** A dismiss-capability holder can reach the settings submenu even without edit_posts. */
+	public function test_the_settings_submenu_is_available_without_edit_posts(): void {
+		$capability = 'edac_dismiss_own_issues';
+		$this->become_user_with( [ 'read', $capability ] );
+		add_filter(
+			'edac_filter_settings_capability',
+			static function () use ( $capability ) {
+				return $capability;
+			}
+		);
+
+		$this->assertFalse( current_user_can( 'edit_posts' ), 'Precondition: the fixture user lacks edit_posts.' );
+
+		edac_add_options_page();
+
+		$this->assertNotNull( $this->find_submenu_entry( 'accessibility_checker_settings' ), 'A dismiss-capability holder must reach the settings screen without edit_posts.' );
+	}
+
 	/**
 	 * The settings screen is registered with the edac_filter_settings_capability filter's value, defaulting to manage_options. Add-ons widen access through that filter.
 	 *
@@ -172,6 +194,10 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 
 		$this->assertSame( $tabs_before + 2, $this->count_callbacks( 'edac_filter_settings_tab_items' ), 'The Fixes and Permissions pages must each add a settings tab.' );
 		$this->assertSame( $content_before + 2, $this->count_callbacks( 'edac_settings_tab_content' ), 'The Fixes and Permissions pages must each add a tab content renderer.' );
+		$this->assertTrue( $this->has_callback( 'edac_filter_settings_tab_items', FixesPage::class, 'add_fixes_tab', 10 ) );
+		$this->assertTrue( $this->has_callback( 'edac_filter_settings_tab_items', PermissionsPage::class, 'add_permissions_tab', 10 ) );
+		$this->assertTrue( $this->has_callback( 'edac_settings_tab_content', FixesPage::class, 'add_fixes_tab_content', 11 ) );
+		$this->assertTrue( $this->has_callback( 'edac_settings_tab_content', PermissionsPage::class, 'add_permissions_tab_content', 12 ) );
 	}
 
 	/** The deregistration of pro's admin_init setting is deferred to admin_init rather than run inline, so it still fires when pro registers later than the menu. */
@@ -180,6 +206,8 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		$this->filter_settings_capability_to_edit_posts();
 
 		// Stand in for pro's registration, which is what the deferred callback removes.
+		require_once dirname( __DIR__ ) . '/TestHelpers/edacp-register-setting.php';
+		$GLOBALS['edac_test_pro_setting_registered'] = false;
 		add_action( 'admin_init', 'edacp_register_setting', 11 );
 
 		$closures_before = $this->admin_init_closures();
@@ -191,9 +219,10 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		$this->assertCount( 1, $deferred, 'edac_add_options_page() must defer exactly one admin_init callback.' );
 		$this->assertNotFalse( has_action( 'admin_init', 'edacp_register_setting' ), "Precondition: pro's registration is present before the deferred callback runs." );
 
-		( reset( $deferred ) )();
+		do_action( 'admin_init' );
 
 		$this->assertFalse( has_action( 'admin_init', 'edacp_register_setting' ), "The deferred callback must remove pro's admin_init registration." );
+		$this->assertFalse( $GLOBALS['edac_test_pro_setting_registered'], "The deferred callback must run before Pro's later-priority registration." );
 	}
 
 	/** The shipped registry seeds exactly the capabilities that declare a default role meeting their own floor: dismiss-own to the three roles that can edit posts, the front-end highlighter to editor and author; anything with no declared default roles is absent rather than present-and-empty. */
@@ -344,6 +373,28 @@ class OptionsPageRegistrationTest extends WP_UnitTestCase {
 		}
 
 		return $count;
+	}
+
+	/**
+	 * Check whether a callback from a specific class is registered at a priority.
+	 *
+	 * @param string $tag The hook name.
+	 * @param string $callback_class The callback class.
+	 * @param string $method The callback method.
+	 * @param int    $priority The expected hook priority.
+	 * @return bool
+	 */
+	private function has_callback( string $tag, string $callback_class, string $method, int $priority ): bool {
+		global $wp_filter;
+
+		foreach ( $wp_filter[ $tag ]->callbacks[ $priority ] ?? [] as $callback ) {
+			$function = $callback['function'];
+			if ( is_array( $function ) && $function[0] instanceof $callback_class && $method === $function[1] ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/**
