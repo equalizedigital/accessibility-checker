@@ -23,6 +23,22 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		parent::setUp();
 		$this->admin_notices = new Admin_Notices();
 	}
+
+	/**
+	 * Clean up hooks, the current screen and the current user after each test.
+	 */
+	protected function tearDown(): void {
+		remove_action( 'admin_notices', [ $this->admin_notices, 'edac_review_notice' ] );
+		remove_action( 'admin_notices', [ $this->admin_notices, 'edac_black_friday_notice' ] );
+		remove_action( 'admin_notices', [ $this->admin_notices, 'edac_gaad_presale_notice' ] );
+		remove_action( 'admin_notices', [ $this->admin_notices, 'edac_gaad_sale_notice' ] );
+
+		unset( $GLOBALS['current_screen'] );
+		wp_set_current_user( 0 );
+
+		parent::tearDown();
+	}
+
 	/**
 	 * Test that the edac_get_black_friday_message function exists.
 	 */
@@ -190,5 +206,178 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->admin_notices->init_hooks();
 		$this->assertSame( 10, has_action( 'wp_ajax_edac_gaad_presale_notice_ajax', [ $this->admin_notices, 'edac_gaad_presale_notice_ajax' ] ) );
 		$this->assertSame( 10, has_action( 'wp_ajax_edac_gaad_sale_notice_ajax', [ $this->admin_notices, 'edac_gaad_sale_notice_ajax' ] ) );
+	}
+	/**
+	 * Test that the review notice stays hidden once it has been dismissed for good.
+	 */
+	public function test_review_notice_stays_hidden_when_the_option_is_stop() {
+		wp_cache_flush();
+		delete_transient( 'edac_review_notice_reminder' );
+		update_option( 'edac_review_notice', 'stop' );
+		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s', strtotime( '-30 days' ) ) );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output );
+		$this->assertSame( 'stop', get_option( 'edac_review_notice' ) );
+	}
+	/**
+	 * Test that the notice is shown, and the option set to play, on a site active for over 14 days.
+	 */
+	public function test_review_notice_prompts_on_a_site_active_for_more_than_two_weeks() {
+		wp_cache_flush();
+		delete_option( 'edac_review_notice' );
+		delete_transient( 'edac_review_notice_reminder' );
+		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s', strtotime( '-20 days' ) ) );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertSame( 'play', get_option( 'edac_review_notice' ) );
+		$this->assertStringContainsString( 'edac-review-notice', $output );
+		$this->assertStringContainsString( 'Write A Review', $output );
+	}
+	/**
+	 * Test that a fresh install pauses the notice and sets the two week reminder transient.
+	 */
+	public function test_review_notice_pauses_and_sets_a_reminder_on_a_new_site() {
+		wp_cache_flush();
+		delete_option( 'edac_review_notice' );
+		delete_transient( 'edac_review_notice_reminder' );
+		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s', strtotime( '-1 day' ) ) );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output );
+		$this->assertSame( 'pause', get_option( 'edac_review_notice' ) );
+		// The transient round-trips through the options table as the string '1', not a boolean.
+		$this->assertNotFalse( get_transient( 'edac_review_notice_reminder' ) );
+	}
+	/**
+	 * Test that a paused notice is shown again once its reminder transient has expired.
+	 */
+	public function test_review_notice_resumes_when_the_reminder_transient_expires() {
+		wp_cache_flush();
+		update_option( 'edac_review_notice', 'pause' );
+		delete_transient( 'edac_review_notice_reminder' );
+		update_option( 'edac_activation_date', gmdate( 'Y-m-d H:i:s', strtotime( '-1 day' ) ) );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertSame( 'play', get_option( 'edac_review_notice' ) );
+		$this->assertStringContainsString( 'edac-review-notice', $output );
+	}
+	/**
+	 * Test that the notice stays hidden while the two week reminder transient is still set.
+	 */
+	public function test_review_notice_stays_hidden_during_the_reminder_window() {
+		wp_cache_flush();
+		delete_option( 'edac_review_notice' );
+		set_transient( 'edac_review_notice_reminder', true, DAY_IN_SECONDS );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output );
+		$this->assertFalse( get_option( 'edac_review_notice' ) );
+	}
+	/**
+	 * Test that the notice markup is rendered once the option is set to play.
+	 */
+	public function test_review_notice_renders_when_the_option_is_play() {
+		wp_cache_flush();
+		update_option( 'edac_review_notice', 'play' );
+		delete_transient( 'edac_review_notice_reminder' );
+
+		ob_start();
+		$this->admin_notices->edac_review_notice();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'edac-review-notice', $output );
+		$this->assertStringContainsString( 'Never Ask Again', $output );
+	}
+	/**
+	 * Test that notices are removed on the plugin's own admin screens.
+	 */
+	public function test_edac_remove_admin_notices_clears_notices_on_plugin_screens() {
+		$callback = static function () {
+			return 'test notice';
+		};
+		add_action( 'admin_notices', $callback );
+		add_action( 'all_admin_notices', $callback );
+
+		set_current_screen( 'toplevel_page_accessibility_checker' );
+		$this->admin_notices->edac_remove_admin_notices();
+
+		$this->assertFalse( has_action( 'admin_notices', $callback ) );
+		$this->assertFalse( has_action( 'all_admin_notices', $callback ) );
+	}
+	/**
+	 * Test that notices registered elsewhere are left in place on other screens.
+	 */
+	public function test_edac_remove_admin_notices_keeps_notices_on_other_screens() {
+		$callback = static function () {
+			return 'test notice';
+		};
+		add_action( 'admin_notices', $callback );
+
+		set_current_screen( 'dashboard' );
+		$this->admin_notices->edac_remove_admin_notices();
+
+		$this->assertSame( 10, has_action( 'admin_notices', $callback ) );
+	}
+	/**
+	 * Test that a non array value from the screens filter leaves every notice in place.
+	 */
+	public function test_edac_remove_admin_notices_ignores_a_non_array_screen_filter() {
+		$callback = static function () {
+			return 'test notice';
+		};
+		$filter   = static function () {
+			return 'not-an-array';
+		};
+		add_action( 'admin_notices', $callback );
+		add_filter( 'edac_filter_remove_admin_notices_screens', $filter );
+
+		set_current_screen( 'toplevel_page_accessibility_checker' );
+
+		try {
+			$this->admin_notices->edac_remove_admin_notices();
+			$this->assertSame( 10, has_action( 'admin_notices', $callback ) );
+		} finally {
+			remove_filter( 'edac_filter_remove_admin_notices_screens', $filter );
+		}
+	}
+	/**
+	 * Test that the notice hooks are added for a user who can see the plugin notices.
+	 */
+	public function test_hook_notices_registers_notices_for_a_user_who_can_edit_posts() {
+		$user_id = self::factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $user_id );
+
+		$this->admin_notices->hook_notices();
+
+		$this->assertSame( 10, has_action( 'admin_notices', [ $this->admin_notices, 'edac_review_notice' ] ) );
+		$this->assertSame( 10, has_action( 'admin_notices', [ $this->admin_notices, 'edac_black_friday_notice' ] ) );
+	}
+	/**
+	 * Test that the notice hooks are skipped for a user without the required capability.
+	 */
+	public function test_hook_notices_skips_users_without_the_capability() {
+		$user_id = self::factory()->user->create( [ 'role' => 'subscriber' ] );
+		wp_set_current_user( $user_id );
+
+		$this->admin_notices->hook_notices();
+
+		$this->assertFalse( has_action( 'admin_notices', [ $this->admin_notices, 'edac_review_notice' ] ) );
+		$this->assertFalse( has_action( 'admin_notices', [ $this->admin_notices, 'edac_black_friday_notice' ] ) );
 	}
 }
