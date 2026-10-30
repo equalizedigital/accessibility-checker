@@ -288,6 +288,22 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: false,
 		},
+		// Media inside closed tabs, accordions or sliders inherits visibility:hidden from the panel.
+		{
+			name: 'passes <video> with transcript inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><section><video src="video.mp4"></video><p>Watch our latest update.</p><p>Transcript available below.</p></section></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'flags <video> without transcript inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><section><video src="video.mp4"></video><p>Watch our latest update.</p><p>More videos coming soon.</p></section></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'flags visible <video> when the only transcript text is visibility:hidden',
+			html: '<section><video src="video.mp4"></video><p>Watch our latest update.</p><p style="visibility: hidden;">Transcript available below.</p></section>',
+			shouldPass: false,
+		},
 	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;
 

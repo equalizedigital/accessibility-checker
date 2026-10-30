@@ -1,6 +1,7 @@
 export default {
 	id: 'img_linked_alt_empty',
 	selector: 'a',
+	excludeHidden: false,
 	tags: [
 		'wcag2a',
 		'wcag111',

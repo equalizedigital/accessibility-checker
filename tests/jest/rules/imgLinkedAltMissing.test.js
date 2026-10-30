@@ -96,6 +96,22 @@ describe( 'Linked Image Missing Alternative Text Rule', () => {
 			html: '<a href="page.html"><img src="logo.jpg" class="hidden"></a>',
 			shouldPass: true,
 		},
+		// Links inside closed tabs, accordions or sliders inherit visibility:hidden from the panel.
+		{
+			name: 'fails for linked image without alt inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><a href="page.html"><img src="logo.jpg"></a></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'passes for linked image with alt text inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><a href="page.html"><img src="logo.jpg" alt="Home"></a></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when image is hidden by visibility:hidden inside a visible link',
+			html: '<a href="page.html"><img src="logo.jpg" style="visibility: hidden;"></a>',
+			shouldPass: true,
+		},
 	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;
 
