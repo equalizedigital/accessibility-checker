@@ -22,18 +22,16 @@ function mockWindowParent( parent ) {
 }
 
 describe( 'setupElementorSaveListener', () => {
-	const originalParent = window.parent;
+	const originalParentDescriptor = Object.getOwnPropertyDescriptor( window, 'parent' );
 
 	beforeEach( () => {
 		jest.useFakeTimers();
 	} );
 
 	afterEach( () => {
+		window.dispatchEvent( new Event( 'pagehide' ) );
 		jest.useRealTimers();
-		Object.defineProperty( window, 'parent', {
-			configurable: true,
-			value: originalParent,
-		} );
+		Object.defineProperty( window, 'parent', originalParentDescriptor );
 	} );
 
 	test( 'does nothing when not inside an iframe', () => {
