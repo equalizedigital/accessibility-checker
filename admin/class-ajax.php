@@ -509,13 +509,18 @@ class Ajax {
 
 						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record">';
 
+						// Screen reader only headings give each cell the context of the aria-hidden column labels.
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '</h5>';
 
 						$html .= '<code>' . esc_html( $row['object'] ) . '</code>';
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Image', 'accessibility-checker' ) . '</h5>';
 
 						if ( $object_img ) {
 							$html .= '<img src="' . esc_url( $object_img ) . '" alt="' . esc_attr(
@@ -541,6 +546,8 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
 
+						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Landmark', 'accessibility-checker' ) . '</h5>';
+
 						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
 
@@ -549,6 +556,8 @@ class Ajax {
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Actions', 'accessibility-checker' ) . '</h5>';
 
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
