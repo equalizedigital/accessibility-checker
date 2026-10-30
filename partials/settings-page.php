@@ -116,7 +116,7 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 	foreach ( $edac_settings_errors as $edac_error_index => $edac_settings_error ) {
 		if ( 'settings_updated' === $edac_settings_error['code'] && 'success' === $edac_settings_error['type'] && 'general' === $edac_settings_error['setting'] ) {
 			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- The Settings API has no filter or setter for an existing notice message.
-			$GLOBALS['wp_settings_errors'][ $edac_error_index ]['message'] = __( 'Accessibility Checker settings saved.', 'accessibility-checker' );
+			$GLOBALS['wp_settings_errors'][ $edac_error_index ]['message'] = esc_html__( 'Accessibility Checker settings saved.', 'accessibility-checker' );
 		}
 	}
 	settings_errors();
