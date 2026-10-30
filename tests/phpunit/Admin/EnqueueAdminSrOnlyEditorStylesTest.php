@@ -34,11 +34,25 @@ class EnqueueAdminSrOnlyEditorStylesTest extends WP_UnitTestCase {
 	private $user_id = 0;
 
 	/**
-	 * Path of the stylesheet fixture, or an empty string once it is removed.
+	 * Path of the stylesheet fixture this test case writes.
 	 *
 	 * @var string
 	 */
 	private $css_file = '';
+
+	/**
+	 * Whether a built stylesheet was already on disk when the fixture was written.
+	 *
+	 * @var bool
+	 */
+	private $css_file_preexisted = false;
+
+	/**
+	 * Contents of the built stylesheet before the fixture replaced them.
+	 *
+	 * @var string
+	 */
+	private $original_css_contents = '';
 
 	/**
 	 * Whether this test case had to create the fixture directory itself.
@@ -106,7 +120,13 @@ class EnqueueAdminSrOnlyEditorStylesTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	protected function tearDown(): void {
-		if ( '' !== $this->css_file && file_exists( $this->css_file ) ) {
+		// The stylesheet lives at the path the build writes to, so a checkout
+		// that has already been built has to get its own file back. Only a
+		// file this test case created is removed.
+		if ( $this->css_file_preexisted ) {
+			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Restoring the built stylesheet the fixture replaced.
+			file_put_contents( $this->css_file, $this->original_css_contents );
+		} elseif ( '' !== $this->css_file && file_exists( $this->css_file ) ) {
 			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_unlink -- Removing the fixture this test case wrote.
 			unlink( $this->css_file );
 		}
@@ -161,6 +181,14 @@ class EnqueueAdminSrOnlyEditorStylesTest extends WP_UnitTestCase {
 		}
 
 		$this->css_file = $directory . '/srOnlyFormat.css';
+
+		// A checkout that has already been built has a real stylesheet here.
+		// Keep it, so tearDown() can put the build back instead of eating it.
+		if ( file_exists( $this->css_file ) ) {
+			$this->css_file_preexisted = true;
+			// phpcs:ignore WordPressVIPMinimum.Performance.FetchingRemoteData.FileGetContentsUnknown -- Reading back the local built stylesheet the fixture is about to replace.
+			$this->original_css_contents = (string) file_get_contents( $this->css_file );
+		}
 
 		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_file_put_contents -- Writing the built stylesheet fixture this test case reads.
 		file_put_contents( $this->css_file, self::CSS_FIXTURE );
@@ -294,7 +322,6 @@ class EnqueueAdminSrOnlyEditorStylesTest extends WP_UnitTestCase {
 		// call can only still carry the CSS if it came from the cache.
 		// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.file_ops_unlink -- Removing the fixture to prove the stylesheet is cached.
 		unlink( $this->css_file );
-		$this->css_file = '';
 
 		$second = Enqueue_Admin::maybe_inject_sr_only_editor_styles( [] );
 
