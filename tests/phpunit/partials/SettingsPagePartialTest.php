@@ -52,6 +52,6 @@ class SettingsPagePartialTest extends WP_UnitTestCase {
 
 		$this->assertStringContainsString( "id='setting-error-settings_updated'", $output );
 		$this->assertStringContainsString( 'notice-success', $output );
-		$this->assertStringContainsString( 'Settings saved.', $output );
+		$this->assertStringContainsString( 'Accessibility Checker settings saved.', $output );
 	}
 }
