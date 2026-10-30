@@ -261,11 +261,6 @@ class FixesManager {
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		$namespaces = [
-			'accessibility-checker/v1',
-			'edac/v1', // Retained for backward compatibility while integrations migrate.
-		];
-
 		$routes = [
 			'/fixes'                               => [
 				'methods'             => 'GET',
@@ -296,10 +291,8 @@ class FixesManager {
 			],
 		];
 
-		foreach ( $namespaces as $namespace ) {
-			foreach ( $routes as $route => $args ) {
-				register_rest_route( $namespace, $route, $args );
-			}
+		foreach ( $routes as $route => $args ) {
+			register_rest_route( 'accessibility-checker/v1', $route, $args );
 		}
 	}
 
