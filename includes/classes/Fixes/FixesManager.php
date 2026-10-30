@@ -111,7 +111,7 @@ class FixesManager {
 			'wp_enqueue_scripts',
 			function () {
 				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
-				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 				wp_localize_script(
 					'edac-frontend-fixes',
 					'edac_frontend_fixes',
