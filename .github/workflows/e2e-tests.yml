@@ -1,0 +1,70 @@
+name: E2E Tests
+
+on:
+  # Manual only: global-setup.js boots a full WordPress Playground instance with
+  # Elementor, which costs 2-3 minutes on its own — too slow to run on every push
+  # or PR. Trigger from the Actions tab when you want to verify this branch.
+  workflow_dispatch:
+    inputs:
+      e2e_slow:
+        description: 'E2E_SLOW multiplier for the suite''s timeouts (raise if the runner is unusually slow)'
+        required: false
+        default: '1'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      COMPOSER_AUTH: '{"github-oauth": {"github.com": "${{ secrets.GITHUB_TOKEN }}"}}'
+      E2E_SLOW: ${{ inputs.e2e_slow }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: composer
+
+      - name: Cache npm downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      # Runs composer install and npm run build via the postinstall script — the
+      # Playground mount serves build/ directly, so the suite needs it fresh
+      # every run regardless of whether node_modules itself changed.
+      - name: Install dependencies and build
+        run: npm install
+
+      # playwright.config.js and global-setup.js both pin channel: 'chrome' rather
+      # than Playwright's own bundled Chromium — ubuntu-latest runners ship Google
+      # Chrome preinstalled, so this skips an otherwise-unused ~100MB download.
+      - name: Run E2E suite
+        run: npm run test:e2e
+
+      - name: Upload test artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-test-results
+          path: test-results/
+          retention-days: 7
