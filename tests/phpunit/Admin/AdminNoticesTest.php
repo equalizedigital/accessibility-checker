@@ -62,11 +62,12 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertSame( 'free', $this->admin_notices->edac_get_black_friday_segment() );
 		$message = $this->admin_notices->edac_get_black_friday_message();
 		$this->assertStringContainsString( 'save 20% and get a free course', $message );
+		$this->assertStringContainsString( '<span aria-hidden="true">🎉</span>', $message );
 		$this->assertStringContainsString( 'BlackFriday26-free-presale', $message );
 		$this->assertStringNotContainsString( 'pre-sale-questions/?discount', $message );
 		$this->assertStringContainsString( 'BlackFriday26-free-pricing', $message );
 		$this->assertStringContainsString( 'discount=BF2674B96A3C', $message );
-		$this->set_license_state( 'expired' );
+		$this->set_license_state( 'expired', 'professional' );
 		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
 		$message = $this->admin_notices->edac_get_black_friday_message();
 		$this->assertStringContainsString( 'Welcome back', $message );
@@ -87,6 +88,13 @@ class AdminNoticesTest extends WP_UnitTestCase {
 		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'expired' );
 		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->set_license_state( 'expired', 'professional' );
+		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->set_license_state( 'expired', 'agency' );
+		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_message() );
+		$this->assertSame( 'agency', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->set_license_state( 'expired', 'enterprise' );
+		$this->assertSame( 'agency', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'valid', 'professional' );
 		$this->assertSame( 'professional', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'valid', 'small-business' );

@@ -141,7 +141,9 @@ class Admin_Notices {
 		$pro_status = (string) get_option( 'edacp_license_status', '' );
 
 		if ( 'expired' === $pro_status ) {
-			return 'lapsed';
+			$expired_plan = \EqualizeDigital\AccessibilityChecker\MyDot\Connector::get_license_plan();
+
+			return in_array( $expired_plan, [ 'agency', 'enterprise' ], true ) ? 'agency' : 'lapsed';
 		}
 
 		if ( ! defined( 'EDACP_VERSION' ) ) {
@@ -234,7 +236,7 @@ class Admin_Notices {
 
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
-		$message .= '<p><strong>' . esc_html( $heading ) . '</strong><br />';
+		$message .= '<p><strong>' . preg_replace( '/[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{FE0F}]+/u', '<span aria-hidden="true">$0</span>', esc_html( $heading ) ) . '</strong><br />';
 		$message .= esc_html( $body ) . '<br />';
 
 		$links = [];
