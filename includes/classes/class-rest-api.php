@@ -1281,6 +1281,10 @@ class REST_Api {
 		// dismiss as global (or vice versa) independent of the real action taken.
 		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
+		// Rule and object of the changed issue, passed on to edac_after_ignore_change.
+		$hook_rule   = '';
+		$hook_object = '';
+
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
 		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
@@ -1289,6 +1293,8 @@ class REST_Api {
 			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
 			$rule               = $representative_row['rule'] ?? '';
 			$object             = $representative_row['object'] ?? '';
+			$hook_rule          = (string) $rule;
+			$hook_object        = (string) $object;
 
 			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
@@ -1377,6 +1383,13 @@ class REST_Api {
 			);
 		}
 
+		if ( ! $large_batch ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+			$issue_row   = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE siteid = %d AND id = %d', $table_name, $site_id, $issue_id ), ARRAY_A );
+			$hook_rule   = (string) ( $issue_row['rule'] ?? '' );
+			$hook_object = (string) ( $issue_row['object'] ?? '' );
+		}
+
 		/**
 		 * Fires after an ignore state change succeeds.
 		 *
@@ -1390,6 +1403,9 @@ class REST_Api {
 		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
 		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
 		 *     @type int    $site_id      Current blog ID.
+		 *     @type string $rule         Rule slug of the changed issue; empty when the issue was not found.
+		 *     @type string $object       Code snippet of the changed issue as stored in the database
+		 *                                (HTML-escaped); empty when the issue was not found.
 		 * }
 		 */
 		do_action(
@@ -1404,6 +1420,8 @@ class REST_Api {
 				'ignre_comment' => $ignre_comment,
 				'large_batch'   => $large_batch,
 				'site_id'       => $site_id,
+				'rule'          => $hook_rule,
+				'object'        => $hook_object,
 			]
 		);
 
