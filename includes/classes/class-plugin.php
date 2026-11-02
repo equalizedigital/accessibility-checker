@@ -85,6 +85,7 @@ class Plugin {
 	private function init() {
 
 		add_action( 'wp_enqueue_scripts', [ 'EDAC\Inc\Enqueue_Frontend', 'enqueue' ] );
+		add_action( 'send_headers', [ 'EDAC\Inc\Enqueue_Frontend', 'maybe_send_scan_isolation_header' ] );
 
 		$accessibility_statement = new Accessibility_Statement();
 		$accessibility_statement->init_hooks();

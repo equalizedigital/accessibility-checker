@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.9
 Tested up to: 7.1
-Stable tag: 1.51.0
+Stable tag: 1.51.1
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -279,6 +279,9 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-10-23 - version 1.51.1
+* Fix - scan results now update after saving in the block editor in some environments.
 
 2026-10-08 - version 1.51.0
 * New - the Missing Transcript check now recognizes Able Player transcripts.
