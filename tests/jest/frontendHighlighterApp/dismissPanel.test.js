@@ -10,6 +10,11 @@ jest.mock( 'focus-trap', () => ( {
 
 const flush = () => new Promise( ( resolve ) => setTimeout( resolve, 0 ) );
 
+// Opening the panel schedules a 100ms timer that moves focus to its close button (see
+// focusTrapControls()). Wait it out so it can't fire later and take focus back from the
+// control a dismiss or reopen just focused.
+const panelSettled = () => new Promise( ( resolve ) => setTimeout( resolve, 150 ) );
+
 describe( 'frontend highlighter dismiss controls', () => {
 	beforeAll( () => {
 		document.body.innerHTML = '<img src="a.png">';
@@ -63,7 +68,7 @@ describe( 'frontend highlighter dismiss controls', () => {
 
 	test( 'dismisses then reopens the issue in place', async () => {
 		document.getElementById( 'edac-highlight-panel-toggle' ).click();
-		await flush();
+		await panelSettled();
 
 		const toggle = document.querySelector( '.edac-highlight-panel-description-dismiss-toggle' );
 		expect( toggle ).not.toBeNull();
