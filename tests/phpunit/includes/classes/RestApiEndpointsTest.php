@@ -159,6 +159,80 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A failed or timed-out scan must not purge the post's stored issues.
+	 *
+	 * Seeds two rows (one dismissed with a reason and a comment), posts the payload a
+	 * failed scan produces (an empty violation list flagged `isFailure`) and checks
+	 * the rows and the dismissal survive. A successful empty scan must still clear them.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_failed_scan_keeps_issues_and_dismissals() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC failed scan post',
+			]
+		);
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		foreach ( [ 0, 1 ] as $dismissed ) {
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'        => $post_id,
+					'siteid'        => get_current_blog_id(),
+					'type'          => 'post',
+					'rule'          => 'image_alt_missing',
+					'ruletype'      => 'error',
+					'object'        => '<img src="/x.png">',
+					'recordcheck'   => 1,
+					'user'          => self::$admin_id,
+					'ignre'         => $dismissed,
+					'ignre_reason'  => $dismissed ? 'false_positive' : null,
+					'ignre_comment' => $dismissed ? 'Checked by hand: decorative.' : null,
+				]
+			);
+		}
+		$count_rows = static function () use ( $wpdb, $table_name, $post_id ) {
+			return (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$table_name} WHERE postid = %d", $post_id ) );
+		};
+		$this->assertSame( 2, $count_rows(), 'Two rows should be seeded.' );
+
+		wp_set_current_user( self::$admin_id );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'id', $post_id );
+		$request->set_param( 'violations', [] );
+		$request->set_param( 'isFailure', true );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 422, $response->get_status(), 'A failed scan must be refused.' );
+		$this->assertFalse( $response->get_data()['success'] );
+		$this->assertSame( 2, $count_rows(), 'A failed scan must not delete any issue rows.' );
+		$this->assertSame(
+			'Checked by hand: decorative.',
+			$wpdb->get_var( $wpdb->prepare( "SELECT ignre_comment FROM {$table_name} WHERE postid = %d AND ignre = 1", $post_id ) ),
+			'The dismissed issue and its comment must survive a failed scan.'
+		);
+
+		// The good path is unaffected: a successful scan that found nothing still clears the rows.
+		$ok = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$ok->set_param( 'id', $post_id );
+		$ok->set_param( 'violations', [] );
+		$ok->set_param( 'isFailure', false );
+		$ok_response = $this->server->dispatch( $ok );
+		$this->assertSame( 200, $ok_response->get_status() );
+		$this->assertTrue( $ok_response->get_data()['success'] );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	}
+
+	/**
 	 * Verify permissions for clearing issues for a post.
 	 *
 	 * @return void
