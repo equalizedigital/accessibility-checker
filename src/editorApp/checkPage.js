@@ -183,7 +183,7 @@ export const init = () => {
 
 				showNotice( {
 					msg: wp.i18n.__( 'The accessibility scan did not finish, so your saved results were left unchanged.', 'accessibility-checker' ),
-					type: 'warning',
+					type: 'error',
 				} );
 				return;
 			}

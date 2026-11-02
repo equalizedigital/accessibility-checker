@@ -187,7 +187,7 @@ describe( 'edac_scan_complete listener', () => {
 			'timeout',
 			[ 'Scan timed out' ],
 		);
-		expect( showNotice ).toHaveBeenCalledWith( expect.objectContaining( { type: 'warning' } ) );
+		expect( showNotice ).toHaveBeenCalledWith( expect.objectContaining( { type: 'error' } ) );
 	} );
 
 	test( 'does not save a scan that threw', () => {
