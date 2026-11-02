@@ -229,6 +229,7 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		$ok_response = $this->server->dispatch( $ok );
 		$this->assertSame( 200, $ok_response->get_status() );
 		$this->assertTrue( $ok_response->get_data()['success'] );
+		$this->assertSame( 0, $count_rows(), 'A successful empty scan should clear the seeded issues.' );
 		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 	}
 
