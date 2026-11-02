@@ -6,7 +6,7 @@ jest.mock( '@wordpress/components', () => ( {
 	Panel: ( { children } ) => <div className="mock-panel">{ children }</div>,
 	PanelBody: ( { title, opened, onToggle, children } ) => (
 		<section className="mock-panel-body" data-open={ opened }>
-			<button type="button" onClick={ onToggle }>{ title }</button>
+			<button type="button" className="components-panel__body-toggle" onClick={ onToggle }>{ title }</button>
 			{ opened && children }
 		</section>
 	),
@@ -266,6 +266,89 @@ describe( 'DismissPanel', () => {
 		);
 
 		expect( container.textContent ).toContain( 'Dismiss Globally' );
+
+		unmount();
+	} );
+
+	test( 'moves focus to the panel toggle after dismissing so it is not lost when the form unmounts', async () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 11, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+			/>,
+		);
+
+		const submit = container.querySelector( 'button[type="submit"]' );
+		submit.focus();
+		expect( document.activeElement ).toBe( submit );
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+
+		expect( container.contains( submit ) ).toBe( false );
+		expect( document.activeElement ).toBe( container.querySelector( '.components-panel__body-toggle' ) );
+
+		unmount();
+	} );
+
+	test( 'moves focus to the panel toggle after reopening so it is not lost when the button unmounts', async () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 12, ignre: '1', ignre_global: 0, ignre_reason: 'false_positive' } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		const reopen = Array.from( container.querySelectorAll( 'button' ) ).find( ( b ) => b.textContent.includes( 'Reopen Issue' ) );
+		reopen.focus();
+		expect( document.activeElement ).toBe( reopen );
+
+		await act( async () => {
+			reopen.click();
+		} );
+
+		expect( container.contains( reopen ) ).toBe( false );
+		expect( document.activeElement ).toBe( container.querySelector( '.components-panel__body-toggle' ) );
+
+		unmount();
+	} );
+
+	test( 'does not move focus when the action fails', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		toggleIssueDismiss.mockImplementationOnce( () => Promise.reject( new Error( 'nope' ) ) );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 13, ignre: '1', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		const reopen = Array.from( container.querySelectorAll( 'button' ) ).find( ( b ) => b.textContent.includes( 'Reopen Issue' ) );
+		reopen.focus();
+
+		await act( async () => {
+			reopen.click();
+		} );
+
+		expect( document.activeElement ).toBe( reopen );
 
 		unmount();
 	} );
