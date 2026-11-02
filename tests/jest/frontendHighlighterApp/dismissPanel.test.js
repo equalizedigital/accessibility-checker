@@ -108,6 +108,12 @@ describe( 'frontend highlighter dismiss controls', () => {
 	} );
 
 	test( 'shows the server error and re-enables the buttons on failure', async () => {
+		// Open the panel if an earlier test hasn't, so this test also passes when run alone.
+		if ( ! document.querySelector( '.edac-highlight-dismiss-form' ) ) {
+			document.getElementById( 'edac-highlight-panel-toggle' ).click();
+			await panelSettled();
+		}
+
 		window.fetch = jest.fn().mockResolvedValue( { ok: false, json: () => Promise.resolve( { message: 'Nope' } ) } );
 		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
 		await flush();
