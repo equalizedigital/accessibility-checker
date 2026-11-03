@@ -1,4 +1,7 @@
 import { getScanIframeUrl, init } from '../../../src/editorApp/checkPage';
+import { showNotice } from '../../../src/common/helpers';
+
+jest.mock( '../../../src/common/helpers', () => ( { showNotice: jest.fn() } ) );
 
 const setCrossOriginIsolated = ( value ) => {
 	Object.defineProperty( window, 'crossOriginIsolated', {
@@ -118,5 +121,93 @@ describe( 'init', () => {
 
 		expect( src.searchParams.get( 'edac_pageScanner' ) ).toBe( '1' );
 		expect( src.searchParams.get( 'edac_isolated' ) ).toBe( '1' );
+	} );
+} );
+
+describe( 'edac_scan_complete listener', () => {
+	// A failed or timed-out scan must not be saved: its empty violation list would be
+	// stored as "the page is clean" and purge every issue row the post had.
+	let addListenerSpy;
+
+	const dispatchScanComplete = ( detail ) => {
+		top.dispatchEvent( new CustomEvent( 'edac_scan_complete', {
+			detail: {
+				iframeId: 'edac-scan-iframe',
+				postId: 42,
+				violations: [],
+				errorMsgs: [],
+				error: '',
+				densityMetrics: { elementCount: 0, contentLength: 0 },
+				...detail,
+			},
+		} ) );
+	};
+
+	beforeEach( () => {
+		addListenerSpy = jest.spyOn( top, 'addEventListener' );
+		jest.spyOn( console, 'error' ).mockImplementation( () => {} );
+		showNotice.mockClear();
+
+		window.edac_editor_app = {
+			scanUrl: 'https://example.com/?p=1&preview=true&edac_pageScanner=1',
+			postID: 1,
+			edacApiUrl: 'https://example.com/wp-json/accessibility-checker/v1',
+		};
+		window.edac_script_vars = { restNonce: 'nonce' };
+		window.wp = {
+			i18n: { __: ( text ) => text },
+			data: { subscribe: jest.fn(), select: jest.fn() },
+		};
+		window.fetch = jest.fn( () => Promise.resolve( { json: () => Promise.resolve( { success: true } ) } ) );
+
+		init();
+	} );
+
+	afterEach( () => {
+		addListenerSpy.mock.calls
+			.filter( ( [ type ] ) => type === 'edac_scan_complete' )
+			.forEach( ( [ type, listener ] ) => top.removeEventListener( type, listener ) );
+		addListenerSpy.mockRestore();
+		console.error.mockRestore(); // eslint-disable-line no-console
+		top.edacScanCompleteListenerAdded = false;
+		delete top.edacPostSaveStateSubscribed;
+		delete window.edac_editor_app;
+		delete window.edac_script_vars;
+		delete window.wp;
+		delete window.fetch;
+		document.body.innerHTML = '';
+	} );
+
+	test( 'does not save a timed-out scan, logs it and tells the user', () => {
+		dispatchScanComplete( { failed: true, error: 'timeout', errorMsgs: [ 'Scan timed out' ] } );
+
+		expect( window.fetch ).not.toHaveBeenCalled();
+		expect( console.error ).toHaveBeenCalledWith( // eslint-disable-line no-console
+			expect.stringContaining( 'scan failed for post 42' ),
+			'timeout',
+			[ 'Scan timed out' ],
+		);
+		expect( showNotice ).toHaveBeenCalledWith( expect.objectContaining( { type: 'error' } ) );
+	} );
+
+	test( 'does not save a scan that threw', () => {
+		dispatchScanComplete( { failed: true, error: 'axe exploded', errorMsgs: [ 'axe exploded' ] } );
+
+		expect( window.fetch ).not.toHaveBeenCalled();
+	} );
+
+	test( 'still saves a successful scan that found no violations', () => {
+		dispatchScanComplete( { violations: [] } );
+
+		expect( window.fetch ).toHaveBeenCalledTimes( 1 );
+		expect( window.fetch.mock.calls[ 0 ][ 0 ] ).toContain( '/post-scan-results/42' );
+		expect( showNotice ).not.toHaveBeenCalled();
+	} );
+
+	test( 'still saves a successful scan that found violations', () => {
+		dispatchScanComplete( { violations: [ { ruleId: 'image-alt' } ] } );
+
+		expect( window.fetch ).toHaveBeenCalledTimes( 1 );
+		expect( JSON.parse( window.fetch.mock.calls[ 0 ][ 1 ].body ).violations ).toHaveLength( 1 );
 	} );
 } );
