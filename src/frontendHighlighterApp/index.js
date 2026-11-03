@@ -1496,9 +1496,9 @@ class AccessibilityCheckerHighlight {
 		// The change worked, but an add-on can attach a warning to the response (Pro does when it
 		// could not save a global dismissal). Show it instead of reporting plain success.
 		const warning = 'string' === typeof response?.warning ? response.warning : '';
-		const alertSlot = container.querySelector( '.edac-highlight-dismiss-error' );
-		if ( warning && alertSlot ) {
-			alertSlot.textContent = warning;
+		const warningSlot = container.querySelector( '.edac-highlight-dismiss-warning' );
+		if ( warning && warningSlot ) {
+			warningSlot.textContent = warning;
 		}
 
 		this.announce( warning || ( dismiss

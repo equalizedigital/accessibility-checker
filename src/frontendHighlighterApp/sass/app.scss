@@ -597,6 +597,22 @@ body {
 					}
 				}
 
+				// The change worked but needs attention (an add-on's warning),
+				// so this is not styled as a failure. It sits outside the
+				// collapsible form so it is visible after a reopen.
+				.edac-highlight-dismiss-warning {
+					margin: 0 0 8px !important;
+					padding: 8px 10px !important;
+					border-left: 4px solid variables.$color-orange !important;
+					background-color: #fef8ee !important;
+					color: variables.$color-black !important;
+					font-weight: 600 !important;
+
+					&:empty {
+						display: none !important;
+					}
+				}
+
 				.edac-highlight-dismiss-submit,
 				.edac-highlight-dismiss-reopen {
 

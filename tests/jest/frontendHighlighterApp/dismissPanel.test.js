@@ -136,9 +136,40 @@ describe( 'frontend highlighter dismiss controls', () => {
 		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
 		await flush();
 
-		// Still dismissed, with the warning in the alert region rather than a plain success.
+		// Still dismissed, with the warning in its alert region rather than a plain success.
 		expect( document.querySelector( '.edac-highlight-dismissed-heading' ) ).not.toBeNull();
-		expect( document.querySelector( '.edac-highlight-dismiss-error' ).textContent ).toBe( warning );
-		expect( document.querySelector( '.edac-highlight-dismiss-error' ).getAttribute( 'role' ) ).toBe( 'alert' );
+		expect( document.querySelector( '.edac-highlight-dismiss-warning' ).textContent ).toBe( warning );
+		expect( document.querySelector( '.edac-highlight-dismiss-warning' ).getAttribute( 'role' ) ).toBe( 'alert' );
+		// It is not an error, so the error slot stays empty.
+		expect( document.querySelector( '.edac-highlight-dismiss-error' ).textContent ).toBe( '' );
+	} );
+
+	test( 'shows a reopen warning outside the collapsed form so it is visible', async () => {
+		// Get to the dismissed state ourselves so the test also passes when run alone.
+		if ( ! document.querySelector( '.edac-highlight-dismiss-reopen' ) ) {
+			if ( ! document.querySelector( '.edac-highlight-dismiss-form' ) ) {
+				document.getElementById( 'edac-highlight-panel-toggle' ).click();
+				await panelSettled();
+			}
+			window.fetch = jest.fn().mockResolvedValue( { ok: true, json: () => Promise.resolve( { success: true } ) } );
+			document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+			await flush();
+		}
+		expect( document.querySelector( '.edac-highlight-dismiss-reopen' ) ).not.toBeNull();
+
+		const warning = "Reopened, but the global dismissal couldn't be removed, so later scans may dismiss it again.";
+		window.fetch = jest.fn().mockResolvedValue( {
+			ok: true,
+			json: () => Promise.resolve( { success: true, global_ignore_saved: false, warning } ),
+		} );
+		document.querySelector( '.edac-highlight-dismiss-reopen' ).click();
+		await flush();
+
+		// Reopened: the dismiss form is back, collapsed, and the warning is not inside it.
+		const form = document.querySelector( '.edac-highlight-dismiss-form' );
+		const slot = document.querySelector( '.edac-highlight-dismiss-warning' );
+		expect( form.hidden ).toBe( true );
+		expect( slot.textContent ).toBe( warning );
+		expect( form.contains( slot ) ).toBe( false );
 	} );
 } );

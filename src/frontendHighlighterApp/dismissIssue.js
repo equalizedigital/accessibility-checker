@@ -93,6 +93,7 @@ export function buildDismissMarkup( { issue, reasons = {}, canDismiss = false, c
 	const arrowUri = 'data:image/svg+xml,' + encodeURIComponent( '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="16" height="16"><path d="M6.5 12.4L12 8l5.5 4.4-.9 1.2L12 10l-4.5 3.6-1-1.2z" fill="#2271b1"/></svg>' );
 
 	return `<div class="edac-highlight-panel-description-dismiss">
+		<p class="edac-highlight-dismiss-warning" role="alert"></p>
 		<button type="button" class="edac-highlight-panel-description-dismiss-toggle" aria-expanded="false" aria-controls="${ DISMISS_FORM_ID }">${ escapeHtml( __( 'Dismiss Issue', 'accessibility-checker' ) ) } <img src="${ arrowUri }" width="16" height="16" class="edac-highlight-panel-description-dismiss-toggle-arrow" alt="" /></button>
 		<form id="${ DISMISS_FORM_ID }" class="edac-highlight-dismiss-form" hidden>
 			<fieldset>
@@ -154,6 +155,7 @@ function buildDismissedMarkup( { issue, reasons, canDismiss, canDismissGlobal } 
 		: __( 'Reopen Issue', 'accessibility-checker' );
 
 	return `<div class="edac-highlight-panel-description-dismiss edac-highlight-panel-description-dismiss--dismissed">
+		<p class="edac-highlight-dismiss-warning" role="alert"></p>
 		<div class="edac-highlight-dismissed-heading" role="heading" aria-level="4">${ escapeHtml( heading ) }</div>
 		${ meta ? `<dl class="edac-highlight-dismissed-meta">${ meta }</dl>` : '' }
 		${ commentHtml }
