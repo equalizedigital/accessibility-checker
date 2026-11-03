@@ -134,6 +134,31 @@ class EmailOptInTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test input purposes and field types in the shared modal and inline form.
+	 */
+	public function test_form_identifies_input_purposes() {
+		ob_start();
+		Email_Opt_In::render_form();
+		$processor = new WP_HTML_Tag_Processor( ob_get_clean() );
+		$fields    = [];
+
+		while ( $processor->next_tag( 'INPUT' ) ) {
+			$name = $processor->get_attribute( 'name' );
+			if ( in_array( $name, [ 'email', 'firstname' ], true ) ) {
+				$fields[ $name ] = [ $processor->get_attribute( 'autocomplete' ), $processor->get_attribute( 'type' ) ];
+			}
+		}
+
+		$this->assertSame(
+			[
+				'email'     => [ 'email', 'text' ],
+				'firstname' => [ 'given-name', 'text' ],
+			],
+			$fields
+		);
+	}
+
+	/**
 	 * Test that the ajax handlers are registered.
 	 */
 	public function test_ajax_handlers_registered() {
