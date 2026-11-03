@@ -131,6 +131,36 @@ describe( 'DismissPanel', () => {
 		unmount();
 	} );
 
+	test( 'shows a warning an add-on attached to a successful response instead of plain success', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		const warning = "Reopened, but the global dismissal couldn't be removed, so later scans may dismiss it again.";
+		toggleIssueDismiss.mockResolvedValueOnce( { success: true, global_ignore_saved: false, warning } );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 5, ignre: '1', ignre_global: 1, ignre_reason: 'accessible' } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const button = Array.from( container.querySelectorAll( 'button' ) ).find(
+			( el ) => el.textContent.includes( 'Remove Global Dismissal' ),
+		);
+		await act( async () => {
+			button.click();
+		} );
+
+		expect( container.querySelector( '.mock-notice' ).textContent ).toBe( warning );
+		expect( container.textContent ).not.toContain( 'reopened successfully' );
+
+		unmount();
+	} );
+
 	test( 'hides global dismiss controls for a Pro user without canDismissGlobally', () => {
 		window.edac_editor_app.pro = '1';
 
