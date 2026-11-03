@@ -121,4 +121,24 @@ describe( 'frontend highlighter dismiss controls', () => {
 		expect( document.querySelector( '.edac-highlight-dismiss-error' ).textContent ).toBe( 'Nope' );
 		expect( document.querySelector( '.edac-highlight-dismiss-submit' ).disabled ).toBe( false );
 	} );
+
+	test( 'shows a warning an add-on attached to a successful dismissal', async () => {
+		if ( ! document.querySelector( '.edac-highlight-dismiss-form' ) ) {
+			document.getElementById( 'edac-highlight-panel-toggle' ).click();
+			await panelSettled();
+		}
+
+		const warning = "Dismissed, but the global setting couldn't be saved, so later scans may flag it again.";
+		window.fetch = jest.fn().mockResolvedValue( {
+			ok: true,
+			json: () => Promise.resolve( { success: true, global_ignore_saved: false, warning } ),
+		} );
+		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+		await flush();
+
+		// Still dismissed, with the warning in the alert region rather than a plain success.
+		expect( document.querySelector( '.edac-highlight-dismissed-heading' ) ).not.toBeNull();
+		expect( document.querySelector( '.edac-highlight-dismiss-error' ).textContent ).toBe( warning );
+		expect( document.querySelector( '.edac-highlight-dismiss-error' ).getAttribute( 'role' ) ).toBe( 'alert' );
+	} );
 } );

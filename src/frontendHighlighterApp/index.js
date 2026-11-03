@@ -1493,10 +1493,18 @@ class AccessibilityCheckerHighlight {
 			?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
 		( nextFocus || this.closePanel )?.focus();
 
-		this.announce( dismiss
+		// The change worked, but an add-on can attach a warning to the response (Pro does when it
+		// could not save a global dismissal). Show it instead of reporting plain success.
+		const warning = 'string' === typeof response?.warning ? response.warning : '';
+		const alertSlot = container.querySelector( '.edac-highlight-dismiss-error' );
+		if ( warning && alertSlot ) {
+			alertSlot.textContent = warning;
+		}
+
+		this.announce( warning || ( dismiss
 			? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 			: __( 'Issue reopened successfully.', 'accessibility-checker' )
-		);
+		) );
 	}
 
 	/**
