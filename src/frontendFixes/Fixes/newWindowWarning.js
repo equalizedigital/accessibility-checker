@@ -26,6 +26,13 @@ const NewWindowWarning = () => {
 	// inserted target="_blank" links get the same treatment. Harmless no-op
 	// if Gravity Forms isn't installed - these events simply never fire.
 	document.addEventListener( 'gform/post_render', processLinks );
+
+	// Public API for themes, plugins and other scripts that insert content
+	// after load: call window.edacNewWindowWarning?.refresh() to apply the
+	// warning to any new links. Links already processed are skipped.
+	window.edacNewWindowWarning = {
+		refresh: processLinks,
+	};
 };
 
 let anwwLinkTooltip;
