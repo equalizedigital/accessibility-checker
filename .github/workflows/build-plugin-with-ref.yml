@@ -10,7 +10,7 @@ on:
   pull_request:
     types: [labeled]
   release:
-    types: [created, published]
+    types: [published]
 
 permissions:
   contents: write
