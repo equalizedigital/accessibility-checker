@@ -825,10 +825,13 @@ class AccessibilityCheckerHighlight {
 
 		this.currentButtonIndex = this.issues.findIndex( ( i ) => String( i.id ) === String( id ) );
 
-		// Keep the URL in sync so the current issue is bookmarkable / shareable.
+		// Keep the URL in sync so the current issue is bookmarkable / shareable. The cached
+		// parameter follows it: it is what keeps a dismissed issue in the list when the issues are
+		// loaded again, so an issue dismissed while selected does not vanish with its reopen control.
 		const url = new URL( window.location.href );
 		url.searchParams.set( 'edac', id );
 		history.replaceState( null, '', url.toString() );
+		this.urlParameter = String( id );
 
 		const pagination = document.getElementById( 'edac-highlight-pagination' );
 		if ( pagination ) {
@@ -948,10 +951,11 @@ class AccessibilityCheckerHighlight {
 	 * not the panel is currently open.
 	 *
 	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 * @return {Promise} Resolves once the panel has been updated.
 	 */
 	refreshIssues( id ) {
 		// Get the issues for this page.
-		this.highlightAjax().then(
+		return this.highlightAjax().then(
 			( json ) => {
 
 				this.issues = json.issues;
@@ -1485,20 +1489,38 @@ class AccessibilityCheckerHighlight {
 			);
 		} );
 
-		this.showIssueCount();
-		this.descriptionOpen( issue.id );
+		// Next and Previous stay active while the request is in flight, so the user may be looking
+		// at a different issue now. The data and counts are updated either way, but the panel is only
+		// re-rendered, and focus only moved, while the issue acted on is still the one on screen.
+		const selectedNow = this.issues[ this.currentButtonIndex ]?.id;
+		const stillSelected = undefined === selectedNow || String( selectedNow ) === String( issue.id );
 
-		// The controls were re-rendered, so move focus to the new primary control.
-		const nextFocus = document.querySelector( '#edac-highlight-panel-description-dismiss-container' )
-			?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
-		( nextFocus || this.closePanel )?.focus();
+		if ( ! dismiss && global ) {
+			// The list leaves out dismissed issues when it loads, so instances that share this snippet
+			// and were just reopened can be missing from the markers and counts. Load the list again.
+			this.removeHighlightButtons();
+			await this.refreshIssues( stillSelected ? issue.id : selectedNow );
+		} else {
+			this.showIssueCount();
+			if ( stillSelected ) {
+				this.descriptionOpen( issue.id );
+			}
+		}
 
-		// The change worked, but an add-on can attach a warning to the response (Pro does when it
-		// could not save a global dismissal). Show it instead of reporting plain success.
 		const warning = 'string' === typeof response?.warning ? response.warning : '';
-		const warningSlot = container.querySelector( '.edac-highlight-dismiss-warning' );
-		if ( warning && warningSlot ) {
-			warningSlot.textContent = warning;
+
+		if ( stillSelected ) {
+			// The controls were re-rendered, so move focus to the new primary control.
+			const nextFocus = document.querySelector( '#edac-highlight-panel-description-dismiss-container' )
+				?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
+			( nextFocus || this.closePanel )?.focus();
+
+			// The change worked, but an add-on can attach a warning to the response (Pro does when it
+			// could not save a global dismissal). Show it instead of reporting plain success.
+			const warningSlot = container.querySelector( '.edac-highlight-dismiss-warning' );
+			if ( warning && warningSlot ) {
+				warningSlot.textContent = warning;
+			}
 		}
 
 		this.announce( warning || ( dismiss
@@ -2153,6 +2175,7 @@ class AccessibilityCheckerHighlight {
 		const url = new URL( window.location.href );
 		url.searchParams.delete( 'edac' );
 		history.replaceState( null, '', url.toString() );
+		this.urlParameter = null;
 
 		this.descriptionClose();
 	}
