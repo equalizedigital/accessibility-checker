@@ -16,7 +16,9 @@ jest.mock( '@wordpress/components', () => ( {
 		</button>
 	),
 	Spinner: () => <span className="mock-spinner" aria-hidden="true">...</span>,
-	Notice: ( { children } ) => <div className="mock-notice">{ children }</div>,
+	Notice: ( { children, status, spokenMessage } ) => (
+		<div className="mock-notice" data-status={ status } data-spoken={ spokenMessage }>{ children }</div>
+	),
 	RadioControl: ( { label, selected, options, onChange } ) => (
 		<div className="mock-radio-control">
 			<div>{ label }</div>
@@ -155,10 +157,74 @@ describe( 'DismissPanel', () => {
 			button.click();
 		} );
 
-		expect( container.querySelector( '.mock-notice' ).textContent ).toBe( warning );
+		const notice = container.querySelector( '.mock-notice' );
+		expect( notice.textContent ).toBe( warning );
+		expect( notice.getAttribute( 'data-status' ) ).toBe( 'warning' );
+		// speak() announces it assertively, so the notice's own announcement is switched off.
+		expect( notice.getAttribute( 'data-spoken' ) ).toBe( '' );
 		expect( container.textContent ).not.toContain( 'reopened successfully' );
 
 		unmount();
+	} );
+
+	describe( 'Dismiss & Close Modal', () => {
+		const renderPanel = ( onCloseModal ) => renderReact(
+			<DismissPanel
+				issue={ { id: 6, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ onCloseModal }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const clickDismissAndClose = async ( container ) => {
+			const button = Array.from( container.querySelectorAll( 'button' ) ).find(
+				( el ) => el.textContent.includes( 'Dismiss & Close Modal' ),
+			);
+			await act( async () => {
+				button.click();
+			} );
+		};
+
+		test( 'closes the modal after a clean dismissal', async () => {
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).toHaveBeenCalledTimes( 1 );
+			unmount();
+		} );
+
+		test( 'keeps the modal open when the response carries a warning, so it can be read', async () => {
+			const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+			toggleIssueDismiss.mockResolvedValueOnce( { success: true, warning: 'Dismissed, but not saved globally.' } );
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).not.toHaveBeenCalled();
+			expect( container.querySelector( '.mock-notice' ).textContent ).toBe( 'Dismissed, but not saved globally.' );
+			unmount();
+		} );
+
+		test( 'keeps the modal open when the request fails, so the error can be read', async () => {
+			const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+			toggleIssueDismiss.mockRejectedValueOnce( new Error( 'Nope' ) );
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).not.toHaveBeenCalled();
+			expect( container.querySelector( '.mock-notice' ).textContent ).toBe( 'Nope' );
+			unmount();
+		} );
 	} );
 
 	test( 'hides global dismiss controls for a Pro user without canDismissGlobally', () => {

@@ -111,7 +111,9 @@ const DismissPanel = ( {
 				onIgnore( issue, ignore );
 			}
 
-			return true;
+			// True only for a clean success. A warning is something the user has to read, so callers
+			// that would close the modal afterwards keep it open, as they do for an error.
+			return ! warning;
 		} catch ( err ) {
 			setError( err.message );
 			return false;
@@ -278,9 +280,9 @@ const DismissPanel = ( {
 										disabled={ isSubmitting }
 										onClick={ () => {
 											onClose();
-											handleToggleIgnore( true, dismissGlobally ).then( () => {
-												// close the entire modal after dismissing.
-												if ( onCloseModal ) {
+											handleToggleIgnore( true, dismissGlobally ).then( ( succeeded ) => {
+												// close the entire modal after dismissing, unless there is an error or warning to read.
+												if ( succeeded && onCloseModal ) {
 													onCloseModal();
 												}
 											} );
@@ -326,6 +328,8 @@ const DismissPanel = ( {
 						{ successNotice && (
 							<Notice
 								status={ noticeStatus }
+								// The warning is announced assertively by speak() above, so the notice's own polite announcement would repeat it.
+								spokenMessage={ 'warning' === noticeStatus ? '' : undefined }
 								isDismissible={ true }
 								onRemove={ () => {
 									panelRef.current?.querySelector( '.components-panel__body-toggle, button' )?.focus();
