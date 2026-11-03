@@ -134,6 +134,18 @@ class EmailOptInTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that the form fields identify their input purpose for WCAG 1.3.5.
+	 */
+	public function test_form_fields_have_autocomplete_attributes() {
+		ob_start();
+		Email_Opt_In::render_form();
+		$output = ob_get_clean();
+
+		$this->assertMatchesRegularExpression( '/<input[^>]*id="email"[^>]*autocomplete="email"/', $output );
+		$this->assertMatchesRegularExpression( '/<input[^>]*id="firstname"[^>]*autocomplete="given-name"/', $output );
+	}
+
+	/**
 	 * Test that the ajax handlers are registered.
 	 */
 	public function test_ajax_handlers_registered() {
