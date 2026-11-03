@@ -141,7 +141,7 @@ class Admin_Notices {
 		$pro_status = (string) get_option( 'edacp_license_status', '' );
 
 		if ( 'expired' === $pro_status ) {
-			$expired_plan = \EqualizeDigital\AccessibilityChecker\MyDot\Connector::get_license_plan();
+			$expired_plan = \EqualizeDigital\AccessibilityChecker\MyDot\Connector::get_license_plan_or_last_known();
 
 			return in_array( $expired_plan, [ 'agency', 'enterprise' ], true ) ? 'agency' : 'lapsed';
 		}

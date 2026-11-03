@@ -70,6 +70,13 @@ class Connector {
 	private const LICENSE_METADATA_OPTION = 'edac_license_metadata';
 
 	/**
+	 * Option holding the last paid plan seen, kept when the metadata option is cleared.
+	 *
+	 * @var string
+	 */
+	private const LAST_LICENSE_PLAN_OPTION = 'edac_license_last_plan';
+
+	/**
 	 * License status constants.
 	 */
 	private const LICENSE_STATUS_VALID   = 'valid';
@@ -193,6 +200,9 @@ class Connector {
 
 		// Expose the free product ID so the Pro plugin can infer license type from API response product IDs.
 		add_filter( 'edac_free_product_id', [ __CLASS__, 'get_free_product_id' ] );
+
+		// Pro clears the metadata when a license expires, so remember the plan as it is stored.
+		add_filter( 'pre_update_option_' . self::LICENSE_METADATA_OPTION, [ __CLASS__, 'remember_license_plan' ] );
 
 		// Ensure the license options group is registered so options.php allows saves.
 		add_action( 'admin_init', [ $this, 'register_license_settings' ] );
@@ -1491,6 +1501,43 @@ class Connector {
 		 * @param array  $metadata Stored license metadata.
 		 */
 		return (string) apply_filters( 'edac_license_plan', $plan, $metadata );
+	}
+
+	/**
+	 * Remember the plan of license metadata that is about to be stored.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param mixed $metadata License metadata being saved.
+	 * @return mixed The metadata, unchanged.
+	 */
+	public static function remember_license_plan( $metadata ) {
+		$plan = is_array( $metadata ) && isset( $metadata['plan'] ) ? $metadata['plan'] : '';
+
+		if ( in_array( $plan, [ self::LICENSE_PLAN_PROFESSIONAL, self::LICENSE_PLAN_SMALL_BIZ, self::LICENSE_PLAN_SMALL_BIZ_PLUS, self::LICENSE_PLAN_AGENCY, self::LICENSE_PLAN_ENTERPRISE ], true ) ) {
+			update_option( self::LAST_LICENSE_PLAN_OPTION, $plan );
+		}
+
+		return $metadata;
+	}
+
+	/**
+	 * Get the plan of the current license, falling back to the last paid plan seen.
+	 *
+	 * @since x.x.x
+	 *
+	 * @return string Plan slug, or 'unknown'.
+	 */
+	public static function get_license_plan_or_last_known(): string {
+		$plan = self::get_license_plan();
+
+		if ( self::LICENSE_PLAN_UNKNOWN !== $plan ) {
+			return $plan;
+		}
+
+		$last = get_option( self::LAST_LICENSE_PLAN_OPTION, '' );
+
+		return is_string( $last ) && '' !== $last ? $last : self::LICENSE_PLAN_UNKNOWN;
 	}
 
 	/**

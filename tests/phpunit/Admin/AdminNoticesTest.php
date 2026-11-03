@@ -113,6 +113,29 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that an expired Agency or Enterprise license still gets no notice after Pro clears the metadata.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 */
+	public function test_black_friday_segment_uses_last_known_plan_after_metadata_cleared() {
+		define( 'EDACP_VERSION', '1.0.0' );
+		update_option( 'edac_license_metadata', [ 'plan' => 'agency' ] );
+		update_option( 'edacp_license_status', 'expired' );
+		delete_option( 'edac_license_metadata' );
+		$this->assertSame( 'agency', $this->admin_notices->edac_get_black_friday_segment() );
+
+		update_option( 'edac_license_metadata', [ 'plan' => 'professional' ] );
+		delete_option( 'edac_license_metadata' );
+		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
+
+		// A free or unknown plan never replaces the remembered paid plan.
+		update_option( 'edac_license_metadata', [ 'plan' => 'unknown' ] );
+		delete_option( 'edac_license_metadata' );
+		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
+	}
+
+	/**
 	 * Test the copy and tracking for each paid segment, and that agency shows no notice.
 	 *
 	 * @runInSeparateProcess
