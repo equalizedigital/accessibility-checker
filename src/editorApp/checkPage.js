@@ -175,6 +175,19 @@ export const init = () => {
 				document.getElementById( iframeId )?.remove();
 			}, 1000 );
 
+			// A failed or timed-out scan has no real result: its empty violation list would be
+			// saved as "the page is clean" and purge the post's stored issues and dismissals.
+			if ( event.detail.failed ) {
+				// eslint-disable-next-line no-console
+				console.error( 'Accessibility Checker: scan failed for post ' + postId + ', saved results left unchanged.', event.detail.error, event.detail.errorMsgs );
+
+				showNotice( {
+					msg: wp.i18n.__( 'The accessibility scan did not finish, so your saved results were left unchanged.', 'accessibility-checker' ),
+					type: 'error',
+				} );
+				return;
+			}
+
 			// save the scan results.
 			saveScanResults( postId, violations, event?.detail?.densityMetrics );
 		} );

@@ -479,6 +479,19 @@ class REST_Api {
 			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
 		}
 
+		// A failed or timed-out scan has no real result. Its empty violation list would be
+		// read as "the page is now clean" and purge every stored issue, dismissed ones
+		// included, so refuse it before anything is deleted.
+		if ( rest_sanitize_boolean( $request['isFailure'] ?? false ) ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => 'The scan did not complete, so the saved results were left unchanged.',
+				],
+				422
+			);
+		}
+
 		$post_id = (int) $request['id'];
 		$post    = get_post( $post_id );
 		if ( ! is_object( $post ) ) {
