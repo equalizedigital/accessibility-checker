@@ -528,7 +528,7 @@ msgstr "우리 웹사이트에 대한 의견, 질문, 피드백을 환영합니�
 #: admin/class-admin-footer-text.php:46
 #, php-format
 msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
-msgstr "Accessibility Checker를 즐겁게 사용하고 계신가요? %1$s★★★★★ 평가를 남겨주세요.[/%%p#07527667] 여러분의 지원에 정말 감사드립니다!"
+msgstr ""
 
 #: admin/class-admin-footer-text.php:47
 msgid "Please leave us a five star rating (opens in new window)"
