@@ -60,6 +60,37 @@ describe( 'announceSettingsSaveStatus', () => {
 		expect( a11y.speak ).toHaveBeenCalledWith( 'Settings saved.', 'polite' );
 	} );
 
+	test( 'announces the email reports connector notice politely', () => {
+		document.body.innerHTML = `
+			<div id="edac-connector-notice" class="notice notice-success is-dismissible">
+				<p>Site unregistered successfully. Your site will no longer receive email reports.</p>
+			</div>
+		`;
+
+		announceSettingsSaveStatus( a11y );
+
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+		expect( a11y.speak ).toHaveBeenCalledWith(
+			'Site unregistered successfully. Your site will no longer receive email reports.',
+			'polite',
+		);
+	} );
+
+	test( 'announces a connector error notice assertively', () => {
+		document.body.innerHTML = `
+			<div id="edac-connector-notice" class="notice notice-error is-dismissible">
+				<p>Unknown error occurred while registering the site.</p>
+			</div>
+		`;
+
+		announceSettingsSaveStatus( a11y );
+
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+		expect( a11y.speak ).toHaveBeenCalledWith( 'Unknown error occurred while registering the site.', 'assertive' );
+	} );
+
 	test( 'does not announce when the settings notice is missing', () => {
 		announceSettingsSaveStatus( a11y );
 
