@@ -1439,7 +1439,7 @@ class Connector {
 		 * The main product (item 24) isn't looked up here because its plan comes from the price_id.
 		 * Use `edac_license_plan_from_response` to change the plan for that product.
 		 *
-		 * @since x.x.x
+		 * @since 1.52.0
 		 *
 		 * @param array<int,string> $map Plan slugs keyed by EDD item ID.
 		 */
@@ -1455,7 +1455,7 @@ class Connector {
 		 *
 		 * Use this to add or correct plans, for example a new price option of the main product.
 		 *
-		 * @since x.x.x
+		 * @since 1.52.0
 		 *
 		 * @param string $plan     Plan slug inferred from the item ID.
 		 * @param int    $item_id  EDD download ID.
@@ -1470,7 +1470,7 @@ class Connector {
 	 * Written on activation and on every license check, so a site that hasn't run a
 	 * check since updating may be missing newer keys such as plan and price_id.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @return array Stored metadata, or an empty array when no license has been checked.
 	 */
@@ -1482,7 +1482,7 @@ class Connector {
 	/**
 	 * Get the plan slug for the current license, e.g. 'professional' or 'agency'.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @return string Plan slug, or 'unknown' when there is no license data.
 	 */
@@ -1495,7 +1495,7 @@ class Connector {
 		/**
 		 * Filters the plan slug of the current license.
 		 *
-		 * @since x.x.x
+		 * @since 1.52.0
 		 *
 		 * @param string $plan     Plan slug.
 		 * @param array  $metadata Stored license metadata.
@@ -1506,7 +1506,7 @@ class Connector {
 	/**
 	 * Remember the plan of license metadata that is about to be stored.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @param mixed $metadata License metadata being saved.
 	 * @return mixed The metadata, unchanged.
@@ -1524,7 +1524,7 @@ class Connector {
 	/**
 	 * Get the plan of the current license, falling back to the last paid plan seen.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @return string Plan slug, or 'unknown'.
 	 */
@@ -1545,7 +1545,7 @@ class Connector {
 	 *
 	 * Pro is authoritative when it holds a license key, otherwise the free license status is used.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @return bool
 	 */
@@ -1556,7 +1556,7 @@ class Connector {
 		/**
 		 * Filters whether the current license is active.
 		 *
-		 * @since x.x.x
+		 * @since 1.52.0
 		 *
 		 * @param bool $is_active Whether the license status is valid.
 		 */
@@ -1566,7 +1566,7 @@ class Connector {
 	/**
 	 * Get the expiry of the current license.
 	 *
-	 * @since x.x.x
+	 * @since 1.52.0
 	 *
 	 * @return string The EDD expiry date, 'lifetime', or an empty string when unknown.
 	 */
@@ -1577,7 +1577,7 @@ class Connector {
 		/**
 		 * Filters the expiry of the current license.
 		 *
-		 * @since x.x.x
+		 * @since 1.52.0
 		 *
 		 * @param string $expires  EDD expiry date, 'lifetime', or an empty string.
 		 * @param array  $metadata Stored license metadata.
