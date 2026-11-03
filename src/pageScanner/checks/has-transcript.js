@@ -194,10 +194,14 @@ function getSurroundingText( node, radius = 250 ) {
 		// Also check parent's siblings for transcript text
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
+		// visibility is inherited, so when the media itself is hidden (closed tab, accordion, slider)
+		// all nearby text reports hidden too. Only count it when the media is visible.
+		const isNodeVisible = window.getComputedStyle( node ).visibility !== 'hidden';
+
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' || style.visibility === 'hidden' ) {
+				if ( ! style || style.display === 'none' || ( isNodeVisible && style.visibility === 'hidden' ) ) {
 					return NodeFilter.FILTER_REJECT;
 				}
 				return NodeFilter.FILTER_ACCEPT;

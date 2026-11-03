@@ -18,13 +18,18 @@ export const normalizeText = ( text ) => {
 
 /**
  * Check if an element is visibly hidden via CSS or aria attributes
- * @param {HTMLElement} element The element to check
+ * visibility is inherited, so when the container is itself hidden (closed tab, accordion, slider)
+ * every descendant reports hidden too. visibility: hidden only counts when the container is visible.
+ *
+ * @param {HTMLElement} element   The element to check
+ * @param {HTMLElement} container Optional element being evaluated that contains the element
  * @return {boolean} True if element is hidden
  */
-export const isVisiblyHidden = ( element ) => {
+export const isVisiblyHidden = ( element, container = null ) => {
 	const style = window.getComputedStyle( element );
+	const isContainerHidden = container !== null && window.getComputedStyle( container ).visibility === 'hidden';
 	return style.display === 'none' ||
-		style.visibility === 'hidden' ||
+		( ! isContainerHidden && style.visibility === 'hidden' ) ||
 		element.closest( '[aria-hidden="true"]' ) !== null;
 };
 
