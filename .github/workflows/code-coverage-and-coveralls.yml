@@ -120,6 +120,27 @@ jobs:
         if [ -z "$summary" ]; then
           summary="Coverage summary not found in the report - use the coverage-html artifact on this run."
         fi
+
+        # PHPUnit's "Lines" counts statements only. Coveralls reads the clover
+        # file and counts method-declaration lines too, which is why its
+        # percentage reads higher. Report that figure as well so the number
+        # here can be compared with the Coveralls badge.
+        if [ -f coverage/clover.xml ]; then
+          coveralls_line=$(python3 - <<'PY' || true
+        import xml.etree.ElementTree as ET
+        total = covered = 0
+        for line in ET.parse("coverage/clover.xml").getroot().iter("line"):
+            if line.get("type") in ("stmt", "method"):
+                total += 1
+                covered += 1 if int(line.get("count") or 0) > 0 else 0
+        if total:
+            print("Coveralls-style (statement + method lines): {:.2f}% ({}/{})".format(100 * covered / total, covered, total))
+        PY
+          )
+          if [ -n "${coveralls_line:-}" ]; then
+            summary="$summary"$'\n\n'"$coveralls_line"
+          fi
+        fi
         printf '%s\n' "$summary" > coverage/summary.txt
 
         {
