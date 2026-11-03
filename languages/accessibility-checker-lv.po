@@ -699,15 +699,15 @@ msgstr "Izturētie testi"
 #: build/sharedComponents.bundle.js:2
 msgid "Problem"
 msgid_plural "Problems"
-msgstr[0] "Problēmas"
-msgstr[1] "Problēma"
+msgstr[0] "Problēma"
+msgstr[1] "Problēmas"
 msgstr[2] "Problēmas"
 
 #: admin/class-ajax.php:143
 msgid "Contrast Problem"
 msgid_plural "Contrast Problems"
-msgstr[0] "Kontrasta problēmas"
-msgstr[1] "Kontrasta problēma"
+msgstr[0] "Kontrasta problēma"
+msgstr[1] "Kontrasta problēmas"
 msgstr[2] "Kontrasta problēmas"
 
 #: admin/class-ajax.php:149
@@ -728,8 +728,8 @@ msgstr[2] "Nepieciešams pārskatīt"
 #: admin/class-welcome-page.php:197
 msgid "Dismissed Issue"
 msgid_plural "Dismissed Issues"
-msgstr[0] "Ignorētās problēmas"
-msgstr[1] "Ignorēta problēma"
+msgstr[0] "Ignorēta problēma"
+msgstr[1] "Ignorētās problēmas"
 msgstr[2] "Ignorētās problēmas"
 
 #: admin/class-ajax.php:175
@@ -1117,22 +1117,22 @@ msgstr "Skatīt vēsturi"
 #: admin/class-welcome-page.php:119
 msgid "Unique Problem"
 msgid_plural "Unique Problems"
-msgstr[0] "Unikālas problēmas"
-msgstr[1] "Unikāla problēma"
+msgstr[0] "Unikāla problēma"
+msgstr[1] "Unikālas problēmas"
 msgstr[2] "Unikālas problēmas"
 
 #: admin/class-welcome-page.php:145
 msgid "Unique Contrast Problem"
 msgid_plural "Unique Contrast Problems"
-msgstr[0] "Unikālas kontrasta problēmas"
-msgstr[1] "Unikāla kontrasta problēma"
+msgstr[0] "Unikāla kontrasta problēma"
+msgstr[1] "Unikālas kontrasta problēmas"
 msgstr[2] "Unikālas kontrasta problēmas"
 
 #: admin/class-welcome-page.php:171
 msgid "Unique Item Needing Review"
 msgid_plural "Unique Items Needing Review"
-msgstr[0] "Unikāli vienumi, kam nepieciešama pārskatīšana"
-msgstr[1] "Unikāls vienums, kam nepieciešama pārskatīšana"
+msgstr[0] "Unikāls vienums, kam nepieciešama pārskatīšana"
+msgstr[1] "Unikāli vienumi, kam nepieciešama pārskatīšana"
 msgstr[2] "Unikāli vienumi, kam nepieciešama pārskatīšana"
 
 #: admin/class-welcome-page.php:214
@@ -1403,8 +1403,8 @@ msgstr "Saturs tiek pārbaudīts pieejamībai"
 #, php-format
 msgid "Accessibility Checker has scanned %s post for accessibility issues."
 msgid_plural "Accessibility Checker has scanned %s posts for accessibility issues."
-msgstr[0] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
-msgstr[1] "Accessibility Checker ir skenējis %s ierakstu, lai atrastu pieejamības problēmas."
+msgstr[0] "Accessibility Checker ir skenējis %s ierakstu, lai atrastu pieejamības problēmas."
+msgstr[1] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
 msgstr[2] "Accessibility Checker ir skenējis %s ierakstus, lai atrastu pieejamības problēmas."
 
 #: admin/site-health/class-checks.php:200
@@ -1428,8 +1428,8 @@ msgstr "Ierakstu veidi ir konfigurēti pieejamības pārbaudei"
 #, php-format
 msgid "Accessibility Checker is configured to scan %1$s post type: %2$s."
 msgid_plural "Accessibility Checker is configured to scan %1$s post types: %2$s."
-msgstr[0] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
-msgstr[1] "Accessibility Checker ir konfigurēts skenēt %1$s ieraksta veidu: %2$s."
+msgstr[0] "Accessibility Checker ir konfigurēts skenēt %1$s ieraksta veidu: %2$s."
+msgstr[1] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 msgstr[2] "Accessibility Checker ir konfigurēts skenēt %1$s ierakstu veidus: %2$s."
 
 #: admin/site-health/class-free.php:46
@@ -5577,8 +5577,8 @@ msgstr "Šie iestatījumi iespējo globālus labojumus visā jūsu vietnē. Lai 
 #, js-format
 msgid "%d issue found"
 msgid_plural "%d issues found"
-msgstr[0] "Atrastas %d problēmas"
-msgstr[1] "Atrasta %d problēma"
+msgstr[0] "Atrasta %d problēma"
+msgstr[1] "Atrastas %d problēmas"
 msgstr[2] "Atrastas %d problēmas"
 
 #. translators: %d is the number of errors/problems.
@@ -5586,8 +5586,8 @@ msgstr[2] "Atrastas %d problēmas"
 #, js-format
 msgid "%d Problem"
 msgid_plural "%d Problems"
-msgstr[0] "%d problēmas"
-msgstr[1] "%d problēma"
+msgstr[0] "%d problēma"
+msgstr[1] "%d problēmas"
 msgstr[2] "%d problēmas"
 
 #. translators: %d is the number of warnings needing review.
@@ -5604,9 +5604,9 @@ msgstr[2] "%d jāpārskata"
 #, js-format
 msgid "%d Dismissed"
 msgid_plural "%d Dismissed"
-msgstr[0] "%d noraidītu"
-msgstr[1] "%d noraidīts"
-msgstr[2] "%d noraidīti"
+msgstr[0] "%d noraidīts"
+msgstr[1] "%d noraidīti"
+msgstr[2] "%d noraidītu"
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "No issues detected."
@@ -5967,15 +5967,15 @@ msgstr "Tiek atjaunināti pieejamības dati..."
 #: build/sidebar.bundle.js:2
 msgid "problem to address"
 msgid_plural "problems to address"
-msgstr[0] "problēmas, kas jārisina"
-msgstr[1] "problēma, kas jārisina"
+msgstr[0] "problēma, kas jārisina"
+msgstr[1] "problēmas, kas jārisina"
 msgstr[2] "problēmas, kas jārisina"
 
 #: build/sidebar.bundle.js:2
 msgid "issue that needs review"
 msgid_plural "issues that need review"
-msgstr[0] "problēmas, kas jāpārskata"
-msgstr[1] "problēma, kas jāpārskata"
+msgstr[0] "problēma, kas jāpārskata"
+msgstr[1] "problēmas, kas jāpārskata"
 msgstr[2] "problēmas, kas jāpārskata"
 
 #. translators: %1$d = number of errors, %2$s = error text, %3$d = number of warnings, %4$s = warning text
