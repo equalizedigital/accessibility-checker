@@ -1475,8 +1475,27 @@ class AccessibilityCheckerHighlight {
 			buttons.forEach( ( button ) => {
 				button.disabled = false;
 			} );
-			if ( errorSlot ) {
+			if ( errorSlot?.isConnected ) {
 				errorSlot.textContent = err.message;
+			} else {
+				// The user moved to another issue while the request was pending, which replaced the
+				// controls that started it and their error slot. Say so in the panel's status line, naming
+				// the issue, instead of in another issue's controls, and announce it.
+				const failure = sprintf(
+					dismiss
+						// translators: 1: issue title, 2: the reason it failed.
+						? __( 'Could not dismiss "%1$s": %2$s', 'accessibility-checker' )
+						// translators: 1: issue title, 2: the reason it failed.
+						: __( 'Could not reopen "%1$s": %2$s', 'accessibility-checker' ),
+					issue.rule_title || __( 'Untitled issue', 'accessibility-checker' ),
+					err.message
+				);
+				const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+				if ( summary ) {
+					summary.textContent = failure;
+					summary.classList.add( 'edac-error' );
+				}
+				this.announce( failure );
 			}
 			return;
 		}
@@ -1765,6 +1784,9 @@ class AccessibilityCheckerHighlight {
 		const ignoredCount = this.countIgnored();
 		const div = document.querySelector( '.edac-highlight-panel-controls-summary' );
 		const total = errorCount + warningCount;
+
+		// A failure message shown in this line is replaced by the counts, so it must not keep its error styling.
+		div.classList.remove( 'edac-error' );
 
 		if ( total === 0 && ignoredCount === 0 ) {
 			div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ __( 'No issues detected.', 'accessibility-checker' ) }</span>`;

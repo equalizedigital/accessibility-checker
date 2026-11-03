@@ -138,6 +138,56 @@ describe( 'highlighter dismiss when the issue list changes', () => {
 		expect( summary() ).toContain( '1 Dismissed' );
 	} );
 
+	test( 'a failure after the user moved on is shown in the panel status and announced, not lost', async () => {
+		loadHighlighter( { issues: [ makeIssue( 1 ), makeIssue( 2 ) ] } );
+		await openPanel();
+
+		let fail;
+		window.fetch = jest.fn().mockReturnValue( new Promise( ( resolve ) => {
+			fail = () => resolve( { ok: false, json: () => Promise.resolve( { message: 'Nope' } ) } );
+		} ) );
+		document.querySelector( '.edac-highlight-panel-description-dismiss-toggle' ).click();
+		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+		await flush();
+
+		document.getElementById( 'edac-highlight-next' ).click();
+		await flush();
+		expect( shownRule() ).toContain( 'Rule 2' );
+
+		fail();
+		await flush();
+		await flush();
+
+		// announce() sets the live region's text after a short delay.
+		await new Promise( ( resolve ) => setTimeout( resolve, 80 ) );
+
+		const status = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		expect( status.textContent ).toBe( 'Could not dismiss "Rule 1": Nope' );
+		expect( status.classList.contains( 'edac-error' ) ).toBe( true );
+		expect( document.getElementById( 'edac-highlight-announcer' ).textContent ).toContain( 'Could not dismiss "Rule 1": Nope' );
+		// Issue 2's own controls do not carry issue 1's failure.
+		expect( document.querySelector( '.edac-highlight-dismiss-error' ).textContent ).toBe( '' );
+		expect( shownRule() ).toContain( 'Rule 2' );
+	} );
+
+	test( 'the counts replace a failure message and its error styling', async () => {
+		loadHighlighter( { issues: [ makeIssue( 1 ), makeIssue( 2 ) ] } );
+		await openPanel();
+
+		const status = document.querySelector( '.edac-highlight-panel-controls-summary' );
+		status.textContent = 'Could not dismiss "Rule 1": Nope';
+		status.classList.add( 'edac-error' );
+
+		// Moving on and dismissing something refreshes the counts.
+		window.fetch = jest.fn().mockResolvedValue( { ok: true, json: () => Promise.resolve( { success: true } ) } );
+		document.querySelector( '.edac-highlight-panel-description-dismiss-toggle' ).click();
+		document.querySelector( '.edac-highlight-dismiss-form' ).dispatchEvent( new Event( 'submit', { cancelable: true } ) );
+		await flush();
+
+		expect( status.classList.contains( 'edac-error' ) ).toBe( false );
+		expect( status.textContent ).toContain( 'issue' );
+	} );
+
 	test( 'an issue dismissed while selected is still there, with its reopen control, when issues load again', async () => {
 		loadHighlighter( { issues: [ makeIssue( 1 ), makeIssue( 2 ) ] } );
 		await openPanel();
