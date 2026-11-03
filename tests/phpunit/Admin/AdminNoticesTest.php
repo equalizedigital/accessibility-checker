@@ -84,8 +84,19 @@ class AdminNoticesTest extends WP_UnitTestCase {
 	 */
 	public function test_black_friday_segments_with_pro() {
 		define( 'EDACP_VERSION', '1.0.0' );
-		// Pro active with no license state yet gets no notice.
+		// Pro active without a usable license is Free.
+		$this->assertSame( 'free', $this->admin_notices->edac_get_black_friday_segment() );
+		foreach ( [ 'disabled', 'revoked', 'invalid' ] as $status ) {
+			$this->set_license_state( $status, 'agency' );
+			$this->assertSame( 'free', $this->admin_notices->edac_get_black_friday_segment(), $status );
+		}
+		// A license that isn't activated on this site gets no notice.
+		$this->set_license_state( 'inactive', 'professional' );
 		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
+		$this->set_license_state( 'site_inactive', 'agency' );
+		$this->assertSame( '', $this->admin_notices->edac_get_black_friday_segment() );
+		delete_option( 'edac_license_metadata' );
+		delete_option( 'edac_license_last_plan' );
 		$this->set_license_state( 'expired' );
 		$this->assertSame( 'lapsed', $this->admin_notices->edac_get_black_friday_segment() );
 		$this->set_license_state( 'expired', 'professional' );

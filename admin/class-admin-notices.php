@@ -127,11 +127,12 @@ class Admin_Notices {
 	/**
 	 * Work out which Black Friday audience the current site belongs to.
 	 *
-	 * An expired Pro license is Lapsed. Without Pro active the site is Free. A valid license is
+	 * An expired Pro license is Lapsed. Without Pro active, or without a usable license (no key,
+	 * disabled, revoked or invalid), the site is Free. A valid license is
 	 * segmented by the plan stored in the license metadata (Professional, Small Business, SMB+,
 	 * or Agency/Enterprise); SMB+ gets the Small Business notice. Licenses whose plan hasn't been
-	 * recorded yet, which happens until the next daily license check after an update, are left
-	 * without a notice rather than guessed.
+	 * recorded yet, which happens until the next daily license check after an update, and licenses
+	 * that aren't activated on this site, are left without a notice rather than guessed.
 	 *
 	 * @return string One of 'free', 'lapsed', 'professional', 'smb', 'agency', or an empty string
 	 *                when the audience can't be determined and no notice should show.
@@ -165,8 +166,13 @@ class Admin_Notices {
 			}
 		}
 
-		// Pro is active but has no usable license state, so don't guess.
-		return '';
+		// A license that isn't activated on this site can't be judged, so no notice.
+		if ( in_array( $pro_status, [ 'inactive', 'site_inactive' ], true ) ) {
+			return '';
+		}
+
+		// Pro is active but has no usable license: no key, or one that is disabled, revoked or invalid.
+		return 'free';
 	}
 
 	/**
