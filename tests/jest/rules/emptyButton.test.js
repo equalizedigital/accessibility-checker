@@ -245,6 +245,32 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button>',
 			shouldPass: false,
 		},
+		{
+			name: 'should fail for empty button with only an aria-hidden svg inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button><svg aria-hidden="true"><path d="M0 0"></path></svg></button></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with only explicitly hidden text inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with text hidden by a stylesheet class inside a visibility:hidden container',
+			html: '<style>.is-hidden { visibility: hidden; }</style><div style="visibility: hidden;"><button><span class="is-hidden">Close</span></button></div>',
+			shouldPass: false,
+		},
+		// Buttons inside closed tabs or accordions inherit visibility:hidden from the panel.
+		{
+			name: 'should pass for button with text inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button>Click Me</button></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with role="button", text and aria-hidden svg inside a hidden tab panel',
+			html: '<div class="wpb_tab wpb_ui-tabs-hide" style="visibility: hidden; opacity: 0;"><h6><span class="link_wrap"><a class="link_text" role="button" href="/charter-schools"><span class="text">Discover more...</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 22 22"><g><path class="arrow" d="M -2.5 5 C -2.5 5 2.5 0 2.5 0"></path></g></svg></a></span></h6></div>',
+			shouldPass: true,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
@@ -261,6 +287,17 @@ describe( 'Empty Button Validation', () => {
 				expect( results.violations.length ).toBeGreaterThan( 0 );
 			}
 		} );
+	} );
+
+	test( 'should leave the button style attribute as it was after the check', async () => {
+		document.body.innerHTML = '<button id="no-style">Go</button><button id="with-style" style="color: red;">Go</button>';
+
+		await axe.run( document.body, {
+			runOnly: [ 'empty_button' ],
+		} );
+
+		expect( document.getElementById( 'no-style' ).hasAttribute( 'style' ) ).toBe( false );
+		expect( document.getElementById( 'with-style' ).getAttribute( 'style' ) ).toBe( 'color: red;' );
 	} );
 } );
 
