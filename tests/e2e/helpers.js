@@ -17,7 +17,23 @@ const sel = {
 	editorPreviewIframe: '#elementor-preview-iframe',
 	thickboxWindow: '#TB_window',
 	elementorEditArea: '[data-elementor-type="wp-page"]',
+	metaBox: '#edac-meta-box',
+	summaryTab: '#edac-summary-tab',
+	detailsTab: '#edac-details-tab',
+	detailsRuleTitle: '.edac-details-rule-title',
+	sidebarContent: '.edac-sidebar__content',
+	statusCard: '.edac-status-card',
 };
+
+/** Rules the fixture page is known to trip, by their displayed titles. */
+const FIXTURE_RULE_TITLES = [
+	'Empty Button',
+	'Empty Link',
+	'Image Missing Alternative Text',
+	'Incorrect Heading Order',
+];
+
+const SETTINGS_PAGE = '/wp-admin/admin.php?page=accessibility_checker_settings';
 
 /** A page with deliberate, findable accessibility problems. */
 const FIXTURE_CONTENT = [
@@ -178,6 +194,84 @@ async function saveInElementor( page, status = 'publish' ) {
 }
 
 /**
+ * Reset the admin's email opt-in user meta so the opt-in modal shows again.
+ *
+ * Goes through a test-only route installed by global-setup.js (e2e-helpers.php).
+ *
+ * @param {Object} page Playwright page.
+ */
+async function resetOptIn( page ) {
+	const nonce = await getRestNonce( page );
+	const result = await page.evaluate( async ( restNonce ) => {
+		const res = await fetch( '/wp-json/edac-e2e/v1/reset-opt-in', {
+			method: 'POST',
+			headers: { 'X-WP-Nonce': restNonce },
+		} );
+		return res.json();
+	}, nonce );
+
+	if ( ! result.success ) {
+		throw new Error( 'Could not reset the opt-in user meta.' );
+	}
+}
+
+/**
+ * Open a post in the block editor and wait for the plugin's meta box to be in the DOM.
+ *
+ * Block-editor-only: the meta box is injected by the "Block Editor Metabox" setting, so
+ * callers that turn that off should use `openBlockEditorRaw()` and not wait for it.
+ *
+ * @param {Object} page   Playwright page.
+ * @param {number} postId Post id.
+ */
+async function openBlockEditor( page, postId ) {
+	await openBlockEditorRaw( page, postId );
+	await page.waitForSelector( sel.summaryTab, { state: 'attached', timeout: 180_000 } );
+}
+
+/**
+ * Open a post in the block editor and wait for the editor chrome only.
+ *
+ * @param {Object} page   Playwright page.
+ * @param {number} postId Post id.
+ */
+async function openBlockEditorRaw( page, postId ) {
+	await page.goto( `/wp-admin/post.php?post=${ postId }&action=edit`, { waitUntil: 'load' } );
+	await page.waitForSelector( '.editor-post-publish-button', { timeout: 180_000 } );
+}
+
+/**
+ * Expand the collapsed "Meta Boxes" pane at the bottom of the block editor.
+ *
+ * Activated from the keyboard: the pane's resize handle overlaps the toggle button, so
+ * a pointer click is intercepted by the separator.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function expandMetaBoxes( page ) {
+	const toggle = page.getByRole( 'button', { name: 'Meta Boxes' } );
+	if ( ( await toggle.getAttribute( 'aria-expanded' ) ) !== 'true' ) {
+		await toggle.focus();
+		await page.keyboard.press( 'Enter' );
+	}
+}
+
+/**
+ * Submit the plugin's settings form after applying a change to it.
+ *
+ * @param {Object}   page   Playwright page.
+ * @param {Function} change Async callback that edits the form fields.
+ */
+async function saveSettings( page, change ) {
+	await page.goto( SETTINGS_PAGE, { waitUntil: 'load' } );
+	await change( page );
+	await Promise.all( [
+		page.waitForURL( /settings-updated=true/ ),
+		page.locator( '#submit' ).click(),
+	] );
+}
+
+/**
  * Assert a WordPress admin response contains no PHP diagnostics.
  *
  * @param {string} html Response body.
@@ -201,11 +295,18 @@ module.exports = {
 	PLUGIN_SLUG,
 	sel,
 	FIXTURE_CONTENT,
+	FIXTURE_RULE_TITLES,
+	SETTINGS_PAGE,
 	getRestNonce,
 	createPage,
 	deletePage,
 	runScan,
 	openElementorEditor,
 	saveInElementor,
+	openBlockEditor,
+	openBlockEditorRaw,
+	expandMetaBoxes,
+	saveSettings,
+	resetOptIn,
 	expectNoPhpErrors,
 };

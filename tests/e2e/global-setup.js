@@ -17,6 +17,10 @@ const BASE_URL = process.env.E2E_BASE_URL || `http://127.0.0.1:${ PORT }`;
 const REPO_ROOT = path.resolve( __dirname, '..', '..' );
 const AUTH_DIR = path.resolve( __dirname, '.auth' );
 const PID_FILE = path.join( AUTH_DIR, 'playground.pid' );
+// Pinned so the npx install is cacheable in CI; bump deliberately.
+const PLAYGROUND_VERSION = process.env.E2E_PLAYGROUND_VERSION || '3.1.62';
+// Playground warns below 6 workers (deadlocks on file locks), so default to that.
+const PLAYGROUND_WORKERS = process.env.E2E_PLAYGROUND_WORKERS || 6;
 const BOOT_TIMEOUT = Number( process.env.E2E_BOOT_TIMEOUT || 300_000 );
 
 /**
@@ -29,6 +33,12 @@ function blueprint() {
 		preferredVersions: { php: '8.3', wp: 'latest' },
 		steps: [
 			{ step: 'login' },
+			// Test-only REST routes (see e2e-helpers.php).
+			{
+				step: 'writeFile',
+				path: '/wordpress/wp-content/mu-plugins/e2e-helpers.php',
+				data: fs.readFileSync( path.join( __dirname, 'e2e-helpers.php' ), 'utf8' ),
+			},
 			{
 				step: 'installPlugin',
 				pluginData: { resource: 'wordpress.org/plugins', slug: 'elementor' },
@@ -117,12 +127,12 @@ module.exports = async () => {
 			'npx',
 			[
 				'--yes',
-				'@wp-playground/cli@latest',
+				`@wp-playground/cli@${ PLAYGROUND_VERSION }`,
 				'server',
 				`--blueprint=${ blueprintPath }`,
 				`--port=${ PORT }`,
 				'--login',
-				'--workers=1',
+				`--workers=${ PLAYGROUND_WORKERS }`,
 				// mount-before-install (not the post-install --mount): the blueprint's
 				// activatePlugin step below needs the plugin's files on disk already, and
 				// --mount only attaches after the site + blueprint steps have run.
