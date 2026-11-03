@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.50.1\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-09 14:15+0000\n"
-"PO-Revision-Date: 2026-10-09 14:15+0000\n"
+"POT-Creation-Date: 2026-11-03 18:45+0000\n"
+"PO-Revision-Date: 2026-11-03 18:45+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: he_IL\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "נמוך"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -544,27 +544,59 @@ msgstr "רוצה לעשות יותר עם Accessibility Checker? %1$sשחרר א
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "שחרר את תכונות הפרו (נפתח בחלון חדש)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 מבצע יום שישי השחור! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "שדרג/י לגרסה בתשלום של Accessibility Checker בין 24 בנובמבר ל-3 בדצמבר וקבל/י 30% הנחה! סריקת אתר מלאה, דוח בעיות פתוחות בכל האתר, יומני ביטול ועוד."
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "שאל שאלה לפני הרכישה"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "שדרג עכשיו"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 מבצע Black Friday: חסוך 20% וקבל קורס חינם! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "סרוק סוגי פוסטים מותאמים אישית ועמודי ארכיון, ראה כל בעיה במקום אחד וקבל דוחות email משופרים. שדרג בין ה־23 בנובמבר ל־2 בדצמבר כדי לחסוך 20% ולקבל קורס חינם לבחירתך."
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 ברוך שובך: 20% הנחה על Accessibility Checker Pro + קורס חינם! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker שונה בהרבה ממה שאתה זוכר. חדש בין ה־23 בנובמבר ל־2 בדצמבר כדי לחסוך 20% ולבחור קורס חינם."
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "חדש כעת"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 Black Friday: חסוך 25% בשדרוג לתוכנית Small Business! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "קבל רישיונות ל־5 אתרים, היסטוריית ביקורת, ייצוא CSV וגישה לשעות קבלה דו-שבועיות, עם 25% הנחה בעת שדרוג בין ה־23 בנובמבר ל־2 בדצמבר."
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Black Friday: חסוך 25% בשדרוג! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "זקוק לרישיונות נוספים? שדרג ל-SMB+ עבור 10 אתרים, או שדרג עוד יותר עם Agency עבור 25 אתרים, כלי Multisite ותמיכת VIP."
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "שדרג וחסוך 25%"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
 #: admin/class-ajax.php:642
@@ -576,75 +608,75 @@ msgstr "שדרג עכשיו"
 msgid "Permission Denied"
 msgstr "ההרשאה נדחתה"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "עדכון האפשרות לא הצליח"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ מבצע בזק ליום המודעות העולמי לנגישות"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "החל מ-20 במאי: חסוך 15% על קורסי נגישות ועל ArchiveWP עם קוד קופון "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "3 ימים בלבד • 20–22 במאי"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "הצג תמחור ArchiveWP"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "הצג תמחור קורסים"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "החל מ-20 במאי: חסוך 15% על Accessibility Checker Pro עם קוד קופון "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "הצג תמחור"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "חסוך 15% על קורסי נגישות ועל ArchiveWP עם קוד קופון "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "הצעה לזמן מוגבל • מסתיימת ב-22 במאי"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "3 ימים בלבד: חסוך 15% כשאתה משדרג ל-Accessibility Checker Pro עם קוד קופון "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "שלום! תודה שאתה משתמש ב-Accessibility Checker כחלק מערכת הכלים שלך לנגישות. מכיוון שאתה משתמש בו כבר זמן מה, האם תוכל בבקשה לכתוב ביקורת של 5 כוכבים על Accessibility Checker בספריית התוספים של WordPress? זה יעזור להגדיל את הנראות שלנו כך שיותר אנשים יוכלו ללמוד על חשיבות הנגישות באינטרנט. תודה רבה!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "כתוב ביקורת"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "הזכר לי בעוד שבועיים"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "אל תשאל יותר"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "ערך פעולת הביקורת לא הוגדר"
 
@@ -755,7 +787,7 @@ msgid "No summary to return"
 msgstr "אין סיכום להחזרה"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "שם טבלה לא חוקי"
 
@@ -970,7 +1002,7 @@ msgid "The id value was not set"
 msgstr "ערך המזהה לא הוגדר"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "הפוסט לא נמצא"
 
@@ -978,7 +1010,7 @@ msgstr "הפוסט לא נמצא"
 msgid "Issue query returned no results"
 msgstr "שאילתת הבעיה לא החזירה תוצאות"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "שאילתת האובייקט לא החזירה תוצאות"
 
@@ -1015,12 +1047,14 @@ msgid "Date:"
 msgstr "תאריך:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "פתח מחדש בעיה"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1042,6 +1076,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "לחשבון המשתמש שלך אין הרשאה לבטל בעיה זו."
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1563,20 +1598,20 @@ msgstr "קבל את Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "קבל Accessibility Checker Pro (נפתח בחלון חדש)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "מצטערים, אין לך הרשאה לבטל התראות על בעיות."
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "מצטערים, אין לך הרשאה לבטל התראות על בעיות באופן גלובלי."
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "הבעיה לא נמצאה."
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "העדכון של הבעיה נכשל."
 
@@ -1912,61 +1947,61 @@ msgstr "תיקון לא נמצא"
 msgid "Fix not found."
 msgstr "התיקון לא נמצא."
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "אין לך הרשאה לנהל רישיון זה."
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "ניהול רישיון Pro פעיל. אנא נהל את הרישיון שלך מתוך Accessibility Checker Pro."
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "אירעה שגיאה, אנא נסה/נסי שוב."
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "אין לך הרשאה לרשום אתר זה."
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "אין לך הרשאה לבטל את רישום אתר זה."
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "לא נמצא מפתח רישיון. אנא הפעל/י רישיון לפני רישום האתר שלך."
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "אירעה שגיאה בלתי צפויה במהלך רישום האתר."
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "האתר נרשם בהצלחה. האתר שלך מוגדר כעת לשימוש בשירותי Accessibility נוספים."
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "רישום האתר הושלם, אך נתוני התגובה לא היו בפורמט הצפוי. ייתכן שתכונות מסוימות לא יפעלו כהלכה."
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "לא ניתן לבטל את רישום האתר. חסרים נתוני רישום נדרשים."
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "אירעה שגיאה בלתי צפויה במהלך ביטול רישום האתר."
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "רישום האתר בוטל בהצלחה. האתר שלך לא יקבל עוד דוחות email."
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "לא סופק מפתח רישיון."
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "חסרים פרמטרים נדרשים לביטול רישום."
 
@@ -3582,7 +3617,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "ברוכים הבאים ל-Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:117
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "הגדרות Accessibility Checker"
 
@@ -3793,7 +3828,7 @@ msgstr "האם Accessibility Checker צריך לבקש תקציר מפושט ר�
 
 #: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
-msgstr "כדי לבדוק תוכן אחר מלבד פוסטים ועמודים, אנא "
+msgstr "כדי לבדוק תוכן אחר מלבד פוסטים ועמודים, נא "
 
 #: includes/options-page.php:1307
 msgid "upgrade to pro"
@@ -5145,6 +5180,10 @@ msgstr "או הפעל את מפתח הרישיון שלך כאן."
 msgid "General"
 msgstr "כללי"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "הגדרות Accessibility Checker נשמרו."
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "גרסה"
@@ -5324,6 +5363,10 @@ msgid "Fix Settings"
 msgstr "הגדרות תיקון"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "סריקת הנגישות לא הסתיימה, ולכן התוצאות השמורות שלך נותרו ללא שינוי."
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5373,6 +5416,80 @@ msgstr "EDAC: שגיאה בעדכון ההיסטוריה עבור קישור ה�
 msgid "Close fixes modal"
 msgstr "סגור חלון תיקונים"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "הבעיה בוטלה — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "הבעיה בוטלה"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "היקף:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "כל הדפים"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "מאת:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "בתאריך:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "סיבת הביטול:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "הסר/י ביטול גלובלי"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "הערה (אופציונלי)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "הוסף הערה המסבירה מדוע בעיה זו נדחית."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "בטל גלובלית"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "לא ניתן לעדכן את התקלה. אנא נסה שוב."
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5380,6 +5497,7 @@ msgid "%1$d of %2$d"
 msgstr "%1$d מתוך %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "בעיה ללא כותרת"
 
@@ -5538,6 +5656,40 @@ msgstr "תקן בעיה: %s"
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "תקן בעיה"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "מבטל..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "פותח מחדש..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "לא ניתן להתעלם מ־”%1$s“: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "לא ניתן לפתוח מחדש את ”%1$s“: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "הבעיה בוטלה בהצלחה."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "הבעיה נפתחה מחדש בהצלחה."
 
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
@@ -5709,92 +5861,13 @@ msgstr "תמונה קשורה לבעיה"
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "הבעיה בוטלה בהצלחה."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "הבעיה נפתחה מחדש בהצלחה."
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "בטל גלובלית"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "מבטל/ת גלובלית..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "מבטל..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "הבעיה בוטלה — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "הבעיה בוטלה"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "היקף:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "כל הדפים"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "מאת:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "בתאריך:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "סיבת הביטול:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "מסיר/ה..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "הסר/י ביטול גלובלי"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "פותח מחדש..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "הערה (אופציונלי)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "הוסף הערה המסבירה מדוע בעיה זו נדחית."
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
