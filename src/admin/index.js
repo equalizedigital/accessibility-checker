@@ -15,6 +15,7 @@ import {
 	findRuleDisplayBtn,
 	restoreDismissIssueFocus,
 } from './details/dismiss-issue-focus';
+import { __ } from '@wordpress/i18n';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -387,6 +388,7 @@ const edacScriptVars = edac_script_vars;
 								? '<strong>Date:</strong> ' + data.ignre_date
 								: '';
 
+							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Successfully dismissed issue', 'accessibility-checker' ) : __( 'Successfully undismissed issue', 'accessibility-checker' );
 							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
@@ -517,7 +519,12 @@ const edacScriptVars = edac_script_vars;
 						} else {
 							// eslint-disable-next-line no-console
 							console.log( data );
+							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
 						}
+					} ).fail( function( data ) {
+						// eslint-disable-next-line no-console
+						console.log( data );
+						document.querySelector( '#success-message-' + issueId ).textContent = data?.responseJSON.message ?? __( 'An unknown error occurred' );
 					} );
 				}
 			);
