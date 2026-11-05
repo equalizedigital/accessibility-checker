@@ -63,25 +63,39 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 				'rule'   => 'empty_link',
 			]
 		);
+		$base_row = [
+			'postid'        => self::$post_id,
+			'siteid'        => get_current_blog_id(),
+			'type'          => 'post',
+			'rule'          => 'empty_link',
+			'ruletype'      => 'error',
+			'object'        => '<a></a>',
+			'selector'      => 'a[href="#"]',
+			'recordcheck'   => 1,
+			'user'          => self::$admin_id,
+			'ignre'         => 0,
+			'ignre_global'  => 0,
+			'ignre_user'    => null,
+			'ignre_date'    => null,
+			'ignre_reason'  => null,
+			'ignre_comment' => null,
+		];
+
+		// First record: no image and no landmark, so both cells are empty.
+		$wpdb->insert( $table_name, $base_row ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for a focused AJAX regression test.
+
+		// Second record: has an image and a landmark, so both cells have content.
 		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for a focused AJAX regression test.
 			$table_name,
-			[
-				'postid'        => self::$post_id,
-				'siteid'        => get_current_blog_id(),
-				'type'          => 'post',
-				'rule'          => 'empty_link',
-				'ruletype'      => 'error',
-				'object'        => '<a></a>',
-				'selector'      => 'a[href="#"]',
-				'recordcheck'   => 1,
-				'user'          => self::$admin_id,
-				'ignre'         => 0,
-				'ignre_global'  => 0,
-				'ignre_user'    => null,
-				'ignre_date'    => null,
-				'ignre_reason'  => null,
-				'ignre_comment' => null,
-			]
+			array_merge(
+				$base_row,
+				[
+					'object'            => '<a href="#"><img src="https://example.org/photo.jpg"></a>',
+					'selector'          => 'main a[href="#"]',
+					'landmark'          => 'main',
+					'landmark_selector' => 'main',
+				]
+			)
 		);
 	}
 
@@ -149,7 +163,7 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 		$heading_text   = preg_replace( '/\s+/', ' ', $heading->item( 0 )->textContent );
 
 		$this->assertIsString( $heading_text );
-		$this->assertStringContainsString( '1', $heading_text );
+		$this->assertStringContainsString( '2', $heading_text );
 		$this->assertStringContainsString( 'total', $heading_markup );
 		$this->assertStringContainsString( 'Critical', $heading_text );
 	}
@@ -168,18 +182,71 @@ class AjaxDetailsTest extends WP_Ajax_UnitTestCase {
 			'edac-details-rule-records-record-actions'  => 'Actions',
 		];
 
-		foreach ( $expects as $cell_class => $label ) {
-			$cells = $xpath->query( '//div[contains(concat(" ", normalize-space(@class), " "), " ' . $cell_class . ' ")]' );
-			$this->assertSame( 1, $cells->length, $cell_class );
-
-			$headings = $xpath->query( './h5[@class="screen-reader-text"]', $cells->item( 0 ) );
-			$this->assertSame( 1, $headings->length, $cell_class );
-			$this->assertSame( $label, trim( $headings->item( 0 )->textContent ) );
+		// The visual labels row uses the same column names, in the same order.
+		$labels = $xpath->query( '//div[@class="edac-details-rule-records-labels-label"]' );
+		$this->assertSame( count( $expects ), $labels->length );
+		foreach ( array_values( $expects ) as $index => $label ) {
+			$this->assertSame( $label, trim( $labels->item( $index )->textContent ) );
 		}
 
-		// The field headings belong to the record right after its Issue ID heading.
-		$record_headings = $xpath->query( '//h4[@class="screen-reader-text"]/following-sibling::div[1][@class="edac-details-rule-records-record"]//h5[@class="screen-reader-text"]' );
-		$this->assertSame( count( $expects ), $record_headings->length );
+		foreach ( $expects as $cell_class => $label ) {
+			$cells = $xpath->query( $this->cell_query( $cell_class ) );
+			$this->assertSame( 2, $cells->length, $cell_class );
+
+			foreach ( $cells as $cell ) {
+				$headings = $xpath->query( './h5[@class="screen-reader-text"]', $cell );
+				$this->assertSame( 1, $headings->length, $cell_class );
+				$this->assertSame( $label, trim( $headings->item( 0 )->textContent ) );
+			}
+		}
+
+		// Each Issue ID heading is followed by its record with all four field headings.
+		$records = $xpath->query( '//h4[@class="screen-reader-text"]/following-sibling::div[1][@class="edac-details-rule-records-record"]' );
+		$this->assertSame( 2, $records->length );
+		foreach ( $records as $record ) {
+			$this->assertSame( count( $expects ), $xpath->query( './/h5[@class="screen-reader-text"]', $record )->length );
+		}
+	}
+
+	/**
+	 * Verify empty Image and Landmark cells say "None" to screen readers, and filled cells do not.
+	 *
+	 * @return void
+	 */
+	public function test_details_empty_cells_have_screen_reader_none_text(): void {
+		$xpath = $this->get_details_xpath();
+		$none  = './span[@class="screen-reader-text"][normalize-space()="None"]';
+
+		$image_cells    = $xpath->query( $this->cell_query( 'edac-details-rule-records-record-image' ) );
+		$landmark_cells = $xpath->query( $this->cell_query( 'edac-details-rule-records-record-landmark' ) );
+		$this->assertSame( 2, $image_cells->length );
+		$this->assertSame( 2, $landmark_cells->length );
+
+		$empty_cells  = 0;
+		$filled_cells = 0;
+		foreach ( [ $image_cells, $landmark_cells ] as $cells ) {
+			foreach ( $cells as $cell ) {
+				$has_content = $xpath->query( './img | ./a', $cell )->length > 0;
+				$none_count  = $xpath->query( $none, $cell )->length;
+
+				$this->assertSame( $has_content ? 0 : 1, $none_count );
+				$has_content ? ++$filled_cells : ++$empty_cells;
+			}
+		}
+
+		// One record has no image or landmark, the other has both.
+		$this->assertSame( 2, $empty_cells );
+		$this->assertSame( 2, $filled_cells );
+	}
+
+	/**
+	 * Build an XPath query that matches record cells with the given class.
+	 *
+	 * @param string $cell_class Cell class name.
+	 * @return string
+	 */
+	private function cell_query( string $cell_class ): string {
+		return '//div[contains(concat(" ", normalize-space(@class), " "), " ' . $cell_class . ' ")]';
 	}
 
 	/**

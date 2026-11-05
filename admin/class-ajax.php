@@ -471,21 +471,20 @@ class Ajax {
 
 
 
-					$html .=
-						'<div class="edac-details-rule-records-labels">
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Image', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Landmark', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Actions', 'accessibility-checker' ) . '
-							</div>
-						</div>';
+					// Shared by the visual labels row and the screen reader only cell headings so they stay in sync.
+					$column_labels = [
+						'object'   => __( 'Affected Code', 'accessibility-checker' ),
+						'image'    => __( 'Image', 'accessibility-checker' ),
+						'landmark' => __( 'Landmark', 'accessibility-checker' ),
+						'actions'  => __( 'Actions', 'accessibility-checker' ),
+					];
+					$empty_cell    = '<span class="screen-reader-text">' . esc_html__( 'None', 'accessibility-checker' ) . '</span>';
+
+					$html .= '<div class="edac-details-rule-records-labels">';
+					foreach ( $column_labels as $column_label ) {
+						$html .= '<div class="edac-details-rule-records-labels-label" aria-hidden="true">' . esc_html( $column_label ) . '</div>';
+					}
+					$html .= '</div>';
 
 					foreach ( $results as $row ) {
 
@@ -512,7 +511,7 @@ class Ajax {
 						// Screen reader only headings give each cell the context of the aria-hidden column labels.
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
 
-						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '</h5>';
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['object'] ) . '</h5>';
 
 						$html .= '<code>' . esc_html( $row['object'] ) . '</code>';
 
@@ -520,7 +519,7 @@ class Ajax {
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
 
-						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Image', 'accessibility-checker' ) . '</h5>';
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['image'] ) . '</h5>';
 
 						if ( $object_img ) {
 							$html .= '<img src="' . esc_url( $object_img ) . '" alt="' . esc_attr(
@@ -540,24 +539,27 @@ class Ajax {
 									$id
 								)
 							) . '" />';
+						} else {
+							$html .= $empty_cell;
 						}
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
 
-						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Landmark', 'accessibility-checker' ) . '</h5>';
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['landmark'] ) . '</h5>';
 
 						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
 
-						$html .= edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
+						$landmark_link = edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
+						$html         .= '' !== $landmark_link ? $landmark_link : $empty_cell;
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
 
-						$html .= '<h5 class="screen-reader-text">' . esc_html__( 'Actions', 'accessibility-checker' ) . '</h5>';
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['actions'] ) . '</h5>';
 
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
