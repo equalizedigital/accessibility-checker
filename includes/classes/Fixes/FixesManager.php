@@ -14,6 +14,7 @@ use EqualizeDigital\AccessibilityChecker\Fixes\Fix\AddNewWindowWarningFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\BlockPDFUploadsFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\CommentSearchLabelFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\EmptySearchFix;
+use EqualizeDigital\AccessibilityChecker\Fixes\Fix\EmptyParagraphTagFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\HTMLLangAndDirFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\RemoveTitleIfPrefferedAccessibleNameFix;
 use EqualizeDigital\AccessibilityChecker\Fixes\Fix\PreventLinksOpeningNewWindowFix;
@@ -144,6 +145,7 @@ class FixesManager {
 				AddLabelToUnlabelledFormFieldsFix::class,
 				AddNewWindowWarningFix::class,
 				EmptySearchFix::class,
+				EmptyParagraphTagFix::class,
 			]
 		);
 		if ( ! is_array( $fixes ) ) {
