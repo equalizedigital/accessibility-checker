@@ -325,6 +325,11 @@ class Connector {
 			return;
 		}
 
+		// A local site can never connect, so do not use up a license activation on it.
+		if ( $this->refuse_local_site() ) {
+			return;
+		}
+
 		$api_params = [
 			'edd_action' => 'activate_license',
 			'license'    => $license,
@@ -400,6 +405,7 @@ class Connector {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
+		ConnectionStatus::clear();
 	}
 
 	/**
@@ -667,6 +673,28 @@ class Connector {
 	}
 
 	/**
+	 * Show a notice and report true when this site is local.
+	 *
+	 * @return bool True when the site is local and must not connect.
+	 */
+	private function refuse_local_site(): bool {
+		if ( ! ConnectionStatus::is_local_site() ) {
+			return false;
+		}
+
+		set_transient(
+			$this->get_notice_transient_key(),
+			[
+				'type'    => 'warning',
+				'message' => __( 'Email reports cannot be enabled on a local site because our service cannot reach it to collect report data.', 'accessibility-checker' ),
+			],
+			self::NOTICE_TRANSIENT_TTL
+		);
+
+		return true;
+	}
+
+	/**
 	 * Handle the site registration process including UI feedback.
 	 *
 	 * @since 1.40.0
@@ -674,6 +702,10 @@ class Connector {
 	 * @return bool True when registration succeeded and state was saved.
 	 */
 	private function handle_site_registration(): bool {
+		if ( $this->refuse_local_site() ) {
+			return false;
+		}
+
 		$license_key = self::get_license_key();
 		if ( empty( $license_key ) ) {
 			set_transient(
@@ -751,7 +783,7 @@ class Connector {
 	 */
 	public function handle_pro_license_activation( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
 		$site_id = (string) get_option( 'edac_site_id', '' );
-		if ( '' === $site_id ) {
+		if ( '' === $site_id || ConnectionStatus::is_local_site() ) {
 			return;
 		}
 
