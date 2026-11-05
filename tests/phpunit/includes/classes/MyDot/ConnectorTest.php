@@ -1133,4 +1133,41 @@ class ConnectorTest extends WP_UnitTestCase {
 
 		$this->assertFalse( get_option( 'edac_site_id', false ) );
 	}
+
+	/**
+	 * The license form redirect carries a flag so the result is announced only
+	 * after a submit, not on every load of a page that shows a stored error.
+	 */
+	public function test_handle_license_post_redirect_adds_submitted_flag() {
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+
+		$nonce                          = wp_create_nonce( 'edac_license_nonce' );
+		$_POST['edac_license_nonce']    = $nonce;
+		$_REQUEST['edac_license_nonce'] = $nonce;
+		$_SERVER['HTTP_REFERER']        = admin_url( 'admin.php?page=accessibility_checker_settings&tab=accessibility-reports' );
+
+		add_filter(
+			'wp_redirect',
+			static function ( $location ) {
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Test exception message.
+				throw new Exception( $location );
+			}
+		);
+
+		$location = '';
+		try {
+			( new Connector() )->handle_license_post();
+		} catch ( Exception $e ) {
+			$location = $e->getMessage();
+		} finally {
+			remove_all_filters( 'wp_redirect' );
+			unset( $_POST['edac_license_nonce'], $_REQUEST['edac_license_nonce'], $_SERVER['HTTP_REFERER'] );
+			wp_set_current_user( 0 );
+		}
+
+		$this->assertSame(
+			admin_url( 'admin.php?page=accessibility_checker_settings&tab=accessibility-reports&edac_license_submitted=1' ),
+			$location
+		);
+	}
 }
