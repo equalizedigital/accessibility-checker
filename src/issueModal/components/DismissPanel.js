@@ -9,7 +9,7 @@ import { speak } from '@wordpress/a11y';
 import { decodeEntities } from '@wordpress/html-entities';
 import { Panel, PanelBody, Button, Spinner, Notice, RadioControl, Dropdown } from '@wordpress/components';
 import { chevronDown } from '@wordpress/icons';
-import { useState, useRef } from '@wordpress/element';
+import { useState, useRef, useEffect } from '@wordpress/element';
 import RichTextarea from './RichTextarea';
 import { toggleIssueDismiss } from '../api';
 import { setPendingRefetch } from '../index';
@@ -44,17 +44,26 @@ const DismissPanel = ( {
 	canDismissGlobally = false,
 } ) => {
 	const panelRef = useRef( null );
+	const restoreFocusRef = useRef( false );
 	const [ comment, setComment ] = useState( issue?.ignre_comment ? decodeEntities( issue.ignre_comment ) : '' );
 	const [ dismissReason, setDismissReason ] = useState( issue?.ignre_reason || 'accessible' );
 	const [ isSubmitting, setIsSubmitting ] = useState( false );
 	const [ error, setError ] = useState( null );
 	const [ successNotice, setSuccessNotice ] = useState( null );
+	const [ noticeStatus, setNoticeStatus ] = useState( 'success' );
 	const [ isIgnored, setIsIgnored ] = useState( issue?.ignre === '1' || issue?.ignre === 1 );
 	const isGloballyDismissed = issue?.ignre_global === 1 || issue?.ignre_global === '1';
 	const canUseGlobalDismiss = isPro && canDismissGlobally;
 	const dismissGlobally = canUseGlobalDismiss && forceGlobal;
 	const dismissReasonOptions = getDismissReasonOptions();
 	const dismissReasonLabel = dismissReasonOptions.find( ( option ) => option.value === issue?.ignre_reason )?.label;
+	useEffect( () => {
+		if ( restoreFocusRef.current ) {
+			restoreFocusRef.current = false;
+			panelRef.current?.querySelector( '.components-panel__body-toggle' )?.focus();
+		}
+	}, [ isIgnored ] );
+
 	const handleToggleIgnore = async ( ignore, isGlobal = false ) => {
 		setIsSubmitting( true );
 		setError( null );
@@ -62,12 +71,17 @@ const DismissPanel = ( {
 
 		try {
 			const response = await toggleIssueDismiss( issue.id, ignore, ignore ? dismissReason : '', ignore ? comment : '', ignore ? isGlobal : isGloballyDismissed );
+			restoreFocusRef.current = true;
 			setIsIgnored( ignore );
 			const successMessage = ignore
 				? __( 'Issue dismissed successfully.', 'accessibility-checker' )
 				: __( 'Issue reopened successfully.', 'accessibility-checker' );
-			setSuccessNotice( successMessage );
-			speak( successMessage, 'polite' );
+			// The change worked, but an add-on can attach a warning to the response (Pro does when it
+			// could not save a global dismissal). Show that instead of plain success.
+			const warning = 'string' === typeof response?.warning ? response.warning : '';
+			setNoticeStatus( warning ? 'warning' : 'success' );
+			setSuccessNotice( warning || successMessage );
+			speak( warning || successMessage, warning ? 'assertive' : 'polite' );
 			// Keep local issue fields in sync so UI reflects reason/comment immediately.
 			// Use the same keys as both the details processor and dismiss response.
 			if ( ignore && response && response.success ) {
@@ -97,7 +111,9 @@ const DismissPanel = ( {
 				onIgnore( issue, ignore );
 			}
 
-			return true;
+			// True only for a clean success. A warning is something the user has to read, so callers
+			// that would close the modal afterwards keep it open, as they do for an error.
+			return ! warning;
 		} catch ( err ) {
 			setError( err.message );
 			return false;
@@ -264,9 +280,9 @@ const DismissPanel = ( {
 										disabled={ isSubmitting }
 										onClick={ () => {
 											onClose();
-											handleToggleIgnore( true, dismissGlobally ).then( () => {
-												// close the entire modal after dismissing.
-												if ( onCloseModal ) {
+											handleToggleIgnore( true, dismissGlobally ).then( ( succeeded ) => {
+												// close the entire modal after dismissing, unless there is an error or warning to read.
+												if ( succeeded && onCloseModal ) {
 													onCloseModal();
 												}
 											} );
@@ -311,7 +327,9 @@ const DismissPanel = ( {
 					<div className="edac-analysis__panel-content">
 						{ successNotice && (
 							<Notice
-								status="success"
+								status={ noticeStatus }
+								// The warning is announced assertively by speak() above, so the notice's own polite announcement would repeat it.
+								spokenMessage={ 'warning' === noticeStatus ? '' : undefined }
 								isDismissible={ true }
 								onRemove={ () => {
 									panelRef.current?.querySelector( '.components-panel__body-toggle, button' )?.focus();
