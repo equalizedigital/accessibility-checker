@@ -75,8 +75,22 @@ export default {
 		}
 
 		// A sibling with screen reader only text (detected by CSS) gives the content an accessible name.
+		// The sibling must still be exposed to assistive technology, and its name can come from image alt text.
 		for ( const sibling of parentNode.children ) {
-			if ( sibling !== node && sibling.textContent.trim() && isScreenReaderOnly( sibling ) ) {
+			if ( sibling === node || ! isScreenReaderOnly( sibling ) || sibling.closest( '[aria-hidden="true"]' ) ) {
+				continue;
+			}
+
+			const siblingStyle = window.getComputedStyle( sibling );
+			if ( siblingStyle.display === 'none' || siblingStyle.visibility === 'hidden' ) {
+				continue;
+			}
+
+			if (
+				sibling.textContent.trim() ||
+				sibling.matches( 'img[alt]:not([alt=""])' ) ||
+				sibling.querySelector( 'img[alt]:not([alt=""])' )
+			) {
 				return true;
 			}
 		}

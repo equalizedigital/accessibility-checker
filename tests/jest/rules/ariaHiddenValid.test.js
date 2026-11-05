@@ -154,6 +154,12 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for sr-only sibling whose name comes from image alt text',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt="About"></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for display:none',
 			html: '<div style="display:none;" aria-hidden="true">Hidden content</div>',
 			shouldPass: true,
@@ -226,6 +232,24 @@ describe( 'Aria Hidden Validation', () => {
 			name: 'should fail when the sr-only sibling has no text',
 			html: '<span><svg aria-hidden="true"></svg><span class="srt"></span></span>',
 			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling only has an image with empty alt',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt=""></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is itself aria-hidden',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt" aria-hidden="true">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is display:none',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); display: none; }',
 			shouldPass: false,
 		},
 		{
