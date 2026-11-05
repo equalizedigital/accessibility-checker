@@ -5,12 +5,7 @@
  * @return {boolean} True if the aria-hidden usage is valid, false otherwise.
  */
 
-// Common screen reader text classes
-const srClasses = [
-	'screen-reader-text', 'sr-only', 'show-for-sr', 'visuallyhidden',
-	'visually-hidden', 'hidden-visually', 'invisible',
-	'accessibly-hidden', 'hide', 'hidden',
-];
+import { isScreenReaderOnly } from '../helpers/helpers';
 
 export default {
 	id: 'aria_hidden_valid_usage',
@@ -79,16 +74,10 @@ export default {
 			}
 		}
 
-		// Check siblings for screen reader text classes
-		const siblings = Array.from( parentNode.children );
-		for ( const sibling of siblings ) {
-			if ( sibling !== node ) {
-				for ( const srClass of srClasses ) {
-					if ( sibling.classList.contains( srClass ) ||
-						sibling.className.toLowerCase().includes( srClass ) ) {
-						return true;
-					}
-				}
+		// A sibling with screen reader only text (detected by CSS) gives the content an accessible name.
+		for ( const sibling of parentNode.children ) {
+			if ( sibling !== node && sibling.textContent.trim() && isScreenReaderOnly( sibling ) ) {
+				return true;
 			}
 		}
 

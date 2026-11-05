@@ -112,6 +112,16 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'passes when transcript text is inside a visible container further up the section',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'flags when the only transcript text is inside a display:none ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="display: none;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: false,
+		},
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{

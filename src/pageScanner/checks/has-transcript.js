@@ -5,6 +5,8 @@
  * to ensure compliance with accessibility guidelines.
  */
 
+import { isElementVisible } from '../helpers/helpers';
+
 const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
@@ -196,11 +198,7 @@ function getSurroundingText( node, radius = 250 ) {
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
-				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' || style.visibility === 'hidden' ) {
-					return NodeFilter.FILTER_REJECT;
-				}
-				return NodeFilter.FILTER_ACCEPT;
+				return isElementVisible( textNode.parentElement ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );
