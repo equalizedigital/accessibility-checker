@@ -99,6 +99,9 @@ class ConnectionStatus {
 	/**
 	 * Check whether a host name points to a local address.
 	 *
+	 * Host names are not resolved, so a name that only resolves to a private
+	 * address is not detected. That site gets the missed pull warning instead.
+	 *
 	 * @param string $host Host name or IP address.
 	 * @return bool
 	 */
@@ -125,7 +128,9 @@ class ConnectionStatus {
 	/**
 	 * Check whether the site asks anonymous visitors for htpasswd credentials.
 	 *
-	 * The result is cached so the settings page does not wait on a request each time.
+	 * Requests the route My Dot pulls from. The result is cached so the settings
+	 * page does not wait on a request each time. A failed request is only cached
+	 * for a short time because it says nothing about the protection.
 	 *
 	 * @return bool
 	 */
@@ -136,18 +141,24 @@ class ConnectionStatus {
 		}
 
 		$response = wp_remote_head(
-			home_url( '/' ),
+			rest_url( 'accessibility-checker/v1/scans-stats' ),
 			[
 				'timeout'   => 3, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- same limit as VIP, this runs on an admin page.
 				'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter for requests to the site itself.
 			]
 		);
 
+		if ( is_wp_error( $response ) ) {
+			set_transient( self::BASIC_AUTH_TRANSIENT, 'no', 5 * MINUTE_IN_SECONDS );
+			return false;
+		}
+
 		$is_protected = false;
-		if ( ! is_wp_error( $response ) && 401 === (int) wp_remote_retrieve_response_code( $response ) ) {
-			$header       = wp_remote_retrieve_header( $response, 'www-authenticate' );
-			$header       = is_array( $header ) ? implode( ',', $header ) : (string) $header;
-			$is_protected = false !== stripos( $header, 'basic' );
+		if ( 401 === (int) wp_remote_retrieve_response_code( $response ) ) {
+			$header = wp_remote_retrieve_header( $response, 'www-authenticate' );
+			$header = is_array( $header ) ? implode( ',', $header ) : (string) $header;
+			// Match the scheme only, not the word inside a quoted realm.
+			$is_protected = 1 === preg_match( '/(^|,)\s*basic(\s|,|$)/i', (string) preg_replace( '/"[^"]*"/', '""', $header ) );
 		}
 
 		set_transient( self::BASIC_AUTH_TRANSIENT, $is_protected ? 'yes' : 'no', HOUR_IN_SECONDS );

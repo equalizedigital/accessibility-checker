@@ -150,6 +150,9 @@ class AccessibilityReportsPage implements PageInterface {
 								<p>
 									<?php esc_html_e( 'Your license has expired. This site is still connected but reports may stop until your license is renewed.', 'accessibility-checker' ); ?>
 								</p>
+								<?php if ( ConnectionStatus::ISSUE_LOCAL === $issue ) : ?>
+									<p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p>
+								<?php endif; ?>
 								<p>
 									<a href="<?php echo esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'renew', false ) ); ?>" target="_blank" rel="noopener noreferrer">
 										<?php esc_html_e( 'Renew your license', 'accessibility-checker' ); ?>
@@ -362,7 +365,7 @@ class AccessibilityReportsPage implements PageInterface {
 
 			return sprintf(
 				/* translators: %s: My Dot account URL. */
-				__( 'This site is password protected, so our service cannot collect report data. Add the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account</a> to fix this.', 'accessibility-checker' ),
+				__( 'This site is password protected, so our service needs credentials to collect report data. Add or update the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account</a>. If they are already correct, a firewall or security plugin may be blocking our service.', 'accessibility-checker' ),
 				esc_url( $account_url )
 			);
 		}

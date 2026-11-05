@@ -118,6 +118,7 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 	 * Tests that the filter can override local detection.
 	 */
 	public function test_is_local_site_can_be_filtered() {
+		add_filter( 'edac_is_local_site', '__return_false' );
 		$this->assertFalse( ConnectionStatus::is_local_site() );
 
 		add_filter( 'edac_is_local_site', '__return_true' );
@@ -131,6 +132,57 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 		$this->mock_http( 401, [ 'www-authenticate' => 'Basic realm="Staging"' ] );
 
 		$this->assertTrue( ConnectionStatus::is_behind_basic_auth() );
+	}
+
+	/**
+	 * Tests that Basic is found as a later challenge but not in a quoted realm.
+	 */
+	public function test_basic_auth_matches_scheme_only() {
+		$this->mock_http( 401, [ 'www-authenticate' => 'Digest realm="Staging", Basic realm="Staging"' ] );
+		$this->assertTrue( ConnectionStatus::is_behind_basic_auth() );
+
+		delete_transient( ConnectionStatus::BASIC_AUTH_TRANSIENT );
+		remove_all_filters( 'pre_http_request' );
+		$this->mock_http( 401, [ 'www-authenticate' => 'Bearer realm="Basic API, basic"' ] );
+		$this->assertFalse( ConnectionStatus::is_behind_basic_auth() );
+	}
+
+	/**
+	 * Tests that the check requests the route My Dot pulls from.
+	 */
+	public function test_basic_auth_check_requests_stats_route() {
+		$requested = '';
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) use ( &$requested ) {
+				$requested = $url;
+				return new WP_Error( 'http_request_failed', 'Loopback blocked' );
+			},
+			10,
+			3
+		);
+
+		ConnectionStatus::is_behind_basic_auth();
+
+		$this->assertSame( rest_url( 'accessibility-checker/v1/scans-stats' ), $requested );
+	}
+
+	/**
+	 * Tests that a failed request is cached for less time than a real answer.
+	 */
+	public function test_failed_basic_auth_check_is_cached_briefly() {
+		add_filter(
+			'pre_http_request',
+			function () {
+				return new WP_Error( 'http_request_failed', 'Loopback blocked' );
+			}
+		);
+
+		ConnectionStatus::is_behind_basic_auth();
+
+		$timeout = (int) get_option( '_transient_timeout_' . ConnectionStatus::BASIC_AUTH_TRANSIENT );
+		$this->assertGreaterThan( time(), $timeout );
+		$this->assertLessThanOrEqual( time() + 5 * MINUTE_IN_SECONDS, $timeout );
 	}
 
 	/**
@@ -470,6 +522,20 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 
 		$this->assertStringContainsString( 'not available on local sites', $output );
 		$this->assertStringNotContainsString( 'Enable Email Reports', $output );
+	}
+
+	/**
+	 * Tests that the expired license card also explains a local site.
+	 */
+	public function test_expired_license_card_shows_local_notice() {
+		add_filter( 'edac_is_local_site', '__return_true' );
+		update_option( 'edac_site_id', 'test-site' );
+		update_option( 'edac_license_status', 'expired' );
+
+		$output = $this->render_reports_page();
+
+		$this->assertStringContainsString( 'License Expired', $output );
+		$this->assertStringContainsString( 'not available on local sites', $output );
 	}
 
 	/**

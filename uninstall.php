@@ -115,6 +115,8 @@ if ( true === (bool) $edac_delete_data ) {
 		delete_site_option( $edac_option );
 	}
 
+	delete_transient( 'edac_reports_basic_auth_check' );
+
 	// Remove the managed capabilities from every role.
 	if ( $edac_managed_caps ) {
 		$edac_wp_roles = wp_roles();
