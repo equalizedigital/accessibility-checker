@@ -1,5 +1,30 @@
 const edacFrontendFixes = window.edac_frontend_fixes || {};
 
+// Fixes that are safe to run more than once listen for this event to pick up
+// content added after page load. Other code can also fire it on document.
+const RERUN_EVENT = 'edac-fixes-rerun';
+
+const rerunEvents = Array.isArray( edacFrontendFixes.rerunEvents ) ? edacFrontendFixes.rerunEvents : [];
+rerunEvents.forEach( ( eventName ) => {
+	// Skip the rerun event itself, it would loop forever.
+	if ( typeof eventName !== 'string' || eventName === RERUN_EVENT ) {
+		return;
+	}
+	document.addEventListener( eventName, () => {
+		document.dispatchEvent( new CustomEvent( RERUN_EVENT ) );
+	} );
+} );
+
+/**
+ * Run a fix now and again each time the rerun event fires.
+ *
+ * @param {Function} fix The fix function.
+ */
+const runAndRerun = ( fix ) => {
+	fix();
+	document.addEventListener( RERUN_EVENT, () => fix() );
+};
+
 if ( edacFrontendFixes?.skip_link?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "skip-link" */ './Fixes/skipLinkFix' ).then( ( skipLinkFix ) => {
@@ -17,7 +42,7 @@ if ( edacFrontendFixes?.lang_and_dir?.enabled ) {
 if ( edacFrontendFixes?.tabindex?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "tabindex" */ './Fixes/tabindexFix' ).then( ( tabindexFix ) => {
-		tabindexFix.default();
+		runAndRerun( tabindexFix.default );
 	} );
 }
 
@@ -31,21 +56,21 @@ if ( edacFrontendFixes?.meta_viewport_scalable?.enabled ) {
 if ( edacFrontendFixes?.remove_title_if_preferred_accessible_name?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "remove-title-if-preferred-accessible-name" */ './Fixes/removeTitleIfPrefferedAccessibleNameFix' ).then( ( removeTitleIfPreferredAccessibleNameFix ) => {
-		removeTitleIfPreferredAccessibleNameFix.default();
+		runAndRerun( removeTitleIfPreferredAccessibleNameFix.default );
 	} );
 }
 
 if ( edacFrontendFixes?.underline?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "underline" */ './Fixes/underlineFix' ).then( ( underlineFix ) => {
-		underlineFix.default();
+		runAndRerun( underlineFix.default );
 	} );
 }
 
 if ( edacFrontendFixes?.prevent_links_opening_new_windows?.enabled ) {
 	// lazy import the module
 	import( /* webpackChunkName: "prevent-links-opening-in-new-window" */ './Fixes/preventLinksOpeningNewWindowFix' ).then( ( preventLinksOpeningNewWindowFix ) => {
-		preventLinksOpeningNewWindowFix.default();
+		runAndRerun( preventLinksOpeningNewWindowFix.default );
 	} );
 }
 
