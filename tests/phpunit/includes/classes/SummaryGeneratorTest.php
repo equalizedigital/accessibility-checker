@@ -55,4 +55,76 @@ class SummaryGeneratorTest extends WP_UnitTestCase {
 
 		$this->assertSame( 0, $method->invoke( $summary_generator ) );
 	}
+
+	/**
+	 * Ensures count_contrast_errors() does not query the database, and returns 0,
+	 * when the color contrast rule is not among the currently active rules (e.g. it
+	 * has been filtered out), even if contrast violations still exist in the database.
+	 *
+	 * @throws ReflectionException If the method does not exist this is thrown.
+	 */
+	public function test_count_contrast_errors_returns_zero_when_rule_is_filtered_out() {
+		global $wpdb;
+
+		$post_id = self::factory()->post->create();
+
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- this is just one-time use data for testing.
+			$wpdb->prefix . 'accessibility_checker',
+			[
+				'siteid'   => get_current_blog_id(),
+				'postid'   => $post_id,
+				'rule'     => 'color_contrast_failure',
+				'ruletype' => 'error',
+				'ignre'    => 0,
+			]
+		);
+
+		$summary_generator = new Summary_Generator( $post_id );
+
+		$method = ( new ReflectionClass( get_class( $summary_generator ) ) )
+			->getMethod( 'count_contrast_errors' );
+		$method->setAccessible( true );
+
+		// Color contrast rule is not present in the active rules list, simulating it being filtered out.
+		$active_rules = [
+			[ 'slug' => 'some_other_rule' ],
+		];
+
+		$this->assertSame( 0, $method->invoke( $summary_generator, $active_rules ) );
+	}
+
+	/**
+	 * Ensures count_contrast_errors() still counts violations when the color contrast
+	 * rule is present among the currently active rules.
+	 *
+	 * @throws ReflectionException If the method does not exist this is thrown.
+	 */
+	public function test_count_contrast_errors_counts_when_rule_is_active() {
+		global $wpdb;
+
+		$post_id = self::factory()->post->create();
+
+		$wpdb->insert( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- this is just one-time use data for testing.
+			$wpdb->prefix . 'accessibility_checker',
+			[
+				'siteid'   => get_current_blog_id(),
+				'postid'   => $post_id,
+				'rule'     => 'color_contrast_failure',
+				'ruletype' => 'error',
+				'ignre'    => 0,
+			]
+		);
+
+		$summary_generator = new Summary_Generator( $post_id );
+
+		$method = ( new ReflectionClass( get_class( $summary_generator ) ) )
+			->getMethod( 'count_contrast_errors' );
+		$method->setAccessible( true );
+
+		$active_rules = [
+			[ 'slug' => 'color_contrast_failure' ],
+		];
+
+		$this->assertSame( 1, $method->invoke( $summary_generator, $active_rules ) );
+	}
 }
