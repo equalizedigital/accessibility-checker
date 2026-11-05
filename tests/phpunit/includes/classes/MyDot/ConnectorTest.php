@@ -1137,9 +1137,17 @@ class ConnectorTest extends WP_UnitTestCase {
 	/**
 	 * The license form redirect carries a flag so the result is announced only
 	 * after a submit, not on every load of a page that shows a stored error.
+	 *
+	 * @dataProvider provider_license_post_fields
+	 *
+	 * @param array $post_fields Extra POST fields for the submit.
 	 */
-	public function test_handle_license_post_redirect_adds_submitted_flag() {
+	public function test_handle_license_post_redirect_adds_submitted_flag( array $post_fields ) {
 		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+
+		foreach ( $post_fields as $field => $value ) {
+			$_POST[ $field ] = $value;
+		}
 
 		$nonce                          = wp_create_nonce( 'edac_license_nonce' );
 		$_POST['edac_license_nonce']    = $nonce;
@@ -1161,7 +1169,7 @@ class ConnectorTest extends WP_UnitTestCase {
 			$location = $e->getMessage();
 		} finally {
 			remove_all_filters( 'wp_redirect' );
-			unset( $_POST['edac_license_nonce'], $_REQUEST['edac_license_nonce'], $_SERVER['HTTP_REFERER'] );
+			unset( $_POST['edac_license_nonce'], $_POST['edac_license_activate'], $_REQUEST['edac_license_nonce'], $_SERVER['HTTP_REFERER'] );
 			wp_set_current_user( 0 );
 		}
 
@@ -1169,5 +1177,20 @@ class ConnectorTest extends WP_UnitTestCase {
 			admin_url( 'admin.php?page=accessibility_checker_settings&tab=accessibility-reports&edac_license_submitted=1' ),
 			$location
 		);
+	}
+
+	/**
+	 * Submits that must all redirect with the submitted flag.
+	 *
+	 * An activation with no key stores the missing key error and returns
+	 * before any remote request.
+	 *
+	 * @return array
+	 */
+	public function provider_license_post_fields() {
+		return [
+			'no action'  => [ [] ],
+			'activation' => [ [ 'edac_license_activate' => '1' ] ],
+		];
 	}
 }
