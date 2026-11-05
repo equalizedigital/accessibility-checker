@@ -138,6 +138,31 @@ function collectSiblingText( startSibling, maxCount ) {
 	return text;
 }
 
+/**
+ * Check whether text inside an element is rendered.
+ *
+ * Visibility is inherited, so the element's own computed value is used and a
+ * descendant that sets `visibility: visible` is kept. Display and opacity are
+ * not inherited, so every ancestor is checked for those.
+ *
+ * @param {Element} element - The element that holds the text.
+ * @return {boolean} - True if the text is rendered.
+ */
+function isTextRendered( element ) {
+	if ( ! element || window.getComputedStyle( element ).visibility === 'hidden' ) {
+		return false;
+	}
+
+	for ( let el = element; el; el = el.parentElement ) {
+		const style = window.getComputedStyle( el );
+		if ( style.display === 'none' || style.opacity === '0' ) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
@@ -196,11 +221,7 @@ function getSurroundingText( node, radius = 250 ) {
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
-				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' || style.visibility === 'hidden' ) {
-					return NodeFilter.FILTER_REJECT;
-				}
-				return NodeFilter.FILTER_ACCEPT;
+				return isTextRendered( textNode.parentElement ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );
