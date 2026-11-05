@@ -119,24 +119,32 @@ describe( 'New Window Warning Tooltip', () => {
 			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
 		} );
 
-		test( 'processes links inserted after an edbs:table-rendered event (BoardScribe pagination re-render)', () => {
+		test( 'processes links inserted after an edac-fixes-rerun event', () => {
 			document.body.innerHTML = '<div id="edbs-table-1"></div>';
 
 			NewWindowWarning();
 
-			// Simulate a BoardScribe instance re-rendering its table on
-			// pagination: new markup replaces the container's contents,
-			// then the instance dispatches its lifecycle event.
+			// Simulate content added after load, like a BoardScribe table
+			// re-render, then the rerun event the fixes entry fires for it.
 			document.getElementById( 'edbs-table-1' ).innerHTML =
 				'<a href="http://example.com/minutes.pdf" target="_blank">Minutes</a>';
-			document.getElementById( 'edbs-table-1' ).dispatchEvent(
-				new CustomEvent( 'edbs:table-rendered', { bubbles: true } ),
-			);
+			document.dispatchEvent( new CustomEvent( 'edac-fixes-rerun' ) );
 
 			const link = document.querySelector( 'a' );
 			expect( link.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
-			expect( link.querySelector( '.edac-nww-external-link-icon' ) ).not.toBeNull();
+			expect( link.querySelectorAll( '.edac-nww-external-link-icon' ) ).toHaveLength( 1 );
 			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
+		} );
+
+		test( 'does not add a second icon to links already processed when rerun', () => {
+			document.body.innerHTML = '<a href="http://example.com" target="_blank">External Link</a>';
+
+			NewWindowWarning();
+			document.dispatchEvent( new CustomEvent( 'edac-fixes-rerun' ) );
+
+			const link = document.querySelector( 'a' );
+			expect( link.querySelectorAll( '.edac-nww-external-link-icon' ) ).toHaveLength( 1 );
+			expect( link.getAttribute( 'aria-label' ).match( /opens a new window/g ) ).toHaveLength( 1 );
 		} );
 
 		describe( 'aria-label computation (updateAriaLabel)', () => {

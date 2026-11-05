@@ -115,11 +115,53 @@ class FixesManager {
 				wp_localize_script(
 					'edac-frontend-fixes',
 					'edac_frontend_fixes',
-					apply_filters( 'edac_filter_frontend_fixes_data', [] )
+					$this->get_frontend_fixes_data()
 				);
 				do_action( 'edac_action_enqueue_frontend_fixes' );
 			}
 		);
+	}
+
+	/**
+	 * Get the data passed to the frontend fixes script.
+	 *
+	 * @since 1.53.0
+	 *
+	 * @return array
+	 */
+	public function get_frontend_fixes_data(): array {
+		/**
+		 * Filter the data passed to the frontend fixes script.
+		 *
+		 * @since 1.16.0
+		 *
+		 * @param array $data Fix data keyed by fix slug.
+		 */
+		$data = (array) apply_filters( 'edac_filter_frontend_fixes_data', [] );
+
+		/**
+		 * Filter the JavaScript events that make frontend fixes run again.
+		 *
+		 * Use this when a plugin or theme adds content to the page after load,
+		 * so the fixes can also apply to the new content. Code can also fire
+		 * the `edac-fixes-rerun` event on document directly.
+		 *
+		 * @since 1.53.0
+		 *
+		 * @param string[] $events Event names listened for on document.
+		 */
+		$events = apply_filters(
+			'edac_filter_frontend_fixes_rerun_events',
+			[
+				'facetwp-loaded',      // FacetWP refreshes results.
+				'gform/post_render',   // Gravity Forms AJAX render, multi-page and validation.
+				'edbs:table-rendered', // BoardScribe table re-render on pagination.
+			]
+		);
+
+		$data['rerunEvents'] = array_values( array_filter( (array) $events, 'is_string' ) );
+
+		return $data;
 	}
 
 	/**
