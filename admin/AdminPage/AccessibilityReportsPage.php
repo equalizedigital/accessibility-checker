@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 
 use EDAC\Admin\Scans_Stats;
+use EqualizeDigital\AccessibilityChecker\MyDot\ConnectionStatus;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -90,6 +91,7 @@ class AccessibilityReportsPage implements PageInterface {
 		$scans_stats     = new Scans_Stats();
 		$summary         = $scans_stats->summary();
 		$preview_data    = is_array( $summary ) ? $this->get_preview_data( $summary, $is_pro ) : [];
+		$issue           = ConnectionStatus::get_issue( $is_connected );
 
 		$upgrade_url = edac_generate_link_type(
 			[
@@ -173,7 +175,13 @@ class AccessibilityReportsPage implements PageInterface {
 						?>
 					</p>
 
-					<?php if ( $is_pro ) : ?>
+					<?php if ( '' !== $issue ) : ?>
+						<div class="notice notice-warning inline"><p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p></div>
+					<?php endif; ?>
+
+					<?php if ( ConnectionStatus::ISSUE_LOCAL === $issue ) : ?>
+						<?php // Registration is refused on local sites, so there is nothing to submit. ?>
+					<?php elseif ( $is_pro ) : ?>
 						<div class="edac-reports-page__single-action">
 							<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 								<input type="hidden" name="action" value="edac_jwt_register" />
@@ -233,18 +241,26 @@ class AccessibilityReportsPage implements PageInterface {
 				<?php else : ?>
 						<div class="edac-reports-grid edac-reports-grid--two">
 							<div class="edac-reports-card">
-								<div class="edac-reports-card__header">
-									<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
-									<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
-								</div>
-								<p><?php esc_html_e( 'Weekly accessibility reports for this site are being emailed to the account owner of the license key.', 'accessibility-checker' ); ?></p>
+								<?php if ( '' !== $issue ) : ?>
+									<div class="edac-reports-card__header">
+										<h3><?php echo esc_html( ConnectionStatus::ISSUE_LOCAL === $issue ? __( 'Reports Cannot Run', 'accessibility-checker' ) : __( 'Reports May Not Be Working', 'accessibility-checker' ) ); ?></h3>
+										<span class="edac-reports-card__status edac-reports-card__status--warning" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'warning' ), $allowed_icon_html ); ?></span>
+									</div>
+									<p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p>
+								<?php else : ?>
+									<div class="edac-reports-card__header">
+										<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
+										<span class="edac-reports-card__status edac-reports-card__status--success" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'check' ), $allowed_icon_html ); ?></span>
+									</div>
+									<p><?php esc_html_e( 'Weekly accessibility reports for this site are being emailed to the account owner of the license key.', 'accessibility-checker' ); ?></p>
 
-								<p class="edac-reports-card__meta">
-									<?php if ( $next_send_date ) : ?>
-										<?php /* translators: %s: next report date. */ ?>
-										<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( mysql2date( get_option( 'date_format' ), $next_send_date ) ) ); ?></span>
-									<?php endif; ?>
+									<p class="edac-reports-card__meta">
+										<?php if ( $next_send_date ) : ?>
+											<?php /* translators: %s: next report date. */ ?>
+											<span><?php printf( esc_html__( 'Next report: %s', 'accessibility-checker' ), esc_html( mysql2date( get_option( 'date_format' ), $next_send_date ) ) ); ?></span>
+										<?php endif; ?>
 									</p>
+								<?php endif; ?>
 							</div>
 
 							<div class="edac-reports-card">
@@ -322,6 +338,40 @@ class AccessibilityReportsPage implements PageInterface {
 			</aside>
 		</div>
 		<?php
+	}
+
+	/**
+	 * Get the message for a connection issue.
+	 *
+	 * @param string $issue       One of the ConnectionStatus issue constants.
+	 * @param bool   $is_pro      Whether the effective active license is Pro.
+	 * @param string $upgrade_url URL of the Pro upgrade page.
+	 * @return string Message HTML, with URLs already escaped.
+	 */
+	private function get_issue_message( string $issue, bool $is_pro, string $upgrade_url ): string {
+		if ( ConnectionStatus::ISSUE_LOCAL === $issue ) {
+			return esc_html__( 'Email reports are not available on local sites because our service cannot reach this site to collect report data. Enable reports on your live site instead.', 'accessibility-checker' );
+		}
+
+		if ( ConnectionStatus::ISSUE_STALE === $issue ) {
+			return esc_html__( 'We have not received report data from this site recently. A firewall, security plugin, or password protection may be blocking our service.', 'accessibility-checker' );
+		}
+
+		if ( $is_pro ) {
+			$account_url = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'site-credentials', false );
+
+			return sprintf(
+				/* translators: %s: My Dot account URL. */
+				__( 'This site is password protected, so our service cannot collect report data. Add the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account</a> to fix this.', 'accessibility-checker' ),
+				esc_url( $account_url )
+			);
+		}
+
+		return sprintf(
+			/* translators: %s: Pro upgrade URL. */
+			__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or <a href="%s" target="_blank" rel="noopener noreferrer">upgrade to Pro</a> to add site credentials in your account.', 'accessibility-checker' ),
+			esc_url( $upgrade_url )
+		);
 	}
 
 	/**
