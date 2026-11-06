@@ -122,6 +122,21 @@ describe( 'Empty Button Validation', () => {
 			html: '<div role="button" style="width: 26px; height: 37px; overflow: hidden; position: absolute;" tabindex="-1" aria-hidden="true"><img alt="" src="transparent.png"></div>',
 			shouldPass: true,
 		},
+		{
+			name: 'should pass for the core image lightbox close button with an Interactivity API bound aria-label',
+			html: '<button type="button" class="wp-lightbox-close-button" data-wp-bind--aria-label="state.closeButtonAriaLabel"><span class="wp-lightbox-close-icon" data-wp-bind--hidden="!state.hasNavigationIcon" hidden=""><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M13 12z"></path></svg></span><span class="wp-lightbox-close-text" data-wp-bind--hidden="!state.hasNavigationText" hidden="">Close</span></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for the core image lightbox navigation button with an Interactivity API bound aria-label',
+			html: '<button type="button" class="wp-lightbox-navigation-button wp-lightbox-navigation-button-next" data-wp-bind--hidden="!state.hasNavigation" data-wp-on--click="actions.showNextImage" data-wp-bind--aria-label="state.nextButtonAriaLabel" hidden=""><span class="wp-lightbox-navigation-text" data-wp-bind--hidden="!state.hasNavigationText" hidden="">Next</span><span class="wp-lightbox-navigation-icon" data-wp-bind--hidden="!state.hasNavigationIcon" hidden=""><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.6 6z"></path></svg></span></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for div with role="button" and an Interactivity API bound aria-label',
+			html: '<div role="button" data-wp-bind--aria-label="state.toggleLabel"></div>',
+			shouldPass: true,
+		},
 
 		// Failing cases
 		{
@@ -243,6 +258,21 @@ describe( 'Empty Button Validation', () => {
 		{
 			name: 'should fail for button with only visibility:hidden content and unlabeled icon',
 			html: '<button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with an empty Interactivity API aria-label binding',
+			html: '<button data-wp-bind--aria-label=""></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with a whitespace-only Interactivity API aria-label binding',
+			html: '<button data-wp-bind--aria-label="   "></button>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button whose only Interactivity API bindings do not provide a label',
+			html: '<button data-wp-bind--hidden="!state.isOpen" data-wp-on--click="actions.toggle"><span hidden="">Menu</span></button>',
 			shouldPass: false,
 		},
 	];
