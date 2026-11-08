@@ -156,7 +156,7 @@ module.exports = {
 		// react-jsx-runtime handle is already loaded. Core's wp-components,
 		// wp-block-editor and wp-edit-post all depend on it, which covers the
 		// admin and editor entries here; wp-element alone does not.
-		'react': [ 'React' ],
+		react: [ 'React' ],
 		'react/jsx-runtime': [ 'ReactJSXRuntime' ],
 	},
 };
