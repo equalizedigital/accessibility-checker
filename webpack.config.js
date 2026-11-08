@@ -147,5 +147,16 @@ module.exports = {
 		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
 		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
 		'@wordpress/a11y': [ 'wp', 'a11y' ],
+		// React ships with WordPress. The automatic JSX runtime configured in
+		// .babelrc compiles JSX to `react/jsx-runtime` imports, which would
+		// otherwise put a second copy of React in the bundle (and a copy that
+		// predates the React 19 that WordPress loads).
+		//
+		// Every JSX entry must therefore run on a screen where the
+		// react-jsx-runtime handle is already loaded. Core's wp-components,
+		// wp-block-editor and wp-edit-post all depend on it, which covers the
+		// admin and editor entries here; wp-element alone does not.
+		'react': [ 'React' ],
+		'react/jsx-runtime': [ 'ReactJSXRuntime' ],
 	},
 };
