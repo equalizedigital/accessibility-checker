@@ -1,0 +1,67 @@
+name: Plugin Check
+
+on:
+  push:
+    branches:
+      - develop
+      - main
+      - 'release/**'
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  # Lets the action post its results as a PR comment.
+  pull-requests: write
+
+jobs:
+  plugin-check:
+    name: WordPress Plugin Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          # This job runs third-party build code and never pushes.
+          persist-credentials: false
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
+        with:
+          php-version: '7.4'
+          coverage: none
+          tools: composer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Set up Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      # Builds the same package that ships to WordPress.org (production webpack
+      # build, no-dev composer, scripts/dist.sh). Output: dist/accessibility-checker-<version>.zip
+      - name: Build distribution
+        run: npm run dist
+
+      - name: Extract distribution
+        run: |
+          mkdir -p "$RUNNER_TEMP/plugin-check"
+          unzip -q dist/accessibility-checker-*.zip -d "$RUNNER_TEMP/plugin-check"
+          echo "BUILD_DIR=$RUNNER_TEMP/plugin-check/accessibility-checker" >> "$GITHUB_ENV"
+
+      - name: Run Plugin Check
+        uses: WordPress/plugin-check-action@10857da14b6c2246d15402b3e69f777edcf8c12e # v1
+        with:
+          build-dir: ${{ env.BUILD_DIR }}
+          wp-version: latest
+          # Tune after the first run: ignore-codes, exclude-checks, exclude-directories.

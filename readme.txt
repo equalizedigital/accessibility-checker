@@ -2,7 +2,7 @@
 Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.9
-Tested up to: 7.1.4
+Tested up to: 7.1
 Stable tag: 1.52.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
