@@ -247,13 +247,20 @@ async function restoreOptIn( page, previous ) {
 	}
 
 	const nonce = await getRestNonce( page );
-	await page.evaluate( async ( args ) => {
-		await fetch( '/wp-json/edac-e2e/v1/restore-opt-in', {
+	const result = await page.evaluate( async ( args ) => {
+		const res = await fetch( '/wp-json/edac-e2e/v1/restore-opt-in', {
 			method: 'POST',
 			headers: { 'X-WP-Nonce': args.restNonce, 'Content-Type': 'application/json' },
 			body: JSON.stringify( { previous: args.previous } ),
 		} );
+		return { status: res.status, body: await res.json().catch( () => null ) };
 	}, { restNonce: nonce, previous } );
+
+	// This runs after the test, so a silent failure here would leave the admin's own
+	// opt-in state deleted on a reused instance.
+	if ( ! result.body?.success ) {
+		throw new Error( `Could not restore the opt-in user meta (HTTP ${ result.status }).` );
+	}
 }
 
 /**
