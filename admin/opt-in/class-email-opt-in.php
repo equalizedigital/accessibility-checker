@@ -131,7 +131,7 @@ class Email_Opt_In {
 						<?php esc_html_e( 'Email*', 'accessibility-checker' ); ?>
 					</label>
 					<div class="_field-wrapper">
-						<input type="text" id="email" name="email"
+						<input type="text" id="email" name="email" autocomplete="email"
 							placeholder="<?php esc_attr_e( 'Type your email', 'accessibility-checker' ); ?>"
 							value="<?php echo esc_attr( ! empty( $current_user->user_email ) ? $current_user->user_email : '' ); ?>"
 							required
@@ -143,7 +143,7 @@ class Email_Opt_In {
 						<?php esc_html_e( 'First Name', 'accessibility-checker' ); ?>
 					</label>
 					<div class="_field-wrapper">
-						<input type="text" id="firstname" name="firstname"
+						<input type="text" id="firstname" name="firstname" autocomplete="given-name"
 							placeholder="<?php esc_attr_e( 'Type your first name', 'accessibility-checker' ); ?>"
 							value="<?php echo esc_attr( ! empty( $current_user->first_name ) ? $current_user->first_name : '' ); ?>"
 						/>
