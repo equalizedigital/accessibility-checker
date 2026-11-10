@@ -172,7 +172,7 @@ class EnqueueAdminSrOnlyEditorStylesTest extends WP_UnitTestCase {
 	 * @return void
 	 */
 	private function create_stylesheet_fixture(): void {
-		$directory = plugin_dir_path( EDAC_PLUGIN_FILE ) . 'build/css';
+		$directory = EDAC_PLUGIN_DIR . 'build/css';
 
 		if ( ! is_dir( $directory ) ) {
 			// phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.directory_mkdir -- Creating the directory the built stylesheet fixture is read from.
