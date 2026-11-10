@@ -8,6 +8,7 @@
  */
 
 const path = require( 'path' );
+const { expect } = require( '@playwright/test' );
 
 const PLUGIN_SLUG = 'accessibility-checker';
 
@@ -249,6 +250,44 @@ async function openBlockEditor( page, postId ) {
 async function openBlockEditorRaw( page, postId ) {
 	await page.goto( `/wp-admin/post.php?post=${ postId }&action=edit`, { waitUntil: 'load' } );
 	await page.waitForSelector( '.editor-post-publish-button', { timeout: 180_000 } );
+	// Nothing in the editor is reachable until the onboarding guide is out of the way.
+	await dismissWelcomeGuide( page );
+}
+
+/**
+ * Switch off the block editor's welcome guide.
+ *
+ * On a site whose admin has never dismissed it — every fresh Playground instance, so
+ * every CI run — the guide opens over the canvas as soon as the editor is up. It is a
+ * modal: its overlay swallows pointer events and the editor behind it is inert, so the
+ * editor's own controls (the "Meta Boxes" pane toggle, the Accessibility Checker header
+ * button, the save button) can be neither clicked nor found by role while it is open.
+ * Dispatching the preference is what the guide's own close button does.
+ *
+ * The preference store applies the user's saved state while the editor boots, which can
+ * land after the first dispatch, so the dispatch is repeated until it reads back.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function dismissWelcomeGuide( page ) {
+	await page.waitForFunction(
+		() => Boolean( window.wp?.data?.select?.( 'core/preferences' ) ),
+		null,
+		{ timeout: 60_000 }
+	);
+
+	await expect.poll( async () => {
+		await page.evaluate( () => {
+			const { dispatch } = window.wp.data;
+			dispatch( 'core/preferences' ).set( 'core/edit-post', 'welcomeGuide', false );
+			dispatch( 'core/preferences' ).set( 'core/edit-post', 'welcomeGuideStyles', false );
+		} );
+		return page.evaluate( () => window.wp.data.select( 'core/preferences' ).get( 'core/edit-post', 'welcomeGuide' ) );
+	}, { timeout: 60_000 } ).toBe( false );
+
+	// Wait for the dialog itself to go: a locator that never matches is already gone,
+	// so this cannot hang on a guide named differently than expected.
+	await page.getByRole( 'dialog', { name: /welcome to the editor/i } ).waitFor( { state: 'detached', timeout: 30_000 } );
 }
 
 /**
@@ -356,6 +395,7 @@ module.exports = {
 	saveInElementor,
 	openBlockEditor,
 	openBlockEditorRaw,
+	dismissWelcomeGuide,
 	expandMetaBoxes,
 	trackScanSaveEvents,
 	waitForScanSaveEvents,
