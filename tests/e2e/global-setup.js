@@ -188,7 +188,10 @@ module.exports = async () => {
 	await page.fill( '#user_login', process.env.E2E_ADMIN_USER || 'admin' );
 	await page.fill( '#user_pass', process.env.E2E_ADMIN_PASS || 'password' );
 	await Promise.all( [
-		page.waitForURL( /wp-admin/, { timeout: 120_000 } ),
+		// Not 'load': the dashboard pulls fonts and avatars from third parties, and one
+		// slow response from those leaves the load event pending long after the login has
+		// landed. The session cookie is all this needs.
+		page.waitForURL( /wp-admin/, { timeout: 120_000, waitUntil: 'domcontentloaded' } ),
 		page.click( '#wp-submit' ),
 	] );
 	await page.context().storageState( { path: path.join( AUTH_DIR, 'admin.json' ) } );
