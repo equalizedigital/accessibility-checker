@@ -31,7 +31,13 @@ export default {
 			} finally {
 				if ( needsOverride ) {
 					if ( originalStyle === null ) {
-						element.removeAttribute( 'style' );
+						// Browsers keep an empty style="" after removeAttribute() once the style
+						// has been changed through the CSSOM, so remove only our declaration and
+						// then drop the attribute if nothing else is in it.
+						element.style.removeProperty( 'visibility' );
+						if ( ! element.getAttribute( 'style' ) ) {
+							element.removeAttribute( 'style' );
+						}
 					} else {
 						element.setAttribute( 'style', originalStyle );
 					}
