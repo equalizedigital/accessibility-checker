@@ -29,48 +29,27 @@ export const isVisiblyHidden = ( element ) => {
 };
 
 /**
- * Check if an element or any of its ancestors is hidden with `display: none` or `opacity: 0`.
- *
- * Neither property is inherited, so a descendant cannot undo them.
- *
- * @param {Element} element The element to check.
- * @param {Map}     cache   Results by element, so shared ancestors are only read once.
- * @return {boolean} True if the element or an ancestor is hidden this way.
- */
-const isHiddenByAncestry = ( element, cache ) => {
-	if ( ! element ) {
-		return false;
-	}
-
-	if ( ! cache.has( element ) ) {
-		const style = window.getComputedStyle( element );
-		cache.set(
-			element,
-			style.display === 'none' || style.opacity === '0' || isHiddenByAncestry( element.parentElement, cache )
-		);
-	}
-
-	return cache.get( element );
-};
-
-/**
  * Check if an element is visible in the DOM
  *
- * Visibility is inherited, so the element's own computed value is used and an element
- * that sets `visibility: visible` inside a hidden ancestor is still visible. Display and
- * opacity are not inherited, so the element and all of its ancestors are checked for those.
+ * This is a recursive function so could be inefficient for deeply nested elements.
  *
- * @param {Element} element an element to check for visibility.
- * @param {Map}     [cache] Optional Map shared between calls on an unchanged DOM, so ancestors are only read once.
- * @return {boolean} A boolean indicating if the element is visible or not.
+ * @param {element} element an element to check for visibility.
+ * @return {boolean|boolean|*} A boolean indicating if the element is visible or not.
  */
-export const isElementVisible = ( element, cache = new Map() ) => {
+export const isElementVisible = ( element ) => {
 	// A non-existent element can never be visible.
 	if ( ! element ) {
 		return false;
 	}
 
-	return window.getComputedStyle( element ).visibility !== 'hidden' && ! isHiddenByAncestry( element, cache );
+	// Check if the element itself is hidden.
+	const style = window.getComputedStyle( element );
+	if ( style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0' ) {
+		return false;
+	}
+
+	// If there is a parent then check it recursively till there is no more parents.
+	return element.parentElement ? isElementVisible( element.parentElement ) : true;
 };
 
 /**
