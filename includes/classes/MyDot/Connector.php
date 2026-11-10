@@ -301,7 +301,8 @@ class Connector {
 		if ( ! $redirect ) {
 			$redirect = admin_url();
 		}
-		wp_safe_redirect( $redirect );
+		// Lets the admin script announce the result once, only after this submit.
+		wp_safe_redirect( add_query_arg( 'edac_license_submitted', '1', $redirect ) );
 		exit;
 	}
 
