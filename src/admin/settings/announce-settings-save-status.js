@@ -1,5 +1,5 @@
 /**
- * Focus a successful save confirmation, or announce the save result.
+ * Focus a save or connector notice, or announce it when focus can't be moved.
  *
  * @param {Object} a11y          WordPress accessibility utilities.
  * @param {Window} browserWindow Browser window used to schedule the announcement.
@@ -28,7 +28,8 @@ export const announceSettingsSaveStatus = ( a11y, browserWindow = window ) => {
 				return;
 			}
 
-			if ( isSuccess && confirmation && document.activeElement === document.body ) {
+			// Focus errors too: VoiceOver drops live region messages sent after a reload.
+			if ( confirmation && document.activeElement === document.body ) {
 				confirmation.setAttribute( 'tabindex', '-1' );
 				confirmation.focus();
 

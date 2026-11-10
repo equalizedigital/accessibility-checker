@@ -34,7 +34,7 @@ describe( 'announceSettingsSaveStatus', () => {
 		expect( a11y.speak ).not.toHaveBeenCalled();
 	} );
 
-	test( 'announces a save error assertively', () => {
+	test( 'focuses a save error', () => {
 		document.querySelector( '.edac-settings' ).innerHTML = `
 			<div id="setting-error-settings_updated" class="notice notice-error settings-error">
 				<p><strong>Settings save failed.</strong></p>
@@ -45,6 +45,24 @@ describe( 'announceSettingsSaveStatus', () => {
 
 		window.dispatchEvent( new Event( 'load' ) );
 		jest.advanceTimersByTime( 1000 );
+		expect( document.activeElement ).toBe( document.querySelector( '.notice-error p' ) );
+		expect( a11y.speak ).not.toHaveBeenCalled();
+	} );
+
+	test( 'announces a save error assertively when focus is already elsewhere', () => {
+		document.querySelector( '.edac-settings' ).innerHTML = `
+			<input id="other" />
+			<div id="setting-error-settings_updated" class="notice notice-error settings-error">
+				<p><strong>Settings save failed.</strong></p>
+			</div>
+		`;
+		document.getElementById( 'other' ).focus();
+
+		announceSettingsSaveStatus( a11y );
+
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+		expect( document.activeElement ).toBe( document.getElementById( 'other' ) );
 		expect( a11y.speak ).toHaveBeenCalledWith( 'Settings save failed.', 'assertive' );
 	} );
 
@@ -80,12 +98,29 @@ describe( 'announceSettingsSaveStatus', () => {
 		expect( a11y.speak ).not.toHaveBeenCalled();
 	} );
 
-	test( 'announces a connector error notice assertively', () => {
+	test( 'focuses a connector error notice', () => {
 		document.body.innerHTML = `
 			<div id="edac-connector-notice" class="notice notice-error is-dismissible">
 				<p>Unknown error occurred while registering the site.</p>
 			</div>
 		`;
+
+		announceSettingsSaveStatus( a11y );
+
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+		expect( document.activeElement ).toBe( document.querySelector( '#edac-connector-notice p' ) );
+		expect( a11y.speak ).not.toHaveBeenCalled();
+	} );
+
+	test( 'announces a connector error assertively when focus is already elsewhere', () => {
+		document.body.innerHTML = `
+			<input id="other" />
+			<div id="edac-connector-notice" class="notice notice-error is-dismissible">
+				<p>Unknown error occurred while registering the site.</p>
+			</div>
+		`;
+		document.getElementById( 'other' ).focus();
 
 		announceSettingsSaveStatus( a11y );
 
