@@ -726,7 +726,7 @@ class Connector {
 
 		$response_data = self::register_site( $license_key, $site_url, $site_name, true, true );
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -862,7 +862,7 @@ class Connector {
 		}
 
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -937,7 +937,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
@@ -995,7 +995,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
