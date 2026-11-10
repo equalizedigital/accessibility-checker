@@ -445,6 +445,22 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The license error notice carries a stable id so the admin script can
+	 * announce it to screen readers after the license form is submitted.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 */
+	public function test_admin_notices_renders_license_error_with_id() {
+		update_option( 'edac_license_error', 'invalid' );
+
+		ob_start();
+		$this->page->admin_notices();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( '<div id="edac-license-notice" class="notice notice-error">', $output );
+	}
+
+	/**
 	 * The license context is derived from the stored option values, so the page
 	 * reports what is actually saved: a connected Free license reports valid and
 	 * connected, a stored Pro status is not treated as authority without the Pro
