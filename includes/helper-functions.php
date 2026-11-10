@@ -124,17 +124,21 @@ function edac_remove_element_with_value( $items, $key, $value ) {
  * @return array
  */
 function edac_filter_by_value( $items, $index, $value ) {
+	$newarray = [];
+
 	if ( is_array( $items ) && count( $items ) > 0 ) {
 		foreach ( array_keys( $items ) as $key ) {
-			$temp[ $key ] = $items[ $key ][ $index ];
+			if ( ! is_array( $items[ $key ] ) || ! array_key_exists( $index, $items[ $key ] ) ) {
+				continue;
+			}
 
-			if ( $temp[ $key ] === $value ) {
+			if ( $items[ $key ][ $index ] === $value ) {
 				$newarray[ $key ] = $items[ $key ];
 			}
 		}
 	}
 
-	if ( isset( $newarray ) && is_array( $newarray ) && count( $newarray ) ) {
+	if ( count( $newarray ) ) {
 		return array_values( $newarray );
 	}
 	return [];
@@ -996,13 +1000,18 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 
 		$target_attr = $target_blank ? ' target="_blank"' : '';
 
+		// The arrow marks a link that opens in a new window. It is hidden from assistive
+		// technology because the aria-label already says so.
+		$new_window_icon = $target_blank ? '<span aria-hidden="true"> ↗</span>' : '';
+
 		return sprintf(
-			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
+			'<a href="%s" class="%s"%s aria-label="%s">%s%s</a>',
 			esc_url( $landmark_url ),
 			esc_attr( $css_class ),
 			$target_attr,
 			esc_attr( $landmark_aria_label ),
-			$landmark
+			$landmark,
+			$new_window_icon
 		);
 	}
 

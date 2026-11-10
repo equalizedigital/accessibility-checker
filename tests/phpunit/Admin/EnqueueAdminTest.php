@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Enqueue_Admin;
+use EDAC\Admin\OptIn\Email_Opt_In;
 
 /**
  * Tests for functionality of the Enqueue_Admin class.
@@ -73,6 +74,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -89,11 +91,29 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * Test that the base script loads the accessibility utility on the settings page.
+	 *
+	 * @return void
+	 */
+	public function testEnqueueBaseScriptWithWpA11yOnSettingsPage() {
+
+		global $wp_scripts;
+
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 	}
 
 	/**
@@ -148,18 +168,17 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * FixesRestUrl uses the edac/v1 namespace and matches rest_url().
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
 	 */
-	public function testAdminFixesRestUrlContainsEdacV1Namespace(): void {
+	public function testAdminFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
 		global $wp_scripts;
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
-		$expected       = rest_url( 'edac/v1' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
-		$this->assertStringContainsString( 'edac', $localized_data );
-		$this->assertStringContainsString( (string) wp_parse_url( $expected, PHP_URL_HOST ), $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 	}
 
 	/**
@@ -193,13 +212,14 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		add_filter( 'rest_url_prefix', $prefix_callback );
 
 		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+		$expected = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
 
 		remove_filter( 'rest_url_prefix', $prefix_callback );
 		delete_option( 'permalink_structure' );
 
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
 
-		$this->assertStringContainsString( 'custom-api', $localized_data );
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
 		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 
@@ -601,6 +621,174 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		// wp_localize_script serializes PHP false as "" (empty string) in older WP versions
 		// and may serialize it as JSON false in newer ones — accept both forms.
 		$this->assertMatchesRegularExpression( '/"active"\s*:\s*(false|"")/', $localized_data );
+	}
+
+	/**
+	 * Test that the base admin stylesheet is enqueued from the built asset path.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::enqueue_styles
+	 */
+	public function testEnqueueStylesEnqueuesTheBuiltAdminStylesheet() {
+		global $wp_styles;
+
+		Enqueue_Admin::enqueue_styles();
+
+		$this->assertTrue( wp_style_is( 'edac', 'enqueued' ) );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/admin.css', $wp_styles->registered['edac']->src );
+		$this->assertSame( EDAC_VERSION, $wp_styles->registered['edac']->ver );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue outside the post editor.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueOutsideThePostEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'edit.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue for a non-scannable post type.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueForANonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal script and styles enqueue on a scannable post editor.
+	 *
+	 * The modal bundle is shared by the sidebar and other admin areas, so its declared
+	 * script dependencies and its built asset paths are a contract other code relies on.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalEnqueuesScriptAndStylesForAScannablePost() {
+		global $post, $pagenow, $wp_scripts, $wp_styles;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertTrue( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertSame(
+			[
+				'wp-element',
+				'wp-components',
+				'wp-i18n',
+				'wp-api-fetch',
+				'wp-html-entities',
+				'wp-a11y',
+			],
+			$wp_scripts->registered['edac-issue-modal']->deps
+		);
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/issueModal.bundle.js', $wp_scripts->registered['edac-issue-modal']->src );
+		$this->assertSame( [ 'wp-components' ], $wp_styles->registered['edac-issue-modal']->deps );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/issueModal.css', $wp_styles->registered['edac-issue-modal']->src );
+	}
+
+	/**
+	 * Test that every admin bundle gets a filesystem path for its translations.
+	 *
+	 * The path is handed to load_script_textdomain(), so a URL in its place
+	 * loads no translations at all. The path itself is asserted rather than the
+	 * constant it comes from, because the forbidden-function rule allows
+	 * EDAC_PLUGIN_URL and cannot catch that mistake.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sidebar_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sr_only_format
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testAdminBundlesGetFilesystemTranslationsPaths() {
+		global $post, $pagenow, $wp_scripts;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$handles = [ 'edac', 'edac-editor-app', 'edac-sidebar', 'edac-sr-only-format', 'edac-issue-modal' ];
+
+		foreach ( $handles as $handle ) {
+			if ( ! isset( $wp_scripts->registered[ $handle ] ) ) {
+				$this->fail( "The {$handle} script was not registered." );
+			}
+
+			$this->assertSame( EDAC_PLUGIN_DIR . 'languages', $wp_scripts->registered[ $handle ]->translations_path, "The {$handle} script needs a filesystem translations path." );
+			$this->assertSame( 'accessibility-checker', $wp_scripts->registered[ $handle ]->textdomain, "The {$handle} script needs its text domain set." );
+		}
+	}
+
+	/**
+	 * Test that the email opt-in assets do not enqueue outside the welcome page.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueOutsideTheWelcomePage() {
+		global $pagenow;
+		$pagenow = 'index.php';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets are skipped for a user who already opted in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueForAUserWhoAlreadyOptedIn() {
+		$_GET['page'] = 'accessibility_checker';
+		update_user_meta( $this->test_admin_user_id, Email_Opt_In::EDAC_USER_OPTIN_META_KEY, 1 );
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets enqueue on the welcome page before a user opts in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::get_current_page_slug
+	 */
+	public function testEmailOptInEnqueuesOnTheWelcomePage() {
+		$_GET['page'] = 'accessibility_checker';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertTrue( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'email-opt-in-form', 'enqueued' ) );
 	}
 
 	/**

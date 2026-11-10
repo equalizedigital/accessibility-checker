@@ -111,7 +111,7 @@ class FixesManager {
 			'wp_enqueue_scripts',
 			function () {
 				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
-				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 				wp_localize_script(
 					'edac-frontend-fixes',
 					'edac_frontend_fixes',
@@ -261,34 +261,22 @@ class FixesManager {
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		register_rest_route(
-			'edac/v1',
-			'/fixes',
-			[
+		$routes = [
+			'/fixes'                               => [
 				'methods'             => 'GET',
-				'callback'            => [ $this, 'get_fixes' ],
+				'callback'            => [ $this, 'get_fixes_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fixes/update',
-			[
+			],
+			'/fixes/update'                        => [
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_fix_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)',
-			[
+			],
+			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)' => [
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'get_fix_fields' ],
 				'args'                => [
@@ -300,8 +288,12 @@ class FixesManager {
 				'permission_callback' => function () {
 					return current_user_can( 'edit_posts' );
 				},
-			]
-		);
+			],
+		];
+
+		foreach ( $routes as $route => $args ) {
+			register_rest_route( 'accessibility-checker/v1', $route, $args );
+		}
 	}
 
 	/**

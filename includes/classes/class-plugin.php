@@ -11,7 +11,9 @@ use EDAC\Admin\Admin;
 use EDAC\Admin\Meta_Boxes;
 use EDAC\Admin\Orphaned_Issues_Cleanup;
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage;
+use EqualizeDigital\AccessibilityChecker\Blocks\SimplifiedSummaryBlock;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
+use EqualizeDigital\AccessibilityChecker\Shortcodes\SimplifiedSummaryShortcode;
 use EqualizeDigital\AccessibilityChecker\WPCLI\BootstrapCLI;
 use EqualizeDigital\AccessibilityChecker\Fixes\FixesManager;
 
@@ -47,6 +49,13 @@ class Plugin {
 		$cleanup = new Orphaned_Issues_Cleanup();
 		$cleanup->init_hooks();
 
+		// The block and shortcode must register in admin (for the editor) and on the front end.
+		$simplified_summary_block = new SimplifiedSummaryBlock();
+		$simplified_summary_block->init_hooks();
+
+		$simplified_summary_shortcode = new SimplifiedSummaryShortcode();
+		$simplified_summary_shortcode->init_hooks();
+
 		$this->register_fixes_manager();
 		$this->register_sr_only_meta_hooks();
 
@@ -76,6 +85,7 @@ class Plugin {
 	private function init() {
 
 		add_action( 'wp_enqueue_scripts', [ 'EDAC\Inc\Enqueue_Frontend', 'enqueue' ] );
+		add_action( 'send_headers', [ 'EDAC\Inc\Enqueue_Frontend', 'maybe_send_scan_isolation_header' ] );
 
 		$accessibility_statement = new Accessibility_Statement();
 		$accessibility_statement->init_hooks();

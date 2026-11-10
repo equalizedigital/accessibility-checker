@@ -1,0 +1,33 @@
+# Keeps the commit-SHA pins in .github/workflows/ from going stale.
+#
+# Every `uses:` reference in this repo is pinned to a full commit SHA, so a moved
+# upstream tag or branch cannot change what runs in CI. The trade-off is that a pin
+# never moves on its own — this config is what opens the PR that moves it.
+#
+# Routine minor/patch bumps arrive as one grouped PR; a major bump (which needs a look
+# at the action's release notes) still arrives on its own.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    # For the github-actions ecosystem, "/" covers .github/workflows/ (and a root action.yml).
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+      timezone: "Europe/London"
+    open-pull-requests-limit: 10
+    commit-message:
+      # Matches the repo's conventional-commit style, e.g. "chore(deps): bump ...".
+      prefix: "chore"
+      include: "scope"
+    # Dependabot's default labels are wanted here: "dependencies" plus the ecosystem/SemVer labels.
+    # Label definitions are owned centrally in equalizedigital/development-standards and applied by
+    # .github/workflows/labels.yml, so any label this config relies on belongs in those fragments.
+    groups:
+      actions-minor-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"

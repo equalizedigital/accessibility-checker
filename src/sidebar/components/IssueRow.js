@@ -8,7 +8,7 @@ import { __, sprintf } from '@wordpress/i18n';
 import { DropdownMenu, MenuGroup, MenuItem } from '@wordpress/components';
 import { moreVertical, seen, code, check, tool } from '@wordpress/icons';
 import Badge from './Badge';
-import { getDismissReasonLabel } from '../utils/dismissHelpers';
+import { getDismissReasonLabel, userCanDismiss } from '../utils/dismissHelpers';
 
 /**
  * Single issue row with actions dropdown
@@ -62,17 +62,19 @@ const IssueRow = ( { issue, rule, onAction, showIgnored = false } ) => {
 						>
 							{ __( 'Show code', 'accessibility-checker' ) }
 						</MenuItem>
-						<MenuItem
-							icon={ check }
-							onClick={ () => {
-								onAction( 'ignore', issue );
-								onClose();
-							} }
-						>
-							{ showIgnored
-								? __( 'Reopen issue', 'accessibility-checker' )
-								: __( 'Dismiss issue', 'accessibility-checker' ) }
-						</MenuItem>
+						{ userCanDismiss() && (
+							<MenuItem
+								icon={ check }
+								onClick={ () => {
+									onAction( 'ignore', issue );
+									onClose();
+								} }
+							>
+								{ showIgnored
+									? __( 'Reopen issue', 'accessibility-checker' )
+									: __( 'Dismiss issue', 'accessibility-checker' ) }
+							</MenuItem>
+						) }
 						{ rule?.fixes?.length > 0 && (
 							<MenuItem
 								icon={ tool }

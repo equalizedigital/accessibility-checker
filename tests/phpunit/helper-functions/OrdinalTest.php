@@ -15,10 +15,11 @@ class OrdinalTest extends WP_UnitTestCase {
 	 *
 	 * @dataProvider edac_ordinal_data
 	 *
-	 * @param int|string $numeric_value The number we want to convert to ordinal.
-	 * @param string     $ordinal_value The ordinal number that should be returned.
-	 * @param string     $locale        The locale to use.
-	 * @param string     $ordinal_value_no_php_intl The ordinal number that should be returned when php-intl is not available.
+	 * @param int|string   $numeric_value The number we want to convert to ordinal.
+	 * @param string|array $ordinal_value The ordinal number that should be returned. An array lists every value that is
+	 *                                    acceptable, for locales whose output depends on the ICU data version.
+	 * @param string       $locale        The locale to use.
+	 * @param string       $ordinal_value_no_php_intl The ordinal number that should be returned when php-intl is not available.
 	 */
 	public function test_edac_ordinal( $numeric_value, $ordinal_value, $locale, $ordinal_value_no_php_intl = null ) {
 
@@ -38,8 +39,17 @@ class OrdinalTest extends WP_UnitTestCase {
 			? $ordinal_value_no_php_intl
 			: $ordinal_value;
 
+		// Some locales return different values depending on the ICU data version (for example `ar` returns Arabic-Indic
+		// digits with ICU 74.2 and Latin digits with ICU 78.2), so any of the allowed values can match.
+		$allowed = array_map(
+			static function ( $value ) {
+				return preg_quote( $value, '/' );
+			},
+			(array) $value_to_test
+		);
+
 		// Some php-intl locales return ordinals with a period at the end, so we need to account for that.
-		$this->assertMatchesRegularExpression( '/^' . preg_quote( $value_to_test, '/' ) . '\.?$/u', edac_ordinal( $numeric_value ) );
+		$this->assertMatchesRegularExpression( '/^(?:' . implode( '|', $allowed ) . ')\.?$/u', edac_ordinal( $numeric_value ) );
 		// Remove the filter if it was added.
 		if ( 'en_US' !== $locale ) {
 			remove_filter( 'locale', $filter_locale );
@@ -128,10 +138,10 @@ class OrdinalTest extends WP_UnitTestCase {
 				'ordinal_value_no_php-intl' => '1st',
 			],
 
-			// Tests for the `ar` locale.
+			// Tests for the `ar` locale. ICU 74.2 returns Arabic-Indic digits, ICU 78.2 returns Latin digits.
 			'integer 1, ar'         => [
 				'numeric_value'             => 1,
-				'ordinal_value'             => '١',
+				'ordinal_value'             => [ '١', '1' ],
 				'locale'                    => 'ar',
 				'ordinal_value_no_php-intl' => '1st',
 			],

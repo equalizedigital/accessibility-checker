@@ -190,44 +190,59 @@ trait FixTestTrait {
 
 	/**
 	 * Test that frontend data filter includes correct slug when enabled.
-	 * Only runs for frontend fixes that actually use the frontend data filter.
-	 * Override this method to skip if the fix doesn't use frontend data filters.
+	 *
+	 * Every fix declares whether it adds itself to the frontend fixes data payload
+	 * ({@see fix_registers_frontend_data()}), so this asserts the behaviour either way
+	 * instead of skipping the fixes that do not use it.
 	 *
 	 * @return void
 	 */
 	public function test_frontend_data_filter_includes_slug() {
-		if ( $this->get_expected_type() !== 'frontend' ) {
-			$this->markTestSkipped( 'Not a frontend fix' );
-		}
-
-		// Check if this fix uses frontend data filters.
-		if ( $this->skip_frontend_data_filter_test() ) {
-			$this->markTestSkipped( 'Fix does not use frontend data filter' );
-		}
-
 		// Enable first option.
 		$first_option = $this->get_fix_option_names()[0];
 		update_option( $first_option, true );
-		
+
 		$this->fix->run();
-		
+
 		// Test the filter output.
 		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
-		$slug = $this->get_expected_slug();
-		
-		$this->assertArrayHasKey( $slug, $data );
-		$this->assertArrayHasKey( 'enabled', $data[ $slug ] );
-		$this->assertTrue( $data[ $slug ]['enabled'] );
+		$key  = $this->get_frontend_data_key();
+
+		if ( ! $this->fix_registers_frontend_data() ) {
+			$this->assertArrayNotHasKey(
+				$key,
+				$data,
+				'This fix should not add itself to the frontend fixes data payload.'
+			);
+			return;
+		}
+
+		$this->assertArrayHasKey( $key, $data );
+		$this->assertArrayHasKey( 'enabled', $data[ $key ] );
+		$this->assertTrue( $data[ $key ]['enabled'] );
 	}
 
 	/**
-	 * Determine if this fix should skip frontend data filter tests.
-	 * Override this method in test classes to return true if the fix
-	 * doesn't use the frontend data filter pattern.
+	 * Whether this fix adds itself to the frontend fixes data payload when its first
+	 * option is enabled.
+	 *
+	 * Declared by each test class rather than detected at runtime: a fix that stops (or
+	 * starts) adding itself to the payload fails this test instead of silently skipping it.
 	 *
 	 * @return bool
 	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return false;
+	protected function fix_registers_frontend_data(): bool {
+		return 'frontend' === $this->get_expected_type();
+	}
+
+	/**
+	 * The key this fix uses in the frontend fixes data payload.
+	 *
+	 * Defaults to the fix slug; override for fixes that use a different key.
+	 *
+	 * @return string
+	 */
+	protected function get_frontend_data_key(): string {
+		return $this->get_expected_slug();
 	}
 }

@@ -37,7 +37,6 @@ class Ajax {
 		add_action( 'wp_ajax_edac_summary_ajax', [ $this, 'summary' ] );
 		add_action( 'wp_ajax_edac_details_ajax', [ $this, 'details' ] );
 		add_action( 'wp_ajax_edac_readability_ajax', [ $this, 'readability' ] );
-		add_action( 'wp_ajax_edac_insert_ignore_data', [ $this, 'add_ignore' ] );
 		add_action( 'wp_ajax_edac_dismiss_welcome_cta_ajax', [ $this, 'dismiss_welcome_cta' ] );
 		add_action( 'wp_ajax_edac_dismiss_dashboard_cta_ajax', [ $this, 'dismiss_dashboard_cta' ] );
 		( new Email_Opt_In() )->register_ajax_handlers();
@@ -319,11 +318,18 @@ class Ajax {
 			/**
 			 * Filters if a user can ignore issues.
 			 *
+			 * Candidate for deprecation: wraps edac_user_can_ignore(), itself
+			 * already @deprecated in favor of edac_user_can_dismiss_issues()/
+			 * edac_user_can_dismiss_own_issues(), and $ignore_permission below
+			 * is not currently read by anything else in this method - a real
+			 * dead-code cleanup, not just a superseded permission check.
+			 * Revisit alongside the other legacy permission filters.
+			 *
 			 * @since 1.4.0
 			 *
 			 * @allowed bool True if allowed, false if not
 			 */
-			$ignore_permission = apply_filters( 'edac_ignore_permission', true );
+			$ignore_permission = apply_filters( 'edac_ignore_permission', edac_user_can_ignore() );
 
 			$severity_map = [
 				1 => [
@@ -377,7 +383,7 @@ class Ajax {
 
 				$icon_name = ( 0 === $rule['count'] ) ? 'check' : ( ( 'error' === $rule['rule_type'] ) ? 'error' : 'warning' );
 
-				$html .= '<h3>';
+				$html .= '<h3 id="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '">';
 				$html .= edac_icon( $icon_name );
 				$html .= ' ' . esc_html( $rule['title'] );
 				$html .= ' <span class="edac-details-rule-count' . $count_classes . '"><span aria-hidden="true">(</span>' . $rule['count'] . '<span aria-hidden="true">)</span><span class="screen-reader-text">' . esc_html__( ' total', 'accessibility-checker' ) . '</span></span></span>';
@@ -394,13 +400,7 @@ class Ajax {
 						__( 'Opens in a new window.', 'accessibility-checker' )
 					)
 				) . '"><span class="dashicons dashicons-info"></span></a>';
-				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-label="' . esc_attr(
-					sprintf(
-						/* translators: %s: rule title */
-						__( 'Expand issues for %s', 'accessibility-checker' ),
-						$rule['title']
-					)
-				) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
+				$html .= ( $expand_rule ) ? '<button class="edac-details-rule-title-arrow" aria-expanded="false" aria-controls="edac-details-rule-records-' . $rule['slug'] . '" aria-labelledby="edac-details-rule-heading-' . esc_attr( $rule['slug'] ) . '"><i class="dashicons dashicons-arrow-down-alt2"></i></button>' : '';
 				$html .= '</div>';
 
 				if ( $results ) {
@@ -471,21 +471,20 @@ class Ajax {
 
 
 
-					$html .=
-						'<div class="edac-details-rule-records-labels">
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Affected Code', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Image', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Landmark', 'accessibility-checker' ) . '
-							</div>
-							<div class="edac-details-rule-records-labels-label" aria-hidden="true">
-								' . esc_html__( 'Actions', 'accessibility-checker' ) . '
-							</div>
-						</div>';
+					// Shared by the visual labels row and the screen reader only cell headings so they stay in sync.
+					$column_labels = [
+						'object'   => __( 'Affected Code', 'accessibility-checker' ),
+						'image'    => __( 'Image', 'accessibility-checker' ),
+						'landmark' => __( 'Landmark', 'accessibility-checker' ),
+						'actions'  => __( 'Actions', 'accessibility-checker' ),
+					];
+					$empty_cell    = '<span class="screen-reader-text">' . esc_html__( 'None', 'accessibility-checker' ) . '</span>';
+
+					$html .= '<div class="edac-details-rule-records-labels">';
+					foreach ( $column_labels as $column_label ) {
+						$html .= '<div class="edac-details-rule-records-labels-label" aria-hidden="true">' . esc_html( $column_label ) . '</div>';
+					}
+					$html .= '</div>';
 
 					foreach ( $results as $row ) {
 
@@ -509,13 +508,18 @@ class Ajax {
 
 						$html .= '<div id="edac-details-rule-records-record-' . $id . '" class="edac-details-rule-records-record">';
 
+						// Screen reader only headings give each cell the context of the aria-hidden column labels.
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-object">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['object'] ) . '</h5>';
 
 						$html .= '<code>' . esc_html( $row['object'] ) . '</code>';
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-image">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['image'] ) . '</h5>';
 
 						if ( $object_img ) {
 							$html .= '<img src="' . esc_url( $object_img ) . '" alt="' . esc_attr(
@@ -535,20 +539,27 @@ class Ajax {
 									$id
 								)
 							) . '" />';
+						} else {
+							$html .= $empty_cell;
 						}
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-landmark">';
 
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['landmark'] ) . '</h5>';
+
 						$landmark          = isset( $row['landmark'] ) ? $row['landmark'] : '';
 						$landmark_selector = isset( $row['landmark_selector'] ) ? $row['landmark_selector'] : '';
 
-						$html .= edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
+						$landmark_link = edac_generate_landmark_link( $landmark, $landmark_selector, $postid );
+						$html         .= '' !== $landmark_link ? $landmark_link : $empty_cell;
 
 						$html .= '</div>';
 
 						$html .= '<div class="edac-details-rule-records-record-cell edac-details-rule-records-record-actions">';
+
+						$html .= '<h5 class="screen-reader-text">' . esc_html( $column_labels['actions'] ) . '</h5>';
 
 						if ( ! isset( $rule['viewable'] ) || $rule['viewable'] ) {
 
@@ -567,7 +578,7 @@ class Ajax {
 							);
 							// Translators: %d is the issue ID.
 							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
-							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
+							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span><span class="edac-details-rule-records-record-actions-highlight-front-label">' . esc_html__( 'View on page', 'accessibility-checker' ) . '<span aria-hidden="true"> ↗</span></span></a>';
 						}
 
 						if ( true === $ignore_permission ) {
@@ -583,7 +594,7 @@ class Ajax {
 									type="button"
 								>
 									<span class="dashicons dashicons-admin-tools"></span>
-									%3$s
+									<span class="edac-details-rule-records-record-actions-fix-label">%3$s</span>
 								</button>',
 								esc_attr( $controls_id ),
 								esc_attr( __( 'Fix: ', 'accessibility-checker' ) . $fixes_for_item[0]->get_nicename() ),
@@ -674,7 +685,7 @@ class Ajax {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = ( isset( $edac_summary['readability'] ) ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = ( $post_grade < 9 ) ? false : true;
+		$post_grade_failed      = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -802,117 +813,6 @@ class Ajax {
 		}
 
 		wp_send_json_success( wp_json_encode( $html ) );
-	}
-
-	/**
-	 * Insert ignore data into database
-	 *
-	 * Note: There is a new dismiss-issue rest endpoint that covers this functionality
-	 * now and should be used going forward. This ajax was updated to support dismiss
-	 * reasons to align with the new endpoint and allow other things to continue to
-	 * work here gracefully.
-	 *
-	 * This should be removed in a future release.
-	 *
-	 * @return void
-	 *
-	 *  - '-1' means that nonce could not be varified
-	 *  - '-2' means that there isn't any ignore data to return
-	 */
-	public function add_ignore() {
-
-		// nonce security.
-		if ( ! isset( $_REQUEST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['nonce'] ) ), 'ajax-nonce' ) ) {
-			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
-		}
-
-		global $wpdb;
-		$table_name = $wpdb->prefix . 'accessibility_checker';
-		$raw_ids    = isset( $_REQUEST['ids'] ) ? (array) wp_unslash( $_REQUEST['ids'] ) : []; // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitization handled below.
-		$ids        = array_map(
-			function ( $value ) {
-				return (int) $value;
-			},
-			$raw_ids
-		); // Sanitizing array elements to integers.
-		$action     = isset( $_REQUEST['ignore_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_action'] ) ) : '';
-		$type       = isset( $_REQUEST['ignore_type'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['ignore_type'] ) ) : '';
-		$siteid     = get_current_blog_id();
-
-		// Capability check: verify edit_post on every post affected by this request.
-		$batch_object = null;
-		$first_id     = reset( $ids );
-		$valid_table  = edac_get_valid_table_name( $table_name );
-
-		if ( ! $first_id || ! $valid_table ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-
-		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
-			// largeBatch updates every row sharing the same object string across the site;
-			// collect all distinct postids that would be affected and check each one.
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
-			$batch_object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $valid_table, $first_id ) );
-			if ( ! $batch_object ) {
-				wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-			}
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Permission check requires direct lookup.
-			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( 'SELECT DISTINCT postid FROM %i WHERE siteid = %d AND object = %s', $valid_table, $siteid, $batch_object ) );
-		} else {
-			// Small batch: look up the post for every supplied ID in one query.
-			$id_placeholders   = implode( ', ', array_fill( 0, count( $ids ), '%d' ) );
-			$query_args        = array_merge( [ $valid_table ], $ids );
-			$affected_post_ids = $wpdb->get_col( $wpdb->prepare( "SELECT DISTINCT postid FROM %i WHERE id IN ({$id_placeholders})", $query_args ) ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.UnquotedComplexPlaceholder -- Permission check requires direct lookup.
-		}
-
-		if ( empty( $affected_post_ids ) ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-
-		foreach ( $affected_post_ids as $affected_post_id ) {
-			if ( ! current_user_can( 'edit_post', (int) $affected_post_id ) ) {
-				wp_send_json_error( new \WP_Error( '-5', __( 'Permission Denied', 'accessibility-checker' ) ) );
-			}
-		}
-
-		$ignre                = ( 'enable' === $action ) ? 1 : 0;
-		$ignre_user           = ( 'enable' === $action ) ? get_current_user_id() : null;
-		$ignre_user_info      = ( 'enable' === $action ) ? get_userdata( $ignre_user ) : '';
-		$ignre_username       = ( 'enable' === $action ) ? $ignre_user_info->user_login : '';
-		$ignre_date           = ( 'enable' === $action ) ? edac_get_current_utc_datetime() : null;
-		$ignre_date_formatted = ( 'enable' === $action ) ? edac_format_datetime_from_utc( $ignre_date ) : '';
-		$ignre_comment        = ( 'enable' === $action && isset( $_REQUEST['comment'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['comment'] ) ) : null;
-		$ignre_reason         = ( 'enable' === $action && isset( $_REQUEST['reason'] ) ) ? sanitize_text_field( wp_unslash( $_REQUEST['reason'] ) ) : null;
-		$ignore_global        = ( 'enable' === $action && isset( $_REQUEST['ignore_global'] ) ) ? sanitize_textarea_field( wp_unslash( $_REQUEST['ignore_global'] ) ) : 0;
-
-		// If largeBatch is set and 'true', we need to perform an update using the 'object'
-		// instead of IDs. It is a much less efficient query than by IDs - but many IDs run
-		// into request size limits which caused this to not function at all.
-		if ( isset( $_REQUEST['largeBatch'] ) && 'true' === $_REQUEST['largeBatch'] ) {
-			// $batch_object was already resolved during the capability check above.
-			$object = $batch_object;
-			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-			$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and object = %s', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $object ) );
-		} else {
-			// For small batches of IDs, we can just loop through.
-			foreach ( $ids as $id ) {
-				// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name, caching not required for one time operation.
-				$wpdb->query( $wpdb->prepare( 'UPDATE %i SET ignre = %d, ignre_user = %d, ignre_date = %s, ignre_comment = %s, ignre_reason = %s, ignre_global = %d WHERE siteid = %d and id = %d', $table_name, $ignre, $ignre_user, $ignre_date, $ignre_comment, $ignre_reason, $ignore_global, $siteid, $id ) );
-			}
-		}
-
-		$data = [
-			'ids'    => $ids,
-			'action' => $action,
-			'type'   => $type,
-			'user'   => $ignre_username,
-			'date'   => $ignre_date_formatted,
-		];
-
-		if ( ! $data ) {
-			wp_send_json_error( new \WP_Error( '-2', __( 'No dismissal data to return', 'accessibility-checker' ) ) );
-		}
-		wp_send_json_success( wp_json_encode( $data ) );
 	}
 
 	/**

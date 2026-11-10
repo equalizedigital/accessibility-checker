@@ -8,6 +8,9 @@ import { __, _n, sprintf } from '@wordpress/i18n';
 import { saveFixSettings } from '../common/saveFixSettingsRest';
 import { fillFixesModal, fixSettingsModalInit, openFixesModal } from './fixesModal';
 import { getLandmarkType as getLandmarkTypeUtil } from './getLandmarkType';
+import { setupElementorSaveListener } from './setupElementorSaveListener';
+import { buildDescriptionTitle } from './descriptionTitle';
+import { applyDismissToIssues, buildDismissMarkup, DISMISS_COMMENT_ID, isIssueGloballyDismissed, requestDismiss } from './dismissIssue';
 
 class AccessibilityCheckerHighlight {
 	/**
@@ -375,7 +378,8 @@ class AccessibilityCheckerHighlight {
 					} else if ( ! self._scanAttempted && response.data?.[ 0 ]?.code === -3 ) {
 						// Only try kickoffScan once per highlightAjax call
 						self._scanAttempted = true;
-						self.kickoffScan();
+						// showScanError() has already reported a failure.
+						self.kickoffScan().catch( () => {} );
 						// After kickoffScan, try highlightAjax again, but only once
 						setTimeout( () => {
 							self.highlightAjax().then( resolve ).catch( reject );
@@ -624,6 +628,7 @@ class AccessibilityCheckerHighlight {
                                                         <div class="edac-highlight-panel-description-content"></div>
                                                         <div id="edac-highlight-panel-description-code" class="edac-highlight-panel-description-code"><code></code></div>
                                                         <div id="edac-highlight-panel-description-fix" class="edac-highlight-panel-description-fix"></div>
+                                                        <div id="edac-highlight-panel-description-dismiss-container" class="edac-highlight-panel-description-dismiss-container"></div>
                                                 </div>
                                         </div>
                                         <div class="edac-highlight-panel-controls-footer">
@@ -820,10 +825,13 @@ class AccessibilityCheckerHighlight {
 
 		this.currentButtonIndex = this.issues.findIndex( ( i ) => String( i.id ) === String( id ) );
 
-		// Keep the URL in sync so the current issue is bookmarkable / shareable.
+		// Keep the URL in sync so the current issue is bookmarkable / shareable. The cached
+		// parameter follows it: it is what keeps a dismissed issue in the list when the issues are
+		// loaded again, so an issue dismissed while selected does not vanish with its reopen control.
 		const url = new URL( window.location.href );
 		url.searchParams.set( 'edac', id );
 		history.replaceState( null, '', url.toString() );
+		this.urlParameter = String( id );
 
 		const pagination = document.getElementById( 'edac-highlight-pagination' );
 		if ( pagination ) {
@@ -934,8 +942,20 @@ class AccessibilityCheckerHighlight {
 			return;
 		}
 
+		this.refreshIssues( id );
+	}
+
+	/**
+	 * Fetches the current issues for this page and updates the panel's contents.
+	 * Does not change the panel's visibility, so it's safe to call whether or
+	 * not the panel is currently open.
+	 *
+	 * @param {number} [id] Issue id to select once the issues are loaded.
+	 * @return {Promise} Resolves once the panel has been updated.
+	 */
+	refreshIssues( id ) {
 		// Get the issues for this page.
-		this.highlightAjax().then(
+		return this.highlightAjax().then(
 			( json ) => {
 
 				this.issues = json.issues;
@@ -1002,11 +1022,14 @@ class AccessibilityCheckerHighlight {
 
 				this.showIssueCount();
 
-				if ( id !== undefined ) {
+				if ( this.issues.length === 0 ) {
+					// Nothing left to show, so drop the previous issue's details.
+					this.clearIssueState();
+				} else if ( id !== undefined ) {
 					this.showIssue( id );
 				} else if ( this.currentButtonIndex !== null && this.issues[ this.currentButtonIndex ] ) {
 					this.showIssue( this.issues[ this.currentButtonIndex ].id );
-				} else if ( this.issues.length > 0 ) {
+				} else {
 					this.showIssue( this.issues[ 0 ].id );
 				}
 			}
@@ -1171,6 +1194,8 @@ class AccessibilityCheckerHighlight {
 			const descriptionCode = document.querySelector( '.edac-highlight-panel-description-code code' );
 
 			let content = '';
+			// Elementor cancels preview link navigation unless the anchor has this opt-out class.
+			const isElementorEditorLinkClass = window.elementorFrontend?.isEditMode?.() === true ? ' elementor-clickable' : '';
 
 			const newWindowHtml = `<span aria-hidden="true">↗\uFE0E</span><span class="edac-sr-only">${ __( ', opens a new window', 'accessibility-checker' ) }</span>`;
 
@@ -1196,7 +1221,7 @@ class AccessibilityCheckerHighlight {
 					}
 				}
 
-				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
+				content += `<div class="edac-highlight-panel-description-wcag"><strong class="edac-highlight-panel-description-wcag-label" role="heading" aria-level="4">${ __( 'WCAG:', 'accessibility-checker' ) }</strong> <a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ wcagLinkText }</a>${ severityBadgeHtml ? ` ${ severityBadgeHtml }` : '' }</div>`;
 			}
 
 			// Metadata row: Type
@@ -1245,11 +1270,11 @@ class AccessibilityCheckerHighlight {
 					</div>`;
 				}
 
-				content += `<div><a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
+				content += `<div><a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'More Detailed Documentation', 'accessibility-checker' ) } ${ newWindowHtml }</a></div>`;
 				content += `</div>`;
 			} else {
 				// Free: show a plain "How to Fix" link
-				content += `<a class="edac-highlight-panel-description-reference" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
+				content += `<a class="edac-highlight-panel-description-reference${ isElementorEditorLinkClass }" href="${ matchingObj.link }" target="_blank" rel="noopener noreferrer">${ __( 'How to Fix', 'accessibility-checker' ) } ${ newWindowHtml }</a>`;
 			}
 
 			// Get the code button
@@ -1258,10 +1283,14 @@ class AccessibilityCheckerHighlight {
 
 
 			// title and content (notice only rendered when there is a status message)
-			const noticeHtml = this.currentIssueStatus
-				? `<div class="edac-highlight-panel-description-notice">${ this.currentIssueStatus }</div>`
-				: '';
-			descriptionTitle.innerHTML = `${ noticeHtml }<span class="edac-highlight-panel-description-title-text" role="heading" aria-level="3">${ matchingObj.rule_title }</span>${ typeBadgeHtml }`;
+			const { hasNotice, html: descriptionTitleHtml } = buildDescriptionTitle( {
+				title: matchingObj.rule_title,
+				notice: this.currentIssueStatus || '',
+				typeBadgeHtml,
+			} );
+
+			descriptionTitle.classList.toggle( 'edac-highlight-panel-description-title--has-notice', hasNotice );
+			descriptionTitle.innerHTML = descriptionTitleHtml;
 
 			// content
 			descriptionContent.innerHTML = content;
@@ -1320,6 +1349,8 @@ class AccessibilityCheckerHighlight {
 				} );
 			}
 
+			this.renderDismiss( matchingObj );
+
 			// set explanation toggle listener
 			const explanationToggle = document.querySelector( '.edac-highlight-panel-description-explanation-toggle' );
 			if ( explanationToggle ) {
@@ -1350,6 +1381,171 @@ class AccessibilityCheckerHighlight {
 				issueContent.style.display = 'block';
 			}
 		}
+	}
+
+	/**
+	 * Render the dismiss/reopen controls for an issue and bind their listeners.
+	 *
+	 * @param {Object} issue The issue being shown.
+	 */
+	renderDismiss( issue ) {
+		const container = document.getElementById( 'edac-highlight-panel-description-dismiss-container' );
+		if ( ! container ) {
+			return;
+		}
+
+		const app = window.edacFrontendHighlighterApp || {};
+		container.innerHTML = buildDismissMarkup( {
+			issue,
+			reasons: app.dismissReasons,
+			canDismiss: Boolean( app.canDismiss ),
+			canDismissGlobal: Boolean( app.canDismissGlobal ),
+		} );
+
+		const toggle = container.querySelector( '.edac-highlight-panel-description-dismiss-toggle' );
+		const form = container.querySelector( '.edac-highlight-dismiss-form' );
+		if ( toggle && form ) {
+			toggle.addEventListener( 'click', () => {
+				const expanded = toggle.getAttribute( 'aria-expanded' ) !== 'true';
+				toggle.setAttribute( 'aria-expanded', String( expanded ) );
+				form.hidden = ! expanded;
+				if ( expanded ) {
+					form.querySelector( 'input[type="radio"]:checked, input[type="radio"]' )?.focus();
+				}
+			} );
+
+			// Submitting the form (Enter on a radio, or the submit button) uses the single action
+			// when the user has it; a global-only user's only action is the global one, and its
+			// button is the submit button.
+			form.addEventListener( 'submit', ( event ) => {
+				event.preventDefault();
+				this.handleDismiss( issue, true, ! app.canDismiss, container );
+			} );
+
+			if ( app.canDismiss ) {
+				form.querySelector( '[data-scope="global"]' )?.addEventListener( 'click', () => {
+					this.handleDismiss( issue, true, true, container );
+				} );
+			}
+		}
+
+		container.querySelector( '.edac-highlight-dismiss-reopen' )?.addEventListener( 'click', () => {
+			this.handleDismiss( issue, false, isIssueGloballyDismissed( issue ), container );
+		} );
+	}
+
+	/**
+	 * Dismiss or reopen an issue, then update the panel and highlights in place.
+	 *
+	 * @param {Object}      issue     The issue to act on.
+	 * @param {boolean}     dismiss   True to dismiss, false to reopen.
+	 * @param {boolean}     global    Apply to every matching instance on every page.
+	 * @param {HTMLElement} container The dismiss controls container.
+	 */
+	async handleDismiss( issue, dismiss, global, container ) {
+		const app = window.edacFrontendHighlighterApp || {};
+		const buttons = container.querySelectorAll( 'button' );
+		const errorSlot = container.querySelector( '.edac-highlight-dismiss-error' );
+		const reason = container.querySelector( 'input[name="edac-highlight-dismiss-reason"]:checked' )?.value || '';
+		const comment = container.querySelector( '#' + DISMISS_COMMENT_ID )?.value.trim() || '';
+
+		buttons.forEach( ( button ) => {
+			button.disabled = true;
+		} );
+		if ( errorSlot ) {
+			errorSlot.textContent = '';
+		}
+		this.announce( dismiss
+			? __( 'Dismissing...', 'accessibility-checker' )
+			: __( 'Reopening...', 'accessibility-checker' )
+		);
+
+		let response;
+		try {
+			response = await requestDismiss( {
+				restUrl: app.restUrl,
+				restNonce: app.restNonce,
+				issueId: issue.id,
+				dismiss,
+				reason,
+				comment,
+				global,
+			} );
+		} catch ( err ) {
+			buttons.forEach( ( button ) => {
+				button.disabled = false;
+			} );
+			if ( errorSlot?.isConnected ) {
+				errorSlot.textContent = err.message;
+			} else {
+				// The user moved to another issue while the request was pending, which replaced the
+				// controls that started it and their error slot. Say so in the panel's status line, naming
+				// the issue, instead of in another issue's controls, and announce it.
+				const failure = sprintf(
+					dismiss
+						// translators: 1: issue title, 2: the reason it failed.
+						? __( 'Could not dismiss "%1$s": %2$s', 'accessibility-checker' )
+						// translators: 1: issue title, 2: the reason it failed.
+						: __( 'Could not reopen "%1$s": %2$s', 'accessibility-checker' ),
+					issue.rule_title || __( 'Untitled issue', 'accessibility-checker' ),
+					err.message
+				);
+				const summary = document.querySelector( '.edac-highlight-panel-controls-summary' );
+				if ( summary ) {
+					summary.textContent = failure;
+					summary.classList.add( 'edac-error' );
+				}
+				this.announce( failure );
+			}
+			return;
+		}
+
+		const updated = applyDismissToIssues( this.issues, issue, { dismiss, global, reason, comment, response } );
+		updated.forEach( ( { issue: updatedIssue, previousRuleType } ) => {
+			updatedIssue.tooltip?.classList.replace(
+				'edac-highlight-btn-' + previousRuleType,
+				'edac-highlight-btn-' + updatedIssue.rule_type
+			);
+		} );
+
+		// Next and Previous stay active while the request is in flight, so the user may be looking
+		// at a different issue now. The data and counts are updated either way, but the panel is only
+		// re-rendered, and focus only moved, while the issue acted on is still the one on screen.
+		const selectedNow = this.issues[ this.currentButtonIndex ]?.id;
+		const stillSelected = undefined === selectedNow || String( selectedNow ) === String( issue.id );
+
+		if ( ! dismiss && global ) {
+			// The list leaves out dismissed issues when it loads, so instances that share this snippet
+			// and were just reopened can be missing from the markers and counts. Load the list again.
+			this.removeHighlightButtons();
+			await this.refreshIssues( stillSelected ? issue.id : selectedNow );
+		} else {
+			this.showIssueCount();
+			if ( stillSelected ) {
+				this.descriptionOpen( issue.id );
+			}
+		}
+
+		const warning = 'string' === typeof response?.warning ? response.warning : '';
+
+		if ( stillSelected ) {
+			// The controls were re-rendered, so move focus to the new primary control.
+			const nextFocus = document.querySelector( '#edac-highlight-panel-description-dismiss-container' )
+				?.querySelector( '.edac-highlight-dismiss-reopen, .edac-highlight-panel-description-dismiss-toggle' );
+			( nextFocus || this.closePanel )?.focus();
+
+			// The change worked, but an add-on can attach a warning to the response (Pro does when it
+			// could not save a global dismissal). Show it instead of reporting plain success.
+			const warningSlot = container.querySelector( '.edac-highlight-dismiss-warning' );
+			if ( warning && warningSlot ) {
+				warningSlot.textContent = warning;
+			}
+		}
+
+		this.announce( warning || ( dismiss
+			? __( 'Issue dismissed successfully.', 'accessibility-checker' )
+			: __( 'Issue reopened successfully.', 'accessibility-checker' )
+		) );
 	}
 
 	/**
@@ -1588,6 +1784,9 @@ class AccessibilityCheckerHighlight {
 		const ignoredCount = this.countIgnored();
 		const div = document.querySelector( '.edac-highlight-panel-controls-summary' );
 		const total = errorCount + warningCount;
+
+		// A failure message shown in this line is replaced by the counts, so it must not keep its error styling.
+		div.classList.remove( 'edac-error' );
 
 		if ( total === 0 && ignoredCount === 0 ) {
 			div.innerHTML = `<span class="edac-highlight-summary-total" role="heading" aria-level="3">${ __( 'No issues detected.', 'accessibility-checker' ) }</span>`;
@@ -1846,15 +2045,18 @@ class AccessibilityCheckerHighlight {
 				error.edacHandled = true;
 				throw error;
 			}
-			if ( ! result || ! result.violations || result.violations.length === 0 ) {
+			// A scan that returned no violation list at all has failed: saving an
+			// empty set here would clear issues that are still on the page.
+			if ( ! result || ! Array.isArray( result.violations ) ) {
+				const message = __( 'Accessibility scan error.', 'accessibility-checker' );
 				self.showWait( false );
-				if ( self._pendingRescanAnnouncement ) {
-					self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
-					self._pendingRescanAnnouncement = false;
-				}
-				self.showScanError( __( 'No violations found, skipping save.', 'accessibility-checker' ) );
-				return { status: 'no-violations' };
+				self.showScanError( message );
+				const error = new Error( message );
+				error.edacHandled = true;
+				throw error;
 			}
+			// Saved even when nothing was found: the request replaces this post's
+			// stored issues, so an empty result is what clears resolved ones.
 			return self.saveScanResults( postId, nonce, result.violations, densityMetrics );
 		} ).catch( ( error ) => {
 			if ( error?.edacHandled ) {
@@ -1892,6 +2094,10 @@ class AccessibilityCheckerHighlight {
 			.then( ( data ) => {
 				self.showWait( false );
 				if ( data && data.success ) {
+					if ( violations.length === 0 && self._pendingRescanAnnouncement ) {
+						self.announce( __( 'Rescan complete. No violations found.', 'accessibility-checker' ) );
+						self._pendingRescanAnnouncement = false;
+					}
 					return { status: 'success' };
 				}
 
@@ -1916,8 +2122,12 @@ class AccessibilityCheckerHighlight {
 
 	/**
 	 * Trigger a full rescan of the current page and reload issues.
+	 *
+	 * @param {boolean} [openPanel] Whether to open the panel once the rescan completes.
+	 *                              Set to false for rescans triggered as a side effect
+	 *                              of something other than the user asking to see results.
 	 */
-	rescanPage() {
+	rescanPage( openPanel = true ) {
 		// Prevent multiple concurrent rescans
 		if ( this._isRescanning ) {
 			this.announce( __( 'Rescan already in progress.', 'accessibility-checker' ) );
@@ -1931,14 +2141,65 @@ class AccessibilityCheckerHighlight {
 
 		this.removeHighlightButtons();
 		this.kickoffScan().then( () => {
+			// The panel refresh below can find no stored rows, which would auto-scan again.
+			this._scanAttempted = true;
 			if ( this._pendingRescanAnnouncement ) {
 				this.announce( __( 'Rescan complete.', 'accessibility-checker' ) );
 				this._pendingRescanAnnouncement = false;
 			}
-			this.panelOpen();
+			if ( openPanel ) {
+				this.panelOpen();
+			} else if ( this.highlightPanel.classList.contains( 'edac-highlight-panel-visible' ) ) {
+				// Panel is already open (e.g. docked) — refresh its contents in place
+				// rather than leaving it showing stale issues, without forcing it open.
+				this.refreshIssues();
+			}
+		}, () => {
+			// Scan and save failures have already been shown and announced by
+			// showScanError(), so there is nothing left to do but not leave the
+			// rejection unhandled.
 		} ).finally( () => {
 			this._isRescanning = false;
 		} );
+	}
+
+	/**
+	 * Reset the panel's issue state without contacting the server: the selected
+	 * element styling, the issue description, the pagination, the nav buttons and
+	 * the selected issue in the URL.
+	 * Used when there are no issues left to show.
+	 */
+	clearIssueState() {
+		this.removeSelectedClasses();
+		this.issues = [];
+		this.currentButtonIndex = null;
+
+		// Clear issue text from the panel.
+		const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
+		const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
+		if ( descriptionTitle ) {
+			descriptionTitle.innerHTML = '';
+			descriptionTitle.classList.remove( 'edac-highlight-panel-description-title--has-notice' );
+		}
+		if ( descriptionContent ) {
+			descriptionContent.innerHTML = '';
+		}
+
+		// Clear the pagination count and hide nav buttons.
+		const pagination = document.getElementById( 'edac-highlight-pagination' );
+		if ( pagination ) {
+			pagination.textContent = '';
+		}
+		this.nextButton.disabled = true;
+		this.previousButton.disabled = true;
+
+		// The selected issue is gone, so drop it from the shareable URL too.
+		const url = new URL( window.location.href );
+		url.searchParams.delete( 'edac' );
+		history.replaceState( null, '', url.toString() );
+		this.urlParameter = null;
+
+		this.descriptionClose();
 	}
 
 	/**
@@ -1982,34 +2243,8 @@ class AccessibilityCheckerHighlight {
 			if ( response.ok ) {
 				this._issuesCleared = true;
 				this.removeHighlightButtons();
-				this.removeSelectedClasses();
-				this.issues = [];
-				this.currentButtonIndex = null;
+				this.clearIssueState();
 
-				// Clear issue text from the panel.
-				const descriptionTitle = document.querySelector( '.edac-highlight-panel-description-title' );
-				const descriptionContent = document.querySelector( '.edac-highlight-panel-description-content' );
-				if ( descriptionTitle ) {
-					descriptionTitle.innerHTML = '';
-				}
-				if ( descriptionContent ) {
-					descriptionContent.innerHTML = '';
-				}
-
-				// Remove the URL parameter.
-				const url = new URL( window.location.href );
-				url.searchParams.delete( 'edac' );
-				history.replaceState( null, '', url.toString() );
-
-				// Clear the pagination count and hide nav buttons.
-				const pagination = document.getElementById( 'edac-highlight-pagination' );
-				if ( pagination ) {
-					pagination.textContent = '';
-				}
-				this.nextButton.disabled = true;
-				this.previousButton.disabled = true;
-
-				this.descriptionClose();
 				this.showIssueCount();
 				if ( summary ) {
 					summary.textContent = __( 'Issues cleared successfully.', 'accessibility-checker' );
@@ -2054,10 +2289,11 @@ class AccessibilityCheckerHighlight {
 let highlighterInitialized = false;
 const initHighlighter = () => {
 	if ( ! highlighterInitialized ) {
-		new AccessibilityCheckerHighlight();
+		const highlighter = new AccessibilityCheckerHighlight();
 		if ( window.edacFrontendHighlighterApp?.userCanFix ) {
 			fixSettingsModalInit();
 		}
+		setupElementorSaveListener( highlighter );
 		highlighterInitialized = true;
 	}
 };

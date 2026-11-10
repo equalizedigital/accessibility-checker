@@ -5,7 +5,7 @@
  * Provides connection and product information for MyDot license management integration.
  *
  * @package Accessibility_Checker
- * @since 1.xx.x
+ * @since 1.40.0
  */
 
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
@@ -18,14 +18,14 @@ use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
  *
  * Handles MyDot product and license integration constants and utilities.
  *
- * @since 1.xx.x
+ * @since 1.40.0
  */
 class Connector {
 
 	/**
 	 * The product name used in MyDot licensing system.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var string
 	 */
@@ -34,7 +34,7 @@ class Connector {
 	/**
 	 * The default MyDot API endpoint for license validation.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var string
 	 */
@@ -43,7 +43,7 @@ class Connector {
 	/**
 	 * The product ID used in MyDot licensing system.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @var int
 	 */
@@ -60,6 +60,7 @@ class Connector {
 	 * This is not raw response data; it's processed/inferred state that combines:
 	 * - License type inference (free vs pro) based on product_id, item_name, or source context
 	 * - License level inference (single-site, multi-site, unlimited, lifetime) from license_limit
+	 * - Plan inference (professional, small-business, agency, ...) from the EDD item_id and price_id
 	 * - Formatted/sanitized response fields (expires, site_count, activations_left, etc.)
 	 *
 	 * Single option (not scattered across multiple wp_options for better atomicity).
@@ -67,6 +68,13 @@ class Connector {
 	 * @var string
 	 */
 	private const LICENSE_METADATA_OPTION = 'edac_license_metadata';
+
+	/**
+	 * Option holding the last paid plan seen, kept when the metadata option is cleared.
+	 *
+	 * @var string
+	 */
+	private const LAST_LICENSE_PLAN_OPTION = 'edac_license_last_plan';
 
 	/**
 	 * License status constants.
@@ -90,6 +98,56 @@ class Connector {
 	private const LICENSE_LEVEL_UNLIMITED   = 'unlimited';
 	private const LICENSE_LEVEL_LIFETIME    = 'lifetime';
 	private const LICENSE_LEVEL_UNKNOWN     = 'unknown';
+
+	/**
+	 * License plan constants.
+	 */
+	private const LICENSE_PLAN_FREE           = 'free';
+	private const LICENSE_PLAN_PROFESSIONAL   = 'professional';
+	private const LICENSE_PLAN_SMALL_BIZ      = 'small-business';
+	private const LICENSE_PLAN_SMALL_BIZ_PLUS = 'small-business-plus';
+	private const LICENSE_PLAN_AGENCY         = 'agency';
+	private const LICENSE_PLAN_ENTERPRISE     = 'enterprise';
+	private const LICENSE_PLAN_UNKNOWN        = 'unknown';
+
+	/**
+	 * EDD download ID of the main, variable-priced Accessibility Checker product.
+	 *
+	 * Professional, Small Business, Agency and the lifetime and custom enterprise licenses
+	 * are all price options of this one download, so its plan comes from the price_id.
+	 */
+	private const MAIN_PRODUCT_ID = 24;
+
+	/**
+	 * Map of price option IDs of the main product to plan slugs.
+	 */
+	private const LICENSE_PLAN_BY_MAIN_PRICE_ID = [
+		1 => self::LICENSE_PLAN_PROFESSIONAL, // 1 site, billed yearly.
+		2 => self::LICENSE_PLAN_SMALL_BIZ,    // 5 sites, billed yearly.
+		3 => self::LICENSE_PLAN_AGENCY,       // 25 sites, billed yearly.
+		5 => self::LICENSE_PLAN_PROFESSIONAL, // Single site lifetime.
+		6 => self::LICENSE_PLAN_PROFESSIONAL, // 1 site, billed monthly.
+		7 => self::LICENSE_PLAN_SMALL_BIZ,    // 5 sites, billed monthly.
+		8 => self::LICENSE_PLAN_AGENCY,       // 25 sites, billed monthly.
+		9 => self::LICENSE_PLAN_ENTERPRISE,   // Custom enterprise plan.
+	];
+
+	/**
+	 * Map of the other EDD download IDs to plan slugs.
+	 *
+	 * Plans sold or upgraded to as their own download have one plan per item, so item_id is enough.
+	 */
+	private const LICENSE_PLAN_BY_ITEM_ID = [
+		self::PRODUCT_ID => self::LICENSE_PLAN_FREE,
+		11974            => self::LICENSE_PLAN_SMALL_BIZ,      // Small Business, yearly.
+		11980            => self::LICENSE_PLAN_SMALL_BIZ,      // Small Business, monthly.
+		19485            => self::LICENSE_PLAN_SMALL_BIZ_PLUS, // Small Business Plus (10 sites), yearly.
+		19487            => self::LICENSE_PLAN_SMALL_BIZ_PLUS, // Small Business Plus (10 sites), monthly.
+		11976            => self::LICENSE_PLAN_AGENCY,         // Agency, yearly.
+		11981            => self::LICENSE_PLAN_AGENCY,         // Agency, monthly.
+		14716            => self::LICENSE_PLAN_ENTERPRISE,     // Enterprise, priced by site count.
+		19589            => self::LICENSE_PLAN_ENTERPRISE,     // Enterprise, monthly.
+	];
 
 	/**
 	 * Determine whether enrollment should use the filtered product ID.
@@ -134,7 +192,7 @@ class Connector {
 	/**
 	 * Sets up the license page and handlers.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public function init() {
 		$connected_services = new ConnectedServicesPage( 'manage_options' );
@@ -142,6 +200,9 @@ class Connector {
 
 		// Expose the free product ID so the Pro plugin can infer license type from API response product IDs.
 		add_filter( 'edac_free_product_id', [ __CLASS__, 'get_free_product_id' ] );
+
+		// Pro clears the metadata when a license expires, so remember the plan as it is stored.
+		add_filter( 'pre_update_option_' . self::LICENSE_METADATA_OPTION, [ __CLASS__, 'remember_license_plan' ] );
 
 		// Ensure the license options group is registered so options.php allows saves.
 		add_action( 'admin_init', [ $this, 'register_license_settings' ] );
@@ -177,7 +238,7 @@ class Connector {
 	/**
 	 * Register license settings so the edac_license group is allowed by options.php.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -213,7 +274,7 @@ class Connector {
 	/**
 	 * Handle license activate/deactivate from admin-post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -240,14 +301,15 @@ class Connector {
 		if ( ! $redirect ) {
 			$redirect = admin_url();
 		}
-		wp_safe_redirect( $redirect );
+		// Lets the admin script announce the result once, only after this submit.
+		wp_safe_redirect( add_query_arg( 'edac_license_submitted', '1', $redirect ) );
 		exit;
 	}
 
 	/**
 	 * Activate the license via API and store status/error.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -261,6 +323,11 @@ class Connector {
 		$license = trim( get_option( 'edacp_license_key' ) );
 		if ( empty( $license ) ) {
 			update_option( 'edac_license_error', 'missing' );
+			return;
+		}
+
+		// A local site can never connect, so do not use up a license activation on it.
+		if ( $this->refuse_local_site() ) {
 			return;
 		}
 
@@ -339,6 +406,7 @@ class Connector {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
+		ConnectionStatus::clear();
 	}
 
 	/**
@@ -368,7 +436,7 @@ class Connector {
 	/**
 	 * Deactivate the license via API and always clear local stored values.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -500,7 +568,7 @@ class Connector {
 	 *
 	 * Can be disabled by returning `false` to the `edac_verify_ssl_for_licensing` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool Whether to verify SSL. Defaults to `true`.
 	 */
@@ -513,7 +581,7 @@ class Connector {
 	 *
 	 * Can be overridden by filtering the value with the `edac_mydot_api_endpoint` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The API endpoint URL (with protocol). Defaults to `https://my.equalizedigital.com`.
 	 */
@@ -521,7 +589,7 @@ class Connector {
 		/**
 		 * Filters the MyDot API endpoint URL.
 		 *
-		 * @since 1.xx.x
+		 * @since 1.40.0
 		 *
 		 * @param string $default The default or environment-overridden API endpoint URL.
 		 */
@@ -533,7 +601,7 @@ class Connector {
 	 *
 	 * Can be overridden by filtering the value with the `edac_mydot_product_id` filter.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return int The product ID. Defaults to 1666.
 	 */
@@ -541,7 +609,7 @@ class Connector {
 		/**
 		 * Filters the MyDot product ID.
 		 *
-		 * @since 1.xx.x
+		 * @since 1.40.0
 		 *
 		 * @param int $default The default product ID.
 		 */
@@ -557,7 +625,7 @@ class Connector {
 	 *
 	 * @return string The license key or empty string if none stored.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public static function get_license_key(): string {
 		return (string) get_option( 'edacp_license_key', '' );
@@ -566,7 +634,7 @@ class Connector {
 	/**
 	 * Handle admin-post for site registration (button on License page).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -587,7 +655,7 @@ class Connector {
 	/**
 	 * Handle admin-post for site unregistration (button on License page).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
@@ -606,13 +674,41 @@ class Connector {
 	}
 
 	/**
+	 * Show a notice and report true when this site is local.
+	 *
+	 * @since x.x.x
+	 *
+	 * @return bool True when the site is local and must not connect.
+	 */
+	private function refuse_local_site(): bool {
+		if ( ! ConnectionStatus::is_local_site() ) {
+			return false;
+		}
+
+		set_transient(
+			$this->get_notice_transient_key(),
+			[
+				'type'    => 'warning',
+				'message' => __( 'Email reports cannot be enabled on a local site because our service cannot reach it to collect report data.', 'accessibility-checker' ),
+			],
+			self::NOTICE_TRANSIENT_TTL
+		);
+
+		return true;
+	}
+
+	/**
 	 * Handle the site registration process including UI feedback.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True when registration succeeded and state was saved.
 	 */
 	private function handle_site_registration(): bool {
+		if ( $this->refuse_local_site() ) {
+			return false;
+		}
+
 		$license_key = self::get_license_key();
 		if ( empty( $license_key ) ) {
 			set_transient(
@@ -630,7 +726,7 @@ class Connector {
 
 		$response_data = self::register_site( $license_key, $site_url, $site_name, true, true );
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -655,6 +751,10 @@ class Connector {
 			if ( ! empty( $data['next_collection'] ) ) {
 				update_option( 'edac_next_collection', $data['next_collection'] );
 			}
+
+			// The site is connected now, so this starts the missed pull clock.
+			ConnectionStatus::record_activity();
+
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -690,7 +790,7 @@ class Connector {
 	 */
 	public function handle_pro_license_activation( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
 		$site_id = (string) get_option( 'edac_site_id', '' );
-		if ( '' === $site_id ) {
+		if ( '' === $site_id || ConnectionStatus::is_local_site() ) {
 			return;
 		}
 
@@ -722,7 +822,7 @@ class Connector {
 	/**
 	 * Handle the site unregistration process including UI feedback.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string      $license      Optional license key passed from deactivation hooks.
 	 * @param string      $url          Optional site URL from deactivation hooks.
@@ -762,7 +862,7 @@ class Connector {
 		}
 
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -786,7 +886,7 @@ class Connector {
 	/**
 	 * Register a site with the MyDot API.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $license_key     The license key to register the site with.
 	 * @param string $site_url        The URL of the site to register.
@@ -837,7 +937,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
@@ -846,7 +946,7 @@ class Connector {
 	/**
 	 * Unregister a site from the MyDot API.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $site_id     The site ID for the registered site.
 	 * @param string $site_url    The URL of the site to unregister.
@@ -895,7 +995,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
@@ -904,7 +1004,7 @@ class Connector {
 	/**
 	 * Get the expected issuer for JWT validation (RFC 8725).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The issuer URL/identifier.
 	 */
@@ -916,7 +1016,7 @@ class Connector {
 	/**
 	 * Get the expected audience for JWT validation (RFC 8725).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return string The audience identifier (site URL or API endpoint identifier).
 	 */
@@ -937,7 +1037,7 @@ class Connector {
 	 * - Audience (aud claim) per RFC 8725 to ensure token is for this recipient
 	 * - Not Before (nbf claim) if present
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $token The JWT token to validate.
 	 * @return bool True if the token is valid, false otherwise.
@@ -1040,7 +1140,7 @@ class Connector {
 	 * If validation fails, attempt to refresh the public key from the issuer and retry.
 	 * This handles cases where the issuer rotated keys but the site's cron hasn't run yet.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $token The JWT token to validate.
 	 * @return bool True if valid (either on first try or after key refresh), false otherwise.
@@ -1064,7 +1164,7 @@ class Connector {
 	/**
 	 * Permission helper for validating JWT token in REST request with fallback (Option 2 + 3).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return bool True if valid JWT token is present, false otherwise.
@@ -1102,7 +1202,7 @@ class Connector {
 	 *
 	 * Uses a simple GET request since public keys don't require authentication.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True if public key was updated or is current, false on error.
 	 */
@@ -1143,7 +1243,7 @@ class Connector {
 	 *
 	 * Uses a simple GET request since public keys don't require authentication.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @return bool True if key was retrieved and stored, false otherwise.
 	 */
@@ -1208,7 +1308,7 @@ class Connector {
 		}
 
 		printf(
-			'<div class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
+			'<div id="edac-connector-notice" class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
 			esc_attr( $type ),
 			esc_html( $message )
 		);
@@ -1230,7 +1330,7 @@ class Connector {
 	/**
 	 * Strict Base64URL decode that returns false on invalid input.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 *
 	 * @param string $b64url The Base64URL encoded string.
 	 * @return string|false The decoded string, or false on failure.
@@ -1256,16 +1356,18 @@ class Connector {
 	 *
 	 * @param object|array $license_data EDD response payload.
 	 * @param string       $source       Activation/check source context ('free' or 'pro').
-	 * @return array Inferred metadata with keys: type, level, item_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
+	 * @return array Inferred metadata with keys: type, level, plan, item_id, price_id, item_name, expires, license_limit, site_count, activations_left, last_response_at.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.40.0
 	 */
 	public static function infer_license_metadata_from_response( $license_data, string $source ): array {
 		if ( ! is_object( $license_data ) && ! is_array( $license_data ) ) {
 			return [
 				'type'             => self::LICENSE_TYPE_UNKNOWN,
 				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'plan'             => self::LICENSE_PLAN_UNKNOWN,
 				'item_id'          => 0,
+				'price_id'         => 0,
 				'item_name'        => '',
 				'expires'          => '',
 				'license_limit'    => '',
@@ -1283,7 +1385,9 @@ class Connector {
 			return [
 				'type'             => in_array( $source, [ self::LICENSE_TYPE_FREE, self::LICENSE_TYPE_PRO ], true ) ? $source : self::LICENSE_TYPE_UNKNOWN,
 				'level'            => self::LICENSE_LEVEL_UNKNOWN,
+				'plan'             => self::LICENSE_PLAN_UNKNOWN,
 				'item_id'          => 0,
+				'price_id'         => 0,
 				'item_name'        => '',
 				'expires'          => '',
 				'license_limit'    => '',
@@ -1295,6 +1399,7 @@ class Connector {
 
 		$item_name = sanitize_text_field( (string) ( $data['item_name'] ?? '' ) );
 		$item_id   = absint( $data['item_id'] ?? 0 );
+		$price_id  = absint( $data['price_id'] ?? 0 );
 		$limit_raw = $data['license_limit'] ?? '';
 
 		// Primary: infer from product ID in response — most reliable when free/pro have distinct IDs.
@@ -1344,7 +1449,9 @@ class Connector {
 		return [
 			'type'             => $type,
 			'level'            => $level,
+			'plan'             => self::infer_plan( $item_id, $price_id ),
 			'item_id'          => $item_id,
+			'price_id'         => $price_id,
 			'item_name'        => $item_name,
 			'expires'          => sanitize_text_field( (string) ( $data['expires'] ?? '' ) ),
 			'license_limit'    => sanitize_text_field( (string) $limit_raw ),
@@ -1352,6 +1459,169 @@ class Connector {
 			'activations_left' => sanitize_text_field( (string) ( $data['activations_left'] ?? '' ) ),
 			'last_response_at' => time(),
 		];
+	}
+
+	/**
+	 * Work out the plan slug for an EDD item and price option.
+	 *
+	 * Most plans are their own EDD download, so item_id decides. The main product is one download
+	 * with a price option per plan, so for that item the price_id decides.
+	 *
+	 * @param int $item_id  EDD download ID from the license response.
+	 * @param int $price_id EDD variable price option ID from the license response, 0 when absent.
+	 * @return string Plan slug, or 'unknown' when the product isn't recognised.
+	 */
+	private static function infer_plan( int $item_id, int $price_id ): string {
+		/**
+		 * Filters the map of EDD item IDs to plan slugs, for plans sold as their own download.
+		 *
+		 * The main product (item 24) isn't looked up here because its plan comes from the price_id.
+		 * Use `edac_license_plan_from_response` to change the plan for that product.
+		 *
+		 * @since 1.52.0
+		 *
+		 * @param array<int,string> $map Plan slugs keyed by EDD item ID.
+		 */
+		if ( self::MAIN_PRODUCT_ID === $item_id ) {
+			$plan = self::LICENSE_PLAN_BY_MAIN_PRICE_ID[ $price_id ] ?? self::LICENSE_PLAN_UNKNOWN;
+		} else {
+			$map  = (array) apply_filters( 'edac_license_plan_map', self::LICENSE_PLAN_BY_ITEM_ID );
+			$plan = isset( $map[ $item_id ] ) ? (string) $map[ $item_id ] : self::LICENSE_PLAN_UNKNOWN;
+		}
+
+		/**
+		 * Filters the plan slug inferred from a license response.
+		 *
+		 * Use this to add or correct plans, for example a new price option of the main product.
+		 *
+		 * @since 1.52.0
+		 *
+		 * @param string $plan     Plan slug inferred from the item ID.
+		 * @param int    $item_id  EDD download ID.
+		 * @param int    $price_id EDD variable price option ID, 0 when absent.
+		 */
+		return (string) apply_filters( 'edac_license_plan_from_response', $plan, $item_id, $price_id );
+	}
+
+	/**
+	 * Get the stored license metadata.
+	 *
+	 * Written on activation and on every license check, so a site that hasn't run a
+	 * check since updating may be missing newer keys such as plan and price_id.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @return array Stored metadata, or an empty array when no license has been checked.
+	 */
+	public static function get_license_metadata(): array {
+		$metadata = get_option( self::LICENSE_METADATA_OPTION, [] );
+		return is_array( $metadata ) ? $metadata : [];
+	}
+
+	/**
+	 * Get the plan slug for the current license, e.g. 'professional' or 'agency'.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @return string Plan slug, or 'unknown' when there is no license data.
+	 */
+	public static function get_license_plan(): string {
+		$metadata = self::get_license_metadata();
+		$plan     = isset( $metadata['plan'] ) && is_string( $metadata['plan'] ) && '' !== $metadata['plan']
+			? $metadata['plan']
+			: self::LICENSE_PLAN_UNKNOWN;
+
+		/**
+		 * Filters the plan slug of the current license.
+		 *
+		 * @since 1.52.0
+		 *
+		 * @param string $plan     Plan slug.
+		 * @param array  $metadata Stored license metadata.
+		 */
+		return (string) apply_filters( 'edac_license_plan', $plan, $metadata );
+	}
+
+	/**
+	 * Remember the plan of license metadata that is about to be stored.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @param mixed $metadata License metadata being saved.
+	 * @return mixed The metadata, unchanged.
+	 */
+	public static function remember_license_plan( $metadata ) {
+		$plan = is_array( $metadata ) && isset( $metadata['plan'] ) ? $metadata['plan'] : '';
+
+		if ( in_array( $plan, [ self::LICENSE_PLAN_PROFESSIONAL, self::LICENSE_PLAN_SMALL_BIZ, self::LICENSE_PLAN_SMALL_BIZ_PLUS, self::LICENSE_PLAN_AGENCY, self::LICENSE_PLAN_ENTERPRISE ], true ) ) {
+			update_option( self::LAST_LICENSE_PLAN_OPTION, $plan );
+		}
+
+		return $metadata;
+	}
+
+	/**
+	 * Get the plan of the current license, falling back to the last paid plan seen.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @return string Plan slug, or 'unknown'.
+	 */
+	public static function get_license_plan_or_last_known(): string {
+		$plan = self::get_license_plan();
+
+		if ( self::LICENSE_PLAN_UNKNOWN !== $plan ) {
+			return $plan;
+		}
+
+		$last = get_option( self::LAST_LICENSE_PLAN_OPTION, '' );
+
+		return is_string( $last ) && '' !== $last ? $last : self::LICENSE_PLAN_UNKNOWN;
+	}
+
+	/**
+	 * Whether the current license is active (not expired, revoked or unactivated).
+	 *
+	 * Pro is authoritative when it holds a license key, otherwise the free license status is used.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @return bool
+	 */
+	public static function is_license_active(): bool {
+		$status_option = self::is_pro_license_check_active() ? 'edacp_license_status' : 'edac_license_status';
+		$is_active     = self::LICENSE_STATUS_VALID === get_option( $status_option );
+
+		/**
+		 * Filters whether the current license is active.
+		 *
+		 * @since 1.52.0
+		 *
+		 * @param bool $is_active Whether the license status is valid.
+		 */
+		return (bool) apply_filters( 'edac_license_is_active', $is_active );
+	}
+
+	/**
+	 * Get the expiry of the current license.
+	 *
+	 * @since 1.52.0
+	 *
+	 * @return string The EDD expiry date, 'lifetime', or an empty string when unknown.
+	 */
+	public static function get_license_expires(): string {
+		$metadata = self::get_license_metadata();
+		$expires  = isset( $metadata['expires'] ) ? (string) $metadata['expires'] : '';
+
+		/**
+		 * Filters the expiry of the current license.
+		 *
+		 * @since 1.52.0
+		 *
+		 * @param string $expires  EDD expiry date, 'lifetime', or an empty string.
+		 * @param array  $metadata Stored license metadata.
+		 */
+		return (string) apply_filters( 'edac_license_expires', $expires, $metadata );
 	}
 
 	/**

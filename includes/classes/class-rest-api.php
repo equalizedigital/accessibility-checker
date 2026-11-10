@@ -11,6 +11,7 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EqualizeDigital\AccessibilityChecker\MyDot\ConnectionStatus;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -91,8 +92,13 @@ class REST_Api {
 							],
 						],
 						'permission_callback' => function ( $request ) {
+							// Saving a scan result for a post requires being able to edit
+							// that specific post. A single-post scan uses the author's own
+							// edit_post; a full site scan is run by a user with
+							// edit_others_posts, which grants edit_post over the content it
+							// crawls. This keeps result storage scoped to editable content.
 							$post_id = (int) $request['id'];
-							return current_user_can( 'edit_post', $post_id ); // able to edit the post.
+							return current_user_can( 'edit_post', $post_id );
 						},
 					]
 				);
@@ -340,6 +346,27 @@ class REST_Api {
 								return false;
 							}
 
+							// largeBatch performs the global action - it updates every row
+							// sharing this issue's rule + object, not just $issue_id - so it
+							// requires the larger-blast-radius capability regardless of who
+							// owns the affected posts (dismiss_issue() re-checks this too).
+							if ( $request->get_param( 'largeBatch' ) ) {
+								// nosemgrep: scanner.php.wp.security.rest-route.permission-callback.incorrect-return -- edac_user_can_dismiss_issues_globally() always returns bool (CapabilityChecker::user_can() is typed `: bool`); scanner can't see through the helper chain.
+								return edac_user_can_dismiss_issues_globally();
+							}
+
+							// Single-issue dismiss. "Dismiss issues (any post)" allows it on
+							// any post; "Dismiss own issues" allows it only where the user can
+							// edit_post the issue's post (authors -> own, editors -> any).
+							// Administrators pass via the manage_options bypass.
+							if ( edac_user_can_dismiss_issues() ) {
+								return true;
+							}
+
+							if ( ! edac_user_can_dismiss_own_issues() ) {
+								return false;
+							}
+
 							$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 							if ( ! $table_name ) {
 								return false;
@@ -369,7 +396,13 @@ class REST_Api {
 		if ( Connector::validate_jwt_token_in_request_with_fallback( $request ) ) {
 			// Only allow if the site is still registered (site_id present).
 			$site_id = (string) get_option( 'edac_site_id', '' );
-			return '' !== $site_id;
+			if ( '' === $site_id ) {
+				return false;
+			}
+
+			// Only My Dot holds a valid token, so this shows the site is reachable for reports.
+			ConnectionStatus::record_activity();
+			return true;
 		}
 
 		return current_user_can( 'edit_posts' );
@@ -451,6 +484,19 @@ class REST_Api {
 
 		if ( ! isset( $request['violations'] ) ) {
 			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
+		}
+
+		// A failed or timed-out scan has no real result. Its empty violation list would be
+		// read as "the page is now clean" and purge every stored issue, dismissed ones
+		// included, so refuse it before anything is deleted.
+		if ( rest_sanitize_boolean( $request['isFailure'] ?? false ) ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => 'The scan did not complete, so the saved results were left unchanged.',
+				],
+				422
+			);
 		}
 
 		$post_id = (int) $request['id'];
@@ -831,7 +877,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets all sidebar data for a post (summary, details, readability).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
@@ -871,7 +917,7 @@ class REST_Api {
 	 *
 	 * Returns cached summary data from post meta. If no cache exists, returns defaults.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -899,7 +945,7 @@ class REST_Api {
 	/**
 	 * Get details data for a post (errors, warnings, passed rules).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -955,7 +1001,7 @@ class REST_Api {
 	/**
 	 * Process rules and fetch issue details from the database.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param array  $rules         The rules to process.
 	 * @param int    $post_id       The post ID.
@@ -1037,7 +1083,7 @@ class REST_Api {
 	/**
 	 * Get readability data for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -1072,7 +1118,8 @@ class REST_Api {
 		$edac_summary           = get_post_meta( $post_id, '_edac_summary', true );
 		$post_grade_readability = isset( $edac_summary['readability'] ) ? $edac_summary['readability'] : 0;
 		$post_grade             = (int) filter_var( $post_grade_readability, FILTER_SANITIZE_NUMBER_INT );
-		$post_grade_failed      = $post_grade > 9; // Treat Flesch-Kincaid grade 9+ (above roughly 8th-grade reading level recommended for plain language) as a readability failure.
+		// Treat Flesch-Kincaid grades above 9 (grade 10+) as readability failures.
+		$post_grade_failed = $post_grade > 9;
 
 		$simplified_summary_grade = 0;
 		if ( class_exists( 'DaveChild\TextStatistics\TextStatistics' ) ) {
@@ -1080,7 +1127,7 @@ class REST_Api {
 			$simplified_summary_grade = edac_normalize_fk_grade( $text_statistics->fleschKincaidGradeLevel( $simplified_summary ) );
 		}
 
-		$simplified_summary_grade_failed      = $simplified_summary_grade >= 9;
+		$simplified_summary_grade_failed      = $simplified_summary_grade > 9;
 		$simplified_summary_grade_readability = edac_ordinal( $simplified_summary_grade );
 		$simplified_summary_prompt            = get_option( 'edac_simplified_summary_prompt' );
 
@@ -1101,7 +1148,7 @@ class REST_Api {
 	/**
 	 * Save simplified summary for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return \WP_REST_Response|\WP_Error
@@ -1204,12 +1251,34 @@ class REST_Api {
 	public function dismiss_issue( $request ) {
 		global $wpdb;
 
-		$issue_id      = (int) $request['issue_id'];
-		$action        = $request->get_param( 'action' );
-		$reason        = $request->get_param( 'reason' ) ?? '';
-		$comment       = $request->get_param( 'comment' ) ?? '';
-		$ignore_global = $request->get_param( 'ignore_global' ) ?? 0;
-		$large_batch   = $request->get_param( 'largeBatch' ) ?? false;
+		$can_dismiss_any      = edac_user_can_dismiss_issues();
+		$can_dismiss_globally = edac_user_can_dismiss_issues_globally();
+		if ( ! $can_dismiss_any && ! edac_user_can_dismiss_own_issues() && ! $can_dismiss_globally ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
+
+		$issue_id    = (int) $request['issue_id'];
+		$action      = $request->get_param( 'action' );
+		$reason      = $request->get_param( 'reason' ) ?? '';
+		$comment     = $request->get_param( 'comment' ) ?? '';
+		$large_batch = $request->get_param( 'largeBatch' ) ?? false;
+
+		// largeBatch is what actually performs the global action (updating every
+		// row that shares the object, not just $issue_id) - the per-post
+		// edit_post loop below only proves the user can edit each affected post,
+		// it doesn't prove they're allowed to take a global action at all. That
+		// requires the separate, larger-blast-radius capability.
+		if ( $large_batch && ! $can_dismiss_globally ) {
+			return new \WP_Error(
+				'rest_forbidden',
+				__( 'Sorry, you are not allowed to dismiss issues globally.', 'accessibility-checker' ),
+				[ 'status' => rest_authorization_required_code() ]
+			);
+		}
 
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$site_id    = get_current_blog_id();
@@ -1225,16 +1294,29 @@ class REST_Api {
 		$ignre_date_formatted = $is_ignoring ? edac_format_datetime_from_utc( $ignre_date ) : '';
 		$ignre_reason         = $is_ignoring ? $reason : null;
 		$ignre_comment        = $is_ignoring ? $comment : null;
-		$ignre_global         = $is_ignoring ? (int) $ignore_global : 0;
+		// The ignre_global marker records that a dismiss was taken as a global
+		// action. It must reflect what actually happened - $large_batch is what
+		// performs the global update below - not the client-supplied
+		// ignore_global param, which would let a request mislabel a single-row
+		// dismiss as global (or vice versa) independent of the real action taken.
+		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
-		// If largeBatch is set, verify edit permission for all matching rows,
-		// then perform a single object-based update.
+		// Rule and object of the changed issue, passed on to edac_after_ignore_change.
+		$hook_rule   = '';
+		$hook_object = '';
+
+		// If largeBatch is set, gather every row sharing this issue's rule + object,
+		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
-			// Get the 'object' from the issue id.
+			// Get the 'rule' and 'object' from the issue id so the batch is scoped to both.
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
-			$object = $wpdb->get_var( $wpdb->prepare( 'SELECT object FROM %i WHERE id = %d', $table_name, $issue_id ) );
+			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
+			$rule               = $representative_row['rule'] ?? '';
+			$object             = $representative_row['object'] ?? '';
+			$hook_rule          = (string) $rule;
+			$hook_object        = (string) $object;
 
-			if ( ! $object ) {
+			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
 					'issue_not_found',
 					__( 'Issue not found.', 'accessibility-checker' ),
@@ -1247,10 +1329,11 @@ class REST_Api {
 			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need current rows for permission validation.
 			$issue_rows = $wpdb->get_results(
 				$wpdb->prepare(
-					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s',
+					'SELECT id, postid FROM %i WHERE siteid = %d AND object = %s AND rule = %s',
 					$table_name,
 					$site_id,
-					$object
+					$object,
+					$rule
 				),
 				ARRAY_A
 			);
@@ -1263,16 +1346,9 @@ class REST_Api {
 				);
 			}
 
-			foreach ( $issue_rows as $issue_row ) {
-				$post_id = isset( $issue_row['postid'] ) ? (int) $issue_row['postid'] : 0;
-				if ( $post_id <= 0 || ! current_user_can( 'edit_post', $post_id ) ) {
-					return new \WP_Error(
-						'rest_forbidden',
-						__( 'Sorry, you are not allowed to dismiss one or more issues in this batch.', 'accessibility-checker' ),
-						[ 'status' => rest_authorization_required_code() ]
-					);
-				}
-			}
+			// $can_dismiss_globally is guaranteed true here: the early return
+			// above already rejects any $large_batch request without it, so a
+			// per-post edit_post loop over the batch would be pure overhead.
 
 			// Build an explicit list of vetted IDs so the UPDATE targets only rows we already permission-checked.
 			$issue_ids       = array_map( 'intval', wp_list_pluck( $issue_rows, 'id' ) );
@@ -1327,6 +1403,13 @@ class REST_Api {
 			);
 		}
 
+		if ( ! $large_batch ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+			$issue_row   = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE siteid = %d AND id = %d', $table_name, $site_id, $issue_id ), ARRAY_A );
+			$hook_rule   = (string) ( $issue_row['rule'] ?? '' );
+			$hook_object = (string) ( $issue_row['object'] ?? '' );
+		}
+
 		/**
 		 * Fires after an ignore state change succeeds.
 		 *
@@ -1340,6 +1423,9 @@ class REST_Api {
 		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
 		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
 		 *     @type int    $site_id      Current blog ID.
+		 *     @type string $rule         Rule slug of the changed issue; empty when the issue was not found.
+		 *     @type string $object       Code snippet of the changed issue as stored in the database
+		 *                                (HTML-escaped); empty when the issue was not found.
 		 * }
 		 */
 		do_action(
@@ -1354,6 +1440,8 @@ class REST_Api {
 				'ignre_comment' => $ignre_comment,
 				'large_batch'   => $large_batch,
 				'site_id'       => $site_id,
+				'rule'          => $hook_rule,
+				'object'        => $hook_object,
 			]
 		);
 

@@ -1,46 +1,32 @@
 import apiFetch from '@wordpress/api-fetch';
-import { createReduxStore } from '@wordpress/data';
-import '../../../src/sidebar/store/accessibility-checker-store';
+import store from '../../../src/sidebar/store/accessibility-checker-store';
 
 jest.mock( '@wordpress/api-fetch', () => jest.fn(), { virtual: true } );
-
 jest.mock( '@wordpress/data', () => ( {
-	createReduxStore: jest.fn( ( name, config ) => ( { name, config } ) ),
+	createReduxStore: ( name, config ) => ( {
+		name,
+		...config,
+	} ),
 	register: jest.fn(),
 } ), { virtual: true } );
+jest.mock( '@wordpress/i18n', () => ( {
+	__: ( message ) => message,
+} ), { virtual: true } );
 
-const { actions } = createReduxStore.mock.calls[ 0 ][ 1 ];
-
-const createActionRunner = ( initialLoad = false ) => {
-	const state = {
-		data: null,
-		error: null,
-		initialLoad,
-	};
-
+const createActionContext = ( initialLoad ) => {
+	let error = null;
 	const select = {
-		getData: jest.fn( () => state.data ),
-		getError: jest.fn( () => state.error ),
-		isInitialLoad: jest.fn( () => state.initialLoad ),
+		getData: jest.fn( () => null ),
+		getError: jest.fn( () => error ),
+		isInitialLoad: jest.fn( () => initialLoad ),
 	};
-
 	const dispatch = jest.fn( ( action ) => {
 		if ( typeof action === 'function' ) {
 			return action( { dispatch, select } );
 		}
 
-		switch ( action.type ) {
-			case 'SET_DATA':
-				state.data = action.data;
-				break;
-			case 'SET_ERROR':
-				state.error = action.error;
-				break;
-			case 'SET_INITIAL_LOAD':
-				state.initialLoad = action.initialLoad;
-				break;
-			default:
-				break;
+		if ( action.type === 'SET_ERROR' ) {
+			error = action.error;
 		}
 
 		return action;
@@ -49,58 +35,91 @@ const createActionRunner = ( initialLoad = false ) => {
 	return { dispatch, select };
 };
 
-const runRefetch = async ( { initialLoad = false, postId = 42 } = {} ) => {
-	const runner = createActionRunner( initialLoad );
-	const result = actions.refetchData( postId )( runner );
-	jest.advanceTimersByTime( 200 );
-	return result;
-};
-
-describe( 'accessibility checker store refresh results', () => {
-	let consoleWarn;
-
+describe( 'accessibility checker store refetchData', () => {
 	beforeEach( () => {
 		jest.useFakeTimers();
-		jest.clearAllMocks();
-		consoleWarn = jest.spyOn( console, 'warn' ).mockImplementation( () => {} );
+		apiFetch.mockReset();
 	} );
 
 	afterEach( () => {
-		consoleWarn.mockRestore();
-		jest.clearAllTimers();
 		jest.useRealTimers();
 	} );
 
-	test( 'returns true after a successful background refresh', async () => {
+	it( 'settles the first promise when a second call supersedes it', async () => {
 		apiFetch.mockResolvedValue( {
 			success: true,
-			data: { details: {} },
+			data: {},
+		} );
+		const context = createActionContext( false );
+
+		const firstSettled = jest.fn();
+		const firstPromise = store.actions.refetchData( 123 )( context );
+		firstPromise.then( firstSettled );
+
+		const secondPromise = store.actions.refetchData( 123 )( context );
+		await jest.advanceTimersByTimeAsync( 0 );
+
+		expect( firstSettled ).toHaveBeenCalledWith( { status: 'superseded' } );
+		expect( apiFetch ).not.toHaveBeenCalled();
+
+		await jest.advanceTimersByTimeAsync( 200 );
+		await secondPromise;
+
+		expect( apiFetch ).toHaveBeenCalledTimes( 1 );
+	} );
+
+	it( 'does not supersede an initial-load refresh after its timer has started', async () => {
+		let resolveInitialFetch;
+		apiFetch
+			.mockImplementationOnce( () => new Promise( ( resolve ) => {
+				resolveInitialFetch = resolve;
+			} ) )
+			.mockResolvedValueOnce( {
+				success: true,
+				data: {},
+			} );
+		const context = createActionContext( true );
+
+		let firstResult;
+		const firstRefresh = store.actions.refetchData( 123 )( context );
+		firstRefresh.then( ( result ) => {
+			firstResult = result;
 		} );
 
-		await expect( runRefetch() ).resolves.toBe( true );
-	} );
+		await jest.advanceTimersByTimeAsync( 200 );
+		expect( apiFetch ).toHaveBeenCalledTimes( 1 );
 
-	test( 'returns false after an unsuccessful background refresh', async () => {
-		apiFetch.mockResolvedValue( {
-			success: false,
-			message: 'Refresh failed',
-		} );
+		context.select.isInitialLoad.mockReturnValue( false );
+		const latestRefresh = store.actions.refetchData( 123 )( context );
+		await Promise.resolve();
+		expect( firstResult ).toBeUndefined();
 
-		await expect( runRefetch() ).resolves.toBe( false );
-	} );
-
-	test( 'returns false when a background refresh throws', async () => {
-		apiFetch.mockRejectedValue( new Error( 'Network error' ) );
-
-		await expect( runRefetch() ).resolves.toBe( false );
-	} );
-
-	test( 'returns the initial fetch result when data has not loaded yet', async () => {
-		apiFetch.mockResolvedValue( {
+		resolveInitialFetch( {
 			success: true,
-			data: { details: {} },
+			data: {},
 		} );
+		await firstRefresh;
+		expect( firstResult ).toEqual( { status: 'success' } );
 
-		await expect( runRefetch( { initialLoad: true } ) ).resolves.toBe( true );
+		await jest.advanceTimersByTimeAsync( 200 );
+		await latestRefresh;
+		expect( apiFetch ).toHaveBeenCalledTimes( 2 );
+	} );
+
+	it.each( [
+		[ 'a successful background refresh', false, () => apiFetch.mockResolvedValue( { success: true, data: {} } ), 'success' ],
+		[ 'an unsuccessful background refresh', false, () => apiFetch.mockResolvedValue( { success: false, message: 'Refresh failed' } ), 'error' ],
+		[ 'a background refresh that throws', false, () => apiFetch.mockRejectedValue( new Error( 'Network error' ) ), 'error' ],
+		[ 'a successful initial load', true, () => apiFetch.mockResolvedValue( { success: true, data: {} } ), 'success' ],
+		[ 'an unsuccessful initial load', true, () => apiFetch.mockResolvedValue( { success: false, message: 'Load failed' } ), 'error' ],
+	] )( 'resolves the status of %s', async ( _label, initialLoad, mockResponse, status ) => {
+		const consoleWarn = jest.spyOn( console, 'warn' ).mockImplementation( () => {} );
+		mockResponse();
+
+		const refresh = store.actions.refetchData( 123 )( createActionContext( initialLoad ) );
+		await jest.advanceTimersByTimeAsync( 200 );
+
+		await expect( refresh ).resolves.toEqual( { status } );
+		consoleWarn.mockRestore();
 	} );
 } );

@@ -1,12 +1,5 @@
 @use "variables";
 
-.edac-highlight-panel .edac-fix-settings--fields {
-	input, select, textarea {
-		/* Styles on a parent alement set `all` to none making everything invisible, need to revert that here. */
-		all: revert;
-	}
-}
-
 .edac-fix-modal-present #TB_ajaxContent {
 	width: auto !important;
 	height: auto !important;
@@ -16,7 +9,7 @@
 
 .edac-fix-settings {
 
-	&--fields{
+	&--fields {
 		display: none !important;
 
 		.edac-fix-settings--open & {
@@ -41,16 +34,19 @@
 		input[type="checkbox"] {
 			border: 1px solid #ccc;
 			border-radius: 5px;
-			margin: 0 .5rem 0 0;
+			margin: 0 0.5rem 0 0;
 			padding: 0 !important;
 			width: auto;
 
+			// stylelint-disable-next-line selector-pseudo-element-colon-notation
 			&:before {
 				content: none;
 			}
+
+			// stylelint-disable-next-line selector-pseudo-element-colon-notation
 			&:checked:before {
 				content: url(data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M14.83%204.89l1.34.94-5.81%208.38H9.02L5.78%209.67l1.34-1.25%202.57%202.4z%27%20fill%3D%27%233582c4%27%2F%3E%3C%2Fsvg%3E);
-				margin: -.1875rem -0.25rem 0 -.25rem;
+				margin: -0.1875rem -0.25rem 0 -0.25rem;
 				height: 1.3125rem;
 				width: 1.3125rem;
 			}
@@ -58,6 +54,20 @@
 
 		input[type="text"] {
 			padding: 0.25rem 0.5rem;
+		}
+
+		.edac-highlight-panel & {
+			background: #222;
+			padding: 10px;
+
+			input,
+			select,
+			textarea {
+
+				/* Styles on a parent element set `all` to none making
+				everything invisible, need to revert that here. */
+				all: revert;
+			}
 		}
 	}
 
@@ -78,13 +88,7 @@
 
 	}
 
-	&--fields {
-		.edac-highlight-panel & {
-			background: #222222;
-			padding: 10px;
-		}
-	}
-
+	// stylelint-disable-next-line no-descending-specificity
 	&--action-row {
 		display: flex;
 		gap: 0.5rem;
@@ -93,20 +97,21 @@
 	}
 
 	&--button {
+
 		&--save {
 			padding: 8px 13px;
 			background: variables.$color-blue;
-			color: white;
+			color: #fff;
 			border-radius: 2px;
 
 			&:hover {
-				background: color-mix(in srgb, variables.$color-blue 90%, black) !important;
-				color: white !important;
+				background: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
+				color: #fff !important;
 			}
 
 			&:focus-visible {
-				background: color-mix(in srgb, variables.$color-blue 90%, black) !important;
-				color: white !important;
+				background: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
+				color: #fff !important;
 				outline: 2px solid variables.$color-blue !important;
 				outline-offset: 2px !important;
 			}
@@ -139,8 +144,11 @@
 	border-radius: 5px;
 	box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 
+	// stylelint-disable selector-pseudo-element-colon-notation
 	.dashicons,
 	.dashicons-before:before {
+		// stylelint-enable selector-pseudo-element-colon-notation
+		// stylelint-disable-next-line font-family-no-missing-generic-family-keyword
 		font-family: dashicons;
 		display: inline-block;
 		line-height: 1;
@@ -157,7 +165,7 @@
 		font-size: 20px;
 		vertical-align: top;
 		text-align: center;
-		transition: color .1s ease-in;
+		transition: color 0.1s ease-in;
 	}
 
 	&__overlay {
@@ -210,7 +218,8 @@
 		border-radius: 2px;
 		outline: 2px solid transparent;
 
-		.dashicons, .dashicons::before {
+		.dashicons,
+		.dashicons::before {
 			vertical-align: middle;
 			display: block;
 			margin: auto;
@@ -241,6 +250,7 @@ body.edac-fixes-modal--open {
 }
 
 .edac-fix-description-help-link {
+
 	.dashicons-info {
 
 		color: variables.$color-gray;
@@ -286,10 +296,12 @@ body.edac-fixes-modal--open {
 }
 
 body.block-editor-page {
+
 	.hide-in-editor {
 		display: none;
 	}
 
+	// stylelint-disable-next-line no-descending-specificity
 	.modal-opening-message {
 		margin: 0;
 		padding: 0;

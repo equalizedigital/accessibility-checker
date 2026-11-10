@@ -40,15 +40,21 @@ const SidebarTitleMenu = ( { postId, refetchData } ) => {
 			return;
 		}
 
-		let refreshSucceeded = false;
+		let status = 'error';
 		try {
-			refreshSucceeded = await refetchData( postId );
+			const result = await refetchData( postId );
+			status = result?.status ?? 'error';
 		} catch {
 			// The store normally resolves failures, but keep the user informed if that changes.
-			refreshSucceeded = false;
+			status = 'error';
 		}
 
-		if ( refreshSucceeded ) {
+		// A newer refresh replaced this one and will announce its own result.
+		if ( 'superseded' === status ) {
+			return;
+		}
+
+		if ( 'success' === status ) {
 			speak( __( 'Accessibility analysis refreshed.', 'accessibility-checker' ), 'polite' );
 			return;
 		}

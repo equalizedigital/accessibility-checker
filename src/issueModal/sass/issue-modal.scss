@@ -5,14 +5,16 @@
  */
 
 // Import badge styles since we use the Badge component
-@use '../../sidebar/sass/components/badge';
-@use '../../sidebar/sass/variables' as *;
+@use "../../sidebar/sass/components/badge";
+@use "../../sidebar/sass/variables" as *;
 
 // DismissPanel component styles — defined at root scope so they apply in any
 // context (modal, pro drawer, etc.). Modal-specific overrides follow below.
-@use 'dismiss-panel';
+@use "dismiss-panel";
 
+// stylelint-disable no-descending-specificity
 .edac-analysis {
+
 	&__issue-modal {
 
 		h2 {
@@ -22,13 +24,13 @@
 		}
 
 		h3 {
-			font-size:$modal-font-size-small;
+			font-size: $modal-font-size-small;
 			font-weight: 600;
 		}
 
 		.components-modal__header {
 			height: 60px;
-			padding: 0px 24px 0;
+			padding: 0 24px 0;
 
 			&-heading {
 				font-size: $modal-font-size-large;
@@ -45,7 +47,8 @@
 		}
 
 		// The className prop on Modal is applied to .components-modal__frame
-		// so we use &.components-modal__frame to match .edac-analysis__issue-modal.components-modal__frame
+		// so we use &.components-modal__frame to match:
+		// .edac-analysis__issue-modal.components-modal__frame
 		&.components-modal__frame {
 			width: 890px;
 			max-width: 80%;
@@ -216,6 +219,7 @@
 			}
 
 			.components-panel__body-toggle {
+
 				&:hover {
 					background: #f5f5f5;
 				}
@@ -297,6 +301,7 @@
 			}
 
 			.components-panel__body.is-opened {
+
 				.components-panel__body-title button {
 					border-bottom: 1px solid $outline-grey;
 				}
@@ -307,7 +312,9 @@
 		.edac-analysis__issue-panels {
 
 			.components-panel__body {
+
 				&.is-opened {
+
 					.edac-analysis__panel-content {
 						padding: 16px 8px 0;
 					}
@@ -324,6 +331,7 @@
 			}
 
 			> :not(:first-child) {
+
 				.components-panel__body {
 					border-bottom: 1px solid $outline-grey;
 				}
@@ -363,7 +371,7 @@
 			margin-top: 16px;
 
 			&::after {
-				content: '';
+				content: "";
 				display: table;
 				clear: both;
 			}
@@ -382,6 +390,7 @@
 		}
 
 		.edac-fix-card {
+
 			&:not(:last-child) {
 				margin-bottom: 24px;
 			}
@@ -395,6 +404,7 @@
 .edac-analysis__issue-modal,
 .edacp-ie-drawer,
 .edacp-ie-dismiss-modal {
+
 	.edac-analysis__code-textarea {
 		display: none;
 	}

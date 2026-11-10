@@ -1,16 +1,18 @@
-@use '../_variables' as *;
+@use "../_variables" as *;
 
 /**
  * Sidebar Content Styles
  */
 
 .edac-sidebar__content {
+
 	.interface-complementary-area & h3 {
 		text-transform: none;
 	}
 }
 
 .edac-panel-body {
+
 	.edac-refreshing-message {
 		margin-bottom: 12px;
 	}
@@ -35,7 +37,7 @@
 
 	&__count {
 		font-size: 24px;
-		font-weight: bold;
+		font-weight: 700;
 		margin-right: 8px;
 
 		&--errors {
@@ -66,9 +68,6 @@
  * Generic Panel Section Styles
  * Reusable across all sidebar panels
  */
-
-.edac-panel-row {
-}
 
 .edac-panel-section {
 
@@ -121,8 +120,8 @@
 }
 
 /**
- * This exists only to make the 6.7 and 6.8 WP versions not look broken with icons.
- * The is-compact class is added in 6.9 (and hopefully later).
+ * This exists only to make the 6.7 and 6.8 WP versions not look broken
+ * with icons. The is-compact class is added in 6.9 (and hopefully later).
  */
 .edac-sidebar-menu-group.components-menu-group button:not(.is-compact) > svg {
 	max-width: 24px;

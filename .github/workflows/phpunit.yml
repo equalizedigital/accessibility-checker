@@ -28,8 +28,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # The oldest WordPress we support, per readme.txt "Requires at
+          # least". This row is the one that catches us using an API that
+          # core only added later; "latest" rows below cover the other end.
           - php_version: '8.1'
-            wp_version: '6.2'
+            wp_version: '6.9'
             multisite: false
 
           - php_version: '8.1'
@@ -60,10 +63,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
@@ -81,7 +84,7 @@ jobs:
         run: composer config --unset platform.php
 
       - name: "Install Composer dependencies"
-        uses: ramsey/composer-install@v2
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
         with:
           # Force a `composer update` run.
           dependency-versions: "highest"
@@ -95,7 +98,7 @@ jobs:
 
       - name: Cache WordPress test library
         if: matrix.wp_version != 'latest'
-        uses: actions/cache@v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             /tmp/wordpress-tests-lib

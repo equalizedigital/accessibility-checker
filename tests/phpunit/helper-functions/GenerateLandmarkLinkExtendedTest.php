@@ -57,12 +57,6 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 		$target_blank,
 		$expected_pattern
 	) {
-		// Skip this test if WordPress functions aren't available.
-		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
-			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
-		}
-
 		$result = edac_generate_landmark_link(
 			$landmark,
 			$landmark_selector,
@@ -147,11 +141,6 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 * Test landmark link with proper URL structure.
 	 */
 	public function test_landmark_link_url_structure() {
-		// Skip test if WordPress functions not available.
-		if ( ! function_exists( 'wp_create_nonce' ) || ! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) || ! function_exists( 'wp_parse_url' ) ) {
-			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
-		}
-
 		$landmark = 'navigation';
 		$selector = 'nav.main-nav';
 
@@ -205,12 +194,6 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 * Test ARIA label generation.
 	 */
 	public function test_aria_label_generation() {
-		// Skip this test if WordPress functions aren't available.
-		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
-			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
-		}
-
 		$landmark = 'header';
 		$selector = 'header.site-header';
 
@@ -236,12 +219,6 @@ class GenerateLandmarkLinkExtendedTest extends WP_UnitTestCase {
 	 * Test HTML escaping and security.
 	 */
 	public function test_html_escaping_security() {
-		// Skip this test if WordPress functions aren't available.
-		if ( ! function_exists( 'esc_html' ) || ! function_exists( 'wp_create_nonce' ) ||
-			! function_exists( 'get_the_permalink' ) || ! function_exists( 'add_query_arg' ) ) {
-			$this->markTestSkipped( 'WordPress functions not available in test environment.' );
-		}
-
 		$malicious_landmark = '<script>alert("xss")</script>';
 		$malicious_selector = 'header"><script>alert("xss")</script>';
 		$malicious_class    = 'class"><script>alert("xss")</script>';

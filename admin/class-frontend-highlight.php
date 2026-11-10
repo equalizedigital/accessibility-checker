@@ -43,6 +43,13 @@ class Frontend_Highlight {
 		 * highlighter. You can use the filter to perform additional permission checks
 		 * on who can see it.
 		 *
+		 * Reviewed against the edac_view_frontend_highlighter capability during the
+		 * 2026-08 permissions work and kept as-is (not a deprecation candidate): this
+		 * gates the nopriv AJAX action for LOGGED-OUT visitors, who have no WP role
+		 * or capabilities to check in the first place, so the capability system
+		 * cannot express what this filter does. Long-term, consider renaming it to
+		 * make that distinction clearer (e.g. ..._anonymous_visibility).
+		 *
 		 * @since 1.14.0
 		 *
 		 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
@@ -65,7 +72,7 @@ class Frontend_Highlight {
 		$table_name = $wpdb->prefix . 'accessibility_checker';
 		$post_id    = (int) $post_id;
 		$siteid     = get_current_blog_id();
-		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, object, ruletype, selector, ancestry, xpath, landmark, landmark_selector FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
+		$results    = $wpdb->get_results( $wpdb->prepare( 'SELECT id, rule, ignre, ignre_user, ignre_date, ignre_reason, ignre_comment, ignre_global, object, ruletype, selector, ancestry, xpath, landmark, landmark_selector FROM %i where postid = %d and siteid = %d', $table_name, $post_id, $siteid ), ARRAY_A ); // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Safe variable used for table name.
 		if ( ! $results ) {
 			return null;
 		}
@@ -93,10 +100,23 @@ class Frontend_Highlight {
 			wp_send_json_error( new \WP_Error( '-4', __( 'Post not found', 'accessibility-checker' ) ) );
 		}
 
+		// A password-protected post blocks access regardless of read_post/public-viewable
+		// checks below - those don't know about the password gate, so this must be checked
+		// explicitly or a user who hasn't entered the password can still get highlighter data.
+		if ( post_password_required( $post ) ) {
+			wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
+		}
+
 		// Check if the user has permission to view this post.
 		if ( is_user_logged_in() ) {
-			// For authenticated users, use read_post capability.
-			if ( ! current_user_can( 'read_post', $post_id ) ) {
+			// For authenticated users, require both read_post and the dedicated
+			// frontend highlighter capability - read_post alone is not sufficient,
+			// or this endpoint would return highlighter data to any logged-in
+			// reader regardless of what the Permissions tab granted (PRO-1290).
+			if (
+				! current_user_can( 'read_post', $post_id ) ||
+				! ( function_exists( 'edac_user_can_use_frontend_highlighter' ) && edac_user_can_use_frontend_highlighter() )
+			) {
 				wp_send_json_error( new \WP_Error( '-1', __( 'Permission Denied', 'accessibility-checker' ) ) );
 			}
 		} elseif ( apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) ) {
@@ -117,8 +137,9 @@ class Frontend_Highlight {
 
 		$rules = edac_register_rules();
 
-		$issues = [];
-		$fixes  = [];
+		$issues                     = [];
+		$fixes                      = [];
+		$can_view_dismissal_details = is_user_logged_in();
 		foreach ( $results as $result ) {
 			$array = [];
 			$rule  = edac_filter_by_value( $rules, 'slug', $result['rule'] );
@@ -149,6 +170,19 @@ class Frontend_Highlight {
 			$array['severity']          = $rule[0]['severity'] ?? '';
 			$array['landmark']          = $result['landmark'] ?? '';
 			$array['landmark_selector'] = $result['landmark_selector'] ?? '';
+			$array['base_rule_type']    = $rule[0]['rule_type'];
+			$array['ignre_global']      = (int) ( $result['ignre_global'] ?? 0 );
+
+			// Dismissal details (who, when, why) are only shown to logged-in users. Logged-out
+			// visitors can only reach this endpoint via the visibility filter and can't dismiss.
+			if ( $can_view_dismissal_details && $result['ignre'] ) {
+				$ignre_user = ! empty( $result['ignre_user'] ) ? get_userdata( (int) $result['ignre_user'] ) : false;
+
+				$array['ignre_reason']    = $result['ignre_reason'] ?? '';
+				$array['ignre_comment']   = html_entity_decode( $result['ignre_comment'] ?? '', ENT_QUOTES | ENT_HTML5 );
+				$array['ignre_user_name'] = $ignre_user ? $ignre_user->user_login : '';
+				$array['ignre_date']      = edac_format_datetime_from_utc( (string) ( $result['ignre_date'] ?? '' ) );
+			}
 
 			$issues[] = $array;
 

@@ -58,7 +58,7 @@ describe( 'SidebarTitleMenu', () => {
 	} );
 
 	test( 'announces when a user-triggered refresh succeeds', async () => {
-		const refetchData = jest.fn().mockResolvedValue( true );
+		const refetchData = jest.fn().mockResolvedValue( { status: 'success' } );
 		const { container, unmount } = renderReact(
 			<SidebarTitleMenu postId={ 42 } refetchData={ refetchData } />,
 		);
@@ -78,7 +78,7 @@ describe( 'SidebarTitleMenu', () => {
 	} );
 
 	test( 'announces when a user-triggered refresh fails', async () => {
-		const refetchData = jest.fn().mockResolvedValue( false );
+		const refetchData = jest.fn().mockResolvedValue( { status: 'error' } );
 		const { container, unmount } = renderReact(
 			<SidebarTitleMenu postId={ 42 } refetchData={ refetchData } />,
 		);
@@ -92,6 +92,23 @@ describe( 'SidebarTitleMenu', () => {
 			'Accessibility analysis could not be refreshed.',
 			'assertive',
 		);
+
+		unmount();
+	} );
+
+	test( 'does not announce a refresh that a newer refresh superseded', async () => {
+		const refetchData = jest.fn().mockResolvedValue( { status: 'superseded' } );
+		const { container, unmount } = renderReact(
+			<SidebarTitleMenu postId={ 42 } refetchData={ refetchData } />,
+		);
+
+		await act( async () => {
+			getRefreshButton( container ).click();
+			await Promise.resolve();
+		} );
+
+		expect( refetchData ).toHaveBeenCalledWith( 42 );
+		expect( speak ).not.toHaveBeenCalled();
 
 		unmount();
 	} );

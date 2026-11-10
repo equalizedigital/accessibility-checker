@@ -36,6 +36,17 @@ describe( 'Empty Button Validation', () => {
 			html: '<button title="Submit"></button>',
 			shouldPass: true,
 		},
+		// Screen reader only text is a valid accessible name, so it must not count as hidden.
+		{
+			name: 'should pass for button with only screen reader only text (clip-path technique)',
+			html: '<button><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">Menu</span><i class="fas fa-bars"></i></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for button with only screen reader only text (clip rect technique)',
+			html: '<button><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px);">Menu</span></button>',
+			shouldPass: true,
+		},
 		{
 			name: 'should pass for button with an image and alt text',
 			html: '<button><img src="icon.png" alt="Submit"></button>',
