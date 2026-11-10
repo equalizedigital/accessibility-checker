@@ -84,7 +84,7 @@ class Enqueue_Admin {
 			$post_id = apply_filters( 'edac_filter_admin_post_id', $post_id );
 
 			wp_enqueue_script( 'edac', EDAC_PLUGIN_URL . 'build/admin.bundle.js', [ 'jquery', 'wp-a11y' ], EDAC_VERSION, false );
-			wp_set_script_translations( 'edac', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+			wp_set_script_translations( 'edac', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 			wp_localize_script(
 				'edac',
 				'edac_script_vars',
@@ -116,7 +116,7 @@ class Enqueue_Admin {
 				}
 
 				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
-				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
 				// show_on_front=page fallback with no static front page) use the live home URL instead.
@@ -209,7 +209,7 @@ class Enqueue_Admin {
 		);
 
 		// Set translations for the sidebar.
-		wp_set_script_translations( 'edac-sidebar', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+		wp_set_script_translations( 'edac-sidebar', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 		// Localize script with necessary data.
 		wp_localize_script(
@@ -281,7 +281,7 @@ class Enqueue_Admin {
 		);
 
 		// Set translations for the issue modal.
-		wp_set_script_translations( 'edac-issue-modal', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+		wp_set_script_translations( 'edac-issue-modal', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 		// Enqueue issue modal styles.
 		wp_enqueue_style(
@@ -342,7 +342,7 @@ class Enqueue_Admin {
 			false
 		);
 
-		wp_set_script_translations( 'edac-sr-only-format', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+		wp_set_script_translations( 'edac-sr-only-format', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 		wp_localize_script(
 			'edac-sr-only-format',
@@ -432,7 +432,7 @@ class Enqueue_Admin {
 			return $cached_css;
 		}
 
-		$css_file = plugin_dir_path( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css';
+		$css_file = EDAC_PLUGIN_DIR . 'build/css/srOnlyFormat.css';
 		if ( ! file_exists( $css_file ) || ! is_readable( $css_file ) ) {
 			$cached_css = '';
 			return $cached_css;
