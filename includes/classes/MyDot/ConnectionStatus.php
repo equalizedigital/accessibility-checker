@@ -51,6 +51,11 @@ class ConnectionStatus {
 	private const DEFAULT_INTERVAL_DAYS = 7;
 
 	/**
+	 * Minimum seconds between saving the last report activity.
+	 */
+	private const ACTIVITY_THROTTLE_SECONDS = HOUR_IN_SECONDS;
+
+	/**
 	 * Get the most relevant connection issue for this site.
 	 *
 	 * @param bool $is_connected Whether the site is connected for email reports.
@@ -86,8 +91,9 @@ class ConnectionStatus {
 		/**
 		 * Filter whether this site counts as local for email reports.
 		 *
-		 * Local sites cannot enable email reports. Return false for a local site
-		 * that My Dot can reach, for example through a tunnel.
+		 * Local sites cannot enable email reports. Return false for a site that
+		 * My Dot can reach even though this check calls it local, for example a
+		 * tunnel, or a staging site on a private IP or a .test domain.
 		 *
 		 * @since 1.53.0
 		 *
@@ -140,11 +146,13 @@ class ConnectionStatus {
 			return 'yes' === $cached;
 		}
 
+		// The request goes to this same site, whose certificate is often self-signed,
+		// so verification is off unless a host turns it on with the core loopback filter.
 		$response = wp_remote_head(
 			rest_url( 'accessibility-checker/v1/scans-stats' ),
 			[
 				'timeout'   => 3, // phpcs:ignore WordPressVIPMinimum.Performance.RemoteRequestTimeout.timeout_timeout -- same limit as VIP, this runs on an admin page.
-				'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core filter for requests to the site itself.
+				'sslverify' => apply_filters( 'https_local_ssl_verify', false ), // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- core loopback filter, see comment above.
 			]
 		);
 
@@ -174,9 +182,13 @@ class ConnectionStatus {
 	public static function is_pull_overdue(): bool {
 		$last_activity = (int) get_option( self::LAST_ACTIVITY_OPTION, 0 );
 
-		// Sites connected before this check have no pull time, so start counting from now.
+		// Sites connected before this check have no pull time, so start counting
+		// from the first page view. The write waits for shutdown so rendering
+		// never touches the database.
 		if ( 0 === $last_activity ) {
-			self::record_activity();
+			if ( false === has_action( 'shutdown', [ __CLASS__, 'record_activity' ] ) ) {
+				add_action( 'shutdown', [ __CLASS__, 'record_activity' ] );
+			}
 			return false;
 		}
 
@@ -191,9 +203,17 @@ class ConnectionStatus {
 	/**
 	 * Save the current time as the last report activity.
 	 *
+	 * Writes are throttled because My Dot pulls at intervals of days, so a
+	 * request a few minutes after the last one does not need a new write.
+	 *
 	 * @return void
 	 */
 	public static function record_activity(): void {
+		$last_activity = (int) get_option( self::LAST_ACTIVITY_OPTION, 0 );
+		if ( $last_activity >= ( time() - self::ACTIVITY_THROTTLE_SECONDS ) ) {
+			return;
+		}
+
 		update_option( self::LAST_ACTIVITY_OPTION, time(), false );
 	}
 

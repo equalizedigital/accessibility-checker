@@ -232,11 +232,57 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Fire the shutdown hooks without ending the test output buffers.
+	 */
+	private function run_shutdown(): void {
+		remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
+		do_action( 'shutdown' );
+		remove_action( 'shutdown', [ ConnectionStatus::class, 'record_activity' ] );
+	}
+
+	/**
 	 * Tests that the first check starts the clock and shows no warning.
+	 *
+	 * The baseline write is deferred to shutdown, so the option is only saved
+	 * after the shutdown hook runs.
 	 */
 	public function test_first_check_sets_baseline_and_is_not_overdue() {
 		$this->assertFalse( ConnectionStatus::is_pull_overdue() );
+		$this->assertFalse( get_option( ConnectionStatus::LAST_ACTIVITY_OPTION ) );
+
+		$this->run_shutdown();
+
 		$this->assertGreaterThan( 0, (int) get_option( ConnectionStatus::LAST_ACTIVITY_OPTION ) );
+	}
+
+	/**
+	 * Tests that a fresh activity time is not rewritten within the throttle window.
+	 */
+	public function test_record_activity_is_throttled() {
+		$recent = time() - 10;
+		update_option( ConnectionStatus::LAST_ACTIVITY_OPTION, $recent );
+
+		ConnectionStatus::record_activity();
+
+		$this->assertSame( $recent, (int) get_option( ConnectionStatus::LAST_ACTIVITY_OPTION ) );
+
+		update_option( ConnectionStatus::LAST_ACTIVITY_OPTION, time() - 2 * HOUR_IN_SECONDS );
+		ConnectionStatus::record_activity();
+
+		$this->assertGreaterThanOrEqual( time() - 5, (int) get_option( ConnectionStatus::LAST_ACTIVITY_OPTION ) );
+	}
+
+	/**
+	 * Tests that a deferred baseline write does not run twice on one request.
+	 */
+	public function test_deferred_baseline_write_is_throttled() {
+		$this->assertFalse( ConnectionStatus::is_pull_overdue() );
+		$this->assertFalse( ConnectionStatus::is_pull_overdue() );
+
+		$this->run_shutdown();
+
+		$baseline = (int) get_option( ConnectionStatus::LAST_ACTIVITY_OPTION );
+		$this->assertGreaterThan( 0, $baseline );
 	}
 
 	/**
@@ -404,6 +450,46 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 		$this->assertFalse( $this->run_site_registration() );
 		$this->assertSame( 0, $requests );
 		$this->assertSame( '', (string) get_option( 'edac_site_id', '' ) );
+	}
+
+	/**
+	 * Tests that a successful registration starts the missed pull clock.
+	 */
+	public function test_registration_records_baseline_activity() {
+		add_filter( 'edac_is_local_site', '__return_false' );
+		update_option( 'edacp_license_key', 'test-key' );
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) {
+				if ( false !== strpos( (string) $url, 'register-site' ) ) {
+					return [
+						'headers'  => [],
+						'body'     => wp_json_encode(
+							[
+								'success' => true,
+								'data'    => [
+									'site_id'         => 'site-2',
+									'collection_interval_days' => 7,
+									'next_collection' => gmdate( 'Y-m-d', time() + WEEK_IN_SECONDS ),
+								],
+							]
+						),
+						'response' => [
+							'code'    => 200,
+							'message' => 'OK',
+						],
+						'cookies'  => [],
+					];
+				}
+				return new WP_Error( 'http_request_failed', 'Unexpected request' );
+			},
+			10,
+			3
+		);
+
+		$this->assertTrue( $this->run_site_registration() );
+		$this->assertSame( 'site-2', (string) get_option( 'edac_site_id', '' ) );
+		$this->assertGreaterThan( 0, (int) get_option( ConnectionStatus::LAST_ACTIVITY_OPTION ) );
 	}
 
 	/**

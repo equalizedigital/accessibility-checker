@@ -675,6 +675,8 @@ class Connector {
 	/**
 	 * Show a notice and report true when this site is local.
 	 *
+	 * @since 1.53.0
+	 *
 	 * @return bool True when the site is local and must not connect.
 	 */
 	private function refuse_local_site(): bool {
@@ -748,6 +750,10 @@ class Connector {
 			if ( ! empty( $data['next_collection'] ) ) {
 				update_option( 'edac_next_collection', $data['next_collection'] );
 			}
+
+			// The site is connected now, so this starts the missed pull clock.
+			ConnectionStatus::record_activity();
+
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
