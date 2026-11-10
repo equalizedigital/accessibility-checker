@@ -1308,7 +1308,7 @@ class Connector {
 		}
 
 		printf(
-			'<div class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
+			'<div id="edac-connector-notice" class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
 			esc_attr( $type ),
 			esc_html( $message )
 		);
