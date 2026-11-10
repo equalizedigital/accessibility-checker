@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.50.1\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Thai\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07 22:09+0000\n"
-"PO-Revision-Date: 2026-10-07 22:09+0000\n"
+"POT-Creation-Date: 2026-11-03 18:45+0000\n"
+"PO-Revision-Date: 2026-11-03 18:45+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: th\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "ต่ำ"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "ไม่ทราบ"
 
@@ -544,27 +544,59 @@ msgstr "ต้องการใช้งาน Accessibility Checker ให้�
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "ปลดล็อกคุณสมบัติ Pro (เปิดในหน้าต่างใหม่)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 โปรโมชั่นพิเศษ Black Friday! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "อัปเกรดเป็น Accessibility Checker เวอร์ชันชำระเงินตั้งแต่วันที่ 24 พฤศจิกายนถึง 3 ธันวาคม และรับส่วนลด 30%! การสแกนเว็บไซต์แบบเต็ม, รายงานปัญหาที่เปิดอยู่ทั่วทั้งเว็บไซต์, บันทึกการยกเลิก และอื่น ๆ"
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "ถามคำถามก่อนการขาย"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "อัปเกรดทันที"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 โปรโมชันพิเศษ Black Friday: ประหยัด 20% พร้อมรับคอร์สเรียนฟรี! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "สแกนประเภทโพสต์ที่กำหนดเองและหน้าคลังข้อมูล ดูปัญหาทั้งหมดได้ในที่เดียว และรับรายงานทางอีเมลที่ละเอียดยิ่งขึ้น อัปเกรดระหว่างวันที่ 23 พฤศจิกายน ถึง 2 ธันวาคม เพื่อประหยัด 20% และรับคอร์สเรียนฟรีที่คุณเลือกได้"
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 ยินดีต้อนรับกลับมา: ลด 20% สำหรับ Accessibility Checker Pro + รับคอร์สเรียนฟรี! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker เปลี่ยนไปจากที่คุณจำได้มาก ต่ออายุระหว่างวันที่ 23 พฤศจิกายน ถึง 2 ธันวาคม เพื่อประหยัด 20% และเลือกรับคอร์สเรียนฟรี"
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "ต่ออายุตอนนี้"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 Black Friday: ประหยัด 25% เมื่ออัปเกรดเป็นแพ็กเกจ Small Business! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "รับสิทธิ์การใช้งาน 5 เว็บไซต์, ประวัติการตรวจสอบ (Audit History), การส่งออกเป็นไฟล์ CSV และการเข้าร่วมช่วงเวลาปรึกษาทุกสองสัปดาห์ (Office Hours) พร้อมส่วนลด 25% เมื่อคุณอัปเกรดตั้งแต่วันที่ 23 พฤศจิกายน ถึง 2 ธันวาคม"
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Black Friday: ประหยัด 25% เมื่อคุณอัปเกรด! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "ต้องการสิทธิ์การใช้งานเพิ่มเติมหรือไม่? อัปเกรดเป็น SMB+ สำหรับ 10 เว็บไซต์ หรือขยายขนาดด้วย Agency สำหรับ 25 เว็บไซต์ พร้อมเครื่องมือ Multisite และฝ่ายสนับสนุนระดับ VIP"
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "อัปเกรดและประหยัด 25%"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
 #: admin/class-ajax.php:642
@@ -576,75 +608,75 @@ msgstr "อัปเกรดทันที"
 msgid "Permission Denied"
 msgstr "การอนุญาตถูกปฏิเสธ"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "การอัปเดตตัวเลือกไม่สำเร็จ"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ โปรโมชันลดราคาพิเศษวัน Global Accessibility Awareness Day"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "ตั้งแต่วันที่ 20 พฤษภาคม: ประหยัด 15% สำหรับคอร์สเรียนด้านการเข้าถึงและ ArchiveWP ด้วยรหัสคูปอง "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "เพียง 3 วัน • 20–22 พฤษภาคม"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "ดูราคา ArchiveWP"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "ดูราคาคอร์สเรียน"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "ตั้งแต่วันที่ 20 พฤษภาคม: ประหยัด 15% สำหรับ Accessibility Checker Pro ด้วยรหัสคูปอง "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "ดูราคา"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "ประหยัด 15% สำหรับคอร์สเรียนด้านการเข้าถึงและ ArchiveWP ด้วยรหัสคูปอง "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "ข้อเสนอมีเวลาจำกัด • สิ้นสุดวันที่ 22 พฤษภาคม"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "เพียง 3 วัน: ประหยัด 15% เมื่อคุณอัปเกรดเป็น Accessibility Checker Pro ด้วยรหัสคูปอง "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "สวัสดีครับ! ขอบคุณที่ใช้ Accessibility Checker เป็นส่วนหนึ่งในชุดเครื่องมือเพื่อการเข้าถึงของคุณ เนื่องจากคุณได้ใช้งานมาสักระยะแล้ว คุณช่วยเขียนรีวิว 5 ดาวให้กับ Accessibility Checker ในไดเรกทอรีปลั๊กอิน WordPress ได้ไหมครับ? การทำเช่นนี้จะช่วยเพิ่มการมองเห็นของเรา เพื่อให้ผู้คนมากขึ้นได้เรียนรู้เกี่ยวกับความสำคัญของการเข้าถึงเว็บ ขอบคุณมากครับ!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "เขียนรีวิว"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "เตือนฉันในอีกสองสัปดาห์"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "ไม่ต้องถามอีก"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "ค่าการดำเนินการรีวิวไม่ได้ถูกตั้งค่า"
 
@@ -751,7 +783,7 @@ msgid "No summary to return"
 msgstr "ไม่มีบทสรุปที่จะส่งคืน"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "ชื่อตารางไม่ถูกต้อง"
 
@@ -966,7 +998,7 @@ msgid "The id value was not set"
 msgstr "ไม่ได้กำหนดค่า ID"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "ไม่พบโพสต์"
 
@@ -974,7 +1006,7 @@ msgstr "ไม่พบโพสต์"
 msgid "Issue query returned no results"
 msgstr "การค้นหาปัญหาไม่พบผลลัพธ์"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "การค้นหาวัตถุไม่พบผลลัพธ์"
 
@@ -1011,12 +1043,14 @@ msgid "Date:"
 msgstr "วันที่:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "เปิดปัญหาอีกครั้ง"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1038,6 +1072,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "บัญชีผู้ใช้ของคุณไม่มีสิทธิ์ที่จะยกเลิกปัญหานี้"
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1514,11 +1549,11 @@ msgstr "จำนวนการสแกนทั้งหมด"
 
 #: admin/site-health/class-pro.php:70
 msgid "Simplified Sum Heading"
-msgstr "หัวข้อบทสรุปแบบย่อ"
+msgstr "หัวข้อสรุปแบบย่อ"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "สิทธิ์ในการยกเลิก"
+msgstr "สิทธิ์ในการปิดการแจ้งเตือน"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
@@ -1554,20 +1589,20 @@ msgstr "รับ Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "รับ Accessibility Checker Pro (เปิดในหน้าต่างใหม่)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "ขออภัย คุณไม่ได้รับอนุญาตให้ละเว้นปัญหา"
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "ขออภัย คุณไม่ได้รับอนุญาตให้ละเว้นปัญหาแบบทั่วโลก"
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "ไม่พบปัญหา"
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "ไม่สามารถอัปเดตปัญหาได้"
 
@@ -1903,61 +1938,61 @@ msgstr "ไม่พบการแก้ไข"
 msgid "Fix not found."
 msgstr "ไม่พบการแก้ไข"
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "คุณไม่มีสิทธิ์ในการจัดการใบอนุญาตนี้"
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "การจัดการใบอนุญาต Pro กำลังทำงานอยู่ โปรดจัดการใบอนุญาตของคุณจาก Accessibility Checker Pro"
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "เกิดข้อผิดพลาด โปรดลองอีกครั้ง"
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "คุณไม่มีสิทธิ์ลงทะเบียนเว็บไซต์นี้"
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "คุณไม่มีสิทธิ์ยกเลิกการลงทะเบียนเว็บไซต์นี้"
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "ไม่พบคีย์ใบอนุญาต โปรดเปิดใช้งานใบอนุญาตก่อนลงทะเบียนเว็บไซต์ของคุณ"
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักขณะลงทะเบียนเว็บไซต์"
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "ลงทะเบียนเว็บไซต์สำเร็จแล้ว เว็บไซต์ของคุณได้รับการกำหนดค่าให้ใช้บริการการเข้าถึงเพิ่มเติมแล้ว"
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "การลงทะเบียนเว็บไซต์เสร็จสมบูรณ์แล้ว แต่ข้อมูลการตอบกลับไม่ได้อยู่ในรูปแบบที่คาดไว้ คุณสมบัติบางอย่างอาจทำงานไม่ถูกต้อง"
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "ไม่สามารถยกเลิกการลงทะเบียนเว็บไซต์ได้ ข้อมูลการลงทะเบียนที่จำเป็นขาดหายไป"
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "เกิดข้อผิดพลาดที่ไม่รู้จักขณะยกเลิกการลงทะเบียนเว็บไซต์"
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "ยกเลิกการลงทะเบียนเว็บไซต์สำเร็จแล้ว เว็บไซต์ของคุณจะไม่ได้รับรายงานทางอีเมลอีกต่อไป"
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "ไม่ได้ให้คีย์ใบอนุญาต"
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "พารามิเตอร์ที่จำเป็นสำหรับการยกเลิกการลงทะเบียนขาดหายไป"
 
@@ -3573,7 +3608,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "ยินดีต้อนรับสู่ Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:117
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "การตั้งค่า Accessibility Checker"
 
@@ -3784,7 +3819,7 @@ msgstr "Accessibility Checker ควรขอให้มีบทสรุป�
 
 #: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
-msgstr "หากต้องการตรวจสอบเนื้อหาอื่นนอกเหนือจากโพสต์และหน้า โปรด "
+msgstr "หากต้องการตรวจสอบเนื้อหาอื่นนอกเหนือจากเรื่องและหน้า โปรด "
 
 #: includes/options-page.php:1307
 msgid "upgrade to pro"
@@ -5136,6 +5171,10 @@ msgstr "หรือเปิดใช้งานรหัสใบอนุญ
 msgid "General"
 msgstr "ทั่วไป"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "บันทึกการตั้งค่า Accessibility Checker แล้ว"
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "เวอร์ชัน"
@@ -5315,6 +5354,10 @@ msgid "Fix Settings"
 msgstr "ตั้งค่าการแก้ไข"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "การสแกนการเข้าถึงยังไม่เสร็จสมบูรณ์ ผลลัพธ์ที่บันทึกไว้ของคุณจึงไม่มีการเปลี่ยนแปลง"
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5364,6 +5407,80 @@ msgstr "EDAC: เกิดข้อผิดพลาดในการอัป
 msgid "Close fixes modal"
 msgstr "ปิดหน้าต่างการแก้ไข"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "ปัญหายกเลิกแล้ว — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "ปัญหายกเลิกแล้ว"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "ขอบเขต:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "ทุกหน้า"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "โดย:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "เมื่อ:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "เหตุผลในการยกเลิก:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "ลบการยกเลิกทั่วโลก"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "ความคิดเห็น (ไม่บังคับ)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "เพิ่มบันทึกอธิบายเหตุผลที่ยกเลิกปัญหานี้"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "ยกเลิกทั่วโลก"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "ไม่สามารถอัปเดตปัญหาได้ โปรดลองอีกครั้ง"
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5371,6 +5488,7 @@ msgid "%1$d of %2$d"
 msgstr "%1$d จาก %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "ปัญหาที่ไม่มีชื่อ"
 
@@ -5529,6 +5647,40 @@ msgstr "แก้ไขปัญหา: %s"
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "แก้ไขปัญหา"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "กำลังยกเลิก..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "กำลังเปิดอีกครั้ง..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "ไม่สามารถปิด \"%1$s\": %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "ไม่สามารถเปิดอีกครั้ง \"%1$s\": %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "ยกเลิกปัญหาสำเร็จแล้ว"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "เปิดปัญหาอีกครั้งสำเร็จแล้ว"
 
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
@@ -5696,92 +5848,13 @@ msgstr "รูปภาพที่เกี่ยวข้องกับปั
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "ยกเลิกปัญหาสำเร็จแล้ว"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "เปิดปัญหาอีกครั้งสำเร็จแล้ว"
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "ยกเลิกทั่วโลก"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "กำลังยกเลิกทั่วโลก..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "กำลังยกเลิก..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "ปัญหายกเลิกแล้ว — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "ปัญหายกเลิกแล้ว"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "ขอบเขต:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "ทุกหน้า"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "โดย:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "เมื่อ:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "เหตุผลในการยกเลิก:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "กำลังลบ..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "ลบการยกเลิกทั่วโลก"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "กำลังเปิดอีกครั้ง..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "ความคิดเห็น (ไม่บังคับ)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "เพิ่มบันทึกอธิบายเหตุผลที่ยกเลิกปัญหานี้"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4

@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.50.1\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Turkish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07 22:10+0000\n"
-"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"POT-Creation-Date: 2026-11-03 18:48+0000\n"
+"PO-Revision-Date: 2026-11-03 18:48+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: tr_TR\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "Düşük"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "Bilinmiyor"
 
@@ -544,27 +544,59 @@ msgstr "Accessibility Checker ile daha fazlasını yapmak ister misiniz? %1$sPro
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Pro Özellikleri Açın (yeni pencerede açılır)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Muhteşem Cuma özel indirimi! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "Accessibility Checker'ın ücretli sürümüne 24 Kasım'dan 3 Aralık'a kadar yükseltin ve %30 indirim kazanın! Tam site taraması, site genelinde açık sorunlar raporu, yoksayma kayıtları ve daha fazlası."
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "Satış Öncesi Soru Sorun"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "Şimdi yükseltin"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 Black Friday'e özel: %20 tasarruf edin ve ücretsiz bir kurs kazanın! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "Özel yazı türlerini ve arşiv sayfalarını tarayın, tüm sorunları tek bir yerde görün ve gelişmiş e-posta raporları alın. %20 tasarruf etmek ve dilediğiniz ücretsiz bir kursu almak için 23 Kasım ile 2 Aralık tarihleri arasında yükseltin."
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 Tekrar hoş geldiniz: Accessibility Checker Pro'da %20 indirim + ücretsiz bir kurs! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker hatırladığınızdan çok daha farklı. %20 tasarruf etmek ve ücretsiz bir kurs seçmek için 23 Kasım ile 2 Aralık tarihleri arasında yenileyin."
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "Şimdi yenileyin"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 Black Friday: Small Business yükseltmenizde %25 tasarruf edin! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "23 Kasım - 2 Aralık tarihleri arasında yükseltme yaparak 5 site lisansı, Denetim Geçmişi (Audit History), CSV Dışa Aktarma ve iki haftada bir düzenlenen soru-cevap oturumlarına erişimi %25 indirimle edinin."
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Black Friday: Yükseltmenizde %25 tasarruf edin! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "Daha fazla lisansa mı ihtiyacınız var? 10 site için SMB+ paketine yükseltin veya 25 site, Multisite araçları ve VIP destek için Agency ile daha da büyüyün."
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "Yükseltin ve %25 Tasarruf Edin"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
 #: admin/class-ajax.php:642
@@ -576,75 +608,75 @@ msgstr "Şimdi yükseltin"
 msgid "Permission Denied"
 msgstr "İzin reddedildi"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "Güncelleme seçeneği başarılı olmadı"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ Küresel Erişilebilirlik Farkındalık Günü Flaş İndirimi"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "20 Mayıs'tan itibaren: Erişilebilirlik kurslarında ve ArchiveWP'de kupon koduyla %15 indirim kazanın "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "Sadece 3 gün • 20-22 Mayıs"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "ArchiveWP fiyatlarını görüntüle"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "Kurs fiyatlarını görüntüle"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "20 Mayıs'tan itibaren: Accessibility Checker Pro'da kupon koduyla %15 indirim kazanın "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "Fiyatları görüntüle"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "Erişilebilirlik kurslarında ve ArchiveWP'de kupon koduyla %15 indirim kazanın "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "Sınırlı süreli teklif • 22 Mayıs'ta sona eriyor"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "Sadece 3 gün: Kupon koduyla Accessibility Checker Pro'ya yükselterek %15 indirim kazanın "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Merhaba! Erişilebilirlik araç kitinizin bir parçası olarak Accessibility Checker'ı kullandığınız için teşekkür ederiz. Bir süredir kullanıyorsunuz, lütfen WordPress eklenti dizininde Accessibility Checker için 5 yıldızlı bir inceleme yazar mısınız? Bu, görünürlüğümüzü artırmamıza ve daha fazla kişinin web erişilebilirliğinin önemi hakkında bilgi edinmesine yardımcı olacaktır. Çok teşekkürler!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "İnceleme yazın"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "İki hafta sonra hatırlat"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "Bir daha sorma"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "İnceleme eylem değeri ayarlanmadı"
 
@@ -755,7 +787,7 @@ msgid "No summary to return"
 msgstr "Döndürülecek özet yok"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "Geçersiz tablo adı"
 
@@ -970,7 +1002,7 @@ msgid "The id value was not set"
 msgstr "Kimlik değeri ayarlanmadı"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "Gönderi bulunamadı"
 
@@ -978,7 +1010,7 @@ msgstr "Gönderi bulunamadı"
 msgid "Issue query returned no results"
 msgstr "Sorun sorgusu sonuç döndürmedi"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "Nesne sorgusu sonuç döndürmedi"
 
@@ -1015,12 +1047,14 @@ msgid "Date:"
 msgstr "Tarih:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Sorunu yeniden aç"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1042,6 +1076,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Kullanıcı hesabınızın bu sorunu kapatma izni yok."
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1563,20 +1598,20 @@ msgstr "Accessibility Checker Pro'yu Edinin"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro'yu Edinin (yeni pencerede açılır)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "Üzgünüz, sorunları kapatma yetkiniz yok."
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "Üzgünüz, sorunları genel olarak kapatma yetkiniz yok."
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "Sorun bulunamadı."
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "Sorun güncellenemedi."
 
@@ -1912,61 +1947,61 @@ msgstr "Bulunamadı"
 msgid "Fix not found."
 msgstr "Düzeltme bulunamadı."
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "Bu lisansı yönetme izniniz yok."
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "Pro lisans yönetimi etkin. Lütfen lisansınızı Accessibility Checker Pro'dan yönetin."
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "Bir hata oluştu, lütfen tekrar deneyin."
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "Bu siteyi kaydetme izniniz yok."
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "Bu sitenin kaydını silme izniniz yok."
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "Lisans anahtarı bulunamadı. Lütfen sitenizi kaydetmeden önce bir lisansı etkinleştirin."
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "Site kaydedilirken bilinmeyen bir hata oluştu."
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "Site başarıyla kaydedildi. Siteniz artık ek erişilebilirlik hizmetlerini kullanacak şekilde yapılandırıldı."
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "Site kaydı tamamlandı, ancak yanıt verileri beklenen biçimde değildi. Bazı özellikler doğru çalışmayabilir."
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "Sitenin kaydı silinemiyor. Gerekli kayıt verileri eksik."
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "Sitenin kaydı silinirken bilinmeyen bir hata oluştu."
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "Sitenin kaydı başarıyla silindi. Siteniz artık e-posta raporları almayacak."
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "Lisans anahtarı sağlanmadı."
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "Kaydı silmek için gerekli parametreler eksik."
 
@@ -3582,7 +3617,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checker'a Hoş Geldiniz"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:117
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker Ayarları"
 
@@ -3793,7 +3828,7 @@ msgstr "Accessibility Checker, yalnızca gönderinizin veya sayfanızın okuma d
 
 #: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
-msgstr "Gönderiler ve sayfalar dışındaki içeriği kontrol etmek için lütfen "
+msgstr "Yazılar ve sayfalar dışındaki içerikleri denetlemek için lütfen "
 
 #: includes/options-page.php:1307
 msgid "upgrade to pro"
@@ -5145,6 +5180,10 @@ msgstr "Veya lisans anahtarınızı buradan etkinleştirin."
 msgid "General"
 msgstr "Genel"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "Accessibility Checker ayarları kaydedildi."
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "sürüm"
@@ -5324,6 +5363,10 @@ msgid "Fix Settings"
 msgstr "Ayarları düzelt"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "Erişilebilirlik taraması tamamlanamadı, bu nedenle kayıtlı sonuçlarınız değiştirilmeden bırakıldı."
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5373,6 +5416,80 @@ msgstr "EDAC: Atlama bağlantısı için geçmiş güncellenirken hata oluştu."
 msgid "Close fixes modal"
 msgstr "Düzeltmeler modalını kapat"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Sorun Kapatıldı — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "Sorun kapatıldı"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "Kapsam:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "Tüm sayfalar"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "Yapan:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "Tarih:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "Kapatma nedeni:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "Genel yoksaymayı kaldır"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "Yorum (isteğe bağlı)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Bu sorunun neden göz ardı edildiğini açıklayan bir not ekleyin."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "Küresel olarak kapat"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "Sorun güncellenemedi. Lütfen tekrar deneyin."
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5380,6 +5497,7 @@ msgid "%1$d of %2$d"
 msgstr "%2$d / %1$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "Başlıksız sorun"
 
@@ -5538,6 +5656,40 @@ msgstr "Sorunu düzelt: %s"
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Sorunu düzelt"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Kapatılıyor..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "Yeniden açılıyor..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "“%1$s” yok sayılamadı: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "“%1$s” yeniden açılamadı: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Sorun başarıyla kapatıldı."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Sorun başarıyla yeniden açıldı."
 
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
@@ -5709,92 +5861,13 @@ msgstr "Sorunla ilgili görsel"
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Sorun başarıyla kapatıldı."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Sorun başarıyla yeniden açıldı."
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "Küresel olarak kapat"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "Genel olarak yoksayılıyor..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "Kapatılıyor..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Sorun Kapatıldı — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "Sorun kapatıldı"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "Kapsam:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "Tüm sayfalar"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "Yapan:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "Tarih:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "Kapatma nedeni:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "Kaldırılıyor..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "Genel yoksaymayı kaldır"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "Yeniden açılıyor..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "Yorum (isteğe bağlı)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Bu sorunun neden göz ardı edildiğini açıklayan bir not ekleyin."
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4

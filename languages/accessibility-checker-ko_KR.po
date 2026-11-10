@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.50.1\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Korean\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-07 22:10+0000\n"
-"PO-Revision-Date: 2026-10-07 22:10+0000\n"
+"POT-Creation-Date: 2026-11-03 18:45+0000\n"
+"PO-Revision-Date: 2026-11-03 18:45+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: ko_KR\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "낮음"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -528,7 +528,7 @@ msgstr "우리 웹사이트에 대한 의견, 질문, 피드백을 환영합니�
 #: admin/class-admin-footer-text.php:46
 #, php-format
 msgid "Enjoying Accessibility Checker? %1$sPlease leave us a ★★★★★ rating.%2$s We really appreciate your support!"
-msgstr "Accessibility Checker를 즐겁게 사용하고 계신가요? %1$s★★★★★ 평가를 남겨주세요.[/%%p#07527667] 여러분의 지원에 정말 감사드립니다!"
+msgstr ""
 
 #: admin/class-admin-footer-text.php:47
 msgid "Please leave us a five star rating (opens in new window)"
@@ -544,27 +544,59 @@ msgstr "Accessibility Checker로 더 많은 것을 하고 싶으신가요? %1$s�
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "프로 기능 잠금 해제 (새 창에서 열림)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 블랙 프라이데이 특별 혜택! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "11월 24일부터 12월 3일까지 Accessibility Checker 유료 버전으로 업그레이드하고 30% 할인 혜택을 받으세요! 전체 사이트 스캔, 사이트 전반의 미해결 문제 보고서, 해제 로그 등을 포함합니다."
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "사전 판매 질문하기"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "지금 업그레이드하기"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 블랙 프라이데이 특별 혜택: 20% 할인 및 무료 강좌 증정! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "사용자 정의 글 유형 및 아카이브 페이지를 검사하고, 모든 문제를 한곳에서 확인하며, 향상된 이메일 보고서를 받아보세요. 11월 23일부터 12월 2일 사이에 업그레이드하면 20% 할인 혜택과 원하는 무료 강좌를 받을 수 있습니다."
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 다시 오신 것을 환영합니다: Accessibility Checker Pro 20% 할인 + 무료 강좌 증정! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker가 이전과 완전히 달라졌습니다. 11월 23일부터 12월 2일 사이에 갱신하고 20% 할인 혜택과 원하는 무료 강좌를 선택하세요."
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "지금 갱신하기"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 블랙 프라이데이: Small Business로 업그레이드 시 25% 할인! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "11월 23일부터 12월 2일 사이에 업그레이드하면 25% 할인된 가격으로 5개 사이트 라이선스, 감사 내역, CSV 내보내기, 격주 오피스 아워 이용 권한을 이용할 수 있습니다."
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 블랙 프라이데이: 업그레이드 시 25% 할인! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "라이선스가 더 필요하신가요? 10개 사이트를 지원하는 SMB+로 업그레이드하거나, 25개 사이트, 멀티사이트 도구, VIP 지원이 포함된 Agency로 더 크게 확장해 보세요."
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "업그레이드하고 25% 할인받기"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
 #: admin/class-ajax.php:642
@@ -576,75 +608,75 @@ msgstr "지금 업그레이드하기"
 msgid "Permission Denied"
 msgstr "권한이 거부되었습니다"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "옵션 업데이트가 실패했습니다"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ 글로벌 접근성 인식의 날 플래시 세일"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "5월 20일부터: 쿠폰 코드와 함께 접근성 과정 및 ArchiveWP를 15% 할인 받으세요. "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "3일 한정 • 5월 20–22일"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "ArchiveWP 가격 보기"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "강좌 가격 보기"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "5월 20일부터: 쿠폰 코드와 함께 Accessibility Checker Pro를 15% 할인 받으세요. "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "가격 보기"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "쿠폰 코드와 함께 접근성 과정 및 ArchiveWP를 15% 할인 받으세요. "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "기간 한정 혜택 • 5월 22일 종료"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "3일 한정: 쿠폰 코드와 함께 Accessibility Checker Pro로 업그레이드하시면 15% 할인 받으세요. "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "안녕하세요! Accessibility Checker를 접근성 도구로 사용해 주셔서 감사합니다. 이 도구를 한동안 사용하셨으니, WordPress 플러그인 디렉토리에 Accessibility Checker에 대한 5점 리뷰를 작성해 주시겠습니까? 이를 통해 더 많은 사람들이 웹 접근성의 중요성을 알 수 있도록 저희의 가시성을 높이는 데 도움이 될 것입니다. 대단히 감사합니다!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "리뷰 작성하기"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "2주 후에 다시 알림"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "다시 묻지 않기"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "리뷰 작업 값이 설정되지 않았습니다"
 
@@ -751,7 +783,7 @@ msgid "No summary to return"
 msgstr "반환할 요약 없음"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "잘못된 테이블 이름"
 
@@ -966,7 +998,7 @@ msgid "The id value was not set"
 msgstr "ID 값이 설정되지 않았습니다"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "게시물을 찾을 수 없습니다"
 
@@ -974,7 +1006,7 @@ msgstr "게시물을 찾을 수 없습니다"
 msgid "Issue query returned no results"
 msgstr "문제 쿼리 결과 없음"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "객체 쿼리 결과 없음"
 
@@ -1011,12 +1043,14 @@ msgid "Date:"
 msgstr "날짜:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "문제 다시 열기"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1038,6 +1072,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "귀하의 사용자 계정에는 이 문제를 해제할 권한이 없습니다."
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1554,20 +1589,20 @@ msgstr "Accessibility Checker Pro 구매하기"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro 받기 (새 창에서 열림)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "죄송합니다. 이슈를 무시할 권한이 없습니다."
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "죄송합니다. 이슈를 전역적으로 무시할 권한이 없습니다."
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "문제를 찾을 수 없습니다."
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "문제를 업데이트하지 못했습니다."
 
@@ -1903,61 +1938,61 @@ msgstr "수정 사항을 찾을 수 없음"
 msgid "Fix not found."
 msgstr "수정 사항을 찾을 수 없습니다."
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "이 라이선스를 관리할 권한이 없습니다."
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "Pro 라이선스 관리가 활성화되어 있습니다. Accessibility Checker Pro에서 라이선스를 관리하십시오."
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "오류가 발생했습니다. 다시 시도해 주십시오."
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "이 사이트를 등록할 권한이 없습니다."
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "이 사이트의 등록을 취소할 권한이 없습니다."
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "라이선스 키를 찾을 수 없습니다. 사이트를 등록하기 전에 라이선스를 활성화하십시오."
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "사이트 등록 중 알 수 없는 오류가 발생했습니다."
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "사이트가 성공적으로 등록되었습니다. 이제 사이트가 추가 접근성 서비스를 사용하도록 구성되었습니다."
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "사이트 등록은 완료되었지만, 응답 데이터 형식이 예상과 달랐습니다. 일부 기능이 올바르게 작동하지 않을 수 있습니다."
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "사이트 등록을 취소할 수 없습니다. 필수 등록 데이터가 누락되었습니다."
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "사이트 등록 취소 중 알 수 없는 오류가 발생했습니다."
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "사이트가 성공적으로 등록 취소되었습니다. 더 이상 이메일 보고서를 받지 않습니다."
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "라이선스 키가 제공되지 않았습니다."
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "등록 취소에 필요한 매개변수가 누락되었습니다."
 
@@ -3573,7 +3608,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Accessibility Checker에 오신 것을 환영합니다"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:117
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checker 설정"
 
@@ -3784,7 +3819,7 @@ msgstr "Accessibility Checker가 게시물이나 페이지의 읽기 수준이 9
 
 #: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
-msgstr "게시물과 페이지 이외의 콘텐츠를 확인하려면 "
+msgstr "글과 페이지 이외의 콘텐츠를 확인하려면 다음을 "
 
 #: includes/options-page.php:1307
 msgid "upgrade to pro"
@@ -5136,6 +5171,10 @@ msgstr "또는 여기에서 라이선스 키를 활성화하세요."
 msgid "General"
 msgstr "일반"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "Accessibility Checker 설정이 저장되었습니다."
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "버전"
@@ -5315,6 +5354,10 @@ msgid "Fix Settings"
 msgstr "설정 수정"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "접근성 검사가 완료되지 않아 저장된 결과가 변경되지 않았습니다."
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5364,6 +5407,80 @@ msgstr "EDAC: 건너뛰기 링크에 대한 기록 업데이트 오류."
 msgid "Close fixes modal"
 msgstr "수정 모달 닫기"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "문제 해제됨 — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "문제 해제됨"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "범위:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "모든 페이지"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "작성자:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "날짜:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "해제 사유:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "전역 해제 제거"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "댓글 (선택 사항)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "이 문제를 해제하는 이유를 설명하는 메모를 추가하십시오."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "전역적으로 해제"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "이슈를 업데이트할 수 없습니다. 다시 시도해 주세요."
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5371,6 +5488,7 @@ msgid "%1$d of %2$d"
 msgstr "%2$d 중 %1$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "제목 없는 문제"
 
@@ -5529,6 +5647,40 @@ msgstr "문제 해결: %s"
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "문제 해결"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "해제 중..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "다시 여는 중..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "“%1$s” 항목을 무시할 수 없습니다: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "“%1$s” 항목을 다시 열 수 없습니다: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "문제가 성공적으로 해제되었습니다."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "문제가 성공적으로 다시 열렸습니다."
 
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
@@ -5696,92 +5848,13 @@ msgstr "문제 관련 이미지"
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "문제가 성공적으로 해제되었습니다."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "문제가 성공적으로 다시 열렸습니다."
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "전역적으로 해제"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "전역적으로 해제 중..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "해제 중..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "문제 해제됨 — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "문제 해제됨"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "범위:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "모든 페이지"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "작성자:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "날짜:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "해제 사유:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "제거 중..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "전역 해제 제거"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "다시 여는 중..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "댓글 (선택 사항)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "이 문제를 해제하는 이유를 설명하는 메모를 추가하십시오."
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4

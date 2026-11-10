@@ -58,7 +58,7 @@ Adding a rule `example_rule` touches five places:
 4. `includes/classes/Rules/Rule/ExampleRule.php` — implements `RuleInterface` with static `get_rule(): array`. Copy an existing rule (e.g. `ImgAltEmptyRule.php`) for the exact shape. Key fields: `slug` (= the JS `id`), `rule_type` (`error`/`warning`), `ruleset => 'js'`, `wcag`, `severity` (1–4, lower = more severe), `affected_disabilities` (constants from `AffectedDisabilities`), plus `title`, `summary`, `summary_plural`, `why_it_matters`, `how_to_fix`, `references`, `info_url`.
 5. `includes/classes/Rules/RuleRegistry.php` — add the class to the `$rule_classes` array.
 
-Then: Jest tests in `tests/jest/pageScanner/` (`rules/` and `checks/`, mirroring src) covering both fixtures that should flag *and* ones that should pass — false-positive regressions are the common failure here. `tests/phpunit/RegisterRulesTest.php` validates rule definitions if you touched PHP metadata. `npm run build` before the rule appears on a running site.
+Then: Jest tests in `tests/jest/rules/` — one file per rule, importing the rule from `../../../src/pageScanner/rules/<rule>.js` and its check file or files from `../../../src/pageScanner/checks/` by their actual paths. Do not derive the check name from the rule: most don't match (`possible-heading.js` uses `checks/paragraph-styled-as-header.js`) and one rule can use several checks. Checks have no test directory of their own; a check is covered through its rule's test. Cover both fixtures that should flag *and* ones that should pass — false-positive regressions are the common failure here. Name the file in camelCase after the rule file you changed (`src/pageScanner/rules/img-alt-empty.js` → `tests/jest/rules/imgAltEmpty.test.js`). Not every existing rule test matches its source file name, so never infer coverage from a filename match. `tests/phpunit/RegisterRulesTest.php` validates rule definitions if you touched PHP metadata. `npm run build` before the rule appears on a running site.
 
 Fixable issues are a separate system: `includes/classes/Fixes/` (`FixesManager`, `FixInterface`) plus front-end JS in `src/frontendFixes/`. A rule does not need a fix.
 
@@ -79,13 +79,14 @@ Which checks apply:
 | CSS/SCSS | `npm run lint:css` |
 | PHP anywhere | PHPUnit (docker), `npm run lint:php`, `npm run phpstan` |
 | Rule metadata (PHP Rule classes) | PHPUnit `RegisterRulesTest`, plus Jest if the JS side changed |
-| Hooks added/renamed | `composer generate-hooks-docs` — CI fails on a stale `docs/hooks.md` |
+| Hooks added/renamed | `composer generate-hooks-docs` — `verify-hooks-docs.yml` runs it weekly and opens a PR if `docs/hooks.md` is stale; no check fails |
 
 - PHPUnit runs in docker against the WP test suite: `npm run test:php` once to set up, then `test:php:run`, `test:php:stop`. Tests in `tests/phpunit/`; PSR-4 helpers under `EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\`.
 - Jest config at `tests/jest/jest.config.js`. `@wordpress/*` imports need explicit `moduleNameMapper` entries — a missing one surfaces as "Cannot find module '@wordpress/…'", and the mapper regexes must be anchored to avoid subpath mismatches.
+- Jest tests live beside their area: `tests/jest/rules/` (pageScanner rules), `tests/jest/pageScanner/` (`context.test.js` and `helpers/`), and same-named directories for the other `src/` entries — `admin`, `emailOptIn`, `frontendFixes`, `frontendHighlighterApp`, `issueModal`, `sharedComponents`, `simplifiedSummaryBlock`. Shared helpers and fixtures: `tests/jest/helpers/`, `tests/jest/utils/`, `tests/jest/__mocks__/`, `tests/jest/mock-assets/`. `testMatch` is `**/*.test.js`.
 - No committed E2E suite.
 - Bug fixes need a regression test. Run the checks covering your change before pushing.
-- CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix and the hooks-docs verifier first.
+- CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix first — `verify-hooks-docs.yml` only opens a PR, so it can never be the red job.
 
 ## Workflow
 
