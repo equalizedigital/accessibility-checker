@@ -574,7 +574,7 @@
 							&-ignore,
 							&-fix,
 							&-highlight-front {
-								color: variables.$color-action-link;
+								color: variables.$color-blue;
 								border: none;
 								background: transparent;
 								display: flex;
@@ -593,18 +593,18 @@
 									margin: 0 5px 0 0;
 
 									path {
-										fill: variables.$color-action-link;
+										fill: variables.$color-blue;
 									}
 								}
 
 								&:hover,
 								&:focus {
 									--edac-action-link-decoration: none;
-									color: variables.$color-action-link-hover;
+									color: variables.$color-blue-hover;
 									cursor: pointer;
 
 									svg path {
-										fill: variables.$color-action-link-hover;
+										fill: variables.$color-blue-hover;
 									}
 								}
 
