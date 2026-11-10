@@ -579,7 +579,7 @@
 								background: transparent;
 								display: flex;
 								align-items: center;
-								text-decoration: none;
+								text-decoration: underline;
 								padding: 4px 0;
 
 								svg {
@@ -595,19 +595,12 @@
 
 								&:hover,
 								&:focus {
-									color: variables.$color-green;
+									color: variables.$color-blue-hover;
+									text-decoration: none;
 									cursor: pointer;
 
 									svg path {
-										fill: variables.$color-green;
-									}
-								}
-
-								&.active {
-									color: variables.$color-red;
-
-									svg path {
-										fill: variables.$color-red;
+										fill: variables.$color-blue-hover;
 									}
 								}
 
@@ -618,7 +611,7 @@
 						}
 
 						&-ignore {
-							grid-column: 1 / 4;
+							grid-column: 1 / 5;
 							border-bottom: solid 1px variables.$color-gray-light;
 							text-align: left;
 							padding: 10px;
