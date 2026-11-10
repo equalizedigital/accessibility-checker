@@ -123,13 +123,23 @@ describe( 'Missing Transcript Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'flags when the only transcript text is inside a display:none ancestor',
-			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="display: none;"><div><p>Read the transcript below.</p></div></div></section>',
-			shouldPass: false,
+			name: 'passes when the transcript is in a display:none panel (a collapsed tab or accordion)',
+			html: '<section><div role="tablist"><button>Video</button><button>Text</button></div><div><div><video src="v.mp4"></video></div></div><div style="display: none;"><p>Read the transcript below.</p></div></section>',
+			shouldPass: true,
 		},
 		{
-			name: 'flags when the only transcript text is inside an opacity:0 ancestor',
+			name: 'passes when the transcript is in an opacity:0 ancestor (for example a scroll reveal animation)',
 			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="opacity: 0;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when the transcript is a display:none next sibling of the video',
+			html: '<section><video src="v.mp4"></video><div style="display: none;">Read the transcript below.</div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'flags when the only transcript text is inside a visibility:hidden ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="visibility: hidden;"><div><p>Read the transcript below.</p></div></div></section>',
 			shouldPass: false,
 		},
 		{

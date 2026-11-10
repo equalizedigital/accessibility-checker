@@ -5,8 +5,6 @@
  * to ensure compliance with accessibility guidelines.
  */
 
-import { isElementVisible } from '../helpers/helpers';
-
 const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
@@ -196,11 +194,13 @@ function getSurroundingText( node, radius = 250 ) {
 		// Also check parent's siblings for transcript text
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
-		// Text nodes share ancestors, so keep the ancestor results for this walk.
-		const visibilityCache = new Map();
 		const nodeFilter = {
 			acceptNode( textNode ) {
-				return isElementVisible( textNode.parentElement, visibilityCache ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+				// Only visibility:hidden is ignored, because assistive technology cannot reach it.
+				// Text in a display:none or opacity:0 ancestor still counts. A transcript in a
+				// collapsed tab or accordion, or one that fades in, is available to users.
+				const style = window.getComputedStyle( textNode.parentElement );
+				return style && style.visibility !== 'hidden' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );
