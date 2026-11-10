@@ -125,7 +125,7 @@ class FixesManager {
 	/**
 	 * Get the data passed to the frontend fixes script.
 	 *
-	 * @since 1.53.0
+	 * @since x.x.x
 	 *
 	 * @return array
 	 */
@@ -146,7 +146,7 @@ class FixesManager {
 		 * so the fixes can also apply to the new content. Code can also fire
 		 * the `edac-fixes-rerun` event on document directly.
 		 *
-		 * @since 1.53.0
+		 * @since x.x.x
 		 *
 		 * @param string[] $events Event names listened for on document.
 		 */
