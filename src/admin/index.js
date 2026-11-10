@@ -15,7 +15,7 @@ import {
 	findRuleDisplayBtn,
 	restoreDismissIssueFocus,
 } from './details/dismiss-issue-focus';
-import { __ } from '@wordpress/i18n';
+import { announceDismissResult } from './details/announce-dismiss-result';
 
 // eslint-disable-next-line camelcase
 const edacScriptVars = edac_script_vars;
@@ -389,7 +389,7 @@ const edacScriptVars = edac_script_vars;
 								? '<strong>Date:</strong> ' + data.ignre_date
 								: '';
 
-							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Successfully dismissed issue', 'accessibility-checker' ) : __( 'Successfully undismissed issue', 'accessibility-checker' );
+							announceDismissResult( window.wp?.a11y, restAction, true );
 							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
@@ -520,12 +520,12 @@ const edacScriptVars = edac_script_vars;
 						} else {
 							// eslint-disable-next-line no-console
 							console.log( data );
-							document.querySelector( '#success-message-' + issueId ).textContent = data.action === 'dismiss' ? __( 'Failed to dismiss issue' ) : __( 'Failed to undismiss issue' );
+							announceDismissResult( window.wp?.a11y, restAction, false );
 						}
 					} ).fail( function( data ) {
 						// eslint-disable-next-line no-console
 						console.log( data );
-						document.querySelector( '#success-message-' + issueId ).textContent = data?.responseJSON.message ?? __( 'An unknown error occurred' );
+						announceDismissResult( window.wp?.a11y, restAction, false, data?.responseJSON?.message );
 					} );
 				}
 			);
