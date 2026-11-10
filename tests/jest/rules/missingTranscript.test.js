@@ -127,6 +127,16 @@ describe( 'Missing Transcript Rule', () => {
 			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="display: none;"><div><p>Read the transcript below.</p></div></div></section>',
 			shouldPass: false,
 		},
+		{
+			name: 'flags when the only transcript text is inside an opacity:0 ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="opacity: 0;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: false,
+		},
+		{
+			name: 'passes when the transcript text is inside a partly transparent ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="opacity: 0.5;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{

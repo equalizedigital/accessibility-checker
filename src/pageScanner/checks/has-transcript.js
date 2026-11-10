@@ -5,6 +5,8 @@
  * to ensure compliance with accessibility guidelines.
  */
 
+import { isElementVisible } from '../helpers/helpers';
+
 const videoEmbedKeywords = [ 'youtube.com', 'youtu.be', 'vimeo.com' ];
 const mediaExtensions = /\.(3gp|asf|asx|avi|flv|m4a|m4p|mov|mp3|mp4|mpeg|mpeg2|mpg|mpv|ogg|oga|ogv|qtl|smi|smil|wav|wax|webm|wmv|wmp|wmx)(\?.*)?$/i;
 
@@ -138,31 +140,6 @@ function collectSiblingText( startSibling, maxCount ) {
 	return text;
 }
 
-/**
- * Check whether text inside an element is rendered.
- *
- * Visibility is inherited, so the element's own computed value is used and a
- * descendant that sets `visibility: visible` is kept. Display and opacity are
- * not inherited, so every ancestor is checked for those.
- *
- * @param {Element} element - The element that holds the text.
- * @return {boolean} - True if the text is rendered.
- */
-function isTextRendered( element ) {
-	if ( ! element || window.getComputedStyle( element ).visibility === 'hidden' ) {
-		return false;
-	}
-
-	for ( let el = element; el; el = el.parentElement ) {
-		const style = window.getComputedStyle( el );
-		if ( style.display === 'none' || style.opacity === '0' ) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
@@ -219,9 +196,11 @@ function getSurroundingText( node, radius = 250 ) {
 		// Also check parent's siblings for transcript text
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
+		// Text nodes share ancestors, so keep the ancestor results for this walk.
+		const visibilityCache = new Map();
 		const nodeFilter = {
 			acceptNode( textNode ) {
-				return isTextRendered( textNode.parentElement ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+				return isElementVisible( textNode.parentElement, visibilityCache ) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );

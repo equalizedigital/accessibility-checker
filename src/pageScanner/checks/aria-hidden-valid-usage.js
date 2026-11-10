@@ -76,8 +76,10 @@ export default {
 
 		// A sibling with screen reader only text (detected by CSS) gives the content an accessible name.
 		// The sibling must still be exposed to assistive technology, and its name can come from image alt text.
+		// Siblings share the same ancestors, so the screen reader only result for them is kept between siblings.
+		const screenReaderOnlyCache = new Map();
 		for ( const sibling of parentNode.children ) {
-			if ( sibling === node || ! isScreenReaderOnly( sibling ) || sibling.closest( '[aria-hidden="true"]' ) ) {
+			if ( sibling === node || sibling.closest( '[aria-hidden="true"]' ) || ! isScreenReaderOnly( sibling, screenReaderOnlyCache ) ) {
 				continue;
 			}
 
