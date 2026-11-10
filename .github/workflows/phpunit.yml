@@ -28,8 +28,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # The oldest WordPress we support, per readme.txt "Requires at
+          # least". This row is the one that catches us using an API that
+          # core only added later; "latest" rows below cover the other end.
           - php_version: '8.1'
-            wp_version: '6.2'
+            wp_version: '6.9'
             multisite: false
 
           - php_version: '8.1'
@@ -63,7 +66,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: ${{ matrix.php_version }}
           ini-values: zend.assertions=1, error_reporting=-1, display_errors=On
@@ -95,7 +98,7 @@ jobs:
 
       - name: Cache WordPress test library
         if: matrix.wp_version != 'latest'
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: |
             /tmp/wordpress-tests-lib

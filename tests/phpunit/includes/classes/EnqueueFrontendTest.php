@@ -44,7 +44,7 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		delete_option( 'edac_post_types' );
 
 		global $wp_scripts, $wp_styles, $post;
-		unset( $wp_scripts, $wp_styles, $post );
+		unset( $wp_scripts, $wp_styles, $post, $GLOBALS['current_screen'] );
 
 		wp_set_current_user( 0 );
 
@@ -312,5 +312,338 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 		$this->assertTrue( wp_script_is( 'edac-frontend-highlighter-app', 'enqueued' ) );
 
 		edac_ignore_capability()->sync_matrix( [] );
+	}
+
+	/**
+	 * Enqueue the highlighter for a post and return the localized app data as an array.
+	 *
+	 * @param \WP_Post $post The post being viewed.
+	 * @return array The decoded edacFrontendHighlighterApp object.
+	 */
+	private function getHighlighterAppData( \WP_Post $post ): array {
+		global $wp_scripts;
+		$wp_scripts = new \WP_Scripts();
+
+		$GLOBALS['post'] = $post;
+		Enqueue_Frontend::maybe_enqueue_frontend_highlighter();
+
+		$localized = (string) $wp_scripts->get_data( 'edac-frontend-highlighter-app', 'data' );
+		$this->assertNotSame( '', $localized, 'The highlighter should have been enqueued with localized data.' );
+
+		// The data is printed as `var edacFrontendHighlighterApp = {...};`. wp_localize_script() turns
+		// booleans into '1' and '', so callers compare the flags as booleans.
+		$start = strpos( $localized, '{' );
+		$json  = substr( $localized, $start, strrpos( $localized, '}' ) - $start + 1 );
+		return json_decode( $json, true );
+	}
+
+	/**
+	 * A user holding the "dismiss any" capability gets the dismiss controls and the reasons.
+	 */
+	public function testHighlighterOffersDismissToUserWhoCanDismissAnyIssue(): void {
+		edac_ignore_capability()->sync_matrix(
+			[
+				'edac_view_frontend_highlighter' => [ 'editor' ],
+				'edac_dismiss_issues'            => [ 'editor' ],
+			]
+		);
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'editor' ] ) );
+
+		$data = $this->getHighlighterAppData( $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] ) );
+
+		$this->assertTrue( (bool) $data['canDismiss'] );
+		$this->assertNotEmpty( $data['dismissReasons'] );
+
+		edac_ignore_capability()->sync_matrix( [] );
+	}
+
+	/**
+	 * A user who can only use the highlighter is not offered dismissal and is not sent the reasons.
+	 */
+	public function testHighlighterDoesNotOfferDismissWithoutADismissCapability(): void {
+		edac_ignore_capability()->sync_matrix( [ 'edac_view_frontend_highlighter' => [ 'editor' ] ] );
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'editor' ] ) );
+
+		$data = $this->getHighlighterAppData( $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] ) );
+
+		$this->assertFalse( (bool) $data['canDismiss'] );
+		$this->assertFalse( (bool) $data['canDismissGlobal'] );
+		$this->assertSame( [], $data['dismissReasons'] );
+
+		edac_ignore_capability()->sync_matrix( [] );
+	}
+
+	/**
+	 * "Dismiss own issues" only applies on posts the user can edit, matching the REST permission check.
+	 */
+	public function testHighlighterOwnIssuesDismissalIsLimitedToEditablePosts(): void {
+		edac_ignore_capability()->sync_matrix(
+			[
+				'edac_view_frontend_highlighter' => [ 'author' ],
+				'edac_dismiss_own_issues'        => [ 'author' ],
+			]
+		);
+		$author_id = $this->factory()->user->create( [ 'role' => 'author' ] );
+		wp_set_current_user( $author_id );
+
+		$own_post   = $this->factory()->post->create_and_get( [ 'post_author' => $author_id ] );
+		$other_post = $this->factory()->post->create_and_get( [ 'post_author' => $this->factory()->user->create( [ 'role' => 'author' ] ) ] );
+
+		$this->assertTrue( (bool) $this->getHighlighterAppData( $own_post )['canDismiss'] );
+		$this->assertFalse( (bool) $this->getHighlighterAppData( $other_post )['canDismiss'] );
+
+		edac_ignore_capability()->sync_matrix( [] );
+	}
+
+	/**
+	 * Global dismissal is only offered with Pro active, even to a user who holds the capability.
+	 */
+	public function testHighlighterDoesNotOfferGlobalDismissWithoutPro(): void {
+		$this->assertFalse( edac_is_pro(), 'This test assumes the free plugin is running without a valid Pro license.' );
+
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'administrator' ] ) );
+
+		$data = $this->getHighlighterAppData( $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] ) );
+
+		$this->assertTrue( (bool) $data['canDismiss'] );
+		$this->assertFalse( (bool) $data['canDismissGlobal'] );
+	}
+
+	/**
+	 * Sets the current screen so is_admin() is deterministic for the asset tests.
+	 *
+	 * Enqueue_Frontend::enqueue_sr_only_styles() bails inside wp-admin, and a
+	 * current screen can be left behind by other test files in the suite, so the
+	 * screen is set here rather than assumed. WP_Screen::get() is used instead of
+	 * set_current_screen() so no screen hooks fire as a side effect.
+	 *
+	 * @param string $screen Screen to set as the current one.
+	 */
+	private function set_current_screen_context( string $screen ): void {
+		$GLOBALS['current_screen'] = WP_Screen::get( $screen );
+	}
+
+	/**
+	 * The screen reader only stylesheet is enqueued on the front end.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::enqueue_sr_only_styles
+	 */
+	public function testSrOnlyStylesEnqueueOnTheFrontEnd(): void {
+		global $wp_styles;
+
+		$this->set_current_screen_context( 'front' );
+
+		Enqueue_Frontend::enqueue_sr_only_styles();
+
+		$this->assertTrue( wp_style_is( 'edac-sr-only-format', 'enqueued' ) );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/srOnlyFormat.css', $wp_styles->registered['edac-sr-only-format']->src );
+		$this->assertSame( EDAC_VERSION, $wp_styles->registered['edac-sr-only-format']->ver );
+		$this->assertSame( 'all', $wp_styles->registered['edac-sr-only-format']->args );
+	}
+
+	/**
+	 * The screen reader only stylesheet is not enqueued inside wp-admin.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::enqueue_sr_only_styles
+	 */
+	public function testSrOnlyStylesDoNotEnqueueInAdmin(): void {
+		$this->set_current_screen_context( 'post' );
+
+		Enqueue_Frontend::enqueue_sr_only_styles();
+
+		$this->assertFalse( wp_style_is( 'edac-sr-only-format', 'enqueued' ) );
+	}
+
+	/**
+	 * A stored empty colour scheme falls back to the default WordPress scheme colour.
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::get_admin_theme_color
+	 */
+	public function testAdminThemeColorFallsBackWhenTheStoredSchemeIsEmpty(): void {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+		update_user_meta( $user_id, 'admin_color', '' );
+
+		$this->assertSame( '#0073aa', Enqueue_Frontend::get_admin_theme_color() );
+	}
+
+	/**
+	 * Each WordPress admin colour scheme maps to its primary colour.
+	 *
+	 * The colour tints the front end highlighter, so a stored scheme must never
+	 * resolve to an empty value: unknown schemes fall back to the modern colour.
+	 *
+	 * @dataProvider provideAdminColourSchemes
+	 *
+	 * @covers \EDAC\Inc\Enqueue_Frontend::get_admin_theme_color
+	 *
+	 * @param string $scheme   Stored admin_color user option.
+	 * @param string $expected Expected hex colour.
+	 */
+	public function testAdminThemeColorMapsEachColourScheme( string $scheme, string $expected ): void {
+		$user_id = $this->factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+		update_user_meta( $user_id, 'admin_color', $scheme );
+
+		$this->assertSame( $expected, Enqueue_Frontend::get_admin_theme_color() );
+	}
+
+	/**
+	 * Provides the WordPress admin colour schemes and their primary colours.
+	 *
+	 * @return array<string, string[]>
+	 */
+	public function provideAdminColourSchemes(): array {
+		return [
+			'fresh'          => [ 'fresh', '#0073aa' ],
+			'light'          => [ 'light', '#04a4cc' ],
+			'modern'         => [ 'modern', '#3858e9' ],
+			'blue'           => [ 'blue', '#096484' ],
+			'coffee'         => [ 'coffee', '#46403c' ],
+			'ectoplasm'      => [ 'ectoplasm', '#523f6d' ],
+			'midnight'       => [ 'midnight', '#e14d43' ],
+			'ocean'          => [ 'ocean', '#627c83' ],
+			'sunrise'        => [ 'sunrise', '#cf4944' ],
+			'unknown scheme' => [ 'unknown-scheme', '#3858e9' ],
+		];
+	}
+
+	/**
+	 * Data for the isolated scan request detection.
+	 *
+	 * @return array<string, array{0: array<string, string>, 1: bool}>
+	 */
+	public function isolatedScanRequestProvider(): array {
+		return [
+			'scanner and isolated markers'     => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '1',
+				],
+				true,
+			],
+			'scanner marker only'              => [
+				[ 'edac_pageScanner' => '1' ],
+				false,
+			],
+			'isolated marker only'             => [
+				[ 'edac_isolated' => '1' ],
+				false,
+			],
+			'neither marker'                   => [
+				[],
+				false,
+			],
+			'isolated marker with other value' => [
+				[
+					'edac_pageScanner' => '1',
+					'edac_isolated'    => '0',
+				],
+				false,
+			],
+			'scanner marker with other value'  => [
+				[
+					'edac_pageScanner' => '0',
+					'edac_isolated'    => '1',
+				],
+				false,
+			],
+		];
+	}
+
+	/**
+	 * Only requests carrying both the scanner and isolated markers count as isolated scans.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsIsolatedScanRequest( array $query, bool $expected ): void {
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = $query;
+
+		$result = Enqueue_Frontend::is_isolated_scan_request();
+
+		$_GET = $original_get;
+
+		$this->assertSame( $expected, $result );
+	}
+
+	/**
+	 * The isolation header hook is registered on send_headers.
+	 */
+	public function testIsolationHeaderHookIsRegistered(): void {
+		$this->assertNotFalse(
+			has_action( 'send_headers', [ 'EDAC\Inc\Enqueue_Frontend', 'maybe_send_scan_isolation_header' ] )
+		);
+	}
+
+	/**
+	 * The header sent to the scan iframe matches the policy core sends on block editor screens.
+	 */
+	public function testScanIsolationHeaderMatchesCoreEditorPolicy(): void {
+		$this->assertSame(
+			'Document-Isolation-Policy: isolate-and-credentialless',
+			Enqueue_Frontend::SCAN_ISOLATION_HEADER
+		);
+	}
+
+	/**
+	 * Run the header callback for a request and return the headers it would send.
+	 *
+	 * The test bootstrap has already produced output, so real headers can't be inspected from here.
+	 * A subclass records what is passed to send_header() instead.
+	 *
+	 * @param array<string, string> $query The query string values for the request.
+	 *
+	 * @return array<int, string> The header lines that were sent.
+	 */
+	private function get_scan_headers_sent_for( array $query ): array {
+		$spy = new class() extends Enqueue_Frontend {
+
+			/**
+			 * Header lines recorded instead of being sent.
+			 *
+			 * @var array<int, string>
+			 */
+			public static $sent = [];
+
+			/**
+			 * Record the header instead of sending it.
+			 *
+			 * @param string $header The full header line.
+			 */
+			protected static function send_header( string $header ): void {
+				self::$sent[] = $header;
+			}
+		};
+
+		$spy_class        = get_class( $spy );
+		$spy_class::$sent = [];
+
+		$original_get = $_GET; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		$_GET         = $query;
+
+		$spy_class::maybe_send_scan_isolation_header();
+
+		$_GET = $original_get;
+
+		return $spy_class::$sent;
+	}
+
+	/**
+	 * The isolation header is sent for isolated scan requests and for no other request.
+	 *
+	 * @dataProvider isolatedScanRequestProvider
+	 *
+	 * @param array<string, string> $query    The query string values for the request.
+	 * @param bool                  $expected Whether the request counts as an isolated scan.
+	 */
+	public function testIsolationHeaderIsSentOnlyForIsolatedScanRequests( array $query, bool $expected ): void {
+		$this->assertSame(
+			$expected ? [ Enqueue_Frontend::SCAN_ISOLATION_HEADER ] : [],
+			$this->get_scan_headers_sent_for( $query )
+		);
 	}
 }
