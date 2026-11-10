@@ -711,6 +711,43 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that every admin bundle gets a filesystem path for its translations.
+	 *
+	 * The path is handed to load_script_textdomain(), so a URL in its place
+	 * loads no translations at all. The path itself is asserted rather than the
+	 * constant it comes from, because the forbidden-function rule allows
+	 * EDAC_PLUGIN_URL and cannot catch that mistake.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sidebar_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sr_only_format
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testAdminBundlesGetFilesystemTranslationsPaths() {
+		global $post, $pagenow, $wp_scripts;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$handles = [ 'edac', 'edac-editor-app', 'edac-sidebar', 'edac-sr-only-format', 'edac-issue-modal' ];
+
+		foreach ( $handles as $handle ) {
+			if ( ! isset( $wp_scripts->registered[ $handle ] ) ) {
+				$this->fail( "The {$handle} script was not registered." );
+			}
+
+			$this->assertSame( EDAC_PLUGIN_DIR . 'languages', $wp_scripts->registered[ $handle ]->translations_path, "The {$handle} script needs a filesystem translations path." );
+			$this->assertSame( 'accessibility-checker', $wp_scripts->registered[ $handle ]->textdomain, "The {$handle} script needs its text domain set." );
+		}
+	}
+
+	/**
 	 * Test that the email opt-in assets do not enqueue outside the welcome page.
 	 *
 	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
