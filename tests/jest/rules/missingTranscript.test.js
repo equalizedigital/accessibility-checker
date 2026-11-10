@@ -319,6 +319,11 @@ describe( 'Missing Transcript Rule', () => {
 			html: '<section><div style="display: none;"><video src="video.mp4"></video><p>Watch our latest update.</p><p>Transcript available below.</p></div></section>',
 			shouldPass: true,
 		},
+		{
+			name: 'passes <video> in a display:none panel when the transcript is direct text of the same panel',
+			html: '<section><div style="display: none;"><video src="video.mp4"></video>Transcript available below.</div></section>',
+			shouldPass: true,
+		},
 	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;
 

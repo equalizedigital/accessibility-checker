@@ -220,7 +220,7 @@ function getSurroundingText( node, radius = 250 ) {
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' ) {
+				if ( ! style ) {
 					return NodeFilter.FILTER_REJECT;
 				}
 				if ( style.visibility === 'hidden' && getHiddenRoot( textNode.parentElement ) !== mediaHiddenRoot ) {
