@@ -138,6 +138,24 @@ function collectSiblingText( startSibling, maxCount ) {
 	return text;
 }
 
+/**
+ * Find the outermost element whose computed visibility is hidden along the chain
+ * that leads to the given element. Because visibility is inherited, this is the
+ * element that hides it, such as a closed tab or accordion panel.
+ * @param {Element} element - The element to start from.
+ * @return {Element|null} - The hiding element, or null if the element is visible.
+ */
+function getHiddenRoot( element ) {
+	if ( window.getComputedStyle( element ).visibility !== 'hidden' ) {
+		return null;
+	}
+	let root = element;
+	while ( root.parentElement && window.getComputedStyle( root.parentElement ).visibility === 'hidden' ) {
+		root = root.parentElement;
+	}
+	return root;
+}
+
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
@@ -195,14 +213,24 @@ function getSurroundingText( node, radius = 250 ) {
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
 		// visibility is inherited, so when the media itself is hidden (closed tab, accordion, slider)
-		// all nearby text reports hidden too. Only count it when the media is visible.
-		const isNodeVisible = window.getComputedStyle( node ).visibility !== 'hidden';
+		// all nearby text reports hidden too. Text hidden by that same panel still counts, but text
+		// hidden on its own does not.
+		const mediaHiddenRoot = getHiddenRoot( node );
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' || ( isNodeVisible && style.visibility === 'hidden' ) ) {
+				if ( ! style || style.display === 'none' ) {
 					return NodeFilter.FILTER_REJECT;
+				}
+				if ( style.visibility === 'hidden' && getHiddenRoot( textNode.parentElement ) !== mediaHiddenRoot ) {
+					return NodeFilter.FILTER_REJECT;
+				}
+				// A display:none ancestor that does not also contain the media hides the text on its own.
+				for ( let el = textNode.parentElement; el && el !== parent; el = el.parentElement ) {
+					if ( window.getComputedStyle( el ).display === 'none' && ! el.contains( node ) ) {
+						return NodeFilter.FILTER_REJECT;
+					}
 				}
 				return NodeFilter.FILTER_ACCEPT;
 			},
