@@ -16,7 +16,11 @@ $color-green: #060;
 $color-yellow: #f3cd1e;
 $color-blue-dark: #072446;
 $color-blue: var(--wp-admin-theme-color, #3273aa);
-$color-blue-hover: var(--wp-admin-theme-color-darker-10, #285b88);
+
+// Fixed blues for links on the light metabox background. The admin theme color
+// is not blue in every admin color scheme and can fail 4.5:1 contrast.
+$color-action-link: #3273aa;
+$color-action-link-hover: #285b88;
 $color-orange: #cf8402;
 
 $font-size-xxx-large: 3rem;
