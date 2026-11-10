@@ -579,7 +579,11 @@
 								background: transparent;
 								display: flex;
 								align-items: center;
-								text-decoration: underline;
+
+								// The underline is on the label only. A child cannot
+								// remove an inherited decoration, so it would reach the icon.
+								--edac-action-link-decoration: underline;
+								text-decoration: none;
 								padding: 4px 0;
 
 								svg {
@@ -595,8 +599,8 @@
 
 								&:hover,
 								&:focus {
+									--edac-action-link-decoration: none;
 									color: variables.$color-blue-hover;
-									text-decoration: none;
 									cursor: pointer;
 
 									svg path {
@@ -606,6 +610,10 @@
 
 								.dashicons {
 									margin-right: 3px;
+								}
+
+								&-label {
+									text-decoration: var(--edac-action-link-decoration);
 								}
 							}
 						}

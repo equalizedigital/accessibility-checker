@@ -578,7 +578,7 @@ class Ajax {
 							);
 							// Translators: %d is the issue ID.
 							$aria_label = sprintf( __( 'View Issue ID %d on website, opens a new window', 'accessibility-checker' ), $id );
-							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span>' . __( 'View on page', 'accessibility-checker' ) . '</a>';
+							$html      .= '<a href="' . $url . '" class="edac-details-rule-records-record-actions-highlight-front" target="_blank" aria-label="' . esc_attr( $aria_label ) . '" ><span class="dashicons dashicons-welcome-view-site"></span><span class="edac-details-rule-records-record-actions-highlight-front-label">' . esc_html__( 'View on page', 'accessibility-checker' ) . '</span></a>';
 						}
 
 						if ( true === $ignore_permission ) {
@@ -594,7 +594,7 @@ class Ajax {
 									type="button"
 								>
 									<span class="dashicons dashicons-admin-tools"></span>
-									%3$s
+									<span class="edac-details-rule-records-record-actions-fix-label">%3$s</span>
 								</button>',
 								esc_attr( $controls_id ),
 								esc_attr( __( 'Fix: ', 'accessibility-checker' ) . $fixes_for_item[0]->get_nicename() ),
