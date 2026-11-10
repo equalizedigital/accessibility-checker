@@ -139,6 +139,30 @@ describe( 'New Window Warning Tooltip', () => {
 			expect( link.getAttribute( 'data-nww-processed' ) ).toBe( 'true' );
 		} );
 
+		test( 'exposes window.edacNewWindowWarning.refresh() to process links added later', () => {
+			document.body.innerHTML = '<a href="http://example.com/one" target="_blank">One</a>';
+
+			NewWindowWarning();
+
+			expect( typeof window.edacNewWindowWarning.refresh ).toBe( 'function' );
+
+			// Content inserted by a script the plugin doesn't know about.
+			document.body.insertAdjacentHTML(
+				'beforeend',
+				'<a href="http://example.com/two" target="_blank">Two</a>',
+			);
+			const [ first, second ] = document.querySelectorAll( 'a' );
+			expect( second.hasAttribute( 'data-nww-processed' ) ).toBe( false );
+
+			window.edacNewWindowWarning.refresh();
+
+			expect( second.getAttribute( 'aria-label' ) ).toContain( 'opens a new window' );
+			expect( second.querySelector( '.edac-nww-external-link-icon' ) ).not.toBeNull();
+
+			// Already-processed links are not decorated twice.
+			expect( first.querySelectorAll( '.edac-nww-external-link-icon' ) ).toHaveLength( 1 );
+		} );
+
 		describe( 'aria-label computation (updateAriaLabel)', () => {
 			test( 'uses link text content for text-only links', () => {
 				document.body.innerHTML = '<a href="http://example.com" target="_blank">External Link</a>';
