@@ -497,4 +497,108 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 			'nothing stored'                => [ [], false, '', false ],
 		];
 	}
+
+	/**
+	 * A disconnected site with nothing stored gets the connect form: the free
+	 * licence key field, a Connect button and the two sign-up paragraphs.
+	 * There is no connection to disconnect, so no Disconnect button renders.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
+	 */
+	public function test_render_page_shows_the_connect_form_when_unregistered() {
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'Connect this site', $html );
+		$this->assertStringContainsString( 'Enter your license key', $html );
+		$this->assertStringContainsString( 'value="Connect Site"', $html );
+		$this->assertStringContainsString( 'create a free account', $html );
+		$this->assertStringNotContainsString( 'value="Disconnect Site"', $html );
+	}
+
+	/**
+	 * A stored-but-expired licence on a still-registered site is labelled
+	 * expired, keeps the disconnect action and points at the renewal page.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
+	 */
+	public function test_render_page_labels_an_expired_registered_licence() {
+		update_option( 'edac_license_status', 'expired' );
+		update_option( 'edac_site_id', 'site-123' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'color:red', $html );
+		$this->assertStringContainsString( 'value="Disconnect Site"', $html );
+		$this->assertStringContainsString( 'Renew your license', $html );
+		$this->assertStringNotContainsString( 'color:green', $html );
+	}
+
+	/**
+	 * A connected free licence reports itself active, shows the stored key in
+	 * the field and offers only the disconnect action.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
+	 */
+	public function test_render_page_reports_a_connected_licence_as_active() {
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', 'site-123' );
+		update_option( 'edacp_license_key', 'free-license-key' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'color:green', $html );
+		$this->assertStringContainsString( 'value="Disconnect Site"', $html );
+		$this->assertStringContainsString( 'value="free-license-key"', $html );
+		$this->assertStringNotContainsString( 'value="Connect Site"', $html );
+	}
+
+	/**
+	 * A stored licence error is printed as an admin notice so the failure is
+	 * visible wherever the admin is, linking back to the tab that can fix it.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 */
+	public function test_admin_notices_prints_a_stored_licence_error() {
+		update_option( 'edac_license_error', 'missing' );
+
+		$html = $this->render_admin_notices();
+
+		$this->assertStringContainsString( 'notice notice-error', $html );
+		$this->assertStringContainsString( 'check your license key', $html );
+		$this->assertStringContainsString( 'tab=accessibility-reports', $html );
+	}
+
+	/**
+	 * With no stored error for the current licence authority there is no notice
+	 * at all, so the admin header is not polluted with an empty alert.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 */
+	public function test_admin_notices_is_silent_without_a_stored_error() {
+		$this->assertSame( '', $this->render_admin_notices() );
+	}
+
+	/**
+	 * Render the connected services page and capture its markup.
+	 *
+	 * @return string
+	 */
+	private function render_page(): string {
+		ob_start();
+		$this->page->render_page();
+
+		return (string) ob_get_clean();
+	}
+
+	/**
+	 * Render the licence admin notices and capture their markup.
+	 *
+	 * @return string
+	 */
+	private function render_admin_notices(): string {
+		ob_start();
+		$this->page->admin_notices();
+
+		return (string) ob_get_clean();
+	}
 }
