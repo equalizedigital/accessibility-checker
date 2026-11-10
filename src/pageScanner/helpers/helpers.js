@@ -21,16 +21,40 @@ export const normalizeText = ( text ) => {
  * visibility is inherited, so when the container is itself hidden (closed tab, accordion, slider)
  * every descendant reports hidden too. visibility: hidden only counts when the container is visible.
  *
- * @param {HTMLElement} element   The element to check
- * @param {HTMLElement} container Optional element being evaluated that contains the element
+ * @param {HTMLElement} element           The element to check
+ * @param {boolean}     isContainerHidden Optional precomputed result of the container
+ *                                        being visibility: hidden, hoisted by the
+ *                                        caller so it is not recomputed per element.
  * @return {boolean} True if element is hidden
  */
-export const isVisiblyHidden = ( element, container = null ) => {
+export const isVisiblyHidden = ( element, isContainerHidden = false ) => {
 	const style = window.getComputedStyle( element );
-	const isContainerHidden = container !== null && window.getComputedStyle( container ).visibility === 'hidden';
 	return style.display === 'none' ||
 		( ! isContainerHidden && style.visibility === 'hidden' ) ||
 		element.closest( '[aria-hidden="true"]' ) !== null;
+};
+
+/**
+ * Check if an element is inside a subtree that is not rendered at all:
+ * display: none, the hidden attribute or aria-hidden="true" on itself or any ancestor.
+ *
+ * visibility: hidden is deliberately not checked here — it is inherited, so content in
+ * closed tabs, accordions and sliders reports hidden and should still be scanned.
+ *
+ * @param {HTMLElement} element The element to check
+ * @return {boolean} True if element is inside an unrendered subtree
+ */
+export const isInHiddenSubtree = ( element ) => {
+	let el = element;
+	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
+		if ( window.getComputedStyle( el ).display === 'none' ||
+			el.hasAttribute( 'hidden' ) ||
+			el.getAttribute( 'aria-hidden' ) === 'true' ) {
+			return true;
+		}
+		el = el.parentElement;
+	}
+	return false;
 };
 
 /**
