@@ -75,12 +75,26 @@ test.describe( 'dismissing an issue', () => {
 		await expandMetaBoxes( page );
 		await ( await openFirstRecord( page, 'Empty Button' ) ).click();
 
+		// The panel is server-rendered from the saved dismissal, so the comment
+		// alone only proves one field round-tripped: the reason it was dismissed
+		// with, and the action the button now offers, come from the same row.
 		const reloaded = page.locator( '.edac-details-rule-records-record-ignore:visible' ).first();
 		await expect( reloaded.locator( '.edac-details-rule-records-record-ignore-comment' ) ).toHaveValue( 'e2e dismissal' );
+		await expect( reloaded.getByLabel( /false positive/i ) ).toBeChecked();
+		await expect( reloaded.locator( SUBMIT ) ).toHaveAttribute( 'data-action', 'disable' );
 
 		// Undo, so the fixture goes back to its original state.
 		const undone = page.waitForResponse( ( res ) => /dismiss-issue\/\d+/.test( res.url() ) && res.request().method() === 'POST' );
 		await reloaded.locator( SUBMIT ).click();
 		expect( ( await undone ).status() ).toBe( 200 );
+
+		// Reload once more: the undo persisted, so the issue is dismissible again.
+		await openBlockEditor( page, fixture.id );
+		await expandMetaBoxes( page );
+		await ( await openFirstRecord( page, 'Empty Button' ) ).click();
+
+		const reopened = page.locator( '.edac-details-rule-records-record-ignore:visible' ).first();
+		await expect( reopened.locator( SUBMIT ) ).toHaveAttribute( 'data-action', 'enable' );
+		await expect( reopened.locator( '.edac-details-rule-records-record-ignore-comment' ) ).toHaveValue( '' );
 	} );
 } );

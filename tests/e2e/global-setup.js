@@ -11,12 +11,15 @@ const fs = require( 'fs' );
 const os = require( 'os' );
 const path = require( 'path' );
 const { chromium } = require( '@playwright/test' );
+const { DISPOSABLE_MARKER } = require( './helpers' );
 
 const PORT = process.env.E2E_PORT || 9400;
 const BASE_URL = process.env.E2E_BASE_URL || `http://127.0.0.1:${ PORT }`;
 const REPO_ROOT = path.resolve( __dirname, '..', '..' );
 const AUTH_DIR = path.resolve( __dirname, '.auth' );
 const PID_FILE = path.join( AUTH_DIR, 'playground.pid' );
+// REST namespace registered by e2e-helpers.php, installed as a mu-plugin below.
+const E2E_REST_NAMESPACE = 'edac-e2e/v1';
 // Pinned so the npx install is cacheable in CI; bump deliberately.
 const PLAYGROUND_VERSION = process.env.E2E_PLAYGROUND_VERSION || '3.1.62';
 // Playground warns below 6 workers (deadlocks on file locks), so default to that.
@@ -72,6 +75,28 @@ async function isUp( url ) {
 }
 
 /**
+ * Does the running instance register the test-only REST namespace?
+ *
+ * The blueprint's `writeFile` step only runs when this process boots the instance,
+ * so an instance started by an earlier run (or a different branch) has no
+ * `edac-e2e/v1` routes and `resetOptIn()` would fail mid-test instead. There is no
+ * way to install the mu-plugin into an instance that is already up, so the only
+ * answer is to say so and stop.
+ *
+ * @param {string} url Base URL.
+ * @return {Promise<boolean>} Whether the namespace is registered.
+ */
+async function hasE2eRoutes( url ) {
+	try {
+		const res = await fetch( `${ url }/wp-json/` );
+		const index = await res.json();
+		return Array.isArray( index.namespaces ) && index.namespaces.includes( E2E_REST_NAMESPACE );
+	} catch ( error ) {
+		return false;
+	}
+}
+
+/**
  * Wait for a line matching the pattern on a child process's output.
  *
  * The child's own output is echoed to this process's stderr as it arrives (not
@@ -118,6 +143,12 @@ function waitForLog( child, pattern, timeout ) {
 module.exports = async () => {
 	fs.mkdirSync( AUTH_DIR, { recursive: true } );
 
+	// Only the instance this run boots itself is throwaway: global-teardown.js stops
+	// that one and leaves a pre-existing one running, so the marker says which specs
+	// may be destructive. Written/removed per run — the pid file can outlive an
+	// interrupted run, so it cannot be used for this.
+	fs.rmSync( DISPOSABLE_MARKER, { force: true } );
+
 	if ( ! ( await isUp( BASE_URL ) ) ) {
 		const dir = fs.mkdtempSync( path.join( os.tmpdir(), 'edac-playground-' ) );
 		const blueprintPath = path.join( dir, 'blueprint.json' );
@@ -142,6 +173,13 @@ module.exports = async () => {
 		);
 		fs.writeFileSync( PID_FILE, String( child.pid ) );
 		await waitForLog( child, /Ready! WordPress is running/, BOOT_TIMEOUT );
+		fs.writeFileSync( DISPOSABLE_MARKER, '' );
+	} else if ( ! ( await hasE2eRoutes( BASE_URL ) ) ) {
+		throw new Error(
+			`The Playground instance on ${ BASE_URL } has no ${ E2E_REST_NAMESPACE } REST routes — ` +
+				`it was booted before tests/e2e/e2e-helpers.php existed, and the blueprint that ` +
+				`installs them only runs for an instance this process starts. Stop it and run again.`
+		);
 	}
 
 	const browser = await chromium.launch( { channel: 'chrome' } );

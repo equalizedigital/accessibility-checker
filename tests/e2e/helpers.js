@@ -1,4 +1,4 @@
-/* global module */
+/* global module, __dirname */
 /**
  * Shared helpers for the Playwright drafts.
  *
@@ -7,7 +7,18 @@
  * scanner bundle is injected the same way the highlighter injects it.
  */
 
+const path = require( 'path' );
+
 const PLUGIN_SLUG = 'accessibility-checker';
+
+/**
+ * Marker global-setup.js writes when this run booted the Playground instance
+ * itself, and removes when it reused one that was already running.
+ *
+ * A marker rather than a check for the pid file: the pid file can be left behind
+ * by a run that was interrupted, while this one says something about *this* run.
+ */
+const DISPOSABLE_MARKER = path.resolve( __dirname, '.auth', 'disposable-instance' );
 
 /** Selectors confirmed against the running plugin. */
 const sel = {
@@ -257,6 +268,45 @@ async function expandMetaBoxes( page ) {
 }
 
 /**
+ * Start counting the plugin's own scan-save events before the page navigates.
+ *
+ * The block editor scans the post as soon as it opens and dispatches
+ * `edac_js_scan_save_complete` on `top` once the results are stored (see
+ * `saveScanResults()` in src/editorApp/checkPage.js). Counting from a frame init
+ * script means a later wait can tell whether that first scan has already
+ * finished, instead of inferring it from how long the page took to load.
+ *
+ * Must be called before the navigation it should see, i.e. before
+ * `openBlockEditor()`.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function trackScanSaveEvents( page ) {
+	await page.addInitScript( () => {
+		window.__edacScanSaveEvents = 0;
+		window.addEventListener( 'edac_js_scan_save_complete', () => {
+			window.__edacScanSaveEvents += 1;
+		} );
+	} );
+}
+
+/**
+ * Wait for the plugin to have saved scan results `count` times since the page
+ * navigated. Requires `trackScanSaveEvents()` to have run before navigation.
+ *
+ * @param {Object} page    Playwright page.
+ * @param {number} count   How many saves to wait for.
+ * @param {number} timeout Milliseconds to wait.
+ */
+async function waitForScanSaveEvents( page, count = 1, timeout = 180_000 ) {
+	await page.waitForFunction(
+		( expected ) => ( window.__edacScanSaveEvents || 0 ) >= expected,
+		count,
+		{ timeout }
+	);
+}
+
+/**
  * Submit the plugin's settings form after applying a change to it.
  *
  * @param {Object}   page   Playwright page.
@@ -293,6 +343,7 @@ function expectNoPhpErrors( html ) {
 
 module.exports = {
 	PLUGIN_SLUG,
+	DISPOSABLE_MARKER,
 	sel,
 	FIXTURE_CONTENT,
 	FIXTURE_RULE_TITLES,
@@ -306,6 +357,8 @@ module.exports = {
 	openBlockEditor,
 	openBlockEditorRaw,
 	expandMetaBoxes,
+	trackScanSaveEvents,
+	waitForScanSaveEvents,
 	saveSettings,
 	resetOptIn,
 	expectNoPhpErrors,

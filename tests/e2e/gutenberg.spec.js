@@ -13,6 +13,8 @@ const {
 	deletePage,
 	openBlockEditor,
 	expandMetaBoxes,
+	trackScanSaveEvents,
+	waitForScanSaveEvents,
 } = require( './helpers' );
 
 test.describe( 'block editor', () => {
@@ -71,20 +73,44 @@ test.describe( 'block editor', () => {
 	} );
 
 	test( 'saving the post triggers a rescan and refreshes the sidebar data', async ( { page } ) => {
+		// Watch from before the editor loads: it scans the post as soon as it opens,
+		// so a listener registered after openBlockEditor() can miss that scan's own
+		// sidebar refresh — and then treat a leftover response as the save's.
+		const sidebarFetches = new Set();
+		page.on( 'request', ( request ) => {
+			if ( /sidebar-data\/\d+/.test( request.url() ) ) {
+				sidebarFetches.add( request );
+			}
+		} );
+		await trackScanSaveEvents( page );
+
 		await openBlockEditor( page, fixture.id );
 
-		// Let the on-load scan finish so the save-triggered one is the only one left to see.
-		await page.waitForResponse( /sidebar-data\/\d+/ );
+		// Let the on-load scan finish and save, so the rescan waited for below is
+		// unambiguously the one the save triggers.
+		await waitForScanSaveEvents( page );
 
-		const rescan = page.waitForRequest( /edac_pageScanner=1/ );
-		const refetch = page.waitForResponse( /sidebar-data\/\d+/ );
+		const fetchesBeforeSave = new Set( sidebarFetches );
 
 		await page.evaluate( () => {
 			window.wp.data.dispatch( 'core/editor' ).editPost( { title: 'Block editor fixture (edited)' } );
 		} );
+		const rescan = page.waitForRequest( /edac_pageScanner=1/, { timeout: 180_000 } );
 		await page.locator( '.editor-post-publish-button' ).click();
 
 		await rescan;
-		await refetch;
+
+		// Registered once the rescan is under way, and ignoring anything already
+		// requested: the save-triggered refresh only starts after that rescan saves,
+		// so a request started earlier cannot be it.
+		const refresh = await page.waitForResponse( ( res ) => (
+			/sidebar-data\/\d+/.test( res.url() ) && ! fetchesBeforeSave.has( res.request() )
+		), { timeout: 180_000 } );
+
+		// A refresh that fails keeps the sidebar's previous data and only logs a
+		// warning (src/sidebar/store/accessibility-checker-store.js), so assert the
+		// payload arrived rather than that a response did.
+		expect( refresh.ok() ).toBeTruthy();
+		expect( ( await refresh.json() ).success ).toBe( true );
 	} );
 } );
