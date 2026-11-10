@@ -6,14 +6,22 @@
  * closing restores the page.
  */
 const { test, expect } = require( '@playwright/test' );
-const { resetOptIn } = require( './helpers' );
+const { resetOptIn, restoreOptIn } = require( './helpers' );
 
 const WELCOME_PAGE = '/wp-admin/admin.php?page=accessibility_checker';
 
 test.describe( 'email opt-in modal', () => {
+	let previous;
+
+	test.afterEach( async ( { page } ) => {
+		// The reset deletes the admin's own opt-in state, so put it back — the instance
+		// is reused locally, and afterEach runs whether or not the test passed.
+		await restoreOptIn( page, previous );
+	} );
+
 	test( 'opens as a labelled dialog with an inert background, and restores on close', async ( { page } ) => {
 		// The modal's markup is only printed while the user has not seen it.
-		await resetOptIn( page );
+		previous = await resetOptIn( page );
 
 		// initOptInModal() only binds its one-shot mousemove/scroll trigger inside its
 		// own `window.addEventListener('load', ...)` handler — waiting for

@@ -208,9 +208,11 @@ async function saveInElementor( page, status = 'publish' ) {
 /**
  * Reset the admin's email opt-in user meta so the opt-in modal shows again.
  *
- * Goes through a test-only route installed by global-setup.js (e2e-helpers.php).
+ * Goes through a test-only route installed by global-setup.js (e2e-helpers.php),
+ * which hands back what it found so `restoreOptIn()` can put it back.
  *
  * @param {Object} page Playwright page.
+ * @return {Promise<Object>} Whether each meta key was set before the reset.
  */
 async function resetOptIn( page ) {
 	const nonce = await getRestNonce( page );
@@ -225,6 +227,33 @@ async function resetOptIn( page ) {
 	if ( ! result.success ) {
 		throw new Error( 'Could not reset the opt-in user meta.' );
 	}
+
+	return result.previous;
+}
+
+/**
+ * Put the opt-in user meta back the way `resetOptIn()` found it.
+ *
+ * Worth doing even though the modal has to be un-seen for the test to run: on a
+ * reused instance the admin is a real user, and deleting their saved opt-in state
+ * shows them the subscription form again.
+ *
+ * @param {Object} page     Playwright page.
+ * @param {Object} previous The state `resetOptIn()` returned.
+ */
+async function restoreOptIn( page, previous ) {
+	if ( ! previous ) {
+		return;
+	}
+
+	const nonce = await getRestNonce( page );
+	await page.evaluate( async ( args ) => {
+		await fetch( '/wp-json/edac-e2e/v1/restore-opt-in', {
+			method: 'POST',
+			headers: { 'X-WP-Nonce': args.restNonce, 'Content-Type': 'application/json' },
+			body: JSON.stringify( { previous: args.previous } ),
+		} );
+	}, { restNonce: nonce, previous } );
 }
 
 /**
@@ -249,25 +278,42 @@ async function openBlockEditor( page, postId ) {
  */
 async function openBlockEditorRaw( page, postId ) {
 	await page.goto( `/wp-admin/post.php?post=${ postId }&action=edit`, { waitUntil: 'load' } );
-	await page.waitForSelector( '.editor-post-publish-button', { timeout: 180_000 } );
-	// Nothing in the editor is reachable until the onboarding guide is out of the way.
-	await dismissWelcomeGuide( page );
+	await waitForEditorChrome( page );
+
+	if ( await dismissWelcomeGuide( page ) ) {
+		// The guide is off now, but it was already rendered on this page — see
+		// dismissWelcomeGuide() — so load the editor again to get one without it.
+		await page.reload( { waitUntil: 'load' } );
+		await waitForEditorChrome( page );
+	}
 }
 
 /**
- * Switch off the block editor's welcome guide.
+ * Wait for the block editor's chrome to be up.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function waitForEditorChrome( page ) {
+	await page.waitForSelector( '.editor-post-publish-button', { timeout: 180_000 } );
+}
+
+/**
+ * Switch off the block editor's onboarding guide, and say whether the page it was found
+ * on has to be reloaded to clear it.
  *
  * On a site whose admin has never dismissed it — every fresh Playground instance, so
  * every CI run — the guide opens over the canvas as soon as the editor is up. It is a
  * modal: its overlay swallows pointer events and the editor behind it is inert, so the
  * editor's own controls (the "Meta Boxes" pane toggle, the Accessibility Checker header
  * button, the save button) can be neither clicked nor found by role while it is open.
- * Dispatching the preference is what the guide's own close button does.
  *
- * The preference store applies the user's saved state while the editor boots, which can
- * land after the first dispatch, so the dispatch is repeated until it reads back.
+ * Dispatching the preference is what the guide's own close button does, and the
+ * preferences store persists it to the user's meta, so the guide is gone from the *next*
+ * editor load. It does not reliably leave the load it has already rendered on, which is
+ * why the caller reloads: the saved choice makes the reloaded editor come up without it.
  *
  * @param {Object} page Playwright page.
+ * @return {Promise<boolean>} Whether the caller needs to reload the editor.
  */
 async function dismissWelcomeGuide( page ) {
 	await page.waitForFunction(
@@ -276,6 +322,26 @@ async function dismissWelcomeGuide( page ) {
 		{ timeout: 60_000 }
 	);
 
+	// The editor booted with the guide already switched off, i.e. every open after the
+	// first one in a run: nothing is on screen and nothing needs reloading.
+	const switchedOffOnLoad = await page.evaluate(
+		() => window.wp.data.select( 'core/preferences' ).get( 'core/edit-post', 'welcomeGuide' ) === false
+	);
+	if ( switchedOffOnLoad ) {
+		return false;
+	}
+
+	// Wait for the choice to reach the server before the caller reloads, or the reloaded
+	// editor would boot from the old value and put the guide back.
+	const saved = page
+		.waitForResponse(
+			( res ) => res.url().includes( '/wp/v2/users/me' ) && res.request().method() === 'POST',
+			{ timeout: 30_000 }
+		)
+		.catch( () => null );
+
+	// The store applies the user's saved state while the editor boots, which can land
+	// after the first dispatch, so dispatch until it reads back.
 	await expect.poll( async () => {
 		await page.evaluate( () => {
 			const { dispatch } = window.wp.data;
@@ -285,9 +351,9 @@ async function dismissWelcomeGuide( page ) {
 		return page.evaluate( () => window.wp.data.select( 'core/preferences' ).get( 'core/edit-post', 'welcomeGuide' ) );
 	}, { timeout: 60_000 } ).toBe( false );
 
-	// Wait for the dialog itself to go: a locator that never matches is already gone,
-	// so this cannot hang on a guide named differently than expected.
-	await page.getByRole( 'dialog', { name: /welcome to the editor/i } ).waitFor( { state: 'detached', timeout: 30_000 } );
+	await saved;
+
+	return true;
 }
 
 /**
@@ -396,10 +462,12 @@ module.exports = {
 	openBlockEditor,
 	openBlockEditorRaw,
 	dismissWelcomeGuide,
+	waitForEditorChrome,
 	expandMetaBoxes,
 	trackScanSaveEvents,
 	waitForScanSaveEvents,
 	saveSettings,
 	resetOptIn,
+	restoreOptIn,
 	expectNoPhpErrors,
 };
