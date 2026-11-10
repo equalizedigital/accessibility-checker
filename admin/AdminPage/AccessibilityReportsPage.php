@@ -151,7 +151,7 @@ class AccessibilityReportsPage implements PageInterface {
 									<?php esc_html_e( 'Your license has expired. This site is still connected but reports may stop until your license is renewed.', 'accessibility-checker' ); ?>
 								</p>
 								<?php if ( ConnectionStatus::ISSUE_LOCAL === $issue ) : ?>
-									<p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p>
+									<p><?php echo wp_kses_post( $this->get_issue_message( $issue ) ); ?></p>
 								<?php endif; ?>
 								<p>
 									<a href="<?php echo esc_url( edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'renew', false ) ); ?>" target="_blank" rel="noopener noreferrer">
@@ -179,7 +179,7 @@ class AccessibilityReportsPage implements PageInterface {
 					</p>
 
 					<?php if ( '' !== $issue ) : ?>
-						<div class="notice notice-warning inline"><p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p></div>
+						<div class="notice notice-warning inline"><p><?php echo wp_kses_post( $this->get_issue_message( $issue ) ); ?></p></div>
 					<?php endif; ?>
 
 					<?php if ( ConnectionStatus::ISSUE_LOCAL === $issue ) : ?>
@@ -249,7 +249,7 @@ class AccessibilityReportsPage implements PageInterface {
 										<h3><?php echo esc_html( ConnectionStatus::ISSUE_LOCAL === $issue ? __( 'Reports Cannot Run', 'accessibility-checker' ) : __( 'Reports May Not Be Working', 'accessibility-checker' ) ); ?></h3>
 										<span class="edac-reports-card__status edac-reports-card__status--warning" aria-hidden="true"><?php echo wp_kses( $this->get_status_icon( 'warning' ), $allowed_icon_html ); ?></span>
 									</div>
-									<p><?php echo wp_kses_post( $this->get_issue_message( $issue, $is_pro, $upgrade_url ) ); ?></p>
+									<p><?php echo wp_kses_post( $this->get_issue_message( $issue ) ); ?></p>
 								<?php else : ?>
 									<div class="edac-reports-card__header">
 										<h3><?php esc_html_e( 'Reports Enabled', 'accessibility-checker' ); ?></h3>
@@ -348,12 +348,10 @@ class AccessibilityReportsPage implements PageInterface {
 	 *
 	 * @since x.x.x
 	 *
-	 * @param string $issue       One of the ConnectionStatus issue constants.
-	 * @param bool   $is_pro      Whether the effective active license is Pro.
-	 * @param string $upgrade_url URL of the Pro upgrade page.
-	 * @return string Message HTML, with URLs already escaped.
+	 * @param string $issue One of the ConnectionStatus issue constants.
+	 * @return string Escaped message text.
 	 */
-	private function get_issue_message( string $issue, bool $is_pro, string $upgrade_url ): string {
+	private function get_issue_message( string $issue ): string {
 		if ( ConnectionStatus::ISSUE_LOCAL === $issue ) {
 			return esc_html__( 'Email reports are not available on local sites because our service cannot reach this site to collect report data. Enable reports on your live site instead.', 'accessibility-checker' );
 		}
@@ -362,21 +360,7 @@ class AccessibilityReportsPage implements PageInterface {
 			return esc_html__( 'We have not received report data from this site recently. A firewall, security plugin, or password protection may be blocking our service.', 'accessibility-checker' );
 		}
 
-		if ( $is_pro ) {
-			$account_url = edac_link_wrapper( 'https://my.equalizedigital.com/', 'accessibility-reports', 'site-credentials', false );
-
-			return sprintf(
-				/* translators: %s: My Dot account URL. */
-				__( 'This site is password protected, so our service needs credentials to collect report data. Add or update the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account <span class="screen-reader-text">(opens in a new window)</span></a>. If they are already correct, a firewall or security plugin may be blocking our service.', 'accessibility-checker' ),
-				esc_url( $account_url )
-			);
-		}
-
-		return sprintf(
-			/* translators: %s: Pro upgrade URL. */
-			__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or <a href="%s" target="_blank" rel="noopener noreferrer">upgrade to Pro <span class="screen-reader-text">(opens in a new window)</span></a> to add site credentials in your account.', 'accessibility-checker' ),
-			esc_url( $upgrade_url )
-		);
+		return esc_html__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or allow requests to /wp-json/accessibility-checker/v1/scans-stats through it.', 'accessibility-checker' );
 	}
 
 	/**

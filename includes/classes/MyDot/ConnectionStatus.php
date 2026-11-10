@@ -70,8 +70,8 @@ class ConnectionStatus {
 			return self::is_behind_basic_auth() ? self::ISSUE_BASIC_AUTH : '';
 		}
 
-		// Our own check always gets a 401 on a protected site, even when My Dot has
-		// the credentials, so a connected site only has an issue after a missed pull.
+		// A connected site is only flagged after a missed pull. Pulls arriving means
+		// our service is getting through whatever protection the site has.
 		if ( ! self::is_pull_overdue() ) {
 			return '';
 		}

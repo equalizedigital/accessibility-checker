@@ -324,7 +324,7 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Tests that a protected site with working credentials in My Dot shows no issue.
+	 * Tests that a protected site shows no issue while pulls are arriving.
 	 */
 	public function test_get_issue_ignores_basic_auth_when_pulls_are_arriving() {
 		$this->mock_http( 401, [ 'www-authenticate' => 'Basic realm="Staging"' ] );
@@ -629,15 +629,17 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Tests that a free site behind htpasswd sees the notice and can still enable reports.
+	 * Tests that a site behind htpasswd sees the notice and can still enable reports.
 	 */
-	public function test_page_shows_upgrade_path_for_free_site_behind_basic_auth() {
+	public function test_page_shows_basic_auth_notice_and_can_still_enable_reports() {
 		$this->mock_http( 401, [ 'www-authenticate' => 'Basic realm="Staging"' ] );
 
 		$output = $this->render_reports_page();
 
 		$this->assertStringContainsString( 'password protected', $output );
-		$this->assertStringContainsString( 'upgrade to Pro', $output );
+		$this->assertStringContainsString( '/wp-json/accessibility-checker/v1/scans-stats', $output );
+		$this->assertStringNotContainsString( 'upgrade to Pro', $output );
+		$this->assertStringNotContainsString( 'your account', $output );
 		$this->assertStringContainsString( 'Enable Email Reports', $output );
 	}
 }
