@@ -1,18 +1,17 @@
+// Settings API save notice, then the connector notice shown after enabling or disabling email reports.
+const NOTICE_SELECTORS = [ '.edac-settings #setting-error-settings_updated', '#edac-connector-notice' ];
+
 /**
- * Focus a save or connector notice, or announce it when focus can't be moved.
+ * Focus a notice, or announce it through the live region when focus can't be moved.
  *
- * @param {Object} a11y          WordPress accessibility utilities.
- * @param {Window} browserWindow Browser window used to schedule the announcement.
+ * Errors take focus too, because VoiceOver drops live region messages sent after
+ * a reload. Only the first notice takes focus because later ones find it already moved.
+ *
+ * @param {Element} notice        Notice element.
+ * @param {Object}  a11y          WordPress accessibility utilities.
+ * @param {Window}  browserWindow Browser window used to schedule the announcement.
  */
-export const announceSettingsSaveStatus = ( a11y, browserWindow = window ) => {
-	const notice =
-		document.querySelector( '.edac-settings #setting-error-settings_updated' ) ||
-		document.getElementById( 'edac-connector-notice' );
-
-	if ( ! notice ) {
-		return;
-	}
-
+const presentNotice = ( notice, a11y, browserWindow ) => {
 	const confirmation = notice.querySelector( 'p' );
 	const message = ( confirmation || notice ).textContent.trim();
 	if ( ! message ) {
@@ -21,28 +20,44 @@ export const announceSettingsSaveStatus = ( a11y, browserWindow = window ) => {
 
 	const isSuccess = notice.classList.contains( 'notice-success' );
 	const politeness = notice.classList.contains( 'notice-error' ) ? 'assertive' : 'polite';
-	const presentAfterPageLoad = () => {
-		// Let WordPress finish relocating notices before focusing their content.
-		browserWindow.setTimeout( () => {
-			if ( ! notice.isConnected ) {
+
+	// Let WordPress finish relocating notices before focusing their content.
+	browserWindow.setTimeout( () => {
+		if ( ! notice.isConnected ) {
+			return;
+		}
+
+		if ( confirmation && document.activeElement === document.body ) {
+			confirmation.setAttribute( 'tabindex', '-1' );
+			confirmation.focus();
+
+			if ( document.activeElement === confirmation ) {
+				// Focus supplies the announcement; do not also queue it in a live region.
 				return;
 			}
+		}
 
-			// Focus errors too: VoiceOver drops live region messages sent after a reload.
-			if ( confirmation && document.activeElement === document.body ) {
-				confirmation.setAttribute( 'tabindex', '-1' );
-				confirmation.focus();
+		if ( a11y && typeof a11y.speak === 'function' ) {
+			a11y.speak( message, politeness );
+		}
+	}, isSuccess ? 0 : 1000 );
+};
 
-				if ( document.activeElement === confirmation ) {
-					// Focus supplies the announcement; do not also queue it in a live region.
-					return;
-				}
-			}
+/**
+ * Focus a save or connector notice, or announce it when focus can't be moved.
+ *
+ * @param {Object} a11y          WordPress accessibility utilities.
+ * @param {Window} browserWindow Browser window used to schedule the announcement.
+ */
+export const announceSettingsSaveStatus = ( a11y, browserWindow = window ) => {
+	const notices = NOTICE_SELECTORS.map( ( selector ) => document.querySelector( selector ) ).filter( Boolean );
 
-			if ( a11y && typeof a11y.speak === 'function' ) {
-				a11y.speak( message, politeness );
-			}
-		}, isSuccess ? 0 : 1000 );
+	if ( ! notices.length ) {
+		return;
+	}
+
+	const presentAfterPageLoad = () => {
+		notices.forEach( ( notice ) => presentNotice( notice, a11y, browserWindow ) );
 	};
 
 	if ( document.readyState === 'complete' ) {
