@@ -112,7 +112,7 @@ class SimplifiedSummaryBlock {
 		wp_set_script_translations(
 			self::SCRIPT_HANDLE,
 			'accessibility-checker',
-			plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages'
+			EDAC_PLUGIN_DIR . 'languages'
 		);
 
 		wp_localize_script(
