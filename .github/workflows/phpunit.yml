@@ -28,8 +28,11 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # The oldest WordPress we support, per readme.txt "Requires at
+          # least". This row is the one that catches us using an API that
+          # core only added later; "latest" rows below cover the other end.
           - php_version: '8.1'
-            wp_version: '6.2'
+            wp_version: '6.9'
             multisite: false
 
           - php_version: '8.1'
