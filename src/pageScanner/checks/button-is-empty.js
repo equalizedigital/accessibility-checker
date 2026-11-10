@@ -11,10 +11,14 @@ export default {
 			} );
 
 			// visibility is inherited, so when the button sits in a closed tab or accordion every
-			// child reports hidden too. Force the button visible while reading, so only children
-			// hidden on their own are counted, then put the original style back.
+			// child reports hidden too. In that case force the button visible while reading, so only
+			// children hidden on their own are counted, then put the original style back. A visible
+			// button is never touched, so no extra style recalculation or DOM mutation happens.
+			const needsOverride = window.getComputedStyle( element ).visibility === 'hidden';
 			const originalStyle = element.getAttribute( 'style' );
-			element.style.setProperty( 'visibility', 'visible', 'important' );
+			if ( needsOverride ) {
+				element.style.setProperty( 'visibility', 'visible', 'important' );
+			}
 
 			// Get visually hidden content
 			try {
@@ -25,10 +29,12 @@ export default {
 					}
 				} );
 			} finally {
-				if ( originalStyle === null ) {
-					element.removeAttribute( 'style' );
-				} else {
-					element.setAttribute( 'style', originalStyle );
+				if ( needsOverride ) {
+					if ( originalStyle === null ) {
+						element.removeAttribute( 'style' );
+					} else {
+						element.setAttribute( 'style', originalStyle );
+					}
 				}
 			}
 
