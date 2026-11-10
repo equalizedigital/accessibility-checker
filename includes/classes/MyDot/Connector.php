@@ -676,7 +676,7 @@ class Connector {
 	/**
 	 * Show a notice and report true when this site is local.
 	 *
-	 * @since 1.53.0
+	 * @since x.x.x
 	 *
 	 * @return bool True when the site is local and must not connect.
 	 */

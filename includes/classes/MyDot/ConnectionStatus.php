@@ -3,7 +3,7 @@
  * Checks whether email reports can reach this site.
  *
  * @package Accessibility_Checker
- * @since 1.53.0
+ * @since x.x.x
  */
 
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
@@ -11,7 +11,7 @@ namespace EqualizeDigital\AccessibilityChecker\MyDot;
 /**
  * Finds known reasons why My Dot cannot pull report stats from this site.
  *
- * @since 1.53.0
+ * @since x.x.x
  */
 class ConnectionStatus {
 
@@ -95,7 +95,7 @@ class ConnectionStatus {
 		 * My Dot can reach even though this check calls it local, for example a
 		 * tunnel, or a staging site on a private IP or a .test domain.
 		 *
-		 * @since 1.53.0
+		 * @since x.x.x
 		 *
 		 * @param bool $is_local Whether the site counts as local.
 		 */

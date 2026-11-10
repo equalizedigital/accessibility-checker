@@ -346,7 +346,7 @@ class AccessibilityReportsPage implements PageInterface {
 	/**
 	 * Get the message for a connection issue.
 	 *
-	 * @since 1.53.0
+	 * @since x.x.x
 	 *
 	 * @param string $issue       One of the ConnectionStatus issue constants.
 	 * @param bool   $is_pro      Whether the effective active license is Pro.
@@ -367,14 +367,14 @@ class AccessibilityReportsPage implements PageInterface {
 
 			return sprintf(
 				/* translators: %s: My Dot account URL. */
-				__( 'This site is password protected, so our service needs credentials to collect report data. Add or update the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account<span class="screen-reader-text">, opens a new window</span></a>. If they are already correct, a firewall or security plugin may be blocking our service.', 'accessibility-checker' ),
+				__( 'This site is password protected, so our service needs credentials to collect report data. Add or update the site credentials in <a href="%s" target="_blank" rel="noopener noreferrer">your account <span class="screen-reader-text">(opens in a new window)</span></a>. If they are already correct, a firewall or security plugin may be blocking our service.', 'accessibility-checker' ),
 				esc_url( $account_url )
 			);
 		}
 
 		return sprintf(
 			/* translators: %s: Pro upgrade URL. */
-			__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or <a href="%s" target="_blank" rel="noopener noreferrer">upgrade to Pro<span class="screen-reader-text">, opens a new window</span></a> to add site credentials in your account.', 'accessibility-checker' ),
+			__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or <a href="%s" target="_blank" rel="noopener noreferrer">upgrade to Pro <span class="screen-reader-text">(opens in a new window)</span></a> to add site credentials in your account.', 'accessibility-checker' ),
 			esc_url( $upgrade_url )
 		);
 	}
