@@ -7,12 +7,15 @@ import { __ } from '@wordpress/i18n';
  * inside it can be removed before it is read. wp.a11y.speak writes to regions
  * outside the panel that stay on the page.
  *
- * @param {Object}  a11y         WordPress accessibility utilities.
- * @param {string}  action       The REST action, `dismiss` or `undismiss`.
- * @param {boolean} success      Whether the request succeeded.
- * @param {string}  [message=''] Optional message to use for a failure, such as the server's error.
+ * @param {Object}  a11y              WordPress accessibility utilities.
+ * @param {string}  action            The REST action, `dismiss` or `undismiss`.
+ * @param {boolean} success           Whether the request succeeded.
+ * @param {Object}  [options]         Options.
+ * @param {string}  [options.message] Message to use for a failure, such as the server's error.
+ * @param {number}  [options.delay]   Milliseconds to wait before announcing. Lets a screen reader finish
+ *                                    reading the changes to the focused button first.
  */
-export const announceDismissResult = ( a11y, action, success, message = '' ) => {
+export const announceDismissResult = ( a11y, action, success, { message = '', delay = 0 } = {} ) => {
 	if ( ! a11y || typeof a11y.speak !== 'function' ) {
 		return;
 	}
@@ -20,12 +23,15 @@ export const announceDismissResult = ( a11y, action, success, message = '' ) => 
 	const isDismiss = 'dismiss' === action;
 
 	if ( success ) {
-		a11y.speak(
-			isDismiss
-				? __( 'Successfully dismissed issue', 'accessibility-checker' )
-				: __( 'Successfully undismissed issue', 'accessibility-checker' ),
-			'polite'
-		);
+		const confirmation = isDismiss
+			? __( 'Successfully dismissed issue', 'accessibility-checker' )
+			: __( 'Successfully undismissed issue', 'accessibility-checker' );
+
+		if ( delay > 0 ) {
+			window.setTimeout( () => a11y.speak( confirmation, 'polite' ), delay );
+		} else {
+			a11y.speak( confirmation, 'polite' );
+		}
 		return;
 	}
 

@@ -15,6 +15,7 @@ import {
 	findRuleDisplayBtn,
 	restoreDismissIssueFocus,
 } from './details/dismiss-issue-focus';
+import { __ } from '@wordpress/i18n';
 import { announceDismissResult } from './details/announce-dismiss-result';
 
 // eslint-disable-next-line camelcase
@@ -344,7 +345,6 @@ const edacScriptVars = edac_script_vars;
 
 					const issueId = jQuery( this ).attr( 'data-id' );
 					const ignoreAction = jQuery( this ).attr( 'data-action' );
-					const ignoreType = jQuery( this ).attr( 'data-type' );
 					const comment = jQuery(
 						'.edac-details-rule-records-record-ignore-comment',
 						jQuery( this ).parent()
@@ -378,10 +378,14 @@ const edacScriptVars = edac_script_vars;
 							const isDismissed = data.ignre === true || data.ignre === 1;
 							const doneIgnoreAction = isDismissed ? 'disable' : 'enable';
 							const doneCommentDisabled = isDismissed;
-							const doneActionsIgnoreLabel = isDismissed ? 'Ignored' : 'Ignore';
+							// Match the labels the server renders, so the text that shows
+							// until the details panel refreshes is not read out as something else.
+							const doneActionsIgnoreLabel = isDismissed
+								? __( 'Dismissed', 'accessibility-checker' )
+								: __( 'Dismiss', 'accessibility-checker' );
 							const ignoreSubmitLabel = isDismissed
-								? 'Stop Ignoring'
-								: 'Ignore This ' + ignoreType;
+								? __( 'Reopen Issue', 'accessibility-checker' )
+								: __( 'Dismiss Issue', 'accessibility-checker' );
 							const username = data.ignre_user_name
 								? '<strong>Username:</strong> ' + data.ignre_user_name
 								: '';
@@ -389,7 +393,6 @@ const edacScriptVars = edac_script_vars;
 								? '<strong>Date:</strong> ' + data.ignre_date
 								: '';
 
-							announceDismissResult( window.wp?.a11y, restAction, true );
 							jQuery(
 								record +
 									' .edac-details-rule-records-record-ignore-submit'
@@ -439,6 +442,10 @@ const edacScriptVars = edac_script_vars;
 								record +
 									' .edac-details-rule-records-record-ignore-info-date'
 							).html( date );
+
+							// Announce after the button and panel text have changed, so a screen reader
+							// has finished reading those changes and does not cut the message off.
+							announceDismissResult( window.wp?.a11y, restAction, true, { delay: 500 } );
 
 							// Update rule count
 							const rule =
@@ -525,7 +532,7 @@ const edacScriptVars = edac_script_vars;
 					} ).fail( function( data ) {
 						// eslint-disable-next-line no-console
 						console.log( data );
-						announceDismissResult( window.wp?.a11y, restAction, false, data?.responseJSON?.message );
+						announceDismissResult( window.wp?.a11y, restAction, false, { message: data?.responseJSON?.message } );
 					} );
 				}
 			);
