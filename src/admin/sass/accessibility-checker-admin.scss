@@ -536,7 +536,7 @@
 						color: variables.$color-white;
 						background-color: variables.$color-dark-gray;
 						display: grid;
-						grid-template-columns: auto 125px 125px 125px;
+						grid-template-columns: auto 125px 125px 150px;
 
 						&-label {
 							padding: 3px;
@@ -546,7 +546,7 @@
 
 					&-record {
 						display: grid;
-						grid-template-columns: auto 125px 125px 125px;
+						grid-template-columns: auto 125px 125px 150px;
 
 						&-cell {
 							padding: 10px;
@@ -614,6 +614,7 @@
 
 								&-label {
 									text-decoration: var(--edac-action-link-decoration);
+									white-space: nowrap;
 								}
 							}
 						}
