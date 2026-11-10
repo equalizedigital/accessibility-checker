@@ -50,6 +50,36 @@ const saveScanResults = ( postId, violations, densityMetrics ) => {
 };
 
 /**
+ * Get the URL to load in the scan iframe.
+ *
+ * When the editor is cross-origin isolated (WordPress 7.1+ sends a
+ * Document-Isolation-Policy header on block editor screens in Chromium 137+),
+ * the browser treats a same-origin iframe that is not isolated the same way as
+ * cross-origin. The editor then can't read the iframe, so the scan can't run.
+ * Adding a marker to the URL tells the server to send a matching policy header
+ * on the scan request, which puts the iframe in the same agent cluster.
+ *
+ * `window.crossOriginIsolated` is used (not just the presence of a header) because
+ * browsers ignore the header in insecure contexts, where nothing needs passing on.
+ *
+ * @param {string} previewUrl The URL that will be scanned.
+ * @return {string} The URL to load in the iframe.
+ */
+export const getScanIframeUrl = ( previewUrl ) => {
+	if ( window.crossOriginIsolated !== true ) {
+		return previewUrl;
+	}
+
+	try {
+		const url = new URL( previewUrl, window.location.href );
+		url.searchParams.set( 'edac_isolated', '1' );
+		return url.toString();
+	} catch ( e ) {
+		return previewUrl;
+	}
+};
+
+/**
  * Inject an iframe into the page and load the previewUrl for scanning.
  *
  * @param {string} previewUrl The URL to load in the iframe.
@@ -65,7 +95,7 @@ const injectIframe = ( previewUrl, postID ) => {
 	// inject the iframe
 	const iframe = document.createElement( 'iframe' );
 	iframe.setAttribute( 'id', uniqueId );
-	iframe.setAttribute( 'src', previewUrl );
+	iframe.setAttribute( 'src', getScanIframeUrl( previewUrl ) );
 	iframe.style.width = screen.width + 'px';
 	iframe.style.height = screen.height + 'px';
 	iframe.style.position = 'absolute';
@@ -144,6 +174,19 @@ export const init = () => {
 			setTimeout( function() {
 				document.getElementById( iframeId )?.remove();
 			}, 1000 );
+
+			// A failed or timed-out scan has no real result: its empty violation list would be
+			// saved as "the page is clean" and purge the post's stored issues and dismissals.
+			if ( event.detail.failed ) {
+				// eslint-disable-next-line no-console
+				console.error( 'Accessibility Checker: scan failed for post ' + postId + ', saved results left unchanged.', event.detail.error, event.detail.errorMsgs );
+
+				showNotice( {
+					msg: wp.i18n.__( 'The accessibility scan did not finish, so your saved results were left unchanged.', 'accessibility-checker' ),
+					type: 'error',
+				} );
+				return;
+			}
 
 			// save the scan results.
 			saveScanResults( postId, violations, event?.detail?.densityMetrics );

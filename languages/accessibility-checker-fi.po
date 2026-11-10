@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.50.1\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Finnish\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-10-09 14:14+0000\n"
-"PO-Revision-Date: 2026-10-09 14:14+0000\n"
+"POT-Creation-Date: 2026-11-03 18:45+0000\n"
+"PO-Revision-Date: 2026-11-03 18:45+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: fi\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "Matala"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "Tuntematon"
 
@@ -544,27 +544,59 @@ msgstr "Haluatko tehdä enemmän Accessibility Checkerillä? %1$sAvaa Pro-ominai
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "Avaa Pro-ominaisuudet (avautuu uudessa ikkunassa)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 Black Friday -tarjous! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "Päivitä Accessibility Checkerin maksulliseen versioon 24. marraskuuta – 3. joulukuuta ja saat 30 % alennuksen! Koko sivuston skannaus, koko sivuston avoimien ongelmien raportti, ohituslokit ja paljon muuta."
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "Kysy myyntiä edeltävä kysymys"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "Päivitä nyt"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 Black Friday -erikoistarjous: säästä 20 % ja saa ilmainen kurssi! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "Tarkista mukautetut artikkelityypit ja arkistosivut, näe jokainen ongelma yhdessä paikassa ja saa parannetut sähköpostiraportit. Päivitä 23. marraskuuta ja 2. joulukuuta välisenä aikana säästääksesi 20 % ja saadaksesi valitsemasi ilmaisen kurssin."
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 Tervetuloa takaisin: 20 %:n alennus Accessibility Checker Prosta + ilmainen kurssi! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker on aivan toisenlainen kuin muistat. Uusi tilauksesi 23. marraskuuta ja 2. joulukuuta välisenä aikana säästääksesi 20 % ja valitaksesi ilmaisen kurssin."
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "Uusi nyt"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 Black Friday: säästä 25 % päivittämällä Small Business -versioon! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "Hanki 5 sivuston lisenssit, auditointihistoria, CSV-vienti ja pääsy kahden viikon välein järjestettäviin neuvontatunteihin 25 %:n alennuksella, kun päivität 23. marraskuuta – 2. joulukuuta."
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Black Friday: säästä 25 % päivityksestäsi! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "Tarvitsetko lisää lisenssejä? Päivitä SMB+-versioon 10 sivustolle tai valitse suurempi Agency 25 sivustolle, Multisite-työkalut ja VIP-tuki."
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "Päivitä ja säästä 25 %"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
 #: admin/class-ajax.php:642
@@ -576,75 +608,75 @@ msgstr "Päivitä nyt"
 msgid "Permission Denied"
 msgstr "Käyttöoikeus evätty"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "Vaihtoehdon päivitys ei onnistunut"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ Maailmanlaajuisen saavutettavuustietoisuuspäivän alennusmyynti"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "20. toukokuuta alkaen: Säästä 15 % saavutettavuuskursseista ja ArchiveWP-palvelusta kuponkikoodilla "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "Vain 3 päivää • 20.–22. toukokuuta"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "Katso ArchiveWP-hinnoittelu"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "Katso kurssien hinnoittelu"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "20. toukokuuta alkaen: Säästä 15 % Accessibility Checker Pro -palvelusta kuponkikoodilla "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "Katso hinnoittelu"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "Säästä 15 % saavutettavuuskursseista ja ArchiveWP-palvelusta kuponkikoodilla "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "Rajoitetun ajan tarjous • Päättyy 22. toukokuuta"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "Vain 3 päivää: Säästä 15 %, kun päivität Accessibility Checker Pro -versioon kuponkikoodilla "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hei! Kiitos, että käytät Accessibility Checkeriä osana saavutettavuustyökaluvalikoimaasi. Koska olet käyttänyt sitä jo jonkin aikaa, voisitko ystävällisesti kirjoittaa 5 tähden arvostelun Accessibility Checkeristä WordPress-lisäosahakemistoon? Tämä auttaa lisäämään näkyvyyttämme, jotta useammat ihmiset voivat oppia verkkosivujen saavutettavuuden tärkeydestä. Kiitos paljon!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "Kirjoita arvostelu"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "Muistuta kahden viikon kuluttua"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "Älä kysy enää koskaan"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "Arvostelutoiminnon arvoa ei asetettu"
 
@@ -755,7 +787,7 @@ msgid "No summary to return"
 msgstr "Ei yhteenvetoa palautettavaksi"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "Virheellinen taulukon nimi"
 
@@ -970,7 +1002,7 @@ msgid "The id value was not set"
 msgstr "Tunnisteen arvoa ei ole asetettu"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "Julkaisua ei löytynyt"
 
@@ -978,7 +1010,7 @@ msgstr "Julkaisua ei löytynyt"
 msgid "Issue query returned no results"
 msgstr "Ongelmakysely ei tuottanut tuloksia"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "Objektikysely ei tuottanut tuloksia"
 
@@ -1015,12 +1047,14 @@ msgid "Date:"
 msgstr "Päivämäärä:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "Avaa ongelma uudelleen"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1042,6 +1076,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "Käyttäjätililläsi ei ole oikeutta hylätä tätä ongelmaa."
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1563,20 +1598,20 @@ msgstr "Hanki Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Hanki Accessibility Checker Pro (avautuu uudessa ikkunassa)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "Valitettavasti sinulla ei ole oikeutta hylätä ongelmia."
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "Valitettavasti sinulla ei ole oikeutta hylätä ongelmia maailmanlaajuisesti."
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "Ongelmaa ei löydy."
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "Ongelman päivitys epäonnistui."
 
@@ -1912,61 +1947,61 @@ msgstr "Korjausta ei löytynyt"
 msgid "Fix not found."
 msgstr "Korjausta ei löydy."
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "Sinulla ei ole oikeutta hallita tätä lisenssiä."
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "Pro-lisenssin hallinta on aktiivinen. Hallitse lisenssiäsi Accessibility Checker Pro -palvelusta."
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "Tapahtui virhe, yritä uudelleen."
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "Sinulla ei ole oikeutta rekisteröidä tätä sivustoa."
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "Sinulla ei ole oikeutta poistaa tämän sivuston rekisteröintiä."
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "Lisenssiavainta ei löytynyt. Aktivoi lisenssi ennen sivustosi rekisteröintiä."
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "Tuntematon virhe tapahtui sivuston rekisteröinnin yhteydessä."
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "Sivusto rekisteröity onnistuneesti. Sivustosi on nyt määritetty käyttämään esteettömyyspalveluita."
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "Sivuston rekisteröinti valmistui, mutta vastaustiedot eivät olleet odotetussa muodossa. Jotkin ominaisuudet eivät välttämättä toimi oikein."
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "Sivuston rekisteröintiä ei voida poistaa. Vaadittavat rekisteröintitiedot puuttuvat."
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "Tuntematon virhe tapahtui sivuston rekisteröinnin poistamisen yhteydessä."
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "Sivuston rekisteröinti poistettu onnistuneesti. Sivustosi ei enää vastaanota sähköpostiraportteja."
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "Lisenssiavainta ei annettu."
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "Pakolliset parametrit puuttuvat rekisteröinnin poistamista varten."
 
@@ -3582,7 +3617,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "Tervetuloa Accessibility Checkeriin"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:117
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "Accessibility Checkerin asetukset"
 
@@ -5145,6 +5180,10 @@ msgstr "Tai aktivoi lisenssikoodisi tässä."
 msgid "General"
 msgstr "Yleistä"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "Accessibility Checker -asetukset on tallennettu."
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "versio"
@@ -5324,6 +5363,10 @@ msgid "Fix Settings"
 msgstr "Korjaa asetukset"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "Esteettömyystarkistus ei valmistunut, joten tallennetut tulokset jätettiin ennalleen."
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5373,6 +5416,80 @@ msgstr "EDAC: Virhe päivitettäessä historiaa ohituslinkille."
 msgid "Close fixes modal"
 msgstr "Sulje korjausikkuna"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "Ongelma hylätty — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "Ongelma hylätty"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "Laajuus:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "Kaikki sivut"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "Tekijä:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "Päivämäärä:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "Hylkäämisen syy:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "Poista globaali ohitus"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "Kommentti (valinnainen)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "Lisää huomautus, jossa selitetään, miksi tämä ongelma hylätään."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "Hylkää globaalisti"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "Ongelmaa ei voitu päivittää. Yritä uudelleen."
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5380,6 +5497,7 @@ msgid "%1$d of %2$d"
 msgstr "%1$d/%2$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "Nimetön ongelma"
 
@@ -5538,6 +5656,40 @@ msgstr "Korjaa ongelma: %s"
 #: build/sharedComponents.bundle.js:2
 msgid "Fix Issue"
 msgstr "Korjaa ongelma"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "Hylätään..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "Avataan uudelleen..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "Kohdetta ”%1$s” ei voitu hylätä: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "Kohdetta ”%1$s” ei voitu avata uudelleen: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "Ongelma hylätty onnistuneesti."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "Ongelma avattu uudelleen onnistuneesti."
 
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
@@ -5709,92 +5861,13 @@ msgstr "Ongelmaan liittyvä kuva"
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "Ongelma hylätty onnistuneesti."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "Ongelma avattu uudelleen onnistuneesti."
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "Hylkää globaalisti"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "Ohitetaan globaalisti..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "Hylätään..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "Ongelma hylätty — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "Ongelma hylätty"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "Laajuus:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "Kaikki sivut"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "Tekijä:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "Päivämäärä:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "Hylkäämisen syy:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "Poistetaan..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "Poista globaali ohitus"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "Avataan uudelleen..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "Kommentti (valinnainen)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "Lisää huomautus, jossa selitetään, miksi tämä ongelma hylätään."
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
