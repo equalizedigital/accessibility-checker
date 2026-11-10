@@ -39,6 +39,7 @@ if ( true === (bool) $edac_delete_data ) {
 		'edac_black_friday_2023_notice_dismiss',
 		'edac_black_friday_2024_notice_dismiss',
 		'edac_black_friday_2025_notice_dismiss',
+		'edac_black_friday_2026_notice_dismiss',
 	];
 	$edac_fix_options = [
 		'edac_add_label_to_unlabeled_form_fields',

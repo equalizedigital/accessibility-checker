@@ -10,7 +10,7 @@ on:
   pull_request:
     types: [labeled]
   release:
-    types: [created, published]
+    types: [published]
 
 permissions:
   contents: write
@@ -85,7 +85,7 @@ jobs:
           echo "Ref param: ${REF_PARAM}"
 
       - name: Set up Node.js
-        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: '20'
           cache: 'npm'
@@ -93,7 +93,7 @@ jobs:
 
       - name: Cache node_modules
         id: cache-node-modules
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: node_modules
           key: ${{ runner.os }}-node_modules-${{ hashFiles('**/package-lock.json') }}
@@ -101,14 +101,14 @@ jobs:
             ${{ runner.os }}-node_modules-
 
       - name: Set up PHP
-        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '8.2'
           tools: composer
           coverage: none
 
       - name: Cache Composer dependencies
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: vendor
           key: ${{ runner.os }}-composer-vendor-${{ hashFiles('**/composer.lock') }}
@@ -204,7 +204,7 @@ jobs:
 
       - name: Upload primary build artifact
         if: steps.setref.outputs.skip_primary != 'true'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ env.PRIMARY_ZIP_NAME_NO_EXT }}
           path: ${{ env.PRIMARY_ZIP_FOLDER }}
@@ -278,7 +278,7 @@ jobs:
 
       - name: Upload ref build artifact
         if: steps.check_ref.outputs.need_ref_build == 'true'
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ${{ env.REF_ZIP_NAME_NO_EXT }}
           path: ${{ env.REF_ZIP_FOLDER }}
@@ -314,7 +314,7 @@ jobs:
 
       - name: Upload to release (both zips)
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@efb35369e0ad2afab669f228072c1b0d510eae64 # v3.0.3
+        uses: softprops/action-gh-release@8a0cd651e5b2365bd640854a3fa5dfc70e4875f3 # v3.0.4
         with:
           files: |
             ${{ env.PRIMARY_ZIP_PATH }}

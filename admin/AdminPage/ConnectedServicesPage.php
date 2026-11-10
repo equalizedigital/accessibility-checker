@@ -452,7 +452,7 @@ class ConnectedServicesPage implements PageInterface {
 
 		if ( isset( $message ) ) {
 			printf(
-				'<div class="notice notice-error"><p>%s</p></div>',
+				'<div id="edac-license-notice" class="notice notice-error"><p>%s</p></div>',
 				wp_kses_post( $message )
 			);
 		}

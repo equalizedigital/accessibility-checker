@@ -14,6 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: linear/linear-release-action@30f9ae77461ec29f07fffe0c52edd1909bfbb6f5 # v0
+      - uses: linear/linear-release-action@dd4fc407f860b9460d2cf0b3fb1edd8985cf443f # v0
         with:
           access_key: ${{ secrets.LINEAR_ACCESS_KEY }}

@@ -6,6 +6,7 @@
  */
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage;
+use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\DatabaseHelpers;
 
 /**
  * Test cases for reports page fallback-aware license handling and preview formatting.
@@ -46,6 +47,32 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_next_collection' );
 
 		parent::tearDown();
+	}
+
+	/**
+	 * Create the plugin table once, outside any test transaction.
+	 *
+	 * The renderer builds its summary through Scans_Stats on every call, and
+	 * those queries self-join the issues table, which MySQL disallows on the
+	 * temporary tables WP_UnitTestCase would otherwise create.
+	 *
+	 * @return void
+	 */
+	public static function set_up_before_class(): void {
+		parent::set_up_before_class();
+
+		DatabaseHelpers::create_table();
+	}
+
+	/**
+	 * Drop the plugin table.
+	 *
+	 * @return void
+	 */
+	public static function tear_down_after_class(): void {
+		DatabaseHelpers::drop_table();
+
+		parent::tear_down_after_class();
 	}
 
 	/**
@@ -517,5 +544,196 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 			'nine (star floor)' => [ 'abcdefghi', 'abcd****fghi' ],
 			'long'              => [ 'abcdefghijklmnopqrst', 'abcd************qrst' ],
 		];
+	}
+
+	/**
+	 * The add_page() method wires the reports tab onto the settings page: the
+	 * filter the settings page builds its tab list from, and the action it fires
+	 * to render the active tab's content.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::add_page
+	 */
+	public function test_add_page_wires_the_reports_tab_and_content_callback() {
+		$this->page->add_page();
+
+		$this->assertNotFalse( has_filter( 'edac_filter_settings_tab_items', [ $this->page, 'add_reports_tab' ] ) );
+		$this->assertSame( 10, has_action( 'edac_settings_tab_content', [ $this->page, 'maybe_render_tab_content' ] ) );
+	}
+
+	/**
+	 * The reports tab is appended to the tabs already registered, carrying the
+	 * slug the settings page switches on, the label and badge it renders, and the
+	 * capability the constructor was given. Without Pro the plugin owns no license
+	 * tab, so the reports tab sorts third (after Fixes).
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::add_reports_tab
+	 */
+	public function test_add_reports_tab_appends_the_reports_tab() {
+		// The Pro plugin owns EDACP_VERSION; this test needs the free plugin alone,
+		// so a leaked constant fails here instead of silently changing the order.
+		$this->assertFalse( defined( 'EDACP_VERSION' ) );
+
+		$existing = [
+			[
+				'slug'  => 'general',
+				'label' => 'General',
+				'order' => 1,
+			],
+		];
+
+		$tabs = $this->page->add_reports_tab( $existing );
+
+		$this->assertCount( 2, $tabs );
+		$this->assertSame( 'general', $tabs[0]['slug'] );
+		$this->assertSame( 'accessibility-reports', $tabs[1]['slug'] );
+		$this->assertSame( 'Accessibility Reports', $tabs[1]['label'] );
+		$this->assertSame( 'New', $tabs[1]['badge'] );
+		$this->assertSame( 3, $tabs[1]['order'] );
+		$this->assertSame( 'manage_options', $tabs[1]['capability'] );
+	}
+
+	/**
+	 * With Pro installed the reports tab sorts fourth, after the Pro license tab,
+	 * so installing Pro inserts the license tab rather than reordering the rest.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::add_reports_tab
+	 */
+	public function test_add_reports_tab_sorts_fourth_when_pro_is_installed() {
+		if ( ! defined( 'EDACP_VERSION' ) ) {
+			define( 'EDACP_VERSION', 'test-pro-version' );
+		}
+
+		$tabs = $this->page->add_reports_tab( [] );
+
+		$this->assertSame( 'accessibility-reports', $tabs[0]['slug'] );
+		$this->assertSame( 4, $tabs[0]['order'] );
+	}
+
+	/**
+	 * The tab content callback renders the reports page on the reports tab only,
+	 * so the page markup is not echoed into every other settings tab. The page
+	 * render is intercepted so the assertion is about the branch, not the markup.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::maybe_render_tab_content
+	 */
+	public function test_maybe_render_tab_content_renders_on_the_reports_tab_only() {
+		$probe = new class( 'manage_options' ) extends AccessibilityReportsPage {
+			/**
+			 * How many times the tab callback reached the page render.
+			 *
+			 * @var int
+			 */
+			public $render_calls = 0;
+
+			/**
+			 * Record the call instead of rendering the page.
+			 *
+			 * @return void
+			 */
+			public function render_page() {
+				++$this->render_calls;
+			}
+		};
+
+		$probe->maybe_render_tab_content( 'general' );
+		$probe->maybe_render_tab_content( null );
+		$this->assertSame( 0, $probe->render_calls );
+
+		$probe->maybe_render_tab_content( 'accessibility-reports' );
+		$this->assertSame( 1, $probe->render_calls );
+	}
+
+	/**
+	 * The rule index keys every registered rule by its slug, which is what the
+	 * preview table looks rules up by when it formats the top issues.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::get_rule_index
+	 * @throws ReflectionException If reflection fails.
+	 */
+	public function test_get_rule_index_keys_every_registered_rule_by_its_slug() {
+		$rules = edac_register_rules();
+		$index = $this->invoke_private_method( 'get_rule_index' );
+
+		$this->assertNotEmpty( $index );
+		$this->assertCount( count( $rules ), $index );
+
+		foreach ( $index as $slug => $rule ) {
+			$this->assertNotSame( '', $slug );
+			$this->assertSame( $slug, $rule['slug'] );
+		}
+
+		// A rule the preview table renders against resolves to its full definition.
+		$this->assertArrayHasKey( 'img_alt_missing', $index );
+		$this->assertSame( 'Image Missing Alternative Text', $index['img_alt_missing']['title'] );
+	}
+
+	/**
+	 * A registered site whose licence has expired gets the renewal panel rather
+	 * than the connect form: reports have stopped, so the only actions offered
+	 * are renewing the licence or turning the (still registered) connection off.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_the_expired_licence_panel() {
+		update_option( 'edac_license_status', 'expired' );
+		update_option( 'edac_site_id', 'site-123' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'License Expired', $html );
+		$this->assertStringContainsString( 'Disable Email Reports', $html );
+		$this->assertStringNotContainsString( 'Get a Free License Key', $html );
+		$this->assertStringNotContainsString( 'Reports Enabled', $html );
+	}
+
+	/**
+	 * With nothing stored the page offers the free licence key form and the
+	 * sign-up copy, and must not claim reports are already running.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_the_free_licence_form_when_disconnected() {
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'Get a Free License Key', $html );
+		$this->assertStringContainsString( 'edac-reports-license-key', $html );
+		$this->assertStringContainsString( 'Enable Email Reports', $html );
+		$this->assertStringNotContainsString( 'Reports Enabled', $html );
+		$this->assertStringNotContainsString( 'License Expired', $html );
+	}
+
+	/**
+	 * A connected free licence gets the "Reports Enabled" state, with the stored
+	 * key masked and the summary preview shown instead of the connect form.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_reports_enabled_when_connected() {
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', 'site-123' );
+		update_option( 'edacp_license_key', 'abcdefghijklmnopqrst' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'Reports Enabled', $html );
+		$this->assertStringContainsString( 'Accessibility Summary', $html );
+		$this->assertStringContainsString( 'Total Issues Found', $html );
+		$this->assertStringContainsString( 'abcd************qrst', $html );
+		$this->assertStringNotContainsString( 'Get a Free License Key', $html );
+	}
+
+	/**
+	 * Render the reports page and capture its markup.
+	 *
+	 * @return string
+	 */
+	private function render_page(): string {
+		ob_start();
+		$this->page->render_page();
+
+		return (string) ob_get_clean();
 	}
 }

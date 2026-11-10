@@ -3,7 +3,7 @@ Contributors: equalizedigital, alh0319, stevejonesdev
 Tags: accessibility, EAA, WCAG, ADA, WP accessibility
 Requires at least: 6.9
 Tested up to: 7.1
-Stable tag: 1.51.0
+Stable tag: 1.52.0
 Requires PHP: 7.4
 License: GPL-2.0-or-later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -279,6 +279,19 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 11. Enable weekly email reports so you can get updates in your inbox about accessibility status without logging into your website.
 
 == Changelog ==
+
+2026-11-03 - version 1.52.0
+* New - issues can now be dismissed and reopened from the frontend highlighter.
+* Update - the issue modal now shows and announces a warning when a dismissal for the whole site can't be saved.
+* Update - after saving settings, focus moves to the confirmation message.
+* Update - the email opt-in fields now identify their purpose to browsers and assistive technology.
+* Update - the license plan is now stored with your license details.
+* Fix - a scan that fails or times out no longer replaces your saved results with an empty one.
+* Fix - focus stays in a sensible place after dismissing or reopening an issue.
+* Fix - the editor sidebar no longer gets stuck waiting when refreshes overlap.
+
+2026-10-23 - version 1.51.1
+* Fix - scan results now update after saving in the block editor in some environments.
 
 2026-10-08 - version 1.51.0
 * New - the Missing Transcript check now recognizes Able Player transcripts.
