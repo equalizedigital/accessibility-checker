@@ -35,6 +35,10 @@ class ConnectionStatusTest extends WP_UnitTestCase {
 	public function set_up(): void {
 		parent::set_up();
 		$this->reset_state();
+
+		// Default to a public site so results do not depend on WP_ENVIRONMENT_TYPE.
+		// Tests that need a local site add their own filter, which runs after this one.
+		add_filter( 'edac_is_local_site', '__return_false' );
 	}
 
 	/**
