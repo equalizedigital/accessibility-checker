@@ -326,6 +326,11 @@ class Connector {
 			return;
 		}
 
+		// A local site can never connect, so do not use up a license activation on it.
+		if ( $this->refuse_local_site() ) {
+			return;
+		}
+
 		$api_params = [
 			'edd_action' => 'activate_license',
 			'license'    => $license,
@@ -401,6 +406,7 @@ class Connector {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
+		ConnectionStatus::clear();
 	}
 
 	/**
@@ -668,6 +674,30 @@ class Connector {
 	}
 
 	/**
+	 * Show a notice and report true when this site is local.
+	 *
+	 * @since x.x.x
+	 *
+	 * @return bool True when the site is local and must not connect.
+	 */
+	private function refuse_local_site(): bool {
+		if ( ! ConnectionStatus::is_local_site() ) {
+			return false;
+		}
+
+		set_transient(
+			$this->get_notice_transient_key(),
+			[
+				'type'    => 'warning',
+				'message' => __( 'Email reports cannot be enabled on a local site because our service cannot reach it to collect report data.', 'accessibility-checker' ),
+			],
+			self::NOTICE_TRANSIENT_TTL
+		);
+
+		return true;
+	}
+
+	/**
 	 * Handle the site registration process including UI feedback.
 	 *
 	 * @since 1.40.0
@@ -675,6 +705,10 @@ class Connector {
 	 * @return bool True when registration succeeded and state was saved.
 	 */
 	private function handle_site_registration(): bool {
+		if ( $this->refuse_local_site() ) {
+			return false;
+		}
+
 		$license_key = self::get_license_key();
 		if ( empty( $license_key ) ) {
 			set_transient(
@@ -692,7 +726,7 @@ class Connector {
 
 		$response_data = self::register_site( $license_key, $site_url, $site_name, true, true );
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -717,6 +751,10 @@ class Connector {
 			if ( ! empty( $data['next_collection'] ) ) {
 				update_option( 'edac_next_collection', $data['next_collection'] );
 			}
+
+			// The site is connected now, so this starts the missed pull clock.
+			ConnectionStatus::record_activity();
+
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -752,7 +790,7 @@ class Connector {
 	 */
 	public function handle_pro_license_activation( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
 		$site_id = (string) get_option( 'edac_site_id', '' );
-		if ( '' === $site_id ) {
+		if ( '' === $site_id || ConnectionStatus::is_local_site() ) {
 			return;
 		}
 
@@ -824,7 +862,7 @@ class Connector {
 		}
 
 		if ( empty( $response_data['success'] ) ) {
-			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' );
+			$error_msg = ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' );
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -899,7 +937,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while registering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports could not be turned on. Please try again, and contact support if the problem continues.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
@@ -957,7 +995,7 @@ class Connector {
 		if ( 200 !== $response_code || empty( $response_body ) ) {
 			return [
 				'success' => false,
-				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Unknown error occurred while unregistering the site.', 'accessibility-checker' ) ),
+				'message' => ( ! empty( $response_data['message'] ) ? $response_data['message'] : __( 'Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails.', 'accessibility-checker' ) ),
 			];
 		}
 		return $response_data;
@@ -1270,7 +1308,7 @@ class Connector {
 		}
 
 		printf(
-			'<div class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
+			'<div id="edac-connector-notice" class="notice notice-%1$s is-dismissible"><p>%2$s</p></div>',
 			esc_attr( $type ),
 			esc_html( $message )
 		);

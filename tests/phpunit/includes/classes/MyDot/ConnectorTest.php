@@ -1135,6 +1135,34 @@ class ConnectorTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test connector notices render with the ID the admin script uses to announce them.
+	 */
+	public function test_display_admin_notices_renders_notice_with_announce_id() {
+		$user_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $user_id );
+
+		$key = 'edac_connector_notice_' . $user_id;
+		set_transient(
+			$key,
+			[
+				'type'    => 'success',
+				'message' => 'Site registered successfully.',
+			]
+		);
+
+		$connector = new Connector();
+
+		ob_start();
+		$connector->display_admin_notices();
+		$output = ob_get_clean();
+
+		$this->assertStringContainsString( 'id="edac-connector-notice"', $output );
+		$this->assertStringContainsString( 'notice-success', $output );
+		$this->assertStringContainsString( 'Site registered successfully.', $output );
+		$this->assertFalse( get_transient( $key ) );
+	}
+
+	/**
 	 * The license form redirect carries a flag so the result is announced only
 	 * after a submit, not on every load of a page that shows a stored error.
 	 *
