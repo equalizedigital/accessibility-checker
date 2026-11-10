@@ -78,9 +78,20 @@ export const announceLicenseNotice = ( a11y, browserWindow = window ) => {
 	const announce = () => {
 		// Wait for screen readers to finish reading the new page first.
 		browserWindow.setTimeout( () => {
-			if ( notice.isConnected ) {
-				a11y.speak( message, 'assertive' );
+			if ( ! notice.isConnected ) {
+				return;
 			}
+
+			const target = notice.querySelector( 'p' ) || notice;
+			if ( document.activeElement === document.body ) {
+				target.setAttribute( 'tabindex', '-1' );
+				target.focus();
+				if ( document.activeElement === target ) {
+					return;
+				}
+			}
+
+			a11y.speak( message, 'assertive' );
 		}, 1000 );
 	};
 

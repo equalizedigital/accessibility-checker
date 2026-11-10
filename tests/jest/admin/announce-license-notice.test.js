@@ -25,27 +25,54 @@ describe( 'announceLicenseNotice', () => {
 		jest.useRealTimers();
 	} );
 
-	test( 'announces the license error assertively after a submit', () => {
+	test( 'focuses the license error after a submit instead of queueing a live region message', () => {
 		renderNotice();
 
 		announceLicenseNotice( a11y );
 
 		window.dispatchEvent( new Event( 'load' ) );
-		expect( a11y.speak ).not.toHaveBeenCalled();
+		expect( document.activeElement ).toBe( document.body );
 
 		jest.advanceTimersByTime( 1000 );
-		expect( a11y.speak ).toHaveBeenCalledTimes( 1 );
-		expect( a11y.speak ).toHaveBeenCalledWith( 'This license key is not active for this site.', 'assertive' );
+		const message = document.querySelector( '#edac-license-notice p' );
+		expect( document.activeElement ).toBe( message );
+		expect( message.getAttribute( 'tabindex' ) ).toBe( '-1' );
+		expect( a11y.speak ).not.toHaveBeenCalled();
 	} );
 
-	test( 'announces when the page has already finished loading', () => {
+	test( 'focuses the notice when the page has already finished loading', () => {
 		readyStateSpy.mockReturnValue( 'complete' );
 		renderNotice();
 
 		announceLicenseNotice( a11y );
 
 		jest.advanceTimersByTime( 1000 );
+		expect( document.activeElement ).toBe( document.querySelector( '#edac-license-notice p' ) );
+	} );
+
+	test( 'announces assertively without stealing focus when focus is already elsewhere', () => {
+		renderNotice();
+		const input = document.createElement( 'input' );
+		document.body.appendChild( input );
+		input.focus();
+
+		announceLicenseNotice( a11y );
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+
+		expect( document.activeElement ).toBe( input );
 		expect( a11y.speak ).toHaveBeenCalledTimes( 1 );
+		expect( a11y.speak ).toHaveBeenCalledWith( 'This license key is not active for this site.', 'assertive' );
+	} );
+
+	test( 'focuses the notice itself when it has no paragraph', () => {
+		document.body.innerHTML = '<div id="edac-license-notice" class="notice notice-error">Key is invalid.</div>';
+
+		announceLicenseNotice( a11y );
+		window.dispatchEvent( new Event( 'load' ) );
+		jest.advanceTimersByTime( 1000 );
+
+		expect( document.activeElement ).toBe( document.getElementById( 'edac-license-notice' ) );
 	} );
 
 	test( 'removes the submit flag from the URL and keeps other params', () => {
@@ -65,6 +92,7 @@ describe( 'announceLicenseNotice', () => {
 		window.dispatchEvent( new Event( 'load' ) );
 		jest.runAllTimers();
 		expect( a11y.speak ).not.toHaveBeenCalled();
+		expect( document.activeElement ).toBe( document.body );
 	} );
 
 	test( 'does not announce when the submit had no error', () => {
