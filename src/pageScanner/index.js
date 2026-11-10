@@ -292,11 +292,12 @@ const scan = async (
 /**
  * Dispatch the done event to the parent window.
  *
- * @param {Array}  violations The violations found during the scan.
- * @param {Array}  errorMsgs  Any error messages that occurred during the scan.
- * @param {string} error      The error message if an error occurred during scan cleanup.
+ * @param {Array}   violations The violations found during the scan.
+ * @param {Array}   errorMsgs  Any error messages that occurred during the scan.
+ * @param {string}  error      The error message if an error occurred during scan cleanup.
+ * @param {boolean} failed     True when the scan did not complete, so `violations` is not a real result.
  */
-function dispatchDoneEvent( violations, errorMsgs, error ) {
+function dispatchDoneEvent( violations, errorMsgs, error, failed = false ) {
 	const [ elementCount, contentLength ] = getPageDensity( body );
 
 	const customEvent = new CustomEvent( eventName, {
@@ -306,6 +307,7 @@ function dispatchDoneEvent( violations, errorMsgs, error ) {
 			violations,
 			errorMsgs,
 			error,
+			failed,
 			densityMetrics: {
 				elementCount,
 				contentLength,
@@ -318,7 +320,7 @@ function dispatchDoneEvent( violations, errorMsgs, error ) {
 }
 
 // eslint-disable-next-line no-unused-vars
-const onDone = ( violations = [], errorMsgs = [], error = false ) => {
+const onDone = ( violations = [], errorMsgs = [], error = false, failed = false ) => {
 	// cleanup the timeout.
 	clearTimeout( tooLongTimeout );
 
@@ -328,19 +330,19 @@ const onDone = ( violations = [], errorMsgs = [], error = false ) => {
 			function() {
 				axe.teardown();
 				axe = null;
-				dispatchDoneEvent( violations, errorMsgs, '' );
+				dispatchDoneEvent( violations, errorMsgs, '', failed );
 			},
 			function() {
 				axe.teardown();
 				axe = null;
 				errorMsgs.push( '***** axe.cleanup() failed.' );
-				dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed' );
+				dispatchDoneEvent( violations, errorMsgs, 'cleanup-failed', failed );
 			}
 		);
 	} else {
 		errorMsgs.push( '***** axe.cleanup() does not exist.' );
 		axe = null;
-		dispatchDoneEvent( violations, errorMsgs, 'cleanup-not-exists' );
+		dispatchDoneEvent( violations, errorMsgs, 'cleanup-not-exists', failed );
 	}
 };
 
@@ -372,12 +374,12 @@ if ( isIframeContext() ) {
 	const iframeOptions = getIframeOptions();
 
 	tooLongTimeout = setTimeout( () => {
-		dispatchDoneEvent( [], [ 'Scan timed out' ], 'timeout' );
+		dispatchDoneEvent( [], [ 'Scan timed out' ], 'timeout', true );
 	}, SCAN_TIMEOUT_IN_SECONDS * 1000 );
 
 	scan( iframeOptions )
 		.then( ( result ) => onDone( result.violations, [], null ) )
-		.catch( ( err ) => onDone( [], [ err.message || 'Unknown error' ], err.message ) );
+		.catch( ( err ) => onDone( [], [ err.message || 'Unknown error' ], err.message, true ) );
 }
 
 // Helper to process a violation and return the formatted object

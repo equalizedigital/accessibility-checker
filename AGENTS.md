@@ -79,14 +79,14 @@ Which checks apply:
 | CSS/SCSS | `npm run lint:css` |
 | PHP anywhere | PHPUnit (docker), `npm run lint:php`, `npm run phpstan` |
 | Rule metadata (PHP Rule classes) | PHPUnit `RegisterRulesTest`, plus Jest if the JS side changed |
-| Hooks added/renamed | `composer generate-hooks-docs` — CI fails on a stale `docs/hooks.md` |
+| Hooks added/renamed | `composer generate-hooks-docs` — `verify-hooks-docs.yml` runs it weekly and opens a PR if `docs/hooks.md` is stale; no check fails |
 
 - PHPUnit runs in docker against the WP test suite: `npm run test:php` once to set up, then `test:php:run`, `test:php:stop`. Tests in `tests/phpunit/`; PSR-4 helpers under `EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\`.
 - Jest config at `tests/jest/jest.config.js`. `@wordpress/*` imports need explicit `moduleNameMapper` entries — a missing one surfaces as "Cannot find module '@wordpress/…'", and the mapper regexes must be anchored to avoid subpath mismatches.
 - Jest tests live beside their area: `tests/jest/rules/` (pageScanner rules), `tests/jest/pageScanner/` (`context.test.js` and `helpers/`), and same-named directories for the other `src/` entries — `admin`, `emailOptIn`, `frontendFixes`, `frontendHighlighterApp`, `issueModal`, `sharedComponents`, `simplifiedSummaryBlock`. Shared helpers and fixtures: `tests/jest/helpers/`, `tests/jest/utils/`, `tests/jest/__mocks__/`, `tests/jest/mock-assets/`. `testMatch` is `**/*.test.js`.
 - No committed E2E suite.
 - Bug fixes need a regression test. Run the checks covering your change before pushing.
-- CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix and the hooks-docs verifier first.
+- CI mirrors local: `phpunit.yml`, `jest-tests.yml`, `lint-php.yml`, `lint-js.yml`, `cs.yml`, `code-coverage-and-coveralls.yml`, `verify-hooks-docs.yml`, `deploy-on-release-*`. If CI fails where local passed, check the PHP-version matrix first — `verify-hooks-docs.yml` only opens a PR, so it can never be the red job.
 
 ## Workflow
 

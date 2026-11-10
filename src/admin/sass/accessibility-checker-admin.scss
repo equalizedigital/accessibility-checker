@@ -928,6 +928,11 @@
 .edac-settings {
 	max-width: 800px;
 
+	#setting-error-settings_updated p[tabindex="-1"]:focus {
+		outline: 2px solid variables.$color-blue;
+		outline-offset: 2px;
+	}
+
 	&--reports {
 		max-width: 1390px;
 
