@@ -2,16 +2,16 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.48.0\n"
+"Project-Id-Version: Accessibility Checker 1.51.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"Last-Translator: PTC (Private Translation Cloud)\n"
+"Language-Team: Hebrew\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-09-01T12:55:20+00:00\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.12.0\n"
+"POT-Creation-Date: 2026-11-10 15:09+0000\n"
+"PO-Revision-Date: 2026-11-10 15:09+0000\n"
+"X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: he_IL\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -269,7 +269,7 @@ msgid "Low"
 msgstr "נמוך"
 
 #: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1033
+#: includes/classes/class-rest-api.php:1046
 msgid "Unknown"
 msgstr "לא ידוע"
 
@@ -544,30 +544,62 @@ msgstr "רוצה לעשות יותר עם Accessibility Checker? %1$sשחרר א
 msgid "Unlock Pro Features (opens in new window)"
 msgstr "שחרר את תכונות הפרו (נפתח בחלון חדש)"
 
-#: admin/class-admin-notices.php:141
-msgid "🎉 Black Friday special! 🎉"
-msgstr "🎉 מבצע יום שישי השחור! 🎉"
-
-#: admin/class-admin-notices.php:142
-msgid "Upgrade to a paid version of Accessibility Checker from November 24th to December 3rd and get 30% off! Full site scanning, site-wide open issues report, dismissal logs, and more."
-msgstr "שדרג/י לגרסה בתשלום של Accessibility Checker בין 24 בנובמבר ל-3 בדצמבר וקבל/י 30% הנחה! סריקת אתר מלאה, דוח בעיות פתוחות בכל האתר, יומני ביטול ועוד."
-
-#: admin/class-admin-notices.php:143
+#: admin/class-admin-notices.php:194
 msgid "Ask a Pre-Sale Question"
 msgstr "שאל שאלה לפני הרכישה"
 
-#: admin/class-admin-notices.php:144
-#: admin/class-admin-notices.php:303
+#: admin/class-admin-notices.php:195
+#: admin/class-admin-notices.php:412
 msgid "Upgrade Now"
 msgstr "שדרג עכשיו"
 
-#: admin/class-admin-notices.php:163
-#: admin/class-admin-notices.php:246
-#: admin/class-admin-notices.php:322
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:199
+msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 מבצע Black Friday: חסוך 20% וקבל קורס חינם! 🎉"
+
+#: admin/class-admin-notices.php:200
+msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
+msgstr "סרוק סוגי פוסטים מותאמים אישית ועמודי ארכיון, ראה כל בעיה במקום אחד וקבל דוחות email משופרים. שדרג בין ה־23 בנובמבר ל־2 בדצמבר כדי לחסוך 20% ולקבל קורס חינם לבחירתך."
+
+#: admin/class-admin-notices.php:207
+msgid "👋 Welcome back: 20% off Accessibility Checker Pro + a free course! 🎉"
+msgstr "👋 ברוך שובך: 20% הנחה על Accessibility Checker Pro + קורס חינם! 🎉"
+
+#: admin/class-admin-notices.php:208
+msgid "Accessibility Checker is way different than you remember. Renew between November 23rd and December 2nd to save 20% and pick a free course."
+msgstr "Accessibility Checker שונה בהרבה ממה שאתה זוכר. חדש בין ה־23 בנובמבר ל־2 בדצמבר כדי לחסוך 20% ולבחור קורס חינם."
+
+#: admin/class-admin-notices.php:211
+msgid "Renew Now"
+msgstr "חדש כעת"
+
+#: admin/class-admin-notices.php:215
+msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
+msgstr "🎉 Black Friday: חסוך 25% בשדרוג לתוכנית Small Business! 🎉"
+
+#: admin/class-admin-notices.php:216
+msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
+msgstr "קבל רישיונות ל־5 אתרים, היסטוריית ביקורת, ייצוא CSV וגישה לשעות קבלה דו-שבועיות, עם 25% הנחה בעת שדרוג בין ה־23 בנובמבר ל־2 בדצמבר."
+
+#: admin/class-admin-notices.php:232
+msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Black Friday: חסוך 25% בשדרוג! 🎉"
+
+#: admin/class-admin-notices.php:233
+msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
+msgstr "זקוק לרישיונות נוספים? שדרג ל-SMB+ עבור 10 אתרים, או שדרג עוד יותר עם Agency עבור 25 אתרים, כלי Multisite ותמיכת VIP."
+
+#: admin/class-admin-notices.php:235
+msgid "Upgrade & Save 25%"
+msgstr "שדרג וחסוך 25%"
+
+#: admin/class-admin-notices.php:271
+#: admin/class-admin-notices.php:355
+#: admin/class-admin-notices.php:431
+#: admin/class-admin-notices.php:520
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:648
+#: admin/class-ajax.php:642
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -576,87 +608,87 @@ msgstr "שדרג עכשיו"
 msgid "Permission Denied"
 msgstr "ההרשאה נדחתה"
 
-#: admin/class-admin-notices.php:175
-#: admin/class-admin-notices.php:253
-#: admin/class-admin-notices.php:334
-#: admin/class-admin-notices.php:435
+#: admin/class-admin-notices.php:284
+#: admin/class-admin-notices.php:362
+#: admin/class-admin-notices.php:443
+#: admin/class-admin-notices.php:544
 msgid "Update option wasn't successful"
 msgstr "עדכון האפשרות לא הצליח"
 
-#: admin/class-admin-notices.php:217
-#: admin/class-admin-notices.php:293
+#: admin/class-admin-notices.php:326
+#: admin/class-admin-notices.php:402
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ מבצע בזק ליום המודעות העולמי לנגישות"
 
-#: admin/class-admin-notices.php:220
+#: admin/class-admin-notices.php:329
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "החל מ-20 במאי: חסוך 15% על קורסי נגישות ועל ArchiveWP עם קוד קופון "
 
-#: admin/class-admin-notices.php:221
-#: admin/class-admin-notices.php:226
+#: admin/class-admin-notices.php:330
+#: admin/class-admin-notices.php:335
 msgid "3 days only • May 20–22"
 msgstr "3 ימים בלבד • 20–22 במאי"
 
-#: admin/class-admin-notices.php:222
-#: admin/class-admin-notices.php:298
+#: admin/class-admin-notices.php:331
+#: admin/class-admin-notices.php:407
 msgid "View ArchiveWP Pricing"
 msgstr "הצג תמחור ArchiveWP"
 
-#: admin/class-admin-notices.php:223
-#: admin/class-admin-notices.php:299
+#: admin/class-admin-notices.php:332
+#: admin/class-admin-notices.php:408
 msgid "View Course Pricing"
 msgstr "הצג תמחור קורסים"
 
-#: admin/class-admin-notices.php:225
+#: admin/class-admin-notices.php:334
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "החל מ-20 במאי: חסוך 15% על Accessibility Checker Pro עם קוד קופון "
 
-#: admin/class-admin-notices.php:227
+#: admin/class-admin-notices.php:336
 msgid "View Pricing"
 msgstr "הצג תמחור"
 
-#: admin/class-admin-notices.php:296
+#: admin/class-admin-notices.php:405
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "חסוך 15% על קורסי נגישות ועל ArchiveWP עם קוד קופון "
 
-#: admin/class-admin-notices.php:297
-#: admin/class-admin-notices.php:302
+#: admin/class-admin-notices.php:406
+#: admin/class-admin-notices.php:411
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "הצעה לזמן מוגבל • מסתיימת ב-22 במאי"
 
-#: admin/class-admin-notices.php:301
+#: admin/class-admin-notices.php:410
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "3 ימים בלבד: חסוך 15% כשאתה משדרג ל-Accessibility Checker Pro עם קוד קופון "
 
-#: admin/class-admin-notices.php:386
+#: admin/class-admin-notices.php:495
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "שלום! תודה שאתה משתמש ב-Accessibility Checker כחלק מערכת הכלים שלך לנגישות. מכיוון שאתה משתמש בו כבר זמן מה, האם תוכל בבקשה לכתוב ביקורת של 5 כוכבים על Accessibility Checker בספריית התוספים של WordPress? זה יעזור להגדיל את הנראות שלנו כך שיותר אנשים יוכלו ללמוד על חשיבות הנגישות באינטרנט. תודה רבה!"
 
-#: admin/class-admin-notices.php:389
+#: admin/class-admin-notices.php:498
 msgid "Write A Review"
 msgstr "כתוב ביקורת"
 
-#: admin/class-admin-notices.php:390
+#: admin/class-admin-notices.php:499
 msgid "Remind Me In Two Weeks"
 msgstr "הזכר לי בעוד שבועיים"
 
-#: admin/class-admin-notices.php:391
+#: admin/class-admin-notices.php:500
 msgid "Never Ask Again"
 msgstr "אל תשאל יותר"
 
-#: admin/class-admin-notices.php:418
+#: admin/class-admin-notices.php:527
 msgid "The review action value was not set"
 msgstr "ערך פעולת הביקורת לא הוגדר"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:652
+#: admin/class-ajax.php:646
 msgid "The post ID was not set"
 msgstr "מזהה הפוסט לא הוגדר"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:656
+#: admin/class-ajax.php:650
 msgid "You do not have permission to view this information for this post."
 msgstr "אין לך הרשאה לצפות במידע זה עבור פוסט זה."
 
@@ -741,7 +773,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "נגישות אמיתית דורשת בדיקה ידנית בנוסף לסריקות אוטומטיות. %1$sלמד כיצד לבדוק נגישות באופן ידני%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -755,7 +787,7 @@ msgid "No summary to return"
 msgstr "אין סיכום להחזרה"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:941
+#: includes/classes/class-rest-api.php:954
 msgid "Invalid table name"
 msgstr "שם טבלה לא חוקי"
 
@@ -769,205 +801,199 @@ msgstr " סה״כ"
 msgid "Read documentation for %1$s. %2$s"
 msgstr "קרא תיעוד עבור %1$s. %2$s"
 
-#. translators: %s: rule title
-#: admin/class-ajax.php:406
-#, php-format
-msgid "Expand issues for %s"
-msgstr "הרחב בעיות עבור %s"
-
-#: admin/class-ajax.php:432
+#: admin/class-ajax.php:426
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "These settings enable global fixes across your entire site."
 msgstr "הגדרות אלו מאפשרות תיקונים גלובליים בכל האתר שלך."
 
-#: admin/class-ajax.php:433
+#: admin/class-ajax.php:427
 msgid "Pages may need to be resaved or a full site scan run to see fixes reflected in reports."
 msgstr "ייתכן שיהיה צורך לשמור מחדש דפים או לבצע סריקה מלאה של האתר כדי לראות את התיקונים משתקפים בדוחות."
 
-#: admin/class-ajax.php:461
+#: admin/class-ajax.php:455
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Save"
 msgstr "שמור"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "קוד מושפע"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:480
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "תמונה"
 
-#: admin/class-ajax.php:489
+#: admin/class-ajax.php:483
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "נקודת ציון"
 
-#: admin/class-ajax.php:492
+#: admin/class-ajax.php:486
 msgid "Actions"
 msgstr "פעולות"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "נדחו"
 
-#: admin/class-ajax.php:501
+#: admin/class-ajax.php:495
 msgid "Dismiss"
 msgstr "דחה"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:512
+#: admin/class-ajax.php:506
 #, php-format
 msgid "Issue ID %d"
 msgstr "מזהה בעיה %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:530
-#: admin/class-ajax.php:540
+#: admin/class-ajax.php:524
+#: admin/class-ajax.php:534
 #, php-format
 msgid "image for issue %d"
 msgstr "תמונה עבור בעיה %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:575
+#: admin/class-ajax.php:569
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "צפה בבעיה מספר %d באתר, נפתח בחלון חדש"
 
-#: admin/class-ajax.php:576
+#: admin/class-ajax.php:570
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "צפה בדף"
 
-#: admin/class-ajax.php:595
+#: admin/class-ajax.php:589
 msgid "Fix: "
 msgstr "תיקון: "
 
-#: admin/class-ajax.php:596
+#: admin/class-ajax.php:590
 msgid "Fix"
 msgstr "תקן"
 
-#: admin/class-ajax.php:629
+#: admin/class-ajax.php:623
 msgid "No details to return"
 msgstr "אין פרטים להחזרה"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:695
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "רמת קריאה של פוסט: %s"
 
-#: admin/class-ajax.php:702
-#: admin/class-ajax.php:723
+#: admin/class-ajax.php:696
+#: admin/class-ajax.php:717
 #: admin/site-health/class-pro.php:75
 msgid "None"
 msgstr "ללא"
 
-#: admin/class-ajax.php:705
+#: admin/class-ajax.php:699
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "לפוסט שלך יש רמת קריאה גבוהה מכיתה ט'. הנחיות הנגישות לתוכן אינטרנט (WCAG) ברמת AAA דורשות סיכום פשוט של הפוסט שלך ברמת כיתה ט' או פחות."
 
-#: admin/class-ajax.php:707
+#: admin/class-ajax.php:701
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "הפוסט שלך אינו מכיל מספיק תוכן כדי לחשב את רמת הקריאה שלו."
 
-#: admin/class-ajax.php:709
+#: admin/class-ajax.php:703
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "סיכום פשוט אינו נחוץ כאשר רמת הקריאה של התוכן היא כיתה ט' או פחות. בחר מתי להציג הנחיה לסיכום פשוט בדף ההגדרות."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:722
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:716
+#: admin/class-ajax.php:728
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "רמת קריאות של סיכום פשוט: %s"
 
-#: admin/class-ajax.php:726
+#: admin/class-ajax.php:720
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "אין מספיק תוכן כדי לקבוע רמת קריאות מדויקת."
 
-#: admin/class-ajax.php:739
+#: admin/class-ajax.php:733
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "רמת הקריאות של הסיכום הפשוט שלך היא מעל כיתה ט׳."
 
-#: admin/class-ajax.php:740
+#: admin/class-ajax.php:734
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "רמת הקריאות של הסיכום הפשוט שלך היא בכיתה ט׳ או מתחתיה."
 
-#: admin/class-ajax.php:751
-#: admin/class-ajax.php:781
+#: admin/class-ajax.php:745
+#: admin/class-ajax.php:775
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "סיכום פשוט אינו מוכנס אוטומטית לתוכן."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:754
+#: admin/class-ajax.php:748
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "ההנחיה שלך לסיכום פשוט מוגדרת ל \"אף פעם.\" אם ברצונך שהסיכום הפשוט יוצג אוטומטית, תוכל לשנות זאת ב%s."
 
-#: admin/class-ajax.php:755
-#: admin/class-ajax.php:772
-#: admin/class-ajax.php:785
+#: admin/class-ajax.php:749
+#: admin/class-ajax.php:766
+#: admin/class-ajax.php:779
 msgid "settings page"
 msgstr "דף הגדרות"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:766
+#: admin/class-ajax.php:760
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "סיכום פשוט מוכנס אוטומטית %s."
 
-#: admin/class-ajax.php:767
+#: admin/class-ajax.php:761
 msgid "the content"
 msgstr "התוכן"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:771
+#: admin/class-ajax.php:765
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "קבע היכן הסיכום הפשוט מוכנס לתוכן ב%s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:784
+#: admin/class-ajax.php:778
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "מיקום הסיכום הפשוט שלך מוגדר ל \"ידנית\" מה שדורש הוספת פונקציה לתבנית הדף שלך. אם ברצונך שהסיכום הפשוט יוצג אוטומטית, תוכל לשנות זאת ב%s."
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:792
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
-#: includes/options-page.php:1539
-#: includes/options-page.php:1563
+#: includes/options-page.php:1545
+#: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "Simplified Summary"
 msgstr "סיכום מפושט"
 
-#: admin/class-ajax.php:800
+#: admin/class-ajax.php:794
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "שמור סיכום"
 
-#: admin/class-ajax.php:804
+#: admin/class-ajax.php:798
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "למד עוד על שיפור קריאות ודרישות סיכום פשוט"
 
-#: admin/class-ajax.php:807
+#: admin/class-ajax.php:801
 msgid "No readability data to return"
 msgstr "אין נתוני קריאות להחזרה"
 
-#: admin/class-enqueue-admin.php:454
+#: admin/class-enqueue-admin.php:453
 msgid "* Screen Reader Text"
 msgstr "* טקסט לקורא מסך"
 
@@ -976,7 +1002,7 @@ msgid "The id value was not set"
 msgstr "ערך המזהה לא הוגדר"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1079
+#: includes/classes/class-rest-api.php:1092
 msgid "Post not found"
 msgstr "הפוסט לא נמצא"
 
@@ -984,7 +1010,7 @@ msgstr "הפוסט לא נמצא"
 msgid "Issue query returned no results"
 msgstr "שאילתת הבעיה לא החזירה תוצאות"
 
-#: admin/class-frontend-highlight.php:188
+#: admin/class-frontend-highlight.php:202
 msgid "Object query returned no results"
 msgstr "שאילתת האובייקט לא החזירה תוצאות"
 
@@ -1021,12 +1047,14 @@ msgid "Date:"
 msgstr "תאריך:"
 
 #: admin/class-ignore-ui.php:141
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Reopen Issue"
 msgstr "פתח מחדש בעיה"
 
 #: admin/class-ignore-ui.php:142
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:2
@@ -1048,6 +1076,7 @@ msgid "Your user account doesn't have permission to dismiss this issue."
 msgstr "לחשבון המשתמש שלך אין הרשאה לבטל בעיה זו."
 
 #: admin/class-ignore-ui.php:200
+#: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Dismiss issue as:"
@@ -1147,7 +1176,7 @@ msgid "Report Last Updated:"
 msgstr "הדוח עודכן לאחרונה:"
 
 #: admin/class-welcome-page.php:250
-#: includes/options-page.php:1241
+#: includes/options-page.php:1246
 msgid "Never"
 msgstr "מעולם לא"
 
@@ -1315,11 +1344,25 @@ msgstr "שם פרטי"
 msgid "Type your first name"
 msgstr "הקלד את שמך הפרטי"
 
-#. translators: 1: link to privacy policy page. 2: link close tag.
+#. translators: 1: link to privacy policy page. 2: screen reader notice and link close tag.
 #: admin/opt-in/class-email-opt-in.php:157
 #, php-format
 msgid "By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s."
 msgstr "על ידי הרשמה, אתה מסכים לקבל הודעות דוא\"ל בהתאם ל%1$sמדיניות הפרטיות%2$s שלנו."
+
+#: admin/opt-in/class-email-opt-in.php:159
+#: includes/helper-functions.php:419
+#: partials/welcome-page.php:88
+#: partials/welcome-page.php:93
+#: partials/welcome-page.php:98
+#: partials/welcome-page.php:103
+#: partials/welcome-page.php:108
+#: partials/welcome-page.php:113
+#: partials/welcome-page.php:118
+#: partials/welcome-page.php:124
+#: partials/welcome-page.php:220
+msgid "(opens in a new window)"
+msgstr "(נפתח בחלון חדש)"
 
 #: admin/site-health/class-audit-history.php:32
 msgid "Accessibility Checker &mdash; Audit History"
@@ -1461,7 +1504,7 @@ msgid "Disabled"
 msgstr "מושבת"
 
 #: admin/site-health/class-free.php:69
-#: includes/options-page.php:821
+#: includes/options-page.php:820
 msgid "Delete Data"
 msgstr "מחק נתונים"
 
@@ -1519,7 +1562,7 @@ msgstr "כותרת סיכום מפושט"
 
 #: admin/site-health/class-pro.php:74
 msgid "Dismiss Permissions"
-msgstr "הרשאות ביטול"
+msgstr "הרשאות דחייה"
 
 #: admin/site-health/class-pro.php:78
 msgid "Dismissals DB Table Count"
@@ -1555,20 +1598,20 @@ msgstr "קבל את Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "קבל Accessibility Checker Pro (נפתח בחלון חדש)"
 
-#: includes/classes/class-rest-api.php:1239
+#: includes/classes/class-rest-api.php:1252
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "מצטערים, אין לך הרשאה לבטל התראות על בעיות."
 
-#: includes/classes/class-rest-api.php:1258
+#: includes/classes/class-rest-api.php:1271
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "מצטערים, אין לך הרשאה לבטל התראות על בעיות באופן גלובלי."
 
-#: includes/classes/class-rest-api.php:1296
-#: includes/classes/class-rest-api.php:1318
+#: includes/classes/class-rest-api.php:1315
+#: includes/classes/class-rest-api.php:1337
 msgid "Issue not found."
 msgstr "הבעיה לא נמצאה."
 
-#: includes/classes/class-rest-api.php:1375
+#: includes/classes/class-rest-api.php:1394
 msgid "Failed to update the issue."
 msgstr "העדכון של הבעיה נכשל."
 
@@ -1865,16 +1908,16 @@ msgid "Set the ID attribute of the navigation element. This is useful if your ma
 msgstr "הגדר את מאפיין המזהה של אלמנט הניווט. זה שימושי אם הניווט הראשי שלך מכיל פעולות שרוב מבקרי האתר ירצו לבצע כגון התחברות או תכונות חיפוש."
 
 #. translators: %1$s: opening anchor tag, %2$s: closing anchor tag.
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:240
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:244
 #, php-format
 msgid "If your theme is not already adding a skip link that allows keyboard users to bypass the navigation and quickly jump to the main content, enable skip links here. %1$sLearn more about skip links.%2$s"
 msgstr "אם ערכת הנושא שלך אינה מוסיפה כבר קישור דילוג המאפשר למשתמשי מקלדת לעקוף את הניווט ולקפוץ במהירות לתוכן הראשי, אפשר קישורי דילוג כאן. %1$sלמד עוד על קישורי דילוג.%2$s"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:267
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:271
 msgid "Skip to content"
 msgstr "דלג לתוכן"
 
-#: includes/classes/Fixes/Fix/SkipLinkFix.php:276
+#: includes/classes/Fixes/Fix/SkipLinkFix.php:280
 msgid "Skip to navigation"
 msgstr "דלג לניווט"
 
@@ -1904,61 +1947,61 @@ msgstr "תיקון לא נמצא"
 msgid "Fix not found."
 msgstr "התיקון לא נמצא."
 
-#: includes/classes/MyDot/Connector.php:222
+#: includes/classes/MyDot/Connector.php:283
 msgid "You do not have permission to manage this license."
 msgstr "אין לך הרשאה לנהל רישיון זה."
 
-#: includes/classes/MyDot/Connector.php:257
+#: includes/classes/MyDot/Connector.php:318
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "ניהול רישיון Pro פעיל. אנא נהל את הרישיון שלך מתוך Accessibility Checker Pro."
 
-#: includes/classes/MyDot/Connector.php:286
+#: includes/classes/MyDot/Connector.php:347
 msgid "An error occurred, please try again."
 msgstr "אירעה שגיאה, אנא נסה/נסי שוב."
 
-#: includes/classes/MyDot/Connector.php:575
+#: includes/classes/MyDot/Connector.php:636
 msgid "You do not have permission to register this site."
 msgstr "אין לך הרשאה לרשום אתר זה."
 
-#: includes/classes/MyDot/Connector.php:596
+#: includes/classes/MyDot/Connector.php:657
 msgid "You do not have permission to unregister this site."
 msgstr "אין לך הרשאה לבטל את רישום אתר זה."
 
-#: includes/classes/MyDot/Connector.php:622
+#: includes/classes/MyDot/Connector.php:683
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "לא נמצא מפתח רישיון. אנא הפעל/י רישיון לפני רישום האתר שלך."
 
-#: includes/classes/MyDot/Connector.php:633
-#: includes/classes/MyDot/Connector.php:840
+#: includes/classes/MyDot/Connector.php:694
+#: includes/classes/MyDot/Connector.php:901
 msgid "Unknown error occurred while registering the site."
 msgstr "אירעה שגיאה בלתי צפויה במהלך רישום האתר."
 
-#: includes/classes/MyDot/Connector.php:662
+#: includes/classes/MyDot/Connector.php:723
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "האתר נרשם בהצלחה. האתר שלך מוגדר כעת לשימוש בשירותי Accessibility נוספים."
 
-#: includes/classes/MyDot/Connector.php:672
+#: includes/classes/MyDot/Connector.php:733
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "רישום האתר הושלם, אך נתוני התגובה לא היו בפורמט הצפוי. ייתכן שתכונות מסוימות לא יפעלו כהלכה."
 
-#: includes/classes/MyDot/Connector.php:748
+#: includes/classes/MyDot/Connector.php:809
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "לא ניתן לבטל את רישום האתר. חסרים נתוני רישום נדרשים."
 
-#: includes/classes/MyDot/Connector.php:765
-#: includes/classes/MyDot/Connector.php:898
+#: includes/classes/MyDot/Connector.php:826
+#: includes/classes/MyDot/Connector.php:959
 msgid "Unknown error occurred while unregistering the site."
 msgstr "אירעה שגיאה בלתי צפויה במהלך ביטול רישום האתר."
 
-#: includes/classes/MyDot/Connector.php:780
+#: includes/classes/MyDot/Connector.php:841
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "רישום האתר בוטל בהצלחה. האתר שלך לא יקבל עוד דוחות email."
 
-#: includes/classes/MyDot/Connector.php:803
+#: includes/classes/MyDot/Connector.php:864
 msgid "No license key provided."
 msgstr "לא סופק מפתח רישיון."
 
-#: includes/classes/MyDot/Connector.php:861
+#: includes/classes/MyDot/Connector.php:922
 msgid "Missing required parameters for unregistration."
 msgstr "חסרים פרמטרים נדרשים לביטול רישום."
 
@@ -2750,17 +2793,17 @@ msgstr "אלמנטים אלה הם תגי עוגן החסרים מאפייני %
 msgid "Anchor tags (a.k.a. links) are intended for navigation to a new page or a different place on the same page. When they are used to trigger actions (such as expanding accordions or opening modals) without the correct roles or behavior, they confuse users, particularly those using screen readers or keyboards, who expect links to navigate rather than perform actions. They also are likely not to function with the space bar, which is an expectation of a button."
 msgstr "תגי עוגן (הידועים גם כקישורים) מיועדים לניווט לדף חדש או למקום אחר באותו דף. כאשר משתמשים בהם להפעלת פעולות (כמו הרחבת אקורדיונים או פתיחת חלונות מודאליים) ללא התפקידים או ההתנהגות הנכונים, הם מבלבלים משתמשים, במיוחד אלה המשתמשים בקוראי מסך או במקלדות, המצפים שקישורים ינווטו במקום לבצע פעולות. הם גם כנראה לא יפעלו עם מקש הרווח, שהיא ציפייה מכפתור."
 
-#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>.
+#. translators: %1$s is <code>&lt;button&gt;</code>, %2$s is <code>role="button"</code>, %3$s is <code>role="none"</code>, %4$s is <code>role="presentation"</code>.
 #: includes/classes/Rules/Rule/LinkImproperRule.php:45
 #, php-format
-msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality."
-msgstr "אם האלמנט משמש להפעלת פעולה, החלף את תג העוגן ב-%1$s. אם אינך יכול להחליף אותו, ודא ש-%2$s מתווסף לקישור, יחד עם JavaScript שמוסיף תמיכה להפעלתו באמצעות מקש רווח, ושנעשה שימוש במאפייני ARIA מתאימים למצבי החלפה או פונקציונליות אחרת."
+msgid "If the element is used to trigger an action, replace the anchor tag with a %1$s. If you cannot replace it, ensure that %2$s is added to the link, along with JavaScript that adds support for triggering it with the space bar key, and that appropriate ARIA attributes are used for toggle states or other functionality. If the anchor is purely decorative, cannot be focused and has no ARIA states or properties, %3$s or %4$s marks it as presentational so it is not reported."
+msgstr "אם האלמנט משמש להפעלת פעולה, החלף את תג העוגן ב-%1$s. אם אינך יכול להחליף אותו, ודא ש-%2$s מתווסף לקישור, יחד עם JavaScript שמוסיף תמיכה להפעלתו באמצעות מקש הרווח, ושנעשה שימוש במאפייני ARIA מתאימים למצבי החלפה (toggle) או פונקציונליות אחרת. אם העוגן דקורטיבי בלבד, אינו ניתן למיקוד ואין לו מצבי ARIA או מאפיינים, %3$s או %4$s מסמנים אותו כאלמנט תצוגתי (presentational) כך שהוא לא ידווח."
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:51
+#: includes/classes/Rules/Rule/LinkImproperRule.php:53
 msgid "MDN Web Docs: ARIA button role"
 msgstr "MDN Web Docs: תפקיד כפתור ARIA"
 
-#: includes/classes/Rules/Rule/LinkImproperRule.php:55
+#: includes/classes/Rules/Rule/LinkImproperRule.php:57
 msgid "W3 Schools: Accessibility Buttons & Links"
 msgstr "W3 schools: נגישות כפתורים וקישורים"
 
@@ -3454,90 +3497,77 @@ msgstr "קישור קבוע ל- "
 msgid "&nbsp;"
 msgstr "&nbsp;"
 
-#: includes/helper-functions.php:409
+#: includes/helper-functions.php:413
 msgid "Attend Free"
 msgstr "השתתף בחינם"
 
-#: includes/helper-functions.php:415
-#: partials/welcome-page.php:88
-#: partials/welcome-page.php:93
-#: partials/welcome-page.php:98
-#: partials/welcome-page.php:103
-#: partials/welcome-page.php:108
-#: partials/welcome-page.php:113
-#: partials/welcome-page.php:118
-#: partials/welcome-page.php:124
-#: partials/welcome-page.php:220
-msgid "(opens in a new window)"
-msgstr "(נפתח בחלון חדש)"
-
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:922
+#: includes/helper-functions.php:926
 msgid "Main"
 msgstr "ראשי"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:924
+#: includes/helper-functions.php:928
 msgid "Header"
 msgstr "כותרת עליונה"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:926
+#: includes/helper-functions.php:930
 msgid "Footer"
 msgstr "כותרת תחתונה"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:928
+#: includes/helper-functions.php:932
 msgid "Nav"
 msgstr "ניווט"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:930
+#: includes/helper-functions.php:934
 msgid "Aside"
 msgstr "צדדי"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:932
+#: includes/helper-functions.php:936
 msgid "Navigation"
 msgstr "ניווט"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:934
+#: includes/helper-functions.php:938
 msgid "Banner"
 msgstr "באנר"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:936
+#: includes/helper-functions.php:940
 msgid "Contentinfo"
 msgstr "פרטי תוכן"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:938
+#: includes/helper-functions.php:942
 msgid "Complementary"
 msgstr "משלים"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:940
+#: includes/helper-functions.php:944
 msgid "Section"
 msgstr "מקטע"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:942
+#: includes/helper-functions.php:946
 msgid "Article"
 msgstr "מאמר"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:944
+#: includes/helper-functions.php:948
 msgid "Form"
 msgstr "טופס"
 
 #. translators: Landmark type label for the Issues Explorer filter.
-#: includes/helper-functions.php:946
+#: includes/helper-functions.php:950
 msgid "Region"
 msgstr "אזור"
 
 #. translators: %s is the landmark type (e.g., "Header", "Navigation", "Main").
-#: includes/helper-functions.php:995
+#: includes/helper-functions.php:999
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #, php-format, js-format
@@ -3587,7 +3617,7 @@ msgid "Welcome to Accessibility Checker"
 msgstr "ברוכים הבאים ל-Accessibility Checker"
 
 #: includes/options-page.php:702
-#: partials/settings-page.php:115
+#: partials/settings-page.php:127
 msgid "Accessibility Checker Settings"
 msgstr "הגדרות Accessibility Checker"
 
@@ -3612,207 +3642,211 @@ msgid "System Settings"
 msgstr "הגדרות מערכת"
 
 #: includes/options-page.php:785
+#: includes/options-page.php:1278
 msgid "Post Types To Be Checked"
 msgstr "סוגי פוסטים לבדיקה"
 
-#: includes/options-page.php:794
+#: includes/options-page.php:793
 msgid "Scan Speed"
 msgstr "מהירות סריקה"
 
-#: includes/options-page.php:803
+#: includes/options-page.php:802
 msgid "Archive Scanning"
 msgstr "סריקת ארכיון"
 
-#: includes/options-page.php:812
+#: includes/options-page.php:811
 msgid "Taxonomy Scanning"
 msgstr "סריקת טקסונומיה"
 
-#: includes/options-page.php:830
+#: includes/options-page.php:829
 msgid "Block Editor Metabox"
 msgstr "תיבת מטא של עורך בלוקים"
 
-#: includes/options-page.php:839
+#: includes/options-page.php:838
+#: includes/options-page.php:1232
 msgid "Prompt for Simplified Summary"
 msgstr "בקש תקציר מפושט"
 
-#: includes/options-page.php:848
+#: includes/options-page.php:846
+#: includes/options-page.php:1143
 msgid "Simplified Summary Position"
 msgstr "מיקום התקציר המפושט"
 
-#: includes/options-page.php:857
+#: includes/options-page.php:854
 msgid "Simplified Summary Heading"
 msgstr "כותרת סיכום מפושטת"
 
-#: includes/options-page.php:866
-#: includes/options-page.php:1374
+#: includes/options-page.php:863
+#: includes/options-page.php:1380
 msgid "Add Footer Accessibility Statement"
 msgstr "הוסף הצהרת נגישות בתחתית העמוד"
 
-#: includes/options-page.php:875
-#: includes/options-page.php:1397
+#: includes/options-page.php:872
+#: includes/options-page.php:1403
 msgid "Include Link to Accessibility Policy"
 msgstr "כלול קישור למדיניות הנגישות"
 
-#: includes/options-page.php:884
+#: includes/options-page.php:881
 msgid "Accessibility Policy page"
 msgstr "עמוד מדיניות הנגישות"
 
-#: includes/options-page.php:893
+#: includes/options-page.php:890
 msgid "Accessibility Statement Preview"
 msgstr "תצוגה מקדימה של הצהרת הנגישות"
 
-#: includes/options-page.php:901
+#: includes/options-page.php:898
+#: includes/options-page.php:1180
 msgid "Frontend Accessibility Checker Position"
 msgstr "מיקום Accessibility Checker בחזית האתר"
 
-#: includes/options-page.php:955
+#: includes/options-page.php:951
 msgid "Configure the types of content that should be checked for accessibility issues."
 msgstr "הגדר את סוגי התוכן שיש לבדוק עבור בעיות נגישות."
 
 #. translators: %1$s: link to the "Accessibility Checker Pro" website.
-#: includes/options-page.php:960
+#: includes/options-page.php:956
 #, php-format
 msgid "More features and email support is available with %1$s."
 msgstr "תכונות נוספות ותמיכה בדוא\"ל זמינים עם %1$s."
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 msgid "Accessibility Checker Pro (opens in a new window)"
 msgstr "Accessibility Checker Pro (נפתח בחלון חדש)"
 
-#: includes/options-page.php:968
+#: includes/options-page.php:964
 #: partials/welcome-page.php:25
 msgid "Accessibility Checker Pro"
 msgstr "Accessibility Checker Pro"
 
-#: includes/options-page.php:982
+#: includes/options-page.php:978
 msgid "Use the settings below to configure the frontend accessibility checker."
 msgstr "השתמש בהגדרות למטה כדי להגדיר את בודק הנגישות בחזית האתר."
 
-#: includes/options-page.php:992
+#: includes/options-page.php:988
 msgid "Web Content Accessibility Guidelines (WCAG) at the AAA level require any content with a reading level above 9th grade to have an alternative that is easier to read. Simplified summary text is added on the readability tab in the Accessibility Checker meta box on each post's or page's edit screen."
 msgstr "הנחיות נגישות תוכן אינטרנט (WCAG) ברמה AAA דורשות שכל תוכן עם רמת קריאה מעל כיתה ט' יכלול חלופה קלה יותר לקריאה. טקסט תקציר מפושט נוסף בלשונית הקריאות בתיבת המטא של Accessibility Checker במסך העריכה של כל פוסט או עמוד."
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements (opens in a new window)"
 msgstr "למד עוד על תקצירים מפושטים ודרישות קריאות (נפתח בחלון חדש)"
 
-#: includes/options-page.php:1002
+#: includes/options-page.php:998
 msgid "Learn more about simplified summaries and readability requirements."
 msgstr "למד עוד על תקצירים מפושטים ודרישות קריאות."
 
-#: includes/options-page.php:1011
+#: includes/options-page.php:1007
 msgid "Are you thinking \"Wow, this plugin is amazing\" and is it helping you make your website more accessible? Share your efforts to make your website more accessible with your customers and let them know you're using Accessibility Checker to ensure all people can use your website. Add a small text-only link and statement in the footer of your website."
 msgstr "האם אתה חושב \"וואו, התוסף הזה מדהים\" והוא עוזר לך להפוך את האתר שלך לנגיש יותר? שתף את המאמצים שלך להפוך את האתר שלך לנגיש יותר עם הלקוחות שלך והודע להם שאתה משתמש ב-Accessibility Checker כדי להבטיח שכל האנשים יוכלו להשתמש באתר שלך. הוסף קישור קטן בטקסט בלבד והצהרה בתחתית האתר שלך."
 
-#: includes/options-page.php:1020
+#: includes/options-page.php:1016
 msgid "Configure system-level settings for the Accessibility Checker plugin."
 msgstr "הגדר הגדרות ברמת המערכת עבור תוסף Accessibility Checker."
 
-#: includes/options-page.php:1034
+#: includes/options-page.php:1030
 msgid "Fast"
 msgstr "מהיר"
 
-#: includes/options-page.php:1035
+#: includes/options-page.php:1031
 msgid "Normal"
 msgstr "רגיל"
 
-#: includes/options-page.php:1036
+#: includes/options-page.php:1032
 msgid "Slow"
 msgstr "איטי"
 
-#: includes/options-page.php:1037
+#: includes/options-page.php:1033
 msgid "Slowest"
 msgstr "איטי ביותר"
 
-#: includes/options-page.php:1059
+#: includes/options-page.php:1055
 msgid "Faster scans are more resource intensive and may place a high load on your website."
 msgstr "סריקות מהירות יותר צורכות יותר משאבים ועלולות להטיל עומס גבוה על האתר שלך."
 
-#: includes/options-page.php:1085
+#: includes/options-page.php:1081
 msgid "Enable scanning of archive pages"
 msgstr "אפשר סריקה של דפי ארכיון"
 
-#: includes/options-page.php:1089
+#: includes/options-page.php:1085
 msgid "Choose whether archive pages should be included in full site scans. By default, a sampling method is used to select taxonomy terms for archive data."
 msgstr "בחר אם דפי ארכיון צריכים להיכלל בסריקות האתר המלאות. כברירת מחדל, נעשה שימוש בשיטת דגימה כדי לבחור מונחי טקסונומיה עבור נתוני ארכיון."
 
-#: includes/options-page.php:1115
+#: includes/options-page.php:1111
 msgid "Scan all taxonomy terms instead of just a sample"
 msgstr "סרוק את כל מונחי הטקסונומיה במקום רק מדגם"
 
-#: includes/options-page.php:1119
+#: includes/options-page.php:1115
 msgid "Check all taxonomy term archive pages instead of a representative sample. This requires archive page scanning to be enabled and may add a large number of URLs to the scan list."
 msgstr "בדוק את כל דפי הארכיון של מונחי הטקסונומיה במקום מדגם מייצג. זה דורש שסריקת דפי ארכיון תהיה מופעלת ועשוי להוסיף מספר גדול של כתובות URL לרשימת הסריקה."
 
-#: includes/options-page.php:1148
+#: includes/options-page.php:1147
 msgid "Before the content"
 msgstr "לפני התוכן"
 
-#: includes/options-page.php:1153
+#: includes/options-page.php:1152
 msgid "After the content"
 msgstr "אחרי התוכן"
 
-#: includes/options-page.php:1158
+#: includes/options-page.php:1157
 msgid "Insert manually"
 msgstr "הכנס ידנית"
 
-#: includes/options-page.php:1162
+#: includes/options-page.php:1161
 msgid "Use this function to manually add the simplified summary to your theme within the loop."
 msgstr "השתמש בפונקציה זו כדי להוסיף ידנית את התקציר המפושט לערכת הנושא שלך בתוך הלולאה."
 
-#: includes/options-page.php:1164
+#: includes/options-page.php:1163
 msgid "The function optionally accepts the post ID as a parameter."
 msgstr "הפונקציה מקבלת באופן אופציונלי את מזהה הפוסט כפרמטר."
 
-#: includes/options-page.php:1167
+#: includes/options-page.php:1166
 msgid "Set where you would like simplified summaries to appear in relation to your content if filled in."
 msgstr "קבע היכן תרצה שתקצירים מפושטים יופיעו ביחס לתוכן שלך אם מולאו."
 
-#: includes/options-page.php:1182
+#: includes/options-page.php:1184
 msgid "Bottom Right Corner (default)"
 msgstr "פינה ימנית תחתונה (ברירת מחדל)"
 
-#: includes/options-page.php:1187
+#: includes/options-page.php:1189
 msgid "Bottom Left Corner"
 msgstr "פינה שמאלית תחתונה"
 
-#: includes/options-page.php:1191
+#: includes/options-page.php:1193
 msgid "Set where you would like the frontend accessibility checker to appear on the page."
 msgstr "קבע היכן תרצה שבודק הנגישות בחזית האתר יופיע בעמוד."
 
-#: includes/options-page.php:1231
+#: includes/options-page.php:1236
 msgid "When Required"
 msgstr "כאשר נדרש"
 
-#: includes/options-page.php:1236
+#: includes/options-page.php:1241
 msgid "Always"
 msgstr "תמיד"
 
-#: includes/options-page.php:1244
+#: includes/options-page.php:1249
 msgid "Should Accessibility Checker only ask for a simplified summary when the reading level of your post or page is above 9th grade, always ask for it regardless of reading level, or never ask for it regardless of reading level?"
 msgstr "האם Accessibility Checker צריך לבקש תקציר מפושט רק כאשר רמת הקריאה של הפוסט או העמוד שלך היא מעל כיתה ט', לבקש אותו תמיד ללא קשר לרמת הקריאה, או לעולם לא לבקש אותו ללא קשר לרמת הקריאה?"
 
-#: includes/options-page.php:1299
+#: includes/options-page.php:1305
 msgid "To check content other than posts and pages, please "
-msgstr "כדי לבדוק תוכן אחר מלבד פוסטים ועמודים, אנא "
+msgstr "כדי לבדוק תוכן אחר מלבד פוסטים ועמודים, נא "
 
-#: includes/options-page.php:1301
+#: includes/options-page.php:1307
 msgid "upgrade to pro"
 msgstr "שדרג לפרו"
 
-#: includes/options-page.php:1302
+#: includes/options-page.php:1308
 msgid " (opens in a new window)"
 msgstr " (נפתח בחלון חדש)"
 
-#: includes/options-page.php:1307
+#: includes/options-page.php:1313
 msgid "Choose which post types should be checked during a scan. Please note, removing a previously selected post type will remove its scanned information and any custom dismissed warnings that have been setup."
 msgstr "בחר/י אילו סוגי פוסטים יש לבדוק במהלך סריקה. שימו לב, הסרת סוג פוסט שנבחר בעבר תסיר את המידע הסרוק שלו ואת כל האזהרות המותאמות אישית שבוטלו."
 
-#: includes/options-page.php:1448
+#: includes/options-page.php:1454
 msgid "Delete all Accessibility Checker data when the plugin is uninstalled."
 msgstr "מחק את כל נתוני Accessibility Checker כאשר התוסף מוסר."
 
-#: includes/options-page.php:1466
+#: includes/options-page.php:1472
 msgid "Show Accessibility Checker metabox in the Block Editor"
 msgstr "הצג תיבת מטא של Accessibility Checker בעורך הבלוקים"
 
@@ -5146,6 +5180,10 @@ msgstr "או הפעל את מפתח הרישיון שלך כאן."
 msgid "General"
 msgstr "כללי"
 
+#: partials/settings-page.php:119
+msgid "Accessibility Checker settings saved."
+msgstr "הגדרות Accessibility Checker נשמרו."
+
 #: partials/welcome-page.php:35
 msgid "version"
 msgstr "גרסה"
@@ -5325,6 +5363,10 @@ msgid "Fix Settings"
 msgstr "הגדרות תיקון"
 
 #: build/editorApp.bundle.js:2
+msgid "The accessibility scan did not finish, so your saved results were left unchanged."
+msgstr "סריקת הנגישות לא הסתיימה, ולכן התוצאות השמורות שלך נותרו ללא שינוי."
+
+#: build/editorApp.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:20
 #: build/sidebar.bundle.js:10
 msgid "This will clear all issues for this post. A save will be required to trigger a fresh scan of the post content. Do you want to continue?"
@@ -5374,6 +5416,80 @@ msgstr "EDAC: שגיאה בעדכון ההיסטוריה עבור קישור ה�
 msgid "Close fixes modal"
 msgstr "סגור חלון תיקונים"
 
+#. translators: %s: dismiss reason label e.g. "False Positive"
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+#, js-format
+msgid "Issue Dismissed — %s"
+msgstr "הבעיה בוטלה — %s"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Issue Dismissed"
+msgstr "הבעיה בוטלה"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Scope:"
+msgstr "היקף:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "All pages"
+msgstr "כל הדפים"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "By:"
+msgstr "מאת:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "On:"
+msgstr "בתאריך:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reason for dismissal:"
+msgstr "סיבת הביטול:"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Remove Global Dismissal"
+msgstr "הסר/י ביטול גלובלי"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Comment (optional)"
+msgstr "הערה (אופציונלי)"
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Add a note explaining why this issue is being dismissed."
+msgstr "הוסף הערה המסבירה מדוע בעיה זו נדחית."
+
+#: build/frontendHighlighterApp.bundle.js:2
+#: build/issueModal.bundle.js:2
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:2
+#: build/sharedComponents.bundle.js:4
+msgid "Dismiss Globally"
+msgstr "בטל גלובלית"
+
+#: build/frontendHighlighterApp.bundle.js:2
+msgid "The issue could not be updated. Please try again."
+msgstr "לא ניתן לעדכן את התקלה. אנא נסה שוב."
+
 #. translators: %1$d is the current issue number, %2$d is the total number of issues.
 #: build/frontendHighlighterApp.bundle.js:5
 #, js-format
@@ -5381,6 +5497,7 @@ msgid "%1$d of %2$d"
 msgstr "%1$d מתוך %2$d"
 
 #: build/frontendHighlighterApp.bundle.js:5
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Untitled issue"
 msgstr "בעיה ללא כותרת"
 
@@ -5541,6 +5658,40 @@ msgid "Fix Issue"
 msgstr "תקן בעיה"
 
 #: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Dismissing..."
+msgstr "מבטל..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:4
+#: build/sharedComponents.bundle.js:4
+msgid "Reopening..."
+msgstr "פותח מחדש..."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not dismiss \"%1$s\": %2$s"
+msgstr "לא ניתן להתעלם מ־”%1$s“: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#, js-format
+msgid "Could not reopen \"%1$s\": %2$s"
+msgstr "לא ניתן לפתוח מחדש את ”%1$s“: %2$s"
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue dismissed successfully."
+msgstr "הבעיה בוטלה בהצלחה."
+
+#: build/frontendHighlighterApp.bundle.js:8
+#: build/issueModal.bundle.js:2
+#: build/sharedComponents.bundle.js:2
+msgid "Issue reopened successfully."
+msgstr "הבעיה נפתחה מחדש בהצלחה."
+
+#: build/frontendHighlighterApp.bundle.js:8
 msgid "Enable Styles"
 msgstr "הפעל סגנונות"
 
@@ -5622,16 +5773,12 @@ msgid "Missing postId or nonce."
 msgstr "חסר postId או nonce."
 
 #: build/frontendHighlighterApp.bundle.js:20
-msgid "Rescan complete. No violations found."
-msgstr "סריקה מחדש הושלמה. לא נמצאו הפרות."
-
-#: build/frontendHighlighterApp.bundle.js:20
-msgid "No violations found, skipping save."
-msgstr "לא נמצאו הפרות, מדלג על שמירה."
-
-#: build/frontendHighlighterApp.bundle.js:20
 msgid "Accessibility scan error."
 msgstr "שגיאת סריקת נגישות."
+
+#: build/frontendHighlighterApp.bundle.js:20
+msgid "Rescan complete. No violations found."
+msgstr "סריקה מחדש הושלמה. לא נמצאו הפרות."
 
 #: build/frontendHighlighterApp.bundle.js:20
 msgid "Error saving scan results."
@@ -5714,92 +5861,13 @@ msgstr "תמונה קשורה לבעיה"
 
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
-msgid "Issue dismissed successfully."
-msgstr "הבעיה בוטלה בהצלחה."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Issue reopened successfully."
-msgstr "הבעיה נפתחה מחדש בהצלחה."
-
-#: build/issueModal.bundle.js:2
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:2
-#: build/sharedComponents.bundle.js:4
-msgid "Dismiss Globally"
-msgstr "בטל גלובלית"
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
 msgid "Dismissing globally..."
 msgstr "מבטל/ת גלובלית..."
-
-#: build/issueModal.bundle.js:2
-#: build/sharedComponents.bundle.js:2
-msgid "Dismissing..."
-msgstr "מבטל..."
-
-#. translators: %s: dismiss reason label e.g. "False Positive"
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-#, js-format
-msgid "Issue Dismissed — %s"
-msgstr "הבעיה בוטלה — %s"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Issue Dismissed"
-msgstr "הבעיה בוטלה"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Scope:"
-msgstr "היקף:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "All pages"
-msgstr "כל הדפים"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "By:"
-msgstr "מאת:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "On:"
-msgstr "בתאריך:"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reason for dismissal:"
-msgstr "סיבת הביטול:"
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
 msgid "Removing..."
 msgstr "מסיר/ה..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Remove Global Dismissal"
-msgstr "הסר/י ביטול גלובלי"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Reopening..."
-msgstr "פותח מחדש..."
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Comment (optional)"
-msgstr "הערה (אופציונלי)"
-
-#: build/issueModal.bundle.js:4
-#: build/sharedComponents.bundle.js:4
-msgid "Add a note explaining why this issue is being dismissed."
-msgstr "הוסף הערה המסבירה מדוע בעיה זו נדחית."
 
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
@@ -5903,6 +5971,34 @@ msgstr "המשך לקרוא"
 #: build/pageScanner.bundle.js:2
 msgid "learn more"
 msgstr "למד עוד"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new window"
+msgstr "נפתח בחלון חדש"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens a new tab"
+msgstr "פותח כרטיסייה חדשה"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in a new tab"
+msgstr "נפתח בכרטיסייה חדשה"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new window"
+msgstr "פותח חלון חדש"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens new tab"
+msgstr "פותח כרטיסייה חדשה"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new window"
+msgstr "נפתח בחלון חדש"
+
+#: build/pageScanner.bundle.js:2
+msgid "opens in new tab"
+msgstr "נפתח בכרטיסייה חדשה"
 
 #: build/pageScanner.bundle.js:2
 msgid "Checks if a link's visible text is a URL rather than descriptive anchor text."
@@ -6160,6 +6256,14 @@ msgstr "סרוק"
 #: build/sidebar.bundle.js:10
 msgid "Refresh"
 msgstr "רענן"
+
+#: build/sidebar.bundle.js:10
+msgid "Unpin from toolbar"
+msgstr "ביטול הנעיצה מסרגל הכלים"
+
+#: build/sidebar.bundle.js:10
+msgid "Pin to toolbar"
+msgstr "נעיצה בסרגל הכלים"
 
 #: build/simplifiedSummaryBlock.bundle.js:2
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."

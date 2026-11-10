@@ -11,6 +11,7 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EqualizeDigital\AccessibilityChecker\MyDot\ConnectionStatus;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -395,7 +396,13 @@ class REST_Api {
 		if ( Connector::validate_jwt_token_in_request_with_fallback( $request ) ) {
 			// Only allow if the site is still registered (site_id present).
 			$site_id = (string) get_option( 'edac_site_id', '' );
-			return '' !== $site_id;
+			if ( '' === $site_id ) {
+				return false;
+			}
+
+			// Only My Dot holds a valid token, so this shows the site is reachable for reports.
+			ConnectionStatus::record_activity();
+			return true;
 		}
 
 		return current_user_can( 'edit_posts' );
@@ -477,6 +484,19 @@ class REST_Api {
 
 		if ( ! isset( $request['violations'] ) ) {
 			return new \WP_REST_Response( [ 'message' => 'A required parameter is missing.' ], 400 );
+		}
+
+		// A failed or timed-out scan has no real result. Its empty violation list would be
+		// read as "the page is now clean" and purge every stored issue, dismissed ones
+		// included, so refuse it before anything is deleted.
+		if ( rest_sanitize_boolean( $request['isFailure'] ?? false ) ) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => 'The scan did not complete, so the saved results were left unchanged.',
+				],
+				422
+			);
 		}
 
 		$post_id = (int) $request['id'];
@@ -857,7 +877,7 @@ class REST_Api {
 	/**
 	 * REST handler that gets all sidebar data for a post (summary, details, readability).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param \WP_REST_Request $request The request passed from the REST call.
 	 *
@@ -897,7 +917,7 @@ class REST_Api {
 	 *
 	 * Returns cached summary data from post meta. If no cache exists, returns defaults.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -925,7 +945,7 @@ class REST_Api {
 	/**
 	 * Get details data for a post (errors, warnings, passed rules).
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -981,7 +1001,7 @@ class REST_Api {
 	/**
 	 * Process rules and fetch issue details from the database.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param array  $rules         The rules to process.
 	 * @param int    $post_id       The post ID.
@@ -1063,7 +1083,7 @@ class REST_Api {
 	/**
 	 * Get readability data for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param int $post_id The post ID.
 	 *
@@ -1128,7 +1148,7 @@ class REST_Api {
 	/**
 	 * Save simplified summary for a post.
 	 *
-	 * @since 1.xx.x
+	 * @since 1.38.0
 	 *
 	 * @param \WP_REST_Request $request The REST request object.
 	 * @return \WP_REST_Response|\WP_Error
@@ -1281,6 +1301,10 @@ class REST_Api {
 		// dismiss as global (or vice versa) independent of the real action taken.
 		$ignre_global = ( $is_ignoring && $large_batch && $can_dismiss_globally ) ? 1 : 0;
 
+		// Rule and object of the changed issue, passed on to edac_after_ignore_change.
+		$hook_rule   = '';
+		$hook_object = '';
+
 		// If largeBatch is set, gather every row sharing this issue's rule + object,
 		// verify edit permission for all of them, then update the vetted ids in one query.
 		if ( $large_batch ) {
@@ -1289,6 +1313,8 @@ class REST_Api {
 			$representative_row = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE id = %d', $table_name, $issue_id ), ARRAY_A );
 			$rule               = $representative_row['rule'] ?? '';
 			$object             = $representative_row['object'] ?? '';
+			$hook_rule          = (string) $rule;
+			$hook_object        = (string) $object;
 
 			if ( ! $representative_row || ! $object ) {
 				return new \WP_Error(
@@ -1377,6 +1403,13 @@ class REST_Api {
 			);
 		}
 
+		if ( ! $large_batch ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Need fresh data.
+			$issue_row   = $wpdb->get_row( $wpdb->prepare( 'SELECT rule, object FROM %i WHERE siteid = %d AND id = %d', $table_name, $site_id, $issue_id ), ARRAY_A );
+			$hook_rule   = (string) ( $issue_row['rule'] ?? '' );
+			$hook_object = (string) ( $issue_row['object'] ?? '' );
+		}
+
 		/**
 		 * Fires after an ignore state change succeeds.
 		 *
@@ -1390,6 +1423,9 @@ class REST_Api {
 		 *     @type string $ignre_comment Dismissal comment, or null when reopening.
 		 *     @type bool   $large_batch  True when all instances of the same snippet were updated.
 		 *     @type int    $site_id      Current blog ID.
+		 *     @type string $rule         Rule slug of the changed issue; empty when the issue was not found.
+		 *     @type string $object       Code snippet of the changed issue as stored in the database
+		 *                                (HTML-escaped); empty when the issue was not found.
 		 * }
 		 */
 		do_action(
@@ -1404,6 +1440,8 @@ class REST_Api {
 				'ignre_comment' => $ignre_comment,
 				'large_batch'   => $large_batch,
 				'site_id'       => $site_id,
+				'rule'          => $hook_rule,
+				'object'        => $hook_object,
 			]
 		);
 

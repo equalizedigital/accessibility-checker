@@ -8,7 +8,7 @@ import {
 
 import { initFixesInputStateHandler } from './fixes-page/conditional-disable-settings';
 import { initRequiredSetup } from './fixes-page/conditional-required-settings';
-import { announceSettingsSaveStatus } from './settings/announce-settings-save-status';
+import { announceLicenseNotice, announceSettingsSaveStatus } from './settings/announce-settings-save-status';
 import { inlineSettingsProUpsell } from '../common/settings-pro-callout';
 import {
 	captureDismissIssueFocusContext,
@@ -25,6 +25,7 @@ const edacScriptVars = edac_script_vars;
 
 	jQuery( function() {
 		announceSettingsSaveStatus( window.wp?.a11y );
+		announceLicenseNotice( window.wp?.a11y );
 
 		if ( document.getElementById( 'edac-fixes-page' ) ) {
 			initFixesInputStateHandler();

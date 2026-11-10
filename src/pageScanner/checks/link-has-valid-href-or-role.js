@@ -18,8 +18,14 @@ export default {
 		// Parse roles once for efficiency (DRY principle)
 		const roles = role.toLowerCase().split( /\s+/ );
 
-		// Allow roles of button or tab
-		if ( roles.some( ( r ) => [ 'button', 'tab' ].includes( r ) ) ) {
+		// The first of these tokens wins, so a later widget role can't override an
+		// earlier presentational role that is ignored on a focusable anchor.
+		const widgetRoles = [ 'button', 'tab', 'slider' ];
+		const presentationalRoles = [ 'none', 'presentation' ];
+		const effectiveRole = roles.find( ( r ) => [ ...widgetRoles, ...presentationalRoles ].includes( r ) );
+
+		// Allow roles of button, tab or slider
+		if ( widgetRoles.includes( effectiveRole ) ) {
 			return true;
 		}
 
@@ -28,6 +34,25 @@ export default {
 		const hasAriaExpanded = node.hasAttribute( 'aria-expanded' );
 		if ( roles.includes( 'menuitem' ) && hasAriaExpanded ) {
 			return true;
+		}
+
+		// Allow role="none"/"presentation", which removes the element from the accessibility
+		// tree so it is never exposed as a link. Unlike the named-anchor exemption below,
+		// content is permitted here: the role applies regardless of what the anchor wraps.
+		// Per the presentational roles conflict resolution the role is ignored on an element
+		// that is focusable or carries global ARIA states or properties, so neither may apply.
+		const isFocusable = node.hasAttribute( 'href' ) || node.hasAttribute( 'tabindex' );
+		if ( ! isFocusable && presentationalRoles.includes( effectiveRole ) ) {
+			// Approximated as any aria-* attribute, which errs toward reporting. aria-hidden="true" is
+			// excluded because it removes the element from the tree outright, making the role moot.
+			const hasGlobalAria = Array.from( node.attributes ).some(
+				( attr ) => attr.name.startsWith( 'aria-' ) &&
+					! ( attr.name === 'aria-hidden' && attr.value.trim().toLowerCase() === 'true' )
+			);
+
+			if ( ! hasGlobalAria ) {
+				return true;
+			}
 		}
 
 		// Allow named anchors used as jump targets: no href, has id/name, no visible content,
