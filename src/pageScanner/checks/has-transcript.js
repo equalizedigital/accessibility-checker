@@ -196,11 +196,11 @@ function getSurroundingText( node, radius = 250 ) {
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
+				// Only visibility:hidden is ignored, because assistive technology cannot reach it.
+				// Text in a display:none or opacity:0 ancestor still counts. A transcript in a
+				// collapsed tab or accordion, or one that fades in, is available to users.
 				const style = window.getComputedStyle( textNode.parentElement );
-				if ( ! style || style.display === 'none' || style.visibility === 'hidden' ) {
-					return NodeFilter.FILTER_REJECT;
-				}
-				return NodeFilter.FILTER_ACCEPT;
+				return style && style.visibility !== 'hidden' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );

@@ -58,25 +58,30 @@ export const isElementVisible = ( element ) => {
  * Font-size checks are irrelevant for such elements.
  *
  * @param {HTMLElement} element The element to check.
+ * @param {Map}         [cache] Optional Map shared between calls on an unchanged DOM, so ancestors are only read once.
  * @return {boolean} True if the element is screen-reader-only.
  */
-export const isScreenReaderOnly = ( element ) => {
-	let el = element;
-	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
-		const style = window.getComputedStyle( el );
-		const isPositional = style.position === 'absolute' || style.position === 'fixed';
-		if ( ( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) || style.clipPath === 'inset(50%)' ) {
-			return true;
-		}
-		// Catch sr-only patterns that rely on 1px dimensions rather than clip values
-		// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
-		if ( isPositional && style.overflow === 'hidden' &&
-				parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) {
-			return true;
-		}
-		el = el.parentElement;
+export const isScreenReaderOnly = ( element, cache = new Map() ) => {
+	if ( ! element || element.nodeType !== Node.ELEMENT_NODE ) {
+		return false;
 	}
-	return false;
+
+	if ( ! cache.has( element ) ) {
+		const style = window.getComputedStyle( element );
+		const isPositional = style.position === 'absolute' || style.position === 'fixed';
+		cache.set(
+			element,
+			( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) ||
+				style.clipPath === 'inset(50%)' ||
+				// Catch sr-only patterns that rely on 1px dimensions rather than clip values
+				// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
+				( isPositional && style.overflow === 'hidden' &&
+					parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) ||
+				isScreenReaderOnly( element.parentElement, cache )
+		);
+	}
+
+	return cache.get( element );
 };
 
 /**
