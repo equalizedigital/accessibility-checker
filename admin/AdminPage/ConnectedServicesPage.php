@@ -44,26 +44,13 @@ class ConnectedServicesPage implements PageInterface {
 	}
 
 	/**
-	 * Register hooks to add the connected services page to the settings tabs
-	 * and handle license-related notices.
+	 * Register hooks for license-related notices.
 	 *
 	 * @since 1.40.0
 	 *
 	 * @return void
 	 */
 	public function add_page() {
-		// Add Connected Services tab to settings page.
-		add_filter(
-			'edac_filter_settings_tab_items',
-			[ $this, 'add_connected_services_tab' ]
-		);
-
-		// Render Connected Services tab content when active.
-		add_action(
-			'edac_settings_tab_content',
-			[ $this, 'maybe_render_tab_content' ]
-		);
-
 		// Inject degraded-state messaging above the Pro license form when Pro renders the license tab.
 		add_action(
 			'edacp_license_page_before_form',
@@ -79,35 +66,6 @@ class ConnectedServicesPage implements PageInterface {
 	}
 
 	/**
-	 * Add Connected Services tab to settings tabs array.
-	 *
-	 * @since 1.40.0
-	 *
-	 * @param array $tabs Array of registered settings tabs.
-	 *
-	 * @return array Modified tabs array with Connected Services tab added.
-	 */
-	public function add_connected_services_tab( $tabs ) {
-		// Free plugin no longer owns the Pro License tab.
-		return $tabs;
-	}
-
-	/**
-	 * Conditionally render the tab content if the current tab is 'connected-services'.
-	 *
-	 * @since 1.40.0
-	 *
-	 * @param string $settings_tab The current active settings tab.
-	 *
-	 * @return void
-	 */
-	public function maybe_render_tab_content( $settings_tab ) {
-		if ( 'connected-services' === $settings_tab ) {
-			$this->render_page();
-		}
-	}
-
-	/**
 	 * Register the admin notices function to display license-related messages.
 	 *
 	 * @since 1.40.0
@@ -116,160 +74,6 @@ class ConnectedServicesPage implements PageInterface {
 	 */
 	public function register_admin_notices() {
 		add_action( 'admin_notices', [ $this, 'admin_notices' ] );
-	}
-
-	/**
-	 * Render the connected services settings page content.
-	 *
-	 * @since 1.40.0
-	 *
-	 * @return void
-	 */
-	public function render_page() {
-		$license_context     = $this->get_license_context();
-		$is_pro              = $license_context['is_pro'];
-		$status              = $license_context['status'];
-		$license             = get_option( 'edacp_license_key' );
-		$is_connected        = $license_context['is_connected'];
-		$is_registered       = $license_context['is_registered'];
-		$degraded_context    = $this->get_degraded_notice_context( $license_context );
-		$degraded_notice     = $this->get_degraded_notice_message( $license_context );
-		$dashboard_link      = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'account', false ) ) . '" target="_blank" rel="noopener noreferrer">my.equalizedigital.com</a>';
-		$create_account_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/sign-up/', 'connected-services', 'signup', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'create a free account', 'accessibility-checker' ) . '</a>';
-		?>
-		<?php if ( ! empty( $degraded_notice ) ) : ?>
-			<div class="notice notice-warning inline"><p><?php echo esc_html( $degraded_notice ); ?></p></div>
-		<?php endif; ?>
-
-		<?php if ( ! $is_pro && $degraded_context['show'] && 'connected' === $degraded_context['mode'] ) : ?>
-			<?php $this->render_degraded_connected_state( $dashboard_link ); ?>
-		<?php elseif ( ! $is_pro ) : ?>
-			<h2><?php esc_html_e( 'Connect this site', 'accessibility-checker' ); ?></h2>
-			<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-				<?php settings_fields( 'edac_license' ); ?>
-				<table class="form-table">
-					<tbody>
-					<tr valign="top">
-						<th scope="row" valign="top">
-							<?php esc_html_e( 'Free License Key', 'accessibility-checker' ); ?>
-						</th>
-						<td>
-						<input
-							id="edacp_license_key"
-							name="edacp_license_key"
-							type="text"
-							class="regular-text"
-							value="<?php echo esc_attr( $license ); ?>"
-						/>
-						<label class="description" for="edacp_license_key">
-							<?php if ( $is_connected ) : ?>
-								<span style="color:green;"> <?php esc_html_e( 'active', 'accessibility-checker' ); ?></span>
-							<?php elseif ( false !== $status && 'expired' === $status ) : ?>
-								<span style="color:red;"> <?php esc_html_e( 'expired', 'accessibility-checker' ); ?></span>
-							<?php else : ?>
-								<?php esc_html_e( 'Enter your license key', 'accessibility-checker' ); ?>
-							<?php endif; ?>
-						</label>
-					</td>
-				</tr>
-				<tr valign="top">
-					<th scope="row" valign="top"></th>
-					<td>
-					<input type="hidden" name="action" value="edac_license" />
-					<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-					<?php if ( $is_connected ) : ?>
-						<input
-							type="submit"
-							class="button-primary"
-							name="edac_license_deactivate"
-							value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
-						>
-					<?php elseif ( ! $is_connected && 'expired' === $status && $is_registered ) : ?>
-						<input
-							type="submit"
-							class="button-primary"
-							name="edac_license_deactivate"
-							value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
-						>
-					<?php else : ?>
-						<input
-							type="submit"
-							class="button-primary"
-							name="edac_license_activate"
-							value="<?php esc_attr_e( 'Connect Site', 'accessibility-checker' ); ?>"
-						/>
-					<?php endif; ?>
-					</td>
-					</tr>
-					</tbody>
-				</table>
-			</form>
-			<?php if ( ! $is_connected && ! $is_registered ) : ?>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: link to my.equalizedigital.com dashboard */
-					esc_html__( 'If you downloaded the free plugin from Equalize Digital, you already have a free license key in your %s dashboard.', 'accessibility-checker' ),
-					wp_kses_post( $dashboard_link )
-				);
-				?>
-			</p>
-			<p>
-				<?php
-				printf(
-					/* translators: %s: link to create a free account */
-					esc_html__( 'If not, %s to generate a license key and connect this site.', 'accessibility-checker' ),
-					wp_kses_post( $create_account_link )
-				);
-				?>
-			</p>
-		<?php elseif ( ! $is_connected && 'expired' === $status && $is_registered ) : ?>
-			<p>
-				<?php
-				$renew_link = '<a href="' . esc_url( \edac_link_wrapper( 'https://my.equalizedigital.com/', 'connected-services', 'renew', false ) ) . '" target="_blank" rel="noopener noreferrer">' . esc_html__( 'Renew your license', 'accessibility-checker' ) . '</a>';
-				printf(
-					/* translators: %s: renew license link */
-					wp_kses_post( __( 'Your license has expired and this site is still connected. %s to restore full access, or disconnect the site above.', 'accessibility-checker' ) ),
-					wp_kses_post( $renew_link )
-				);
-				?>
-			</p>
-		<?php endif; ?>
-
-		<?php endif; ?>
-		<?php
-	}
-
-	/**
-	 * Render a clearer connected-as-free state when Pro has degraded but reports remain connected.
-	 *
-	 * @param string $dashboard_link HTML link to the customer dashboard.
-	 * @return void
-	 */
-	private function render_degraded_connected_state( string $dashboard_link ): void {
-		?>
-		<h2><?php esc_html_e( 'Connected as Free', 'accessibility-checker' ); ?></h2>
-		<p><?php esc_html_e( 'Your Pro license is no longer valid, but this site remains connected for Free email reports.', 'accessibility-checker' ); ?></p>
-		<p>
-			<?php
-			printf(
-				/* translators: %s: link to my.equalizedigital.com dashboard */
-				esc_html__( 'You can manage recipients and review connection details in your %s dashboard.', 'accessibility-checker' ),
-				wp_kses_post( $dashboard_link )
-			);
-			?>
-		</p>
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
-			<input type="hidden" name="action" value="edac_license" />
-			<?php wp_nonce_field( 'edac_license_nonce', 'edac_license_nonce' ); ?>
-			<input
-				type="submit"
-				class="button-primary"
-				name="edac_license_deactivate"
-				value="<?php esc_attr_e( 'Disconnect Site', 'accessibility-checker' ); ?>"
-			>
-		</form>
-		<?php
 	}
 
 	/**

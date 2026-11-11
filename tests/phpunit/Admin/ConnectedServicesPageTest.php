@@ -300,17 +300,6 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures free connected services renderer ignores the Pro license tab.
-	 */
-	public function test_maybe_render_tab_content_does_not_render_on_license_tab() {
-		ob_start();
-		$this->page->maybe_render_tab_content( 'license' );
-		$output = ob_get_clean();
-
-		$this->assertSame( '', $output );
-	}
-
-	/**
 	 * Ensures degraded-state notice can be injected into the Pro license page hook.
 	 *
 	 * @runInSeparateProcess
@@ -335,99 +324,19 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures connected services shows a connected-as-free state instead of the free license key form during degraded fallback.
-	 *
-	 * @runInSeparateProcess
-	 * @preserveGlobalState disabled
-	 */
-	public function test_render_page_shows_connected_as_free_in_degraded_connected_state() {
-		if ( ! defined( 'EDACP_VERSION' ) ) {
-			define( 'EDACP_VERSION', 'test-pro-version' );
-		}
-
-		update_option( 'edacp_license_status', 'expired' );
-		delete_option( 'edac_license_status' );
-		update_option( 'edac_site_id', 'site-123' );
-		update_option( 'edac_fallback_active', true );
-
-		ob_start();
-		$this->page->render_page();
-		$output = ob_get_clean();
-
-		$this->assertStringContainsString( 'this site remains connected for Free email reports', $output );
-		$this->assertStringContainsString( 'Connected as Free', $output );
-		$this->assertStringNotContainsString( 'Free License Key', $output );
-	}
-
-	/**
-	 * The add_page() method wires the connected services tab and the three
-	 * callbacks that render its content: the tab filter, the tab-content action,
-	 * the Pro license-page notice and the notice display (at priority 1001, so it
-	 * runs after the default admin notices).
+	 * The add_page() method wires only the notice callbacks (the Pro license-page
+	 * notice and the notice display at priority 1001, so it runs after the default
+	 * admin notices). It no longer registers a settings tab or tab content.
 	 *
 	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::add_page
 	 */
-	public function test_add_page_wires_the_tab_and_the_license_notices() {
+	public function test_add_page_wires_only_the_license_notices() {
 		$this->page->add_page();
 
-		$this->assertNotFalse( has_filter( 'edac_filter_settings_tab_items', [ $this->page, 'add_connected_services_tab' ] ) );
-		$this->assertSame( 10, has_action( 'edac_settings_tab_content', [ $this->page, 'maybe_render_tab_content' ] ) );
+		$this->assertFalse( has_filter( 'edac_filter_settings_tab_items', [ $this->page, 'add_connected_services_tab' ] ) );
+		$this->assertFalse( has_action( 'edac_settings_tab_content', [ $this->page, 'maybe_render_tab_content' ] ) );
 		$this->assertSame( 10, has_action( 'edacp_license_page_before_form', [ $this->page, 'render_pro_license_degraded_notice' ] ) );
 		$this->assertSame( 1001, has_action( 'in_admin_header', [ $this->page, 'register_admin_notices' ] ) );
-	}
-
-	/**
-	 * The tab callback leaves the tabs it is handed untouched: the free plugin no
-	 * longer owns a license tab, so it returns the array unchanged rather than
-	 * adding, removing or reordering anything.
-	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::add_connected_services_tab
-	 */
-	public function test_add_connected_services_tab_leaves_the_tabs_unchanged() {
-		$tabs = [
-			[
-				'slug'  => 'general',
-				'label' => 'General',
-				'order' => 1,
-			],
-		];
-
-		$this->assertSame( $tabs, $this->page->add_connected_services_tab( $tabs ) );
-	}
-
-	/**
-	 * The tab content callback renders the connected services page on that tab
-	 * only, so the page markup is not echoed into every other settings tab. The
-	 * page render is intercepted so the assertion is about the branch, not the
-	 * markup.
-	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::maybe_render_tab_content
-	 */
-	public function test_maybe_render_tab_content_renders_on_the_connected_services_tab_only() {
-		$probe = new class( 'manage_options' ) extends ConnectedServicesPage {
-			/**
-			 * How many times the tab callback reached the page render.
-			 *
-			 * @var int
-			 */
-			public $render_calls = 0;
-
-			/**
-			 * Record the call instead of rendering the page.
-			 *
-			 * @return void
-			 */
-			public function render_page() {
-				++$this->render_calls;
-			}
-		};
-
-		$probe->maybe_render_tab_content( 'general' );
-		$probe->maybe_render_tab_content( null );
-		$this->assertSame( 0, $probe->render_calls );
-
-		$probe->maybe_render_tab_content( 'connected-services' );
-		$this->assertSame( 1, $probe->render_calls );
 	}
 
 	/**
@@ -515,60 +424,6 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * A disconnected site with nothing stored gets the connect form: the free
-	 * licence key field, a Connect button and the two sign-up paragraphs.
-	 * There is no connection to disconnect, so no Disconnect button renders.
-	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
-	 */
-	public function test_render_page_shows_the_connect_form_when_unregistered() {
-		$html = $this->render_page();
-
-		$this->assertStringContainsString( 'Connect this site', $html );
-		$this->assertStringContainsString( 'Enter your license key', $html );
-		$this->assertStringContainsString( 'value="Connect Site"', $html );
-		$this->assertStringContainsString( 'create a free account', $html );
-		$this->assertStringNotContainsString( 'value="Disconnect Site"', $html );
-	}
-
-	/**
-	 * A stored-but-expired licence on a still-registered site is labelled
-	 * expired, keeps the disconnect action and points at the renewal page.
-	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
-	 */
-	public function test_render_page_labels_an_expired_registered_licence() {
-		update_option( 'edac_license_status', 'expired' );
-		update_option( 'edac_site_id', 'site-123' );
-
-		$html = $this->render_page();
-
-		$this->assertStringContainsString( 'color:red', $html );
-		$this->assertStringContainsString( 'value="Disconnect Site"', $html );
-		$this->assertStringContainsString( 'Renew your license', $html );
-		$this->assertStringNotContainsString( 'color:green', $html );
-	}
-
-	/**
-	 * A connected free licence reports itself active, shows the stored key in
-	 * the field and offers only the disconnect action.
-	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::render_page
-	 */
-	public function test_render_page_reports_a_connected_licence_as_active() {
-		update_option( 'edac_license_status', 'valid' );
-		update_option( 'edac_site_id', 'site-123' );
-		update_option( 'edacp_license_key', 'free-license-key' );
-
-		$html = $this->render_page();
-
-		$this->assertStringContainsString( 'color:green', $html );
-		$this->assertStringContainsString( 'value="Disconnect Site"', $html );
-		$this->assertStringContainsString( 'value="free-license-key"', $html );
-		$this->assertStringNotContainsString( 'value="Connect Site"', $html );
-	}
-
-	/**
 	 * A stored licence error is printed as an admin notice so the failure is
 	 * visible wherever the admin is, linking back to the tab that can fix it.
 	 *
@@ -592,18 +447,6 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 */
 	public function test_admin_notices_is_silent_without_a_stored_error() {
 		$this->assertSame( '', $this->render_admin_notices() );
-	}
-
-	/**
-	 * Render the connected services page and capture its markup.
-	 *
-	 * @return string
-	 */
-	private function render_page(): string {
-		ob_start();
-		$this->page->render_page();
-
-		return (string) ob_get_clean();
 	}
 
 	/**
