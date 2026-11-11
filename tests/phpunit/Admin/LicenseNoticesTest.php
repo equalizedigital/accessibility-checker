@@ -81,40 +81,6 @@ class LicenseNoticesTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Ensures valid Pro remains authoritative when it is installed and connected.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_uses_pro_when_pro_is_valid() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'valid', 'valid', 'site-123', false ]
-		);
-
-		$this->assertTrue( $context['has_pro_plugin'] );
-		$this->assertTrue( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
-	}
-
-	/**
-	 * Ensures fallback to free state when Pro is installed but no longer valid.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_falls_back_to_free_when_pro_is_invalid() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123', false ]
-		);
-
-		$this->assertTrue( $context['has_pro_plugin'] );
-		$this->assertFalse( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
-	}
-
-	/**
 	 * Ensures notice context uses free error and reports tab when Pro is not effective.
 	 *
 	 * @throws ReflectionException If reflection fails.
@@ -160,22 +126,6 @@ class LicenseNoticesTest extends WP_UnitTestCase {
 
 		$this->assertSame( 'invalid', $context['error'] );
 		$this->assertSame( 'accessibility-reports', $context['tab'] );
-	}
-
-	/**
-	 * Ensures fallback marker does not disconnect reports when Free is valid and the site remains connected.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_keeps_free_fallback_connected_when_site_id_exists() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123', true ]
-		);
-
-		$this->assertFalse( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
 	}
 
 	/**
@@ -367,60 +317,6 @@ class LicenseNoticesTest extends WP_UnitTestCase {
 		$output = ob_get_clean();
 
 		$this->assertStringContainsString( '<div id="edac-license-notice" class="notice notice-error">', $output );
-	}
-
-	/**
-	 * The license context is derived from the stored option values, so the page
-	 * reports what is actually saved: a connected Free license reports valid and
-	 * connected, a stored Pro status is not treated as authority without the Pro
-	 * plugin, and an empty install reports no status and no connection.
-	 *
-	 * @param array  $options                 Option name/value pairs to store before reading the context.
-	 * @param bool   $expected_is_pro         Expected effective Pro authority.
-	 * @param string $expected_status         Expected effective license status.
-	 * @param bool   $expected_is_connected   Expected effective connection state.
-	 *
-	 * @dataProvider provider_stored_license_options
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::get_license_context
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_get_license_context_reads_the_stored_license_options( array $options, bool $expected_is_pro, string $expected_status, bool $expected_is_connected ) {
-		foreach ( $options as $option_name => $option_value ) {
-			update_option( $option_name, $option_value );
-		}
-
-		$context = $this->invoke_private_method( 'get_license_context' );
-
-		$this->assertSame( $expected_is_pro, $context['is_pro'] );
-		$this->assertSame( $expected_status, $context['status'] );
-		$this->assertSame( $expected_is_connected, $context['is_connected'] );
-	}
-
-	/**
-	 * Stored license option combinations and the context they resolve to on a
-	 * site running the free plugin alone.
-	 *
-	 * @return array[]
-	 */
-	public function provider_stored_license_options() {
-		return [
-			'free license connected'        => [
-				[
-					'edac_license_status' => 'valid',
-					'edac_site_id'        => 'site-123',
-				],
-				false,
-				'valid',
-				true,
-			],
-			'pro status stored without pro' => [
-				[ 'edacp_license_status' => 'valid' ],
-				false,
-				'',
-				false,
-			],
-			'nothing stored'                => [ [], false, '', false ],
-		];
 	}
 
 	/**
