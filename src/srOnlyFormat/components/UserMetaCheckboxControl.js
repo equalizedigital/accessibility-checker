@@ -8,7 +8,10 @@ import { __ } from '@wordpress/i18n';
 import apiFetch from '@wordpress/api-fetch';
 import { applySrOnlyVisibility, ensureSrOnlyVisibilityObserver, fetchUserMetaValue } from '../utils/visibility';
 
-const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
+// Shared so the default handler keeps the same identity across renders.
+const noop = () => {};
+
+const UserMetaCheckboxControl = ( { label = '', metaKey = '', onChange = noop } ) => {
 	const [ checked, setChecked ] = useState( false );
 	const [ isLoading, setIsLoading ] = useState( true );
 	const [ isSaving, setIsSaving ] = useState( false );
@@ -96,12 +99,6 @@ const UserMetaCheckboxControl = ( { label, metaKey, onChange } ) => {
 		disabled: isLoading || isSaving,
 		help,
 	} );
-};
-
-UserMetaCheckboxControl.defaultProps = {
-	label: '',
-	metaKey: '',
-	onChange: () => {},
 };
 
 export default UserMetaCheckboxControl;
