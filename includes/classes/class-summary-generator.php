@@ -72,7 +72,7 @@ class Summary_Generator {
 		}
 
 		$summary['passed_tests']       = $this->calculate_passed_tests( $rules );
-		$summary['errors']             = $this->count_errors();
+		$summary['errors']             = $this->count_errors( $rules );
 		$summary['warnings']           = $this->count_warnings();
 		$summary['ignored']            = $this->count_ignored();
 		$summary['contrast_errors']    = $this->count_contrast_errors( $rules );
@@ -130,25 +130,41 @@ class Summary_Generator {
 	/**
 	 * Counts the number of errors found for the current post.
 	 * This method queries the database to count the number of accessibility issues classified as 'error'.
+	 * Only rows for the currently active rules are counted, so stale rows left behind by a rule that
+	 * has since been filtered out (via `edac_filter_register_rules`) do not inflate the total.
 	 *
+	 * @param array $rules The currently active rules, as returned by edac_register_rules().
 	 * @return int The count of errors.
 	 *
 	 * @since 1.9.0
 	 */
-	private function count_errors() {
+	private function count_errors( $rules ) {
 		global $wpdb;
 
-		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for interacting with custom database, safe variable used for table name, caching not required for one time operation.
+		$slugs = array_values( array_filter( wp_list_pluck( $rules, 'slug' ) ) );
+		if ( empty( $slugs ) ) {
+			return 0;
+		}
+
+		$slug_placeholders = implode( ', ', array_fill( 0, count( $slugs ), '%s' ) );
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.PreparedSQLPlaceholders.ReplacementsWrongNumber -- Using direct query for interacting with custom database, placeholders are generated from the number of slugs, caching not required for one time operation.
 		$errors_count = $wpdb->get_var(
 			$wpdb->prepare(
-				'SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d',
-				$wpdb->prefix . 'accessibility_checker',
-				$this->site_id,
-				$this->post_id,
-				'error',
-				0
+				"SELECT count(*) FROM %i where siteid = %d and postid = %d and ruletype = %s and ignre = %d and rule IN ( {$slug_placeholders} )",
+				array_merge(
+					[
+						$wpdb->prefix . 'accessibility_checker',
+						$this->site_id,
+						$this->post_id,
+						'error',
+						0,
+					],
+					$slugs
+				)
 			)
 		);
+		// phpcs:enable
 
 		return (int) $errors_count;
 	}
@@ -225,7 +241,7 @@ class Summary_Generator {
 	 *
 	 * @since 1.9.0
 	 */
-	private function count_contrast_errors( $rules = [] ) {
+	private function count_contrast_errors( $rules ) {
 		if ( ! in_array( 'color_contrast_failure', wp_list_pluck( $rules, 'slug' ), true ) ) {
 			return 0;
 		}
