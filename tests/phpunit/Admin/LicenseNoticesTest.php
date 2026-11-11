@@ -1,21 +1,21 @@
 <?php
 /**
- * Tests for Connected Services page license context behavior.
+ * Tests for license notices and license context behavior.
  *
  * @package Accessibility_Checker
  */
 
-use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices;
 
 /**
- * Test cases for connected services fallback-aware license handling.
+ * Test cases for fallback-aware license notice handling.
  */
-class ConnectedServicesPageTest extends WP_UnitTestCase {
+class LicenseNoticesTest extends WP_UnitTestCase {
 
 	/**
-	 * Connected services page instance.
+	 * License notices instance.
 	 *
-	 * @var ConnectedServicesPage
+	 * @var LicenseNotices
 	 */
 	private $page;
 
@@ -24,7 +24,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 */
 	public function setUp(): void {
 		parent::setUp();
-		$this->page = new ConnectedServicesPage( 'manage_options' );
+		$this->page = new LicenseNotices();
 
 		delete_option( 'edac_license_status' );
 		delete_option( 'edacp_license_status' );
@@ -49,7 +49,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Invoke a private static method on the connected services page.
+	 * Invoke a private static method on the license notices class.
 	 *
 	 * @param string $method_name Method name.
 	 * @param array  $arguments   Arguments.
@@ -57,7 +57,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * @throws ReflectionException If reflection fails.
 	 */
 	private function invoke_private_static_method( string $method_name, array $arguments = [] ) {
-		$reflection = new ReflectionClass( ConnectedServicesPage::class );
+		$reflection = new ReflectionClass( LicenseNotices::class );
 		$method     = $reflection->getMethod( $method_name );
 		$method->setAccessible( true );
 
@@ -65,7 +65,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Invoke a private method on the connected services page.
+	 * Invoke a private method on the license notices class.
 	 *
 	 * @param string $method_name Method name.
 	 * @param array  $arguments   Arguments.
@@ -73,7 +73,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * @throws ReflectionException If reflection fails.
 	 */
 	private function invoke_private_method( string $method_name, array $arguments = [] ) {
-		$reflection = new ReflectionClass( ConnectedServicesPage::class );
+		$reflection = new ReflectionClass( LicenseNotices::class );
 		$method     = $reflection->getMethod( $method_name );
 		$method->setAccessible( true );
 
@@ -324,14 +324,14 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * The add_page() method wires only the notice callbacks (the Pro license-page
+	 * The init_hooks() method wires only the notice callbacks (the Pro license-page
 	 * notice and the notice display at priority 1001, so it runs after the default
 	 * admin notices). It no longer registers a settings tab or tab content.
 	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::add_page
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::init_hooks
 	 */
-	public function test_add_page_wires_only_the_license_notices() {
-		$this->page->add_page();
+	public function test_init_hooks_wires_only_the_license_notices() {
+		$this->page->init_hooks();
 
 		$this->assertFalse( has_filter( 'edac_filter_settings_tab_items', [ $this->page, 'add_connected_services_tab' ] ) );
 		$this->assertFalse( has_action( 'edac_settings_tab_content', [ $this->page, 'maybe_render_tab_content' ] ) );
@@ -341,9 +341,9 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 
 	/**
 	 * The register_admin_notices() method hooks the page's own notice display onto
-	 * admin_notices, which add_page() only runs once the admin header renders.
+	 * admin_notices, which init_hooks() only runs once the admin header renders.
 	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::register_admin_notices
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::register_admin_notices
 	 */
 	public function test_register_admin_notices_registers_the_notice_display() {
 		$this->assertFalse( has_action( 'admin_notices', [ $this->page, 'admin_notices' ] ) );
@@ -357,7 +357,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * The license error notice carries a stable id so the admin script can
 	 * announce it to screen readers after the license form is submitted.
 	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::admin_notices
 	 */
 	public function test_admin_notices_renders_license_error_with_id() {
 		update_option( 'edac_license_error', 'invalid' );
@@ -381,7 +381,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * @param bool   $expected_is_connected   Expected effective connection state.
 	 *
 	 * @dataProvider provider_stored_license_options
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::get_license_context
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::get_license_context
 	 * @throws ReflectionException If reflection fails.
 	 */
 	public function test_get_license_context_reads_the_stored_license_options( array $options, bool $expected_is_pro, string $expected_status, bool $expected_is_connected ) {
@@ -427,7 +427,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * A stored licence error is printed as an admin notice so the failure is
 	 * visible wherever the admin is, linking back to the tab that can fix it.
 	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::admin_notices
 	 */
 	public function test_admin_notices_prints_a_stored_licence_error() {
 		update_option( 'edac_license_error', 'missing' );
@@ -443,7 +443,7 @@ class ConnectedServicesPageTest extends WP_UnitTestCase {
 	 * With no stored error for the current licence authority there is no notice
 	 * at all, so the admin header is not polluted with an empty alert.
 	 *
-	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage::admin_notices
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices::admin_notices
 	 */
 	public function test_admin_notices_is_silent_without_a_stored_error() {
 		$this->assertSame( '', $this->render_admin_notices() );

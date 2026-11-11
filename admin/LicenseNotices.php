@@ -1,47 +1,28 @@
 <?php
 /**
- * Connected Services Page and Notices for Accessibility Checker
+ * License notices for Accessibility Checker
  *
- * Handles the rendering and functionality of the license/connected services settings page
- * in the WordPress admin, including form submission, error notices, and
- * license status management.
+ * Shows license error notices in the WordPress admin and the Pro-to-Free
+ * degraded-state notice on the Pro license page.
  *
  * @package Accessibility_Checker
  * @since 1.40.0
  */
 
-namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
+namespace EqualizeDigital\AccessibilityChecker\Admin;
 
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 
 /**
- * Class ConnectedServicesPage
+ * Class LicenseNotices
  *
- * Handles the license-related admin notices. It no longer renders a settings page or implements PageInterface.
+ * Displays license-related admin notices. The license form itself lives on the
+ * Accessibility Reports settings tab (free) and the License tab (Pro).
  *
- * @since 1.40.0
+ * @since 1.40.0 Introduced as ConnectedServicesPage.
+ * @since x.x.x Renamed to LicenseNotices and no longer renders a settings page.
  */
-class ConnectedServicesPage {
-
-	/**
-	 * The capability required to access the settings page.
-	 *
-	 * @since 1.40.0
-	 *
-	 * @var string
-	 */
-	private string $settings_capability;
-
-	/**
-	 * Constructor
-	 *
-	 * @since 1.40.0
-	 *
-	 * @param string $settings_capability The capability required to view/edit license settings.
-	 */
-	public function __construct( $settings_capability = 'manage_options' ) {
-		$this->settings_capability = $settings_capability;
-	}
+class LicenseNotices {
 
 	/**
 	 * Register hooks for license-related notices.
@@ -50,7 +31,7 @@ class ConnectedServicesPage {
 	 *
 	 * @return void
 	 */
-	public function add_page() {
+	public function init_hooks() {
 		// Inject degraded-state messaging above the Pro license form when Pro renders the license tab.
 		add_action(
 			'edacp_license_page_before_form',
@@ -114,7 +95,7 @@ class ConnectedServicesPage {
 	}
 
 	/**
-	 * Resolve the effective license context for connected services.
+	 * Resolve the effective license context for notices.
 	 *
 	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool}
 	 */
