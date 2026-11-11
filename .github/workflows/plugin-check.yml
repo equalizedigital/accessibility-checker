@@ -1,12 +1,11 @@
 name: Plugin Check
 
 on:
+  # Only checked when a release is being prepared (release/x.y.z branches) or
+  # when run by hand from the Actions tab.
   push:
     branches:
-      - develop
-      - main
       - 'release/**'
-  pull_request:
   workflow_dispatch:
 
 concurrency:
@@ -15,8 +14,6 @@ concurrency:
 
 permissions:
   contents: read
-  # Lets the action post its results as a PR comment.
-  pull-requests: write
 
 jobs:
   plugin-check:

@@ -112,6 +112,41 @@ describe( 'Missing Transcript Rule', () => {
 			`,
 			shouldPass: true,
 		},
+		{
+			name: 'passes when transcript text is inside a visible container further up the section',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when transcript text sets visibility:visible inside a visibility:hidden ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="visibility: hidden;"><p style="visibility: visible;">Read the transcript below.</p></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when the transcript is in a display:none panel (a collapsed tab or accordion)',
+			html: '<section><div role="tablist"><button>Video</button><button>Text</button></div><div><div><video src="v.mp4"></video></div></div><div style="display: none;"><p>Read the transcript below.</p></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when the transcript is in an opacity:0 ancestor (for example a scroll reveal animation)',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="opacity: 0;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes when the transcript is a display:none next sibling of the video',
+			html: '<section><video src="v.mp4"></video><div style="display: none;">Read the transcript below.</div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'flags when the only transcript text is inside a visibility:hidden ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="visibility: hidden;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: false,
+		},
+		{
+			name: 'passes when the transcript text is inside a partly transparent ancestor',
+			html: '<section><div><video src="v.mp4"></video></div><p>Intro</p><div style="opacity: 0.5;"><div><p>Read the transcript below.</p></div></div></section>',
+			shouldPass: true,
+		},
 
 		// ✅ Negative (non-relevant) elements — no violation
 		{
@@ -287,6 +322,42 @@ describe( 'Missing Transcript Rule', () => {
 				</div>
 			`,
 			shouldPass: false,
+		},
+		// Media inside closed tabs, accordions or sliders inherits visibility:hidden from the panel.
+		{
+			name: 'passes <video> with transcript inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><section><video src="video.mp4"></video><p>Watch our latest update.</p><p>Transcript available below.</p></section></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'flags <video> without transcript inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><section><video src="video.mp4"></video><p>Watch our latest update.</p><p>More videos coming soon.</p></section></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'flags visible <video> when the only transcript text is visibility:hidden',
+			html: '<section><video src="video.mp4"></video><p>Watch our latest update.</p><p style="visibility: hidden;">Transcript available below.</p></section>',
+			shouldPass: false,
+		},
+		{
+			name: 'flags <video> in a visibility:hidden panel when the transcript is hidden on its own outside the panel',
+			html: '<section><div style="visibility: hidden;"><video src="video.mp4"></video><p>Watch our latest update.</p></div><p style="visibility: hidden;">Transcript available below.</p></section>',
+			shouldPass: false,
+		},
+		{
+			name: 'passes <video> in a visibility:hidden panel when the transcript is inside a display:none element',
+			html: '<section><div style="visibility: hidden;"><video src="video.mp4"></video><p>Watch our latest update.</p></div><div style="display: none;"><p>Transcript available below.</p></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes <video> in a display:none panel when the transcript is in the same panel',
+			html: '<section><div style="display: none;"><video src="video.mp4"></video><p>Watch our latest update.</p><p>Transcript available below.</p></div></section>',
+			shouldPass: true,
+		},
+		{
+			name: 'passes <video> in a display:none panel when the transcript is direct text of the same panel',
+			html: '<section><div style="display: none;"><video src="video.mp4"></video>Transcript available below.</div></section>',
+			shouldPass: true,
 		},
 	] )( '$name', async ( { html, shouldPass } ) => {
 		document.body.innerHTML = html;

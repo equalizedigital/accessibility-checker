@@ -6,11 +6,12 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { Panel, PanelBody, TabPanel } from '@wordpress/components';
+import { Panel, TabPanel } from '@wordpress/components';
 import { useState, useMemo, useEffect, useRef } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { STORE_NAME } from '../store/accessibility-checker-store';
 import RuleAccordion from './RuleAccordion';
+import SidebarPanelBody from './SidebarPanelBody';
 import '../sass/components/accessibility-analysis.scss';
 import '../sass/components/accessibility-analysis-tabs.scss';
 
@@ -229,7 +230,7 @@ const IssuesPanel = ( {
 
 	return (
 		<Panel className={ `edac-analysis-panel ${ className }` }>
-			<PanelBody
+			<SidebarPanelBody
 				title={ title }
 				initialOpen={ initialOpen }
 				opened={ isOpen }
@@ -244,7 +245,7 @@ const IssuesPanel = ( {
 				>
 					{ renderTabContent }
 				</TabPanel>
-			</PanelBody>
+			</SidebarPanelBody>
 		</Panel>
 	);
 };

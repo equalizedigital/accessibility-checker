@@ -102,6 +102,24 @@ class EmailOptInTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * Test that the opt-in script gets a filesystem path for its translations.
+	 *
+	 * WordPress expects a directory path here and hands it to
+	 * load_script_textdomain(); a URL in its place resolves to no translations
+	 * at all, which is what this branch fixes.
+	 */
+	public function test_enqueue_scripts_sets_a_filesystem_translations_path() {
+		$email_opt_in = new Email_Opt_In();
+		$email_opt_in->enqueue_scripts();
+
+		$registered = wp_scripts()->registered['email-opt-in-form'];
+
+		$this->assertSame( 'accessibility-checker', $registered->textdomain );
+		$this->assertSame( EDAC_PLUGIN_DIR . 'languages', $registered->translations_path );
+		$this->assertDirectoryExists( $registered->translations_path );
+	}
+
+	/**
 	 * Test that the modal markup renders.
 	 */
 	public function test_form_renders_modal() {

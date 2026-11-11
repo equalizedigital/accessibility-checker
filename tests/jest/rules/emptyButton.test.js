@@ -36,6 +36,17 @@ describe( 'Empty Button Validation', () => {
 			html: '<button title="Submit"></button>',
 			shouldPass: true,
 		},
+		// Screen reader only text is a valid accessible name, so it must not count as hidden.
+		{
+			name: 'should pass for button with only screen reader only text (clip-path technique)',
+			html: '<button><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">Menu</span><i class="fas fa-bars"></i></button>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for button with only screen reader only text (clip rect technique)',
+			html: '<button><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0px, 0px, 0px, 0px);">Menu</span></button>',
+			shouldPass: true,
+		},
 		{
 			name: 'should pass for button with an image and alt text',
 			html: '<button><img src="icon.png" alt="Submit"></button>',
@@ -245,6 +256,38 @@ describe( 'Empty Button Validation', () => {
 			html: '<button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button>',
 			shouldPass: false,
 		},
+		{
+			name: 'should fail for empty button with only an aria-hidden svg inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button><svg aria-hidden="true"><path d="M0 0"></path></svg></button></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with only explicitly hidden text inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button><span style="visibility: hidden;">Close</span><i class="fas fa-times"></i></button></div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail for button with text hidden by a stylesheet class inside a visibility:hidden container',
+			html: '<style>.is-hidden { visibility: hidden; }</style><div style="visibility: hidden;"><button><span class="is-hidden">Close</span></button></div>',
+			shouldPass: false,
+		},
+		// Buttons inside closed tabs or accordions inherit visibility:hidden from the panel.
+		{
+			name: 'should pass for button with text inside a visibility:hidden container',
+			html: '<div style="visibility: hidden;"><button>Click Me</button></div>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for link with role="button", text and aria-hidden svg inside a hidden tab panel',
+			html: '<div class="wpb_tab wpb_ui-tabs-hide" style="visibility: hidden; opacity: 0;"><h6><span class="link_wrap"><a class="link_text" role="button" href="/charter-schools"><span class="text">Discover more...</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 22 22"><g><path class="arrow" d="M -2.5 5 C -2.5 5 2.5 0 2.5 0"></path></g></svg></a></span></h6></div>',
+			shouldPass: true,
+		},
+		// A button that is itself visibility:hidden still counts its own text. Only children hidden on their own are skipped.
+		{
+			name: 'should pass for button with text that is itself visibility:hidden',
+			html: '<button style="visibility: hidden;">Click Me</button>',
+			shouldPass: true,
+		},
 	];
 
 	testCases.forEach( ( testCase ) => {
@@ -261,6 +304,37 @@ describe( 'Empty Button Validation', () => {
 				expect( results.violations.length ).toBeGreaterThan( 0 );
 			}
 		} );
+	} );
+
+	test( 'should not write to the style attribute of a visible button', async () => {
+		document.body.innerHTML = '<button id="no-style">Go</button><button id="with-style" style="color: red;">Go</button>';
+
+		const records = [];
+		const observer = new window.MutationObserver( ( list ) => records.push( ...list ) );
+		observer.observe( document.body, { attributes: true, subtree: true } );
+
+		await axe.run( document.body, {
+			runOnly: [ 'empty_button' ],
+		} );
+
+		records.push( ...observer.takeRecords() );
+		observer.disconnect();
+		const styleMutations = records.filter( ( record ) => record.attributeName === 'style' );
+
+		expect( styleMutations ).toHaveLength( 0 );
+		expect( document.getElementById( 'no-style' ).hasAttribute( 'style' ) ).toBe( false );
+		expect( document.getElementById( 'with-style' ).getAttribute( 'style' ) ).toBe( 'color: red;' );
+	} );
+
+	test( 'should restore the button style attribute inside a visibility:hidden container', async () => {
+		document.body.innerHTML = '<div style="visibility: hidden;"><button id="no-style">Go</button><button id="with-style" style="color: red;">Go</button></div>';
+
+		await axe.run( document.body, {
+			runOnly: [ 'empty_button' ],
+		} );
+
+		expect( document.getElementById( 'no-style' ).hasAttribute( 'style' ) ).toBe( false );
+		expect( document.getElementById( 'with-style' ).getAttribute( 'style' ) ).toBe( 'color: red;' );
 	} );
 } );
 

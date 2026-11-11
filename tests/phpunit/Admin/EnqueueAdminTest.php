@@ -345,7 +345,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * Test that the sidebar assets enqueue only in the block editor for scannable post types.
 	 */
 	public function testSidebarScriptEnqueuesInBlockEditorForScannablePost() {
-		global $post, $pagenow;
+		global $post, $pagenow, $wp_scripts;
 		$post    = $this->factory()->post->create_and_get();
 		$pagenow = 'post.php';
 
@@ -359,6 +359,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		// The JSX in the bundle is compiled to the `react/jsx-runtime` import,
 		// which is externalized, so the handle has to be declared here.
 		$this->assertContains( 'react-jsx-runtime', wp_scripts()->registered['edac-sidebar']->deps );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac-sidebar']->deps );
 	}
 
 	/**
@@ -713,6 +714,43 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertSame( EDAC_PLUGIN_URL . 'build/issueModal.bundle.js', $wp_scripts->registered['edac-issue-modal']->src );
 		$this->assertSame( [ 'wp-components' ], $wp_styles->registered['edac-issue-modal']->deps );
 		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/issueModal.css', $wp_styles->registered['edac-issue-modal']->src );
+	}
+
+	/**
+	 * Test that every admin bundle gets a filesystem path for its translations.
+	 *
+	 * The path is handed to load_script_textdomain(), so a URL in its place
+	 * loads no translations at all. The path itself is asserted rather than the
+	 * constant it comes from, because the forbidden-function rule allows
+	 * EDAC_PLUGIN_URL and cannot catch that mistake.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sidebar_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sr_only_format
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testAdminBundlesGetFilesystemTranslationsPaths() {
+		global $post, $pagenow, $wp_scripts;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$handles = [ 'edac', 'edac-editor-app', 'edac-sidebar', 'edac-sr-only-format', 'edac-issue-modal' ];
+
+		foreach ( $handles as $handle ) {
+			if ( ! isset( $wp_scripts->registered[ $handle ] ) ) {
+				$this->fail( "The {$handle} script was not registered." );
+			}
+
+			$this->assertSame( EDAC_PLUGIN_DIR . 'languages', $wp_scripts->registered[ $handle ]->translations_path, "The {$handle} script needs a filesystem translations path." );
+			$this->assertSame( 'accessibility-checker', $wp_scripts->registered[ $handle ]->textdomain, "The {$handle} script needs its text domain set." );
+		}
 	}
 
 	/**

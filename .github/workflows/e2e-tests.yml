@@ -28,10 +28,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: '22'
 
@@ -49,6 +49,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      # Playground's CLI (pinned in global-setup.js) lands in ~/.npm/_npx, and it
+      # keeps downloaded WordPress zips in ~/.wordpress-playground. Neither is in
+      # the lockfile-keyed npm cache above, so cache them on the pinned version.
+      - name: Cache Playground CLI and WordPress downloads
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.npm/_npx
+            ~/.wordpress-playground
+          key: ${{ runner.os }}-playground-${{ hashFiles('tests/e2e/global-setup.js') }}
+
       # Runs composer install and npm run build via the postinstall script — the
       # Playground mount serves build/ directly, so the suite needs it fresh
       # every run regardless of whether node_modules itself changed.
@@ -63,7 +74,7 @@ jobs:
 
       - name: Upload test artifacts
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: e2e-test-results
           path: test-results/
