@@ -44,6 +44,7 @@ class RuleRegistry {
 			'IncorrectHeadingOrderRule',
 			'LinkAmbiguousTextRule',
 			'LinkBlankRule',
+			'LinkDuplicateAdjacentRule',
 			'LinkImproperRule',
 			'LinkMsOfficeFileRule',
 			'LinkTextIsUrlRule',
