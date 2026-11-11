@@ -536,7 +536,7 @@
 						color: variables.$color-white;
 						background-color: variables.$color-dark-gray;
 						display: grid;
-						grid-template-columns: auto 125px 125px 125px;
+						grid-template-columns: auto 125px 125px 150px;
 
 						&-label {
 							padding: 3px;
@@ -546,7 +546,7 @@
 
 					&-record {
 						display: grid;
-						grid-template-columns: auto 125px 125px 125px;
+						grid-template-columns: auto 125px 125px 150px;
 
 						&-cell {
 							padding: 10px;
@@ -579,6 +579,10 @@
 								background: transparent;
 								display: flex;
 								align-items: center;
+
+								// The underline is on the label only. A child cannot
+								// remove an inherited decoration, so it would reach the icon.
+								--edac-action-link-decoration: underline;
 								text-decoration: none;
 								padding: 4px 0;
 
@@ -595,30 +599,28 @@
 
 								&:hover,
 								&:focus {
-									color: variables.$color-green;
+									--edac-action-link-decoration: none;
+									color: variables.$color-blue-hover;
 									cursor: pointer;
 
 									svg path {
-										fill: variables.$color-green;
-									}
-								}
-
-								&.active {
-									color: variables.$color-red;
-
-									svg path {
-										fill: variables.$color-red;
+										fill: variables.$color-blue-hover;
 									}
 								}
 
 								.dashicons {
 									margin-right: 3px;
 								}
+
+								&-label {
+									text-decoration: var(--edac-action-link-decoration);
+									white-space: nowrap;
+								}
 							}
 						}
 
 						&-ignore {
-							grid-column: 1 / 4;
+							grid-column: 1 / 5;
 							border-bottom: solid 1px variables.$color-gray-light;
 							text-align: left;
 							padding: 10px;

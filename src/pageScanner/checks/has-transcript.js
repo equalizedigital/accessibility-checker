@@ -219,18 +219,16 @@ function getSurroundingText( node, radius = 250 ) {
 
 		const nodeFilter = {
 			acceptNode( textNode ) {
+				// Only visibility:hidden is ignored, because assistive technology cannot reach it.
+				// Text in a display:none or opacity:0 ancestor still counts. A transcript in a
+				// collapsed tab or accordion, or one that fades in, is available to users.
 				const style = window.getComputedStyle( textNode.parentElement );
 				if ( ! style ) {
 					return NodeFilter.FILTER_REJECT;
 				}
+				// Text hidden by the same panel that hides the media still counts. Text hidden on its own does not.
 				if ( style.visibility === 'hidden' && getHiddenRoot( textNode.parentElement ) !== mediaHiddenRoot ) {
 					return NodeFilter.FILTER_REJECT;
-				}
-				// A display:none ancestor that does not also contain the media hides the text on its own.
-				for ( let el = textNode.parentElement; el && el !== parent; el = el.parentElement ) {
-					if ( window.getComputedStyle( el ).display === 'none' && ! el.contains( node ) ) {
-						return NodeFilter.FILTER_REJECT;
-					}
 				}
 				return NodeFilter.FILTER_ACCEPT;
 			},
