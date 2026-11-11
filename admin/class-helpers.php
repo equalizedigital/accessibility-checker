@@ -64,7 +64,7 @@ class Helpers {
 	 *
 	 * @param int|float $number number to format.
 	 * @param integer   $precision number of decimals.
-	 * @return string|int|float
+	 * @return string|false
 	 */
 	public static function format_percentage( $number, $precision = 2 ) {
 
