@@ -17,6 +17,12 @@ const ForceUnderlineFix = () => {
 			return;
 		}
 
+		// Skip links done on an earlier run so listeners are not added twice.
+		if ( target.hasAttribute( 'data-edac-underline-processed' ) ) {
+			return;
+		}
+		target.setAttribute( 'data-edac-underline-processed', 'true' );
+
 		// Apply underline style
 		target.style.textDecoration = 'underline';
 

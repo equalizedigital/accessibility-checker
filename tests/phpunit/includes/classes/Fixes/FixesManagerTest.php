@@ -185,4 +185,62 @@ class FixesManagerTest extends WP_UnitTestCase {
 			wp_delete_user( $admin_id );
 		}
 	}
+
+	/**
+	 * Test that the frontend fixes data has the default rerun events.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_includes_default_rerun_events() {
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		$this->assertSame(
+			[ 'facetwp-loaded', 'gform/post_render', 'edbs:table-rendered' ],
+			$data['rerunEvents']
+		);
+	}
+
+	/**
+	 * Test that the rerun events filter can add events and drops non string values.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_rerun_events_are_filterable() {
+		$callback = function ( $events ) {
+			$events[] = 'my-plugin:loaded';
+			$events[] = [ 'not-a-string' ];
+			$events[] = 42;
+			return $events;
+		};
+		add_filter( 'edac_filter_frontend_fixes_rerun_events', $callback );
+
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		remove_filter( 'edac_filter_frontend_fixes_rerun_events', $callback );
+
+		$this->assertSame(
+			[ 'facetwp-loaded', 'gform/post_render', 'edbs:table-rendered', 'my-plugin:loaded' ],
+			$data['rerunEvents']
+		);
+	}
+
+	/**
+	 * Test that fix data from the existing filter is kept.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_keeps_fix_data() {
+		$callback = function ( $data ) {
+			$data['tabindex'] = [ 'enabled' => true ];
+			return $data;
+		};
+		add_filter( 'edac_filter_frontend_fixes_data', $callback );
+
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		remove_filter( 'edac_filter_frontend_fixes_data', $callback );
+
+		$this->assertSame( [ 'enabled' => true ], $data['tabindex'] );
+		$this->assertArrayHasKey( 'rerunEvents', $data );
+	}
 }
