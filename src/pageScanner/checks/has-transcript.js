@@ -138,6 +138,24 @@ function collectSiblingText( startSibling, maxCount ) {
 	return text;
 }
 
+/**
+ * Find the outermost element whose computed visibility is hidden along the chain
+ * that leads to the given element. Because visibility is inherited, this is the
+ * element that hides it, such as a closed tab or accordion panel.
+ * @param {Element} element - The element to start from.
+ * @return {Element|null} - The hiding element, or null if the element is visible.
+ */
+function getHiddenRoot( element ) {
+	if ( window.getComputedStyle( element ).visibility !== 'hidden' ) {
+		return null;
+	}
+	let root = element;
+	while ( root.parentElement && window.getComputedStyle( root.parentElement ).visibility === 'hidden' ) {
+		root = root.parentElement;
+	}
+	return root;
+}
+
 function getSurroundingText( node, radius = 250 ) {
 	let text = '';
 
@@ -194,13 +212,25 @@ function getSurroundingText( node, radius = 250 ) {
 		// Also check parent's siblings for transcript text
 		text += collectSiblingText( parent.nextElementSibling, PARENT_SIBLING_LIMIT );
 
+		// visibility is inherited, so when the media itself is hidden (closed tab, accordion, slider)
+		// all nearby text reports hidden too. Text hidden by that same panel still counts, but text
+		// hidden on its own does not.
+		const mediaHiddenRoot = getHiddenRoot( node );
+
 		const nodeFilter = {
 			acceptNode( textNode ) {
 				// Only visibility:hidden is ignored, because assistive technology cannot reach it.
 				// Text in a display:none or opacity:0 ancestor still counts. A transcript in a
 				// collapsed tab or accordion, or one that fades in, is available to users.
 				const style = window.getComputedStyle( textNode.parentElement );
-				return style && style.visibility !== 'hidden' ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+				if ( ! style ) {
+					return NodeFilter.FILTER_REJECT;
+				}
+				// Text hidden by the same panel that hides the media still counts. Text hidden on its own does not.
+				if ( style.visibility === 'hidden' && getHiddenRoot( textNode.parentElement ) !== mediaHiddenRoot ) {
+					return NodeFilter.FILTER_REJECT;
+				}
+				return NodeFilter.FILTER_ACCEPT;
 			},
 		};
 		const walker = document.createTreeWalker( parent, NodeFilter.SHOW_TEXT, nodeFilter, false );
