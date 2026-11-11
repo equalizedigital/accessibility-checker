@@ -14,6 +14,7 @@ use EDAC\Admin\Post_Save;
 use EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion;
 use EqualizeDigital\AccessibilityChecker\Admin\Admin_Footer_Text;
 use EqualizeDigital\AccessibilityChecker\Admin\Activation_Redirect;
+use EqualizeDigital\AccessibilityChecker\Admin\Plugin_List_Tab;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -79,6 +80,9 @@ class Admin {
 
 		$plugin_row_meta = new Plugin_Row_Meta();
 		$plugin_row_meta->init_hooks();
+
+		$plugin_list_tab = new Plugin_List_Tab();
+		$plugin_list_tab->init_hooks();
 
 		$admin_footer_text = new Admin_Footer_Text();
 		$admin_footer_text->init();
