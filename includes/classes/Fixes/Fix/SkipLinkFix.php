@@ -135,7 +135,6 @@ class SkipLinkFix implements FixInterface {
 			return;
 		}
 
-		$targets      = [];
 		$targets_list = explode( ',', $targets_string );
 		$targets      = [];
 
