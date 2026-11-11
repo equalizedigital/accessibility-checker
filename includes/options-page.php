@@ -1217,15 +1217,14 @@ function edac_frontend_highlighter_position_cb() {
 /**
  * Sanitize the text position value before being saved to database
  *
- * @param array $position Position value.
+ * @param mixed $position Position value.
  *
- * @return string
+ * @return string|null
  */
 function edac_sanitize_simplified_summary_position( $position ) {
 	if ( in_array( $position, [ 'before', 'after', 'none' ], true ) ) {
 		return $position;
 	}
-	return '';
 }
 
 /**
@@ -1276,15 +1275,14 @@ function edac_simplified_summary_prompt_cb() {
 /**
  * Sanitize the text position value before being saved to database
  *
- * @param array $prompt The text.
+ * @param mixed $prompt The text.
  *
- * @return string
+ * @return string|null
  */
 function edac_sanitize_simplified_summary_prompt( $prompt ) {
 	if ( in_array( $prompt, [ 'when required', 'always', 'none' ], true ) ) {
 		return $prompt;
 	}
-	return '';
 }
 
 /**
@@ -1455,13 +1453,12 @@ function edac_accessibility_policy_page_cb() {
  * Sanitize accessibility policy page values before being saved to database
  *
  * @param string $page Page to sanitize.
- * @return string
+ * @return string|null
  */
 function edac_sanitize_accessibility_policy_page( $page ) {
 	if ( $page ) {
 		return esc_url( $page );
 	}
-	return '';
 }
 
 /**
