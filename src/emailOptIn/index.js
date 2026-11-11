@@ -55,6 +55,10 @@ window._show_error = function (id, message, html) {
 		div.innerHTML = html;
 		err.appendChild(div);
 	}
+	// The button was disabled while submitting, so focus was lost. A plain inserted div is not
+	// announced, so move focus to the message.
+	err.setAttribute('tabindex', '-1');
+	err.focus();
 };
 window._load_script = function (url, callback, isSubmit) {
 	var head = document.querySelector('head'), script = document.createElement('script'), r = false;
@@ -191,8 +195,15 @@ window._load_script = function (url, callback, isSubmit) {
 		}
 	}
 
+	var clear_error_semantics = function (elem) {
+		elem.removeAttribute('aria-invalid');
+		if ((elem.getAttribute('aria-describedby') || '').indexOf('_edac_optin_error_') === 0) {
+			elem.removeAttribute('aria-describedby');
+		}
+	};
 	var remove_tooltips = function () {
 		for (var i = 0; i < tooltips.length; i++) {
+			clear_error_semantics(tooltips[i].elem);
 			tooltips[i].tip.parentNode.removeChild(tooltips[i].tip);
 		}
 		tooltips = [];
@@ -200,6 +211,7 @@ window._load_script = function (url, callback, isSubmit) {
 	var remove_tooltip = function (elem) {
 		for (var i = 0; i < tooltips.length; i++) {
 			if (tooltips[i].elem === elem) {
+				clear_error_semantics(elem);
 				tooltips[i].tip.parentNode.removeChild(tooltips[i].tip);
 				tooltips.splice(i, 1);
 				return;
@@ -410,12 +422,28 @@ window._load_script = function (url, callback, isSubmit) {
 		}
 		resize_tooltips();
 		if (!no_error) {
-			// Separate clearing and updating so a repeated error is announced again.
-			announcementTimeout = setTimeout(function () {
-				validationAnnouncement.textContent = tooltips.map(function (tooltip) {
-					return tooltip.tip.textContent;
-				}).join(' ');
-			}, 100);
+			// Mark each invalid field and link it to its error text.
+			tooltips.forEach(function (tooltip, index) {
+				var errorId = '_edac_optin_error_' + index;
+				tooltip.tip.id = errorId;
+				tooltip.elem.setAttribute('aria-invalid', 'true');
+				tooltip.elem.setAttribute('aria-describedby', errorId);
+			});
+			// VoiceOver does not reliably read a live region after a button press, but it reads a
+			// focused invalid field together with its error. The live region is only a fallback
+			// for when focus cannot be moved.
+			var firstInvalid = tooltips.length ? tooltips[0].elem : null;
+			if (firstInvalid && typeof firstInvalid.focus === 'function') {
+				firstInvalid.focus();
+			}
+			if (!firstInvalid || document.activeElement !== firstInvalid) {
+				// Separate clearing and updating so a repeated error is announced again.
+				announcementTimeout = setTimeout(function () {
+					validationAnnouncement.textContent = tooltips.map(function (tooltip) {
+						return tooltip.tip.textContent;
+					}).join(' ');
+				}, 100);
+			}
 		}
 		return no_error;
 	};
