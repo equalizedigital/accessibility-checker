@@ -80,3 +80,10 @@ if ( edacFrontendFixes?.new_window_warning?.enabled ) {
 		newWindowWarning.default();
 	} );
 }
+
+if ( edacFrontendFixes?.minimum_text_size?.enabled ) {
+	// lazy import the module
+	import( /* webpackChunkName: "minimum-text-size" */ './Fixes/minimumTextSizeFix' ).then( ( minimumTextSizeFix ) => {
+		minimumTextSizeFix.default();
+	} );
+}
