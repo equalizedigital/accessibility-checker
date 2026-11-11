@@ -355,6 +355,10 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+
+		// The JSX in the bundle is compiled to the `react/jsx-runtime` import,
+		// which is externalized, so the handle has to be declared here.
+		$this->assertContains( 'react-jsx-runtime', wp_scripts()->registered['edac-sidebar']->deps );
 		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac-sidebar']->deps );
 	}
 
@@ -703,6 +707,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 				'wp-api-fetch',
 				'wp-html-entities',
 				'wp-a11y',
+				'react-jsx-runtime',
 			],
 			$wp_scripts->registered['edac-issue-modal']->deps
 		);

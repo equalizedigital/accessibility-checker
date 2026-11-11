@@ -203,6 +203,7 @@ class Enqueue_Admin {
 				'wp-i18n',
 				'wp-api-fetch',
 				'wp-components',
+				'react-jsx-runtime',
 				'wp-a11y',
 			],
 			EDAC_VERSION,
@@ -276,6 +277,7 @@ class Enqueue_Admin {
 				'wp-api-fetch',
 				'wp-html-entities',
 				'wp-a11y',
+				'react-jsx-runtime',
 			],
 			EDAC_VERSION,
 			true

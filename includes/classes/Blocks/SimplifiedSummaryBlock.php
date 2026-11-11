@@ -104,7 +104,7 @@ class SimplifiedSummaryBlock {
 		wp_register_script(
 			self::SCRIPT_HANDLE,
 			EDAC_PLUGIN_URL . 'build/simplifiedSummaryBlock.bundle.js',
-			[ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor' ],
+			[ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'react-jsx-runtime' ],
 			EDAC_VERSION,
 			true
 		);
