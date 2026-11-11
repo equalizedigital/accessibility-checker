@@ -99,12 +99,13 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Valid simplified summary positions pass through, anything else is null.
+	 * Valid simplified summary positions pass through, anything else returns an
+	 * empty string.
 	 *
 	 * @dataProvider provider_simplified_summary_positions
 	 *
-	 * @param mixed       $input    Input value.
-	 * @param string|null $expected Expected result.
+	 * @param mixed  $input    Input value.
+	 * @param string $expected Expected result.
 	 */
 	public function test_edac_sanitize_simplified_summary_position( $input, $expected ): void {
 		$this->assertSame( $expected, edac_sanitize_simplified_summary_position( $input ) );
@@ -120,8 +121,8 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 			'before'       => [ 'before', 'before' ],
 			'after'        => [ 'after', 'after' ],
 			'none'         => [ 'none', 'none' ],
-			'unknown'      => [ 'top', null ],
-			'empty string' => [ '', null ],
+			'unknown'      => [ 'top', '' ],
+			'empty string' => [ '', '' ],
 		];
 	}
 
@@ -152,12 +153,12 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Valid summary prompts pass through, anything else is null.
+	 * Valid summary prompts pass through, anything else returns an empty string.
 	 *
 	 * @dataProvider provider_simplified_summary_prompts
 	 *
-	 * @param mixed       $input    Input value.
-	 * @param string|null $expected Expected result.
+	 * @param mixed  $input    Input value.
+	 * @param string $expected Expected result.
 	 */
 	public function test_edac_sanitize_simplified_summary_prompt( $input, $expected ): void {
 		$this->assertSame( $expected, edac_sanitize_simplified_summary_prompt( $input ) );
@@ -173,18 +174,19 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 			'when required' => [ 'when required', 'when required' ],
 			'always'        => [ 'always', 'always' ],
 			'none'          => [ 'none', 'none' ],
-			'unknown'       => [ 'never', null ],
-			'empty string'  => [ '', null ],
+			'unknown'       => [ 'never', '' ],
+			'empty string'  => [ '', '' ],
 		];
 	}
 
 	/**
-	 * A non-empty policy page is run through esc_url, falsy input returns null.
+	 * A non-empty policy page is run through esc_url, falsy input returns an
+	 * empty string.
 	 *
 	 * @dataProvider provider_accessibility_policy_pages
 	 *
-	 * @param mixed       $input    Input value.
-	 * @param string|null $expected Expected result.
+	 * @param mixed  $input    Input value.
+	 * @param string $expected Expected result.
 	 */
 	public function test_edac_sanitize_accessibility_policy_page( $input, $expected ): void {
 		$this->assertSame( $expected, edac_sanitize_accessibility_policy_page( $input ) );
@@ -199,8 +201,8 @@ class OptionsPageSanitizersTest extends WP_UnitTestCase {
 		return [
 			'plain url'         => [ 'https://example.com/policy', 'https://example.com/policy' ],
 			'ampersand escaped' => [ 'https://example.com/?a=1&b=2', 'https://example.com/?a=1&#038;b=2' ],
-			'empty string'      => [ '', null ],
-			'null'              => [ null, null ],
+			'empty string'      => [ '', '' ],
+			'null'              => [ null, '' ],
 		];
 	}
 
