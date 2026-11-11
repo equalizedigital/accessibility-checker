@@ -33,12 +33,58 @@ describe( 'Link Duplicate Adjacent Rule', () => {
 			shouldPass: false,
 		},
 		{
-			name: 'Fails for the middle link in three identical adjacent links',
+			name: 'Fails when three identical links sit in a row',
 			html: '<a href="/post-1">A</a><a href="/post-1">B</a><a href="/post-1">C</a>',
 			shouldPass: false,
 		},
 
+		{
+			name: 'Fails when an HTML comment sits between the links',
+			html: '<a href="/post-1">Photo</a><!-- template marker --><a href="/post-1">Read more</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when only one link is aria-hidden but still in the tab order',
+			html: '<a href="/post-1" aria-hidden="true"><img src="thumb.jpg" alt="" /></a><a href="/post-1">Read more</a>',
+			shouldPass: false,
+		},
+		{
+			name: 'Fails when only one link has tabindex -1 but is still exposed to assistive technology',
+			html: '<a href="/post-1" tabindex="-1"><img src="thumb.jpg" alt="" /></a><a href="/post-1">Read more</a>',
+			shouldPass: false,
+		},
+
 		// ✅ Passing cases
+		{
+			name: 'Passes after the documented fix (first link aria-hidden and tabindex -1)',
+			html: '<a href="/post-1" aria-hidden="true" tabindex="-1"><img src="thumb.jpg" alt="" /></a><a href="/post-1">Read more</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes after the documented fix (second link aria-hidden and tabindex -1)',
+			html: '<a href="/post-1">Read more</a><a href="/post-1" aria-hidden="true" tabindex="-1"><img src="thumb.jpg" alt="" /></a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes when the link sits inside an aria-hidden wrapper and has tabindex -1',
+			html: '<span aria-hidden="true"><a href="/post-1" tabindex="-1">Photo</a></span><a href="/post-1">Read more</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes for adjacent javascript: links that run different actions',
+			html: '<a href="javascript:void(0)">Previous</a><a href="javascript:void(0)">Next</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes for javascript: links regardless of case and spacing',
+			html: '<a href="  JavaScript:;">Previous</a><a href="  JavaScript:;">Next</a>',
+			shouldPass: true,
+		},
+		{
+			name: 'Passes when links have empty hrefs',
+			html: '<a href="">A</a><a href="">B</a>',
+			shouldPass: true,
+		},
 		{
 			name: 'Passes when adjacent links point to different destinations',
 			html: '<a href="/post-1">Photo</a><a href="/post-2">Read more</a>',
@@ -60,7 +106,7 @@ describe( 'Link Duplicate Adjacent Rule', () => {
 			shouldPass: true,
 		},
 		{
-			name: 'Passes when links have empty or placeholder hrefs',
+			name: 'Passes when links have a placeholder # href',
 			html: '<a href="#">A</a><a href="#">B</a>',
 			shouldPass: true,
 		},
