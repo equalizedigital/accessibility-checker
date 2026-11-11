@@ -17,11 +17,11 @@ use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 /**
  * Class ConnectedServicesPage
  *
- * Manages connected services (license) page display and functionality within the admin settings area.
+ * Handles the license-related admin notices. It no longer renders a settings page or implements PageInterface.
  *
  * @since 1.40.0
  */
-class ConnectedServicesPage implements PageInterface {
+class ConnectedServicesPage {
 
 	/**
 	 * The capability required to access the settings page.
