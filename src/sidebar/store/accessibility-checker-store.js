@@ -64,6 +64,9 @@ const initialState = {
 // Store its resolver so a canceled refresh does not leave a pending promise.
 let pendingRefresh = null;
 
+// The newest sidebar-data request. A response from an older request is ignored.
+let latestFetch = 0;
+
 // Actions
 const actions = {
 	setLoading( loading ) {
@@ -171,8 +174,12 @@ const actions = {
 				dispatch( actions.setData( null ) );
 				dispatch( actions.setLoading( false ) );
 				dispatch( actions.setError( null ) );
-				return;
+				return { status: 'error' };
 			}
+
+			// Identifies the newest sidebar-data request so an older response
+			// cannot overwrite, or clear, the state a newer one owns.
+			const requestId = ++latestFetch;
 
 			dispatch( actions.setPostId( postId ) );
 			dispatch( actions.setLoading( true ) );
@@ -184,17 +191,33 @@ const actions = {
 					method: 'GET',
 				} );
 
+				if ( requestId !== latestFetch ) {
+					return { status: 'superseded' };
+				}
+
 				if ( response.success ) {
 					dispatch( actions.setData( response.data ) );
 					dispatch( actions.setInitialLoad( false ) );
-				} else {
-					dispatch( actions.setError( response.message || __( 'Failed to load accessibility data', 'accessibility-checker' ) ) );
+					// This response is the current one, so it supersedes any error
+					// recorded while it was in flight.
+					dispatch( actions.setError( null ) );
+					return { status: 'success' };
 				}
+
+				dispatch( actions.setError( response.message || __( 'Failed to load accessibility data', 'accessibility-checker' ) ) );
 			} catch ( err ) {
+				if ( requestId !== latestFetch ) {
+					return { status: 'superseded' };
+				}
+
 				dispatch( actions.setError( err.message || __( 'Error loading accessibility data', 'accessibility-checker' ) ) );
 			} finally {
-				dispatch( actions.setLoading( false ) );
+				if ( requestId === latestFetch ) {
+					dispatch( actions.setLoading( false ) );
+				}
 			}
+
+			return { status: 'error' };
 		};
 	},
 
@@ -228,8 +251,7 @@ const actions = {
 
 					// If this is the initial load, use regular fetch
 					if ( select.isInitialLoad() ) {
-						await dispatch( actions.fetchData( postId ) );
-						resolve( { status: select.getError() ? 'error' : 'success' } );
+						resolve( await dispatch( actions.fetchData( postId ) ) );
 						return;
 					}
 
@@ -247,6 +269,8 @@ const actions = {
 						if ( response.success ) {
 							// Compare and only update if different
 							dispatch( actions.setDataIfDifferent( response.data ) );
+							// The refreshed results are on screen, so an older error is stale.
+							dispatch( actions.setError( null ) );
 							refreshSucceeded = true;
 						} else {
 							// Don't show errors during background refresh unless critical
