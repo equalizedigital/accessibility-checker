@@ -6,6 +6,7 @@
  */
 
 use EDAC\Admin\Enqueue_Admin;
+use EDAC\Admin\OptIn\Email_Opt_In;
 
 /**
  * Tests for functionality of the Enqueue_Admin class.
@@ -73,6 +74,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		global $wp_scripts, $wp_styles;
 		unset( $wp_scripts, $wp_styles, $GLOBALS['current_screen'] );
+		unset( $_GET['page'] );
 
 		unset( $this->enqueue_admin );
 	}
@@ -89,11 +91,29 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
 		$this->assertFalse( wp_script_is( 'edac-editor-app', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 
 		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertIsString( $localized_data );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * Test that the base script loads the accessibility utility on the settings page.
+	 *
+	 * @return void
+	 */
+	public function testEnqueueBaseScriptWithWpA11yOnSettingsPage() {
+
+		global $wp_scripts;
+
+		$_GET['page'] = 'accessibility_checker_settings';
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$this->assertTrue( wp_script_is( 'edac', 'enqueued' ) );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac']->deps );
 	}
 
 	/**
@@ -109,6 +129,98 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
 		$this->assertStringContainsString( 'utm_content=__name__', $localized_data );
 		$this->assertStringNotContainsString( 'utm-content=__name__', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl is present in the edac_script_vars localized to the admin script.
+	 */
+	public function testLocalizedAdminDataIncludesFixesRestUrl(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertNotEmpty( $localized_data );
+		$this->assertStringContainsString( 'fixesRestUrl', $localized_data );
+	}
+
+	/**
+	 * The pro flag in edac_script_vars reflects defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID,
+	 * so non-editor admin pages (e.g. the Issues Explorer) can gate pro-only UI without
+	 * relying on window.edac_editor_app, which is only localized on post.php/post-new.php.
+	 */
+	public function testLocalizedAdminDataIncludesProFlag(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected_pro   = defined( 'EDACP_VERSION' ) && EDAC_KEY_VALID;
+
+		// wp_localize_script() stringifies booleans as "1" / "" (matching the
+		// === '1' checks on the JS side), not JSON true/false.
+		$this->assertStringContainsString( '"pro"', $localized_data );
+		$this->assertMatchesRegularExpression(
+			'/"pro"\s*:\s*"' . ( $expected_pro ? '1' : '' ) . '"/',
+			$localized_data
+		);
+	}
+
+	/**
+	 * FixesRestUrl uses the accessibility-checker/v1 namespace and matches rest_url().
+	 */
+	public function testAdminFixesRestUrlUsesAccessibilityCheckerV1Namespace(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+		$expected       = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
+
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
+	}
+
+	/**
+	 * FixesRestUrl must be an absolute URL — a root-relative /wp-json path would break
+	 * subdomain multisite installs by resolving to the main site instead of the subsite.
+	 */
+	public function testAdminFixesRestUrlIsAbsolute(): void {
+		global $wp_scripts;
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertDoesNotMatchRegularExpression( '/"fixesRestUrl"\s*:\s*"\\\\?\/wp-json/', $localized_data );
+		$this->assertMatchesRegularExpression( '/"fixesRestUrl"\s*:\s*"https?/', $localized_data );
+	}
+
+	/**
+	 * FixesRestUrl in edac_script_vars must follow a custom REST base prefix set via
+	 * the rest_url_prefix filter. Verifies the URL is built with rest_url() rather than
+	 * a hardcoded /wp-json/ string.
+	 * Pretty permalinks are required for the prefix filter to be applied.
+	 */
+	public function testAdminFixesRestUrlRespectsCustomRestPrefix(): void {
+		global $wp_scripts;
+
+		update_option( 'permalink_structure', '/%postname%/' );
+		flush_rewrite_rules(); // phpcs:ignore WordPressVIPMinimum.Functions.RestrictedFunctions.flush_rewrite_rules_flush_rewrite_rules
+
+		$prefix_callback = static fn() => 'custom-api';
+		add_filter( 'rest_url_prefix', $prefix_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+		$expected = esc_url_raw( rest_url( 'accessibility-checker/v1' ) );
+
+		remove_filter( 'rest_url_prefix', $prefix_callback );
+		delete_option( 'permalink_structure' );
+
+		$localized_data = (string) $wp_scripts->get_data( 'edac', 'data' );
+
+		$this->assertStringContainsString( '"fixesRestUrl":"' . $expected . '"', str_replace( '\/', '/', $localized_data ) );
+		$this->assertStringNotContainsString( 'wp-json', $localized_data );
 	}
 
 	/**
@@ -233,7 +345,7 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 	 * Test that the sidebar assets enqueue only in the block editor for scannable post types.
 	 */
 	public function testSidebarScriptEnqueuesInBlockEditorForScannablePost() {
-		global $post, $pagenow;
+		global $post, $pagenow, $wp_scripts;
 		$post    = $this->factory()->post->create_and_get();
 		$pagenow = 'post.php';
 
@@ -243,6 +355,11 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 
 		$this->assertTrue( wp_script_is( 'edac-sidebar', 'enqueued' ) );
 		$this->assertTrue( wp_style_is( 'edac-sidebar', 'enqueued' ) );
+
+		// The JSX in the bundle is compiled to the `react/jsx-runtime` import,
+		// which is externalized, so the handle has to be declared here.
+		$this->assertContains( 'react-jsx-runtime', wp_scripts()->registered['edac-sidebar']->deps );
+		$this->assertContains( 'wp-a11y', $wp_scripts->registered['edac-sidebar']->deps );
 	}
 
 	/**
@@ -368,6 +485,316 @@ class EnqueueAdminTest extends WP_UnitTestCase {
 		$this->assertFalse( wp_script_is( 'edac-sr-only-format', 'enqueued' ) );
 	}
 
+
+	/**
+	 * Test that edac_filter_admin_post_id overrides the post ID localized into edac_script_vars.
+	 *
+	 * @return void
+	 */
+	public function testAdminPostIdFilterOverridesLocalizedPostId() {
+		global $post, $pagenow, $wp_scripts;
+
+		$original_post  = $this->factory()->post->create_and_get();
+		$alternate_post = $this->factory()->post->create_and_get();
+		$post           = $original_post;
+		$pagenow        = 'post.php';
+
+		$filter_callback = static function () use ( $alternate_post ) {
+			return $alternate_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$localized_data = $wp_scripts->get_data( 'edac', 'data' );
+		$this->assertStringContainsString( (string) $alternate_post->ID, $localized_data );
+	}
+
+	/**
+	 * When the filter flags a latest-posts homepage (show_on_front=posts), the scan URL
+	 * uses get_home_url() rather than an invalid preview link.
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenLatestPostsHomeFilterReturnsTrue() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'posts' );
+		update_option( 'page_for_posts', 0 );
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+		delete_option( 'page_for_posts' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
+	}
+
+	/**
+	 * Fallback case: show_on_front=page with no static front page configured also
+	 * counts as a latest-posts homepage, so the scan URL still uses get_home_url().
+	 *
+	 * @return void
+	 */
+	public function testScanUrlUsesHomeUrlWhenShowOnFrontIsPageWithNoFrontPageConfigured() {
+		global $post, $pagenow, $wp_scripts;
+
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$pagenow = 'post.php';
+
+		update_option( 'show_on_front', 'page' );
+		delete_option( 'page_on_front' ); // No static front page configured — WP falls back to latest posts.
+
+		$filter_callback = static function () {
+			return true;
+		};
+		add_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_post_is_latest_posts_home', $filter_callback );
+		delete_option( 'show_on_front' );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertStringContainsString( 'edac_pageScanner', $localized_data );
+		$this->assertStringNotContainsString( 'preview=true', $localized_data );
+		// The scan URL should be based on the home URL, not a preview link.
+		// In WP 6.9 forward slashes are no longer escaped in json_encode output; handle both forms.
+		// See: https://github.com/WordPress/wordpress-develop/pull/9557.
+		$expected_home = esc_url_raw( trailingslashit( get_home_url() ) );
+		if ( version_compare( get_bloginfo( 'version' ), '6.9', '<' ) ) {
+			$expected_home = str_replace( '/', '\\/', $expected_home );
+		}
+		$this->assertStringContainsString( $expected_home, $localized_data );
+	}
+
+	/**
+	 * The 'active' flag must reflect the filtered post ID's type: when the filter returns a
+	 * non-scannable post type, $active is false so the scanner doesn't run.
+	 *
+	 * @return void
+	 */
+	public function testActiveReflectsFilteredPostIdPostType() {
+		global $post, $pagenow, $wp_scripts;
+
+		// Global $post is a 'post' type (scannable under current option).
+		$scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		// The filter will return a 'page' ID; make 'page' non-scannable for this test.
+		$non_scannable_post = $this->factory()->post->create_and_get( [ 'post_type' => 'page' ] );
+		$post               = $scannable_post;
+		$pagenow            = 'post.php';
+
+		// Restrict scannable types to 'post' only so 'page' becomes non-scannable.
+		update_option( 'edac_post_types', [ 'post' ] );
+
+		$filter_callback = static function () use ( $non_scannable_post ) {
+			return $non_scannable_post->ID;
+		};
+		add_filter( 'edac_filter_admin_post_id', $filter_callback );
+
+		$this->enqueue_admin::maybe_enqueue_admin_and_editor_app_scripts();
+
+		remove_filter( 'edac_filter_admin_post_id', $filter_callback );
+		// Restore original scannable post types.
+		update_option( 'edac_post_types', [ 'post', 'page' ] );
+
+		$localized_data = $wp_scripts->get_data( 'edac-editor-app', 'data' );
+		$this->assertNotEmpty( $localized_data );
+		// $active must be false because the filtered post type ('page') is not scannable.
+		// wp_localize_script serializes PHP false as "" (empty string) in older WP versions
+		// and may serialize it as JSON false in newer ones — accept both forms.
+		$this->assertMatchesRegularExpression( '/"active"\s*:\s*(false|"")/', $localized_data );
+	}
+
+	/**
+	 * Test that the base admin stylesheet is enqueued from the built asset path.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::enqueue_styles
+	 */
+	public function testEnqueueStylesEnqueuesTheBuiltAdminStylesheet() {
+		global $wp_styles;
+
+		Enqueue_Admin::enqueue_styles();
+
+		$this->assertTrue( wp_style_is( 'edac', 'enqueued' ) );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/admin.css', $wp_styles->registered['edac']->src );
+		$this->assertSame( EDAC_VERSION, $wp_styles->registered['edac']->ver );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue outside the post editor.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueOutsideThePostEditor() {
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'edit.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal assets do not enqueue for a non-scannable post type.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalDoesNotEnqueueForANonScannablePostType() {
+		update_option( 'edac_post_types', [ 'page' ] );
+
+		global $post, $pagenow;
+		$post    = $this->factory()->post->create_and_get( [ 'post_type' => 'post' ] );
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertFalse( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertFalse( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the issue modal script and styles enqueue on a scannable post editor.
+	 *
+	 * The modal bundle is shared by the sidebar and other admin areas, so its declared
+	 * script dependencies and its built asset paths are a contract other code relies on.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testIssueModalEnqueuesScriptAndStylesForAScannablePost() {
+		global $post, $pagenow, $wp_scripts, $wp_styles;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$this->assertTrue( wp_script_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'edac-issue-modal', 'enqueued' ) );
+		$this->assertSame(
+			[
+				'wp-element',
+				'wp-components',
+				'wp-i18n',
+				'wp-api-fetch',
+				'wp-html-entities',
+				'wp-a11y',
+				'react-jsx-runtime',
+			],
+			$wp_scripts->registered['edac-issue-modal']->deps
+		);
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/issueModal.bundle.js', $wp_scripts->registered['edac-issue-modal']->src );
+		$this->assertSame( [ 'wp-components' ], $wp_styles->registered['edac-issue-modal']->deps );
+		$this->assertSame( EDAC_PLUGIN_URL . 'build/css/issueModal.css', $wp_styles->registered['edac-issue-modal']->src );
+	}
+
+	/**
+	 * Test that every admin bundle gets a filesystem path for its translations.
+	 *
+	 * The path is handed to load_script_textdomain(), so a URL in its place
+	 * loads no translations at all. The path itself is asserted rather than the
+	 * constant it comes from, because the forbidden-function rule allows
+	 * EDAC_PLUGIN_URL and cannot catch that mistake.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sidebar_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_sr_only_format
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_issue_modal_script
+	 */
+	public function testAdminBundlesGetFilesystemTranslationsPaths() {
+		global $post, $pagenow, $wp_scripts;
+		$post    = $this->factory()->post->create_and_get();
+		$pagenow = 'post.php';
+
+		$this->set_mock_screen( true );
+
+		Enqueue_Admin::maybe_enqueue_admin_and_editor_app_scripts();
+		Enqueue_Admin::maybe_enqueue_sidebar_script();
+		Enqueue_Admin::maybe_enqueue_sr_only_format();
+		Enqueue_Admin::maybe_enqueue_issue_modal_script();
+
+		$handles = [ 'edac', 'edac-editor-app', 'edac-sidebar', 'edac-sr-only-format', 'edac-issue-modal' ];
+
+		foreach ( $handles as $handle ) {
+			if ( ! isset( $wp_scripts->registered[ $handle ] ) ) {
+				$this->fail( "The {$handle} script was not registered." );
+			}
+
+			$this->assertSame( EDAC_PLUGIN_DIR . 'languages', $wp_scripts->registered[ $handle ]->translations_path, "The {$handle} script needs a filesystem translations path." );
+			$this->assertSame( 'accessibility-checker', $wp_scripts->registered[ $handle ]->textdomain, "The {$handle} script needs its text domain set." );
+		}
+	}
+
+	/**
+	 * Test that the email opt-in assets do not enqueue outside the welcome page.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueOutsideTheWelcomePage() {
+		global $pagenow;
+		$pagenow = 'index.php';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets are skipped for a user who already opted in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 */
+	public function testEmailOptInDoesNotEnqueueForAUserWhoAlreadyOptedIn() {
+		$_GET['page'] = 'accessibility_checker';
+		update_user_meta( $this->test_admin_user_id, Email_Opt_In::EDAC_USER_OPTIN_META_KEY, 1 );
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertFalse( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+	}
+
+	/**
+	 * Test that the email opt-in assets enqueue on the welcome page before a user opts in.
+	 *
+	 * @covers \EDAC\Admin\Enqueue_Admin::maybe_enqueue_email_opt_in_script
+	 * @covers \EDAC\Admin\Enqueue_Admin::get_current_page_slug
+	 */
+	public function testEmailOptInEnqueuesOnTheWelcomePage() {
+		$_GET['page'] = 'accessibility_checker';
+
+		Enqueue_Admin::maybe_enqueue_email_opt_in_script();
+
+		$this->assertTrue( wp_script_is( 'email-opt-in-form', 'enqueued' ) );
+		$this->assertTrue( wp_style_is( 'email-opt-in-form', 'enqueued' ) );
+	}
 
 	/**
 	 * Helper to set a mock current screen with block editor context.

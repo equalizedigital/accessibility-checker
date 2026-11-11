@@ -71,7 +71,7 @@ class Free {
 				],
 				'include_statement_link'  => [
 					'label' => __( 'Include Statement Link', 'accessibility-checker' ),
-					'value' => esc_url( get_option( 'edac_include_accessibility_statement_link' ) ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) ),
+					'value' => esc_html( get_option( 'edac_include_accessibility_statement_link' ) ? __( 'Enabled', 'accessibility-checker' ) : __( 'Disabled', 'accessibility-checker' ) ),
 				],
 				'post_types'              => [
 					'label' => __( 'Post Types', 'accessibility-checker' ),

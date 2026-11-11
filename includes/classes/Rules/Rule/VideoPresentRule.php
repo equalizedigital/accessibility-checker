@@ -28,7 +28,7 @@ class VideoPresentRule implements RuleInterface {
 			'summary'               => esc_html__( 'This element is a video. Because many accessibility issues with video content require manual review, this warning appears any time a video is detected on a post or page.', 'accessibility-checker' ),
 			'summary_plural'        => esc_html__( 'These elements are videos. Because many accessibility issues with video content require manual review, this warning appears any time one or more videos are detected on a post or page.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Videos must include accurate captions, transcripts, and audio descriptions (or enhanced transcripts) to be fully accessible to users who are deaf, hard of hearing, blind, or have cognitive disabilities.', 'accessibility-checker' ),
-			'how_to_fix'            => esc_html__( 'Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'how_to_fix'            => esc_html__( 'Review the video on the front end of your website. Ensure that it includes accurate (not auto-generated) synchronized captions, a transcript, and an audio description if needed. After verifying accessibility or making necessary updates, you can dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 			'references'            => [
 				[
 					'text' => __( 'W3C: Media Alternatives', 'accessibility-checker' ),

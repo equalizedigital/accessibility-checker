@@ -101,6 +101,16 @@ describe( 'video_present rule', () => {
 			html: '<video><source src="movie.MP4"></video>',
 			shouldPass: false,
 		},
+		{
+			name: 'detects .ogg file used as a native <video> element src',
+			html: '<video src="movie.ogg" controls></video>',
+			shouldPass: false,
+		},
+		{
+			name: 'detects .ogg source that is not inside an <audio> element',
+			html: '<source src="clip.ogg">',
+			shouldPass: false,
+		},
 
 		// Should not trigger violations
 		{
@@ -136,8 +146,43 @@ describe( 'video_present rule', () => {
 			shouldPass: true,
 		},
 		{
+			// Direct/minimal case: the <audio> element itself has a .ogg src, exercising the
+			// `tag === 'audio'` path in is-video-detected.js without any wrapping markup.
+			name: 'does not detect a plain <audio> element with a .ogg src',
+			html: '<audio controls src="simple-guitar-melody.ogg"></audio>',
+			shouldPass: true,
+		},
+		{
+			// Regression test for https://github.com/equalizedigital/accessibility-checker/issues/1816 (PRO-1168).
+			// The Gutenberg Audio block's default sample audio is an .ogg (Ogg Vorbis) file, which was
+			// being misidentified as video content because .ogg is also a valid Ogg Theora video extension.
+			name: 'does not detect .ogg audio file in a <figure class="wp-block-audio"> Audio block',
+			html: '<figure class="wp-block-audio"><audio controls src="simple-guitar-melody.ogg"></audio><figcaption>Simple Guitar Melody</figcaption></figure>',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect .ogg source element inside an <audio> element',
+			html: '<audio controls><source src="simple-guitar-melody.ogg" type="audio/ogg"></audio>',
+			shouldPass: true,
+		},
+		{
 			name: 'does not detect YouTube API script tag',
 			html: '<script type="text/javascript" src="https://www.youtube.com/iframe_api?ver=1.2.6" id="youtube-scripts-js"></script>',
+			shouldPass: true,
+		},
+		{
+			// Regression test for https://linear.app/equalize-digital/issue/PRO-1229.
+			// A featured image whose filename happens to contain "youtube" (e.g. a
+			// screenshot of a YouTube video) was being misidentified as an embedded
+			// video because the keyword match applied to any [src] element, not just
+			// iframe/embed-style elements.
+			name: 'does not detect an <img> whose filename merely contains the keyword "youtube"',
+			html: '<img src="screenshot-2026-05-21-at-16-53-07-claims-department-youtube.jpg" alt="Claims Department" />',
+			shouldPass: true,
+		},
+		{
+			name: 'does not detect an <img> whose filename merely contains the keyword "vimeo"',
+			html: '<img src="team-photo-vimeo-conference-2026.png" alt="Team photo" />',
 			shouldPass: true,
 		},
 	];

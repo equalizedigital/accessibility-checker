@@ -134,4 +134,113 @@ class FixesManagerTest extends WP_UnitTestCase {
 
 		$this->assertEmpty( $fixes_manager->get_fixes_settings() );
 	}
+
+	/**
+	 * Test that fixes REST routes are registered only under the accessibility-checker/v1 namespace.
+	 *
+	 * @return void
+	 */
+	public function test_register_rest_routes_uses_only_current_namespace() {
+		$registered_routes = rest_get_server()->get_routes();
+		$expected_routes   = [
+			'/fixes'                               => 'GET',
+			'/fixes/update'                        => 'POST',
+			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)' => 'GET',
+		];
+
+		foreach ( $expected_routes as $route => $method ) {
+			$current_route = '/accessibility-checker/v1' . $route;
+
+			$this->assertArrayHasKey( $current_route, $registered_routes );
+			$this->assertArrayNotHasKey( '/edac/v1' . $route, $registered_routes );
+
+			$current_handler = $registered_routes[ $current_route ][0];
+
+			$this->assertArrayHasKey( $method, $current_handler['methods'] );
+			$this->assertTrue( is_callable( $current_handler['callback'] ) );
+			$this->assertTrue( is_callable( $current_handler['permission_callback'] ) );
+		}
+	}
+
+	/**
+	 * Test that the fixes route responds under the current namespace and the legacy one is gone.
+	 *
+	 * @return void
+	 */
+	public function test_fixes_route_is_not_served_from_legacy_namespace() {
+		rest_get_server();
+
+		$admin_id = self::factory()->user->create( [ 'role' => 'administrator' ] );
+		wp_set_current_user( $admin_id );
+
+		try {
+			$current_response = rest_do_request( '/accessibility-checker/v1/fixes' );
+			$legacy_response  = rest_do_request( '/edac/v1/fixes' );
+
+			$this->assertSame( 200, $current_response->get_status() );
+			$this->assertSame( 404, $legacy_response->get_status() );
+			$this->assertSame( 'rest_no_route', $legacy_response->get_data()['code'] );
+		} finally {
+			wp_set_current_user( 0 );
+			wp_delete_user( $admin_id );
+		}
+	}
+
+	/**
+	 * Test that the frontend fixes data has the default rerun events.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_includes_default_rerun_events() {
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		$this->assertSame(
+			[ 'facetwp-loaded', 'gform/post_render', 'edbs:table-rendered' ],
+			$data['rerunEvents']
+		);
+	}
+
+	/**
+	 * Test that the rerun events filter can add events and drops non string values.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_rerun_events_are_filterable() {
+		$callback = function ( $events ) {
+			$events[] = 'my-plugin:loaded';
+			$events[] = [ 'not-a-string' ];
+			$events[] = 42;
+			return $events;
+		};
+		add_filter( 'edac_filter_frontend_fixes_rerun_events', $callback );
+
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		remove_filter( 'edac_filter_frontend_fixes_rerun_events', $callback );
+
+		$this->assertSame(
+			[ 'facetwp-loaded', 'gform/post_render', 'edbs:table-rendered', 'my-plugin:loaded' ],
+			$data['rerunEvents']
+		);
+	}
+
+	/**
+	 * Test that fix data from the existing filter is kept.
+	 *
+	 * @return void
+	 */
+	public function test_get_frontend_fixes_data_keeps_fix_data() {
+		$callback = function ( $data ) {
+			$data['tabindex'] = [ 'enabled' => true ];
+			return $data;
+		};
+		add_filter( 'edac_filter_frontend_fixes_data', $callback );
+
+		$data = FixesManager::get_instance()->get_frontend_fixes_data();
+
+		remove_filter( 'edac_filter_frontend_fixes_data', $callback );
+
+		$this->assertSame( [ 'enabled' => true ], $data['tabindex'] );
+		$this->assertArrayHasKey( 'rerunEvents', $data );
+	}
 }

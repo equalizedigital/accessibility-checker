@@ -59,9 +59,9 @@ class Email_Opt_In {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_style( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/emailOptIn.css', [], EDAC_VERSION, 'all' );
-		wp_enqueue_script( 'email-opt-in-form', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/emailOptIn.bundle.js', [], EDAC_VERSION, true );
-		wp_set_script_translations( 'email-opt-in-form', 'accessibility-checker', plugins_url( 'languages', EDAC_PLUGIN_FILE ) );
+		wp_enqueue_style( 'email-opt-in-form', EDAC_PLUGIN_URL . 'build/css/emailOptIn.css', [], EDAC_VERSION, 'all' );
+		wp_enqueue_script( 'email-opt-in-form', EDAC_PLUGIN_URL . 'build/emailOptIn.bundle.js', [], EDAC_VERSION, true );
+		wp_set_script_translations( 'email-opt-in-form', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 		wp_localize_script(
 			'email-opt-in-form',
@@ -133,7 +133,7 @@ class Email_Opt_In {
 						<?php esc_html_e( 'Email*', 'accessibility-checker' ); ?>
 					</label>
 					<div class="_field-wrapper">
-						<input type="text" id="email" name="email"
+						<input type="text" id="email" name="email" autocomplete="email"
 							placeholder="<?php esc_attr_e( 'Type your email', 'accessibility-checker' ); ?>"
 							value="<?php echo esc_attr( ! empty( $current_user->user_email ) ? $current_user->user_email : '' ); ?>"
 							required
@@ -145,7 +145,7 @@ class Email_Opt_In {
 						<?php esc_html_e( 'First Name', 'accessibility-checker' ); ?>
 					</label>
 					<div class="_field-wrapper">
-						<input type="text" id="firstname" name="firstname"
+						<input type="text" id="firstname" name="firstname" autocomplete="given-name"
 							placeholder="<?php esc_attr_e( 'Type your first name', 'accessibility-checker' ); ?>"
 							value="<?php echo esc_attr( ! empty( $current_user->first_name ) ? $current_user->first_name : '' ); ?>"
 						/>
@@ -155,10 +155,10 @@ class Email_Opt_In {
 					<small>
 						<?php
 						printf(
-						/* translators: 1: link to privacy policy page. 2: link close tag. */
+						/* translators: 1: link to privacy policy page. 2: screen reader notice and link close tag. */
 							esc_html__( 'By subscribing, you consent to receive emails in accordance with our %1$sPrivacy Policy%2$s.', 'accessibility-checker' ),
 							'<a href="' . esc_url( edac_link_wrapper( 'https://equalizedigital.com/privacy-policy/', 'email_newsletter', 'privacy', false ) ) . '" target="_blank">',
-							'</a>'
+							' <span class="screen-reader-text">' . esc_html__( '(opens in a new window)', 'accessibility-checker' ) . '</span><span aria-hidden="true"> ↗</span></a>'
 						);
 						?>
 					</small>

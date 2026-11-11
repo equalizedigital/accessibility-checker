@@ -38,7 +38,7 @@ class ImgAltLongRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'Alternative text should be concise and focused on describing the purpose or meaning of the image. Overly long alt text may overwhelm screen reader users, reduce readability, and distract from other content on the page.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %s is the maximum character count for alt text.
-				esc_html__( 'Shorten the alt text to fewer than %s characters while still describing the image\'s function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image\'s alt text does not need to be changed, dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+				esc_html__( 'Shorten the alt text to fewer than %s characters while still describing the image\'s function or purpose. Keep descriptions simple and avoid repeating surrounding content. If the image\'s alt text does not need to be changed, dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 				'300'
 			),
 			'references'            => [

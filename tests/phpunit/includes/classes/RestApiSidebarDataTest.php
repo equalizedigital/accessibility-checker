@@ -93,6 +93,8 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 	 * Clean up after each test.
 	 */
 	protected function tearDown(): void {
+		delete_post_meta( self::$post_id, '_edac_simplified_summary' );
+
 		global $wpdb;
 		$table_name = edac_get_valid_table_name( $wpdb->prefix . 'accessibility_checker' );
 		if ( $table_name ) {
@@ -147,6 +149,39 @@ class RestApiSidebarDataTest extends WP_UnitTestCase {
 		$result = $method->invoke( $api, self::$post_id );
 
 		$this->assertSame( $meta, $result );
+	}
+
+	/**
+	 * Verify that only simplified summaries above ninth grade fail.
+	 *
+	 * @dataProvider data_readability_grade_threshold
+	 *
+	 * @param int  $word_count     Number of one-syllable words in the test summary.
+	 * @param int  $expected_grade Expected normalized Flesch-Kincaid grade.
+	 * @param bool $expected_failed Whether the summary should fail the threshold.
+	 */
+	public function test_get_readability_data_uses_above_ninth_grade_threshold( int $word_count, int $expected_grade, bool $expected_failed ) {
+		$simplified_summary = str_repeat( 'cat ', $word_count - 1 ) . 'cat.';
+		update_post_meta( self::$post_id, '_edac_simplified_summary', $simplified_summary );
+
+		$api    = new REST_Api();
+		$method = $this->get_private_method( $api, 'get_readability_data' );
+		$data   = $method->invoke( $api, self::$post_id );
+
+		$this->assertSame( $expected_grade, $data['simplified_summary_grade'] );
+		$this->assertSame( $expected_failed, $data['simplified_summary_grade_failed'] );
+	}
+
+	/**
+	 * Data provider for the ninth-grade boundary.
+	 *
+	 * @return array<string, array{int, int, bool}>
+	 */
+	public static function data_readability_grade_threshold(): array {
+		return [
+			'grade 9 passes' => [ 33, 9, false ],
+			'grade 10 fails' => [ 36, 10, true ],
+		];
 	}
 
 	/**

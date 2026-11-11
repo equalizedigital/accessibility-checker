@@ -1,0 +1,451 @@
+import { act } from 'react';
+import DismissPanel from '../../../src/issueModal/components/DismissPanel';
+import { renderReact } from '../helpers/renderReact';
+
+jest.mock( '@wordpress/components', () => ( {
+	Panel: ( { children } ) => <div className="mock-panel">{ children }</div>,
+	PanelBody: ( { title, opened, onToggle, children } ) => (
+		<section className="mock-panel-body" data-open={ opened }>
+			<button type="button" className="components-panel__body-toggle" onClick={ onToggle }>{ title }</button>
+			{ opened && children }
+		</section>
+	),
+	Button: ( { children, onClick, type = 'button', disabled, className } ) => (
+		<button type={ type } onClick={ onClick } disabled={ disabled } className={ className }>
+			{ children }
+		</button>
+	),
+	Spinner: () => <span className="mock-spinner" aria-hidden="true">...</span>,
+	Notice: ( { children, status, spokenMessage } ) => (
+		<div className="mock-notice" data-status={ status } data-spoken={ spokenMessage }>{ children }</div>
+	),
+	RadioControl: ( { label, selected, options, onChange } ) => (
+		<div className="mock-radio-control">
+			<div>{ label }</div>
+			{ options.map( ( option ) => (
+				<label key={ option.value }>
+					<input
+						type="radio"
+						name="dismiss-reason"
+						checked={ selected === option.value }
+						onChange={ () => onChange( option.value ) }
+					/>
+					{ option.label }
+				</label>
+			) ) }
+		</div>
+	),
+	Dropdown: ( { renderToggle, renderContent } ) => (
+		<div className="mock-dropdown">
+			{ renderToggle( { isOpen: false, onToggle: jest.fn() } ) }
+			{ renderContent( { onClose: jest.fn() } ) }
+		</div>
+	),
+} ) );
+
+jest.mock( '../../../src/issueModal/api', () => ( {
+	toggleIssueDismiss: jest.fn( () => Promise.resolve( { success: true } ) ),
+} ) );
+
+jest.mock( '../../../src/issueModal/index', () => ( {
+	setPendingRefetch: jest.fn(),
+} ) );
+
+describe( 'DismissPanel', () => {
+	test( 'defaults dismiss reason to confirmed accessible for new dismissals', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 3, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+			/>,
+		);
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 3, true, 'accessible', '', false );
+
+		unmount();
+	} );
+
+	test( 'hides global dismiss controls for free users', () => {
+		window.edac_editor_app.pro = '0';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 1, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				forceGlobal={ true }
+				isPro={ false }
+			/>,
+		);
+
+		expect( container.querySelector( 'button[aria-label="More dismiss options"]' ) ).toBeNull();
+		expect( container.textContent ).not.toContain( 'Dismiss Globally' );
+
+		unmount();
+	} );
+
+	test( 'keeps global undo available for a user who can globally dismiss', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 2,
+					ignre: '1',
+					ignre_global: 1,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'Global dismissal',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const button = Array.from( container.querySelectorAll( 'button' ) ).find(
+			( el ) => el.textContent.includes( 'Remove Global Dismissal' ),
+		);
+
+		expect( button ).toBeDefined();
+
+		await act( async () => {
+			button.click();
+		} );
+
+		expect( toggleIssueDismiss ).toHaveBeenCalledWith( 2, false, '', '', true );
+
+		unmount();
+	} );
+
+	test( 'shows a warning an add-on attached to a successful response instead of plain success', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		const warning = "Reopened, but the global dismissal couldn't be removed, so later scans may dismiss it again.";
+		toggleIssueDismiss.mockResolvedValueOnce( { success: true, global_ignore_saved: false, warning } );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 5, ignre: '1', ignre_global: 1, ignre_reason: 'accessible' } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const button = Array.from( container.querySelectorAll( 'button' ) ).find(
+			( el ) => el.textContent.includes( 'Remove Global Dismissal' ),
+		);
+		await act( async () => {
+			button.click();
+		} );
+
+		const notice = container.querySelector( '.mock-notice' );
+		expect( notice.textContent ).toBe( warning );
+		expect( notice.getAttribute( 'data-status' ) ).toBe( 'warning' );
+		// speak() announces it assertively, so the notice's own announcement is switched off.
+		expect( notice.getAttribute( 'data-spoken' ) ).toBe( '' );
+		expect( container.textContent ).not.toContain( 'reopened successfully' );
+
+		unmount();
+	} );
+
+	describe( 'Dismiss & Close Modal', () => {
+		const renderPanel = ( onCloseModal ) => renderReact(
+			<DismissPanel
+				issue={ { id: 6, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ onCloseModal }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		const clickDismissAndClose = async ( container ) => {
+			const button = Array.from( container.querySelectorAll( 'button' ) ).find(
+				( el ) => el.textContent.includes( 'Dismiss & Close Modal' ),
+			);
+			await act( async () => {
+				button.click();
+			} );
+		};
+
+		test( 'closes the modal after a clean dismissal', async () => {
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).toHaveBeenCalledTimes( 1 );
+			unmount();
+		} );
+
+		test( 'keeps the modal open when the response carries a warning, so it can be read', async () => {
+			const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+			toggleIssueDismiss.mockResolvedValueOnce( { success: true, warning: 'Dismissed, but not saved globally.' } );
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).not.toHaveBeenCalled();
+			expect( container.querySelector( '.mock-notice' ).textContent ).toBe( 'Dismissed, but not saved globally.' );
+			unmount();
+		} );
+
+		test( 'keeps the modal open when the request fails, so the error can be read', async () => {
+			const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+			toggleIssueDismiss.mockRejectedValueOnce( new Error( 'Nope' ) );
+			const onCloseModal = jest.fn();
+			const { container, unmount } = renderPanel( onCloseModal );
+
+			await clickDismissAndClose( container );
+
+			expect( onCloseModal ).not.toHaveBeenCalled();
+			expect( container.querySelector( '.mock-notice' ).textContent ).toBe( 'Nope' );
+			unmount();
+		} );
+	} );
+
+	test( 'hides global dismiss controls for a Pro user without canDismissGlobally', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 4, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ false }
+			/>,
+		);
+
+		expect( container.querySelector( 'button[aria-label="More dismiss options"]' ) ).toBeNull();
+		expect( container.textContent ).not.toContain( 'Dismiss Globally' );
+
+		unmount();
+	} );
+
+	test( 'hides the global undo for a Pro user without canDismissGlobally, even on an already-globally-dismissed issue', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 5,
+					ignre: '1',
+					ignre_global: 1,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'Global dismissal',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ true }
+				canDismissGlobally={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Remove Global Dismissal' );
+
+		unmount();
+	} );
+
+	test( 'shows a permission notice instead of the dismiss form for a user without canDismiss, on an open issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 7, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'You do not have permission to dismiss issues.' );
+		expect( container.querySelector( 'form' ) ).toBeNull();
+
+		unmount();
+	} );
+
+	test( 'hides the Reopen Issue button for a user without canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 8,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ false }
+			/>,
+		);
+
+		expect( container.textContent ).not.toContain( 'Reopen Issue' );
+		expect(
+			Array.from( container.querySelectorAll( 'button' ) ).find( ( el ) => el.textContent.includes( 'Reopen Issue' ) ),
+		).toBeUndefined();
+
+		unmount();
+	} );
+
+	test( 'shows the Reopen Issue button for a user with canDismiss, on an already-dismissed issue', () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ {
+					id: 9,
+					ignre: '1',
+					ignre_global: 0,
+					ignre_reason: 'false_positive',
+					ignre_comment: 'No longer applicable',
+				} }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'Reopen Issue' );
+
+		unmount();
+	} );
+
+	test( 'shows global dismiss controls for a Pro user with canDismissGlobally', () => {
+		window.edac_editor_app.pro = '1';
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 6, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				forceGlobal={ true }
+				isPro={ true }
+				canDismissGlobally={ true }
+			/>,
+		);
+
+		expect( container.textContent ).toContain( 'Dismiss Globally' );
+
+		unmount();
+	} );
+
+	test( 'moves focus to the panel toggle after dismissing so it is not lost when the form unmounts', async () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 11, ignre: '0', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+			/>,
+		);
+
+		const submit = container.querySelector( 'button[type="submit"]' );
+		submit.focus();
+		expect( document.activeElement ).toBe( submit );
+
+		await act( async () => {
+			container.querySelector( 'form' ).dispatchEvent(
+				new Event( 'submit', { bubbles: true, cancelable: true } ),
+			);
+		} );
+
+		expect( container.contains( submit ) ).toBe( false );
+		expect( document.activeElement ).toBe( container.querySelector( '.components-panel__body-toggle' ) );
+
+		unmount();
+	} );
+
+	test( 'moves focus to the panel toggle after reopening so it is not lost when the button unmounts', async () => {
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 12, ignre: '1', ignre_global: 0, ignre_reason: 'false_positive' } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		const reopen = Array.from( container.querySelectorAll( 'button' ) ).find( ( b ) => b.textContent.includes( 'Reopen Issue' ) );
+		reopen.focus();
+		expect( document.activeElement ).toBe( reopen );
+
+		await act( async () => {
+			reopen.click();
+		} );
+
+		expect( container.contains( reopen ) ).toBe( false );
+		expect( document.activeElement ).toBe( container.querySelector( '.components-panel__body-toggle' ) );
+
+		unmount();
+	} );
+
+	test( 'does not move focus when the action fails', async () => {
+		const { toggleIssueDismiss } = require( '../../../src/issueModal/api' );
+		toggleIssueDismiss.mockImplementationOnce( () => Promise.reject( new Error( 'nope' ) ) );
+
+		const { container, unmount } = renderReact(
+			<DismissPanel
+				issue={ { id: 13, ignre: '1', ignre_global: 0 } }
+				isOpen={ true }
+				onToggle={ jest.fn() }
+				onIgnore={ jest.fn() }
+				onCloseModal={ jest.fn() }
+				isPro={ false }
+				canDismiss={ true }
+			/>,
+		);
+
+		const reopen = Array.from( container.querySelectorAll( 'button' ) ).find( ( b ) => b.textContent.includes( 'Reopen Issue' ) );
+		reopen.focus();
+
+		await act( async () => {
+			reopen.click();
+		} );
+
+		expect( document.activeElement ).toBe( reopen );
+
+		unmount();
+	} );
+} );

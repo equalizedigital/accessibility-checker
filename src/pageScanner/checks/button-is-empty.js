@@ -10,13 +10,39 @@ export default {
 				hiddenTexts.push( el.cloneNode( true ).textContent );
 			} );
 
+			// visibility is inherited, so when the button sits in a closed tab or accordion every
+			// child reports hidden too. In that case force the button visible while reading, so only
+			// children hidden on their own are counted, then put the original style back. A visible
+			// button is never touched, so no extra style recalculation or DOM mutation happens.
+			const needsOverride = window.getComputedStyle( element ).visibility === 'hidden';
+			const originalStyle = element.getAttribute( 'style' );
+			if ( needsOverride ) {
+				element.style.setProperty( 'visibility', 'visible', 'important' );
+			}
+
 			// Get visually hidden content
-			Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
-				const style = window.getComputedStyle( el );
-				if ( style.display === 'none' || style.visibility === 'hidden' ) {
-					hiddenTexts.push( el.textContent );
+			try {
+				Array.from( element.getElementsByTagName( '*' ) ).forEach( ( el ) => {
+					const style = window.getComputedStyle( el );
+					if ( style.display === 'none' || style.visibility === 'hidden' ) {
+						hiddenTexts.push( el.textContent );
+					}
+				} );
+			} finally {
+				if ( needsOverride ) {
+					if ( originalStyle === null ) {
+						// Browsers keep an empty style="" after removeAttribute() once the style
+						// has been changed through the CSSOM, so remove only our declaration and
+						// then drop the attribute if nothing else is in it.
+						element.style.removeProperty( 'visibility' );
+						if ( ! element.getAttribute( 'style' ) ) {
+							element.removeAttribute( 'style' );
+						}
+					} else {
+						element.setAttribute( 'style', originalStyle );
+					}
 				}
-			} );
+			}
 
 			// Remove all hidden content from text
 			let text = element.textContent;

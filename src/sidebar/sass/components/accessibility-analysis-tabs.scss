@@ -1,4 +1,4 @@
-@use '../_variables' as *;
+@use "../_variables" as *;
 
 .edac-analysis {
 	// ==========================================
@@ -73,9 +73,6 @@
 				box-shadow: none;
 			}
 		}
-	}
-
-	&__tab {
 	}
 
 	&__count {

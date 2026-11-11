@@ -18,14 +18,43 @@ export const normalizeText = ( text ) => {
 
 /**
  * Check if an element is visibly hidden via CSS or aria attributes
- * @param {HTMLElement} element The element to check
+ * visibility is inherited, so when the container is itself hidden (closed tab, accordion, slider)
+ * every descendant reports hidden too. visibility: hidden only counts when the container is visible.
+ *
+ * @param {HTMLElement} element           The element to check
+ * @param {boolean}     isContainerHidden Optional precomputed result of the container
+ *                                        being visibility: hidden, hoisted by the
+ *                                        caller so it is not recomputed per element.
  * @return {boolean} True if element is hidden
  */
-export const isVisiblyHidden = ( element ) => {
+export const isVisiblyHidden = ( element, isContainerHidden = false ) => {
 	const style = window.getComputedStyle( element );
 	return style.display === 'none' ||
-		style.visibility === 'hidden' ||
+		( ! isContainerHidden && style.visibility === 'hidden' ) ||
 		element.closest( '[aria-hidden="true"]' ) !== null;
+};
+
+/**
+ * Check if an element is inside a subtree that is not rendered at all:
+ * display: none, the hidden attribute or aria-hidden="true" on itself or any ancestor.
+ *
+ * visibility: hidden is deliberately not checked here — it is inherited, so content in
+ * closed tabs, accordions and sliders reports hidden and should still be scanned.
+ *
+ * @param {HTMLElement} element The element to check
+ * @return {boolean} True if element is inside an unrendered subtree
+ */
+export const isInHiddenSubtree = ( element ) => {
+	let el = element;
+	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
+		if ( window.getComputedStyle( el ).display === 'none' ||
+			el.hasAttribute( 'hidden' ) ||
+			el.getAttribute( 'aria-hidden' ) === 'true' ) {
+			return true;
+		}
+		el = el.parentElement;
+	}
+	return false;
 };
 
 /**
@@ -58,25 +87,30 @@ export const isElementVisible = ( element ) => {
  * Font-size checks are irrelevant for such elements.
  *
  * @param {HTMLElement} element The element to check.
+ * @param {Map}         [cache] Optional Map shared between calls on an unchanged DOM, so ancestors are only read once.
  * @return {boolean} True if the element is screen-reader-only.
  */
-export const isScreenReaderOnly = ( element ) => {
-	let el = element;
-	while ( el && el.nodeType === Node.ELEMENT_NODE ) {
-		const style = window.getComputedStyle( el );
-		const isPositional = style.position === 'absolute' || style.position === 'fixed';
-		if ( ( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) || style.clipPath === 'inset(50%)' ) {
-			return true;
-		}
-		// Catch sr-only patterns that rely on 1px dimensions rather than clip values
-		// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
-		if ( isPositional && style.overflow === 'hidden' &&
-				parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) {
-			return true;
-		}
-		el = el.parentElement;
+export const isScreenReaderOnly = ( element, cache = new Map() ) => {
+	if ( ! element || element.nodeType !== Node.ELEMENT_NODE ) {
+		return false;
 	}
-	return false;
+
+	if ( ! cache.has( element ) ) {
+		const style = window.getComputedStyle( element );
+		const isPositional = style.position === 'absolute' || style.position === 'fixed';
+		cache.set(
+			element,
+			( isPositional && style.clip === 'rect(0px, 0px, 0px, 0px)' ) ||
+				style.clipPath === 'inset(50%)' ||
+				// Catch sr-only patterns that rely on 1px dimensions rather than clip values
+				// (e.g. Elementor's .elementor-screen-only uses width/height:1px + overflow:hidden).
+				( isPositional && style.overflow === 'hidden' &&
+					parseFloat( style.width ) <= 1 && parseFloat( style.height ) <= 1 ) ||
+				isScreenReaderOnly( element.parentElement, cache )
+		);
+	}
+
+	return cache.get( element );
 };
 
 /**

@@ -78,8 +78,8 @@ class CommentSearchLabelFixTest extends WP_UnitTestCase {
 	 *
 	 * @return bool
 	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return true;
+	protected function fix_registers_frontend_data(): bool {
+		return false;
 	}
 
 	/**
@@ -138,6 +138,27 @@ class CommentSearchLabelFixTest extends WP_UnitTestCase {
 		
 		$this->assertStringContainsString( '<label for="comment" class="edac-generated-label">', $result['comment_field'] );
 		$this->assertStringContainsString( 'Comment', $result['comment_field'] );
+	}
+
+	/**
+	 * Test that rebuilt author, email and url fields keep core's autocomplete tokens.
+	 *
+	 * @return void
+	 */
+	public function test_fix_comment_form_labels_adds_autocomplete_to_rebuilt_fields() {
+		$defaults = [
+			'fields' => [
+				'author' => '<p class="comment-form-author"><input id="author" name="author" type="text" /></p>',
+				'email'  => '<p class="comment-form-email"><input id="email" name="email" type="email" /></p>',
+				'url'    => '<p class="comment-form-url"><input id="url" name="url" type="url" /></p>',
+			],
+		];
+
+		$result = $this->fix->fix_comment_form_labels( $defaults );
+
+		$this->assertStringContainsString( 'autocomplete="name"', $result['fields']['author'] );
+		$this->assertStringContainsString( 'autocomplete="email"', $result['fields']['email'] );
+		$this->assertStringContainsString( 'autocomplete="url"', $result['fields']['url'] );
 	}
 
 	/**

@@ -38,7 +38,7 @@ class AriaHiddenRule implements RuleInterface {
 			'why_it_matters'        => esc_html__( 'The aria-hidden attribute is used to hide content from assistive technologies. While this is useful for decorative or redundant elements, it can cause accessibility issues if applied to important content that screen reader users need to access.', 'accessibility-checker' ),
 			'how_to_fix'            => sprintf(
 			// translators: %s is <code>aria-hidden="true"</code.
-				esc_html__( 'Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it\'s decorative or redundant, leave the element alone and dismiss this warning using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+				esc_html__( 'Check whether the element should truly be hidden from screen reader users. If it contains important content or functionality, remove %s. If it\'s decorative or redundant, leave the element alone and dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 				'<code>aria-hidden="true"</code>'
 			),
 			'references'            => [

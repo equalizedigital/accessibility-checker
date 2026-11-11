@@ -1,13 +1,14 @@
 name: CS
 
 on:
-  # Run on all pushes (except to main) and on all pull requests.
+  # Run on direct pushes to integration branches and on all pull requests.
   push:
     branches:
-      - '*'
+      - develop
+      - main
+      - master
+      - trunk
   pull_request:
-    branches:
-      - '*'
   # Allow manually triggering the workflow.
   workflow_dispatch:
 
@@ -24,17 +25,17 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Install PHP
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@eb7c497e18156a6bbabfef1d3a82760b9eda3962 # 2.40.0
         with:
           php-version: '7.4'
           coverage: none
           tools: cs2pr
-          github-token: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       # Validate the composer.json file.
       # @link https://getcomposer.org/doc/03-cli.md#validate
@@ -44,7 +45,7 @@ jobs:
       # Install dependencies and handle caching in one go.
       # @link https://github.com/marketplace/actions/install-composer-dependencies
       - name: Install Composer dependencies
-        uses: ramsey/composer-install@v2
+        uses: ramsey/composer-install@65e4f84970763564f46a70b8a54b90d033b3bdda # 4.0.0
         with:
           # Bust the cache at least once a month - output format: YYYY-MM-DD.
           custom-cache-suffix: $(date -u -d "-0 month -$(($(date +%d)-1)) days" "+%F")

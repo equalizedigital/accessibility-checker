@@ -41,7 +41,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 		<div class="edac-welcome-header-right">
 				<a href="<?php edac_link_wrapper( 'https://equalizedigital.com/?utm_source=accessibility-checker&utm_medium=software', 'welcome-page', 'logo-link' ); ?>" target="_blank">
-					<img src="<?php echo esc_url( plugin_dir_url( __DIR__ ) ); ?>assets/images/accessibility-checker-logo-transparent-bg.svg" alt="<?php esc_attr_e( 'Link to Equalize Digital Website', 'accessibility-checker' ); ?>">
+					<img src="<?php echo esc_url( EDAC_PLUGIN_URL ); ?>assets/images/accessibility-checker-logo-transparent-bg.svg" alt="<?php esc_attr_e( 'Link to Equalize Digital Website', 'accessibility-checker' ); ?>">
 				</a>
 			</div>
 		</div>
@@ -235,7 +235,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	?>
 
 		<?php
-		$edac_meetup_html = edac_get_upcoming_meetups_html( 'wordpress-accessibility-meetup-group', 2 );
+		$edac_meetup_html = edac_get_upcoming_meetups_html( 'equalize-digital-web-accessibility-meetup-dfw', 2 );
 		if ( ! empty( $edac_meetup_html ) ) :
 			?>
 			<div class="edac-panel">

@@ -75,6 +75,30 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: true,
 		},
 		{
+			name: 'should pass for wp-block-separator class with aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-alpha-channel-opacity has-background ticss-54cc2426 separator-aria-hidden" style="background-color:#ff6201;color:#ff6201" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for wp-block-separator class with additional color classes and aria-hidden',
+			html: '<hr class="wp-block-separator aligncenter has-text-color has-dark-blue-color has-alpha-channel-opacity has-dark-blue-background-color has-background ticss-54cc2426 separator-aria-hidden" aria-hidden="true">',
+			shouldPass: true,
+		},
+		// Cover block cases (PRO-966) — these were incorrectly flagged before the
+		// selector exclusion was added. The core cover block places aria-hidden="true"
+		// on its background overlay and background image elements, which is correct
+		// decorative usage and should not be reported as a violation.
+		{
+			name: 'should pass for cover block background overlay (wp-block-cover__background)',
+			html: '<span class="wp-block-cover__background has-background-dim-100 has-background-dim" aria-hidden="true" style="background-color:#000000"></span>',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for cover block background image (wp-block-cover__image-background)',
+			html: '<img class="wp-block-cover__image-background wp-image-123" alt="" src="/photo.jpg" aria-hidden="true">',
+			shouldPass: true,
+		},
+		{
 			name: 'should pass for element with role="presentation"',
 			html: '<div role="presentation" aria-hidden="true">Content</div>',
 			shouldPass: true,
@@ -107,6 +131,32 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should pass with partial class name match',
 			html: '<a href="/about"><svg aria-hidden="true"></svg><span class="my-sr-only-text">About</span></a>',
+			shouldPass: true,
+		},
+		// Screen reader only siblings are detected by CSS, not by class name. The parent is a
+		// span so the button/anchor text branch of the check is not what makes these pass.
+		{
+			name: 'should pass for sibling hidden with the clip-path sr-only technique (WordPress screen-reader-text)',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sibling hidden with the clip rect sr-only technique',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sibling hidden with the 1px dimension sr-only technique',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sr-only sibling whose name comes from image alt text',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt="About"></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
 			shouldPass: true,
 		},
 		{
@@ -162,6 +212,47 @@ describe( 'Aria Hidden Validation', () => {
 			shouldPass: false,
 		},
 		{
+			name: 'should fail when the sibling only has an sr-only class name but no sr-only CSS',
+			html: '<span><svg aria-hidden="true"></svg><span class="sr-only">About</span></span>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sibling uses a class named hidden that is display:none',
+			html: '<span><svg aria-hidden="true"></svg><span class="hidden">About</span></span>',
+			css: '.hidden { display: none; }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sibling uses a class named invisible that is visibility:hidden',
+			html: '<span><svg aria-hidden="true"></svg><span class="invisible">About</span></span>',
+			css: '.invisible { visibility: hidden; }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling has no text',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling only has an image with empty alt',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt=""></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is itself aria-hidden',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt" aria-hidden="true">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is display:none',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); display: none; }',
+			shouldPass: false,
+		},
+		{
 			name: 'should fail for link with empty aria-label',
 			html: '<a href="/about" aria-label=""><svg aria-hidden="true"></svg></a>',
 			shouldPass: false,
@@ -174,6 +265,13 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should fail for aria-hidden on semantic elements',
 			html: '<h2 aria-hidden="true">Important heading</h2>',
+			shouldPass: false,
+		},
+		{
+			// The outer .wp-block-cover container holds real content and is not
+			// excluded by the selector — only the decorative child elements are.
+			name: 'should fail for aria-hidden="true" on the outer cover block container (hides real content)',
+			html: '<div class="wp-block-cover" aria-hidden="true"><div class="wp-block-cover__inner-container"><p>Visible content</p></div></div>',
 			shouldPass: false,
 		},
 		{
@@ -221,3 +319,4 @@ describe( 'Aria Hidden Validation', () => {
 		} );
 	} );
 } );
+

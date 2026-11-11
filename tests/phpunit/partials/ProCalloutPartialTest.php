@@ -31,10 +31,6 @@ class ProCalloutPartialTest extends TestCase {
 	 * Test that rendered pro callout links use underscore UTM keys.
 	 */
 	public function test_partial_uses_underscore_utm_keys() {
-		if ( ! function_exists( 'edac_generate_link_type' ) ) {
-			$this->markTestSkipped( 'edac_generate_link_type is not available in this test environment.' );
-		}
-
 		ob_start();
 		include dirname( __DIR__, 3 ) . '/partials/pro-callout.php';
 		$output = (string) ob_get_clean();

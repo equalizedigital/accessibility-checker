@@ -71,11 +71,11 @@ class Pro {
 					'value' => esc_html( get_option( 'edacp_simplified_summary_heading' ) ),
 				],
 				'ignore_permissions'     => [
-					'label' => __( 'Ignore Permissions', 'accessibility-checker' ),
+					'label' => __( 'Dismiss Permissions', 'accessibility-checker' ),
 					'value' => esc_html( get_option( 'edacp_ignore_user_roles' ) ? implode( ', ', get_option( 'edacp_ignore_user_roles' ) ) : __( 'None', 'accessibility-checker' ) ),
 				],
 				'ignores_db_table_count' => [
-					'label' => __( 'Ignores DB Table Count', 'accessibility-checker' ),
+					'label' => __( 'Dismissals DB Table Count', 'accessibility-checker' ),
 					'value' => absint( edac_database_table_count( 'accessibility_checker_global_ignores' ) ),
 				],
 				'fixes'                  => [

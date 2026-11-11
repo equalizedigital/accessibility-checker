@@ -66,25 +66,10 @@ class TabindexFixTest extends WP_UnitTestCase {
 
 	/**
 	 * TabindexFix uses 'tabindex' key instead of slug for frontend data.
-	 * 
-	 * @return bool
-	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return true;
-	}
-
-	/**
-	 * Test that the frontend data uses correct key.
-	 * Note: This fix uses 'tabindex' instead of the slug 'remove_tabindex'.
 	 *
-	 * @return void
+	 * @return string
 	 */
-	public function test_frontend_data_uses_correct_key() {
-		update_option( 'edac_fix_remove_tabindex', true );
-		$this->fix->run();
-		
-		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
-		$this->assertArrayHasKey( 'tabindex', $data );
-		$this->assertTrue( $data['tabindex']['enabled'] );
+	protected function get_frontend_data_key(): string {
+		return 'tabindex';
 	}
 }

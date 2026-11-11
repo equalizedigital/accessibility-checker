@@ -111,8 +111,20 @@ if ( 'accessibility-reports' === $edac_settings_tab ) {
 	<h1><?php echo esc_html( get_admin_page_title() ); ?></h1>
 
 	<?php
+	// Load the save response before rendering so the visible confirmation identifies this settings page.
+	$edac_settings_errors = get_settings_errors();
+	foreach ( $edac_settings_errors as $edac_error_index => $edac_settings_error ) {
+		if ( 'settings_updated' === $edac_settings_error['code'] && 'success' === $edac_settings_error['type'] && 'general' === $edac_settings_error['setting'] ) {
+			// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- The Settings API has no filter or setter for an existing notice message.
+			$GLOBALS['wp_settings_errors'][ $edac_error_index ]['message'] = esc_html__( 'Accessibility Checker settings saved.', 'accessibility-checker' );
+		}
+	}
+	settings_errors();
+	?>
+
+	<?php
 	if ( $edac_settings_tab_items ) {
-		echo '<nav class="nav-tab-wrapper" aria-label="Settings Tabs">';
+		echo '<nav class="nav-tab-wrapper" aria-label="' . esc_attr__( 'Accessibility Checker Settings', 'accessibility-checker' ) . '">';
 		foreach ( $edac_settings_tab_items as $edac_settings_tab_item ) {
 			$edac_slug      = $edac_settings_tab_item['slug'] ? $edac_settings_tab_item['slug'] : null;
 			$edac_query_var = $edac_slug ? '&tab=' . $edac_slug : '';

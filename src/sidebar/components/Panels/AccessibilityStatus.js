@@ -3,10 +3,11 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { Panel, PanelBody, PanelRow } from '@wordpress/components';
+import { Panel, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useCallback, useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
+import SidebarPanelBody from '../SidebarPanelBody';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
@@ -163,7 +164,7 @@ const AccessibilityStatus = () => {
 
 	return (
 		<Panel>
-			<PanelBody
+			<SidebarPanelBody
 				title={ renderPanelTitleWithIcon(
 					statusIconName,
 					__( 'Accessibility Status', 'accessibility-checker' ),
@@ -248,10 +249,19 @@ const AccessibilityStatus = () => {
 						onClick={ handleReadingLevelClick }
 						role="button"
 						tabIndex={ 0 }
-						aria-label={ sprintf(
-							__( 'View reading level details: %s', 'accessibility-checker' ),
-							readingLevelText,
-						) }
+						aria-label={ summaryStatus
+							? sprintf(
+								/* translators: 1: reading level, 2: simplified summary status. */
+								__( 'View reading level details: %1$s, %2$s', 'accessibility-checker' ),
+								readingLevelText,
+								summaryStatus,
+							)
+							: sprintf(
+								/* translators: %s: reading level. */
+								__( 'View reading level details: %s', 'accessibility-checker' ),
+								readingLevelText,
+							)
+						}
 						onKeyDown={ ( e ) => {
 							if ( e.key === 'Enter' || e.key === ' ' ) {
 								if ( e.key === ' ' ) {
@@ -293,7 +303,7 @@ const AccessibilityStatus = () => {
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
 				</PanelRow>
-			</PanelBody>
+			</SidebarPanelBody>
 		</Panel>
 	);
 };

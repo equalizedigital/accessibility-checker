@@ -115,15 +115,57 @@ class FixesManager {
 			'wp_enqueue_scripts',
 			function () {
 				wp_enqueue_script( 'edac-frontend-fixes', EDAC_PLUGIN_URL . 'build/frontendFixes.bundle.js', [], EDAC_VERSION, true );
-				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+				wp_set_script_translations( 'edac-frontend-fixes', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 				wp_localize_script(
 					'edac-frontend-fixes',
 					'edac_frontend_fixes',
-					apply_filters( 'edac_filter_frontend_fixes_data', [] )
+					$this->get_frontend_fixes_data()
 				);
 				do_action( 'edac_action_enqueue_frontend_fixes' );
 			}
 		);
+	}
+
+	/**
+	 * Get the data passed to the frontend fixes script.
+	 *
+	 * @since x.x.x
+	 *
+	 * @return array
+	 */
+	public function get_frontend_fixes_data(): array {
+		/**
+		 * Filter the data passed to the frontend fixes script.
+		 *
+		 * @since 1.16.0
+		 *
+		 * @param array $data Fix data keyed by fix slug.
+		 */
+		$data = (array) apply_filters( 'edac_filter_frontend_fixes_data', [] );
+
+		/**
+		 * Filter the JavaScript events that make frontend fixes run again.
+		 *
+		 * Use this when a plugin or theme adds content to the page after load,
+		 * so the fixes can also apply to the new content. Code can also fire
+		 * the `edac-fixes-rerun` event on document directly.
+		 *
+		 * @since x.x.x
+		 *
+		 * @param string[] $events Event names listened for on document.
+		 */
+		$events = apply_filters(
+			'edac_filter_frontend_fixes_rerun_events',
+			[
+				'facetwp-loaded',      // FacetWP refreshes results.
+				'gform/post_render',   // Gravity Forms AJAX render, multi-page and validation.
+				'edbs:table-rendered', // BoardScribe table re-render on pagination.
+			]
+		);
+
+		$data['rerunEvents'] = array_values( array_filter( (array) $events, 'is_string' ) );
+
+		return $data;
 	}
 
 	/**
@@ -272,34 +314,22 @@ class FixesManager {
 	 * @return void
 	 */
 	public function register_rest_routes() {
-		register_rest_route(
-			'edac/v1',
-			'/fixes',
-			[
+		$routes = [
+			'/fixes'                               => [
 				'methods'             => 'GET',
-				'callback'            => [ $this, 'get_fixes' ],
+				'callback'            => [ $this, 'get_fixes_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fixes/update',
-			[
+			],
+			'/fixes/update'                        => [
 				'methods'             => 'POST',
 				'callback'            => [ $this, 'update_fix_settings' ],
 				'permission_callback' => function () {
 					return current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) );
 				},
-			]
-		);
-
-		register_rest_route(
-			'edac/v1',
-			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)',
-			[
+			],
+			'/fix-fields/(?P<slug>[a-zA-Z0-9_-]+)' => [
 				'methods'             => 'GET',
 				'callback'            => [ $this, 'get_fix_fields' ],
 				'args'                => [
@@ -311,8 +341,12 @@ class FixesManager {
 				'permission_callback' => function () {
 					return current_user_can( 'edit_posts' );
 				},
-			]
-		);
+			],
+		];
+
+		foreach ( $routes as $route => $args ) {
+			register_rest_route( 'accessibility-checker/v1', $route, $args );
+		}
 	}
 
 	/**

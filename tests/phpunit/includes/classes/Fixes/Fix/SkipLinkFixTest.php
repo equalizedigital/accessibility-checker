@@ -34,9 +34,9 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	 */
 	public function tearDown(): void {
 		$this->common_teardown();
-		// Clean up additional options for skip link.
-		delete_option( 'edac_fix_skip_link_text' );
-		delete_option( 'edac_fix_skip_link_element' );
+		// Clean up the target options the skip link fix reads.
+		delete_option( 'edac_fix_add_skip_link_target_id' );
+		delete_option( 'edac_fix_add_skip_link_nav_target_id' );
 		parent::tearDown();
 	}
 
@@ -77,13 +77,14 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * SkipLinkFix needs target ID to add frontend data.
-	 * Skip the trait test and use custom one.
+	 * SkipLinkFix only adds frontend data once a target ID is configured, so with just
+	 * the first option enabled it must not add itself to the payload. The case with a
+	 * target is covered by test_frontend_data_includes_settings() below.
 	 *
 	 * @return bool
 	 */
-	protected function skip_frontend_data_filter_test(): bool {
-		return true;
+	protected function fix_registers_frontend_data(): bool {
+		return false;
 	}
 
 	/**
@@ -116,5 +117,43 @@ class SkipLinkFixTest extends WP_UnitTestCase {
 		$this->assertArrayHasKey( 'targets', $skip_data );
 		$this->assertContains( '#main', $skip_data['targets'] );
 		$this->assertContains( '#content', $skip_data['targets'] );
+	}
+
+	/**
+	 * Test frontend data is not added when targets are empty.
+	 *
+	 * @dataProvider provide_empty_targets
+	 *
+	 * @param string $target_string The raw target setting value.
+	 *
+	 * @return void
+	 */
+	public function test_frontend_data_skips_empty_targets( string $target_string ) {
+		update_option( 'edac_fix_add_skip_link', true );
+		update_option( 'edac_fix_add_skip_link_target_id', $target_string );
+
+		$this->fix->run();
+
+		$this->assertFalse( has_filter( 'edac_filter_frontend_fixes_data' ), 'No frontend data filter should be registered.' );
+
+		$data = apply_filters( 'edac_filter_frontend_fixes_data', [] );
+
+		$this->assertArrayNotHasKey( 'skip_link', $data );
+	}
+
+	/**
+	 * Data provider for empty target values.
+	 *
+	 * @return array<string, array{0: string}>
+	 */
+	public function provide_empty_targets(): array {
+		return [
+			'empty string'                    => [ '' ],
+			'whitespace only'                 => [ '   ' ],
+			'commas only'                     => [ ',,' ],
+			'commas and whitespace'           => [ ' , , ' ],
+			'hash only'                       => [ '#' ],
+			'hash with whitespace and commas' => [ ' , , # , ' ],
+		];
 	}
 }

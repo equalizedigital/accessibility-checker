@@ -43,7 +43,17 @@ module.exports = {
 			'./src/srOnlyFormat/index.js',
 			'./src/srOnlyFormat/sass/sr-only-format.scss',
 		],
-
+		simplifiedSummaryBlock: [
+			'./src/simplifiedSummaryBlock/index.js',
+			'./src/simplifiedSummaryBlock/sass/simplified-summary-block.scss',
+		],
+		sharedComponents: {
+			import: './src/sharedComponents/index.js',
+			library: {
+				name: 'edacSharedComponents',
+				type: 'window',
+			},
+		},
 	},
 	optimization: {
 		splitChunks: {
@@ -63,6 +73,10 @@ module.exports = {
 						reserved: [ '__', '_n', '_x', '_nx' ], // Prevent webpack from using these translation function names and mangling them in the source.
 					},
 					keep_fnames: /(__|_n|_x|_nx)$/,
+					format: {
+						// Keep `translators:` comments in the built bundles.
+						comments: /translators:/i,
+					},
 				},
 			} ),
 			new CssMinimizerPlugin(),
@@ -120,6 +134,7 @@ module.exports = {
 	externals: {
 		// Exclude WordPress core scripts and styles from the build.
 		'@wordpress/i18n': [ 'wp', 'i18n' ],
+		'@wordpress/blocks': [ 'wp', 'blocks' ],
 		'@wordpress/plugins': [ 'wp', 'plugins' ],
 		'@wordpress/editor': [ 'wp', 'editor' ],
 		'@wordpress/edit-post': [ 'wp', 'editPost' ],
@@ -131,5 +146,17 @@ module.exports = {
 		'@wordpress/rich-text': [ 'wp', 'richText' ],
 		'@wordpress/html-entities': [ 'wp', 'htmlEntities' ],
 		'@wordpress/code-editor': [ 'wp', 'codeEditor' ],
+		'@wordpress/a11y': [ 'wp', 'a11y' ],
+		// React ships with WordPress. The automatic JSX runtime configured in
+		// .babelrc compiles JSX to `react/jsx-runtime` imports, which would
+		// otherwise put a second copy of React in the bundle (and a copy that
+		// predates the React 19 that WordPress loads).
+		//
+		// Every JSX entry must therefore run on a screen where the
+		// react-jsx-runtime handle is already loaded. Core's wp-components,
+		// wp-block-editor and wp-edit-post all depend on it, which covers the
+		// admin and editor entries here; wp-element alone does not.
+		react: [ 'React' ],
+		'react/jsx-runtime': [ 'ReactJSXRuntime' ],
 	},
 };

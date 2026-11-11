@@ -28,7 +28,7 @@ class SliderPresentRule implements RuleInterface {
 			'summary'               => esc_html__( 'This element is a slider or carousel. Because many accessibility issues with sliders require manual review, this warning appears any time a slider is detected on a post or page.', 'accessibility-checker' ),
 			'summary_plural'        => esc_html__( 'These elements are sliders or carousels. Because many accessibility issues with sliders require manual review, this warning appears any time one or more sliders are detected on a post or page.', 'accessibility-checker' ),
 			'why_it_matters'        => esc_html__( 'Sliders are often difficult to use with screen readers and keyboards. Inaccessible sliders can interfere with navigation, trap focus, or move too quickly for users to engage with the content.', 'accessibility-checker' ),
-			'how_to_fix'            => esc_html__( 'Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning by using the "Ignore" feature in Accessibility Checker.', 'accessibility-checker' ),
+			'how_to_fix'            => esc_html__( 'Review the slider on the front end of your website. Ensure it is keyboard accessible, pauseable, has proper ARIA roles and labels, and works well with screen readers. After confirming the slider is accessible or remediating issues, you can dismiss this warning in Accessibility Checker.', 'accessibility-checker' ),
 			'references'            => [
 				[
 					'text' => __( 'W3C: Carousels Tutorial', 'accessibility-checker' ),

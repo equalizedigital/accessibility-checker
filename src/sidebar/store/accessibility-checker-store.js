@@ -60,8 +60,9 @@ const initialState = {
 	},
 };
 
-// Debounce timer
-let debounceTimer = null;
+// The refresh currently waiting in the debounce window.
+// Store its resolver so a canceled refresh does not leave a pending promise.
+let pendingRefresh = null;
 
 // Actions
 const actions = {
@@ -199,18 +200,36 @@ const actions = {
 
 	refetchData( postId ) {
 		return async ( { dispatch, select } ) => {
-			// Clear any existing debounce timer
-			if ( debounceTimer ) {
-				clearTimeout( debounceTimer );
+			// Cancel and settle the refresh that is still waiting to start.
+			if ( pendingRefresh ) {
+				clearTimeout( pendingRefresh.debounceTimer );
+
+				pendingRefresh.resolve( {
+					status: 'superseded',
+				} );
 			}
 
 			// Debounce the refetch by 200ms
 			return new Promise( ( resolve ) => {
-				debounceTimer = setTimeout( async () => {
+				const pending = {
+					resolve,
+					debounceTimer: null,
+				};
+
+				pending.debounceTimer = setTimeout( async () => {
+					/*
+					 * This refresh has started and can no longer be superseded by the
+					 * debounce logic. Clear the shared reference only if this refresh
+					 * still owns it, so an older callback cannot clear a newer refresh.
+					 */
+					if ( pendingRefresh === pending ) {
+						pendingRefresh = null;
+					}
+
 					// If this is the initial load, use regular fetch
 					if ( select.isInitialLoad() ) {
 						await dispatch( actions.fetchData( postId ) );
-						resolve();
+						resolve( { status: select.getError() ? 'error' : 'success' } );
 						return;
 					}
 
@@ -218,6 +237,7 @@ const actions = {
 					dispatch( actions.setBackgroundRefresh( true ) );
 					dispatch( actions.setRefreshing( true ) ); // Backwards compatibility
 
+					let refreshSucceeded = false;
 					try {
 						const response = await apiFetch( {
 							path: `/accessibility-checker/v1/sidebar-data/${ postId }`,
@@ -227,6 +247,7 @@ const actions = {
 						if ( response.success ) {
 							// Compare and only update if different
 							dispatch( actions.setDataIfDifferent( response.data ) );
+							refreshSucceeded = true;
 						} else {
 							// Don't show errors during background refresh unless critical
 							// eslint-disable-next-line no-console
@@ -241,8 +262,11 @@ const actions = {
 						dispatch( actions.setRefreshing( false ) );
 					}
 
-					resolve();
+					resolve( { status: refreshSucceeded ? 'success' : 'error' } );
 				}, 200 );
+
+				// Track the timer and resolver together until the refresh starts.
+				pendingRefresh = pending;
 			} );
 		};
 	},

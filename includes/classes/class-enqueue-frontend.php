@@ -8,12 +8,23 @@
 namespace EDAC\Inc;
 
 use EDAC\Admin\Settings;
+use EqualizeDigital\AccessibilityChecker\Admin\IgnoreUI;
 
 /**
  * Class that initializes and handles enqueueing styles and scripts for the frontend.
  */
 class Enqueue_Frontend {
 
+	/**
+	 * The header sent on scan requests from a cross-origin isolated editor.
+	 *
+	 * Matches the policy WordPress core sends on block editor screens.
+	 *
+	 * @since 1.51.1
+	 *
+	 * @var string
+	 */
+	public const SCAN_ISOLATION_HEADER = 'Document-Isolation-Policy: isolate-and-credentialless';
 
 	/**
 	 * Constructor
@@ -60,6 +71,65 @@ class Enqueue_Frontend {
 	}
 
 	/**
+	 * Whether the current request is a scan iframe loaded from a cross-origin isolated editor.
+	 *
+	 * The editor adds 'edac_isolated=1' to the scan URL only when `window.crossOriginIsolated`
+	 * is true, so the scan iframe can be given a matching isolation policy. See
+	 * `getScanIframeUrl()` in `src/editorApp/checkPage.js`.
+	 *
+	 * @since 1.51.1
+	 *
+	 * @return bool
+	 */
+	public static function is_isolated_scan_request(): bool {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		return isset( $_GET['edac_pageScanner'], $_GET['edac_isolated'] )
+			&& '1' === $_GET['edac_pageScanner']
+			&& '1' === $_GET['edac_isolated'];
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+	}
+
+	/**
+	 * Send a Document-Isolation-Policy header on scan requests from an isolated editor.
+	 *
+	 * Since WordPress 7.1, block editor screens are served with
+	 * `Document-Isolation-Policy: isolate-and-credentialless` in Chromium 137+. A
+	 * same-origin iframe without the same policy is placed in a different agent
+	 * cluster, so the editor can't access its document or location and the scan can't
+	 * run. Sending the same policy on the scan request puts the iframe in the same
+	 * agent cluster as the editor.
+	 *
+	 * Only sent when the editor reports it is isolated, so normal page views, the full
+	 * site scan, and non-isolated editors are unaffected.
+	 *
+	 * @since 1.51.1
+	 *
+	 * @return void
+	 */
+	public static function maybe_send_scan_isolation_header(): void {
+		if ( ! self::is_isolated_scan_request() ) {
+			return;
+		}
+
+		static::send_header( self::SCAN_ISOLATION_HEADER );
+	}
+
+	/**
+	 * Send a response header.
+	 *
+	 * Kept separate from the callers so tests can capture the header that would be sent.
+	 *
+	 * @since 1.51.1
+	 *
+	 * @param string $header The full header line, such as 'Name: value'.
+	 *
+	 * @return void
+	 */
+	protected static function send_header( string $header ): void {
+		header( $header );
+	}
+
+	/**
 	 * Enqueue the screen reader only format styles on the frontend.
 	 *
 	 * Loaded on all frontend pages so that text wrapped in .text-format-sr-only
@@ -74,7 +144,7 @@ class Enqueue_Frontend {
 
 		wp_enqueue_style(
 			'edac-sr-only-format',
-			plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/srOnlyFormat.css',
+			EDAC_PLUGIN_URL . 'build/css/srOnlyFormat.css',
 			[],
 			EDAC_VERSION,
 			'all'
@@ -104,14 +174,25 @@ class Enqueue_Frontend {
 
 		// Don't load on the frontend if we don't have a post to work with.
 		global $post;
-		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', is_object( $post ) ? $post->ID : null );
+
+		// On a latest-posts homepage the global $post is the first blog post, so using its ID
+		// would misattribute results; pass null and let the filter supply an ID (Pro) or bail.
+		$default_post_id = ( is_home() && is_front_page() )
+			? null
+			: ( is_object( $post ) ? $post->ID : null );
+
+		$post_id = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
 
 		if ( null === $post_id ) {
 			return;
 		}
 
-		// Don't load in a customizer preview or user can't edit the page. A filter
-		// can override the edit requirement to allow anyone to see it.
+		// Don't load in a customizer preview or if the user lacks the frontend
+		// highlighter capability. A filter can override this to allow anyone to
+		// see it. Deliberately does NOT fall back to current_user_can( 'edit_post' ):
+		// Editors and self-editing Authors satisfy that on virtually any post, which
+		// would let the historical fallback silently override a role's Permissions
+		// tab setting for edac_view_frontend_highlighter (PRO-1290).
 		if (
 			is_customize_preview() ||
 			(
@@ -123,12 +204,20 @@ class Enqueue_Frontend {
 				 * highlighter. You can use the filter to perform additional permission checks
 				 * on who can see it.
 				 *
+				 * Not a deprecation candidate against edac_view_frontend_highlighter - see
+				 * the fuller note at admin/class-frontend-highlight.php::init_hooks().
+				 *
 				 * @since 1.14.0
 				 *
 				 * @param bool $visibility The visibility of the frontend highlighter. Default is false, return true to show the frontend highlighter.
 				 */
 				! apply_filters( 'edac_filter_frontend_highlighter_visibility', false ) &&
-				! ( $post_id && current_user_can( 'edit_post', $post_id ) )
+				! (
+					function_exists( 'edac_user_can_use_frontend_highlighter' ) &&
+					edac_user_can_use_frontend_highlighter() &&
+					current_user_can( 'read_post', $post_id ) &&
+					! post_password_required( $post_id )
+				)
 			)
 		) {
 			return;
@@ -144,8 +233,19 @@ class Enqueue_Frontend {
 		if ( $active ) {
 
 
-			wp_enqueue_style( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/css/frontendHighlighterApp.css', [], EDAC_VERSION, 'all' );
-			wp_enqueue_script( 'edac-frontend-highlighter-app', plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/frontendHighlighterApp.bundle.js', [], EDAC_VERSION, false );
+			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', [], EDAC_VERSION, 'all' );
+			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', [], EDAC_VERSION, false );
+
+			// Mirrors the dismiss-issue REST permission check: "any post" dismissers can always
+			// dismiss, "own issues" dismissers only where they can edit this post.
+			$can_dismiss = is_user_logged_in() && (
+				edac_user_can_dismiss_issues() ||
+				( edac_user_can_dismiss_own_issues() && current_user_can( 'edit_post', $post_id ) )
+			);
+
+			// Global dismissal is its own capability and doesn't imply per-post dismissal,
+			// so a global-only user gets the form with just the global action.
+			$can_dismiss_global = is_user_logged_in() && edac_is_pro() && edac_user_can_dismiss_issues_globally();
 
 			wp_localize_script(
 				'edac-frontend-highlighter-app',
@@ -158,17 +258,23 @@ class Enqueue_Frontend {
 					'isPro'            => edac_is_pro(),
 					'userCanEdit'      => current_user_can( 'edit_post', $post_id ),
 					'edacUrl'          => esc_url_raw( get_site_url() ),
+					'restUrl'          => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
+					'fixesRestUrl'     => esc_url_raw( rest_url( 'accessibility-checker/v1' ) ),
 					'ajaxurl'          => admin_url( 'admin-ajax.php' ),
 					'loggedIn'         => is_user_logged_in(),
 					'appCssUrl'        => EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css?ver=' . EDAC_VERSION,
 					'widgetPosition'   => get_option( 'edac_frontend_highlighter_position', 'right' ),
 					'editorLink'       => get_edit_post_link( $post_id ),
-					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, plugin_dir_url( EDAC_PLUGIN_FILE ) . 'build/pageScanner.bundle.js' ) ),
+					'scannerBundleUrl' => esc_url_raw( add_query_arg( 'ver', EDAC_VERSION, EDAC_PLUGIN_URL . 'build/pageScanner.bundle.js' ) ),
 					'adminThemeColor'  => self::get_admin_theme_color(),
+					'landmarkTypes'    => edac_get_landmark_types(),
+					'canDismiss'       => $can_dismiss,
+					'canDismissGlobal' => $can_dismiss_global,
+					'dismissReasons'   => ( $can_dismiss || $can_dismiss_global ) ? IgnoreUI::get_reasons() : [],
 				]
 			);
 
-			wp_set_script_translations( 'edac-frontend-highlighter-app', 'accessibility-checker', plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages' );
+			wp_set_script_translations( 'edac-frontend-highlighter-app', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 		}
 	}
