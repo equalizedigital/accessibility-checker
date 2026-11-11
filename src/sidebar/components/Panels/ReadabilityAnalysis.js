@@ -3,11 +3,12 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { PanelBody, PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
+import { PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import SidebarPanelBody from '../SidebarPanelBody';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
 import ExternalLinkIcon from '../../components/ExternalLinkIcon';
 import Icon from '../Icon';
@@ -223,7 +224,7 @@ const ReadabilityAnalysis = () => {
 	}
 
 	return (
-		<PanelBody
+		<SidebarPanelBody
 			title={ renderPanelTitleWithIcon(
 				getPanelIcon(),
 				__( 'Readability Analysis', 'accessibility-checker' ),
@@ -425,7 +426,7 @@ const ReadabilityAnalysis = () => {
 					</div>
 				</PanelRow>
 			) }
-		</PanelBody>
+		</SidebarPanelBody>
 	);
 };
 
