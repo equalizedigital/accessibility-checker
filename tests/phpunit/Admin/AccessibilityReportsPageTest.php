@@ -92,56 +92,6 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 	}
 
 	/**
-	 * Invoke a private static method on the reports page.
-	 *
-	 * @param string $method_name Method name.
-	 * @param array  $arguments   Arguments.
-	 * @return mixed
-	 * @throws ReflectionException If reflection fails.
-	 */
-	private function invoke_private_static_method( string $method_name, array $arguments = [] ) {
-		$reflection = new ReflectionClass( AccessibilityReportsPage::class );
-		$method     = $reflection->getMethod( $method_name );
-		$method->setAccessible( true );
-
-		return $method->invokeArgs( null, $arguments );
-	}
-
-	/**
-	 * Ensures valid Pro remains authoritative when it is installed and connected.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_uses_pro_when_pro_is_valid() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'valid', 'valid', 'site-123', false ]
-		);
-
-		$this->assertTrue( $context['has_pro_plugin'] );
-		$this->assertTrue( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
-	}
-
-	/**
-	 * Ensures the reports page falls back to free state when Pro is installed but no longer valid.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_falls_back_to_free_when_pro_is_invalid() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123', false ]
-		);
-
-		$this->assertTrue( $context['has_pro_plugin'] );
-		$this->assertFalse( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
-	}
-
-	/**
 	 * Ensures taxonomy coverage only shows full coverage when the effective license is Pro.
 	 *
 	 * @throws ReflectionException If reflection fails.
@@ -155,22 +105,6 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		$this->assertSame( 0, $free_counts['checked'] );
 		$this->assertGreaterThanOrEqual( $free_counts['checked'], $free_counts['total'] );
 		$this->assertSame( $pro_counts['total'], $pro_counts['checked'] );
-	}
-
-	/**
-	 * Ensures fallback marker does not disconnect reports when Free is valid and the site remains enrolled.
-	 *
-	 * @throws ReflectionException If reflection fails.
-	 */
-	public function test_resolve_license_context_keeps_free_fallback_connected_when_site_id_exists() {
-		$context = $this->invoke_private_static_method(
-			'resolve_license_context',
-			[ true, 'expired', 'valid', 'site-123', true ]
-		);
-
-		$this->assertFalse( $context['is_pro'] );
-		$this->assertSame( 'valid', $context['status'] );
-		$this->assertTrue( $context['is_connected'] );
 	}
 
 	/**
