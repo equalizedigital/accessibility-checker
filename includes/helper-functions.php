@@ -431,7 +431,7 @@ function edac_get_upcoming_meetups_html( $meetup, $count = 5, $heading = '3' ) {
  * @param  int $issue_count number of issues.
  * @param  int $element_count number of elements.
  * @param  int $content_length length of content.
- * @return int
+ * @return float|int
  */
 function edac_get_issue_density( $issue_count, $element_count, $content_length ) {
 
@@ -450,13 +450,13 @@ function edac_get_issue_density( $issue_count, $element_count, $content_length )
 		( $error_content_percentage * $content_weight )
 	);
 
-	return round( $score * 100, 2 );
+	return (float) round( $score * 100, 2 );
 }
 
 /**
  * Get simplified summary
  *
- * @param integer $post Post ID.
+ * @param int|null $post Post ID, defaults to the current post.
  * @return void
  */
 function edac_get_simplified_summary( $post = null ) {

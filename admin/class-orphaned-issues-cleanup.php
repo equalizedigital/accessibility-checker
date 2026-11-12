@@ -165,6 +165,7 @@ class Orphaned_Issues_Cleanup {
 	 * @since 1.29.0
 	 *
 	 * @param int $post_id The orphaned post ID.
+	 * @return void
 	 */
 	public function delete_orphaned_post( int $post_id ) {
 		Purge_Post_Data::delete_post( $post_id );

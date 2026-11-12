@@ -16,6 +16,7 @@ trait Checkbox {
 	 * Render a checkbox input.
 	 *
 	 * @param array $args The arguments for the checkbox. This is expected to have a name and a description.
+	 * @return void
 	 */
 	public static function checkbox( $args ) {
 

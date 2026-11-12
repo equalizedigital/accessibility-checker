@@ -40,6 +40,8 @@ interface FixInterface {
 	 *
 	 * Fixes are responsible for implementing their own 'run' method and binding it in here
 	 * if they are not just simple hooks.
+	 *
+	 * @return void
 	 */
 	public function register(): void;
 
@@ -59,6 +61,8 @@ interface FixInterface {
 	 * Run the fix.
 	 *
 	 * This will be called in admin only, frontend only or everywhere depending on the fix type.
+	 *
+	 * @return void
 	 */
 	public function run();
 }

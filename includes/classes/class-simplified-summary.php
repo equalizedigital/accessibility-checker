@@ -24,6 +24,8 @@ class Simplified_Summary {
 
 	/**
 	 * Initialize WordPress hooks.
+	 *
+	 * @return void
 	 */
 	public function init_hooks() {
 		add_filter( 'the_content', [ $this, 'output_simplified_summary' ] );

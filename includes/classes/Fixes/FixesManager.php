@@ -70,6 +70,8 @@ class FixesManager {
 	 * Maybe enqueue the thickbox script.
 	 *
 	 * This powers the modal that is used to display fix settings in the editor.
+	 *
+	 * @return void
 	 */
 	public function maybe_enqueue_thickbox() {
 		add_action(
@@ -94,6 +96,8 @@ class FixesManager {
 
 	/**
 	 * Maybe enqueue the frontend scripts.
+	 *
+	 * @return void
 	 */
 	private function maybe_enqueue_frontend_scripts() {
 
@@ -166,6 +170,8 @@ class FixesManager {
 
 	/**
 	 * Load the fixes.
+	 *
+	 * @return void
 	 */
 	private function load_fixes() {
 		$fixes = apply_filters(
@@ -240,6 +246,8 @@ class FixesManager {
 
 	/**
 	 * Register the fixes.
+	 *
+	 * @return void
 	 */
 	public function register_fixes() {
 		$this->load_fixes();
@@ -254,6 +262,7 @@ class FixesManager {
 	 * Maybe run a fix depending on current context.
 	 *
 	 * @param FixInterface $fix The fix to maybe run.
+	 * @return void
 	 */
 	public function maybe_run_fix( $fix ) {
 		if ( 'backend' === $fix::get_type() && is_admin() ) {
@@ -286,6 +295,8 @@ class FixesManager {
 
 	/**
 	 * Maybe show a notice if the theme is accessibility-ready.
+	 *
+	 * @return void
 	 */
 	public static function maybe_show_accessibility_ready_conflict_notice() {
 		if ( self::is_theme_accessibility_ready() ) {

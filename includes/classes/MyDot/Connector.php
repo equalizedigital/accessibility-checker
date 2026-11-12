@@ -193,6 +193,7 @@ class Connector {
 	 * Sets up the license page and handlers.
 	 *
 	 * @since 1.40.0
+	 * @return void
 	 */
 	public function init() {
 		$connected_services = new ConnectedServicesPage( 'manage_options' );
@@ -1290,6 +1291,8 @@ class Connector {
 
 	/**
 	 * Display transient-based admin notices for the current user.
+	 *
+	 * @return void
 	 */
 	public function display_admin_notices() {
 		$key    = $this->get_notice_transient_key();

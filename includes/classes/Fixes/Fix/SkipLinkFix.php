@@ -120,10 +120,12 @@ class SkipLinkFix implements FixInterface {
 
 	/**
 	 * Run the fix for adding the skip link to the site.
+	 *
+	 * @return void
 	 */
 	public function run() {
 		if ( ! get_option( 'edac_fix_add_skip_link', false ) ) {
-			return null;
+			return;
 		}
 
 		add_action( 'wp_body_open', [ $this, 'add_skip_link' ] );
