@@ -37,8 +37,8 @@ class Helpers {
 	/**
 	 * Localizes the format of a number.
 	 *
-	 * @param int|float $number number to format.
-	 * @param integer   $precision number of decimals.
+	 * @param int|float|string $number number to format, returned unchanged when non-numeric.
+	 * @param integer          $precision number of decimals.
 	 * @return string|false
 	 */
 	public static function format_number( $number, $precision = 0 ) {
@@ -62,8 +62,8 @@ class Helpers {
 	/**
 	 * Localizes the format of a percentage.
 	 *
-	 * @param int|float $number number to format.
-	 * @param integer   $precision number of decimals.
+	 * @param int|float|string $number number to format, returned unchanged when non-numeric.
+	 * @param integer          $precision number of decimals.
 	 * @return string|false
 	 */
 	public static function format_percentage( $number, $precision = 2 ) {
