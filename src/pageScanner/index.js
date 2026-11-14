@@ -9,6 +9,7 @@ import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
 import { hideOverlaysDuringScan } from './helpers/hideOverlaysDuringScan';
 import { sortViolationsByDocumentOrder } from './helpers/sortViolations';
+import { findElement } from './helpers/findElement';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -33,7 +34,7 @@ const CONDITIONAL_LANDMARK_TAGS = Array.isArray( window?.scanOptions?.conditiona
 const CONDITIONAL_LANDMARK_ROLES = Array.isArray( window?.scanOptions?.conditionalLandmarkRoles ) ? window.scanOptions.conditionalLandmarkRoles : [ 'region', 'article', 'form' ];
 
 function getLandmarkForSelector( selector ) {
-	const el = document.querySelector( selector );
+	const el = findElement( selector );
 	if ( ! el ) {
 		return { type: null, selector: null };
 	}
@@ -379,7 +380,7 @@ function processViolation( violation, item ) {
 	// The element may be gone by now (a script on the page can remove or replace it once it has
 	// been checked). axe kept its markup as it was when checked: fall back to that, so the issue
 	// is still saved with the code it was found on.
-	const html = document.querySelector( selector )?.outerHTML ?? violation.node.source ?? '';
+	const html = findElement( selector )?.outerHTML ?? violation.node.source ?? '';
 	return {
 		selector,
 		ancestry,

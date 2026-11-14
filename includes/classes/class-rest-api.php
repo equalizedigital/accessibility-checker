@@ -563,12 +563,19 @@ class REST_Api {
 
 						// This rule is one that we've included in our js ruleset.
 
-						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'] ?? '', $rule_id, $violation );
+						// The markup is only passed on as text: anything else would break the filter's callbacks.
+						$html   = is_string( $violation['html'] ?? null ) ? apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation ) : '';
 						$impact = $violation['impact'] ?? ''; // by default, use the impact setting from the js rule.
 
 						// A violation can arrive without its markup (the element was gone when the scanner went back
-						// for it). There is nothing to store for it, and it must not cost the page its other results.
+						// for it). There is nothing new to store for it, and it must not cost the page its other results.
+						// It was still found, though: an issue already saved for it is kept, with its dismissal.
 						if ( ! is_string( $html ) || '' === $html ) {
+							$reported_selector = $violation['selector'] ?? null;
+							$reported_selector = is_array( $reported_selector ) ? ( $reported_selector[0] ?? null ) : $reported_selector;
+							if ( is_string( $reported_selector ) && '' !== $reported_selector ) {
+								( new Insert_Rule_Data() )->keep( $post, $actual_rule_id, $reported_selector );
+							}
 							continue;
 						}
 

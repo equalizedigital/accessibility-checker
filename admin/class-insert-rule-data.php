@@ -25,6 +25,43 @@ namespace EDAC\Admin;
 class Insert_Rule_Data {
 
 	/**
+	 * Mark an issue that is already stored as still present, changing nothing else about it.
+	 *
+	 * A scan marks a page's stored issues as unchecked, checks off each one it
+	 * finds again, and then deletes the rest as corrected. This checks one off
+	 * for an issue the scan found again but could not describe (its markup was
+	 * not available), so it is not deleted along with its dismissal.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param object $post     The post object. Must have a valid ID.
+	 * @param string $rule     The rule slug.
+	 * @param string $selector The selector the issue is stored under.
+	 * @return int Number of stored issues kept.
+	 */
+	public function keep( object $post, string $rule, string $selector ): int {
+		if ( ! isset( $post->ID, $post->post_type ) || '' === $rule || '' === $selector ) {
+			return 0;
+		}
+
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for updating data in database, caching not required for one time operation.
+		return (int) $wpdb->query(
+			$wpdb->prepare(
+				'UPDATE %i SET recordcheck = %d WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
+				$wpdb->prefix . 'accessibility_checker',
+				1,
+				get_current_blog_id(),
+				$post->ID,
+				$rule,
+				$selector,
+				$post->post_type
+			)
+		);
+	}
+
+	/**
 	 * Insert rule data into database
 	 *
 	 * @since 1.10.0

@@ -271,7 +271,8 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 
 		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
 		$request->set_param( 'id', $post_id );
-		$request->set_param( 'violations', [ $gone, $found, array_merge( $gone, [ 'html' => null ] ) ] );
+		// Markup that is missing, null, or not text at all: none of them may stop the one after it being saved.
+		$request->set_param( 'violations', [ $gone, array_merge( $gone, [ 'html' => null ] ), array_merge( $gone, [ 'html' => [ '<img>' ] ] ), $found ] );
 		$response = $this->server->dispatch( $request );
 
 		$this->assertSame( 200, $response->get_status(), 'The results must be saved, not refused.' );
@@ -280,6 +281,77 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
 		$selectors = $wpdb->get_col( $wpdb->prepare( "SELECT selector FROM {$table_name} WHERE postid = %d", $post_id ) );
 		$this->assertSame( [ '#found' ], $selectors, 'The violation with markup is stored; the ones without are left out.' );
+	}
+
+	/**
+	 * An issue that is found again without its markup is still there: its stored row and dismissal are kept.
+	 *
+	 * A save marks the post's stored issues as unchecked, checks off the ones it
+	 * stores again and deletes the rest as corrected. An issue skipped for want
+	 * of markup must be checked off too, or it is deleted with its dismissal.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_keeps_a_stored_issue_reported_without_markup() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a dismissed issue whose element is gone',
+			]
+		);
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		foreach ( [ '#gone', '#fixed' ] as $selector ) {
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'        => $post_id,
+					'siteid'        => get_current_blog_id(),
+					'type'          => 'post',
+					'rule'          => 'img_alt_missing',
+					'ruletype'      => 'error',
+					'object'        => '<img src="/stored.png">',
+					'selector'      => $selector,
+					'recordcheck'   => 1,
+					'user'          => self::$admin_id,
+					'ignre'         => 1,
+					'ignre_reason'  => 'false_positive',
+					'ignre_comment' => 'Checked by hand: decorative.',
+				]
+			);
+		}
+
+		wp_set_current_user( self::$admin_id );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'id', $post_id );
+		$request->set_param(
+			'violations',
+			[
+				[
+					'ruleId'   => 'img_alt_missing',
+					'impact'   => 'error',
+					'selector' => [ '#gone' ],
+				],
+			]
+		);
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT selector, object, ignre, ignre_comment FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		$this->assertCount( 1, $rows, 'The issue reported again is kept; the one not reported is removed as corrected.' );
+		$this->assertSame( '#gone', $rows[0]['selector'] );
+		$this->assertSame( '<img src="/stored.png">', $rows[0]['object'], 'Its stored markup is left as it was.' );
+		$this->assertSame( '1', (string) $rows[0]['ignre'], 'It stays dismissed.' );
+		$this->assertSame( 'Checked by hand: decorative.', $rows[0]['ignre_comment'] );
 	}
 
 	/**

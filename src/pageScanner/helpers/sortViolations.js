@@ -1,22 +1,4 @@
-/**
- * Find the element a violation was reported on.
- *
- * The element may no longer be there: a script on the page can remove or
- * replace it after it was checked, it can sit inside a frame or shadow root
- * that the document cannot reach by selector, and the selector itself may not
- * be one the browser accepts.
- *
- * @param {Object}   violation A violation, with its `selector`.
- * @param {Document} root      The document to look in.
- * @return {Element|null} The element, or null if it cannot be found.
- */
-const findElement = ( violation, root ) => {
-	try {
-		return root.querySelector( violation.selector );
-	} catch ( error ) {
-		return null;
-	}
-};
+import { findElement } from './findElement';
 
 /**
  * Sort violations into the order their elements appear in the document.
@@ -31,7 +13,7 @@ const findElement = ( violation, root ) => {
  */
 export const sortViolationsByDocumentOrder = ( violations, root = document ) => {
 	// Looked up once each, not on every comparison.
-	const elements = new Map( violations.map( ( violation ) => [ violation, findElement( violation, root ) ] ) );
+	const elements = new Map( violations.map( ( violation ) => [ violation, findElement( violation.selector, root ) ] ) );
 
 	return violations.sort( ( first, second ) => {
 		const a = elements.get( first );
