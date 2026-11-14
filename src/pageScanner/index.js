@@ -8,6 +8,7 @@ import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
 import { hideOverlaysDuringScan } from './helpers/hideOverlaysDuringScan';
+import { sortViolationsByDocumentOrder } from './helpers/sortViolations';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -266,22 +267,8 @@ const scan = async (
 				};
 			} );
 
-			//Sort the violations by order they appear in the document
-			violations.sort( function( a, b ) {
-				a = document.querySelector( a.selector );
-				b = document.querySelector( b.selector );
-
-				if ( a === b ) {
-					return 0;
-				}
-
-				/* eslint-disable no-bitwise */
-				if ( a.compareDocumentPosition( b ) & 2 ) {
-					// b comes before a
-					return 1;
-				}
-				return -1;
-			} );
+			// Sort the violations by the order they appear in the document.
+			sortViolationsByDocumentOrder( violations );
 
 			return { rules, rulesMin, violations };
 		} ).catch( ( err ) => {
