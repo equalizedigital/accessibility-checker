@@ -355,6 +355,82 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A selector that sanitizing changes still finds its stored issue on later scans.
+	 *
+	 * The selector is stored sanitized ("%20" is stripped), so a lookup by the
+	 * selector as reported would miss the row and the issue would be deleted and
+	 * re-added, or just deleted, without its dismissal.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_matches_a_selector_that_sanitizing_changes() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$selector   = 'a[href="/my%20file.pdf"] > img';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a selector that sanitizing changes',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		$scan = function ( array $violation ) use ( $post_id ) {
+			$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+			$request->set_param( 'id', $post_id );
+			$request->set_param( 'violations', [ $violation ] );
+			return $this->server->dispatch( $request );
+		};
+
+		$with_markup    = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'html'     => '<img src="/a.png">',
+			'selector' => [ $selector ],
+		];
+		$without_markup = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'selector' => [ $selector ],
+		];
+
+		// The first scan stores the issue through the normal insert path.
+		$this->assertSame( 200, $scan( $with_markup )->get_status() );
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, selector FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+		$this->assertCount( 1, $rows );
+		$this->assertNotSame( $selector, $rows[0]['selector'], 'The test needs a selector that is stored differently from how it is reported.' );
+		$issue_id = $rows[0]['id'];
+
+		$wpdb->update(
+			$table_name,
+			[
+				'ignre'         => 1,
+				'ignre_comment' => 'Checked by hand: decorative.',
+			],
+			[ 'id' => $issue_id ]
+		);
+
+		// Found again with its markup, then found again without it.
+		foreach ( [ $with_markup, $without_markup ] as $violation ) {
+			$this->assertSame( 200, $scan( $violation )->get_status() );
+
+			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, ignre, ignre_comment FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+
+			$this->assertCount( 1, $rows );
+			$this->assertSame( (string) $issue_id, (string) $rows[0]['id'], 'It is the same stored issue, not a new one.' );
+			$this->assertSame( '1', (string) $rows[0]['ignre'], 'It stays dismissed.' );
+			$this->assertSame( 'Checked by hand: decorative.', $rows[0]['ignre_comment'] );
+		}
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	}
+
+	/**
 	 * Verify permissions for clearing issues for a post.
 	 *
 	 * @return void

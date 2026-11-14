@@ -44,6 +44,12 @@ class Insert_Rule_Data {
 			return 0;
 		}
 
+		// Match the selector the way it was stored, or one that sanitizing changes is never found.
+		$selector = self::stored_selector( $selector );
+		if ( '' === $selector ) {
+			return 0;
+		}
+
 		global $wpdb;
 
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for updating data in database, caching not required for one time operation.
@@ -59,6 +65,21 @@ class Insert_Rule_Data {
 				$post->post_type
 			)
 		);
+	}
+
+	/**
+	 * A selector as it is written to the database.
+	 *
+	 * Stored selectors are sanitized, which changes some of them (an encoded
+	 * space in an href, say). Looking a stored issue up has to use the same form.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param string|null $selector The selector as the scan reported it.
+	 * @return string The selector as stored.
+	 */
+	public static function stored_selector( ?string $selector ): string {
+		return sanitize_text_field( $selector ?? '' );
 	}
 
 	/**
@@ -117,6 +138,9 @@ class Insert_Rule_Data {
 			return;
 		}
 
+		// The existing row, if there is one, is stored under the sanitized selector.
+		$stored_selector = self::stored_selector( $rule_data['selector'] );
+
 		// Check if exists.
 		// Use selector as the unique identifier instead of object to allow duplicate code objects
 		// with different selectors (e.g., two empty paragraphs in different locations).
@@ -128,7 +152,7 @@ class Insert_Rule_Data {
 				$rule_data['type'],
 				$rule_data['postid'],
 				$rule_data['rule'],
-				$rule_data['selector'],
+				$stored_selector,
 				$rule_data['siteid']
 			),
 			ARRAY_A
@@ -160,7 +184,7 @@ class Insert_Rule_Data {
 						$rule_data['siteid'],
 						$rule_data['postid'],
 						$rule_data['rule'],
-						$rule_data['selector'],
+						$stored_selector,
 						$rule_data['type']
 					)
 				);
