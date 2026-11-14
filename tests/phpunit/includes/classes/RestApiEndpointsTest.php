@@ -431,6 +431,59 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A selector reported as a list (an element inside a shadow root) does not stop the save.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_stores_a_violation_with_a_nested_selector() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a shadow DOM violation',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		// Scanned twice: the second save meets the rows the first one stored.
+		for ( $scan = 1; $scan <= 2; $scan++ ) {
+			$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+			$request->set_param( 'id', $post_id );
+			$request->set_param(
+				'violations',
+				[
+					[
+						'ruleId'   => 'img_alt_missing',
+						'impact'   => 'error',
+						'html'     => '<img src="/in-shadow-root.png">',
+						'selector' => [ [ '#host', 'img' ] ],
+					],
+					[
+						'ruleId'   => 'img_alt_missing',
+						'impact'   => 'error',
+						'html'     => '<img src="/ordinary.png">',
+						'selector' => [ '#ordinary' ],
+					],
+				]
+			);
+			$response = $this->server->dispatch( $request );
+
+			$this->assertSame( 200, $response->get_status() );
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$selectors = $wpdb->get_col( $wpdb->prepare( "SELECT selector FROM {$table_name} WHERE postid = %d ORDER BY selector", $post_id ) );
+
+			$this->assertCount( 2, $selectors, 'Both violations are stored, once each.' );
+			$this->assertContains( '#ordinary', $selectors );
+		}
+	}
+
+	/**
 	 * Verify permissions for clearing issues for a post.
 	 *
 	 * @return void

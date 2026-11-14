@@ -75,11 +75,14 @@ class Insert_Rule_Data {
 	 *
 	 * @since x.x.x
 	 *
-	 * @param string|null $selector The selector as the scan reported it.
+	 * A selector that is not text (an element inside a shadow root is reported
+	 * as a list) has no stored form to match on.
+	 *
+	 * @param mixed $selector The selector as the scan reported it.
 	 * @return string The selector as stored.
 	 */
-	public static function stored_selector( ?string $selector ): string {
-		return sanitize_text_field( $selector ?? '' );
+	public static function stored_selector( $selector ): string {
+		return is_string( $selector ) ? sanitize_text_field( $selector ) : '';
 	}
 
 	/**
@@ -144,8 +147,10 @@ class Insert_Rule_Data {
 		// Check if exists.
 		// Use selector as the unique identifier instead of object to allow duplicate code objects
 		// with different selectors (e.g., two empty paragraphs in different locations).
+		// A selector that is a list cannot identify a stored row, so
+		// each one is added as its own issue, as it always has been.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-		$results = $wpdb->get_results(
+		$results = is_array( $rule_data['selector'] ) ? [] : $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
 				$table_name,
