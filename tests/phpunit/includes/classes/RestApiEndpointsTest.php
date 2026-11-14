@@ -234,6 +234,55 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A violation that arrives without its markup must not cost the page its other results.
+	 *
+	 * The scanner looks each flagged element up again to read its markup. When the
+	 * element is gone by then, the violation has no `html`. That used to reach a
+	 * string-typed parameter as null and end the request with a fatal error.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_skips_a_violation_without_markup() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a missing element',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		$found = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'html'     => '<img src="/found.png">',
+			'selector' => [ '#found' ],
+		];
+		$gone  = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'selector' => [ '#gone' ],
+		];
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'id', $post_id );
+		$request->set_param( 'violations', [ $gone, $found, array_merge( $gone, [ 'html' => null ] ) ] );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status(), 'The results must be saved, not refused.' );
+		$this->assertTrue( $response->get_data()['success'] );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$selectors = $wpdb->get_col( $wpdb->prepare( "SELECT selector FROM {$table_name} WHERE postid = %d", $post_id ) );
+		$this->assertSame( [ '#found' ], $selectors, 'The violation with markup is stored; the ones without are left out.' );
+	}
+
+	/**
 	 * Verify permissions for clearing issues for a post.
 	 *
 	 * @return void

@@ -376,7 +376,10 @@ function processViolation( violation, item ) {
 	const landmark = getLandmarkForSelector( selector );
 	const ancestry = violation.node.ancestry || [];
 	const xpath = violation.node.xpath || [];
-	const html = document.querySelector( selector )?.outerHTML;
+	// The element may be gone by now (a script on the page can remove or replace it once it has
+	// been checked). axe kept its markup as it was when checked: fall back to that, so the issue
+	// is still saved with the code it was found on.
+	const html = document.querySelector( selector )?.outerHTML ?? violation.node.source ?? '';
 	return {
 		selector,
 		ancestry,

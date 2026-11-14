@@ -554,7 +554,7 @@ class REST_Api {
 			if ( is_array( $violations ) && count( $violations ) > 0 ) {
 
 				foreach ( $violations as $violation ) {
-					$rule_id = $violation['ruleId'];
+					$rule_id = is_array( $violation ) && is_string( $violation['ruleId'] ?? null ) ? $violation['ruleId'] : '';
 
 					// If this rule is a combined rule then map it to the actual reporting rule ID.
 					$actual_rule_id = array_key_exists( $rule_id, $combined_rule_ids ) ? $combined_rule_ids[ $rule_id ] : $rule_id;
@@ -563,8 +563,14 @@ class REST_Api {
 
 						// This rule is one that we've included in our js ruleset.
 
-						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'], $rule_id, $violation );
-						$impact = $violation['impact']; // by default, use the impact setting from the js rule.
+						$html   = apply_filters( 'edac_filter_js_violation_html', $violation['html'] ?? '', $rule_id, $violation );
+						$impact = $violation['impact'] ?? ''; // by default, use the impact setting from the js rule.
+
+						// A violation can arrive without its markup (the element was gone when the scanner went back
+						// for it). There is nothing to store for it, and it must not cost the page its other results.
+						if ( ! is_string( $html ) || '' === $html ) {
+							continue;
+						}
 
 						//phpcs:ignore Generic.Commenting.Todo.TaskFound
 						// TODO: setup a rules class for loading/filtering rules.
@@ -598,7 +604,7 @@ class REST_Api {
 							'ancestry' => $violation['ancestry'] ?? [],
 							'xpath'    => $violation['xpath'] ?? [],
 						];
-						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, $impact, $html, $landmark, $landmark_selector, $selectors );
+						( new Insert_Rule_Data() )->insert( $post, $actual_rule_id, (string) $impact, $html, $landmark, $landmark_selector, $selectors );
 
 						/**
 						 * Fires after a rule is run against the content.
