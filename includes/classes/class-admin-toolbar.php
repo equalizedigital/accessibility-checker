@@ -19,6 +19,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Admin_Toolbar {
 
 	/**
+	 * User meta key that stores a user's admin bar display preference.
+	 *
+	 * @since x.x.x
+	 * @var string
+	 */
+	const USER_META_KEY = 'edac_admin_toolbar_display';
+
+	/**
+	 * Display mode: icon and text (default).
+	 *
+	 * @since x.x.x
+	 * @var string
+	 */
+	const MODE_FULL = 'full';
+
+	/**
+	 * Display mode: icon only.
+	 *
+	 * @since x.x.x
+	 * @var string
+	 */
+	const MODE_ICON = 'icon';
+
+	/**
+	 * Display mode: hidden.
+	 *
+	 * @since x.x.x
+	 * @var string
+	 */
+	const MODE_HIDDEN = 'hidden';
+
+	/**
 	 * Constructor
 	 *
 	 * @since 1.27.0
@@ -34,6 +66,71 @@ class Admin_Toolbar {
 	 */
 	public function init(): void {
 		add_action( 'admin_bar_menu', [ $this, 'add_toolbar_items' ], 999 );
+
+		// Per-user display preference on the profile screen.
+		add_action( 'show_user_profile', [ $this, 'render_profile_fields' ] );
+		add_action( 'edit_user_profile', [ $this, 'render_profile_fields' ] );
+		add_action( 'personal_options_update', [ $this, 'save_profile_fields' ] );
+		add_action( 'edit_user_profile_update', [ $this, 'save_profile_fields' ] );
+	}
+
+	/**
+	 * Get the valid display modes.
+	 *
+	 * @since x.x.x
+	 * @return string[] Display mode slugs.
+	 */
+	private function get_valid_modes(): array {
+		return [ self::MODE_FULL, self::MODE_ICON, self::MODE_HIDDEN ];
+	}
+
+	/**
+	 * Whether the toolbar item is allowed to show for a user.
+	 *
+	 * @since x.x.x
+	 * @param int $user_id User ID.
+	 * @return bool
+	 */
+	private function is_item_enabled( int $user_id ): bool {
+		/**
+		 * Filters whether the Accessibility Checker admin toolbar item is available.
+		 *
+		 * Return false to remove the menu from the admin bar entirely. This overrides
+		 * the user's profile preference, and the preference is hidden from their profile.
+		 * Returning true leaves it to the user's own display preference.
+		 *
+		 * @since x.x.x
+		 *
+		 * @param bool $enabled Whether the toolbar item is enabled. Default true.
+		 * @param int  $user_id ID of the user the admin bar is being built for.
+		 */
+		return (bool) apply_filters( 'edac_show_admin_toolbar_item', true, $user_id );
+	}
+
+	/**
+	 * Get the display mode for a user.
+	 *
+	 * @since x.x.x
+	 * @param int $user_id User ID.
+	 * @return string One of the MODE_* constants.
+	 */
+	public function get_display_mode( int $user_id ): string {
+		$mode = get_user_meta( $user_id, self::USER_META_KEY, true );
+		if ( ! in_array( $mode, $this->get_valid_modes(), true ) ) {
+			$mode = self::MODE_FULL;
+		}
+
+		/**
+		 * Filters the display mode of the Accessibility Checker admin toolbar item.
+		 *
+		 * @since x.x.x
+		 *
+		 * @param string $mode    One of 'full' (icon and text), 'icon' (icon only) or 'hidden'.
+		 * @param int    $user_id ID of the user the admin bar is being built for.
+		 */
+		$mode = apply_filters( 'edac_admin_toolbar_display_mode', $mode, $user_id );
+
+		return in_array( $mode, $this->get_valid_modes(), true ) ? $mode : self::MODE_FULL;
 	}
 
 	/**
@@ -50,12 +147,36 @@ class Admin_Toolbar {
 			return;
 		}
 
+		$user_id = get_current_user_id();
+
+		if ( ! $this->is_item_enabled( $user_id ) ) {
+			return;
+		}
+
+		$mode = $this->get_display_mode( $user_id );
+		if ( self::MODE_HIDDEN === $mode ) {
+			return;
+		}
+
+		$label = __( 'Accessibility Checker', 'accessibility-checker' );
+		$icon  = '<span class="ab-icon dashicons dashicons-universal-access-alt"></span>';
+		$meta  = [];
+
+		if ( self::MODE_ICON === $mode ) {
+			// Keep an accessible name for screen readers and a tooltip for sighted users.
+			$title         = $icon . '<span class="screen-reader-text">' . esc_html( $label ) . '</span>';
+			$meta['title'] = $label;
+		} else {
+			$title = $icon . $label;
+		}
+
 		// Add parent menu item.
 		$wp_admin_bar->add_menu(
 			[
 				'id'    => 'accessibility-checker',
-				'title' => '<span class="ab-icon dashicons dashicons-universal-access-alt"></span>' . __( 'Accessibility Checker', 'accessibility-checker' ),
+				'title' => $title,
 				'href'  => admin_url( 'admin.php?page=accessibility_checker' ),
+				'meta'  => $meta,
 			]
 		);
 
@@ -127,5 +248,97 @@ class Admin_Toolbar {
 		}
 
 		return $menu_items;
+	}
+
+	/**
+	 * Render the admin bar display preference on the user profile screen.
+	 *
+	 * @since x.x.x
+	 * @param \WP_User $user The user whose profile is being edited.
+	 * @return void
+	 */
+	public function render_profile_fields( $user ): void {
+		if ( ! ( $user instanceof \WP_User ) || ! user_can( $user, 'manage_options' ) ) {
+			return;
+		}
+
+		if ( ! $this->is_item_enabled( $user->ID ) ) {
+			return;
+		}
+
+		$current = get_user_meta( $user->ID, self::USER_META_KEY, true );
+		if ( ! in_array( $current, $this->get_valid_modes(), true ) ) {
+			$current = self::MODE_FULL;
+		}
+
+		$options = [
+			self::MODE_FULL   => __( 'Icon and text', 'accessibility-checker' ),
+			self::MODE_ICON   => __( 'Icon only', 'accessibility-checker' ),
+			self::MODE_HIDDEN => __( 'Hidden', 'accessibility-checker' ),
+		];
+		?>
+		<h2><?php esc_html_e( 'Accessibility Checker', 'accessibility-checker' ); ?></h2>
+		<table class="form-table" role="presentation">
+			<tr>
+				<th scope="row"><?php esc_html_e( 'Admin bar menu', 'accessibility-checker' ); ?></th>
+				<td>
+					<fieldset>
+						<legend class="screen-reader-text"><span><?php esc_html_e( 'Admin bar menu', 'accessibility-checker' ); ?></span></legend>
+						<?php foreach ( $options as $value => $label ) : ?>
+							<label for="edac-admin-toolbar-display-<?php echo esc_attr( $value ); ?>">
+								<input
+									type="radio"
+									name="<?php echo esc_attr( self::USER_META_KEY ); ?>"
+									id="edac-admin-toolbar-display-<?php echo esc_attr( $value ); ?>"
+									value="<?php echo esc_attr( $value ); ?>"
+									<?php checked( $current, $value ); ?>
+								/>
+								<?php echo esc_html( $label ); ?>
+							</label><br />
+						<?php endforeach; ?>
+						<p class="description">
+							<?php esc_html_e( 'Quick links to Accessibility Checker settings and fixes in the top admin bar. Choose "Icon only" if your admin bar is crowded. Hiding the menu also hides any shortcuts added to it in the future.', 'accessibility-checker' ); ?>
+						</p>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+		<?php
+	}
+
+	/**
+	 * Save the admin bar display preference from the user profile screen.
+	 *
+	 * Core verifies the profile form nonce before these hooks run.
+	 *
+	 * @since x.x.x
+	 * @param int $user_id ID of the user being saved.
+	 * @return void
+	 */
+	public function save_profile_fields( $user_id ): void {
+		$user_id = (int) $user_id;
+
+		if ( ! current_user_can( 'edit_user', $user_id ) || ! user_can( $user_id, 'manage_options' ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by core before this hook.
+		if ( ! isset( $_POST[ self::USER_META_KEY ] ) ) {
+			return;
+		}
+
+		// phpcs:ignore WordPress.Security.NonceVerification.Missing -- Nonce is verified by core before this hook.
+		$mode = sanitize_key( wp_unslash( $_POST[ self::USER_META_KEY ] ) );
+
+		if ( ! in_array( $mode, $this->get_valid_modes(), true ) ) {
+			return;
+		}
+
+		if ( self::MODE_FULL === $mode ) {
+			delete_user_meta( $user_id, self::USER_META_KEY );
+			return;
+		}
+
+		update_user_meta( $user_id, self::USER_META_KEY, $mode );
 	}
 }
