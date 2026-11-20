@@ -234,6 +234,256 @@ class RestApiEndpointsTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * A violation that arrives without its markup must not cost the page its other results.
+	 *
+	 * The scanner looks each flagged element up again to read its markup. When the
+	 * element is gone by then, the violation has no `html`. That used to reach a
+	 * string-typed parameter as null and end the request with a fatal error.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_skips_a_violation_without_markup() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a missing element',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		$found = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'html'     => '<img src="/found.png">',
+			'selector' => [ '#found' ],
+		];
+		$gone  = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'selector' => [ '#gone' ],
+		];
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'id', $post_id );
+		// Markup that is missing, null, or not text at all: none of them may stop the one after it being saved.
+		$request->set_param( 'violations', [ $gone, array_merge( $gone, [ 'html' => null ] ), array_merge( $gone, [ 'html' => [ '<img>' ] ] ), $found ] );
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status(), 'The results must be saved, not refused.' );
+		$this->assertTrue( $response->get_data()['success'] );
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$selectors = $wpdb->get_col( $wpdb->prepare( "SELECT selector FROM {$table_name} WHERE postid = %d", $post_id ) );
+		$this->assertSame( [ '#found' ], $selectors, 'The violation with markup is stored; the ones without are left out.' );
+	}
+
+	/**
+	 * An issue that is found again without its markup is still there: its stored row and dismissal are kept.
+	 *
+	 * A save marks the post's stored issues as unchecked, checks off the ones it
+	 * stores again and deletes the rest as corrected. An issue skipped for want
+	 * of markup must be checked off too, or it is deleted with its dismissal.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_keeps_a_stored_issue_reported_without_markup() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a dismissed issue whose element is gone',
+			]
+		);
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		foreach ( [ '#gone', '#fixed' ] as $selector ) {
+			$wpdb->insert(
+				$table_name,
+				[
+					'postid'        => $post_id,
+					'siteid'        => get_current_blog_id(),
+					'type'          => 'post',
+					'rule'          => 'img_alt_missing',
+					'ruletype'      => 'error',
+					'object'        => '<img src="/stored.png">',
+					'selector'      => $selector,
+					'recordcheck'   => 1,
+					'user'          => self::$admin_id,
+					'ignre'         => 1,
+					'ignre_reason'  => 'false_positive',
+					'ignre_comment' => 'Checked by hand: decorative.',
+				]
+			);
+		}
+
+		wp_set_current_user( self::$admin_id );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'id', $post_id );
+		$request->set_param(
+			'violations',
+			[
+				[
+					'ruleId'   => 'img_alt_missing',
+					'impact'   => 'error',
+					'selector' => [ '#gone' ],
+				],
+			]
+		);
+		$response = $this->server->dispatch( $request );
+
+		$this->assertSame( 200, $response->get_status() );
+
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT selector, object, ignre, ignre_comment FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+
+		$this->assertCount( 1, $rows, 'The issue reported again is kept; the one not reported is removed as corrected.' );
+		$this->assertSame( '#gone', $rows[0]['selector'] );
+		$this->assertSame( '<img src="/stored.png">', $rows[0]['object'], 'Its stored markup is left as it was.' );
+		$this->assertSame( '1', (string) $rows[0]['ignre'], 'It stays dismissed.' );
+		$this->assertSame( 'Checked by hand: decorative.', $rows[0]['ignre_comment'] );
+	}
+
+	/**
+	 * A selector that sanitizing changes still finds its stored issue on later scans.
+	 *
+	 * The selector is stored sanitized ("%20" is stripped), so a lookup by the
+	 * selector as reported would miss the row and the issue would be deleted and
+	 * re-added, or just deleted, without its dismissal.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_matches_a_selector_that_sanitizing_changes() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$selector   = 'a[href="/my%20file.pdf"] > img';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a selector that sanitizing changes',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		$scan = function ( array $violation ) use ( $post_id ) {
+			$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+			$request->set_param( 'id', $post_id );
+			$request->set_param( 'violations', [ $violation ] );
+			return $this->server->dispatch( $request );
+		};
+
+		$with_markup    = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'html'     => '<img src="/a.png">',
+			'selector' => [ $selector ],
+		];
+		$without_markup = [
+			'ruleId'   => 'img_alt_missing',
+			'impact'   => 'error',
+			'selector' => [ $selector ],
+		];
+
+		// The first scan stores the issue through the normal insert path.
+		$this->assertSame( 200, $scan( $with_markup )->get_status() );
+
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+		$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, selector FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+		$this->assertCount( 1, $rows );
+		$this->assertNotSame( $selector, $rows[0]['selector'], 'The test needs a selector that is stored differently from how it is reported.' );
+		$issue_id = $rows[0]['id'];
+
+		$wpdb->update(
+			$table_name,
+			[
+				'ignre'         => 1,
+				'ignre_comment' => 'Checked by hand: decorative.',
+			],
+			[ 'id' => $issue_id ]
+		);
+
+		// Found again with its markup, then found again without it.
+		foreach ( [ $with_markup, $without_markup ] as $violation ) {
+			$this->assertSame( 200, $scan( $violation )->get_status() );
+
+			$rows = $wpdb->get_results( $wpdb->prepare( "SELECT id, ignre, ignre_comment FROM {$table_name} WHERE postid = %d", $post_id ), ARRAY_A );
+
+			$this->assertCount( 1, $rows );
+			$this->assertSame( (string) $issue_id, (string) $rows[0]['id'], 'It is the same stored issue, not a new one.' );
+			$this->assertSame( '1', (string) $rows[0]['ignre'], 'It stays dismissed.' );
+			$this->assertSame( 'Checked by hand: decorative.', $rows[0]['ignre_comment'] );
+		}
+		// phpcs:enable WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+	}
+
+	/**
+	 * A selector reported as a list (an element inside a shadow root) does not stop the save.
+	 *
+	 * @return void
+	 */
+	public function test_rest_post_scan_results_stores_a_violation_with_a_nested_selector() {
+		global $wpdb;
+
+		$table_name = $wpdb->prefix . 'accessibility_checker';
+		$post_id    = self::factory()->post->create(
+			[
+				'post_type'   => 'post',
+				'post_status' => 'publish',
+				'post_author' => self::$admin_id,
+				'post_title'  => 'EDAC scan with a shadow DOM violation',
+			]
+		);
+
+		wp_set_current_user( self::$admin_id );
+
+		// Scanned twice: the second save meets the rows the first one stored.
+		for ( $scan = 1; $scan <= 2; $scan++ ) {
+			$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+			$request->set_param( 'id', $post_id );
+			$request->set_param(
+				'violations',
+				[
+					[
+						'ruleId'   => 'img_alt_missing',
+						'impact'   => 'error',
+						'html'     => '<img src="/in-shadow-root.png">',
+						'selector' => [ [ '#host', 'img' ] ],
+					],
+					[
+						'ruleId'   => 'img_alt_missing',
+						'impact'   => 'error',
+						'html'     => '<img src="/ordinary.png">',
+						'selector' => [ '#ordinary' ],
+					],
+				]
+			);
+			$response = $this->server->dispatch( $request );
+
+			$this->assertSame( 200, $response->get_status() );
+
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.InterpolatedNotPrepared
+			$selectors = $wpdb->get_col( $wpdb->prepare( "SELECT selector FROM {$table_name} WHERE postid = %d ORDER BY selector", $post_id ) );
+
+			$this->assertCount( 2, $selectors, 'Both violations are stored, once each.' );
+			$this->assertContains( '#ordinary', $selectors );
+		}
+	}
+
+	/**
 	 * Verify permissions for clearing issues for a post.
 	 *
 	 * @return void

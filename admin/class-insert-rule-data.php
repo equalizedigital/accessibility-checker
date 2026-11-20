@@ -25,6 +25,67 @@ namespace EDAC\Admin;
 class Insert_Rule_Data {
 
 	/**
+	 * Mark an issue that is already stored as still present, changing nothing else about it.
+	 *
+	 * A scan marks a page's stored issues as unchecked, checks off each one it
+	 * finds again, and then deletes the rest as corrected. This checks one off
+	 * for an issue the scan found again but could not describe (its markup was
+	 * not available), so it is not deleted along with its dismissal.
+	 *
+	 * @since x.x.x
+	 *
+	 * @param object $post     The post object. Must have a valid ID.
+	 * @param string $rule     The rule slug.
+	 * @param string $selector The selector the issue is stored under.
+	 * @return int Number of stored issues kept.
+	 */
+	public function keep( object $post, string $rule, string $selector ): int {
+		if ( ! isset( $post->ID, $post->post_type ) || '' === $rule || '' === $selector ) {
+			return 0;
+		}
+
+		// Match the selector the way it was stored, or one that sanitizing changes is never found.
+		$selector = self::stored_selector( $selector );
+		if ( '' === $selector ) {
+			return 0;
+		}
+
+		global $wpdb;
+
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for updating data in database, caching not required for one time operation.
+		return (int) $wpdb->query(
+			$wpdb->prepare(
+				'UPDATE %i SET recordcheck = %d WHERE siteid = %d and postid = %d and rule = %s and selector = %s and type = %s',
+				$wpdb->prefix . 'accessibility_checker',
+				1,
+				get_current_blog_id(),
+				$post->ID,
+				$rule,
+				$selector,
+				$post->post_type
+			)
+		);
+	}
+
+	/**
+	 * A selector as it is written to the database.
+	 *
+	 * Stored selectors are sanitized, which changes some of them (an encoded
+	 * space in an href, say). Looking a stored issue up has to use the same form.
+	 *
+	 * @since x.x.x
+	 *
+	 * A selector that is not text (an element inside a shadow root is reported
+	 * as a list) has no stored form to match on.
+	 *
+	 * @param mixed $selector The selector as the scan reported it.
+	 * @return string The selector as stored.
+	 */
+	public static function stored_selector( $selector ): string {
+		return is_string( $selector ) ? sanitize_text_field( $selector ) : '';
+	}
+
+	/**
 	 * Insert rule data into database
 	 *
 	 * @since 1.10.0
@@ -80,18 +141,23 @@ class Insert_Rule_Data {
 			return;
 		}
 
+		// The existing row, if there is one, is stored under the sanitized selector.
+		$stored_selector = self::stored_selector( $rule_data['selector'] );
+
 		// Check if exists.
 		// Use selector as the unique identifier instead of object to allow duplicate code objects
 		// with different selectors (e.g., two empty paragraphs in different locations).
+		// A selector that is a list cannot identify a stored row, so
+		// each one is added as its own issue, as it always has been.
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching -- Using direct query for adding data to database, caching not required for one time operation.
-		$results = $wpdb->get_results(
+		$results = is_array( $rule_data['selector'] ) ? [] : $wpdb->get_results(
 			$wpdb->prepare(
 				'SELECT postid, ignre FROM %i where type = %s and postid = %d and rule = %s and selector = %s and siteid = %d',
 				$table_name,
 				$rule_data['type'],
 				$rule_data['postid'],
 				$rule_data['rule'],
-				$rule_data['selector'],
+				$stored_selector,
 				$rule_data['siteid']
 			),
 			ARRAY_A
@@ -123,7 +189,7 @@ class Insert_Rule_Data {
 						$rule_data['siteid'],
 						$rule_data['postid'],
 						$rule_data['rule'],
-						$rule_data['selector'],
+						$stored_selector,
 						$rule_data['type']
 					)
 				);
