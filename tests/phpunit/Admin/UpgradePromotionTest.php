@@ -20,6 +20,14 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 	private $upgrade_promotion;
 
 	/**
+	 * The location the code under test handed to wp_safe_redirect(), recorded by
+	 * capture_redirects() so a test can assert where the visitor was sent.
+	 *
+	 * @var string
+	 */
+	private $redirected_to = '';
+
+	/**
 	 * Set up the test fixture.
 	 */
 	protected function setUp(): void {
@@ -34,6 +42,9 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 		// Remove any filters added during tests.
 		remove_all_filters( 'edac_is_sale_time' );
 		remove_all_filters( 'edac_filter_settings_capability' );
+		remove_all_filters( 'wp_redirect' );
+		remove_all_filters( 'allowed_redirect_hosts' );
+		unset( $_GET['page'] );
 		
 		// Note: Constants like EDACP_VERSION can't be undefined in PHP once defined.
 		// In a real implementation, dependency injection would be used to avoid this testing issue.
@@ -374,5 +385,148 @@ class UpgradePromotionTest extends WP_UnitTestCase {
 				"Method {$method_name} should be private"
 			);
 		}
+	}
+
+	/**
+	 * Make a freshly created administrator the current user.
+	 *
+	 * @return void
+	 */
+	private function become_administrator(): void {
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'administrator' ] ) );
+	}
+
+	/**
+	 * Catch the location wp_safe_redirect() is called with instead of letting it send a header,
+	 * so the exit() at the end of a real redirect never kills the PHPUnit process.
+	 *
+	 * Returning false from the wp_redirect filter makes wp_redirect() bail out before it does
+	 * anything, which is what makes the redirect path assertable in-process.
+	 *
+	 * @return void
+	 */
+	private function capture_redirects(): void {
+		$this->redirected_to = '';
+		add_filter(
+			'wp_redirect',
+			function ( $location ) {
+				$this->redirected_to = $location;
+				return false;
+			}
+		);
+	}
+
+	/**
+	 * The dummy page callback is the backstop for the upgrade page ever rendering, so it must
+	 * stop the request with a message that says why rather than showing a blank screen.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::dummy_page_callback
+	 */
+	public function test_dummy_page_callback_stops_with_an_explanatory_message() {
+		$this->expectException( WPDieException::class );
+		$this->expectExceptionMessage( 'Unable to redirect to upgrade page.' );
+
+		$this->upgrade_promotion->dummy_page_callback();
+	}
+
+	/**
+	 * Any admin request that is not the upgrade page itself has to be left alone, otherwise the
+	 * promotion would hijack unrelated screens.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::maybe_handle_redirect
+	 */
+	public function test_maybe_handle_redirect_ignores_requests_that_are_not_for_the_upgrade_page() {
+		$this->become_administrator();
+		$this->capture_redirects();
+
+		unset( $_GET['page'] );
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$_GET['page'] = 'accessibility_checker_settings';
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertSame( '', $this->redirected_to, 'Only the upgrade page should trigger a redirect.' );
+		$this->assertFalse(
+			has_filter( 'allowed_redirect_hosts', [ $this->upgrade_promotion, 'allow_redirect_host' ] ),
+			'The upgrade host should not be allow-listed for an unrelated page.'
+		);
+	}
+
+	/**
+	 * The redirect is gated on the same capability the menu item needs, so a visitor who cannot
+	 * see the menu item cannot be bounced off the upgrade URL either.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::maybe_handle_redirect
+	 */
+	public function test_maybe_handle_redirect_ignores_users_without_the_settings_capability() {
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'subscriber' ] ) );
+		$this->capture_redirects();
+
+		$_GET['page'] = 'accessibility_checker_upgrade';
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertSame( '', $this->redirected_to, 'A user without the settings capability should not be redirected.' );
+	}
+
+	/**
+	 * An administrator who opens the upgrade URL is sent to the pricing page with the campaign
+	 * the menu item uses, and the destination host is allow-listed first - without that
+	 * wp_safe_redirect() would fall back to wp-admin rather than the external URL.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::maybe_handle_redirect
+	 */
+	public function test_maybe_handle_redirect_sends_an_administrator_to_the_pricing_page() {
+		$this->become_administrator();
+		$this->capture_redirects();
+
+		$_GET['page'] = 'accessibility_checker_upgrade';
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $this->redirected_to, 'The visitor should be sent to the pricing page.' );
+		$this->assertStringContainsString( 'utm_campaign=admin-menu-promotion', $this->redirected_to, 'The menu campaign should be tracked.' );
+		$this->assertNotFalse(
+			has_filter( 'allowed_redirect_hosts', [ $this->upgrade_promotion, 'allow_redirect_host' ] ),
+			'The destination host must be allow-listed before the redirect is attempted.'
+		);
+	}
+
+	/**
+	 * The capability checked here is the same filterable one the menu item uses, so a role that
+	 * has been granted it through edac_filter_settings_capability is redirected too - a hardcoded
+	 * manage_options check would leave them stranded on the upgrade URL.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::maybe_handle_redirect
+	 */
+	public function test_maybe_handle_redirect_honours_a_filtered_settings_capability() {
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'editor' ] ) );
+		add_filter(
+			'edac_filter_settings_capability',
+			static function () {
+				return 'edit_posts';
+			}
+		);
+		$this->capture_redirects();
+
+		$_GET['page'] = 'accessibility_checker_upgrade';
+		$this->upgrade_promotion->maybe_handle_redirect();
+
+		$this->assertStringContainsString( 'https://equalizedigital.com/accessibility-checker/pricing/', $this->redirected_to, 'A user granted the settings capability should be redirected.' );
+	}
+
+	/**
+	 * The menu styling only decorates an item the user has to be able to see, so a user without
+	 * the settings capability must get no CSS at all on the plugin screen.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\Upgrade_Promotion::add_menu_styling
+	 */
+	public function test_add_menu_styling_skips_users_without_the_settings_capability() {
+		set_current_screen( 'toplevel_page_accessibility_checker' );
+		wp_set_current_user( $this->factory()->user->create( [ 'role' => 'subscriber' ] ) );
+
+		ob_start();
+		$this->upgrade_promotion->add_menu_styling();
+		$output = ob_get_clean();
+
+		$this->assertSame( '', $output, 'No styling should be printed for a user who cannot manage the settings.' );
 	}
 }
