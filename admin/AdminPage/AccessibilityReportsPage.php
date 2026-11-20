@@ -8,6 +8,7 @@
 namespace EqualizeDigital\AccessibilityChecker\Admin\AdminPage;
 
 use EDAC\Admin\Scans_Stats;
+use EqualizeDigital\AccessibilityChecker\Admin\LicenseContext;
 use EqualizeDigital\AccessibilityChecker\MyDot\ConnectionStatus;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -81,7 +82,7 @@ class AccessibilityReportsPage implements PageInterface {
 	 * @return void
 	 */
 	public function render_page() {
-		$license_context = $this->get_license_context();
+		$license_context = LicenseContext::get_current();
 		$is_pro          = $license_context['is_pro'];
 		$license_key     = (string) get_option( 'edacp_license_key', '' );
 		$is_connected    = $license_context['is_connected'];
@@ -361,53 +362,6 @@ class AccessibilityReportsPage implements PageInterface {
 		}
 
 		return esc_html__( 'This site is password protected, so our service cannot collect report data. Remove the password protection, or allow requests to /wp-json/accessibility-checker/v1/scans-stats through it.', 'accessibility-checker' );
-	}
-
-	/**
-	 * Resolve the effective license context for the reports UI.
-	 *
-	 * Pro should only be treated as authoritative when it is both installed and valid.
-	 * Otherwise the reports page should fall back to the free plugin state.
-	 *
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,fallback_active:bool}
-	 */
-	private function get_license_context(): array {
-		$has_pro_plugin  = defined( 'EDACP_VERSION' );
-		$pro_status      = (string) get_option( 'edacp_license_status', '' );
-		$free_status     = (string) get_option( 'edac_license_status', '' );
-		$site_id         = (string) get_option( 'edac_site_id', '' );
-		$fallback_active = (bool) get_option( 'edac_fallback_active', false );
-
-		return self::resolve_license_context( $has_pro_plugin, $pro_status, $free_status, $site_id, $fallback_active );
-	}
-
-	/**
-	 * Resolve effective license context from current status values.
-	 *
-	 * @param bool   $has_pro_plugin  Whether the Pro plugin is installed.
-	 * @param string $pro_status      Current Pro license status.
-	 * @param string $free_status     Current free license status.
-	 * @param string $site_id         Current connected site ID.
-	 * @param bool   $fallback_active Whether a fallback from Pro to Free is currently active.
-	 * @return array{has_pro_plugin:bool,is_pro:bool,status:string,is_connected:bool,is_registered:bool,fallback_active:bool}
-	 */
-	private static function resolve_license_context( bool $has_pro_plugin, string $pro_status, string $free_status, string $site_id, bool $fallback_active = false ): array {
-		$is_pro = $has_pro_plugin && 'valid' === $pro_status && ! $fallback_active;
-		$status = $is_pro ? $pro_status : $free_status;
-		// is_connected is true when:
-		// 1. License status is valid AND site_id exists, OR
-		// 2. Pro exists but is expired/degraded (fallback_active), AND site_id exists (reports still flowing).
-		$is_connected  = ( 'valid' === $status && '' !== $site_id ) || ( $has_pro_plugin && $fallback_active && '' !== $site_id );
-		$is_registered = '' !== $site_id;
-
-		return [
-			'has_pro_plugin'  => $has_pro_plugin,
-			'is_pro'          => $is_pro,
-			'status'          => $status,
-			'is_connected'    => $is_connected,
-			'is_registered'   => $is_registered,
-			'fallback_active' => $fallback_active,
-		];
 	}
 
 	/**

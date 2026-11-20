@@ -10,7 +10,7 @@
 
 namespace EqualizeDigital\AccessibilityChecker\MyDot;
 
-use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\ConnectedServicesPage;
+use EqualizeDigital\AccessibilityChecker\Admin\LicenseNotices;
 use EqualizeDigital\AccessibilityChecker\SystemInfo\SystemInfo;
 
 /**
@@ -195,8 +195,8 @@ class Connector {
 	 * @since 1.40.0
 	 */
 	public function init() {
-		$connected_services = new ConnectedServicesPage( 'manage_options' );
-		$connected_services->add_page();
+		$license_notices = new LicenseNotices();
+		$license_notices->init_hooks();
 
 		// Expose the free product ID so the Pro plugin can infer license type from API response product IDs.
 		add_filter( 'edac_free_product_id', [ __CLASS__, 'get_free_product_id' ] );
