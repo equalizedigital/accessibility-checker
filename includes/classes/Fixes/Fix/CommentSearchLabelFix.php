@@ -116,6 +116,8 @@ class CommentSearchLabelFix implements FixInterface {
 
 	/**
 	 * Run the fix for adding the comment and search form labels.
+	 *
+	 * @return void
 	 */
 	public function run(): void {
 

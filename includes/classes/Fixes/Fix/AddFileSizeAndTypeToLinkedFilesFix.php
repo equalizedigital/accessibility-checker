@@ -65,6 +65,8 @@ class AddFileSizeAndTypeToLinkedFilesFix implements FixInterface {
 
 	/**
 	 * Register anything needed for the fix.
+	 *
+	 * @return void
 	 */
 	public function register(): void {
 		add_filter(
@@ -97,6 +99,8 @@ class AddFileSizeAndTypeToLinkedFilesFix implements FixInterface {
 
 	/**
 	 * Run the fix.
+	 *
+	 * @return void
 	 */
 	public function run(): void {
 		// Intentionally left empty.

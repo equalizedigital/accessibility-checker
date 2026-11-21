@@ -16,6 +16,7 @@ trait Text {
 	 * Render a text input.
 	 *
 	 * @param array $args The arguments for the text input. This is expected to have a name and a description.
+	 * @return void
 	 */
 	public static function text( $args ) {
 		// We need a name and a description or the text field is useless.

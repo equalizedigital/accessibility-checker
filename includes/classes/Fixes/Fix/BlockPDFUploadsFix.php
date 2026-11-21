@@ -58,6 +58,8 @@ class BlockPDFUploadsFix implements FixInterface {
 
 	/**
 	 * Register setting.
+	 *
+	 * @return void
 	 */
 	public function register(): void {
 		// Add the settings field for the fix.
@@ -91,6 +93,8 @@ class BlockPDFUploadsFix implements FixInterface {
 
 	/**
 	 * Run the fix.
+	 *
+	 * @return void
 	 */
 	public function run() {
 		// Intentionally empty - this run method should be implemented in an extension class.

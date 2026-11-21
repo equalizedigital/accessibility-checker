@@ -35,6 +35,8 @@ class Enqueue_Frontend {
 
 	/**
 	 * Enqueue the scripts and styles.
+	 *
+	 * @return void
 	 */
 	public static function enqueue() {
 		self::maybe_enqueue_frontend_highlighter();
@@ -231,8 +233,8 @@ class Enqueue_Frontend {
 		if ( $active ) {
 
 
-			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', false, EDAC_VERSION, 'all' );
-			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', false, EDAC_VERSION, false );
+			wp_enqueue_style( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/css/frontendHighlighterApp.css', [], EDAC_VERSION, 'all' );
+			wp_enqueue_script( 'edac-frontend-highlighter-app', EDAC_PLUGIN_URL . 'build/frontendHighlighterApp.bundle.js', [], EDAC_VERSION, false );
 
 			// Mirrors the dismiss-issue REST permission check: "any post" dismissers can always
 			// dismiss, "own issues" dismissers only where they can edit this post.

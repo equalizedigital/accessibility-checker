@@ -67,6 +67,8 @@ class PermissionsPage implements PageInterface {
 	/**
 	 * Wire the settings tab and its assets. Called on admin_menu, so this only
 	 * covers requests that render the settings screen.
+	 *
+	 * @return void
 	 */
 	public function add_page() {
 		add_filter( 'edac_filter_settings_tab_items', [ $this, 'add_permissions_tab' ] );
@@ -78,6 +80,8 @@ class PermissionsPage implements PageInterface {
 	 * Wire the admin-post save handler. This must be registered on every request
 	 * (admin-post.php does not build the admin menu), not just when the settings
 	 * screen renders.
+	 *
+	 * @return void
 	 */
 	public function register_request_handlers() {
 		add_action( 'admin_post_' . self::SAVE_ACTION, [ $this, 'handle_save' ] );
@@ -124,6 +128,8 @@ class PermissionsPage implements PageInterface {
 	 * Required by PageInterface. Guarded the same way as the tab callback: this
 	 * partial exposes the whole capability role map (and the grant UI that
 	 * writes it), so any caller reaching it must hold self::MANAGE_CAPABILITY.
+	 *
+	 * @return void
 	 */
 	public function render_page() {
 		if ( ! current_user_can( self::MANAGE_CAPABILITY ) ) {
