@@ -281,7 +281,7 @@ You can report security bugs through the Patchstack Vulnerability Disclosure Pro
 == Changelog ==
 
 2026-11-23 - version 1.52.1
-* Update - the Black Friday notices now show the Accessibility Checker name and logo.
+* Update - improved the display of admin notices.
 
 2026-11-03 - version 1.52.0
 * New - issues can now be dismissed and reopened from the frontend highlighter.
