@@ -1250,6 +1250,25 @@
 	}
 }
 
+.edac_black_friday_notice {
+
+	.edac-bf-notice-layout {
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+	}
+
+	.edac-bf-notice-logo {
+		flex-shrink: 0;
+		margin-top: 0.5em;
+	}
+
+	.edac-bf-notice-content {
+		flex: 1;
+		margin: 0.5em 0;
+	}
+}
+
 .edac-hidden {
 	display: none !important;
 }
