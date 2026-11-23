@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.51.1\n"
+"Project-Id-Version: Accessibility Checker 1.52.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-10 15:13+0000\n"
-"PO-Revision-Date: 2026-11-10 15:13+0000\n"
+"POT-Creation-Date: 2026-11-23 19:38+0000\n"
+"PO-Revision-Date: 2026-11-23 19:38+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: ja\n"
@@ -53,178 +53,198 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:140
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+#: admin/AdminPage/AccessibilityReportsPage.php:142
 msgid "Accessibility Reports"
 msgstr "アクセシビリティレポート"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:57
+#: admin/AdminPage/AccessibilityReportsPage.php:58
 msgid "New"
 msgstr "新規"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:146
+#: admin/AdminPage/AccessibilityReportsPage.php:148
 msgid "License Expired"
 msgstr "ライセンスの有効期限が切れました"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:149
+#: admin/AdminPage/AccessibilityReportsPage.php:151
 msgid "Your license has expired. This site is still connected but reports may stop until your license is renewed."
 msgstr "ライセンスの有効期限が切れました。このサイトは接続されていますが、ライセンスを更新するまでレポートが停止する場合があります。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:153
+#: admin/AdminPage/AccessibilityReportsPage.php:158
 #: admin/AdminPage/ConnectedServicesPage.php:229
 msgid "Renew your license"
 msgstr "ライセンスを更新する"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:294
+#: admin/AdminPage/AccessibilityReportsPage.php:165
+#: admin/AdminPage/AccessibilityReportsPage.php:313
 msgid "Disable Email Reports"
 msgstr "メールレポートを無効化"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:169
+#: admin/AdminPage/AccessibilityReportsPage.php:174
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "サイトのアクセシビリティの概要（総問題数、経時的な傾向、最も問題のあるページ、最初に修正すべき最も重大な問題を含む）を記載した定期的なメールレポートを受け取ります。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:171
+#: admin/AdminPage/AccessibilityReportsPage.php:176
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "サイトのアクセシビリティの概要（総問題数、経時的な傾向、最も問題のあるページ、最初に修正すべき最も重大な問題を含む）を記載した定期的なメールレポートを受け取ります。サイト全体のカバー範囲や問題の内訳などの詳細はProで利用できます。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:182
-#: admin/AdminPage/AccessibilityReportsPage.php:196
+#: admin/AdminPage/AccessibilityReportsPage.php:193
+#: admin/AdminPage/AccessibilityReportsPage.php:207
 msgid "Enable Email Reports"
 msgstr "メールレポートを有効化"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:189
-#: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:286
+#: admin/AdminPage/AccessibilityReportsPage.php:200
+#: admin/AdminPage/AccessibilityReportsPage.php:204
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "無料ライセンスキー"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:202
+#: admin/AdminPage/AccessibilityReportsPage.php:213
 msgid "Get a Free License Key"
 msgstr "無料ライセンスキーを取得"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:207
+#: admin/AdminPage/AccessibilityReportsPage.php:218
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Equalize Digitalからプラグインを入手しましたか？キーは<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">ダッシュボード</a>にあります。"
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:216
+#: admin/AdminPage/AccessibilityReportsPage.php:227
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "WordPress.orgからインストールしましたか？<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">無料アカウントを作成</a>して取得してください。"
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:225
+#: admin/AdminPage/AccessibilityReportsPage.php:236
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "不明ですか？<a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">無料アカウントを作成</a>するだけです。1分で完了します。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:237
+#: admin/AdminPage/AccessibilityReportsPage.php:249
+msgid "Reports Cannot Run"
+msgstr "レポートを実行できません"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:249
+msgid "Reports May Not Be Working"
+msgstr "レポートが正常に動作していない可能性があります"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:255
 msgid "Reports Enabled"
 msgstr "レポートが有効"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
 msgstr "このサイトの週ごとのアクセシビリティレポートは、ライセンスキーのアカウント所有者にメールで送信されます。"
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:245
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 #, php-format
 msgid "Next report: %s"
 msgstr "次回のレポート：%s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 msgid "Full Coverage"
 msgstr "全範囲"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 msgid "Limited Coverage"
 msgstr "限定範囲"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:275
 msgid "Your reports include all post types and taxonomies."
 msgstr "レポートにはすべての投稿タイプとタクソノミーが含まれます。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Full-site scanning enabled"
 msgstr "サイト全体のスキャンが有効"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "Complete issue breakdowns"
 msgstr "問題の完全な内訳"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:260
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 msgid "Detailed reporting"
 msgstr "詳細なレポート"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:282
 msgid "Your reports only include part of your site."
 msgstr "レポートにはサイトの一部のみが含まれます。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:264
+#: admin/AdminPage/AccessibilityReportsPage.php:283
 msgid "Upgrade to Pro to:"
 msgstr "Proにアップグレードすると："
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:285
 msgid "Scan all content types"
 msgstr "すべてのコンテンツタイプをスキャン"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Get full issue breakdowns"
 msgstr "問題の完全な内訳を取得"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:268
+#: admin/AdminPage/AccessibilityReportsPage.php:287
 msgid "Receive more detailed reports"
 msgstr "より詳細なレポートを受け取る"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:271
+#: admin/AdminPage/AccessibilityReportsPage.php:290
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "プロにアップグレード"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:296
 msgid "Accessibility Summary"
 msgstr "アクセシビリティ概要"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:278
+#: admin/AdminPage/AccessibilityReportsPage.php:297
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "この概要には、サイトで利用可能な最新のスキャンデータが反映されています。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:280
+#: admin/AdminPage/AccessibilityReportsPage.php:299
 msgid "Total Issues Found"
 msgstr "見つかった問題の総数"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:286
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 msgid "Account Connection"
 msgstr "アカウント接続"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:305
+#: admin/AdminPage/AccessibilityReportsPage.php:324
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "このサイトに接続することにより、お客様はEqualize Digitalの<a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">プライバシーポリシー <span aria-hidden=\"true\">&#8599;</span></a>および<a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">データ処理契約 <span aria-hidden=\"true\">&#8599;</span></a>に同意するものとします。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:327
 msgid "Privacy Policy (opens in a new window)"
 msgstr "プライバシーポリシー（新しいウィンドウで開きます）"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:309
+#: admin/AdminPage/AccessibilityReportsPage.php:328
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "データ処理契約（新しいウィンドウで開きます）"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:320
+#: admin/AdminPage/AccessibilityReportsPage.php:339
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "週次メールには、発見された合計問題数と前回レポートからの変更点、カバレッジ情報、問題の数、要レビュー件数、合格したテストの割合、および最も問題のあるページと最も深刻な問題に関する情報が含まれます。"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:417
+#: admin/AdminPage/AccessibilityReportsPage.php:356
+msgid "Email reports are not available on local sites because our service cannot reach this site to collect report data. Enable reports on your live site instead."
+msgstr "当社のサービスがレポートデータを収集するためにこのサイトにアクセスできないため、ローカルサイトではメールレポートをご利用いただけません。代わりに公開中の本番サイトでレポートを有効化してください。"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:360
+msgid "We have not received report data from this site recently. A firewall, security plugin, or password protection may be blocking our service."
+msgstr "最近、このサイトからレポートデータを受信していません。ファイアウォール、セキュリティプラグイン、またはパスワード保護によって当社のサービスがブロックされている可能性があります。"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:363
+msgid "This site is password protected, so our service cannot collect report data. Remove the password protection, or allow requests to /wp-json/accessibility-checker/v1/scans-stats through it."
+msgstr "このサイトはパスワード保護されているため、当社のサービスがレポートデータを収集できません。パスワード保護を解除するか、/wp-json/accessibility-checker/v1/scans-stats へのリクエストを許可してください。"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:456
 #: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "該当なし"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:507
+#: admin/AdminPage/AccessibilityReportsPage.php:546
 #: admin/class-ajax.php:336
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -235,7 +255,7 @@ msgstr "該当なし"
 msgid "Critical"
 msgstr "重大"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:509
+#: admin/AdminPage/AccessibilityReportsPage.php:548
 #: admin/class-ajax.php:340
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -246,7 +266,7 @@ msgstr "重大"
 msgid "High"
 msgstr "高"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:511
+#: admin/AdminPage/AccessibilityReportsPage.php:550
 #: admin/class-ajax.php:344
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -257,7 +277,7 @@ msgstr "高"
 msgid "Medium"
 msgstr "中"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:513
+#: admin/AdminPage/AccessibilityReportsPage.php:552
 #: admin/class-ajax.php:348
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -268,8 +288,8 @@ msgstr "中"
 msgid "Low"
 msgstr "低"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1046
+#: admin/AdminPage/AccessibilityReportsPage.php:554
+#: includes/classes/class-rest-api.php:1053
 msgid "Unknown"
 msgstr "不明"
 
@@ -549,13 +569,13 @@ msgid "Ask a Pre-Sale Question"
 msgstr "事前販売の質問をする"
 
 #: admin/class-admin-notices.php:195
-#: admin/class-admin-notices.php:412
+#: admin/class-admin-notices.php:415
 msgid "Upgrade Now"
 msgstr "今すぐアップグレード"
 
 #: admin/class-admin-notices.php:199
-msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
-msgstr "🎉 ブラックフライデー特別セール：20%オフ＆無料コースをプレゼント！ 🎉"
+msgid "🎉 Accessibility Checker Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 Accessibility Checker ブラックフライデー特別セール：20%オフ＆無料コースをプレゼント！ 🎉"
 
 #: admin/class-admin-notices.php:200
 msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
@@ -574,16 +594,16 @@ msgid "Renew Now"
 msgstr "今すぐ更新"
 
 #: admin/class-admin-notices.php:215
-msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
-msgstr "🎉 ブラックフライデー：Small Businessへのアップグレードが25%オフ！ 🎉"
+msgid "🎉 Black Friday: Save 25% on your upgrade to Accessibility Checker Small Business! 🎉"
+msgstr "🎉 ブラックフライデー：Accessibility Checker Small Businessへのアップグレードが25%オフ！ 🎉"
 
 #: admin/class-admin-notices.php:216
 msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
 msgstr "11月23日から12月2日までのアップグレードで、5サイト分のライセンス、監査履歴、CSVエクスポート、隔週のオフィスアワーへの参加権が25%オフで手に入ります。"
 
 #: admin/class-admin-notices.php:232
-msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
-msgstr "🎉 ブラックフライデー：アップグレードが25%オフ！ 🎉"
+msgid "🎉 Accessibility Checker Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Accessibility Checker ブラックフライデー：アップグレードが25%オフ！ 🎉"
 
 #: admin/class-admin-notices.php:233
 msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
@@ -593,13 +613,13 @@ msgstr "さらにライセンスが必要ですか？10サイト対応のSMB+に
 msgid "Upgrade & Save 25%"
 msgstr "アップグレードして25%お得に"
 
-#: admin/class-admin-notices.php:271
-#: admin/class-admin-notices.php:355
-#: admin/class-admin-notices.php:431
-#: admin/class-admin-notices.php:520
+#: admin/class-admin-notices.php:274
+#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:434
+#: admin/class-admin-notices.php:523
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:653
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -608,87 +628,87 @@ msgstr "アップグレードして25%お得に"
 msgid "Permission Denied"
 msgstr "権限がありません"
 
-#: admin/class-admin-notices.php:284
-#: admin/class-admin-notices.php:362
-#: admin/class-admin-notices.php:443
-#: admin/class-admin-notices.php:544
+#: admin/class-admin-notices.php:287
+#: admin/class-admin-notices.php:365
+#: admin/class-admin-notices.php:446
+#: admin/class-admin-notices.php:547
 msgid "Update option wasn't successful"
 msgstr "オプションの更新が成功しませんでした"
 
-#: admin/class-admin-notices.php:326
-#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:329
+#: admin/class-admin-notices.php:405
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ グローバルアクセシビリティ啓発デー フラッシュセール"
 
-#: admin/class-admin-notices.php:329
+#: admin/class-admin-notices.php:332
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "5月20日より：クーポンコードでアクセシビリティコースとArchiveWPが15%オフ "
 
-#: admin/class-admin-notices.php:330
-#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:333
+#: admin/class-admin-notices.php:338
 msgid "3 days only • May 20–22"
 msgstr "3日間限定 • 5月20日〜22日"
 
-#: admin/class-admin-notices.php:331
-#: admin/class-admin-notices.php:407
+#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:410
 msgid "View ArchiveWP Pricing"
 msgstr "ArchiveWPの料金を見る"
 
-#: admin/class-admin-notices.php:332
-#: admin/class-admin-notices.php:408
+#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:411
 msgid "View Course Pricing"
 msgstr "コースの料金を見る"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:337
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "5月20日より：クーポンコードでAccessibility Checker Proが15%オフ "
 
-#: admin/class-admin-notices.php:336
+#: admin/class-admin-notices.php:339
 msgid "View Pricing"
 msgstr "料金を見る"
 
-#: admin/class-admin-notices.php:405
+#: admin/class-admin-notices.php:408
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "クーポンコードでアクセシビリティコースとArchiveWPが15%オフ "
 
-#: admin/class-admin-notices.php:406
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:414
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "期間限定オファー • 5月22日まで"
 
-#: admin/class-admin-notices.php:410
+#: admin/class-admin-notices.php:413
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "3日間限定：クーポンコードを使用してAccessibility Checker Proにアップグレードすると15%オフ "
 
-#: admin/class-admin-notices.php:495
+#: admin/class-admin-notices.php:498
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "こんにちは！Accessibility Checkerをアクセシビリティツールキットの一部としてご利用いただき、ありがとうございます。しばらくご利用いただいているようですが、WordPressプラグインディレクトリでAccessibility Checkerの5つ星レビューを書いていただけませんか？これにより、より多くの人々がウェブアクセシビリティの重要性を知ることができるよう、私たちの可視性を高めるのに役立ちます。どうもありがとうございます！"
 
-#: admin/class-admin-notices.php:498
+#: admin/class-admin-notices.php:501
 msgid "Write A Review"
 msgstr "レビューを書く"
 
-#: admin/class-admin-notices.php:499
+#: admin/class-admin-notices.php:502
 msgid "Remind Me In Two Weeks"
 msgstr "2週間後に再通知する"
 
-#: admin/class-admin-notices.php:500
+#: admin/class-admin-notices.php:503
 msgid "Never Ask Again"
 msgstr "二度と尋ねない"
 
-#: admin/class-admin-notices.php:527
+#: admin/class-admin-notices.php:530
 msgid "The review action value was not set"
 msgstr "レビューアクションの値が設定されていませんでした"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:646
+#: admin/class-ajax.php:657
 msgid "The post ID was not set"
 msgstr "投稿IDが設定されていません"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:650
+#: admin/class-ajax.php:661
 msgid "You do not have permission to view this information for this post."
 msgstr "この投稿に関する情報を閲覧する権限がありません。"
 
@@ -769,7 +789,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* 真のアクセシビリティには、自動スキャンに加えて手動テストが必要です。%1$sアクセシビリティを手動でテストする方法を学ぶ%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:809
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -783,7 +803,7 @@ msgid "No summary to return"
 msgstr "返す要約がありません"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:954
+#: includes/classes/class-rest-api.php:961
 msgid "Invalid table name"
 msgstr "無効なテーブル名"
 
@@ -814,182 +834,185 @@ msgstr "レポートに修正が反映されるには、ページの再保存ま
 msgid "Save"
 msgstr "保存"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:476
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "影響を受けるコード"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "画像"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:478
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "ランドマーク"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:479
 msgid "Actions"
 msgstr "アクション"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:481
+#: admin/class-ajax.php:707
+#: admin/class-ajax.php:728
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "なし"
+
+#: admin/class-ajax.php:494
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "却下済み"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:494
+#: build/admin.bundle.js:2
 msgid "Dismiss"
 msgstr "却下"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:505
 #, php-format
 msgid "Issue ID %d"
 msgstr "問題ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:528
+#: admin/class-ajax.php:538
 #, php-format
 msgid "image for issue %d"
 msgstr "問題 %d の画像"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:580
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "ウェブサイトで問題ID %dを表示する（新しいウィンドウで開きます）"
 
-#: admin/class-ajax.php:570
+#: admin/class-ajax.php:581
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "ページで表示"
 
-#: admin/class-ajax.php:589
+#: admin/class-ajax.php:600
 msgid "Fix: "
 msgstr "修正: "
 
-#: admin/class-ajax.php:590
+#: admin/class-ajax.php:601
 msgid "Fix"
 msgstr "修正"
 
-#: admin/class-ajax.php:623
+#: admin/class-ajax.php:634
 msgid "No details to return"
 msgstr "返す詳細がありません"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:706
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "投稿の読解レベル: %s"
 
-#: admin/class-ajax.php:696
-#: admin/class-ajax.php:717
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "なし"
-
-#: admin/class-ajax.php:699
+#: admin/class-ajax.php:710
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "投稿の読解レベルが9年生より高いです。WCAG (Web Content Accessibility Guidelines) のAAAレベルでは、投稿の簡略化された要約が9年生以下である必要があります。"
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:712
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "投稿には読解レベルを計算するのに十分なコンテンツが含まれていません。"
 
-#: admin/class-ajax.php:703
+#: admin/class-ajax.php:714
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "コンテンツの読解レベルが9年生以下の場合、簡略化された要約は不要です。設定ページで、簡略化された要約をいつ促すかを選択してください。"
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:716
-#: admin/class-ajax.php:728
+#: admin/class-ajax.php:727
+#: admin/class-ajax.php:739
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "簡易要約の読解レベル: %s"
 
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:731
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "正確な読解レベルを判断するのに十分なコンテンツがありません。"
 
-#: admin/class-ajax.php:733
+#: admin/class-ajax.php:744
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "簡易要約の読解レベルが9年生以上です。"
 
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:745
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "簡易要約の読解レベルが9年生以下です。"
 
-#: admin/class-ajax.php:745
-#: admin/class-ajax.php:775
+#: admin/class-ajax.php:756
+#: admin/class-ajax.php:786
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "簡略化された要約はコンテンツに自動的に挿入されません。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:748
+#: admin/class-ajax.php:759
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約のプロンプトは「しない」に設定されています。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:766
-#: admin/class-ajax.php:779
+#: admin/class-ajax.php:760
+#: admin/class-ajax.php:777
+#: admin/class-ajax.php:790
 msgid "settings page"
 msgstr "設定ページ"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:760
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "簡略化された要約は%sに自動的に挿入されます。"
 
-#: admin/class-ajax.php:761
+#: admin/class-ajax.php:772
 msgid "the content"
 msgstr "コンテンツ"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:765
+#: admin/class-ajax.php:776
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "簡略化された要約をコンテンツのどこに挿入するかは、%s で設定してください。"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:778
+#: admin/class-ajax.php:789
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "簡略化された要約の場所は「手動」に設定されており、ページテンプレートに関数を追加する必要があります。簡略化された要約を自動的に表示したい場合は、%s で変更できます。"
 
-#: admin/class-ajax.php:792
+#: admin/class-ajax.php:803
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
 #: includes/options-page.php:1545
 #: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
-#: build/simplifiedSummaryBlock.bundle.js:2
+#: build/simplifiedSummaryBlock.bundle.js:1
 msgid "Simplified Summary"
 msgstr "簡略版概要"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:805
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "要約を保存"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:809
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "可読性の向上と簡略化された要約の要件について詳しく学ぶ"
 
-#: admin/class-ajax.php:801
+#: admin/class-ajax.php:812
 msgid "No readability data to return"
 msgstr "返す読みやすさデータがありません"
 
-#: admin/class-enqueue-admin.php:453
+#: admin/class-enqueue-admin.php:456
 msgid "* Screen Reader Text"
 msgstr "スクリーンリーダーテキスト"
 
@@ -998,7 +1021,7 @@ msgid "The id value was not set"
 msgstr "ID値が設定されていません"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1092
+#: includes/classes/class-rest-api.php:1099
 msgid "Post not found"
 msgstr "投稿が見つかりません"
 
@@ -1043,6 +1066,7 @@ msgid "Date:"
 msgstr "日付："
 
 #: admin/class-ignore-ui.php:141
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
@@ -1050,6 +1074,7 @@ msgid "Reopen Issue"
 msgstr "問題を再開"
 
 #: admin/class-ignore-ui.php:142
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -1589,20 +1614,20 @@ msgstr "Accessibility Checker Proを入手"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Accessibility Checker Pro を入手する（新しいウィンドウで開きます）"
 
-#: includes/classes/class-rest-api.php:1252
+#: includes/classes/class-rest-api.php:1259
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "申し訳ありませんが、問題を無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1271
+#: includes/classes/class-rest-api.php:1278
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "申し訳ありませんが、問題をグローバルに無視する権限がありません。"
 
-#: includes/classes/class-rest-api.php:1315
-#: includes/classes/class-rest-api.php:1337
+#: includes/classes/class-rest-api.php:1322
+#: includes/classes/class-rest-api.php:1344
 msgid "Issue not found."
 msgstr "問題が見つかりません。"
 
-#: includes/classes/class-rest-api.php:1394
+#: includes/classes/class-rest-api.php:1401
 msgid "Failed to update the issue."
 msgstr "問題の更新に失敗しました。"
 
@@ -1926,15 +1951,15 @@ msgstr "タブインデックスを削除"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "フォーカス可能な要素から%1$s属性を削除します。"
 
-#: includes/classes/Fixes/FixesManager.php:252
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "注意：この設定は、既にアクセシビリティ対応のテーマには推奨されません。"
 
-#: includes/classes/Fixes/FixesManager.php:321
+#: includes/classes/Fixes/FixesManager.php:356
 msgid "Fix not found"
 msgstr "修正が見つかりません"
 
-#: includes/classes/Fixes/FixesManager.php:357
+#: includes/classes/Fixes/FixesManager.php:392
 msgid "Fix not found."
 msgstr "修正が見つかりません。"
 
@@ -1942,57 +1967,61 @@ msgstr "修正が見つかりません。"
 msgid "You do not have permission to manage this license."
 msgstr "このライセンスを管理する権限がありません。"
 
-#: includes/classes/MyDot/Connector.php:318
+#: includes/classes/MyDot/Connector.php:319
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "Proライセンス管理が有効です。Accessibility Checker Proからライセンスを管理してください。"
 
-#: includes/classes/MyDot/Connector.php:347
+#: includes/classes/MyDot/Connector.php:353
 msgid "An error occurred, please try again."
 msgstr "エラーが発生しました。もう一度お試しください。"
 
-#: includes/classes/MyDot/Connector.php:636
+#: includes/classes/MyDot/Connector.php:643
 msgid "You do not have permission to register this site."
 msgstr "このサイトを登録する権限がありません。"
 
-#: includes/classes/MyDot/Connector.php:657
+#: includes/classes/MyDot/Connector.php:664
 msgid "You do not have permission to unregister this site."
 msgstr "このサイトの登録を解除する権限がありません。"
 
-#: includes/classes/MyDot/Connector.php:683
+#: includes/classes/MyDot/Connector.php:692
+msgid "Email reports cannot be enabled on a local site because our service cannot reach it to collect report data."
+msgstr "当社のサービスがレポートデータを収集するためにサイトにアクセスできないため、ローカルサイトではメールレポートを有効化できません。"
+
+#: includes/classes/MyDot/Connector.php:718
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "ライセンスキーが見つかりません。サイトを登録する前にライセンスを有効にしてください。"
 
-#: includes/classes/MyDot/Connector.php:694
-#: includes/classes/MyDot/Connector.php:901
-msgid "Unknown error occurred while registering the site."
-msgstr "サイト登録中に不明なエラーが発生しました。"
+#: includes/classes/MyDot/Connector.php:729
+#: includes/classes/MyDot/Connector.php:940
+msgid "Email reports could not be turned on. Please try again, and contact support if the problem continues."
+msgstr "メールレポートをオンにできませんでした。もう一度お試しいただき、問題が解決しない場合はサポートにお問い合わせください。"
 
-#: includes/classes/MyDot/Connector.php:723
+#: includes/classes/MyDot/Connector.php:762
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "サイトの登録に成功しました。サイトが追加のアクセシビリティサービスを使用するように設定されました。"
 
-#: includes/classes/MyDot/Connector.php:733
+#: includes/classes/MyDot/Connector.php:772
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "サイト登録は完了しましたが、応答データが予期された形式ではありませんでした。一部の機能が正しく動作しない可能性があります。"
 
-#: includes/classes/MyDot/Connector.php:809
+#: includes/classes/MyDot/Connector.php:848
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "サイトの登録解除ができません。必要な登録データが不足しています。"
 
-#: includes/classes/MyDot/Connector.php:826
-#: includes/classes/MyDot/Connector.php:959
-msgid "Unknown error occurred while unregistering the site."
-msgstr "サイト登録解除中に不明なエラーが発生しました。"
+#: includes/classes/MyDot/Connector.php:865
+#: includes/classes/MyDot/Connector.php:998
+msgid "Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails."
+msgstr "このサイトではメールレポートがオフになっていますが、当社のサービス側でこれを確認できませんでした。レポートメールが引き続き届く場合は、サポートにお問い合わせください。"
 
-#: includes/classes/MyDot/Connector.php:841
+#: includes/classes/MyDot/Connector.php:880
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "サイトの登録解除に成功しました。サイトはメールレポートを受け取らなくなります。"
 
-#: includes/classes/MyDot/Connector.php:864
+#: includes/classes/MyDot/Connector.php:903
 msgid "No license key provided."
 msgstr "ライセンスキーが提供されていません。"
 
-#: includes/classes/MyDot/Connector.php:922
+#: includes/classes/MyDot/Connector.php:961
 msgid "Missing required parameters for unregistration."
 msgstr "登録解除に必要なパラメーターが不足しています。"
 
@@ -5353,6 +5382,22 @@ msgstr "保存に失敗しました。"
 msgid "Fix Settings"
 msgstr "修正設定"
 
+#: build/admin.bundle.js:2
+msgid "Successfully dismissed issue"
+msgstr "問題を正常に無視しました"
+
+#: build/admin.bundle.js:2
+msgid "Successfully undismissed issue"
+msgstr "問題の無視を正常に解除しました"
+
+#: build/admin.bundle.js:2
+msgid "Failed to dismiss issue"
+msgstr "問題を無視できませんでした"
+
+#: build/admin.bundle.js:2
+msgid "Failed to undismiss issue"
+msgstr "問題の無視を解除できませんでした"
+
 #: build/editorApp.bundle.js:2
 msgid "The accessibility scan did not finish, so your saved results were left unchanged."
 msgstr "アクセシビリティスキャンが完了しなかったため、保存された結果は変更されませんでした。"
@@ -6231,6 +6276,14 @@ msgid "Loading accessibility data..."
 msgstr "アクセシビリティデータを読み込み中..."
 
 #: build/sidebar.bundle.js:10
+msgid "Accessibility analysis refreshed."
+msgstr "アクセシビリティ分析を更新しました。"
+
+#: build/sidebar.bundle.js:10
+msgid "Accessibility analysis could not be refreshed."
+msgstr "アクセシビリティ分析を更新できませんでした。"
+
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Accessibility Checker アクション"
 
@@ -6250,7 +6303,7 @@ msgstr "ツールバーから固定を解除"
 msgid "Pin to toolbar"
 msgstr "ツールバーに固定"
 
-#: build/simplifiedSummaryBlock.bundle.js:2
+#: build/simplifiedSummaryBlock.bundle.js:1
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
 msgstr "この投稿の要約版がここに表示されます。要約は、Accessibility Checker サイドバーまたはメタボックスの「Readability」セクションで作成してください。"
 
