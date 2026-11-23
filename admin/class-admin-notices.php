@@ -196,7 +196,7 @@ class Admin_Notices {
 
 		switch ( $segment ) {
 			case 'free':
-				$heading = __( '🎉 Black Friday special: save 20% and get a free course! 🎉', 'accessibility-checker' );
+				$heading = __( '🎉 Accessibility Checker Black Friday special: save 20% and get a free course! 🎉', 'accessibility-checker' );
 				$body    = __( 'Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice.', 'accessibility-checker' );
 				$buttons = [
 					[ $presale_label, $presale_url, 'BlackFriday26-free-presale' ],
@@ -212,7 +212,7 @@ class Admin_Notices {
 				];
 				break;
 			case 'professional':
-				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉', 'accessibility-checker' );
+				$heading = __( '🎉 Black Friday: Save 25% on your upgrade to Accessibility Checker Small Business! 🎉', 'accessibility-checker' );
 				$body    = __( 'Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd.', 'accessibility-checker' );
 				$buttons = [
 					[
@@ -229,7 +229,7 @@ class Admin_Notices {
 				];
 				break;
 			case 'smb':
-				$heading = __( '🎉 Black Friday: Save 25% on your upgrade! 🎉', 'accessibility-checker' );
+				$heading = __( '🎉 Accessibility Checker Black Friday: Save 25% on your upgrade! 🎉', 'accessibility-checker' );
 				$body    = __( 'Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support.', 'accessibility-checker' );
 				$buttons = [
 					[ __( 'Upgrade & Save 25%', 'accessibility-checker' ), add_query_arg( 'discount', $smb_code, $account_url ), 'BlackFriday26-smb-upgrade' ],
@@ -242,7 +242,9 @@ class Admin_Notices {
 
 		// Construct the promotional message.
 		$message  = '<div class="edac_black_friday_notice notice notice-info is-dismissible">';
-		$message .= '<p><strong>' . preg_replace( '/[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{FE0F}]+/u', '<span aria-hidden="true">$0</span>', esc_html( $heading ) ) . '</strong><br />';
+		$message .= '<div class="edac-bf-notice-layout">';
+		$message .= '<img class="edac-bf-notice-logo" src="' . esc_url( EDAC_PLUGIN_URL . 'assets/images/accessibility-checker-icon.svg' ) . '" alt="" width="40" height="40" />';
+		$message .= '<p class="edac-bf-notice-content"><strong>' . preg_replace( '/[\x{1F300}-\x{1FAFF}\x{2600}-\x{27BF}\x{FE0F}]+/u', '<span aria-hidden="true">$0</span>', esc_html( $heading ) ) . '</strong><br />';
 		$message .= esc_html( $body ) . '<br />';
 
 		$links = [];
@@ -250,6 +252,7 @@ class Admin_Notices {
 			$links[] = '<a class="button button-primary" href="' . esc_url( edac_link_wrapper( $button[1], 'admin-notice', $button[2], false ) ) . '">' . esc_html( $button[0] ) . '</a>';
 		}
 		$message .= implode( ' ', $links ) . '</p>';
+		$message .= '</div>';
 		$message .= '</div>';
 
 		return $message;
