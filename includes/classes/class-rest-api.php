@@ -11,6 +11,7 @@ use EDAC\Admin\Insert_Rule_Data;
 use EDAC\Admin\Scans_Stats;
 use EDAC\Admin\Settings;
 use EDAC\Admin\Purge_Post_Data;
+use EqualizeDigital\AccessibilityChecker\MyDot\ConnectionStatus;
 use EqualizeDigital\AccessibilityChecker\MyDot\Connector;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -395,7 +396,13 @@ class REST_Api {
 		if ( Connector::validate_jwt_token_in_request_with_fallback( $request ) ) {
 			// Only allow if the site is still registered (site_id present).
 			$site_id = (string) get_option( 'edac_site_id', '' );
-			return '' !== $site_id;
+			if ( '' === $site_id ) {
+				return false;
+			}
+
+			// Only My Dot holds a valid token, so this shows the site is reachable for reports.
+			ConnectionStatus::record_activity();
+			return true;
 		}
 
 		return current_user_can( 'edit_posts' );

@@ -728,14 +728,14 @@ function edac_add_options_page() {
  * Render the welcome page for plugin
  */
 function edac_display_welcome_page() {
-	include_once plugin_dir_path( __DIR__ ) . 'partials/welcome-page.php';
+	include_once EDAC_PLUGIN_DIR . 'partials/welcome-page.php';
 }
 
 /**
  * Render the options page for plugin
  */
 function edac_display_options_page() {
-	include_once plugin_dir_path( __DIR__ ) . 'partials/settings-page.php';
+	include_once EDAC_PLUGIN_DIR . 'partials/settings-page.php';
 }
 
 /**

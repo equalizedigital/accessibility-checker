@@ -130,4 +130,122 @@ class InsertRuleDataTest extends WP_UnitTestCase {
 		$final_row_count = $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- caching not required for one time operation.
 		$this->assertEquals( $initial_row_count + 2, $final_row_count );
 	}
+
+	/**
+	 * Tests that a missing post id/type or an empty rule, rule type or object writes nothing.
+	 *
+	 * @covers \EDAC\Admin\Insert_Rule_Data::insert
+	 */
+	public function test_insert_returns_null_when_required_arguments_are_missing() {
+		$post     = $this->factory()->post->create_and_get();
+		$inserter = new Insert_Rule_Data();
+
+		global $wpdb;
+		// The table is shared with the rest of the suite, so assert the count does not move
+		// rather than assuming it starts empty (the neighbouring cases take the same baseline).
+		$before = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+
+		$this->assertNull( $inserter->insert( $post, '', 'error', 'object' ), 'An empty rule should not insert.' );
+		$this->assertNull( $inserter->insert( $post, 'rule', '', 'object' ), 'An empty rule type should not insert.' );
+		$this->assertNull( $inserter->insert( $post, 'rule', 'error', '' ), 'An empty object should not insert.' );
+
+		// A post-like object without a post_type property.
+		$this->assertNull( $inserter->insert( (object) [ 'ID' => 123 ], 'rule', 'error', 'object' ), 'A post without a post_type should not insert.' );
+
+		$this->assertEquals( $before, (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ), 'A rejected insert should not write a row.' ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+	}
+
+	/**
+	 * Tests that data for a revision post type is never stored.
+	 *
+	 * Revisions are stored as posts with the `revision` post type, so the guard that skips
+	 * them is keyed on the post type rather than the rule type that was passed in.
+	 *
+	 * @covers \EDAC\Admin\Insert_Rule_Data::insert
+	 */
+	public function test_insert_returns_null_for_a_revision_post() {
+		$post_id  = $this->factory()->post->create();
+		$revision = wp_save_post_revision( $post_id );
+		$this->assertIsInt( $revision, 'The fixture did not create a revision.' );
+
+		$revision_post = get_post( $revision );
+		$this->assertEquals( 'revision', $revision_post->post_type, 'The fixture post is not a revision.' );
+
+		global $wpdb;
+		// Baseline against the shared table rather than assuming it is empty.
+		$before = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+
+		$inserter = new Insert_Rule_Data();
+		$this->assertNull( $inserter->insert( $revision_post, 'rule', 'error', 'object' ), 'A revision should not insert.' );
+
+		$this->assertEquals( $before, (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ), 'A revision should not write a row.' ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+	}
+
+	/**
+	 * Tests that re-inserting a row the user has ignored keeps the ignored state.
+	 *
+	 * A later scan re-inserts every issue it finds, including ones already ignored; doing so
+	 * must not silently un-ignore the issue and put it back in front of the user.
+	 *
+	 * @covers \EDAC\Admin\Insert_Rule_Data::insert
+	 */
+	public function test_insert_preserves_an_ignored_row() {
+		$post      = $this->factory()->post->create_and_get();
+		$inserter  = new Insert_Rule_Data();
+		$rule      = 'rig_ignored_rule';
+		$selectors = [ 'selector' => [ '#target' ] ];
+
+		global $wpdb;
+		$before = (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+
+		$this->assertIsInt( $inserter->insert( $post, $rule, 'error', 'object', null, null, $selectors ) );
+
+		// Simulate the issue being ignored by a user.
+		$wpdb->update( // phpcs:ignore WordPress.DB.DirectDatabaseQuery -- Direct write to a test fixture row.
+			$this->table_name,
+			[ 'ignre' => 1 ],
+			[
+				'postid' => $post->ID,
+				'rule'   => $rule,
+			]
+		);
+		$this->assertEquals( 1, (int) $wpdb->get_var( $wpdb->prepare( 'SELECT ignre FROM %i WHERE postid = %d AND rule = %s', $this->table_name, $post->ID, $rule ) ), 'The fixture row should be ignored.' ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+
+		// The next scan finds the same issue again and re-inserts it.
+		$this->assertNull( $inserter->insert( $post, $rule, 'error', 'object', null, null, $selectors ), 'A duplicate issue should update rather than insert.' );
+
+		$this->assertEquals( 1, (int) $wpdb->get_var( $wpdb->prepare( 'SELECT ignre FROM %i WHERE postid = %d AND rule = %s', $this->table_name, $post->ID, $rule ) ), 'Re-inserting an ignored issue should keep it ignored.' ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+		$this->assertEquals( $before + 1, (int) $wpdb->get_var( "SELECT COUNT(*) FROM $this->table_name" ), 'A duplicate issue should update the existing row rather than add one.' ); // phpcs:ignore WordPress.DB -- caching is not required for a one time operation.
+	}
+
+	/**
+	 * Tests that an ignore comment supplied through the insert filter is sanitised.
+	 *
+	 * The comment is filterable, so its markup is restricted to the allowed tags and then
+	 * escaped before it reaches the database.
+	 *
+	 * @covers \EDAC\Admin\Insert_Rule_Data::insert
+	 */
+	public function test_insert_sanitises_a_filtered_ignore_comment() {
+		$post     = $this->factory()->post->create_and_get();
+		$inserter = new Insert_Rule_Data();
+
+		$add_comment = static function ( $rule_data ) {
+			$rule_data['ignre_comment'] = '<strong>Why it was ignored</strong><script>alert(1)</script>';
+			return $rule_data;
+		};
+		add_filter( 'edac_filter_insert_rule_data', $add_comment );
+
+		$this->assertIsInt( $inserter->insert( $post, 'rule', 'error', 'object' ) );
+
+		remove_filter( 'edac_filter_insert_rule_data', $add_comment );
+
+		global $wpdb;
+		$stored = $wpdb->get_var( $wpdb->prepare( 'SELECT ignre_comment FROM %i WHERE postid = %d', $this->table_name, $post->ID ) ); // phpcs:ignore WordPress.DB -- Table name is safe and caching is not required for a one time operation.
+
+		$this->assertStringContainsString( 'Why it was ignored', $stored, 'The comment text should be kept.' );
+		$this->assertStringContainsString( '&lt;strong&gt;', $stored, 'An allowed tag should be stored escaped.' );
+		$this->assertStringNotContainsString( '<strong>', $stored, 'An allowed tag should not be stored as live markup.' );
+		$this->assertStringNotContainsString( '<script', $stored, 'A disallowed tag should be stripped.' );
+	}
 }

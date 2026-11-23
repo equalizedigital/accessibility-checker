@@ -1000,13 +1000,18 @@ function edac_generate_landmark_link( $landmark, $landmark_selector, $post_id, $
 
 		$target_attr = $target_blank ? ' target="_blank"' : '';
 
+		// The arrow marks a link that opens in a new window. It is hidden from assistive
+		// technology because the aria-label already says so.
+		$new_window_icon = $target_blank ? '<span aria-hidden="true"> ↗</span>' : '';
+
 		return sprintf(
-			'<a href="%s" class="%s"%s aria-label="%s">%s</a>',
+			'<a href="%s" class="%s"%s aria-label="%s">%s%s</a>',
 			esc_url( $landmark_url ),
 			esc_attr( $css_class ),
 			$target_attr,
 			esc_attr( $landmark_aria_label ),
-			$landmark
+			$landmark,
+			$new_window_icon
 		);
 	}
 

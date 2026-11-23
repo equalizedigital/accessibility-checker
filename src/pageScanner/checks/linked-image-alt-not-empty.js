@@ -8,12 +8,19 @@
  * - The anchor has aria-label or title attributes
  */
 
+import { isInHiddenSubtree } from '../helpers/helpers.js';
 import { getVisibleImages, hasAccessibleText } from '../helpers/linkedImageUtils.js';
 
 export default {
 	id: 'linked_image_alt_not_empty',
 	evaluate: ( node ) => {
 		if ( node.nodeName.toLowerCase() !== 'a' ) {
+			return true;
+		}
+
+		// Links in display:none / hidden / aria-hidden subtrees are not rendered,
+		// so their images are not reported. Closed visibility:hidden panels still scan.
+		if ( isInHiddenSubtree( node ) ) {
 			return true;
 		}
 

@@ -144,17 +144,17 @@ class CommentSearchLabelFix implements FixInterface {
 
 		// Check the author field label.
 		if ( isset( $defaults['fields']['author'] ) && ! strpos( $defaults['fields']['author'], '<label' ) ) {
-			$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author" class="edac-generated-label">' . esc_html__( 'Name', 'accessibility-checker' ) . '</label><input id="author" name="author" type="text" value="" size="30" required /></p>';
+			$defaults['fields']['author'] = '<p class="comment-form-author"><label for="author" class="edac-generated-label">' . esc_html__( 'Name', 'accessibility-checker' ) . '</label><input id="author" name="author" type="text" value="" size="30" autocomplete="name" required /></p>';
 		}
 
 		// Check the email field label.
 		if ( isset( $defaults['fields']['email'] ) && ! strpos( $defaults['fields']['email'], '<label' ) ) {
-			$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email" class="edac-generated-label">' . esc_html__( 'Email', 'accessibility-checker' ) . '</label><input id="email" name="email" type="email" value="" size="30" required /></p>';
+			$defaults['fields']['email'] = '<p class="comment-form-email"><label for="email" class="edac-generated-label">' . esc_html__( 'Email', 'accessibility-checker' ) . '</label><input id="email" name="email" type="email" value="" size="30" autocomplete="email" required /></p>';
 		}
 
 		// Check the website field label.
 		if ( isset( $defaults['fields']['url'] ) && ! strpos( $defaults['fields']['url'], '<label' ) ) {
-			$defaults['fields']['url'] = '<p class="comment-form-url"><label for="url" class="edac-generated-label">' . esc_html__( 'Website', 'accessibility-checker' ) . '</label><input id="url" name="url" type="url" value="" size="30" /></p>';
+			$defaults['fields']['url'] = '<p class="comment-form-url"><label for="url" class="edac-generated-label">' . esc_html__( 'Website', 'accessibility-checker' ) . '</label><input id="url" name="url" type="url" value="" size="30" autocomplete="url" /></p>';
 		}
 
 		return $defaults;

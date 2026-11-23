@@ -30,6 +30,21 @@
 	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
 	<rule ref="Generic.Commenting.Todo"/>
 
+	<!-- Use the EDAC_PLUGIN_DIR / EDAC_PLUGIN_URL constants for plugin paths and URLs. Only the main file, which defines them, may call these. -->
+	<rule ref="Generic.PHP.ForbiddenFunctions">
+		<properties>
+			<!-- Setting this property replaces the sniff defaults, so sizeof and delete are listed again. -->
+			<property name="forbiddenFunctions" type="array">
+				<element key="sizeof" value="count"/>
+				<element key="delete" value="unset"/>
+				<element key="plugin_dir_path" value="null"/>
+				<element key="plugin_dir_url" value="null"/>
+				<element key="plugins_url" value="null"/>
+			</property>
+		</properties>
+		<exclude-pattern>*/accessibility-checker\.php$</exclude-pattern>
+	</rule>
+
 	<!-- Add the WordPress-VIP-Go standard -->
 	<rule ref="WordPress-VIP-Go"/>
 

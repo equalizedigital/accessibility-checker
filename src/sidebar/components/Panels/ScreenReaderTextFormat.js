@@ -3,9 +3,10 @@
  */
 
 import { __ } from '@wordpress/i18n';
-import { PanelBody, PanelRow } from '@wordpress/components';
+import { PanelRow } from '@wordpress/components';
 import { useSelect, useDispatch } from '@wordpress/data';
 import UserMetaCheckboxControl from '../../../srOnlyFormat/components/UserMetaCheckboxControl';
+import SidebarPanelBody from '../SidebarPanelBody';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
 import '../../sass/components/screen-reader-text-format.scss';
@@ -28,7 +29,7 @@ const ScreenReaderTextFormat = () => {
 	};
 
 	return (
-		<PanelBody
+		<SidebarPanelBody
 			title={ renderPanelTitleWithIcon(
 				'info',
 				__( 'Screen Reader Text Format', 'accessibility-checker' ),
@@ -51,7 +52,7 @@ const ScreenReaderTextFormat = () => {
 					</div>
 				</div>
 			</PanelRow>
-		</PanelBody>
+		</SidebarPanelBody>
 	);
 };
 

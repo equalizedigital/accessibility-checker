@@ -55,7 +55,7 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<a href=', $result );
 		$this->assertStringContainsString( 'class="edac-details-rule-records-record-landmark-link"', $result );
 		$this->assertStringContainsString( 'target="_blank"', $result );
-		$this->assertStringContainsString( '>Header</a>', $result );
+		$this->assertStringContainsString( '>Header<span aria-hidden="true"> ↗</span></a>', $result );
 
 		// Check that the URL contains the expected query parameters.
 		$this->assertStringContainsString( 'edac_landmark=', $result );
@@ -123,6 +123,8 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 		$this->assertStringContainsString( '<a href=', $result );
 		$this->assertStringNotContainsString( 'target="_blank"', $result );
 		$this->assertStringContainsString( '>Footer</a>', $result );
+		// The arrow marks a link that opens in a new window, so it is not added here.
+		$this->assertStringNotContainsString( '↗', $result );
 	}
 
 	/**
@@ -138,7 +140,7 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 
 		$result = edac_generate_landmark_link( $landmark, $landmark_selector, $this->test_post_id );
 
-		$this->assertStringContainsString( ">{$expected_display}</a>", $result );
+		$this->assertStringContainsString( ">{$expected_display}<span aria-hidden=\"true\"> ↗</span></a>", $result );
 		$this->assertStringContainsString( "View {$expected_display} landmark on website", $result );
 	}
 
@@ -195,7 +197,7 @@ class GenerateLandmarkLinkTest extends WP_UnitTestCase {
 		// Decode and compare the landmark selector values.
 		$decoded_selector = base64_decode( urldecode( $matches[1] ) );
 		$this->assertEquals( $landmark_selector, $decoded_selector );
-		$this->assertStringContainsString( '>Main</a>', $result );
+		$this->assertStringContainsString( '>Main<span aria-hidden="true"> ↗</span></a>', $result );
 	}
 
 	/**

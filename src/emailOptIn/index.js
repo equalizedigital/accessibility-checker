@@ -55,6 +55,10 @@ window._show_error = function (id, message, html) {
 		div.innerHTML = html;
 		err.appendChild(div);
 	}
+	// The button was disabled while submitting, so focus was lost. A plain inserted div is not
+	// announced, so move focus to the message.
+	err.setAttribute('tabindex', '-1');
+	err.focus();
 };
 window._load_script = function (url, callback, isSubmit) {
 	var head = document.querySelector('head'), script = document.createElement('script'), r = false;
@@ -111,6 +115,16 @@ window._load_script = function (url, callback, isSubmit) {
 	var _removed = false;
 	var form_to_submit = document.getElementById('_form_1_');
 	var allInputs = form_to_submit.querySelectorAll('input, select, textarea'), tooltips = [], submitted = false;
+	// Keep the live region present before validation adds its message.
+	var validationAnnouncement = document.createElement('div'), announcementTimeout;
+	validationAnnouncement.className = 'screen-reader-text';
+	validationAnnouncement.setAttribute('role', 'alert');
+	validationAnnouncement.setAttribute('aria-atomic', 'true');
+	form_to_submit.appendChild(validationAnnouncement);
+	var clear_validation_announcement = function () {
+		clearTimeout(announcementTimeout);
+		validationAnnouncement.textContent = '';
+	};
 
 	var getUrlParam = function (name) {
 		var params = new URLSearchParams(window.location.search);
@@ -181,8 +195,15 @@ window._load_script = function (url, callback, isSubmit) {
 		}
 	}
 
+	var clear_error_semantics = function (elem) {
+		elem.removeAttribute('aria-invalid');
+		if ((elem.getAttribute('aria-describedby') || '').indexOf('_edac_optin_error_') === 0) {
+			elem.removeAttribute('aria-describedby');
+		}
+	};
 	var remove_tooltips = function () {
 		for (var i = 0; i < tooltips.length; i++) {
+			clear_error_semantics(tooltips[i].elem);
 			tooltips[i].tip.parentNode.removeChild(tooltips[i].tip);
 		}
 		tooltips = [];
@@ -190,6 +211,7 @@ window._load_script = function (url, callback, isSubmit) {
 	var remove_tooltip = function (elem) {
 		for (var i = 0; i < tooltips.length; i++) {
 			if (tooltips[i].elem === elem) {
+				clear_error_semantics(elem);
 				tooltips[i].tip.parentNode.removeChild(tooltips[i].tip);
 				tooltips.splice(i, 1);
 				return;
@@ -323,6 +345,9 @@ window._load_script = function (url, callback, isSubmit) {
 			}
 		}
 		tooltip ? resize_tooltip(tooltip) : false;
+		if (no_error && tooltips.length === 0) {
+			clear_validation_announcement();
+		}
 		return no_error;
 	};
 	var needs_validate = function (el) {
@@ -340,6 +365,7 @@ window._load_script = function (url, callback, isSubmit) {
 		return false
 	};
 	var validate_form = function (e) {
+		clear_validation_announcement();
 		var err = form_to_submit.querySelector('._form_error'), no_error = true;
 		if (!submitted) {
 			submitted = true;
@@ -395,6 +421,30 @@ window._load_script = function (url, callback, isSubmit) {
 			e.preventDefault();
 		}
 		resize_tooltips();
+		if (!no_error) {
+			// Mark each invalid field and link it to its error text.
+			tooltips.forEach(function (tooltip, index) {
+				var errorId = '_edac_optin_error_' + index;
+				tooltip.tip.id = errorId;
+				tooltip.elem.setAttribute('aria-invalid', 'true');
+				tooltip.elem.setAttribute('aria-describedby', errorId);
+			});
+			// VoiceOver does not reliably read a live region after a button press, but it reads a
+			// focused invalid field together with its error. The live region is only a fallback
+			// for when focus cannot be moved.
+			var firstInvalid = tooltips.length ? tooltips[0].elem : null;
+			if (firstInvalid && typeof firstInvalid.focus === 'function') {
+				firstInvalid.focus();
+			}
+			if (!firstInvalid || document.activeElement !== firstInvalid) {
+				// Separate clearing and updating so a repeated error is announced again.
+				announcementTimeout = setTimeout(function () {
+					validationAnnouncement.textContent = tooltips.map(function (tooltip) {
+						return tooltip.tip.textContent;
+					}).join(' ');
+				}, 100);
+			}
+		}
 		return no_error;
 	};
 	addEvent(window, 'resize', resize_tooltips);

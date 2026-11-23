@@ -1,4 +1,4 @@
-/* global module */
+/* global module, __dirname */
 /**
  * Shared helpers for the Playwright drafts.
  *
@@ -7,7 +7,19 @@
  * scanner bundle is injected the same way the highlighter injects it.
  */
 
+const path = require( 'path' );
+const { expect } = require( '@playwright/test' );
+
 const PLUGIN_SLUG = 'accessibility-checker';
+
+/**
+ * Marker global-setup.js writes when this run booted the Playground instance
+ * itself, and removes when it reused one that was already running.
+ *
+ * A marker rather than a check for the pid file: the pid file can be left behind
+ * by a run that was interrupted, while this one says something about *this* run.
+ */
+const DISPOSABLE_MARKER = path.resolve( __dirname, '.auth', 'disposable-instance' );
 
 /** Selectors confirmed against the running plugin. */
 const sel = {
@@ -17,7 +29,23 @@ const sel = {
 	editorPreviewIframe: '#elementor-preview-iframe',
 	thickboxWindow: '#TB_window',
 	elementorEditArea: '[data-elementor-type="wp-page"]',
+	metaBox: '#edac-meta-box',
+	summaryTab: '#edac-summary-tab',
+	detailsTab: '#edac-details-tab',
+	detailsRuleTitle: '.edac-details-rule-title',
+	sidebarContent: '.edac-sidebar__content',
+	statusCard: '.edac-status-card',
 };
+
+/** Rules the fixture page is known to trip, by their displayed titles. */
+const FIXTURE_RULE_TITLES = [
+	'Empty Button',
+	'Empty Link',
+	'Image Missing Alternative Text',
+	'Incorrect Heading Order',
+];
+
+const SETTINGS_PAGE = '/wp-admin/admin.php?page=accessibility_checker_settings';
 
 /** A page with deliberate, findable accessibility problems. */
 const FIXTURE_CONTENT = [
@@ -178,6 +206,234 @@ async function saveInElementor( page, status = 'publish' ) {
 }
 
 /**
+ * Reset the admin's email opt-in user meta so the opt-in modal shows again.
+ *
+ * Goes through a test-only route installed by global-setup.js (e2e-helpers.php),
+ * which hands back what it found so `restoreOptIn()` can put it back.
+ *
+ * @param {Object} page Playwright page.
+ * @return {Promise<Object>} Whether each meta key was set before the reset.
+ */
+async function resetOptIn( page ) {
+	const nonce = await getRestNonce( page );
+	const result = await page.evaluate( async ( restNonce ) => {
+		const res = await fetch( '/wp-json/edac-e2e/v1/reset-opt-in', {
+			method: 'POST',
+			headers: { 'X-WP-Nonce': restNonce },
+		} );
+		return res.json();
+	}, nonce );
+
+	if ( ! result.success ) {
+		throw new Error( 'Could not reset the opt-in user meta.' );
+	}
+
+	return result.previous;
+}
+
+/**
+ * Put the opt-in user meta back the way `resetOptIn()` found it.
+ *
+ * Worth doing even though the modal has to be un-seen for the test to run: on a
+ * reused instance the admin is a real user, and deleting their saved opt-in state
+ * shows them the subscription form again.
+ *
+ * @param {Object} page     Playwright page.
+ * @param {Object} previous The state `resetOptIn()` returned.
+ */
+async function restoreOptIn( page, previous ) {
+	if ( ! previous ) {
+		return;
+	}
+
+	const nonce = await getRestNonce( page );
+	const result = await page.evaluate( async ( args ) => {
+		const res = await fetch( '/wp-json/edac-e2e/v1/restore-opt-in', {
+			method: 'POST',
+			headers: { 'X-WP-Nonce': args.restNonce, 'Content-Type': 'application/json' },
+			body: JSON.stringify( { previous: args.previous } ),
+		} );
+		return { status: res.status, body: await res.json().catch( () => null ) };
+	}, { restNonce: nonce, previous } );
+
+	// This runs after the test, so a silent failure here would leave the admin's own
+	// opt-in state deleted on a reused instance.
+	if ( ! result.body?.success ) {
+		throw new Error( `Could not restore the opt-in user meta (HTTP ${ result.status }).` );
+	}
+}
+
+/**
+ * Open a post in the block editor and wait for the plugin's meta box to be in the DOM.
+ *
+ * Block-editor-only: the meta box is injected by the "Block Editor Metabox" setting, so
+ * callers that turn that off should use `openBlockEditorRaw()` and not wait for it.
+ *
+ * @param {Object} page   Playwright page.
+ * @param {number} postId Post id.
+ */
+async function openBlockEditor( page, postId ) {
+	await openBlockEditorRaw( page, postId );
+	await page.waitForSelector( sel.summaryTab, { state: 'attached', timeout: 180_000 } );
+}
+
+/**
+ * Open a post in the block editor and wait for the editor chrome only.
+ *
+ * @param {Object} page   Playwright page.
+ * @param {number} postId Post id.
+ */
+async function openBlockEditorRaw( page, postId ) {
+	await page.goto( `/wp-admin/post.php?post=${ postId }&action=edit`, { waitUntil: 'load' } );
+	await waitForEditorChrome( page );
+
+	if ( await dismissWelcomeGuide( page ) ) {
+		// The guide is off now, but it was already rendered on this page — see
+		// dismissWelcomeGuide() — so load the editor again to get one without it.
+		await page.reload( { waitUntil: 'load' } );
+		await waitForEditorChrome( page );
+	}
+}
+
+/**
+ * Wait for the block editor's chrome to be up.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function waitForEditorChrome( page ) {
+	await page.waitForSelector( '.editor-post-publish-button', { timeout: 180_000 } );
+}
+
+/**
+ * Switch off the block editor's onboarding guide, and say whether the page it was found
+ * on has to be reloaded to clear it.
+ *
+ * On a site whose admin has never dismissed it — every fresh Playground instance, so
+ * every CI run — the guide opens over the canvas as soon as the editor is up. It is a
+ * modal: its overlay swallows pointer events and the editor behind it is inert, so the
+ * editor's own controls (the "Meta Boxes" pane toggle, the Accessibility Checker header
+ * button, the save button) can be neither clicked nor found by role while it is open.
+ *
+ * Dispatching the preference is what the guide's own close button does, and the
+ * preferences store persists it to the user's meta, so the guide is gone from the *next*
+ * editor load. It does not reliably leave the load it has already rendered on, which is
+ * why the caller reloads: the saved choice makes the reloaded editor come up without it.
+ *
+ * @param {Object} page Playwright page.
+ * @return {Promise<boolean>} Whether the caller needs to reload the editor.
+ */
+async function dismissWelcomeGuide( page ) {
+	await page.waitForFunction(
+		() => Boolean( window.wp?.data?.select?.( 'core/preferences' ) ),
+		null,
+		{ timeout: 60_000 }
+	);
+
+	// The editor booted with the guide already switched off, i.e. every open after the
+	// first one in a run: nothing is on screen and nothing needs reloading.
+	const switchedOffOnLoad = await page.evaluate(
+		() => window.wp.data.select( 'core/preferences' ).get( 'core/edit-post', 'welcomeGuide' ) === false
+	);
+	if ( switchedOffOnLoad ) {
+		return false;
+	}
+
+	// Wait for the choice to reach the server before the caller reloads, or the reloaded
+	// editor would boot from the old value and put the guide back.
+	const saved = page
+		.waitForResponse(
+			( res ) => res.url().includes( '/wp/v2/users/me' ) && res.request().method() === 'POST',
+			{ timeout: 30_000 }
+		)
+		.catch( () => null );
+
+	// The store applies the user's saved state while the editor boots, which can land
+	// after the first dispatch, so dispatch until it reads back.
+	await expect.poll( async () => {
+		await page.evaluate( () => {
+			const { dispatch } = window.wp.data;
+			dispatch( 'core/preferences' ).set( 'core/edit-post', 'welcomeGuide', false );
+			dispatch( 'core/preferences' ).set( 'core/edit-post', 'welcomeGuideStyles', false );
+		} );
+		return page.evaluate( () => window.wp.data.select( 'core/preferences' ).get( 'core/edit-post', 'welcomeGuide' ) );
+	}, { timeout: 60_000 } ).toBe( false );
+
+	await saved;
+
+	return true;
+}
+
+/**
+ * Expand the collapsed "Meta Boxes" pane at the bottom of the block editor.
+ *
+ * Activated from the keyboard: the pane's resize handle overlaps the toggle button, so
+ * a pointer click is intercepted by the separator.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function expandMetaBoxes( page ) {
+	const toggle = page.getByRole( 'button', { name: 'Meta Boxes' } );
+	if ( ( await toggle.getAttribute( 'aria-expanded' ) ) !== 'true' ) {
+		await toggle.focus();
+		await page.keyboard.press( 'Enter' );
+	}
+}
+
+/**
+ * Start counting the plugin's own scan-save events before the page navigates.
+ *
+ * The block editor scans the post as soon as it opens and dispatches
+ * `edac_js_scan_save_complete` on `top` once the results are stored (see
+ * `saveScanResults()` in src/editorApp/checkPage.js). Counting from a frame init
+ * script means a later wait can tell whether that first scan has already
+ * finished, instead of inferring it from how long the page took to load.
+ *
+ * Must be called before the navigation it should see, i.e. before
+ * `openBlockEditor()`.
+ *
+ * @param {Object} page Playwright page.
+ */
+async function trackScanSaveEvents( page ) {
+	await page.addInitScript( () => {
+		window.__edacScanSaveEvents = 0;
+		window.addEventListener( 'edac_js_scan_save_complete', () => {
+			window.__edacScanSaveEvents += 1;
+		} );
+	} );
+}
+
+/**
+ * Wait for the plugin to have saved scan results `count` times since the page
+ * navigated. Requires `trackScanSaveEvents()` to have run before navigation.
+ *
+ * @param {Object} page    Playwright page.
+ * @param {number} count   How many saves to wait for.
+ * @param {number} timeout Milliseconds to wait.
+ */
+async function waitForScanSaveEvents( page, count = 1, timeout = 180_000 ) {
+	await page.waitForFunction(
+		( expected ) => ( window.__edacScanSaveEvents || 0 ) >= expected,
+		count,
+		{ timeout }
+	);
+}
+
+/**
+ * Submit the plugin's settings form after applying a change to it.
+ *
+ * @param {Object}   page   Playwright page.
+ * @param {Function} change Async callback that edits the form fields.
+ */
+async function saveSettings( page, change ) {
+	await page.goto( SETTINGS_PAGE, { waitUntil: 'load' } );
+	await change( page );
+	await Promise.all( [
+		page.waitForURL( /settings-updated=true/ ),
+		page.locator( '#submit' ).click(),
+	] );
+}
+
+/**
  * Assert a WordPress admin response contains no PHP diagnostics.
  *
  * @param {string} html Response body.
@@ -199,13 +455,26 @@ function expectNoPhpErrors( html ) {
 
 module.exports = {
 	PLUGIN_SLUG,
+	DISPOSABLE_MARKER,
 	sel,
 	FIXTURE_CONTENT,
+	FIXTURE_RULE_TITLES,
+	SETTINGS_PAGE,
 	getRestNonce,
 	createPage,
 	deletePage,
 	runScan,
 	openElementorEditor,
 	saveInElementor,
+	openBlockEditor,
+	openBlockEditorRaw,
+	dismissWelcomeGuide,
+	waitForEditorChrome,
+	expandMetaBoxes,
+	trackScanSaveEvents,
+	waitForScanSaveEvents,
+	saveSettings,
+	resetOptIn,
+	restoreOptIn,
 	expectNoPhpErrors,
 };

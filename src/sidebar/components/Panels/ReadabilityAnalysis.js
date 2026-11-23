@@ -3,11 +3,12 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { PanelBody, PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
+import { PanelRow, TextareaControl, Button, Notice, Spinner } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useSelect, useDispatch } from '@wordpress/data';
 import { useState, useEffect } from '@wordpress/element';
 import apiFetch from '@wordpress/api-fetch';
+import SidebarPanelBody from '../SidebarPanelBody';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
 import ExternalLinkIcon from '../../components/ExternalLinkIcon';
 import Icon from '../Icon';
@@ -223,7 +224,7 @@ const ReadabilityAnalysis = () => {
 	}
 
 	return (
-		<PanelBody
+		<SidebarPanelBody
 			title={ renderPanelTitleWithIcon(
 				getPanelIcon(),
 				__( 'Readability Analysis', 'accessibility-checker' ),
@@ -257,9 +258,9 @@ const ReadabilityAnalysis = () => {
 								type="warning"
 								ariaLabel={ __( 'Warning', 'accessibility-checker' ) }
 							/>
-							<h3 className="edac-panel-section__title">
+							<h4 className="edac-panel-section__title">
 								{ __( 'Not available', 'accessibility-checker' ) }
-							</h3>
+							</h4>
 						</div>
 						<p className="edac-panel-section__message">
 							{ __( 'This post does not contain enough content to calculate a reading level.', 'accessibility-checker' ) }
@@ -281,9 +282,9 @@ const ReadabilityAnalysis = () => {
 								type="warning"
 								ariaLabel={ __( 'Warning', 'accessibility-checker' ) }
 							/>
-							<h3 className="edac-panel-section__title">
+							<h4 className="edac-panel-section__title">
 								{ __( 'Not available', 'accessibility-checker' ) }
-							</h3>
+							</h4>
 						</div>
 						<p className="edac-panel-section__message">
 							{ __( 'Not enough content to determine an accurate reading level.', 'accessibility-checker' ) }
@@ -300,7 +301,7 @@ const ReadabilityAnalysis = () => {
 				<PanelRow className="edac-panel-row">
 					<div className="edac-panel-section">
 						<div className="edac-panel-section__header">
-							<h3 className="edac-panel-section__title">{ __( 'Reading Level', 'accessibility-checker' ) }</h3>
+							<h4 className="edac-panel-section__title">{ __( 'Reading Level', 'accessibility-checker' ) }</h4>
 						</div>
 						<p className="post-grade-display">
 							<Icon name={ getReadingLevelIcon() } />
@@ -328,9 +329,9 @@ const ReadabilityAnalysis = () => {
 						{ ( readingLevelStatus !== 'below' || requiresSummary ) && (
 							<>
 								<div className="edac-panel-section__subsection">
-									<h4 className="edac-panel-section__subheading">
+									<h5 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary Reading Level', 'accessibility-checker' ) }
-									</h4>
+									</h5>
 									{ ! summaryText && (
 										<p className="edac-panel-section__message">
 											{ __( 'Summary required', 'accessibility-checker' ) }
@@ -358,9 +359,9 @@ const ReadabilityAnalysis = () => {
 								</div>
 
 								<div className="edac-panel-section__subsection">
-									<h4 className="edac-panel-section__subheading">
+									<h5 className="edac-panel-section__subheading">
 										{ __( 'Simplified Summary', 'accessibility-checker' ) }
-									</h4>
+									</h5>
 									<TextareaControl
 										label={ __( 'Simplified Summary', 'accessibility-checker' ) }
 										hideLabelFromVision={ true }
@@ -390,7 +391,7 @@ const ReadabilityAnalysis = () => {
 				<PanelRow className="edac-panel-row">
 					<div className="edac-panel-section">
 						<div className="edac-panel-section__header">
-							<h3 className="edac-panel-section__title">{ __( 'Simplified Summary', 'accessibility-checker' ) }</h3>
+							<h4 className="edac-panel-section__title">{ __( 'Simplified Summary', 'accessibility-checker' ) }</h4>
 						</div>
 						<p className="edac-panel-section__message">
 							{ __( 'A simplified summary is required for this content.', 'accessibility-checker' ) }
@@ -401,9 +402,9 @@ const ReadabilityAnalysis = () => {
 						</a>
 
 						<div className="edac-panel-section__subsection">
-							<h4 className="edac-panel-section__subheading">
+							<h5 className="edac-panel-section__subheading">
 								{ __( 'Simplified Summary', 'accessibility-checker' ) }
-							</h4>
+							</h5>
 							<TextareaControl
 								label={ __( 'Simplified Summary', 'accessibility-checker' ) }
 								hideLabelFromVision={ true }
@@ -425,7 +426,7 @@ const ReadabilityAnalysis = () => {
 					</div>
 				</PanelRow>
 			) }
-		</PanelBody>
+		</SidebarPanelBody>
 	);
 };
 

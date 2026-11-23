@@ -6,6 +6,7 @@
  */
 
 use EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage;
+use EqualizeDigital\AccessibilityChecker\Tests\TestHelpers\DatabaseHelpers;
 
 /**
  * Test cases for reports page fallback-aware license handling and preview formatting.
@@ -46,6 +47,32 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		delete_option( 'edac_next_collection' );
 
 		parent::tearDown();
+	}
+
+	/**
+	 * Create the plugin table once, outside any test transaction.
+	 *
+	 * The renderer builds its summary through Scans_Stats on every call, and
+	 * those queries self-join the issues table, which MySQL disallows on the
+	 * temporary tables WP_UnitTestCase would otherwise create.
+	 *
+	 * @return void
+	 */
+	public static function set_up_before_class(): void {
+		parent::set_up_before_class();
+
+		DatabaseHelpers::create_table();
+	}
+
+	/**
+	 * Drop the plugin table.
+	 *
+	 * @return void
+	 */
+	public static function tear_down_after_class(): void {
+		DatabaseHelpers::drop_table();
+
+		parent::tear_down_after_class();
 	}
 
 	/**
@@ -641,5 +668,72 @@ class AccessibilityReportsPageTest extends WP_UnitTestCase {
 		// A rule the preview table renders against resolves to its full definition.
 		$this->assertArrayHasKey( 'img_alt_missing', $index );
 		$this->assertSame( 'Image Missing Alternative Text', $index['img_alt_missing']['title'] );
+	}
+
+	/**
+	 * A registered site whose licence has expired gets the renewal panel rather
+	 * than the connect form: reports have stopped, so the only actions offered
+	 * are renewing the licence or turning the (still registered) connection off.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_the_expired_licence_panel() {
+		update_option( 'edac_license_status', 'expired' );
+		update_option( 'edac_site_id', 'site-123' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'License Expired', $html );
+		$this->assertStringContainsString( 'Disable Email Reports', $html );
+		$this->assertStringNotContainsString( 'Get a Free License Key', $html );
+		$this->assertStringNotContainsString( 'Reports Enabled', $html );
+	}
+
+	/**
+	 * With nothing stored the page offers the free licence key form and the
+	 * sign-up copy, and must not claim reports are already running.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_the_free_licence_form_when_disconnected() {
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'Get a Free License Key', $html );
+		$this->assertStringContainsString( 'edac-reports-license-key', $html );
+		$this->assertStringContainsString( 'Enable Email Reports', $html );
+		$this->assertStringNotContainsString( 'Reports Enabled', $html );
+		$this->assertStringNotContainsString( 'License Expired', $html );
+	}
+
+	/**
+	 * A connected free licence gets the "Reports Enabled" state, with the stored
+	 * key masked and the summary preview shown instead of the connect form.
+	 *
+	 * @covers \EqualizeDigital\AccessibilityChecker\Admin\AdminPage\AccessibilityReportsPage::render_page
+	 */
+	public function test_render_page_shows_reports_enabled_when_connected() {
+		update_option( 'edac_license_status', 'valid' );
+		update_option( 'edac_site_id', 'site-123' );
+		update_option( 'edacp_license_key', 'abcdefghijklmnopqrst' );
+
+		$html = $this->render_page();
+
+		$this->assertStringContainsString( 'Reports Enabled', $html );
+		$this->assertStringContainsString( 'Accessibility Summary', $html );
+		$this->assertStringContainsString( 'Total Issues Found', $html );
+		$this->assertStringContainsString( 'abcd************qrst', $html );
+		$this->assertStringNotContainsString( 'Get a Free License Key', $html );
+	}
+
+	/**
+	 * Render the reports page and capture its markup.
+	 *
+	 * @return string
+	 */
+	private function render_page(): string {
+		ob_start();
+		$this->page->render_page();
+
+		return (string) ob_get_clean();
 	}
 }

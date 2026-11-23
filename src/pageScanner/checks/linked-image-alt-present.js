@@ -8,12 +8,19 @@
  * @return {boolean} True if the anchor tag has valid descriptive content, false otherwise.
  */
 
+import { isInHiddenSubtree } from '../helpers/helpers.js';
 import { getVisibleImages, hasAccessibleText } from '../helpers/linkedImageUtils.js';
 
 export default {
 	id: 'linked_image_alt_present',
 	evaluate: ( node ) => {
 		if ( node.nodeName.toLowerCase() !== 'a' ) {
+			return true;
+		}
+
+		// Links in display:none / hidden / aria-hidden subtrees are not rendered,
+		// so their images are not reported. Closed visibility:hidden panels still scan.
+		if ( isInHiddenSubtree( node ) ) {
 			return true;
 		}
 

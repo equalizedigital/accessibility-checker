@@ -104,7 +104,7 @@ class SimplifiedSummaryBlock {
 		wp_register_script(
 			self::SCRIPT_HANDLE,
 			EDAC_PLUGIN_URL . 'build/simplifiedSummaryBlock.bundle.js',
-			[ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor' ],
+			[ 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-block-editor', 'react-jsx-runtime' ],
 			EDAC_VERSION,
 			true
 		);
@@ -112,7 +112,7 @@ class SimplifiedSummaryBlock {
 		wp_set_script_translations(
 			self::SCRIPT_HANDLE,
 			'accessibility-checker',
-			plugin_dir_path( EDAC_PLUGIN_FILE ) . 'languages'
+			EDAC_PLUGIN_DIR . 'languages'
 		);
 
 		wp_localize_script(

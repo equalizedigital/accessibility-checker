@@ -133,6 +133,32 @@ describe( 'Aria Hidden Validation', () => {
 			html: '<a href="/about"><svg aria-hidden="true"></svg><span class="my-sr-only-text">About</span></a>',
 			shouldPass: true,
 		},
+		// Screen reader only siblings are detected by CSS, not by class name. The parent is a
+		// span so the button/anchor text branch of the check is not what makes these pass.
+		{
+			name: 'should pass for sibling hidden with the clip-path sr-only technique (WordPress screen-reader-text)',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sibling hidden with the clip rect sr-only technique',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sibling hidden with the 1px dimension sr-only technique',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; }',
+			shouldPass: true,
+		},
+		{
+			name: 'should pass for sr-only sibling whose name comes from image alt text',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt="About"></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: true,
+		},
 		{
 			name: 'should pass for display:none',
 			html: '<div style="display:none;" aria-hidden="true">Hidden content</div>',
@@ -183,6 +209,47 @@ describe( 'Aria Hidden Validation', () => {
 		{
 			name: 'should fail for div with important content',
 			html: '<div aria-hidden="true">Important content</div>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sibling only has an sr-only class name but no sr-only CSS',
+			html: '<span><svg aria-hidden="true"></svg><span class="sr-only">About</span></span>',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sibling uses a class named hidden that is display:none',
+			html: '<span><svg aria-hidden="true"></svg><span class="hidden">About</span></span>',
+			css: '.hidden { display: none; }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sibling uses a class named invisible that is visibility:hidden',
+			html: '<span><svg aria-hidden="true"></svg><span class="invisible">About</span></span>',
+			css: '.invisible { visibility: hidden; }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling has no text',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling only has an image with empty alt',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt"><img src="a.png" alt=""></span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is itself aria-hidden',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt" aria-hidden="true">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }',
+			shouldPass: false,
+		},
+		{
+			name: 'should fail when the sr-only sibling is display:none',
+			html: '<span><svg aria-hidden="true"></svg><span class="srt">About</span></span>',
+			css: '.srt { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); display: none; }',
 			shouldPass: false,
 		},
 		{

@@ -45,6 +45,10 @@ class SimplifiedSummaryBlockTest extends WP_UnitTestCase {
 		$this->assertTrue( WP_Block_Type_Registry::get_instance()->is_registered( SimplifiedSummaryBlock::BLOCK_NAME ) );
 		$this->assertTrue( wp_script_is( SimplifiedSummaryBlock::SCRIPT_HANDLE, 'registered' ) );
 		$this->assertTrue( wp_style_is( SimplifiedSummaryBlock::STYLE_HANDLE, 'registered' ) );
+
+		// The block's JSX is compiled to the `react/jsx-runtime` import, which
+		// is externalized, so the handle has to be declared here.
+		$this->assertContains( 'react-jsx-runtime', wp_scripts()->registered[ SimplifiedSummaryBlock::SCRIPT_HANDLE ]->deps );
 	}
 
 	/**

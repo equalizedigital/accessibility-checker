@@ -6,7 +6,9 @@
 
 .edac-sidebar__content {
 
-	.interface-complementary-area & h3 {
+	.interface-complementary-area & h3,
+	.interface-complementary-area & h4,
+	.interface-complementary-area & h5 {
 		text-transform: none;
 	}
 }

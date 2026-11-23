@@ -3,10 +3,11 @@
  */
 
 import { __, sprintf } from '@wordpress/i18n';
-import { Panel, PanelBody, PanelRow } from '@wordpress/components';
+import { Panel, PanelRow } from '@wordpress/components';
 import { useAccessibilityCheckerData } from '../../hooks/useAccessibilityCheckerData';
 import { useCallback, useEffect } from '@wordpress/element';
 import { useSelect, useDispatch } from '@wordpress/data';
+import SidebarPanelBody from '../SidebarPanelBody';
 import { STORE_NAME } from '../../store/accessibility-checker-store';
 import Icon from '../Icon';
 import { renderPanelTitleWithIcon } from '../../utils/panelHelpers';
@@ -163,7 +164,7 @@ const AccessibilityStatus = () => {
 
 	return (
 		<Panel>
-			<PanelBody
+			<SidebarPanelBody
 				title={ renderPanelTitleWithIcon(
 					statusIconName,
 					__( 'Accessibility Status', 'accessibility-checker' ),
@@ -302,7 +303,7 @@ const AccessibilityStatus = () => {
 						{/* Placeholder for 30-day trend - will be implemented later */}
 					</div>
 				</PanelRow>
-			</PanelBody>
+			</SidebarPanelBody>
 		</Panel>
 	);
 };
