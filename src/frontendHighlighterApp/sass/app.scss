@@ -445,8 +445,30 @@ body {
 
 			&--button {
 				all: unset;
+				// Lock typography and box styles so theme button rules
+				// (uppercase, display fonts, letter-spacing, borders, shadows)
+				// cannot restyle these buttons.
+				box-sizing: border-box !important;
+				font-family: $highlighter-font-family !important;
+				font-size: 13px !important;
+				font-weight: 400 !important;
+				font-style: normal !important;
+				line-height: 20px !important;
+				letter-spacing: normal !important;
+				text-transform: none !important;
+				text-decoration: none !important;
+				text-shadow: none !important;
+				text-align: center !important;
+				white-space: normal !important;
 				color: variables.$color-white !important;
 				background-color: variables.$color-blue !important;
+				background-image: none !important;
+				border: 0 !important;
+				box-shadow: none !important;
+				width: auto !important;
+				height: auto !important;
+				min-width: 0 !important;
+				min-height: 0 !important;
 				padding: 8px 13px !important;
 				display: inline-block !important;
 				margin-top: 10px !important;
@@ -454,12 +476,14 @@ body {
 				border-radius: 2px !important;
 
 				&:hover {
+					color: variables.$color-white !important;
 					background-color: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
 					cursor: pointer !important;
 					text-decoration: none !important;
 				}
 
 				&:focus-visible {
+					color: variables.$color-white !important;
 					background-color: color-mix(in srgb, variables.$color-blue 90%, #000) !important;
 					outline: 2px solid variables.$color-blue !important;
 					outline-offset: 2px !important;
@@ -516,6 +540,7 @@ body {
 				dl,
 				p,
 				.edac-highlight-dismiss-reason,
+				.edac-highlight-dismissed-heading,
 				.edac-highlight-dismissed-comment {
 					display: block !important;
 				}
