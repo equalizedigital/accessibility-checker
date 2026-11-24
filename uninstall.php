@@ -117,6 +117,19 @@ if ( true === (bool) $edac_delete_data ) {
 
 	delete_transient( 'edac_reports_basic_auth_check' );
 
+	// Delete per-user meta for every user.
+	$edac_user_meta_keys = [
+		'edac_admin_toolbar_display',
+		'edac_email_optin',
+		'edac_email_optin_seen_modal',
+		'edac_welcome_cta_dismissed',
+		'edac_dashboard_cta_dismissed',
+	];
+
+	foreach ( $edac_user_meta_keys as $edac_user_meta_key ) {
+		delete_metadata( 'user', 0, $edac_user_meta_key, '', true );
+	}
+
 	// Remove the managed capabilities from every role.
 	if ( $edac_managed_caps ) {
 		$edac_wp_roles = wp_roles();
