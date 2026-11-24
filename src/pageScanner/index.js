@@ -8,6 +8,8 @@ import imgAnimated from './rules/img-animated';
 import { preScanAnimatedImages } from './checks/img-animated-check';
 import { getPageDensity } from './helpers/density';
 import { hideOverlaysDuringScan } from './helpers/hideOverlaysDuringScan';
+import { sortViolationsByDocumentOrder } from './helpers/sortViolations';
+import { findElement } from './helpers/findElement';
 
 const SCAN_TIMEOUT_IN_SECONDS = 30;
 
@@ -32,7 +34,7 @@ const CONDITIONAL_LANDMARK_TAGS = Array.isArray( window?.scanOptions?.conditiona
 const CONDITIONAL_LANDMARK_ROLES = Array.isArray( window?.scanOptions?.conditionalLandmarkRoles ) ? window.scanOptions.conditionalLandmarkRoles : [ 'region', 'article', 'form' ];
 
 function getLandmarkForSelector( selector ) {
-	const el = document.querySelector( selector );
+	const el = findElement( selector );
 	if ( ! el ) {
 		return { type: null, selector: null };
 	}
@@ -266,22 +268,8 @@ const scan = async (
 				};
 			} );
 
-			//Sort the violations by order they appear in the document
-			violations.sort( function( a, b ) {
-				a = document.querySelector( a.selector );
-				b = document.querySelector( b.selector );
-
-				if ( a === b ) {
-					return 0;
-				}
-
-				/* eslint-disable no-bitwise */
-				if ( a.compareDocumentPosition( b ) & 2 ) {
-					// b comes before a
-					return 1;
-				}
-				return -1;
-			} );
+			// Sort the violations by the order they appear in the document.
+			sortViolationsByDocumentOrder( violations );
 
 			return { rules, rulesMin, violations };
 		} ).catch( ( err ) => {
@@ -389,7 +377,10 @@ function processViolation( violation, item ) {
 	const landmark = getLandmarkForSelector( selector );
 	const ancestry = violation.node.ancestry || [];
 	const xpath = violation.node.xpath || [];
-	const html = document.querySelector( selector )?.outerHTML;
+	// The element may be gone by now (a script on the page can remove or replace it once it has
+	// been checked). axe kept its markup as it was when checked: fall back to that, so the issue
+	// is still saved with the code it was found on.
+	const html = findElement( selector )?.outerHTML ?? violation.node.source ?? '';
 	return {
 		selector,
 		ancestry,
