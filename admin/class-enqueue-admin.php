@@ -25,6 +25,8 @@ class Enqueue_Admin {
 
 	/**
 	 * Enqueue the scripts and styles.
+	 *
+	 * @return void
 	 */
 	public static function enqueue() {
 		self::enqueue_styles();
@@ -115,7 +117,7 @@ class Enqueue_Admin {
 					$debug = false;
 				}
 
-				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', false, EDAC_VERSION, false );
+				wp_enqueue_script( 'edac-editor-app', EDAC_PLUGIN_URL . 'build/editorApp.bundle.js', [], EDAC_VERSION, false );
 				wp_set_script_translations( 'edac-editor-app', 'accessibility-checker', EDAC_PLUGIN_DIR . 'languages' );
 
 				// Preview URLs don't work for the homepage. On a latest-posts homepage (including the
