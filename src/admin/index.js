@@ -155,7 +155,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 
 					jQuery( '.edac-summary' ).html( responseJSON.content );
 
@@ -194,7 +194,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 
 					jQuery( '#edac-details-panel' ).html( responseJSON );
 
@@ -284,7 +284,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 
 					jQuery( '#edac-readability-panel' ).html( responseJSON );
 
@@ -579,7 +579,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 					jQuery( '.edac-review-notice' ).fadeOut();
 					if ( redirect ) {
 						window.location.href =
@@ -631,7 +631,7 @@ const edacScriptVars = edac_script_vars;
 				},
 			} ).done( function( response ) {
 				if ( true === response.success ) {
-					const responseJSON = jQuery.parseJSON( response.data );
+					const responseJSON = JSON.parse( response.data );
 				} else {
 					//console.log(response);
 				}
