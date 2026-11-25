@@ -69,6 +69,10 @@ class Admin_Toolbar {
 	public function init(): void {
 		add_action( 'admin_bar_menu', [ $this, 'add_toolbar_items' ], 999 );
 
+		// Keyboard support for the nested flyouts, which core's admin bar cannot open from the keyboard.
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_flyout_script' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_flyout_script' ] );
+
 		// Per-user display preference on the profile screen.
 		add_action( 'show_user_profile', [ $this, 'render_profile_fields' ] );
 		add_action( 'edit_user_profile', [ $this, 'render_profile_fields' ] );
@@ -133,6 +137,35 @@ class Admin_Toolbar {
 		$mode = apply_filters( 'edac_admin_toolbar_display_mode', $mode, $user_id );
 
 		return in_array( $mode, $this->get_valid_modes(), true ) ? $mode : self::MODE_FULL;
+	}
+
+	/**
+	 * Enqueue the script that makes the toolbar's nested flyouts keyboard operable.
+	 *
+	 * Core's admin bar only opens first-level flyouts from the keyboard, so the
+	 * Settings flyout needs this. It is only loaded when the toolbar item is shown.
+	 *
+	 * @since x.x.x
+	 * @return void
+	 */
+	public function enqueue_flyout_script(): void {
+		if ( ! is_admin_bar_showing() || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$user_id = get_current_user_id();
+
+		if ( ! $this->is_item_enabled( $user_id ) || self::MODE_HIDDEN === $this->get_display_mode( $user_id ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'edac-admin-toolbar-flyout',
+			EDAC_PLUGIN_URL . 'admin/js/admin-toolbar-flyout.js',
+			[ 'admin-bar' ],
+			EDAC_VERSION,
+			true
+		);
 	}
 
 	/**

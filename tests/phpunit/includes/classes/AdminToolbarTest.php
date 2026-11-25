@@ -360,6 +360,94 @@ class Admin_Toolbar_Test extends TestCase {
 	}
 
 	/**
+	 * Whether the flyout keyboard script is enqueued after running the enqueue callback.
+	 *
+	 * @return bool
+	 */
+	private function flyout_script_is_enqueued(): bool {
+		wp_dequeue_script( 'edac-admin-toolbar-flyout' );
+		wp_deregister_script( 'edac-admin-toolbar-flyout' );
+		add_filter( 'show_admin_bar', '__return_true' );
+
+		( new Admin_Toolbar() )->enqueue_flyout_script();
+
+		remove_filter( 'show_admin_bar', '__return_true' );
+		$enqueued = wp_script_is( 'edac-admin-toolbar-flyout', 'enqueued' );
+
+		wp_dequeue_script( 'edac-admin-toolbar-flyout' );
+		wp_deregister_script( 'edac-admin-toolbar-flyout' );
+
+		return $enqueued;
+	}
+
+	/**
+	 * The keyboard script loads when the toolbar item is shown.
+	 */
+	public function test_flyout_script_is_enqueued_when_toolbar_is_shown() {
+		$this->as_admin(
+			function () {
+				$this->assertTrue( $this->flyout_script_is_enqueued() );
+			}
+		);
+	}
+
+	/**
+	 * The keyboard script is not loaded when the toolbar item is hidden for the user.
+	 */
+	public function test_flyout_script_is_not_enqueued_when_toolbar_is_hidden() {
+		$this->as_admin(
+			function () {
+				add_filter(
+					'edac_admin_toolbar_display_mode',
+					static function () {
+						return Admin_Toolbar::MODE_HIDDEN;
+					}
+				);
+
+				$this->assertFalse( $this->flyout_script_is_enqueued() );
+			}
+		);
+	}
+
+	/**
+	 * The keyboard script is not loaded when a filter removes the toolbar item.
+	 */
+	public function test_flyout_script_is_not_enqueued_when_item_is_disabled() {
+		$this->as_admin(
+			function () {
+				add_filter( 'edac_show_admin_toolbar_item', '__return_false' );
+
+				$this->assertFalse( $this->flyout_script_is_enqueued() );
+			}
+		);
+	}
+
+	/**
+	 * The keyboard script is not loaded for users who cannot see the toolbar item.
+	 */
+	public function test_flyout_script_is_not_enqueued_without_manage_options() {
+		$user_id = $this->set_current_user_with_role( 'editor' );
+
+		try {
+			$this->assertFalse( $this->flyout_script_is_enqueued() );
+		} finally {
+			wp_set_current_user( 0 );
+			wp_delete_user( $user_id );
+		}
+	}
+
+	/**
+	 * The keyboard script is hooked to both the frontend and admin enqueue actions.
+	 */
+	public function test_flyout_script_is_hooked_for_frontend_and_admin() {
+		$toolbar = new Admin_Toolbar();
+		$toolbar->init();
+
+		$this->assertNotFalse( has_action( 'wp_enqueue_scripts', [ $toolbar, 'enqueue_flyout_script' ] ) );
+		$this->assertNotFalse( has_action( 'admin_enqueue_scripts', [ $toolbar, 'enqueue_flyout_script' ] ) );
+	}
+
+	/**
 	 * The settings tabs appear as a flyout under Settings, in tab order.
 	 */
 	public function test_settings_tabs_are_nested_under_settings() {
