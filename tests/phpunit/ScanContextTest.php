@@ -60,6 +60,26 @@ class ScanContextTest extends WP_UnitTestCase {
 	}
 
 	/**
+	 * The page that shows the latest posts names itself, not the first post of the list.
+	 */
+	public function test_the_posts_page_names_itself(): void {
+		$posts_page = self::factory()->post->create( [ 'post_type' => 'page' ] );
+		self::factory()->post->create();
+		update_option( 'show_on_front', 'page' );
+		update_option( 'page_for_posts', $posts_page );
+		$this->go_to( get_permalink( $posts_page ) );
+		$_GET['edac_pageScanner'] = '1';
+
+		Enqueue_Frontend::maybe_enqueue_scan_context();
+
+		$this->assertStringContainsString( '"postId":"' . $posts_page . '"', $this->printed_data() );
+		$this->assertStringContainsString( '"virtualItemId":"0"', $this->printed_data() );
+
+		delete_option( 'page_for_posts' );
+		update_option( 'show_on_front', 'posts' );
+	}
+
+	/**
 	 * Nothing is added for a visitor.
 	 */
 	public function test_an_ordinary_request_gets_no_scan_context(): void {

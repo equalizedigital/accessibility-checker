@@ -76,11 +76,16 @@ class Enqueue_Frontend {
 		// This is the filter the frontend highlighter uses to swap in an archive page's ID.
 		$swapped = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
 
+		// A single post, or the page chosen to show the latest posts, is a page of its own. On a latest-posts
+		// homepage and on archives there is no post of their own to name.
+		$shows_a_page = is_singular() || ( is_home() && ! is_front_page() );
+
 		$context = [
 			'version'       => 1,
-			'postId'        => is_singular() ? (int) get_queried_object_id() : 0,
+			'postId'        => $shows_a_page ? (int) get_queried_object_id() : 0,
 			'is404'         => is_404(),
-			'virtualItemId' => ( ! is_singular() && null !== $swapped ) ? (int) $swapped : 0,
+			// Only when the filter swapped something in: the ID otherwise is just the first post of a list.
+			'virtualItemId' => ( ! $shows_a_page && null !== $swapped && $swapped !== $default_post_id ) ? (int) $swapped : 0,
 		];
 
 		$handle = 'edac-scan-context';
