@@ -96,6 +96,8 @@ class ScanContextTest extends WP_UnitTestCase {
 	 * Saving scan results for a post whose status is no longer scanned is refused when the request is from a full site scan.
 	 */
 	public function test_a_full_site_scan_save_for_an_unscanned_status_is_refused(): void {
+		// Posts are one of the scanned post types, so only the status can make the save be refused.
+		update_option( 'edac_post_types', [ 'post' ] );
 		$post_id = self::factory()->post->create( [ 'post_status' => 'trash' ] );
 		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
 
