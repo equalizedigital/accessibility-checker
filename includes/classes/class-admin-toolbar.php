@@ -7,6 +7,8 @@
 
 namespace EDAC\Inc;
 
+use EqualizeDigital\AccessibilityChecker\Admin\MenuOrder;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -66,6 +68,10 @@ class Admin_Toolbar {
 	 */
 	public function init(): void {
 		add_action( 'admin_bar_menu', [ $this, 'add_toolbar_items' ], 999 );
+
+		// Keyboard support for the nested flyouts, which core's admin bar cannot open from the keyboard.
+		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_flyout_script' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_flyout_script' ] );
 
 		// Per-user display preference on the profile screen.
 		add_action( 'show_user_profile', [ $this, 'render_profile_fields' ] );
@@ -134,6 +140,35 @@ class Admin_Toolbar {
 	}
 
 	/**
+	 * Enqueue the script that makes the toolbar's nested flyouts keyboard operable.
+	 *
+	 * Core's admin bar only opens first-level flyouts from the keyboard, so the
+	 * Settings flyout needs this. It is only loaded when the toolbar item is shown.
+	 *
+	 * @since x.x.x
+	 * @return void
+	 */
+	public function enqueue_flyout_script(): void {
+		if ( ! is_admin_bar_showing() || ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		$user_id = get_current_user_id();
+
+		if ( ! $this->is_item_enabled( $user_id ) || self::MODE_HIDDEN === $this->get_display_mode( $user_id ) ) {
+			return;
+		}
+
+		wp_enqueue_script(
+			'edac-admin-toolbar-flyout',
+			EDAC_PLUGIN_URL . 'admin/js/admin-toolbar-flyout.js',
+			[ 'admin-bar' ],
+			EDAC_VERSION,
+			true
+		);
+	}
+
+	/**
 	 * Add Accessibility Checker items to the admin toolbar.
 	 *
 	 * @since 1.27.0
@@ -197,10 +232,61 @@ class Admin_Toolbar {
 		 */
 		$menu_items = apply_filters( 'edac_admin_toolbar_menu_items', $menu_items );
 
+		// Follow the same order as the admin submenu.
+		$menu_items = $this->sort_menu_items( $menu_items );
+
 		// Add each menu item to the toolbar.
 		foreach ( $menu_items as $item ) {
+			unset( $item['menu_slug'] );
 			$wp_admin_bar->add_menu( $item );
 		}
+	}
+
+	/**
+	 * Map of toolbar item IDs to the admin submenu slug they correspond to.
+	 *
+	 * Items not listed here can set their own `menu_slug` key. Anything with no
+	 * slug is placed where the submenu order puts unlisted items.
+	 *
+	 * @since x.x.x
+	 * @return array<string,string>
+	 */
+	private function get_menu_slug_map(): array {
+		return [
+			'accessibility-checker-issues-explorer'       => 'accessibility_checker_issues_explorer',
+			'accessibility-checker-full-site-scan'        => 'accessibility_checker_full_site_scan',
+			'accessibility-checker-audit-history'         => 'accessibility_checker_audit_history',
+			'accessibility-checker-export-data'           => 'accessibility_checker_export_data',
+			'accessibility-checker-archive-pages'         => 'edit.php?post_type=edac_virtual_item',
+			'accessibility-checker-settings'              => 'accessibility_checker_settings',
+			'accessibility-checker-settings-general'      => 'accessibility_checker_settings',
+			'accessibility-checker-fixes'                 => 'accessibility_checker_settings',
+			'accessibility-checker-permissions'           => 'accessibility_checker_settings',
+			'accessibility-checker-accessibility-reports' => 'accessibility_checker_settings',
+			'accessibility-checker-pro'                   => 'accessibility_checker_upgrade',
+		];
+	}
+
+	/**
+	 * Sort toolbar items into the shared admin menu order.
+	 *
+	 * @since x.x.x
+	 * @param array $menu_items Toolbar item configurations.
+	 * @return array
+	 */
+	private function sort_menu_items( array $menu_items ): array {
+		$map = $this->get_menu_slug_map();
+
+		return ( new MenuOrder() )->sort(
+			$menu_items,
+			static function ( $item ) use ( $map ) {
+				if ( ! empty( $item['menu_slug'] ) ) {
+					return (string) $item['menu_slug'];
+				}
+				$id = isset( $item['id'] ) ? (string) $item['id'] : '';
+				return $map[ $id ] ?? '';
+			}
+		);
 	}
 
 	/**
@@ -220,13 +306,48 @@ class Admin_Toolbar {
 			'href'   => admin_url( 'admin.php?page=accessibility_checker_settings' ),
 		];
 
-		// Add Fixes submenu item.
+		// Flyout for the settings tabs. These are defined here rather than read from
+		// edac_filter_settings_tab_items because that filter is only populated on
+		// admin_menu, which does not run on the frontend where the toolbar also shows.
+		// Add-ons can add their own tabs through edac_admin_toolbar_menu_items, using
+		// 'accessibility-checker-settings' as the parent. The parent item stays a link
+		// to the General tab, and General is repeated as the first child so touch
+		// devices, which open the flyout instead of following the parent link, can
+		// still reach it.
+		$menu_items[] = [
+			'id'     => 'accessibility-checker-settings-general',
+			'parent' => 'accessibility-checker-settings',
+			'title'  => __( 'General', 'accessibility-checker' ),
+			'href'   => admin_url( 'admin.php?page=accessibility_checker_settings' ),
+		];
+
 		$menu_items[] = [
 			'id'     => 'accessibility-checker-fixes',
-			'parent' => 'accessibility-checker',
+			'parent' => 'accessibility-checker-settings',
 			'title'  => __( 'Fixes', 'accessibility-checker' ),
 			'href'   => admin_url( 'admin.php?page=accessibility_checker_settings&tab=fixes' ),
 		];
+
+		// The Permissions tab always requires manage_options, matching PermissionsPage.
+		if ( current_user_can( 'manage_options' ) ) {
+			$menu_items[] = [
+				'id'     => 'accessibility-checker-permissions',
+				'parent' => 'accessibility-checker-settings',
+				'title'  => __( 'Permissions', 'accessibility-checker' ),
+				'href'   => admin_url( 'admin.php?page=accessibility_checker_settings&tab=permissions' ),
+			];
+		}
+
+		// The Accessibility Reports tab uses the filterable settings capability, matching AccessibilityReportsPage.
+		/** This filter is documented in includes/options-page.php */
+		if ( current_user_can( apply_filters( 'edac_filter_settings_capability', 'manage_options' ) ) ) { // phpcs:ignore WordPress.WP.Capabilities.Undetermined -- Filterable settings capability.
+			$menu_items[] = [
+				'id'     => 'accessibility-checker-accessibility-reports',
+				'parent' => 'accessibility-checker-settings',
+				'title'  => __( 'Accessibility Reports', 'accessibility-checker' ),
+				'href'   => admin_url( 'admin.php?page=accessibility_checker_settings&tab=accessibility-reports' ),
+			];
+		}
 
 		// Add Get Pro submenu item (only show if pro is not installed or license is not valid).
 		if ( ! defined( 'EDACP_VERSION' ) || ! ( defined( 'EDAC_KEY_VALID' ) && EDAC_KEY_VALID ) ) {
