@@ -248,6 +248,90 @@ describe( 'admin toolbar flyout keyboard support in right-to-left layouts', () =
 	} );
 } );
 
+describe( 'admin toolbar flyout keyboard support with a flyout inside a flyout', () => {
+	const addonItem = () => document.getElementById( 'wp-admin-bar-addon' );
+	const addonLink = () => addonItem().querySelector( ':scope > .ab-item' );
+	const leafLinks = () => Array.from( addonItem().querySelectorAll( ':scope > .ab-sub-wrapper .ab-item' ) );
+
+	beforeEach( () => {
+		document.documentElement.removeAttribute( 'dir' );
+		buildToolbar();
+
+		// An add-on adds Settings > Add-on > Leaf one, Leaf two.
+		settingsItem()
+			.querySelector( ':scope > .ab-sub-wrapper > ul' )
+			.insertAdjacentHTML(
+				'beforeend',
+				`<li id="wp-admin-bar-addon" class="menupop">
+					<a class="ab-item" href="/addon" aria-expanded="false">Add-on</a>
+					<div class="ab-sub-wrapper">
+						<ul>
+							<li><a class="ab-item" href="/leaf-1">Leaf one</a></li>
+							<li><a class="ab-item" href="/leaf-2">Leaf two</a></li>
+						</ul>
+					</div>
+				</li>`,
+			);
+		loadScript();
+
+		// Open both flyouts, ending with focus on the first leaf.
+		press( settingsLink(), 'ArrowRight' );
+		press( addonLink(), 'ArrowRight' );
+	} );
+
+	test( 'both flyouts are open with focus on the first leaf', () => {
+		expect( settingsItem().classList.contains( 'hover' ) ).toBe( true );
+		expect( addonItem().classList.contains( 'hover' ) ).toBe( true );
+		expect( document.activeElement ).toBe( leafLinks()[ 0 ] );
+	} );
+
+	test( 'the close arrow on a leaf closes only the inner flyout', () => {
+		press( leafLinks()[ 0 ], 'ArrowLeft' );
+
+		expect( addonItem().classList.contains( 'hover' ) ).toBe( false );
+		expect( addonLink().getAttribute( 'aria-expanded' ) ).toBe( 'false' );
+		expect( document.activeElement ).toBe( addonLink() );
+		expect( settingsItem().classList.contains( 'hover' ) ).toBe( true );
+		expect( settingsLink().getAttribute( 'aria-expanded' ) ).toBe( 'true' );
+	} );
+
+	test( 'Escape on a leaf closes only the inner flyout', () => {
+		press( leafLinks()[ 1 ], 'Escape' );
+
+		expect( addonItem().classList.contains( 'hover' ) ).toBe( false );
+		expect( document.activeElement ).toBe( addonLink() );
+		expect( settingsItem().classList.contains( 'hover' ) ).toBe( true );
+	} );
+
+	test( 'Escape on the inner parent item closes only its own flyout', () => {
+		addonLink().focus();
+
+		press( addonLink(), 'Escape' );
+
+		expect( addonItem().classList.contains( 'hover' ) ).toBe( false );
+		expect( settingsItem().classList.contains( 'hover' ) ).toBe( true );
+	} );
+
+	test( 'Escape on the inner parent item closes the outer flyout once the inner one is closed', () => {
+		press( leafLinks()[ 0 ], 'Escape' );
+
+		press( addonLink(), 'Escape' );
+
+		expect( settingsItem().classList.contains( 'hover' ) ).toBe( false );
+		expect( document.activeElement ).toBe( settingsLink() );
+	} );
+
+	test( 'Down and Up on the leaves stay within the inner flyout', () => {
+		const [ first, second ] = leafLinks();
+
+		press( first, 'ArrowDown' );
+		expect( document.activeElement ).toBe( second );
+
+		press( second, 'ArrowUp' );
+		expect( document.activeElement ).toBe( first );
+	} );
+} );
+
 describe( 'admin toolbar flyout script when there is nothing to wire', () => {
 	test( 'does nothing and does not throw when the toolbar item is absent', () => {
 		document.body.innerHTML = '<div id="wpadminbar"></div>';

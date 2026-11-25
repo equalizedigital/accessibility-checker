@@ -100,7 +100,10 @@
 				if ( links.length ) {
 					links[ 0 ].focus();
 				}
-			} else if ( 'Escape' === event.key ) {
+			} else if ( 'Escape' === event.key && item.classList.contains( 'hover' ) ) {
+				// Close only this flyout. The event would otherwise reach the flyout this
+				// item sits in, whose handler also treats Escape as "close me".
+				event.stopPropagation();
 				close( item, parentLink );
 			}
 		} );
@@ -115,15 +118,20 @@
 			const links = getChildLinks( item );
 			const index = links.indexOf( event.target );
 
+			// A key handled here must not also be handled by a flyout this one sits in,
+			// or closing a deeper flyout would close its ancestors too.
 			if ( 'Escape' === event.key || closeKey === event.key ) {
 				event.preventDefault();
+				event.stopPropagation();
 				close( item, parentLink );
 				parentLink.focus();
 			} else if ( 'ArrowDown' === event.key && -1 !== index ) {
 				event.preventDefault();
+				event.stopPropagation();
 				links[ ( index + 1 ) % links.length ].focus();
 			} else if ( 'ArrowUp' === event.key && -1 !== index ) {
 				event.preventDefault();
+				event.stopPropagation();
 				links[ ( index - 1 + links.length ) % links.length ].focus();
 			}
 		} );

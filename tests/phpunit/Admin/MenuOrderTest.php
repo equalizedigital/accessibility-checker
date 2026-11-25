@@ -182,7 +182,8 @@ class MenuOrderTest extends WP_UnitTestCase {
 	 */
 	public function test_no_submenu_is_a_noop() {
 		global $submenu;
-		unset( $submenu[ MenuOrder::PARENT_SLUG ] );
+		// $submenu is unset in the test bootstrap, so start from an empty array; tearDown() restores the original.
+		$submenu = []; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 
 		( new MenuOrder() )->reorder();
 
