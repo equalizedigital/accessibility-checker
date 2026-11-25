@@ -443,7 +443,11 @@ body {
 				}
 			}
 
-			&--button {
+			// The doubled class lifts specificity to (0,2,0) so these
+			// declarations outrank theme rules such as
+			// `button[type="button"] { … !important }` (0,1,1). Elements
+			// that @extend this class keep their own selector.
+			&--button#{&}--button {
 				all: unset;
 				// Lock typography and box styles so theme button rules
 				// (uppercase, display fonts, letter-spacing, borders, shadows)
