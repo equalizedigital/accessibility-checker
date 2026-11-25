@@ -50,7 +50,8 @@ class ScanContextTest extends WP_UnitTestCase {
 	 * A page scan request that lands on WordPress's not-found page says so.
 	 */
 	public function test_a_scan_request_for_a_missing_page_says_it_is_a_404(): void {
-		$this->go_to( home_url( '/no-such-page-' . wp_generate_password( 6, false ) . '/' ) );
+		// A post ID that does not exist is a 404 whatever the permalink structure is.
+		$this->go_to( home_url( '/?p=999999999' ) );
 		$_GET['edac_pageScanner'] = '1';
 
 		Enqueue_Frontend::maybe_enqueue_scan_context();
@@ -89,5 +90,21 @@ class ScanContextTest extends WP_UnitTestCase {
 		Enqueue_Frontend::maybe_enqueue_scan_context();
 
 		$this->assertFalse( wp_script_is( 'edac-scan-context', 'enqueued' ) );
+	}
+
+	/**
+	 * Saving scan results for a post whose status is no longer scanned is refused when the request is from a full site scan.
+	 */
+	public function test_a_full_site_scan_save_for_an_unscanned_status_is_refused(): void {
+		$post_id = self::factory()->post->create( [ 'post_status' => 'trash' ] );
+		wp_set_current_user( self::factory()->user->create( [ 'role' => 'administrator' ] ) );
+
+		$request = new WP_REST_Request( 'POST', '/accessibility-checker/v1/post-scan-results/' . $post_id );
+		$request->set_param( 'violations', [] );
+		$request->set_param( 'edacpScanToken', 'lease-token' );
+
+		$response = rest_get_server()->dispatch( $request );
+
+		$this->assertSame( 409, $response->get_status() );
 	}
 }
