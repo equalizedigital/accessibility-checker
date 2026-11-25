@@ -38,7 +38,62 @@ class Enqueue_Frontend {
 	 */
 	public static function enqueue() {
 		self::maybe_enqueue_frontend_highlighter();
+		self::maybe_enqueue_scan_context();
 		self::enqueue_sr_only_styles();
+	}
+
+	/**
+	 * Tell the page scanner which page it has been given.
+	 *
+	 * Only on a request made by a page scan (edac_pageScanner=1). The page scan runs in a frame in the admin and has
+	 * to know whether the page that came back is the one it asked for: a redirect to another post, a 404 and an
+	 * archive page can all look right from the URL alone. WordPress prints data localized to a handle that has no
+	 * script of its own, so this adds no markup a visitor would see, and nothing here runs or is scanned.
+	 *
+	 * The object is `edacScanContext`: `postId` is the post shown (0 when it is not a single post), `is404` whether
+	 * WordPress answered with its not-found page, and `virtualItemId` the ID that stands in for pages with no post of
+	 * their own (set by Pro through `edac_filter_frontend_highlight_post_id`), 0 when there is none.
+	 *
+	 * @since 1.53.0
+	 *
+	 * @return void
+	 */
+	public static function maybe_enqueue_scan_context() {
+		if (
+			is_admin() ||
+			! isset( $_GET['edac_pageScanner'] ) || // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			'1' !== $_GET['edac_pageScanner'] // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		) {
+			return;
+		}
+
+		global $post;
+
+		$default_post_id = ( is_home() && is_front_page() )
+			? null
+			: ( is_object( $post ) ? $post->ID : null );
+
+		// This is the filter the frontend highlighter uses to swap in an archive page's ID.
+		$swapped = apply_filters( 'edac_filter_frontend_highlight_post_id', $default_post_id );
+
+		// A single post, or the page chosen to show the latest posts, is a page of its own. On a latest-posts
+		// homepage and on archives there is no post of their own to name.
+		$shows_a_page = is_singular() || ( is_home() && ! is_front_page() );
+
+		$context = [
+			'version'       => 1,
+			'postId'        => $shows_a_page ? (int) get_queried_object_id() : 0,
+			'is404'         => is_404(),
+			// Only when the filter swapped something in: the ID otherwise is just the first post of a list.
+			'virtualItemId' => ( ! $shows_a_page && null !== $swapped && $swapped !== $default_post_id ) ? (int) $swapped : 0,
+		];
+
+		$handle = 'edac-scan-context';
+
+		// No file: the handle only carries the data, which WordPress prints for a script with no source too.
+		wp_register_script( $handle, false, [], EDAC_VERSION, false ); // phpcs:ignore WordPress.WP.EnqueuedResourceParameters.NotInFooter -- Needed before the page finishes loading.
+		wp_enqueue_script( $handle );
+		wp_localize_script( $handle, 'edacScanContext', $context );
 	}
 
 	/**

@@ -514,6 +514,23 @@ class REST_Api {
 
 		}
 
+		// A full site scan (it sends its lease token) that reaches here for a post whose status has changed since it
+		// was queued, to one that is not scanned (trashed, or moved to a status the settings leave out), is refused so
+		// results are not saved for content that is no longer being checked. Saves from the editor carry no token.
+		$scan_token = $request['edacpScanToken'] ?? '';
+		if (
+			is_string( $scan_token ) && '' !== $scan_token &&
+			! in_array( $post->post_status, Settings::get_scannable_post_statuses(), true )
+		) {
+			return new \WP_REST_Response(
+				[
+					'success' => false,
+					'message' => 'The post status is not set to be scanned.',
+				],
+				409
+			);
+		}
+
 		//phpcs:ignore Generic.Commenting.Todo.TaskFound
 		// TODO: setup a rules class for loading/filtering rules.
 		$rules             = edac_register_rules();
