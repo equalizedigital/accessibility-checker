@@ -100,6 +100,11 @@ class Enqueue_Frontend {
 	 * Only sent when the editor reports it is isolated, so normal page views, the full
 	 * site scan, and non-isolated editors are unaffected.
 	 *
+	 * Since WordPress 7.2 the header is sent through
+	 * `wp_send_document_isolation_policy_header()`, which sends the same policy and owns the
+	 * browser-support gate (Chromium 137+) and the `headers_sent()` guard. Earlier versions
+	 * send the header directly.
+	 *
 	 * @since 1.51.1
 	 *
 	 * @return void
@@ -109,13 +114,26 @@ class Enqueue_Frontend {
 			return;
 		}
 
+		if ( function_exists( 'wp_send_document_isolation_policy_header' ) ) {
+			/*
+			 * Core sends the same header, and owns the browser-support gate, the
+			 * headers_sent() guard and its cross-origin isolated flag. A false return
+			 * means the browser does not honour the policy or headers were already
+			 * sent, so there is nothing left for us to send.
+			 */
+			wp_send_document_isolation_policy_header();
+			return;
+		}
+
 		static::send_header( self::SCAN_ISOLATION_HEADER );
 	}
 
 	/**
 	 * Send a response header.
 	 *
-	 * Kept separate from the callers so tests can capture the header that would be sent.
+	 * Used for the document isolation policy on WordPress versions without
+	 * wp_send_document_isolation_policy_header() (added in 7.2). Kept separate from the
+	 * callers so tests can capture the header that would be sent.
 	 *
 	 * @since 1.51.1
 	 *

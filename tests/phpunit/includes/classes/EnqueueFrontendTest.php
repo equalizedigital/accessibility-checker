@@ -635,15 +635,78 @@ class EnqueueFrontendTest extends WP_UnitTestCase {
 	/**
 	 * The isolation header is sent for isolated scan requests and for no other request.
 	 *
+	 * On WordPress 7.2+ the callback hands the header to core's
+	 * wp_send_document_isolation_policy_header(), so no header reaches send_header() there.
+	 *
 	 * @dataProvider isolatedScanRequestProvider
 	 *
 	 * @param array<string, string> $query    The query string values for the request.
 	 * @param bool                  $expected Whether the request counts as an isolated scan.
 	 */
 	public function testIsolationHeaderIsSentOnlyForIsolatedScanRequests( array $query, bool $expected ): void {
+		$sent = $this->get_scan_headers_sent_for( $query );
+
+		if ( ! $expected || function_exists( 'wp_send_document_isolation_policy_header' ) ) {
+			$this->assertSame( [], $sent );
+			return;
+		}
+
+		$this->assertSame( [ Enqueue_Frontend::SCAN_ISOLATION_HEADER ], $sent );
+	}
+
+	/**
+	 * The fallback path, used where core's helper does not exist, sends the isolation header itself.
+	 *
+	 * Where wp_send_document_isolation_policy_header() exists (WordPress 7.2+) the callback
+	 * always hands off to it, so the fallback branch is not reachable through the callback on
+	 * that version and is exercised through the send_header() seam instead. That is why
+	 * send_header() is kept as its own method. On older WordPress the callback path above
+	 * covers the same branch end to end.
+	 */
+	public function testFallbackPathSendsTheIsolationHeaderDirectly(): void {
 		$this->assertSame(
-			$expected ? [ Enqueue_Frontend::SCAN_ISOLATION_HEADER ] : [],
-			$this->get_scan_headers_sent_for( $query )
+			[ 'Document-Isolation-Policy: isolate-and-credentialless' ],
+			$this->get_fallback_headers_sent()
 		);
+	}
+
+	/**
+	 * Run the fallback path and return the headers it would send.
+	 *
+	 * @return array<int, string> The header lines that were sent.
+	 */
+	private function get_fallback_headers_sent(): array {
+		$spy = new class() extends Enqueue_Frontend {
+
+			/**
+			 * Header lines recorded instead of being sent.
+			 *
+			 * @var array<int, string>
+			 */
+			public static $sent = [];
+
+			/**
+			 * Record the header instead of sending it.
+			 *
+			 * @param string $header The full header line.
+			 */
+			protected static function send_header( string $header ): void {
+				self::$sent[] = $header;
+			}
+
+			/**
+			 * Run the fallback the callback uses when core's helper is not available.
+			 */
+			public static function send_fallback_header(): void {
+				self::send_header( self::SCAN_ISOLATION_HEADER );
+			}
+		};
+
+		$spy_class        = get_class( $spy );
+		$spy_class::$sent = [];
+
+		$spy_class::send_fallback_header();
+
+		return $spy_class::$sent;
 	}
 }
