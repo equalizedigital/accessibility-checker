@@ -100,13 +100,27 @@
 				if ( links.length ) {
 					links[ 0 ].focus();
 				}
-			} else if ( 'Escape' === event.key && item.classList.contains( 'hover' ) ) {
-				// Close only this flyout. The event would otherwise reach the flyout this
-				// item sits in, whose handler also treats Escape as "close me".
-				event.stopPropagation();
-				close( item, parentLink );
 			}
 		} );
+
+		// Escape on the parent item while its flyout is open closes only that flyout.
+		// This runs in the capture phase because core registers its own Escape handler on
+		// every item, and that one closes the flyout first. By the time a bubbling handler
+		// here ran, the flyout would look closed and the key would go on to close the flyout
+		// this item sits in as well. With the flyout already closed, the key is left alone,
+		// so a second Escape closes the outer flyout.
+		item.addEventListener(
+			'keydown',
+			function( event ) {
+				if ( 'Escape' !== event.key || event.target !== parentLink || ! item.classList.contains( 'hover' ) ) {
+					return;
+				}
+
+				event.stopPropagation();
+				close( item, parentLink );
+			},
+			true
+		);
 
 		item.addEventListener( 'keydown', function( event ) {
 			// Only keys pressed inside the flyout, not on the parent link itself.

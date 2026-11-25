@@ -55,9 +55,38 @@ function buildToolbar() {
 }
 
 /**
- * Run the script fresh against the current document.
+ * Register the Escape handler WordPress core puts on every toolbar item
+ * (removeHoverIfEscape() in wp-includes/js/admin-bar.js): it focuses the nearest
+ * flyout's own link and removes that flyout's `hover` class before anything the
+ * plugin registers later has run. The tests need it so they exercise that ordering.
+ */
+function installCoreEscapeHandler() {
+	document.querySelectorAll( '#wpadminbar .ab-item' ).forEach( ( link ) => {
+		link.addEventListener( 'keydown', ( event ) => {
+			if ( 'Escape' !== event.key ) {
+				return;
+			}
+
+			const wrapper = event.target.closest( '.menupop' );
+			if ( ! wrapper ) {
+				return;
+			}
+
+			const toggle = wrapper.querySelector( '.menupop > .ab-item' );
+			toggle.focus();
+			wrapper.classList.remove( 'hover' );
+			toggle.setAttribute( 'aria-expanded', 'false' );
+		} );
+	} );
+}
+
+/**
+ * Run the script fresh against the current document, after core's handlers,
+ * as on a real page where admin-bar.js loads first.
  */
 function loadScript() {
+	installCoreEscapeHandler();
+
 	jest.isolateModules( () => {
 		require( '../../../admin/js/admin-toolbar-flyout.js' );
 	} );
