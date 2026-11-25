@@ -360,6 +360,79 @@ class Admin_Toolbar_Test extends TestCase {
 	}
 
 	/**
+	 * The settings tabs appear as a flyout under Settings, in tab order.
+	 */
+	public function test_settings_tabs_are_nested_under_settings() {
+		$this->as_admin(
+			function () {
+				$bar = $this->get_recording_bar();
+				( new Admin_Toolbar() )->add_toolbar_items( $bar );
+
+				$this->assertSame( 'accessibility-checker', $bar->nodes['accessibility-checker-settings']['parent'], 'Settings stays a top-level item.' );
+
+				$children = array_keys(
+					array_filter(
+						$bar->nodes,
+						static function ( $node ) {
+							return 'accessibility-checker-settings' === ( $node['parent'] ?? '' );
+						}
+					)
+				);
+
+				$this->assertSame(
+					[
+						'accessibility-checker-settings-general',
+						'accessibility-checker-fixes',
+						'accessibility-checker-permissions',
+						'accessibility-checker-accessibility-reports',
+					],
+					$children
+				);
+
+				$this->assertStringContainsString( 'tab=fixes', $bar->nodes['accessibility-checker-fixes']['href'] );
+				$this->assertStringContainsString( 'tab=permissions', $bar->nodes['accessibility-checker-permissions']['href'] );
+				$this->assertStringContainsString( 'tab=accessibility-reports', $bar->nodes['accessibility-checker-accessibility-reports']['href'] );
+				$this->assertStringNotContainsString( 'tab=', $bar->nodes['accessibility-checker-settings-general']['href'] );
+			}
+		);
+	}
+
+	/**
+	 * An add-on can add its own tab to the flyout and have it sort with the other settings items.
+	 */
+	public function test_add_on_can_add_a_settings_flyout_item() {
+		$this->as_admin(
+			function () {
+				add_filter(
+					'edac_admin_toolbar_menu_items',
+					function ( $items ) {
+						$items[] = $this->make_item(
+							'addon-settings-tab',
+							[
+								'parent'    => 'accessibility-checker-settings',
+								'menu_slug' => 'accessibility_checker_settings',
+							]
+						);
+						return $items;
+					}
+				);
+
+				$bar = $this->get_recording_bar();
+				( new Admin_Toolbar() )->add_toolbar_items( $bar );
+				remove_all_filters( 'edac_admin_toolbar_menu_items' );
+
+				$ids = array_keys( $bar->nodes );
+				$this->assertGreaterThan(
+					array_search( 'accessibility-checker-settings', $ids, true ),
+					array_search( 'addon-settings-tab', $ids, true ),
+					'The add-on tab is added after its parent.'
+				);
+				$this->assertSame( 'accessibility-checker-settings', $bar->nodes['addon-settings-tab']['parent'] );
+			}
+		);
+	}
+
+	/**
 	 * Test get_default_menu_items() returns a non-empty array with required keys.
 	 */
 	public function test_get_default_menu_items_returns_array() {
@@ -425,5 +498,98 @@ class Admin_Toolbar_Test extends TestCase {
 		$this->assertNotNull( $pro_item );
 		$this->assertStringContainsString( 'utm_content=admin-toolbar', $pro_item['href'] );
 		$this->assertStringNotContainsString( 'utm-content=admin-toolbar', $pro_item['href'] );
+	}
+
+	/**
+	 * Build a toolbar item for the order tests.
+	 *
+	 * @param string $id    Node ID.
+	 * @param array  $extra Extra node args.
+	 * @return array
+	 */
+	private function make_item( string $id, array $extra = [] ): array {
+		return array_merge(
+			[
+				'id'     => $id,
+				'parent' => 'accessibility-checker',
+				'title'  => $id,
+				'href'   => 'https://example.com/' . $id,
+			],
+			$extra
+		);
+	}
+
+	/**
+	 * Toolbar items follow the same order as the admin submenu, whatever order they were added in.
+	 */
+	public function test_items_follow_admin_menu_order() {
+		$this->as_admin(
+			function () {
+				add_filter(
+					'edac_admin_toolbar_menu_items',
+					function ( $items ) {
+						$items[] = $this->make_item( 'accessibility-checker-archive-pages' );
+						$items[] = $this->make_item( 'accessibility-checker-audit-history' );
+						$items[] = $this->make_item( 'accessibility-checker-export-data' );
+						$items[] = $this->make_item( 'accessibility-checker-full-site-scan' );
+						$items[] = $this->make_item( 'accessibility-checker-issues-explorer' );
+						return $items;
+					}
+				);
+
+				$bar = $this->get_recording_bar();
+				( new Admin_Toolbar() )->add_toolbar_items( $bar );
+				remove_all_filters( 'edac_admin_toolbar_menu_items' );
+
+				$ids = array_keys( $bar->nodes );
+				$this->assertSame( 'accessibility-checker', $ids[0], 'Parent node comes first.' );
+				$this->assertSame(
+					[
+						'accessibility-checker-issues-explorer',
+						'accessibility-checker-full-site-scan',
+						'accessibility-checker-audit-history',
+						'accessibility-checker-export-data',
+						'accessibility-checker-archive-pages',
+						'accessibility-checker-settings',
+						'accessibility-checker-settings-general',
+						'accessibility-checker-fixes',
+						'accessibility-checker-permissions',
+						'accessibility-checker-accessibility-reports',
+					],
+					array_slice( $ids, 1, 10 )
+				);
+			}
+		);
+	}
+
+	/**
+	 * Unmapped items land in the wildcard slot, and a menu_slug key places an item and is not passed to WordPress.
+	 */
+	public function test_unmapped_items_use_wildcard_and_menu_slug_is_honoured() {
+		$this->as_admin(
+			function () {
+				add_filter(
+					'edac_admin_toolbar_menu_items',
+					function ( $items ) {
+						$items[] = $this->make_item( 'third-party-unmapped' );
+						$items[] = $this->make_item( 'third-party-mapped', [ 'menu_slug' => 'accessibility_checker_issues_explorer' ] );
+						return $items;
+					}
+				);
+
+				$bar = $this->get_recording_bar();
+				( new Admin_Toolbar() )->add_toolbar_items( $bar );
+				remove_all_filters( 'edac_admin_toolbar_menu_items' );
+
+				$ids = array_keys( $bar->nodes );
+				$this->assertSame( 'third-party-mapped', $ids[1], 'menu_slug places the item first among the pages.' );
+				$this->assertLessThan(
+					array_search( 'accessibility-checker-settings', $ids, true ),
+					array_search( 'third-party-unmapped', $ids, true ),
+					'Unmapped items come before Settings.'
+				);
+				$this->assertArrayNotHasKey( 'menu_slug', $bar->nodes['third-party-mapped'] );
+			}
+		);
 	}
 }
