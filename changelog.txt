@@ -1,5 +1,8 @@
 *** Accessibility Checker ***
 
+2026-11-23 - version 1.52.1
+* Update - improved the display of admin notices.
+
 2026-11-03 - version 1.52.0
 * New - issues can now be dismissed and reopened from the frontend highlighter.
 * Update - the issue modal now shows and announces a warning when a dismissal for the whole site can't be saved.

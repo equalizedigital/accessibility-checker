@@ -2,15 +2,15 @@
 # This file is distributed under the GPL-2.0+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessibility Checker 1.51.1\n"
+"Project-Id-Version: Accessibility Checker 1.52.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessibility-checker\n"
 "Last-Translator: PTC (Private Translation Cloud)\n"
 "Language-Team: Norwegian (Bokmål)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-10 15:11+0000\n"
-"PO-Revision-Date: 2026-11-10 15:11+0000\n"
+"POT-Creation-Date: 2026-11-23 19:38+0000\n"
+"PO-Revision-Date: 2026-11-23 19:38+0000\n"
 "X-Generator: PTC (Private Translation Cloud)\n"
 "X-Domain: accessibility-checker\n"
 "Language: nb_NO\n"
@@ -53,178 +53,198 @@ msgstr "Equalize Digital"
 msgid "https://equalizedigital.com"
 msgstr "https://equalizedigital.com"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:56
-#: admin/AdminPage/AccessibilityReportsPage.php:140
+#: admin/AdminPage/AccessibilityReportsPage.php:57
+#: admin/AdminPage/AccessibilityReportsPage.php:142
 msgid "Accessibility Reports"
 msgstr "Tilgjengelighetsrapporter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:57
+#: admin/AdminPage/AccessibilityReportsPage.php:58
 msgid "New"
 msgstr "Ny"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:146
+#: admin/AdminPage/AccessibilityReportsPage.php:148
 msgid "License Expired"
 msgstr "Lisens utløpt"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:149
+#: admin/AdminPage/AccessibilityReportsPage.php:151
 msgid "Your license has expired. This site is still connected but reports may stop until your license is renewed."
 msgstr "Lisensen din er utløpt. Dette nettstedet er fortsatt tilkoblet, men rapporter kan stoppe inntil lisensen din fornyes."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:153
+#: admin/AdminPage/AccessibilityReportsPage.php:158
 #: admin/AdminPage/ConnectedServicesPage.php:229
 msgid "Renew your license"
 msgstr "Forny lisensen din"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:160
-#: admin/AdminPage/AccessibilityReportsPage.php:294
+#: admin/AdminPage/AccessibilityReportsPage.php:165
+#: admin/AdminPage/AccessibilityReportsPage.php:313
 msgid "Disable Email Reports"
 msgstr "Deaktiver e-postrapporter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:169
+#: admin/AdminPage/AccessibilityReportsPage.php:174
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first."
 msgstr "Få gjentakende e-postrapporter med et øyeblikksbilde av nettstedets tilgjengelighet, inkludert totalt antall problemer, trender over tid, de mest problematiske sidene og de alvorligste problemene å fikse først."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:171
+#: admin/AdminPage/AccessibilityReportsPage.php:176
 msgid "Get recurring email reports with a snapshot of your site’s accessibility, including total issues, trends over time, most problematic pages, and the most severe issues to fix first. Some details, like full-site coverage and issue breakdowns, are available in Pro."
 msgstr "Få gjentakende e-postrapporter med et øyeblikksbilde av nettstedets tilgjengelighet, inkludert totalt antall problemer, trender over tid, de mest problematiske sidene og de alvorligste problemene å fikse først. Noen detaljer, som full nettstedsdekning og detaljerte problemoversikter, er tilgjengelig i Pro."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:182
-#: admin/AdminPage/AccessibilityReportsPage.php:196
+#: admin/AdminPage/AccessibilityReportsPage.php:193
+#: admin/AdminPage/AccessibilityReportsPage.php:207
 msgid "Enable Email Reports"
 msgstr "Aktiver e-postrapporter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:189
-#: admin/AdminPage/AccessibilityReportsPage.php:193
-#: admin/AdminPage/AccessibilityReportsPage.php:286
+#: admin/AdminPage/AccessibilityReportsPage.php:200
+#: admin/AdminPage/AccessibilityReportsPage.php:204
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 #: admin/AdminPage/ConnectedServicesPage.php:154
 msgid "Free License Key"
 msgstr "Gratis lisensnøkkel"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:202
+#: admin/AdminPage/AccessibilityReportsPage.php:213
 msgid "Get a Free License Key"
 msgstr "Få en gratis lisensnøkkel"
 
 #. translators: %s: dashboard URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:207
+#: admin/AdminPage/AccessibilityReportsPage.php:218
 #, php-format
 msgid "Got the plugin from Equalize Digital? Your key is in your <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashboard</a>."
 msgstr "Fikk du plugin-modulen fra Equalize Digital? Nøkkelen din er i <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">dashbordet</a> ditt."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:216
+#: admin/AdminPage/AccessibilityReportsPage.php:227
 #, php-format
 msgid "Installed from WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Create a free account</a> to get one."
 msgstr "Installert fra WordPress.org? <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">Opprett en gratis konto</a> for å få en."
 
 #. translators: %s: signup URL.
-#: admin/AdminPage/AccessibilityReportsPage.php:225
+#: admin/AdminPage/AccessibilityReportsPage.php:236
 #, php-format
 msgid "Not sure? Just <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">create a free account</a>. It only takes a minute."
 msgstr "Usikker? Bare <a href=\"%s\" target=\"_blank\" rel=\"noopener noreferrer\">opprett en gratis konto</a>. Det tar bare et minutt."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:237
+#: admin/AdminPage/AccessibilityReportsPage.php:249
+msgid "Reports Cannot Run"
+msgstr "Rapporter kan ikke kjøres"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:249
+msgid "Reports May Not Be Working"
+msgstr "Rapporter fungerer kanskje ikke"
+
+#: admin/AdminPage/AccessibilityReportsPage.php:255
 msgid "Reports Enabled"
 msgstr "Rapporter aktivert"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:240
+#: admin/AdminPage/AccessibilityReportsPage.php:258
 msgid "Weekly accessibility reports for this site are being emailed to the account owner of the license key."
 msgstr "Ukentlige tilgjengelighetsrapporter for dette nettstedet sendes til kontoeieren av lisensnøkkelen."
 
 #. translators: %s: next report date.
-#: admin/AdminPage/AccessibilityReportsPage.php:245
+#: admin/AdminPage/AccessibilityReportsPage.php:263
 #, php-format
 msgid "Next report: %s"
 msgstr "Neste rapport: %s"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 msgid "Full Coverage"
 msgstr "Full dekning"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:252
+#: admin/AdminPage/AccessibilityReportsPage.php:271
 msgid "Limited Coverage"
 msgstr "Begrenset dekning"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:256
+#: admin/AdminPage/AccessibilityReportsPage.php:275
 msgid "Your reports include all post types and taxonomies."
 msgstr "Rapportene dine inkluderer alle posttyper og taksonomier."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:258
+#: admin/AdminPage/AccessibilityReportsPage.php:277
 msgid "Full-site scanning enabled"
 msgstr "Full nettstedsskanning aktivert"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:259
+#: admin/AdminPage/AccessibilityReportsPage.php:278
 msgid "Complete issue breakdowns"
 msgstr "Komplette problemoversikter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:260
+#: admin/AdminPage/AccessibilityReportsPage.php:279
 msgid "Detailed reporting"
 msgstr "Detaljert rapportering"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:263
+#: admin/AdminPage/AccessibilityReportsPage.php:282
 msgid "Your reports only include part of your site."
 msgstr "Rapportene dine inkluderer bare deler av nettstedet ditt."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:264
+#: admin/AdminPage/AccessibilityReportsPage.php:283
 msgid "Upgrade to Pro to:"
 msgstr "Oppgrader til Pro for å:"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:266
+#: admin/AdminPage/AccessibilityReportsPage.php:285
 msgid "Scan all content types"
 msgstr "Skann alle innholdstyper"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:267
+#: admin/AdminPage/AccessibilityReportsPage.php:286
 msgid "Get full issue breakdowns"
 msgstr "Få komplette problemoversikter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:268
+#: admin/AdminPage/AccessibilityReportsPage.php:287
 msgid "Receive more detailed reports"
 msgstr "Motta mer detaljerte rapporter"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:271
+#: admin/AdminPage/AccessibilityReportsPage.php:290
 #: admin/class-upgrade-promotion.php:62
 msgid "Upgrade to Pro"
 msgstr "Oppgrader til pro"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:277
+#: admin/AdminPage/AccessibilityReportsPage.php:296
 msgid "Accessibility Summary"
 msgstr "Tilgjengelighetsoversikt"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:278
+#: admin/AdminPage/AccessibilityReportsPage.php:297
 msgid "This summary reflects the latest scan data available for your site."
 msgstr "Denne oversikten reflekterer de nyeste skannedataene som er tilgjengelige for nettstedet ditt."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:280
+#: admin/AdminPage/AccessibilityReportsPage.php:299
 msgid "Total Issues Found"
 msgstr "Totalt antall problemer funnet"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:286
+#: admin/AdminPage/AccessibilityReportsPage.php:305
 msgid "Account Connection"
 msgstr "Kontotilkobling"
 
 #. translators: %1$s: privacy link, %2$s: data processing agreement link, %3$s: privacy policy aria label, %4$s: data processing agreement aria label.
-#: admin/AdminPage/AccessibilityReportsPage.php:305
+#: admin/AdminPage/AccessibilityReportsPage.php:324
 #, php-format
 msgid "By connecting this site, you agree to Equalize Digital's <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">Privacy Policy <span aria-hidden=\"true\">&#8599;</span></a> and <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">Data Processing Agreement <span aria-hidden=\"true\">&#8599;</span></a>."
 msgstr "Ved å koble til dette nettstedet, godtar du Equalize Digitals <a href=\"%1$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%3$s\">personvernerklæring <span aria-hidden=\"true\">&#8599;</span></a> og <a href=\"%2$s\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"%4$s\">databehandleravtale <span aria-hidden=\"true\">&#8599;</span></a>."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:308
+#: admin/AdminPage/AccessibilityReportsPage.php:327
 msgid "Privacy Policy (opens in a new window)"
 msgstr "Personvernerklæring (åpnes i et nytt vindu)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:309
+#: admin/AdminPage/AccessibilityReportsPage.php:328
 msgid "Data Processing Agreement (opens in a new window)"
 msgstr "Databehandleravtale (åpnes i et nytt vindu)"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:320
+#: admin/AdminPage/AccessibilityReportsPage.php:339
 msgid "Weekly email includes total issues found and changes since the last report, coverage information, counts of problems, needs review, passed test percentage, and information about the most problematic pages and the most severe issues."
 msgstr "Ukentlig e-post inkluderer totale feil funnet og endringer siden forrige rapport, dekningsinformasjon, antall problemer, behov for gjennomgang, prosentandel bestått test, og informasjon om de mest problematiske sidene og de mest alvorlige feilene."
 
-#: admin/AdminPage/AccessibilityReportsPage.php:417
+#: admin/AdminPage/AccessibilityReportsPage.php:356
+msgid "Email reports are not available on local sites because our service cannot reach this site to collect report data. Enable reports on your live site instead."
+msgstr "E-postrapporter er ikke tilgjengelige på lokale nettsteder fordi tjenesten vår ikke kan nå dette nettstedet for å hente rapportdata. Aktiver rapporter på det aktive nettstedet Deres i stedet."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:360
+msgid "We have not received report data from this site recently. A firewall, security plugin, or password protection may be blocking our service."
+msgstr "Vi har ikke mottatt rapportdata fra dette nettstedet nylig. En brannmur, en sikkerhetsutvidelse eller passordbeskyttelse kan blokkere tjenesten vår."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:363
+msgid "This site is password protected, so our service cannot collect report data. Remove the password protection, or allow requests to /wp-json/accessibility-checker/v1/scans-stats through it."
+msgstr "Dette nettstedet er passordbeskyttet, så tjenesten vår kan ikke hente rapportdata. Fjern passordbeskyttelsen, eller tillat forespørsler til /wp-json/accessibility-checker/v1/scans-stats gjennom den."
+
+#: admin/AdminPage/AccessibilityReportsPage.php:456
 #: build/sidebar.bundle.js:8
 msgid "N/A"
 msgstr "Ikke relevant"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:507
+#: admin/AdminPage/AccessibilityReportsPage.php:546
 #: admin/class-ajax.php:336
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -235,7 +255,7 @@ msgstr "Ikke relevant"
 msgid "Critical"
 msgstr "Kritisk"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:509
+#: admin/AdminPage/AccessibilityReportsPage.php:548
 #: admin/class-ajax.php:340
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -246,7 +266,7 @@ msgstr "Kritisk"
 msgid "High"
 msgstr "Høy"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:511
+#: admin/AdminPage/AccessibilityReportsPage.php:550
 #: admin/class-ajax.php:344
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -257,7 +277,7 @@ msgstr "Høy"
 msgid "Medium"
 msgstr "Middels"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:513
+#: admin/AdminPage/AccessibilityReportsPage.php:552
 #: admin/class-ajax.php:348
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -268,8 +288,8 @@ msgstr "Middels"
 msgid "Low"
 msgstr "Lav"
 
-#: admin/AdminPage/AccessibilityReportsPage.php:515
-#: includes/classes/class-rest-api.php:1046
+#: admin/AdminPage/AccessibilityReportsPage.php:554
+#: includes/classes/class-rest-api.php:1053
 msgid "Unknown"
 msgstr "Ukjent"
 
@@ -549,13 +569,13 @@ msgid "Ask a Pre-Sale Question"
 msgstr "Still et førsalgsspørsmål"
 
 #: admin/class-admin-notices.php:195
-#: admin/class-admin-notices.php:412
+#: admin/class-admin-notices.php:415
 msgid "Upgrade Now"
 msgstr "Oppgrader nå"
 
 #: admin/class-admin-notices.php:199
-msgid "🎉 Black Friday special: save 20% and get a free course! 🎉"
-msgstr "🎉 Black Friday-spesial: spar 20 % og få et gratis kurs! 🎉"
+msgid "🎉 Accessibility Checker Black Friday special: save 20% and get a free course! 🎉"
+msgstr "🎉 Accessibility Checker Black Friday-spesial: spar 20 % og få et gratis kurs! 🎉"
 
 #: admin/class-admin-notices.php:200
 msgid "Scan custom post types and archive pages, see every issue in one place, and get enhanced email reports. Upgrade between November 23rd and December 2nd to save 20% and get a free course of your choice."
@@ -574,16 +594,16 @@ msgid "Renew Now"
 msgstr "Forny nå"
 
 #: admin/class-admin-notices.php:215
-msgid "🎉 Black Friday: Save 25% on your upgrade to Small Business! 🎉"
-msgstr "🎉 Black Friday: Spar 25 % på oppgraderingen til Small Business! 🎉"
+msgid "🎉 Black Friday: Save 25% on your upgrade to Accessibility Checker Small Business! 🎉"
+msgstr "🎉 Black Friday: Spar 25 % på oppgraderingen til Accessibility Checker Small Business! 🎉"
 
 #: admin/class-admin-notices.php:216
 msgid "Get 5 site licenses, Audit History, CSV Export, and access to biweekly office hours, with 25% off when you upgrade from November 23rd to December 2nd."
 msgstr "Få 5 nettstedslisenser, revisjonshistorikk, CSV-eksport og tilgang til kontortid annenhver uke, med 25 % rabatt når du oppgraderer mellom 23. november og 2. desember."
 
 #: admin/class-admin-notices.php:232
-msgid "🎉 Black Friday: Save 25% on your upgrade! 🎉"
-msgstr "🎉 Black Friday: Spar 25 % på oppgraderingen! 🎉"
+msgid "🎉 Accessibility Checker Black Friday: Save 25% on your upgrade! 🎉"
+msgstr "🎉 Accessibility Checker Black Friday: Spar 25 % på oppgraderingen! 🎉"
 
 #: admin/class-admin-notices.php:233
 msgid "Need more licenses? Upgrade to SMB+ for 10 sites, or go bigger with Agency for 25 sites, Multisite tools, and VIP support."
@@ -593,13 +613,13 @@ msgstr "Trenger du flere lisenser? Oppgrader til SMB+ for 10 nettsteder, eller g
 msgid "Upgrade & Save 25%"
 msgstr "Oppgrader og spar 25 %"
 
-#: admin/class-admin-notices.php:271
-#: admin/class-admin-notices.php:355
-#: admin/class-admin-notices.php:431
-#: admin/class-admin-notices.php:520
+#: admin/class-admin-notices.php:274
+#: admin/class-admin-notices.php:358
+#: admin/class-admin-notices.php:434
+#: admin/class-admin-notices.php:523
 #: admin/class-ajax.php:59
 #: admin/class-ajax.php:222
-#: admin/class-ajax.php:642
+#: admin/class-ajax.php:653
 #: admin/class-frontend-highlight.php:89
 #: admin/class-frontend-highlight.php:107
 #: admin/class-frontend-highlight.php:120
@@ -608,87 +628,87 @@ msgstr "Oppgrader og spar 25 %"
 msgid "Permission Denied"
 msgstr "Tilgang nektet"
 
-#: admin/class-admin-notices.php:284
-#: admin/class-admin-notices.php:362
-#: admin/class-admin-notices.php:443
-#: admin/class-admin-notices.php:544
+#: admin/class-admin-notices.php:287
+#: admin/class-admin-notices.php:365
+#: admin/class-admin-notices.php:446
+#: admin/class-admin-notices.php:547
 msgid "Update option wasn't successful"
 msgstr "Oppdatering av alternativ var ikke vellykket"
 
-#: admin/class-admin-notices.php:326
-#: admin/class-admin-notices.php:402
+#: admin/class-admin-notices.php:329
+#: admin/class-admin-notices.php:405
 msgid "⚡️ Global Accessibility Awareness Day Flash Sale"
 msgstr "⚡️ Global Accessibility Awareness Day-kupp"
 
-#: admin/class-admin-notices.php:329
+#: admin/class-admin-notices.php:332
 msgid "Starting May 20th: Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "Fra og med 20. mai: Spar 15 % på tilgjengelighetskurs og ArchiveWP med kupongkode "
 
-#: admin/class-admin-notices.php:330
-#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:333
+#: admin/class-admin-notices.php:338
 msgid "3 days only • May 20–22"
 msgstr "Kun 3 dager • 20.–22. mai"
 
-#: admin/class-admin-notices.php:331
-#: admin/class-admin-notices.php:407
+#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:410
 msgid "View ArchiveWP Pricing"
 msgstr "Se ArchiveWP-priser"
 
-#: admin/class-admin-notices.php:332
-#: admin/class-admin-notices.php:408
+#: admin/class-admin-notices.php:335
+#: admin/class-admin-notices.php:411
 msgid "View Course Pricing"
 msgstr "Se kurspriser"
 
-#: admin/class-admin-notices.php:334
+#: admin/class-admin-notices.php:337
 msgid "Starting May 20th: Save 15% on Accessibility Checker Pro with coupon code "
 msgstr "Fra og med 20. mai: Spar 15 % på Accessibility Checker Pro med kupongkode "
 
-#: admin/class-admin-notices.php:336
+#: admin/class-admin-notices.php:339
 msgid "View Pricing"
 msgstr "Se priser"
 
-#: admin/class-admin-notices.php:405
+#: admin/class-admin-notices.php:408
 msgid "Save 15% on accessibility courses and ArchiveWP with coupon code "
 msgstr "Spar 15 % på tilgjengelighetskurs og ArchiveWP med kupongkode "
 
-#: admin/class-admin-notices.php:406
-#: admin/class-admin-notices.php:411
+#: admin/class-admin-notices.php:409
+#: admin/class-admin-notices.php:414
 msgid "Limited-time offer • Ends May 22nd"
 msgstr "Begrenset tilbud • Avsluttes 22. mai"
 
-#: admin/class-admin-notices.php:410
+#: admin/class-admin-notices.php:413
 msgid "3 days only: Save 15% when you upgrade to Accessibility Checker Pro with coupon code "
 msgstr "Kun 3 dager: Spar 15 % når du oppgraderer til Accessibility Checker Pro med kupongkode "
 
-#: admin/class-admin-notices.php:495
+#: admin/class-admin-notices.php:498
 msgid "Hello! Thank you for using Accessibility Checker as part of your accessibility toolkit. Since you've been using it for a while, would you please write a 5-star review of Accessibility Checker in the WordPress plugin directory? This will help increase our visibility so more people can learn about the importance of web accessibility. Thanks so much!"
 msgstr "Hei! Takk for at du bruker Accessibility Checker som en del av ditt tilgjengelighetsverktøy. Siden du har brukt det en stund, kunne du være så snill å skrive en 5-stjerners anmeldelse av Accessibility Checker i WordPress-plugin-katalogen? Dette vil hjelpe oss å øke vår synlighet slik at flere kan lære om viktigheten av webtilgjengelighet. Tusen takk!"
 
-#: admin/class-admin-notices.php:498
+#: admin/class-admin-notices.php:501
 msgid "Write A Review"
 msgstr "Skriv en anmeldelse"
 
-#: admin/class-admin-notices.php:499
+#: admin/class-admin-notices.php:502
 msgid "Remind Me In Two Weeks"
 msgstr "Påminn meg om to uker"
 
-#: admin/class-admin-notices.php:500
+#: admin/class-admin-notices.php:503
 msgid "Never Ask Again"
 msgstr "Spør aldri igjen"
 
-#: admin/class-admin-notices.php:527
+#: admin/class-admin-notices.php:530
 msgid "The review action value was not set"
 msgstr "Anmeldelseshandlingsverdien ble ikke satt"
 
 #: admin/class-ajax.php:63
 #: admin/class-ajax.php:226
-#: admin/class-ajax.php:646
+#: admin/class-ajax.php:657
 msgid "The post ID was not set"
 msgstr "Innlegg-ID-en ble ikke satt"
 
 #: admin/class-ajax.php:67
 #: admin/class-ajax.php:230
-#: admin/class-ajax.php:650
+#: admin/class-ajax.php:661
 msgid "You do not have permission to view this information for this post."
 msgstr "Du har ikke tillatelse til å se denne informasjonen for dette innlegget."
 
@@ -773,7 +793,7 @@ msgid "* True accessibility requires manual testing in addition to automated sca
 msgstr "* Ekte tilgjengelighet krever manuell testing i tillegg til automatiserte skanninger. %1$sLær hvordan du tester tilgjengelighet manuelt%2$s"
 
 #: admin/class-ajax.php:197
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:809
 #: admin/class-ignore-ui.php:170
 #: build/frontendHighlighterApp.bundle.js:8
 #: build/issueModal.bundle.js:2
@@ -787,7 +807,7 @@ msgid "No summary to return"
 msgstr "Ingen sammendrag å returnere"
 
 #: admin/class-ajax.php:241
-#: includes/classes/class-rest-api.php:954
+#: includes/classes/class-rest-api.php:961
 msgid "Invalid table name"
 msgstr "Ugyldig tabellnavn"
 
@@ -818,182 +838,185 @@ msgstr "Sider må kanskje lagres på nytt eller en fullstendig nettstedsskanning
 msgid "Save"
 msgstr "Lagre"
 
-#: admin/class-ajax.php:477
+#: admin/class-ajax.php:476
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Affected Code"
 msgstr "Berørt kode"
 
-#: admin/class-ajax.php:480
+#: admin/class-ajax.php:477
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Image"
 msgstr "Bilde"
 
-#: admin/class-ajax.php:483
+#: admin/class-ajax.php:478
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 msgid "Landmark"
 msgstr "Landemerke"
 
-#: admin/class-ajax.php:486
+#: admin/class-ajax.php:479
 msgid "Actions"
 msgstr "Handlinger"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:481
+#: admin/class-ajax.php:707
+#: admin/class-ajax.php:728
+#: admin/site-health/class-pro.php:75
+msgid "None"
+msgstr "Ingen"
+
+#: admin/class-ajax.php:494
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:8
 msgid "Dismissed"
 msgstr "Avvist"
 
-#: admin/class-ajax.php:495
+#: admin/class-ajax.php:494
+#: build/admin.bundle.js:2
 msgid "Dismiss"
 msgstr "Avvis"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:506
+#: admin/class-ajax.php:505
 #, php-format
 msgid "Issue ID %d"
 msgstr "Problem-ID %d"
 
 #. translators: %d: issue ID number
-#: admin/class-ajax.php:524
-#: admin/class-ajax.php:534
+#: admin/class-ajax.php:528
+#: admin/class-ajax.php:538
 #, php-format
 msgid "image for issue %d"
 msgstr "bilde for problem %d"
 
 #. Translators: %d is the issue ID.
-#: admin/class-ajax.php:569
+#: admin/class-ajax.php:580
 #, php-format
 msgid "View Issue ID %d on website, opens a new window"
 msgstr "Vis problem-ID %d på nettstedet, åpnes i et nytt vindu"
 
-#: admin/class-ajax.php:570
+#: admin/class-ajax.php:581
 #: build/issueModal.bundle.js:2
 #: build/sharedComponents.bundle.js:2
 #: build/sidebar.bundle.js:10
 msgid "View on page"
 msgstr "Vis på siden"
 
-#: admin/class-ajax.php:589
+#: admin/class-ajax.php:600
 msgid "Fix: "
 msgstr "Rettelse: "
 
-#: admin/class-ajax.php:590
+#: admin/class-ajax.php:601
 msgid "Fix"
 msgstr "Rett"
 
-#: admin/class-ajax.php:623
+#: admin/class-ajax.php:634
 msgid "No details to return"
 msgstr "Ingen detaljer å returnere"
 
 #. translators: %s: reading grade level value e.g. "8th Grade (Flesch-Kincaid)", displayed in a <strong> element. Do not translate the %s placeholder.
-#: admin/class-ajax.php:695
+#: admin/class-ajax.php:706
 #, php-format
 msgid "Post Reading Grade Level: %s"
 msgstr "Lesenivå etter innlegg: %s"
 
-#: admin/class-ajax.php:696
-#: admin/class-ajax.php:717
-#: admin/site-health/class-pro.php:75
-msgid "None"
-msgstr "Ingen"
-
-#: admin/class-ajax.php:699
+#: admin/class-ajax.php:710
 msgid "Your post has a reading level higher than 9th grade. Web Content Accessibility Guidelines (WCAG) at the AAA level require a simplified summary of your post that is 9th grade or below."
 msgstr "Innlegget ditt har et lesenivå høyere enn 9. klasse. Retningslinjer for tilgjengelighet for nettinnhold (WCAG) på AAA-nivå krever et forenklet sammendrag av innlegget ditt som er 9. klasse eller lavere."
 
-#: admin/class-ajax.php:701
+#: admin/class-ajax.php:712
 msgid "Your post does not contain enough content to calculate its reading level."
 msgstr "Innlegget ditt inneholder ikke nok innhold til å beregne lesenivået."
 
-#: admin/class-ajax.php:703
+#: admin/class-ajax.php:714
 msgid "A simplified summary is not necessary when content reading level is 9th grade or below. Choose when to prompt for a simplified summary on the settings page."
 msgstr "Et forenklet sammendrag er ikke nødvendig når innholdets lesenivå er 9. klasse eller lavere. Velg når du vil be om et forenklet sammendrag på innstillingssiden."
 
 #. translators: %s: the simplified summary grade level value (wrapped in a <strong> tag)
-#: admin/class-ajax.php:716
-#: admin/class-ajax.php:728
+#: admin/class-ajax.php:727
+#: admin/class-ajax.php:739
 #, php-format
 msgid "Simplified Summary Reading Grade Level: %s"
 msgstr "Forenklet sammendrag lesbarhetsnivå: %s"
 
-#: admin/class-ajax.php:720
+#: admin/class-ajax.php:731
 #: build/sidebar.bundle.js:10
 msgid "Not enough content to determine an accurate reading level."
 msgstr "Ikke nok innhold til å fastslå et nøyaktig lesbarhetsnivå."
 
-#: admin/class-ajax.php:733
+#: admin/class-ajax.php:744
 msgid "Your simplified summary has a reading level above 9th grade."
 msgstr "Ditt forenklede sammendrag har et lesbarhetsnivå over 9. trinn."
 
-#: admin/class-ajax.php:734
+#: admin/class-ajax.php:745
 msgid "Your simplified summary has a reading level at or below 9th grade."
 msgstr "Ditt forenklede sammendrag har et lesbarhetsnivå på eller under 9. trinn."
 
-#: admin/class-ajax.php:745
-#: admin/class-ajax.php:775
+#: admin/class-ajax.php:756
+#: admin/class-ajax.php:786
 msgid "Simplified summary is not being automatically inserted into the content."
 msgstr "Forenklet sammendrag blir ikke automatisk satt inn i innholdet."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:748
+#: admin/class-ajax.php:759
 #, php-format
 msgid "Your Prompt for Simplified Summary is set to &ldquo;never.&rdquo; If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din forespørsel om forenklet sammendrag er satt til «aldri». Hvis du vil at det forenklede sammendraget skal vises automatisk, kan du endre dette på %s."
 
-#: admin/class-ajax.php:749
-#: admin/class-ajax.php:766
-#: admin/class-ajax.php:779
+#: admin/class-ajax.php:760
+#: admin/class-ajax.php:777
+#: admin/class-ajax.php:790
 msgid "settings page"
 msgstr "innstillingsside"
 
 #. translators: %s: position phrase wrapped in a <strong> element (e.g. "<strong>before the content</strong>"). Do not translate the %s placeholder.
-#: admin/class-ajax.php:760
+#: admin/class-ajax.php:771
 #, php-format
 msgid "Simplified summary is being automatically inserted %s."
 msgstr "Forenklet sammendrag settes automatisk inn %s."
 
-#: admin/class-ajax.php:761
+#: admin/class-ajax.php:772
 msgid "the content"
 msgstr "innholdet"
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:765
+#: admin/class-ajax.php:776
 #, php-format
 msgid "Set where the Simplified Summary is inserted into the content on the %s."
 msgstr "Angi hvor det forenklede sammendraget skal settes inn i innholdet på %s."
 
 #. translators: %s: link to the settings page
-#: admin/class-ajax.php:778
+#: admin/class-ajax.php:789
 #, php-format
 msgid "Your Simplified Summary location is set to &ldquo;manually&rdquo; which requires a function be added to your page template. If you would like the simplified summary to be displayed automatically, you can change this on the %s."
 msgstr "Din plassering for forenklet sammendrag er satt til «manuelt», noe som krever at en funksjon legges til i sidetemplaten din. Hvis du vil at det forenklede sammendraget skal vises automatisk, kan du endre dette på %s."
 
-#: admin/class-ajax.php:792
+#: admin/class-ajax.php:803
 #: includes/classes/Blocks/SimplifiedSummaryBlock.php:125
 #: includes/classes/class-simplified-summary.php:132
 #: includes/options-page.php:1545
 #: includes/options-page.php:1569
 #: build/sidebar.bundle.js:10
-#: build/simplifiedSummaryBlock.bundle.js:2
+#: build/simplifiedSummaryBlock.bundle.js:1
 msgid "Simplified Summary"
 msgstr "Forenklet sammendrag"
 
-#: admin/class-ajax.php:794
+#: admin/class-ajax.php:805
 #: build/sidebar.bundle.js:10
 msgid "Save Summary"
 msgstr "Lagre sammendrag"
 
-#: admin/class-ajax.php:798
+#: admin/class-ajax.php:809
 msgid "Learn more about improving readability and simplified summary requirements"
 msgstr "Lær mer om å forbedre lesbarheten og krav til forenklet sammendrag"
 
-#: admin/class-ajax.php:801
+#: admin/class-ajax.php:812
 msgid "No readability data to return"
 msgstr "Ingen lesbarhetsdata å returnere"
 
-#: admin/class-enqueue-admin.php:453
+#: admin/class-enqueue-admin.php:456
 msgid "* Screen Reader Text"
 msgstr "* Skjermlesertekst"
 
@@ -1002,7 +1025,7 @@ msgid "The id value was not set"
 msgstr "ID-verdien ble ikke satt"
 
 #: admin/class-frontend-highlight.php:100
-#: includes/classes/class-rest-api.php:1092
+#: includes/classes/class-rest-api.php:1099
 msgid "Post not found"
 msgstr "Innlegg ikke funnet"
 
@@ -1047,6 +1070,7 @@ msgid "Date:"
 msgstr "Dato:"
 
 #: admin/class-ignore-ui.php:141
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:4
 #: build/sharedComponents.bundle.js:4
@@ -1054,6 +1078,7 @@ msgid "Reopen Issue"
 msgstr "Gjenåpne problem"
 
 #: admin/class-ignore-ui.php:142
+#: build/admin.bundle.js:2
 #: build/frontendHighlighterApp.bundle.js:2
 #: build/issueModal.bundle.js:2
 #: build/issueModal.bundle.js:4
@@ -1598,20 +1623,20 @@ msgstr "Få Accessibility Checker Pro"
 msgid "Get Accessibility Checker Pro (opens in new window)"
 msgstr "Få Accessibility Checker Pro (åpnes i nytt vindu)"
 
-#: includes/classes/class-rest-api.php:1252
+#: includes/classes/class-rest-api.php:1259
 msgid "Sorry, you are not allowed to dismiss issues."
 msgstr "Beklager, du har ikke tillatelse til å avvise problemer."
 
-#: includes/classes/class-rest-api.php:1271
+#: includes/classes/class-rest-api.php:1278
 msgid "Sorry, you are not allowed to dismiss issues globally."
 msgstr "Beklager, du har ikke tillatelse til å avvise problemer globalt."
 
-#: includes/classes/class-rest-api.php:1315
-#: includes/classes/class-rest-api.php:1337
+#: includes/classes/class-rest-api.php:1322
+#: includes/classes/class-rest-api.php:1344
 msgid "Issue not found."
 msgstr "Problem ikke funnet."
 
-#: includes/classes/class-rest-api.php:1394
+#: includes/classes/class-rest-api.php:1401
 msgid "Failed to update the issue."
 msgstr "Kunne ikke oppdatere problemet."
 
@@ -1935,15 +1960,15 @@ msgstr "Fjern tab-indeks"
 msgid "Remove the %1$s attribute from focusable elements."
 msgstr "Fjern %1$s-attributtet fra fokuserbare elementer."
 
-#: includes/classes/Fixes/FixesManager.php:252
+#: includes/classes/Fixes/FixesManager.php:294
 msgid "Note: This setting is not recommended for themes that are already accessibility-ready."
 msgstr "Merk: Denne innstillingen anbefales ikke for temaer som allerede er tilgjengelighetsforberedt."
 
-#: includes/classes/Fixes/FixesManager.php:321
+#: includes/classes/Fixes/FixesManager.php:356
 msgid "Fix not found"
 msgstr "Fiks ikke funnet"
 
-#: includes/classes/Fixes/FixesManager.php:357
+#: includes/classes/Fixes/FixesManager.php:392
 msgid "Fix not found."
 msgstr "Fiks ikke funnet."
 
@@ -1951,57 +1976,61 @@ msgstr "Fiks ikke funnet."
 msgid "You do not have permission to manage this license."
 msgstr "Du har ikke tillatelse til å administrere denne lisensen."
 
-#: includes/classes/MyDot/Connector.php:318
+#: includes/classes/MyDot/Connector.php:319
 msgid "Pro license management is active. Please manage your license from Accessibility Checker Pro."
 msgstr "Pro-lisensadministrasjon er aktiv. Vennligst administrer lisensen din fra Accessibility Checker Pro."
 
-#: includes/classes/MyDot/Connector.php:347
+#: includes/classes/MyDot/Connector.php:353
 msgid "An error occurred, please try again."
 msgstr "En feil oppsto, vennligst prøv igjen."
 
-#: includes/classes/MyDot/Connector.php:636
+#: includes/classes/MyDot/Connector.php:643
 msgid "You do not have permission to register this site."
 msgstr "Du har ikke tillatelse til å registrere dette nettstedet."
 
-#: includes/classes/MyDot/Connector.php:657
+#: includes/classes/MyDot/Connector.php:664
 msgid "You do not have permission to unregister this site."
 msgstr "Du har ikke tillatelse til å avregistrere dette nettstedet."
 
-#: includes/classes/MyDot/Connector.php:683
+#: includes/classes/MyDot/Connector.php:692
+msgid "Email reports cannot be enabled on a local site because our service cannot reach it to collect report data."
+msgstr "E-postrapporter kan ikke aktiveres på et lokalt nettsted fordi tjenesten vår ikke kan nå det for å hente rapportdata."
+
+#: includes/classes/MyDot/Connector.php:718
 msgid "No license key found. Please activate a license before registering your site."
 msgstr "Ingen lisensnøkkel funnet. Vennligst aktiver en lisens før du registrerer nettstedet ditt."
 
-#: includes/classes/MyDot/Connector.php:694
-#: includes/classes/MyDot/Connector.php:901
-msgid "Unknown error occurred while registering the site."
-msgstr "Ukjent feil oppsto under registrering av nettstedet."
+#: includes/classes/MyDot/Connector.php:729
+#: includes/classes/MyDot/Connector.php:940
+msgid "Email reports could not be turned on. Please try again, and contact support if the problem continues."
+msgstr "Kunne ikke slå på e-postrapporter. Prøv igjen, og kontakt brukerstøtte hvis problemet vedvarer."
 
-#: includes/classes/MyDot/Connector.php:723
+#: includes/classes/MyDot/Connector.php:762
 msgid "Site registered successfully. Your site is now configured to use additional accessibility services."
 msgstr "Nettstedet er registrert. Nettstedet ditt er nå konfigurert til å bruke ytterligere tilgjengelighetstjenester."
 
-#: includes/classes/MyDot/Connector.php:733
+#: includes/classes/MyDot/Connector.php:772
 msgid "Site registration completed, but the response data was not in the expected format. Some features may not work correctly."
 msgstr "Nettstedsregistreringen er fullført, men svar-dataene var ikke i forventet format. Enkelte funksjoner fungerer kanskje ikke riktig."
 
-#: includes/classes/MyDot/Connector.php:809
+#: includes/classes/MyDot/Connector.php:848
 msgid "Unable to unregister site. Required registration data is missing."
 msgstr "Kan ikke avregistrere nettstedet. Nødvendige registreringsdata mangler."
 
-#: includes/classes/MyDot/Connector.php:826
-#: includes/classes/MyDot/Connector.php:959
-msgid "Unknown error occurred while unregistering the site."
-msgstr "Ukjent feil oppsto under avregistrering av nettstedet."
+#: includes/classes/MyDot/Connector.php:865
+#: includes/classes/MyDot/Connector.php:998
+msgid "Email reports are turned off on this site, but we could not confirm this with our service. Please contact support if you keep receiving report emails."
+msgstr "E-postrapporter er slått av på dette nettstedet, men vi kunne ikke bekrefte dette med tjenesten vår. Kontakt brukerstøtte hvis De fortsetter å motta rapport-e-poster."
 
-#: includes/classes/MyDot/Connector.php:841
+#: includes/classes/MyDot/Connector.php:880
 msgid "Site unregistered successfully. Your site will no longer receive email reports."
 msgstr "Nettstedet er avregistrert. Nettstedet ditt vil ikke lenger motta e-postrapporter."
 
-#: includes/classes/MyDot/Connector.php:864
+#: includes/classes/MyDot/Connector.php:903
 msgid "No license key provided."
 msgstr "Ingen lisensnøkkel oppgitt."
 
-#: includes/classes/MyDot/Connector.php:922
+#: includes/classes/MyDot/Connector.php:961
 msgid "Missing required parameters for unregistration."
 msgstr "Mangler nødvendige parametere for avregistrering."
 
@@ -5362,6 +5391,22 @@ msgstr "Lagring mislyktes."
 msgid "Fix Settings"
 msgstr "Fikseinnstillinger"
 
+#: build/admin.bundle.js:2
+msgid "Successfully dismissed issue"
+msgstr "Problemet ble avvist"
+
+#: build/admin.bundle.js:2
+msgid "Successfully undismissed issue"
+msgstr "Avvisning av problemet ble angret"
+
+#: build/admin.bundle.js:2
+msgid "Failed to dismiss issue"
+msgstr "Kunne ikke avvise problemet"
+
+#: build/admin.bundle.js:2
+msgid "Failed to undismiss issue"
+msgstr "Kunne ikke angre avvisning av problemet"
+
 #: build/editorApp.bundle.js:2
 msgid "The accessibility scan did not finish, so your saved results were left unchanged."
 msgstr "Tilgjengelighetsskanningen ble ikke fullført, så de lagrede resultatene dine ble ikke endret."
@@ -6246,6 +6291,14 @@ msgid "Loading accessibility data..."
 msgstr "Laster tilgjengelighetsdata ..."
 
 #: build/sidebar.bundle.js:10
+msgid "Accessibility analysis refreshed."
+msgstr "Tilgjengelighetsanalysen ble oppdatert."
+
+#: build/sidebar.bundle.js:10
+msgid "Accessibility analysis could not be refreshed."
+msgstr "Kunne ikke oppdatere tilgjengelighetsanalysen."
+
+#: build/sidebar.bundle.js:10
 msgid "Accessibility Checker actions"
 msgstr "Accessibility Checker-handlinger"
 
@@ -6265,7 +6318,7 @@ msgstr "Løsne fra verktøylinjen"
 msgid "Pin to toolbar"
 msgstr "Fest til verktøylinjen"
 
-#: build/simplifiedSummaryBlock.bundle.js:2
+#: build/simplifiedSummaryBlock.bundle.js:1
 msgid "The simplified summary for this post will display here. Write the summary in the Readability section of the Accessibility Checker sidebar or meta box."
 msgstr "Det forenklede sammendraget for dette innlegget vil vises her. Skriv sammendraget i seksjonen for lesbarhet i Accessibility Checker-sidefeltet eller metaboksen."
 
