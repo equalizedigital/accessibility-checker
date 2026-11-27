@@ -29,6 +29,7 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
 		delete_option( 'edac_fallback_active' );
+		delete_option( 'edac_reports_resume_on_license' );
 		wp_clear_scheduled_hook( 'edac_check_license_hook' );
 		wp_clear_scheduled_hook( 'edacp_check_license_hook' );
 	}
@@ -48,6 +49,7 @@ class ConnectorTest extends WP_UnitTestCase {
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
 		delete_option( 'edac_fallback_active' );
+		delete_option( 'edac_reports_resume_on_license' );
 		wp_clear_scheduled_hook( 'edac_check_license_hook' );
 		wp_clear_scheduled_hook( 'edacp_check_license_hook' );
 		remove_all_filters( 'edac_pro_product_id' );
@@ -849,6 +851,61 @@ class ConnectorTest extends WP_UnitTestCase {
 
 
 	/**
+	 * Mock a MyDot register/unregister API endpoint and count the requests it receives.
+	 *
+	 * @param string $endpoint Endpoint slug, such as 'register-site' or 'unregister-site'.
+	 * @param bool   $success  Whether the mocked API reports success.
+	 * @param array  $data     Data returned with a successful registration.
+	 * @return ArrayObject Holds the number of requests in its 'count' key.
+	 */
+	private function mock_mydot_endpoint( $endpoint, $success = true, array $data = [] ) {
+		$calls = new ArrayObject( [ 'count' => 0 ] );
+
+		add_filter(
+			'pre_http_request',
+			function ( $preempt, $args, $url ) use ( $endpoint, $success, $data, $calls ) {
+				if ( false === strpos( $url, '/wp-json/myed-email-reports/v1/' . $endpoint ) ) {
+					return $preempt;
+				}
+
+				++$calls['count'];
+
+				return [
+					'headers'  => [],
+					'body'     => wp_json_encode(
+						[
+							'success' => $success,
+							'data'    => $data,
+						]
+					),
+					'response' => [
+						'code'    => $success ? 200 : 500,
+						'message' => $success ? 'OK' : 'Server Error',
+					],
+				];
+			},
+			10,
+			3
+		);
+
+		return $calls;
+	}
+
+	/**
+	 * Registration data returned by a successful mocked register-site call.
+	 *
+	 * @return array
+	 */
+	private function registration_data() {
+		return [
+			'site_id'                  => 'resumed-site-id',
+			'jwt_public_key'           => 'resumed-public-key',
+			'collection_interval_days' => '7',
+			'next_collection'          => '2030-01-01',
+		];
+	}
+
+	/**
 	 * Ensures Pro activation hook refreshes existing registration context.
 	 */
 	public function test_handle_pro_license_activation_refreshes_registration_when_already_connected() {
@@ -1132,6 +1189,160 @@ class ConnectorTest extends WP_UnitTestCase {
 		$connector->handle_site_unregistration( 'hook-key', home_url(), (object) [ 'license' => 'deactivated' ] );
 
 		$this->assertFalse( get_option( 'edac_site_id', false ) );
+	}
+
+	/**
+	 * A license deactivation remembers that reports should come back with the license.
+	 */
+	public function test_license_deactivation_unregistration_sets_resume_marker() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		$this->mock_mydot_endpoint( 'unregister-site' );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration( 'hook-key', home_url(), (object) [ 'license' => 'deactivated' ] );
+
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+		$this->assertTrue( (bool) get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * Even when the remote unregister fails, the deactivation still remembers to resume.
+	 */
+	public function test_license_deactivation_unregistration_sets_resume_marker_on_remote_failure() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		$this->mock_mydot_endpoint( 'unregister-site', false );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration( 'hook-key', home_url(), (object) [ 'license' => 'deactivated' ] );
+
+		$this->assertTrue( (bool) get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * The manual disconnect button must not set the marker.
+	 */
+	public function test_manual_unregistration_does_not_set_resume_marker() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edacp_license_key', 'stored-key' );
+		$this->mock_mydot_endpoint( 'unregister-site' );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+
+		$this->assertFalse( get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * A manual disconnect clears a marker left by an earlier license deactivation.
+	 */
+	public function test_manual_unregistration_clears_existing_resume_marker() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edacp_license_key', 'stored-key' );
+		update_option( 'edac_reports_resume_on_license', 1 );
+		$this->mock_mydot_endpoint( 'unregister-site' );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+
+		$this->assertFalse( get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * With no registered site there is nothing to resume, so no marker is set.
+	 */
+	public function test_license_deactivation_without_registration_does_not_set_resume_marker() {
+		$connector = new Connector();
+		$connector->handle_site_unregistration( 'hook-key', home_url(), (object) [ 'license' => 'deactivated' ] );
+
+		$this->assertFalse( get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * Re-activating the Pro license turns reports back on when a deactivation had turned them off.
+	 */
+	public function test_pro_license_activation_resumes_reports_after_license_deactivation() {
+		update_option( 'edac_reports_resume_on_license', 1 );
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		$calls = $this->mock_mydot_endpoint( 'register-site', true, $this->registration_data() );
+
+		$connector = new Connector();
+		$connector->handle_pro_license_activation( 'pro-license-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 1, $calls['count'] );
+		$this->assertSame( 'resumed-site-id', get_option( 'edac_site_id' ) );
+		$this->assertSame( 'resumed-public-key', get_option( 'edac_jwt_public_key' ) );
+		$this->assertSame( '7', get_option( 'edac_collection_interval_days' ) );
+		$this->assertFalse( get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * If turning reports back on fails, the marker stays so the next activation can retry.
+	 */
+	public function test_pro_license_activation_keeps_resume_marker_when_registration_fails() {
+		update_option( 'edac_reports_resume_on_license', 1 );
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		$calls = $this->mock_mydot_endpoint( 'register-site', false );
+
+		$connector = new Connector();
+		$connector->handle_pro_license_activation( 'pro-license-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 1, $calls['count'] );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+		$this->assertTrue( (bool) get_option( 'edac_reports_resume_on_license', false ) );
+	}
+
+	/**
+	 * A site that was never connected, and has no marker, is not registered by activating a license.
+	 */
+	public function test_pro_license_activation_does_not_register_unconnected_site_without_marker() {
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		$calls = $this->mock_mydot_endpoint( 'register-site', true, $this->registration_data() );
+
+		$connector = new Connector();
+		$connector->handle_pro_license_activation( 'pro-license-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 0, $calls['count'] );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+	}
+
+	/**
+	 * After a manual disconnect, activating a license does not reconnect the site behind the user's back.
+	 */
+	public function test_pro_license_activation_does_not_reconnect_after_manual_disconnect() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edacp_license_key', 'stored-key' );
+		$this->mock_mydot_endpoint( 'unregister-site' );
+		$register_calls = $this->mock_mydot_endpoint( 'register-site', true, $this->registration_data() );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration();
+		update_option( 'edacp_license_key', 'stored-key' );
+		$connector->handle_pro_license_activation( 'stored-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 0, $register_calls['count'] );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+	}
+
+	/**
+	 * Deactivating the license and then activating it again reconnects the site end to end.
+	 */
+	public function test_license_deactivation_then_activation_reconnects_site() {
+		update_option( 'edac_site_id', 'existing-site-id' );
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		$this->mock_mydot_endpoint( 'unregister-site' );
+		$register_calls = $this->mock_mydot_endpoint( 'register-site', true, $this->registration_data() );
+
+		$connector = new Connector();
+		$connector->handle_site_unregistration( 'pro-license-key', home_url(), (object) [ 'license' => 'deactivated' ] );
+		$this->assertFalse( get_option( 'edac_site_id', false ) );
+
+		// Pro clears its stored key after the deactivation listeners run, then the user activates again.
+		update_option( 'edacp_license_key', 'pro-license-key' );
+		$connector->handle_pro_license_activation( 'pro-license-key', home_url(), (object) [ 'license' => 'valid' ] );
+
+		$this->assertSame( 1, $register_calls['count'] );
+		$this->assertSame( 'resumed-site-id', get_option( 'edac_site_id' ) );
+		$this->assertFalse( get_option( 'edac_reports_resume_on_license', false ) );
 	}
 
 	/**
