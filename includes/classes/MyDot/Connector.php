@@ -84,6 +84,14 @@ class Connector {
 	private const LICENSE_STATUS_UNKNOWN = 'unknown';
 
 	/**
+	 * Option set when email reports were turned off only because the Pro license was deactivated.
+	 *
+	 * It lets the next Pro license activation turn reports back on, without needing an admin to
+	 * reconnect by hand. A manual disconnect never sets it.
+	 */
+	private const RESUME_REPORTS_OPTION = 'edac_reports_resume_on_license';
+
+	/**
 	 * License type constants.
 	 */
 	private const LICENSE_TYPE_FREE    = 'free';
@@ -406,6 +414,7 @@ class Connector {
 		delete_option( 'edac_site_id' );
 		delete_option( 'edac_collection_interval_days' );
 		delete_option( 'edac_next_collection' );
+		delete_option( self::RESUME_REPORTS_OPTION );
 		ConnectionStatus::clear();
 	}
 
@@ -755,6 +764,9 @@ class Connector {
 			// The site is connected now, so this starts the missed pull clock.
 			ConnectionStatus::record_activity();
 
+			// Reports are on again, so there is nothing left to resume.
+			delete_option( self::RESUME_REPORTS_OPTION );
+
 			set_transient(
 				$this->get_notice_transient_key(),
 				[
@@ -790,7 +802,11 @@ class Connector {
 	 */
 	public function handle_pro_license_activation( $license = '', $url = '', $license_data = null ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed,VariableAnalysis.CodeAnalysis.VariableAnalysis.UnusedVariable -- Hook signature intentionally accepts action args for compatibility.
 		$site_id = (string) get_option( 'edac_site_id', '' );
-		if ( '' === $site_id || ConnectionStatus::is_local_site() ) {
+
+		// Reports that were turned off only by a license deactivation come back with the license.
+		$resuming = (bool) get_option( self::RESUME_REPORTS_OPTION, false );
+
+		if ( ConnectionStatus::is_local_site() || ( '' === $site_id && ! $resuming ) ) {
 			return;
 		}
 
@@ -801,6 +817,17 @@ class Connector {
 
 		$response_data = self::register_site( $license_key, site_url(), get_bloginfo( 'name' ), true, true );
 		if ( empty( $response_data['success'] ) || empty( $response_data['data'] ) ) {
+			if ( $resuming ) {
+				// Keep the resume marker so the next activation can try again.
+				set_transient(
+					$this->get_notice_transient_key(),
+					[
+						'type'    => 'warning',
+						'message' => __( 'Your license is active again, but email reports could not be turned back on automatically. You can turn them on again from the Connected Services page.', 'accessibility-checker' ),
+					],
+					self::NOTICE_TRANSIENT_TTL
+				);
+			}
 			return;
 		}
 
@@ -816,6 +843,22 @@ class Connector {
 		}
 		if ( ! empty( $data['next_collection'] ) ) {
 			update_option( 'edac_next_collection', $data['next_collection'] );
+		}
+
+		if ( $resuming ) {
+			delete_option( self::RESUME_REPORTS_OPTION );
+
+			// The site is connected again, so this restarts the missed pull clock.
+			ConnectionStatus::record_activity();
+
+			set_transient(
+				$this->get_notice_transient_key(),
+				[
+					'type'    => 'success',
+					'message' => __( 'Email reports have been turned back on for this site.', 'accessibility-checker' ),
+				],
+				self::NOTICE_TRANSIENT_TTL
+			);
 		}
 	}
 
@@ -855,6 +898,12 @@ class Connector {
 
 		// Always clear local report state so reports are disabled immediately.
 		self::clear_report_connection_state();
+
+		// A license deactivation passes the license key to this handler, the manual disconnect button
+		// does not. Only the first case is remembered, so reports can come back with the license.
+		if ( '' !== (string) $license ) {
+			update_option( self::RESUME_REPORTS_OPTION, 1, false );
+		}
 		if ( ! $preserve_license ) {
 			// Free disconnect keeps the historical behavior of clearing the key,
 			// even when the API response is an error.
